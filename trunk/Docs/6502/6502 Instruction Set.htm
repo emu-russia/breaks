@@ -1,0 +1,917 @@
+<html lang="en">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-15">
+<title>6502 Instruction Set</title>
+<meta name="description"content="instruction set of the MOS 6502/6510 MPU">
+<meta name="keywords"content="6502 instruction set, 6510 instruction set, MOS 6502, MOS 6510, mass:werk - media environments, masswerk.at">
+<style type="text/css">
+<!--
+p,td,xmp { font-family: courier,fixed,sans-serif; font-size: 10px; }
+h1 { font-family: arial,helvetica,sans-serif; font-size: 24px; }
+table.opctable, table.opctable td {
+	border-style: solid;
+	border-width: 1px;
+	border-color: #222222;
+}
+@page { size:landscape; }
+-->
+</style>
+</head>
+
+<body>
+<h1>6502 Instruction Set</h1>
+
+<table border="1" cellspacing="0" cellpadding="5" class="opctable">
+<tr>
+<td>HI</td><td colspan="16" align="center">LO-BYTE</td>
+</tr>
+<tr valign="top">
+<td nowrap>&nbsp;</td><td align="center" nowrap>00</td><td align="center" nowrap>01</td><td align="center" nowrap>02</td><td align="center" nowrap>03</td><td align="center" nowrap>04</td><td align="center" nowrap>05</td><td align="center" nowrap>06</td><td align="center" nowrap>07</td><td align="center" nowrap>08</td><td align="center" nowrap>09</td><td align="center" nowrap>0A</td><td align="center" nowrap>0B</td><td align="center" nowrap>0C</td><td align="center" nowrap>0D</td><td align="center" nowrap>0E</td><td align="center" nowrap>0F</td></tr>
+<tr valign="top">
+<td nowrap>00</td><td nowrap>BRK impl</td><td nowrap>ORA X,ind</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>ORA zpg</td><td nowrap>ASL zpg</td><td nowrap>??? ---</td><td nowrap>PHP impl</td><td nowrap>ORA #</td><td nowrap>ASL A</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>ORA abs</td><td nowrap>ASL abs</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>01</td><td nowrap>BPL rel</td><td nowrap>ORA ind,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>ORA zpg,X</td><td nowrap>ASL zpg,X</td><td nowrap>??? ---</td><td nowrap>CLC impl</td><td nowrap>ORA abs,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>ORA abs,X</td><td nowrap>ASL abs,X</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>02</td><td nowrap>JSR abs</td><td nowrap>AND X,ind</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>BIT zpg</td><td nowrap>AND zpg</td><td nowrap>ROL zpg</td><td nowrap>??? ---</td><td nowrap>PLP impl</td><td nowrap>AND #</td><td nowrap>ROL A</td><td nowrap>??? ---</td><td nowrap>BIT abs</td><td nowrap>AND abs</td><td nowrap>ROL abs</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>03</td><td nowrap>BMI rel</td><td nowrap>AND ind,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>AND zpg,X</td><td nowrap>ROL zpg,X</td><td nowrap>??? ---</td><td nowrap>SEC impl</td><td nowrap>AND abs,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>AND abs,X</td><td nowrap>ROL abs,X</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>04</td><td nowrap>RTI impl</td><td nowrap>EOR X,ind</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>EOR zpg</td><td nowrap>LSR zpg</td><td nowrap>??? ---</td><td nowrap>PHA impl</td><td nowrap>EOR #</td><td nowrap>LSR A</td><td nowrap>??? ---</td><td nowrap>JMP abs</td><td nowrap>EOR abs</td><td nowrap>LSR abs</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>05</td><td nowrap>BVC rel</td><td nowrap>EOR ind,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>EOR zpg,X</td><td nowrap>LSR zpg,X</td><td nowrap>??? ---</td><td nowrap>CLI impl</td><td nowrap>EOR abs,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>EOR abs,X</td><td nowrap>LSR abs,X</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>06</td><td nowrap>RTS impl</td><td nowrap>ADC X,ind</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>ADC zpg</td><td nowrap>ROR zpg</td><td nowrap>??? ---</td><td nowrap>PLA impl</td><td nowrap>ADC #</td><td nowrap>ROR A</td><td nowrap>??? ---</td><td nowrap>JMP ind</td><td nowrap>ADC abs</td><td nowrap>ROR abs</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>07</td><td nowrap>BVS rel</td><td nowrap>ADC ind,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>ADC zpg,X</td><td nowrap>ROR zpg,X</td><td nowrap>??? ---</td><td nowrap>SEI impl</td><td nowrap>ADC abs,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>ADC abs,X</td><td nowrap>ROR abs,X</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>08</td><td nowrap>??? ---</td><td nowrap>STA X,ind</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>STY zpg</td><td nowrap>STA zpg</td><td nowrap>STX zpg</td><td nowrap>??? ---</td><td nowrap>DEY impl</td><td nowrap>??? ---</td><td nowrap>TXA impl</td><td nowrap>??? ---</td><td nowrap>STY abs</td><td nowrap>STA abs</td><td nowrap>STX abs</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>09</td><td nowrap>BCC rel</td><td nowrap>STA ind,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>STY zpg,X</td><td nowrap>STA zpg,X</td><td nowrap>STX zpg,Y</td><td nowrap>??? ---</td><td nowrap>TYA impl</td><td nowrap>STA abs,Y</td><td nowrap>TXS impl</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>STA abs,X</td><td nowrap>??? ---</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0A</td><td nowrap>LDY #</td><td nowrap>LDA X,ind</td><td nowrap>LDX #</td><td nowrap>??? ---</td><td nowrap>LDY zpg</td><td nowrap>LDA zpg</td><td nowrap>LDX zpg</td><td nowrap>??? ---</td><td nowrap>TAY impl</td><td nowrap>LDA #</td><td nowrap>TAX impl</td><td nowrap>??? ---</td><td nowrap>LDY abs</td><td nowrap>LDA abs</td><td nowrap>LDX abs</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0B</td><td nowrap>BCS rel</td><td nowrap>LDA ind,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>LDY zpg,X</td><td nowrap>LDA zpg,X</td><td nowrap>LDX zpg,Y</td><td nowrap>??? ---</td><td nowrap>CLV impl</td><td nowrap>LDA abs,Y</td><td nowrap>TSX impl</td><td nowrap>??? ---</td><td nowrap>LDY abs,X</td><td nowrap>LDA abs,X</td><td nowrap>LDX abs,Y</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0C</td><td nowrap>CPY #</td><td nowrap>CMP X,ind</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>CPY zpg</td><td nowrap>CMP zpg</td><td nowrap>DEC zpg</td><td nowrap>??? ---</td><td nowrap>INY impl</td><td nowrap>CMP #</td><td nowrap>DEX impl</td><td nowrap>??? ---</td><td nowrap>CPY abs</td><td nowrap>CMP abs</td><td nowrap>DEC abs</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0D</td><td nowrap>BNE rel</td><td nowrap>CMP ind,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>CMP zpg,X</td><td nowrap>DEC zpg,X</td><td nowrap>??? ---</td><td nowrap>CLD impl</td><td nowrap>CMP abs,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>CMP abs,X</td><td nowrap>DEC abs,X</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0E</td><td nowrap>CPX #</td><td nowrap>SBC X,ind</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>CPX zpg</td><td nowrap>SBC zpg</td><td nowrap>INC zpg</td><td nowrap>??? ---</td><td nowrap>INX impl</td><td nowrap>SBC #</td><td nowrap>NOP impl</td><td nowrap>??? ---</td><td nowrap>CPX abs</td><td nowrap>SBC abs</td><td nowrap>INC abs</td><td nowrap>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0F</td><td nowrap>BEQ rel</td><td nowrap>SBC ind,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>SBC zpg,X</td><td nowrap>INC zpg,X</td><td nowrap>??? ---</td><td nowrap>SED impl</td><td nowrap>SBC abs,Y</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>??? ---</td><td nowrap>SBC abs,X</td><td nowrap>INC abs,X</td><td nowrap>??? ---</td>
+<tr>
+</table>
+<p>&nbsp;</p>
+<p>Address Modes:</p>
+<table border="0" cellspacing="0" cellpadding="3">
+<tr><td nowrap>A<td nowrap><td nowrap>....</td><td nowrap>Accumulator</td><td nowrap>&nbsp;</td><td nowrap>OPC A</td><td nowrap>&nbsp;</td><td nowrap><i>operand is AC</i></td></tr>
+<tr><td nowrap>abs<td nowrap><td nowrap>....</td><td nowrap>absolute</td><td nowrap>&nbsp;</td><td nowrap>OPC $HHLL</td><td nowrap>&nbsp;</td><td nowrap><i>operand is address $HHLL</i></td></tr>
+<tr><td nowrap>abs,X<td nowrap><td nowrap>....</td><td nowrap>absolute, X-indexed</td><td nowrap>&nbsp;</td><td nowrap>OPC $HHLL,X</td><td nowrap>&nbsp;</td><td nowrap><i>operand is address incremented by X with carry</i></td></tr>
+<tr><td nowrap>abs,Y<td nowrap><td nowrap>....</td><td nowrap>absolute, Y-indexed</td><td nowrap>&nbsp;</td><td nowrap>OPC $HHLL,Y</td><td nowrap>&nbsp;</td><td nowrap><i>operand is address incremented by Y with carry</i></td></tr>
+<tr><td nowrap>#<td nowrap><td nowrap>....</td><td nowrap>immediate</td><td nowrap>&nbsp;</td><td nowrap>OPC #$BB</td><td nowrap>&nbsp;</td><td nowrap><i>operand is byte (BB)</i></td></tr>
+<tr><td nowrap>impl<td nowrap><td nowrap>....</td><td nowrap>implied</td><td nowrap>&nbsp;</td><td nowrap>OPC</td><td nowrap>&nbsp;</td><td nowrap><i>operand implied</i></td></tr>
+<tr><td nowrap>ind<td nowrap><td nowrap>....</td><td nowrap>indirect</td><td nowrap>&nbsp;</td><td nowrap>OPC ($HHLL)</td><td nowrap>&nbsp;</td><td nowrap><i>operand is effective address; effective address is value of address</i></td></tr>
+<tr><td nowrap>X,ind<td nowrap><td nowrap>....</td><td nowrap>X-indexed, indirect</td><td nowrap>&nbsp;</td><td nowrap>OPC ($BB,X)</td><td nowrap>&nbsp;</td><td nowrap><i>operand is effective zeropage address; effective address is byte (BB) incremented by X without carry</i></td></tr>
+<tr><td nowrap>ind,Y<td nowrap><td nowrap>....</td><td nowrap>indirect, Y-indexed</td><td nowrap>&nbsp;</td><td nowrap>OPC ($LL),Y</td><td nowrap>&nbsp;</td><td nowrap><i>operand is effective address incremented by Y with carry; effective address is word at zeropage address</i></td></tr>
+<tr><td nowrap>rel<td nowrap><td nowrap>....</td><td nowrap>relative</td><td nowrap>&nbsp;</td><td nowrap>OPC $BB</td><td nowrap>&nbsp;</td><td nowrap><i>branch target is PC + offset (BB), bit 7 signifies negative offset</i></td></tr>
+<tr><td nowrap>zpg<td nowrap><td nowrap>....</td><td nowrap>zeropage</td><td nowrap>&nbsp;</td><td nowrap>OPC $LL</td><td nowrap>&nbsp;</td><td nowrap><i>operand is of address; address hibyte = zero ($00xx)</i></td></tr>
+<tr><td nowrap>zpg,X<td nowrap><td nowrap>....</td><td nowrap>zeropage, X-indexed</td><td nowrap>&nbsp;</td><td nowrap>OPC $LL,X</td><td nowrap>&nbsp;</td><td nowrap><i>operand is address incremented by X; address hibyte = zero ($00xx); no page transition</i></td></tr>
+<tr><td nowrap>zpg,Y<td nowrap><td nowrap>....</td><td nowrap>zeropage, Y-indexed</td><td nowrap>&nbsp;</td><td nowrap>OPC $LL,Y</td><td nowrap>&nbsp;</td><td nowrap><i>operand is address incremented by Y; address hibyte = zero ($00xx); no page transition</i></td></tr>
+</table>
+
+<p>&nbsp;</p>
+<p>Instructions by Name:</p>
+<table border="0" cellspacing="0" cellpadding="3">
+<tr><td>ADC</td><td>....</td><td>add with carry</td></tr>
+<tr><td>AND</td><td>....</td><td>and (with accumulator)</td></tr>
+<tr><td>ASL</td><td>....</td><td>arithmetic shift left</td></tr>
+<tr><td>BCC</td><td>....</td><td>branch on carry clear</td></tr>
+<tr><td>BCS</td><td>....</td><td>branch on carry set</td></tr>
+<tr><td>BEQ</td><td>....</td><td>branch on equal (zero set)</td></tr>
+<tr><td>BIT</td><td>....</td><td>bit test</td></tr>
+<tr><td>BMI</td><td>....</td><td>branch on minus (negative set)</td></tr>
+<tr><td>BNE</td><td>....</td><td>branch on not equal (zero clear)</td></tr>
+<tr><td>BPL</td><td>....</td><td>branch on plus (negative clear)</td></tr>
+<tr><td>BRK</td><td>....</td><td>interrupt</td></tr>
+<tr><td>BVC</td><td>....</td><td>branch on overflow clear</td></tr>
+<tr><td>BVS</td><td>....</td><td>branch on overflow set</td></tr>
+<tr><td>CLC</td><td>....</td><td>clear carry</td></tr>
+<tr><td>CLD</td><td>....</td><td>clear decimal</td></tr>
+<tr><td>CLI</td><td>....</td><td>clear interrupt disable</td></tr>
+<tr><td>CLV</td><td>....</td><td>clear overflow</td></tr>
+<tr><td>CMP</td><td>....</td><td>compare (with accumulator)</td></tr>
+<tr><td>CPX</td><td>....</td><td>compare with X</td></tr>
+<tr><td>CPY</td><td>....</td><td>compare with Y</td></tr>
+<tr><td>DEC</td><td>....</td><td>decrement</td></tr>
+<tr><td>DEX</td><td>....</td><td>decrement X</td></tr>
+<tr><td>DEY</td><td>....</td><td>decrement Y</td></tr>
+<tr><td>EOR</td><td>....</td><td>exclusive or (with accumulator)</td></tr>
+<tr><td>INC</td><td>....</td><td>increment</td></tr>
+<tr><td>INX</td><td>....</td><td>increment X</td></tr>
+<tr><td>INY</td><td>....</td><td>increment Y</td></tr>
+<tr><td>JMP</td><td>....</td><td>jump</td></tr>
+<tr><td>JSR</td><td>....</td><td>jump subroutine</td></tr>
+<tr><td>LDA</td><td>....</td><td>load accumulator</td></tr>
+<tr><td>LDY</td><td>....</td><td>load X</td></tr>
+<tr><td>LDY</td><td>....</td><td>load Y</td></tr>
+<tr><td>LSR</td><td>....</td><td>logical shift right</td></tr>
+<tr><td>NOP</td><td>....</td><td>no operation</td></tr>
+<tr><td>ORA</td><td>....</td><td>or with accumulator</td></tr>
+<tr><td>PHA</td><td>....</td><td>push accumulator</td></tr>
+<tr><td>PHP</td><td>....</td><td>push processor status (SR)</td></tr>
+<tr><td>PLA</td><td>....</td><td>pull accumulator</td></tr>
+<tr><td>PLP</td><td>....</td><td>pull processor status (SR)</td></tr>
+<tr><td>ROL</td><td>....</td><td>rotate left</td></tr>
+<tr><td>ROR</td><td>....</td><td>rotate right</td></tr>
+<tr><td>RTI</td><td>....</td><td>return from interrupt</td></tr>
+<tr><td>RTS</td><td>....</td><td>return from subroutine</td></tr>
+<tr><td>SBC</td><td>....</td><td>subtract with carry</td></tr>
+<tr><td>SEC</td><td>....</td><td>set carry</td></tr>
+<tr><td>SED</td><td>....</td><td>set decimal</td></tr>
+<tr><td>SEI</td><td>....</td><td>set interrupt disable</td></tr>
+<tr><td>STA</td><td>....</td><td>store accumulator</td></tr>
+<tr><td>STX</td><td>....</td><td>store X</td></tr>
+<tr><td>STY</td><td>....</td><td>store Y</td></tr>
+<tr><td>TAX</td><td>....</td><td>transfer accumulator to X</td></tr>
+<tr><td>TAY</td><td>....</td><td>transfer accumulator to Y</td></tr>
+<tr><td>TSX</td><td>....</td><td>transfer stack pointer to X</td></tr>
+<tr><td>TXA</td><td>....</td><td>transfer X to accumulator</td></tr>
+<tr><td>TXS</td><td>....</td><td>transfer X to stack pointer</td></tr>
+<tr><td>TYA</td><td>....</td><td>transfer Y to accumulator</td></tr>
+</table>
+</p>
+
+<p>&nbsp;</p>
+<p>Registers:</p>
+<table border="0" cellspacing="0" cellpadding="3">
+<tr><td>PC</td><td>....</td><td>program counter</td><td align="right">(16 bit)</td></tr>
+<tr><td>AC</td><td>....</td><td>accumulator</td><td align="right">(8 bit)</td></tr>
+<tr><td>X</td><td>....</td><td>X register</td><td align="right">(8 bit)</td></tr>
+<tr><td>Y</td><td>....</td><td>Y register</td><td align="right">(8 bit)</td></tr>
+<tr><td>SR</td><td>....</td><td>status register [NV-BDIZC]</td><td align="right">(8 bit)</td></tr>
+<tr><td>SP</td><td >....</td><td>stack pointer</td><td align="right">(8 bit)</td></tr>
+</table>
+
+<p>&nbsp;<br >SR Flags (bit 7 to bit 0):</p>
+<table border="0" cellspacing="0" cellpadding="3">
+<td>N</td><td>....</td><td>Negative</td></tr>
+<td>V</td><td>....</td><td>Overflow</td></tr>
+<td>-</td><td>....</td><td>ignored</td></tr>
+<td>B</td><td>....</td><td>Break</td></tr>
+<td>D</td><td>....</td><td>Decimal (use BCD for arithmetics)</td></tr>
+<td>I</td><td>....</td><td>Interrupt (IRQ disable)</td></tr>
+<td>Z</td><td>....</td><td>Zero</td></tr>
+<td>C</td><td>....</td><td>Carry</td></tr>
+</table>
+
+<p>&nbsp</p>
+<p>Processor Stack:<br />
+LIFO, top down, 8 bit range, 0x0100 - 0x01FF<br>&nbsp;</p>
+
+<p>Bytes, Words, Addressing:<br />
+8 bit bytes, 16 bit words in lobyte-hibyte representation (Little-Endian).<br />
+16 bit address range, operands follow instruction codes.<br>&nbsp;</p>
+
+<p>Vendor:<br />
+MOS Technology, 1975</p>
+
+
+<img src="6502.jpg" alt="MOS Techology 6502 MPU" title="MOS Techology 6502 MPU" width="198" height="67" vspace="18"/>
+
+<p>&nbsp;</p>
+
+<xmp>APPENDIX A: 6502 Instructions in Detail
+
+
+ADC  Add Memory to Accumulator with Carry
+
+     A + M + C -> A, C                N Z C I D V
+                                      + + + - - +
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     ADC #oper     69    2     2
+     zeropage      ADC oper      65    2     3
+     zeropage,X    ADC oper,X    75    2     4
+     absolute      ADC oper      6D    3     4
+     absolute,X    ADC oper,X    7D    3     4*
+     absolute,Y    ADC oper,Y    79    3     4*
+     (indirect,X)  ADC (oper,X)  61    2     6
+     (indirect),Y  ADC (oper),Y  71    2     5*
+
+
+AND  AND Memory with Accumulator
+
+     A AND M -> A                     N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     AND #oper     29    2     2
+     zeropage      AND oper      25    2     3
+     zeropage,X    AND oper,X    35    2     4
+     absolute      AND oper      2D    3     4
+     absolute,X    AND oper,X    3D    3     4*
+     absolute,Y    AND oper,Y    39    3     4*
+     (indirect,X)  AND (oper,X)  21    2     6
+     (indirect),Y  AND (oper),Y  31    2     5*
+
+
+ASL  Shift Left One Bit (Memory or Accumulator)
+
+     C <- [76543210] <- 0             N Z C I D V
+                                      + + + - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     accumulator   ASL A         0A    1     2
+     zeropage      ASL oper      06    2     5
+     zeropage,X    ASL oper,X    16    2     6
+     absolute      ASL oper      0E    3     6
+     absolute,X    ASL oper,X    1E    3     7
+
+
+BCC  Branch on Carry Clear
+
+     branch on C = 0                  N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     relative      BCC oper      90    2     2**
+
+
+BCS  Branch on Carry Set
+
+     branch on C = 1                  N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     relative      BCS oper      B0    2     2**
+
+
+BEQ  Branch on Result Zero
+
+     branch on Z = 1                  N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     relative      BEQ oper      F0    2     2**
+
+
+BIT  Test Bits in Memory with Accumulator
+
+     bits 7 and 6 of operand are transfered to bit 7 and 6 of SR (N,V);
+     the zeroflag is set to the result of operand AND accumulator.
+
+     A AND M, M7 -> N, M6 -> V        N Z C I D V
+                                     M7 + - - - M6
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     zeropage      BIT oper      24    2     3
+     absolute      BIT oper      2C    3     4
+
+
+BMI  Branch on Result Minus
+
+     branch on N = 1                  N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     relative      BMI oper      30    2     2**
+
+
+BNE  Branch on Result not Zero
+
+     branch on Z = 0                  N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     relative      BNE oper      D0    2     2**
+
+
+BPL  Branch on Result Plus
+
+     branch on N = 0                  N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     relative      BPL oper      10    2     2**
+
+
+BRK  Force Break
+
+     interrupt,                       N Z C I D V
+     push PC+2, push SR               - - - 1 - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       BRK           00    1     7
+
+
+BVC  Branch on Overflow Clear
+
+     branch on V = 0                  N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     relative      BVC oper      50    2     2**
+
+
+BVS  Branch on Overflow Set
+
+     branch on V = 1                  N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     relative      BVC oper      70    2     2**
+
+
+CLC  Clear Carry Flag
+
+     0 -> C                           N Z C I D V
+                                      - - 0 - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       CLC           18    1     2
+
+
+CLD  Clear Decimal Mode
+
+     0 -> D                           N Z C I D V
+                                      - - - - 0 -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       CLD           D8    1     2
+
+
+CLI  Clear Interrupt Disable Bit
+
+     0 -> I                           N Z C I D V
+                                      - - - 0 - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       CLI           58    1     2
+
+
+CLV  Clear Overflow Flag
+
+     0 -> V                           N Z C I D V
+                                      - - - - - 0
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       CLV           B8    1     2
+
+
+CMP  Compare Memory with Accumulator
+
+     A - M                            N Z C I D V
+                                    + + + - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     CMP #oper     C9    2     2
+     zeropage      CMP oper      C5    2     3
+     zeropage,X    CMP oper,X    D5    2     4
+     absolute      CMP oper      CD    3     4
+     absolute,X    CMP oper,X    DD    3     4*
+     absolute,Y    CMP oper,Y    D9    3     4*
+     (indirect,X)  CMP (oper,X)  C1    2     6
+     (indirect),Y  CMP (oper),Y  D1    2     5*
+
+
+CPX  Compare Memory and Index X
+
+     X - M                            N Z C I D V
+                                      + + + - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     CPX #oper     E0    2     2
+     zeropage      CPX oper      E4    2     3
+     absolute      CPX oper      EC    3     4
+
+
+CPY  Compare Memory and Index Y
+
+     Y - M                            N Z C I D V
+                                      + + + - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     CPY #oper     C0    2     2
+     zeropage      CPY oper      C4    2     3
+     absolute      CPY oper      CC    3     4
+
+
+DEC  Decrement Memory by One
+
+     M - 1 -> M                       N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     zeropage      DEC oper      C6    2     5
+     zeropage,X    DEC oper,X    D6    2     6
+     absolute      DEC oper      CE    3     3
+     absolute,X    DEC oper,X    DE    3     7
+
+
+DEX  Decrement Index X by One
+
+     X - 1 -> X                       N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       DEC           CA    1     2
+
+
+DEY  Decrement Index Y by One
+
+     Y - 1 -> Y                       N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       DEC           88    1     2
+
+
+EOR  Exclusive-OR Memory with Accumulator
+
+     A EOR M -> A                     N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     EOR #oper     49    2     2
+     zeropage      EOR oper      45    2     3
+     zeropage,X    EOR oper,X    55    2     4
+     absolute      EOR oper      4D    3     4
+     absolute,X    EOR oper,X    5D    3     4*
+     absolute,Y    EOR oper,Y    59    3     4*
+     (indirect,X)  EOR (oper,X)  41    2     6
+     (indirect),Y  EOR (oper),Y  51    2     5*
+
+
+INC  Increment Memory by One
+
+     M + 1 -> M                       N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     zeropage      INC oper      E6    2     5
+     zeropage,X    INC oper,X    F6    2     6
+     absolute      INC oper      EE    3     6
+     absolute,X    INC oper,X    FE    3     7
+
+
+INX  Increment Index X by One
+
+     X + 1 -> X                       N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       INX           E8    1     2
+
+
+INY  Increment Index Y by One
+
+     Y + 1 -> Y                       N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       INY           C8    1     2
+
+
+JMP  Jump to New Location
+
+     (PC+1) -> PCL                    N Z C I D V
+     (PC+2) -> PCH                    - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     absolute      JMP oper      4C    3     3
+     indirect      JMP (oper)    6C    3     5
+
+
+JSR  Jump to New Location Saving Return Address
+
+     push (PC+2),                     N Z C I D V
+     (PC+1) -> PCL                    - - - - - -
+     (PC+2) -> PCH
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     absolute      JSR oper      20    3     6
+
+
+LDA  Load Accumulator with Memory
+
+     M -> A                           N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     LDA #oper     A9    2     2
+     zeropage      LDA oper      A5    2     3
+     zeropage,X    LDA oper,X    B5    2     4
+     absolute      LDA oper      AD    3     4
+     absolute,X    LDA oper,X    BD    3     4*
+     absolute,Y    LDA oper,Y    B9    3     4*
+     (indirect,X)  LDA (oper,X)  A1    2     6
+     (indirect),Y  LDA (oper),Y  B1    2     5*
+
+
+LDX  Load Index X with Memory
+
+     M -> X                           N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     LDX #oper     A2    2     2
+     zeropage      LDX oper      A6    2     3
+     zeropage,Y    LDX oper,Y    B6    2     4
+     absolute      LDX oper      AE    3     4
+     absolute,Y    LDX oper,Y    BE    3     4*
+
+
+LDY  Load Index Y with Memory
+
+     M -> Y                           N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     LDY #oper     A0    2     2
+     zeropage      LDY oper      A4    2     3
+     zeropage,X    LDY oper,X    B4    2     4
+     absolute      LDY oper      AC    3     4
+     absolute,X    LDY oper,X    BC    3     4*
+
+
+LSR  Shift One Bit Right (Memory or Accumulator)
+
+     0 -> [76543210] -> C             N Z C I D V
+                                      - + + - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     accumulator   LSR A         4A    1     2
+     zeropage      LSR oper      46    2     5
+     zeropage,X    LSR oper,X    56    2     6
+     absolute      LSR oper      4E    3     6
+     absolute,X    LSR oper,X    5E    3     7
+
+
+NOP  No Operation
+
+     ---                              N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       NOP           EA    1     2
+
+
+ORA  OR Memory with Accumulator
+
+     A OR M -> A                      N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     ORA #oper     09    2     2
+     zeropage      ORA oper      05    2     3
+     zeropage,X    ORA oper,X    15    2     4
+     absolute      ORA oper      0D    3     4
+     absolute,X    ORA oper,X    1D    3     4*
+     absolute,Y    ORA oper,Y    19    3     4*
+     (indirect,X)  ORA (oper,X)  01    2     6
+     (indirect),Y  ORA (oper),Y  11    2     5*
+
+
+PHA  Push Accumulator on Stack
+
+     push A                           N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       PHA           48    1     3
+
+
+PHP  Push Processor Status on Stack
+
+     push SR                          N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       PHP           08    1     3
+
+
+PLA  Pull Accumulator from Stack
+
+     pull A                           N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       PLA           68    1     4
+
+
+PLP  Pull Processor Status from Stack
+
+     pull SR                          N Z C I D V
+                                      from stack
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       PHP           28    1     4
+
+
+ROL  Rotate One Bit Left (Memory or Accumulator)
+
+     C <- [76543210] <- C             N Z C I D V
+                                      + + + - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     accumulator   ROL A         2A    1     2
+     zeropage      ROL oper      26    2     5
+     zeropage,X    ROL oper,X    36    2     6
+     absolute      ROL oper      2E    3     6
+     absolute,X    ROL oper,X    3E    3     7
+
+
+ROR  Rotate One Bit Right (Memory or Accumulator)
+
+     C -> [76543210] -> C             N Z C I D V
+                                      + + + - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     accumulator   ROR A         6A    1     2
+     zeropage      ROR oper      66    2     5
+     zeropage,X    ROR oper,X    76    2     6
+     absolute      ROR oper      6E    3     6
+     absolute,X    ROR oper,X    7E    3     7
+
+
+RTI  Return from Interrupt
+
+     pull SR, pull PC                 N Z C I D V
+                                      from stack
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       RTI           40    1     6
+
+
+RTS  Return from Subroutine
+
+     pull PC, PC+1 -> PC              N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       RTS           60    1     6
+
+
+SBC  Subtract Memory from Accumulator with Borrow
+
+     A - M - C -> A                   N Z C I D V
+                                      + + + - - +
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     immidiate     SBC #oper     E9    2     2
+     zeropage      SBC oper      E5    2     3
+     zeropage,X    SBC oper,X    F5    2     4
+     absolute      SBC oper      ED    3     4
+     absolute,X    SBC oper,X    FD    3     4*
+     absolute,Y    SBC oper,Y    F9    3     4*
+     (indirect,X)  SBC (oper,X)  E1    2     6
+     (indirect),Y  SBC (oper),Y  F1    2     5*
+
+
+SEC  Set Carry Flag
+
+     1 -> C                           N Z C I D V
+                                      - - 1 - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       SEC           38    1     2
+
+
+SED  Set Decimal Flag
+
+     1 -> D                           N Z C I D V
+                                      - - - - 1 -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       SED           F8    1     2
+
+
+SEI  Set Interrupt Disable Status
+
+     1 -> I                           N Z C I D V
+                                      - - - 1 - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       SEI           78    1     2
+
+
+STA  Store Accumulator in Memory
+
+     A -> M                           N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     zeropage      STA oper      85    2     3
+     zeropage,X    STA oper,X    95    2     4
+     absolute      STA oper      8D    3     4
+     absolute,X    STA oper,X    9D    3     5
+     absolute,Y    STA oper,Y    99    3     5
+     (indirect,X)  STA (oper,X)  81    2     6
+     (indirect),Y  STA (oper),Y  91    2     6
+
+
+STX  Store Index X in Memory
+
+     X -> M                           N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     zeropage      STX oper      86    2     3
+     zeropage,Y    STX oper,Y    96    2     4
+     absolute      STX oper      8E    3     4
+
+
+STY  Sore Index Y in Memory
+
+     Y -> M                           N Z C I D V
+                                      - - - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     zeropage      STY oper      84    2     3
+     zeropage,X    STY oper,X    94    2     4
+     absolute      STY oper      8C    3     4
+
+
+TAX  Transfer Accumulator to Index X
+
+     A -> X                           N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       TAX           AA    1     2
+
+
+TAY  Transfer Accumulator to Index Y
+
+     A -> Y                           N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       TAY           A8    1     2
+
+
+TSX  Transfer Stack Pointer to Index X
+
+     SP -> X                          N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       TSX           BA    1     2
+
+
+TXA  Transfer Index X to Accumulator
+
+     X -> A                           N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       TXA           8A    1     2
+
+
+TXS  Transfer Index X to Stack Register
+
+     X -> SP                          N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       TXS           9A    1     2
+
+
+TYA  Transfer Index Y to Accumulator
+
+     Y -> A                           N Z C I D V
+                                      + + - - - -
+
+     addressing    assembler    opc  bytes  cyles
+     --------------------------------------------
+     implied       TYA           98    1     2
+
+
+
+  *  add 1 to cycles if page boundery is crossed
+
+  ** add 1 to cycles if branch occurs on same page
+     add 2 to cycles if branch occurs to different page
+
+
+     Legend to Flags:  + .... modified
+                       - .... not modified
+                       1 .... set
+                       0 .... cleared
+                      M6 .... memory bit 6
+                      M7 .... memory bit 7
+
+
+Note on assembler syntax:
+Most assemblers employ "OPC *oper" for forced zeropage addressing.
+
+
+
+APENDIX B: The 65xx-Family:
+
+  Type               Features, Comments 
+  -------------------------------------
+  6502               NMOS, 16 bit address bus, 8 bit data bus
+  6502A              accelerated version of 6502
+  6502C              accelerated version of 6502, CMOS
+  65C02              16 bit version, additional instructions and address modes
+  6503, 6505, 6506   12 bit address bus [4 KiB]
+  6504               13 bit address bus [8 KiB]
+  6507               13 bit address bus [8 KiB], no interrupts
+  6509               20 bit address bus [1 MiB] by bankswitching
+  6510               as 6502 with additional 6 bit I/O-port
+  6511               integrated micro controler with I/O-port, serial interface, and RAM (Rockwell)
+  65F11              as 6511, integrated FORTH interpreter
+  7501               as 6502, HMOS
+  8500               as 6510, CMOS
+  8502               as 6510 with switchable 2 MHz option, 7 bit I/O-port
+  65816 (65C816)     16 bit registers and ALU, 24 bit address bus [16 MiB], up to 24 MHz (Western Design Center)
+  65802 (65C802)     as 65816, pin compatible to 6502, 64 KiB address bus, up to 16 MHz
+</xmp>
+<p>&nbsp;</p>
+<p>Disclaimer:<br >Errors excepted. The information is provided for free and AS IS, therefore without any warranty;<br />without even the implied warranty of merchantability or fitness for a particular purpose.</p>
+<p>&nbsp;</p>
+
+<p>The official 65xx Website (The Western Design Center Inc.): <a href="http://www.65xx.com/" target="_blank" onclick="if (this.blur) this.blur()">www.65xx.com</a></p>
+<p>&nbsp;</p>
+
+<p>See also:<br />
+&gt;&gt; <a href="index.html" target="virtual6502" onclick="if (this.blur) this.blur()">Virtual 6502</a> (6502/6510 emulator)<br />
+&gt;&gt; <a href="assembler.html" target="assembler6502" onclick="if (this.blur) this.blur()">6502 Assembler</a><br />
+&gt;&gt; <a href="disassembler.html" target="dissasembler6502" onclick="if (this.blur) this.blur()">6502 Disassembler</a></p>
+<p>&nbsp;</p>
+
+<p>Presented by <a href="/6502/" target="_blank">virtual 6502</a>, <a href="http://masswerk.at/" target="_blank">mass:werk</a> / <a href="http://e-tradion.net/" target="_blank">e-tradion.net</a>.</p>
+</body>
+</html>

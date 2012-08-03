@@ -1,0 +1,117 @@
+// A/B INPUT
+
+if ( NDB_ADD ) BI = ~DB;
+if ( DB_ADD ) BI = DB;
+if ( ADL_ADD ) BI = ADL;
+
+if ( SB_ADD ) AI = SB;
+if ( 0_ADD ) AI = 0;
+
+// LOGIC (based on NAND/NOR)
+
+NOR = ~(AI | BI);
+NAND = ~(AI & BI);
+
+if ( ORS ) ADD = NOR;
+if ( ANDS ) ADD = NAND;
+if ( SRS ) ADD = NAND >> 1;        // next bit feed previous result
+
+if ( EORS ) {
+    nEOR[0,2,4,6] = ~ (~NOR & NAND)
+    EOR[1,3,5,7] = ~ (~NAND | NOR)
+    ADD[0,2,4,6] = nEOR[0,2,4,6] 
+    ADD[1,3,5,7] = ~EOR[1,3,5,7]
+}
+
+// ARITHMETIC
+// BCD correction run-flow : DAA -> ALU -> ADD -> DSA -> SB -> AC.
+
+// DECIMAL ADDER ADJUST (decimal carry and halfcarry ahead adjust)
+carry0_out = ~(NAND0 & I_ADDC) & ~NOR0;
+A = ~( ~(~NAND1 & carry0_out) | NOR2 );
+B = ~(EOR3 | ~NAND2);
+C = ~(EOR1 | ~NAND1) & ~carry0_out & (~NAND2 | NOR2);
+DecimalHalfCarry = A & (B | C) & ~DAA;
+
+A = ~ (~(~NAND5 & carry4_out) | EOR6);
+B = ~(~NAND6 | EOR7);
+C = ~(~NAND5 | XOR5) & ~(carry4_out | ~EOR6);
+DecimalCarry = A & (B | C) & ~DAA;
+
+// Set Decimal HalfCarry, if low nibble of A and B in following combinations:
+| AL | BL |
+|  3 |  7 |
+|  7 |  3 |
+|  F |  B |
+|  B |  F |
+// Set Decimal Carry, if high nibble of A and B in following combinations:
+| AH | BH |
+|  2 |  3 |
+|  3 |  2 |
+|  3 |  3 |
+|  A |  B |
+|  B |  A |
+|  B |  B |
+
+// input carry driver I_ADDC comes in inverted form
+
+// carry chain
+carry_out = I_ADDC;
+
+// bits 0,2,4,6
+carry_in = carry_out;
+carry_out = ~(NAND[0,2,3,6] & carry_in) & ~NOR[0,2,4,6];
+SUM[0,2,4,6] = ~(nEOR[0,2,4,6] & ~carry_in) & (nEOR[0,2,4,6] | ~carry_in);
+
+// bits 1,3,5,7
+carry_in = carry_out;
+carry_out = ~(~NOR[1,3,5,7] & carry_in) & NAND[1,3,5,7];
+if (bit == 3 && DecimalHalfCarry) carry_out = 0;
+SUM[1,3,5,7] = ~(EOR[1,3,5,7] & ~carry_in) & (EOR[1,3,5,7] | ~carry_in);
+
+// trans-level implementation of summator see in ALU_sum.png
+
+// Carry out.
+if (PHI2 ) DAA_Latch = ~DAA
+CarryOut = ~(DecimalCarry | ~carry7_out)
+DSA_CarryOut = ~(CarryOut | ~DAA_Latch)
+ACR = ~CarryOut;    // to random logic
+
+// overflow test
+carry6_out = carry_in;
+if ( PHI2 ) AVR_Latch = ~(NOR7 & carry6_out) & (NAND7 | carry6_out);
+AVR = AVR_Latch;
+
+if ( SUMS) ADD = SUM;
+
+// High-level implementation :
+// s = AI + BI + ~I_ADDC;
+// SUM = ~ ( s & 0xFF );
+// carry_out = s >> 8;
+
+// ADDER HOLD (register holds data in inverted logic)
+
+if ( ADD_ADL ) ADL = ~ADD;
+if ( ADD_SB06 ) SB = (SB & 0x80) | (~ADD & 0x7F);
+if ( ADD_SB7 ) SB = (SB & 0x7F) | (~ADD & 0x80);
+
+// DECIMAL SBUS ADJUST (affects SBus lines)
+
+if (PHI2) HALF = ~(~DAA & ~carry3_out);    // Half carry latch
+
+DA0 = SB0
+
+DA1 = 
+
+x = 
+~(SB1 & x) & (SB1 | x)
+
+// ACCUMULATOR
+
+if ( SB_DB ) DB = SB;
+if ( SB_AC ) AC = DA;
+if ( AC_SB ) SB = AC;
+if ( AC_DB ) DB = AC;
+
+if ( 0_ADH0 ) ADH &= ~0x01;
+if ( 0_ADH17 ) ADH &= 0x01;

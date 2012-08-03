@@ -1,0 +1,6 @@
+75% SMPTE Bars (NTSC)
+
+ 
+75% amplitude, 100% saturation with grey (75% of white) and black
+
+Similar 75% bars are used in the USA, where the white bar is also reduced by 25% in amplitude. They are specified as 77.7·5.77.7·5 because of the 7.5% black-level pedestal. With the US NTSC (National Television Systems Committee) coding system the receiver has a 'hue' control as well as brightness, contrast and saturation. Using the blue display, the saturation control is adjusted to make the white and blue bars appear the same brightness, followed by the hue control to match the magenta and cyan bars. This recreation of the SMPTE (Society of Motion Picture and Television Engineers) pattern has a peak white block at bottom left, flanked by subcarrier at -I and +Q (303° and 33°) centred at black level, and a small 'PLUGE' (Picture Line-Up Generating Equipment) display at bottom right, though the latter is probably too dark to see on your monitor, due to the presence of bright coloured areas, and is therefore not a great deal of use for setting up the correct black level of the display.

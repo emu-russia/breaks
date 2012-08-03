@@ -1,0 +1,491 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" dir="ltr">
+<head>
+<title>6502 datapath - VisualChips</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="MediaWiki 1.16.0" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="search" type="application/opensearchdescription+xml" href="/wiki/opensearch_desc.php" title="VisualChips (en)" />
+<link title="Creative Commons" type="application/rdf+xml" href="/wiki/index.php?title=6502_datapath&amp;action=creativecommons" rel="meta" />
+<link rel="copyright" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" />
+<link rel="alternate" type="application/atom+xml" title="VisualChips Atom feed" href="/wiki/index.php?title=Special:RecentChanges&amp;feed=atom" />
+<link rel="stylesheet" href="/wiki/skins/common/shared.css?270" media="screen" />
+<link rel="stylesheet" href="/wiki/skins/common/commonPrint.css?270" media="print" />
+<link rel="stylesheet" href="/wiki/skins/monobook/main.css?270" media="screen" />
+<!--[if lt IE 5.5000]><link rel="stylesheet" href="/wiki/skins/monobook/IE50Fixes.css?270" media="screen" /><![endif]-->
+<!--[if IE 5.5000]><link rel="stylesheet" href="/wiki/skins/monobook/IE55Fixes.css?270" media="screen" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" href="/wiki/skins/monobook/IE60Fixes.css?270" media="screen" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" href="/wiki/skins/monobook/IE70Fixes.css?270" media="screen" /><![endif]-->
+<link rel="stylesheet" href="/wiki/index.php?title=MediaWiki:Common.css&amp;usemsgcache=yes&amp;ctype=text%2Fcss&amp;smaxage=18000&amp;action=raw&amp;maxage=18000" />
+<link rel="stylesheet" href="/wiki/index.php?title=MediaWiki:Print.css&amp;usemsgcache=yes&amp;ctype=text%2Fcss&amp;smaxage=18000&amp;action=raw&amp;maxage=18000" media="print" />
+<link rel="stylesheet" href="/wiki/index.php?title=MediaWiki:Monobook.css&amp;usemsgcache=yes&amp;ctype=text%2Fcss&amp;smaxage=18000&amp;action=raw&amp;maxage=18000" />
+<link rel="stylesheet" href="/wiki/index.php?title=-&amp;action=raw&amp;maxage=18000&amp;gen=css" />
+<script>
+var skin="monobook",
+stylepath="/wiki/skins",
+wgUrlProtocols="http\\:\\/\\/|https\\:\\/\\/|ftp\\:\\/\\/|irc\\:\\/\\/|gopher\\:\\/\\/|telnet\\:\\/\\/|nntp\\:\\/\\/|worldwind\\:\\/\\/|mailto\\:|news\\:|svn\\:\\/\\/",
+wgArticlePath="/wiki/index.php?title=$1",
+wgScriptPath="/wiki",
+wgScriptExtension=".php",
+wgScript="/wiki/index.php",
+wgVariantArticlePath=false,
+wgActionPaths={},
+wgServer="http://visual6502.org",
+wgCanonicalNamespace="",
+wgCanonicalSpecialPageName=false,
+wgNamespaceNumber=0,
+wgPageName="6502_datapath",
+wgTitle="6502 datapath",
+wgAction="view",
+wgArticleId=131,
+wgIsArticle=true,
+wgUserName=null,
+wgUserGroups=null,
+wgUserLanguage="en",
+wgContentLanguage="en",
+wgBreakFrames=false,
+wgCurRevisionId=427,
+wgVersion="1.16.0",
+wgEnableAPI=true,
+wgEnableWriteAPI=true,
+wgSeparatorTransformTable=["", ""],
+wgDigitTransformTable=["", ""],
+wgMainPageTitle="Main Page",
+wgFormattedNamespaces={"-2": "Media", "-1": "Special", "0": "", "1": "Talk", "2": "User", "3": "User talk", "4": "VisualChips", "5": "VisualChips talk", "6": "File", "7": "File talk", "8": "MediaWiki", "9": "MediaWiki talk", "10": "Template", "11": "Template talk", "12": "Help", "13": "Help talk", "14": "Category", "15": "Category talk"},
+wgNamespaceIds={"media": -2, "special": -1, "": 0, "talk": 1, "user": 2, "user_talk": 3, "visualchips": 4, "visualchips_talk": 5, "file": 6, "file_talk": 7, "mediawiki": 8, "mediawiki_talk": 9, "template": 10, "template_talk": 11, "help": 12, "help_talk": 13, "category": 14, "category_talk": 15, "image": 6, "image_talk": 7},
+wgSiteName="VisualChips",
+wgCategories=[],
+wgRestrictionEdit=["autoconfirmed"],
+wgRestrictionMove=["autoconfirmed"];
+</script><script src="/wiki/skins/common/wikibits.js?270"></script>
+<script src="/wiki/skins/common/ajax.js?270"></script>
+<script src="/wiki/index.php?title=-&amp;action=raw&amp;gen=js&amp;useskin=monobook&amp;270"></script>
+
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-6502_datapath skin-monobook">
+<div id="globalWrapper">
+<div id="column-content"><div id="content" >
+	<a id="top"></a>
+	
+	<h1 id="firstHeading" class="firstHeading">6502 datapath</h1>
+	<div id="bodyContent">
+		<h3 id="siteSub">From VisualChips</h3>
+		<div id="contentSub"></div>
+		<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>
+		<!-- start content -->
+<p>This page discusses the 6502 datapath, using the terminology from <a href="/wiki/index.php?title=Hanson%27s_Block_Diagram" title="Hanson's Block Diagram">Hanson's Block Diagram</a> and is probably best understood by <a href="http://www.pagetable.com/?p=39" class="external text" rel="nofollow">reference to it</a>
+</p><p>We're interested in which datapath control signals are active in each of the two phases.
+</p><p>A full cycle consists of phi1 and phi2.  When we say a signal is "effective", we mean it actually does something.
+</p><p>All datapath control signals are latched during phi2; they are set mostly from opcode and timing data, but also some internal state.  We work broadly from left to right. (Which is right to left on <a href="/wiki/index.php?title=Balazs%27_schematic_and_documents" title="Balazs' schematic and documents">Balazs' schematic</a>)
+</p>
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#External_busses_and_signals"><span class="tocnumber">1</span> <span class="toctext">External busses and signals</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Address_values"><span class="tocnumber">2</span> <span class="toctext">Address values</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#The_register_file"><span class="tocnumber">3</span> <span class="toctext">The register file</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#ALU_inputs"><span class="tocnumber">4</span> <span class="toctext">ALU inputs</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#ALU_operation_selection"><span class="tocnumber">5</span> <span class="toctext">ALU operation selection</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#ALU_output_register"><span class="tocnumber">6</span> <span class="toctext">ALU output register</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#The_Program_Counter"><span class="tocnumber">7</span> <span class="toctext">The Program Counter</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Precharge"><span class="tocnumber">8</span> <span class="toctext">Precharge</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#A_note_on_signal_naming"><span class="tocnumber">9</span> <span class="toctext">A note on signal naming</span></a></li>
+</ul>
+</td></tr></table><script>if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } </script>
+<h3> <span class="mw-headline" id="External_busses_and_signals"> External busses and signals </span></h3>
+<p>DOR is latched from DB during phi1, and driven onto the data pins in phi2, if a write is done (and, on the 6501, only if the asynchronous DBE signal is on).
+</p><p>DL is latched during phi2, and then put on ADL, ADH, or DB on the next phi1; during phi2, the old value in DL is put on that bus.
+</p><p>ABL and ABH can be loaded from ADL and ADH respectively during phi1; they are put on the address pins in that same phi1, and stay there until changed again.
+</p><p>R/#W is latched during phi2, and then delayed until phi1, where it is output.
+</p>
+<h3> <span class="mw-headline" id="Address_values"> Address values </span></h3>
+<dl><dt> ADL/ABL, ADH/ABH</dt><dd>
+</dd><dd> We already saw these.  Effective on the next phi1.
+</dd></dl>
+<dl><dt> 0/ADL0, 0/ADL1, 0/ADL2, 0/ADH0, 0/ADH(1-7)
+</dt><dd> These set the interrupt vector fetch address, and the zero page and stack high address.  Effective on phi2 and the next phi1.
+</dd></dl>
+<p><br />
+</p>
+<h3> <span class="mw-headline" id="The_register_file"> The register file </span></h3>
+<dl><dt> Y/SB, X/SB, SB/Y, SB/X
+</dt><dd> Move the X and Y registers from/to the SB.  Latched on phi2, just like everything else; effective on the next phi1.
+</dd></dl>
+<dl><dt> SB/S, S/S, effective on the next phi1.
+</dt><dt> S/SB, S/ADL, effective on phi2 and the next phi1.
+</dt><dd> The S register is actually two latches in series.  This makes it possible to read a value from SB and write a value to ADL at the same time.  On phi2, the value from the "in" latch is forwarded to the "out" latch (and onto the driven bus, if any).
+</dd></dl>
+<p>(Note the <a href="/wiki/index.php?title=6502_datapath_control_timing_fix" title="6502 datapath control timing fix">two "tuning fork" structures</a>, which have contacts
+either on the top or bottom, which select whether X, Y, A write SB
+and DB only during phi1, or slightly longer, during "not phi2". We think this might be a timing fix, or an option left open until after silicon showed which choice worked best)
+</p>
+<h3> <span class="mw-headline" id="ALU_inputs"> ALU inputs </span></h3>
+<dl><dt> SB/ADD, 0/ADD, nDB/ADD, DB/ADD, ADL/ADD
+</dt><dd> Two options for one side, three for the other.  Effective on the next phi1.
+</dd></dl>
+<h3> <span class="mw-headline" id="ALU_operation_selection"> ALU operation selection </span></h3>
+<dl><dt> ANDS, EORS, ORS, 1/ADDC, SRS, SUMS, DAA, DSA
+</dt><dd> Select the ALU operation. Effective on the next phi1 and phi2.
+</dd></dl>
+<p>(The overflow and carry out signals AVR and ACR are output from the ALU back to the control logic,
+latched during phi2, used in phi1.  The decimal carries are picked up at phi2 as well).
+</p>
+<h3> <span class="mw-headline" id="ALU_output_register"> ALU output register </span></h3>
+<p>The ALU output register (ADD) is written during phi2.  The value can be used the next cycle:
+</p>
+<dl><dt> ADD/SB7, ADD/SB(0-6), ADD/ADL, effective on phi2 and the next phi1.
+</dt><dd> The ADL output is for address calculations.  For output to SB, the top bit is handled separately for rotate right instructions: the ALU always computes a zero there; by not driving it to the bus a one will be read.
+</dd></dl>
+<dl><dt> SB/AC, effective on the next phi1.
+</dt><dd> Lines 1-3,5-7 are fed through the decimal adjust first, to finish the proper BCD add/subtract result if necessary, before writing it to the accumulator.
+</dd></dl>
+<dl><dt> AC/SB, AC/DB, effective on the next phi1.
+</dt><dd> Write the A reg back to one of the busses.
+</dd></dl>
+<h3> <span class="mw-headline" id="The_Program_Counter"> The Program Counter </span></h3>
+<dl><dt> ADH/PCH, PCH/PCH, PCL/PCL, ADL/PCL
+</dt><dd> select whether to use the current PC, or take a new value from the internal address busses.  Effective on the next phi1.
+</dd></dl>
+<dl><dt> PCH/DB, PCL/DB, PCH/ADH, PCL/ADL
+</dt><dd> write the PC to one of the busses.  Effective on phi2 and the next phi1.
+</dd></dl>
+<dl><dt> I/PC, effective during the next phi1 and phi2.
+</dt><dd> Increment the PC, or not.  When incrementing, the new value is put on ADL,ADH because there are no internal latches in the PC incrementer.  For every instruction, the first two bytes are fetched (during execution of the previous instruction); I/PC peeks ahead (or back, if you want to look at it that way) to the next instruction that is predecoded, so it can skip incrementing PC if that is a one-byte instruction.
+</dd></dl>
+<dl><dt> P/DB
+</dt><dd> Write the flag values to the DB; effective on phi2 and the next phi1.  The DB can be read to set the flag values as well; it is read during phi2, and then latched in the flag register on the next phi1.
+</dd></dl>
+<dl><dt> SB/DB, SB/ADH
+</dt><dd> Connect two busses together.  Effective on phi2 and the next phi1.
+</dd></dl>
+<h3> <span class="mw-headline" id="Precharge"> Precharge </span></h3>
+<p>All internal busses (SB, DB, ADL, ADH) are driven high during phi2, as a sort of precharge. In fact commonly they are also driven by data signals during phi2, causing an intermediate voltage to appear on the bus.
+</p>
+<h3> <span class="mw-headline" id="A_note_on_signal_naming"> A note on signal naming </span></h3>
+<p>In our <a href="http://visual6502.org/JSSim/expert.html?graphics=f&amp;logmore=DPControl&amp;steps=10" class="external text" rel="nofollow">Javascript simulation</a> the datapath control signals are tabulated according to Hanson's names, but <a href="http://visual6502.org/JSSim/expert.html?nosim=t&amp;find=dpc4_SSB,dpc5_SADL,dpc6_SBS,dpc7_SS&amp;panx=166.0&amp;pany=357.3&amp;zoom=6.2" class="external text" rel="nofollow">in the layout</a> they are named with a prefix according to their position across the chip. So
+</p>
+<ul><li> SSB, SADL, SBS, SS
+</li></ul>
+<p>will be found as
+</p>
+<ul><li> dpc4_SSB,dpc5_SADL,dpc6_SBS,dpc7_SS
+</li></ul>
+<p>in <a href="https://github.com/trebonian/visual6502/blob/master/nodenames.js" class="external text" rel="nofollow">the source</a>. See also the table below.
+</p><p>As Balazs used another naming scheme in his very useful but incomplete schematic, we should also cross-reference his names:
+</p>
+<table cellspacing="0" border="1">
+<tr>
+<th> Balazs </th><th> Hanson </th><th> JSSim </th><th> note
+</th></tr>
+<tr>
+<td> R1x7
+</td><td> Y/SB
+</td><td>dpc0_YSB </td><td> drive sb from y
+</td></tr>
+<tr>
+<td> R1x6
+</td><td> SB/Y
+</td><td>dpc1_SBY </td><td> load y from sb
+</td></tr>
+<tr>
+<td> R1x5
+</td><td> X/SB
+</td><td>dpc2_XSB </td><td> drive sb from x
+</td></tr>
+<tr>
+<td> R1x4
+</td><td> SB/X
+</td><td>dpc3_SBX </td><td> load x from sb
+</td></tr>
+<tr>
+<td> R1x2
+</td><td> S/SB
+</td><td>dpc4_SSB </td><td> drive sb from stack pointer
+</td></tr>
+<tr>
+<td> R1x1
+</td><td> S/ADL
+</td><td>dpc5_SADL </td><td> drive adl from stack pointer
+</td></tr>
+<tr>
+<td> R1x3
+</td><td> SB/S
+</td><td>dpc6_SBS </td><td> load stack pointer from sb
+</td></tr>
+<tr>
+<td>&nbsp;?
+</td><td> S/S
+</td><td>dpc7_SS </td><td> recirculate stack pointer
+</td></tr>
+<tr>
+<td> R2x1
+</td><td> notDB/ADD
+</td><td>dpc8_nDBADD </td><td> alu b side: select not-idb input
+</td></tr>
+<tr>
+<td> R2x2
+</td><td> DB/ADD
+</td><td>dpc9_DBADD </td><td> alu b side: select idb input
+</td></tr>
+<tr>
+<td> R2x3
+</td><td> ADL/ADD
+</td><td>dpc10_ADLADD </td><td> alu b side: select adl input
+</td></tr>
+<tr>
+<td> R2x4 (??)
+</td><td> SB/ADD
+</td><td>dpc11_SBADD </td><td> alu a side: select sb
+</td></tr>
+<tr>
+<td> R2x5
+</td><td> 0/ADD
+</td><td>dpc12_0ADD </td><td> alu a side: select zero
+</td></tr>
+<tr>
+<td> R2x6
+</td><td> ORS
+</td><td>dpc13_ORS </td><td> alu op: a or b
+</td></tr>
+<tr>
+<td> R2x7
+</td><td> SRS
+</td><td>dpc14_SRS </td><td> alu op: logical right shift
+</td></tr>
+<tr>
+<td> R2x8
+</td><td> ANDS
+</td><td>dpc15_ANDS </td><td> alu op: a and b
+</td></tr>
+<tr>
+<td> R2x9
+</td><td> EORS
+</td><td>dpc16_EORS </td><td> alu op: a xor b (?)
+</td></tr>
+<tr>
+<td> R2x12
+</td><td> SUMS
+</td><td>dpc17_SUMS </td><td> alu op: a plus b (?)
+</td></tr>
+<tr>
+<td>&nbsp;?
+</td><td> DAA
+</td><td>dpc18_#DAA </td><td> decimal related (inverted)
+</td></tr>
+<tr>
+<td> R2x14,7
+</td><td> ADD/SB(7)
+</td><td>dpc19_ADDSB7 </td><td> alu to sb bit 7 only
+</td></tr>
+<tr>
+<td> R2x14
+</td><td> ADD/SB(0-6)
+</td><td>dpc20_ADDSB06 </td><td> alu to sb bits 6-0 only
+</td></tr>
+<tr>
+<td> R2x15
+</td><td> ADD/ADL
+</td><td>dpc21_ADDADL </td><td> alu to adl
+</td></tr>
+<tr>
+<td> R2x20,6
+</td><td> DSA
+</td><td>dpc22_#DSA </td><td> decimal related/SBC only (inverted)
+</td></tr>
+<tr>
+<td> R3x4
+</td><td> SB/AC
+</td><td>dpc23_SBAC </td><td> (optionally decimal-adjusted) sb to acc
+</td></tr>
+<tr>
+<td> R3x1
+</td><td> AC/SB
+</td><td>dpc24_ACSB </td><td> acc to sb
+</td></tr>
+<tr>
+<td> R3x3
+</td><td> SB/DB
+</td><td>dpc25_SBDB </td><td> sb pass-connects to idb (bi-directionally)
+</td></tr>
+<tr>
+<td> R3x2
+</td><td> AC/DB
+</td><td>dpc26_ACDB </td><td> acc to idb
+</td></tr>
+<tr>
+<td> R3x0
+</td><td> SB/ADH
+</td><td>dpc27_SBADH </td><td> sb pass-connects to adh (bi-directionally)
+</td></tr>
+<tr>
+<td> R3x5,0
+</td><td> 0/ADH0
+</td><td>dpc28_0ADH0 </td><td> zero to adh0 bit0 only
+</td></tr>
+<tr>
+<td> R3x5
+</td><td> 0/ADH(1-7)
+</td><td>dpc29_0ADH17 </td><td> zero to adh bits 7-1 only
+</td></tr>
+<tr>
+<td> R4x2
+</td><td> ADH/PCH
+</td><td>dpc30_ADHPCH </td><td> load pch from adh
+</td></tr>
+<tr>
+<td> R4x3
+</td><td> PCH/PCH
+</td><td>dpc31_PCHPCH </td><td> load pch from pch incremented
+</td></tr>
+<tr>
+<td> R4x4
+</td><td> PCH/ADH
+</td><td>dpc32_PCHADH </td><td> drive adh from pch incremented
+</td></tr>
+<tr>
+<td> R4x1
+</td><td> PCH/DB
+</td><td>dpc33_PCHDB </td><td> drive idb from pch incremented
+</td></tr>
+<tr>
+<td>&nbsp;!!
+</td><td> PCLC
+</td><td>dpc34_PCLC </td><td> pch carry in and pcl FF detect?
+</td></tr>
+<tr>
+<td> Carry
+</td><td> PCHC
+</td><td>dpc35_PCHC </td><td> pcl 0x?F detect - half-carry
+</td></tr>
+<tr>
+<td> notCarry
+</td><td> I/PC
+</td><td>dpc36_#IPC </td><td> pcl carry in (inverted)
+</td></tr>
+<tr>
+<td> R5x1
+</td><td> PCL/DB
+</td><td>dpc37_PCLDB </td><td> drive idb from pcl incremented
+</td></tr>
+<tr>
+<td> R5x4
+</td><td> PCL/ADL
+</td><td>dpc38_PCLADL </td><td> drive adl from pcl incremented
+</td></tr>
+<tr>
+<td> R5x3
+</td><td> PCL/PCL
+</td><td>dpc39_PCLPCL </td><td> load pcl from pcl incremented
+</td></tr>
+<tr>
+<td> R5x2
+</td><td> ADL/PCL
+</td><td>dpc40_ADLPCL </td><td> load pcl from adl
+</td></tr>
+<tr>
+<td> Dkx2
+</td><td> DL/ADL
+</td><td>dpc41_DL/ADL </td><td> pass-connect adl to mux node driven by idl
+</td></tr>
+<tr>
+<td> Dkx3
+</td><td> DL/ADH
+</td><td>dpc42_DL/ADH </td><td> pass-connect adh to mux node driven by idl
+</td></tr>
+<tr>
+<td> Dkx1
+</td><td> DL/DB
+</td><td>dpc43_DL/DB </td><td> pass-connect idb to mux node driven by idl
+</td></tr>
+</table>
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 35/1000000
+Post-expand include size: 0/2097152 bytes
+Template argument size: 0/2097152 bytes
+Expensive parser function count: 0/100
+-->
+
+<!-- Saved in parser cache with key wiki6502:pcache:idhash:131-0!1!0!!en!2!edit=0 and timestamp 20120622044856 -->
+<div class="printfooter">
+Retrieved from "<a href="http://visual6502.org/wiki/index.php?title=6502_datapath">http://visual6502.org/wiki/index.php?title=6502_datapath</a>"</div>
+		<div id='catlinks' class='catlinks catlinks-allhidden'></div>		<!-- end content -->
+				<div class="visualClear"></div>
+	</div>
+</div></div>
+<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul>
+				 <li id="ca-nstab-main" class="selected"><a href="/wiki/index.php?title=6502_datapath" title="View the content page [c]" accesskey="c">Page</a></li>
+				 <li id="ca-talk" class="new"><a href="/wiki/index.php?title=Talk:6502_datapath&amp;action=edit&amp;redlink=1" title="Discussion about the content page [t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-viewsource"><a href="/wiki/index.php?title=6502_datapath&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e">View source</a></li>
+				 <li id="ca-history"><a href="/wiki/index.php?title=6502_datapath&amp;action=history" title="Past revisions of this page [h]" accesskey="h">History</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul>
+				<li id="pt-login"><a href="/wiki/index.php?title=Special:UserLogin&amp;returnto=6502_datapath" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o">Log in</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(../images/6502/jssim_01_sm.png);" href="/wiki/index.php?title=Main_Page" title="Visit the main page"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class='generated-sidebar portlet' id='p-navigation'>
+		<h5>Navigation</h5>
+		<div class='pBody'>
+			<ul>
+				<li id="n-mainpage-description"><a href="/wiki/index.php?title=Main_Page" title="Visit the main page [z]" accesskey="z">Main page</a></li>
+				<li id="n-portal"><a href="/wiki/index.php?title=VisualChips:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+				<li id="n-currentevents"><a href="/wiki/index.php?title=VisualChips:Current_events" title="Find background information on current events">Current events</a></li>
+				<li id="n-recentchanges"><a href="/wiki/index.php?title=Special:RecentChanges" title="The list of recent changes in the wiki [r]" accesskey="r">Recent changes</a></li>
+				<li id="n-randompage"><a href="/wiki/index.php?title=Special:Random" title="Load a random page [x]" accesskey="x">Random page</a></li>
+				<li id="n-help"><a href="/wiki/index.php?title=Help:Contents" title="The place to find out">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/wiki/index.php" id="searchform">
+				<input type='hidden' name="title" value="Special:Search"/>
+				<input id="searchInput" title="Search VisualChips" accesskey="f" type="search" name="search" />
+				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="Go" title="Go to a page with this exact name if exists" />&nbsp;
+				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search the pages for this text" />
+			</form>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5>Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="/wiki/index.php?title=Special:WhatLinksHere/6502_datapath" title="List of all wiki pages that link here [j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="/wiki/index.php?title=Special:RecentChangesLinked/6502_datapath" title="Recent changes in pages linked from this page [k]" accesskey="k">Related changes</a></li>
+<li id="t-specialpages"><a href="/wiki/index.php?title=Special:SpecialPages" title="List of all special pages [q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="/wiki/index.php?title=6502_datapath&amp;printable=yes" rel="alternate" title="Printable version of this page [p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="/wiki/index.php?title=6502_datapath&amp;oldid=427" title="Permanent link to this revision of the page">Permanent link</a></li>			</ul>
+		</div>
+	</div>
+</div><!-- end of the left (by default at least) column -->
+<div class="visualClear"></div>
+<div id="footer">
+	<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="/wiki/skins/common/images/poweredby_mediawiki_88x31.png" height="31" width="88" alt="Powered by MediaWiki" /></a></div>
+	<div id="f-copyrightico"><a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img src="http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" alt="Attribution-NonCommercial-ShareAlike 3.0 Unported" width="88" height="31" /></a></div>
+	<ul id="f-list">
+		<li id="lastmod"> This page was last modified on 19 February 2011, at 04:30.</li>
+		<li id="viewcount">This page has been accessed 2,313 times.</li>
+		<li id="copyright">Content is available under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" class="external ">Attribution-NonCommercial-ShareAlike 3.0 Unported</a>.</li>
+		<li id="privacy"><a href="/wiki/index.php?title=VisualChips:Privacy_policy" title="VisualChips:Privacy policy">Privacy policy</a></li>
+		<li id="about"><a href="/wiki/index.php?title=VisualChips:About" title="VisualChips:About">About VisualChips</a></li>
+		<li id="disclaimer"><a href="/wiki/index.php?title=VisualChips:General_disclaimer" title="VisualChips:General disclaimer">Disclaimers</a></li>
+	</ul>
+</div>
+</div>
+
+<script>if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served in 0.213 secs. --></body></html>
