@@ -1,0 +1,192 @@
+<html lang="en">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-15">
+<title>6502 Instruction Set</title>
+<style type="text/css">
+<!--
+p,td,xmp { font-family: courier,fixed,sans-serif; font-size: 10px; }
+h1 { font-family: arial,helvetica,sans-serif; font-size: 24px; }
+table.opctable, table.opctable td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #222222;
+}
+@page { size:landscape; }
+-->
+
+td.op {
+    background-color: normal;
+}
+</style>
+
+<script>
+
+function highlight()
+{
+    clear = ! document.irform.clear.checked;
+
+    ir = document.irform.IR.value;
+    //alert (ir);
+    a = ir.split("");
+
+    ir = mask = 0;
+    for ( i=0; i<8; i++ )
+    {
+        bit = a[i];
+        if ( bit == '1' ) ir |= 1 << (7-i);
+        if ( bit == 'X' || bit == 'x' ) mask |= 1 << (7-i);
+    }
+
+    //alert ( ir.toString(16) + ":" + mask.toString(16) );
+
+    arr = document.getElementsByClassName('op');
+    for ( op in arr )
+    {
+        if ( (op & ~mask) == ir ) arr[op].style.backgroundColor = "lime";
+        else {
+            if (clear) arr[op].style.backgroundColor = "white";
+        }
+    }
+
+}
+
+function twobits ( a, b1, b2 )
+{
+    if ( parseInt(a[b1]) == 0 && parseInt(a[b2]) == 0 ) return 'X';
+    else if ( parseInt(a[b1]) == 0 && parseInt(a[b2]) == 1 ) return '0';
+    else if ( parseInt(a[b1]) == 1 && parseInt(a[b2]) == 0 ) return '1';
+    else return '?';
+}
+
+function makebits()
+{
+    bits = document.bitform.bits.value;
+    //alert (bits);
+
+    a = bits.split("");
+
+/*
+10 5 6 2 3 4 7  0|1 2345
+
+A
+00 010110000010 010 0000
+*/
+
+    t = 'X';
+    mask = '';
+
+    // Clock step.
+    if ( parseInt(a[0]) ) t = '1';
+    if ( parseInt(a[1]) ) t = '0';
+    if ( parseInt(a[17]) ) t = '2';
+    if ( parseInt(a[18]) ) t = '3';
+    if ( parseInt(a[19]) ) t = '4';
+    if ( parseInt(a[20]) ) t = '5';
+
+    // bit 7-2
+    mask += twobits ( a, 12, 13 );
+    mask += twobits ( a, 4, 5 );
+    mask += twobits ( a, 2, 3 );
+    mask += twobits ( a, 10, 11 );
+    mask += twobits ( a, 8, 9 );
+    mask += twobits ( a, 6, 7 );
+
+    // bits 1 and 0.
+
+    b1 = parseInt(a[14]);
+    both = parseInt(a[15]);
+    b0 = parseInt(a[16]);
+
+    if ( both == 0 )
+    {
+        if ( b1 == 1 && b0 == 0 ) mask += 'X1';
+        else if ( b1 == 0 && b0 == 1 ) mask += '1X';
+        else if ( b1 == 0 && b0 == 0 ) mask += 'XX';
+        else mask += '??';
+    }
+    else mask += '00';
+
+    document.getElementById ('irmask').innerHTML = "IR=" + mask + " T" + t;
+}
+
+</script>
+
+</head>
+
+<body>
+
+<form name=irform>
+IR <input type=text name=IR>
+<input type=button onclick="highlight();" value="Decode"><br>
+<input type=checkbox name=clear />Do not clear table
+</form>
+
+<table border="1" cellspacing="0" cellpadding="5" class="opctable">
+<tr>
+<td>HI</td><td colspan="16" align="center">LO-BYTE</td>
+</tr>
+<tr valign="top">
+<td nowrap>&nbsp;</td><td align="center" nowrap>00</td><td align="center" nowrap>01</td><td align="center" nowrap>02</td><td align="center" nowrap>03</td><td align="center" nowrap>04</td><td align="center" nowrap>05</td><td align="center" nowrap>06</td><td align="center" nowrap>07</td><td align="center" nowrap>08</td><td align="center" nowrap>09</td><td align="center" nowrap>0A</td><td align="center" nowrap>0B</td><td align="center" nowrap>0C</td><td align="center" nowrap>0D</td><td align="center" nowrap>0E</td><td align="center" nowrap>0F</td></tr>
+<tr valign="top">
+<td nowrap>00</td><td nowrap class=op>BRK impl</td><td nowrap class=op>ORA X,ind</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ORA zpg</td><td nowrap class=op>ASL zpg</td><td nowrap class=op>??? ---</td><td nowrap class=op>PHP impl</td><td nowrap class=op>ORA #</td><td nowrap class=op>ASL A</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ORA abs</td><td nowrap class=op>ASL abs</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>01</td><td nowrap class=op>BPL rel</td><td nowrap class=op>ORA ind,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ORA zpg,X</td><td nowrap class=op>ASL zpg,X</td><td nowrap class=op>??? ---</td><td nowrap class=op>CLC impl</td><td nowrap class=op>ORA abs,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ORA abs,X</td><td nowrap class=op>ASL abs,X</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>02</td><td nowrap class=op>JSR abs</td><td nowrap class=op>AND X,ind</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>BIT zpg</td><td nowrap class=op>AND zpg</td><td nowrap class=op>ROL zpg</td><td nowrap class=op>??? ---</td><td nowrap class=op>PLP impl</td><td nowrap class=op>AND #</td><td nowrap class=op>ROL A</td><td nowrap class=op>??? ---</td><td nowrap class=op>BIT abs</td><td nowrap class=op>AND abs</td><td nowrap class=op>ROL abs</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>03</td><td nowrap class=op>BMI rel</td><td nowrap class=op>AND ind,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>AND zpg,X</td><td nowrap class=op>ROL zpg,X</td><td nowrap class=op>??? ---</td><td nowrap class=op>SEC impl</td><td nowrap class=op>AND abs,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>AND abs,X</td><td nowrap class=op>ROL abs,X</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>04</td><td nowrap class=op>RTI impl</td><td nowrap class=op>EOR X,ind</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>EOR zpg</td><td nowrap class=op>LSR zpg</td><td nowrap class=op>??? ---</td><td nowrap class=op>PHA impl</td><td nowrap class=op>EOR #</td><td nowrap class=op>LSR A</td><td nowrap class=op>??? ---</td><td nowrap class=op>JMP abs</td><td nowrap class=op>EOR abs</td><td nowrap class=op>LSR abs</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>05</td><td nowrap class=op>BVC rel</td><td nowrap class=op>EOR ind,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>EOR zpg,X</td><td nowrap class=op>LSR zpg,X</td><td nowrap class=op>??? ---</td><td nowrap class=op>CLI impl</td><td nowrap class=op>EOR abs,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>EOR abs,X</td><td nowrap class=op>LSR abs,X</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>06</td><td nowrap class=op>RTS impl</td><td nowrap class=op>ADC X,ind</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ADC zpg</td><td nowrap class=op>ROR zpg</td><td nowrap class=op>??? ---</td><td nowrap class=op>PLA impl</td><td nowrap class=op>ADC #</td><td nowrap class=op>ROR A</td><td nowrap class=op>??? ---</td><td nowrap class=op>JMP ind</td><td nowrap class=op>ADC abs</td><td nowrap class=op>ROR abs</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>07</td><td nowrap class=op>BVS rel</td><td nowrap class=op>ADC ind,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ADC zpg,X</td><td nowrap class=op>ROR zpg,X</td><td nowrap class=op>??? ---</td><td nowrap class=op>SEI impl</td><td nowrap class=op>ADC abs,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ADC abs,X</td><td nowrap class=op>ROR abs,X</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>08</td><td nowrap class=op>??? ---</td><td nowrap class=op>STA X,ind</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>STY zpg</td><td nowrap class=op>STA zpg</td><td nowrap class=op>STX zpg</td><td nowrap class=op>??? ---</td><td nowrap class=op>DEY impl</td><td nowrap class=op>??? ---</td><td nowrap class=op>TXA impl</td><td nowrap class=op>??? ---</td><td nowrap class=op>STY abs</td><td nowrap class=op>STA abs</td><td nowrap class=op>STX abs</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>09</td><td nowrap class=op>BCC rel</td><td nowrap class=op>STA ind,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>STY zpg,X</td><td nowrap class=op>STA zpg,X</td><td nowrap class=op>STX zpg,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>TYA impl</td><td nowrap class=op>STA abs,Y</td><td nowrap class=op>TXS impl</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>STA abs,X</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0A</td><td nowrap class=op>LDY #</td><td nowrap class=op>LDA X,ind</td><td nowrap class=op>LDX #</td><td nowrap class=op>??? ---</td><td nowrap class=op>LDY zpg</td><td nowrap class=op>LDA zpg</td><td nowrap class=op>LDX zpg</td><td nowrap class=op>??? ---</td><td nowrap class=op>TAY impl</td><td nowrap class=op>LDA #</td><td nowrap class=op>TAX impl</td><td nowrap class=op>??? ---</td><td nowrap class=op>LDY abs</td><td nowrap class=op>LDA abs</td><td nowrap class=op>LDX abs</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0B</td><td nowrap class=op>BCS rel</td><td nowrap class=op>LDA ind,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>LDY zpg,X</td><td nowrap class=op>LDA zpg,X</td><td nowrap class=op>LDX zpg,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>CLV impl</td><td nowrap class=op>LDA abs,Y</td><td nowrap class=op>TSX impl</td><td nowrap class=op>??? ---</td><td nowrap class=op>LDY abs,X</td><td nowrap class=op>LDA abs,X</td><td nowrap class=op>LDX abs,Y</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0C</td><td nowrap class=op>CPY #</td><td nowrap class=op>CMP X,ind</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>CPY zpg</td><td nowrap class=op>CMP zpg</td><td nowrap class=op>DEC zpg</td><td nowrap class=op>??? ---</td><td nowrap class=op>INY impl</td><td nowrap class=op>CMP #</td><td nowrap class=op>DEX impl</td><td nowrap class=op>??? ---</td><td nowrap class=op>CPY abs</td><td nowrap class=op>CMP abs</td><td nowrap class=op>DEC abs</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0D</td><td nowrap class=op>BNE rel</td><td nowrap class=op>CMP ind,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>CMP zpg,X</td><td nowrap class=op>DEC zpg,X</td><td nowrap class=op>??? ---</td><td nowrap class=op>CLD impl</td><td nowrap class=op>CMP abs,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>CMP abs,X</td><td nowrap class=op>DEC abs,X</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0E</td><td nowrap class=op>CPX #</td><td nowrap class=op>SBC X,ind</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>CPX zpg</td><td nowrap class=op>SBC zpg</td><td nowrap class=op>INC zpg</td><td nowrap class=op>??? ---</td><td nowrap class=op>INX impl</td><td nowrap class=op>SBC #</td><td nowrap class=op>NOP impl</td><td nowrap class=op>??? ---</td><td nowrap class=op>CPX abs</td><td nowrap class=op>SBC abs</td><td nowrap class=op>INC abs</td><td nowrap class=op>??? ---</td>
+<tr>
+<tr valign="top">
+<td nowrap>0F</td><td nowrap class=op>BEQ rel</td><td nowrap class=op>SBC ind,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>SBC zpg,X</td><td nowrap class=op>INC zpg,X</td><td nowrap class=op>??? ---</td><td nowrap class=op>SED impl</td><td nowrap class=op>SBC abs,Y</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>SBC abs,X</td><td nowrap class=op>INC abs,X</td><td nowrap class=op>??? ---</td>
+<tr>
+</table>
+<p>&nbsp;</p>
+
+<br>
+
+<form name=bitform>
+Raw bits <input type=text name=bits>
+<input type=button onclick="makebits();" value="Make IR mask">
+</form>
+<div id="irmask"></div>
+
+
+</body>
+</html>
