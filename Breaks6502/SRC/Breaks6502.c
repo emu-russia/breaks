@@ -1,3 +1,4 @@
+#include "Breaks6502.h"
 #include "Breaks6502Private.h"
 
 void Step6502 ( Context6502 * cpu )

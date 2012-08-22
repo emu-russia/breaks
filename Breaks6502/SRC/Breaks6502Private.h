@@ -17,4 +17,4 @@
 #include "PROGRAM_COUNTER.h"
 
 
-#define BIT (n)     ( (n) & 1 )
+#define BIT(n)     ( (n) & 1 )
