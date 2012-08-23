@@ -18,16 +18,15 @@ typedef struct Context6502
     char        TR[6];              // T-state register
     char        PLAOUT[130];        // PLA outputs
     char        DRIVEREG[64];
+    // Random logic latches
 
     // Bottom part internal state
     char        SB[8], DB[8];           // SBus, DBus
     char        X[8], Y[8], S[8];       // X, Y, S registers
     char        ABH[8], ABL[8];         // Address bus registers
     char        ADH[8], ADL[8];         // Internal address bus
-
-    int         ACR;        // ALU carry out
-    int         AVR;        // ALU overflow out
-
+    char        AI[8], BI[8], ADD[8], AC[8];    // ALU regs
+    // ALU latches
     char        PCL[8], PCLS[8], PCH[8], PCHS[8];   // Program Counter    
 
 } Context6502;

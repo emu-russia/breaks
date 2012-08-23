@@ -18,7 +18,7 @@ void Step6502 ( Context6502 * cpu )
 
     // Bottom part
     //DataBus (cpu);
-    //ALU (cpu);
+    //ALU (cpu, 1);
     Regs (cpu);
     //ProgramCounter (cpu);
     //AddressBus (cpu);
