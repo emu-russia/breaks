@@ -1,0 +1,1 @@
+void Predecode (Context6502 * cpu);

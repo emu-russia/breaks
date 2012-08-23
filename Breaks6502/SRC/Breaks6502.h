@@ -16,6 +16,7 @@ typedef struct Context6502
     char        PD[8];              // Predecode register
     char        IR[8];              // Instruction register
     char        TR[6];              // T-state register
+    char        PLAOUT[130];        // PLA outputs
     char        DRIVEREG[64];
 
     // Bottom part internal state

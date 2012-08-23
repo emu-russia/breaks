@@ -1,5 +1,10 @@
+// PLA instruction decoder
+#include "Breaks6502.h"
+#include "Breaks6502Private.h"
 
-static char * PLA_ROM[] = {
+// T1X T0 /5 5 /6 6 /2 2 /3 3 /4 4 /7 7 /0 0|1 /1 T2 T3 T4 T5
+
+static char * PLA_ROM[130] = {     // 130 lines.
 
     "000101100000100100000",   // 100XX100 TX     STY
     "000000010110001000100",   // XXX100X1 T3     OP ind, Y
@@ -17,10 +22,10 @@ static char * PLA_ROM[] = {
     "000101000000100010000",   // 100XXX1X TX     STX TXA TXS
     "010101011010100010000",   // 1001101X T0     TXS
     "011001000000100010000",   // 101XXX1X T0     LDX TAX TSX
-    "000110011001100010000",   // 1100101X TX     DEX
-    "001010011001100100000",   // 11101000 TX     INX
+    "100110011001100010000",   // 1100101X T1     DEX
+    "101010011001100100000",   // 11101000 T1     INX
     "011001011010100010000",   // 1011101X T0     TSX
-    "000100011001100100000",   // 1X001000 TX     DEY INY
+    "100100011001100100000",   // 1X001000 T1     DEY INY
     "011001100000100100000",   // 101XX100 T0     LDY
     "011001000001100100000",   // 1010XX00 T0     LDY TAY
 
@@ -130,15 +135,65 @@ static char * PLA_ROM[] = {
     "100001011001010010000",   // 00X0101X T1     ASL ROL
     "100010000101100100000",   // 11X00X00 T1     CPY CPX zpg/immed
 
-    "000000011001010100000",   // 0XX01000 TX     Not actually line. Controls last line to except push/pull opcodes --->
+//    "000000011001010100000",   // 0XX01000 TX     Not actually line. Controls last line to except push/pull opcodes --->
     "010010011010100100000",   // 11X11000 T0     CLD SED
     "000001000000000000000",   // X0XXXXXX TX     Branch bit 6
     "000000101001000000100",   // XXX011XX T3     Memory absolute
     "000000100101000001000",   // XXX001XX T2     Memory zero page
     "000000010100001000001",   // XXXX00X1 T5     Memory indirect
-    "0000000010100?0000010",   // XXX11XXX T4     Memory absolute X/Y (? is actually 0, but strange.. 0XX11XXX T4 if supposed to be vias there)
+    "000000001010000000010",   // XXX11XXX T4     Memory absolute X/Y
     "000000000000010000000",   // 0XXXXXXX TX     Branch bit 7
     "001001011010100100000",   // 10111000 TX     CLV
     "000000011000000000000",   // XXXX10X0 TX     All implied, except Push/pull
 
 };
+
+void DecodePLA (Context6502 * cpu)
+{
+    int b, n, out;
+    char  IR[8], NOTIR[8], T[6];
+    int IR01, PushPull;
+    char * line;
+
+    for (b=0; b<8; b++) {
+        IR[b] = BIT(~cpu->IR[b]);
+        NOTIR[b] = BIT(cpu->IR[b]);
+    }
+    IR01 = IR[0] | IR[1];
+
+    for (n=0; n<129; n++) {
+        out = 1;
+        line = PLA_ROM[n];
+
+        if ( T[1] && line[0] == '1' ) out = 0;
+        if ( T[0] && line[1] == '1' ) out = 0;
+
+        if ( NOTIR[5] && line[2] == '1' ) out = 0;
+        if ( IR[5] && line[3] == '1' ) out = 0;
+        if ( NOTIR[6] && line[4] == '1' ) out = 0;
+        if ( IR[6] && line[5] == '1' ) out = 0;
+        if ( NOTIR[2] && line[6] == '1' ) out = 0;
+        if ( IR[2] && line[7] == '1' ) out = 0;
+        if ( NOTIR[3] && line[8] == '1' ) out = 0;
+        if ( IR[3] && line[9] == '1' ) out = 0;
+        if ( NOTIR[4] && line[10] == '1' ) out = 0;
+        if ( IR[4] && line[11] == '1' ) out = 0;
+        if ( NOTIR[7] && line[12] == '1' ) out = 0;
+        if ( IR[7] && line[13] == '1' ) out = 0;
+
+        if ( NOTIR[0] && line[14] == '1' ) out = 0;
+        if ( IR01 && line[15] == '1' ) out = 0;
+        if ( NOTIR[1] && line[16] == '1' ) out = 0;
+
+        if ( T[2] && line[17] == '1' ) out = 0;
+        if ( T[3] && line[18] == '1' ) out = 0;
+        if ( T[4] && line[19] == '1' ) out = 0;
+        if ( T[5] && line[20] == '1' ) out = 0;
+
+        cpu->PLAOUT[n] = out;
+    }
+
+    // Last line is special.
+    PushPull = ! ( IR[2] || NOTIR[3] || IR[4] || IR[7] || IR01 );
+    cpu->PLAOUT[129] = ! ( IR[2] || NOTIR[3] || IR[0] || PushPull );
+}
