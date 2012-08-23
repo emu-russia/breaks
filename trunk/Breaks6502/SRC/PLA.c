@@ -144,7 +144,7 @@ static char * PLA_ROM[130] = {     // 130 lines.
     "000000001010000000010",   // XXX11XXX T4     Memory absolute X/Y
     "000000000000010000000",   // 0XXXXXXX TX     Branch bit 7
     "001001011010100100000",   // 10111000 TX     CLV
-    "000000011000000000000",   // XXXX10X0 TX     All implied, except Push/pull
+    "000000011000000......",   // XXXX10X0 TX     All implied, except Push/pull
 
 };
 
@@ -193,7 +193,7 @@ void DecodePLA (Context6502 * cpu)
         cpu->PLAOUT[n] = out;
     }
 
-    // Last line is special.
+    // Last line is special (all implied, except push/pull)
     PushPull = ! ( IR[2] || NOTIR[3] || IR[4] || IR[7] || IR01 );
     cpu->PLAOUT[129] = ! ( IR[2] || NOTIR[3] || IR[0] || PushPull );
 }
