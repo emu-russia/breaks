@@ -3,6 +3,10 @@
 #include "Breaks6502.h"
 #include "Breaks6502Private.h"
 
+// ALU using optimized carry chain, which is inverted every next stage.
+// This allow to eliminate some silicon and reduce propagation delay.
+// Details: http://forum.6502.org/viewtopic.php?f=8&t=2208&start=30#p20371
+
 void ALU (Context6502 * cpu, int DecimalCorrection)
 {
     int b;
