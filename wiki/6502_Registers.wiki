@@ -3,6 +3,8 @@
 =Layer=
 <img src="http://ogamespec.com/imgstore/whc4ff5f55ad23ac.jpg">
 
+bits 1...7 are identical to bit 0.
+
 =Transistor-level=
 <img src="http://ogamespec.com/imgstore/whc4ff5f55f6f8d6.jpg">
 
