@@ -3,6 +3,7 @@
 
 Context6502 cpu;
 
+// http://visual6502.org/wiki/index.php?title=6502DecimalMode
 void ALUTest (void)
 {
 }
