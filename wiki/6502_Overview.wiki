@@ -1,0 +1,3 @@
+#summary Brief description of 6502 parts
+
+<img src="http://ogamespec.com/imgstore/resized_whc503b820d9d535.jpg">
