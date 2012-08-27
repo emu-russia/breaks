@@ -1,0 +1,16 @@
+The 6502's two clock signals
+The 6502, that classic CPU, is relatively simple in its design as CPUs go, but it has one design quirk which often confuses people studying its architecture: While it has only one clock-input pin (as was usual for CPUs of its time), it has two clock-output pins. Not only are these two clocks made available to outside devices via pins on the 6502 chip package itself, but these two clocks are used internally within the 6502 for various timing and control purposes. Why does the 6502 have two internal clocks, and how are they different from each other?
+
+The answer is deceptively simple: The two clocks are basically inverted versions of each other.
+
+The 6502 receives an external square-wave clock input signal on pin 37, which is usually labeled PHI0. ("PHI" is typically rendered using the Greek Phi symbol, a common symbol in electronic engineering for "phase" because of the similarity in how the words sound. In ASCII text, this symbol is typically expanded to the Latin letters "PHI," or sometimes, a symbol which resembles the Greek letter, such as a number 0 on systems which render the zero with a slash through it, or, on systems which support it, the Nordic letter O.) This clock input is processed within the 6502 to form two clock outputs: PHI1 and PHI2 (pins 3 and 39, respectively). PHI2 is essentially a copy of PHI0; more specifically, PHI2 is PHI0 after it's been through two inverters and a push-pull amplifier. The same network of transistors within the 6502 which generates PHI2 is also tied to PHI1, and generates PHI1 as the inverse of PHI0.
+
+The reason why PHI1 and PHI2 are made available to external devices is so that they know when they can access the CPU. When PHI1 is high, this means that external devices can read from the address bus or data bus; when PHI2 is high, this means that external devices can write to the data bus.
+
+Essentially, when PHI0 is high, PHI2 is high and PHI1 is low, and when PHI0 is low, PHI2 is low and PHI1 is high. This isn't strictly true, for two reasons:
+
+1. The inverters and amplifiers in the 6502's clock-generation circuit introduce a small amount of propagation delay, and so PHI1 and PHI2 lag PHI0 a little.
+
+2. PHI1 and PHI2 both have a slightly extended low period, meaning they are low a little longer than they are high. This is a deliberate design feature to ensure that PHI1 and PHI2 are never high at the same time.
+
+Within the 6502, PHI0 itself is actually not used (except to generate PHI1 and PHI2); the 6502 uses PHI1 and PHI2 for internal timing purposes. This is the digital reason why PHI1 and PHI2 are made available to external devices by the 6502 (so that external devices can more closely synchronize their activity to that of the CPU), and there's also an analog reason: Since PHI1 and PHI2 are generated directly from relatively strong push-pull amplifiers, they are capable of driving bigger loads than what the external clock circuit (which drives the 6502's clock input) may be capable of driving.

@@ -1,0 +1,13 @@
+
+Type	 	Absolute Relative Normalized   L
+Synch	 	0.781	 0.000	 -0.359        0
+Colorburst L	 1.000	 0.218	 -0.208        1
+Colorburst H	 1.712	 0.931	 0.286         4
+Color 0D	 1.131	 0.350	 -0.117        2
+Color 1D (black) 1.300	 0.518	 0.000         3
+Color 2D	 1.743	 0.962	 0.308         5
+Color 3D	 2.331	 1.550	 0.715         8
+Color 00	 1.875	 1.090	 0.397         6
+Color 10	 2.287	 1.500	 0.681         7
+Color 20	 2.743	 1.960	 1.000         9
+Color 30	 2.743	 1.960	 1.000
