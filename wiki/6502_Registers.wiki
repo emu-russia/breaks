@@ -1,10 +1,12 @@
 #summary X, Y, S Registers logic
 
-Layer:
+=Layer=
 <img src="http://ogamespec.com/imgstore/whc4ff5f55ad23ac.jpg">
 
-Transistor-level:
+=Transistor-level=
 <img src="http://ogamespec.com/imgstore/whc4ff5f55f6f8d6.jpg">
+
+=Runflow=
 
 Y/SB, SB/Y, X/SB, SB/X and SB/S are low during PHI2.
 
