@@ -1,6 +1,6 @@
 #summary X, Y, S Registers logic
 
-=Layer=
+=Layer mix=
 <img src="http://ogamespec.com/imgstore/whc4ff5f55ad23ac.jpg">
 
 bits 1...7 are identical to bit 0.
