@@ -1,0 +1,15 @@
+#summary X, Y, S Registers logic
+
+Layer:
+<img src="http://ogamespec.com/imgstore/whc4ff5f55ad23ac.jpg">
+
+Transistor-level:
+<img src="http://ogamespec.com/imgstore/whc4ff5f55f6f8d6.jpg">
+
+Y/SB, SB/Y, X/SB, SB/X and SB/S are low during PHI2.
+
+SB[0...7] are high during PHI2 ("precharged")
+
+If both S/S and SB/S are low and PHI2 is high, S register set to 0xFF.
+Otherwise S value is refreshed if S/S is high, and replaced by SB value, if SB/S is high also.
+S value stored in latch in inverted logic.
