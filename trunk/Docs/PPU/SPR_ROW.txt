@@ -1,0 +1,21 @@
+OAM layout:
+Top part: 34 rows by 32 cells
+Bottom part: 32 rows by 32 cells
+Rows are aranged in groups, 9 groups total.
+Number of rows in each group : 8, 8, 5, 8, 8, 8, 5, 8, 8
+This gives 1792 + 320 = 2112 bits (264 bytes)
+
+OAM row group decoder:
+
+ 1 2 3 4   abcdefghi
+--------------------
+ 0 0 0 0 | 000000010 
+ 0 0 0 1 | 000000100
+ 0 0 1 0 | 000001000
+ 0 0 1 1 | 000010000
+ 0 1 0 0 | 000100000
+ 0 1 0 1 | 001000000
+ 0 1 1 0 | 010000000
+ 0 1 1 1 | 100000000
+ 1 x x x | 000000001
+
