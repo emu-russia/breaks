@@ -1,7 +1,7 @@
 
 // Top part components
 
-#include "MISC.h"
+#include "INTERRUPT.h"
 #include "TIME_REG.h"
 #include "IR.h"
 #include "PREDECODE.h"
