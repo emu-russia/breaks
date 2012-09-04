@@ -6,7 +6,7 @@ void Regs (Context6502 * cpu)
 {
     int b;
 
-    // Disconnect registers from internal buses in write-mode.
+    // Disconnect registers from internal buses in read mode.
     if ( cpu->PHI2 ) {
         cpu->DRIVEREG[DRIVE_Y_SB] = 
         cpu->DRIVEREG[DRIVE_SB_Y] = 
@@ -24,10 +24,8 @@ void Regs (Context6502 * cpu)
         if ( cpu->DRIVEREG[DRIVE_S_SB] ) cpu->SB[b] = BIT(~cpu->S[b]);
         if ( !cpu->DRIVEREG[DRIVE_S_S] && cpu->PHI2 ) cpu->S[b] = 1;
         if ( cpu->DRIVEREG[DRIVE_SB_S] ) cpu->S[b] = BIT(~cpu->SB[b]);
-    }
 
-    // Precharge SBus.
-    if ( cpu->PHI2 ) {
-        for (b=0; b<8; b++) cpu->SB[b] = 1;
+        // Precharge SBus.
+        if ( cpu->PHI2 ) cpu->SB[b] = 1;
     }
 }
