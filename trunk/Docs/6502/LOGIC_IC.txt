@@ -5,7 +5,8 @@ Inputs
 
 PHI1,PHI2: timing
 Reset0: from RST pin
-NMIG: from NMI logic
+NMIG: from NMI pin logic
+IRQP: from IRQ pin logic
 /IR5: from instruction register, to determine CLC/SEC and others
 SO: from SO pin, set V-flag
 RDY: from RDY pin
