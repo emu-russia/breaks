@@ -18,6 +18,9 @@ typedef struct Context6502
     char        TR[6];              // T-state register
     char        PLAOUT[130];        // PLA outputs
     char        DRIVEREG[64];
+    // Timereg latches
+    char        TRSync;
+    char        TRin[4], TRout[4];
     // Random logic latches
 
     // Bottom part internal state
