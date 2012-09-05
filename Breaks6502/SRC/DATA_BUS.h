@@ -1,0 +1,1 @@
+void DataLatch (Context6502 * cpu);

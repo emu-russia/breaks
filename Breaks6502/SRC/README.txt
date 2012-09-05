@@ -1,5 +1,5 @@
 Breaks 6502.
-Clock accurate MOS 6502 CPU emulator.
+Clock accurate MOS 6502 CPU emulator for speed applications.
 
 Internally 6502 divided on 2 major parts : "top" and "bottom".
 

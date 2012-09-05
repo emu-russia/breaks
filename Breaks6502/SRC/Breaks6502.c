@@ -9,15 +9,15 @@ void Step6502 ( Context6502 * cpu )
     cpu->PHI2 = BIT(cpu->PHI0);
 
     // Dispatch top part logic
-    //Misc (cpu);
     Predecode (cpu);
-    InstructionRegister (cpu);
+    RandomLogicEarly (cpu);
+    //InstructionRegister (cpu);
     //TcountRegister (cpu);
     DecodePLA (cpu);
-    //RandomLogic (cpu);
+    RandomLogic (cpu);
 
     // Bottom part
-    //DataBus (cpu);
+    DataLatch (cpu);
     //ALU (cpu, 1);
     Regs (cpu);
     ProgramCounter (cpu);
