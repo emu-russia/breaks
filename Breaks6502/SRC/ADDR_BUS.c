@@ -18,6 +18,7 @@ void AddressBus (Context6502 * cpu)
         {
             cpu->ABH[b] = BIT(~cpu->ADH[b]);
         }
+        if (cpu->PHI2) cpu->ABH[b] = cpu->ABH[b];   // refresh latch
         cpu->ADDR[8+b] = BIT(~cpu->ABH[b]);
     }
 
@@ -27,6 +28,7 @@ void AddressBus (Context6502 * cpu)
         {
             cpu->ABL[b] = BIT(~cpu->ADL[b]);
         }
+        if (cpu->PHI2) cpu->ABL[b] = cpu->ABL[b];   // refresh latch
         cpu->ADDR[b] = BIT(~cpu->ABL[b]);
     }
 }
