@@ -58,3 +58,6 @@
 #define DRIVE_DL_ADL        45
 #define DRIVE_DL_ADH        46
 #define DRIVE_DL_DB         47
+
+void RandomLogicEarly (Context6502 * cpu);
+void RandomLogic (Context6502 * cpu);

@@ -5,7 +5,7 @@
 Context6502 cpu;
 
 // Timing register
-// Imitate begaviour of long CPU instruction.
+// Imitate behaviour of long CPU instruction.
 void TimeRegTest (void)
 {
     int r = 20, TR;
