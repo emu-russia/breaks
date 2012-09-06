@@ -4,7 +4,7 @@
 
 // T1X T0 /5 5 /6 6 /2 2 /3 3 /4 4 /7 7 /0 0|1 /1 T2 T3 T4 T5
 
-static char * PLA_ROM[130] = {     // 130 lines.
+static char * PLA_ROM[129] = {     // 129 active lines.
 
     "000101100000100100000",   // 100XX100 TX     STY
     "000000010110001000100",   // XXX100X1 T3     OP ind, Y
@@ -109,7 +109,7 @@ static char * PLA_ROM[130] = {     // 130 lines.
     "000100010101010100000",   // 0X000000 TX     BRK RTI
     "001001010101010100000",   // 00100000 TX     JSR
     "000010101001010100000",   // 01X01100 TX     JMP
-    "000000011001010100000",   // 0XX01000 TX <-  Push/pull, F11 & F18 excluder
+//    "000000011001010100000",   // 0XX01000 TX <-  Push/pull, F11 & F18 excluder
     "000101000000100000000",   // 100XXXXX TX     80-9F
     "000101010101010100010",   // 00000000 T4     BRK
     "000101011001010101000",   // 00001000 T2     PHP
@@ -135,7 +135,7 @@ static char * PLA_ROM[130] = {     // 130 lines.
     "100001011001010010000",   // 00X0101X T1     ASL ROL
     "100010000101100100000",   // 11X00X00 T1     CPY CPX zpg/immed
 
-//    "000000011001010100000",   // 0XX01000 TX     Not actually line. Controls last line to except push/pull opcodes --->
+//    "000000011001010100000",   // 0XX01000 TX     Not actually line. Controls last line to exlude push/pull opcodes --->
     "010010011010100100000",   // 11X11000 T0     CLD SED
     "000001000000000000000",   // X0XXXXXX TX     Branch bit 6
     "000000101001000000100",   // XXX011XX T3     Memory absolute
@@ -152,8 +152,13 @@ void DecodePLA (Context6502 * cpu)
 {
     int b, n, out;
     char  IR[8], NOTIR[8], T[6];
-    int IR01, PushPull;
+    int BranchNotReady, IR01, PushPull;
     char * line;
+
+    // BranchNotReady for line 73
+    if (cpu->PHI2) cpu->BRLatch[0] = BIT(~cpu->RDY);
+    if (cpu->PHI1) cpu->BRLatch[1] = BIT(~cpu->BRLatch[0]);
+    BranchNotReady = BIT(~cpu->BRLatch[1]);
 
     for (b=0; b<8; b++) {
         IR[b] = BIT(~cpu->IR[b]);
@@ -161,7 +166,9 @@ void DecodePLA (Context6502 * cpu)
     }
     IR01 = IR[0] | IR[1];
 
-    for (n=0; n<129; n++) {
+    PushPull = ! ( IR[2] || NOTIR[3] || IR[4] || IR[7] || IR01 );
+
+    for (n=0; n<128; n++) {
         out = 1;
         line = PLA_ROM[n];
 
@@ -190,10 +197,15 @@ void DecodePLA (Context6502 * cpu)
         if ( T[4] && line[19] == '1' ) out = 0;
         if ( T[5] && line[20] == '1' ) out = 0;
 
+        // Line 73 has additional cutout by BranchNotReady
+        if ( n == 73 && BranchNotReady ) out = 0;
+
+        // Lines 83 and 90 are special with PushPull excluder
+        if ( (n == 83 || n == 90) && PushPull ) out = 0;
+
         cpu->PLAOUT[n] = out;
     }
 
     // Last line is special (all implied, except push/pull)
-    PushPull = ! ( IR[2] || NOTIR[3] || IR[4] || IR[7] || IR01 );
     cpu->PLAOUT[129] = ! ( IR[2] || NOTIR[3] || IR[0] || PushPull );
 }

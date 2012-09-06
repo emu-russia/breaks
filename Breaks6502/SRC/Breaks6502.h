@@ -1,3 +1,4 @@
+//#define PACKED_BITS
 
 typedef struct Context6502
 {
@@ -9,6 +10,10 @@ typedef struct Context6502
     int         RW, SYNC;
     char        PHI1, PHI2;         // Timing
 
+#ifdef  PACKED_BITS
+
+#else
+
     // Buses
     char        DATA[8], ADDR[16];
 
@@ -16,8 +21,10 @@ typedef struct Context6502
     char        PD[8];              // Predecode register
     char        IR[8];              // Instruction register
     char        TR[6];              // T-state register
-    char        PLAOUT[130];        // PLA outputs
+    char        PLAOUT[129];        // PLA outputs
     char        DRIVEREG[64];
+    // Branch ready latches
+    char        BRLatch[2];
     // Timereg latches
     char        TRSync;
     char        TRin[4], TRout[4];
@@ -31,6 +38,8 @@ typedef struct Context6502
     char        AI[8], BI[8], ADD[8], AC[8];    // ALU regs
     // ALU latches
     char        PCL[8], PCLS[8], PCH[8], PCHS[8];   // Program Counter    
+
+#endif  // PACKED_BITS
 
 } Context6502;
 
