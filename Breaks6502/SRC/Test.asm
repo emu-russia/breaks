@@ -1,16 +1,20 @@
 ; Test program
 
+LABEL1:
+
+    PROCESSOR 6502
     ORG     $100
 
-    DEFINE  KONST   #15
+    DEFINE  KONST   #$15
 
-    LDX     #1
-
+    LDX     KONST
     LDX     $1
     LDX     $1,y
     LDX     $aabb
-    ldx     $aabb,y
+    ldx     LABEL1,y
     ldx     $aabb,a
+
+    DEFINE  KONST   #1
 
     end
 
