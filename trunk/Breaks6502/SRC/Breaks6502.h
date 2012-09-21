@@ -2,6 +2,8 @@
 
 typedef struct Context6502
 {
+    int         NoDecimalCorrection;        // disable BCD ALU correction if set
+
     // Inputs
     int         PHI0;
     int         NMI, IRQ, RDY, RES, SO;
