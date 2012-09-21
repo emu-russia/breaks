@@ -1,3 +1,21 @@
+/*
+
+    Behaviour:
+    ----------
+
+    Implied: just emit
+
+    ORG: just set origin in range 0...0xFFFF
+
+    DEFINE: add new define if not exist or replace existing define
+
+    BYTE, WORD:
+        - split on parameters, separated by comma
+        - determine type of parameter: define -> immediate, string, label
+
+
+*/
+
 
 // Implied
 // **************************************************************
