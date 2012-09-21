@@ -80,6 +80,16 @@ void *FileLoad(char *filename, long *size, char *mode)
     return buffer;
 }
 
+int FileSave (char *filename, void *data, long size, char *mode)
+{
+    FILE *f = fopen(filename, mode);
+    if(f == NULL) return 0;
+
+    fwrite(data, size, 1, f);
+    fclose(f);
+    return 1;
+}
+
 main ()
 {
 /*
@@ -92,7 +102,8 @@ main ()
 */
 
     unsigned char prg[16*1024], *text;
+    memset (prg, 0, sizeof(prg));
     text = FileLoad ("Test.asm", NULL, "rt" );
     assemble ( text, prg );
-
+    FileSave ("prg.bin", prg, sizeof(prg), "wb");
 }

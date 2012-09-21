@@ -4,7 +4,15 @@
 
     DEFINE  KONST   #15
 
-    LDX     #0
+    LDX     #1
+
+    LDX     $1
+    LDX     $1,y
+    LDX     $aabb
+    ldx     $aabb,y
+    ldx     $aabb,a
+
+    end
 
 AGAIN:
     NOP
@@ -21,6 +29,6 @@ ADDSOME:                        ; Test ALU
     RTS
 
 SOMEDATA:
-    BYTE    $FF, "Hello, world"
+    BYTE    12, $FF, "Hello, world"
     WORD    AGAIN
     

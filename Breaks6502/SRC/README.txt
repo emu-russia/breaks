@@ -33,3 +33,6 @@ Propagation timing.
 
 Due to fact that propagation delay triggers different parts of CPU not in same time, 6502 emu must pay attention to this.
 This is implemented in following way: internal components are dispatched one by one in sequence, according to its priority.
+
+Download LCC here : http://www.cs.virginia.edu/~lcc-win32/
+(Or search "lcc" in Google)
