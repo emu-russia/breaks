@@ -31,7 +31,7 @@ typedef struct label_s {
 typedef struct patch_s {
     label_s *label;
     long    orig;
-    int     branch;     // 1: relative branch, 0: absoulte jmp
+    int     branch;     // 1: relative branch, 0: absolute jmp
 } patch_s;
 
 typedef struct define_s {
@@ -86,7 +86,10 @@ static label_s *add_label (char *name, long orig)
     else {
         if ( label->orig == KEYWORD ) printf ("ERROR(%i): Reserved keyword \'%s\'\n", linenum, name);
         else if (orig != UNDEF && label->orig != UNDEF ) printf ("ERROR(%i): label \'%s\' already defined in line %i\n", linenum, name, label->line);
-        else label->orig = orig;
+        else {
+            label->orig = orig;
+            label->line = linenum;
+        }
     }
     return label;
 }
@@ -122,13 +125,20 @@ static define_s * define_lookup (char *name)
 
 static define_s *add_define (char *name, char *replace)
 {
+    label_s * label;
     define_s * def;
+
+    if ( label = label_lookup (name) ) {
+        printf ("ERROR(%i): Already defined as label in line %i\n", linenum, label->line );
+        return;
+    }
+
     def = define_lookup (name);
     if ( def ) {
         strcpy (def->replace, replace);
     }
     else {
-        defines = (define_s *)realloc ( sizeof(define_s) * (define_num+1) );
+        defines = (define_s *)realloc (defines, sizeof(define_s) * (define_num+1) );
         def = &defines[define_num];
         define_num++;
         strcpy (def->name, name);
@@ -390,38 +400,42 @@ static void emit (unsigned char b)
 static oplink optab[] = {
 
     // CPU Instructions
-    { "BRK", opBRK },
-    { "RTI", opRTI },
-    { "RTS", opRTS },
+    { "BRK", opBRK }, { "RTI", opRTI }, { "RTS", opRTS },
 
-    { "PHP", opPHP },
-    { "CLC", opCLC },
-    { "PLP", opPLP },
-    { "SEC", opSEC },
-    { "PHA", opPHA },
-    { "CLI", opCLI },
-    { "PLA", opPLA },
-    { "SEI", opSEI },
-    { "DEY", opDEY },
-    { "TYA", opTYA },
-    { "TAY", opTAY },
-    { "CLV", opCLV },
-    { "INY", opINY },
-    { "CLD", opCLD },
-    { "INX", opINX },
-    { "SED", opSED },
+    { "PHP", opPHP }, { "CLC", opCLC }, { "PLP", opPLP }, { "SEC", opSEC },
+    { "PHA", opPHA }, { "CLI", opCLI }, { "PLA", opPLA }, { "SEI", opSEI },
+    { "DEY", opDEY }, { "TYA", opTYA }, { "TAY", opTAY }, { "CLV", opCLV },
+    { "INY", opINY }, { "CLD", opCLD }, { "INX", opINX }, { "SED", opSED },
 
-    { "TXA", opTXA },
-    { "TXS", opTXS },
-    { "TAX", opTAX },
-    { "TSX", opTSX },
-    { "DEX", opDEX },
-    { "NOP", opNOP },
+    { "TXA", opTXA }, { "TXS", opTXS }, { "TAX", opTAX }, { "TSX", opTSX },
+    { "DEX", opDEX }, { "NOP", opNOP },
 
+/*
+    { "BPL", opBPL }, { "BMI", opBMI }, { "BVC", opBVC }, { "BVS", opBVS },
+    { "BCC", opBCC }, { "BCS", opBCS }, { "BNE", opBNE }, { "BEQ", opBEQ },
+
+    { "JSR", opJSR }, { "JMP", opJMP }, 
+
+    { "CMP", opCMP }, { "CPX", opCPX }, { "CPY", opCPY }, 
+    { "ADC", opADC }, { "SBC", opSBC }, { "INC", opINC }, { "DEC", opDEC }, 
+    { "ORA", opORA }, { "AND", opAND }, { "EOR", opEOR }, { "BIT", opBIT },
+    { "ASL", opASL }, { "LSR", opLSR }, { "ROL", opROL }, { "ROR", opROR }, 
+*/
+
+    //{ "LDA", opLDA },
     { "LDX", opLDX },
+    { "LDY", opLDY },
+    //{ "STA", opSTA },
+    //{ "STX", opSTX },
+    //{ "STY", opSTY },
 
     // Directives
+    { "DEFINE", opDEFINE },
+    { "BYTE", opBYTE },
+    { "WORD", opWORD },
+    { "ORG", opORG },
     { "END", opEND },
+    { "PROCESSOR", opDUMMY },
 
     { NULL, NULL }
 };
@@ -453,12 +467,12 @@ void assemble (char *text, unsigned char *prg)
     oplink *opl;
     PRG = prg;
     org = 0;
-    linenum = 1;
     stop = 0;
 
     cleanup ();
 
     // Add keywords
+    linenum = 0;
     add_label ("A", KEYWORD);
     add_label ("X", KEYWORD);
     add_label ("Y", KEYWORD);
@@ -468,10 +482,18 @@ void assemble (char *text, unsigned char *prg)
         else add_label (opl->name, KEYWORD);
         opl++;
     }
+    linenum++;
 
     while (1) {
         if (*text == 0) break;
         l = parse_line (&text);
+
+        // Add label
+        if ( strlen (l->label) > 1 ) {
+            add_label ( l->label, org );
+        }
+
+        // Execute command
         if ( strlen (l->cmd) > 1 ) {
             opl = optab;
             while (1) {

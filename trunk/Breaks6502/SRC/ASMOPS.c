@@ -13,6 +13,7 @@
         - split on parameters, separated by comma
         - determine type of parameter: define -> immediate, string, label
 
+    Others are complicated %)
 
 */
 
@@ -73,17 +74,17 @@ void opLDX (char *cmd, char *ops)
     if (param_num == 1) {
         type[0] = eval ( params[0].string, &val[0] );
         if ( type[0] == EVAL_NUMBER ) {     // Immediate
-            if ( !stricmp (cmd, "LDX") ) emit (0xA2);
+            emit (0xA2);
             emit (val[0].number & 0xff);
         }
         else if ( type[0] == EVAL_ADDRESS ) {
             if ( val[0].address >= 0x100 ) {    // Absolute
-                if ( !stricmp (cmd, "LDX") ) emit (0xAE);
+                emit (0xAE);
                 emit (val[0].address & 0xff);
                 emit ((val[0].address >> 8) & 0xff);
             }
             else {  // Zero page
-                if ( !stricmp (cmd, "LDX") ) emit (0xA6);
+                emit (0xA6);
                 emit (val[0].address & 0xff);
             }
         }
@@ -96,12 +97,61 @@ void opLDX (char *cmd, char *ops)
         if ( type[0] == EVAL_ADDRESS && type[1] == EVAL_LABEL ) {
             if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "Y")) {
                 if ( val[0].address >= 0x100 ) {    // Absolute
-                    if ( !stricmp (cmd, "LDX") ) emit (0xBE);
+                    emit (0xBE);
                     emit (val[0].address & 0xff);
                     emit ((val[0].address >> 8) & 0xff);
                 }
                 else {  // Zero page
-                    if ( !stricmp (cmd, "LDX") ) emit (0xB6);
+                    emit (0xB6);
+                    emit (val[0].address & 0xff);
+                }
+            }
+            else WrongParameters (cmd, ops);
+        }
+        else WrongParameters (cmd, ops);
+    }
+    else NotEnoughParameters (cmd);
+}
+
+void opLDY (char *cmd, char *ops)
+{
+    int type[2];
+    eval_t val[2];
+
+    split_param (ops);
+
+    if (param_num == 1) {
+        type[0] = eval ( params[0].string, &val[0] );
+        if ( type[0] == EVAL_NUMBER ) {     // Immediate
+            emit (0xA0);
+            emit (val[0].number & 0xff);
+        }
+        else if ( type[0] == EVAL_ADDRESS ) {
+            if ( val[0].address >= 0x100 ) {    // Absolute
+                emit (0xAC);
+                emit (val[0].address & 0xff);
+                emit ((val[0].address >> 8) & 0xff);
+            }
+            else {  // Zero page
+                emit (0xA4);
+                emit (val[0].address & 0xff);
+            }
+        }
+        else WrongParameters (cmd, ops);
+    }
+    else if (param_num == 2) {
+        type[0] = eval ( params[0].string, &val[0] );
+        type[1] = eval ( params[1].string, &val[1] );
+
+        if ( type[0] == EVAL_ADDRESS && type[1] == EVAL_LABEL ) {
+            if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "X")) {
+                if ( val[0].address >= 0x100 ) {    // Absolute
+                    emit (0xBC);
+                    emit (val[0].address & 0xff);
+                    emit ((val[0].address >> 8) & 0xff);
+                }
+                else {  // Zero page
+                    emit (0xB4);
                     emit (val[0].address & 0xff);
                 }
             }
@@ -124,13 +174,47 @@ void opLDX (char *cmd, char *ops)
 // DEFINE
 // **************************************************************
 
+void opDEFINE (char *cmd, char *ops)
+{
+    char name[256], *p = name;
+    while (*ops > ' ' && *ops ) *p++ = *ops++;
+    *p++ = 0;
+    while (*ops <= ' ' && *ops ) ops++;
+    add_define (name, ops);
+}
+
 // BYTE, WORD
 // **************************************************************
 
+void opBYTE (char *cmd, char *ops)
+{
+}
+
+void opWORD (char *cmd, char *ops)
+{
+}
+
 // Misc.
 // **************************************************************
+
+void opORG (char *cmd, char *ops)
+{
+    int type;
+    eval_t val;
+
+    split_param (ops);
+
+    if (param_num == 1) {
+        type = eval ( params[0].string, &val );
+        if ( type == EVAL_ADDRESS ) org = val.address;
+        else WrongParameters (cmd, ops);
+    }
+    else NotEnoughParameters (cmd);
+}
 
 void opEND (char *cmd, char *ops)
 {
     stop = 1;
 }
+
+void opDUMMY (char *cmd, char *ops) {}
