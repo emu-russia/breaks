@@ -8,7 +8,13 @@
     [LABEL:]  COMMAND  [OPERAND1, OPERAND2, OPERAND3]       ; Comments
 
     Commands can be any 6502 instruction or one of reserved directives:
-        ORG, DEFINE, BYTE, WORD
+        ORG, DEFINE, BYTE, WORD, END, PROCESSOR
+
+    Register names and CPU instructions cannot be used as label names.
+
+    You cannot DEFINE, if such label is already defined.
+    Redefinition of labels is NOT allowed.
+    Redefinition of DEFINEs just replace previous definition.
 */
 
 typedef struct oplink {
@@ -161,7 +167,7 @@ static void dump_defines (void)
 // ****************************************************************
 // Evaluate expression
 
-// Evaluation code can be replaced by more advanced version (with macro-operations etc.)
+// Evaluation code can be replaced by more complicated version (with macro-operations etc.)
 
 #define EVAL_WTF        0
 #define EVAL_NUMBER     1       // #$12
@@ -516,6 +522,8 @@ void assemble (char *text, unsigned char *prg)
         }
         linenum++;
     }
+
+    // Patch jump/branch offsets.
 
     dump_labels ();
     dump_defines ();
