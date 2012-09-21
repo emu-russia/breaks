@@ -161,6 +161,8 @@ static void dump_defines (void)
 // ****************************************************************
 // Evaluate expression
 
+// Evaluation code can be replaced by more advanced version (with macro-operations etc.)
+
 #define EVAL_WTF        0
 #define EVAL_NUMBER     1       // #$12
 #define EVAL_ADDRESS    2       // $aabb

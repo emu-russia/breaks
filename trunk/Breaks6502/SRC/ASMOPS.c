@@ -12,8 +12,16 @@
     BYTE, WORD:
         - split on parameters, separated by comma
         - determine type of parameter: define -> immediate, string, label
+        - emit one by one
 
     Others are complicated %)
+        - split operands on parameters
+        - evaluate each parameter and get its type (immediate, address or label)
+        - emit opcode variations according to parameter types
+
+    Jumps and branches are emitted with 0 offset, after first pass
+    (since not all labels are yet defined)
+    Additional pass is need to "patch" jump/branch offsets.
 
 */
 
@@ -206,7 +214,7 @@ void opORG (char *cmd, char *ops)
 
     if (param_num == 1) {
         type = eval ( params[0].string, &val );
-        if ( type == EVAL_ADDRESS ) org = val.address;
+        if ( type == EVAL_ADDRESS ) org = val.address & 0xffff;
         else WrongParameters (cmd, ops);
     }
     else NotEnoughParameters (cmd);
