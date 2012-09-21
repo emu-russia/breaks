@@ -2,6 +2,9 @@
 #include "Breaks6502.h"
 #include "Breaks6502Private.h"
 
+#include "ROM2364.h"
+#include "ASM.h"
+
 Context6502 cpu;
 
 // Timing register
@@ -48,12 +51,48 @@ void Reset (void)
     }
 }
 
+void *FileLoad(char *filename, long *size, char *mode)
+{
+    FILE*   f;
+    char*   buffer;
+    long     filesize;
+
+    if(size) *size = 0;
+
+    f = fopen(filename, mode);
+    if(f == NULL) return NULL;
+
+    fseek(f, 0, SEEK_END);
+    filesize = ftell(f);
+    fseek(f, 0, SEEK_SET);
+
+    buffer = (char*)malloc(filesize + 1);
+    if(buffer == NULL)
+    {
+        fclose(f);
+        return NULL;
+    }
+    memset(buffer, 0, filesize + 1);
+
+    fread(buffer, 1, filesize, f);
+    fclose(f);
+    if(size) *size = filesize;    
+    return buffer;
+}
+
 main ()
 {
+/*
     // Initial conditions
     memset (&cpu, 0, sizeof(cpu));
 
     TimeRegTest ();
     //ALUTest ();
     //GeneralExecutionTest ( 10000 );
+*/
+
+    unsigned char prg[16*1024], *text;
+    text = FileLoad ("Test.asm", NULL, "rt" );
+    assemble ( text, prg );
+
 }
