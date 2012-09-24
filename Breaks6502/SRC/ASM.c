@@ -534,11 +534,11 @@ static oplink optab[] = {
     { "ASL", opSHIFT }, { "LSR", opSHIFT }, { "ROL", opSHIFT }, { "ROR", opSHIFT }, 
 
     { "LDA", opLDST },
-    { "LDX", opLDXY },
-    { "LDY", opLDXY },
+    { "LDX", opLDSTX },
+    { "LDY", opLDSTY },
     { "STA", opLDST },
-    { "STX", opSTXY },
-    { "STY", opSTXY },
+    { "STX", opLDSTX },
+    { "STY", opLDSTY },
 
     // Directives
     { "DEFINE", opDEFINE },
