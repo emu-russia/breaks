@@ -23,6 +23,8 @@ ADDSOME:                        ; Test ALU
     PLP
     RTS
 
+    ASL     A
+
 SOMEDATA:
     BYTE    12, $FF, "Hello, world" 
     WORD    AGAIN
