@@ -30,11 +30,13 @@
 static void NotEnoughParameters (char *cmd)
 {
     printf ( "ERROR(%i): %s not enough parameters\n", linenum, cmd);
+    errors++;
 }
 
 static void WrongParameters (char *cmd, char *op)
 {
     printf ( "ERROR(%i): %s wrong parameters: %s\n", linenum, cmd, op);
+    errors++;
 }
 
 
@@ -486,7 +488,10 @@ void opBYTE (char *cmd, char *ops)
 
     for (i=0; i<param_num; i++) {
         type = eval ( params[i].string, &val );
-        if ( type == EVAL_LABEL ) printf ( "ERROR(%i): Label cannot be used here\n", linenum );
+        if ( type == EVAL_LABEL ) {
+            printf ( "ERROR(%i): Label cannot be used here\n", linenum );
+            errors++;
+        }
         else if ( type == EVAL_NUMBER ) {
             emit ( val.number & 0xff );
         }
@@ -509,7 +514,10 @@ void opWORD (char *cmd, char *ops)
 
     for (i=0; i<param_num; i++) {
         type = eval ( params[i].string, &val );
-        if ( type == EVAL_STRING ) printf ( "ERROR(%i): String cannot be used here\n", linenum );
+        if ( type == EVAL_STRING ) {
+            printf ( "ERROR(%i): String cannot be used here\n", linenum );
+            errors++;
+        }
         else if ( type == EVAL_NUMBER ) {
             emit ( val.number & 0xff );
             emit ( (val.number >> 8) & 0xff );

@@ -56,6 +56,7 @@ static int linenum;
 #define UNDEF   0xbabadaba  // undefined offset
 #define KEYWORD 0xd0d0d0d0  // keyword
 static long stop;
+static long errors;
 
 static  label_s *labels;    // name labels
 static  int labels_num;
@@ -99,8 +100,14 @@ static label_s *add_label (char *name, long orig)
         label->line = linenum;
     }
     else {
-        if ( label->orig == KEYWORD ) printf ("ERROR(%i): Reserved keyword used as label \'%s\'\n", linenum, name);
-        else if (orig != UNDEF && label->orig != UNDEF ) printf ("ERROR(%i): label \'%s\' already defined in line %i\n", linenum, name, label->line);
+        if ( label->orig == KEYWORD ) {
+            printf ("ERROR(%i): Reserved keyword used as label \'%s\'\n", linenum, name);
+            errors++;
+        }
+        else if (orig != UNDEF && label->orig != UNDEF ) {
+            printf ("ERROR(%i): label \'%s\' already defined in line %i\n", linenum, name, label->line);
+            errors++;
+        }
         else {
             if (orig != UNDEF) {
                 label->orig = orig;
@@ -147,13 +154,17 @@ static void do_patch (void)
         orig = patch->label->orig;
         if ( orig == UNDEF ) {
             printf ("ERROR(%i): Undefined label \'%s\' (%08X)\n", patch->line, patch->label->name, orig );
+            errors++;
         }
         else { 
             if ( patch->branch ) {
                 org = patch->orig;
                 rel = orig - org - 1;
-                if ( rel > 127 || rel < -128 ) printf ("ERROR(%i): Branch relative offset to %s out of range\n", patch->line, patch->label->name );
-                emit ( rel & 0xff );
+                if ( rel > 127 || rel < -128 ) {
+                    printf ("ERROR(%i): Branch relative offset to %s out of range\n", patch->line, patch->label->name );
+                    errors++;
+                }
+                else emit ( rel & 0xff );
             }
             else {
                 org = patch->orig;
@@ -198,6 +209,7 @@ static define_s *add_define (char *name, char *replace)
 
     if ( label = label_lookup (name) ) {
         printf ("ERROR(%i): Already defined as label in line %i\n", linenum, label->line );
+        errors++;
         return;
     }
 
@@ -563,13 +575,14 @@ static void cleanup (void)
     define_num = 0;
 }
 
-void assemble (char *text, unsigned char *prg)
+int assemble (char *text, unsigned char *prg)
 {
     line *l;
     oplink *opl;
     PRG = prg;
     org = 0;
     stop = 0;
+    errors = 0;
 
     cleanup ();
 
@@ -589,6 +602,8 @@ void assemble (char *text, unsigned char *prg)
     while (1) {
         if (*text == 0) break;
         l = parse_line (&text);
+
+        //printf ( "%s: \'%s\' \'%s\'\n", l->label, l->cmd, l->op );
 
         // Add label
         if ( strlen (l->label) > 1 ) {
@@ -623,4 +638,7 @@ void assemble (char *text, unsigned char *prg)
     dump_defines ();
     dump_patches ();
 #endif
+
+    printf ( "%i error(s)\n", errors );
+    return errors;
 }
