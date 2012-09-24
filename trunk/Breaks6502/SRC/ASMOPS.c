@@ -72,8 +72,9 @@ void opNOP (char *cmd, char *ops) { emit (0xEA); }
 // Load/Store
 // **************************************************************
 
-void opLDX (char *cmd, char *ops)
+void opLDST (char *cmd, char *ops)
 {
+    label_s * label;
     int type[2];
     eval_t val[2];
 
@@ -81,20 +82,33 @@ void opLDX (char *cmd, char *ops)
 
     if (param_num == 1) {
         type[0] = eval ( params[0].string, &val[0] );
-        if ( type[0] == EVAL_NUMBER ) {     // Immediate
-            emit (0xA2);
-            emit (val[0].number & 0xff);
+    
+        if ( type[0] == EVAL_NUMBER ) {     // LDA #
+            if ( !stricmp (cmd, "LDA") ) {
+                emit (0xA9);
+                emit (val[0].number & 0xff);
+            }
+            else WrongParameters (cmd, ops);
         }
         else if ( type[0] == EVAL_ADDRESS ) {
             if ( val[0].address >= 0x100 ) {    // Absolute
-                emit (0xAE);
+                if ( !stricmp (cmd, "LDA") ) emit (0xAD);
+                if ( !stricmp (cmd, "SDA") ) emit (0x8D);
                 emit (val[0].address & 0xff);
                 emit ((val[0].address >> 8) & 0xff);
             }
-            else {  // Zero page
-                emit (0xA6);
+            else {      // Zero Page
+                if ( !stricmp (cmd, "LDA") ) emit (0xA5);
+                if ( !stricmp (cmd, "SDA") ) emit (0x85);
                 emit (val[0].address & 0xff);
             }
+        }
+        else if ( type[0] == EVAL_LABEL ) {     // Absolute
+            if ( !stricmp (cmd, "LDA") ) emit (0xAD);
+            if ( !stricmp (cmd, "SDA") ) emit (0x8D);
+            label = add_label (val[0].label, UNDEF);
+            add_patch (label, org, 0, linenum );
+            emit (0); emit (0);
         }
         else WrongParameters (cmd, ops);
     }
@@ -102,72 +116,74 @@ void opLDX (char *cmd, char *ops)
         type[0] = eval ( params[0].string, &val[0] );
         type[1] = eval ( params[1].string, &val[1] );
 
-        if ( type[0] == EVAL_ADDRESS && type[1] == EVAL_LABEL ) {
-            if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "Y")) {
-                if ( val[0].address >= 0x100 ) {    // Absolute
-                    emit (0xBE);
-                    emit (val[0].address & 0xff);
-                    emit ((val[0].address >> 8) & 0xff);
+        if ( type[0] == EVAL_LABEL ) {
+            if (val[0].label->orig == KEYWORD && !stricmp(val[0].label->name, "X")) {
+                if ( type[1] == EVAL_ADDRESS ) {
+                    if ( !stricmp ( cmd, "LDA" ) ) emit ( 0xA1 );
+                    if ( !stricmp ( cmd, "STA" ) ) emit ( 0x81 );
+                    emit (val[1].address & 0xff);
                 }
-                else {  // Zero page
-                    emit (0xB6);
-                    emit (val[0].address & 0xff);
+                else WrongParameters (cmd, ops);
+            }
+            else if (val[0].label->orig != KEYWORD ) { // Absolute, X/Y
+                if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "X")) {
+                    if ( !stricmp ( cmd, "LDA" ) ) emit ( 0xBD );
+                    if ( !stricmp ( cmd, "STA" ) ) emit ( 0x9D );
+                    label = add_label (val[0].label, UNDEF);
+                    add_patch (label, org, 0, linenum );
+                    emit (0); emit (0);
                 }
+                else if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "Y")) {
+                    if ( !stricmp ( cmd, "LDA" ) ) emit ( 0xB9 );
+                    if ( !stricmp ( cmd, "STA" ) ) emit ( 0x99 );
+                    label = add_label (val[0].label, UNDEF);
+                    add_patch (label, org, 0, linenum );
+                    emit (0); emit (0);
+                }
+                else WrongParameters (cmd, ops);
             }
             else WrongParameters (cmd, ops);
         }
-        else WrongParameters (cmd, ops);
+        else if ( type[0] == EVAL_ADDRESS ) {
+            if ( val[0].address < 0x100 ) {     // Zero page, X/Y
+                if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "X")) {
+                    if ( !stricmp ( cmd, "LDA" ) ) emit ( 0xB4 );
+                    if ( !stricmp ( cmd, "STA" ) ) emit ( 0x94 );
+                    emit ( val[0].address & 0xff );
+                }
+                else if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "Y")) {
+                    if ( !stricmp ( cmd, "LDA" ) ) emit ( 0xB1 );
+                    if ( !stricmp ( cmd, "STA" ) ) emit ( 0x91 );
+                    emit ( val[0].address & 0xff );
+                }
+                else WrongParameters (cmd, ops);
+            }
+            else {      // Absolute, X/Y
+                if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "X")) {
+                    if ( !stricmp ( cmd, "LDA" ) ) emit ( 0xBD );
+                    if ( !stricmp ( cmd, "STA" ) ) emit ( 0x9D );
+                    emit ( val[0].address & 0xff );
+                    emit ( (val[0].address >> 8) & 0xff );
+                }
+                else if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "Y")) {
+                    if ( !stricmp ( cmd, "LDA" ) ) emit ( 0xB9 );
+                    if ( !stricmp ( cmd, "STA" ) ) emit ( 0x99 );
+                    emit ( val[0].address & 0xff );
+                    emit ( (val[0].address >> 8) & 0xff );
+                }
+                else WrongParameters (cmd, ops);
+            }
+        }
     }
     else NotEnoughParameters (cmd);
 }
 
-void opLDY (char *cmd, char *ops)
+void opLDXY (char *cmd, char *ops)
 {
-    int type[2];
-    eval_t val[2];
+}
 
-    split_param (ops);
-
-    if (param_num == 1) {
-        type[0] = eval ( params[0].string, &val[0] );
-        if ( type[0] == EVAL_NUMBER ) {     // Immediate
-            emit (0xA0);
-            emit (val[0].number & 0xff);
-        }
-        else if ( type[0] == EVAL_ADDRESS ) {
-            if ( val[0].address >= 0x100 ) {    // Absolute
-                emit (0xAC);
-                emit (val[0].address & 0xff);
-                emit ((val[0].address >> 8) & 0xff);
-            }
-            else {  // Zero page
-                emit (0xA4);
-                emit (val[0].address & 0xff);
-            }
-        }
-        else WrongParameters (cmd, ops);
-    }
-    else if (param_num == 2) {
-        type[0] = eval ( params[0].string, &val[0] );
-        type[1] = eval ( params[1].string, &val[1] );
-
-        if ( type[0] == EVAL_ADDRESS && type[1] == EVAL_LABEL ) {
-            if (val[1].label->orig == KEYWORD && !stricmp(val[1].label->name, "X")) {
-                if ( val[0].address >= 0x100 ) {    // Absolute
-                    emit (0xBC);
-                    emit (val[0].address & 0xff);
-                    emit ((val[0].address >> 8) & 0xff);
-                }
-                else {  // Zero page
-                    emit (0xB4);
-                    emit (val[0].address & 0xff);
-                }
-            }
-            else WrongParameters (cmd, ops);
-        }
-        else WrongParameters (cmd, ops);
-    }
-    else NotEnoughParameters (cmd);
+void opSTXY (char *cmd, char *ops)
+{
 }
 
 // Branches

@@ -5,20 +5,9 @@ LABEL1:
     PROCESSOR 6502
 ;    ORG     $100
 
-    jmp     $1122
-    jmp     ($aabb)
-    jmp     (SOMEDATA)
-
     DEFINE  KONST   #$15
 
     LDX     KONST
-    LDX     $1
-    LDX     $1,y
-    LDX     $aabb
-    ldx     LABEL1,y
-    ldx     $aabb,a
-
-    DEFINE  KONST   #1
 
 AGAIN:
     NOP
