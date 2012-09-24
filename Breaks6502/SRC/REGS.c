@@ -6,7 +6,7 @@ void Regs (Context6502 * cpu)
 {
     int b;
 
-    // Disconnect registers from internal buses in read mode.
+    // Disconnect registers from internal buses during read mode.
     if ( cpu->PHI2 ) {
         cpu->DRIVEREG[DRIVE_Y_SB] = 
         cpu->DRIVEREG[DRIVE_SB_Y] = 
