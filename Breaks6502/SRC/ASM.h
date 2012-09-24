@@ -1,2 +1,2 @@
 
-void assemble (char *text, unsigned char *prg);
+int assemble (char *text, unsigned char *prg);
