@@ -17,6 +17,10 @@
     Redefinition of DEFINEs just replace previous definition.
 */
 
+#define MAX_LABELS  1024
+#define MAX_PATCH   1024
+#define MAX_DEFINE  1024
+
 typedef struct oplink {
     char    *name;
     void    (*handler) (char *cmd, char *ops);
@@ -25,7 +29,7 @@ typedef struct oplink {
 typedef struct line {
     char    label[256];
     char    cmd[256];
-    char    op[256];
+    char    op[1024];
 } line;
 
 typedef struct label_s {
@@ -38,6 +42,7 @@ typedef struct patch_s {
     label_s *label;
     long    orig;
     int     branch;     // 1: relative branch, 0: absolute jmp
+    int     line;
 } patch_s;
 
 typedef struct define_s {
@@ -79,10 +84,14 @@ static label_s * label_lookup (char *name)
 
 static label_s *add_label (char *name, long orig)
 {
+    int len = strlen (name), i;
     label_s * label;
+    for (i=len-1; i>=0; i--) {
+        if (name[i] <= ' ') name[i] = 0;
+    }
+    //printf ( "ADD LABEL(%i): \'%s\' = %08X\n", linenum, name, orig);
     label = label_lookup (name);
     if ( label == NULL ) {
-        labels = (label_s *)realloc (labels, sizeof(label_s) * (labels_num+1) );
         label = &labels[labels_num];
         labels_num++;
         strcpy (label->name, name);
@@ -90,11 +99,13 @@ static label_s *add_label (char *name, long orig)
         label->line = linenum;
     }
     else {
-        if ( label->orig == KEYWORD ) printf ("ERROR(%i): Reserved keyword \'%s\'\n", linenum, name);
+        if ( label->orig == KEYWORD ) printf ("ERROR(%i): Reserved keyword used as label \'%s\'\n", linenum, name);
         else if (orig != UNDEF && label->orig != UNDEF ) printf ("ERROR(%i): label \'%s\' already defined in line %i\n", linenum, name, label->line);
         else {
-            label->orig = orig;
-            label->line = linenum;
+            if (orig != UNDEF) {
+                label->orig = orig;
+                label->line = linenum;
+            }
         }
     }
     return label;
@@ -104,16 +115,67 @@ static void dump_labels (void)
 {
     int i;
     label_s * label;
-    printf ("\nLABELS:\n");
+    printf ("\nLABELS (%i):\n", labels_num);
     for (i=0; i<labels_num; i++) {
         label = &labels[i];
         if (label->orig == KEYWORD) continue;
-        printf ("%i: $%08X = %s\n", i+1, label->orig, label->name);
+        printf ("%i: $%08X = \'%s\'\n", i+1, label->orig, label->name);
     }
 }
 
 // Patch management.
 //
+
+static void add_patch (label_s *label, long orig, int branch, int line)
+{
+    patch_s * patch;
+    patch = &patchs[patch_num];
+    patch_num++;
+    patch->label = label;
+    patch->orig = orig;
+    patch->branch = branch;
+    patch->line = line;
+}
+
+static void do_patch (void)
+{
+    long orig;
+    int i, rel;
+    patch_s * patch;
+    for (i=0; i<patch_num; i++) {
+        patch = &patchs[i];
+        orig = patch->label->orig;
+        if ( orig == UNDEF ) {
+            printf ("ERROR(%i): Undefined label \'%s\' (%08X)\n", patch->line, patch->label->name, orig );
+        }
+        else { 
+            if ( patch->branch ) {
+                org = patch->orig;
+                rel = orig - org - 1;
+                if ( rel > 127 || rel < -128 ) printf ("ERROR(%i): Branch relative offset to %s out of range\n", patch->line, patch->label->name );
+                emit ( rel & 0xff );
+            }
+            else {
+                org = patch->orig;
+                emit ( orig & 0xff );
+                emit ( (orig >> 8) & 0xff );
+            }    
+        }
+    }
+}
+
+static void dump_patches (void)
+{
+    int i;
+    patch_s * patch;
+    printf ("\nPATCHS (%i):\n", patch_num);
+    for (i=0; i<patch_num; i++) {
+        patch = &patchs[i];
+        printf ("LINE %i: $%08X = \'%s\'", patch->line, patch->orig, patch->label->name);
+        if (patch->branch ) printf (" (REL)\n");
+        else printf (" (ABS)\n");
+    }
+}
 
 // Defines management.
 //
@@ -144,7 +206,6 @@ static define_s *add_define (char *name, char *replace)
         strcpy (def->replace, replace);
     }
     else {
-        defines = (define_s *)realloc (defines, sizeof(define_s) * (define_num+1) );
         def = &defines[define_num];
         define_num++;
         strcpy (def->name, name);
@@ -157,7 +218,7 @@ static void dump_defines (void)
 {
     int i;
     define_s * def;
-    printf ("\nDEFINES:\n");
+    printf ("\nDEFINES (%i):\n", define_num);
     for (i=0; i<define_num; i++) {
         def = &defines[i];
         printf ("%i: %s = %s\n", i+1, def->name, def->replace);
@@ -181,17 +242,40 @@ typedef struct eval_t {
     long    address;
     char    string[256];
     label_s *label;
+    int     indirect;
 } eval_t;
 
 static int eval (char *text, eval_t *result)
 {
-    char buf[1024], *p = buf, c, quot;
-    int type = EVAL_WTF;
+    char buf[1024], *p = buf, c, quot = 0, *ptr;
+    int type = EVAL_WTF, i, len;
     define_s * def;
     label_s * label;
 
-    if ( text[0] == '#' ) {         // Number
-        text++;
+    // Indirect test
+    result->indirect = 0;
+    len = strlen (text);
+    for (i=0; i<len; i++) {
+        c = text[i];
+        if ( (c == '(' || c == ')') && quot == 0 ) {
+            text[i] = ' ';
+            result->indirect = 1;
+        }
+        else if ( c == '\"' || c == '\'' ) {
+            if ( c == quot ) quot = 0;
+            else quot = c;
+        }
+    }
+    for (i=len-1; i>=0; i--) {
+        if ( text[i] <= ' ' ) text[i] = 0;
+        else break;
+    }
+    ptr = text;
+    while (*ptr <= ' ' && *ptr) ptr++;      // Skip whitespaces
+    text = ptr;
+
+    if ( text[0] == '#' || isdigit(text[0]) ) {      // Number
+        if (!isdigit(text[0])) text++;
         while (1) {
             c = *text++;
             if (c == 0) break;
@@ -273,10 +357,12 @@ static void dump_eval (eval_t *eval)
             printf ("NUMBER: %08X\n", eval->number);
             break;
         case EVAL_ADDRESS:
-            printf ("ADDRESS: $%08X\n", eval->address);
+            if (eval->indirect) printf ("ADDRESS: [$%08X]\n", eval->address);
+            else printf ("ADDRESS: $%08X\n", eval->address);
             break;
         case EVAL_LABEL:
-            printf ("LABEL: %s (%08X)\n", eval->label->name, eval->label->orig);
+            if (eval->indirect) printf ("LABEL: [%s] (%08X)\n", eval->label->name, eval->label->orig);
+            else printf ("LABEL: %s (%08X)\n", eval->label->name, eval->label->orig);
             break;
         case EVAL_STRING:
             printf ("STRING: %s\n", eval->string);
@@ -319,7 +405,7 @@ static void dump_param (void)
 static void split_param (char *op)
 {
     char param[1024];
-    char c, *ptr = param;
+    char c, *ptr = param, quot = 0;
 
     memset (param, 0, sizeof(param));
 
@@ -332,10 +418,15 @@ static void split_param (char *op)
     while (1) {
         c = *op++;
         if ( c == 0 ) break;
-        else if (c==',') {
+        else if (c==',' && !quot) {
             *ptr++ = 0;
             add_param (param);
             ptr = param;
+        }
+        else if ( c == '\'' || c== '\"' ) {
+            if ( quot == 0 ) quot = c;
+            else if (quot == c) quot = 0;
+            *ptr++ = c;
         }
         else *ptr++ = c;
     }
@@ -364,7 +455,7 @@ static line *parse_line (char **text)
     }
     *lp++ = 0;
 
-    //printf ("%s\n", linebuf);
+    //printf ("LINE: %s\n", linebuf);
 
     // Parse line
     lp = linebuf;
@@ -418,17 +509,17 @@ static oplink optab[] = {
     { "TXA", opTXA }, { "TXS", opTXS }, { "TAX", opTAX }, { "TSX", opTSX },
     { "DEX", opDEX }, { "NOP", opNOP },
 
-/*
-    { "BPL", opBPL }, { "BMI", opBMI }, { "BVC", opBVC }, { "BVS", opBVS },
-    { "BCC", opBCC }, { "BCS", opBCS }, { "BNE", opBNE }, { "BEQ", opBEQ },
+    { "BPL", opBRA }, { "BMI", opBRA }, { "BVC", opBRA }, { "BVS", opBRA },
+    { "BCC", opBRA }, { "BCS", opBRA }, { "BNE", opBRA }, { "BEQ", opBRA },
 
-    { "JSR", opJSR }, { "JMP", opJMP }, 
+    { "JSR", opJMP }, { "JMP", opJMP }, 
 
-    { "CMP", opCMP }, { "CPX", opCPX }, { "CPY", opCPY }, 
-    { "ADC", opADC }, { "SBC", opSBC }, { "INC", opINC }, { "DEC", opDEC }, 
-    { "ORA", opORA }, { "AND", opAND }, { "EOR", opEOR }, { "BIT", opBIT },
-    { "ASL", opASL }, { "LSR", opLSR }, { "ROL", opROL }, { "ROR", opROR }, 
-*/
+    { "ORA", opALU1 }, { "AND", opALU1 }, { "EOR", opALU1 }, { "ADC", opALU1 }, 
+    { "CMP", opALU1 }, { "SBC", opALU1 }, 
+    { "CPX", opCPXY }, { "CPY", opCPXY }, 
+    { "INC", opINCDEC }, { "DEC", opINCDEC }, 
+    { "BIT", opBIT },
+    { "ASL", opSHIFT }, { "LSR", opSHIFT }, { "ROL", opSHIFT }, { "ROR", opSHIFT }, 
 
     //{ "LDA", opLDA },
     { "LDX", opLDX },
@@ -454,18 +545,21 @@ static void cleanup (void)
         free (labels);
         labels = NULL;
     }
+    labels = (label_s *)malloc ( MAX_LABELS * sizeof(label_s) );
     labels_num = 0;
 
     if ( patchs ) {         // Clear patch table
         free (patchs);
         patchs = NULL;
     }
+    patchs = (patch_s *)malloc ( MAX_PATCH * sizeof(patch_s) );
     patch_num = 0;
 
     if ( defines ) {        // Clear defines
         free (defines);
         defines = NULL;
     }
+    defines = (define_s *)malloc ( MAX_DEFINE * sizeof(define_s) );
     define_num = 0;
 }
 
@@ -517,14 +611,16 @@ void assemble (char *text, unsigned char *prg)
                 opl++;
             }
             if (stop) break;
-
-            //printf ( "%i: %s: %s %s\n", linenum, l->label, l->cmd, l->op );
         }
         linenum++;
     }
 
     // Patch jump/branch offsets.
+    do_patch ();
 
+#if 0
     dump_labels ();
     dump_defines ();
+    dump_patches ();
+#endif
 }
