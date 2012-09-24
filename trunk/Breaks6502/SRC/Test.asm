@@ -3,7 +3,11 @@
 LABEL1:
 
     PROCESSOR 6502
-    ORG     $100
+;    ORG     $100
+
+    jmp     $1122
+    jmp     ($aabb)
+    jmp     (SOMEDATA)
 
     DEFINE  KONST   #$15
 
@@ -15,8 +19,6 @@ LABEL1:
     ldx     $aabb,a
 
     DEFINE  KONST   #1
-
-    end
 
 AGAIN:
     NOP
@@ -35,4 +37,4 @@ ADDSOME:                        ; Test ALU
 SOMEDATA:
     BYTE    12, $FF, "Hello, world"
     WORD    AGAIN
-    
+   
