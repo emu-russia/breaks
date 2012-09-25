@@ -2,6 +2,21 @@
 
 static ContextBoard nes;
 
+// fatal error
+void Error(char *fmt, ...)
+{
+    va_list arg;
+    char buf[0x1000];
+
+    va_start(arg, fmt);
+    vsprintf(buf, fmt, arg);
+    va_end(arg);
+
+    MessageBox(NULL, buf, "Breaks Broken", MB_ICONHAND | MB_OK | MB_TOPMOST);
+
+    exit(0);    // return bad
+}
+
 // application message
 void Report(char *fmt, ...)
 {
@@ -30,16 +45,21 @@ void PowerOnNES (void)
     // Load external libraries
     nes.moduleCPU = LoadLibrary ( "Breaks6502.dll" );
     nes.Step6502 = (void *)GetProcAddress ( nes.moduleCPU, "_Step6502" );
+    if ( nes.Step6502 == NULL ) Error ("No CPU module");
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)
 {
+    InitCommonControls ();
+
     PowerOnNES ();
 
     // Emulator run-flow
 /*
     while (1) StepBoard (&nes);
 */
+
+    OpenDebugger (&nes);
 
     Report ( "SHOULD NEVER REACH HERE!" );
     return 0;
