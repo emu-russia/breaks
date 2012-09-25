@@ -1,0 +1,4 @@
+
+typedef struct ContextBoard {
+
+} ContextBoard;
