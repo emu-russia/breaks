@@ -4,6 +4,7 @@
 #include <string.h>
 #include <windows.h>
 
+void    Error(char *fmt, ...);
 void    Report(char *fmt, ...);
 
 #include "../Breaks6502/SRC/Breaks6502.h"

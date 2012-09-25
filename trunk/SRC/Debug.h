@@ -1,1 +1,1 @@
-void    OpenDebugger (void);
+void    OpenDebugger (ContextBoard *nes);
