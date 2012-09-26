@@ -42,7 +42,7 @@ void DPrintf (char *fmt, ...)
     if ( DebugConsoleOpened )
     {
         va_list arg;
-        char buf[0x10000];
+        char buf[0x1000];
 
         va_start(arg, fmt);
         vsprintf(buf, fmt, arg);
