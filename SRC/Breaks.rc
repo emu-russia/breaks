@@ -1,6 +1,6 @@
 #define IDR_MANIFEST                    1
-#define IDI_DOLWIN_ICON                 101
+#define IDI_MAIN_ICON                 101
 
-IDI_DOLWIN_ICON         ICON                    "Breaks.ico"
+IDI_MAIN_ICON           ICON                    "Breaks.ico"
 IDR_MANIFEST            24     DISCARDABLE      "Breaks.manifest"
 
