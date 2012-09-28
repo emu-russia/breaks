@@ -53,6 +53,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     InitCommonControls ();
 
     PowerOnNES ();
+    ConnectTV (&nes);
 
     // Emulator run-flow
 /*

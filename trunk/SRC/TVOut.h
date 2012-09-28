@@ -1,2 +1,2 @@
 
-void    ConnectTV (void);
+void    ConnectTV (ContextBoard *nes);

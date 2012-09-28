@@ -1,13 +1,20 @@
 // Visual debugger.
 #include "Breaks.h"
+
 #include "debugconsole.h"
+#include "PLANames.h"
 
 static HWND debug_hwnd;
+
+HPEN linePen;
 
 #define TOGGLE_BUTTON   200
 
 static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    HDC hdc;
+    PAINTSTRUCT ps;
+
     switch(msg)
     {
         case WM_CREATE:
@@ -28,16 +35,15 @@ static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
 
             }
             break;
-/*
+
         case WM_PAINT:
             hdc = BeginPaint (hwnd, &ps);
-            FillRect (hdc, &whiteBox, whiteBrush);
-            FillRect (hdc, &redBox, redBrush);
-            FillRect (hdc, &yellowBox, yellowBrush);
-            FillRect (hdc, &blueBox, blueBrush);
+            SelectObject (hdc, linePen );
+            MoveToEx (hdc, 10, 10, NULL);
+            LineTo (hdc, 100, 100);
             EndPaint (hwnd, &ps);
             return 0;
-*/
+
     }
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
@@ -53,9 +59,21 @@ static void set_font (HWND ctrl)
     SendMessage(ctrl, WM_SETFONT, (WPARAM)hFont, (LPARAM)TRUE);
 }
 
+static void bold_font (HWND ctrl)
+{
+    static HFONT hFont = NULL;
+    if ( hFont == NULL ) {
+        hFont = CreateFont (15, 0, 0, 0, FW_BOLD, FALSE, FALSE, FALSE, ANSI_CHARSET, 
+              OUT_TT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, 
+              DEFAULT_PITCH | FF_DONTCARE, TEXT("Calibri"));
+    }
+    SendMessage(ctrl, WM_SETFONT, (WPARAM)hFont, (LPARAM)TRUE);
+}
+
 static void plot_dialog (HINSTANCE hInstance)
 {
     WNDCLASS wc;
+    HDC hdc;
 
     wc.cbClsExtra    = wc.cbWndExtra = 0;
     wc.hbrBackground = (HBRUSH)COLOR_BTNSHADOW;
@@ -73,11 +91,11 @@ static void plot_dialog (HINSTANCE hInstance)
                     "BREAKSDEBUG" "CLASS", "Breaks Debug",
                     WS_OVERLAPPED | WS_SYSMENU, 
                     100, 100,
-                    600, 180,
+                    600, 480,
                     NULL, NULL,
                     hInstance, NULL );
 
-    set_font ( CreateWindow ("button", "Toggle", WS_CHILD | WS_VISIBLE | BS_CHECKBOX, 10, 45, 110, 40, debug_hwnd, (HMENU)TOGGLE_BUTTON, hInstance, NULL) );
+    bold_font ( CreateWindow ("button", "Toggle", WS_CHILD | WS_VISIBLE | BS_CHECKBOX, 10, 45, 110, 40, debug_hwnd, (HMENU)TOGGLE_BUTTON, hInstance, NULL) );
     set_font ( CreateWindow ("button", "Button", WS_CHILD | WS_VISIBLE, 500, 45, 65, 30, debug_hwnd, (HMENU)TOGGLE_BUTTON, hInstance, NULL) );
 
     ShowWindow (debug_hwnd, SW_NORMAL);
@@ -89,6 +107,8 @@ void OpenDebugger (ContextBoard *nes)
 {
     OpenDebugConsole ();
     DPrintf ("Debug console opened\n");
+
+    linePen = CreatePen (PS_SOLID, 2, RGB(0,0,0) );
 
     plot_dialog ( GetModuleHandle(NULL) );
     while (1) {
