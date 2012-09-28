@@ -30,7 +30,9 @@ typedef struct Context6502
     // Timereg latches
     char        TRSync;
     char        TRin[4], TRout[4];
-    // Random logic latches
+    // Random logic latches and internal variables
+    int         sync, ready, TRES, Tcount;
+    int         clearIR, fetch;
 
     // Bottom part internal state
     char        SB[8], DB[8];           // SBus, DBus
@@ -46,3 +48,4 @@ typedef struct Context6502
 } Context6502;
 
 void    Step6502 ( Context6502 * cpu );
+void    Debug6502 ( Context6502 * cpu, char * cmd );

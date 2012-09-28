@@ -18,7 +18,10 @@ void TimeRegTest (void)
     {
         cpu.PHI1 = BIT(~cpu.PHI0);
         cpu.PHI2 = BIT(cpu.PHI0);
-        TR = TcountRegister (&cpu, sync > 0, 1, 0);
+        cpu.sync = sync > 0;
+        cpu.ready = 1;
+        cpu.TRES = 0;
+        TR = TcountRegister (&cpu);
         printf ( "%02X ", TR );
         cpu.PHI0 ^= 1;
         sync--;
