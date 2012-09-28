@@ -4,9 +4,12 @@
 
 static HWND    hBreaksWindow;
 
+static int      turn_off;
+
 // --------------------------------------------------------------------
 // DirectDraw stuff
 
+/*
 static  LPDIRECTDRAW lpDD; // DirectDraw object defined in DDRAW.H
 static  LPDIRECTDRAWSURFACE lpDDSPrimary; // DirectDraw primary surface
 static  LPDIRECTDRAWSURFACE lpDDSBack; // DirectDraw back surface
@@ -120,6 +123,8 @@ static char *DDErrorString(HRESULT hr)
     return "Unknown Error";
 }
 
+*/
+
 // --------------------------------------------------------------------
 // Windows stuff
 
@@ -139,11 +144,11 @@ static LRESULT CALLBACK BreaksWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPA
             return 0;
             
         case WM_CLOSE:
+            DisconnectTV ();
             DestroyWindow(hwnd);
             return 0;
             
         case WM_DESTROY:
-            exit(1);
             return 0;
 
         // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -209,7 +214,7 @@ static DWORD WINAPI BreaksTVThread (LPVOID lpParameter)
 {
     CreateMainWindow ( GetModuleHandle(NULL) );
 
-    while (1) {
+    while (!turn_off) {
         MSG msg;
 
         while(PeekMessage(&msg, hBreaksWindow, 0, 0, PM_REMOVE))
@@ -219,10 +224,19 @@ static DWORD WINAPI BreaksTVThread (LPVOID lpParameter)
         }
 
     }
+
+    CloseWindow ( hBreaksWindow );
+
     return 0;
 }
 
 void ConnectTV (ContextBoard *nes)
 {
+    turn_off = 0;
     CreateThread (NULL, 0, BreaksTVThread, NULL, 0, NULL);
+}
+
+void DisconnectTV (void)
+{
+    turn_off = 1;
 }

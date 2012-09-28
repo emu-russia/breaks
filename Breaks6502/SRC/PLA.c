@@ -155,6 +155,11 @@ void DecodePLA (Context6502 * cpu)
     int BranchNotReady, IR01, PushPull;
     char * line;
 
+    T[2] = BIT(cpu->Tcount);
+    T[3] = BIT(cpu->Tcount >> 1);
+    T[4] = BIT(cpu->Tcount >> 2);
+    T[5] = BIT(cpu->Tcount >> 3);
+
     // BranchNotReady for line 73
     if (cpu->PHI2) cpu->BRLatch[0] = BIT(~cpu->RDY);
     if (cpu->PHI1) cpu->BRLatch[1] = BIT(~cpu->BRLatch[0]);
