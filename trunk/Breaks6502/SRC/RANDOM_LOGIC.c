@@ -8,4 +8,7 @@ void RandomLogicEarly (Context6502 * cpu)
 
 void RandomLogic (Context6502 * cpu)
 {
+
+    // R/W output
+    cpu->RW = BIT(~cpu->RWOut);
 }

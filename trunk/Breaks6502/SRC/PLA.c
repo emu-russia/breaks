@@ -214,3 +214,7 @@ void DecodePLA (Context6502 * cpu)
     // Last line is special (all implied, except push/pull)
     cpu->PLAOUT[n] = ! ( IR[2] || NOTIR[3] || IR[0] || PushPull );
 }
+
+void TracePLA (Context6502 * cpu)
+{
+}

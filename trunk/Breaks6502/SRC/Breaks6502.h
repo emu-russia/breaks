@@ -1,4 +1,4 @@
-//#define PACKED_BITS
+//#define BREAKS6502_PACKED_BITS
 
 typedef struct Context6502
 {
@@ -12,7 +12,7 @@ typedef struct Context6502
     int         RW, SYNC;
     char        PHI1, PHI2;         // Timing
 
-#ifdef  PACKED_BITS
+#ifdef  BREAKS6502_PACKED_BITS
 
 #else
 
@@ -25,14 +25,19 @@ typedef struct Context6502
     char        TR[6];              // T-state register
     char        PLAOUT[129];        // PLA outputs
     char        DRIVEREG[64];
-    // Branch ready latches
-    char        BRLatch[2];
-    // Timereg latches
-    char        TRSync;
+    char        SOLatch[3];         // SO line latches
+    char        FromSO;
+    char        RESLatch;           // Reset latch
+    char        BRLatch[2];         // Branch ready latches
+    char        IRQP;               // IRQ input logic latch
+    char        FromNMI;            // NMI logic output
+    char        TRSync;             // Timereg latches
     char        TRin[4], TRout[4];
+    int         Tcount;             // Packed T2-T5 counter
     // Random logic latches and internal variables
-    int         sync, ready, TRES, Tcount;
+    int         sync, ready, TRES;
     int         clearIR, fetch;
+    char        RWOut;              // R/W output latch
 
     // Bottom part internal state
     char        SB[8], DB[8];           // SBus, DBus
@@ -44,7 +49,7 @@ typedef struct Context6502
     // ALU latches
     char        PCL[8], PCLS[8], PCH[8], PCHS[8];   // Program Counter    
 
-#endif  // PACKED_BITS
+#endif  // BREAKS6502_PACKED_BITS
 
 } Context6502;
 

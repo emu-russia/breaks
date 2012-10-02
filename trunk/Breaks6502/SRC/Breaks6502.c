@@ -3,7 +3,7 @@
 
 unsigned long packreg ( char *reg, int bits )
 {
-    unsigned char val = 0, i;
+    unsigned long val = 0, i;
     for (i=0; i<bits; i++) {
         if (reg[i]) val |= (1 << i);
     }
@@ -20,12 +20,8 @@ void unpackreg (char *reg, unsigned char val, int bits)
 
 __declspec( dllexport ) void Step6502 ( Context6502 * cpu )
 {
-    // Clock distribution.
-
-    cpu->PHI1 = BIT(~cpu->PHI0);
-    cpu->PHI2 = BIT(cpu->PHI0);
-
     // Dispatch top part logic
+    MiscLogic (cpu);
     Predecode (cpu);
     RandomLogicEarly (cpu);
     InstructionRegister (cpu);
@@ -44,8 +40,7 @@ __declspec( dllexport ) void Step6502 ( Context6502 * cpu )
 // Execute specific 6502 subsystem for debug purposes.
 __declspec( dllexport ) void Debug6502 ( Context6502 * cpu, char * cmd )
 {
-    if ( !stricmp (cmd, "MISC") ) {
-    }
+         if ( !stricmp (cmd, "MISC") ) MiscLogic (cpu);
     else if ( !stricmp (cmd, "TSTEP") ) TcountRegister (cpu);
     else if ( !stricmp (cmd, "IR") ) InstructionRegister (cpu);
     else if ( !stricmp (cmd, "PLA") ) DecodePLA (cpu);
