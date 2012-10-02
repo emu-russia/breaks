@@ -7,17 +7,27 @@
 static HWND debug_hwnd;
 static ContextBoard *DebugNES;
 
-HPEN linePen;
+static  HPEN linePen;
+static  int PlotDone = 0;
 
 enum {
     DEBUG_CONTROLS_BASE = 200,
     STEP_BUTTON,
 
+    MISC_BUTTON, TSTEP_BUTTON, IR_BUTTON, PLA_BUTTON, PREDECODE_BUTTON,
+    RANDOM1_BUTTON, RANDOM2_BUTTON, ALU_BUTTON, DATA_BUTTON, REGS_BUTTON,
+    PC_BUTTON, ADDR_BUTTON,
+
     VAL_ADDR, VAL_X, VAL_Y, VAL_S, VAL_SB, VAL_DB,
-    VAL_ADH, VAL_ADL,
+    VAL_ABH, VAL_ABL, VAL_ADH, VAL_ADL,
     VAL_AI, VAL_BI, VAL_ADD, VAL_AC,
     VAL_PCL, VAL_PCH, VAL_PCLS, VAL_PCHS,
     VAL_DL, VAL_DOR, VAL_DATA,
+    VAL_PD, VAL_IR, VAL_DISA,
+
+    // Random logic latches and control lines.
+    LATCH_READY,
+    LINE_SYNC,
 
     DRV_ADH_ABH, DRV_ADL_ABL, DRV_0_ADL0, DRV_0_ADL1, DRV_0_ADL2,
 
@@ -35,8 +45,8 @@ enum {
     DRV_DSA, DRV_0_ADH0, DRV_SB_DB, DRV_SB_AC, DRV_SB_ADH,
     DRV_0_ADH17, DRV_AC_SB, DRV_AC_DB,
 
-    PLA_BASE = 300,
-    PLA_MAX = 430,
+    PLA_BASE = 400,
+    PLA_MAX = 530,
 
     DEBUG_CONTROLS_MAX
 };
@@ -44,6 +54,61 @@ enum {
 static  HWND debugCtrl[DEBUG_CONTROLS_MAX];
 
 static void update_debugger (ContextBoard *nes);
+
+static unsigned long packreg ( char *reg, int bits )
+{
+    unsigned char val = 0, i;
+    for (i=0; i<bits; i++) {
+        if (reg[i]) val |= (1 << i);
+    }
+    return val;
+} 
+
+static void unpackreg (char *reg, unsigned char val, int bits)
+{
+    int i;
+    for (i=0; i<bits; i++) {
+        reg[i] = (val >> i) & 1;
+    }
+}
+
+static void process_edit ( WPARAM wParam, int ctrl)
+{
+    Context6502 *cpu = &DebugNES->cpu;
+    unsigned char val;
+    char text[256];
+    if (HIWORD(wParam) == EN_CHANGE && LOWORD(wParam) == ctrl && PlotDone) {
+        SendMessage ( debugCtrl[ctrl], WM_GETTEXT, (WPARAM)sizeof(text), (LPARAM)text);
+        val = strtoul (text, NULL, 16) & 0xff;
+        switch (ctrl)
+        {
+            case VAL_X: unpackreg (cpu->X, val, 8); break;
+            case VAL_Y: unpackreg (cpu->Y, val, 8); break;
+            case VAL_S: unpackreg (cpu->S, val, 8); break;
+            case VAL_SB: unpackreg (cpu->SB, val, 8); break;
+            case VAL_DB: unpackreg (cpu->DB, val, 8); break;
+            case VAL_ABH: unpackreg (cpu->ABH, val, 8); break;
+            case VAL_ABL: unpackreg (cpu->ABL, val, 8); break;
+            case VAL_ADH: unpackreg (cpu->ADH, val, 8); break;
+            case VAL_ADL: unpackreg (cpu->ADL, val, 8); break;
+            case VAL_AI: unpackreg (cpu->AI, val, 8); break;
+            case VAL_BI: unpackreg (cpu->BI, val, 8); break;
+            case VAL_ADD: unpackreg (cpu->ADD, val, 8); break;
+            case VAL_AC: unpackreg (cpu->AC, val, 8); break;
+            case VAL_PCL: unpackreg (cpu->PCL, val, 8); break;
+            case VAL_PCH: unpackreg (cpu->PCH, val, 8); break;
+            case VAL_PCLS: unpackreg (cpu->PCLS, val, 8); break;
+            case VAL_PCHS: unpackreg (cpu->PCHS, val, 8); break;
+            case VAL_DL: unpackreg (cpu->DL, val, 8); break;
+            case VAL_DOR: unpackreg (cpu->DOR, val, 8); break;
+            case VAL_DATA: unpackreg (cpu->DATA, val, 8); break;
+            case VAL_PD: unpackreg (cpu->PD, val, 8); break;
+            case VAL_IR:
+                unpackreg (cpu->IR, val, 8);
+                break;
+        }
+    }
+}
 
 static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -62,9 +127,93 @@ static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
             exit(1);
             return 0;
         case WM_COMMAND:
+
+            process_edit (wParam, VAL_X);
+            process_edit (wParam, VAL_Y);
+            process_edit (wParam, VAL_S);
+            process_edit (wParam, VAL_SB);
+            process_edit (wParam, VAL_DB);
+            process_edit (wParam, VAL_ABH);
+            process_edit (wParam, VAL_ABL);
+            process_edit (wParam, VAL_ADH);
+            process_edit (wParam, VAL_ADL);
+            process_edit (wParam, VAL_AI);
+            process_edit (wParam, VAL_BI);
+            process_edit (wParam, VAL_ADD);
+            process_edit (wParam, VAL_AC);
+            process_edit (wParam, VAL_PCL);
+            process_edit (wParam, VAL_PCH);
+            process_edit (wParam, VAL_PCLS);
+            process_edit (wParam, VAL_PCHS);
+            process_edit (wParam, VAL_DL);
+            process_edit (wParam, VAL_DOR);
+            process_edit (wParam, VAL_DATA);
+            process_edit (wParam, VAL_PD);
+            process_edit (wParam, VAL_IR);
+
             switch (LOWORD(wParam))
             {
                 case STEP_BUTTON:
+                    update_debugger (DebugNES);
+                    return 0;
+    
+                case MISC_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "MISC");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case TSTEP_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "TSTEP");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case IR_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "IR");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case PLA_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "PLA");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case PREDECODE_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "PREDECODE");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case RANDOM1_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "RANDOM1");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case RANDOM2_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "RANDOM2");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case ALU_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "ALU");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case DATA_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "DATA");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case REGS_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "REGS");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case PC_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "PC");
+                    update_debugger (DebugNES);
+                    return 0;
+
+                case ADDR_BUTTON:
+                    DebugNES->Debug6502 (&DebugNES->cpu, "ADDR");
                     update_debugger (DebugNES);
                     return 0;
             }
@@ -118,7 +267,7 @@ static void bold_font (HWND ctrl)
 
 static void label ( HINSTANCE hInstance, HWND dlg, int x, int y, char * text )
 {
-    bold_font ( CreateWindow ("static", text, WS_CHILD | WS_VISIBLE | SS_LEFT, x, y, 60, 14, dlg, (HMENU)0, hInstance, NULL) );
+    bold_font ( CreateWindow ("static", text, WS_CHILD | WS_VISIBLE | SS_LEFT, x, y, 55, 14, dlg, (HMENU)0, hInstance, NULL) );
 }
 static void label_long ( HINSTANCE hInstance, HWND dlg, int x, int y, char * text )
 {
@@ -126,7 +275,13 @@ static void label_long ( HINSTANCE hInstance, HWND dlg, int x, int y, char * tex
 }
 static HWND value ( HINSTANCE hInstance, HWND dlg, int x, int y, char * text, int id )
 {
-    HWND hwnd = CreateWindow ("static", text, WS_CHILD | WS_VISIBLE | SS_LEFT, x, y, 25, 14, dlg, (HMENU)id, hInstance, NULL);
+    HWND hwnd = CreateWindow ("edit", text, WS_CHILD | WS_VISIBLE | SS_LEFT, x, y, 16, 14, dlg, (HMENU)id, hInstance, NULL);
+    set_font ( hwnd );
+    return hwnd;
+}
+static HWND valueRead ( HINSTANCE hInstance, HWND dlg, int x, int y, char * text, int id )
+{
+    HWND hwnd = CreateWindow ("static", text, WS_CHILD | WS_VISIBLE | SS_LEFT, x, y, 75, 14, dlg, (HMENU)id, hInstance, NULL);
     set_font ( hwnd );
     return hwnd;
 }
@@ -143,16 +298,20 @@ static void place_controls (HINSTANCE hinst, HWND dlg)
 
     // Registers section
     label (hinst, dlg, 12, 8, "ADDR" );
-    debugCtrl[VAL_ADDR] = value (hinst, dlg, 44, 8, "1234", VAL_ADDR );
+    debugCtrl[VAL_ADDR] = valueRead (hinst, dlg, 44, 8, "1234", VAL_ADDR );
 
     y = 15;
     label (hinst, dlg, 12, y+=15, "X" );
     label (hinst, dlg, 12, y+=15, "Y" );
     label (hinst, dlg, 12, y+=15, "S" );
+    label (hinst, dlg, 12, y+=15, "ABH" );
+    label (hinst, dlg, 12, y+=15, "ABL" );
     y = 15;
     debugCtrl[VAL_X] = value (hinst, dlg, 25, y+=15, "12", VAL_X );
     debugCtrl[VAL_Y] = value (hinst, dlg, 25, y+=15, "34", VAL_Y );
     debugCtrl[VAL_S] = value (hinst, dlg, 25, y+=15, "56", VAL_S );
+    debugCtrl[VAL_ABH] = value (hinst, dlg, 36, y+=15, "56", VAL_ABH );
+    debugCtrl[VAL_ABL] = value (hinst, dlg, 36, y+=15, "56", VAL_ABL );
 
     y = 15;
     label (hinst, dlg, 52, y+=15, "SB" );
@@ -271,6 +430,14 @@ static void place_controls (HINSTANCE hinst, HWND dlg)
     toggle (hinst, dlg, 305, y+=15, "Latch 2", 0 );
     toggle (hinst, dlg, 305, y+=15, "Latch 3", 0 );
 
+    y = 390;
+    label (hinst, dlg, 410, y+=15, "PD" );
+    label (hinst, dlg, 410, y+=15, "IR" );
+    y = 390;
+    debugCtrl[VAL_PD] = value (hinst, dlg, 436, y+=15, "12", VAL_PD );
+    debugCtrl[VAL_IR] = value (hinst, dlg, 436, y+=15, "12", VAL_IR );
+    debugCtrl[VAL_DISA] = valueRead (hinst, dlg, 462, y, "ADC zpg,X", VAL_DISA );
+
     // PLA
     label_long (hinst, dlg, 410, 50, "PLA" );
     for (y=60,i=0; i<6; i++) debugCtrl[PLA_BASE+i] = toggle (hinst, dlg, 410, y+=15, PLAName(i), PLA_BASE+i );
@@ -283,11 +450,81 @@ static void place_controls (HINSTANCE hinst, HWND dlg)
     for (y=60; i<120; i++) debugCtrl[PLA_BASE+i] = toggle (hinst, dlg, 970, y+=15, PLAName(i), PLA_BASE+i );
     for (y=60; i<129; i++) debugCtrl[PLA_BASE+i] = toggle (hinst, dlg, 1050, y+=15, PLAName(i), PLA_BASE+i );
 
-    set_font ( CreateWindow ("button", "Step", WS_CHILD | WS_VISIBLE, 880, 430, 80, 30, dlg, (HMENU)STEP_BUTTON, hinst, NULL) );
+    // Buttons
+    set_font ( CreateWindow ("button", "Step", WS_CHILD | WS_VISIBLE, 880, 420, 80, 30, dlg, (HMENU)STEP_BUTTON, hinst, NULL) );
+
+    set_font ( CreateWindow ("button", "REGS", WS_CHILD | WS_VISIBLE, 970, 320, 55, 30, dlg, (HMENU)REGS_BUTTON, hinst, NULL) );
+    set_font ( CreateWindow ("button", "PC", WS_CHILD | WS_VISIBLE, 1025, 320, 55, 30, dlg, (HMENU)PC_BUTTON, hinst, NULL) );
+    set_font ( CreateWindow ("button", "ADDR", WS_CHILD | WS_VISIBLE, 1080, 320, 55, 30, dlg, (HMENU)ADDR_BUTTON, hinst, NULL) );
+
+    set_font ( CreateWindow ("button", "MISC", WS_CHILD | WS_VISIBLE, 970, 353, 55, 30, dlg, (HMENU)MISC_BUTTON, hinst, NULL) );
+    set_font ( CreateWindow ("button", "TSTEP", WS_CHILD | WS_VISIBLE, 1025, 353, 55, 30, dlg, (HMENU)TSTEP_BUTTON, hinst, NULL) );
+    set_font ( CreateWindow ("button", "IR", WS_CHILD | WS_VISIBLE, 1080, 353, 55, 30, dlg, (HMENU)IR_BUTTON, hinst, NULL) );
+
+    set_font ( CreateWindow ("button", "PLA", WS_CHILD | WS_VISIBLE, 970, 385, 55, 30, dlg, (HMENU)PLA_BUTTON, hinst, NULL) );
+    set_font ( CreateWindow ("button", "PD", WS_CHILD | WS_VISIBLE, 1025, 385, 55, 30, dlg, (HMENU)PREDECODE_BUTTON, hinst, NULL) );
+    set_font ( CreateWindow ("button", "RAND1", WS_CHILD | WS_VISIBLE, 1080, 385, 55, 30, dlg, (HMENU)RANDOM1_BUTTON, hinst, NULL) );
+
+    set_font ( CreateWindow ("button", "RAND2", WS_CHILD | WS_VISIBLE, 970, 420, 55, 30, dlg, (HMENU)RANDOM2_BUTTON, hinst, NULL) );
+    set_font ( CreateWindow ("button", "ALU", WS_CHILD | WS_VISIBLE, 1025, 420, 55, 30, dlg, (HMENU)ALU_BUTTON, hinst, NULL) );
+    set_font ( CreateWindow ("button", "DATA", WS_CHILD | WS_VISIBLE, 1080, 420, 55, 30, dlg, (HMENU)DATA_BUTTON, hinst, NULL) );
+
+    PlotDone = 1;
+}
+
+static void check ( int ctrl, int value )
+{
+    SendMessage (debugCtrl[ctrl], BM_SETCHECK, value ? BST_CHECKED : BST_UNCHECKED, 0);
+}
+
+static void setvalue8 ( int ctrl, unsigned char value )
+{
+    char text[256];
+    sprintf ( text, "%02X", value );
+    SendMessage (debugCtrl[ctrl],  WM_SETTEXT, (WPARAM)NULL, (LPARAM)text );
+}
+
+static void setvalue16 ( int ctrl, unsigned short value )
+{
+    char text[256];
+    sprintf ( text, "%04X", value );
+    SendMessage (debugCtrl[ctrl],  WM_SETTEXT, (WPARAM)NULL, (LPARAM)text );
 }
 
 static void update_debugger (ContextBoard *nes)
 {
+    Context6502 *cpu = &nes->cpu;
+
+    setvalue16 ( VAL_ADDR, packreg(cpu->ADDR, 16) );
+
+    setvalue8 ( VAL_SB, packreg(cpu->SB, 8) );
+    setvalue8 ( VAL_DB, packreg(cpu->DB, 8) );
+    setvalue8 ( VAL_X, packreg(cpu->X, 8) );
+    setvalue8 ( VAL_Y, packreg(cpu->Y, 8) );
+    setvalue8 ( VAL_S, packreg(cpu->S, 8) );
+    setvalue8 ( VAL_ABH, packreg(cpu->ABH, 8) );
+    setvalue8 ( VAL_ABL, packreg(cpu->ABL, 8) );
+    setvalue8 ( VAL_ADH, packreg(cpu->ADH, 8) );
+    setvalue8 ( VAL_ADL, packreg(cpu->ADL, 8) );
+
+    setvalue8 ( VAL_AI, packreg(cpu->AI, 8) );
+    setvalue8 ( VAL_BI, packreg(cpu->BI, 8) );
+    setvalue8 ( VAL_ADD, packreg(cpu->ADD, 8) );
+    setvalue8 ( VAL_AC, packreg(cpu->AC, 8) );
+
+    setvalue8 ( VAL_PCL, packreg(cpu->PCL, 8) );
+    setvalue8 ( VAL_PCLS, packreg(cpu->PCLS, 8) );
+    setvalue8 ( VAL_PCH, packreg(cpu->PCH, 8) );
+    setvalue8 ( VAL_PCHS, packreg(cpu->PCHS, 8) );
+
+    setvalue8 ( VAL_DL, packreg(cpu->DL, 8) );
+    setvalue8 ( VAL_DOR, packreg(cpu->DOR, 8) );
+    setvalue8 ( VAL_DATA, packreg(cpu->DATA, 8) );
+
+    setvalue8 ( VAL_PD, packreg(cpu->PD, 8) );
+    setvalue8 ( VAL_IR, packreg(cpu->IR, 8) );
+
+    check ( DRV_ADH_ABH, 1/*cpu->DRIVEREG[DRIVE_ADH_ABH]*/ );
 }
 
 static void plot_dialog (HINSTANCE hInstance)

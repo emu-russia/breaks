@@ -1,6 +1,23 @@
 #include "Breaks6502.h"
 #include "Breaks6502Private.h"
 
+unsigned long packreg ( char *reg, int bits )
+{
+    unsigned char val = 0, i;
+    for (i=0; i<bits; i++) {
+        if (reg[i]) val |= (1 << i);
+    }
+    return val;
+} 
+
+void unpackreg (char *reg, unsigned char val, int bits)
+{
+    int i;
+    for (i=0; i<bits; i++) {
+        reg[i] = (val >> i) & 1;
+    }
+}
+
 __declspec( dllexport ) void Step6502 ( Context6502 * cpu )
 {
     // Clock distribution.
