@@ -1,3 +1,92 @@
+// Debug utils.
+#include <io.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <windows.h>
+
+unsigned long packreg ( char *reg, int bits )
+{
+    unsigned long val = 0, i;
+    for (i=0; i<bits; i++) {
+        if (reg[i]) val |= (1 << i);
+    }
+    return val;
+} 
+
+void unpackreg (char *reg, unsigned char val, int bits)
+{
+    int i;
+    for (i=0; i<bits; i++) {
+        reg[i] = (val >> i) & 1;
+    }
+}
+
+// Debug Console.
+//
+
+int DebugConsoleOpened = 0;
+
+void OpenDebugConsole (void)
+{
+    int hConHandle;
+    long lStdHandle;
+    FILE *fp;
+
+    if ( DebugConsoleOpened ) return;
+
+    AllocConsole ();
+
+    // redirect unbuffered STDOUT to the console
+    lStdHandle = (long)GetStdHandle(STD_OUTPUT_HANDLE);
+    hConHandle = _open_osfhandle(lStdHandle, _O_TEXT);
+    fp = (FILE *)_fdopen( hConHandle, "w" );
+    *stdout = *fp;
+    setvbuf( stdout, NULL, _IONBF, 0 );
+
+    SetConsoleTitle("Breaks Debug Console");
+
+    DebugConsoleOpened = 1;
+}
+
+void CloseDebugConsole (void)
+{
+    if (!DebugConsoleOpened) return;
+
+    FreeConsole ();
+
+    DebugConsoleOpened = 0;
+}
+
+void DPrintf (char *fmt, ...)
+{
+    if ( DebugConsoleOpened )
+    {
+        va_list arg;
+        char buf[0x1000];
+
+        va_start(arg, fmt);
+        vsprintf(buf, fmt, arg);
+        va_end(arg);
+
+        printf ("%s", buf);
+    }
+}
+
+// PLA names.
+
+char * PLAName (int line)
+{
+    static char def[32];
+
+    switch (line) {
+        case 0: return "0";
+
+        default:
+            sprintf (def, "%i", line);
+            return def;
+    }
+}
+
 // Return instruction name and operands, without operands decoding.
 
 static char *inames[] = {

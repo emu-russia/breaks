@@ -1,8 +1,6 @@
 // Visual debugger.
 #include "Breaks.h"
-
-#include "debugconsole.h"
-#include "PLANames.h"
+#include "DebugUtils.h"
 
 static HWND debug_hwnd;
 static ContextBoard *DebugNES;
@@ -54,23 +52,6 @@ enum {
 static  HWND debugCtrl[DEBUG_CONTROLS_MAX];
 
 static void update_debugger (ContextBoard *nes);
-
-static unsigned long packreg ( char *reg, int bits )
-{
-    unsigned char val = 0, i;
-    for (i=0; i<bits; i++) {
-        if (reg[i]) val |= (1 << i);
-    }
-    return val;
-} 
-
-static void unpackreg (char *reg, unsigned char val, int bits)
-{
-    int i;
-    for (i=0; i<bits; i++) {
-        reg[i] = (val >> i) & 1;
-    }
-}
 
 static void process_edit ( WPARAM wParam, int ctrl)
 {

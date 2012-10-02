@@ -1,0 +1,1 @@
+void MiscLogic (Context6502 * cpu);
