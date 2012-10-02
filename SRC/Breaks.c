@@ -45,7 +45,8 @@ void PowerOnNES (void)
     // Load external libraries
     nes.moduleCPU = LoadLibrary ( "Breaks6502.dll" );
     nes.Step6502 = (void *)GetProcAddress ( nes.moduleCPU, "_Step6502" );
-    if ( nes.Step6502 == NULL ) Error ("No CPU module");
+    nes.Debug6502 = (void *)GetProcAddress ( nes.moduleCPU, "_Debug6502" );
+    if ( nes.Step6502 == NULL || nes.Debug6502 == NULL ) Error ("No CPU module");
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)

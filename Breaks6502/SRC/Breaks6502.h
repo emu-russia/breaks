@@ -39,6 +39,7 @@ typedef struct Context6502
     char        X[8], Y[8], S[8];       // X, Y, S registers
     char        ABH[8], ABL[8];         // Address bus registers
     char        ADH[8], ADL[8];         // Internal address bus
+    char        DL[8], DOR[8];          // Data latch, data output register
     char        AI[8], BI[8], ADD[8], AC[8];    // ALU regs
     // ALU latches
     char        PCL[8], PCLS[8], PCH[8], PCHS[8];   // Program Counter    

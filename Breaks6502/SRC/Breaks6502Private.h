@@ -18,3 +18,6 @@
 
 
 #define BIT(n)     ( (n) & 1 )
+
+unsigned long packreg ( char *reg, int bits );
+void unpackreg (char *reg, unsigned char val, int bits);
