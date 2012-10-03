@@ -21,7 +21,7 @@ enum {
     VAL_AI, VAL_BI, VAL_ADD, VAL_AC,
     VAL_PCL, VAL_PCH, VAL_PCLS, VAL_PCHS,
     VAL_DL, VAL_DOR, VAL_DATA,
-    VAL_PD, VAL_IR, VAL_DISA,
+    VAL_PD, VAL_IR, VAL_DISA, VAL_MODE,
 
     // Random logic latches and control lines.
     LATCH_READY,
@@ -135,6 +135,8 @@ static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
             switch (LOWORD(wParam))
             {
                 case STEP_BUTTON:
+                    DebugNES->Step6502 (&DebugNES->cpu);
+                    DebugNES->cpu.PHI0 ^= 1;
                     update_debugger (DebugNES);
                     return 0;
     
@@ -414,10 +416,11 @@ static void place_controls (HINSTANCE hinst, HWND dlg)
     y = 390;
     label (hinst, dlg, 410, y+=15, "PD" );
     label (hinst, dlg, 410, y+=15, "IR" );
+    debugCtrl[VAL_MODE] = valueRead (hinst, dlg, 410, y+=15, "", VAL_MODE );
     y = 390;
     debugCtrl[VAL_PD] = value (hinst, dlg, 436, y+=15, "12", VAL_PD );
     debugCtrl[VAL_IR] = value (hinst, dlg, 436, y+=15, "12", VAL_IR );
-    debugCtrl[VAL_DISA] = valueRead (hinst, dlg, 462, y, "ADC zpg,X", VAL_DISA );
+    debugCtrl[VAL_DISA] = valueRead (hinst, dlg, 462, y, "", VAL_DISA );
 
     // PLA
     label_long (hinst, dlg, 410, 50, "PLA" );
@@ -506,6 +509,10 @@ static void update_debugger (ContextBoard *nes)
     setvalue8 ( VAL_IR, packreg(cpu->IR, 8) );
 
     check ( DRV_ADH_ABH, 1/*cpu->DRIVEREG[DRIVE_ADH_ABH]*/ );
+
+    SendMessage (debugCtrl[VAL_DISA], WM_SETTEXT, (WPARAM)NULL, (LPARAM)QuickDisa(~packreg(cpu->IR, 8)) );
+    if (cpu->PHI0 == 0) SendMessage (debugCtrl[VAL_MODE], WM_SETTEXT, (WPARAM)NULL, (LPARAM)"Write Mode" );
+    if (cpu->PHI0 == 1) SendMessage (debugCtrl[VAL_MODE], WM_SETTEXT, (WPARAM)NULL, (LPARAM)"Read Mode" );
 }
 
 static void plot_dialog (HINSTANCE hInstance)

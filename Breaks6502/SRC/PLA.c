@@ -161,8 +161,6 @@ void DecodePLA (Context6502 * cpu)
     T[5] = BIT(cpu->Tcount >> 3);
 
     // BranchNotReady for line 73
-    if (cpu->PHI2) cpu->BRLatch[0] = BIT(~cpu->RDY);
-    if (cpu->PHI1) cpu->BRLatch[1] = BIT(~cpu->BRLatch[0]);
     BranchNotReady = BIT(~cpu->BRLatch[1]);
 
     for (b=0; b<8; b++) {
