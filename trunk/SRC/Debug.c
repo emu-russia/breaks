@@ -23,8 +23,16 @@ enum {
     VAL_DL, VAL_DOR, VAL_DATA,
     VAL_PD, VAL_IR, VAL_DISA, VAL_MODE,
 
+    LATCH_TRSYNC, LINE_T2, LINE_T3, LINE_T4, LINE_T5, 
+    LINE_PHI0, LINE_PHI1, LINE_PHI2, 
+    LINE_NMI, LINE_FROMNMI,
+    LINE_IRQ, LATCH_IRQP,
+    LINE_RDY, LATCH_BR0, LATCH_BR1, 
+    LINE_RES, LATCH_RES,
+    LINE_SO, LINE_FROMSO, LATCH_SO0, LATCH_SO1, LATCH_SO2, 
+
     // Random logic latches and control lines.
-    LATCH_READY,
+    LATCH_nREADY,
     LINE_SYNC,
 
     DRV_ADH_ABH, DRV_ADL_ABL, DRV_0_ADL0, DRV_0_ADL1, DRV_0_ADL2,
@@ -91,10 +99,44 @@ static void process_edit ( WPARAM wParam, int ctrl)
     }
 }
 
+static void process_check ( WPARAM wParam, int ctrl)
+{
+    Context6502 *cpu = &DebugNES->cpu;
+    char value;
+    if ( LOWORD(wParam) == ctrl && PlotDone ) {
+        value = SendMessage (debugCtrl[ctrl], BM_GETCHECK, 0, 0) == BST_CHECKED ? 0 : 1;
+        switch (ctrl) {
+            case LATCH_TRSYNC: cpu->TRSync = value; break;
+            case LINE_PHI0: cpu->PHI0 = value; break;
+            case LINE_PHI1: cpu->PHI1 = value; break;
+            case LINE_PHI2: cpu->PHI2 = value; break;
+            case LINE_NMI: cpu->NMI = value; break;
+            case LINE_FROMNMI: cpu->FromNMI = value; break;
+            case LINE_IRQ: cpu->IRQ = value; break;
+            case LATCH_IRQP: cpu->IRQP = value; break;
+            case LINE_RDY: cpu->RDY = value; break;
+            case LATCH_BR0: cpu->BRLatch[0] = value; break;
+            case LATCH_BR1: cpu->BRLatch[1] = value; break;
+            case LINE_RES: cpu->RES = value; break;
+            case LATCH_RES: cpu->RESLatch = value; break;
+            case LINE_SO: cpu->SO = value; break;
+            case LINE_FROMSO: cpu->FromSO = value; break;
+            case LATCH_SO0: cpu->SOLatch[0] = value; break;
+            case LATCH_SO1: cpu->SOLatch[1] = value; break;
+            case LATCH_SO2: cpu->SOLatch[2] = value; break;
+        }
+
+        if ( ctrl >= PLA_BASE )  cpu->PLAOUT[ctrl-PLA_BASE] = value;
+
+        SendMessage (debugCtrl[ctrl], BM_SETCHECK, value ? BST_CHECKED : BST_UNCHECKED, 0);
+    }
+}
+
 static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     HDC hdc;
     PAINTSTRUCT ps;
+    int i;
 
     switch(msg)
     {
@@ -132,12 +174,33 @@ static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
             process_edit (wParam, VAL_PD);
             process_edit (wParam, VAL_IR);
 
+            process_check (wParam, LATCH_TRSYNC);
+            process_check (wParam, LINE_PHI0);
+            process_check (wParam, LINE_PHI1);
+            process_check (wParam, LINE_PHI2);
+            process_check (wParam, LINE_NMI);
+            process_check (wParam, LINE_FROMNMI);
+            process_check (wParam, LINE_IRQ);
+            process_check (wParam, LATCH_IRQP);
+            process_check (wParam, LINE_RDY);
+            process_check (wParam, LATCH_BR0);
+            process_check (wParam, LATCH_BR1);
+            process_check (wParam, LINE_RES);
+            process_check (wParam, LATCH_RES);
+            process_check (wParam, LINE_SO);
+            process_check (wParam, LINE_FROMSO);
+            process_check (wParam, LATCH_SO0);
+            process_check (wParam, LATCH_SO1);
+            process_check (wParam, LATCH_SO2);
+
+            for (i=0; i<129; i++) process_check (wParam, PLA_BASE+i);
+
             switch (LOWORD(wParam))
             {
                 case STEP_BUTTON:
                     DebugNES->Step6502 (&DebugNES->cpu);
-                    DebugNES->cpu.PHI0 ^= 1;
                     update_debugger (DebugNES);
+                    DebugNES->cpu.PHI0 ^= 1;
                     return 0;
     
                 case MISC_BUTTON:
@@ -277,7 +340,7 @@ static HWND toggle ( HINSTANCE hInstance, HWND dlg, int x, int y, char * text, i
 
 static void place_controls (HINSTANCE hinst, HWND dlg)
 {
-    int y, i;
+    int x, y, i;
 
     // Registers section
     label (hinst, dlg, 12, 8, "ADDR" );
@@ -434,6 +497,38 @@ static void place_controls (HINSTANCE hinst, HWND dlg)
     for (y=60; i<120; i++) debugCtrl[PLA_BASE+i] = toggle (hinst, dlg, 970, y+=15, PLAName(i), PLA_BASE+i );
     for (y=60; i<129; i++) debugCtrl[PLA_BASE+i] = toggle (hinst, dlg, 1050, y+=15, PLAName(i), PLA_BASE+i );
 
+    // Misc. logic lines and latches
+    y = 308; x = 410;
+    debugCtrl[LATCH_TRSYNC] = toggle (hinst, dlg, 410, y+=15, "TRSync", LATCH_TRSYNC );
+    debugCtrl[LINE_T2] = toggle (hinst, dlg, x, y+=15, "T2", LINE_T2 );
+    debugCtrl[LINE_T3] = toggle (hinst, dlg, x, y+=15, "T3", LINE_T3 );
+    debugCtrl[LINE_T4] = toggle (hinst, dlg, x, y+=15, "T4", LINE_T4 );
+    debugCtrl[LINE_T5] = toggle (hinst, dlg, x, y+=15, "T5", LINE_T5 );
+    y = 5;
+    debugCtrl[LINE_PHI0] = toggle (hinst, dlg, 410, y, "PHI0", LINE_PHI0 );
+    debugCtrl[LINE_PHI1] = toggle (hinst, dlg, 410, y+=15, "PHI1", LINE_PHI1 );
+    debugCtrl[LINE_PHI2] = toggle (hinst, dlg, 410, y+=15, "PHI2", LINE_PHI2 );
+    y = 5;
+    debugCtrl[LINE_NMI] = toggle (hinst, dlg, 480, y, "NMI", LINE_NMI );
+    debugCtrl[LINE_FROMNMI] = toggle (hinst, dlg, 480, y+=15, "FromNMI", LINE_FROMNMI );
+    y = 5;
+    debugCtrl[LINE_IRQ] = toggle (hinst, dlg, 550, y, "IRQ", LINE_IRQ );
+    debugCtrl[LATCH_IRQP] = toggle (hinst, dlg, 550, y+=15, "IRQP", LATCH_IRQP );
+    y = 5;
+    debugCtrl[LINE_RDY] = toggle (hinst, dlg, 620, y, "RDY", LINE_RDY );
+    debugCtrl[LATCH_BR0] = toggle (hinst, dlg, 620, y+=15, "BRLatch0", LATCH_BR0 );
+    debugCtrl[LATCH_BR1] = toggle (hinst, dlg, 620, y+=15, "BRLatch1", LATCH_BR1 );
+    y = 5;
+    debugCtrl[LINE_RES] = toggle (hinst, dlg, 690, y, "RES", LINE_RES );
+    debugCtrl[LATCH_RES] = toggle (hinst, dlg, 690, y+=15, "RESLatch", LATCH_RES );
+    y = 5;
+    debugCtrl[LINE_SO] = toggle (hinst, dlg, 760, y, "SO", LINE_SO );
+    debugCtrl[LINE_FROMSO] = toggle (hinst, dlg, 760, y+=15, "FromSO", LINE_FROMSO );
+    y = 5;
+    debugCtrl[LATCH_SO0] = toggle (hinst, dlg, 830, y, "SOLatch0", LATCH_SO0 );
+    debugCtrl[LATCH_SO1] = toggle (hinst, dlg, 830, y+=15, "SOLatch1", LATCH_SO1 );
+    debugCtrl[LATCH_SO2] = toggle (hinst, dlg, 830, y+=15, "SOLatch2", LATCH_SO2 );
+
     // Buttons
     set_font ( CreateWindow ("button", "Step", WS_CHILD | WS_VISIBLE, 880, 420, 80, 30, dlg, (HMENU)STEP_BUTTON, hinst, NULL) );
 
@@ -478,6 +573,7 @@ static void setvalue16 ( int ctrl, unsigned short value )
 static void update_debugger (ContextBoard *nes)
 {
     Context6502 *cpu = &nes->cpu;
+    int i;
 
     setvalue16 ( VAL_ADDR, packreg(cpu->ADDR, 16) );
 
@@ -508,7 +604,28 @@ static void update_debugger (ContextBoard *nes)
     setvalue8 ( VAL_PD, packreg(cpu->PD, 8) );
     setvalue8 ( VAL_IR, packreg(cpu->IR, 8) );
 
-    check ( DRV_ADH_ABH, 1/*cpu->DRIVEREG[DRIVE_ADH_ABH]*/ );
+    check ( DRV_ADH_ABH, cpu->DRIVEREG[DRIVE_ADH_ABH] );
+
+    check ( LATCH_TRSYNC, cpu->TRSync );
+    check ( LINE_PHI0, cpu->PHI0 );
+    check ( LINE_PHI1, cpu->PHI1 );
+    check ( LINE_PHI2, cpu->PHI2 );
+    check ( LINE_NMI, cpu->NMI );
+    check ( LINE_FROMNMI, cpu->FromNMI );
+    check ( LINE_IRQ, cpu->IRQ );
+    check ( LATCH_IRQP, cpu->IRQP );
+    check ( LINE_RDY, cpu->RDY );
+    check ( LATCH_BR0, cpu->BRLatch[0] );
+    check ( LATCH_BR1, cpu->BRLatch[1] );
+    check ( LINE_RES, cpu->RES );
+    check ( LATCH_RES, cpu->RESLatch );
+    check ( LINE_SO, cpu->SO );
+    check ( LINE_FROMSO, cpu->FromSO );
+    check ( LATCH_SO0, cpu->SOLatch[0] );
+    check ( LATCH_SO1, cpu->SOLatch[1] );
+    check ( LATCH_SO2, cpu->SOLatch[2] );
+
+    for (i=0; i<129; i++) check ( PLA_BASE+i, cpu->PLAOUT[i] );
 
     SendMessage (debugCtrl[VAL_DISA], WM_SETTEXT, (WPARAM)NULL, (LPARAM)QuickDisa(~packreg(cpu->IR, 8)) );
     if (cpu->PHI0 == 0) SendMessage (debugCtrl[VAL_MODE], WM_SETTEXT, (WPARAM)NULL, (LPARAM)"Write Mode" );
