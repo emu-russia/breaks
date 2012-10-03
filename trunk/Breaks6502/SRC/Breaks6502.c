@@ -35,6 +35,8 @@ __declspec( dllexport ) void Step6502 ( Context6502 * cpu )
     Regs (cpu);
     ProgramCounter (cpu);
     AddressBus (cpu);
+
+    printf ("\n");
 }
 
 // Execute specific 6502 subsystem for debug purposes.

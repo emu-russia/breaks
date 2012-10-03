@@ -13,6 +13,8 @@ void MiscLogic (Context6502 * cpu)
     // IRQ
 
     // RDY
+    if (cpu->PHI2) cpu->BRLatch[0] = BIT(~cpu->RDY);
+    if (cpu->PHI1) cpu->BRLatch[1] = BIT(~cpu->BRLatch[0]);
 
     // RES
 
