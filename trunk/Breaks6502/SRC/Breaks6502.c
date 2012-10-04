@@ -18,6 +18,11 @@ void unpackreg (char *reg, unsigned char val, int bits)
     }
 }
 
+// Basic logic
+int NOT(int a) { return (~a & 1); }
+int NAND(int a, int b) { return ~((a & 1) & (b & 1)) & 1; }
+int NOR(int a, int b) { return ~((a & 1) | (b & 1)) & 1; }
+
 __declspec( dllexport ) void Step6502 ( Context6502 * cpu )
 {
     // Dispatch top part logic

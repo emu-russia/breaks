@@ -29,7 +29,7 @@ void ALU (Context6502 * cpu, int DecimalCorrection)
 
     // A/B INPUT
     for (b=0; b<8; b++) {
-        if ( cpu->DRIVEREG[DRIVE_NOTDB_ADD] ) cpu->BI[b] = BIT(~cpu->DB[b]);
+        if ( cpu->DRIVEREG[DRIVE_NOTDB_ADD] ) cpu->BI[b] = NOT(cpu->DB[b]);
         if ( cpu->DRIVEREG[DRIVE_DB_ADD] ) cpu->BI[b] = cpu->DB[b];
         if ( cpu->DRIVEREG[DRIVE_ADL_ADD] ) cpu->BI[b] = cpu->ADL[b];
         if ( cpu->DRIVEREG[DRIVE_SB_ADD] ) cpu->AI[b] = cpu->SB[b];

@@ -27,16 +27,22 @@ typedef struct Context6502
     char        DRIVEREG[64];
     char        SOLatch[3];         // SO line latches
     char        FromSO;
-    char        RESLatch;           // Reset latch
     char        BRLatch[2];         // Branch ready latches
-    char        IRQP;               // IRQ input logic latch
-    char        FromNMI;            // NMI logic output
+    char        NMIDynaLatch;       // NMI bistble latch on top part
+    char        FromNMI;            // Line comes from top NMI logic
+    char        IRQDynaLatch;       // bistable IRQ logic latch
+    char        IRQStatLatch;       // static IRQ latch
+    char        FromIRQ;            // Line comes from top IRQ logic
+    char        RESDynaLatch;       // bistable RES logic latch
+    char        RESStatLatch;       // static RES latch
+    char        FromRES;            // Line comes from top RES logic
     char        TRSync;             // Timereg latches
     char        TRin[4], TRout[4];
     int         Tcount;             // Packed T2-T5 counter
     // Random logic latches and internal variables
     int         sync, ready, TRES;
     int         clearIR, fetch;
+    int         T0, T1X;            // Two-cycle opcodes timing output lines
     char        RWOut;              // R/W output latch
 
     // Bottom part internal state
