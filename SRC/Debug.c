@@ -26,9 +26,9 @@ enum {
     LATCH_TRSYNC, LINE_T2, LINE_T3, LINE_T4, LINE_T5, 
     LINE_PHI0, LINE_PHI1, LINE_PHI2, 
     LINE_NMI, LINE_FROMNMI,
-    LINE_IRQ, LATCH_IRQP,
+    LINE_IRQ, LINE_FROMIRQ,
     LINE_RDY, LATCH_BR0, LATCH_BR1, 
-    LINE_RES, LATCH_RES,
+    LINE_RES, LINE_FROMRES,
     LINE_SO, LINE_FROMSO, LATCH_SO0, LATCH_SO1, LATCH_SO2, 
 
     // Random logic latches and control lines.
@@ -113,12 +113,12 @@ static void process_check ( WPARAM wParam, int ctrl)
             case LINE_NMI: cpu->NMI = value; break;
             case LINE_FROMNMI: cpu->FromNMI = value; break;
             case LINE_IRQ: cpu->IRQ = value; break;
-            case LATCH_IRQP: cpu->IRQP = value; break;
+            case LINE_FROMIRQ: cpu->FromIRQ = value; break;
             case LINE_RDY: cpu->RDY = value; break;
             case LATCH_BR0: cpu->BRLatch[0] = value; break;
             case LATCH_BR1: cpu->BRLatch[1] = value; break;
             case LINE_RES: cpu->RES = value; break;
-            case LATCH_RES: cpu->RESLatch = value; break;
+            case LINE_FROMRES: cpu->FromRES = value; break;
             case LINE_SO: cpu->SO = value; break;
             case LINE_FROMSO: cpu->FromSO = value; break;
             case LATCH_SO0: cpu->SOLatch[0] = value; break;
@@ -181,12 +181,12 @@ static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
             process_check (wParam, LINE_NMI);
             process_check (wParam, LINE_FROMNMI);
             process_check (wParam, LINE_IRQ);
-            process_check (wParam, LATCH_IRQP);
+            process_check (wParam, LINE_FROMIRQ);
             process_check (wParam, LINE_RDY);
             process_check (wParam, LATCH_BR0);
             process_check (wParam, LATCH_BR1);
             process_check (wParam, LINE_RES);
-            process_check (wParam, LATCH_RES);
+            process_check (wParam, LINE_FROMRES);
             process_check (wParam, LINE_SO);
             process_check (wParam, LINE_FROMSO);
             process_check (wParam, LATCH_SO0);
@@ -509,18 +509,18 @@ static void place_controls (HINSTANCE hinst, HWND dlg)
     debugCtrl[LINE_PHI1] = toggle (hinst, dlg, 410, y+=15, "PHI1", LINE_PHI1 );
     debugCtrl[LINE_PHI2] = toggle (hinst, dlg, 410, y+=15, "PHI2", LINE_PHI2 );
     y = 5;
-    debugCtrl[LINE_NMI] = toggle (hinst, dlg, 480, y, "NMI", LINE_NMI );
-    debugCtrl[LINE_FROMNMI] = toggle (hinst, dlg, 480, y+=15, "FromNMI", LINE_FROMNMI );
+    debugCtrl[LINE_NMI] = toggle (hinst, dlg, 480, y, "/NMI", LINE_NMI );
+    debugCtrl[LINE_FROMNMI] = toggle (hinst, dlg, 480, y+=15, "NMI line", LINE_FROMNMI );
     y = 5;
-    debugCtrl[LINE_IRQ] = toggle (hinst, dlg, 550, y, "IRQ", LINE_IRQ );
-    debugCtrl[LATCH_IRQP] = toggle (hinst, dlg, 550, y+=15, "IRQP", LATCH_IRQP );
+    debugCtrl[LINE_IRQ] = toggle (hinst, dlg, 550, y, "/IRQ", LINE_IRQ );
+    debugCtrl[LINE_FROMIRQ] = toggle (hinst, dlg, 550, y+=15, "IRQ line", LINE_FROMIRQ );
     y = 5;
     debugCtrl[LINE_RDY] = toggle (hinst, dlg, 620, y, "RDY", LINE_RDY );
     debugCtrl[LATCH_BR0] = toggle (hinst, dlg, 620, y+=15, "BRLatch0", LATCH_BR0 );
     debugCtrl[LATCH_BR1] = toggle (hinst, dlg, 620, y+=15, "BRLatch1", LATCH_BR1 );
     y = 5;
     debugCtrl[LINE_RES] = toggle (hinst, dlg, 690, y, "RES", LINE_RES );
-    debugCtrl[LATCH_RES] = toggle (hinst, dlg, 690, y+=15, "RESLatch", LATCH_RES );
+    debugCtrl[LINE_FROMRES] = toggle (hinst, dlg, 690, y+=15, "RES line", LINE_FROMRES );
     y = 5;
     debugCtrl[LINE_SO] = toggle (hinst, dlg, 760, y, "SO", LINE_SO );
     debugCtrl[LINE_FROMSO] = toggle (hinst, dlg, 760, y+=15, "FromSO", LINE_FROMSO );
@@ -613,12 +613,12 @@ static void update_debugger (ContextBoard *nes)
     check ( LINE_NMI, cpu->NMI );
     check ( LINE_FROMNMI, cpu->FromNMI );
     check ( LINE_IRQ, cpu->IRQ );
-    check ( LATCH_IRQP, cpu->IRQP );
+    check ( LINE_FROMIRQ, cpu->FromIRQ );
     check ( LINE_RDY, cpu->RDY );
     check ( LATCH_BR0, cpu->BRLatch[0] );
     check ( LATCH_BR1, cpu->BRLatch[1] );
     check ( LINE_RES, cpu->RES );
-    check ( LATCH_RES, cpu->RESLatch );
+    check ( LINE_FROMRES, cpu->FromRES );
     check ( LINE_SO, cpu->SO );
     check ( LINE_FROMSO, cpu->FromSO );
     check ( LATCH_SO0, cpu->SOLatch[0] );

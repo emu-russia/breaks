@@ -155,16 +155,19 @@ void DecodePLA (Context6502 * cpu)
     int BranchNotReady, IR01, PushPull;
     char * line;
 
+    // HIGH level mutes line.
+    T[0] = cpu->T0;
+    T[1] = cpu->T1X;
     T[2] = BIT(cpu->Tcount);
     T[3] = BIT(cpu->Tcount >> 1);
     T[4] = BIT(cpu->Tcount >> 2);
     T[5] = BIT(cpu->Tcount >> 3);
 
     // BranchNotReady for line 73
-    BranchNotReady = BIT(~cpu->BRLatch[1]);
+    BranchNotReady = NOT(cpu->BRLatch[1]);
 
     for (b=0; b<8; b++) {
-        IR[b] = BIT(~cpu->IR[b]);
+        IR[b] = NOT(cpu->IR[b]);
         NOTIR[b] = BIT(cpu->IR[b]);
     }
     IR01 = IR[0] | IR[1];
@@ -211,8 +214,4 @@ void DecodePLA (Context6502 * cpu)
 
     // Last line is special (all implied, except push/pull)
     cpu->PLAOUT[n] = ! ( IR[2] || NOTIR[3] || IR[0] || PushPull );
-}
-
-void TracePLA (Context6502 * cpu)
-{
 }

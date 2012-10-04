@@ -22,3 +22,6 @@
 
 unsigned long packreg ( char *reg, int bits );
 void unpackreg (char *reg, unsigned char val, int bits);
+
+int NAND(int a, int b);
+int NOR(int a, int b);
