@@ -16,19 +16,19 @@ void AddressBus (Context6502 * cpu)
     for (b=0; b<8; b++) {
         if (cpu->PHI1 && cpu->DRIVEREG[DRIVE_ADH_ABH])
         {
-            cpu->ABH[b] = BIT(~cpu->ADH[b]);
+            cpu->ABH[b] = NOT(cpu->ADH[b]);
         }
         if (cpu->PHI2) cpu->ABH[b] = cpu->ABH[b];   // refresh latch
-        cpu->ADDR[8+b] = BIT(~cpu->ABH[b]);
+        cpu->ADDR[8+b] = NOT(cpu->ABH[b]);
     }
 
     // Low
     for (b=0; b<8; b++) {
         if (cpu->PHI1 && cpu->DRIVEREG[DRIVE_ADL_ABL])
         {
-            cpu->ABL[b] = BIT(~cpu->ADL[b]);
+            cpu->ABL[b] = NOT(cpu->ADL[b]);
         }
         if (cpu->PHI2) cpu->ABL[b] = cpu->ABL[b];   // refresh latch
-        cpu->ADDR[b] = BIT(~cpu->ABL[b]);
+        cpu->ADDR[b] = NOT(cpu->ABL[b]);
     }
 }

@@ -80,6 +80,8 @@ char * PLAName (int line)
 
     switch (line) {
         case 0: return "0";
+        case 34: return "T0 ANY";
+        case 126: return "BRANCH7";
 
         default:
             sprintf (def, "%i", line);
