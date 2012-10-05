@@ -41,6 +41,7 @@ void PowerOnNES (void)
 {
     memset ( &nes, 0, sizeof(nes) );
     nes.cpu.NoDecimalCorrection = 1;
+    nes.cpu.DEBUG = 1;
 
     // Load external libraries
     nes.moduleCPU = LoadLibrary ( "Breaks6502.dll" );
