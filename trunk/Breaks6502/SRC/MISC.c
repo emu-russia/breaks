@@ -2,6 +2,19 @@
 #include "Breaks6502.h"
 #include "Breaks6502Private.h"
 
+/*
+    Short notes:
+
+    XXXDynaLatch is bistable trigger, clocked out by PHI2.
+
+    XXXStatLatch is present only for /IRQ and RES pads, because these pads
+    are "level-sensitive", instead of /NMI which is "edge-sensitive",
+    which means that the NMI is triggered by the falling edge of 
+    the signal rather than its level.
+
+    FromXXX is output level of whole interrupt pad logic.
+*/
+
 void MiscLogic (Context6502 * cpu)
 {
     int b;
@@ -11,13 +24,13 @@ void MiscLogic (Context6502 * cpu)
     cpu->PHI2 = BIT(cpu->PHI0);
 
     // NMI
-    b = NOR ( NAND ( NOT(cpu->NMI), cpu->PHI2), cpu->NMIDynaLatch );
-    cpu->NMIDynaLatch = NOR ( NAND(cpu->NMI, cpu->PHI2), b );
+    b = NOR ( NOT(cpu->NMI) & cpu->PHI2, cpu->NMIDynaLatch );
+    cpu->NMIDynaLatch = NOR ( cpu->NMI & cpu->PHI2, b );
     cpu->FromNMI = NOT(cpu->NMIDynaLatch);
 
     // IRQ
-    b = NOR ( NAND(cpu->IRQ, cpu->PHI2), cpu->IRQDynaLatch );
-    cpu->IRQDynaLatch = NOR ( NAND(NOT(cpu->IRQ), cpu->PHI2), b);
+    b = NOR ( cpu->IRQ & cpu->PHI2, cpu->IRQDynaLatch );
+    cpu->IRQDynaLatch = NOR ( NOT(cpu->IRQ) & cpu->PHI2, b);
     if ( cpu->PHI1 ) cpu->IRQStatLatch = cpu->IRQDynaLatch;
     cpu->FromIRQ = NOT(cpu->IRQStatLatch);
 
@@ -26,8 +39,8 @@ void MiscLogic (Context6502 * cpu)
     if (cpu->PHI1) cpu->BRLatch[1] = BIT(~cpu->BRLatch[0]);
 
     // RES
-    b = ~( ~(cpu->RES & cpu->PHI2) | cpu->RESDynaLatch);
-    cpu->RESDynaLatch = BIT( ~(~(NOT(cpu->RES) & cpu->PHI2) | BIT(b)) );
+    b = NOR (cpu->RES & cpu->PHI2, cpu->RESDynaLatch);
+    cpu->RESDynaLatch = NOR ( NOT(cpu->RES) & cpu->PHI2, b);
     if ( cpu->PHI1 ) cpu->RESStatLatch = cpu->RESDynaLatch;
     cpu->FromRES = NOT(cpu->RESStatLatch);
 

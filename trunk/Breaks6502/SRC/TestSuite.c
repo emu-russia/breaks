@@ -209,24 +209,25 @@ void IntLatch (void)
     int PHI2;
     int i, b;
 
+    printf ( "L I P |L* O\n");
     for (i=0; i<8; i++) {
 
         PHI2 = BIT(i >> 0);
         INPUT_PAD = BIT(i >> 1);
         DYNA_LATCH = BIT(i >> 2);
 
-        DYNA_LATCH0 = DYNA_LATCH;
-        b = NOR ( NAND(NOT(INPUT_PAD), PHI2), DYNA_LATCH);
-        DYNA_LATCH = NOR ( NAND(INPUT_PAD, PHI2), b );
-        OUTPUT_LINE = NOT(DYNA_LATCH);
-
 /*
         DYNA_LATCH0 = DYNA_LATCH;
-        b = NOR ( NAND(INPUT_PAD, PHI2), DYNA_LATCH);
-        DYNA_LATCH = NOR ( NAND(NOT(INPUT_PAD), PHI2), b );
+        b = NOR ( NOT(INPUT_PAD) & PHI2, DYNA_LATCH);
+        DYNA_LATCH = NOR ( INPUT_PAD & PHI2, b );
+        OUTPUT_LINE = NOT(DYNA_LATCH);
+*/
+
+        DYNA_LATCH0 = DYNA_LATCH;
+        b = NOR ( INPUT_PAD & PHI2, DYNA_LATCH);
+        DYNA_LATCH = NOR ( NOT(INPUT_PAD) & PHI2, b );
         if (PHI2 == 0) STAT_LATCH = DYNA_LATCH;
         OUTPUT_LINE = NOT(STAT_LATCH);
-*/
 
         printf ("%i %i %i | %i %i \n", DYNA_LATCH0, INPUT_PAD, PHI2, DYNA_LATCH, OUTPUT_LINE );
     }
