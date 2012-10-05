@@ -8,7 +8,9 @@ void InstructionRegister (Context6502 * cpu)
 
     if ( cpu->PHI1 && cpu->fetch ) {
         for (b=0; b<8; b++) cpu->IR[b] = cpu->PD[b] & ~cpu->clearIR;
-        printf ( "IR=%02X\n", packreg(cpu->IR, 8) );
+        if (cpu->DEBUG) printf ( "IR=%02X\n", packreg(cpu->IR, 8) );
     }
-    else printf ( "IR unchanged: PHI1=%i / fetch=%i\n", cpu->PHI1, cpu->fetch );
+    else {
+        if (cpu->DEBUG) printf ( "IR unchanged: PHI1=%i / fetch=%i\n", cpu->PHI1, cpu->fetch );
+    }
 }

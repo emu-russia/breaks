@@ -35,8 +35,8 @@ void MiscLogic (Context6502 * cpu)
     cpu->FromIRQ = NOT(cpu->IRQStatLatch);
 
     // RDY
-    if (cpu->PHI2) cpu->BRLatch[0] = BIT(~cpu->RDY);
-    if (cpu->PHI1) cpu->BRLatch[1] = BIT(~cpu->BRLatch[0]);
+    if (cpu->PHI2) cpu->BRLatch[0] = NOT(cpu->RDY);
+    if (cpu->PHI1) cpu->BRLatch[1] = NOT(cpu->BRLatch[0]);
 
     // RES
     b = NOR (cpu->RES & cpu->PHI2, cpu->RESDynaLatch);

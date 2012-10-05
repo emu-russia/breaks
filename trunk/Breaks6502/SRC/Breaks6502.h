@@ -3,6 +3,7 @@
 typedef struct Context6502
 {
     int         NoDecimalCorrection;        // disable BCD ALU correction if set
+    int         DEBUG;                      // do some debug printf
 
     // Inputs
     int         PHI0;

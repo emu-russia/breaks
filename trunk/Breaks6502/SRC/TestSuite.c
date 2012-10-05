@@ -235,5 +235,4 @@ void IntLatch (void)
 
 main ()
 {
-    IntLatch ();
 }

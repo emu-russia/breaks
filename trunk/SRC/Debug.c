@@ -124,6 +124,59 @@ static void process_check ( WPARAM wParam, int ctrl)
             case LATCH_SO0: cpu->SOLatch[0] = value; break;
             case LATCH_SO1: cpu->SOLatch[1] = value; break;
             case LATCH_SO2: cpu->SOLatch[2] = value; break;
+
+            case DRV_ADH_ABH: cpu->DRIVEREG[DRIVE_ADH_ABH] = value; break;
+            case DRV_ADL_ABL: cpu->DRIVEREG[DRIVE_ADL_ABL] = value; break;
+            case DRV_0_ADL0: cpu->DRIVEREG[DRIVE_0_ADL0] = value; break;
+            case DRV_0_ADL1: cpu->DRIVEREG[DRIVE_0_ADL1] = value; break;
+            case DRV_0_ADL2: cpu->DRIVEREG[DRIVE_0_ADL2] = value; break;
+
+            case DRV_Y_SB: cpu->DRIVEREG[DRIVE_Y_SB] = value; break;
+            case DRV_X_SB: cpu->DRIVEREG[DRIVE_X_SB] = value; break;
+            case DRV_SB_Y: cpu->DRIVEREG[DRIVE_SB_Y] = value; break;
+            case DRV_SB_X: cpu->DRIVEREG[DRIVE_SB_X] = value; break;
+            case DRV_S_SB: cpu->DRIVEREG[DRIVE_S_SB] = value; break;
+            case DRV_S_ADL: cpu->DRIVEREG[DRIVE_S_ADL] = value; break;
+            case DRV_SB_S: cpu->DRIVEREG[DRIVE_SB_S] = value; break;
+            case DRV_S_S: cpu->DRIVEREG[DRIVE_S_S] = value; break;
+
+            case DRV_nDB_ADD: cpu->DRIVEREG[DRIVE_NOTDB_ADD] = value; break;
+            case DRV_DB_ADD: cpu->DRIVEREG[DRIVE_DB_ADD] = value; break;
+            case DRV_0_ADD: cpu->DRIVEREG[DRIVE_0_ADD] = value; break;
+            case DRV_SB_ADD: cpu->DRIVEREG[DRIVE_SB_ADD] = value; break;
+            case DRV_ADL_ADD: cpu->DRIVEREG[DRIVE_ADL_ADD] = value; break;
+            case DRV_ANDS: cpu->DRIVEREG[DRIVE_ANDS] = value; break;
+            case DRV_EORS: cpu->DRIVEREG[DRIVE_EORS] = value; break;
+            case DRV_ORS: cpu->DRIVEREG[DRIVE_ORS] = value; break;
+            case DRV_I_ADDC: cpu->DRIVEREG[DRIVE_I_ADDC] = value; break;
+            case DRV_SRS: cpu->DRIVEREG[DRIVE_SRS] = value; break;
+            case DRV_SUMS: cpu->DRIVEREG[DRIVE_SUMS] = value; break;
+            case DRV_DAA: cpu->DRIVEREG[DRIVE_DAA] = value; break;
+            case DRV_ADD_SB7: cpu->DRIVEREG[DRIVE_ADD_SB7] = value; break;
+            case DRV_ADD_SB06: cpu->DRIVEREG[DRIVE_ADD_SB06] = value; break;
+            case DRV_ADD_ADL: cpu->DRIVEREG[DRIVE_ADD_ADL] = value; break;
+            case DRV_DSA: cpu->DRIVEREG[DRIVE_DSA] = value; break;
+            case DRV_0_ADH0: cpu->DRIVEREG[DRIVE_0_ADH0] = value; break;
+            case DRV_SB_DB: cpu->DRIVEREG[DRIVE_SB_DB] = value; break;
+            case DRV_SB_AC: cpu->DRIVEREG[DRIVE_SB_AC] = value; break;
+            case DRV_SB_ADH: cpu->DRIVEREG[DRIVE_SB_ADH] = value; break;
+            case DRV_0_ADH17: cpu->DRIVEREG[DRIVE_0_ADH17] = value; break;
+            case DRV_AC_SB: cpu->DRIVEREG[DRIVE_AC_SB] = value; break;
+            case DRV_AC_DB: cpu->DRIVEREG[DRIVE_AC_DB] = value; break;
+
+            case DRV_ADH_PCH: cpu->DRIVEREG[DRIVE_ADH_PCH] = value; break;
+            case DRV_PCH_PCH: cpu->DRIVEREG[DRIVE_PCH_PCH] = value; break;
+            case DRV_PCH_DB: cpu->DRIVEREG[DRIVE_PCH_DB] = value; break;
+            case DRV_PCL_DB: cpu->DRIVEREG[DRIVE_PCL_DB] = value; break;
+            case DRV_PCH_ADH: cpu->DRIVEREG[DRIVE_PCH_ADH] = value; break;
+            case DRV_PCL_PCL: cpu->DRIVEREG[DRIVE_PCL_PCL] = value; break;
+            case DRV_PCL_ADL: cpu->DRIVEREG[DRIVE_PCL_ADL] = value; break;
+            case DRV_ADL_PCL: cpu->DRIVEREG[DRIVE_ADL_PCL] = value; break;
+            case DRV_IPC: cpu->DRIVEREG[DRIVE_IPC] = value; break;
+
+            case DRV_DL_ADL: cpu->DRIVEREG[DRIVE_DL_ADL] = value; break;
+            case DRV_DL_ADH: cpu->DRIVEREG[DRIVE_DL_ADH] = value; break;
+            case DRV_DL_DB: cpu->DRIVEREG[DRIVE_DL_DB] = value; break;
         }
 
         if ( ctrl >= PLA_BASE )  cpu->PLAOUT[ctrl-PLA_BASE] = value;
@@ -173,6 +226,59 @@ static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
             process_edit (wParam, VAL_DATA);
             process_edit (wParam, VAL_PD);
             process_edit (wParam, VAL_IR);
+
+            process_check (wParam,  DRV_ADH_ABH);
+            process_check (wParam,  DRV_ADL_ABL);
+            process_check (wParam,  DRV_0_ADL0);
+            process_check (wParam,  DRV_0_ADL1);
+            process_check (wParam,  DRV_0_ADL2);
+
+            process_check (wParam,  DRV_Y_SB);
+            process_check (wParam,  DRV_X_SB);
+            process_check (wParam,  DRV_SB_Y);
+            process_check (wParam,  DRV_SB_X);
+            process_check (wParam,  DRV_S_SB);
+            process_check (wParam,  DRV_S_ADL);
+            process_check (wParam,  DRV_SB_S);
+            process_check (wParam,  DRV_S_S);
+
+            process_check (wParam,  DRV_nDB_ADD);
+            process_check (wParam,  DRV_DB_ADD);
+            process_check (wParam,  DRV_0_ADD);
+            process_check (wParam,  DRV_SB_ADD);
+            process_check (wParam,  DRV_ADL_ADD);
+            process_check (wParam,  DRV_ANDS);
+            process_check (wParam,  DRV_EORS);
+            process_check (wParam,  DRV_ORS);
+            process_check (wParam,  DRV_I_ADDC);
+            process_check (wParam,  DRV_SRS);
+            process_check (wParam,  DRV_SUMS);
+            process_check (wParam,  DRV_DAA);
+            process_check (wParam,  DRV_ADD_SB7);
+            process_check (wParam,  DRV_ADD_SB06);
+            process_check (wParam,  DRV_ADD_ADL);
+            process_check (wParam,  DRV_DSA);
+            process_check (wParam,  DRV_0_ADH0);
+            process_check (wParam,  DRV_SB_DB);
+            process_check (wParam,  DRV_SB_AC);
+            process_check (wParam,  DRV_SB_ADH);
+            process_check (wParam,  DRV_0_ADH17);
+            process_check (wParam,  DRV_AC_SB);
+            process_check (wParam,  DRV_AC_DB);
+
+            process_check (wParam,  DRV_ADH_PCH);
+            process_check (wParam,  DRV_PCH_PCH);
+            process_check (wParam,  DRV_PCH_DB);
+            process_check (wParam,  DRV_PCL_DB);
+            process_check (wParam,  DRV_PCH_ADH);
+            process_check (wParam,  DRV_PCL_PCL);
+            process_check (wParam,  DRV_PCL_ADL);
+            process_check (wParam,  DRV_ADL_PCL );
+            process_check (wParam,  DRV_IPC );
+
+            process_check (wParam,  DRV_DL_ADL );
+            process_check (wParam,  DRV_DL_ADH );
+            process_check (wParam,  DRV_DL_DB );
 
             process_check (wParam, LATCH_TRSYNC);
             process_check (wParam, LINE_PHI0);
@@ -605,6 +711,57 @@ static void update_debugger (ContextBoard *nes)
     setvalue8 ( VAL_IR, packreg(cpu->IR, 8) );
 
     check ( DRV_ADH_ABH, cpu->DRIVEREG[DRIVE_ADH_ABH] );
+    check ( DRV_ADL_ABL, cpu->DRIVEREG[DRIVE_ADL_ABL] );
+    check ( DRV_0_ADL0, cpu->DRIVEREG[DRIVE_0_ADL0] );
+    check ( DRV_0_ADL1, cpu->DRIVEREG[DRIVE_0_ADL1] );
+    check ( DRV_0_ADL2, cpu->DRIVEREG[DRIVE_0_ADL2] );
+
+    check ( DRV_Y_SB, cpu->DRIVEREG[DRIVE_Y_SB] );
+    check ( DRV_X_SB, cpu->DRIVEREG[DRIVE_X_SB] );
+    check ( DRV_SB_Y, cpu->DRIVEREG[DRIVE_SB_Y] );
+    check ( DRV_SB_X, cpu->DRIVEREG[DRIVE_SB_X] );
+    check ( DRV_S_SB, cpu->DRIVEREG[DRIVE_S_SB] );
+    check ( DRV_S_ADL, cpu->DRIVEREG[DRIVE_S_ADL] );
+    check ( DRV_SB_S, cpu->DRIVEREG[DRIVE_SB_S] );
+    check ( DRV_S_S, cpu->DRIVEREG[DRIVE_S_S] );
+
+    check ( DRV_nDB_ADD, cpu->DRIVEREG[DRIVE_NOTDB_ADD] );
+    check ( DRV_DB_ADD, cpu->DRIVEREG[DRIVE_DB_ADD] );
+    check ( DRV_0_ADD, cpu->DRIVEREG[DRIVE_0_ADD] );
+    check ( DRV_SB_ADD, cpu->DRIVEREG[DRIVE_SB_ADD] );
+    check ( DRV_ADL_ADD, cpu->DRIVEREG[DRIVE_ADL_ADD] );
+    check ( DRV_ANDS, cpu->DRIVEREG[DRIVE_ANDS] );
+    check ( DRV_EORS, cpu->DRIVEREG[DRIVE_EORS] );
+    check ( DRV_ORS, cpu->DRIVEREG[DRIVE_ORS] );
+    check ( DRV_I_ADDC, cpu->DRIVEREG[DRIVE_I_ADDC] );
+    check ( DRV_SRS, cpu->DRIVEREG[DRIVE_SRS] );
+    check ( DRV_SUMS, cpu->DRIVEREG[DRIVE_SUMS] );
+    check ( DRV_DAA, cpu->DRIVEREG[DRIVE_DAA] );
+    check ( DRV_ADD_SB7, cpu->DRIVEREG[DRIVE_ADD_SB7] );
+    check ( DRV_ADD_SB06, cpu->DRIVEREG[DRIVE_ADD_SB06] );
+    check ( DRV_ADD_ADL, cpu->DRIVEREG[DRIVE_ADD_ADL] );
+    check ( DRV_DSA, cpu->DRIVEREG[DRIVE_DSA] );
+    check ( DRV_0_ADH0, cpu->DRIVEREG[DRIVE_0_ADH0] );
+    check ( DRV_SB_DB, cpu->DRIVEREG[DRIVE_SB_DB] );
+    check ( DRV_SB_AC, cpu->DRIVEREG[DRIVE_SB_AC] );
+    check ( DRV_SB_ADH, cpu->DRIVEREG[DRIVE_SB_ADH] );
+    check ( DRV_0_ADH17, cpu->DRIVEREG[DRIVE_0_ADH17] );
+    check ( DRV_AC_SB, cpu->DRIVEREG[DRIVE_AC_SB] );
+    check ( DRV_AC_DB, cpu->DRIVEREG[DRIVE_AC_DB] );
+
+    check ( DRV_ADH_PCH, cpu->DRIVEREG[DRIVE_ADH_PCH] );
+    check ( DRV_PCH_PCH, cpu->DRIVEREG[DRIVE_PCH_PCH] );
+    check ( DRV_PCH_DB, cpu->DRIVEREG[DRIVE_PCH_DB] );
+    check ( DRV_PCL_DB, cpu->DRIVEREG[DRIVE_PCL_DB] );
+    check ( DRV_PCH_ADH, cpu->DRIVEREG[DRIVE_PCH_ADH] );
+    check ( DRV_PCL_PCL, cpu->DRIVEREG[DRIVE_PCL_PCL] );
+    check ( DRV_PCL_ADL, cpu->DRIVEREG[DRIVE_PCL_ADL] );
+    check ( DRV_ADL_PCL, cpu->DRIVEREG[DRIVE_ADL_PCL] );
+    check ( DRV_IPC, cpu->DRIVEREG[DRIVE_IPC] );
+
+    check ( DRV_DL_ADL, cpu->DRIVEREG[DRIVE_DL_ADL] );
+    check ( DRV_DL_ADH, cpu->DRIVEREG[DRIVE_DL_ADH] );
+    check ( DRV_DL_DB, cpu->DRIVEREG[DRIVE_DL_DB] );
 
     check ( LATCH_TRSYNC, cpu->TRSync );
     check ( LINE_PHI0, cpu->PHI0 );
