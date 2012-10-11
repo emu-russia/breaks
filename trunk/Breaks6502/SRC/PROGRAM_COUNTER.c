@@ -6,6 +6,8 @@
 
 // Increment PC when IPC = 0
 
+// PCLS/PCHS get inverted after each increment.
+
 void ProgramCounter (Context6502 * cpu)
 {
     int i, PCLC = 1, PCHC, carry_in, carry_out;
@@ -38,15 +40,57 @@ void ProgramCounter (Context6502 * cpu)
         }
         if (cpu->PCLS[i] == 0) PCLC = 0;
     }
-
-    printf ( "PCLC = %i\n", PCLC );
+    printf ( "PCLC = %i ", PCLC);
 
     // HIGH
 
-    for (i=0; i<8; i++) {
+    PCHC = PCLC;        // PCLC get set, when require to carry out on PCH
+    carry_out = PCLC;
+
+    for (i=0; i<4; i++) {       // bottom nibble
         if (cpu->DRIVEREG[DRIVE_ADH_PCH]) cpu->PCHS[i] = cpu->ADH[i];
-        if (cpu->DRIVEREG[DRIVE_PCH_ADH]) cpu->ADH[i] = cpu->PCH[i];
-        if (cpu->DRIVEREG[DRIVE_PCH_DB]) cpu->DB[i] = cpu->PCH[i];
-        if (cpu->DRIVEREG[DRIVE_PCH_PCH]) cpu->PCHS[i] = cpu->PCH[i];
+        carry_in = carry_out;
+        if ( i & 1 ) {
+            carry_out = NOR( NOT(cpu->PCHS[i]), carry_in );
+            if (cpu->PHI2)
+                cpu->PCH[i] = NOR( NOT(cpu->PCHS[i]) & carry_in, carry_out );
+            if (cpu->DRIVEREG[DRIVE_PCH_ADH]) cpu->ADH[i] = NOT(cpu->PCH[i]);
+            if (cpu->DRIVEREG[DRIVE_PCH_DB]) cpu->DB[i] = NOT(cpu->PCH[i]);
+            if (cpu->DRIVEREG[DRIVE_PCH_PCH]) cpu->PCHS[i] = NOT(cpu->PCH[i]);
+        }
+        else {
+            carry_out = NAND( cpu->PCHS[i], carry_in );
+            if (cpu->PHI2)
+                cpu->PCH[i] = NOR(cpu->PCHS[i], carry_in) | NOT(carry_out);
+            if (cpu->DRIVEREG[DRIVE_PCH_ADH]) cpu->ADH[i] = cpu->PCH[i];
+            if (cpu->DRIVEREG[DRIVE_PCH_DB]) cpu->DB[i] = cpu->PCH[i];
+            if (cpu->DRIVEREG[DRIVE_PCH_PCH]) cpu->PCHS[i] = cpu->PCH[i];
+        }
+        if (cpu->PCHS[i] == 0) PCHC = 0;
+    }
+
+    // PCHC get set if require to carry out on top nibble.
+
+    carry_out = PCHC;
+
+    for (i=4; i<8; i++) {       // top nibble
+        if (cpu->DRIVEREG[DRIVE_ADH_PCH]) cpu->PCHS[i] = cpu->ADH[i];
+        carry_in = carry_out;
+        if ( i & 1 ) {
+            carry_out = NOR( NOT(cpu->PCHS[i]), carry_in );
+            if (cpu->PHI2)
+                cpu->PCH[i] = NOR( NOT(cpu->PCHS[i]) & carry_in, carry_out );
+            if (cpu->DRIVEREG[DRIVE_PCH_ADH]) cpu->ADH[i] = NOT(cpu->PCH[i]);
+            if (cpu->DRIVEREG[DRIVE_PCH_DB]) cpu->DB[i] = NOT(cpu->PCH[i]);
+            if (cpu->DRIVEREG[DRIVE_PCH_PCH]) cpu->PCHS[i] = NOT(cpu->PCH[i]);
+        }
+        else {
+            carry_out = NAND( cpu->PCHS[i], carry_in );
+            if (cpu->PHI2)
+                cpu->PCH[i] = NOR(cpu->PCHS[i], carry_in) | NOT(carry_out);
+            if (cpu->DRIVEREG[DRIVE_PCH_ADH]) cpu->ADH[i] = cpu->PCH[i];
+            if (cpu->DRIVEREG[DRIVE_PCH_DB]) cpu->DB[i] = cpu->PCH[i];
+            if (cpu->DRIVEREG[DRIVE_PCH_PCH]) cpu->PCHS[i] = cpu->PCH[i];
+        }
     }
 }
