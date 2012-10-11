@@ -2,7 +2,7 @@
 #include "Breaks6502.h"
 #include "Breaks6502Private.h"
 
-// sync is raised only during T1X stage. Fuck it.. I better explain it on russian:
+// sync is raised only during T1X stage. Meh, I better explain it on russian:
 // Короче так: мелкие инструкции выполняются за 2 такта. Процессор считает себя
 // готовым (SYNC) когда он завершил исполнение второго такта. Это бывает только после 
 // выполнения мелких двухтактовых инструкций, ЛИБО перед началом обработки паровоза тактов

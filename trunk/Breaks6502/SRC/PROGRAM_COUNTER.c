@@ -10,6 +10,8 @@ void ProgramCounter (Context6502 * cpu)
 {
     int i, PCLC = 1, PCHC, carry_in, carry_out;
 
+    if ( cpu->DRIVEREG[DRIVE_IPC] ) PCLC = 0;
+
     // LOW
 
     carry_out = cpu->DRIVEREG[DRIVE_IPC];
