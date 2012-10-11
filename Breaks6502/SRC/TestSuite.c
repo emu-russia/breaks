@@ -235,26 +235,16 @@ void IntLatch (void)
 
 static void PCTest (void)
 {
-    unpackreg (cpu.PCH, 0x12, 8);
-    unpackreg (cpu.PCL, 0x34, 8);
+    int i;
 
-    unpackreg (cpu.PCHS, 0x12, 8);
     unpackreg (cpu.PCLS, 0x34, 8);
-
-    printf ( "PC = %02X%02X, PC Select = %02X%02X\n", 
-        packreg (cpu.PCH, 8), packreg (cpu.PCL, 8),
-        packreg (cpu.PCHS, 8), packreg (cpu.PCLS, 8)
-    );
 
     cpu.DRIVEREG[DRIVE_IPC] = 0;
     cpu.DRIVEREG[DRIVE_PCL_PCL] = cpu.DRIVEREG[DRIVE_PCH_PCH] = 1;
     cpu.PHI2 = 1;
     ProgramCounter (&cpu);
 
-    printf ( "PC = %02X%02X, PC Select = %02X%02X\n", 
-        packreg (cpu.PCH, 8), packreg (cpu.PCL, 8),
-        packreg (cpu.PCHS, 8), packreg (cpu.PCLS, 8)
-    );
+    printf ( "PCLS = %02X\n", packreg(cpu.PCLS, 8));
 }
 
 main ()
