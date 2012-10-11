@@ -12,16 +12,6 @@ void AddressBus (Context6502 * cpu)
     if (cpu->DRIVEREG[DRIVE_0_ADL1]) cpu->ADL[1] = 0;
     if (cpu->DRIVEREG[DRIVE_0_ADL2]) cpu->ADL[2] = 0;
 
-    // High
-    for (b=0; b<8; b++) {
-        if (cpu->PHI1 && cpu->DRIVEREG[DRIVE_ADH_ABH])
-        {
-            cpu->ABH[b] = NOT(cpu->ADH[b]);
-        }
-        if (cpu->PHI2) cpu->ABH[b] = cpu->ABH[b];   // refresh latch
-        cpu->ADDR[8+b] = NOT(cpu->ABH[b]);
-    }
-
     // Low
     for (b=0; b<8; b++) {
         if (cpu->PHI1 && cpu->DRIVEREG[DRIVE_ADL_ABL])
@@ -30,5 +20,15 @@ void AddressBus (Context6502 * cpu)
         }
         if (cpu->PHI2) cpu->ABL[b] = cpu->ABL[b];   // refresh latch
         cpu->ADDR[b] = NOT(cpu->ABL[b]);
+    }
+
+    // High
+    for (b=0; b<8; b++) {
+        if (cpu->PHI1 && cpu->DRIVEREG[DRIVE_ADH_ABH])
+        {
+            cpu->ABH[b] = NOT(cpu->ADH[b]);
+        }
+        if (cpu->PHI2) cpu->ABH[b] = cpu->ABH[b];   // refresh latch
+        cpu->ADDR[8+b] = NOT(cpu->ABH[b]);
     }
 }
