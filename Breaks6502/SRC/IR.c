@@ -7,7 +7,7 @@ void InstructionRegister (Context6502 * cpu)
     int b;
 
     if ( cpu->PHI1 && cpu->fetch ) {
-        for (b=0; b<8; b++) cpu->IR[b] = cpu->PD[b] & ~cpu->clearIR;
+        for (b=0; b<8; b++) cpu->IR[b] = cpu->PD[b] & NOT(cpu->clearIR);
         if (cpu->DEBUG) printf ( "IR=%02X\n", packreg(cpu->IR, 8) );
     }
     else {

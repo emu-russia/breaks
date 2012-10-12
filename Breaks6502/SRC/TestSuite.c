@@ -249,5 +249,4 @@ static void PCTest (void)
 
 main ()
 {
-    PCTest ();
 }
