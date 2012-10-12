@@ -40,6 +40,7 @@ typedef struct Context6502
     char        TRSync;             // Timereg latches
     char        TRin[4], TRout[4];
     int         Tcount;             // Packed T2-T5 counter
+    int         Not_twocycle, Not_implied;    // Predecode outputs
     // Random logic latches and internal variables
     int         sync, ready, TRES;
     int         clearIR, fetch;
