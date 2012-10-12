@@ -2,6 +2,8 @@
 #include "Breaks6502.h"
 #include "Breaks6502Private.h"
 
+// Two-cycles instructions are all implied (except push/pull) + ALU ops with #immed operand.
+
 void Predecode (Context6502 * cpu)
 {
     int b, p[4] = { 1, 1, 1, 1 };
