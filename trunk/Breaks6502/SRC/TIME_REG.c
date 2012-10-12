@@ -22,11 +22,11 @@ int TcountRegister (Context6502 * cpu)
     {
         if ( cpu->PHI1 ) {
             if (cpu->ready) cpu->TRin[i] = out;
-            else cpu->TRin[i] = BIT(~cpu->TRout[i]);
+            else cpu->TRin[i] = NOT(cpu->TRout[i]);
         }
-        TR[i] = BIT(~(~cpu->TRin[i] & ~cpu->TRES));
-        if ( cpu->PHI2 ) cpu->TRout[i] = BIT(~TR[i]);
-        out = BIT(~cpu->TRout[i]);
+        TR[i] = NAND( NOT(cpu->TRin[i]), NOT(cpu->TRES) );
+        if ( cpu->PHI2 ) cpu->TRout[i] = NOT(TR[i]);
+        out = NOT(cpu->TRout[i]);
     }
 
     cpu->Tcount = (TR[3] << 3) | (TR[2] << 2) | (TR[1] << 1) | (TR[0] << 0);

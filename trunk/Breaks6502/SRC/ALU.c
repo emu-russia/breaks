@@ -10,7 +10,7 @@
 void ALU (Context6502 * cpu, int DecimalCorrection)
 {
     int b;
-    char NAND[8], NOR[8], ENOR[8], EOR[8];
+    char NANDs[8], NORs[8], ENORs[8], EORs[8];
     int ACR;    // ALU carry out
     int AVR;    // ALU overflow out
     int carry_in, carry_out;
@@ -38,17 +38,17 @@ void ALU (Context6502 * cpu, int DecimalCorrection)
 
     // LOGIC (based on NAND/NOR)
     for (b=0; b<8; b++) {
-        NOR[b] = BIT(~(cpu->AI[b] | cpu->BI[b]));
-        NAND[b] = BIT(~(cpu->AI[b] & cpu->BI[b]));
-        if ( b & 1) EOR[b] = BIT(~(~NAND[b] | NOR[b]));
-        else ENOR[b] = BIT(~(~NOR[b] & NAND[b]));
+        NORs[b] = BIT(~(cpu->AI[b] | cpu->BI[b]));
+        NANDs[b] = BIT(~(cpu->AI[b] & cpu->BI[b]));
+        if ( b & 1) EORs[b] = BIT(~(~NANDs[b] | NORs[b]));
+        else ENORs[b] = BIT(~(~NORs[b] & NANDs[b]));
 
-        if ( cpu->DRIVEREG[DRIVE_ORS] ) cpu->ADD[b] = NOR[b];
-        if ( cpu->DRIVEREG[DRIVE_ANDS] ) cpu->ADD[b] = NAND[b];
-        if ( cpu->DRIVEREG[DRIVE_SRS] && b ) cpu->ADD[b-1] = NAND[b];
+        if ( cpu->DRIVEREG[DRIVE_ORS] ) cpu->ADD[b] = NORs[b];
+        if ( cpu->DRIVEREG[DRIVE_ANDS] ) cpu->ADD[b] = NANDs[b];
+        if ( cpu->DRIVEREG[DRIVE_SRS] && b ) cpu->ADD[b-1] = NANDs[b];
         if ( cpu->DRIVEREG[DRIVE_EORS] ) {
-            if ( b & 1 ) cpu->ADD[b] = BIT(~EOR[b]);
-            else cpu->ADD[b] = ENOR[b];
+            if ( b & 1 ) cpu->ADD[b] = BIT(~EORs[b]);
+            else cpu->ADD[b] = ENORs[b];
         }
     }
 
