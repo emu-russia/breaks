@@ -31,6 +31,8 @@ enum {
     LINE_RES, LINE_FROMRES,
     LINE_SO, LINE_FROMSO, LATCH_SO0, LATCH_SO1, LATCH_SO2, 
 
+    LINE_nTWOCYCLE, LINE_nIMPLIED,
+
     // Random logic latches and control lines.
     LATCH_nREADY,
     LINE_SYNC,
@@ -124,6 +126,8 @@ static void process_check ( WPARAM wParam, int ctrl)
             case LATCH_SO0: cpu->SOLatch[0] = value; break;
             case LATCH_SO1: cpu->SOLatch[1] = value; break;
             case LATCH_SO2: cpu->SOLatch[2] = value; break;
+            case LINE_nTWOCYCLE: cpu->Not_twocycle = value; break;
+            case LINE_nIMPLIED: cpu->Not_implied = value; break;
 
             case DRV_ADH_ABH: cpu->DRIVEREG[DRIVE_ADH_ABH] = value; break;
             case DRV_ADL_ABL: cpu->DRIVEREG[DRIVE_ADL_ABL] = value; break;
@@ -298,6 +302,8 @@ static LRESULT CALLBACK DebugProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lP
             process_check (wParam, LATCH_SO0);
             process_check (wParam, LATCH_SO1);
             process_check (wParam, LATCH_SO2);
+            process_check (wParam, LINE_nTWOCYCLE);
+            process_check (wParam, LINE_nIMPLIED);
 
             for (i=0; i<129; i++) process_check (wParam, PLA_BASE+i);
 
@@ -590,6 +596,9 @@ static void place_controls (HINSTANCE hinst, HWND dlg)
     debugCtrl[VAL_PD] = value (hinst, dlg, 436, y+=15, "12", VAL_PD );
     debugCtrl[VAL_IR] = value (hinst, dlg, 436, y+=15, "12", VAL_IR );
     debugCtrl[VAL_DISA] = valueRead (hinst, dlg, 462, y, "", VAL_DISA );
+    y = 390;
+    debugCtrl[LINE_nTWOCYCLE] = toggle (hinst, dlg, 536, y+=15, "/2CYCLE", LINE_nTWOCYCLE );
+    debugCtrl[LINE_nIMPLIED] = toggle (hinst, dlg, 536, y+=15, "/IMPLIED", LINE_nIMPLIED );
 
     // PLA
     label_long (hinst, dlg, 410, 50, "PLA" );
@@ -781,6 +790,8 @@ static void update_debugger (ContextBoard *nes)
     check ( LATCH_SO0, cpu->SOLatch[0] );
     check ( LATCH_SO1, cpu->SOLatch[1] );
     check ( LATCH_SO2, cpu->SOLatch[2] );
+    check ( LINE_nTWOCYCLE, cpu->Not_twocycle );
+    check ( LINE_nIMPLIED, cpu->Not_implied );
 
     for (i=0; i<129; i++) check ( PLA_BASE+i, cpu->PLAOUT[i] );
 
