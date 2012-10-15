@@ -42,6 +42,7 @@ typedef struct Context6502
     int         Tcount;             // Packed T2-T5 counter
     int         Not_twocycle, Not_implied;    // Predecode outputs
     // Random logic latches and internal variables
+    char        DRVStat[64];        // driver static latches
     int         sync, ready, TRES;
     int         clearIR, fetch;
     int         T0, T1X;            // Two-cycle opcodes timing output lines
