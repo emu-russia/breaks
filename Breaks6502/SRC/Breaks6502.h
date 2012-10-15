@@ -1,4 +1,3 @@
-//#define BREAKS6502_PACKED_BITS
 
 typedef struct Context6502
 {
@@ -12,10 +11,6 @@ typedef struct Context6502
     // Outputs
     int         RW, SYNC;
     char        PHI1, PHI2;         // Timing
-
-#ifdef  BREAKS6502_PACKED_BITS
-
-#else
 
     // Buses
     char        DATA[8], ADDR[16];
@@ -42,7 +37,7 @@ typedef struct Context6502
     int         Tcount;             // Packed T2-T5 counter
     int         Not_twocycle, Not_implied;    // Predecode outputs
     // Random logic latches and internal variables
-    char        DRVStat[64];        // driver static latches
+    char        DRVS[64];           // driver static latches
     int         sync, ready, TRES;
     int         clearIR, fetch;
     int         T0, T1X;            // Two-cycle opcodes timing output lines
@@ -57,8 +52,6 @@ typedef struct Context6502
     char        AI[8], BI[8], ADD[8], AC[8];    // ALU regs
     // ALU latches
     char        PCL[8], PCLS[8], PCH[8], PCHS[8];   // Program Counter    
-
-#endif  // BREAKS6502_PACKED_BITS
 
 } Context6502;
 

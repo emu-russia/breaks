@@ -79,9 +79,11 @@ char * PLAName (int line)
     static char def[32];
 
     switch (line) {
-        case 0: return "0";
+        case 0: return "STY";
         case 1: return "IND,Y";
         case 2: return "ABS,Y";
+        case 12: return "PUT X";
+        case 13: return "TXS";
         case 34: return "T0 ANY";
         case 97: return "STORE";
         case 111: return "M.zpX/Y";
