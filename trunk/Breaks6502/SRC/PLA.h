@@ -3,7 +3,7 @@
 
 // Group A
 
-#define PLA_0               (cpu->PLAOUT[0])
+#define PLA_STY             (cpu->PLAOUT[0])
 #define PLA_IND_Y           (cpu->PLAOUT[1])
 #define PLA_ABS_Y           (cpu->PLAOUT[2])
 #define PLA_3               (cpu->PLAOUT[3])
@@ -18,8 +18,8 @@
 #define PLA_9               (cpu->PLAOUT[9])
 #define PLA_10              (cpu->PLAOUT[10])
 #define PLA_11              (cpu->PLAOUT[11])
-#define PLA_12              (cpu->PLAOUT[12])
-#define PLA_13              (cpu->PLAOUT[13])
+#define PLA_PUTX            (cpu->PLAOUT[12])
+#define PLA_TXS             (cpu->PLAOUT[13])
 #define PLA_14              (cpu->PLAOUT[14])
 #define PLA_15              (cpu->PLAOUT[15])
 #define PLA_16              (cpu->PLAOUT[16])

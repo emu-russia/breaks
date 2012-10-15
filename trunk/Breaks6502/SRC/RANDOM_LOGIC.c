@@ -2,10 +2,12 @@
 #include "Breaks6502.h"
 #include "Breaks6502Private.h"
 
+// before PLA
 void RandomLogicEarly (Context6502 * cpu)
 {
 }
 
+// after PLA
 void RandomLogic (Context6502 * cpu)
 {
     #define PHI1    cpu->PHI1
@@ -26,10 +28,18 @@ void RandomLogic (Context6502 * cpu)
     p = 1;
     if ( PLA_IND_Y || PLA_ABS_Y || PLA_3 || PLA_4 || PLA_5 ) p = 0;
     if ( PLA_6 && PLA_7 ) p = 0;
-    if ( STOR && PLA_0 ) p = 0;
+    if ( STOR && PLA_STY ) p = 0;
+    if ( PHI2 ) cpu->DRVS[DRIVE_Y_SB] = p;
+    cpu->DRIVEREG[DRIVE_Y_SB] = NOT(cpu->DRVS[DRIVE_Y_SB]) & NOT(PHI2);
 
-    if ( PHI2 ) cpu->DRVStat[DRIVE_Y_SB] = p;
-    cpu->DRIVEREG[DRIVE_Y_SB] = NOT(cpu->DRVStat[DRIVE_Y_SB]) & NOT(PHI2);
+    // =====================================  X/SB
+
+    p = 1;
+    if ( PLA_8 || PLA_9 || PLA_10 || PLA_11 || PLA_TXS ) p = 0;
+    if ( PLA_6 && NOT(PLA_7) ) p = 0;
+    if ( STOR && PLA_PUTX ) p = 0;
+    if ( PHI2 ) cpu->DRVS[DRIVE_X_SB] = p;
+    cpu->DRIVEREG[DRIVE_X_SB] = NOT(cpu->DRVS[DRIVE_X_SB]) & NOT(PHI2);
 
     // R/W pad output
     cpu->RW = BIT(~cpu->RWOut);
