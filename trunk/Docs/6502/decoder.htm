@@ -22,6 +22,16 @@ td.op {
 
 <script>
 
+function invert()
+{
+    arr = document.getElementsByClassName('op');
+    for ( op in arr )
+    {
+        if ( arr[op].style.backgroundColor == "lime" ) arr[op].style.backgroundColor = "white";
+	else arr[op].style.backgroundColor = "lime";
+    }
+}
+
 function highlight()
 {
     clear = ! document.irform.clear.checked;
@@ -118,7 +128,8 @@ A
 
 <form name=irform>
 IR <input type=text name=IR>
-<input type=button onclick="highlight();" value="Decode"><br>
+<input type=button onclick="highlight();" value="Decode">
+<input type=button onclick="invert();" value="INVERT"><br>
 <input type=checkbox name=clear />Do not clear table
 </form>
 

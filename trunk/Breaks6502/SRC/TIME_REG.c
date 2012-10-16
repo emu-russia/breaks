@@ -21,7 +21,7 @@ int TcountRegister (Context6502 * cpu)
     for (i=0; i<4; i++)
     {
         if ( cpu->PHI1 ) {
-            if (cpu->ready) cpu->TRin[i] = out;
+            if (cpu->_ready) cpu->TRin[i] = out;
             else cpu->TRin[i] = NOT(cpu->TRout[i]);
         }
         TR[i] = NAND( NOT(cpu->TRin[i]), NOT(cpu->TRES) );

@@ -126,8 +126,8 @@ static void process_check ( WPARAM wParam, int ctrl)
             case LATCH_SO0: cpu->SOLatch[0] = value; break;
             case LATCH_SO1: cpu->SOLatch[1] = value; break;
             case LATCH_SO2: cpu->SOLatch[2] = value; break;
-            case LINE_nTWOCYCLE: cpu->Not_twocycle = value; break;
-            case LINE_nIMPLIED: cpu->Not_implied = value; break;
+            case LINE_nTWOCYCLE: cpu->_TWOCYCLE = value; break;
+            case LINE_nIMPLIED: cpu->_IMPLIED = value; break;
 
             case DRV_ADH_ABH: cpu->DRIVEREG[DRIVE_ADH_ABH] = value; break;
             case DRV_ADL_ABL: cpu->DRIVEREG[DRIVE_ADL_ABL] = value; break;
@@ -790,8 +790,8 @@ static void update_debugger (ContextBoard *nes)
     check ( LATCH_SO0, cpu->SOLatch[0] );
     check ( LATCH_SO1, cpu->SOLatch[1] );
     check ( LATCH_SO2, cpu->SOLatch[2] );
-    check ( LINE_nTWOCYCLE, cpu->Not_twocycle );
-    check ( LINE_nIMPLIED, cpu->Not_implied );
+    check ( LINE_nTWOCYCLE, cpu->_TWOCYCLE );
+    check ( LINE_nIMPLIED, cpu->_IMPLIED );
 
     for (i=0; i<129; i++) check ( PLA_BASE+i, cpu->PLAOUT[i] );
 
