@@ -6,15 +6,15 @@
 #define PLA_STY             (cpu->PLAOUT[0])
 #define PLA_IND_Y           (cpu->PLAOUT[1])
 #define PLA_ABS_Y           (cpu->PLAOUT[2])
-#define PLA_3               (cpu->PLAOUT[3])
-#define PLA_4               (cpu->PLAOUT[4])
-#define PLA_5               (cpu->PLAOUT[5])
+#define PLA_DEY_INY         (cpu->PLAOUT[3])
+#define PLA_TYA             (cpu->PLAOUT[4])
+#define PLA_CPY_INY         (cpu->PLAOUT[5])
 
 // Group B
 
-#define PLA_6               (cpu->PLAOUT[6])
+#define PLA_ZPABS_XY        (cpu->PLAOUT[6])
 #define PLA_7               (cpu->PLAOUT[7])
-#define PLA_8               (cpu->PLAOUT[8])
+#define PLA_IND_X           (cpu->PLAOUT[8])
 #define PLA_9               (cpu->PLAOUT[9])
 #define PLA_10              (cpu->PLAOUT[10])
 #define PLA_11              (cpu->PLAOUT[11])
@@ -154,7 +154,7 @@
 #define PLA_MEM_IND         (cpu->PLAOUT[124])
 #define PLA_MEM_ABSXY       (cpu->PLAOUT[125])
 #define PLA_126             (cpu->PLAOUT[126])
-#define PLA_127             (cpu->PLAOUT[127])
+#define PLA_CLV             (cpu->PLAOUT[127])
 #define PLA_128             (cpu->PLAOUT[128])
 
 void DecodePLA (Context6502 * cpu);

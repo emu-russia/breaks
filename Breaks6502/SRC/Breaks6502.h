@@ -35,13 +35,16 @@ typedef struct Context6502
     char        TRSync;             // Timereg latches
     char        TRin[4], TRout[4];
     int         Tcount;             // Packed T2-T5 counter
-    int         Not_twocycle, Not_implied;    // Predecode outputs
+    int         _TWOCYCLE, _IMPLIED;    // Predecode outputs
     // Random logic latches and internal variables
     char        DRVS[64];           // driver static latches
-    int         sync, ready, TRES;
+    int         sync, _ready, TRES;
     int         clearIR, fetch;
+    int         SyncLatch, FetchLatch;
     int         T0, T1X;            // Two-cycle opcodes timing output lines
     char        RWOut;              // R/W output latch
+    int         RWInt;              // internal R/W line
+    int         MemOP, STOR, _SHIFT, SS;
 
     // Bottom part internal state
     char        SB[8], DB[8];           // SBus, DBus

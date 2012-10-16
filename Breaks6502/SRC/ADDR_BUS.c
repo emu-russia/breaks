@@ -2,11 +2,19 @@
 #include "Breaks6502.h"
 #include "Breaks6502Private.h"
 
+// ADH/ADL are high during PHI2 (precharged)
+
 // ABH/ABL register latches are refreshed during PHI2.
 
 void AddressBus (Context6502 * cpu)
 {
     int b;
+
+    for (b=0; b<8; b++) {
+        if ( cpu->PHI2 ) cpu->ADH[b] = cpu->ADL[b] = 1;     // Precharge.
+        if ( cpu->DRIVEREG[DRIVE_0_ADH0] && b == 0 ) cpu->ADH[b] = 0;
+        if ( cpu->DRIVEREG[DRIVE_0_ADH17] && b != 0 ) cpu->ADH[b] = 0;
+    }
 
     if (cpu->DRIVEREG[DRIVE_0_ADL0]) cpu->ADL[0] = 0;
     if (cpu->DRIVEREG[DRIVE_0_ADL1]) cpu->ADL[1] = 0;

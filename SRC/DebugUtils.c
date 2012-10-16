@@ -82,6 +82,11 @@ char * PLAName (int line)
         case 0: return "STY";
         case 1: return "IND,Y";
         case 2: return "ABS,Y";
+        case 3: return "DEY/INY";
+        case 4: return "TYA";
+	case 5: return "CPY/INY";
+        case 6: return "zp.abs.XY";
+        case 8: return "IND,X";
         case 12: return "PUT X";
         case 13: return "TXS";
         case 34: return "T0 ANY";
@@ -92,6 +97,7 @@ char * PLAName (int line)
         case 124: return "Mem ind";
         case 125: return "M.absX/Y";
         case 126: return "BRANCH7";
+        case 127: return "CLV";
 
         default:
             sprintf (def, "%i", line);
