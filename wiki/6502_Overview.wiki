@@ -40,3 +40,13 @@
 || Misc&pads ||
 
 Images (should be) clickable
+
+= Bottom part =
+
+|| <img src="http://ogamespec.com/imgstore/whc507fc498cc8c5.jpg"> || <img src="http://ogamespec.com/imgstore/whc507fc49f6bde5.jpg"> || <img src="http://ogamespec.com/imgstore/whc507fc4a6c99e5.jpg"> ||
+|| Address Bus || Data latch / data bus || Registers Y, X, S ||
+
+|| <img src="http://ogamespec.com/imgstore/whc507fc4c14ba45.jpg"> || <img src="http://ogamespec.com/imgstore/whc507fc4b07e6c5.jpg"> || <img src="http://ogamespec.com/imgstore/whc507fc4b897d05.jpg"> ||
+|| ALU || Program Counter High (PCH) || Program Counter Low (PCL) ||
+
+Images (should be) clickable
