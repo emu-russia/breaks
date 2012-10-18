@@ -1,3 +1,29 @@
 #summary Brief description of 6502 parts
 
+= General information =
+
+6502 schematics is divided on tow major parts : "top" and "bottom", as found on 6502 blueprints:
+
+<img src="http://ogamespec.com/imgstore/whc507fbde796d65.jpg"> <img src="http://ogamespec.com/imgstore/whc507fbdf01fb25.jpg">
+<br>Source: http://visual6502.org/wiki/index.php?title=650X_Schematic_Notes
+
+Дональд Хенсон зажал схемы, поэтому качество сканов очень низкое и разобрать в деталях их невозможно.
+
+*Top part components*
+  * Instruction register (IR)
+  * T-counter
+  * PLA decoder
+  * Predecoder
+  * Random logic (heavy tangle) including flags
+  * Miscellaneous logic: IRQ, NMI, reset handling and output pins
+
+*Bottom part components*
+  * Address bus outputs
+  * latch and read/write tri-state logic
+  * Registers X, Y, S
+  * Program Counter
+  * ALU
+
+= Family photo =
+
 <img src="http://ogamespec.com/imgstore/resized_whc503b820d9d535.jpg">
