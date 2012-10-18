@@ -44,7 +44,7 @@ void StepROM ( ContextROM * rom )
     int i;
 
     if (!rom->init) {
-        LoadROM (rom);
+        LoadROM (rom);    // load from file
         rom->init = 1;
     }
 
