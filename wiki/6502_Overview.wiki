@@ -2,7 +2,7 @@
 
 = General information =
 
-6502 schematics is divided on tow major parts : "top" and "bottom", as found on 6502 blueprints:
+6502 schematics is divided on two major parts : "top" and "bottom", as found on 6502 blueprints:
 
 <img src="http://ogamespec.com/imgstore/whc507fbde796d65.jpg"> <img src="http://ogamespec.com/imgstore/whc507fbdf01fb25.jpg">
 <br>Source: http://visual6502.org/wiki/index.php?title=650X_Schematic_Notes
