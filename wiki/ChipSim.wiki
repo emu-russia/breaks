@@ -12,7 +12,7 @@ It has two types of variables: *control lines* and *latches*.
 
 Control lines are just current level of some internal wire or external input/output pad.
 
-Latches are representing current state of static (floating base capacity) and dynamic (bistable) latches.
+Latches are representing current state of static (floating base capacity) or dynamic (bistable) latches.
 
 Example 8 KB ROM memory device:
 {{{
