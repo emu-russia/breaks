@@ -37,7 +37,7 @@ Internal Step() procedures will simulate chip blocks one-by-one, according to th
 
 Example 8 KB ROM simulation.
 {{{
-void StepROM ( Context2364 * rom )
+void StepROM ( ContextROM * rom )
 {
     unsigned char data = 0;
     unsigned short addr = 0;
