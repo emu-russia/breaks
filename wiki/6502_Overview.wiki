@@ -19,7 +19,7 @@
 
 *Bottom part components*
   * Address bus outputs
-  * latch and read/write tri-state logic
+  * Data latch and read/write tri-state logic
   * Registers X, Y, S
   * Program Counter
   * ALU
