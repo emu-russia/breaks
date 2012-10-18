@@ -33,7 +33,7 @@ typedef struct ContextROM
 
 To run simulation you simply need to call Step().
 
-Internal Step() procedures will simulate chip blocks one-by-one, according to their propagation delay.
+Internal Step() procedures will simulate chip blocks one-by-one, according to their propagation delay and internal context.
 
 Example 8 KB ROM simulation.
 {{{
