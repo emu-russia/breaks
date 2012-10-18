@@ -14,7 +14,7 @@ Control lines are just current level of some internal wire or external input/out
 
 Latches are representing current state of static (floating base capacity) or dynamic (bistable) latches.
 
-Example 8 KB ROM memory device:
+Example 8 KB ROM memory device context:
 {{{
 typedef struct ContextROM
 {
