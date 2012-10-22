@@ -1,0 +1,1 @@
+// Sprite in-range evaluation.
