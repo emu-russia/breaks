@@ -18,7 +18,7 @@ Often polysilicon used as interconnection.
 Vias is used to connect metal with poly/diffusion layers.
 Buried (hidden) contacts are used to connect poly with diffusion, without any additional poly->metal->diffusion vias.
 
-= Difference betwee NMOS and CMOS =
+= Difference between NMOS and CMOS =
 
 NMOS using only single type of diffusion (n-type).
 
