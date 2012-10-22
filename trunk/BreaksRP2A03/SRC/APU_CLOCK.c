@@ -1,1 +1,1 @@
-// Internal ACLK ditribute.
+// Internal ACLK distribute.

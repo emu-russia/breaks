@@ -48,6 +48,14 @@ void PowerOnNES (void)
     nes.Step6502 = (void *)GetProcAddress ( nes.moduleCPU, "_Step6502" );
     nes.Debug6502 = (void *)GetProcAddress ( nes.moduleCPU, "_Debug6502" );
     if ( nes.Step6502 == NULL || nes.Debug6502 == NULL ) Error ("No CPU module");
+
+    nes.moduleAPU = LoadLibrary ( "Ricoh2A03.dll" );
+    nes.Step2A03 = (void *)GetProcAddress ( nes.moduleAPU, "_Step2A03" );
+    nes.Debug2A03 = (void *)GetProcAddress ( nes.moduleAPU, "_Debug2A03" );
+    if ( nes.Step2A03 == NULL || nes.Debug2A03 == NULL ) Error ("No APU module");
+
+    // Attach 6502 to APU.
+    nes.apu.cpu = (Core6502 *)&nes.cpu;
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd)

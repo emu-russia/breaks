@@ -8,6 +8,7 @@ void    Error(char *fmt, ...);
 void    Report(char *fmt, ...);
 
 #include "../Breaks6502/SRC/Breaks6502.h"
+#include "../BreaksRP2A03/SRC/RP2A03.h"
 
 #include "Motherboard.h"
 #include "Cart.h"
