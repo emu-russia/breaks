@@ -7,8 +7,9 @@ void StepBoard (ContextBoard *board)
     if (board->ResetCapacitor) board->ResetCapacitor--;
     board->cpu.RES = (board->ResetCapacitor == 0);
 
-    board->Step6502 ( &board->cpu );
+    board->Step2A03 ( &board->apu );
+    //board->Step2C02 ( &board->ppu );
 
     // Toggle clock
-    board->cpu.PHI0 ^= 1;
+    //board->apu.CLK ^= 1;
 }
