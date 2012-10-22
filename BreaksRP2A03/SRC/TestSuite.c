@@ -1,0 +1,5 @@
+#include "APU.h"
+
+main ()
+{
+}
