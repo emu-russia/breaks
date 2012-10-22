@@ -12,7 +12,7 @@ In order to study chip logic you need two sort of chip images :
 
 Metal traces are used mainly for power supply and grounding. But sometimes it can be used as interconnections.
 
-When polysilicon wire crossing n-type diffusion its forms transistor.
+When polysilicon wire crossing n-type diffusion it forms transistor.
 Often polysilicon used as interconnection.
 
 Vias is used to connect metal with poly/diffusion layers.
