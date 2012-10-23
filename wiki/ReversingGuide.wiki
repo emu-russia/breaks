@@ -23,3 +23,14 @@ Buried (hidden) contacts are used to connect poly with diffusion, without any ad
 NMOS using only single type of diffusion (n-type).
 
 CMOS using both types of diffusion : n-type and p-type, reducing amount of additional inverters in chip logic (since p-type MOSFET is open when its base has low level)
+
+= Educational videos =
+
+Part 1: prepare two layers
+<wiki:video url="http://www.youtube.com/watch?v=dj-DcMYihp4"/>
+
+Part 2: trace layers
+<wiki:video url="http://www.youtube.com/watch?v=_Z0O-IdJRQc"/> <wiki:video url="http://www.youtube.com/watch?v=wTJygx3VAXY"/>
+
+Part 2: Transistor schematics
+<wiki:video url="http://www.youtube.com/watch?v=y-q5643WVno"/>
