@@ -26,6 +26,8 @@ CMOS using both types of diffusion : n-type and p-type, reducing amount of addit
 
 = Educational videos =
 
+Some 6502 tracing :)
+
 Part 1: prepare two layers<br>
 <wiki:video url="http://www.youtube.com/watch?v=dj-DcMYihp4"/>
 
