@@ -26,11 +26,11 @@ CMOS using both types of diffusion : n-type and p-type, reducing amount of addit
 
 = Educational videos =
 
-Part 1: prepare two layers
+Part 1: prepare two layers<br>
 <wiki:video url="http://www.youtube.com/watch?v=dj-DcMYihp4"/>
 
-Part 2: trace layers
+Part 2: trace layers<br>
 <wiki:video url="http://www.youtube.com/watch?v=_Z0O-IdJRQc"/> <wiki:video url="http://www.youtube.com/watch?v=wTJygx3VAXY"/>
 
-Part 2: Transistor schematics
+Part 2: Transistor schematics<br>
 <wiki:video url="http://www.youtube.com/watch?v=y-q5643WVno"/>
