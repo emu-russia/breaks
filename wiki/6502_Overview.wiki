@@ -24,6 +24,8 @@
   * Program Counter
   * ALU
 
+Bottom part is controlled by top part through special control lines - drivers.
+
 = Family photo =
 
 <img src="http://ogamespec.com/imgstore/resized_whc503b820d9d535.jpg">
