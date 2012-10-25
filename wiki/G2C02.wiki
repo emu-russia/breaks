@@ -2,4 +2,9 @@
 
 = Introduction =
 
-How are you?
+PPU is used to generate video output.
+
+= Layers =
+
+<img src="http://ogamespec.com/imgstore/whc50892411b0e9f.jpg"><br>
+[http://ogamespec.com/PPU/PPU_wip3.png Full resolution]
