@@ -5,7 +5,7 @@ Rows are aranged in groups, 9 groups total.
 Number of rows in each group : 8, 8, 5, 8, 8, 8, 5, 8, 8
 This gives 1792 + 320 = 2112 bits (264 bytes)
 
-OAM row group decoder:
+OAM row access select:
 
  1 2 3 4   abcdefghi
 --------------------
