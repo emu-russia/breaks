@@ -4,6 +4,8 @@
 
 PPU is used to generate video output.
 
+<img src="http://ogamespec.com/imgstore/whc508d6808e0bd6.jpg">
+
 = Layers =
 
 <img src="http://ogamespec.com/imgstore/whc50892411b0e9f.jpg"><br>
