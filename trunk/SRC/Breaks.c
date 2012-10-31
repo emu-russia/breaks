@@ -54,6 +54,11 @@ void PowerOnNES (void)
     nes.Debug2A03 = (void *)GetProcAddress ( nes.moduleAPU, "_Debug2A03" );
     if ( nes.Step2A03 == NULL || nes.Debug2A03 == NULL ) Error ("No APU module");
 
+    nes.modulePPU = LoadLibrary ( "Ricoh2C02.dll" );
+    nes.Step2C02 = (void *)GetProcAddress ( nes.modulePPU, "_Step2C02" );
+    nes.Debug2C02 = (void *)GetProcAddress ( nes.modulePPU, "_Debug2C02" );
+    if ( nes.Step2C02 == NULL || nes.Debug2C02 == NULL ) Error ("No PPU module");
+
     // Attach 6502 to APU.
     nes.apu.cpu = (Core6502 *)&nes.cpu;
 }
