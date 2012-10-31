@@ -14,3 +14,11 @@
 #include "PPU_CLOCK.h"
 #include "REGSELECT.h"
 #include "VIDOUT.h"
+
+#define BIT(n)     ( (n) & 1 )
+
+unsigned long packreg ( char *reg, int bits );
+void unpackreg (char *reg, unsigned char val, int bits);
+
+int NAND(int a, int b);
+int NOR(int a, int b);
