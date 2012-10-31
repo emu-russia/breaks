@@ -2,6 +2,8 @@
 
 typedef struct Context2C02 {
 
+    int     DEBUG;          // do some debug output.
+
     // I/O pinout.
     char    CLK;
     float   VID;
