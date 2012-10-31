@@ -1,4 +1,4 @@
-// Ricoh 2A03 simulator.
+// Ricoh 2A03 APU simulator.
 
 typedef struct Core6502
 {
