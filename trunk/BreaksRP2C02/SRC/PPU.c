@@ -25,6 +25,8 @@ int NOR(int a, int b) { return ~((a & 1) | (b & 1)) & 1; }
 
 __declspec( dllexport ) void Step2C02 ( Context2C02 * ppu )
 {
+    SUB_CLK (&ppu);
+    PIXEL_CLK (&ppu);
 }
 
 __declspec( dllexport ) void Debug2C02 ( Context2C02 * ppu, char *cmd )
