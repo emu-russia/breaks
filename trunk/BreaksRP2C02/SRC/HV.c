@@ -1,1 +1,1 @@
-// H/V counter and PLA selection.
+// H/V counter, PLA selection and misc. h/v logic.

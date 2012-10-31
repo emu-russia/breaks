@@ -12,7 +12,7 @@ void PIXEL_CLK (Context2C02 *ppu)
     char old = ppu->PCLK;
 
     if ( ppu->CLK ) {
-        ppu->PCLKIn[0] = BIT(ppu->PCLKOut[1]) & ~ppu->RES;
+        ppu->PCLKIn[0] = BIT(ppu->PCLKOut[1]) & NOT(ppu->RES);
         ppu->PCLKIn[1] = NOT(ppu->PCLKOut[0]);
     }
     else {
