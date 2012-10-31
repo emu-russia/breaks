@@ -8,9 +8,13 @@ typedef struct Context2C02 {
     char    CLK;
     float   VID;
 
+    char    RES;
+
     // --------------------------------------------------- Clocks
     char    _CLK;           // /CLK
     char    PCLK, _PCLK;    // pixel clock (PCLK and /PCLK)
+    char    PCLKOut[2], PCLKIn[2];  // pixel clock divider by 8 latches
+    int     pixel;          // pixel counter
 
     // --------------------------------------------------- Video output
 

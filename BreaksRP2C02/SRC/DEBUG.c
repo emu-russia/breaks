@@ -2,6 +2,40 @@
 #include <stdio.h>
 #include "PPU.h"
 
+// --------------------------------------------------------------------
+
+/*
+CLK : 010101010101010101010101010101
+PCLK: 000011110000111100001111000011
+*/
+static void PIXEL_CLOCK_DEBUG (Context2C02 *ppu)
+{
+    int i;
+    ppu->CLK = 0;
+
+    ppu->DEBUG = 0;
+
+    // Display master clock iterations
+    printf ( "CLK : " );
+    for (i=0; i<30; i++) {
+        printf ( "%i", ppu->CLK );
+        ppu->CLK ^= 1;
+    }
+    printf ( "\n" );
+
+    // Display pixel clock iterations
+    ppu->CLK = 0;
+    printf ( "PCLK: " );
+    for (i=0; i<30; i++) {
+        PIXEL_CLK (ppu);
+        printf ( "%i", ppu->PCLK );
+        ppu->CLK ^= 1;
+    }
+    printf ( "\n" );
+}
+
+// --------------------------------------------------------------------
+
 /*
 OAM CAS 8765 -> 76543210Z: 0000 -> 000000010
 OAM CAS 8765 -> 76543210Z: 0001 -> 000000100
@@ -20,7 +54,7 @@ OAM CAS 8765 -> 76543210Z: 1101 -> 000000001
 OAM CAS 8765 -> 76543210Z: 1110 -> 000000001
 OAM CAS 8765 -> 76543210Z: 1111 -> 000000001
 */
-void OAM_CAS_DEBUG (Context2C02 *ppu)
+static void OAM_CAS_DEBUG (Context2C02 *ppu)
 {
     int i, old = ppu->DEBUG;
     ppu->DEBUG = 1;
@@ -39,7 +73,8 @@ main ()
     Context2C02 ppu;
     memset (&ppu, 0, sizeof(ppu));
 
-    OAM_CAS_DEBUG (&ppu);
+    // PIXEL_CLOCK_DEBUG (&ppu);
+    // OAM_CAS_DEBUG (&ppu);
 
     printf ("PPU test suite.\n");
 }

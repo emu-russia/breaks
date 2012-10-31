@@ -7,3 +7,8 @@
 #define OAM_CAS_6   (ppu->OAM_CAS[6])
 #define OAM_CAS_7   (ppu->OAM_CAS[7])
 #define OAM_CAS_Z   (ppu->OAM_CAS[8])
+
+void OAM_RAS (Context2C02 *ppu);
+void OAM_CAS (Context2C02 *ppu);
+void OAM_CTRL (Context2C02 *ppu);
+void OAM_BUF (Context2C02 *ppu);
