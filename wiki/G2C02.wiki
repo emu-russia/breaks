@@ -9,4 +9,4 @@ PPU is used to generate video output.
 = Layers =
 
 <img src="http://breaknes.com/files/PPU/RP2C02G_sm.jpg"><br>
-[http://breaknes.com/files/PPU/RP2C02G.jpg Full resolution]
+[http://breaknes.com/files/PPU/RP2C02G.jpg Full resolution] / [http://breaknes.com/files/PPU/RP2C02G_nomet.jpg Delayered]
