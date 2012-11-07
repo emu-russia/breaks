@@ -57,6 +57,3 @@ typedef struct Context6502
     char        PCL[8], PCLS[8], PCH[8], PCHS[8];   // Program Counter    
 
 } Context6502;
-
-void    Step6502 ( Context6502 * cpu );
-void    Debug6502 ( Context6502 * cpu, char * cmd );

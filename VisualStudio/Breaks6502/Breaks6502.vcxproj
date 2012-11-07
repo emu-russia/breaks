@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B47DCB96-DB9D-4EF1-BBEF-914307EB0490}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Breaks6502</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;BREAKS6502_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>../$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;BREAKS6502_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <OutputFile>../$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\Breaks6502\SRC\ADDR_BUS.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\ALU.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\Breaks6502.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\DATA_BUS.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\INTERRUPT.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\IR.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\MISC.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\PLA.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\PREDECODE.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\PROGRAM_COUNTER.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\RANDOM_LOGIC.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\REGS.c" />
+    <ClCompile Include="..\..\Breaks6502\SRC\TIME_REG.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Breaks6502\SRC\ADDR_BUS.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\ALU.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\Breaks6502.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\Breaks6502Private.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\DATA_BUS.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\INTERRUPT.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\IR.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\MISC.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\PLA.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\PREDECODE.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\PROGRAM_COUNTER.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\RANDOM_LOGIC.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\REGS.h" />
+    <ClInclude Include="..\..\Breaks6502\SRC\TIME_REG.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
