@@ -35,6 +35,3 @@ typedef struct Context2C02 {
     char    OAM_DIV8[4];        // divider by 8 latches
     char    OB[8], OB1[8];      // OAM buffer outputs
 } Context2C02;
-
-void Step2C02 ( Context2C02 * ppu );
-void Debug2C02 ( Context2C02 * ppu, char *cmd );
