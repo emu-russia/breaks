@@ -2,7 +2,7 @@
 
 static ContextBoard nes;
 
-#ifdef WIN32        // Visual studio
+#ifdef _WINDOWS        // Visual studio
 #define DLL_PREFIX
 #else       // lcc adding _ prefix to exported DLL names
 #define DLL_PREFIX "_"
