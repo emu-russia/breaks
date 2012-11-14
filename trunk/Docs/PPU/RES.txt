@@ -1,0 +1,11 @@
+PPU Reset logic:
+
+    RES = NOT(/RES);
+    RC = NOT(RESET_FF) & NOT(RES);
+    RESET_FF = NOT(RC) & NOT(RESCL);
+
+/RES: input reset pad
+RES: internal reset control line
+RC: register clear control line
+RESCL: clear reset flip/flop
+RESET_FF: reset flip/flop
