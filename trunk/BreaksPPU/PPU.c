@@ -71,7 +71,7 @@ static void PPU_HV (ContextPPU *ppu)
     // V-counter input
     ppu->ctrl[PPU_CTRL_VIN] = NOT (H(0) | H(1) | nH(2) | H(3) | nH(4) | H(5) | nH(6) | H(7) | nH(8));
 
-    // H/V counter reset
+    // clear H/V counters
 
     // propagate counters
     for (n=0, in=1; n<9; n++) {   // H-counter
@@ -147,7 +147,7 @@ static void PPU_HV (ContextPPU *ppu)
 
     // H/V random logic
 
-    printf ( "%i %i H=%i V=%i\n", ppu->pad[PPU_CLK], PCLK, ppu->debug[PPU_DEBUG_H], ppu->debug[PPU_DEBUG_V] );
+    //printf ( "%i %i H=%i V=%i\n", ppu->pad[PPU_CLK], PCLK, ppu->debug[PPU_DEBUG_H], ppu->debug[PPU_DEBUG_V] );
 }
 
 // ------------------------------------------------------------------------
