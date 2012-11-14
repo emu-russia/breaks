@@ -37,7 +37,7 @@ enum {
 enum {
     PPU_FF_RESET,           // reset flip/flop
     PPU_FF_PCLK0, PPU_FF_PCLK1, PPU_FF_PCLK2, PPU_FF_PCLK3, // pixel clock div/4 latches
-    PPU_FF_HC,              // H-counter clear
+    PPU_FF_HC, PPU_FF_VC,     // H/V-counter clear
 
     PPU_FF_MAX,
 };
@@ -58,6 +58,7 @@ enum {
 enum {
     PPU_BUS_DB,             // internal data bus
     PPU_BUS_H, PPU_BUS_V,   // H/V counter outputs
+    PPU_BUS_HSEL,PPU_BUS_VSEL,  // H/V select
     PPU_BUS_PAL,            // palette index
     PPU_BUS_OAM,            // OAM index
     PPU_BUS_PD,             // PPU data
@@ -78,6 +79,7 @@ enum {
 // Debug
 
 enum {
+    PPU_DEBUG_H, PPU_DEBUG_V,
     PPU_DEBUG_PIXCOUNT,
 
     PPU_DEBUG_MAX,
@@ -94,7 +96,7 @@ typedef struct ContextPPU
     int     ctrl[PPU_CTRL_MAX];      // control lines
     unsigned long reg[PPU_REG_MAX][16];  // registers
     unsigned char mem[256+32+64];    // primary OAM, secondary OAM, palette
-    unsigned long bus[PPU_BUS_MAX][16];  // internal buses
+    unsigned long bus[PPU_BUS_MAX][32];  // internal buses
     int     debug[PPU_DEBUG_MAX];    // debug variables
 } ContextPPU;
 
