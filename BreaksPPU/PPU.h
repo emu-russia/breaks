@@ -30,7 +30,7 @@ enum {
     PPU_CTRL_CLIP_O, PPU_CTRL_CLIP_B,   // clip objects/background (H/V logic)
     PPU_CTRL_ZHPOS,         // reset H.position counters (H/V logic)
     PPU_CTRL_EVAL,          // sprite evaluation (H/V logic)
-    PPU_CTRL_OBCLIP, PPU_CTRL_BGCLIP, PPU_CTRL_VBL,         // status registers output
+    PPU_CTRL_OBCLIP, PPU_CTRL_BGCLIP, PPU_CTRL_VBL,         // control registers output
     PPU_CTRL_nTR, PPU_CTRL_nTG, PPU_CTRL_nTB, PPU_CTRL_BLACK, PPU_CTRL_BW,
 
     PPU_CTRL_MAX,

@@ -163,12 +163,12 @@ static void PPU_HV (ContextPPU *ppu)
     if (nPCLK) {    // Load input latches from H/V select
         for (n=0; n<23; n++) HRIN(n) = HSEL(n);
     }
-    if (PCLK) {     // Check conditions and put result in output latches
+    if (PCLK) {     // Check conditions and put result in output latches, alter flip/flops
         HROUT(2) = NOT(HRIN(2));
         HROUT(3) = HRIN(4) & NOT(HRIN(3));
         HROUT(5) = NOT(HRIN(5));
     }
-    // H/V logic outputs, based on output latch values.
+    // H/V logic outputs, based on output latch values, flip/flops and PPU control bits.
     unknown[0] = NOT(HROUT(2));
     ppu->ctrl[PPU_CTRL_CLIP_O] = NOT(HROUT(3)) & NOT(ppu->ctrl[PPU_CTRL_OBCLIP]);
     ppu->ctrl[PPU_CTRL_CLIP_B] = NOT(HROUT(3)) & NOT(ppu->ctrl[PPU_CTRL_BGCLIP]);
