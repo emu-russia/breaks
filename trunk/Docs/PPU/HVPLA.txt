@@ -1,46 +1,46 @@
-left PLA (H select):
+left PLA (H select): count from 0 to 340 (341 pixels total)
 
-Line    876543210   Decimal	Modifier		Functional
-0       100010111   279     				to Render
-1       100000000   256					to Render
-2       001000001   65		DB/OAM			OAM/EVAL
-3       X00000XXX					Object/Background clipping
-4       0XXXXXXXX		        [??]		Object/Background clipping
-5       1010100XX   336-339				OAM FIFO clear H.position
+Line    876543210   Decimal Exception Modifier  Functional
+0       100010111   279                         Colorburst/sync
+1       100000000   256                         Colorburst/sync
+2       001000001   65      DB/OAM              OAM/EVAL
+3       X00000XXX                               Object/Background clipping
+4       0XXXXXXXX               [??]            Object/Background clipping
+5       1010100XX   336-339                     OAM FIFO clear H.position
 
-6       000111111   63					EVAL ready (secondary OAM init done)
-7       X11111111   255/511				to data reader, counter controls ???
-8       000XXXXXX					OAM buffer control ?
+6       000111111   63                          EVAL ready (secondary OAM init done)
+7       X11111111   255                         to data reader, counter controls ???
+8       000XXXXXX                               OAM buffer control ?
 
-9       100XXXXXX		DB/OAM			PAR/D
-10      0XXXXXXXX		DB/OAM  [??]		/VIS
-11      XXXXXX00X		DB/OAM			OAM+data reader
-12      XXXXXX11X					!!!
-13      XXXXXX10X					!!!
+9       100XXXXXX           DB/OAM              PAR/D
+10      0XXXXXXXX           DB/OAM  [??]        /VIS
+11      XXXXXX00X           DB/OAM              OAM+data reader
+12      XXXXXX11X                               !!! these are tied together
+13      XXXXXX10X                               !!!
 
-14      1X100XXXX		DB/OAM			!!!
-15      0XXXXXXXX		DB/OAM			!!!
-16      XXXXXX01X					!!!
-17      100001110   270					Some latch +
-18      101001000   328					+ Some latch -> output to V logic
+14      1X100XXXX           DB/OAM              !!!
+15      0XXXXXXXX           DB/OAM              !!!
+16      XXXXXX01X                               !!! these are tied together
+17      100001110   270                         Some latch +
+18      101001000   328                         + Some latch -> output to V logic
 
-19      100010111   279					Scroll update + to Render
-20      100110000   304					Scroll update + to Render
-21      101000011   323					to Render
-22      100110100   308					to Render
+19      100010111   279                         Scroll update + to Render
+20      100110000   304                         Scroll update + to Render
+21      101000011   323                         Colorburst/sync
+22      100110100   308                         Colorburst/sync
 
-23      101010100   340 				V-counter enable
+23      101010100   340                         V-counter enable
 
-right PLA (V select):
+right PLA (V select): count from 0 to 261 (262 scanlines total)
 
-Line    876543210    Decimal	Modifier		Functional
-0       X11110111    247/503				to Render
-1       X11110100    244/500				to Render
+Line    876543210    Decimal                    Functional
+0       X11110111    247                        to Render
+1       X11110100    244                        to Render
 
-2       100000101    261				+ Some latch, color buffer enabler?
-3       X11110001    241/497				+ Some latch, color buffer enabler?
-4       X11110001    241/497				Control [3]  /INT
-5       000000000    0					flip/flop, modifier [??] out, cleared by 
-6       X11110000    240/496				this one
-7       100000101    261				DB/OAM
-8       100000101    261				RESCL
+2       100000101    261                        + Some latch, color buffer enabler?
+3       X11110001    241                        + Some latch, color buffer enabler?
+4       X11110001    241                        Control [3]  /INT
+5       000000000    0                          flip/flop, modifier [??] out, cleared by  ...
+6       X11110000    240                        ... this one
+7       100000101    261                        DB/OAM out
+8       100000101    261                        RESCL (clear reset flip/flop)
