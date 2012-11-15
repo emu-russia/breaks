@@ -119,6 +119,29 @@ static void OAM_RAS_DEBUG (Context2C02 *ppu)
     ppu->DEBUG = old;
 }
 
+// --------------------------------------------------------------------
+// OAM H.COUNTERS
+
+static int EnableLatch = 0, BiStable = 0;
+
+static void step (int LOAD, int UPD, int STEP)
+{
+}
+
+static void FIFO_HCOUNTERS (Context2C02 *ppu)
+{
+    char HPOS[8] = { 0, 1, 0, 0, 0, 0, 0, 0 };
+    
+    int PCLK = 0;
+    int LOAD = 1;
+
+    EnableLatch = 
+
+    STEP = NOR (BiStable, PCLK);
+    UPD = NOR (STEP, LOAD);
+    step ( LOAD, UPD, STEP);
+}
+
 main ()
 {
     Context2C02 ppu;
@@ -127,6 +150,7 @@ main ()
     // PIXEL_CLOCK_DEBUG (&ppu);
     // OAM_CAS_DEBUG (&ppu);
     // OAM_RAS_DEBUG (&ppu);
+    FIFO_HCOUNTERS (&ppu);
 
     printf ("PPU test suite.\n");
 }
