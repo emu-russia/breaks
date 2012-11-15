@@ -26,7 +26,7 @@ int NOR(int a, int b) { return ~((a & 1) | (b & 1)) & 1; }
 // ------------------------------------------------------------------------
 // RENDER
 
-// CLK is uses only inside render pipeline for chrominance phase generation.
+// CLK is used only inside render pipeline for chrominance phase generation.
 // Other PPU components are clocked by double-rated pixel clock
 
 // Reset -> Clock distribution -> Pixel clock -> R/W decoder -> Reg select -> H/V -> Palette RAS/CAS -> Color buffer -> Phase shifter -> Phase select -> Emphasis -> Level select -> DAC
@@ -81,6 +81,10 @@ static void dump_HV (ContextPPU *ppu)
     if ( ppu->debug[PPU_DEBUG_V] > 0 ) exit (0);
     printf ( "PCLK:%i H:%i ", PCLK, ppu->debug[PPU_DEBUG_H] );
 
+    for (n=0; n<23; n++) {
+        if (HSEL(n)) printf ( "%i ", n );
+    }
+
     if ( ppu->ctrl[PPU_CTRL_SEV] ) printf ( " S/EV" );
     if ( ppu->ctrl[PPU_CTRL_EEV] ) printf ( " E/EV" );
     if ( ppu->ctrl[PPU_CTRL_CLIP_O] ) printf ( " CLIP_O" );
@@ -101,7 +105,7 @@ static void dump_HV (ContextPPU *ppu)
     if ( ppu->ctrl[PPU_CTRL_BURST] ) printf ( " BURST" );
     if ( ppu->ctrl[PPU_CTRL_SYNC] ) printf ( " SYNC" );
     if ( ppu->ctrl[PPU_CTRL_nINT] ) printf ( " /INT" );
-
+    
     printf ( "\n" );
 }
 
