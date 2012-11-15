@@ -36,8 +36,8 @@ V select: count from 0 to 261 (262 scanlines total)
 Line    876543210   Decimal                     Functional
 0       X11110111   247                        
 1       X11110100   244                        
-
 2       100000101   261                        
+
 3       X11110001   241                        
 4       X11110001   241                        
 5       000000000   0                           Vblank end
