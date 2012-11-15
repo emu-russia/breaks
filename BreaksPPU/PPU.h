@@ -21,16 +21,27 @@ enum {
 enum {
     PPU_CTRL_RES,           // inverted /RES
     PPU_CTRL_RC,            // register clear
-    PPU_CTRL_RESCL,         // clear reset flip/flop
     PPU_CTRL_nCLK,          // /CLK
+    PPU_CTRL_PCLK, PPU_CTRL_nPCLK,  // pixel clock phases
+            // H/V counters
     PPU_CTRL_VIN,           // V-counter input
     PPU_CTRL_HC,            // H-counter clear
     PPU_CTRL_VC,            // V-counter clear
-    PPU_CTRL_PCLK, PPU_CTRL_nPCLK,  // pixel clock phases
-    PPU_CTRL_CLIP_O, PPU_CTRL_CLIP_B,   // clip objects/background (H/V logic)
-    PPU_CTRL_ZHPOS,         // reset H.position counters (H/V logic)
-    PPU_CTRL_EVAL,          // sprite evaluation (H/V logic)
-    PPU_CTRL_OBCLIP, PPU_CTRL_BGCLIP, PPU_CTRL_VBL,         // control registers output
+            // H/V logic
+    PPU_CTRL_CLIP_O, PPU_CTRL_CLIP_B,   // clip objects/background
+    PPU_CTRL_ZHPOS,         // 0/HPOS, reset H.position counters
+    PPU_CTRL_EVAL,          // sprite evaluation in progress
+    PPU_CTRL_PARO,          // fetch sprite patterns PAR/O
+    PPU_CTRL_nVIS,          // visible scanline part /VIS
+    PPU_CTRL_BLNK,          // picture not seen (vblank) or disabled by control regs
+    PPU_CTRL_RESCL,         // clear reset flip/flop
+    PPU_CTRL_SEV, PPU_CTRL_EEV,     // start/end OAM evaluation S/EV, E/EV
+    PPU_CTRL_IOAM2,         // init secondary OAM I/OAM2
+    PPU_CTRL_FNT, PPU_CTRL_FAT, PPU_CTRL_FTA, PPU_CTRL_FTB, PPU_CTRL_FDUMMY,    // memory fetch orders
+    PPU_CTRL_PICTURE, PPU_CTRL_BURST, PPU_CTRL_SYNC,      // videout controls
+    PPU_CTRL_nINT,          // /INT
+        // control registers output
+    PPU_CTRL_OBCLIP, PPU_CTRL_BGCLIP, PPU_CTRL_VBL,         
     PPU_CTRL_nTR, PPU_CTRL_nTG, PPU_CTRL_nTB, PPU_CTRL_BLACK, PPU_CTRL_BW,
 
     PPU_CTRL_MAX,
@@ -43,7 +54,6 @@ enum {
     PPU_FF_RESET,           // reset flip/flop
     PPU_FF_PCLK0, PPU_FF_PCLK1, PPU_FF_PCLK2, PPU_FF_PCLK3, // pixel clock div/4 latches
     PPU_FF_HC, PPU_FF_VC,     // H/V-counter clear
-    PPU_FF_RESCLIN, PPU_FF_RESCLOUT,        // RESCL latches
 
     PPU_FF_MAX,
 };
@@ -52,12 +62,14 @@ enum {
 // Registers
 
 enum {
-    PPU_REG_HIN, PPU_REG_HOUT,    // H-counter
-    PPU_REG_VIN, PPU_REG_VOUT,    // V-counter
-    PPU_REG_HRIN,                 // H-select input latches
-    PPU_REG_HROUT,                // H-select output latches
-    PPU_REG_HR,                   // H-select flip/flops
-    PPU_REG_VR,                   // V-select latches and flip/flops
+    PPU_REG_HIN, PPU_REG_HOUT,          // H-counter
+    PPU_REG_VIN, PPU_REG_VOUT,          // V-counter
+    PPU_REG_HRIN,                       // H-select input latches
+    PPU_REG_HROUT,                      // H-select output latches
+    PPU_REG_VRIN,                       // V-select input latches
+    PPU_REG_VROUT,                      // V-select output latches
+    PPU_REG_HR,                         // H-select flip/flops
+    PPU_REG_VR,                         // V-select flip/flops
 
     PPU_REG_MAX,
 };
@@ -67,7 +79,7 @@ enum {
 
 enum {
     PPU_BUS_DB,             // internal data bus
-    PPU_BUS_H, PPU_BUS_V,   // H/V counter outputs
+    PPU_BUS_H, PPU_BUS_V,       // H/V counter outputs
     PPU_BUS_HSEL,PPU_BUS_VSEL,  // H/V select
     PPU_BUS_PAL,            // palette index
     PPU_BUS_OAM,            // OAM index
@@ -102,9 +114,9 @@ typedef struct ContextPPU
 {
     float    vid;               // video output (composite video, normalized to 1.0)
     unsigned long pad[12];      // I/O pads and external buses
-    int     latch[PPU_FF_MAX];       // individual latches
+    char    latch[PPU_FF_MAX];       // individual latches
     int     ctrl[PPU_CTRL_MAX];      // control lines
-    unsigned long reg[PPU_REG_MAX][32];  // registers
+    char    reg[PPU_REG_MAX][32];  // registers
     unsigned char mem[256+32+64];    // primary OAM, secondary OAM, palette
     unsigned long bus[PPU_BUS_MAX][32];  // internal buses
     int     debug[PPU_DEBUG_MAX];    // debug variables
