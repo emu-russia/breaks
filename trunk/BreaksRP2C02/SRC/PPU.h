@@ -10,6 +10,7 @@
 #include "MUX.h"
 #include "OAM.h"
 #include "OAM_EVAL.h"
+#include "OAM_FIFO.h"
 #include "PALETTE.h"
 #include "PPU_CLOCK.h"
 #include "REGSELECT.h"
