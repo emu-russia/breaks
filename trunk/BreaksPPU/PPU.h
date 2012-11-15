@@ -27,6 +27,11 @@ enum {
     PPU_CTRL_HC,            // H-counter clear
     PPU_CTRL_VC,            // V-counter clear
     PPU_CTRL_PCLK, PPU_CTRL_nPCLK,  // pixel clock phases
+    PPU_CTRL_CLIP_O, PPU_CTRL_CLIP_B,   // clip objects/background (H/V logic)
+    PPU_CTRL_ZHPOS,         // reset H.position counters (H/V logic)
+    PPU_CTRL_EVAL,          // sprite evaluation (H/V logic)
+    PPU_CTRL_OBCLIP, PPU_CTRL_BGCLIP, PPU_CTRL_VBL,         // status registers output
+    PPU_CTRL_nTR, PPU_CTRL_nTG, PPU_CTRL_nTB, PPU_CTRL_BLACK, PPU_CTRL_BW,
 
     PPU_CTRL_MAX,
 };
@@ -38,6 +43,7 @@ enum {
     PPU_FF_RESET,           // reset flip/flop
     PPU_FF_PCLK0, PPU_FF_PCLK1, PPU_FF_PCLK2, PPU_FF_PCLK3, // pixel clock div/4 latches
     PPU_FF_HC, PPU_FF_VC,     // H/V-counter clear
+    PPU_FF_RESCLIN, PPU_FF_RESCLOUT,        // RESCL latches
 
     PPU_FF_MAX,
 };
@@ -48,6 +54,10 @@ enum {
 enum {
     PPU_REG_HIN, PPU_REG_HOUT,    // H-counter
     PPU_REG_VIN, PPU_REG_VOUT,    // V-counter
+    PPU_REG_HRIN,                 // H-select input latches
+    PPU_REG_HROUT,                // H-select output latches
+    PPU_REG_HR,                   // H-select flip/flops
+    PPU_REG_VR,                   // V-select latches and flip/flops
 
     PPU_REG_MAX,
 };
@@ -94,7 +104,7 @@ typedef struct ContextPPU
     unsigned long pad[12];      // I/O pads and external buses
     int     latch[PPU_FF_MAX];       // individual latches
     int     ctrl[PPU_CTRL_MAX];      // control lines
-    unsigned long reg[PPU_REG_MAX][16];  // registers
+    unsigned long reg[PPU_REG_MAX][32];  // registers
     unsigned char mem[256+32+64];    // primary OAM, secondary OAM, palette
     unsigned long bus[PPU_BUS_MAX][32];  // internal buses
     int     debug[PPU_DEBUG_MAX];    // debug variables

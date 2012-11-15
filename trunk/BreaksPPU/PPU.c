@@ -6,8 +6,8 @@
 
 #define RES      (ppu->ctrl[PPU_CTRL_RES])
 #define RC       (ppu->ctrl[PPU_CTRL_RC])
-#define RESCL       (ppu->ctrl[PPU_CTRL_RESCL])
-#define PCLK    (ppu->ctrl[PPU_CTRL_PCLK])
+#define RESCL    (ppu->ctrl[PPU_CTRL_RESCL])
+#define PCLK     (ppu->ctrl[PPU_CTRL_PCLK])
 #define nPCLK    (ppu->ctrl[PPU_CTRL_nPCLK])
 
 // ------------------------------------------------------------------------
@@ -52,10 +52,18 @@ static void PPU_PIXEL_CLOCK (ContextPPU *ppu)
     nPCLK = NOT(PCLK);
 }
 
+// print asserted H/V logic outputs.
+static void dump_HV (ContextPPU *ppu)
+{
+    printf ( "%i %i H=%i V=%i, out: ", ppu->pad[PPU_CLK], PCLK, ppu->debug[PPU_DEBUG_H], ppu->debug[PPU_DEBUG_V] );
+    printf ( "\n" );
+}
+
 // H/V counters
 static void PPU_HV (ContextPPU *ppu)
 {
     int n, in;
+    int unknown[9];
 
     #define HIN(n) (ppu->reg[PPU_REG_HIN][n])
     #define HOUT(n) (ppu->reg[PPU_REG_HOUT][n])
@@ -65,6 +73,12 @@ static void PPU_HV (ContextPPU *ppu)
     #define nH(n) NOT(ppu->bus[PPU_BUS_H][n])
     #define V(n) (ppu->bus[PPU_BUS_V][n])
     #define nV(n) NOT(ppu->bus[PPU_BUS_V][n])
+    #define HSEL(n) (ppu->bus[PPU_BUS_HSEL][n])
+    #define VSEL(n) (ppu->bus[PPU_BUS_VSEL][n])
+    #define HRIN(n) (ppu->reg[PPU_REG_HRIN][n])
+    #define HROUT(n) (ppu->reg[PPU_REG_HRIN][n])
+    #define HR(n) (ppu->reg[PPU_REG_HR][n])
+    #define VR(n) (ppu->reg[PPU_REG_VR][n])
 
     ppu->debug[PPU_DEBUG_H] = ppu->debug[PPU_DEBUG_V] = 0;
 
@@ -104,50 +118,63 @@ static void PPU_HV (ContextPPU *ppu)
     }
 
     // H select
-    ppu->bus[PPU_BUS_HSEL][0] = NOT( nH(0) | nH(1) | nH(2) | H(3) | nH(4) | H(5) | H(6) | H(7) | nH(8) );
-    ppu->bus[PPU_BUS_HSEL][1] = NOT( H(0) | H(1) | H(2) | H(3) | H(4) | H(5) | H(6) | H(7) | nH(8) );
-    ppu->bus[PPU_BUS_HSEL][2] = NOT( nH(0) | H(1) | H(2) | H(3) | H(4) | H(5) | nH(6) | H(7) | H(8) );
-    ppu->bus[PPU_BUS_HSEL][3] = NOT( H(3) | H(4) | H(5) | H(6) | H(7) );
-    ppu->bus[PPU_BUS_HSEL][4] = NOT( H(8) );
-    ppu->bus[PPU_BUS_HSEL][5] = NOT( H(2) | H(3) | nH(4) | H(5) | nH(6) | H(7) | nH(8) );
+    HSEL(0) = NOT( nH(0) | nH(1) | nH(2) | H(3) | nH(4) | H(5) | H(6) | H(7) | nH(8) );       // 279, front porch end
+    HSEL(1) = NOT( H(0) | H(1) | H(2) | H(3) | H(4) | H(5) | H(6) | H(7) | nH(8) );           // 256, front porch start
+    HSEL(2) = NOT( nH(0) | H(1) | H(2) | H(3) | H(4) | H(5) | nH(6) | H(7) | H(8) );
+    HSEL(3) = NOT( H(3) | H(4) | H(5) | H(6) | H(7) );
+    HSEL(4) = NOT( H(8) );
+    HSEL(5) = NOT( H(2) | H(3) | nH(4) | H(5) | nH(6) | H(7) | nH(8) );
 
-    ppu->bus[PPU_BUS_HSEL][6] = NOT( nH(0) | nH(1) | nH(2) | nH(3) | nH(4) | nH(5) | H(6) | H(7) | H(8) );
-    ppu->bus[PPU_BUS_HSEL][7] = NOT( nH(0) | nH(1) | nH(2) | nH(3) | nH(4) | nH(5) | nH(6) | nH(7) );
-    ppu->bus[PPU_BUS_HSEL][8] = NOT( H(6) | H(7) | H(8) );
+    HSEL(6) = NOT( nH(0) | nH(1) | nH(2) | nH(3) | nH(4) | nH(5) | H(6) | H(7) | H(8) );
+    HSEL(7) = NOT( nH(0) | nH(1) | nH(2) | nH(3) | nH(4) | nH(5) | nH(6) | nH(7) );
+    HSEL(8) = NOT( H(6) | H(7) | H(8) );
 
-    ppu->bus[PPU_BUS_HSEL][9] = NOT( H(6) | H(7) | nH(8) );
-    ppu->bus[PPU_BUS_HSEL][10] = NOT( H(8) );
-    ppu->bus[PPU_BUS_HSEL][11] = NOT( H(1) | H(2) );
-    ppu->bus[PPU_BUS_HSEL][12] = NOT( nH(1) | nH(2) );
-    ppu->bus[PPU_BUS_HSEL][13] = NOT( H(1) | nH(2) );
+    HSEL(9) = NOT( H(6) | H(7) | nH(8) );
+    HSEL(10) = NOT( H(8) );
+    HSEL(11) = NOT( H(1) | H(2) );
+    HSEL(12) = NOT( nH(1) | nH(2) );
+    HSEL(13) = NOT( H(1) | nH(2) );
 
-    ppu->bus[PPU_BUS_HSEL][14] = NOT( H(4) | H(5) | nH(6) | nH(8) );
-    ppu->bus[PPU_BUS_HSEL][15] = NOT( H(8) );
-    ppu->bus[PPU_BUS_HSEL][16] = NOT( nH(1) | H(2) );
-    ppu->bus[PPU_BUS_HSEL][17] = NOT( H(0) | nH(1) | nH(2) | nH(3) | H(4) | H(5) | H(6) | H(7) | nH(8) );
-    ppu->bus[PPU_BUS_HSEL][18] = NOT( H(0) | H(1) | H(2) | nH(3) | H(4) | H(5) | nH(6) | H(7) | nH(8) );
+    HSEL(14) = NOT( H(4) | H(5) | nH(6) | nH(8) );
+    HSEL(15) = NOT( H(8) );
+    HSEL(16) = NOT( nH(1) | H(2) );
+    HSEL(17) = NOT( H(0) | nH(1) | nH(2) | nH(3) | H(4) | H(5) | H(6) | H(7) | nH(8) );
+    HSEL(18) = NOT( H(0) | H(1) | H(2) | nH(3) | H(4) | H(5) | nH(6) | H(7) | nH(8) );
 
-    ppu->bus[PPU_BUS_HSEL][19] = NOT( nH(0) | nH(1) | nH(2) | H(3) | nH(4) | H(5) | H(6) | H(7) | nH(8) );
-    ppu->bus[PPU_BUS_HSEL][20] = NOT( H(0) | H(1) | H(2) | H(3) | nH(4) | nH(5) | H(6) | H(7) | nH(8) );
-    ppu->bus[PPU_BUS_HSEL][21] = NOT( nH(0) | nH(1) | H(2) | H(3) | H(4) | H(5) | nH(6) | H(7) | nH(8) );
-    ppu->bus[PPU_BUS_HSEL][22] = NOT( H(0) | H(1) | nH(2) | H(3) | nH(4) | nH(5) | H(6) | H(7) | nH(8) );
+    HSEL(19) = NOT( nH(0) | nH(1) | nH(2) | H(3) | nH(4) | H(5) | H(6) | H(7) | nH(8) );
+    HSEL(20) = NOT( H(0) | H(1) | H(2) | H(3) | nH(4) | nH(5) | H(6) | H(7) | nH(8) );
+    HSEL(21) = NOT( nH(0) | nH(1) | H(2) | H(3) | H(4) | H(5) | nH(6) | H(7) | nH(8) );
+    HSEL(22) = NOT( H(0) | H(1) | nH(2) | H(3) | nH(4) | nH(5) | H(6) | H(7) | nH(8) );
 
     // V select
-    ppu->bus[PPU_BUS_VSEL][0] = NOT( nV(0) | nV(1) | nV(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
-    ppu->bus[PPU_BUS_VSEL][1] = NOT( V(0) | V(1) | nV(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
-    ppu->bus[PPU_BUS_VSEL][2] = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );
+    VSEL(0) = NOT( nV(0) | nV(1) | nV(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
+    VSEL(1) = NOT( V(0) | V(1) | nV(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
+    VSEL(2) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );
 
-    ppu->bus[PPU_BUS_VSEL][3] = NOT( nV(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
-    ppu->bus[PPU_BUS_VSEL][4] = NOT( nV(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
-    ppu->bus[PPU_BUS_VSEL][5] = NOT( V(0) | V(1) | V(2) | V(3) | V(4) | V(5) | V(6) | V(7) | V(8) );
-    ppu->bus[PPU_BUS_VSEL][6] = NOT( V(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
-    ppu->bus[PPU_BUS_VSEL][7] = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );
+    VSEL(3) = NOT( nV(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
+    VSEL(4) = NOT( nV(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
+    VSEL(5) = NOT( V(0) | V(1) | V(2) | V(3) | V(4) | V(5) | V(6) | V(7) | V(8) );
+    VSEL(6) = NOT( V(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );
+    VSEL(7) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );
 
-    ppu->bus[PPU_BUS_VSEL][8] = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );
+    VSEL(8) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );
 
     // H/V random logic
+    if (nPCLK) {    // Load input latches from H/V select
+        for (n=0; n<23; n++) HRIN(n) = HSEL(n);
+    }
+    if (PCLK) {     // Check conditions and put result in output latches
+        HROUT(2) = NOT(HRIN(2));
+        HROUT(3) = HRIN(4) & NOT(HRIN(3));
+        HROUT(5) = NOT(HRIN(5));
+    }
+    // H/V logic outputs, based on output latch values.
+    unknown[0] = NOT(HROUT(2));
+    ppu->ctrl[PPU_CTRL_CLIP_O] = NOT(HROUT(3)) & NOT(ppu->ctrl[PPU_CTRL_OBCLIP]);
+    ppu->ctrl[PPU_CTRL_CLIP_B] = NOT(HROUT(3)) & NOT(ppu->ctrl[PPU_CTRL_BGCLIP]);
+    ppu->ctrl[PPU_CTRL_ZHPOS] = NOT(HROUT(5));
 
-    //printf ( "%i %i H=%i V=%i\n", ppu->pad[PPU_CLK], PCLK, ppu->debug[PPU_DEBUG_H], ppu->debug[PPU_DEBUG_V] );
+    dump_HV (ppu);
 }
 
 // ------------------------------------------------------------------------
