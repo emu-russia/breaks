@@ -12,8 +12,8 @@
 
 // Flip/flop
 #define FF(ff,out,r,s)  \
-    out = NOT(ff) & NOT(s); \
-    ff = out & NOT(r); 
+    out = NOR(ff, s);   \
+    ff = NOR(out, r);
 
 // ------------------------------------------------------------------------
 
@@ -77,13 +77,12 @@ static void PPU_PIXEL_CLOCK (ContextPPU *ppu)
 // print asserted H/V logic outputs.
 static void dump_HV (ContextPPU *ppu)
 {
+    static int prev_h = -1;
     int n;
+    if (nPCLK || ppu->debug[PPU_DEBUG_H] == prev_h ) return;
     if ( ppu->debug[PPU_DEBUG_V] == 3 ) exit (0);
-    printf ( "PCLK:%i H:%i V:%i ", PCLK, ppu->debug[PPU_DEBUG_H], ppu->debug[PPU_DEBUG_V] );
-
-    for (n=0; n<23; n++) {
-        if (HSEL(n)) printf ( "%i ", n );
-    }
+    printf ( "H:%i V:%i ", ppu->debug[PPU_DEBUG_H], ppu->debug[PPU_DEBUG_V] );
+    prev_h = ppu->debug[PPU_DEBUG_H];
 
     if ( ppu->ctrl[PPU_CTRL_SEV] ) printf ( " S/EV" );
     if ( ppu->ctrl[PPU_CTRL_EEV] ) printf ( " E/EV" );
@@ -98,13 +97,14 @@ static void dump_HV (ContextPPU *ppu)
     if ( ppu->ctrl[PPU_CTRL_VIS] ) printf ( " VIS" );
     if ( ppu->ctrl[PPU_CTRL_FTA] ) printf ( " F/TA" );
     if ( ppu->ctrl[PPU_CTRL_FTB] ) printf ( " F/TB" );
-    if ( ppu->ctrl[PPU_CTRL_FDUMMY] ) printf ( " F/-" );
+    if ( NOT(ppu->ctrl[PPU_CTRL_nFDUMMY]) ) printf ( " F/-" );
     if ( ppu->ctrl[PPU_CTRL_BLNK] ) printf ( " BLNK" );
     if ( ppu->ctrl[PPU_CTRL_RESCL] ) printf ( " RESCL" );
     if ( ppu->ctrl[PPU_CTRL_PICTURE] ) printf ( " PICTURE" );
     if ( ppu->ctrl[PPU_CTRL_BURST] ) printf ( " BURST" );
     if ( ppu->ctrl[PPU_CTRL_SYNC] ) printf ( " SYNC" );
-    if ( ppu->ctrl[PPU_CTRL_nINT] ) printf ( " /INT" );
+    if ( NOT(ppu->ctrl[PPU_CTRL_nINT]) ) printf ( " /INT" );
+    if ( NOT(ppu->ctrl[PPU_CTRL_nPORCH]) ) printf ( " /PORCH" );
     
     printf ( "\n" );
 }
@@ -116,7 +116,7 @@ static void dump_HV (ContextPPU *ppu)
 
     H/V logic output:
     to render: SYNC, BURST, PICTURE
-    drivers: CLIP_O, CLIP_B, 0/HPOS, EVAL, S/EV, E/EV, I/OAM2, PAR/O, /VIS,
+    drivers: CLIP_O, CLIP_B, 0/HPOS, EVAL, S/EV, E/EV, I/OAM2, PAR/O, VIS,
              F/NT, F/AT, F/TA, F/TB, F/DUMMY,
              SC/CNT, BLNK, RESCL
     /INT (vblank out)
@@ -127,15 +127,9 @@ static void dump_HV (ContextPPU *ppu)
 static void PPU_HV (ContextPPU *ppu)
 {
     int n, in;
-    int ff, hb, vb, blnk, porch, pic, cb, oe;
+    int ff, hb, vb, blnk, pic, cb, oe;
 
     ppu->debug[PPU_DEBUG_H] = ppu->debug[PPU_DEBUG_V] = 0;
-
-    // Early logic
-    FF(VR(6),ff,VRIN(5),VRIN(6));     // Not vblank (lines 261...240)
-    vb = NOT(ff);
-    FF(VR(7),ff,VRIN(6),VRIN(7));      // Not picture (lines 240...0)
-    blnk = ppu->ctrl[PPU_CTRL_BLNK] = ff | ppu->ctrl[PPU_CTRL_BLACK];
 
     // V-counter input
     ppu->ctrl[PPU_CTRL_VIN] = NOT (H(0) | H(1) | nH(2) | H(3) | nH(4) | H(5) | nH(6) | H(7) | nH(8));       // 340
@@ -174,6 +168,28 @@ static void PPU_HV (ContextPPU *ppu)
         if (V(n)) ppu->debug[PPU_DEBUG_V] |= 1 << n;
     }
 
+    // V select
+    VSEL(0) = NOT( nV(0) | nV(1) | nV(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );      // 247
+    VSEL(1) = NOT( V(0) | V(1) | nV(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );        // 244
+    VSEL(2) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );   // 261
+    
+    VSEL(3) = NOT( nV(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );        // 241
+    VSEL(4) = NOT( nV(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );        // 241
+    VSEL(5) = NOT( V(0) | V(1) | V(2) | V(3) | V(4) | V(5) | V(6) | V(7) | V(8) );      // 0
+    VSEL(6) = NOT( V(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );         // 240
+    VSEL(7) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );   // 261
+
+    VSEL(8) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );   // 261
+
+    // Early logic
+    if (nPCLK) {    // Load input latches from H/V select
+        for (n=4; n<9; n++) VRIN(n) = VSEL(n);
+    }
+    FF(VR(6),ff,VRIN(5),VRIN(6));     // picture (lines 0...239)
+    vb = NOT(ff);
+    FF(VR(7),ff,VRIN(7),VRIN(6));     // vblank (lines 240...261)
+    blnk = ppu->ctrl[PPU_CTRL_BLNK] = NOT(ff) | ppu->ctrl[PPU_CTRL_BLACK];
+
     // H select
     HSEL(0) = NOT( nH(0) | nH(1) | nH(2) | H(3) | nH(4) | H(5) | H(6) | H(7) | nH(8) );       // 279, front porch end
     HSEL(1) = NOT( H(0) | H(1) | H(2) | H(3) | H(4) | H(5) | H(6) | H(7) | nH(8) );           // 256, front porch start
@@ -203,19 +219,6 @@ static void PPU_HV (ContextPPU *ppu)
     HSEL(21) = NOT( nH(0) | nH(1) | H(2) | H(3) | H(4) | H(5) | nH(6) | H(7) | nH(8) );     // 323
     HSEL(22) = NOT( H(0) | H(1) | nH(2) | H(3) | nH(4) | nH(5) | H(6) | H(7) | nH(8) );     // 308
 
-    // V select
-    VSEL(0) = NOT( nV(0) | nV(1) | nV(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );      // 247
-    VSEL(1) = NOT( V(0) | V(1) | nV(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );        // 244
-    VSEL(2) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );   // 261
-    
-    VSEL(3) = NOT( nV(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );        // 241
-    VSEL(4) = NOT( nV(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );        // 241
-    VSEL(5) = NOT( V(0) | V(1) | V(2) | V(3) | V(4) | V(5) | V(6) | V(7) | V(8) );      // 0
-    VSEL(6) = NOT( V(0) | V(1) | V(2) | V(3) | nV(4) | nV(5) | nV(6) | nV(7) );         // 240
-    VSEL(7) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );   // 261
-
-    VSEL(8) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );   // 261
-
     // odd/even
     // NOT(HSEL(5));
     oe = 0;
@@ -223,12 +226,11 @@ static void PPU_HV (ContextPPU *ppu)
     // H/V random logic
     if (nPCLK) {    // Load input latches from H/V select
         for (n=0; n<23; n++) HRIN(n) = HSEL(n);
-        for (n=4; n<8; n++) VRIN(n) = VSEL(n);
         ppu->latch[PPU_FF_HC] = NOR (ppu->ctrl[PPU_CTRL_VIN], oe);
         ppu->latch[PPU_FF_VC] = VSEL(2);
     }
     // non-visible video signal portions control
-    FF(HR(0),porch,HRIN(0),HRIN(1));        // after 256 visible pixel there appear "front porch"
+    FF(HR(0),ppu->ctrl[PPU_CTRL_nPORCH],HRIN(0),HRIN(1)); // after 256 visible pixel there appear "front porch"
     FF(VR(0),pic,HRIN(17),HRIN(18));        // Render picture enabler
     FF(VR(1),hb,HRIN(19),HRIN(20));         // HBlank
     FF(VR(2),cb,HRIN(21),HRIN(22));         // Colorburst
@@ -247,7 +249,7 @@ static void PPU_HV (ContextPPU *ppu)
         HROUT(14) = NOR (HRIN(14), HRIN(15));   // dummy
 
         VROUT(0) = cb;
-        VROUT(1) = porch;
+        VROUT(1) = ppu->ctrl[PPU_CTRL_nPORCH];
         FF(VR(4),ff,NAND(hb, VSEL(1)),NAND(hb, VSEL(0)));
         VROUT(3) = NOT(ff) & NOT(hb);
         VROUT(4) = pic;
@@ -267,7 +269,7 @@ static void PPU_HV (ContextPPU *ppu)
     ppu->ctrl[PPU_CTRL_FNT] = NOT(HROUT(11));
     ppu->ctrl[PPU_CTRL_FTB] = NOR(HROUT(12), HROUT(14));
     ppu->ctrl[PPU_CTRL_FTA] = NOR(HROUT(13), HROUT(14));
-    ppu->ctrl[PPU_CTRL_FDUMMY] = NOT(HROUT(14));
+    ppu->ctrl[PPU_CTRL_nFDUMMY] = NOT(HROUT(14));
     ppu->ctrl[PPU_CTRL_FAT] = NOR(  NOR (HRIN(14), HRIN(15)), NOT(HRIN(16)) );
     ppu->ctrl[PPU_CTRL_RESCL] = NOT(VROUT(8));
     ppu->ctrl[PPU_CTRL_SCCNT] = hb & NOT(ppu->ctrl[PPU_CTRL_BLACK]);
@@ -275,6 +277,7 @@ static void PPU_HV (ContextPPU *ppu)
     ppu->ctrl[PPU_CTRL_BURST] = NOR(VROUT(0), ppu->ctrl[PPU_CTRL_SYNC]);
     ppu->ctrl[PPU_CTRL_PICTURE] = VROUT(4) | VROUT(5);
     // vblank / IRQ handling
+    ppu->ctrl[PPU_CTRL_nINT] = 1;
 
     dump_HV (ppu);
 }
@@ -330,7 +333,7 @@ main ()
     cycles = 0;
     old = GetTickCount ();
     while (1) {
-        if ( (GetTickCount () - old) >= 1000 ) break;
+        //if ( (GetTickCount () - old) >= 1000 ) break;
         PPUStep (&ppu);
         ppu.pad[PPU_CLK] ^= 1;
         cycles++;
