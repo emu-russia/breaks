@@ -37,6 +37,7 @@ enum {
     PPU_CTRL_RESCL,         // clear reset flip/flop
     PPU_CTRL_SEV, PPU_CTRL_EEV,     // start/end OAM evaluation S/EV, E/EV
     PPU_CTRL_IOAM2,         // init secondary OAM I/OAM2
+    PPU_CTRL_SCCNT,         // update scroll registers
     PPU_CTRL_FNT, PPU_CTRL_FAT, PPU_CTRL_FTA, PPU_CTRL_FTB, PPU_CTRL_FDUMMY,    // memory fetch orders
     PPU_CTRL_PICTURE, PPU_CTRL_BURST, PPU_CTRL_SYNC,      // videout controls
     PPU_CTRL_nINT,          // /INT

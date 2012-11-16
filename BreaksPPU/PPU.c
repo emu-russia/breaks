@@ -127,14 +127,14 @@ static void dump_HV (ContextPPU *ppu)
 static void PPU_HV (ContextPPU *ppu)
 {
     int n, in;
-    int ff, vb, blnk, porch;
+    int ff, hb, vb, blnk, porch, pic, cb;
 
     ppu->debug[PPU_DEBUG_H] = ppu->debug[PPU_DEBUG_V] = 0;
 
     // Early logic
-    FF(VR(3),ff,VRIN(6),VRIN(5));     // Not vblank (lines 261...240)
+    FF(VR(6),ff,VRIN(5),VRIN(6));     // Not vblank (lines 261...240)
     vb = NOT(ff);
-    FF(VR(4),ff,VRIN(7),VRIN(6));      // Not picture (lines 240...0)
+    FF(VR(7),ff,VRIN(6),VRIN(7));      // Not picture (lines 240...0)
     blnk = ppu->ctrl[PPU_CTRL_BLNK] = ff | ppu->ctrl[PPU_CTRL_BLACK];
 
     // V-counter input
@@ -219,6 +219,11 @@ static void PPU_HV (ContextPPU *ppu)
         for (n=0; n<23; n++) HRIN(n) = HSEL(n);
         for (n=4; n<8; n++) VRIN(n) = VSEL(n);
     }
+    // non-visible video signal portions control
+    FF(HR(0),porch,HRIN(0),HRIN(1));        // after 256 visible pixel there appear "front porch"
+    FF(VR(0),pic,HRIN(17),HRIN(18));        // Render picture enabler
+    FF(VR(1),hb,HRIN(19),HRIN(20));         // HBlank
+    FF(VR(2),cb,HRIN(21),HRIN(22));         // Colorburst
     if (PCLK) {     // Check conditions and put result in output latches, alter flip/flops
         HROUT(2) = NOT(HRIN(2));            // S/EV
         HROUT(3) = NOR ( HRIN(3), NOT(HRIN(4)) );       // clipping appear only on left 8 pixels of visible frame
@@ -233,10 +238,15 @@ static void PPU_HV (ContextPPU *ppu)
         HROUT(13) = NOT (HRIN(13));     // F/TA
         HROUT(14) = NOR (HRIN(14), HRIN(15));   // dummy
 
+        VROUT(0) = cb;
+        VROUT(1) = porch;
+        FF(VR(4),ff,NAND(hb, VSEL(1)),NAND(hb, VSEL(0)));
+        VROUT(3) = NOT(ff) & NOT(hb);
+        VROUT(4) = pic;
+        FF(VR(5),VROUT(5),NAND(pic, VSEL(3)),NAND(pic, VSEL(2)));
         VROUT(8) = NOT(VRIN(8));
     }
     // H/V logic outputs, based on output latch values, flip/flops and PPU control bits.
-    FF (HR(0),porch,HRIN(0),HRIN(1));       // after 256 visible pixel there appear "front porch"
     ppu->ctrl[PPU_CTRL_SEV] = NOT(HROUT(2));
     ppu->ctrl[PPU_CTRL_CLIP_O] = NOT(HROUT(3)) & NOT(ppu->ctrl[PPU_CTRL_OBCLIP]);
     ppu->ctrl[PPU_CTRL_CLIP_B] = NOT(HROUT(3)) & NOT(ppu->ctrl[PPU_CTRL_BGCLIP]);
@@ -252,6 +262,11 @@ static void PPU_HV (ContextPPU *ppu)
     ppu->ctrl[PPU_CTRL_FDUMMY] = NOT(HROUT(14));
     ppu->ctrl[PPU_CTRL_FAT] = NOR(  NOR (HRIN(14), HRIN(15)), NOT(HRIN(16)) );
     ppu->ctrl[PPU_CTRL_RESCL] = NOT(VROUT(8));
+    ppu->ctrl[PPU_CTRL_SCCNT] = hb & NOT(ppu->ctrl[PPU_CTRL_BLACK]);
+    ppu->ctrl[PPU_CTRL_SYNC] = NOR(VROUT(1), VROUT(3));
+    ppu->ctrl[PPU_CTRL_BURST] = NOR(VROUT(0), ppu->ctrl[PPU_CTRL_SYNC]);
+    ppu->ctrl[PPU_CTRL_PICTURE] = VROUT(4) | VROUT(5);
+    // vblank / IRQ handling
 
     dump_HV (ppu);
 }
