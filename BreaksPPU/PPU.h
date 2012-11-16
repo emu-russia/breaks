@@ -32,7 +32,7 @@ enum {
     PPU_CTRL_ZHPOS,         // 0/HPOS, reset H.position counters
     PPU_CTRL_EVAL,          // sprite evaluation in progress
     PPU_CTRL_PARO,          // fetch sprite patterns PAR/O
-    PPU_CTRL_nVIS,          // visible scanline part /VIS
+    PPU_CTRL_VIS,           // visible scanline part
     PPU_CTRL_BLNK,          // picture not seen (vblank) or disabled by control regs
     PPU_CTRL_RESCL,         // clear reset flip/flop
     PPU_CTRL_SEV, PPU_CTRL_EEV,     // start/end OAM evaluation S/EV, E/EV

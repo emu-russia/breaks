@@ -78,8 +78,8 @@ static void PPU_PIXEL_CLOCK (ContextPPU *ppu)
 static void dump_HV (ContextPPU *ppu)
 {
     int n;
-    if ( ppu->debug[PPU_DEBUG_V] > 0 ) exit (0);
-    printf ( "PCLK:%i H:%i ", PCLK, ppu->debug[PPU_DEBUG_H] );
+    if ( ppu->debug[PPU_DEBUG_V] == 3 ) exit (0);
+    printf ( "PCLK:%i H:%i V:%i ", PCLK, ppu->debug[PPU_DEBUG_H], ppu->debug[PPU_DEBUG_V] );
 
     for (n=0; n<23; n++) {
         if (HSEL(n)) printf ( "%i ", n );
@@ -95,7 +95,7 @@ static void dump_HV (ContextPPU *ppu)
     if ( ppu->ctrl[PPU_CTRL_FNT] ) printf ( " F/NT" );
     if ( ppu->ctrl[PPU_CTRL_FAT] ) printf ( " F/AT" );
     if ( ppu->ctrl[PPU_CTRL_PARO] ) printf ( " PAR/O" );
-    if ( ppu->ctrl[PPU_CTRL_nVIS] ) printf ( " /VIS" );
+    if ( ppu->ctrl[PPU_CTRL_VIS] ) printf ( " VIS" );
     if ( ppu->ctrl[PPU_CTRL_FTA] ) printf ( " F/TA" );
     if ( ppu->ctrl[PPU_CTRL_FTB] ) printf ( " F/TB" );
     if ( ppu->ctrl[PPU_CTRL_FDUMMY] ) printf ( " F/-" );
@@ -127,7 +127,7 @@ static void dump_HV (ContextPPU *ppu)
 static void PPU_HV (ContextPPU *ppu)
 {
     int n, in;
-    int ff, hb, vb, blnk, porch, pic, cb;
+    int ff, hb, vb, blnk, porch, pic, cb, oe;
 
     ppu->debug[PPU_DEBUG_H] = ppu->debug[PPU_DEBUG_V] = 0;
 
@@ -141,6 +141,8 @@ static void PPU_HV (ContextPPU *ppu)
     ppu->ctrl[PPU_CTRL_VIN] = NOT (H(0) | H(1) | nH(2) | H(3) | nH(4) | H(5) | nH(6) | H(7) | nH(8));       // 340
 
     // clear H/V counters
+    ppu->ctrl[PPU_CTRL_HC] = NOT(ppu->latch[PPU_FF_HC]);
+    ppu->ctrl[PPU_CTRL_VC] = NOR ( ppu->latch[PPU_FF_HC], NOT(ppu->latch[PPU_FF_VC]) );
 
     // propagate counters
     for (n=0, in=1; n<9; n++) {   // H-counter
@@ -214,10 +216,16 @@ static void PPU_HV (ContextPPU *ppu)
 
     VSEL(8) = NOT( nV(0) | V(1) | nV(2) | V(3) | V(4) | V(5) | V(6) | V(7) | nV(8) );   // 261
 
+    // odd/even
+    // NOT(HSEL(5));
+    oe = 0;
+
     // H/V random logic
     if (nPCLK) {    // Load input latches from H/V select
         for (n=0; n<23; n++) HRIN(n) = HSEL(n);
         for (n=4; n<8; n++) VRIN(n) = VSEL(n);
+        ppu->latch[PPU_FF_HC] = NOR (ppu->ctrl[PPU_CTRL_VIN], oe);
+        ppu->latch[PPU_FF_VC] = VSEL(2);
     }
     // non-visible video signal portions control
     FF(HR(0),porch,HRIN(0),HRIN(1));        // after 256 visible pixel there appear "front porch"
@@ -232,7 +240,7 @@ static void PPU_HV (ContextPPU *ppu)
         HROUT(7) = NOT (HRIN(7));       // E/EV
         HROUT(8) = NOT (HRIN(8));       // I/OAM2
         HROUT(9) = NOT (HRIN(9));       // PAR/O
-        HROUT(10) = NOT (HRIN(10));     // nVIS
+        HROUT(10) = NOT (HRIN(10));     // VIS
         HROUT(11) = NOT (HRIN(11));     // F/NT
         HROUT(12) = NOT (HRIN(12));     // F/TB
         HROUT(13) = NOT (HRIN(13));     // F/TA
@@ -255,7 +263,7 @@ static void PPU_HV (ContextPPU *ppu)
     ppu->ctrl[PPU_CTRL_EEV] = NOT(HROUT(7));
     ppu->ctrl[PPU_CTRL_IOAM2] = NOT(HROUT(8));
     ppu->ctrl[PPU_CTRL_PARO] = NOT(HROUT(9));
-    ppu->ctrl[PPU_CTRL_nVIS] = NOT(HROUT(10));
+    ppu->ctrl[PPU_CTRL_VIS] = NOT(HROUT(10));
     ppu->ctrl[PPU_CTRL_FNT] = NOT(HROUT(11));
     ppu->ctrl[PPU_CTRL_FTB] = NOR(HROUT(12), HROUT(14));
     ppu->ctrl[PPU_CTRL_FTA] = NOR(HROUT(13), HROUT(14));
@@ -313,6 +321,11 @@ main ()
     ContextPPU ppu;
     memset (&ppu, 0, sizeof(ppu));
     ppu.pad[PPU_nRES] = 1;
+
+    // setup some PPU controls
+    ppu.ctrl[PPU_CTRL_BLACK] = 0;
+    ppu.ctrl[PPU_CTRL_OBCLIP] = 1;
+    ppu.ctrl[PPU_CTRL_BGCLIP] = 1;
     
     cycles = 0;
     old = GetTickCount ();
