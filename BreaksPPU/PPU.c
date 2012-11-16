@@ -10,11 +10,6 @@
 #define PCLK     (ppu->ctrl[PPU_CTRL_PCLK])
 #define nPCLK    (ppu->ctrl[PPU_CTRL_nPCLK])
 
-// Flip/flop
-#define FF(ff,out,r,s)  \
-    out = NOR(ff, s);   \
-    ff = NOR(out, r);
-
 // ------------------------------------------------------------------------
 
 // Basic logic
@@ -22,6 +17,11 @@
 int NOT(int a) { return (~a & 1); }
 int NAND(int a, int b) { return ~((a & 1) & (b & 1)) & 1; }
 int NOR(int a, int b) { return ~((a & 1) | (b & 1)) & 1; }
+
+// Flip/flop
+#define FF(ff,out,r,s)  \
+    out = NOR(ff, s);   \
+    ff = NOR(out, r);
 
 // ------------------------------------------------------------------------
 // RENDER
