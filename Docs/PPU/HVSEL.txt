@@ -18,7 +18,7 @@ Line    876543210   Decimal Exception Modifier  Functional                      
 12      XXXXXX11X   6/7                         Pattern fetch second byte                   F/TB
 13      XXXXXX10X   4/5                         Pattern fetch first byte                    F/TA
   
-14      1X100XXXX   255-335 BLNK                336-340 weird two name table reads          F/-
+14      1X100XXXX   255-335 BLNK                336-340 weird two name table reads          /OF
 15      0XXXXXXXX   0-160   BLNK                
 16      XXXXXX01X   2/3                         Attribute table fetch                       F/AT
 17      100001110   270                                                                     PICTURE
