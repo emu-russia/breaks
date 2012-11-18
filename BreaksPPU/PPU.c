@@ -57,6 +57,15 @@ static void PPU_PIXEL_CLOCK (ContextPPU *ppu)
     nPCLK = NOT(PCLK);
 }
 
+// Register R/W decode
+static void PPU_RWDECODE (ContextPPU *ppu)
+{
+}
+
+static void PPU_REG_SELECT (ContextPPU *ppu)
+{
+}
+
 #define HIN(n) (ppu->reg[PPU_REG_HIN][n])
 #define HOUT(n) (ppu->reg[PPU_REG_HOUT][n])
 #define VIN(n) (ppu->reg[PPU_REG_VIN][n])
@@ -289,6 +298,10 @@ static void PPU_HV (ContextPPU *ppu)
 
 // Control registers -> OAM counters control -> Primary OAM counter -> Secondary OAM counter -> OAM evaluation -> OAM H-selector -> MUX
 
+static void PPU_CONTROL_REGS (ContextPPU *ppu)
+{
+}
+
 // ------------------------------------------------------------------------
 // OAM controller
 
@@ -300,9 +313,13 @@ static void PPU_HV (ContextPPU *ppu)
 // H-inversion -> PPU buffer -> H-counters -> Attributes -> Shift registers -> OAM Priority
 
 // ------------------------------------------------------------------------
-// DATA READER
+// DATA READER / address decoder
 
-// Scroll setup -> PAR controls -> PAR counters -> V-inversion -> PAR -> Pattern readout -> BG color
+// Scroll registers -> PAR controls -> PAR counters -> V-inversion -> PAR -> Pattern readout -> BG color -> Address decoder
+
+static void PPU_SCROLL_REGS (ContextPPU *ppu)
+{
+}
 
 // ------------------------------------------------------------------------
 
@@ -311,6 +328,8 @@ void PPUStep (ContextPPU *ppu)
     PPU_RESET (ppu);
     PPU_CLOCK (ppu);
     PPU_PIXEL_CLOCK (ppu);
+    PPU_RWDECODE (ppu);
+    PPU_REGSELECT (ppu);
     PPU_HV (ppu);
 }
 
