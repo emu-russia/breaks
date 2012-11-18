@@ -26,22 +26,24 @@ PPU is used to generate video output.
  * В самом низу маленькая схема: декодер адреса.
 
 Схемы в большом разрешении можно посмотреть тут:<br>
+= RENDER =
 <img src="http://breaknes.com/files/PPU/RENDER_sm.jpg"><br>
 [http://breaknes.com/files/PPU/RENDER.jpg Full resolution]
-<br>
+= MID =
 <img src="http://breaknes.com/files/PPU/MID_sm.jpg"><br>
 [http://breaknes.com/files/PPU/MID.jpg Full resolution]
-<br>
+= OAM =
 <img src="http://breaknes.com/files/PPU/OAM_sm.jpg"><br>
 [http://breaknes.com/files/PPU/OAM.jpg Full resolution]
-<br>
+= OAM FIFO =
 <img src="http://breaknes.com/files/PPU/OAM_FIFO_sm.jpg"><br>
 [http://breaknes.com/files/PPU/OAM_FIFO.jpg Full resolution]
-<br>
+= DATA READ =
 <img src="http://breaknes.com/files/PPU/DATAREAD_sm.jpg"><br>
 [http://breaknes.com/files/PPU/DATAREAD.jpg Full resolution]
-<br>
+= ADDRESS DECODE =
 <img src="http://breaknes.com/files/PPU/ADDRDECODE_sm.jpg"><br>
 [http://breaknes.com/files/PPU/ADDRDECODE.jpg Full resolution]
-<br>
+
+
 Схемы буду иногда обновляться, когда я буду добавлять мелкие исправления.
