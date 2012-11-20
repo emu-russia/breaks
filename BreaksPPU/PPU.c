@@ -328,8 +328,8 @@ void PPUStep (ContextPPU *ppu)
     PPU_RESET (ppu);
     PPU_CLOCK (ppu);
     PPU_PIXEL_CLOCK (ppu);
-    PPU_RWDECODE (ppu);
-    PPU_REGSELECT (ppu);
+    //PPU_RWDECODE (ppu);
+    //PPU_REGSELECT (ppu);
     PPU_HV (ppu);
 }
 
