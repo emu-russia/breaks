@@ -217,9 +217,6 @@ static PLA_ENTRY PLA_ROM[129] = {     // 129 active lines.
 
 };
 
-// random logic outputs
-#define R_ADH_ABH       (cpu->bus[M6502_BUS_RANDOM][0])
-
 // random logic outputs names
 static char *RANDOM_OUT[] = {
     "ADH/ABH", "ADL/ABL", "Y/SB", "X/SB", "0/ADL0", "0/ADL1", "0/ADL2", "SB/Y", "SB/X", "S/SB", "S/ADL", "SB/S", "S/S", 
@@ -338,11 +335,11 @@ static void dump_pla (ContextM6502 *cpu)
     else if (NOT(cpu->ctrl[M6502_CTRL_nT4])) printf ("T4 ");
     else if (NOT(cpu->ctrl[M6502_CTRL_nT5])) printf ("T5 ");
     else printf ("T0 ");
-    printf ( " | " );
+    printf ( "| " );
 
     // dump pla outputs.
     for (n=0; n<129; n++) {
-        if ( cpu->bus[M6502_BUS_PLA][n] ) printf ( "%s, ", PLA_ROM[n].name );
+        if ( cpu->bus[M6502_BUS_PLA][n] ) printf ( "%s(%i), ", PLA_ROM[n].name, n );
     }
     printf ("\n");
 }
@@ -399,8 +396,17 @@ static void PLA_DECODE (ContextM6502 *cpu)
     dump_pla (cpu);
 }
 
+// interrupt detection
+static void INTERRUPTS (ContextM6502 *cpu)
+{
+    printf ( "BRKDONE:%i ", cpu->ctrl[M6502_CTRL_BRKDONE]);
+    printf ( "VEC:%i ", cpu->ctrl[M6502_CTRL_VEC]);
+}
+
 static void dump_random (ContextM6502 *cpu)
 {
+    int n;
+
     // flags
     if (cpu->ctrl[M6502_CTRL_N_OUT]) printf ("N"); else printf ("n");
     if (cpu->ctrl[M6502_CTRL_V_OUT]) printf ("V"); else printf ("v");
@@ -416,6 +422,10 @@ static void dump_random (ContextM6502 *cpu)
     if (cpu->ctrl[M6502_CTRL_BRTAKEN]) printf ("BRTAKEN ");
 
     // random logic output lines.
+    printf ("| ");
+    for (n=0; n<=50; n++) {
+        if (cpu->bus[M6502_BUS_RANDOM][n]) printf ( "%s ", RANDOM_OUT[n]);
+    }
     printf ("\n");
 }
 
@@ -433,6 +443,14 @@ static void RANDOM_LOGIC (ContextM6502 *cpu)
         NOT (cpu->ctrl[M6502_CTRL_N_OUT] | NOT(bb7) | NOT(bb6) ) |
         NOT (cpu->ctrl[M6502_CTRL_Z_OUT] | bb6 | bb7 )  );
     cpu->ctrl[M6502_CTRL_BRTAKEN] = NAND(res, nIR(5)) & (res | nIR(5));
+
+    // MemOP.
+
+    // Y/SB X/SB
+
+    // SB/Y SB/X S/SB
+
+    // R/W select
 
     // execution control
     sync = NOT(cpu->latch[M6502_LATCH_SYNC]);
@@ -471,6 +489,7 @@ void M6502Step (ContextM6502 *cpu)
     PREDECODE (cpu);
     PLA_DECODE (cpu);
     printf ("Control: ");
+    INTERRUPTS (cpu);
     RANDOM_LOGIC (cpu);
     INSTR_REG (cpu);
 
