@@ -321,6 +321,10 @@ static void PPU_SCROLL_REGS (ContextPPU *ppu)
 {
 }
 
+static void PPU_ADDR_DECODE (ContextPPU *ppu)
+{
+}
+
 // ------------------------------------------------------------------------
 
 void PPUStep (ContextPPU *ppu)
