@@ -27,6 +27,7 @@ enum {
     M6502_CTRL_nT2, M6502_CTRL_nT3, M6502_CTRL_nT4, M6502_CTRL_nT5,     // secondary cycle counter (shift register)
     M6502_CTRL_nTWOCYCLE,   // Predecode logic results
     M6502_CTRL_nIMPLIED,
+    M6502_CTRL_BRKDONE, M6502_CTRL_VEC, // interrupt detection logic output
         // random logic
     M6502_CTRL_CLEARIR, M6502_CTRL_FETCH,  // execution controls
     M6502_CTRL_POUT, M6502_CTRL_PDB, M6502_CTRL_DBZ,     // flags in/out
@@ -39,6 +40,7 @@ enum {
 
     M6502_CTRL_MAX,
 };
+
 
 // ------------------------------------------------------------------------
 // Individual static and dynamic latches (flip/flops)
@@ -91,6 +93,59 @@ enum {
     
     M6502_BUS_MAX,
 };
+
+// random logic outputs
+#define M6502_ADH_ABH       (cpu->bus[M6502_BUS_RANDOM][0])
+#define M6502_ADL_ABL       (cpu->bus[M6502_BUS_RANDOM][1])
+#define M6502_Y_SB       (cpu->bus[M6502_BUS_RANDOM][2])
+#define M6502_X_SB       (cpu->bus[M6502_BUS_RANDOM][3])
+#define M6502_0_ADL0       (cpu->bus[M6502_BUS_RANDOM][4])
+#define M6502_0_ADL1       (cpu->bus[M6502_BUS_RANDOM][5])
+#define M6502_0_ADL2       (cpu->bus[M6502_BUS_RANDOM][6])
+#define M6502_SB_Y       (cpu->bus[M6502_BUS_RANDOM][7])
+#define M6502_SB_X       (cpu->bus[M6502_BUS_RANDOM][8])
+#define M6502_S_SB       (cpu->bus[M6502_BUS_RANDOM][9])
+#define M6502_S_ADL       (cpu->bus[M6502_BUS_RANDOM][10])
+#define M6502_SB_S       (cpu->bus[M6502_BUS_RANDOM][11])
+#define M6502_S_S       (cpu->bus[M6502_BUS_RANDOM][12])
+#define M6502_nDB_ADD       (cpu->bus[M6502_BUS_RANDOM][13])
+#define M6502_DB_ADD       (cpu->bus[M6502_BUS_RANDOM][14])
+#define M6502_0_ADD       (cpu->bus[M6502_BUS_RANDOM][15])
+#define M6502_SB_ADD       (cpu->bus[M6502_BUS_RANDOM][16])
+#define M6502_ADL_ADD       (cpu->bus[M6502_BUS_RANDOM][17])
+#define M6502_ANDS       (cpu->bus[M6502_BUS_RANDOM][18])
+#define M6502_EORS       (cpu->bus[M6502_BUS_RANDOM][19])
+#define M6502_ORS       (cpu->bus[M6502_BUS_RANDOM][20])
+#define M6502_I_ADDC       (cpu->bus[M6502_BUS_RANDOM][21])
+#define M6502_SRS       (cpu->bus[M6502_BUS_RANDOM][22])
+#define M6502_SUMS       (cpu->bus[M6502_BUS_RANDOM][23])
+#define M6502_DAA       (cpu->bus[M6502_BUS_RANDOM][24])
+#define M6502_ADD_SB7       (cpu->bus[M6502_BUS_RANDOM][25])
+#define M6502_ADD_SB06       (cpu->bus[M6502_BUS_RANDOM][26])
+#define M6502_ADD_ADL       (cpu->bus[M6502_BUS_RANDOM][27])
+#define M6502_DSA       (cpu->bus[M6502_BUS_RANDOM][28])
+#define M6502_AVR       (cpu->bus[M6502_BUS_RANDOM][29])
+#define M6502_ACR       (cpu->bus[M6502_BUS_RANDOM][30])
+#define M6502_0_ADH0       (cpu->bus[M6502_BUS_RANDOM][31])
+#define M6502_SB_DB       (cpu->bus[M6502_BUS_RANDOM][32])
+#define M6502_SB_AC       (cpu->bus[M6502_BUS_RANDOM][33])
+#define M6502_0_ADH17       (cpu->bus[M6502_BUS_RANDOM][34])
+#define M6502_AC_SB       (cpu->bus[M6502_BUS_RANDOM][35])
+#define M6502_AC_DB       (cpu->bus[M6502_BUS_RANDOM][36])
+#define M6502_ADH_PCH       (cpu->bus[M6502_BUS_RANDOM][37])
+#define M6502_PCH_PCH       (cpu->bus[M6502_BUS_RANDOM][38])
+#define M6502_PCH_DB       (cpu->bus[M6502_BUS_RANDOM][39])
+#define M6502_PCL_DB       (cpu->bus[M6502_BUS_RANDOM][40])
+#define M6502_PCL_ADH       (cpu->bus[M6502_BUS_RANDOM][41])
+#define M6502_PCL_PCL       (cpu->bus[M6502_BUS_RANDOM][42])
+#define M6502_PCL_ADL       (cpu->bus[M6502_BUS_RANDOM][43])
+#define M6502_ADL_PCL       (cpu->bus[M6502_BUS_RANDOM][44])
+#define M6502_IPC       (cpu->bus[M6502_BUS_RANDOM][45])
+#define M6502_DL_ADL       (cpu->bus[M6502_BUS_RANDOM][46])
+#define M6502_DL_ADH       (cpu->bus[M6502_BUS_RANDOM][47])
+#define M6502_DL_DB       (cpu->bus[M6502_BUS_RANDOM][48])
+#define M6502_P_DB       (cpu->bus[M6502_BUS_RANDOM][49])
+#define M6502_DBZ       (cpu->bus[M6502_BUS_RANDOM][50])
 
 // ------------------------------------------------------------------------
 // Debug
