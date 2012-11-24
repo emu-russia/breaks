@@ -27,7 +27,7 @@ enum {
     M6502_CTRL_nT2, M6502_CTRL_nT3, M6502_CTRL_nT4, M6502_CTRL_nT5,     // secondary cycle counter (shift register)
     M6502_CTRL_nTWOCYCLE,   // Predecode logic results
     M6502_CTRL_nIMPLIED,
-    M6502_CTRL_BRKDONE, M6502_CTRL_VEC, // interrupt detection logic output
+    M6502_CTRL_BRKDONE, M6502_CTRL_VEC, M6502_CTRL_NMIG, // interrupt detection logic output
         // random logic
     M6502_CTRL_CLEARIR, M6502_CTRL_FETCH,  // execution controls
     M6502_CTRL_POUT, M6502_CTRL_PDB, M6502_CTRL_DBZ,     // flags in/out
@@ -35,8 +35,11 @@ enum {
     M6502_CTRL_nREADY,      // /ready internal line
     M6502_CTRL_T1,          // internal T1 line from cycle counter.
     M6502_CTRL_I_IN, M6502_CTRL_I_OUT, M6502_CTRL_N_IN, M6502_CTRL_N_OUT, M6502_CTRL_V_IN, M6502_CTRL_V_OUT, M6502_CTRL_D_IN, 
-    M6502_CTRL_D_OUT, M6502_CTRL_B_OUT, M6502_CTRL_C_IN, M6502_CTRL_C_OUT, M6502_CTRL_Z_IN, M6502_CTRL_Z_OUT, // flags in/out
+    M6502_CTRL_D_OUT, M6502_CTRL_B_OUT, M6502_CTRL_C_IN, M6502_CTRL_C_OUT, M6502_CTRL_Z_IN, M6502_CTRL_Z_OUT, M6502_CTRL_IE, // flags in/out
+    M6502_CTRL_NC, M6502_CTRL_CC, M6502_CTRL_0P, M6502_CTRL_VC1, M6502_CTRL_VC2, M6502_CTRL_DC, M6502_CTRL_I_C, M6502_CTRL_ZC,  // flag set/clear control outputs
     M6502_CTRL_BRTAKEN,     // branch taken
+    M6502_CTRL_ARIT,        // arithmetic operations
+    M6502_CTRL_nSHIFT, M6502_CTRL_ASRL, M6502_CTRL_SH_R,    // shift/rotate logic outputs
 
     M6502_CTRL_MAX,
 };
@@ -49,6 +52,8 @@ enum {
     M6502_LATCH_RWOUT,      // output R/W latch
     M6502_FF_NMI, M6502_FF_IRQ, M6502_FF_RES,   // input NMI/IRQ/RES flip-flops
     M6502_LATCH_IRQ, M6502_LATCH_RES,       // IRQ/RES latches
+    M6502_LATCH_NMI_IN, M6502_LATCH_NMIG, M6502_LATCH_NMIG_OUT, M6502_LATCH_BRKE_IN, M6502_LATCH_BRKE_OUT,  // interrupt control latches
+    M6502_LATCH_BRKDONE_IN, M6502_LATCH_BRKDONE_OUT, M6502_LATCH_BRKDONE, M6502_LATCH_INTDELAY1, M6502_LATCH_INTDELAY2, M6502_LATCH_VEC_OUT,
     M6502_LATCH_PDB,        // flag in/out enable latch
     M6502_FLAG_B, M6502_FLAG_I, M6502_FLAG_C, M6502_FLAG_D, M6502_FLAG_V, M6502_FLAG_Z, M6502_FLAG_N,
     M6502_LATCH_SYNCTOIR,   // SYNC latch to execution control
@@ -61,11 +66,11 @@ enum {
     M6502_LATCH_SYNCTR,     // sync latch in secondary cycle counter
     M6502_LATCH_FCTRL_0P, M6502_LATCH_FCTRL_CC, M6502_LATCH_FCTRL_NC, M6502_LATCH_FCTRL_VC1, M6502_LATCH_FCTRL_VC2, M6502_LATCH_FCTRL_DC, M6502_LATCH_FCTRL_IC, 
     M6502_LATCH_FCTRL_BRIN, M6502_LATCH_FCTRL_BROUT, M6502_LATCH_FCTRL_ICIN, M6502_LATCH_FCTRL_ICOUT,   // flag set/clear latches.
-    M6502_LATCH_IFLAG_IN, M6502_LATCH_IFLAG_OUT, M6502_LATCH_CFLAG_IN, M6502_LATCH_CFLAG_OUT,
-    M6502_LATCH_DFLAG_IN, M6502_LATCH_DFLAG_OUT,
-    M6502_LATCH_VFLAG_IN, M6502_LATCH_VFLAG_OUT,M6502_LATCH_VFLAG_V, M6502_LATCH_VFLAG_SO,
-    M6502_LATCH_ZFLAG_IN, M6502_LATCH_ZFLAG_OUT,
-    M6502_LATCH_NFLAG_IN, M6502_LATCH_NFLAG_OUT,
+    M6502_LATCH_IFLAG_IN, M6502_LATCH_IFLAG_OUT, M6502_LATCH_CFLAG_IN, M6502_LATCH_CFLAG_OUT,   // flag latches
+    M6502_LATCH_DFLAG_IN, M6502_LATCH_DFLAG_OUT, M6502_LATCH_VFLAG_IN, M6502_LATCH_VFLAG_OUT, M6502_LATCH_VFLAG_V, M6502_LATCH_VFLAG_SO,
+    M6502_LATCH_ZFLAG_IN, M6502_LATCH_ZFLAG_OUT, M6502_LATCH_NFLAG_IN, M6502_LATCH_NFLAG_OUT, M6502_LATCH_BFLAG_IN, M6502_LATCH_BFLAG_OUT,
+    M6502_LATCH_SHIFT_IN, M6502_LATCH_SHR_IN, M6502_LATCH_SHR_OUT, M6502_LATCH_ASRL_IN, M6502_LATCH_ASRL_OUT,   // shift/rotate logic latches
+    M6502_LATCH_INTR_RESET, M6502_LATCH_INTR, M6502_LATCH_INTR_NMIG,        // interrupt handling
 
     M6502_FF_MAX,
 };
@@ -77,7 +82,6 @@ enum {
     M6502_REG_IR,       // instruction register
     M6502_REG_PD,       // predecode register
     M6502_REG_RANDOM_LATCH, // output random logic latches
-    M6502_REG_RANDOM_FF,    // output random logic flip/flops
     M6502_REG_TRIN, M6502_REG_TROUT,    // secondary cycle counter i/o latches
 
     M6502_REG_MAX,
@@ -88,64 +92,66 @@ enum {
 
 enum {
     M6502_BUS_PLA,      // PLA outputs
-    M6502_BUS_SB, M6502_BUS_DB,
     M6502_BUS_RANDOM,   // random logic outputs
+    M6502_BUS_SB, M6502_BUS_DB,
     
     M6502_BUS_MAX,
 };
 
 // random logic outputs
-#define M6502_ADH_ABH       (cpu->bus[M6502_BUS_RANDOM][0])
-#define M6502_ADL_ABL       (cpu->bus[M6502_BUS_RANDOM][1])
-#define M6502_Y_SB       (cpu->bus[M6502_BUS_RANDOM][2])
-#define M6502_X_SB       (cpu->bus[M6502_BUS_RANDOM][3])
-#define M6502_0_ADL0       (cpu->bus[M6502_BUS_RANDOM][4])
-#define M6502_0_ADL1       (cpu->bus[M6502_BUS_RANDOM][5])
-#define M6502_0_ADL2       (cpu->bus[M6502_BUS_RANDOM][6])
-#define M6502_SB_Y       (cpu->bus[M6502_BUS_RANDOM][7])
-#define M6502_SB_X       (cpu->bus[M6502_BUS_RANDOM][8])
-#define M6502_S_SB       (cpu->bus[M6502_BUS_RANDOM][9])
-#define M6502_S_ADL       (cpu->bus[M6502_BUS_RANDOM][10])
-#define M6502_SB_S       (cpu->bus[M6502_BUS_RANDOM][11])
-#define M6502_S_S       (cpu->bus[M6502_BUS_RANDOM][12])
-#define M6502_nDB_ADD       (cpu->bus[M6502_BUS_RANDOM][13])
-#define M6502_DB_ADD       (cpu->bus[M6502_BUS_RANDOM][14])
-#define M6502_0_ADD       (cpu->bus[M6502_BUS_RANDOM][15])
-#define M6502_SB_ADD       (cpu->bus[M6502_BUS_RANDOM][16])
-#define M6502_ADL_ADD       (cpu->bus[M6502_BUS_RANDOM][17])
-#define M6502_ANDS       (cpu->bus[M6502_BUS_RANDOM][18])
-#define M6502_EORS       (cpu->bus[M6502_BUS_RANDOM][19])
-#define M6502_ORS       (cpu->bus[M6502_BUS_RANDOM][20])
-#define M6502_I_ADDC       (cpu->bus[M6502_BUS_RANDOM][21])
-#define M6502_SRS       (cpu->bus[M6502_BUS_RANDOM][22])
-#define M6502_SUMS       (cpu->bus[M6502_BUS_RANDOM][23])
-#define M6502_DAA       (cpu->bus[M6502_BUS_RANDOM][24])
-#define M6502_ADD_SB7       (cpu->bus[M6502_BUS_RANDOM][25])
-#define M6502_ADD_SB06       (cpu->bus[M6502_BUS_RANDOM][26])
-#define M6502_ADD_ADL       (cpu->bus[M6502_BUS_RANDOM][27])
-#define M6502_DSA       (cpu->bus[M6502_BUS_RANDOM][28])
-#define M6502_AVR       (cpu->bus[M6502_BUS_RANDOM][29])
-#define M6502_ACR       (cpu->bus[M6502_BUS_RANDOM][30])
-#define M6502_0_ADH0       (cpu->bus[M6502_BUS_RANDOM][31])
-#define M6502_SB_DB       (cpu->bus[M6502_BUS_RANDOM][32])
-#define M6502_SB_AC       (cpu->bus[M6502_BUS_RANDOM][33])
-#define M6502_0_ADH17       (cpu->bus[M6502_BUS_RANDOM][34])
-#define M6502_AC_SB       (cpu->bus[M6502_BUS_RANDOM][35])
-#define M6502_AC_DB       (cpu->bus[M6502_BUS_RANDOM][36])
-#define M6502_ADH_PCH       (cpu->bus[M6502_BUS_RANDOM][37])
-#define M6502_PCH_PCH       (cpu->bus[M6502_BUS_RANDOM][38])
-#define M6502_PCH_DB       (cpu->bus[M6502_BUS_RANDOM][39])
-#define M6502_PCL_DB       (cpu->bus[M6502_BUS_RANDOM][40])
-#define M6502_PCL_ADH       (cpu->bus[M6502_BUS_RANDOM][41])
-#define M6502_PCL_PCL       (cpu->bus[M6502_BUS_RANDOM][42])
-#define M6502_PCL_ADL       (cpu->bus[M6502_BUS_RANDOM][43])
-#define M6502_ADL_PCL       (cpu->bus[M6502_BUS_RANDOM][44])
-#define M6502_IPC       (cpu->bus[M6502_BUS_RANDOM][45])
-#define M6502_DL_ADL       (cpu->bus[M6502_BUS_RANDOM][46])
-#define M6502_DL_ADH       (cpu->bus[M6502_BUS_RANDOM][47])
-#define M6502_DL_DB       (cpu->bus[M6502_BUS_RANDOM][48])
-#define M6502_P_DB       (cpu->bus[M6502_BUS_RANDOM][49])
-#define M6502_DBZ       (cpu->bus[M6502_BUS_RANDOM][50])
+enum {
+    M6502_ADH_ABH,
+    M6502_ADL_ABL,
+    M6502_Y_SB,
+    M6502_X_SB,
+    M6502_0_ADL0,
+    M6502_0_ADL1,
+    M6502_0_ADL2 ,
+    M6502_SB_Y,
+    M6502_SB_X,
+    M6502_S_SB ,
+    M6502_S_ADL,
+    M6502_SB_S ,
+    M6502_S_S,
+    M6502_nDB_ADD,
+    M6502_DB_ADD,
+    M6502_0_ADD ,
+    M6502_SB_ADD  ,
+    M6502_ADL_ADD ,
+    M6502_ANDS,
+    M6502_EORS ,
+    M6502_ORS,
+    M6502_I_ADDC,
+    M6502_SRS,
+    M6502_SUMS,
+    M6502_DAA,
+    M6502_ADD_SB7,
+    M6502_ADD_SB06,
+    M6502_ADD_ADL,
+    M6502_DSA ,
+    M6502_AVR,
+    M6502_ACR,
+    M6502_0_ADH0 ,
+    M6502_SB_DB,
+    M6502_SB_AC,
+    M6502_0_ADH17,
+    M6502_AC_SB,
+    M6502_AC_DB,
+    M6502_ADH_PCH,
+    M6502_PCH_PCH ,
+    M6502_PCH_DB ,
+    M6502_PCL_DB,
+    M6502_PCL_ADH,
+    M6502_PCL_PCL,
+    M6502_PCL_ADL,
+    M6502_ADL_PCL,
+    M6502_IPC,
+    M6502_DL_ADL,
+    M6502_DL_ADH,
+    M6502_DL_DB ,
+    M6502_P_DB,
+    M6502_DBZ ,
+};
 
 // ------------------------------------------------------------------------
 // Debug
