@@ -12,6 +12,7 @@
 #define PHI1    (cpu->pad[M6502_PAD_PHI1])
 #define PHI2    (cpu->pad[M6502_PAD_PHI2])
 #define nREADY    (cpu->ctrl[M6502_CTRL_nREADY])
+#define PLA(n)   (cpu->bus[M6502_BUS_PLA][n])
 
 // ------------------------------------------------------------------------
 
@@ -311,12 +312,10 @@ static void PREDECODE (ContextM6502 *cpu)
     }
 
     // Determine whenever instruction takes 2 cycle / implied.
-
     p[0] = NOT ( PD(2) | nPD(3) | PD(4) | nPD(0) );     // XXX010X1
     p[1] = NOT ( PD(2) | nPD(3) | PD(0) );      // XXXX10X0
     p[2] = NOT ( PD(4) | PD(7) | PD(1) );       // 0XX0XX0X
     p[3] = NOT ( PD(2) | PD(3) | PD(4) | nPD(7) | PD(0) );  // 1XX000X0
-
     cpu->ctrl[M6502_CTRL_nTWOCYCLE] = NOT ( p[0] | p[3] | (NOT(p[2]) & p[1]) );
     cpu->ctrl[M6502_CTRL_nIMPLIED] = NOT ( p[1] );
 }
@@ -399,6 +398,31 @@ static void PLA_DECODE (ContextM6502 *cpu)
 // interrupt detection
 static void INTERRUPTS (ContextM6502 *cpu)
 {
+    int brke = NOR (NOT(PLA(22)), nREADY);
+    int p = NOT (cpu->latch[M6502_LATCH_NMI_IN] | cpu->latch[M6502_LATCH_NMIG] | cpu->latch[M6502_LATCH_INTDELAY2]);
+    cpu->ctrl[M6502_CTRL_NMIG] = NOR(cpu->latch[M6502_LATCH_NMIG_OUT], NOR(cpu->latch[M6502_LATCH_BRKDONE_OUT], cpu->latch[M6502_LATCH_BRKDONE]));
+    cpu->ctrl[M6502_CTRL_BRKDONE] = NOR (NOT(cpu->latch[M6502_LATCH_BRKDONE_IN]), nREADY);
+    cpu->ctrl[M6502_CTRL_VEC] = NOR ( NOT(cpu->latch[M6502_LATCH_BRKE_OUT]), brke);
+
+    if (PHI1)
+    {
+        cpu->latch[M6502_LATCH_NMI_IN] = cpu->ctrl[M6502_CTRL_NMI];
+        cpu->latch[M6502_LATCH_NMIG_OUT] = NOR(cpu->ctrl[M6502_CTRL_NMI], NOT(cpu->latch[M6502_LATCH_VEC_OUT])) & NOT(p);
+        cpu->latch[M6502_LATCH_INTDELAY2] = NOT(cpu->latch[M6502_LATCH_INTDELAY1]);
+        if( nREADY) cpu->latch[M6502_LATCH_BRKE_OUT] &= NOT(cpu->latch[M6502_LATCH_BRKE_IN]);
+        else cpu->latch[M6502_LATCH_BRKE_OUT] = NOT(cpu->latch[M6502_LATCH_BRKE_IN]);
+        cpu->latch[M6502_LATCH_BRKDONE_OUT] = cpu->ctrl[M6502_CTRL_BRKDONE];
+    }
+
+    if (PHI2)
+    {
+        cpu->latch[M6502_LATCH_NMIG] = p;
+        cpu->latch[M6502_LATCH_BRKDONE] = cpu->latch[M6502_LATCH_INTDELAY1] = cpu->ctrl[M6502_CTRL_NMIG];
+        cpu->latch[M6502_LATCH_BRKE_IN] = brke;
+        cpu->latch[M6502_LATCH_VEC_OUT] = cpu->ctrl[M6502_CTRL_VEC];
+        cpu->latch[M6502_LATCH_BRKDONE_IN] = NOT(cpu->latch[M6502_LATCH_BRKE_OUT]);
+    }
+
     printf ( "BRKDONE:%i ", cpu->ctrl[M6502_CTRL_BRKDONE]);
     printf ( "VEC:%i ", cpu->ctrl[M6502_CTRL_VEC]);
 }
@@ -431,12 +455,50 @@ static void dump_random (ContextM6502 *cpu)
 
 static void RANDOM_LOGIC (ContextM6502 *cpu)
 {
-    int sync, bb6, bb7, res;
+    int ARIT, MEMOP, STOR, BR2, RD;
+    int sync, bb6, bb7, res, p;
+
+    // interconnections.
+    MEMOP = NOT ( PLA(111) | PLA(122) | PLA(123) | PLA(124) | PLA(125) );
+    STOR = NOR(PLA(97), MEMOP);
+    ARIT = NOT ( PLA(112) | PLA(116) | PLA(117) | PLA(118) | PLA(119));
+    BR2 = PLA(80);
+
+    // shift/rotate
+    cpu->ctrl[M6502_CTRL_SH_R] = NOT (cpu->latch[M6502_LATCH_SHR_OUT]);
+    cpu->ctrl[M6502_CTRL_ASRL] = cpu->latch[M6502_LATCH_ASRL_OUT];
+    if ( cpu->ctrl[M6502_CTRL_ASRL] & PLA(107) ) ARIT = 0;
+    cpu->ctrl[M6502_CTRL_nSHIFT] = NOR (PLA(106), PLA(107));
+    if (PHI1) {
+        if (nREADY) cpu->latch[M6502_LATCH_SHR_OUT] = NOR (cpu->latch[M6502_LATCH_SHR_IN], cpu->latch[M6502_LATCH_SHIFT_IN]);
+        else cpu->latch[M6502_LATCH_SHR_OUT] = NOT(cpu->latch[M6502_LATCH_SHIFT_IN]);
+        cpu->latch[M6502_LATCH_ASRL_OUT] = NOT(cpu->latch[M6502_LATCH_ASRL_IN]);
+    }
+    if (PHI2) {
+        cpu->latch[M6502_LATCH_SHIFT_IN] = NOT ( cpu->ctrl[M6502_CTRL_nSHIFT] | MEMOP | nREADY );
+        cpu->latch[M6502_LATCH_SHR_IN] = cpu->ctrl[M6502_CTRL_SH_R];
+        cpu->latch[M6502_LATCH_ASRL_IN] = NAND(NOT(nREADY), cpu->ctrl[M6502_CTRL_SH_R]);
+    }
+
+    // interrupt handling. 0/ADL0, 0/ADL1, 0/ADL2.
+    p = NOR ( cpu->latch[M6502_LATCH_INTR_RESET], cpu->latch[M6502_LATCH_INTR] );
+    if (PHI1) cpu->latch[M6502_LATCH_INTR] = NOT(p) & NOT(cpu->ctrl[M6502_CTRL_BRKDONE]);
+    RD = NOT(p);
+    if (PHI2) {
+        cpu->latch[M6502_LATCH_INTR_RESET] = cpu->ctrl[M6502_CTRL_RES];
+        cpu->reg[M6502_REG_RANDOM_LATCH][M6502_0_ADL0] = NOT(PLA(22)) | nREADY;
+        cpu->reg[M6502_REG_RANDOM_LATCH][M6502_0_ADL1] = cpu->ctrl[M6502_CTRL_VEC] | NOT(RD);
+        cpu->reg[M6502_REG_RANDOM_LATCH][M6502_0_ADL2] = NOT ( cpu->ctrl[M6502_CTRL_VEC] | cpu->ctrl[M6502_CTRL_NMIG] | RD );
+    }
+    if (cpu->ctrl[M6502_CTRL_NMIG]) cpu->latch[M6502_LATCH_INTR_NMIG] = NOR ( cpu->ctrl[M6502_CTRL_IE] & NOT(cpu->ctrl[M6502_CTRL_BRKDONE]), cpu->ctrl[M6502_CTRL_IRQ] );
+    cpu->bus[M6502_BUS_RANDOM][M6502_0_ADL0] = NOT(cpu->reg[M6502_REG_RANDOM_LATCH][M6502_0_ADL0]);
+    cpu->bus[M6502_BUS_RANDOM][M6502_0_ADL1] = NOT(cpu->reg[M6502_REG_RANDOM_LATCH][M6502_0_ADL1]);
+    cpu->bus[M6502_BUS_RANDOM][M6502_0_ADL2] = cpu->reg[M6502_REG_RANDOM_LATCH][M6502_0_ADL2];
 
     // flags.
 
     // branch taken?
-    bb6 = cpu->bus[M6502_BUS_PLA][121]; bb7 = bb6 = cpu->bus[M6502_BUS_PLA][126];     // grab some important bits, to distinguish branch type
+    bb6 = PLA(121); bb6 = PLA(126);     // grab some important bits, to distinguish branch type
     res = NOT (     // and do some magiks
         NOT (cpu->ctrl[M6502_CTRL_C_OUT] | bb7 | NOT(bb6) )      |
         NOT (cpu->ctrl[M6502_CTRL_V_OUT] | bb6 | NOT(bb7) )      |
@@ -444,11 +506,16 @@ static void RANDOM_LOGIC (ContextM6502 *cpu)
         NOT (cpu->ctrl[M6502_CTRL_Z_OUT] | bb6 | bb7 )  );
     cpu->ctrl[M6502_CTRL_BRTAKEN] = NAND(res, nIR(5)) & (res | nIR(5));
 
-    // MemOP.
-
     // Y/SB X/SB
-
+    if (PHI2) cpu->reg[M6502_REG_RANDOM_LATCH][M6502_X_SB] = NOT ( PLA(8) | PLA(9) | PLA(10) | PLA(11) | PLA(13) | NAND(STOR, PLA(12)) | NAND(NOT(PLA(7)),PLA(6)) );
+    cpu->bus[M6502_BUS_RANDOM][M6502_X_SB] = NOR(cpu->reg[M6502_REG_RANDOM_LATCH][M6502_X_SB], PHI2) & NOT(PHI2) ;
     // SB/Y SB/X S/SB
+
+    // increment PC.
+
+    // PC setup
+
+    // ALU setup
 
     // R/W select
 
