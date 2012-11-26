@@ -624,7 +624,26 @@ static void INSTR_REG (ContextM6502 *cpu)
 // ------------------------------------------------------------------------
 // BOTTOM PART
 
-// Regs -> ALU -> Program counter -> Address bus -> Data latch
+// Data latch -> Regs -> ALU -> Program counter -> Address bus
+
+static void DATA_BUS (ContextM6502 *cpu)
+{
+    int b, bit;
+
+    for (b=0; b<8; b++) {
+        if (PHI2) DL(b) = NOT(DATA_RD(b));  // feed data latch
+        if (cpu->bus[M6502_BUS_RANDOM][M6502_DL_ADL] && PHI1) ADL(b) = NOT(DL(b));
+        if (cpu->bus[M6502_BUS_RANDOM][M6502_DL_ADH] && PHI1) ADH(b) = NOT(DL(b));
+        if (cpu->bus[M6502_BUS_RANDOM][M6502_DL_DB] && PHI1) DB(b) = NOT(DL(b));
+        if (PHI1) DOR(b) = NOT(DB(b));
+        if ( NOT(cpu->ctrl[M6502_CTRL_RWLATCH]) ) {
+            DATA_WR(b, NOT(DOR(b)));
+            if (PHI2) DL(b) = NOT(DATA_RD(b));  // update data latch
+        }
+    }
+
+    if (cpu->debug[M6502_DEBUG_OUT]) printf ( "DBUS:%02X ", cpu->pad[M6502_PAD_DATA]);
+}
 
 // Stack register is inverted logic, so its 0x1FF after reset.
 static void REGS (ContextM6502 *cpu)
@@ -801,25 +820,6 @@ static void ADDRESS_BUS (ContextM6502 *cpu)
     if (cpu->debug[M6502_DEBUG_OUT]) printf ( "ABUS:%04X ", cpu->pad[M6502_PAD_ADDR]);
 }
 
-static void DATA_BUS (ContextM6502 *cpu)
-{
-    int b, bit;
-
-    for (b=0; b<8; b++) {
-        if (PHI2) DL(b) = NOT(DATA_RD(b));  // feed data latch
-        if (cpu->bus[M6502_BUS_RANDOM][M6502_DL_ADL] && PHI1) ADL(b) = NOT(DL(b));
-        if (cpu->bus[M6502_BUS_RANDOM][M6502_DL_ADH] && PHI1) ADH(b) = NOT(DL(b));
-        if (cpu->bus[M6502_BUS_RANDOM][M6502_DL_DB] && PHI1) DB(b) = NOT(DL(b));
-        if (PHI1) DOR(b) = NOT(DB(b));
-        if ( NOT(cpu->ctrl[M6502_CTRL_RWLATCH]) ) {
-            DATA_WR(b, NOT(DOR(b)));
-            if (PHI2) DL(b) = NOT(DATA_RD(b));  // update data latch
-        }
-    }
-
-    if (cpu->debug[M6502_DEBUG_OUT]) printf ( "DBUS:%02X ", cpu->pad[M6502_PAD_DATA]);
-}
-
 // ------------------------------------------------------------------------
 
 void M6502Step (ContextM6502 *cpu)
@@ -882,7 +882,6 @@ main ()
     old = GetTickCount ();
     while (1) {
         if ( (GetTickCount () - old) >= 1000 ) break;
-        cpu.bus[M6502_BUS_RANDOM][M6502_SUMS] = 1;
         M6502Step (&cpu);
         DummyMemoryDevice (&cpu);
         cpu.pad[M6502_PAD_PHI0] ^= 1;
