@@ -4,7 +4,8 @@
 
 // Global quickies.
 #define DATA_RD(n) (BIT(cpu->pad[M6502_PAD_DATA] >> n))
-#define DATA_WR(n,b) (cpu->pad[M6502_PAD_DATA] = (cpu->pad[M6502_PAD_DATA] & ~(1 << n)) | (b << n) )
+#define DATA_WR(n,b) (cpu->pad[M6502_PAD_DATA] = (cpu->pad[M6502_PAD_DATA] & ~(1 << (n))) | ((b) << (n)) )
+#define ADDR_WR(n,b) (cpu->pad[M6502_PAD_ADDR] = (cpu->pad[M6502_PAD_ADDR] & ~(1 << (n))) | ((b) << (n)) )
 #define PD(n)   (cpu->reg[M6502_REG_PD][n])
 #define nPD(n)   (NOT(cpu->reg[M6502_REG_PD][n]))
 #define IR(n)   (cpu->reg[M6502_REG_IR][n])
@@ -13,6 +14,21 @@
 #define PHI2    (cpu->pad[M6502_PAD_PHI2])
 #define nREADY    (cpu->ctrl[M6502_CTRL_nREADY])
 #define PLA(n)   (cpu->bus[M6502_BUS_PLA][n])
+#define SB(n)   (cpu->bus[M6502_BUS_SB][n])
+#define DB(n)   (cpu->bus[M6502_BUS_DB][n])
+#define ADH(n)   (cpu->bus[M6502_BUS_ADH][n])
+#define ADL(n)   (cpu->bus[M6502_BUS_ADL][n])
+#define Y(n)   (cpu->reg[M6502_REG_Y][n])
+#define X(n)   (cpu->reg[M6502_REG_X][n])
+#define S(n)   (cpu->reg[M6502_REG_S][n])
+#define AI(n)   (cpu->reg[M6502_REG_AI][n])
+#define BI(n)   (cpu->reg[M6502_REG_BI][n])
+#define ADD(n)   (cpu->reg[M6502_REG_ADD][n])
+#define AC(n)   (cpu->reg[M6502_REG_AC][n])
+#define ABH(n)   (cpu->reg[M6502_REG_ABH][n])
+#define ABL(n)   (cpu->reg[M6502_REG_ABL][n])
+#define DOR(n)   (cpu->reg[M6502_REG_DOR][n])
+#define DL(n)   (cpu->reg[M6502_REG_DL][n])
 
 // ------------------------------------------------------------------------
 
@@ -222,7 +238,7 @@ static PLA_ENTRY PLA_ROM[129] = {     // 129 active lines.
 static char *RANDOM_OUT[] = {
     "ADH/ABH", "ADL/ABL", "Y/SB", "X/SB", "0/ADL0", "0/ADL1", "0/ADL2", "SB/Y", "SB/X", "S/SB", "S/ADL", "SB/S", "S/S", 
     "nDB/ADD", "DB/ADD", "0/ADD", "SB/ADD", "ADL/ADD", "ANDS", "EORS", "ORS", "I/ADDC", "SRS", "SUMS", "DAA", "ADD/SB7", "ADD/SB06", "ADD/ADL", "DSA", "AVR", "ACR",
-    "0/ADH0", "SB/DB", "SB/AC", "0/ADH17", "AC/SB", "AC/DB", 
+    "0/ADH0", "SB/DB", "SB/AC", "SB/ADH", "0/ADH17", "AC/SB", "AC/DB", 
     "ADH/PCH", "PCH/PCH", "PCH/DB", "PCL/DB", "PCH/ADH", "PCL/PCL", "PCL/ADL", "ADL/PCL", "IPC",
     "DL/ADL", "DL/ADH", "DL/DB", "P/DB", "DBZ",
 };
@@ -326,7 +342,7 @@ static void dump_pla (ContextM6502 *cpu)
 
     // dump IR/TR.
     ir = packreg (cpu->reg[M6502_REG_IR], 8);
-    printf ("IR:%08X %s ", ir, inames[ir] );
+    printf ("IR:%02X %s ", ir, inames[ir] );
     if (NOT(cpu->ctrl[M6502_CTRL_nT0])) printf ("T0X");
     else if (NOT(cpu->ctrl[M6502_CTRL_nT1])) printf ("T1 ");
     else if (NOT(cpu->ctrl[M6502_CTRL_nT2])) printf ("T2 ");
@@ -443,7 +459,9 @@ static void dump_random (ContextM6502 *cpu)
     printf ( " ");
 
     // other important things
+    printf ("(");
     if (cpu->ctrl[M6502_CTRL_BRTAKEN]) printf ("BRTAKEN ");
+    printf (")");
 
     // random logic output lines.
     printf ("| ");
@@ -600,24 +618,227 @@ static void INSTR_REG (ContextM6502 *cpu)
 
 // Regs -> ALU -> Program counter -> Address bus -> Data latch
 
+// Stack register is inverted logic, so its 0x1FF after reset.
+static void REGS (ContextM6502 *cpu)
+{
+    int b;
+    if (PHI2) {
+        cpu->bus[M6502_BUS_RANDOM][M6502_Y_SB] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_SB_Y] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_X_SB] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_SB_X] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_SB_S] = 0;
+    }
+    for (b=0; b<8; b++) {
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_Y_SB] ) SB(b) = Y(b);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_SB_Y] ) Y(b) = SB(b);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_X_SB] ) SB(b) = X(b);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_SB_X] ) X(b) = SB(b);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_SB_S] & PHI2 ) S(b) = NOT(SB(b));
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_S_SB] ) SB(b) = NOT(S(b));
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_S_ADL] ) ADL(b) = NOT(S(b));
+    }
+
+    printf ( "X:%02X Y:%02X S:%02X ", packreg(cpu->reg[M6502_REG_X],8), packreg(cpu->reg[M6502_REG_Y],8), ~packreg(cpu->reg[M6502_REG_S],8) & 0xff );
+}
+
+// ALU using optimized carry chain, which is inverted every next stage.
+// This allow to eliminate some silicon and reduce propagation delay.
+// Details: http://forum.6502.org/viewtopic.php?f=8&t=2208&start=30#p20371
+
+// US Pat. 3991307
+// INTEGRATED CIRCUIT MICROPROCESSOR WITH PARALLEL BINARY ADDER HAVING 
+// ON-THE-FLY CORRECTION TO PROVIDE DECIMAL RESULTS.
+
+static void ALU (ContextM6502 *cpu, int DecimalCorrection)
+{
+    int n, a, b, c, carry_in, carry_out;
+    char NANDs[8], NORs[8], ENORs[8], EORs[8];
+    int DHC, DC, DACR;    // decimal half-carry and carry
+
+    char *op = NULL;
+    if ( cpu->bus[M6502_BUS_RANDOM][M6502_ORS] ) op = "|";
+    else if ( cpu->bus[M6502_BUS_RANDOM][M6502_ANDS] ) op = "&";
+    else if ( cpu->bus[M6502_BUS_RANDOM][M6502_SRS] ) op = ">>";
+    else if ( cpu->bus[M6502_BUS_RANDOM][M6502_EORS] ) op = "^";
+    else if ( cpu->bus[M6502_BUS_RANDOM][M6502_SUMS] ) op = "+";
+
+    // Disconnect internal buses from ALU in read mode.
+    if ( PHI2 ) {
+        cpu->bus[M6502_BUS_RANDOM][M6502_nDB_ADD] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_DB_ADD] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_ADL_ADD] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_SB_ADD] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_0_ADD] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_SB_AC] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_AC_SB] = 
+        cpu->bus[M6502_BUS_RANDOM][M6502_AC_DB] = 0;
+    }
+
+    // A/B INPUT
+    for (n=0; n<8; n++) {
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_nDB_ADD] ) BI(n) = NOT(DB(n));
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_DB_ADD] ) BI(n) = DB(n);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_ADL_ADD] ) BI(n) = ADL(n);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_SB_ADD] ) AI(n) = SB(n);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_0_ADD] ) AI(n) = 0;
+    }
+
+    // LOGIC (based on NAND/NOR)
+    for (n=0; n<8; n++) {
+        NORs[n] = NOR(AI(n), BI(n));
+        NANDs[n] = NAND(AI(n), BI(n));
+        if ( n & 1) EORs[n] = NOR(NOT(NANDs[n]), NORs[n]);
+        else ENORs[n] = NAND(NOT(NORs[n]), NANDs[n]);
+
+        if ( PHI2 ) {
+            if ( cpu->bus[M6502_BUS_RANDOM][M6502_ORS] ) ADD(n) = NORs[n];
+            if ( cpu->bus[M6502_BUS_RANDOM][M6502_ANDS] ) ADD(n) = NANDs[n];
+            if ( cpu->bus[M6502_BUS_RANDOM][M6502_SRS] && n ) ADD(n-1) = NANDs[n];
+            if ( cpu->bus[M6502_BUS_RANDOM][M6502_EORS] ) {
+                if ( n & 1 ) ADD(n) = NOT(EORs[n]);
+                else ADD(n) = ENORs[n];
+            }
+        }
+    }
+
+    // Sum carry chain with decimal carry look-ahead
+    carry_out = cpu->bus[M6502_BUS_RANDOM][M6502_I_ADDC];
+    for (n=0; n<8; n++) {
+        carry_in = carry_out;
+
+        if ( n == 7 ) { // Overflow test
+            if ( PHI2 ) cpu->latch[M6502_LATCH_AVR] = NAND(NORs[7], carry_out) & (NANDs[7] | carry_out);
+            cpu->bus[M6502_BUS_RANDOM][M6502_AVR] = NOT(cpu->latch[M6502_LATCH_AVR]);
+        }
+
+        if ( n & 1)  {
+            carry_out = NAND(NOT(NORs[n]), carry_in) & NANDs[n];
+            if (n == 3) carry_out &= NOT(DHC);
+            if ( cpu->bus[M6502_BUS_RANDOM][M6502_SUMS] && PHI2 ) {
+                ADD(n) = NAND(EORs[n], NOT(carry_in)) & (EORs[n] | NOT(carry_in));
+            }
+        }
+        else {
+            carry_out = NAND(NANDs[n], carry_in) & NOT(NORs[n]);
+            if ( cpu->bus[M6502_BUS_RANDOM][M6502_SUMS] && PHI2 ) {
+                ADD(n) = NAND(ENORs[n], NOT(carry_in)) & (ENORs[n] | NOT(carry_in));
+            }
+        }
+
+        if (n == 0) {   // decimal half-carry look-ahead
+            a = NOR( NAND(NOT(NANDs[1]), carry_out), NORs[2] );
+            b = NOR(EORs[3], NOT(NANDs[2]));
+            c = NOR(EORs[1], NOT(NANDs[1])) & NOT(carry_out) & (NOT(NANDs[2]) | NORs[2]);
+            DHC = a & (b | c) & NOT(cpu->bus[M6502_BUS_RANDOM][M6502_DAA]);
+        }
+        if (n == 4) {   // decimal carry look-ahead
+            a = NOR( NAND(NOT(NANDs[5]), carry_out), EORs[6]);
+            b = NOR(NOT(NANDs[6]), EORs[7]);
+            c = NOR(NOT(NANDs[5]), EORs[5]) & NOR(carry_out, NOT(EORs[6]));
+            DC = a & (b | c) & NOT(cpu->bus[M6502_BUS_RANDOM][M6502_DAA]);
+        }
+    }
+
+    // Carry output
+    if ( PHI2 ) {
+        cpu->latch[M6502_LATCH_DAA] = NOT(cpu->bus[M6502_BUS_RANDOM][M6502_DAA]);
+        cpu->latch[M6502_LATCH_BCARRY] = NOT(carry_out);
+        cpu->latch[M6502_LATCH_DCARRY] = DC;
+        cpu->bus[M6502_BUS_RANDOM][M6502_ACR] = cpu->latch[M6502_LATCH_BCARRY] | cpu->latch[M6502_LATCH_DCARRY];
+    }
+    DACR = NOR ( NOR(cpu->latch[M6502_LATCH_BCARRY], cpu->latch[M6502_LATCH_DCARRY]), NOT(cpu->latch[M6502_LATCH_DAA]) );
+
+    // Accumulator and adder hold outputs.
+    for (n=0; n<8; n++) {
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_ADD_ADL] ) ADL(n) = NOT(ADD(n));
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_ADD_SB06] && n != 7 ) SB(n) = NOT(ADD(n));
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_ADD_SB7] && n == 7 ) SB(n) = NOT(ADD(n));
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_SB_DB] ) DB(n) = SB(n);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_SB_AC] ) AC(n) = SB(n);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_AC_SB] ) SB(n) = AC(n);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_AC_DB] ) DB(n) = AC(n);
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_SB_ADH] ) ADH(n) = SB(n);
+    }
+
+    if (op) printf ( "AI:%02X %s BI:%02X = ADD:%02X AC:%02X ", packreg(cpu->reg[M6502_REG_AI],8), op, packreg(cpu->reg[M6502_REG_BI],8), ~packreg(cpu->reg[M6502_REG_ADD],8) & 0xff, packreg(cpu->reg[M6502_REG_AC],8) );
+}
+
+static void PROGRAM_COUNTER (ContextM6502 *cpu)
+{
+
+    printf ( "PC:%02X%02X ", packreg(cpu->reg[M6502_REG_PCH],8), packreg(cpu->reg[M6502_REG_PCL],8) );
+}
+
+// ADH/ADL are high during PHI2 (precharged)
+// ABH/ABL register latches are refreshed during PHI2.
+// ABH/ABL use inverted logic, so address bus is 0xFFFF after reset + 3 low bits are cleared according to interrupt.
+static void ADDRESS_BUS (ContextM6502 *cpu)
+{
+    int b;
+
+    if (cpu->bus[M6502_BUS_RANDOM][M6502_0_ADL0]) ADL(0) = 0;
+    if (cpu->bus[M6502_BUS_RANDOM][M6502_0_ADL1]) ADL(1) = 0;
+    if (cpu->bus[M6502_BUS_RANDOM][M6502_0_ADL2]) ADL(2) = 0;
+
+    for (b=0; b<8; b++) {
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_0_ADH0] && b == 0 ) ADH(b) = 0;
+        if ( cpu->bus[M6502_BUS_RANDOM][M6502_0_ADH17] && b != 0 ) ADH(b) = 0;
+        if (cpu->bus[M6502_BUS_RANDOM][M6502_ADL_ABL] && PHI1) ABL(b) = NOT(ADL(b));
+        if (cpu->bus[M6502_BUS_RANDOM][M6502_ADH_ABH] && PHI1) ABH(b) = NOT(ADH(b));
+        ADDR_WR (b, NOT(ABL(b)));
+        ADDR_WR (8+b, NOT(ABH(b)));
+    }
+
+    printf ( "ABUS:%04X ", cpu->pad[M6502_PAD_ADDR]);
+}
+
+static void DATA_BUS (ContextM6502 *cpu)
+{
+    int b, bit;
+
+    for (b=0; b<8; b++) {
+        if (PHI2) DL(b) = NOT(DATA_RD(b));  // feed data latch
+        if (cpu->bus[M6502_BUS_RANDOM][M6502_DL_ADL] && PHI1) ADL(b) = NOT(DL(b));
+        if (cpu->bus[M6502_BUS_RANDOM][M6502_DL_ADH] && PHI1) ADH(b) = NOT(DL(b));
+        if (cpu->bus[M6502_BUS_RANDOM][M6502_DL_DB] && PHI1) DB(b) = NOT(DL(b));
+        if (PHI1) DOR(b) = NOT(DB(b));
+        if ( NOT(cpu->ctrl[M6502_CTRL_RWLATCH]) ) {
+            DATA_WR(b, NOT(DOR(b)));
+            if (PHI2) DL(b) = NOT(DATA_RD(b));  // update data latch
+        }
+    }
+
+    printf ( "DBUS:%02X ", cpu->pad[M6502_PAD_DATA]);
+}
+
 // ------------------------------------------------------------------------
 
 void M6502Step (ContextM6502 *cpu)
 {
+    int b;
+
     // Top part.
-    printf ("Decode: ");
     CLOCK (cpu);
     PADS (cpu);
     READY_CONTROL (cpu);
     CYCLE_COUNTER (cpu);
     PREDECODE (cpu);
     PLA_DECODE (cpu);
-    printf ("Control: ");
     INTERRUPTS (cpu);
     RANDOM_LOGIC (cpu);
     INSTR_REG (cpu);
 
+    // Precharge
+    for (b=0; b<8; b++) SB(b) = DB(b) = ADH(b) = ADL(b) = 1;
     // Bottom part.
+    REGS (cpu);
+    ALU (cpu, 1);
+    PROGRAM_COUNTER (cpu);
+    ADDRESS_BUS (cpu);
+    DATA_BUS (cpu);
+    printf ( "SB:%02X DB:%02X AD:%02X%02X ", packreg(cpu->bus[M6502_BUS_SB],8), packreg(cpu->bus[M6502_BUS_DB],8), packreg(cpu->bus[M6502_BUS_ADH],8), packreg(cpu->bus[M6502_BUS_ADL],8) );
+    printf ("\n\n");
 
     cpu->debug[M6502_DEBUG_CLKCOUNT]++;
     if (cpu->debug[M6502_DEBUG_CLKCOUNT] > 100) exit (0);
@@ -630,8 +851,7 @@ void M6502Step (ContextM6502 *cpu)
 // TODO: Add infinite cycle test program.
 static void DummyMemoryDevice (ContextM6502 *cpu)
 {
-    cpu->pad[M6502_PAD_DATA] = GetTickCount () & 0xff; 
-
+    if ( PHI2) cpu->pad[M6502_PAD_DATA] = rand() & 0xff; 
 }
 
 main ()
@@ -647,6 +867,7 @@ main ()
     cpu.pad[M6502_PAD_RDY] = 1;
 
     // Execute virtual 1 second.
+    srand ( 0xaabb );
     cycles = 0;
     old = GetTickCount ();
     while (1) {
