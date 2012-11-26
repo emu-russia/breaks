@@ -40,7 +40,6 @@ enum {
     M6502_CTRL_BRTAKEN,     // branch taken
     M6502_CTRL_ARIT,        // arithmetic operations
     M6502_CTRL_nSHIFT, M6502_CTRL_ASRL, M6502_CTRL_SH_R,    // shift/rotate logic outputs
-    // Bottom part
 
     M6502_CTRL_MAX,
 };
@@ -168,6 +167,7 @@ enum {
 
 enum {
     M6502_DEBUG_CLKCOUNT,
+    M6502_DEBUG_OUT,
 
     M6502_DEBUG_MAX,
 };
