@@ -28,7 +28,7 @@ enum {
     M6502_CTRL_nTWOCYCLE,   // Predecode logic results
     M6502_CTRL_nIMPLIED,
     M6502_CTRL_BRKDONE, M6502_CTRL_VEC, M6502_CTRL_NMIG, // interrupt detection logic output
-        // random logic
+    // Random logic
     M6502_CTRL_CLEARIR, M6502_CTRL_FETCH,  // execution controls
     M6502_CTRL_POUT, M6502_CTRL_PDB, M6502_CTRL_DBZ,     // flags in/out
     M6502_CTRL_RWLATCH,     // R/W output to data latch
@@ -40,6 +40,7 @@ enum {
     M6502_CTRL_BRTAKEN,     // branch taken
     M6502_CTRL_ARIT,        // arithmetic operations
     M6502_CTRL_nSHIFT, M6502_CTRL_ASRL, M6502_CTRL_SH_R,    // shift/rotate logic outputs
+    // Bottom part
 
     M6502_CTRL_MAX,
 };
@@ -71,6 +72,9 @@ enum {
     M6502_LATCH_SHIFT_IN, M6502_LATCH_SHR_IN, M6502_LATCH_SHR_OUT, M6502_LATCH_ASRL_IN, M6502_LATCH_ASRL_OUT,   // shift/rotate logic latches
     M6502_LATCH_INTR_RESET, M6502_LATCH_INTR, M6502_LATCH_INTR_NMIG,        // interrupt handling
     M6502_LATCH_PCHDB, M6502_LATCH_PCREADY, M6502_LATCH_PCLDB,      // PC setup latches
+    // Bottom part
+    M6502_LATCH_DAA, M6502_LATCH_DSA, M6502_LATCH_BCARRY, M6502_LATCH_DCARRY, M6502_LATCH_AVR,
+    M6502_LATCH_HALF, M6502_LATCH_DSAL,
 
     M6502_FF_MAX,
 };
@@ -83,6 +87,11 @@ enum {
     M6502_REG_PD,       // predecode register
     M6502_REG_RANDOM_LATCH, // output random logic latches
     M6502_REG_TRIN, M6502_REG_TROUT,    // secondary cycle counter i/o latches
+    M6502_REG_Y, M6502_REG_X, M6502_REG_S,
+    M6502_REG_AI, M6502_REG_BI, M6502_REG_ADD, M6502_REG_AC,
+    M6502_REG_PCH, M6502_REG_PCHS, M6502_REG_PCL, M6502_REG_PCLS,
+    M6502_REG_ABH, M6502_REG_ABL,
+    M6502_REG_DOR, M6502_REG_DL,
 
     M6502_REG_MAX,
 };
@@ -93,7 +102,7 @@ enum {
 enum {
     M6502_BUS_PLA,      // PLA outputs
     M6502_BUS_RANDOM,   // random logic outputs
-    M6502_BUS_SB, M6502_BUS_DB,
+    M6502_BUS_SB, M6502_BUS_DB, M6502_BUS_ADH, M6502_BUS_ADL,
     
     M6502_BUS_MAX,
 };
@@ -134,6 +143,7 @@ enum {
     M6502_0_ADH0 ,
     M6502_SB_DB,
     M6502_SB_AC,
+    M6502_SB_ADH,
     M6502_0_ADH17,
     M6502_AC_SB,
     M6502_AC_DB,
