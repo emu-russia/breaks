@@ -247,8 +247,10 @@ static void CLOCK (ContextM6502 *cpu)
 {
     PHI2 = BIT(cpu->pad[M6502_PAD_PHI0]);   // read-mode
     PHI1 = NOT(PHI2);       // write-mode
-    if (PHI1) printf ("PHI1 ");
-    if (PHI2) printf ("PHI2 ");
+    if (cpu->debug[M6502_DEBUG_OUT]) {
+        if (PHI1) printf ("PHI1 ");
+        if (PHI2) printf ("PHI2 ");
+    }
 }
 
 // /INT, /NMI, /RES pads
@@ -267,7 +269,9 @@ static void PADS (ContextM6502 *cpu)
     FF (cpu->latch[M6502_FF_RES], ff, NAND(NOT(cpu->pad[M6502_PAD_nRES]),PHI2), NAND(cpu->pad[M6502_PAD_nRES],PHI2));
     if (PHI1) cpu->latch[M6502_LATCH_RES] = ff;
     cpu->ctrl[M6502_CTRL_RES] = NOT(cpu->latch[M6502_LATCH_RES]);
-    printf ("INT:%i%i%i ", cpu->ctrl[M6502_CTRL_NMI], cpu->ctrl[M6502_CTRL_IRQ], cpu->ctrl[M6502_CTRL_RES]);
+    if (cpu->debug[M6502_DEBUG_OUT]) {
+        printf ("INT:%i%i%i ", cpu->ctrl[M6502_CTRL_NMI], cpu->ctrl[M6502_CTRL_IRQ], cpu->ctrl[M6502_CTRL_RES]);
+    }
 }
 
 static void READY_CONTROL (ContextM6502 *cpu)
@@ -278,7 +282,9 @@ static void READY_CONTROL (ContextM6502 *cpu)
 
     if (PHI2) cpu->latch[M6502_LATCH_nRDY] = NOR (cpu->pad[M6502_PAD_RDY], cpu->latch[M6502_LATCH_RWRDY]);
     nREADY = cpu->latch[M6502_LATCH_nRDY];
-    if (NOT(nREADY)) printf ("RDY ");
+    if (cpu->debug[M6502_DEBUG_OUT])  {
+        if (NOT(nREADY)) printf ("RDY ");
+    }
 }
 
 static void CYCLE_COUNTER (ContextM6502 *cpu)
@@ -408,7 +414,7 @@ static void PLA_DECODE (ContextM6502 *cpu)
     // Last line is special (all implied, except push/pull)
     cpu->bus[M6502_BUS_PLA][n] = NOT ( IR(2) | nIR(3) | IR(0) | PushPull );
 
-    dump_pla (cpu);
+    if (cpu->debug[M6502_DEBUG_OUT]) dump_pla (cpu);
 }
 
 // interrupt detection
@@ -439,8 +445,10 @@ static void INTERRUPTS (ContextM6502 *cpu)
         cpu->latch[M6502_LATCH_BRKDONE_IN] = NOT(cpu->latch[M6502_LATCH_BRKE_OUT]);
     }
 
-    printf ( "BRKDONE:%i ", cpu->ctrl[M6502_CTRL_BRKDONE]);
-    printf ( "VEC:%i ", cpu->ctrl[M6502_CTRL_VEC]);
+    if (cpu->debug[M6502_DEBUG_OUT]) {
+        printf ( "BRKDONE:%i ", cpu->ctrl[M6502_CTRL_BRKDONE]);
+        printf ( "VEC:%i ", cpu->ctrl[M6502_CTRL_VEC]);
+    }
 }
 
 static void dump_random (ContextM6502 *cpu)
@@ -601,7 +609,7 @@ static void RANDOM_LOGIC (ContextM6502 *cpu)
     cpu->ctrl[M6502_CTRL_CLEARIR] = NAND ( cpu->ctrl[M6502_CTRL_FETCH], cpu->ctrl[M6502_CTRL_B_OUT] );
     cpu->pad[M6502_PAD_SYNC] = sync;    // sync to output pad
 
-    dump_random (cpu);
+    if (cpu->debug[M6502_DEBUG_OUT]) dump_random (cpu);
 }
 
 // instruction register
@@ -639,7 +647,7 @@ static void REGS (ContextM6502 *cpu)
         if ( cpu->bus[M6502_BUS_RANDOM][M6502_S_ADL] ) ADL(b) = NOT(S(b));
     }
 
-    printf ( "X:%02X Y:%02X S:%02X ", packreg(cpu->reg[M6502_REG_X],8), packreg(cpu->reg[M6502_REG_Y],8), ~packreg(cpu->reg[M6502_REG_S],8) & 0xff );
+    if (cpu->debug[M6502_DEBUG_OUT]) printf ( "X:%02X Y:%02X S:%02X ", packreg(cpu->reg[M6502_REG_X],8), packreg(cpu->reg[M6502_REG_Y],8), ~packreg(cpu->reg[M6502_REG_S],8) & 0xff );
 }
 
 // ALU using optimized carry chain, which is inverted every next stage.
@@ -654,7 +662,7 @@ static void ALU (ContextM6502 *cpu, int DecimalCorrection)
 {
     int n, a, b, c, carry_in, carry_out;
     char NANDs[8], NORs[8], ENORs[8], EORs[8];
-    int DHC, DC, DACR;    // decimal half-carry and carry
+    int DHC = 0, DC = 0, DACR;    // decimal half-carry and carry
 
     char *op = NULL;
     if ( cpu->bus[M6502_BUS_RANDOM][M6502_ORS] ) op = "|";
@@ -726,13 +734,13 @@ static void ALU (ContextM6502 *cpu, int DecimalCorrection)
             }
         }
 
-        if (n == 0) {   // decimal half-carry look-ahead
+        if (n == 0 && DecimalCorrection) {   // decimal half-carry look-ahead
             a = NOR( NAND(NOT(NANDs[1]), carry_out), NORs[2] );
             b = NOR(EORs[3], NOT(NANDs[2]));
             c = NOR(EORs[1], NOT(NANDs[1])) & NOT(carry_out) & (NOT(NANDs[2]) | NORs[2]);
             DHC = a & (b | c) & NOT(cpu->bus[M6502_BUS_RANDOM][M6502_DAA]);
         }
-        if (n == 4) {   // decimal carry look-ahead
+        if (n == 4 && DecimalCorrection) {   // decimal carry look-ahead
             a = NOR( NAND(NOT(NANDs[5]), carry_out), EORs[6]);
             b = NOR(NOT(NANDs[6]), EORs[7]);
             c = NOR(NOT(NANDs[5]), EORs[5]) & NOR(carry_out, NOT(EORs[6]));
@@ -761,13 +769,13 @@ static void ALU (ContextM6502 *cpu, int DecimalCorrection)
         if ( cpu->bus[M6502_BUS_RANDOM][M6502_SB_ADH] ) ADH(n) = SB(n);
     }
 
-    if (op) printf ( "AI:%02X %s BI:%02X = ADD:%02X AC:%02X ", packreg(cpu->reg[M6502_REG_AI],8), op, packreg(cpu->reg[M6502_REG_BI],8), ~packreg(cpu->reg[M6502_REG_ADD],8) & 0xff, packreg(cpu->reg[M6502_REG_AC],8) );
+    if (op && cpu->debug[M6502_DEBUG_OUT]) printf ( "AI:%02X %s BI:%02X = ADD:%02X AC:%02X ", packreg(cpu->reg[M6502_REG_AI],8), op, packreg(cpu->reg[M6502_REG_BI],8), ~packreg(cpu->reg[M6502_REG_ADD],8) & 0xff, packreg(cpu->reg[M6502_REG_AC],8) );
 }
 
 static void PROGRAM_COUNTER (ContextM6502 *cpu)
 {
 
-    printf ( "PC:%02X%02X ", packreg(cpu->reg[M6502_REG_PCH],8), packreg(cpu->reg[M6502_REG_PCL],8) );
+    if (cpu->debug[M6502_DEBUG_OUT]) printf ( "PC:%02X%02X ", packreg(cpu->reg[M6502_REG_PCH],8), packreg(cpu->reg[M6502_REG_PCL],8) );
 }
 
 // ADH/ADL are high during PHI2 (precharged)
@@ -790,7 +798,7 @@ static void ADDRESS_BUS (ContextM6502 *cpu)
         ADDR_WR (8+b, NOT(ABH(b)));
     }
 
-    printf ( "ABUS:%04X ", cpu->pad[M6502_PAD_ADDR]);
+    if (cpu->debug[M6502_DEBUG_OUT]) printf ( "ABUS:%04X ", cpu->pad[M6502_PAD_ADDR]);
 }
 
 static void DATA_BUS (ContextM6502 *cpu)
@@ -809,7 +817,7 @@ static void DATA_BUS (ContextM6502 *cpu)
         }
     }
 
-    printf ( "DBUS:%02X ", cpu->pad[M6502_PAD_DATA]);
+    if (cpu->debug[M6502_DEBUG_OUT]) printf ( "DBUS:%02X ", cpu->pad[M6502_PAD_DATA]);
 }
 
 // ------------------------------------------------------------------------
@@ -832,16 +840,17 @@ void M6502Step (ContextM6502 *cpu)
     // Precharge
     for (b=0; b<8; b++) SB(b) = DB(b) = ADH(b) = ADL(b) = 1;
     // Bottom part.
+    DATA_BUS (cpu);
     REGS (cpu);
     ALU (cpu, 1);
     PROGRAM_COUNTER (cpu);
     ADDRESS_BUS (cpu);
-    DATA_BUS (cpu);
-    printf ( "SB:%02X DB:%02X AD:%02X%02X ", packreg(cpu->bus[M6502_BUS_SB],8), packreg(cpu->bus[M6502_BUS_DB],8), packreg(cpu->bus[M6502_BUS_ADH],8), packreg(cpu->bus[M6502_BUS_ADL],8) );
-    printf ("\n\n");
+    if ( cpu->debug[M6502_DEBUG_OUT] ) {
+        printf ( "SB:%02X DB:%02X AD:%02X%02X ", packreg(cpu->bus[M6502_BUS_SB],8), packreg(cpu->bus[M6502_BUS_DB],8), packreg(cpu->bus[M6502_BUS_ADH],8), packreg(cpu->bus[M6502_BUS_ADL],8) );
+        printf ("\n\n");
+    }
 
     cpu->debug[M6502_DEBUG_CLKCOUNT]++;
-    if (cpu->debug[M6502_DEBUG_CLKCOUNT] > 100) exit (0);
 }
 
 // Example emulation run-flow.
@@ -856,7 +865,7 @@ static void DummyMemoryDevice (ContextM6502 *cpu)
 
 main ()
 {
-    DWORD cycles, old;
+    DWORD old;
     ContextM6502 cpu;
     memset (&cpu, 0, sizeof(cpu));
 
@@ -866,16 +875,17 @@ main ()
     cpu.pad[M6502_PAD_nRES] = 1;
     cpu.pad[M6502_PAD_RDY] = 1;
 
+    cpu.debug[M6502_DEBUG_OUT] = 1;
+
     // Execute virtual 1 second.
     srand ( 0xaabb );
-    cycles = 0;
     old = GetTickCount ();
     while (1) {
         if ( (GetTickCount () - old) >= 1000 ) break;
+        cpu.bus[M6502_BUS_RANDOM][M6502_SUMS] = 1;
         M6502Step (&cpu);
         DummyMemoryDevice (&cpu);
         cpu.pad[M6502_PAD_PHI0] ^= 1;
-        cycles++;
     }
-    printf ("Executed %.4fM/4M cycles\n", (float)cycles/1000000.0f );
+    printf ("Executed %.4fM/4M cycles\n", (float)cpu.debug[M6502_DEBUG_CLKCOUNT]/1000000.0f );
 }
