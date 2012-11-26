@@ -125,5 +125,5 @@ typedef struct ContextPPU
     int     debug[PPU_DEBUG_MAX];    // debug variables
 } ContextPPU;
 
-// Emulate single PPU clock.
+// Emulate single PPU half-clock.
 void PPUStep (ContextPPU *ppu);
