@@ -28,7 +28,13 @@ Bottom part is controlled by top part through special control lines - drivers.
 
 = Family photo =
 
+In wild nature:
+
 http://ogamespec.com/imgstore/resized_whc503b820d9d535.jpg
+
+Cooked:
+
+[http://breaknes.com/files/6502/6502.jpg http://breaknes.com/files/6502/6502_sm.jpg]
 
 = Top part =
 
