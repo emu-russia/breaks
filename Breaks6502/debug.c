@@ -1,59 +1,7 @@
+// Example emulation run-flow.
+#include "6502.h"
 #include <stdio.h>
-#include "Breaks6502.h"
-#include "Breaks6502Private.h"
-
-#include "ROM2364.h"
-#include "ASM.h"
-
-Context6502 cpu;
-
-// Timing register
-// Imitate behaviour of long CPU instruction.
-void TimeRegTest (void)
-{
-    int r = 20, TR;
-    int sync = 2;
-
-    while (r--)
-    {
-        cpu.PHI1 = BIT(~cpu.PHI0);
-        cpu.PHI2 = BIT(cpu.PHI0);
-        cpu.sync = sync > 0;
-        cpu._ready = 1;
-        cpu.TRES = 0;
-        TR = TcountRegister (&cpu);
-        printf ( "%02X ", TR );
-        cpu.PHI0 ^= 1;
-        sync--;
-    }
-
-    // Output should be like: 0F 0F 0E 0E 0D 0D 0B 0B 07 07 0F 0F 0F 0F 0F 0F 0F 0F 0F 0F
-}
-
-// http://visual6502.org/wiki/index.php?title=6502DecimalMode
-void ALUTest (void)
-{
-}
-
-void GeneralExecutionTest (i)
-{
-    // Execute given amount of clock iterations
-    while (i--) {
-        Step6502 ( &cpu );
-        cpu.PHI0 ^= 1;
-    }
-}
-
-// Execute some clocks to reset 6502
-void Reset (void)
-{
-    int r = 100;
-    cpu.RES = 0;
-    while (r--) {
-        Step6502 ( &cpu );
-        cpu.PHI0 ^= 1;
-    }
-}
+#include <windows.h>
 
 void *FileLoad(char *filename, long *size, char *mode)
 {
@@ -122,9 +70,11 @@ char * QuickDisa (unsigned char instr)
 
 static void TracePLA (void)
 {
-    Context6502 cpu;
+    ContextM6502 cpu;
     int op, i;
     char text[100000], *ptr = text;
+
+    memset (&cpu, 0, sizeof(cpu));
 
     ptr += sprintf ( ptr, "<html>");
     ptr += sprintf ( ptr, "<style>\nhtml table {\n    font-family:Calibri; \n    font-size: 16px;\n    border-collapse: collapse; }\n");
@@ -132,56 +82,86 @@ static void TracePLA (void)
     ptr += sprintf ( ptr, "<tr><td>op</td><td>instr</td><td>T0</td><td>T1X</td><td>T2</td><td>T3</td><td>T4</td><td>T5</td></tr>");
     for (op=0; op<=0xff; op++) {
         ptr += sprintf ( ptr, "<tr>");
-        unpackreg (cpu.IR, (~op) & 0xff, 8);
+        unpackreg (cpu.reg[M6502_REG_IR], (op) & 0xff, 8);
 
         ptr += sprintf ( ptr, "<td>%02X</td>", op);
         ptr += sprintf ( ptr, "<td><nobr>%s</nobr></td>", QuickDisa(op) );
 
-        cpu.T0 = 0; cpu.T1X = 1; cpu.Tcount = 0xF;
-        DecodePLA (&cpu);
+        cpu.ctrl[M6502_CTRL_nT0] = 0;
+        cpu.ctrl[M6502_CTRL_nT1] = 1;
+        cpu.ctrl[M6502_CTRL_nT2] = 1;
+        cpu.ctrl[M6502_CTRL_nT3] = 1;
+        cpu.ctrl[M6502_CTRL_nT4] = 1;
+        cpu.ctrl[M6502_CTRL_nT5] = 1;
+        M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.PLAOUT[i]) ptr += sprintf ( ptr, "%i ", i);
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
         }
         ptr += sprintf ( ptr, "</td>");
 
-        cpu.T0 = 1; cpu.T1X = 0; cpu.Tcount = 0xF;
-        DecodePLA (&cpu);
+        cpu.ctrl[M6502_CTRL_nT0] = 1;
+        cpu.ctrl[M6502_CTRL_nT1] = 0;
+        cpu.ctrl[M6502_CTRL_nT2] = 1;
+        cpu.ctrl[M6502_CTRL_nT3] = 1;
+        cpu.ctrl[M6502_CTRL_nT4] = 1;
+        cpu.ctrl[M6502_CTRL_nT5] = 1;
+        M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.PLAOUT[i]) ptr += sprintf ( ptr, "%i ", i);
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
         }
         ptr += sprintf ( ptr, "</td>");
 
-        cpu.T0 = 1; cpu.T1X = 1; cpu.Tcount = 0xE;
-        DecodePLA (&cpu);
+        cpu.ctrl[M6502_CTRL_nT0] = 1;
+        cpu.ctrl[M6502_CTRL_nT1] = 1;
+        cpu.ctrl[M6502_CTRL_nT2] = 0;
+        cpu.ctrl[M6502_CTRL_nT3] = 1;
+        cpu.ctrl[M6502_CTRL_nT4] = 1;
+        cpu.ctrl[M6502_CTRL_nT5] = 1;
+        M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.PLAOUT[i]) ptr += sprintf ( ptr, "%i ", i);
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
         }
         ptr += sprintf ( ptr, "</td>");
 
-        cpu.T0 = 1; cpu.T1X = 1; cpu.Tcount = 0xD;
-        DecodePLA (&cpu);
+        cpu.ctrl[M6502_CTRL_nT0] = 1;
+        cpu.ctrl[M6502_CTRL_nT1] = 1;
+        cpu.ctrl[M6502_CTRL_nT2] = 1;
+        cpu.ctrl[M6502_CTRL_nT3] = 0;
+        cpu.ctrl[M6502_CTRL_nT4] = 1;
+        cpu.ctrl[M6502_CTRL_nT5] = 1;
+        M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.PLAOUT[i]) ptr += sprintf ( ptr, "%i ", i);
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
         }
         ptr += sprintf ( ptr, "</td>");
 
-        cpu.T0 = 1; cpu.T1X = 1; cpu.Tcount = 0xB;
-        DecodePLA (&cpu);
+        cpu.ctrl[M6502_CTRL_nT0] = 1;
+        cpu.ctrl[M6502_CTRL_nT1] = 1;
+        cpu.ctrl[M6502_CTRL_nT2] = 1;
+        cpu.ctrl[M6502_CTRL_nT3] = 1;
+        cpu.ctrl[M6502_CTRL_nT4] = 0;
+        cpu.ctrl[M6502_CTRL_nT5] = 1;
+        M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.PLAOUT[i]) ptr += sprintf ( ptr, "%i ", i);
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
         }
         ptr += sprintf ( ptr, "</td>");
 
-        cpu.T0 = 1; cpu.T1X = 1; cpu.Tcount = 0x7;
-        DecodePLA (&cpu);
+        cpu.ctrl[M6502_CTRL_nT0] = 1;
+        cpu.ctrl[M6502_CTRL_nT1] = 1;
+        cpu.ctrl[M6502_CTRL_nT2] = 1;
+        cpu.ctrl[M6502_CTRL_nT3] = 1;
+        cpu.ctrl[M6502_CTRL_nT4] = 1;
+        cpu.ctrl[M6502_CTRL_nT5] = 0;
+        M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.PLAOUT[i]) ptr += sprintf ( ptr, "%i ", i);
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
         }
         ptr += sprintf ( ptr, "</td>");
 
@@ -192,62 +172,41 @@ static void TracePLA (void)
     FileSave ("PLA.htm", text, strlen(text), "wt");
 }
 
-void AsmTest (void)
+// --------------------------------------------------------------------------
+
+// Push random data
+// TODO: Add infinite cycle test program.
+static void DummyMemoryDevice (ContextM6502 *cpu)
 {
-    unsigned char prg[16*1024], *text;
-    memset (prg, 0, sizeof(prg));
-    text = FileLoad ("Test.asm", NULL, "rt" );
-    assemble ( text, prg );
-    FileSave ("prg.bin", prg, sizeof(prg), "wb");
-}
-
-void IntLatch (void)
-{
-    int INPUT_PAD;
-    int OUTPUT_LINE;
-    int DYNA_LATCH, DYNA_LATCH0, STAT_LATCH;
-    int PHI2;
-    int i, b;
-
-    printf ( "L I P |L* O\n");
-    for (i=0; i<8; i++) {
-
-        PHI2 = BIT(i >> 0);
-        INPUT_PAD = BIT(i >> 1);
-        DYNA_LATCH = BIT(i >> 2);
-
-/*
-        DYNA_LATCH0 = DYNA_LATCH;
-        b = NOR ( NOT(INPUT_PAD) & PHI2, DYNA_LATCH);
-        DYNA_LATCH = NOR ( INPUT_PAD & PHI2, b );
-        OUTPUT_LINE = NOT(DYNA_LATCH);
-*/
-
-        DYNA_LATCH0 = DYNA_LATCH;
-        b = NOR ( INPUT_PAD & PHI2, DYNA_LATCH);
-        DYNA_LATCH = NOR ( NOT(INPUT_PAD) & PHI2, b );
-        if (PHI2 == 0) STAT_LATCH = DYNA_LATCH;
-        OUTPUT_LINE = NOT(STAT_LATCH);
-
-        printf ("%i %i %i | %i %i \n", DYNA_LATCH0, INPUT_PAD, PHI2, DYNA_LATCH, OUTPUT_LINE );
-    }
-}
-
-static void PCTest (void)
-{
-    unpackreg ( cpu.PCHS, 0x1f, 8);
-    unpackreg ( cpu.PCLS, 0xff, 8);
-
-    cpu.DRIVEREG[DRIVE_IPC] = 0;
-    cpu.DRIVEREG[DRIVE_PCL_PCL] = cpu.DRIVEREG[DRIVE_PCH_PCH] = 1;
-    cpu.PHI2 = 1;
-    ProgramCounter (&cpu);
-
-    printf ( "PCLS = %02X, /PCLS = %02X\n", packreg(cpu.PCLS, 8), ~packreg(cpu.PCLS, 8) & 0xff);
-    printf ( "PCHS = %02X, /PCHS = %02X\n", packreg(cpu.PCHS, 8), ~packreg(cpu.PCHS, 8) & 0xff);
+    if ( cpu->pad[M6502_PAD_PHI2] ) cpu->pad[M6502_PAD_DATA] = rand() & 0xff; 
 }
 
 main ()
 {
+    DWORD old;
+    ContextM6502 cpu;
+    memset (&cpu, 0, sizeof(cpu));
+
+    // default conditions (no interrupts, no reset, 6502 ready)
+    cpu.pad[M6502_PAD_nNMI] = 1;
+    cpu.pad[M6502_PAD_nIRQ] = 1;
+    cpu.pad[M6502_PAD_nRES] = 1;
+    cpu.pad[M6502_PAD_RDY] = 1;
+
+    cpu.debug[M6502_DEBUG_OUT] = 1;
+
+/*
+    // Execute virtual 1 second.
+    srand ( 0xaabb );
+    old = GetTickCount ();
+    while (1) {
+        if ( (GetTickCount () - old) >= 1000 ) break;
+        M6502Step (&cpu);
+        DummyMemoryDevice (&cpu);
+        cpu.pad[M6502_PAD_PHI0] ^= 1;
+    }
+    printf ("Executed %.4fM/4M cycles\n", (float)cpu.debug[M6502_DEBUG_CLKCOUNT]/1000000.0f );
+*/
+
     TracePLA ();
 }
