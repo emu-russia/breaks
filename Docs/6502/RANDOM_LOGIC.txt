@@ -1,0 +1,35 @@
+Random logic run-flow:
+
+interconnections:
+    MEMOP
+    STOR
+    ARIT
+    BR2
+    ANDS
+    IND
+
+SB/AC
+
+SB/Y SB/X S/SB
+
+shift/rotate
+
+Y/SB X/SB
+
+SB/DB
+
+interrupt handling. 0/ADL0, 0/ADL1, 0/ADL2.
+
+flags.
+
+branch taken?
+
+increment PC.
+
+PC setup
+
+ALU setup
+
+R/W select
+
+execution control
