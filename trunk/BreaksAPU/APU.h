@@ -1,7 +1,19 @@
 
 // Pads.
 enum {
-    APU_PAD_nNMI,
+    APU_SND1,   // sqare 1/2
+    APU_SND2,   // others
+    APU_nRES,
+    APU_nNMI,
+    APU_nIRQ,
+    APU_RW,
+    APU_PHI2,
+    APU_DEBUG,  // enable debug read-out
+    APU_CLK,
+    APU_ADDR,
+    APU_DATA,
+    APU_IN0, APU_IN1,   // I/O port
+    APU_OUT0, APU_OUT1, APU_OUT2, 
     APU_PAD_MAX,
 };
 
