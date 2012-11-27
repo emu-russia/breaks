@@ -1,1 +1,0 @@
-// So-called "frame counter".
