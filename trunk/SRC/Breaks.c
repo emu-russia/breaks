@@ -81,6 +81,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     while (1) StepBoard (&nes);
 */
 
+/*
     cycles = 0;
     old = GetTickCount ();
     while (1) {
@@ -89,8 +90,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         cycles++;
     }
     Report ("Executed %i cycles", cycles );
+*/
 
-//    OpenDebugger (&nes);
+    OpenDebugger (&nes);
 
     //Report ( "SHOULD NEVER REACH HERE!" );
     return 0;
