@@ -677,7 +677,7 @@ static void REGS (ContextM6502 *cpu)
 // INTEGRATED CIRCUIT MICROPROCESSOR WITH PARALLEL BINARY ADDER HAVING 
 // ON-THE-FLY CORRECTION TO PROVIDE DECIMAL RESULTS.
 
-static void ALU (ContextM6502 *cpu, int DecimalCorrection)
+static void ALU (ContextM6502 *cpu)
 {
     int n, a, b, c, carry_in, carry_out;
     char NANDs[8], NORs[8], ENORs[8], EORs[8];
@@ -753,13 +753,13 @@ static void ALU (ContextM6502 *cpu, int DecimalCorrection)
             }
         }
 
-        if (n == 0 && DecimalCorrection) {   // decimal half-carry look-ahead
+        if (n == 0) {   // decimal half-carry look-ahead
             a = NOR( NAND(NOT(NANDs[1]), carry_out), NORs[2] );
             b = NOR(EORs[3], NOT(NANDs[2]));
             c = NOR(EORs[1], NOT(NANDs[1])) & NOT(carry_out) & (NOT(NANDs[2]) | NORs[2]);
             DHC = a & (b | c) & NOT(cpu->bus[M6502_BUS_RANDOM][M6502_DAA]);
         }
-        if (n == 4 && DecimalCorrection) {   // decimal carry look-ahead
+        if (n == 4) {   // decimal carry look-ahead
             a = NOR( NAND(NOT(NANDs[5]), carry_out), EORs[6]);
             b = NOR(NOT(NANDs[6]), EORs[7]);
             c = NOR(NOT(NANDs[5]), EORs[5]) & NOR(carry_out, NOT(EORs[6]));
@@ -842,7 +842,7 @@ void M6502Step (ContextM6502 *cpu)
     // Bottom part.
     DATA_BUS (cpu);
     REGS (cpu);
-    ALU (cpu, 1);
+    ALU (cpu);
     PROGRAM_COUNTER (cpu);
     ADDRESS_BUS (cpu);
     if ( cpu->debug[M6502_DEBUG_OUT] ) {
@@ -867,7 +867,7 @@ void M6502Debug (ContextM6502 *cpu, char *cmd)
 
     else if ( !stricmp (cmd, "DBUS") ) DATA_BUS (cpu);
     else if ( !stricmp (cmd, "REGS") ) REGS (cpu);
-    else if ( !stricmp (cmd, "ALU") ) ALU (cpu, 1);
+    else if ( !stricmp (cmd, "ALU") ) ALU (cpu);
     else if ( !stricmp (cmd, "ABUS") ) PROGRAM_COUNTER (cpu);
     else if ( !stricmp (cmd, "PADS") ) ADDRESS_BUS (cpu);
 }
