@@ -1,1 +1,0 @@
-// Square channel 1.

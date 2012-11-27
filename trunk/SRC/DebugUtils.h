@@ -8,6 +8,4 @@ void    OpenDebugConsole (void);
 void    CloseDebugConsole (void);
 void    DPrintf (char *fmt, ...);
 
-char    *PLAName (int line);
-
 char    *QuickDisa (unsigned char instr);
