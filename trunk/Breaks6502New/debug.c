@@ -6,7 +6,7 @@
 // TODO: Add infinite cycle test program.
 static void DummyMemoryDevice (ContextM6502 *cpu)
 {
-    if ( cpu->pads[M6502_PAD_PHI2] ) cpu->pad[M6502_PAD_DATA] = rand() & 0xff; 
+    if ( cpu->pad[M6502_PAD_PHI2] ) cpu->pad[M6502_PAD_DATA] = rand() & 0xff; 
 }
 
 main ()
