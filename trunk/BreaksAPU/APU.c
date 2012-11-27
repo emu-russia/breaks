@@ -12,6 +12,6 @@
 //
 // ----------------------------------------------------------------------------
 
-void StepAPU (ContextAPU *apu)
+void APUStep (ContextAPU *apu)
 {
 }

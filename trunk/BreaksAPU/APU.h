@@ -174,4 +174,4 @@ typedef struct ContextAPU
 } ContextAPU;
 
 // Emulate single half-clock.
-void StepAPU (ContextAPU *apu);
+void APUStep (ContextAPU *apu);
