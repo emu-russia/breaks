@@ -53,7 +53,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     DWORD cycles, old;
 
     PowerOnNES ();
-    //ConnectTV (&nes);
+    ConnectTV (&nes);
 
     // Emulator run-flow
 /*

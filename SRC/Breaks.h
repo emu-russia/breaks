@@ -7,7 +7,6 @@
 void    Error(char *fmt, ...);
 void    Report(char *fmt, ...);
 
-#include "../Breaks6502/6502.h"
 #include "../BreaksAPU/APU.h"
 #include "../BreaksPPU/PPU.h"
 

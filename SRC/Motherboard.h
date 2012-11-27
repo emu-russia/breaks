@@ -2,8 +2,8 @@
 typedef struct ContextBoard {
     int ResetCapacitor;
 
-    ContextM6502 cpu;
-    ContextPPU   ppu;
+    ContextAPU  apu;
+    ContextPPU  ppu;
 } ContextBoard;
 
 void    StepBoard (ContextBoard *board);
