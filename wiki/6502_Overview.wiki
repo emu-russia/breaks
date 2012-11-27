@@ -55,4 +55,4 @@ Images (should be) clickable
 
 = Propagation map =
 
-[http://breaknes.com/files/6502/6502_prop_sm.jpg/ http://breaknes.com/files/6502/6502_prop_sm.jpg]
+[http://breaknes.com/files/6502/6502_prop.jpg http://breaknes.com/files/6502/6502_prop_sm.jpg]
