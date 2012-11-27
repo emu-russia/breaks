@@ -11,7 +11,7 @@ http://ogamespec.com/imgstore/whc507fbde796d65.jpg http://ogamespec.com/imgstore
 
 *Top part components*
   * Instruction register (IR)
-  * Cycle (T) counter
+  * Cycle counter (T)
   * PLA decoder
   * Predecoder
   * Random logic (heavy tangle) including flags
