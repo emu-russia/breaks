@@ -249,4 +249,5 @@ static void PCTest (void)
 
 main ()
 {
+    TracePLA ();
 }
