@@ -195,7 +195,6 @@ main ()
 
     cpu.debug[M6502_DEBUG_OUT] = 1;
 
-/*
     // Execute virtual 1 second.
     srand ( 0xaabb );
     old = GetTickCount ();
@@ -206,7 +205,4 @@ main ()
         cpu.pad[M6502_PAD_PHI0] ^= 1;
     }
     printf ("Executed %.4fM/4M cycles\n", (float)cpu.debug[M6502_DEBUG_CLKCOUNT]/1000000.0f );
-*/
-
-    TracePLA ();
 }
