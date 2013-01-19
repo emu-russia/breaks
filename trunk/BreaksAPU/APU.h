@@ -41,6 +41,17 @@ enum {
     M6502_CTRL_ARIT,        // arithmetic operations
     M6502_CTRL_nSHIFT, M6502_CTRL_ASRL, M6502_CTRL_SH_R,    // shift/rotate logic outputs
 
+    APU_CTRL_PHI0, APU_CTRL_PHI1, APU_CTRL_PHI2,
+    APU_CTRL_ACLK, APU_CTRL_nACLK,
+    APU_CTRL_RES, APU_CTRL_INT,
+    // Register select
+    APU_CTRL_nR4015,
+    APU_CTRL_W4017,
+    // LFO (frame counter)
+    APU_CTRL_LFO1, APU_CTRL_LFO2,
+    // DMC
+    APU_CTRL_DMCINT,
+
     APU_CTRL_MAX,
 };
 
@@ -75,6 +86,9 @@ enum {
     M6502_LATCH_DAA, M6502_LATCH_DSA, M6502_LATCH_BCARRY, M6502_LATCH_DCARRY, M6502_LATCH_AVR,
     M6502_LATCH_HALF, M6502_LATCH_DSAL,
 
+    APU_LFO_RATE_LATCH, APU_LFO_IRQ_LATCH, APU_LFO_RESET_LATCH,
+    APU_LFO_RESET_FF,
+
     APU_FF_MAX,
 };
 
@@ -92,6 +106,8 @@ enum {
     M6502_REG_ABH, M6502_REG_ABL,   // address bus output
     M6502_REG_DOR, M6502_REG_DL,    // data output, data latch
 
+    APU_REG_LFO_IN, APU_REG_LFO_OUT, APU_REG_4015, APU_REG_4017,
+
     APU_REG_MAX,
 };
 
@@ -102,6 +118,8 @@ enum {
     M6502_BUS_PLA,      // PLA outputs
     M6502_BUS_RANDOM,   // random logic outputs
     M6502_BUS_SB, M6502_BUS_DB, M6502_BUS_ADH, M6502_BUS_ADL,
+
+    APU_BUS_DB,
     
     APU_BUS_MAX,
 };
