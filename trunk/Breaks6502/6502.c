@@ -269,6 +269,7 @@ static void PADS (ContextM6502 *cpu)
     FF (cpu->latch[M6502_FF_RES], ff, NAND(NOT(cpu->pad[M6502_PAD_nRES]),PHI2), NAND(cpu->pad[M6502_PAD_nRES],PHI2));
     if (PHI1) cpu->latch[M6502_LATCH_RES] = ff;
     cpu->ctrl[M6502_CTRL_RES] = NOT(cpu->latch[M6502_LATCH_RES]);
+
     if (cpu->debug[M6502_DEBUG_OUT]) {
         printf ("INT:%i%i%i ", cpu->ctrl[M6502_CTRL_NMI], cpu->ctrl[M6502_CTRL_IRQ], cpu->ctrl[M6502_CTRL_RES]);
     }
@@ -489,9 +490,9 @@ static void RANDOM_LOGIC (ContextM6502 *cpu)
     cpu->ctrl[M6502_CTRL_N_OUT] = NOT(cpu->latch[M6502_LATCH_NFLAG_OUT]);
     cpu->ctrl[M6502_CTRL_V_OUT] = NOT(cpu->latch[M6502_LATCH_VFLAG_OUT]);
     cpu->ctrl[M6502_CTRL_D_OUT] = NOT(cpu->latch[M6502_LATCH_DFLAG_OUT]);
-    cpu->ctrl[M6502_CTRL_B_OUT]
-    cpu->ctrl[M6502_CTRL_C_OUT]
-    cpu->ctrl[M6502_CTRL_Z_OUT]
+//    cpu->ctrl[M6502_CTRL_B_OUT]
+//    cpu->ctrl[M6502_CTRL_C_OUT]
+//    cpu->ctrl[M6502_CTRL_Z_OUT]
 
     // interconnections.
     MEMOP = NOT ( PLA(111) | PLA(122) | PLA(123) | PLA(124) | PLA(125) );
