@@ -45,23 +45,23 @@ void ALU2 (void)
     {
     // inputs
         if (ALU_0_ADD) AI[n] = 0;
-        if (ALU_SB_ADD) AI[n] = SB[n];
+        else if (ALU_SB_ADD) AI[n] = SB[n];
         if (ALU_DB_ADD) BI[n] = DB[n];
-        if (ALU_NDB_ADD) BI[n] = NOT(DB[n]);
-        if (ALU_ADL_ADD) BI[n] = ADL[n];    
+        else if (ALU_NDB_ADD) BI[n] = NOT(DB[n]);
+        else if (ALU_ADL_ADD) BI[n] = ADL[n];    
 
     // logic
         nor[n] = NOR(AI[n],BI[n]);
         nand[n] = NAND(AI[n],BI[n]);
-        if (n&1) eor[n] = NOR (NOT(nand[n]), nor[n]);
-        else enor[n] = NAND (NOT(nor[n]), nand[n]);
 
     // arithmetic + carry chain + decimal carry lookahead
         if (n&1) {
+            eor[n] = NOR (NOT(nand[n]), nor[n]);
             sums[n] = NAND(eor[n],NOT(carry_out)) & NOT(NOR(eor[n],NOT(carry_out)));
             carry_out = NAND(NOT(nor[n]),carry_out) & nand[n];
         }
         else {
+            enor[n] = NAND (NOT(nor[n]), nand[n]);
             sums[n] = NAND(NOT(carry_out),enor[n]) & NOT (NOR(enor[n],NOT(carry_out)));
             carry_out = NAND(carry_out,nand[n]) & NOT(nor[n]);
         }
@@ -89,13 +89,13 @@ void ALU2 (void)
     // adder hold
         if ( PHI2 ) {
             if (ALU_ORS) ADD[n] = nor[n];
-            if (ALU_ANDS) ADD[n] = nand[n];
-            if (ALU_EORS) {
+            else if (ALU_ANDS) ADD[n] = nand[n];
+            else if (ALU_EORS) {
                 if (n&1) ADD[n] = NOT(eor[n]);
                 else ADD[n] = enor[n];
             }
-            if (ALU_SRS && n) ADD[n-1] = nand[n];
-            if (ALU_SUMS) ADD[n] = sums[n];
+            else if (ALU_SRS && n) ADD[n-1] = nand[n];
+            else if (ALU_SUMS) ADD[n] = sums[n];
         }
 
     }
