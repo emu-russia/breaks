@@ -1,0 +1,34 @@
+Test: 99 + AA
+
+Inputs:
+
+I/ADDC : input carry (inverted)
+DAA, DSA : used for decimal correction
+
+3 sorts of command lines: input controls, operation controls, output controls.
++ 2 input registers : AI (A input) and BI (B input)
+
+Input controls:
+0/ADD : 0 -> AI
+SB/ADD : special bus -> AI
+DB/ADD : data bus -> BI
+nDB/ADD : inverted data bus -> BI
+ADL/ADD : ADL -> BI
+SB/AC : special bus (+ decimal correction) -> accumulator
+
+Operation controls:
+ORS : A | B
+ANDS: A & B
+EORS: A ^ B
+SUMS: A + B + carry
+SRS : shift right to 1
+
+Output controls:
+- from adder hold register:
+ADD/SB06 : adder hold[0-6] -> SB[0-6]
+ADD/SB7 : adder hold[7] -> SB[7]
+ADD/ADL : adder hold -> ADL
+- from accumulator:
+AC/SB : accumulator -> special bus
+AC/DB : accumulator -> data bus
+SB/DB : special bus = data bus

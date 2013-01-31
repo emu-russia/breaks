@@ -1,0 +1,123 @@
+Increment PC logic.
+
+Latches:
+
+IPC_RDY1
+IPC_RDY2
+IPC_RDY3
+
+IPC_B
+IPC_BRBK
+IPC_BR_IN
+IPC_BR_OUT
+
+Control lines :
+
+/ready : CPU is not ready
+BR2 : Branch cycle 2
+BR3 : Branch cycle 3
+/BR3 : NOT Branch cycle 3
+BRTaken : Branch fired
+ADL/PCL : Put ADL to PCL
+/ACR : ALU carry out
+BRBK : =1 if branch back in T3 cycle
+/B_OUT : inverted B-flag output value
+IMPLIED: instruction has no operands (1 byte instruction)
+
+Output :
+
+/IPC : increment program counter 
+
+----------  case 1:
+if (PHI2) IPC_BR_IN = NAND(BR2,BRTaken) & NOT( NOR(BR2|BR3,ADL/PCL) ) :
+if (PHI1) IPC_BR_OUT = NOT(IPC_BR_IN) & NOT(/ready|IMPLIED)
+
+We need to increment PC on:
+      - On T0 and T1 Branch stages when ADL/PCL = 0 [???]
+      - If branch taken on T2 cycle
+      - on instructions with operands but only if CPU ready
+
+We DO not need to increment PC on:
+      - implied instructions
+      - CPU not ready
+
+------------ case 2:
+
+if (PHI1) IPC_RDY1 = /ready
+if (PHI2) {
+    IPC_RDY2 = NOT(IPC_RDY1)
+    IPC_RDY3 = IPC_RDY2 & BR3
+}
+// IPC_RDY3 = ready & BR3
+
+LBA     out     ( inputs abbreviations: Latch IPC_RDY3 / BRBK / nACR (LBA) )
+000     0
+001     0
+010     0
+011     0
+100     0
+101     1
+110     1
+111     0
+
+if (PHI1) IPC_BRBK = (BRBK XOR (ACR==0)) & IPC_RDY3
+
+We DO not need to increment PC on:
+    - Branch forward AND carry on T3 cycle
+    - Branch back and NO carry on T3 cycle
+
+------------ Fin
+
+  B
+BCR     /IPC:
+000     1       
+001     1
+010     1
+011     1
+100     1
+101     0
+110     0
+111     0
+abc     x
+x = !(a & (b|c))
+
+IPC = IPC_B & (IPC_BRBK|IPC_BR_OUT)
+nIPC = NOT(IPC)
+
+Increment PC when:
+B-flag = 0 AND (case2 OR case3)
+
+
+
+---------------------------------------------------------
+
+Branch-back logic:
+
+F0 00-7F  DB7=0
+F0 80-FF  DB7=1
+
+inputs : BR2, DB7
+output : BRBK
+latches : BRBK_BR2, BRBK_OUT, BRBK_IN
+
+if (PHI2) BRBK_BR2 = BR2
+if (PHI1) {
+    if ( BR2 && DB7==0) BRBK_OUT = 0
+    else BRBK_OUT = NOT(BRBK_IN)
+}
+ff = NOT(BRBK_OUT)
+if (PHI2) BRBK_IN = ff
+BRBK = NOT(ff)
+
+Branch back set only in T2 of branch instruction.
+Branch back equal bit 7 of branch operand.
+
+For example for BEQ 0x12 BRBK = 0, but for BEQ 0xAB BRBK = 1.
+
+--------------------------
+
+Branch sequence :                           PC      Taken   Not taken
+T0 : fetch opcode                                     +        +        ADL/PCL=0
+T1 : decode                                                    +        ADL/PCL=0
+T2 : branch if same page                              +                 ADL/PCL=1
+T3 : branch if page boundary crossing                                   ADH/PCH=1

@@ -1,0 +1,26 @@
+RES = 1
+
+Reset:
+PCL = [FFFC]
+PCH = [FFFD]
+
+PHI1                        PHI2
+ADH/ADL = FF/FC  R/W=0      ADL/PCL = DL <- DATA        T0
+ADH/ADL = FF/FD  R/W=0      ADH/PCH = DL <- DATA        T1
+
+Imitate BRK by /B_OUT = 0 -> clearIR.
+
+R/W set to "read" by RESDONE line.
+
+-------------------------------------------------------------------
+
+BRK T0.
+
+T0ANY(34) BRK/RTI_0(87) BRK/RTI_ANY(94)
+
+    PHI1                        PHI2
+87  ADD/ADL = 1                 ADD/ADL = 1             Put ALU result on ADL bus
+
+94  PHI1: ADH/PCH PCH/PCH PCH/DB PCL/DB PCH/ADH PCL/PCL PCL/ADL ADL/PCL 
+    PHI2: PCL/DB PCH/ADH PCL/ADL 
+
