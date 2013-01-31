@@ -96,7 +96,7 @@ static void TracePLA (void)
         M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s(%i) ", PLAName(i), i);
         }
         ptr += sprintf ( ptr, "</td>");
 
@@ -109,7 +109,7 @@ static void TracePLA (void)
         M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s(%i) ", PLAName(i), i);
         }
         ptr += sprintf ( ptr, "</td>");
 
@@ -122,7 +122,7 @@ static void TracePLA (void)
         M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s(%i) ", PLAName(i), i);
         }
         ptr += sprintf ( ptr, "</td>");
 
@@ -135,7 +135,7 @@ static void TracePLA (void)
         M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s(%i) ", PLAName(i), i);
         }
         ptr += sprintf ( ptr, "</td>");
 
@@ -148,7 +148,7 @@ static void TracePLA (void)
         M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s(%i) ", PLAName(i), i);
         }
         ptr += sprintf ( ptr, "</td>");
 
@@ -161,7 +161,7 @@ static void TracePLA (void)
         M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
-            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s ", PLAName(i));
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s(%i) ", PLAName(i), i);
         }
         ptr += sprintf ( ptr, "</td>");
 
@@ -173,7 +173,109 @@ static void TracePLA (void)
 }
 
 // --------------------------------------------------------------------------
+// test program counter (LOW)
 
+<<<<<<< .mine
+void test_pcl (ContextM6502 *cpu)
+{
+    int i, PCLC = 1, PCHC, carry_in, carry_out, old;
+
+    if ( cpu->bus[M6502_BUS_RANDOM][M6502_IPC] ) PCLC = 0;
+
+    carry_out = cpu->bus[M6502_BUS_RANDOM][M6502_IPC];
+
+    for (i=0; i<8; i++) {
+        carry_in = carry_out;
+        if ( i & 1 ) {
+            carry_out = NAND( cpu->reg[M6502_REG_PCLS][i], carry_in );
+            if (cpu->pad[M6502_PAD_PHI2])
+                cpu->reg[M6502_REG_PCL][i] = NOR(carry_in, cpu->reg[M6502_REG_PCLS][i]) | NOT(carry_out);
+            if (cpu->bus[M6502_BUS_RANDOM][M6502_PCL_PCL])
+                cpu->reg[M6502_REG_PCLS][i] = NOT(cpu->reg[M6502_REG_PCL][i]);
+        }
+        else {
+            carry_out = NOR( NOT(cpu->reg[M6502_REG_PCLS][i]), carry_in );
+            if (cpu->pad[M6502_PAD_PHI2])
+                cpu->reg[M6502_REG_PCL][i] = NAND(carry_in, NOT(cpu->reg[M6502_REG_PCLS][i])) & NOT(carry_out);
+            if (cpu->bus[M6502_BUS_RANDOM][M6502_PCL_PCL])
+                cpu->reg[M6502_REG_PCLS][i] = cpu->reg[M6502_REG_PCL][i];
+        }
+        if (cpu->reg[M6502_REG_PCLS][i] == 0) PCLC = 0;
+    }
+
+}
+
+// --------------------------------------------------------------------------
+
+void PROGRAM_COUNTER_SETUP (int clk, int T0, int T1, int BRK2)
+{
+    int     phi1 = NOT(clk);
+    int     phi2 = clk;
+
+    static  int ReadyLatch=0, PCLDB=0;
+
+    // input control lines
+    int     nready = 0,
+            JSR3 = 0, JSR5 = 0,
+            BR0 = 0, BR2 = 0, BR3 = 0,
+            ABS2 = 0,
+            RTS5 = 0,
+            JB = 0;
+
+    // output drivers + output latches
+    int     ADH_PCH, PCH_PCH, PCH_DB, PCL_DB, PCH_ADH, PCL_PCL, PCL_ADL, ADL_PCL;
+    static  int  ADH_PCHLatch=0, PCH_PCHLatch=0, PCH_DBLatch=0, PCL_DBLatch=0, 
+                 PCH_ADHLatch=0, PCL_PCLLatch=0, PCL_ADLLatch=0, ADL_PCLLatch=0;
+
+    // ----- SIM
+
+    if (phi1) {
+        ReadyLatch = nready;
+        PCLDB = NOR(PCH_DBLatch,nready);
+    }
+
+    if (phi2) {
+        ADH_PCHLatch = NOT(T1 | BR2 | T0 | BR3 | ABS2 | RTS5);
+        PCH_PCHLatch = NOT(ADH_PCHLatch);
+        PCH_DBLatch = NOR( BRK2, JSR3 );
+        PCL_DBLatch = NOT(PCLDB);
+        PCL_ADLLatch = NOT (ABS2 | T0 | BR2 | JSR5 | NOR(NOT(T1),NOR(JB,ReadyLatch)) );
+        PCH_ADHLatch = NOR(BR2, NOT(PCL_ADLLatch|BR0|NOR(JB,NOT(T1))) );
+        ADL_PCLLatch = NOR (T1, NOT(PCL_ADLLatch));
+        PCL_PCLLatch = NOT(ADL_PCLLatch);
+    }
+
+    ADH_PCH = NOT(ADH_PCHLatch);
+    PCH_PCH = NOT(PCH_PCHLatch);
+    PCH_DB = NOT(PCH_DBLatch);
+    PCL_DB = NOT(PCL_DBLatch);
+    PCH_ADH = NOT(PCH_ADHLatch);
+    PCL_PCL = NOT(PCL_PCLLatch);
+    PCL_ADL = NOT(PCL_ADLLatch);
+    ADL_PCL = NOT(ADL_PCLLatch);
+
+    if (phi2) ADH_PCH = PCH_PCH = PCL_PCL = ADL_PCL = 0;           
+
+    if (phi1) printf ("PHI1: ");
+    if (phi2) printf ("PHI2: ");
+    if (ADH_PCH) printf ("ADH/PCH ");
+    if (PCH_PCH) printf ("PCH/PCH ");
+    if (PCH_DB) printf ("PCH/DB ");
+    if (PCL_DB) printf ("PCL/DB ");
+    if (PCH_ADH) printf ("PCH/ADH ");
+    if (PCL_PCL) printf ("PCL/PCL ");
+    if (PCL_ADL) printf ("PCL/ADL ");
+    if (ADL_PCL) printf ("ADL/PCL ");
+    printf ("\n");
+}
+
+// --------------------------------------------------------------------------
+
+void ALU2 (void);
+
+// --------------------------------------------------------------------------
+
+=======
 // ALU overall test
 
 unsigned long packreg ( char *reg, int bits );
@@ -239,6 +341,7 @@ static void testALU (void)
 
 // --------------------------------------------------------------------------
 
+>>>>>>> .r209
 // Push random data
 // TODO: Add infinite cycle test program.
 static void DummyMemoryDevice (ContextM6502 *cpu)
@@ -261,17 +364,44 @@ main ()
     cpu.pad[M6502_PAD_nRES] = 1;
     cpu.pad[M6502_PAD_RDY] = 1;
 
-    cpu.debug[M6502_DEBUG_OUT] = 1;
+    cpu.debug[M6502_DEBUG_OUT] = 0;
 
-    // Execute virtual 1 second.
+<<<<<<< .mine
+    // prepare pcl test.
+    cpu.bus[M6502_BUS_RANDOM][M6502_IPC] = 0;
+    unpackreg (cpu.reg[M6502_REG_PCLS], 0x34, 8);
+
+    // Execute real 1 second.
+/*
+=======
+>>>>>>> .r209
     srand ( 0xaabb );
     old = GetTickCount ();
     while (1) {
         if ( (GetTickCount () - old) >= 1000 ) break;
-        M6502Step (&cpu);
-        DummyMemoryDevice (&cpu);
+        //M6502Step (&cpu);
+
+        cpu.bus[M6502_BUS_RANDOM][M6502_PCL_PCL] = 1;
+        if (cpu.pad[M6502_PAD_PHI0]) cpu.bus[M6502_BUS_RANDOM][M6502_PCL_PCL] = 0;
+
+        M6502Debug (&cpu, "CLK" );
+        test_pcl (&cpu);
+
+        if (cpu.pad[M6502_PAD_PHI0] == 0)   // PHI2
+            printf ( "PCL = %02X\n", packreg (cpu.reg[M6502_REG_PCL], 8) );
+
+        if (cpu.pad[M6502_PAD_PHI0]) cpu.bus[M6502_BUS_RANDOM][M6502_IPC] ^= 1;
+
+        //DummyMemoryDevice (&cpu);
         cpu.pad[M6502_PAD_PHI0] ^= 1;
     }
     printf ("Executed %.4fM/4M cycles\n", (float)cpu.debug[M6502_DEBUG_CLKCOUNT]/1000000.0f );
 */
+<<<<<<< .mine
+
+//    TracePLA ();
+
+    ALU2 ();
+=======
+>>>>>>> .r209
 }

@@ -52,7 +52,7 @@ unsigned long packreg ( char *reg, int bits )
     return val;
 } 
 
-void unpackreg (char *reg, unsigned char val, int bits)
+void unpackreg (char *reg, unsigned long val, int bits)
 {
     int i;
     for (i=0; i<bits; i++) {
@@ -482,7 +482,7 @@ static void dump_random (ContextM6502 *cpu)
 
 static void RANDOM_LOGIC (ContextM6502 *cpu)
 {
-    int ARIT, MEMOP, STOR, BR2, RD, SBAC, LOG1, ANDS, SRS, IND, JB, PCHDB, PCLDB, PCDB, ADHPCH, PCHPCH, PCLADL, ADLPCL;
+    int ARIT, nSTXY, MEMOP, STOR, BR2, JSXY, RD, SBAC, LOG1, ANDS, SRS, IND, JB, PCHDB, PCLDB, PCDB, ADHPCH, PCHPCH, PCLADL, ADLPCL;
     int sync, bb6, bb7, res, p;
 
     // flags out
@@ -501,6 +501,9 @@ static void RANDOM_LOGIC (ContextM6502 *cpu)
     BR2 = PLA(80);
     ANDS = PLA(69) | PLA(70);
     IND = NOT ( PLA(84) | PLA(89) | PLA(90) | PLA(91) );
+    nSTXY = NAND(PLA(0), STOR) & NAND(PLA(12), STOR);
+    JSXY = NAND(NOT(PLA(48)), nSTXY );
+    sync = NOT(cpu->latch[M6502_LATCH_SYNC]);
 
     // SB/AC
     SBAC = NOT ( PLA(58) | PLA(59) | PLA(60) | PLA(61) | PLA(62) | PLA(63) | PLA(64) );
@@ -508,6 +511,14 @@ static void RANDOM_LOGIC (ContextM6502 *cpu)
     cpu->bus[M6502_BUS_RANDOM][M6502_SB_AC] = NOR(cpu->reg[M6502_REG_RANDOM_LATCH][M6502_SB_AC], PHI2) & NOT(PHI2);
 
     // SB/Y SB/X S/SB
+    if ( PHI2 ) {
+        cpu->reg[M6502_REG_RANDOM_LATCH][M6502_SB_Y] = NOR(PLA(18), PLA(19));
+        cpu->reg[M6502_REG_RANDOM_LATCH][M6502_SB_X] = NOT ( PLA(14) | PLA(15) | PLA(16) );
+        cpu->reg[M6502_REG_RANDOM_LATCH][M6502_S_SB] = NOT ( PLA(17) );
+    }
+    cpu->bus[M6502_BUS_RANDOM][M6502_SB_Y] = NOT (cpu->reg[M6502_REG_RANDOM_LATCH][M6502_SB_Y]);
+    cpu->bus[M6502_BUS_RANDOM][M6502_SB_X] = NOT (cpu->reg[M6502_REG_RANDOM_LATCH][M6502_SB_X]);
+    cpu->bus[M6502_BUS_RANDOM][M6502_S_SB] = NOT (cpu->reg[M6502_REG_RANDOM_LATCH][M6502_S_SB]);
 
     // shift/rotate
     cpu->ctrl[M6502_CTRL_SH_R] = NOT (cpu->latch[M6502_LATCH_SHR_OUT]);
@@ -531,6 +542,9 @@ static void RANDOM_LOGIC (ContextM6502 *cpu)
     cpu->bus[M6502_BUS_RANDOM][M6502_X_SB] = NOR(cpu->reg[M6502_REG_RANDOM_LATCH][M6502_X_SB], PHI2) & NOT(PHI2) ;
 
     // SB/DB
+    LOG1 = ANDS | BIT(cpu->ctrl[M6502_CTRL_ASRL]) | NAND(cpu->reg[M6502_REG_RANDOM_LATCH][M6502_SB_X], cpu->reg[M6502_REG_RANDOM_LATCH][M6502_SB_Y]) | NOT(SBAC);
+    if (PHI2) cpu->reg[M6502_REG_RANDOM_LATCH][M6502_SB_DB] = NOT( (PLA(55) & cpu->ctrl[M6502_CTRL_SH_R]) | JSXY | sync | BR2 | NOT(ANDS | NOT(LOG1)) | PLA(67) );
+    cpu->bus[M6502_BUS_RANDOM][M6502_SB_DB] = NOT(cpu->reg[M6502_REG_RANDOM_LATCH][M6502_SB_DB]);
 
     // interrupt handling. 0/ADL0, 0/ADL1, 0/ADL2.
     p = NOR ( cpu->latch[M6502_LATCH_INTR_RESET], cpu->latch[M6502_LATCH_INTR] );
@@ -558,12 +572,14 @@ static void RANDOM_LOGIC (ContextM6502 *cpu)
         cpu->latch[M6502_LATCH_FCTRL_CC] = ARIT;
         cpu->latch[M6502_LATCH_FCTRL_ZC] = NOR(PLA(109), LOG1) & cpu->latch[M6502_LATCH_FCTRL_CC];
         cpu->latch[M6502_LATCH_FCTRL_NC] = PLA(109);
-        cpu->latch[M6502_LATCH_FCTRL_0P] = NOR (PLA(114), PLA(115));
+        cpu->latch[M6502_LATCH_FCTRL_0P] = NOR (PLA(114), PLA(115)) & NOT(nREADY);
         cpu->latch[M6502_LATCH_FCTRL_VC2] = NOT(PLA(113));
         cpu->latch[M6502_LATCH_FCTRL_BR] = BR2;
         cpu->latch[M6502_LATCH_POUT] = NOR (PLA(98), PLA(99));
     }
     cpu->ctrl[M6502_CTRL_PDB] = NOT(cpu->latch[M6502_LATCH_POUT]);
+
+    // nADD/SB7
 
     // branch taken?
     bb6 = PLA(121); bb6 = PLA(126);     // grab some important bits, to distinguish branch type
@@ -575,7 +591,6 @@ static void RANDOM_LOGIC (ContextM6502 *cpu)
     cpu->ctrl[M6502_CTRL_BRTAKEN] = NAND(res, nIR(5)) & (res | nIR(5));
 
     // increment PC.
-    sync = NOT(cpu->latch[M6502_LATCH_SYNC]);
 
     // PC setup
     if (PHI1) cpu->latch[M6502_LATCH_PCREADY] = nREADY;

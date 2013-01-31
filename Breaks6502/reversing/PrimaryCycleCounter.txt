@@ -1,0 +1,51 @@
+Primary Cycle Counter (T0,T1)
+
+
+Inputs:
+TQ: ??
+TR: ??
+/TWOCYCLE : long instruction being executed
+/ready : CPU not ready, when 1.
+
+
+Outputs:
+/T0 : execute T0
+/T1 : execute T1
+T1: internal T1 control line (T1 cycle being executed)
+
+Latches:
+TQ_IN
+TR_IN
+nTWOCYC_IN
+CC_IN
+CC_OUT
+
+if (PHI1) {
+    TQ_IN = TQ
+    TR_IN = TR
+    nTWOCYC_IN = /TWOCYCLE
+}
+
+x = NAND(TR_IN, nTWOCYC_IN) & NOT(TQ_IN)
+x == 0 when TQ = 1 OR TR+/TWOCYCLE=1
+
+if (PHI1) CC_OUT = NOR (/ready, CC_IN)
+/T0 = NOT(CC_OUT)
+/T1 = CC_OUT | CC_IN
+if (x) /T1 = 0
+T1 = NOT (/T1)
+if (PHI2) CC_IN = /T1
+
+
+Powerup Trace:  CC_IN = CC_OUT = 0
+
+PHI1
+/T0 = 0, /T1 = 1
+PHI2
+/T0 = 0, /T1 = 1, CC_OUT = 1
+
+PHI1
+/T0 = 1, /T1 = 1
+PHI2
+/T0 = 1, /T1 = 1    
+
