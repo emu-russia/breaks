@@ -175,7 +175,6 @@ static void TracePLA (void)
 // --------------------------------------------------------------------------
 // test program counter (LOW)
 
-<<<<<<< .mine
 void test_pcl (ContextM6502 *cpu)
 {
     int i, PCLC = 1, PCHC, carry_in, carry_out, old;
@@ -275,73 +274,6 @@ void ALU2 (void);
 
 // --------------------------------------------------------------------------
 
-=======
-// ALU overall test
-
-unsigned long packreg ( char *reg, int bits );
-void unpackreg (char *reg, unsigned char val, int bits);
-
-static void testALU (void)
-{
-    ContextM6502 cpu;
-
-    // OR
-    memset (&cpu, 0, sizeof(cpu));
-    cpu.pad[M6502_PAD_PHI0] = 1;
-    cpu.bus[M6502_BUS_RANDOM][M6502_ORS] = 1;
-    unpackreg(cpu.reg[M6502_REG_AI],0x11,8);
-    unpackreg(cpu.reg[M6502_REG_BI],0x88,8);
-    M6502Debug (&cpu, "CLK" );      // PHI1
-    M6502Debug (&cpu, "ALU" );
-    cpu.pad[M6502_PAD_PHI0] ^= 1;
-    M6502Debug (&cpu, "CLK" );      // PHI2
-    M6502Debug (&cpu, "ALU" );
-    printf ( "AI:%02X %s BI:%02X = ADD:%02X AC:%02X (C:%i) \n", packreg(cpu.reg[M6502_REG_AI],8), "|", packreg(cpu.reg[M6502_REG_BI],8), ~packreg(cpu.reg[M6502_REG_ADD],8) & 0xff, packreg(cpu.reg[M6502_REG_AC],8), cpu.bus[M6502_BUS_RANDOM][M6502_ACR] );
-
-    // AND
-    memset (&cpu, 0, sizeof(cpu));
-    cpu.pad[M6502_PAD_PHI0] = 1;
-    cpu.bus[M6502_BUS_RANDOM][M6502_ANDS] = 1;
-    unpackreg(cpu.reg[M6502_REG_AI],0xff,8);
-    unpackreg(cpu.reg[M6502_REG_BI],0x88,8);
-    M6502Debug (&cpu, "CLK" );      // PHI1
-    M6502Debug (&cpu, "ALU" );
-    cpu.pad[M6502_PAD_PHI0] ^= 1;
-    M6502Debug (&cpu, "CLK" );      // PHI2
-    M6502Debug (&cpu, "ALU" );
-    printf ( "AI:%02X %s BI:%02X = ADD:%02X AC:%02X (C:%i) \n", packreg(cpu.reg[M6502_REG_AI],8), "&", packreg(cpu.reg[M6502_REG_BI],8), ~packreg(cpu.reg[M6502_REG_ADD],8) & 0xff, packreg(cpu.reg[M6502_REG_AC],8), cpu.bus[M6502_BUS_RANDOM][M6502_ACR] );
-
-    // EOR
-    memset (&cpu, 0, sizeof(cpu));
-    cpu.pad[M6502_PAD_PHI0] = 1;
-    cpu.bus[M6502_BUS_RANDOM][M6502_EORS] = 1;
-    unpackreg(cpu.reg[M6502_REG_AI],0xff,8);
-    unpackreg(cpu.reg[M6502_REG_BI],0x88,8);
-    M6502Debug (&cpu, "CLK" );      // PHI1
-    M6502Debug (&cpu, "ALU" );
-    cpu.pad[M6502_PAD_PHI0] ^= 1;
-    M6502Debug (&cpu, "CLK" );      // PHI2
-    M6502Debug (&cpu, "ALU" );
-    printf ( "AI:%02X %s BI:%02X = ADD:%02X AC:%02X (C:%i) \n", packreg(cpu.reg[M6502_REG_AI],8), "^", packreg(cpu.reg[M6502_REG_BI],8), ~packreg(cpu.reg[M6502_REG_ADD],8) & 0xff, packreg(cpu.reg[M6502_REG_AC],8), cpu.bus[M6502_BUS_RANDOM][M6502_ACR] );
-
-    // SR
-    memset (&cpu, 0, sizeof(cpu));
-    cpu.pad[M6502_PAD_PHI0] = 1;
-    cpu.bus[M6502_BUS_RANDOM][M6502_SRS] = 1;
-    unpackreg(cpu.reg[M6502_REG_AI],0x12,8);
-    unpackreg(cpu.reg[M6502_REG_BI],0x34,8);
-    M6502Debug (&cpu, "CLK" );      // PHI1
-    M6502Debug (&cpu, "ALU" );
-    cpu.pad[M6502_PAD_PHI0] ^= 1;
-    M6502Debug (&cpu, "CLK" );      // PHI2
-    M6502Debug (&cpu, "ALU" );
-    printf ( "AI:%02X %s BI:%02X = ADD:%02X AC:%02X (C:%i) \n", packreg(cpu.reg[M6502_REG_AI],8), ">", packreg(cpu.reg[M6502_REG_BI],8), ~packreg(cpu.reg[M6502_REG_ADD],8) & 0xff, packreg(cpu.reg[M6502_REG_AC],8), cpu.bus[M6502_BUS_RANDOM][M6502_ACR] );
-
-}
-
-// --------------------------------------------------------------------------
-
->>>>>>> .r209
 // Push random data
 // TODO: Add infinite cycle test program.
 static void DummyMemoryDevice (ContextM6502 *cpu)
@@ -351,8 +283,6 @@ static void DummyMemoryDevice (ContextM6502 *cpu)
 
 main ()
 {
-    testALU ();
-
 /*
     DWORD old;
     ContextM6502 cpu;
@@ -366,15 +296,12 @@ main ()
 
     cpu.debug[M6502_DEBUG_OUT] = 0;
 
-<<<<<<< .mine
     // prepare pcl test.
     cpu.bus[M6502_BUS_RANDOM][M6502_IPC] = 0;
     unpackreg (cpu.reg[M6502_REG_PCLS], 0x34, 8);
 
     // Execute real 1 second.
 /*
-=======
->>>>>>> .r209
     srand ( 0xaabb );
     old = GetTickCount ();
     while (1) {
@@ -397,11 +324,8 @@ main ()
     }
     printf ("Executed %.4fM/4M cycles\n", (float)cpu.debug[M6502_DEBUG_CLKCOUNT]/1000000.0f );
 */
-<<<<<<< .mine
 
 //    TracePLA ();
 
     ALU2 ();
-=======
->>>>>>> .r209
 }
