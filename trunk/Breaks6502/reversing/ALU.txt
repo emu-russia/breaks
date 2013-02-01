@@ -1,9 +1,9 @@
-Test: 99 + AA
-
-Inputs:
+ALU Inputs:
 
 I/ADDC : input carry (inverted)
-DAA, DSA : used for decimal correction
+/DAA, /DSA : used for decimal correction:
+for ADC /DAA=0,/DSA=1; for SBC /DAA=1,/DSA=0.
+/DSA = /DAA = 1, when D flag cleared.
 
 3 sorts of command lines: input controls, operation controls, output controls.
 + 2 input registers : AI (A input) and BI (B input)
@@ -33,16 +33,50 @@ AC/SB : accumulator -> special bus
 AC/DB : accumulator -> data bus
 SB/DB : special bus = data bus
 
-------------------------------
+Internal registers:
+ADD : adder hold register for intermediate result (before decimal correction).
+Also can be used for address calculation.
+AC : accumulator. Hold final add/subtract result, after optional decimal correction.
 
-decimal adjustment notepad.
+Random notes and facts:
 
-/ADD1   DAHC    DSHC        DA1     DA2
-0          0       0        1       1
-0          0       1        1       1
-0          1       0        1       1
-0          1       1        1       1
-1          0       0        1       1
-1          0       1        1       1
-1          1       0        1       0
-1          1       1        1       0
+- ALU has inverted carry chain between odd/even bits, to reduce propagation delay.
+- ALU write intermediate result to adder hold register (ADD) during PHI2, and updating accumulator (AC) at same time.
+Final result place on acumulator only on following PHI1 half-cycle.
+This is need to make sure no conflicts happen during refreshing of AC register.
+To ensure this, AC-loading control lines are grounded during PHI2.
+- a + b + carry is actually a ^ b ^ carry.
+- Decimal correction is actually +6
+
+To add A + B, do the following:
+- put A on special bus (SB)
+- put B on data bus (DB)
+- optionally set input carry
+- wait dummy PHI1 half-cycle
+- if you need to add in decimal mode, set /DAA = 0, /DSA = 1.
+- perform commands on next PHI2 : SB/ADD, DB/ADD, SUMS
+- perform commands on next PHI1 : ADD/SB06, ADD/SB7, SB/AC
+- get result from accumulator (AC)
+
+To subtract A - B, do the following:
+- put A on special bus (SB)
+- put B on data bus (DB)
+- force to set input carry
+- wait dummy PHI1 half-cycle
+- if you need to subtract in decimal mode, set /DAA = 1, /DSA = 0.
+- perform commands on next PHI2 : SB/ADD, NDB/ADD  (<-- DB is loaded as inverted value), SUMS
+- perform commands on next PHI1 : ADD/SB06, ADD/SB7, SB/AC
+- get result from accumulator (AC)
+
+So basically A + B = A + NOT(B) + 1
+
+ALU pipeline :
+- load input registers (AI and BI)
+- ORS, ANDS, SRS: perform logic operations, based on NAND and NOR
+- EORS: perform exclusive-OR, based on NAND/NOR
+- SUMS: calculate sum of two operands based on XOR and additional XOR it with carry
+- DAA: calculate decimal carry and half-carry on-the-fly
+- hold intermediate result in ADD register
+- set output carry and overflow flags
+- output carry is set whenever binary carry or decimal carry happens
+- DSA: perform decimal adjustment (+6) to intermediate result and put it on accumulator

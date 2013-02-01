@@ -23,4 +23,4 @@ SBC: AI + !BI + Carry = AC, V out, C out
 9A - 00 + 1 = 9A, V:1, C:1      !!! V-flag
 9B - 00 + 0 = 9A, V:1, C:1      !!! V-flag
 
-By !!! I noted differencies.
+By !!! I marked some differencies.
