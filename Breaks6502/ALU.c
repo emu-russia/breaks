@@ -2,7 +2,7 @@
 
 int ENOR (int a, int b)
 {
-    return NAND(NOT(a),b) & NOT(NOR(NOT(a),b));
+    return NAND(NOT(a),b) & (NOT(a)|b) & 1;
 }
 
 void DAADSA (int clk, int SBC0)
@@ -27,7 +27,7 @@ void DAADSA (int clk, int SBC0)
     printf ( "CLK:%i, SBC:%i, DAA:%i, DSA:%i\n", clk, SBC0, DAA, DSA );
 }
 
-void ALU2 (int clk)
+void ALU2 (int clk, int ain, int bin, int carry, int adc)
 {
     int ALU_0_ADD = 0,
         ALU_SB_ADD = 0,
@@ -54,7 +54,7 @@ void ALU2 (int clk)
         ALU_ACR, ALU_AVR;
 
     char SB[8], DB[8], ADL[8];
-    char AI[8], BI[8], ADD[8], AC[8];
+    static char AI[8], BI[8], ADD[8], AC[8];
     static int OverflowLatch=0, BinaryCarry=0, DecimalCarry=0;
     static int LatchDAAL=0, LatchDSAL=0, LatchDAAH=0, LatchDSAH=0;
     int PHI1 = NOT(clk), PHI2 = clk, a,b,c, DAAL, DSAL, DAAH, DSAH;
@@ -63,14 +63,25 @@ void ALU2 (int clk)
     char BC0, BC3, BC4, BC6, DC3, DC7;
 
     // TEST CASE
-    unpackreg (SB, 0x79, 8);
-    unpackreg (DB, 0x00, 8);
-    ALU_SB_ADD = ALU_DB_ADD = 1;    // put input operands
-    ALU_ADD_SB06 = ALU_ADD_SB7 = 1;
-    ALU_SB_AC = 1;
-    ALU_nDAA = 0;
-    ALU_nDSA = 1;
-    ALU_IADDC = 0;
+    if ( adc ) {
+        unpackreg (SB, 0x55, 8);
+        unpackreg (DB, 0x36, 8);
+        ALU_SB_ADD = ALU_DB_ADD = 1;    // put input operands
+        ALU_ADD_SB06 = ALU_ADD_SB7 = 1;
+        ALU_SB_AC = 1;
+        ALU_nDAA = 0;
+        ALU_nDSA = 1;
+    }
+    else {
+        unpackreg (SB, 0x55, 8);
+        unpackreg (DB, 0x36, 8);
+        ALU_SB_ADD = ALU_NDB_ADD = 1;    // put input operands
+        ALU_ADD_SB06 = ALU_ADD_SB7 = 1;
+        ALU_SB_AC = 1;
+        ALU_nDAA = 1;
+        ALU_nDSA = 0;
+    }
+    ALU_IADDC = NOT(carry);
     ALU_SUMS = 1;       // sum
 
     carry_out = ALU_IADDC;
@@ -99,24 +110,23 @@ void ALU2 (int clk)
             carry_out = NAND(carry_out,nand[n]) & NOT(nor[n]);
         }
         if (n==0) BC0 = carry_out;
-        if (n==3) BC3 = carry_out;
-        if (n==4) BC4 = carry_out;
-        if (n==6) BC6 = carry_out;
+        else if (n==4) BC4 = carry_out;
+        else if (n==6) BC6 = carry_out;
         if (n == 3) {   // decimal half-carry look-ahead
             if ( NOT(ALU_nDAA) ) {
                 a = NOR( NAND(NOT(nand[1]), BC0), nor[2] );
                 b = NOR(eor[3], NOT(nand[2]));
                 c = NOR(eor[1], NOT(nand[1])) & NOT(BC0) & (NOT(nand[2]) | nor[2]);
-                DC3 = a & (b | c);
+                DC3 = a | NOR (b, c);
             } else DC3 = 0;
-            carry_out = carry_out & NOT(DC3);
+            BC3 = carry_out = carry_out & NOT(DC3);
         }
         if (n == 7) {   // decimal carry look-ahead
             if ( NOT(ALU_nDAA) ) {
-                a = NOR( NAND(NOT(nand[5]), BC4), eor[6]);
+                a = NOR( NAND(NOT(nand[5]), BC4), enor[6]);
                 b = NOR(NOT(nand[6]), eor[7]);
-                c = NOR(NOT(nand[5]), eor[5]) & NOR(BC4, NOT(eor[6]));
-                DC7 = a & (b | c);
+                c = NOR(NOT(nand[5]), eor[5]) & NOR(BC4, NOT(enor[6]));
+                DC7 = a | NOR (b, c);
             } else DC7 = 0;
         }
 
@@ -139,6 +149,7 @@ void ALU2 (int clk)
         BinaryCarry = NOT(carry_out);
         DecimalCarry = DC7;
         OverflowLatch = NAND(nor[7],BC6) & NOT(NOR(nand[7]),BC6);
+
         LatchDAAH = NOT(ALU_nDAA);
         LatchDSAH = NOT(ALU_nDSA);
         LatchDAAL = NAND(NOT(ALU_nDAA),NOT(BC3));
@@ -152,23 +163,33 @@ void ALU2 (int clk)
     DSAH = NOR(ALU_ACR, NOT(LatchDSAH));
 
     // decimal adjustment + output result to accumulator
-    if ( ALU_SB_AC ) {
-        AC[0] = SB[0];
-        AC[1] = ENOR(SB[1], NOR(DSAL,DAAL) );
-        AC[2] = ENOR(SB[2], NOR(NAND(NOT(ADD[1]),DSAL), NAND(ADD[1],DAAL)) );
-        AC[3] = ENOR(SB[3], NOR(NAND(ADD[1]|ADD[2],DSAL), NAND(NAND(ADD[1],ADD[2]),DAAL)) );
-
-        AC[4] = SB[4];
-        AC[5] = ENOR(SB[5], NOR(DSAH,DAAH));
-        AC[6] = ENOR(SB[6], NOR(NAND(DSAH,NOT(ADD[5])), NAND(ADD[5],DAAH)) );
-        AC[7] = ENOR(SB[7], NOR(NAND(ADD[5]|ADD[6],DSAH), NAND(NAND(ADD[5],ADD[6]),DAAH)) );
-    }
     for (n=0; n<8; n++) {
+    // adder hold output
+        if (ALU_ADD_SB06 && n!=7) SB[n] = NOT(ADD[n]);
+        if (ALU_ADD_SB7 && n==7) SB[n] = NOT(ADD[n]);
+        if (ALU_ADD_ADL) ADL[n] = NOT(ADD[n]);
+
+    if ( ALU_SB_AC ) {
+        if(n==0) AC[0] = SB[0];
+        if(n==1) AC[1] = ENOR(SB[1], NOR(DSAL,DAAL) );
+        if(n==2) AC[2] = ENOR(SB[2], NAND(NOT(ADD[1]),DSAL) & NAND(ADD[1],DAAL) );
+        if(n==3) AC[3] = ENOR(SB[3], NAND(ADD[1]|ADD[2],DSAL) & NAND(NAND(ADD[1],ADD[2]),DAAL) );
+
+        if(n==4) AC[4] = SB[4];
+        if(n==5) AC[5] = ENOR(SB[5], NOR(DSAH,DAAH));
+        if(n==6) AC[6] = ENOR(SB[6], NAND(DSAH,NOT(ADD[5])) & NAND(ADD[5],DAAH) );
+        if(n==7) AC[7] = ENOR(SB[7], NAND(ADD[5]|ADD[6],DSAH) & NAND(NAND(ADD[5],ADD[6]),DAAH) );
+    }
+
+    // accumulator output
         if (ALU_AC_SB) SB[n] = AC[n];
         if (ALU_AC_DB) DB[n] = AC[n];
         else if (ALU_SB_DB) DB[n] = SB[n];
     }
 
     // Output result.
-    printf ( "AC: %02X, V:%i, C:%i\n", packreg(AC,8) & 0xFF, ALU_AVR, ALU_ACR );
+    if (PHI1) {
+        if (adc) printf ( "%02X + %02X + %i = %02X, V:%i, C:%i\n", packreg(AI,8) & 0xFF, packreg(BI,8) & 0xFF, NOT(ALU_IADDC), packreg(AC,8) & 0xFF, ALU_AVR, ALU_ACR );
+        else printf ( "%02X - %02X + %i = %02X, V:%i, C:%i\n", packreg(AI,8) & 0xFF, ~packreg(BI,8) & 0xFF, NOT(ALU_IADDC), packreg(AC,8) & 0xFF, ALU_AVR, ALU_ACR );
+    }
 }
