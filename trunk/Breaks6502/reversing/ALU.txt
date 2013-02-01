@@ -32,3 +32,17 @@ ADD/ADL : adder hold -> ADL
 AC/SB : accumulator -> special bus
 AC/DB : accumulator -> data bus
 SB/DB : special bus = data bus
+
+------------------------------
+
+decimal adjustment notepad.
+
+/ADD1   DAHC    DSHC        DA1     DA2
+0          0       0        1       1
+0          0       1        1       1
+0          1       0        1       1
+0          1       1        1       1
+1          0       0        1       1
+1          0       1        1       1
+1          1       0        1       0
+1          1       1        1       0
