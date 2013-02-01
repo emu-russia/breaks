@@ -1,0 +1,26 @@
+ALU tests in decimal mode, based on :
+http://visual6502.org/wiki/index.php?title=6502DecimalMode
+
+ADC: AI + BI + Carry = AC, V out, C out
+
+79 + 00 + 1 = 80, V:1, C:0
+24 + 56 + 0 = 80, V:1, C:0
+93 + 82 + 0 = 75, V:1, C:1
+89 + 76 + 0 = 65, V:0, C:1      !!! result!
+89 + 76 + 1 = 66, V:0, C:1      !!! result!
+80 + F0 + 0 = D0, V:1, C:1
+80 + FA + 0 = E0, V:1, C:1      !!! V-flag
+2F + 4F + 0 = 74, V:0, C:0
+6F + 00 + 1 = 76, V:0, C:0
+
+SBC: AI + !BI + Carry = AC, V out, C out
+
+00 - 00 + 0 = 99, V:0, C:0
+00 - 00 + 1 = 00, V:0, C:1
+00 - 01 + 1 = 99, V:0, C:0
+0A - 00 + 1 = 0A, V:0, C:1
+0B - 00 + 0 = 0A, V:0, C:1
+9A - 00 + 1 = 9A, V:1, C:1      !!! V-flag
+9B - 00 + 0 = 9A, V:1, C:1      !!! V-flag
+
+By !!! I noted differencies.

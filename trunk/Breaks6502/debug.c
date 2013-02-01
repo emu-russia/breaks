@@ -270,7 +270,7 @@ void PROGRAM_COUNTER_SETUP (int clk, int T0, int T1, int BRK2)
 
 // --------------------------------------------------------------------------
 
-void ALU2 (int);
+void ALU2 (int clk, int ain, int bin, int carry, int adc);
 
 // --------------------------------------------------------------------------
 
@@ -327,6 +327,6 @@ main ()
 
 //    TracePLA ();
 
-    ALU2 (1);
-    ALU2 (0);
+    ALU2 (1, 0x55, 0x36, 1, 1);
+    ALU2 (0, 0x55, 0x36, 1, 1);
 }
