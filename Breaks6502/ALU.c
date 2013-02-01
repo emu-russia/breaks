@@ -1,4 +1,3 @@
-// Test : 66 + AA + 0/1 = 0x110 / 0x111.
 
 int ENOR (int a, int b)
 {
@@ -64,8 +63,8 @@ void ALU2 (int clk, int ain, int bin, int carry, int adc)
 
     // TEST CASE
     if ( adc ) {
-        unpackreg (SB, 0x55, 8);
-        unpackreg (DB, 0x36, 8);
+        unpackreg (SB, ain, 8);
+        unpackreg (DB, bin, 8);
         ALU_SB_ADD = ALU_DB_ADD = 1;    // put input operands
         ALU_ADD_SB06 = ALU_ADD_SB7 = 1;
         ALU_SB_AC = 1;
@@ -73,8 +72,8 @@ void ALU2 (int clk, int ain, int bin, int carry, int adc)
         ALU_nDSA = 1;
     }
     else {
-        unpackreg (SB, 0x55, 8);
-        unpackreg (DB, 0x36, 8);
+        unpackreg (SB, ain, 8);
+        unpackreg (DB, bin, 8);
         ALU_SB_ADD = ALU_NDB_ADD = 1;    // put input operands
         ALU_ADD_SB06 = ALU_ADD_SB7 = 1;
         ALU_SB_AC = 1;
