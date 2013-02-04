@@ -283,7 +283,6 @@ static void DummyMemoryDevice (ContextM6502 *cpu)
 
 main ()
 {
-/*
     DWORD old;
     ContextM6502 cpu;
     memset (&cpu, 0, sizeof(cpu));
@@ -298,10 +297,8 @@ main ()
 
     // prepare pcl test.
     cpu.bus[M6502_BUS_RANDOM][M6502_IPC] = 0;
-    unpackreg (cpu.reg[M6502_REG_PCLS], 0x34, 8);
 
     // Execute real 1 second.
-/*
     srand ( 0xaabb );
     old = GetTickCount ();
     while (1) {
@@ -309,24 +306,35 @@ main ()
         //M6502Step (&cpu);
 
         cpu.bus[M6502_BUS_RANDOM][M6502_PCL_PCL] = 1;
-        if (cpu.pad[M6502_PAD_PHI0]) cpu.bus[M6502_BUS_RANDOM][M6502_PCL_PCL] = 0;
 
         M6502Debug (&cpu, "CLK" );
         test_pcl (&cpu);
 
         if (cpu.pad[M6502_PAD_PHI0] == 0)   // PHI2
-            printf ( "PCL = %02X\n", packreg (cpu.reg[M6502_REG_PCL], 8) );
+        {
+/*
+            unsigned char pcl = 
+                (cpu.reg[M6502_REG_PCL][0] << 0) | 
+                (NOT(cpu.reg[M6502_REG_PCL][1]) << 1) | 
+                (cpu.reg[M6502_REG_PCL][2] << 2) | 
+                (NOT(cpu.reg[M6502_REG_PCL][3]) << 3) | 
+                (cpu.reg[M6502_REG_PCL][4] << 4) | 
+                (NOT(cpu.reg[M6502_REG_PCL][5]) << 5) | 
+                (cpu.reg[M6502_REG_PCL][6] << 6) | 
+                (NOT(cpu.reg[M6502_REG_PCL][7]) << 7) ;
+*/
+            unsigned char pcl = packreg(cpu.reg[M6502_REG_PCLS],8);
 
-        if (cpu.pad[M6502_PAD_PHI0]) cpu.bus[M6502_BUS_RANDOM][M6502_IPC] ^= 1;
+            printf ( "PCL = %02X\n", pcl );
+        }
 
         //DummyMemoryDevice (&cpu);
         cpu.pad[M6502_PAD_PHI0] ^= 1;
     }
     printf ("Executed %.4fM/4M cycles\n", (float)cpu.debug[M6502_DEBUG_CLKCOUNT]/1000000.0f );
-*/
 
 //    TracePLA ();
 
-    ALU2 (1, 0x55, 0x36, 1, 1);
-    ALU2 (0, 0x55, 0x36, 1, 1);
+//    ALU2 (1, 0x55, 0x36, 1, 1);
+//    ALU2 (0, 0x55, 0x36, 1, 1);
 }
