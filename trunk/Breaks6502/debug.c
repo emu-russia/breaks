@@ -283,6 +283,7 @@ static void DummyMemoryDevice (ContextM6502 *cpu)
 
 main ()
 {
+/*
     DWORD old;
     ContextM6502 cpu;
     memset (&cpu, 0, sizeof(cpu));
@@ -312,19 +313,7 @@ main ()
 
         if (cpu.pad[M6502_PAD_PHI0] == 0)   // PHI2
         {
-/*
-            unsigned char pcl = 
-                (cpu.reg[M6502_REG_PCL][0] << 0) | 
-                (NOT(cpu.reg[M6502_REG_PCL][1]) << 1) | 
-                (cpu.reg[M6502_REG_PCL][2] << 2) | 
-                (NOT(cpu.reg[M6502_REG_PCL][3]) << 3) | 
-                (cpu.reg[M6502_REG_PCL][4] << 4) | 
-                (NOT(cpu.reg[M6502_REG_PCL][5]) << 5) | 
-                (cpu.reg[M6502_REG_PCL][6] << 6) | 
-                (NOT(cpu.reg[M6502_REG_PCL][7]) << 7) ;
-*/
             unsigned char pcl = packreg(cpu.reg[M6502_REG_PCLS],8);
-
             printf ( "PCL = %02X\n", pcl );
         }
 
@@ -332,11 +321,9 @@ main ()
         cpu.pad[M6502_PAD_PHI0] ^= 1;
     }
     printf ("Executed %.4fM/4M cycles\n", (float)cpu.debug[M6502_DEBUG_CLKCOUNT]/1000000.0f );
+*/
 
 //    TracePLA ();
-
-//    ALU2 (1, 0x55, 0x36, 1, 1);
-//    ALU2 (0, 0x55, 0x36, 1, 1);
 
     PC(0);
     PC(1);
