@@ -55,7 +55,7 @@ void ALU2 (int clk, int ain, int bin, int carry, int adc)
     char SB[8], DB[8], ADL[8];
     static char AI[8], BI[8], ADD[8], AC[8];
     static int OverflowLatch=0, BinaryCarry=0, DecimalCarry=0;
-    static int LatchDAAL=0, LatchDSAL=0, LatchDAAH=0, LatchDSAH=0;
+    static int LatchDAAL=0, LatchDSAL=0, LatchDAA=0, LatchDSA=0;
     int PHI1 = NOT(clk), PHI2 = clk, a,b,c, DAAL, DSAL, DAAH, DSAH;
 
     char nand[8], nor[8], enor[8], eor[8], sums[8], n, carry_out;
@@ -82,6 +82,8 @@ void ALU2 (int clk, int ain, int bin, int carry, int adc)
     }
     ALU_IADDC = NOT(carry);
     ALU_SUMS = 1;       // sum
+
+    if (PHI2) ALU_0_ADD = ALU_SB_ADD = ALU_DB_ADD = ALU_NDB_ADD = ALU_ADL_ADD = 0;
 
     carry_out = ALU_IADDC;
     for (n=0; n<8; n++)
@@ -149,17 +151,17 @@ void ALU2 (int clk, int ain, int bin, int carry, int adc)
         DecimalCarry = DC7;
         OverflowLatch = NAND(nor[7],BC6) & NOT(NOR(nand[7]),BC6);
 
-        LatchDAAH = NOT(ALU_nDAA);
-        LatchDSAH = NOT(ALU_nDSA);
-        LatchDAAL = NAND(NOT(ALU_nDAA),NOT(BC3));
-        LatchDSAL = NOR(ALU_nDSA,NOT(BC3));
+        LatchDAA = NOT(ALU_nDAA);
+        LatchDSA = NOT(ALU_nDSA);
+        LatchDAAL = NAND(NOT(BC3), LatchDAA);
+        LatchDSAL = NOR(NOT(BC3), NOT(LatchDSA));
     }
     ALU_ACR = BinaryCarry | DecimalCarry;
     ALU_AVR = NOT(OverflowLatch);
     DAAL = NOT(LatchDAAL);
     DSAL = LatchDSAL;
-    DAAH = NOR(NOT(ALU_ACR), NOT(LatchDAAH));
-    DSAH = NOR(ALU_ACR, NOT(LatchDSAH));
+    DAAH = NOR(NOT(ALU_ACR), NOT(LatchDAA));
+    DSAH = NOR(ALU_ACR, NOT(LatchDSA));
 
     // decimal adjustment + output result to accumulator
     for (n=0; n<8; n++) {
