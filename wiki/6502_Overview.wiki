@@ -15,7 +15,7 @@ http://ogamespec.com/imgstore/whc507fbde796d65.jpg http://ogamespec.com/imgstore
   * PLA decoder
   * Predecoder
   * Random logic (heavy tangle) including flags
-  * Miscellaneous logic: IRQ, NMI, reset handling and output pins
+  * Miscellaneous logic: IRQ, NMI, reset handling and output pads
 
 *Bottom part components*
   * Address bus outputs
