@@ -20,5 +20,5 @@ void PC (int clk)
         carry_in = carry_out;
     }
 
-    printf ("PCL=%02X\n", packreg(PCL,8) & 0xFF);
+    printf ("PCLS=%02X\n", packreg(PCLS,8) & 0xFF);
 }
