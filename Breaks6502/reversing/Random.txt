@@ -1,0 +1,68 @@
+Random logic: /MemOP, T5/T6, C/ROLJMP, T34, LOG1, ready‘1, LOL, /ENDX, /ENDS
+
+-------------------------------------------------------------------------------
+/MemOP:
+
+/MemOP = NOR(111(3),122(3),123(2),124(5),125(4));
+
+/MemOP = 0 whenever any addressing-mode instruction executed :
+
+            Tend
+RMW zpg,X   3
+RMW zpg,Y   3
+RMW abs     3
+RMW zpg     2
+RMW X,ind   5
+RMW ind,Y   5
+RMW abs,X   4
+RMW abs,Y   4
+
+-------------------------------------------------------------------------------
+
+T5/T6 logic:
+
+T = [0 1] [2 3 4 5] [6]
+
+Inputs: 106(TX), 107(TX), MemOP, /ready
+Latches: T5Reset, T5In, T5Out, T7Delay1, T7Delay
+
+if (PHI2) T5Reset = NOT ( NOR(106,107) | /MemOP | /ready );
+if (PHI1) T5Out = NAND( T5In, /ready) & NOT(T5Reset);
+T5 = NOT(T5Out);
+if (PHI2) T5In = T5
+
+-------------------------------------------------------------------------------
+
+LOG1: 
+
+-------------------------------------------------------------------------------
+
+/ENDX:
+
+Detect end of long instructions.
+
+/ENDX = 0, when:
+- T6
+- PLA[100-105]=1: PHA2, PHP2, JMP ind (T4), RTI5, RTS5, JSR6, JMP abs (T2), PLP3, PLA3
+- Branch T3 (for long branches, which cross page boundary)
+- /MemOP = 0, excluding JMP and long shift/rotate instructions.
+
+-------------------------------------------------------------------------------
+
+AA+JJ:
+
+AA = (T1 | T5) & NOT(/C_OUT);
+AA = 1, when (T1 or T5) and C = 1
+AA = Carry1/5
+
+JJ = 1, when:
+- Carry1/5 = 0, but JMP ind T3 instruction
+- Carry1/5 = 1, but any ROL instruction
+
+JJ : Force to set ALU input carry for JMP/ROL
+- on JMP ind T3
+- on carry during ROL1 or carry during ROL5
+
+JJ = C/ROLJMP
+
+-------------------------------------------------------------------------------
