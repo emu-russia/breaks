@@ -1,4 +1,4 @@
-Random logic: /MemOP, T5/T6, C/ROLJMP, T34, LOG1, ready‘1, LOL, /ENDX, /ENDS
+Random logic: /MemOP, T5/T6, C/ROLJMP, NOADL, ZTEST, ready‘1, LOL, /ENDX, /ENDS, PGX
 
 -------------------------------------------------------------------------------
 /MemOP:
@@ -33,7 +33,15 @@ if (PHI2) T5In = T5
 
 -------------------------------------------------------------------------------
 
-LOG1: 
+ZTST:
+
+Inputs: SB/AC,  
+
+SB/AC = 1 :
+T0: TYA, TXA, PLA
+T1: All ADC, SBC, AND, ORA, EOR + Short shift/rotate
+
+ZTST = 1, when: SB/AC | SB/XY | T6 | ANDS
 
 -------------------------------------------------------------------------------
 
@@ -49,7 +57,7 @@ Detect end of long instructions.
 
 -------------------------------------------------------------------------------
 
-AA+JJ:
+C/ROLJMP:
 
 AA = (T1 | T5) & NOT(/C_OUT);
 AA = 1, when (T1 or T5) and C = 1
@@ -66,3 +74,19 @@ JJ : Force to set ALU input carry for JMP/ROL
 JJ = C/ROLJMP
 
 -------------------------------------------------------------------------------
+
+PGX: Check page boundary crossing.
+
+Inputs: BR0, OP abs,XY/4, OP ind,Y/5
+
+PGX = 1, when: BR0 | OP_ABS_XY_4 | OP_IND_Y_5
+
+PGX : page boundary Xrossing check.
+
+-------------------------------------------------------------------------------
+
+NOADL
+
+NOADL = 0, when: T3, T4, RTS/5, BRK/0+RTI/0, JMP abs/0+JMP ind/0, OP X,ind/5, RTI/5
+
+ADD/ADL = 1, when NOADL=0 (and PGX=0)

@@ -1,0 +1,3 @@
+SB/AC = 1 :
+T0: TYA, TXA, PLA
+T1: All ADC, SBC, AND, ORA, EOR + Short shift/rotate
