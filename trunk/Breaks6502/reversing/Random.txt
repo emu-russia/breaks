@@ -1,7 +1,7 @@
-Random logic: /MemOP, T5/T6, C/ROLJMP, NOADL, ZTEST, ready‘1, LOL, /ENDX, /ENDS, PGX
+Random logic: /MemOP, T5/T6, C/ROLJMP, NOADL, ZTEST, STKOP, ACRL, /ENDX, /ENDS, PGX
 
 -------------------------------------------------------------------------------
-/MemOP:
+/MemOP: Memory operations
 
 /MemOP = NOR(111(3),122(3),123(2),124(5),125(4));
 
@@ -33,7 +33,7 @@ if (PHI2) T5In = T5
 
 -------------------------------------------------------------------------------
 
-ZTST:
+ZTST: Test Z-flag
 
 Inputs: SB/AC,  
 
@@ -45,9 +45,7 @@ ZTST = 1, when: SB/AC | SB/XY | T6 | ANDS
 
 -------------------------------------------------------------------------------
 
-/ENDX:
-
-Detect end of long instructions.
+/ENDX: Detect end of long instructions.
 
 /ENDX = 0, when:
 - T6
@@ -57,7 +55,7 @@ Detect end of long instructions.
 
 -------------------------------------------------------------------------------
 
-C/ROLJMP:
+C/ROLJMP: Force to set ALU carryin for ROL/JMP instructions
 
 AA = (T1 | T5) & NOT(/C_OUT);
 AA = 1, when (T1 or T5) and C = 1
@@ -85,8 +83,20 @@ PGX : page boundary Xrossing check.
 
 -------------------------------------------------------------------------------
 
-NOADL
+NOADL: DO not use ADD/ADL (some conditions)
 
 NOADL = 0, when: T3, T4, RTS/5, BRK/0+RTI/0, JMP abs/0+JMP ind/0, OP X,ind/5, RTI/5
 
 ADD/ADL = 1, when NOADL=0 (and PGX=0)
+
+-------------------------------------------------------------------------------
+
+STKOP: Stack operations
+
+STKOP=1, when : (JSR0 | BRK5 | Push0 | RTS4 | Pull3 | RTI5) & ready=1 (during PHI1)
+
+-------------------------------------------------------------------------------
+
+ACRL: ACR (ALU carry return) Latch for addressing.
+
+ACR is saved in NEXT cycle, after CPU read something or not RDY.
