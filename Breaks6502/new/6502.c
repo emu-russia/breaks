@@ -28,16 +28,6 @@ static int LatchDAAL, LatchDSAL, LatchDAAH, LatchDSAH;
 
 // ---------------------------------------------------------------------------
 
-void TopPart (M6502 *cpu)
-{
-    PHI1 = NOT(cpu->PHI0);
-    PHI2 = cpu->PHI0;
-
-    // interrupt pads
-}
-
-// ---------------------------------------------------------------------------
-
 void DATA_LATCH_READ (M6502 *cpu)
 {
 }
@@ -46,10 +36,14 @@ void DATA_LATCH_WRITE (M6502 *cpu)
 {
 }
 
-// Exchange X,Y,S registers with internal bus(es)
-void XYS_REGS (M6502 *cpu)
+void Step6502 (M6502 *cpu)
 {
-    if (PHI1) {
+    PHI1 = NOT(cpu->PHI0);
+    PHI2 = cpu->PHI0;
+
+    if (PHI1) {     // "Write-mode": CPU talking to others
+
+        // Exchange X/Y/S registers with internal buses
         if (X_SB) SB = X;
         else if (SB_X) X = SB;
         if (Y_SB) SB = Y;
@@ -57,49 +51,29 @@ void XYS_REGS (M6502 *cpu)
         if (SB_S) S = SB;
         else if (S_SB) SB = S;
         if (S_ADL) ADL = S;
-    }
-    else if (PHI2) {
-        if (S_SB) SB = S;
-        if (S_ADL) ADL = S;
-    }
-}
 
-void ALU (M6502 *cpu)
-{
-
-}
-
-void PROGRAM_COUNTER (M6502 *cpu)
-{
-}
-
-void ADDRESS_BUS (M6502 *cpu)
-{
-    ADL &= ~ ((ZERO_ADL2 << 2) | (ZERO_ADL1 << 1) | (ZERO_ADL0 << 0));
-    if (ZERO_ADH0) ADH &= ~0x01;
-    if (ZERO_ADH17) ADH &= ~0xFE;
-    if (PHI1) {
+        // Set address bus registers (AB) according to internal address bus (AD)
+        ADL &= ~ ((ZERO_ADL2 << 2) | (ZERO_ADL1 << 1) | (ZERO_ADL0 << 0));
+        if (ZERO_ADH0) ADH &= ~0x01;
+        if (ZERO_ADH17) ADH &= ~0xFE;
         if (ADH_ABH) ABH = ADH;
         if (ADL_ABL) ABL = ADL;
+
+        DATA_LATCH_WRITE (cpu);
     }
+
+    else if (PHI2) {    // "Read-mode": CPU listen reply
+
+        SB = DB = ADH = ADL = 0xff;   // precharge internal buses
+
+        // Put S register on internal buses
+        if (S_SB) SB = S;
+        if (S_ADL) ADL = S;
+
+        DATA_LATCH_READ (cpu);
+    }
+
     cpu->ADDR = (ABH << 8) | ABL;
-}
-
-void BottomPart (M6502 *cpu)
-{
-    if (PHI2) SB = DB = ADH = ADL = 0xff;   // precharge internal buses
-    if (PHI2) DATA_LATCH_READ (cpu);
-    XYS_REGS (cpu);
-    ALU (cpu);
-    PROGRAM_COUNTER (cpu);
-    if (PHI1) DATA_LATCH_WRITE (cpu);
-    ADDRESS_BUS (cpu);
-}
-
-void Step6502 (M6502 *cpu)
-{
-    TopPart (cpu);
-    BottomPart (cpu);
 }
 
 main ()

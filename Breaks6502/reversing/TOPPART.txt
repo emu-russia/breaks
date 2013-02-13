@@ -1,0 +1,56 @@
+Top part components
+                    Inputs              Latches         Outputs
+PHI                 PHI0                                PHI1, PHI2
+NMI                 /NMI                1               /NMI to IRQ/NMI SELECT
+IRQ                 /IRQ                2               /IRQ to B FLAG
+RDY                 RDY                 2               RDY, Branch ready to DECODER
+RES                 /RES                2               RES
+SO                  SO                  some            SO
+T HI                T0,/READY,TRES6     4*3             T2-T5 to DECODER
+DECODER             /T0-/T5, IR, RDY    -               over 100500 lines
+IR                  fetch, PD           8               IR, /IR to decoder, /IR5 to random logic
+IRQ/NMI SELECT      /IRQ, BRK5          some            BRKDONE, DONMI, BRKDELAY
+B FLAG              /IRQ, /DONMI, BRKDONE, RESDONE, DECODER, IOUT      BOUT
+0/ADLX              BRKDONE, /BRKDELAY, DONMI, BRK5, RES        RESDONE, 0/ADLX
+T LO                TRES2, TRESX, /TWOCYCLE, /READY     T0-T1 to DECODER, T1 to random logic
+PREDECODE           DATA BUS, CLEARIR   8               PD, /TWOCYCLE, /IMPLIED
+FETCH               T0, /READY, BOUT    1               CLEARIR, FETCH
+BRANCH BACK         DB7, BR2            3               BRBK
+BRANCH TAKEN        BB6,BB7,C,V,N,Z,IR5 -               BRTAKEN
+T 5/6               DECODER, /READY     some            T5, T6
+FLAGS CTRL          DECODER             some            flag ctrls
+I FLAG              DB                  2               IOUT
+C FLAG              ACR,IR5,DB          2               COUT
+DB/P DBZ            DECODER, flags out  1               flags in, DBZ
+D FLAG              DB,IR5              2               DOUT
+Z FLAG              DBZ,DB              2               ZOUT
+V FLAG              AVR,DB,SO           2               VOUT
+N FLAG              DB                  2               NOUT
+RW/DL               WR                  some            WR/DL
+T CTRL              ENDS,ENDX,RESDONE,ACRL,/READY,RES   TRESX
+RW                  DECODER,T5,T6,RESDONE,PC/DB  1      WR
+READY               RDY,WR              2               /READY
+ENDX                DECODER,T6          -               ENDX
+ENDS                RES,BRTAKEN,/READY,T0,T1,BR2        ENDS
+EXECUTE CTRL        /READY,RES,ENDS     4               T0,TRES2
+ACR LATCH           ACR,/READY          2               ACRL
+IPC                 BOUT,BRBK,ACR,IMPLIED,/READY,BRTAKEN,BR2,BR3,ADL/PCL   IPC
+DL/ADL              DECODER                             DL/ADL
+DL/ADH              DECODER                             DL/ADH
+AC/DB               DECODER                             AC/DB
+DL/DB               DECODER,T1,T5                       DL/DB
+XY/SB               DECODER, XUSED, STOR                STXY, X/SB, Y/SB
+SB/XY               DECODER                             SB/X, SB/Y, SBXY
+SREG                DECODER,/READY      1               S/SB,SB/S,S/ADL,STKOP
+ADD/SB7             C,DECODER,SRS,/READY    some        ADD/SB7
+ALU                 DECODER,BRKDONE,/READY              SRS,ORS,ANDS,EORS,SUMS,I/ADDC,ADL/ADD,ADD/SB06,NDB/ADD,SB/ADD
+PC                  DECODER,/READY,T0,T1                PCH/PCL controls
+DAA/DSA             D,DECODER                           DAA, DSA
+SB/ADH              DECODER                             SB/ADH
+SB/AC               DECODER                             SB/AC
+AC/SB               DECODER                             AC/SB
+ADL/ABL             /READY,T5,T6,DECODER                ADL/ABL
+ADH/ABH             /READY,ACRL,SB/ADH,PCH/PCH,DECODER  ADH/ABH
+0/ADH17             DECODER,DL/ADL                      0/ADH17
+0/ADH0              DL/ADL                              0/ADH0
+ADD/ADL             DECODER                             ADD/ADL
