@@ -43,6 +43,10 @@ void Step6502 (M6502 *cpu)
 
     if (PHI1) {     // "Write-mode": CPU talking to others
 
+        // TOP PART
+
+        // BOTTOM PART
+
         // Exchange X/Y/S registers with internal buses
         if (X_SB) SB = X;
         else if (SB_X) X = SB;
@@ -63,6 +67,10 @@ void Step6502 (M6502 *cpu)
     }
 
     else if (PHI2) {    // "Read-mode": CPU listen reply
+
+        // TOP PART
+
+        // BOTTOM PART
 
         SB = DB = ADH = ADL = 0xff;   // precharge internal buses
 
