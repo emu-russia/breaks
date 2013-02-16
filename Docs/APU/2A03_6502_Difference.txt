@@ -16,3 +16,5 @@ The difference lies in the fact that the control lines DAA and DSA, which enable
 
 As result decimal carry circuit and decimal-correction adders do not work.
 Therefore, the embedded processor of 2A03 always considers add/sub operands as binary numbers, even if the D flag is set.
+
+http://youtu.be/Gmi1DgysGR0
