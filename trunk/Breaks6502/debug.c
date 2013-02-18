@@ -79,7 +79,7 @@ static void TracePLA (void)
     ptr += sprintf ( ptr, "<html>");
     ptr += sprintf ( ptr, "<style>\nhtml table {\n    font-family:Calibri; \n    font-size: 16px;\n    border-collapse: collapse; }\n");
     ptr += sprintf ( ptr, "html td {\n    border: 1px dotted; \n} \n</style> <table>");
-    ptr += sprintf ( ptr, "<tr><td>op</td><td>instr</td><td>T0</td><td>T1X</td><td>T2</td><td>T3</td><td>T4</td><td>T5</td></tr>");
+    ptr += sprintf ( ptr, "<tr><td>op</td><td>instr</td><td>T0</td><td>T1</td><td>T2</td><td>T3</td><td>T4</td><td>T5</td><td>TX</td></tr>");
     for (op=0; op<=0xff; op++) {
         ptr += sprintf ( ptr, "<tr>");
         unpackreg (cpu.reg[M6502_REG_IR], (op) & 0xff, 8);
@@ -158,6 +158,19 @@ static void TracePLA (void)
         cpu.ctrl[M6502_CTRL_nT3] = 1;
         cpu.ctrl[M6502_CTRL_nT4] = 1;
         cpu.ctrl[M6502_CTRL_nT5] = 0;
+        M6502Debug (&cpu, "PLA");
+        ptr += sprintf ( ptr, "<td>");
+        for (i=0; i<129; i++) {
+            if (cpu.bus[M6502_BUS_PLA][i]) ptr += sprintf ( ptr, "%s(%i) ", PLAName(i), i);
+        }
+        ptr += sprintf ( ptr, "</td>");
+
+        cpu.ctrl[M6502_CTRL_nT0] = 1;
+        cpu.ctrl[M6502_CTRL_nT1] = 1;
+        cpu.ctrl[M6502_CTRL_nT2] = 1;
+        cpu.ctrl[M6502_CTRL_nT3] = 1;
+        cpu.ctrl[M6502_CTRL_nT4] = 1;
+        cpu.ctrl[M6502_CTRL_nT5] = 1;
         M6502Debug (&cpu, "PLA");
         ptr += sprintf ( ptr, "<td>");
         for (i=0; i<129; i++) {
@@ -323,22 +336,5 @@ main ()
     printf ("Executed %.4fM/4M cycles\n", (float)cpu.debug[M6502_DEBUG_CLKCOUNT]/1000000.0f );
 */
 
-//    TracePLA ();
-
-    PC(0);
-    PC(1);
-
-    PC(0);
-    PC(1);
-
-    PC(0);
-    PC(1);
-
-    PC(0);
-    PC(1);
-
-    PC(0);
-    PC(1);
-//    ALU2 (1, 0x55, 0x36, 1, 1);
-//    ALU2 (0, 0x55, 0x36, 1, 1);
+    TracePLA ();
 }
