@@ -1,0 +1,3 @@
+Of very special note are the 4 signals at the very top for readable registers at $4018 (pulse 0 output on D0-D3 and pulse 1 output on D4-D7), $4019 (triangle output on D0-D3, noise output on D4-D7), $401A (DPCM output on D0-D6), and a writable register at $401A (set triangle position to D0-D4, and lock channel outputs using D7); all 4 of these signals have an additional enable which seems to come from the vicinity of pin 30.
+
+http://wiki.nesdev.com/w/index.php/File:Apu_address.jpg
