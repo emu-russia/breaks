@@ -3,6 +3,7 @@
 #include "APU.h"
 #include <windows.h>
 
+/*
 main ()
 {
     DWORD cycles, oldcycles, old;
@@ -32,3 +33,4 @@ main ()
     }
     //printf ("Executed %.4fM/44M cycles\n", (float)cycles/1000000.0f );
 }
+*/
