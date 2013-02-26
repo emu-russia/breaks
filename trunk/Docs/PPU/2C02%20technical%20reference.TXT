@@ -143,74 +143,74 @@ Anything not explained here will be later on.
 
 Writable 2C02 registers
 -----------------------
-reg	bit	desc
----	---	----
-0	0	X scroll name table selection.
-	1	Y scroll name table selection.
-	2	increment PPU address by 1/32 (0/1) on access to port 7
-	3	object pattern table selection (if bit 5 = 0)
-	4	playfield pattern table selection
-	5	8/16 scanline objects (0/1)
-	6	EXT bus direction (0:input; 1:output)
-	7	/VBL disable (when 0)
+reg bit desc
+--- --- ----
+0   0   X scroll name table selection.
+    1   Y scroll name table selection.
+    2   increment PPU address by 1/32 (0/1) on access to port 7
+    3   object pattern table selection (if bit 5 = 0)
+    4   playfield pattern table selection
+    5   8/16 scanline objects (0/1)
+    6   EXT bus direction (0:input; 1:output)
+    7   /VBL disable (when 0)
 
-1	0	disable composite colorburst (when 1). Effectively causes gfx to go 
+1   0   disable composite colorburst (when 1). Effectively causes gfx to go 
 black & white.
-	1	left side screen column (8 pixels wide) playfield clipping (when 0).
-	2	left side screen column (8 pixels wide) object clipping (when 0).
-	3	enable playfield display (on 1).
-	4	enable objects display (on 1).
-	5	R (to be documented)
-	6	G (to be documented)
-	7	B (to be documented)
+    1   left side screen column (8 pixels wide) playfield clipping (when 0).
+    2   left side screen column (8 pixels wide) object clipping (when 0).
+    3   enable playfield display (on 1).
+    4   enable objects display (on 1).
+    5   R (to be documented)
+    6   G (to be documented)
+    7   B (to be documented)
 
-3	-	internal object attribute memory index pointer (64 attributes, 32 bits 
+3   -   internal object attribute memory index pointer (64 attributes, 32 bits 
 each, byte granular access). stored value post-increments on access to port 
 4.
 
-4	-	returns object attribute memory location indexed by port 3, then 
+4   -   returns object attribute memory location indexed by port 3, then 
 increments port 3.
 
-5	-	scroll offset port.
+5   -   scroll offset port.
 
-6	-	PPU address port to access with port 7.
+6   -   PPU address port to access with port 7.
 
-7	-	PPU memory write port.
+7   -   PPU memory write port.
 
 
 
 Readable 2C02 registers
 -----------------------
-reg	bit	desc
----	---	----
-2	5	more than 8 objects on a single scanline have been detected in the last 
+reg bit desc
+--- --- ----
+2   5   more than 8 objects on a single scanline have been detected in the last 
 frame
-	6	a primary object pixel has collided with a playfield pixel in the last 
+    6   a primary object pixel has collided with a playfield pixel in the last 
 frame
-	7	vblank flag
+    7   vblank flag
 
-4	-	object attribute memory write port (incrementing port 3 thenafter)
+4   -   object attribute memory write port (incrementing port 3 thenafter)
 
-7	-	PPU memory read port.
+7   -   PPU memory read port.
 
 
 Object attribute structure (4*8 bits)
 -------------------------------------
-ofs	bit	desc
----	---	----
-0	-	scanline coordinate minus one of object's top pixel row.
+ofs bit desc
+--- --- ----
+0   -   scanline coordinate minus one of object's top pixel row.
 
-1	-	tile index number. Bit 0 here controls pattern table selection when reg 
+1   -   tile index number. Bit 0 here controls pattern table selection when reg 
 0.5 = 1.
 
-2	0	palette select low bit
-	1	palette select high bit
-	5	object priority (> playfield's if 0; < playfield's if 1)
-	6	apply bit reversal to fetched object pattern table data
-	7	invert the 3/4-bit (8/16 scanlines/object mode) scanline address used to 
+2   0   palette select low bit
+    1   palette select high bit
+    5   object priority (> playfield's if 0; < playfield's if 1)
+    6   apply bit reversal to fetched object pattern table data
+    7   invert the 3/4-bit (8/16 scanlines/object mode) scanline address used to 
 access an object tile
 
-3	-	scanline pixel coordite of most left-hand side of object.
+3   -   scanline pixel coordite of most left-hand side of object.
 
 
 +-----------------------+
@@ -340,12 +340,12 @@ $2007, and seeing if the same value is returned immediately after reading).
 frame. Any scanlines where work is done (like image rendering), consists of 
 the steps which will be described in the next section.
 
-0..19:	Starting at the instant the VINT flag is pulled down (when a NMI is 
+0..19:  Starting at the instant the VINT flag is pulled down (when a NMI is 
 generated), 20 scanlines make up the period of time on the PPU which I like 
 to call the VINT period. During this time, the PPU makes no access to it's 
 external memory (i.e. name / pattern tables, etc.).
 
-20:	After 20 scanlines worth of time go by (since the VINT flag was set), 
+20: After 20 scanlines worth of time go by (since the VINT flag was set), 
 the PPU starts to render scanlines. This first scanline is a dummy one; 
 although it will access it's external memory in the same sequence it would 
 for drawing a valid scanline, no on-screen pixels are rendered during this 
@@ -360,7 +360,7 @@ objects are in range or not for any particular scanline.
 actual data to be displayed on the screen. This is done for 240 scanlines, 
 of course.
 
-261:	after the very last rendered scanline finishes, the PPU does nothing 
+261:    after the very last rendered scanline finishes, the PPU does nothing 
 for 1 scanline (i.e. the programmer gets screwed out of perfectly good VINT 
 time). When this scanline finishes, the VINT flag is set, and the process of 
 drawing lines starts all over again.
@@ -746,20 +746,20 @@ counter part of the device, never the latch (top) part.
 
 register/counter nomenclature
 -----------------------------
-NT:	name table
-AT:	attribute/color table
-PT:	pattern table
-FV:	fine vertical scroll latch/counter
-FH:	fine horizontal scroll latch
-VT:	vertical tile index latch/counter
-HT:	horizontal tile index latch/counter
-V:	vertical name table selection latch/counter
-H:	horizontal name table selection latch/counter
-S:	playfield pattern table selection latch
-PAR:	picture address register (as named in patent document)
-AR:	tile attribute (palette select) value latch
-/1:	first  write to 2005 or 2006 since reading 2002
-/2:	second write to 2005 or 2006 since reading 2002
+NT: name table
+AT: attribute/color table
+PT: pattern table
+FV: fine vertical scroll latch/counter
+FH: fine horizontal scroll latch
+VT: vertical tile index latch/counter
+HT: horizontal tile index latch/counter
+V:  vertical name table selection latch/counter
+H:  horizontal name table selection latch/counter
+S:  playfield pattern table selection latch
+PAR:    picture address register (as named in patent document)
+AR: tile attribute (palette select) value latch
+/1: first  write to 2005 or 2006 since reading 2002
+/2: second write to 2005 or 2006 since reading 2002
 
 
 ษอออออออออออออออัอออออออออออออออออออออออออออออออออออออออออออออออป
@@ -864,12 +864,12 @@ be updated with ANY desired value, including FV. Note that only relivant
 updates are mentioned, since data in the scroll latches is overwritten many 
 times in the example below.
 
-reg	update
----	------
-2006:	nametable toggle bits (V, H).
-2005:	FV & bits 3,4 of VT.
-2005:	FH. This is effective immediately.
-2006:	HT & bits 0,1,2 of VT.
+reg update
+--- ------
+2006:   nametable toggle bits (V, H).
+2005:   FV & bits 3,4 of VT.
+2005:   FH. This is effective immediately.
+2006:   HT & bits 0,1,2 of VT.
 
 It is on the last write to 2006 that all values previously written will be 
 loaded into the scroll counters.
