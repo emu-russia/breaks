@@ -1,4 +1,4 @@
 set PATH=c:\lcc\bin
 
-lc -nw -g2 debug.c APU.c -o APU.exe
+lc -nw -g2 LENGTHTAB.c debug.c APU.c -o APU.exe
 APU.exe > APU.txt
