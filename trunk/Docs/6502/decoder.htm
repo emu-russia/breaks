@@ -28,7 +28,7 @@ function invert()
     for ( op in arr )
     {
         if ( arr[op].style.backgroundColor == "lime" ) arr[op].style.backgroundColor = "white";
-	else arr[op].style.backgroundColor = "lime";
+        else arr[op].style.backgroundColor = "lime";
     }
 }
 
@@ -118,6 +118,17 @@ A
     else mask += '00';
 
     document.getElementById ('irmask').innerHTML = "IR=" + mask + " T" + t;
+}
+
+window.onload = function() {
+    var tds = document.getElementsByClassName("op");
+    for(var i = 0; i < tds.length; i++) {
+        var td = tds[i];
+        td.onclick = function() {
+            if ( this.style.backgroundColor == "lime" ) this.style.backgroundColor = "white";
+            else this.style.backgroundColor = "lime";            
+        }
+    }
 }
 
 </script>
