@@ -8,7 +8,7 @@
 #define nACLK    (apu->ctrl[APU_CTRL_nACLK])
 
 // Basic logic
-#define BIT(n)     ( (n) & 1 )
+int BIT(n)     { return ( (n) & 1 ); }
 int NOT(int a) { return (~a & 1); }
 int NAND(int a, int b) { return ~((a & 1) & (b & 1)) & 1; }
 int NOR(int a, int b) { return ~((a & 1) | (b & 1)) & 1; }
