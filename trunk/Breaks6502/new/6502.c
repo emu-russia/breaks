@@ -1,14 +1,16 @@
 // MOS 6502 clock-accurate emulator.
 #include "6502.h"
 
-#define PHI1    (cpu->PHI1)
-#define PHI2    (cpu->PHI2)
+//#define PHI1    (cpu->PHI1)
+//#define PHI2    (cpu->PHI2)
 
 // Basic logic
 #define BIT(n)     ( (n) & 1 )
 int NOT(int a) { return (~a & 1); }
 int NAND(int a, int b) { return ~((a & 1) & (b & 1)) & 1; }
 int NOR(int a, int b) { return ~((a & 1) | (b & 1)) & 1; }
+
+/*
 
 // Bottom-part controls
 int ADH_ABH, ADL_ABL, Y_SB, X_SB, ZERO_ADL0, ZERO_ADL1, ZERO_ADL2,
@@ -84,6 +86,23 @@ void Step6502 (M6502 *cpu)
     cpu->ADDR = (ABH << 8) | ABL;
 }
 
+*/
+
 main ()
 {
+    int IR[8], C=0, N=0, V=0, Z=1;
+    int taken;
+
+    // try BEQ 0xF0 = 11110000
+    IR[5] = 1;
+    IR[6] = 1;
+    IR[7] = 1;
+
+    taken = NOT ( NOT(NOT(C)|IR[6]|NOT(IR[7])) | 
+                  NOT(NOT(V)|NOT(IR[6])|IR[7]) | 
+                  NOT(NOT(N)|IR[6]|IR[7]) | 
+                  NOT(NOT(Z)|NOT(IR[6])|NOT(IR[7])) ) ^ NOT(IR[5]);
+    printf ("%i\n", NOT(taken));
+
 }
+
