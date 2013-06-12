@@ -1,7 +1,0 @@
-ADD/ADL = 0:
-BRA = 1
-T34 = 1 : !RTS.T5, !T3, !T4, !BRK/RTI.0, !JMP.0, !OP X,ind/T5
-RTI.T5
-
-
-For other cases : ADD/ADL = 1.

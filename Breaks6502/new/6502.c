@@ -90,19 +90,15 @@ void Step6502 (M6502 *cpu)
 
 main ()
 {
-    int IR[8], C=0, N=0, V=0, Z=1;
-    int taken;
+    int i, a,b,c;
 
-    // try BEQ 0xF0 = 11110000
-    IR[5] = 1;
-    IR[6] = 1;
-    IR[7] = 1;
+    for (i=0; i<8; i++) {
+        a = BIT (i >> 2);
+        b = BIT (i >> 1);
+        c = BIT (i >> 0);
 
-    taken = NOT ( NOT(NOT(C)|IR[6]|NOT(IR[7])) | 
-                  NOT(NOT(V)|NOT(IR[6])|IR[7]) | 
-                  NOT(NOT(N)|IR[6]|IR[7]) | 
-                  NOT(NOT(Z)|NOT(IR[6])|NOT(IR[7])) ) ^ NOT(IR[5]);
-    printf ("%i\n", NOT(taken));
+        printf ( "%i %i %i | %i \n", a,b,c,  NAND(a, b|c) );
+    }
 
 }
 

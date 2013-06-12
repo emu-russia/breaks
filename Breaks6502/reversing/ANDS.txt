@@ -1,1 +1,0 @@
-ANDS = BIT0 | AND0
