@@ -90,14 +90,13 @@ void Step6502 (M6502 *cpu)
 
 main ()
 {
-    int i, a,b,c;
+    int i, a,b;
 
-    for (i=0; i<8; i++) {
-        a = BIT (i >> 2);
-        b = BIT (i >> 1);
-        c = BIT (i >> 0);
+    for (i=0; i<4; i++) {
+        a = BIT (i >> 1);
+        b = BIT (i >> 0);
 
-        printf ( "%i %i %i | %i \n", a,b,c,  NAND(a, b|c) );
+        printf ( "%i %i | %i %i\n", a,b, NOT(a)^NOT(b), BIT(a^b) );
     }
 
 }
