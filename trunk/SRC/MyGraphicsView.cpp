@@ -15,6 +15,8 @@
 */
 MyGraphicsView::MyGraphicsView(QWidget* parent, DebugContext * debug) : QGraphicsView(parent) {
 
+    initialized = false;
+
     //setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     //Set-up the scene
@@ -40,11 +42,9 @@ MyGraphicsView::MyGraphicsView(QWidget* parent, DebugContext * debug) : QGraphic
     connect (button, SIGNAL(clicked()), this, SLOT(NextStepPressed ()) );
 
     // Add triggers.
-    num_triggers = 0;
     GraphTrigger * trigs = debug->triggers;
-    int size = debug->num_triggers;
     MyCheckBox * check;
-    for (int n=0; n<size; n++)
+    for (int n=0; n<debug->num_triggers; n++)
     {
         check = new MyCheckBox ( trigs[n].name, 0, trigs[n].link, this );
         Scene->addWidget (check);
@@ -55,7 +55,6 @@ MyGraphicsView::MyGraphicsView(QWidget* parent, DebugContext * debug) : QGraphic
         else check->setChecked( true );
 
         triggers[n] = check;
-        num_triggers++;
     }
 
     // Add locators.
@@ -68,11 +67,20 @@ MyGraphicsView::MyGraphicsView(QWidget* parent, DebugContext * debug) : QGraphic
         dy += 20;
     }
 
-    //QTextEdit * edit = new QTextEdit ("zxzsdfsdf", 0);
-    //Scene->addWidget (edit);
-    //edit->setGeometry (QRect(100, 100, 80, 20));
+    // Add collectors
+    for (int i=0; i<debug->num_collectors; i++)
+    {
+        TextEdit * edit = new TextEdit (this);
+        Scene->addWidget (edit);
+        edit->setGeometry ( QRect(debug->collectors[i].coord_x, debug->collectors[i].coord_y, debug->collectors[i].width, debug->collectors[i].height) );
+        edit->setFont( QFont(debug->collectors[i].font, debug->collectors[i].fontSize) );
+        edit->setProperty ( "index", i );
+
+        collectors[i] = edit;
+    }
 
     debugContext = debug;
+    initialized = true;
 }
 
 /**
@@ -100,17 +108,11 @@ void MyGraphicsView::NextStepPressed ()
 {
     debugContext->step ();
 
-    MyCheckBox * check;
-    for (int i=0; i<num_triggers; i++)
-    {
-        check = triggers[i];
-        if ( * check->trigger_link == 0 ) {
-            check->setChecked( false );
-        }
-        else {
-            check->setChecked( true );
-        }
-    }
+    // update triggers with new values
+    updateTriggers();
+
+    // update collectors with new values
+    updateCollectors();
 }
 
 void MyGraphicsView::LocatorPressed ()
@@ -120,9 +122,35 @@ void MyGraphicsView::LocatorPressed ()
     int index = button->property("index").toInt();
 
     if ( index < debugContext->num_locators ) {
+        resetTransform();
         QScrollBar * xPos = horizontalScrollBar ();
         xPos->setValue((int) debugContext->locators[index].coord_x);
         QScrollBar * yPos = verticalScrollBar();
         yPos->setValue((int) debugContext->locators[index].coord_y);
+    }
+}
+
+void MyGraphicsView::updateTriggers ()
+{
+    if (initialized )
+    {
+        for (int i=0; i<debugContext->num_triggers; i++)
+        {
+            if ( * triggers[i]->trigger_link == 0 ) triggers[i]->setChecked( false );
+            else triggers[i]->setChecked( true );
+        }
+    }
+}
+
+void MyGraphicsView::updateCollectors()
+{
+    if ( initialized )
+    {
+        for (int i=0; i<debugContext->num_collectors; i++)
+        {
+            unsigned value = debugContext->collectors[i].getter ();
+            QString string;
+            collectors[i]->setText ( string.sprintf ( "%02X", value) );
+        }
     }
 }

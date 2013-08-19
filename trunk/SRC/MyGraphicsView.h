@@ -9,6 +9,7 @@
 #include "Debug.h"
 
 class MyCheckBox;
+class TextEdit;
 
 class MyGraphicsView : public QGraphicsView
 {
@@ -17,8 +18,12 @@ class MyGraphicsView : public QGraphicsView
 public:
     MyGraphicsView(QWidget* parent = NULL, DebugContext *debug=NULL);
     MyCheckBox * triggers[1000];
-    int num_triggers;
+    TextEdit * collectors[1000];
     DebugContext * debugContext;
+    bool initialized;
+
+    void updateTriggers ();
+    void updateCollectors ();
 
 private slots:
     void NextStepPressed ();
@@ -28,6 +33,47 @@ protected:
 
     //Take over the interaction
     virtual void wheelEvent(QWheelEvent* event);
+};
+
+class TextEdit : public QTextEdit
+{
+public:
+        MyGraphicsView * view;
+        TextEdit(MyGraphicsView *pv = NULL)
+        {
+                view = pv;
+                setTabChangesFocus(false);
+                setWordWrapMode(QTextOption::NoWrap);
+                setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+                setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+                setFixedHeight(sizeHint().height());
+        }
+        void keyPressEvent(QKeyEvent *event)
+        {
+                if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter)
+                {
+                    event->ignore();
+                    int index = property ("index").toInt();
+                    unsigned value = toPlainText ().toUInt(0, 16);
+                    view->debugContext->collectors[index].setter ( value );
+
+                    // update all triggers
+                    view->updateTriggers ();
+                }
+                else
+                        QTextEdit::keyPressEvent(event);
+        }
+        QSize sizeHint() const
+        {
+                QFontMetrics fm(font());
+                int h = qMax(fm.height(), 14) + 4;
+                int w = fm.width(QLatin1Char('x')) * 17 + 4;
+                QStyleOptionFrameV2 opt;
+                opt.initFrom(this);
+                return (style()->sizeFromContents(QStyle::CT_LineEdit, &opt, QSize(w, h).
+                        expandedTo(QApplication::globalStrut()), this));
+        }
 };
 
 //Derived Class from QCheckBox
@@ -55,6 +101,8 @@ class MyCheckBox: public QCheckBox
         QMessageBox* msg = new QMessageBox(this->parentWidget());
         msg->setWindowTitle("Hello !");
 
+        if (!view->initialized) return;
+
         if(state)
         {
           msg->setText("Trigger Set !");
@@ -68,7 +116,7 @@ class MyCheckBox: public QCheckBox
         //msg->show();
 
         // Find all triggers with same link.
-        for (int i=0; i<view->num_triggers; i++)
+        for (int i=0; i<view->debugContext->num_triggers; i++)
         {
             if ( view->triggers[i]->trigger_link == trigger_link ) {
                 if ( * trigger_link == 0 ) view->triggers[i]->setChecked( false );
@@ -76,6 +124,8 @@ class MyCheckBox: public QCheckBox
             }
         }
 
+        // Update collectors
+        view->updateCollectors ();
     };
 
 };
