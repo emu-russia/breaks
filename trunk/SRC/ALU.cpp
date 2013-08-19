@@ -56,6 +56,9 @@ static GraphTrigger trigs[] = {
 
 };
 
+static GraphLocator locators[] = {
+};
+
 // Basic logic
 #define BIT(n)     ( (n) & 1 )
 static int NOT(int a) { return (~a & 1); }
@@ -142,5 +145,7 @@ DebugContext  ALU_debug = {
     "files/ALU.jpg",
     trigs,
     sizeof(trigs) / sizeof (GraphTrigger),
+    locators,
+    sizeof(locators) / sizeof (GraphLocator),
     ALUStep
 };
