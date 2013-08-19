@@ -92,11 +92,21 @@ main ()
 {
     int i, a,b;
 
+<<<<<<< .mine
+    for (i=0; i<4; i++) {
+        a = BIT (i >> 0);
+        b = BIT (i >> 1);
+=======
     for (i=0; i<4; i++) {
         a = BIT (i >> 1);
         b = BIT (i >> 0);
+>>>>>>> .r291
 
+<<<<<<< .mine
+        printf ( "%i %i | %i (%i)\n", a,b, !a^!b, a^b  );
+=======
         printf ( "%i %i | %i %i\n", a,b, NOT(a)^NOT(b), BIT(a^b) );
+>>>>>>> .r291
     }
 
 }
