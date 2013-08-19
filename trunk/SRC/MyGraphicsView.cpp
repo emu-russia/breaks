@@ -17,7 +17,7 @@ MyGraphicsView::MyGraphicsView(QWidget* parent, DebugContext * debug) : QGraphic
 
     initialized = false;
 
-    //setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
+    setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 
     //Set-up the scene
     QGraphicsScene* Scene = new QGraphicsScene(parent);
