@@ -13,6 +13,14 @@ typedef struct GraphLocator
     int     coord_x, coord_y;
 } GraphLocator;
 
+typedef struct GraphCollector
+{
+    int     width, height;
+    int     coord_x, coord_y;
+    unsigned (*getter)();
+    void    (*setter) (unsigned);
+} GraphCollector;
+
 typedef struct DebugContext
 {
     char    *tabname;
@@ -21,5 +29,7 @@ typedef struct DebugContext
     int     num_triggers;
     GraphLocator    *locators;
     int     num_locators;
+    GraphCollector  *collectors;
+    int     num_collectors;
     void    (*step) ();
 } DebugContext;

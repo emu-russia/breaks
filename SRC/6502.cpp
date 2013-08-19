@@ -96,6 +96,32 @@ static GraphLocator locators[] = {
     { "IR", 4072, 486 },
 };
 
+unsigned long packreg ( int *reg, int bits )
+{
+    unsigned long val = 0, i;
+    for (i=0; i<bits; i++) {
+        if (reg[i]) val |= (1 << i);
+    }
+    return val;
+}
+
+void unpackreg (int *reg, unsigned long val, int bits)
+{
+    int i;
+    for (i=0; i<bits; i++) {
+        reg[i] = (val >> i) & 1;
+    }
+}
+
+unsigned getIR () { return packreg (IR, 8); }
+void setIR (unsigned value) { unpackreg (IR, value, 8); }
+
+static GraphCollector collectors[] = {
+    { 100, 100, 100, 100, getIR, setIR },
+};
+
+// ----------------------------------------------
+
 // Basic logic
 #define BIT(n)     ( (n) & 1 )
 static int NOT(int a) { return (~a & 1); }
@@ -151,5 +177,7 @@ DebugContext debug_6502 = {
     sizeof(trigs) / sizeof (GraphTrigger),
     locators,
     sizeof(locators) / sizeof(GraphLocator),
+    collectors,
+    sizeof(collectors) / sizeof(GraphCollector),
     Step6502
 };
