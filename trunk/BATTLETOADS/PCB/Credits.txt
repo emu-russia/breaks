@@ -1,7 +1,0 @@
-http://bootgod.dyndns.org:7777/
-
-http://bootgod.dyndns.org:7777/profile.php?id=23
-http://bootgod.dyndns.org:7777/profile.php?id=1612
-http://bootgod.dyndns.org:7777/profile.php?id=2019
-http://bootgod.dyndns.org:7777/profile.php?id=3924
-http://bootgod.dyndns.org:7777/profile.php?id=4522

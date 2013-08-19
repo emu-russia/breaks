@@ -1,6 +1,0 @@
-NES Cart Database
-
-http://bootgod.dyndns.org:7777/home.php
-
-http://bootgod.dyndns.org:7777/profile.php?id=1495
-http://bootgod.dyndns.org:7777/profile.php?id=834
