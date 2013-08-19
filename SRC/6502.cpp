@@ -16,6 +16,9 @@ static  int _T2, _T3, _T4, _T5;
 static  int SR_input_latch;        // extended cycle counter  input latch
 static  int SRin[4], SRout[4];      // extended cycle counter shift register
 
+static  int ZERO_IR, FETCH;
+static  int PD[8], _TWOCYCLE, IMPLIED, IR[8], DECODER[130];
+
 
 // Triggers.
 static GraphTrigger trigs[] = {
@@ -50,6 +53,30 @@ static GraphTrigger trigs[] = {
     { "SYNC", &pads_6502.SYNC, 319, 1790 },
     { "T1", &T1, 585, 1772 },
 
+    // decoder
+    { "", &DECODER[0], 401, 1179 },
+    { "", &DECODER[1], 424, 1179 },
+    { "", &DECODER[2], 454, 1179 },
+    { "", &DECODER[3], 478, 1179 },
+    { "", &DECODER[4], 506, 1179 },
+    { "", &DECODER[5], 535, 1179 },
+
+    { "", &DECODER[6], 586, 1179 },
+    { "", &DECODER[7], 610, 1179 },
+    { "", &DECODER[8], 633, 1179 },
+    { "", &DECODER[9], 656, 1179 },
+    { "", &DECODER[10], 684, 1179 },
+    { "", &DECODER[11], 712, 1179 },
+    { "", &DECODER[12], 739, 1179 },
+    { "", &DECODER[13], 758, 1179 },
+    { "", &DECODER[14], 788, 1179 },
+    { "", &DECODER[15], 810, 1179 },
+    { "", &DECODER[16], 833, 1179 },
+    { "", &DECODER[17], 858, 1179 },
+    { "", &DECODER[18], 885, 1179 },
+    { "", &DECODER[19], 912, 1179 },
+    { "", &DECODER[20], 941, 1179 },
+
     // data bus
     { "D0", &pads_6502.D[0], 4450, 2933 },  { "", &pads_6502.D[0], 4270, 2040 },
     { "D1", &pads_6502.D[1], 4450, 3095 },  { "", &pads_6502.D[1], 4336, 2037 },
@@ -60,6 +87,13 @@ static GraphTrigger trigs[] = {
     { "D6", &pads_6502.D[6], 4450, 4587 },  { "", &pads_6502.D[6], 4480, 2016 },
     { "D7", &pads_6502.D[7], 4450, 4845 },  { "", &pads_6502.D[7], 4360, 2037 },
 
+};
+
+static GraphLocator locators[] = {
+    { "ALU", 1212, 2870 },
+    { "regs", 862, 2884 },
+    { "PC", 2631, 2896 },
+    { "IR", 4072, 486 },
 };
 
 // Basic logic
@@ -115,5 +149,7 @@ DebugContext debug_6502 = {
     "files/6502.jpg",
     trigs,
     sizeof(trigs) / sizeof (GraphTrigger),
+    locators,
+    sizeof(locators) / sizeof(GraphLocator),
     Step6502
 };

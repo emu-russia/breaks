@@ -22,6 +22,7 @@ public:
 
 private slots:
     void NextStepPressed ();
+    void LocatorPressed ();
 
 protected:
 

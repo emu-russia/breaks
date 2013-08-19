@@ -58,6 +58,16 @@ MyGraphicsView::MyGraphicsView(QWidget* parent, DebugContext * debug) : QGraphic
         num_triggers++;
     }
 
+    // Add locators.
+    for (int i=0, dy=40; i<debug->num_locators; i++ ) {
+        QPushButton *locator = new QPushButton ( debug->locators[i].name, this);
+        locator->move(10, dy);
+        locator->show();
+        locator->setProperty( "index", i );
+        connect (locator, SIGNAL(clicked()), this, SLOT(LocatorPressed()) ) ;
+        dy += 20;
+    }
+
     debugContext = debug;
 }
 
@@ -96,5 +106,19 @@ void MyGraphicsView::NextStepPressed ()
         else {
             check->setChecked( true );
         }
+    }
+}
+
+void MyGraphicsView::LocatorPressed ()
+{
+    QPushButton *button = (QPushButton *)sender ();
+
+    int index = button->property("index").toInt();
+
+    if ( index < debugContext->num_locators ) {
+        QScrollBar * xPos = horizontalScrollBar ();
+        xPos->setValue((int) debugContext->locators[index].coord_x);
+        QScrollBar * yPos = verticalScrollBar();
+        yPos->setValue((int) debugContext->locators[index].coord_y);
     }
 }
