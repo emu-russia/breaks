@@ -68,6 +68,10 @@ MyGraphicsView::MyGraphicsView(QWidget* parent, DebugContext * debug) : QGraphic
         dy += 20;
     }
 
+    //QTextEdit * edit = new QTextEdit ("zxzsdfsdf", 0);
+    //Scene->addWidget (edit);
+    //edit->setGeometry (QRect(100, 100, 80, 20));
+
     debugContext = debug;
 }
 
