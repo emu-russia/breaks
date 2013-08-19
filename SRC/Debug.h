@@ -15,8 +15,10 @@ typedef struct GraphLocator
 
 typedef struct GraphCollector
 {
-    int     width, height;
     int     coord_x, coord_y;
+    int     width, height;
+    char    *font;
+    int     fontSize;
     unsigned (*getter)();
     void    (*setter) (unsigned);
 } GraphCollector;

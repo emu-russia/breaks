@@ -53,6 +53,16 @@ static GraphTrigger trigs[] = {
     { "SYNC", &pads_6502.SYNC, 319, 1790 },
     { "T1", &T1, 585, 1772 },
 
+    // instruction register
+    { "IR0", &IR[0], 4459, 569 + 0*16 },
+    { "IR1", &IR[1], 4459, 569 + 1*16 },
+    { "IR2", &IR[2], 4459, 569 + 2*16 },
+    { "IR3", &IR[3], 4459, 569 + 3*16 },
+    { "IR4", &IR[4], 4459, 569 + 4*16 },
+    { "IR5", &IR[5], 4459, 569 + 5*16 },
+    { "IR6", &IR[6], 4459, 569 + 6*16 },
+    { "IR7", &IR[7], 4459, 569 + 7*16 },
+
     // decoder
     { "", &DECODER[0], 401, 1179 },
     { "", &DECODER[1], 424, 1179 },
@@ -117,7 +127,7 @@ unsigned getIR () { return packreg (IR, 8); }
 void setIR (unsigned value) { unpackreg (IR, value, 8); }
 
 static GraphCollector collectors[] = {
-    { 100, 100, 100, 100, getIR, setIR },
+    { 4531, 506, 40, 30, "Courier", 9, getIR, setIR },
 };
 
 // ----------------------------------------------
