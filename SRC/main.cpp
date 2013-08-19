@@ -24,12 +24,12 @@ int main(int argc, char *argv[])
     debugger.setWindowTitle("Breaks Debug");
     debugger.show();
 
-    MyGraphicsView viewALU (&debugger, &ALU_debug);
     MyGraphicsView view6502 (&debugger, &debug_6502);
+    //MyGraphicsView viewALU (&debugger, &ALU_debug);
 
     QTabWidget *tabWidget = new QTabWidget (&debugger);
     tabWidget->addTab (&view6502, debug_6502.tabname);
-    tabWidget->addTab (&viewALU, ALU_debug.tabname);
+    //tabWidget->addTab (&viewALU, ALU_debug.tabname);
     tabWidget->show ();
 
     /*
