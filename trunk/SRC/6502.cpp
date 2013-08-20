@@ -2,12 +2,18 @@
 #include "Debug.h"
 #include "6502.h"
 
+#include <iostream>
+#include <algorithm>
+#include <ctime>
+
 // 6502 context.
 Pads6502 pads_6502;
 
 #define PHI0    pads_6502.PHI0
 #define PHI1    pads_6502.PHI1
 #define PHI2    pads_6502.PHI2
+
+static  int RandomData;
 
 static  int _NMIP, NMIP_FF;
 
@@ -17,7 +23,7 @@ static  int SR_input_latch;        // extended cycle counter  input latch
 static  int SRin[4], SRout[4];      // extended cycle counter shift register
 
 static  int ZERO_IR, FETCH;
-static  int PD[8], _TWOCYCLE, IMPLIED, IR[8], DECODER[130];
+static  int PD[8], PDLatch[8], _TWOCYCLE, IMPLIED, IR[8], DECODER[130];
 
 
 // Triggers.
@@ -27,6 +33,9 @@ static GraphTrigger trigs[] = {
     { "PHI2", &PHI2, 2113, 162 },
     { "PHI1", &PHI1, 3031, 381 },
     { "PHI2", &PHI2, 3331, 406 },
+
+    // debug
+    { "Random data", &RandomData, 299, 40 },
 
     // NMI pad
     { "/NMI", &pads_6502._NMI, 172, 149 },
@@ -62,6 +71,19 @@ static GraphTrigger trigs[] = {
     { "IR5", &IR[5], 4459, 569 + 5*16 },
     { "IR6", &IR[6], 4459, 569 + 6*16 },
     { "IR7", &IR[7], 4459, 569 + 7*16 },
+
+    // predecode logic
+    { "/TWOCYCLE", &_TWOCYCLE, 3930, 1395 },
+    { "IMPLIED", &IMPLIED, 3841, 1682 },
+    { "0/IR", &ZERO_IR, 4088, 1695 },
+    { "PD0", &PD[0], 4527, 1480 + 0*16 },
+    { "PD1", &PD[1], 4527, 1480 + 1*16 },
+    { "PD2", &PD[2], 4527, 1480 + 2*16 },
+    { "PD3", &PD[3], 4527, 1480 + 3*16 },
+    { "PD4", &PD[4], 4527, 1480 + 4*16 },
+    { "PD5", &PD[5], 4527, 1480 + 5*16 },
+    { "PD6", &PD[6], 4527, 1480 + 6*16 },
+    { "PD7", &PD[7], 4527, 1480 + 7*16 },
 
     // decoder
     { "", &DECODER[0], 401, 1179 },
@@ -123,11 +145,30 @@ void unpackreg (int *reg, unsigned long val, int bits)
     }
 }
 
-unsigned getIR () { return packreg (IR, 8); }
-void setIR (unsigned value) { unpackreg (IR, value, 8); }
+unsigned long getIR () { return packreg (IR, 8); }
+void setIR (unsigned long value) { unpackreg (IR, value, 8); }
+unsigned long getDATA () { return packreg (pads_6502.D, 8); }
+void setDATA (unsigned long value) { unpackreg (pads_6502.D, value, 8); }
+unsigned long getPD () { return packreg (PD, 8); }
+void setPD (unsigned long value) { unpackreg (PD, value, 8); }
+
+unsigned long getPHI0 ()
+{
+    static unsigned long out = 0;
+    static int savedPHI0 = -1;
+    if ( savedPHI0 != PHI0 ) {
+        savedPHI0 = PHI0;
+        out = (out << 4) | (PHI0 & 1);
+    }
+    return out;
+}
+void setPHI0 (unsigned long value) {}
 
 static GraphCollector collectors[] = {
-    { 4531, 506, 40, 30, "Courier", 9, getIR, setIR },
+    { 4531, 506, 40, 30, "Courier", 9, getIR, setIR, "%02X" },
+    { 3656, 110, 100, 30, "Courier", 12, getPHI0, setPHI0, "%08X" },
+    { 4456, 2064, 40, 30, "Courier", 9, getDATA, setDATA, "%02X" },
+    { 4546, 1417, 40, 30, "Courier", 9, getPD, setPD, "%02X" },
 };
 
 // ----------------------------------------------
@@ -166,12 +207,30 @@ static void EXT_CYCLE_COUNTER ()
     _T5 = tout[3];
 }
 
+static void PREDECODE ()
+{
+    for (int n=0; n<8; n++) {
+        if (PHI2) PDLatch[n] = pads_6502.D[n];
+        PD[n] = PDLatch[n] & NOT(ZERO_IR);
+    }
+    IMPLIED = NOT ( PD[0] | PD[2] | NOT(PD[3]) );
+    _TWOCYCLE = NOT (  NOT( NOT(PD[0]) | PD[2] | NOT(PD[3]) | PD[4] ) |
+                       NOT( PD[0] | PD[2] | PD[3] | PD[4] | NOT(PD[7]) ) |
+                       (PD[1] | PD[4] | PD[7]) & IMPLIED    );
+}
+
 static void Step6502 ()
 {
     PHI1 = NOT (PHI0);
     PHI2 = BIT (PHI0);
 
+    if ( RandomData ) {
+        unsigned char value = rand() % 256;
+        unpackreg (pads_6502.D, value, 8);
+    }
+
     NMI_PAD ();
+    PREDECODE ();
     EXT_CYCLE_COUNTER ();
     pads_6502.SYNC = T1;
 
