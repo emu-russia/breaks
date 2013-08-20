@@ -148,9 +148,11 @@ void MyGraphicsView::updateCollectors()
     {
         for (int i=0; i<debugContext->num_collectors; i++)
         {
-            unsigned value = debugContext->collectors[i].getter ();
-            QString string;
-            collectors[i]->setText ( string.sprintf ( "%02X", value) );
+            if ( debugContext->collectors[i].getter ) {
+                unsigned value = debugContext->collectors[i].getter ();
+                QString string;
+                collectors[i]->setText ( string.sprintf ( debugContext->collectors[i].format, value) );
+            }
         }
     }
 }

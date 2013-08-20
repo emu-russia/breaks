@@ -19,8 +19,9 @@ typedef struct GraphCollector
     int     width, height;
     char    *font;
     int     fontSize;
-    unsigned (*getter)();
-    void    (*setter) (unsigned);
+    unsigned long (*getter)();
+    void    (*setter) (unsigned long);
+    char    *format;
 } GraphCollector;
 
 typedef struct DebugContext

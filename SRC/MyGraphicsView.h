@@ -56,7 +56,8 @@ public:
                     event->ignore();
                     int index = property ("index").toInt();
                     unsigned value = toPlainText ().toUInt(0, 16);
-                    view->debugContext->collectors[index].setter ( value );
+                    if ( view->debugContext->collectors[index].setter)
+                        view->debugContext->collectors[index].setter ( value );
 
                     // update all triggers
                     view->updateTriggers ();
