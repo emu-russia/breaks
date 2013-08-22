@@ -20,4 +20,5 @@ SOURCES += main.cpp\
 HEADERS  += MyGraphicsView.h \
     Debug.h \
     6502.h \
-    ALU.h
+    ALU.h \
+    main.h
