@@ -16,11 +16,19 @@ Pads6502 pads_6502;
 static  int RandomData;
 
 static  int _NMIP, NMIP_FF;
+static  int _IRQP, IRQP_FF, IRQPLatch;
+static  int RESP, RESP_FF, RESPLatch;
 
 static  int T1, TRES2, ready;
 static  int _T2, _T3, _T4, _T5;
 static  int SR_input_latch;        // extended cycle counter  input latch
 static  int SRin[4], SRout[4];      // extended cycle counter shift register
+
+static  int _DONMI, BRKDELAY, BRKDONE;
+static  int BRK5Latch, BRKDelayLatch, BRKDONELatch;
+static  int NMIEndLatch, NMIDelayLatch;
+static  int NMIG_Latch, NMIG_SetLatch, NMIG_ResetLatch;
+static  int NMIL_Latch, NMIL_SetLatch, NMIL_ResetLatch;
 
 static  int ZERO_IR, FETCH;
 static  int PD[8], PDLatch[8], _TWOCYCLE, IMPLIED, IR[8], DECODER[130];
@@ -42,6 +50,33 @@ static GraphTrigger trigs[] = {
     { "", &PHI2, 607, 392 },
     { "/NMIP", &_NMIP, 150, 287 },
     { "", &NMIP_FF, 555, 378 },
+
+    // IRQ pad
+    { "/IRQ", &pads_6502._IRQ, 748, 132 },
+    { "", &PHI2, 935, 395 },
+    { "/IRQP", &_IRQP, 969, 486 },
+    { "", &IRQP_FF, 871, 362 },
+    { "", &IRQPLatch, 911, 427 },
+
+    // RES pad
+    { "/RES", &pads_6502._RES, 1891, 134 },
+    { "RESP", &RESP, 2039, 413 },
+    { "", &RESPLatch, 1965, 326 },
+    { "", &RESP_FF, 1831, 351 },
+
+    // interrupt control
+    { "BRK5", &DECODER[22], 355, 1384 },
+    { "BRKDONE", &BRKDONE, 320, 1291 },
+    { "BRKDELAY", &BRKDELAY, 379, 1599 },
+    { "", &BRK5Latch, 229, 1437 },
+    { "", &BRKDONELatch, 177, 1336 },
+    { "", &BRKDelayLatch, 139, 1544 },
+    { "", &NMIDelayLatch, 267, 1134 },
+    { "", &NMIEndLatch, 153, 1094 },
+    { "", &NMIG_Latch, 310, 1032 }, { "", &NMIG_SetLatch, 345, 1063 }, { "", &NMIG_ResetLatch, 286, 901 },
+    { "", &NMIL_Latch, 192, 1149 }, { "", &NMIL_SetLatch, 200, 1223 }, { "", &NMIL_ResetLatch, 368, 1105 },
+    { "/DONMI", &_DONMI, 346, 1230 },
+    { "/NMIP", &_NMIP, 88, 1022 },
 
     // extended cycle counter (shift register)
     { "T1", &T1, 260, 873 },
@@ -186,6 +221,59 @@ static void NMI_PAD ()
     NMIP_FF = NAND ( NOT(pads_6502._NMI), PHI2 ) & NOT (ffout);
 }
 
+static void IRQ_PAD ()
+{
+    int ffout = NAND (pads_6502._IRQ, PHI2) & NOT(IRQP_FF);
+    if (PHI1) IRQPLatch = ffout;
+    _IRQP = NOT(IRQPLatch);
+    IRQP_FF = NAND ( NOT(pads_6502._IRQ), PHI2 ) & NOT (ffout);
+}
+
+static void RES_PAD ()
+{
+    int ffout = NAND ( pads_6502._RES, PHI2) & NOT(RESP_FF);
+    if (PHI1) RESPLatch = NOT(ffout);
+    RESP = NOT(RESPLatch);
+    RESP_FF = NAND ( NOT(pads_6502._RES), PHI2 ) & NOT (ffout);
+}
+
+static void NMI_DETECT ()
+{
+    int ffout;
+    if (PHI1)
+    {
+        NMIL_SetLatch = BRKDONE;
+        NMIG_ResetLatch = _NMIP;
+        NMIG_SetLatch = NOT (NMIDelayLatch);
+        NMIL_ResetLatch = NOR(_NMIP, NOT(NMIEndLatch)) & NOT( NOR(NMIG_ResetLatch, NOR(NMIG_Latch, NMIG_SetLatch) ) );
+        _DONMI = NOR ( NOR(NMIL_SetLatch, NMIL_Latch), NMIL_ResetLatch );
+    }
+    if (PHI2)
+    {
+        NMIEndLatch = BRKDELAY;
+        ffout = NOR (NMIG_Latch, NMIG_SetLatch);
+        NMIG_Latch = NOR (ffout, NMIG_ResetLatch);
+        ffout = NOR (NMIL_Latch, NMIL_SetLatch);
+        _DONMI = NOR (ffout, NMIL_ResetLatch);
+        NMIL_Latch = NMIDelayLatch = _DONMI;
+    }
+}
+
+static void INT_END ()
+{
+    int BRK5 = DECODER[22] & ready;
+    if (PHI2) BRK5Latch = BRK5;
+    if (PHI1) {
+        if (ready) BRKDelayLatch = NOT(BRK5Latch);
+        else BRKDelayLatch = NOR ( NOT(BRKDelayLatch), BRK5Latch );
+    }
+    BRKDELAY = NOR ( NOT(BRKDelayLatch), BRK5 );
+    if (PHI2) BRKDONELatch = NOT(BRKDelayLatch);
+    BRKDONE = BRKDONELatch & ready;
+
+    NMI_DETECT();
+}
+
 static void EXT_CYCLE_COUNTER ()
 {
     int shift_in, n, mux, tout[4];
@@ -230,6 +318,9 @@ static void Step6502 ()
     }
 
     NMI_PAD ();
+    IRQ_PAD ();
+    RES_PAD ();
+    INT_END ();
     PREDECODE ();
     EXT_CYCLE_COUNTER ();
     pads_6502.SYNC = T1;

@@ -81,6 +81,8 @@ MyGraphicsView::MyGraphicsView(QWidget* parent, DebugContext * debug) : QGraphic
 
     debugContext = debug;
     initialized = true;
+
+    setSizePolicy (QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 
 /**
