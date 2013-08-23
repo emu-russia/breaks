@@ -14,8 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         MyGraphicsView.cpp \
-    6502.cpp \
-    ALU.cpp
 
 HEADERS  += MyGraphicsView.h \
     Debug.h \
