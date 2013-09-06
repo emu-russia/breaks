@@ -39,7 +39,7 @@ static  int _T2, _T3, _T4, _T5;
 static  int SR_input_latch;        // extended cycle counter  input latch
 static  int SRin[4], SRout[4];      // extended cycle counter shift register
 
-static  int _ready, RDY, _PRDY, ReadyPHI1, ReadyDelay, REST;
+static  int _ready, RDY, _PRDY, NotReady1, ReadyDelay, REST;
 static  int PRDYInLatch, PRDYOutLatch, ReadyOutLatch, ReadyInLatch;
 
 static  int ACRL1, ACRL2, ACRLOutLatch, ACRLInLatch;
@@ -176,7 +176,7 @@ static GraphTrigger trigs[] = {
     { "RDY", &RDY, 1610, 432 },
     { "_PRDY", &_PRDY, 1523, 448 },
     { "", &_PRDY, 2403, 523 },
-    { "", &ReadyPHI1, 2801, 1858 },
+    { "", &NotReady1, 2801, 1858 },
     { "", &ReadyDelay, 2865, 1951 },
     { "DORES", &DORES, 3069, 1446 },
     { "", &REST, 3051, 1530 },
@@ -536,7 +536,7 @@ static void Step6502 ()
 
         // Ready control
         _ready = ReadyOutLatch;
-        ReadyPHI1 = _ready;
+        NotReady1 = _ready;
 
         // interrupt control
         if (NOT(_ready)) BRKDelayLatch = NOT(BRK5Latch);
