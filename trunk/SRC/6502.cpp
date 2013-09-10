@@ -828,7 +828,7 @@ static void Step6502 ()
 
     if (PHI2)
     {
-        int DL_PCH;
+        int DL_PCH, PC_DB;
 
         // decoder
         #define IR(n)  ( NOT (_IR[n]) )
@@ -883,6 +883,7 @@ static void Step6502 ()
         // PC control
         CtrlOut2[PCH_DB] = PCLDBDelay2 = NOR (DECODER[77], DECODER[78]);
         CtrlOut2[PCL_DB] = NOT (PCLDBDelay1);
+        PC_DB = NOR ( CtrlOut2[PCH_DB], CtrlOut2[PCL_DB] );
         CtrlOut2[ADH_PCH] = NOT ( DECODER[83] | DECODER[84] | DECODER[93] | DECODER[80] | T0 | T1 );
         CtrlOut2[PCH_PCH] = NOT ( CtrlOut2[ADH_PCH] );
         int JB = NOT ( DECODER[94] | DECODER[95] | DECODER[96] );
