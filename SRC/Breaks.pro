@@ -21,3 +21,5 @@ HEADERS  += MyGraphicsView.h \
     6502.h \
     ALU.h \
     main.h
+
+win32:RC_FILE += Breaks.rc

@@ -44,6 +44,7 @@ static  int PRDYInLatch, PRDYOutLatch, ReadyOutLatch, ReadyInLatch;
 
 static  int ACRL1, ACRL2, ACRLOutLatch, ACRLInLatch;
 static  int _SHIFT, WR, RD_DL, WRLatch, WROut;
+static  int ACINLatch[4];
 
 static  int _DONMI, BRKDELAY, BRKDONE;
 static  int BRK5Latch, BRKDelayLatch, BRKDONELatch;
@@ -58,7 +59,7 @@ static  int PD[8], PDLatch[8], _TWOCYCLE, IMPLIED, _IR[8], DECODER[130], IR01;
 static  int POUT[8];    // flag output
 static  int FlagLatch2[8], FlagLatch1[8];
 
-static  int CtrlOutPHI1[CTRL_MAX], CtrlOutPHI2[CTRL_MAX], CTRL[CTRL_MAX];
+static  int CtrlOut1[CTRL_MAX], CtrlOut2[CTRL_MAX], CTRL[CTRL_MAX];
 
 static  int BinaryCarry, DecimalCarry, AVROut;
 
@@ -599,20 +600,77 @@ static void Step6502 ()
         ReadyInLatch = WR;
 
         // flag control commands.
-        CTRL[DB_P] = NOR ( CtrlOutPHI2[DB_P], _ready );
-        CTRL[IR5_I] = NOT ( CtrlOutPHI2[IR5_I] );
-        CTRL[IR5_C] = NOT ( CtrlOutPHI2[IR5_C] );
-        CTRL[DB_C] = NOT ( CtrlOutPHI2[DB_C] );
-        CTRL[ACR_C] = NOT ( CtrlOutPHI2[ACR_C] );
-        CTRL[IR5_D] = NOT ( CtrlOutPHI2[IR5_D] );
-        CTRL[DBZ_Z] = NOT ( CtrlOutPHI2[DBZ_Z] );
-        CTRL[AVR_V] = CtrlOutPHI2[AVR_V];
-        CTRL[ONE_V] = CtrlOutPHI2[ONE_V];
-        CTRL[ZERO_V] = NOT (CtrlOutPHI2[ZERO_V]);
-        CTRL[DB_V] = NAND (CtrlOutPHI2[DB_P], CtrlOutPHI2[DB_V]);
-        CTRL[AVR_V] = CtrlOutPHI2[AVR_V];
-        CTRL[DB_N] = NAND (CtrlOutPHI2[DBZ_Z], CtrlOutPHI2[DB_P]) & NOT (CtrlOutPHI2[DB_N]);
-        CTRL[P_DB] = NOT ( CtrlOutPHI2[P_DB] );
+        CTRL[DB_P] = NOR ( CtrlOut2[DB_P], _ready );
+        CTRL[IR5_I] = NOT ( CtrlOut2[IR5_I] );
+        CTRL[IR5_C] = NOT ( CtrlOut2[IR5_C] );
+        CTRL[DB_C] = NOT ( CtrlOut2[DB_C] );
+        CTRL[ACR_C] = NOT ( CtrlOut2[ACR_C] );
+        CTRL[IR5_D] = NOT ( CtrlOut2[IR5_D] );
+        CTRL[DBZ_Z] = NOT ( CtrlOut2[DBZ_Z] );
+        CTRL[AVR_V] = CtrlOut2[AVR_V];
+        CTRL[ONE_V] = CtrlOut2[ONE_V];
+        CTRL[ZERO_V] = NOT (CtrlOut2[ZERO_V]);
+        CTRL[DB_V] = NAND (CtrlOut2[DB_P], CtrlOut2[DB_V]);
+        CTRL[AVR_V] = CtrlOut2[AVR_V];
+        CTRL[DB_N] = NAND (CtrlOut2[DBZ_Z], CtrlOut2[DB_P]) & NOT (CtrlOut2[DB_N]);
+        CTRL[P_DB] = NOT ( CtrlOut2[P_DB] );
+
+        // bottom part commands.
+        CTRL[ADH_ABH] = NOT ( CtrlOut2[ADH_ABH] );      // bus control
+        CTRL[ADL_ABL] = NOT ( CtrlOut2[ADL_ABL] );
+        CTRL[ZERO_ADL0] = NOT ( CtrlOut2[ZERO_ADL0] );
+        CTRL[ZERO_ADL1] = NOT ( CtrlOut2[ZERO_ADL1] );
+        CTRL[ZERO_ADL2] = NOT ( CtrlOut2[ZERO_ADL2] );
+        CTRL[ZERO_ADH0] = NOT ( CtrlOut2[ZERO_ADH0] );
+        CTRL[ZERO_ADH17] = NOT ( CtrlOut2[ZERO_ADH17] );
+        CTRL[SB_DB] = NOT ( CtrlOut2[SB_DB] );
+        CTRL[SB_AC] = NOT ( CtrlOut2[SB_AC] );
+        CTRL[SB_ADH] = NOT ( CtrlOut2[SB_ADH] );
+        CTRL[Y_SB] = NOT ( CtrlOut2[Y_SB] );            // regs contols
+        CTRL[X_SB] = NOT ( CtrlOut2[X_SB] );
+        CTRL[SB_Y] = NOT ( CtrlOut2[SB_Y] );
+        CTRL[SB_X] = NOT ( CtrlOut2[SB_X] );
+        CTRL[S_SB] = NOT ( CtrlOut2[S_SB] );
+        CTRL[S_ADL] = NOT ( CtrlOut2[S_ADL] );
+        CTRL[SB_S] = NOT ( CtrlOut2[SB_S] );
+        CTRL[S_S] = NOT ( CtrlOut2[S_S] );
+        CTRL[NDB_ADD] = NOT ( CtrlOut2[NDB_ADD] );      // ALU controls
+        CTRL[DB_ADD] = NOT ( CtrlOut2[DB_ADD] );
+        CTRL[ZERO_ADD] = NOT ( CtrlOut2[ZERO_ADD] );
+        CTRL[SB_ADD] = NOT ( CtrlOut2[SB_ADD] );
+        CTRL[ADL_ADD] = NOT ( CtrlOut2[ADL_ADD] );
+        CtrlOut1[ANDS] = NOT ( CtrlOut2[ANDS] );
+        CTRL[ANDS] = NOT ( CtrlOut1[ANDS] );
+        CtrlOut1[EORS] = NOT ( CtrlOut2[EORS] );
+        CTRL[EORS] = NOT ( CtrlOut1[EORS] );
+        CtrlOut1[ORS] = NOT ( CtrlOut2[ORS] );
+        CTRL[ORS] = NOT ( CtrlOut1[ORS] );
+        CtrlOut1[SRS] = NOT ( CtrlOut2[SRS] );
+        CTRL[SRS] = NOT ( CtrlOut1[SRS] );
+        CtrlOut1[SUMS] = NOT ( CtrlOut2[SUMS] );
+        CTRL[SUMS] = NOT ( CtrlOut1[SUMS] );
+        CtrlOut1[_ACIN] = CTRL[_ACIN] = NOT ( ACINLatch[0] | ACINLatch[1] | ACINLatch[2] | ACINLatch[3] );
+        CtrlOut1[_DAA] = NOT ( CtrlOut2[_DAA] );
+        CTRL[_DAA] = NOT ( CtrlOut1[_DAA] );
+        CtrlOut1[_DSA] = NOT ( CtrlOut2[_DSA] );
+        CTRL[_DSA] = NOT ( CtrlOut1[_DSA] );
+        CTRL[ADD_SB06] = NOT ( CtrlOut2[ADD_SB06] );
+        CTRL[ADD_SB7] = NOT ( CtrlOut2[ADD_SB7] );
+        CTRL[ADD_ADL] = NOT ( CtrlOut2[ADD_ADL] );
+        CTRL[AC_SB] = NOT ( CtrlOut2[AC_SB] );
+        CTRL[AC_DB] = NOT ( CtrlOut2[AC_DB] );
+        CTRL[ADH_PCH] = NOT ( CtrlOut2[ADH_PCH] );      // PC controls
+        CTRL[PCH_PCH] = NOT ( CtrlOut2[PCH_PCH] );
+        CTRL[PCH_DB] = NOT ( CtrlOut2[PCH_DB] );
+        CTRL[PCL_DB] = NOT ( CtrlOut2[PCL_DB] );
+        CTRL[PCH_ADH] = NOT ( CtrlOut2[PCH_ADH] );
+        CTRL[PCL_PCL] = NOT ( CtrlOut2[PCL_PCL] );
+        CTRL[PCL_ADL] = NOT ( CtrlOut2[PCL_ADL] );
+        CTRL[ADL_PCL] = NOT ( CtrlOut2[ADL_PCL] );
+        CTRL[DL_ADL] = NOT ( CtrlOut2[DL_ADL] );        // data latch controls
+        CTRL[DL_ADH] = NOT ( CtrlOut2[DL_ADH] );
+        CTRL[DL_DB] = NOT ( CtrlOut2[DL_DB] );
+
     }
 
     if (PHI2)
