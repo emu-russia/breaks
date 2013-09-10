@@ -66,6 +66,7 @@ static  int BinaryCarry, DecimalCarry, AVROut;
 
 static  int SB[8], DB[8], ADH[8], ADL[8];   // internal buses
 
+static  int Y[8], X[8], S[8], AI[8], BI[8], _ADD[8], AC[8], PCH[8], PCHS[8], PCL[8], PCLS[8], DL[8], DOR[8], ABH[8], ABL[8];
 
 typedef struct DECODER_LINE {
     char    *line;
@@ -750,6 +751,9 @@ static void Step6502 ()
         pads_6502.RW = NOT (WROut);
         ReadyInLatch = WR;
 
+        // miscellaneous random logic
+        PCLDBDelay1 = NOR ( _ready, PCLDBDelay2 );
+
         // flag control commands.
         CTRL[DB_P] = NOR ( CtrlOut2[DB_P], _ready );
         CTRL[IR5_I] = NOT ( CtrlOut2[IR5_I] );
@@ -822,8 +826,26 @@ static void Step6502 ()
         CTRL[DL_ADH] = NOT ( CtrlOut2[DL_ADH] );
         CTRL[DL_DB] = NOT ( CtrlOut2[DL_DB] );
 
-        // miscellaneous random logic
-        PCLDBDelay1 = NOR ( _ready, PCLDBDelay2 );
+        // Special bus
+        for (n=0; n<8; n++) {
+            SB[n] = 1;
+            if ( CTRL[Y_SB] ) SB[n] &= Y[n];
+            if ( CTRL[X_SB] ) SB[n] &= X[n];
+            if ( CTRL[S_SB] ) SB[n] &= S[n];
+            if ( CTRL[ADD_SB06] && n != 7 ) SB[n] &= NOT(_ADD[n]);
+            if ( CTRL[ADD_SB7] && n == 7 ) SB[n] &= NOT(_ADD[n]);
+        }
+
+        // Address bus registers
+        for (n=0; n<8; n++) {
+            if ( CTRL[ZERO_ADL0] && n == 0 ) ADL[n] = 0;
+            if ( CTRL[ZERO_ADL1] && n == 1 ) ADL[n] = 0;
+            if ( CTRL[ZERO_ADL2] && n == 2 ) ADL[n] = 0;
+            if ( CTRL[ZERO_ADH0] && n == 0 ) ADH[n] = 0;
+            if ( CTRL[ZERO_ADH17] && n != 0 ) ADH[n] = 0;
+            ABL[n] = ADL[n];
+            ABH[n] = ADH[n];
+        }
     }
 
     if (PHI2)
@@ -892,6 +914,17 @@ static void Step6502 ()
         CtrlOut2[PCH_ADH] = NOR ( NOT(CtrlOut2[PCL_ADL] | DECODER[73] | DL_PCH), DECODER[93] );
         CtrlOut2[ADL_PCL] = NAND (NOT(NotReady1), DECODER[93]) & NOT (DECODER[84] | NOT(CtrlOut2[PCL_ADL]) | T0 );
         CtrlOut2[PCL_PCL] = NOT (CtrlOut2[ADL_PCL]);
+
+        // Precharge buses
+        for (n=0; n<8; n++) {
+            SB[n] = DB[n] = ADH[n] = ADL[n] = 1;
+        }
+    }
+
+    // External address bus
+    for (n=0; n<8; n++) {
+        pads_6502.A[n] = ABL[n];
+        pads_6502.A[8+n] = ABH[n];
     }
 
     PHI0 ^= 1;
