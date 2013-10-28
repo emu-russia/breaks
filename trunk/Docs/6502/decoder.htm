@@ -1,7 +1,5 @@
-<html lang="en">
-
-<head>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-15">
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">
 <title>6502 Instruction Set</title>
 <style type="text/css">
 <!--
@@ -142,84 +140,276 @@ window.onload = function() {
     }
 }
 
+function makerawbits()
+{
+    document.getElementById ('raw_bits').innerHTML = "";
+
+    opcode = parseInt( document.rawbits.opcode.value, 16 );
+
+    var rawbits = [
+        '000101100000100100000', 'STY',
+        '000000010110001000100', 'OP ind, Y',
+        '000000011010001001000', 'OP abs, Y',
+        '010100011001100100000', 'DEY INY',
+        '010101011010100100000', 'TYA',
+        '010110000001100100000', 'CPY INY',
+        '000000100010000001000', 'OP zpg, X/Y & OP abs, X/Y',
+        '000001000000100010000', 'LDX STX A?X S?X',
+        '000000010101001001000', 'OP ind, X',
+        '010101011001100010000', 'TXA',
+        '010110011001100010000', 'DEX',
+        '011010000001100100000', 'CPX INX',
+        '000101000000100010000', 'STX TXA TXS',
+        '010101011010100010000', 'TXS',
+        '011001000000100010000', 'LDX TAX TSX',
+        '100110011001100010000', 'DEX',
+        '101010011001100100000', 'INX',
+        '011001011010100010000', 'TSX',
+        '100100011001100100000', 'DEY INY',
+        '011001100000100100000', 'LDY',
+        '011001000001100100000', 'LDY TAY',
+        '011001010101010100000', 'JSR',
+        '000101010101010100001', 'BRK',
+        '010100011001010100000', 'Push',
+        '001010010101010100010', 'RTS',
+        '001000011001010100100', 'Pull',
+        '000110010101010100001', 'RTI',
+        '001010000000010010000', 'ROR',
+        '000000000000000001000', 'T2 ANY',
+        '010110000000011000000', 'EOR',
+        '000010101001010100000', 'JMP (excluder for C11)',
+        '000000101001000001000', 'ALU absolute',
+        '010101000000011000000', 'ORA',
+        '000000000100000001000', 'LEFT ALL',
+        '010000000000000000000', 'T0 ANY',
+        '000000010001010101000', 'BRK JSR RTI RTS Push/pull - stack operations on T2',
+        '000000000001010100100', 'BRK JSR RTI RTS Push/pull + BIT JMP',
+        '000001010101010100010', 'BRK JSR',
+        '000110010101010100010', 'RTI',
+        '000000010101001000100', 'OP X, ind',
+        '000000010110001000010', 'OP ind, Y',
+        '000000010110001001000', 'OP ind, Y',
+        '000000001010000000100', 'RIGHT ODD',
+        '001000011001010100000', 'Pull',
+        '001010000000100010000', 'INC NOP',
+        '000000010101001000010', 'OP X, ind',
+        '000000010110001000100', 'OP ind, Y',
+        '000010010101010100000', 'RTI RTS',
+        '001001010101010101000', 'JSR',
+        '010010000001100100000', 'CPY CPX INY INX',
+        '010110000000101000000', 'CMP',
+        '011010000000101000000', 'SBC',
+        '011010000000001000000', 'ADC SBC',
+        '001001000000010010000', 'ROL',
+        '000010101001010100100', 'JMP ind',
+        '000001000000010010000', 'ASL ROL',
+        '001001010101010100001', 'JSR',
+        '000000010001010101000', 'BRK JSR RTI RTS Push/pull',
+        '010101011010100100000', 'TYA',
+        '100000000000011000000', 'UPPER ODD',
+        '101010000000001000000', 'ADC SBC',
+        '100000011001010010000', 'ASL ROL LSR ROR',
+        '010101011001100010000', 'TXA',
+        '011010011001010100000', 'PLA',
+        '011001000000101000000', 'LDA',
+        '010000000000001000000', 'ALL ODD',
+        '011001011001100100000', 'TAY',
+        '010000011001010010000', 'ASL ROL LSR ROR',
+        '011001011001100010000', 'TAX',
+        '011001100001010100000', 'BIT0',
+        '011001000000011000000', 'AND0',
+        '000000001010000000010', 'OP abs,XY',
+        '000000010110001000001', 'OP ind,Y',
+        '010000010110000100000', '? Branch, additionaly affected by /PRDY line (from RDY pad)',
+        '000110011001010101000', 'PHA',
+        '010010011001010010000', 'LSR ROR',
+        '000010000000010010000', 'LSR ROR',
+        '000101010101010101000', 'BRK',
+        '001001010101010100100', 'JSR',
+        '000101000000101000000', 'STA',
+        '000000010110000101000', 'BR2',
+        '000000100100000001000', 'zero page',
+        '000000010100001001000', 'ALU indirect',
+        '000000001000000001000', 'RIGHT ALL -P/P',
+        '001010010101010100001', 'RTS',
+        '000000000000000000010', 'T4 ANY',
+        '000000000000000000100', 'T3 ANY',
+        '010100010101010100000', 'BRK RTI',
+        '010010101001010100000', 'JMP',
+        '000000010101001000001', 'OP X, ind',
+        '000000001000000000100', 'RIGHT ALL -P/P',
+        '000000010110001000010', 'OP ind, Y',
+        '000000001010000000100', 'RIGHT ODD',
+        '000000010110000100100', 'Branch',
+        '000100010101010100000', 'BRK RTI',
+        '001001010101010100000', 'JSR',
+        '000010101001010100000', 'JMP',
+        '000000011001010100000', '? Push/pull, F11 & F18 excluder',
+        '000101000000100000000', 'STORE',
+        '000101010101010100010', 'BRK',
+        '000101011001010101000', 'PHP',
+        '000100011001010101000', 'Push',
+        '000010101001010100010', 'JMP ind',
+        '000010010101010100001', 'RTI RTS',
+        '001001010101010100001', 'JSR',
+        '000110101001010101000', 'JMP abs',
+        '001000011001010100100', 'Pull',
+        '000010000000000010000', 'LSR ROR DEC INC DEX NOP (4x4 bottom right)',
+        '000001000000010010000', 'ASL ROL',
+        '010010011010010100000', 'CLI SEI',
+        '101001100001010100000', 'BIT',
+        '010001011010010100000', 'CLC SEC',
+        '000000100110000000100', 'Memory zero page X/Y',
+        '101010000000001000000', 'ADC SBC',
+        '011001100001010100000', 'BIT',
+        '011001011001010100000', 'PLP',
+        '000110010101010100010', 'RTI',
+        '100110000000101000000', 'CMP',
+        '100010101001100100000', 'CPY CPX abs',
+        '100001011001010010000', 'ASL ROL',
+        '100010000101100100000', 'CPY CPX zpg/immed',
+        '000000011001010100000', 'Internal line. Controls K09 to exclude push/pull opcodes ?',
+        '010010011010100100000', 'CLD SED',
+        '000001000000000000000', '/IR6',
+        '000000101001000000100', 'Memory absolute',
+        '000000100101000001000', 'Memory zero page',
+        '000000010100001000001', 'Memory indirect',
+        '000000001010000000010', 'Memory absolute X/Y',
+        '000000000000010000000', '/IR7',
+        '001001011010100100000', 'CLV',
+        '000000011000000000000', 'IMPL',
+    ];
+
+    for( i = 0; i < rawbits.length / 2; i++ )
+    {
+        a = rawbits[ i * 2 ].split( "" );
+
+        check = true;
+        // check bit 0 and 1
+        if( a[ 15 ] == 1 && ( opcode & 0x03 ) != 0x00 )                         check = false;
+        else if( a[ 15 ] == 0 )
+        {
+            if( a[ 14 ] == 1 && ( opcode & 0x01 ) == 0x00 )                     check = false;
+            if( a[ 16 ] == 1 && ( opcode & 0x02 ) == 0x00 )                     check = false;
+        }
+        // check bit 2
+        if( a[ 6 ] == 1 && a[ 7 ] == 0 && ( opcode & 0x04 ) == 0x00 )           check = false;
+        else if( a[ 6 ] == 0 && a[ 7 ] == 1 && ( opcode & 0x04 ) == 0x04 )      check = false;
+        // check bit 3
+        if( a[ 8 ] == 1 && a[ 9 ] == 0 && ( opcode & 0x08 ) == 0x00 )           check = false;
+        else if( a[ 8 ] == 0 && a[ 9 ] == 1 && ( opcode & 0x08 ) == 0x08 )      check = false;
+        // check bit 4
+        if( a[ 10 ] == 1 && a[ 11 ] == 0 && ( opcode & 0x10 ) == 0x00 )         check = false;
+        else if( a[ 10 ] == 0 && a[ 11 ] == 1 && ( opcode & 0x10 ) == 0x10 )    check = false;
+        // check bit 5
+        if( a[ 2 ] == 1 && a[ 3 ] == 0 && ( opcode & 0x20 ) == 0x00 )           check = false;
+        else if( a[ 2 ] == 0 && a[ 3 ] == 1 && ( opcode & 0x20 ) == 0x20 )      check = false;
+        // check bit 6
+        if( a[ 4 ] == 1 && a[ 5 ] == 0 && ( opcode & 0x40 ) == 0x00 )           check = false;
+        else if( a[ 4 ] == 0 && a[ 5 ] == 1 && ( opcode & 0x40 ) == 0x40 )      check = false;
+        // check bit 7
+        if( a[ 12 ] == 1 && a[ 13 ] == 0 && ( opcode & 0x80 ) == 0x00 )         check = false;
+        else if( a[ 12 ] == 0 && a[ 13 ] == 1 && ( opcode & 0x80 ) == 0x80 )    check = false;
+
+        t = 'X';
+        // Clock step.
+        if ( a[ 0 ] == 1 ) t = '1';
+        if ( a[ 1 ] == 1 ) t = '0';
+        if ( a[ 17 ] == 1 ) t = '2';
+        if ( a[ 18 ] == 1 ) t = '3';
+        if ( a[ 19 ] == 1 ) t = '4';
+        if ( a[ 20 ] == 1 ) t = '5';
+
+        if( check == true )
+        {
+            document.getElementById ('raw_bits').innerHTML += "T" + t + " " + rawbits[ i * 2 ] + " " + rawbits[ i * 2 + 1 ] + "<br />";
+        }
+    }
+}
+
+
 </script>
 
-</head>
+<script id="similar_sf_js" src="6502%20Instruction%20Set_files/countryscript" type="text/javascript"></script></head>
 
 <body>
 
-<form name=irform>
-IR <input type=text name=IR>
-<input type=button onclick="highlight();" value="Decode">
-<input type=button onclick="invert();" value="INVERT"><br>
-<input type=checkbox name=clear />Do not clear table
+<form name="irform">
+IR <input name="IR" type="text">
+<input onclick="highlight();" value="Decode" type="button">
+<input onclick="invert();" value="INVERT" type="button"><br>
+<input name="clear" type="checkbox">Do not clear table
 </form>
 
-<table border="1" cellspacing="0" cellpadding="5" class="opctable">
-<tr>
+<table class="opctable" border="1" cellpadding="5" cellspacing="0">
+<tbody><tr>
 <td>HI</td><td colspan="16" align="center">LO-BYTE</td>
 </tr>
 <tr valign="top">
-<td nowrap>&nbsp;</td><td align="center" nowrap>00</td><td align="center" nowrap>01</td><td align="center" nowrap>02</td><td align="center" nowrap>03</td><td align="center" nowrap>04</td><td align="center" nowrap>05</td><td align="center" nowrap>06</td><td align="center" nowrap>07</td><td align="center" nowrap>08</td><td align="center" nowrap>09</td><td align="center" nowrap>0A</td><td align="center" nowrap>0B</td><td align="center" nowrap>0C</td><td align="center" nowrap>0D</td><td align="center" nowrap>0E</td><td align="center" nowrap>0F</td></tr>
+<td nowrap="nowrap">&nbsp;</td><td align="center" nowrap="nowrap">00</td><td align="center" nowrap="nowrap">01</td><td align="center" nowrap="nowrap">02</td><td align="center" nowrap="nowrap">03</td><td align="center" nowrap="nowrap">04</td><td align="center" nowrap="nowrap">05</td><td align="center" nowrap="nowrap">06</td><td align="center" nowrap="nowrap">07</td><td align="center" nowrap="nowrap">08</td><td align="center" nowrap="nowrap">09</td><td align="center" nowrap="nowrap">0A</td><td align="center" nowrap="nowrap">0B</td><td align="center" nowrap="nowrap">0C</td><td align="center" nowrap="nowrap">0D</td><td align="center" nowrap="nowrap">0E</td><td align="center" nowrap="nowrap">0F</td></tr>
 <tr valign="top">
-<td nowrap>00</td><td nowrap class=op>BRK impl<span class="cc">7</span></td><td nowrap class=op>ORA X,ind<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ORA zpg<span class="cc">3</span></td><td nowrap class=op>ASL zpg<span class="cc">5</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>PHP impl<span class="cc">3</span></td><td nowrap class=op>ORA #<span class="cc">2</span></td><td nowrap class=op>ASL A<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ORA abs<span class="cc">4</span></td><td nowrap class=op>ASL abs<span class="cc">6</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>01</td><td nowrap class=op>BPL rel<span class="cc">2*</span></td><td nowrap class=op>ORA ind,Y<span class="cc">5*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ORA zpg,X<span class="cc">4</span></td><td nowrap class=op>ASL zpg,X<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>CLC impl<span class="cc">2</span></td><td nowrap class=op>ORA abs,Y<span class="cc">4*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ORA abs,X<span class="cc">4*</span></td><td nowrap class=op>ASL abs,X<span class="cc">7</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>02</td><td nowrap class=op>JSR abs<span class="cc">6</span></td><td nowrap class=op>AND X,ind<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>BIT zpg<span class="cc">3</span></td><td nowrap class=op>AND zpg<span class="cc">3</span></td><td nowrap class=op>ROL zpg<span class="cc">5</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>PLP impl<span class="cc">4</span></td><td nowrap class=op>AND #<span class="cc">2</span></td><td nowrap class=op>ROL A<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>BIT abs<span class="cc">4</span></td><td nowrap class=op>AND abs<span class="cc">4</span></td><td nowrap class=op>ROL abs<span class="cc">6</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>03</td><td nowrap class=op>BMI rel<span class="cc">2*</span></td><td nowrap class=op>AND ind,Y<span class="cc">5*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>AND zpg,X<span class="cc">4</span></td><td nowrap class=op>ROL zpg,X<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>SEC impl<span class="cc">2</span></td><td nowrap class=op>AND abs,Y<span class="cc">4*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>AND abs,X<span class="cc">4*</span></td><td nowrap class=op>ROL abs,X<span class="cc">7</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>04</td><td nowrap class=op>RTI impl<span class="cc">6</span></td><td nowrap class=op>EOR X,ind<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>EOR zpg<span class="cc">3</span></td><td nowrap class=op>LSR zpg<span class="cc">5</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>PHA impl<span class="cc">3</span></td><td nowrap class=op>EOR #<span class="cc">2</span></td><td nowrap class=op>LSR A<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>JMP abs<span class="cc">3</span></td><td nowrap class=op>EOR abs<span class="cc">4</span></td><td nowrap class=op>LSR abs<span class="cc">6</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>05</td><td nowrap class=op>BVC rel<span class="cc">2*</span></td><td nowrap class=op>EOR ind,Y<span class="cc">5*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>EOR zpg,X<span class="cc">4</span></td><td nowrap class=op>LSR zpg,X<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>CLI impl<span class="cc">2</span></td><td nowrap class=op>EOR abs,Y<span class="cc">4*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>EOR abs,X<span class="cc">4*</span></td><td nowrap class=op>LSR abs,X<span class="cc">7</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>06</td><td nowrap class=op>RTS impl<span class="cc">6</span></td><td nowrap class=op>ADC X,ind<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ADC zpg<span class="cc">3</span></td><td nowrap class=op>ROR zpg<span class="cc">5</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>PLA impl<span class="cc">4</span></td><td nowrap class=op>ADC #<span class="cc">2</span></td><td nowrap class=op>ROR A<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>JMP ind<span class="cc">5</span></td><td nowrap class=op>ADC abs<span class="cc">4</span></td><td nowrap class=op>ROR abs<span class="cc">6</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>07</td><td nowrap class=op>BVS rel<span class="cc">2*</span></td><td nowrap class=op>ADC ind,Y<span class="cc">5*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ADC zpg,X<span class="cc">4</span></td><td nowrap class=op>ROR zpg,X<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>SEI impl<span class="cc">2</span></td><td nowrap class=op>ADC abs,Y<span class="cc">4*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>ADC abs,X<span class="cc">4*</span></td><td nowrap class=op>ROR abs,X<span class="cc">7</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>08</td><td nowrap class=op>??? ---</td><td nowrap class=op>STA X,ind<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>STY zpg<span class="cc">3</span></td><td nowrap class=op>STA zpg<span class="cc">3</span></td><td nowrap class=op>STX zpg<span class="cc">3</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>DEY impl<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>TXA impl<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>STY abs<span class="cc">4</span></td><td nowrap class=op>STA abs<span class="cc">4</span></td><td nowrap class=op>STX abs<span class="cc">4</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>09</td><td nowrap class=op>BCC rel<span class="cc">2*</span></td><td nowrap class=op>STA ind,Y<span class="cc">5*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>STY zpg,X<span class="cc">4</span></td><td nowrap class=op>STA zpg,X<span class="cc">4</span></td><td nowrap class=op>STX zpg,Y<span class="cc">4</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>TYA impl<span class="cc">2</span></td><td nowrap class=op>STA abs,Y<span class="cc">5</span></td><td nowrap class=op>TXS impl<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>STA abs,X<span class="cc">5</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>0A</td><td nowrap class=op>LDY #<span class="cc">2</span></td><td nowrap class=op>LDA X,ind<span class="cc">6</span></td><td nowrap class=op>LDX #<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>LDY zpg<span class="cc">3</span></td><td nowrap class=op>LDA zpg<span class="cc">3</span></td><td nowrap class=op>LDX zpg<span class="cc">3</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>TAY impl<span class="cc">2</span></td><td nowrap class=op>LDA #<span class="cc">2</span></td><td nowrap class=op>TAX impl<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>LDY abs<span class="cc">4</span></td><td nowrap class=op>LDA abs<span class="cc">4</span></td><td nowrap class=op>LDX abs<span class="cc">4</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>0B</td><td nowrap class=op>BCS rel<span class="cc">2*</span></td><td nowrap class=op>LDA ind,Y<span class="cc">5*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>LDY zpg,X<span class="cc">4</span></td><td nowrap class=op>LDA zpg,X<span class="cc">4</span></td><td nowrap class=op>LDX zpg,Y<span class="cc">4</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>CLV impl<span class="cc">2</span></td><td nowrap class=op>LDA abs,Y<span class="cc">4*</span></td><td nowrap class=op>TSX impl<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>LDY abs,X<span class="cc">4*</span></td><td nowrap class=op>LDA abs,X<span class="cc">4*</span></td><td nowrap class=op>LDX abs,Y<span class="cc">4*</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>0C</td><td nowrap class=op>CPY #<span class="cc">2</span></td><td nowrap class=op>CMP X,ind<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>CPY zpg<span class="cc">3</span></td><td nowrap class=op>CMP zpg<span class="cc">3</span></td><td nowrap class=op>DEC zpg<span class="cc">5</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>INY impl<span class="cc">2</span></td><td nowrap class=op>CMP #<span class="cc">2</span></td><td nowrap class=op>DEX impl<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>CPY abs<span class="cc">4</span></td><td nowrap class=op>CMP abs<span class="cc">4</span></td><td nowrap class=op>DEC abs<span class="cc">3?</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>0D</td><td nowrap class=op>BNE rel<span class="cc">2*</span></td><td nowrap class=op>CMP ind,Y<span class="cc">5*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>CMP zpg,X<span class="cc">4</span></td><td nowrap class=op>DEC zpg,X<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>CLD impl<span class="cc">2</span></td><td nowrap class=op>CMP abs,Y<span class="cc">4*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>CMP abs,X<span class="cc">4*</span></td><td nowrap class=op>DEC abs,X<span class="cc">7</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>0E</td><td nowrap class=op>CPX #<span class="cc">2</span></td><td nowrap class=op>SBC X,ind<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>CPX zpg<span class="cc">3</span></td><td nowrap class=op>SBC zpg<span class="cc">3</span></td><td nowrap class=op>INC zpg<span class="cc">5</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>INX impl<span class="cc">2</span></td><td nowrap class=op>SBC #<span class="cc">2</span></td><td nowrap class=op>NOP impl<span class="cc">2</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>CPX abs<span class="cc">4</span></td><td nowrap class=op>SBC abs<span class="cc">4</span></td><td nowrap class=op>INC abs<span class="cc">6</span></td><td nowrap class=op>??? ---</td>
-<tr>
-<tr valign="top">
-<td nowrap>0F</td><td nowrap class=op>BEQ rel<span class="cc">2*</span></td><td nowrap class=op>SBC ind,Y<span class="cc">5*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>SBC zpg,X<span class="cc">4</span></td><td nowrap class=op>INC zpg,X<span class="cc">6</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>SED impl<span class="cc">2</span></td><td nowrap class=op>SBC abs,Y<span class="cc">4*</span></td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>??? ---</td><td nowrap class=op>SBC abs,X<span class="cc">4*</span></td><td nowrap class=op>INC abs,X<span class="cc">7</span></td><td nowrap class=op>??? ---</td>
-<tr>
-</table>
+<td nowrap="nowrap">00</td><td class="op" nowrap="nowrap">BRK impl<span class="cc">7</span></td><td class="op" nowrap="nowrap">ORA X,ind<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">ORA zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">ASL zpg<span class="cc">5</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">PHP impl<span class="cc">3</span></td><td class="op" nowrap="nowrap">ORA #<span class="cc">2</span></td><td class="op" nowrap="nowrap">ASL A<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">ORA abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">ASL abs<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">01</td><td class="op" nowrap="nowrap">BPL rel<span class="cc">2*</span></td><td class="op" nowrap="nowrap">ORA ind,Y<span class="cc">5*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">ORA zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">ASL zpg,X<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CLC impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">ORA abs,Y<span class="cc">4*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">ORA abs,X<span class="cc">4*</span></td><td class="op" nowrap="nowrap">ASL abs,X<span class="cc">7</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">02</td><td class="op" nowrap="nowrap">JSR abs<span class="cc">6</span></td><td class="op" nowrap="nowrap">AND X,ind<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">BIT zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">AND zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">ROL zpg<span class="cc">5</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">PLP impl<span class="cc">4</span></td><td class="op" nowrap="nowrap">AND #<span class="cc">2</span></td><td class="op" nowrap="nowrap">ROL A<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">BIT abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">AND abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">ROL abs<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">03</td><td class="op" nowrap="nowrap">BMI rel<span class="cc">2*</span></td><td class="op" nowrap="nowrap">AND ind,Y<span class="cc">5*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">AND zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">ROL zpg,X<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">SEC impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">AND abs,Y<span class="cc">4*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">AND abs,X<span class="cc">4*</span></td><td class="op" nowrap="nowrap">ROL abs,X<span class="cc">7</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">04</td><td class="op" nowrap="nowrap">RTI impl<span class="cc">6</span></td><td class="op" nowrap="nowrap">EOR X,ind<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">EOR zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">LSR zpg<span class="cc">5</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">PHA impl<span class="cc">3</span></td><td class="op" nowrap="nowrap">EOR #<span class="cc">2</span></td><td class="op" nowrap="nowrap">LSR A<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">JMP abs<span class="cc">3</span></td><td class="op" nowrap="nowrap">EOR abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">LSR abs<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">05</td><td class="op" nowrap="nowrap">BVC rel<span class="cc">2*</span></td><td class="op" nowrap="nowrap">EOR ind,Y<span class="cc">5*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">EOR zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">LSR zpg,X<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CLI impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">EOR abs,Y<span class="cc">4*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">EOR abs,X<span class="cc">4*</span></td><td class="op" nowrap="nowrap">LSR abs,X<span class="cc">7</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">06</td><td class="op" nowrap="nowrap">RTS impl<span class="cc">6</span></td><td class="op" nowrap="nowrap">ADC X,ind<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">ADC zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">ROR zpg<span class="cc">5</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">PLA impl<span class="cc">4</span></td><td class="op" nowrap="nowrap">ADC #<span class="cc">2</span></td><td class="op" nowrap="nowrap">ROR A<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">JMP ind<span class="cc">5</span></td><td class="op" nowrap="nowrap">ADC abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">ROR abs<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">07</td><td class="op" nowrap="nowrap">BVS rel<span class="cc">2*</span></td><td class="op" nowrap="nowrap">ADC ind,Y<span class="cc">5*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">ADC zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">ROR zpg,X<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">SEI impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">ADC abs,Y<span class="cc">4*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">ADC abs,X<span class="cc">4*</span></td><td class="op" nowrap="nowrap">ROR abs,X<span class="cc">7</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">08</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">STA X,ind<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">STY zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">STA zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">STX zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">DEY impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">TXA impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">STY abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">STA abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">STX abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">09</td><td class="op" nowrap="nowrap">BCC rel<span class="cc">2*</span></td><td class="op" nowrap="nowrap">STA ind,Y<span class="cc">5*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">STY zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">STA zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">STX zpg,Y<span class="cc">4</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">TYA impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">STA abs,Y<span class="cc">5</span></td><td class="op" nowrap="nowrap">TXS impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">STA abs,X<span class="cc">5</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">0A</td><td class="op" nowrap="nowrap">LDY #<span class="cc">2</span></td><td class="op" nowrap="nowrap">LDA X,ind<span class="cc">6</span></td><td class="op" nowrap="nowrap">LDX #<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">LDY zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">LDA zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">LDX zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">TAY impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">LDA #<span class="cc">2</span></td><td class="op" nowrap="nowrap">TAX impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">LDY abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">LDA abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">LDX abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">0B</td><td class="op" nowrap="nowrap">BCS rel<span class="cc">2*</span></td><td class="op" nowrap="nowrap">LDA ind,Y<span class="cc">5*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">LDY zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">LDA zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">LDX zpg,Y<span class="cc">4</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CLV impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">LDA abs,Y<span class="cc">4*</span></td><td class="op" nowrap="nowrap">TSX impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">LDY abs,X<span class="cc">4*</span></td><td class="op" nowrap="nowrap">LDA abs,X<span class="cc">4*</span></td><td class="op" nowrap="nowrap">LDX abs,Y<span class="cc">4*</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">0C</td><td class="op" nowrap="nowrap">CPY #<span class="cc">2</span></td><td class="op" nowrap="nowrap">CMP X,ind<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CPY zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">CMP zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">DEC zpg<span class="cc">5</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">INY impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">CMP #<span class="cc">2</span></td><td class="op" nowrap="nowrap">DEX impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CPY abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">CMP abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">DEC abs<span class="cc">3?</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">0D</td><td class="op" nowrap="nowrap">BNE rel<span class="cc">2*</span></td><td class="op" nowrap="nowrap">CMP ind,Y<span class="cc">5*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CMP zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">DEC zpg,X<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CLD impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">CMP abs,Y<span class="cc">4*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CMP abs,X<span class="cc">4*</span></td><td class="op" nowrap="nowrap">DEC abs,X<span class="cc">7</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">0E</td><td class="op" nowrap="nowrap">CPX #<span class="cc">2</span></td><td class="op" nowrap="nowrap">SBC X,ind<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CPX zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">SBC zpg<span class="cc">3</span></td><td class="op" nowrap="nowrap">INC zpg<span class="cc">5</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">INX impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">SBC #<span class="cc">2</span></td><td class="op" nowrap="nowrap">NOP impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">CPX abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">SBC abs<span class="cc">4</span></td><td class="op" nowrap="nowrap">INC abs<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr><tr valign="top">
+<td nowrap="nowrap">0F</td><td class="op" nowrap="nowrap">BEQ rel<span class="cc">2*</span></td><td class="op" nowrap="nowrap">SBC ind,Y<span class="cc">5*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">SBC zpg,X<span class="cc">4</span></td><td class="op" nowrap="nowrap">INC zpg,X<span class="cc">6</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">SED impl<span class="cc">2</span></td><td class="op" nowrap="nowrap">SBC abs,Y<span class="cc">4*</span></td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">??? ---</td><td class="op" nowrap="nowrap">SBC abs,X<span class="cc">4*</span></td><td class="op" nowrap="nowrap">INC abs,X<span class="cc">7</span></td><td class="op" nowrap="nowrap">??? ---</td>
+</tr><tr>
+</tr></tbody></table>
 <p>&nbsp;</p>
 
 <br>
 
-<form name=bitform>
-Raw bits <input type=text name=bits>
-<input type=button onclick="makebits();" value="Make IR mask">
+<form name="bitform">
+Raw bits <input name="bits" type="text">
+<input onclick="makebits();" value="Make IR mask" type="button">
 </form>
 <div id="irmask"></div>
 
+<form name="rawbits">
+Opcode <input name="opcode" type="text">
+<input onclick="makerawbits();" value="Make Raw Bits" type="button">
+</form>
+<div id="raw_bits"></div>
 
-</body>
-</html>
+</body></html>
