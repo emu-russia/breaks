@@ -1,6 +1,7 @@
 // Тестовая программа на Verilog
 
-module test;
+// Пока мы модули не используем, будем считать что мы уже внутри модуля.
+//module test;
 
     parameter DUMMY = 1, NBIT = 4;
     input CLK;
@@ -18,4 +19,4 @@ module test;
         MYREG = MYREG ^ 1;
     end
 
-endmodule
+//endmodule
