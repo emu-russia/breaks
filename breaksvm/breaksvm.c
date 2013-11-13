@@ -259,7 +259,40 @@ enum OPS
     LPAREN, RPAREN,   // ( )
     EQ, POST_EQ,  // = <=
     HASH,    // #
+    SEMICOLON,  // ;
+    BIN, OCT, DEC, HEX, // 'b 'B 'o 'O 'd 'D 'h 'H
 };
+
+// Tokenizer выдает поток токенов потребителям.
+
+static void (*my_parser)(token_t * token);
+static token_t previous_token;
+static int tokenization_started = 0;
+
+static void tokenize_file ( unsigned char * content, int filesize )   // подключить загруженный файл 
+{
+    tokenization_started = 0;
+}
+
+static void connect_parser ( void (*parser)(token_t * token) )  // подцепить парсер к потоку
+{
+    my_parser = parser;
+}
+
+static token_t * next_token (void)  // получить следующий токен или вернуть NULL, если конец файла
+{
+}
+
+static token_t * prev_token (void)  // предыдущий токен (или NULL, если токена не было)
+{
+    if (!tokenization_started) return NULL;
+    else return &previous_token;
+}
+
+static void feed_token (token_t * token)    // скормить токен подключенному парсеру
+{
+    if (token) my_parser (token);
+}
 
 // ------------------------------------------------------------------------------------
 // verilog syntax tree parser
@@ -328,13 +361,46 @@ Expressions.
 
 */
 
-//typedef struct wire_t
-//{
-//} wire_t;
+// наш отладочный парсер. ничего не делает - просто выводит поток токенов на экран, для диагностики.
+static void dummy_parser (token_t * token)
+{
+}
+
 
 int breaksvm_load (char *filename)
 {
+    token_t * token;
+    int filesize;
+    u8 * content;
+    FILE * f = fopen (filename, "rb");  // откроем файл
+    if (!f) {
+        error ( "Cannot open input file : %s", filename);
+        return 0;
+    }
+    fseek (f, 0, SEEK_END);      // получим размер
+    filesize = ftell (f);
+    fseek (f, 0, SEEK_SET);
+
+    content = (u8 *)malloc (filesize + 1);      // загрузим   
+    if (!content) {
+        error ( "Cannot load input file : %s", filename);
+        fclose (f);
+        return 0;
+    }
+    fread ( content, 0, filesize, f );
+    content[filesize] = 0;  // extra 0 for debug output
+    fclose (f);
+
+    tokenize_file ( content, filesize);
+    connect_parser ( dummy_parser );
+
+    do {    // запустить лексический анализ.
+        token = next_token ();
+        if (token) feed_token ( token );
+    } while (token);
+    
     dump_symbols ();
+    return 1;
 }
 
 // ------------------------------------------------------------------------------------
@@ -396,6 +462,8 @@ int breaksvm_init (void)
             i++;
         }
     }
+
+    tokenization_started = 0;
 
     breaksvm_initdone = 1;
 }
