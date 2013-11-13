@@ -1,0 +1,60 @@
+type: 6, op: 0, raw=parameter
+
+type: 4, op: 0, raw=DUMMY
+
+type: 4, op: 0, raw=NBIT
+
+type: 6, op: 0, raw=input
+
+type: 4, op: 0, raw=CLK
+
+type: 6, op: 0, raw=wire
+
+type: 4, op: 0, raw=a
+
+type: 4, op: 0, raw=b
+
+type: 4, op: 0, raw=c
+
+type: 6, op: 0, raw=wire
+
+type: 4, op: 0, raw=___busa
+
+type: 6, op: 0, raw=wire
+
+type: 4, op: 0, raw=busb
+
+type: 6, op: 0, raw=wand
+
+type: 6, op: 0, raw=vectored
+
+type: 4, op: 0, raw=andbus
+
+type: 6, op: 0, raw=reg
+
+type: 4, op: 0, raw=dout
+
+type: 6, op: 0, raw=trireg
+
+type: 4, op: 0, raw=treg
+
+type: 6, op: 0, raw=reg
+
+type: 4, op: 0, raw=MYREG2
+
+type: 6, op: 0, raw=always
+
+type: 6, op: 0, raw=end
+
+SYMBOL : DUMMY, hash : 320A859F, type : 101
+SYMBOL : NBIT, hash : 9F9961A8, type : 101
+SYMBOL : CLK, hash : 1E9CEC28, type : 101
+SYMBOL : a, hash : 92685F5E, type : 101
+SYMBOL : b, hash : 86B7B9F4, type : 101
+SYMBOL : c, hash : 2CF62649, type : 101
+SYMBOL : ___busa, hash : 2A63DBA7, type : 101
+SYMBOL : busb, hash : F47317DB, type : 101
+SYMBOL : andbus, hash : AB1DF451, type : 101
+SYMBOL : dout, hash : 59273FC0, type : 101
+SYMBOL : treg, hash : DECD9BC2, type : 101
+SYMBOL : MYREG2, hash : 293F3616, type : 101
