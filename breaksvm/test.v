@@ -3,7 +3,7 @@
 // Пока мы модули не используем, будем считать что мы уже внутри модуля.
 //module test;
 
-    parameter DUMMY = 1, NBIT = 4;
+    parameter DUMMY = 1, NBIT = 4, \ЮникодовскийИдентификатор = 33;
     input CLK;
 
     wire a, b, c;
