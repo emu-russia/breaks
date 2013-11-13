@@ -61,24 +61,6 @@ enum SYMBOL_TYPE
     SYMBOL_REG,
     SYMBOL_WIRE,
     SYMBOL_PARAM,
-
-    SYMBOL_OPS = 200,
-    SYMBOL_LBRACKET, SYMBOL_RBRACKET,       // { }
-    SYMBOL_PLUS_UNARY, SYMBOL_PLUS_BINARY,      // +
-    SYMBOL_MINUS_UNARY, SYMBOL_MINUS_BINARY,    // -
-    SYMBOL_NOT, SYMBOL_NEG,     // ! ~
-    SYMBOL_MUL, SYMBOL_DIV, SYMBOL_MOD,     // * / %
-    SYMBOL_SHL, SYMBOL_SHR, SYMBOL_ROTL, SYMBOL_ROTR,   // << >> <<< >>>
-    SYMBOL_GREATER, SYMBOL_GREATER_EQ, SYMBOL_LESS, SYMBOL_LESS_EQ,     // > >= < <=
-    SYMBOL_LOGICAL_AND, SYMBOL_LOGICAL_OR,      // && ||
-    SYMBOL_LOGICAL_EQ, SYMBOL_CASE_EQ, SYMBOL_LOGICAL_NOTEQ, SYMBOL_CASE_NOTEQ,     // == != === !===
-    SYMBOL_AND, SYMBOL_OR, SYMBOL_XOR, SYMBOL_XNOR, // & | ^ ~^ ^~
-    SYMBOL_REDUCT_AND, SYMBOL_REDUCT_NAND, SYMBOL_REDUCT_OR, SYMBOL_REDUCT_NOR, SYMBOL_REDUCT_XOR, SYMBOL_REDUCT_XNOR,  // & ~& | ~| ^ ^~ ~^
-    SYMBOL_HMMM, SYMBOL_COLON,  // ? :
-    SYMBOL_LPAREN, SYMBOL_RPAREN,   // ( )
-    SYMBOL_EQ, SYMBOL_POST_EQ,  // = <=
-    SYMBOL_HASH,    // #
-    
 };
 
 static char * keywords[] = {
@@ -246,6 +228,7 @@ enum TOKEN_TYPE
     TOKEN_NUMBER,
     TOKEN_STRING,
     TOKEN_IDENT,
+    TOKEN_PARAM,
     TOKEN_KEYWORD,
     TOKE_MAX_TYPE,
 };
@@ -256,7 +239,27 @@ typedef struct token_t
     char    rawstring[256];
     u32     number;
     symbol_t * sym;
+    int     op;         // operation
 } token_t;
+
+enum OPS
+{
+    LBRACKET, RBRACKET,       // { }
+    PLUS_UNARY, PLUS_BINARY,      // +
+    MINUS_UNARY, MINUS_BINARY,    // -
+    NOT, NEG,     // ! ~
+    MUL, DIV, MOD,     // * / %
+    SHL, SHR, ROTL, ROTR,   // << >> <<< >>>
+    GREATER, GREATER_EQ, LESS, LESS_EQ,     // > >= < <=
+    LOGICAL_AND, LOGICAL_OR,      // && ||
+    LOGICAL_EQ, CASE_EQ, LOGICAL_NOTEQ, CASE_NOTEQ,     // == != === !===
+    AND, OR, XOR, XNOR, // & | ^ ~^ ^~
+    REDUCT_AND, REDUCT_NAND, REDUCT_OR, REDUCT_NOR, REDUCT_XOR, REDUCT_XNOR,  // & ~& | ~| ^ ^~ ~^
+    HMMM, COLON,  // ? :
+    LPAREN, RPAREN,   // ( )
+    EQ, POST_EQ,  // = <=
+    HASH,    // #
+};
 
 // ------------------------------------------------------------------------------------
 // verilog syntax tree parser
