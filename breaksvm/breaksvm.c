@@ -39,26 +39,6 @@ static void warning (char *fmt, ...)
 
 // Пока что, для упрощения мы будем считать что мы уже внутри какого-то модуля. Мультимодульную среду можно легко создать, добавив обертку.
 
-enum TOKEN_TYPE
-{
-    TOKEN_NULL = 0,
-    TOKEN_OP,
-    TOKEN_NUMBER,
-    TOKEN_STRING,
-    TOKEN_IDENT,
-    TOKEN_KEYWORD,
-    TOKE_MAX_TYPE,
-};
-
-typedef struct token_t
-{
-    int     type;
-    char    rawstring[256];
-    u32     number;
-    int     keyword;
-    int     ident;
-} token_t;
-
 // Таблица символов.
 
 enum SYMBOL_TYPE
@@ -74,12 +54,31 @@ enum SYMBOL_TYPE
     SYMBOL_KEYWORD_TRI, SYMBOL_KEYWORD_TRIAND, SYMBOL_KEYWORD_TRIOR, SYMBOL_KEYWORD_TRIREG, SYMBOL_KEYWORD_VECTORED, SYMBOL_KEYWORD_WAND,
     SYMBOL_KEYWORD_WHILE, SYMBOL_KEYWORD_WIRE, SYMBOL_KEYWORD_WOR, SYMBOL_KEYWORD_XNOR, SYMBOL_KEYWORD_XOR,
 
-    SYMBOL_INPUT = 200,
+    SYMBOL_NOT_KEYWORDS = 100,
+    SYMBOL_INPUT,
     SYMBOL_OUTPUT,
     SYMBOL_INOUT,
     SYMBOL_REG,
     SYMBOL_WIRE,
     SYMBOL_PARAM,
+
+    SYMBOL_OPS = 200,
+    SYMBOL_LBRACKET, SYMBOL_RBRACKET,       // { }
+    SYMBOL_PLUS_UNARY, SYMBOL_PLUS_BINARY,      // +
+    SYMBOL_MINUS_UNARY, SYMBOL_MINUS_BINARY,    // -
+    SYMBOL_NOT, SYMBOL_NEG,     // ! ~
+    SYMBOL_MUL, SYMBOL_DIV, SYMBOL_MOD,     // * / %
+    SYMBOL_SHL, SYMBOL_SHR, SYMBOL_ROTL, SYMBOL_ROTR,   // << >> <<< >>>
+    SYMBOL_GREATER, SYMBOL_GREATER_EQ, SYMBOL_LESS, SYMBOL_LESS_EQ,     // > >= < <=
+    SYMBOL_LOGICAL_AND, SYMBOL_LOGICAL_OR,      // && ||
+    SYMBOL_LOGICAL_EQ, SYMBOL_CASE_EQ, SYMBOL_LOGICAL_NOTEQ, SYMBOL_CASE_NOTEQ,     // == != === !===
+    SYMBOL_AND, SYMBOL_OR, SYMBOL_XOR, SYMBOL_XNOR, // & | ^ ~^ ^~
+    SYMBOL_REDUCT_AND, SYMBOL_REDUCT_NAND, SYMBOL_REDUCT_OR, SYMBOL_REDUCT_NOR, SYMBOL_REDUCT_XOR, SYMBOL_REDUCT_XNOR,  // & ~& | ~| ^ ^~ ~^
+    SYMBOL_HMMM, SYMBOL_COLON,  // ? :
+    SYMBOL_LPAREN, SYMBOL_RPAREN,   // ( )
+    SYMBOL_EQ, SYMBOL_POST_EQ,  // = <=
+    SYMBOL_HASH,    // #
+    
 };
 
 static char * keywords[] = {
@@ -125,7 +124,7 @@ typedef struct symbol_t
 static  symbol_t *symtab;
 static  int sym_num;
 
-static u32 MurmurHash (char * key)
+static u32 MurmurHash (char * key)      // https://code.google.com/p/smhasher/
 {
   int len = strlen (key);
   const unsigned int m = 0x5bd1e995;
@@ -203,14 +202,15 @@ static void dump_symbols (void)
 {
     int i;
     for (i=0; i<sym_num; i++) {
-        if ( symtab[i].type < 200 ) continue;   // don't dump keywords.
-        printf ( "SYMBOL : %s, hash : %08X, type : %i\n", symtab[i].rawstring, symtab[i].hash, symtab[i].type );
+        if ( symtab[i].type < SYMBOL_NOT_KEYWORDS ) continue;   // don't dump keywords.
+        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, hash : %08X, value : %i\n", symtab[i].rawstring, symtab[i].hash, symtab[i].value );
+        else printf ( "SYMBOL : %s, hash : %08X, type : %i\n", symtab[i].rawstring, symtab[i].hash, symtab[i].type );
     }
 }
 
 /*
 
-Часть стандарта Verilog будет тут.
+Часть стандарта Verilog будет тут. (в основном в этом блоке - описание формата лексем)
 
 числа: общий формат записи такой : <size>[spaces]<'[bBoOdDhH]base>[spaces]<[0-9a-fA-F_]>
 Размер числа не может быть = 0 или больше 64 бит.
@@ -220,7 +220,43 @@ static void dump_symbols (void)
 
 имена: обычные правила для имён, но можно ещё использовать знак доллара $
 
+операции : { } + - * /  %  > >= < <=  ! && || == != === !=== ~ & | ^ ^~ ~^ ~& ~| << >> <<< >>> ? : ( ) # = <=
+приоритет операций :
+    { } (конкатенация)
+    + - ! ~ (унарные)
+    * / %
+    + - (бинарные)
+    << >> <<< >>>
+    == != === !===
+    & ~&
+    ^ ^~ ~^
+    | ~|
+    &&
+    ||
+    ?:
+
+Ну теперь вроде всё готово, ключевые слова запихали в таблицу символов, типы токенов расставили, понеслась пизда по кочкам.
+
 */
+
+enum TOKEN_TYPE
+{
+    TOKEN_NULL = 0,
+    TOKEN_OP,
+    TOKEN_NUMBER,
+    TOKEN_STRING,
+    TOKEN_IDENT,
+    TOKEN_KEYWORD,
+    TOKE_MAX_TYPE,
+};
+
+typedef struct token_t
+{
+    int     type;
+    char    rawstring[256];
+    u32     number;
+    symbol_t * sym;
+} token_t;
 
 // ------------------------------------------------------------------------------------
 // verilog syntax tree parser
