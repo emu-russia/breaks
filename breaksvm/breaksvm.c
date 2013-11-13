@@ -258,7 +258,7 @@ enum OPS
     HMMM, COLON,  // ? :
     LPAREN, RPAREN,   // ( )
     EQ, POST_EQ,  // = <=
-    HASH,    // #
+    HASH, DOGGY,   // # @
     SEMICOLON,  // ;
     BIN, OCT, DEC, HEX, // 'b 'B 'o 'O 'd 'D 'h 'H
 };
@@ -266,12 +266,17 @@ enum OPS
 // Tokenizer выдает поток токенов потребителям.
 
 static void (*my_parser)(token_t * token);
-static token_t previous_token;
+static token_t previous_token, current_token;
 static int tokenization_started = 0;
+static u8 * token_source;
+static int token_source_pointer, token_source_length;
 
 static void tokenize_file ( unsigned char * content, int filesize )   // подключить загруженный файл 
 {
     tokenization_started = 0;
+    token_source = content;
+    token_source_pointer = 0;
+    token_source_length = filesize;
 }
 
 static void connect_parser ( void (*parser)(token_t * token) )  // подцепить парсер к потоку
@@ -279,8 +284,94 @@ static void connect_parser ( void (*parser)(token_t * token) )  // подцеп�
     my_parser = parser;
 }
 
+static unsigned char nextch (int * empty)   // получить следующий символ
+{
+    if ( token_source_pointer < token_source_length ) {
+        *empty = 0;
+        return token_source[token_source_pointer++];
+    }
+    else {
+        *empty = 1;
+        return 0;
+    }
+}
+
+static void putback (void)   // положить назад где взяли
+{
+    if ( token_source_pointer > 0 ) token_source_pointer--;
+}
+
 static token_t * next_token (void)  // получить следующий токен или вернуть NULL, если конец файла
 {
+    int empty;
+    token_t * pt = &previous_token;
+    u8 ch, ch2, ch3, ch4;
+
+    // ну просто дубовый алгоритм, выбираем символы и смотрим что получается )))
+
+    current_token.type = TOKEN_NULL;
+
+    ch = nextch (&empty);
+    if ( empty ) return NULL;
+
+    // пропускаем пробелы
+    if ( ch <= ' ' ) {
+        while (!empty) {
+            ch = nextch (&empty);
+            if (ch <= ' ') continue;
+            else break;
+        }
+        if (empty) return NULL;
+    }
+
+    // пропускаем однострочные комментарии (потенциально - деление /)
+    if (ch == '/') {
+        ch2 = nextch (&empty);
+        if (empty || ch2 != '/') {    // если дальше ничего нет или второй символ не / - вернуть просто как деление
+            if (!empty) putback ();   // вернуть если не пусто
+            current_token.type = TOKEN_OP;
+            current_token.op = DIV;
+            strcpy ( current_token.rawstring, "/" );
+        }
+        else {   // пропустим все символы до конца строка '\n' или конца файла
+            while (!empty) {
+                ch = nextch (&empty);
+                if (ch == '\n') break;
+            }
+            if (empty) return NULL;
+        }
+    }
+    // .... если после пропуска однострочных комментариев в строке остались пробелы или табуляции, то дальнее исполнение ни к чему не приведёт и вернется TOKEN_NULL.
+
+    // пропускаем многострочные комментарии (потенциально - деление /) 
+
+    // .... если после пропуска многострочных комментариев в строке остались пробелы или табуляции, то дальнее исполнение ни к чему не приведёт и вернется TOKEN_NULL.
+
+/*
+    if (letter or _)
+    {
+    }
+    else if (0-9)
+    {
+    }
+    else
+*/
+
+    {
+        switch (ch)
+        {
+            case '?': 
+                current_token.type = TOKEN_OP;
+                current_token.op = HMMM;
+                strcpy ( current_token.rawstring, "?" );
+                break;
+            default:
+                printf ("%c", ch );
+        }
+    }
+
+    tokenization_started = 1;
+    return &current_token;
 }
 
 static token_t * prev_token (void)  // предыдущий токен (или NULL, если токена не было)
@@ -364,6 +455,7 @@ Expressions.
 // наш отладочный парсер. ничего не делает - просто выводит поток токенов на экран, для диагностики.
 static void dummy_parser (token_t * token)
 {
+    if ( token->type != TOKEN_NULL) printf ( "type: %i, op: %i, raw=%s\n\n", token->type, token->op, token->rawstring );
 }
 
 
@@ -387,7 +479,7 @@ int breaksvm_load (char *filename)
         fclose (f);
         return 0;
     }
-    fread ( content, 0, filesize, f );
+    fread ( content, 1, filesize, f );
     content[filesize] = 0;  // extra 0 for debug output
     fclose (f);
 
