@@ -286,7 +286,7 @@ static void connect_parser ( void (*parser)(token_t * token) )  // подцеп�
 
 static unsigned char nextch (int * empty)   // получить следующий символ
 {
-    if ( token_source_pointer < token_source_length ) {
+    if ( token_source_pointer < token_source_length && !VM_TERMINATE ) {
         *empty = 0;
         return token_source[token_source_pointer++];
     }
@@ -318,6 +318,7 @@ static token_t * next_token (void)  // получить следующий то�
     if ( ch <= ' ' ) {
         while (!empty) {
             ch = nextch (&empty);
+            if (ch == '\n') VM_LINE++;
             if (ch <= ' ') continue;
             else break;
         }
@@ -336,7 +337,7 @@ static token_t * next_token (void)  // получить следующий то�
         else {   // пропустим все символы до конца строка '\n' или конца файла
             while (!empty) {
                 ch = nextch (&empty);
-                if (ch == '\n') break;
+                if (ch == '\n') { VM_LINE++; break; }
             }
             if (empty) return NULL;
         }
@@ -482,6 +483,9 @@ int breaksvm_load (char *filename)
     fread ( content, 1, filesize, f );
     content[filesize] = 0;  // extra 0 for debug output
     fclose (f);
+
+    strncpy ( VM_FILE, filename, 255 );
+    VM_LINE = 1;
 
     tokenize_file ( content, filesize);
     connect_parser ( dummy_parser );
