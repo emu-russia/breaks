@@ -55,6 +55,7 @@ enum SYMBOL_TYPE
     SYMBOL_KEYWORD_WHILE, SYMBOL_KEYWORD_WIRE, SYMBOL_KEYWORD_WOR, SYMBOL_KEYWORD_XNOR, SYMBOL_KEYWORD_XOR,
 
     SYMBOL_NOT_KEYWORDS = 100,
+    SYMBOL_IDENT,   // просто идентификатор.
     SYMBOL_INPUT,
     SYMBOL_OUTPUT,
     SYMBOL_INOUT,
@@ -160,7 +161,7 @@ static symbol_t * check_symbol (char *name)   // проверить есть л�
     return NULL;
 }
 
-static int add_symbol (char *name, int type, int value)     // добавить символ, вернуть ID
+static symbol_t * add_symbol (char *name, int type, int value)     // добавить символ, вернуть описатель или NULL
 {
     symbol_t *symbol;
     if ( strlen (name) > 255 ) {
@@ -169,7 +170,7 @@ static int add_symbol (char *name, int type, int value)     // добавить 
     symtab = (symbol_t *)realloc (symtab, sizeof(symbol_t) * (sym_num + 1) );
     if ( !symtab ) {
         error ( "Cannot allocate symbol \'%s\', not enough memory", name );
-        return 0;
+        return NULL;
     }
     symbol = &symtab[sym_num];
     strncpy ( symbol->rawstring, name, 255 );
@@ -177,7 +178,7 @@ static int add_symbol (char *name, int type, int value)     // добавить 
     symbol->hash = MurmurHash (symbol->rawstring);     // calculate hash for truncated name!
     symbol->value = value;
     sym_num++;
-    return (sym_num - 1);
+    return &symtab[sym_num - 1];
 }
 
 static void dump_symbols (void)
@@ -259,7 +260,7 @@ enum OPS
     LPAREN, RPAREN,   // ( )
     EQ, POST_EQ,  // = <=
     HASH, DOGGY,   // # @
-    SEMICOLON,  // ;
+    COMMA, SEMICOLON,  // , ;
     BIN, OCT, DEC, HEX, // 'b 'B 'o 'O 'd 'D 'h 'H
 };
 
@@ -303,9 +304,11 @@ static void putback (void)   // положить назад где взяли
 
 static token_t * next_token (void)  // получить следующий токен или вернуть NULL, если конец файла
 {
-    int empty;
+    int empty, international, ident_max_size;
     token_t * pt = &previous_token;
     u8 ch, ch2, ch3, ch4;
+    u8 ident[1024], *ptr;
+    symbol_t * sym;
 
     // ну просто дубовый алгоритм, выбираем символы и смотрим что получается )))
 
@@ -342,11 +345,54 @@ static token_t * next_token (void)  // получить следующий то�
             if (empty) return NULL;
         }
     }
-    // .... если после пропуска однострочных комментариев в строке остались пробелы или табуляции, то дальнее исполнение ни к чему не приведёт и вернется TOKEN_NULL.
+    // .... если после пропуска однострочных комментариев в строке остались пробелы или табуляции, то дальнейшее исполнение ни к чему не приведёт и вернется TOKEN_NULL.
 
     // пропускаем многострочные комментарии (потенциально - деление /) 
 
-    // .... если после пропуска многострочных комментариев в строке остались пробелы или табуляции, то дальнее исполнение ни к чему не приведёт и вернется TOKEN_NULL.
+    // .... если после пропуска многострочных комментариев в строке остались пробелы или табуляции, то дальнейшее исполнение ни к чему не приведёт и вернется TOKEN_NULL.
+
+    // идентификаторы / ключевые слова
+    if ( (ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch == '_') || (ch == '\\') )
+    {
+        ident_max_size = 1000;   // установить максимальный размер идентификатора
+        ptr = ident;
+        international = (ch == '\\');   // поддержка интернациональных идентификаторов.
+        *ptr++ = ch;
+        while (!empty && ident_max_size) {
+            ch = nextch (&empty);
+            if ( !international ) {
+                if ( !isalpha(ch) && !isdigit(ch) && (ch != '_') && (ch != '$') ) { *ptr++ = 0; break; }
+            }
+            else {
+                if (ch <= ' ') { *ptr++ = 0; break; }
+            }
+            if (!empty) {
+                *ptr++ = ch;
+                ident_max_size--;
+            }
+        }
+        if (empty) *ptr++ = 0;
+        if (ident_max_size == 0) warning ( "Identifier max. length exceeds limit" );
+
+        // вернуть ключевое слово или идентификатор.
+        sym = check_symbol (ident);
+        if (sym) {
+            if (sym->type > SYMBOL_NOT_KEYWORDS) {  // уже добавленный идентификатор
+            }
+            else {  // ключевое слово
+                current_token.type = TOKEN_KEYWORD;
+                strncpy ( current_token.rawstring, ident, 255 );
+                current_token.sym = sym;
+            }
+        }
+        else         // добавим идентификатор (параметром или чем либо ещё он может стать потом)
+        {
+            sym = add_symbol (ident, SYMBOL_IDENT, 0);
+            current_token.type = TOKEN_IDENT;
+            strncpy ( current_token.rawstring, ident, 255 );
+            current_token.sym = sym;
+        }
+    }
 
 /*
     if (letter or _)
@@ -361,13 +407,23 @@ static token_t * next_token (void)  // получить следующий то�
     {
         switch (ch)
         {
+            case '{':
+                current_token.type = TOKEN_OP;
+                current_token.op = LBRACKET;
+                strcpy ( current_token.rawstring, "{" );
+                break;
+            case '}':
+                current_token.type = TOKEN_OP;
+                current_token.op = RBRACKET;
+                strcpy ( current_token.rawstring, "}" );
+                break;
             case '?': 
                 current_token.type = TOKEN_OP;
                 current_token.op = HMMM;
                 strcpy ( current_token.rawstring, "?" );
                 break;
-            default:
-                printf ("%c", ch );
+//            default:
+//                printf ("%c", ch );
         }
     }
 
