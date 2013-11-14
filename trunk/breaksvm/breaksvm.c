@@ -55,7 +55,7 @@ enum SYMBOL_TYPE
     SYMBOL_KEYWORD_WHILE, SYMBOL_KEYWORD_WIRE, SYMBOL_KEYWORD_WOR, SYMBOL_KEYWORD_XNOR, SYMBOL_KEYWORD_XOR,
 
     SYMBOL_NOT_KEYWORDS = 100,
-    SYMBOL_IDENT,   // просто идентификатор.
+    SYMBOL_IDENT,   // просто идентификатор (пока неизвестно какого типа)
     SYMBOL_INPUT,
     SYMBOL_OUTPUT,
     SYMBOL_INOUT,
@@ -187,6 +187,11 @@ static void dump_symbols (void)
     for (i=0; i<sym_num; i++) {
         if ( symtab[i].type < SYMBOL_NOT_KEYWORDS ) continue;   // don't dump keywords.
         if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, hash : %08X, value : %i\n", symtab[i].rawstring, symtab[i].hash, symtab[i].value );
+        else if ( symtab[i].type == SYMBOL_INPUT ) printf ( "INPUT : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
+        else if ( symtab[i].type == SYMBOL_OUTPUT ) printf ( "OUTPUT : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
+        else if ( symtab[i].type == SYMBOL_INOUT ) printf ( "INOUT : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
+        else if ( symtab[i].type == SYMBOL_WIRE ) printf ( "WIRE : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
+        else if ( symtab[i].type == SYMBOL_REG ) printf ( "REG : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
         else printf ( "SYMBOL : %s, hash : %08X, type : %i\n", symtab[i].rawstring, symtab[i].hash, symtab[i].type );
     }
 }
@@ -230,16 +235,14 @@ enum TOKEN_TYPE
     TOKEN_NUMBER,
     TOKEN_STRING,
     TOKEN_IDENT,
-    TOKEN_PARAM,
     TOKEN_KEYWORD,
-    TOKE_MAX_TYPE,
+    TOKEN_MAX_TYPE,
 };
 
 typedef struct token_t
 {
     int     type;
     char    rawstring[256];
-    u32     number;
     symbol_t * sym;
     int     op;         // operation
 } token_t;
@@ -247,6 +250,7 @@ typedef struct token_t
 enum OPS
 {
     LBRACKET, RBRACKET,       // { }
+    LSQUARE, RSQUARE,       // [ ]
     PLUS_UNARY, PLUS_BINARY,      // +
     MINUS_UNARY, MINUS_BINARY,    // -
     NOT, NEG,     // ! ~
@@ -261,17 +265,32 @@ enum OPS
     LPAREN, RPAREN,   // ( )
     EQ, POST_EQ,  // = <=
     HASH, DOGGY,   // # @
-    COMMA, SEMICOLON,  // , ;
+    POINT, COMMA, SEMICOLON,  // . , ;
     BIN, OCT, DEC, HEX, // 'b 'B 'o 'O 'd 'D 'h 'H
 };
 
 // Tokenizer выдает поток токенов потребителям.
 
-static void (*my_parser)(token_t * token);
+static void (*parser_stack[1024])(token_t * token) ;
+static int parser_stack_pointer;
 static token_t previous_token, current_token;
 static int tokenization_started = 0;
 static u8 * token_source;
 static int token_source_pointer, token_source_length;
+
+static char * token_type (int type)
+{
+    switch (type)
+    {
+        case TOKEN_NULL : return "NULL";
+        case TOKEN_OP : return "OP";
+        case TOKEN_NUMBER : return "NUMBER";
+        case TOKEN_STRING : return "STRING";
+        case TOKEN_IDENT : return "IDENT";
+        case TOKEN_KEYWORD : return "KEYWORD";
+        default : return "UNKNOWN";
+    }
+}
 
 static void tokenize_file ( unsigned char * content, int filesize )   // подключить загруженный файл 
 {
@@ -279,11 +298,20 @@ static void tokenize_file ( unsigned char * content, int filesize )   // под�
     token_source = content;
     token_source_pointer = 0;
     token_source_length = filesize;
+    parser_stack_pointer = 0;
+    parser_stack[0] = NULL;
+    memset ( &previous_token, 0, sizeof(token_t) );
 }
 
-static void connect_parser ( void (*parser)(token_t * token) )  // подцепить парсер к потоку
+static void push_parser ( void (*parser)(token_t * token) )  // подцепить парсер к потоку, старый положить в стек
 {
-    my_parser = parser;
+    if ( parser_stack_pointer > 1023 ) error ( "Parser stack is full (too many nested blocks)!" );
+    parser_stack[++parser_stack_pointer] = parser;
+}
+
+static void pop_parser (void)   // вернуть старый парсер из стека
+{
+    if (parser_stack_pointer > 0) parser_stack_pointer--;
 }
 
 static unsigned char nextch (int * empty)   // получить следующий символ
@@ -305,7 +333,7 @@ static void putback (void)   // положить назад где взяли
 
 static token_t * next_token (void)  // получить следующий токен или вернуть NULL, если конец файла
 {
-    int empty, international, ident_max_size;
+    int empty, international, ident_max_size, number_max_size;
     token_t * pt = &previous_token;
     u8 ch, ch2, ch3, ch4;
     u8 ident[1024], *ptr;
@@ -362,10 +390,18 @@ static token_t * next_token (void)  // получить следующий то�
         while (!empty && ident_max_size) {
             ch = nextch (&empty);
             if ( !international ) {
-                if ( !isalpha(ch) && !isdigit(ch) && (ch != '_') && (ch != '$') ) { *ptr++ = 0; break; }
+                if ( !isalpha(ch) && !isdigit(ch) && (ch != '_') && (ch != '$') ) {
+                    if (!empty) putback ();
+                    *ptr++ = 0;
+                    break;
+                }
             }
             else {
-                if (ch <= ' ') { *ptr++ = 0; break; }
+                if (ch <= ' ') {
+                    if (!empty) putback ();
+                    *ptr++ = 0;
+                    break;
+                }
             }
             if (!empty) {
                 *ptr++ = ch;
@@ -378,13 +414,10 @@ static token_t * next_token (void)  // получить следующий то�
         // вернуть ключевое слово или идентификатор.
         sym = check_symbol (ident);
         if (sym) {
-            if (sym->type > SYMBOL_NOT_KEYWORDS) {  // уже добавленный идентификатор
-            }
-            else {  // ключевое слово
-                current_token.type = TOKEN_KEYWORD;
-                strncpy ( current_token.rawstring, ident, 255 );
-                current_token.sym = sym;
-            }
+            if (sym->type > SYMBOL_NOT_KEYWORDS) current_token.type = TOKEN_IDENT;
+            else current_token.type = TOKEN_KEYWORD;
+            strncpy ( current_token.rawstring, ident, 255 );
+            current_token.sym = sym;
         }
         else         // добавим идентификатор (параметром или чем либо ещё он может стать потом)
         {
@@ -395,19 +428,52 @@ static token_t * next_token (void)  // получить следующий то�
         }
     }
 
-/*
-    if (letter or _)
+    // числа
+    // если предыдущий токен не приставка системы счисления, то мы сканируем 0-9 и _ (но черточка не должна быть первой, иначе это будет идентификатор)
+    // если приставка была, то :
+    // для двоичных чисел : 0 1 _ x X z Z
+    // для восьмеричных : 0 1 2 3 4 5 6 7 _ x X z Z
+    // для десятичных : 0 1 2 3 4 5 6 7 8 9 _ x X z Z
+    // для шестнаыфаысыых : 0 1 2 3 4 5 6 7 8 9 a A b B c C d D e E f F _ x X z Z
+    if (current_token.type == TOKEN_NULL) 
     {
+        if ( pt->type == TOKEN_OP && (pt->op == BIN || pt->op == OCT || pt->op == DEC || pt->op == HEX) ) {
+        }
+        else if (isdigit(ch)) {  // обычное число.
+            number_max_size = 255;
+            ptr = current_token.rawstring;
+            *ptr++ = ch;
+            while (!empty && number_max_size) {
+                ch = nextch (&empty);
+                if ( !isdigit(ch) && (ch != '_') ) {
+                    *ptr++ = 0;
+                    if (!empty) putback ();
+                    break;
+                }
+                if ( !empty ) {
+                    *ptr++ = ch;
+                    number_max_size--;
+                }
+            }
+            current_token.type = TOKEN_NUMBER;
+        }
     }
-    else if (0-9)
-    {
-    }
-    else
-*/
 
+    // однознаковые операции
+    if ( current_token.type == TOKEN_NULL )
     {
         switch (ch)
         {
+            case '[':
+                current_token.type = TOKEN_OP;
+                current_token.op = LSQUARE;
+                strcpy ( current_token.rawstring, "[" );
+                break;
+            case ']':
+                current_token.type = TOKEN_OP;
+                current_token.op = RSQUARE;
+                strcpy ( current_token.rawstring, "]" );
+                break;
             case '{':
                 current_token.type = TOKEN_OP;
                 current_token.op = LBRACKET;
@@ -418,15 +484,101 @@ static token_t * next_token (void)  // получить следующий то�
                 current_token.op = RBRACKET;
                 strcpy ( current_token.rawstring, "}" );
                 break;
+            case '(':
+                current_token.type = TOKEN_OP;
+                current_token.op = LPAREN;
+                strcpy ( current_token.rawstring, "(" );
+                break;
+            case ')':
+                current_token.type = TOKEN_OP;
+                current_token.op = RPAREN;
+                strcpy ( current_token.rawstring, ")" );
+                break;
             case '?': 
                 current_token.type = TOKEN_OP;
                 current_token.op = HMMM;
                 strcpy ( current_token.rawstring, "?" );
                 break;
-//            default:
-//                printf ("%c", ch );
+            case '.':
+                current_token.type = TOKEN_OP;
+                current_token.op = POINT;
+                strcpy ( current_token.rawstring, "." );
+                break;
+            case ',':
+                current_token.type = TOKEN_OP;
+                current_token.op = COMMA;
+                strcpy ( current_token.rawstring, "," );
+                break;
+            case ':':
+                current_token.type = TOKEN_OP;
+                current_token.op = COLON;
+                strcpy ( current_token.rawstring, ":" );
+                break;
+            case ';':
+                current_token.type = TOKEN_OP;
+                current_token.op = SEMICOLON;
+                strcpy ( current_token.rawstring, ";" );
+                break;
+            case '#':
+                current_token.type = TOKEN_OP;
+                current_token.op = HASH;
+                strcpy ( current_token.rawstring, "#" );
+                break;
+
+            case '*':
+                current_token.type = TOKEN_OP;
+                current_token.op = MUL;
+                strcpy ( current_token.rawstring, "*" );
+                break;
+            case '/':
+                current_token.type = TOKEN_OP;
+                current_token.op = DIV;
+                strcpy ( current_token.rawstring, "/" );
+                break;
+            case '%':
+                current_token.type = TOKEN_OP;
+                current_token.op = MOD;
+                strcpy ( current_token.rawstring, "%" );
+                break;
+
+            case '+':
+                current_token.type = TOKEN_OP;
+                if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) current_token.op = PLUS_UNARY;
+                else current_token.op = PLUS_BINARY;
+                strcpy ( current_token.rawstring, "+" );
+                break;
+            case '-':
+                current_token.type = TOKEN_OP;
+                if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) current_token.op = MINUS_UNARY;
+                else current_token.op = MINUS_BINARY;
+                strcpy ( current_token.rawstring, "-" );
+                break;
         }
     }
+
+    // многознаковые операции, потенциально  могут получаться из однознаковых типа '<' , '<='
+    if ( current_token.type == TOKEN_NULL )
+    {
+        if ( ch == '>' ) {           // > >= >> >>>
+        }
+        else if ( ch == '<' ) {      // < <= << <<< <=(постприсваивание)
+        }
+        else if ( ch == '!' ) {      // ! != !===
+        }
+        else if ( ch == '=' ) {      // = == ===
+        }
+        else if ( ch == '&' ) {      // & && &(редукция)
+        }
+        else if ( ch == '|' ) {      // | || |(редукция)
+        }
+        else if ( ch == '^' ) {      // ^ ^~ ^(редукция) ^~(редукция)
+        }
+        else if ( ch == '~' ) {      // ~ ~^ ~| ~& ~^(редукция) ~|(редукция) ~^(редукция)
+        }
+        else if ( ch == '\'' ) {     // 'b 'B 'o 'O 'd 'D 'h 'H
+        }
+    }
+    // все остальные токены мы просто игнорируем.
 
     tokenization_started = 1;
     return &current_token;
@@ -440,7 +592,7 @@ static token_t * prev_token (void)  // предыдущий токен (или N
 
 static void feed_token (token_t * token)    // скормить токен подключенному парсеру
 {
-    if (token) my_parser (token);
+    if (token && parser_stack[parser_stack_pointer]) parser_stack[parser_stack_pointer] (token);
 }
 
 // ------------------------------------------------------------------------------------
@@ -510,10 +662,34 @@ Expressions.
 
 */
 
+// парсер выражений. точка с запятой означает конец выражения.
+static void expr_parser (token_t * token)
+{
+}
+
+// парсер параметров.
+static void parameter_parser (token_t * token)
+{
+    push_parser (expr_parser);
+    pop_parser ();  // возвращаемся в модуль
+}
+
+// парсер модуля.
+static void module_parser (token_t * token)
+{
+    if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_PARAMETER ) {   // parameter <expr1>, <expr2>, ..., <exprN> ;
+        push_parser ( parameter_parser );
+    }
+}
+
 // наш отладочный парсер. ничего не делает - просто выводит поток токенов на экран, для диагностики.
 static void dummy_parser (token_t * token)
 {
-    if ( token->type != TOKEN_NULL) printf ( "type: %i, op: %i, raw=%s\n\n", token->type, token->op, token->rawstring );
+    if ( token->type != TOKEN_NULL) {
+        if (token->type == TOKEN_OP) printf ( "type: %s, op: %i, raw=\'%s\'\n", token_type(token->type), token->op, token->rawstring );
+        else if (token->type == TOKEN_KEYWORD) printf ( "type: %s, keyword: %i, raw=\'%s\'\n", token_type(token->type), token->sym->type, token->rawstring );
+        else printf ( "type: %s, raw=\'%s\'\n", token_type(token->type), token->rawstring );
+    }
 }
 
 
@@ -545,7 +721,7 @@ int breaksvm_load (char *filename)
     VM_LINE = 1;
 
     tokenize_file ( content, filesize);
-    connect_parser ( dummy_parser );
+    push_parser ( dummy_parser );
 
     do {    // запустить лексический анализ.
         token = next_token ();

@@ -1,51 +1,75 @@
-type: 6, op: 0, raw=parameter
-
-type: 4, op: 0, raw=DUMMY
-
-type: 4, op: 0, raw=NBIT
-
-type: 6, op: 0, raw=input
-
-type: 4, op: 0, raw=CLK
-
-type: 6, op: 0, raw=wire
-
-type: 4, op: 0, raw=a
-
-type: 4, op: 0, raw=b
-
-type: 4, op: 0, raw=c
-
-type: 6, op: 0, raw=wire
-
-type: 4, op: 0, raw=___busa
-
-type: 6, op: 0, raw=wire
-
-type: 4, op: 0, raw=busb
-
-type: 6, op: 0, raw=wand
-
-type: 6, op: 0, raw=vectored
-
-type: 4, op: 0, raw=andbus
-
-type: 6, op: 0, raw=reg
-
-type: 4, op: 0, raw=dout
-
-type: 6, op: 0, raw=trireg
-
-type: 4, op: 0, raw=treg
-
-type: 6, op: 0, raw=reg
-
-type: 4, op: 0, raw=MYREG2
-
-type: 6, op: 0, raw=always
-
-type: 6, op: 0, raw=end
-
+type: KEYWORD, keyword: 28, raw='parameter'
+type: IDENT, raw='DUMMY'
+type: NUMBER, raw='1'
+type: OP, op: 46, raw=','
+type: IDENT, raw='NBIT'
+type: NUMBER, raw='4'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 17, raw='input'
+type: IDENT, raw='CLK'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 43, raw='wire'
+type: IDENT, raw='a'
+type: OP, op: 46, raw=','
+type: IDENT, raw='b'
+type: OP, op: 46, raw=','
+type: IDENT, raw='c'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 43, raw='wire'
+type: OP, op: 2, raw='['
+type: NUMBER, raw='7'
+type: OP, op: 38, raw=':'
+type: NUMBER, raw='0'
+type: OP, op: 3, raw=']'
+type: IDENT, raw='___busa'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 43, raw='wire'
+type: OP, op: 2, raw='['
+type: NUMBER, raw='0'
+type: OP, op: 38, raw=':'
+type: NUMBER, raw='9'
+type: OP, op: 3, raw=']'
+type: IDENT, raw='busb'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 41, raw='wand'
+type: KEYWORD, keyword: 40, raw='vectored'
+type: OP, op: 2, raw='['
+type: NUMBER, raw='7'
+type: OP, op: 38, raw=':'
+type: NUMBER, raw='0'
+type: OP, op: 3, raw=']'
+type: IDENT, raw='andbus'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 30, raw='reg'
+type: OP, op: 2, raw='['
+type: IDENT, raw='NBIT'
+type: OP, op: 6, raw='-'
+type: NUMBER, raw='1'
+type: OP, op: 38, raw=':'
+type: NUMBER, raw='0'
+type: OP, op: 3, raw=']'
+type: IDENT, raw='dout'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 39, raw='trireg'
+type: OP, op: 2, raw='['
+type: NUMBER, raw='7'
+type: OP, op: 38, raw=':'
+type: NUMBER, raw='0'
+type: OP, op: 3, raw=']'
+type: IDENT, raw='treg'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 30, raw='reg'
+type: IDENT, raw='MYREG2'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 1, raw='always'
+type: OP, op: 39, raw='('
+type: IDENT, raw='CLK'
+type: OP, op: 40, raw=')'
+type: IDENT, raw='MYREG2'
+type: IDENT, raw='MYREG2'
+type: NUMBER, raw='1'
+type: OP, op: 47, raw=';'
+type: KEYWORD, keyword: 11, raw='end'
 SYMBOL : DUMMY, hash : 320A859F, type : 101
 SYMBOL : NBIT, hash : 9F9961A8, type : 101
 SYMBOL : CLK, hash : 1E9CEC28, type : 101
