@@ -473,10 +473,7 @@ static token_t * next_token (void)  // получить следующий то�
                 ch = nextch (&empty);
                 if ( !allowed_char(ch, allowed) ) {
                     *ptr++ = 0;
-                    if (!empty) { 
-                        if (ch > ' ') warning ( "Unknown digit : [%c], only [%s] is allowed, putting back into stream.", ch, allowed );
-                        putback ();
-                    }
+                    if (!empty) putback ();
                     break;
                 }
                 if ( !empty && ch != '_' ) {    // подчеркивания не записываем, они только для форматирования
