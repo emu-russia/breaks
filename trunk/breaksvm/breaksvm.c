@@ -351,8 +351,8 @@ static token_t * next_token (void)  // получить следующий то�
     symbol_t * sym;
     char * allowed;
 
-    // копируем текущий токен в предыдущий
-    memcpy ( &previous_token, &current_token, sizeof(token_t) );
+    // копируем текущий токен в предыдущий, только если он не пустышка.
+    if (current_token.type != TOKEN_NULL) memcpy ( &previous_token, &current_token, sizeof(token_t) );
 
     // ну просто дубовый алгоритм, выбираем символы и смотрим что получается )))
     // иногда мы делаем look-ahead, для выборки длинных операций, а иногда делаем look-back (например для определения - унарный ли - или бинарный)
@@ -454,7 +454,6 @@ static token_t * next_token (void)  // получить следующий то�
     // Запись числа вида 8 'b ?1x0_Z1z0 -- это на самом деле операция BIN между 8 (размер) и числом. 
     // Популяцию цифр должна выполнять соответствующая операция. Что такое популяция - это заполнение пропущенных цифр - последней значащей.
     // Например 8'b1 -- популируется как 1111_1111, а 8'b0101 популируется уже как 0000_0101.
-    // Кстати, поскольку это операция, то ничто не запрещает вставлять в выражение операторы, типа 8 'd -2, такой поток будет разобран как : NUMBER DEC UNARY_MINUS NUMBER
     if (current_token.type == TOKEN_NULL) 
     {
         if ( pt->type == TOKEN_OP && (pt->op == BIN || pt->op == OCT || pt->op == DEC || pt->op == HEX) ) {
@@ -591,14 +590,96 @@ static token_t * next_token (void)  // получить следующий то�
     if ( current_token.type == TOKEN_NULL )
     {
         if ( ch == '>' ) {           // > >= >> >>>
+            ch = nextch (&empty);
+            if (!empty )
+            {
+                if ( ch == '=') {
+                    current_token.type = TOKEN_OP;
+                    current_token.op = GREATER_EQ;
+                    strcpy ( current_token.rawstring, ">=" );
+                }
+                else if (ch == '>') {
+                    ch = nextch (&empty);
+                    if (!empty) {
+                        if (ch == '>') {
+                            current_token.type = TOKEN_OP;
+                            current_token.op = ROTR;
+                            strcpy ( current_token.rawstring, ">>>" );
+                        }
+                        else {
+                            putback ();
+                            current_token.type = TOKEN_OP;
+                            current_token.op = SHR;
+                            strcpy ( current_token.rawstring, ">>" );
+                            empty = 1;
+                        }
+                    }
+                }
+                else {
+                    putback ();
+                    current_token.type = TOKEN_OP;
+                    current_token.op = GREATER;
+                    strcpy ( current_token.rawstring, ">" );
+                }
+            }
         }
-        else if ( ch == '<' ) {      // < <= << <<< <=(постприсваивание)
+        else if ( ch == '<' ) {      // < <= << <<< <=(постприсваивание определяется expression parser, lexer всегда возвращает только меньше или равно)
+            // постприсваивание всегда - самый первый оператор выражения.
+            ch = nextch (&empty);
+            if (!empty )
+            {
+                if ( ch == '=') {
+                    current_token.type = TOKEN_OP;
+                    current_token.op = LESS_EQ;
+                    strcpy ( current_token.rawstring, "<=" );
+                }
+                else if (ch == '<') {
+                    ch = nextch (&empty);
+                    if (!empty) {
+                        if (ch == '<') {
+                            current_token.type = TOKEN_OP;
+                            current_token.op = ROTL;
+                            strcpy ( current_token.rawstring, "<<<" );
+                        }
+                        else {
+                            putback ();
+                            current_token.type = TOKEN_OP;
+                            current_token.op = SHL;
+                            strcpy ( current_token.rawstring, "<<" );
+                        }
+                    }
+                }
+                else {
+                    putback ();
+                    current_token.type = TOKEN_OP;
+                    current_token.op = LESS;
+                    strcpy ( current_token.rawstring, "<" );
+                }
+            }
         }
+//    LOGICAL_EQ, CASE_EQ, LOGICAL_NOTEQ, CASE_NOTEQ,     // == != === !===
         else if ( ch == '!' ) {      // ! != !===
+            ch = nextch (&empty);
+            if (!empty) {
+                if ( ch == '=' ) {
+                    ch = nextch (&empty);
+                    if (!empty) {
+                    }
+                    else {
+                    }
+                }
+                else {
+                    putback ();
+                    current_token.type = TOKEN_OP;
+                    current_token.op = NOT;
+                    strcpy ( current_token.rawstring, "!" );
+                }
+            }
+            else 
         }
         else if ( ch == '=' ) {      // = == ===
         }
-        else if ( ch == '&' ) {      // & && &(редукция)
+        else if ( ch == '&' ) {      // & && &(редукция)  редукция будет когда предыдущий токен - операнд.
         }
         else if ( ch == '|' ) {      // | || |(редукция)
         }
