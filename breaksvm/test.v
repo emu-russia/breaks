@@ -34,7 +34,8 @@
     reg MYREG2;
 
     always @ (CLK)
-        MYREG2 = MYREG2 ^ 1;
+        MYREG2 = MYREG2 + 1;        // бинарный плюс
+        MYREG2 = -MYREG2;       // унарный минус
     end
 
 //endmodule
