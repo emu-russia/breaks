@@ -209,7 +209,7 @@ static void dump_symbols (void)
 имена: обычные правила для имён, но можно ещё использовать знак доллара $. 
 Также если имя начинается с символа \ , то дальше могут идти вообще любой байт-код, до символа <= пробела.
 
-операции : { } + - * /  %  > >= < <=  ! && || == != === !=== ~ & | ^ ^~ ~^ ~& ~| << >> <<< >>> ? : ( ) # = <= 'b 'o 'd 'h
+операции : { } + - * /  %  > >= < <=  ! && || == != === !== ~ & | ^ ^~ ~^ ~& ~| << >> <<< >>> ? : ( ) # = <= 'b 'o 'd 'h
 приоритет операций :
     'b 'o 'd 'h
     { } (конкатенация)
@@ -217,7 +217,7 @@ static void dump_symbols (void)
     * / %
     + - (бинарные)
     << >> <<< >>>
-    == != === !===
+    == != === !==
     & ~&
     ^ ^~ ~^
     | ~|
@@ -250,7 +250,7 @@ typedef struct token_t
 
 enum OPS
 {
-    LBRACKET, RBRACKET,       // { }
+    LBRACKET=0, RBRACKET,       // { }
     LSQUARE, RSQUARE,       // [ ]
     PLUS_UNARY, PLUS_BINARY,      // +
     MINUS_UNARY, MINUS_BINARY,    // -
@@ -259,7 +259,7 @@ enum OPS
     SHL, SHR, ROTL, ROTR,   // << >> <<< >>>
     GREATER, GREATER_EQ, LESS, LESS_EQ,     // > >= < <=
     LOGICAL_AND, LOGICAL_OR,      // && ||
-    LOGICAL_EQ, CASE_EQ, LOGICAL_NOTEQ, CASE_NOTEQ,     // == != === !===
+    LOGICAL_EQ, CASE_EQ, LOGICAL_NOTEQ, CASE_NOTEQ,     // == === != !==
     AND, OR, XOR, XNOR, // & | ^ ~^ ^~
     REDUCT_AND, REDUCT_NAND, REDUCT_OR, REDUCT_NOR, REDUCT_XOR, REDUCT_XNOR,  // & ~& | ~| ^ ^~ ~^
     HMMM, COLON,  // ? :
@@ -269,6 +269,17 @@ enum OPS
     POINT, COMMA, SEMICOLON,  // . , ;
     BIN, OCT, DEC, HEX, // 'b 'B 'o 'O 'd 'D 'h 'H
 };
+
+static char * opstr (int type)
+{
+    char *str[] = {
+        "{", "}", "[", "]", "+", "++", "-", "--", "!", "~", "*", "/", "%",
+        "<<", ">>", "<<<", ">>>", ">", ">=", "<", "<=", "&&", "||",
+        "==", "===", "!=", "!==", "&", "|", "^", "~^", "R&", "R~&", "R|", "R~|", "R^", "R~^", 
+        "?", ":", "(", ")", "=", "POST=", "#", "@", ".", ",", ";", "BIN", "OCT", "DEC", "HEX",
+    };
+    return str[type];
+}
 
 // Tokenizer выдает поток токенов потребителям.
 
@@ -570,19 +581,35 @@ static token_t * next_token (void)  // получить следующий то�
             }
             else setop (LESS);
         }
-//    LOGICAL_EQ, CASE_EQ, LOGICAL_NOTEQ, CASE_NOTEQ,     // == != === !===
-        else if ( ch == '!' ) {      // ! != !===
+        else if ( ch == '!' ) {      // ! != !==
             ch = nextch (&empty);
             if (!empty) {
-
+                if (ch == '=') {
+                    ch = nextch (&empty);
+                    if (!empty) {
+                        if (ch == '=') setop (CASE_NOTEQ);
+                        else setopback (LOGICAL_NOTEQ);
+                    }
+                    else setop (LOGICAL_NOTEQ);
+                }
+                else setopback (NOT);
             }
-            else {
-                current_token.type = TOKEN_OP;
-                current_token.op = NOT;
-                strcpy ( current_token.rawstring, "!" );
-            }
+            else setop (NOT);
         }
         else if ( ch == '=' ) {      // = == ===
+            ch = nextch (&empty);
+            if (!empty) {
+                if (ch == '=') {
+                    ch = nextch (&empty);
+                    if (!empty) {
+                        if (ch == '=') setop (CASE_EQ);
+                        else setopback (LOGICAL_EQ);
+                    }
+                    else setop (LOGICAL_EQ);
+                }
+                else setopback (EQ);
+            }
+            else setop (EQ);
         }
         else if ( ch == '&' ) {      // & && &(редукция)  редукция будет когда предыдущий токен - операнд.
         }
@@ -736,7 +763,7 @@ static void module_parser (token_t * token)
 static void dummy_parser (token_t * token)
 {
     if ( token->type != TOKEN_NULL) {
-        if (token->type == TOKEN_OP) printf ( "type: %s, op: %i, raw=\'%s\'\n", token_type(token->type), token->op, token->rawstring );
+        if (token->type == TOKEN_OP) printf ( "type: %s, op: %s\n", token_type(token->type), opstr(token->op) );
         else if (token->type == TOKEN_KEYWORD) printf ( "type: %s, keyword: %i, raw=\'%s\'\n", token_type(token->type), token->sym->type, token->rawstring );
         else printf ( "type: %s, raw=\'%s\'\n", token_type(token->type), token->rawstring );
     }
