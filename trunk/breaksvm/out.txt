@@ -4,19 +4,36 @@ type: OP, op: !==
 type: OP, op: =
 type: OP, op: ==
 type: OP, op: ===
+type: OP, op: R&
+type: OP, op: &&
 type: OP, op: =
+type: OP, op: R&
+type: IDENT, raw='x'
+type: OP, op: |
+type: OP, op: ||
+type: OP, op: =
+type: OP, op: R|
+type: IDENT, raw='x'
+type: OP, op: ^
+type: OP, op: R~^
+type: OP, op: =
+type: OP, op: R^
 type: IDENT, raw='x'
 type: OP, op: =
+type: OP, op: R~^
+type: IDENT, raw='x'
+type: OP, op: ~
+type: OP, op: R~^
+type: OP, op: R~|
+type: OP, op: R~&
+type: OP, op: =
+type: OP, op: R~^
 type: IDENT, raw='x'
 type: OP, op: =
+type: OP, op: R~|
 type: IDENT, raw='x'
 type: OP, op: =
-type: IDENT, raw='x'
-type: OP, op: =
-type: IDENT, raw='x'
-type: OP, op: =
-type: IDENT, raw='x'
-type: OP, op: =
+type: OP, op: R~^
 type: IDENT, raw='x'
 type: KEYWORD, keyword: 28, raw='parameter'
 type: IDENT, raw='DUMMY'
