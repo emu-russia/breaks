@@ -1,87 +1,104 @@
+type: OP, op: !
+type: OP, op: !=
+type: OP, op: !==
+type: OP, op: =
+type: OP, op: ==
+type: OP, op: ===
+type: OP, op: =
 type: IDENT, raw='x'
+type: OP, op: =
 type: IDENT, raw='x'
+type: OP, op: =
 type: IDENT, raw='x'
+type: OP, op: =
 type: IDENT, raw='x'
+type: OP, op: =
 type: IDENT, raw='x'
+type: OP, op: =
 type: IDENT, raw='x'
+type: OP, op: =
 type: IDENT, raw='x'
 type: KEYWORD, keyword: 28, raw='parameter'
 type: IDENT, raw='DUMMY'
+type: OP, op: =
 type: NUMBER, raw='1'
-type: OP, op: 46, raw=','
+type: OP, op: ,
 type: IDENT, raw='NBIT'
+type: OP, op: =
 type: NUMBER, raw='4'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 17, raw='input'
 type: IDENT, raw='CLK'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 43, raw='wire'
 type: IDENT, raw='a'
-type: OP, op: 46, raw=','
+type: OP, op: ,
 type: IDENT, raw='b'
-type: OP, op: 46, raw=','
+type: OP, op: ,
 type: IDENT, raw='c'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 43, raw='wire'
-type: OP, op: 2, raw='['
+type: OP, op: [
 type: NUMBER, raw='7'
-type: OP, op: 38, raw=':'
+type: OP, op: :
 type: NUMBER, raw='0'
-type: OP, op: 3, raw=']'
+type: OP, op: ]
 type: IDENT, raw='___busa'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 43, raw='wire'
-type: OP, op: 2, raw='['
+type: OP, op: [
 type: NUMBER, raw='0'
-type: OP, op: 38, raw=':'
+type: OP, op: :
 type: NUMBER, raw='9'
-type: OP, op: 3, raw=']'
+type: OP, op: ]
 type: IDENT, raw='busb'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 41, raw='wand'
 type: KEYWORD, keyword: 40, raw='vectored'
-type: OP, op: 2, raw='['
+type: OP, op: [
 type: NUMBER, raw='7'
-type: OP, op: 38, raw=':'
+type: OP, op: :
 type: NUMBER, raw='0'
-type: OP, op: 3, raw=']'
+type: OP, op: ]
 type: IDENT, raw='andbus'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 30, raw='reg'
-type: OP, op: 2, raw='['
+type: OP, op: [
 type: IDENT, raw='NBIT'
-type: OP, op: 7, raw='-'
+type: OP, op: --
 type: NUMBER, raw='1'
-type: OP, op: 38, raw=':'
+type: OP, op: :
 type: NUMBER, raw='0'
-type: OP, op: 3, raw=']'
+type: OP, op: ]
 type: IDENT, raw='dout'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 39, raw='trireg'
-type: OP, op: 2, raw='['
+type: OP, op: [
 type: NUMBER, raw='7'
-type: OP, op: 38, raw=':'
+type: OP, op: :
 type: NUMBER, raw='0'
-type: OP, op: 3, raw=']'
+type: OP, op: ]
 type: IDENT, raw='treg'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 30, raw='reg'
 type: IDENT, raw='MYREG2'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 1, raw='always'
-type: OP, op: 44, raw='@'
-type: OP, op: 39, raw='('
+type: OP, op: @
+type: OP, op: (
 type: IDENT, raw='CLK'
-type: OP, op: 40, raw=')'
+type: OP, op: )
 type: IDENT, raw='MYREG2'
+type: OP, op: =
 type: IDENT, raw='MYREG2'
-type: OP, op: 5, raw='+'
+type: OP, op: ++
 type: NUMBER, raw='1'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: IDENT, raw='MYREG2'
-type: OP, op: 7, raw='-'
+type: OP, op: =
+type: OP, op: -
 type: IDENT, raw='MYREG2'
-type: OP, op: 47, raw=';'
+type: OP, op: ;
 type: KEYWORD, keyword: 11, raw='end'
 SYMBOL : x, hash : 16357CE4, type : 101
 SYMBOL : DUMMY, hash : 320A859F, type : 101
