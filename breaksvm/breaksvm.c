@@ -612,12 +612,68 @@ static token_t * next_token (void)  // получить следующий то�
             else setop (EQ);
         }
         else if ( ch == '&' ) {      // & && &(редукция)  редукция будет когда предыдущий токен - операнд.
+            ch = nextch (&empty);
+            if (!empty) {
+                if (ch == '&') setop (LOGICAL_AND);
+                else {
+                    if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setopback (REDUCT_AND);
+                    else setopback (AND);
+                }
+            }
+            else {
+                if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setop (REDUCT_AND);
+                else setop (AND);
+            }
         }
         else if ( ch == '|' ) {      // | || |(редукция)
+            ch = nextch (&empty);
+            if (!empty) {
+                if (ch == '|') setop (LOGICAL_OR);
+                else {
+                    if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setopback (REDUCT_OR);
+                    else setopback (OR);
+                }
+            }
+            else {
+                if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setop (REDUCT_OR);
+                else setop (OR);
+            }
         }
         else if ( ch == '^' ) {      // ^ ^~ ^(редукция) ^~(редукция)
+            ch = nextch (&empty);
+            if (!empty) {
+                if (ch == '~') {
+                    if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setop (REDUCT_XNOR);
+                    else setop (XNOR);
+                }
+                else {
+                    if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setopback (REDUCT_XOR);
+                    else setopback (XOR);
+                }
+            }
+            else {
+                if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setop (REDUCT_XOR);
+                else setop (XOR);
+            }
         }
-        else if ( ch == '~' ) {      // ~ ~^ ~| ~& ~^(редукция) ~|(редукция) ~^(редукция)
+        else if ( ch == '~' ) {      // ~ ~^ ~^(редукция) ~|(редукция) ~&(редукция)
+            ch = nextch (&empty);
+            if (!empty) {
+                if (ch == '^') {
+                    if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setop (REDUCT_XNOR);
+                    else setop (XNOR);
+                }
+                else if (ch == '|') {
+                    if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setop (REDUCT_NOR);
+                    else setopback (NEG);
+                }
+                else if (ch == '&') {
+                    if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setop (REDUCT_NAND);
+                    else setopback (NEG);
+                }
+                else setopback (NEG);
+            }
+            else setop (NEG);            
         }
         else if ( ch == '\'' ) {     // 'b 'B 'o 'O 'd 'D 'h 'H
             ch = nextch (&empty);
