@@ -342,6 +342,19 @@ static int allowed_char (char c, char *allowed)
     return 0;
 }
 
+static void setop (int op)
+{
+    current_token.type = TOKEN_OP;
+    current_token.op = op;
+}
+
+static void setopback (int op)
+{
+    putback ();
+    current_token.type = TOKEN_OP;
+    current_token.op = op;
+}
+
 static token_t * next_token (void)  // получить следующий токен или вернуть NULL, если конец файла
 {
     int empty, international, ident_max_size, number_max_size;
@@ -358,6 +371,7 @@ static token_t * next_token (void)  // получить следующий то�
     // иногда мы делаем look-ahead, для выборки длинных операций, а иногда делаем look-back (например для определения - унарный ли - или бинарный)
 
     current_token.type = TOKEN_NULL;
+    current_token.rawstring[0] = 0;
 
     ch = nextch (&empty);
     if ( empty ) return NULL;
@@ -489,99 +503,31 @@ static token_t * next_token (void)  // получить следующий то�
     {
         switch (ch)
         {
-            case '[':
-                current_token.type = TOKEN_OP;
-                current_token.op = LSQUARE;
-                strcpy ( current_token.rawstring, "[" );
-                break;
-            case ']':
-                current_token.type = TOKEN_OP;
-                current_token.op = RSQUARE;
-                strcpy ( current_token.rawstring, "]" );
-                break;
-            case '{':
-                current_token.type = TOKEN_OP;
-                current_token.op = LBRACKET;
-                strcpy ( current_token.rawstring, "{" );
-                break;
-            case '}':
-                current_token.type = TOKEN_OP;
-                current_token.op = RBRACKET;
-                strcpy ( current_token.rawstring, "}" );
-                break;
-            case '(':
-                current_token.type = TOKEN_OP;
-                current_token.op = LPAREN;
-                strcpy ( current_token.rawstring, "(" );
-                break;
-            case ')':
-                current_token.type = TOKEN_OP;
-                current_token.op = RPAREN;
-                strcpy ( current_token.rawstring, ")" );
-                break;
-            case '?': 
-                current_token.type = TOKEN_OP;
-                current_token.op = HMMM;
-                strcpy ( current_token.rawstring, "?" );
-                break;
-            case '.':
-                current_token.type = TOKEN_OP;
-                current_token.op = POINT;
-                strcpy ( current_token.rawstring, "." );
-                break;
-            case ',':
-                current_token.type = TOKEN_OP;
-                current_token.op = COMMA;
-                strcpy ( current_token.rawstring, "," );
-                break;
-            case ':':
-                current_token.type = TOKEN_OP;
-                current_token.op = COLON;
-                strcpy ( current_token.rawstring, ":" );
-                break;
-            case ';':
-                current_token.type = TOKEN_OP;
-                current_token.op = SEMICOLON;
-                strcpy ( current_token.rawstring, ";" );
-                break;
-            case '#':
-                current_token.type = TOKEN_OP;
-                current_token.op = HASH;
-                strcpy ( current_token.rawstring, "#" );
-                break;
-            case '@':
-                current_token.type = TOKEN_OP;
-                current_token.op = DOGGY;
-                strcpy ( current_token.rawstring, "@" );
-                break;
+            case '[': setop (LSQUARE); break;
+            case ']': setop (RSQUARE); break;
+            case '{': setop (LBRACKET); break;
+            case '}': setop (RBRACKET); break;
+            case '(': setop (LPAREN); break;
+            case ')': setop (RPAREN); break;
+            case '?': setop (HMMM); break;
+            case '.': setop (POINT); break;
+            case ',': setop (COMMA); break;
+            case ':': setop (COLON); break;
+            case ';': setop (SEMICOLON); break;
+            case '#': setop (HASH); break;
+            case '@': setop (DOGGY); break;
 
-            case '*':
-                current_token.type = TOKEN_OP;
-                current_token.op = MUL;
-                strcpy ( current_token.rawstring, "*" );
-                break;
-            case '/':
-                current_token.type = TOKEN_OP;
-                current_token.op = DIV;
-                strcpy ( current_token.rawstring, "/" );
-                break;
-            case '%':
-                current_token.type = TOKEN_OP;
-                current_token.op = MOD;
-                strcpy ( current_token.rawstring, "%" );
-                break;
+            case '*': setop (MUL); break;
+            case '/': setop (DIV); break;
+            case '%': setop (MOD); break;
 
             case '+':
-                current_token.type = TOKEN_OP;
-                if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) current_token.op = PLUS_UNARY;
-                else current_token.op = PLUS_BINARY;
-                strcpy ( current_token.rawstring, "+" );
+                if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setop (PLUS_UNARY);
+                else setop (PLUS_BINARY);
                 break;
             case '-':
-                current_token.type = TOKEN_OP;
-                if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) current_token.op = MINUS_UNARY;
-                else current_token.op = MINUS_BINARY;
-                strcpy ( current_token.rawstring, "-" );
+                if ( pt->type == TOKEN_OP || pt->type == TOKEN_NULL ) setop (MINUS_UNARY);
+                else setop (MINUS_BINARY);
                 break;
         }
     }
@@ -593,89 +539,48 @@ static token_t * next_token (void)  // получить следующий то�
             ch = nextch (&empty);
             if (!empty )
             {
-                if ( ch == '=') {
-                    current_token.type = TOKEN_OP;
-                    current_token.op = GREATER_EQ;
-                    strcpy ( current_token.rawstring, ">=" );
-                }
+                if ( ch == '=') setop (GREATER_EQ);
                 else if (ch == '>') {
                     ch = nextch (&empty);
                     if (!empty) {
-                        if (ch == '>') {
-                            current_token.type = TOKEN_OP;
-                            current_token.op = ROTR;
-                            strcpy ( current_token.rawstring, ">>>" );
-                        }
-                        else {
-                            putback ();
-                            current_token.type = TOKEN_OP;
-                            current_token.op = SHR;
-                            strcpy ( current_token.rawstring, ">>" );
-                            empty = 1;
-                        }
+                        if (ch == '>') setop (ROTR);
+                        else setopback (SHR);
                     }
+                    else setop (SHR);
                 }
-                else {
-                    putback ();
-                    current_token.type = TOKEN_OP;
-                    current_token.op = GREATER;
-                    strcpy ( current_token.rawstring, ">" );
-                }
+                else setopback (GREATER);
             }
+            else setop (GREATER);
         }
         else if ( ch == '<' ) {      // < <= << <<< <=(постприсваивание определяется expression parser, lexer всегда возвращает только меньше или равно)
             // постприсваивание всегда - самый первый оператор выражения.
             ch = nextch (&empty);
             if (!empty )
             {
-                if ( ch == '=') {
-                    current_token.type = TOKEN_OP;
-                    current_token.op = LESS_EQ;
-                    strcpy ( current_token.rawstring, "<=" );
-                }
+                if ( ch == '=') setop (LESS_EQ);
                 else if (ch == '<') {
                     ch = nextch (&empty);
                     if (!empty) {
-                        if (ch == '<') {
-                            current_token.type = TOKEN_OP;
-                            current_token.op = ROTL;
-                            strcpy ( current_token.rawstring, "<<<" );
-                        }
-                        else {
-                            putback ();
-                            current_token.type = TOKEN_OP;
-                            current_token.op = SHL;
-                            strcpy ( current_token.rawstring, "<<" );
-                        }
+                        if (ch == '<') setop (ROTL);
+                        else setopback (SHL);
                     }
+                    else setop (SHL);
                 }
-                else {
-                    putback ();
-                    current_token.type = TOKEN_OP;
-                    current_token.op = LESS;
-                    strcpy ( current_token.rawstring, "<" );
-                }
+                else setopback (LESS);
             }
+            else setop (LESS);
         }
 //    LOGICAL_EQ, CASE_EQ, LOGICAL_NOTEQ, CASE_NOTEQ,     // == != === !===
         else if ( ch == '!' ) {      // ! != !===
             ch = nextch (&empty);
             if (!empty) {
-                if ( ch == '=' ) {
-                    ch = nextch (&empty);
-                    if (!empty) {
-                    }
-                    else {
-                    }
-                }
-                else {
-                    putback ();
-                    current_token.type = TOKEN_OP;
-                    current_token.op = NOT;
-                    strcpy ( current_token.rawstring, "!" );
-                }
+
             }
-            else 
+            else {
+                current_token.type = TOKEN_OP;
+                current_token.op = NOT;
+                strcpy ( current_token.rawstring, "!" );
+            }
         }
         else if ( ch == '=' ) {      // = == ===
         }
