@@ -622,26 +622,10 @@ static token_t * next_token (void)  // получить следующий то�
         else if ( ch == '\'' ) {     // 'b 'B 'o 'O 'd 'D 'h 'H
             ch = nextch (&empty);
             if (!empty) {
-                if ( ch == 'b' || ch == 'B' ) {
-                    current_token.type = TOKEN_OP;
-                    current_token.op = BIN;
-                    strcpy ( current_token.rawstring, "\'b" );
-                }
-                else if ( ch == 'o' || ch == 'O' ) {
-                    current_token.type = TOKEN_OP;
-                    current_token.op = OCT;
-                    strcpy ( current_token.rawstring, "\'o" );
-                }
-                else if ( ch == 'd' || ch == 'D' ) {
-                    current_token.type = TOKEN_OP;
-                    current_token.op = DEC;
-                    strcpy ( current_token.rawstring, "\'d" );
-                }
-                else if ( ch == 'h' || ch == 'H' ) {
-                    current_token.type = TOKEN_OP;
-                    current_token.op = HEX;
-                    strcpy ( current_token.rawstring, "\'h" );
-                }
+                if ( ch == 'b' || ch == 'B' ) setop (BIN);
+                else if ( ch == 'o' || ch == 'O' ) setop (OCT);
+                else if ( ch == 'd' || ch == 'D' ) setop (DEC);
+                else if ( ch == 'h' || ch == 'H' ) setop (HEX);
                 else warning ( "Unknown base : [%c]", ch );
             }
         }
