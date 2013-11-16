@@ -96,14 +96,23 @@ static int keyword_ids[] = {    // должна соответствовать �
     SYMBOL_KEYWORD_ENDMODULE,
 };
 
+typedef struct number_t
+{
+    u32     value;
+    u32     xmask;
+    u32     zmask;
+    int     lsb, msb, len;
+} number_t;
+
 typedef struct symbol_t
 {
-    char    rawstring[256], value[256];
+    char    rawstring[256];
+    number_t    num;
     u32     hash;
     int     type;
 } symbol_t;
 
-static  symbol_t *symtab;
+static  symbol_t symtab[1000];
 static  int sym_num;
 
 static u32 MurmurHash (char * key)      // https://code.google.com/p/smhasher/
@@ -166,16 +175,11 @@ static symbol_t * add_symbol (char *name, int type)     // добавить си
     if ( strlen (name) > 255 ) {
         warning ( "Martin, your symbol \'%s\' name length exceeds 255 bytes and will be truncated!", name ); // выдаем предупреждение Мартину Корту
     }
-    symtab = (symbol_t *)realloc (symtab, sizeof(symbol_t) * (sym_num + 1) );
-    if ( !symtab ) {
-        error ( "Cannot allocate symbol \'%s\', not enough memory", name );
-        return NULL;
-    }
     symbol = &symtab[sym_num];
     strncpy ( symbol->rawstring, name, 255 );
     symbol->type = type;
     symbol->hash = MurmurHash (symbol->rawstring);     // calculate hash for truncated name!
-    symbol->value[0] = 0;
+    memset ( &symbol->num, 0, sizeof(number_t) );
     sym_num++;
     return &symtab[sym_num - 1];
 }
@@ -185,7 +189,7 @@ static void dump_symbols (void)
     int i;
     for (i=0; i<sym_num; i++) {
         if ( symtab[i].type < SYMBOL_NOT_KEYWORDS ) continue;   // don't dump keywords.
-        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, value : %s\n", symtab[i].rawstring, symtab[i].value );
+        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, value : %s\n", symtab[i].rawstring, symtab[i].num.value );
         else if ( symtab[i].type == SYMBOL_INPUT ) printf ( "INPUT : %s\n", symtab[i].rawstring );
         else if ( symtab[i].type == SYMBOL_OUTPUT ) printf ( "OUTPUT : %s\n", symtab[i].rawstring );
         else if ( symtab[i].type == SYMBOL_INOUT ) printf ( "INOUT : %s\n", symtab[i].rawstring );
@@ -200,7 +204,7 @@ static void dump_symbols (void)
 Часть стандарта Verilog будет тут. (в основном в этом блоке - описание формата лексем)
 
 числа: общий формат записи такой : <size>[spaces]<'[bBoOdDhH]base>[spaces]<[0-9a-fA-F_]>
-Размер числа не может быть = 0 или больше 64 бит.
+Размер числа не может быть = 0 или больше 32 бит.
 
 строки: последовательность символов между "..." при этом "sdfsdf//тест" - будет являться строкой (комментарии внутри строки - это часть строки)
 токен активируется при обнаружении ". Далее выбираются символы до следующего ", либо до конца строки '\n'. Если строка не закрылась, то вякаем предупреждением и закрываем строку.
@@ -208,9 +212,8 @@ static void dump_symbols (void)
 имена: обычные правила для имён, но можно ещё использовать знак доллара $. 
 Также если имя начинается с символа \ , то дальше могут идти вообще любой байт-код, до символа <= пробела.
 
-операции : { } + - * /  %  > >= < <=  ! && || == != === !== ~ & | ^ ^~ ~^ ~& ~| << >> <<< >>> ? : ( ) # = <= 'b 'o 'd 'h
+операции : { } + - * /  %  > >= < <=  ! && || == != === !== ~ & | ^ ^~ ~^ ~& ~| << >> <<< >>> ? : ( ) # = <=
 приоритет операций :
-    'b 'o 'd 'h (бинарные)
     { } (конкатенация) ( ) [ ]
     + - ! ~ (унарные)
     * / %
@@ -244,6 +247,7 @@ typedef struct token_t
     int     type;
     char    rawstring[256];
     symbol_t * sym;
+    number_t num;
     int     op;         // operation
 } token_t;
 
@@ -267,7 +271,6 @@ enum OPS
     EQ, POST_EQ,  // = <=
     HASH, DOGGY,   // # @
     POINT, COMMA, SEMICOLON,  // . , ;
-    BIN, OCT, DEC, HEX, // 'b 'B 'o 'O 'd 'D 'h 'H
 };
 
 static char * opstr (int type)
@@ -276,7 +279,7 @@ static char * opstr (int type)
         "NOP", "{", "}", "[", "]", "+", "++", "-", "--", "!", "~", "*", "/", "%",
         "<<", ">>", "<<<", ">>>", ">", ">=", "<", "<=", "&&", "||",
         "==", "===", "!=", "!==", "&", "|", "^", "~^", "R&", "R~&", "R|", "R~|", "R^", "R~^", 
-        "?", ":", "(", ")", "=", "POST=", "#", "@", ".", ",", ";", "BIN", "OCT", "DEC", "HEX",
+        "?", ":", "(", ")", "=", "POST=", "#", "@", ".", ",", ";", 
     };
     return str[type];
 }
@@ -335,7 +338,6 @@ static int isbinary (int op)
         case LOGICAL_AND: case LOGICAL_OR:
         case LOGICAL_EQ: case CASE_EQ: case LOGICAL_NOTEQ: case CASE_NOTEQ:
         case AND: case OR: case XOR: case XNOR:
-        case BIN: case OCT: case DEC: case HEX:
             return 1;
     }
     return 0;
@@ -403,12 +405,111 @@ static void setopback (int op)
     current_token.op = op;
 }
 
+// конвертирует строку в число. выполняет популяцию разрядов.
+static void convertnum ( char *str, number_t *num, int base, int lsb, int msb)
+{
+    u32 lenmask;
+    int len = abs(lsb-msb) + 1, bits = 0;
+    char c, *ptr = str;
+
+    num->lsb = lsb;
+    num->msb = msb;
+    num->len = len;
+    if (len == 32) lenmask = 0xffffffff;
+    else lenmask = (1 << len) - 1;
+
+    if (base == 2) {
+        num->value = num->zmask = num->xmask = 0;
+        while (*ptr) {
+            num->value <<= 1;
+            num->zmask <<= 1;
+            num->xmask <<= 1;
+            bits++;
+            c = *ptr++;
+            if (c == '0') { num->value; }
+            else if (c == '1') { num->value |= 1; }
+            else if (c == 'x' || c == 'X' || c == '?') { num->xmask |= 1; }
+            else if (c == 'z' || c == 'Z') { num->zmask |= 1; }
+            else if (c == '_') continue;
+            else break;
+        }
+    }
+    else if (base == 8) {
+        num->value = num->zmask = num->xmask = 0;
+        while (*ptr) {
+            num->value <<= 3;
+            num->zmask <<= 3;
+            num->xmask <<= 3;
+            bits+=3;
+            c = *ptr++;
+            if (c == '0') { num->value; }
+            else if (c == '1') { num->value |= 1; }
+            else if (c == '2') { num->value |= 2; }
+            else if (c == '3') { num->value |= 3; }
+            else if (c == '4') { num->value |= 4; }
+            else if (c == '5') { num->value |= 5; }
+            else if (c == '6') { num->value |= 6; }
+            else if (c == '7') { num->value |= 7; }
+            else if (c == 'x' || c == 'X' || c == '?') { num->xmask |= 7; }
+            else if (c == 'z' || c == 'Z') { num->zmask |= 7; }
+            else if (c == '_') continue;
+            else break;
+        }
+    }
+    else if (base == 16) {
+        num->value = num->zmask = num->xmask = 0;
+        while (*ptr) {
+            num->value <<= 4;
+            num->zmask <<= 4;
+            num->xmask <<= 4;
+            bits+=4;
+            c = *ptr++;
+            if (c == '0') { num->value; }
+            else if (c == '1') { num->value |= 1; }
+            else if (c == '2') { num->value |= 2; }
+            else if (c == '3') { num->value |= 3; }
+            else if (c == '4') { num->value |= 4; }
+            else if (c == '5') { num->value |= 5; }
+            else if (c == '6') { num->value |= 6; }
+            else if (c == '7') { num->value |= 7; }
+            else if (c == '8') { num->value |= 8; }
+            else if (c == '9') { num->value |= 9; }
+            else if (c == 'a' || c == 'A') { num->value |= 0xa; }
+            else if (c == 'b' || c == 'B') { num->value |= 0xb; }
+            else if (c == 'c' || c == 'C') { num->value |= 0xc; }
+            else if (c == 'd' || c == 'D') { num->value |= 0xd; }
+            else if (c == 'e' || c == 'E') { num->value |= 0xe; }
+            else if (c == 'f' || c == 'F') { num->value |= 0xf; }
+            else if (c == 'x' || c == 'X' || c == '?') { num->xmask |= 0xf; }
+            else if (c == 'z' || c == 'Z') { num->zmask |= 0xf; }
+            else if (c == '_') continue;
+            else break;
+        }
+    }
+    else if (base == 10) {  // для десятичных чисел популяция не производится. ПНХ разработчики стандарта))) (как интересно они популируют десятичные числа...)
+        num->value = strtoul (str, NULL, 10);
+        num->zmask = num->xmask = 0;
+    }
+
+    num->value &= lenmask;
+    num->zmask &= lenmask;
+    num->xmask &= lenmask;
+
+    // короче пох на популяцию.... кто пишет что заполняется нулями, кто пишет что заполняется MSB. бред короче, оставляем пока как есть.
+}
+
+// вывести число
+static void dumpnum (number_t *num)
+{
+    printf ( "NUM: %08X, %i, size: [%i:%i] %i, Z:%08X, X:%08X\n", num->value, num->value, 
+            num->lsb, num->msb, num->len, num->zmask, num->xmask );
+}
+
 static token_t * next_token (void)  // получить следующий токен или вернуть NULL, если конец файла
 {
-    int empty, international, ident_max_size, number_max_size;
+    int empty, international, ident_max_size, number_max_size, base;
     token_t * pt = &previous_token;
-    u8 ch, ch2, ch3, ch4;
-    u8 ident[1024], *ptr;
+    u8 ch, size[32], number[256], ident[1024], *ptr;
     symbol_t * sym;
     char * allowed;
 
@@ -437,12 +538,10 @@ static token_t * next_token (void)  // получить следующий то�
 
     // пропускаем однострочные комментарии (потенциально - деление /)
     if (ch == '/') {
-        ch2 = nextch (&empty);
-        if (empty || ch2 != '/') {    // если дальше ничего нет или второй символ не / - вернуть просто как деление
+        ch = nextch (&empty);
+        if (empty || ch != '/') {    // если дальше ничего нет или второй символ не / - вернуть просто как деление
             if (!empty) putback ();   // вернуть если не пусто
-            current_token.type = TOKEN_OP;
-            current_token.op = DIV;
-            strcpy ( current_token.rawstring, "/" );
+            setop (DIV);
         }
         else {   // пропустим все символы до конца строка '\n' или конца файла
             while (!empty) {
@@ -511,38 +610,95 @@ static token_t * next_token (void)  // получить следующий то�
     // если приставка была, то :
     // для двоичных чисел : 0 1 _ x X z Z ?
     // для восьмеричных : 0 1 2 3 4 5 6 7 _ x X z Z ?
-    // для десятичных : 0 1 2 3 4 5 6 7 8 9 _ x X z Z ?
+    // для десятичных : 0 1 2 3 4 5 6 7 8 9 _ 
     // для шестнаыфаысыых : 0 1 2 3 4 5 6 7 8 9 a A b B c C d D e E f F _ x X z Z ?
-    // Запись числа вида 8 'b ?1x0_Z1z0 -- это на самом деле операция BIN между 8 (размер) и числом. 
     // Популяцию цифр должна выполнять соответствующая операция. Что такое популяция - это заполнение пропущенных цифр - последней значащей.
     // Например 8'b1 -- популируется как 1111_1111, а 8'b0101 популируется уже как 0000_0101.
     if (current_token.type == TOKEN_NULL) 
     {
-        if ( pt->type == TOKEN_OP && (pt->op == BIN || pt->op == OCT || pt->op == DEC || pt->op == HEX) ) {
-            if (pt->op == BIN && ( ch == '0' || ch =='1' || ch == 'x' || ch == 'X' || ch == 'z' || ch == 'Z' || ch == '?' ) ) allowed = "01xXzZ?_";
-            else if (pt->op == OCT && ( (ch >= '0' && ch <= '7') || ch == 'x' || ch == 'X' || ch == 'z' || ch == 'Z' || ch == '?' ) ) allowed = "01234567xXzZ?_";
-            else if (pt->op == DEC && ( (ch >= '0' && ch <= '9') || ch == 'x' || ch == 'X' || ch == 'z' || ch == 'Z' || ch == '?' ) ) allowed = "0123456789xXzZ?_";
-            else if (pt->op == HEX && ( (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F') || ch == 'x' || ch == 'X' || ch == 'z' || ch == 'Z' || ch == '?' ) ) allowed = "0123456789abcdefABCDEFxXzZ?_";
-        }
-        else allowed = "0123456789_";
+        if (isdigit(ch) || ch == '\'' ) {
+            number[0] = 0;
+            base = 0;
 
-        if (allowed_char(ch, allowed)) {
-            number_max_size = 255;
-            ptr = current_token.rawstring;
-            *ptr++ = ch;
-            while (!empty && number_max_size) {
-                ch = nextch (&empty);
-                if ( !allowed_char(ch, allowed) ) {
-                    *ptr++ = 0;
-                    if (!empty) putback ();
-                    break;
+            // получить размер числа. если за размером не идёт уточняющий префикс, то вернуть размер как 10-чное число.
+            allowed = "0123456789_";
+            if ( allowed_char(ch, allowed) ) {
+                ptr = size;
+                *ptr++ = ch;
+                while ( !empty && allowed_char(ch, allowed) ) {
+                    ch = nextch (&empty);
+                    if (ch != '_' && allowed_char(ch, allowed) ) *ptr++ = ch;
                 }
-                if ( !empty && ch != '_' ) {    // подчеркивания не записываем, они только для форматирования
-                    *ptr++ = ch;
-                    number_max_size--;
+                *ptr++ = 0;
+            }
+            else strcpy (size, "32");
+
+            // пропустить пробелы.
+            if ( ch <= ' ' ) {
+                while (!empty) {
+                    ch = nextch (&empty);
+                    if (ch == '\n') VM_LINE++;
+                    if (ch <= ' ') continue;
+                    else break;
+                }
+                if (empty) {        // вернуть размер как число.
+                    current_token.type = TOKEN_NUMBER;
                 }
             }
-            current_token.type = TOKEN_NUMBER;
+
+            // получить основание числа
+            if (ch == '\'' && current_token.type == TOKEN_NULL ) {
+                ch = nextch (&empty);
+                if (!empty) {
+                    if ( ch == 'b' || ch == 'B' ) base = 2;
+                    else if ( ch == 'o' || ch == 'O' ) base = 8;
+                    else if ( ch == 'd' || ch == 'D' ) base = 10;
+                    else if ( ch == 'h' || ch == 'H' ) base = 16;
+                }
+                if (base == 0) warning ("Unknown base : [%c]", ch);
+                if (base == 2) allowed = "01xXzZ?_";
+                else if (base == 8) allowed = "01234567xXzZ?_";
+                else if (base == 10) allowed = "0123456789_";
+                else if (base == 16) allowed = "0123456789abcdefABCDEFxXzZ?_";
+                ch = nextch (&empty);
+            }
+            else {      // вернуть размер как число.
+                putback ();
+                current_token.type = TOKEN_NUMBER;
+            }
+
+            // пропустить пробелы.
+            if ( ch <= ' ' && current_token.type == TOKEN_NULL ) {
+                while (!empty) {
+                    ch = nextch (&empty);
+                    if (ch == '\n') VM_LINE++;
+                    if (ch <= ' ') continue;
+                    else break;
+                }
+                if (empty) {        // вернуть число 0, если за указанием основания числа ничего нет
+                    current_token.type = TOKEN_NUMBER;
+                    strcpy (size, "0");
+                }
+            }
+
+            // выбрать цифры с указанной системой счисления.
+            if ( allowed_char(ch, allowed) && current_token.type == TOKEN_NULL ) {
+                ptr = number;
+                *ptr++ = ch;
+                while ( !empty && allowed_char(ch, allowed) ) {
+                    ch = nextch (&empty);
+                    if (ch != '_' && allowed_char(ch, allowed) ) *ptr++ = ch;
+                }
+                if (!empty) putback ();
+                *ptr++ = 0;
+                current_token.type = TOKEN_NUMBER;
+            }
+
+            // конвертировать число и выполнить популяцию 
+            if ( current_token.type == TOKEN_NUMBER ) {
+                if (base) convertnum (number, &current_token.num, base, 0, atoi(size) - 1);
+                else convertnum (size, &current_token.num, 10, 0, 31);
+            }
         }
     }
 
@@ -712,16 +868,6 @@ static token_t * next_token (void)  // получить следующий то�
             }
             else setop (NEG);            
         }
-        else if ( ch == '\'' ) {     // 'b 'B 'o 'O 'd 'D 'h 'H
-            ch = nextch (&empty);
-            if (!empty) {
-                if ( ch == 'b' || ch == 'B' ) setop (BIN);
-                else if ( ch == 'o' || ch == 'O' ) setop (OCT);
-                else if ( ch == 'd' || ch == 'D' ) setop (DEC);
-                else if ( ch == 'h' || ch == 'H' ) setop (HEX);
-                else warning ( "Unknown base : [%c]", ch );
-            }
-        }
     }
     // все остальные токены мы просто игнорируем.
 
@@ -830,7 +976,6 @@ static int prio[] = {
     9, 9,  // = <=
     1, 1,   // # @
     1, 1, 1,  // . , ;
-    13, 13, 13, 13, // 'b 'B 'o 'O 'd 'D 'h 'H
 };
 
 typedef struct node_struct_t
@@ -853,15 +998,14 @@ static node_t * addnode (token_t * token)       // добавление ново
     return node;
 }
 
-static void empty_tree () { tree_nodes = 0; }
-
 // наш отладочный парсер. ничего не делает - просто выводит поток токенов на экран, для диагностики.
 static void dummy_parser (token_t * token)
 {
     if ( token->type != TOKEN_NULL) {
-        if (token->type == TOKEN_OP) printf ( "type: %s, op: %s\n", token_type(token->type), opstr(token->op) );
-        else if (token->type == TOKEN_KEYWORD) printf ( "type: %s, keyword: %i, raw=\'%s\'\n", token_type(token->type), token->sym->type, token->rawstring );
-        else printf ( "type: %s, raw=\'%s\'\n", token_type(token->type), token->rawstring );
+        if (token->type == TOKEN_OP) printf ( "%s, op: %s\n", token_type(token->type), opstr(token->op) );
+        else if (token->type == TOKEN_KEYWORD) printf ( "%s, keyword: %i, raw=\'%s\'\n", token_type(token->type), token->sym->type, token->rawstring );
+        else if (token->type == TOKEN_NUMBER) dumpnum ( &token->num );
+        else printf ( "%s, raw=\'%s\'\n", token_type(token->type), token->rawstring );
     }
 }
 
@@ -869,8 +1013,9 @@ static void dummy_parser (token_t * token)
 static void evaluate (node_t * expr, symbol_t *lvalue)
 {
     node_t * curr;
-    symbol_t rvalue, mvalue, *sym;
-    token_t * token, *ahead;
+    symbol_t rvalue, *sym;
+    token_t * token;
+    number_t mvalue;
     int uop = NOP, op = NOP, rval, mval;
 
     memset ( &rvalue, 0, sizeof(symbol_t) );
@@ -881,8 +1026,8 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
         if ( sym ) {
             evaluate (expr->rvalue->rvalue, sym);
             sym->type = SYMBOL_PARAM;
-            strncpy ( lvalue->value, sym->value, 255 );
-            printf ( "LVALUE(inner) : %s\n", sym->value );
+            memcpy ( &lvalue->num, &sym->num, sizeof(number_t) );
+            printf ( "LVALUE(inner) : %i\n", sym->num.value );
         }
         else warning ( "Lvalue not defined : %s", expr->token.rawstring );
         return;
@@ -907,15 +1052,15 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
         token = &curr->token;
         if ( token->type == TOKEN_IDENT || token->type == TOKEN_NUMBER ) {
 
-            memset ( &mvalue, 0, sizeof(symbol_t) );
+            memset ( &mvalue, 0, sizeof(number_t) );
 
             if ( token->type == TOKEN_IDENT ) { 
                 sym = check_symbol (token->rawstring);
-                if (sym && sym->type == SYMBOL_PARAM) strncpy ( mvalue.value, sym->value, 255 );
+                if (sym && sym->type == SYMBOL_PARAM) memcpy ( &mvalue, &sym->num, sizeof(number_t) );
                 else warning ( "Undefined symbol : %s", token->rawstring );
             }
             else if ( token->type == TOKEN_NUMBER ) {
-                strncpy ( mvalue.value, token->rawstring, 255 );
+                memcpy ( &mvalue, &token->num, sizeof(number_t) );
             }
 
             // выполняем унарную операцию над MVALUE
@@ -923,20 +1068,15 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
                 switch (uop)
                 {
                     case MINUS_UNARY:
-                        mval = strtoul (mvalue.value, NULL, 10);
-                        sprintf ( mvalue.value, "%d", -mval );
+                        mvalue.value = -mvalue.value;
                         break;
                     case PLUS_UNARY:
-                        mval = strtoul (mvalue.value, NULL, 10);
-                        sprintf ( mvalue.value, "%d", +mval );
                         break;
                     case NOT:
-                        mval = strtoul (mvalue.value, NULL, 10);
-                        sprintf ( mvalue.value, "%d", !mval );
+                        mvalue.value = !mvalue.value;
                         break;
                     case NEG:
-                        mval = strtoul (mvalue.value, NULL, 10);
-                        sprintf ( mvalue.value, "%d", ~mval );
+                        mvalue.value = ~mvalue.value;
                         break;
                 }
             }
@@ -946,18 +1086,16 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
                 switch (op)
                 {
                     case MINUS_BINARY:
-                        mval = strtoul (mvalue.value, NULL, 10);
-                        rval = strtoul (rvalue.value, NULL, 10);
-                        sprintf ( rvalue.value, "%d", rval - mval );
+                        rvalue.num.value -= mvalue.value;
                         break;
                     case PLUS_BINARY:
-                        mval = strtoul (mvalue.value, NULL, 10);
-                        rval = strtoul (rvalue.value, NULL, 10);
-                        sprintf ( rvalue.value, "%d", rval + mval );
+                        rvalue.num.value += mvalue.value;
                         break;
                 }
             }
-            else strcpy ( rvalue.value, mvalue.value );
+            //else memcpy ( &rvalue.num, &mvalue, sizeof(number_t) );
+            //else memset (&rvalue.num, 0, sizeof(number_t) );
+            else rvalue.num.value = 12;
 
             curr = curr->rvalue;
         }
@@ -974,7 +1112,7 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
         }
     }
 
-    strncpy ( lvalue->value, rvalue.value, 255 );
+    memcpy ( &lvalue->num, &rvalue.num, sizeof(number_t) );
 }
 
 // парсер несинтезируемых выражений. точка с запятой или запятая означает конец выражения. 
@@ -993,8 +1131,9 @@ static void nonsynth_expr_parser (token_t * token)
         curr = expr;
         while (curr) {
             tok = &curr->token;
-            if (tok->type == TOKEN_OP) printf ("%s, ", opstr(tok->op));
-            else printf ("%s, ", tok->rawstring );
+            if (tok->type == TOKEN_OP) printf ("%s ", opstr(tok->op));
+            else if (tok->type == TOKEN_NUMBER) printf ("%i ", tok->num.value );
+            else printf ("%s ", tok->rawstring );
             curr = curr->rvalue;
         }
         printf ("\n");
@@ -1006,12 +1145,11 @@ static void nonsynth_expr_parser (token_t * token)
         if ( lvalue ) {
             evaluate (expr->rvalue->rvalue, lvalue);
             lvalue->type = SYMBOL_PARAM;
-            printf ( "LVALUE : %s\n", lvalue->value );
+            printf ( "LVALUE : %s\n", lvalue->num.value );
         }
         else warning ( "Lvalue not defined : %s", expr->token.rawstring );
 
         expr = NULL;
-        empty_tree ();
         pop_parser ();   // возвращаемся в парсер parameter
         if ( token->op == SEMICOLON ) pop_parser ();   // возвращаемся в парсер module
     }
@@ -1157,11 +1295,8 @@ int breaksvm_init (void)
 void breaksvm_shutdown (void)
 {
     if (breaksvm_initdone) {
-        if ( symtab ) {
-            free ( symtab );
-            symtab = NULL;
-            sym_num = 0;
-        }
+        sym_num = 0;
+        tree_nodes = 0;
         breaksvm_initdone = 0;
     }
 }
