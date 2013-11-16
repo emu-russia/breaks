@@ -98,10 +98,9 @@ static int keyword_ids[] = {    // должна соответствовать �
 
 typedef struct symbol_t
 {
-    char    rawstring[256];
+    char    rawstring[256], value[256];
     u32     hash;
     int     type;
-    int     value;      // for parameters
 } symbol_t;
 
 static  symbol_t *symtab;
@@ -161,7 +160,7 @@ static symbol_t * check_symbol (char *name)   // проверить есть л�
     return NULL;
 }
 
-static symbol_t * add_symbol (char *name, int type, int value)     // добавить символ, вернуть описатель или NULL
+static symbol_t * add_symbol (char *name, int type)     // добавить символ, вернуть описатель или NULL
 {
     symbol_t *symbol;
     if ( strlen (name) > 255 ) {
@@ -176,7 +175,7 @@ static symbol_t * add_symbol (char *name, int type, int value)     // добав
     strncpy ( symbol->rawstring, name, 255 );
     symbol->type = type;
     symbol->hash = MurmurHash (symbol->rawstring);     // calculate hash for truncated name!
-    symbol->value = value;
+    symbol->value[0] = 0;
     sym_num++;
     return &symtab[sym_num - 1];
 }
@@ -186,13 +185,13 @@ static void dump_symbols (void)
     int i;
     for (i=0; i<sym_num; i++) {
         if ( symtab[i].type < SYMBOL_NOT_KEYWORDS ) continue;   // don't dump keywords.
-        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, hash : %08X, value : %i\n", symtab[i].rawstring, symtab[i].hash, symtab[i].value );
-        else if ( symtab[i].type == SYMBOL_INPUT ) printf ( "INPUT : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
-        else if ( symtab[i].type == SYMBOL_OUTPUT ) printf ( "OUTPUT : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
-        else if ( symtab[i].type == SYMBOL_INOUT ) printf ( "INOUT : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
-        else if ( symtab[i].type == SYMBOL_WIRE ) printf ( "WIRE : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
-        else if ( symtab[i].type == SYMBOL_REG ) printf ( "REG : %s, hash : %08X\n", symtab[i].rawstring, symtab[i].hash );
-        else printf ( "SYMBOL : %s, hash : %08X, type : %i\n", symtab[i].rawstring, symtab[i].hash, symtab[i].type );
+        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, value : %s\n", symtab[i].rawstring, symtab[i].value );
+        else if ( symtab[i].type == SYMBOL_INPUT ) printf ( "INPUT : %s\n", symtab[i].rawstring );
+        else if ( symtab[i].type == SYMBOL_OUTPUT ) printf ( "OUTPUT : %s\n", symtab[i].rawstring );
+        else if ( symtab[i].type == SYMBOL_INOUT ) printf ( "INOUT : %s\n", symtab[i].rawstring );
+        else if ( symtab[i].type == SYMBOL_WIRE ) printf ( "WIRE : %s\n", symtab[i].rawstring );
+        else if ( symtab[i].type == SYMBOL_REG ) printf ( "REG : %s\n", symtab[i].rawstring );
+        else printf ( "SYMBOL : %s\n", symtab[i].rawstring );
     }
 }
 
@@ -211,11 +210,11 @@ static void dump_symbols (void)
 
 операции : { } + - * /  %  > >= < <=  ! && || == != === !== ~ & | ^ ^~ ~^ ~& ~| << >> <<< >>> ? : ( ) # = <= 'b 'o 'd 'h
 приоритет операций :
-    'b 'o 'd 'h
-    { } (конкатенация)
+    'b 'o 'd 'h (бинарные)
+    { } (конкатенация) ( ) [ ]
     + - ! ~ (унарные)
     * / %
-    + - (бинарные)
+    + - 
     << >> <<< >>>
     == != === !==
     & ~&
@@ -250,7 +249,8 @@ typedef struct token_t
 
 enum OPS
 {
-    LBRACKET=0, RBRACKET,       // { }
+    NOP=0,
+    LBRACKET, RBRACKET,       // { }
     LSQUARE, RSQUARE,       // [ ]
     PLUS_UNARY, PLUS_BINARY,      // +
     MINUS_UNARY, MINUS_BINARY,    // -
@@ -273,7 +273,7 @@ enum OPS
 static char * opstr (int type)
 {
     char *str[] = {
-        "{", "}", "[", "]", "+", "++", "-", "--", "!", "~", "*", "/", "%",
+        "NOP", "{", "}", "[", "]", "+", "++", "-", "--", "!", "~", "*", "/", "%",
         "<<", ">>", "<<<", ">>>", ">", ">=", "<", "<=", "&&", "||",
         "==", "===", "!=", "!==", "&", "|", "^", "~^", "R&", "R~&", "R|", "R~|", "R^", "R~^", 
         "?", ":", "(", ")", "=", "POST=", "#", "@", ".", ",", ";", "BIN", "OCT", "DEC", "HEX",
@@ -302,6 +302,43 @@ static char * token_type (int type)
         case TOKEN_KEYWORD : return "KEYWORD";
         default : return "UNKNOWN";
     }
+}
+
+static int isunary (int op)
+{
+    switch (op)
+    {
+        case PLUS_UNARY:
+        case MINUS_UNARY:
+        case NOT:
+        case NEG:
+        case REDUCT_AND:
+        case REDUCT_NAND:
+        case REDUCT_OR:
+        case REDUCT_NOR:
+        case REDUCT_XOR:
+        case REDUCT_XNOR:
+            return 1;
+    }
+    return 0;
+}
+
+static int isbinary (int op)
+{
+    switch (op)
+    {
+        case PLUS_BINARY:
+        case MINUS_BINARY:
+        case MUL: case DIV: case MOD:
+        case SHL: case SHR: case ROTL: case ROTR:
+        case GREATER: case GREATER_EQ: case LESS: case LESS_EQ:
+        case LOGICAL_AND: case LOGICAL_OR:
+        case LOGICAL_EQ: case CASE_EQ: case LOGICAL_NOTEQ: case CASE_NOTEQ:
+        case AND: case OR: case XOR: case XNOR:
+        case BIN: case OCT: case DEC: case HEX:
+            return 1;
+    }
+    return 0;
 }
 
 static void tokenize_file ( unsigned char * content, int filesize )   // подключить загруженный файл 
@@ -462,7 +499,7 @@ static token_t * next_token (void)  // получить следующий то�
         }
         else         // добавим идентификатор (параметром или чем либо ещё он может стать потом)
         {
-            sym = add_symbol (ident, SYMBOL_IDENT, 0);
+            sym = add_symbol (ident, SYMBOL_IDENT);
             current_token.type = TOKEN_IDENT;
             strncpy ( current_token.rawstring, ident, 255 );
             current_token.sym = sym;
@@ -773,31 +810,50 @@ Expressions.
 
 */
 
-// парсер несинтезируемых выражений. точка с запятой или запятая означает конец выражения. 
-static void nonsynth_expr_parser (token_t * token)
+// приоритеты операций.
+static int prio[] = {
+    1,      // nop
+    12, 12,       // { }
+    12, 12,       // [ ]
+    11, 9,      // +
+    11, 9,    // -
+    11, 11,     // ! ~
+    10, 10, 10,     // * / %
+    8, 8, 8, 8,   // << >> <<< >>>
+    7, 7, 7, 7,     // > >= < <=
+    3, 2,      // && ||
+    7, 7, 7, 7,     // == === != !==
+    6, 4, 5, 5, // & | ^ ~^ ^~
+    6, 6, 4, 4, 5, 5,  // & ~& | ~| ^ ^~ ~^
+    1, 1,  // ? :
+    12, 12,   // ( )
+    9, 9,  // = <=
+    1, 1,   // # @
+    1, 1, 1,  // . , ;
+    13, 13, 13, 13, // 'b 'B 'o 'O 'd 'D 'h 'H
+};
+
+typedef struct node_struct_t
 {
-    if (token->type == TOKEN_OP && token->op == COMMA) {    // выполняем дерево
+    struct node_struct_t  *lvalue;
+    struct node_struct_t  *rvalue;
+    token_t token;
+} node_t;
 
+static node_t  tree[10000];
+static int     tree_nodes = 0;
 
-        pop_parser ();  // возвращаемся в родитель
-    }
+static node_t * addnode (token_t * token)       // добавление новой ветки
+{
+    node_t * node;
+    node = &tree[tree_nodes];
+    node->lvalue = node->rvalue = NULL;
+    memcpy ( &node->token, token, sizeof(token_t) );
+    tree_nodes++;
+    return node;
 }
 
-// парсер параметров.
-static void parameter_parser (token_t * token)
-{
-    token_t * prev = prev_token ();
-    push_parser (nonsynth_expr_parser);
-    if (prev->type == TOKEN_OP && prev->op == SEMICOLON) pop_parser ();  // возвращаемся в модуль
-}
-
-// парсер модуля.
-static void module_parser (token_t * token)
-{
-    if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_PARAMETER ) {   // parameter <expr1>, <expr2>, ..., <exprN> ;
-        push_parser ( parameter_parser );
-    }
-}
+static void empty_tree () { tree_nodes = 0; }
 
 // наш отладочный парсер. ничего не делает - просто выводит поток токенов на экран, для диагностики.
 static void dummy_parser (token_t * token)
@@ -809,6 +865,190 @@ static void dummy_parser (token_t * token)
     }
 }
 
+// исполняем дерево (семанический анализ)
+static void evaluate (node_t * expr, symbol_t *lvalue)
+{
+    node_t * curr;
+    symbol_t rvalue, mvalue, *sym;
+    token_t * token, *ahead;
+    int uop = NOP, op = NOP, rval, mval;
+
+    memset ( &rvalue, 0, sizeof(symbol_t) );
+
+    // вложенные evaluations.
+    if ( expr->token.type == TOKEN_IDENT && expr->rvalue->token.type == TOKEN_OP && expr->rvalue->token.op == EQ ) { 
+        sym = check_symbol (expr->token.rawstring);
+        if ( sym ) {
+            evaluate (expr->rvalue->rvalue, sym);
+            sym->type = SYMBOL_PARAM;
+            strncpy ( lvalue->value, sym->value, 255 );
+            printf ( "LVALUE(inner) : %s\n", sym->value );
+        }
+        else warning ( "Lvalue not defined : %s", expr->token.rawstring );
+        return;
+    }
+
+    // rvalue .= { [uop] ident [op] }
+    curr = expr;
+    while (curr) {
+
+        // необязательная унарная операция.
+        token = &curr->token;
+        if ( token->type == TOKEN_OP && isunary(token->op) ) {
+            if ( curr->rvalue == NULL ) error ( "Missing identifier" );
+            else {
+                curr = curr->rvalue;
+                uop = token->op;
+            }
+        }
+        else uop = NOP;
+
+        // обязательный идентификатор.
+        token = &curr->token;
+        if ( token->type == TOKEN_IDENT || token->type == TOKEN_NUMBER ) {
+
+            memset ( &mvalue, 0, sizeof(symbol_t) );
+
+            if ( token->type == TOKEN_IDENT ) { 
+                sym = check_symbol (token->rawstring);
+                if (sym && sym->type == SYMBOL_PARAM) strncpy ( mvalue.value, sym->value, 255 );
+                else warning ( "Undefined symbol : %s", token->rawstring );
+            }
+            else if ( token->type == TOKEN_NUMBER ) {
+                strncpy ( mvalue.value, token->rawstring, 255 );
+            }
+
+            // выполняем унарную операцию над MVALUE
+            if (uop != NOP) {
+                switch (uop)
+                {
+                    case MINUS_UNARY:
+                        mval = strtoul (mvalue.value, NULL, 10);
+                        sprintf ( mvalue.value, "%d", -mval );
+                        break;
+                    case PLUS_UNARY:
+                        mval = strtoul (mvalue.value, NULL, 10);
+                        sprintf ( mvalue.value, "%d", +mval );
+                        break;
+                    case NOT:
+                        mval = strtoul (mvalue.value, NULL, 10);
+                        sprintf ( mvalue.value, "%d", !mval );
+                        break;
+                    case NEG:
+                        mval = strtoul (mvalue.value, NULL, 10);
+                        sprintf ( mvalue.value, "%d", ~mval );
+                        break;
+                }
+            }
+
+            // выполняем бинарную операцию RVALUE = RVALUE op MVALUE
+            if (op != NOP) {
+                switch (op)
+                {
+                    case MINUS_BINARY:
+                        mval = strtoul (mvalue.value, NULL, 10);
+                        rval = strtoul (rvalue.value, NULL, 10);
+                        sprintf ( rvalue.value, "%d", rval - mval );
+                        break;
+                    case PLUS_BINARY:
+                        mval = strtoul (mvalue.value, NULL, 10);
+                        rval = strtoul (rvalue.value, NULL, 10);
+                        sprintf ( rvalue.value, "%d", rval + mval );
+                        break;
+                }
+            }
+            else strcpy ( rvalue.value, mvalue.value );
+
+            curr = curr->rvalue;
+        }
+        else error ( "Identifier required" );
+
+        // необязательная бинарная операция.
+        if (curr) {
+            token = &curr->token;
+            if ( token->type == TOKEN_OP && isbinary(token->op) ) {
+                curr = curr->rvalue;
+                op = token->op;
+            }
+            else op = NOP;
+        }
+    }
+
+    strncpy ( lvalue->value, rvalue.value, 255 );
+}
+
+// парсер несинтезируемых выражений. точка с запятой или запятая означает конец выражения. 
+static void nonsynth_expr_parser (token_t * token)
+{
+    static node_t * expr = NULL, * curr, * node;
+    token_t * tok;
+    symbol_t * lvalue;
+
+    if ( token->type == TOKEN_NULL ) return;
+
+    if (token->type == TOKEN_OP && (token->op == COMMA || token->op == SEMICOLON) ) {   // исполняем дерево (семанический анализ)
+
+        // задампим дерево.
+#if 0
+        curr = expr;
+        while (curr) {
+            tok = &curr->token;
+            if (tok->type == TOKEN_OP) printf ("%s, ", opstr(tok->op));
+            else printf ("%s, ", tok->rawstring );
+            curr = curr->rvalue;
+        }
+        printf ("\n");
+#endif
+
+        if ( expr->token.type != TOKEN_IDENT ) warning ( "Wrong lvalue!" );
+        if ( expr->rvalue->token.type != TOKEN_OP && expr->rvalue->token.op != EQ ) warning ( "No assignment!" );
+        lvalue = check_symbol (expr->token.rawstring);
+        if ( lvalue ) {
+            evaluate (expr->rvalue->rvalue, lvalue);
+            lvalue->type = SYMBOL_PARAM;
+            printf ( "LVALUE : %s\n", lvalue->value );
+        }
+        else warning ( "Lvalue not defined : %s", expr->token.rawstring );
+
+        expr = NULL;
+        empty_tree ();
+        pop_parser ();   // возвращаемся в парсер parameter
+        if ( token->op == SEMICOLON ) pop_parser ();   // возвращаемся в парсер module
+    }
+    else {  // растим дерево (синтаксический анализ)
+
+        node = addnode ( token );
+
+        if (expr == NULL)
+        {
+            expr = curr = node;
+        }
+        else {
+            curr->rvalue = node;
+            node->lvalue = curr;
+            curr = node;
+        }
+
+        //dummy_parser (token);
+
+    }
+}
+
+// парсер выражений ключевого слова parameter.
+static void parameter_parser (token_t * token)
+{
+    nonsynth_expr_parser (token);
+    push_parser (nonsynth_expr_parser);
+}
+
+// парсер модуля.
+static void module_parser (token_t * token)
+{
+    if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_PARAMETER ) {   // parameter <expr1>, <expr2>, ..., <exprN> ;
+        push_parser ( parameter_parser );
+    }
+    //else dummy_parser (token);
+}
 
 int breaksvm_load (char *filename)
 {
@@ -838,7 +1078,7 @@ int breaksvm_load (char *filename)
     VM_LINE = 1;
 
     tokenize_file ( content, filesize);
-    push_parser ( dummy_parser );
+    push_parser ( module_parser );
 
     do {    // запустить лексический анализ.
         token = next_token ();
@@ -901,10 +1141,10 @@ int breaksvm_init (void)
 
     // Добавим ключевые слова в таблицу символов.
     {
-        add_symbol ( "", SYMBOL_UNKNOWN, 0 );
+        add_symbol ( "", SYMBOL_UNKNOWN );
         int i = 0;
         while ( keywords[i] ) {
-            add_symbol ( keywords[i], keyword_ids[i], 0 );
+            add_symbol ( keywords[i], keyword_ids[i] );
             i++;
         }
     }

@@ -1,3 +1,5 @@
-set PATH=c:\lcc\bin
+set PATH=c:\tcc
 
-lc -nw -g2 main.c breaksvm.c -o breaksvm.exe
+tcc main.c breaksvm.c -o breaksvm.exe
+
+breaksvm.exe > out.txt
