@@ -1,3 +1,5 @@
+#pragma pack(1)
+
 // Комментарии на русском (не вижу причин вообще писать комменты НЕ на родном языке).
 #include "breaksvm.h"
 //#include <pthread.h>
@@ -189,7 +191,7 @@ static void dump_symbols (void)
     int i;
     for (i=0; i<sym_num; i++) {
         if ( symtab[i].type < SYMBOL_NOT_KEYWORDS ) continue;   // don't dump keywords.
-        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, value : %s\n", symtab[i].rawstring, symtab[i].num.value );
+        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, value : %i\n", symtab[i].rawstring, symtab[i].num.value );
         else if ( symtab[i].type == SYMBOL_INPUT ) printf ( "INPUT : %s\n", symtab[i].rawstring );
         else if ( symtab[i].type == SYMBOL_OUTPUT ) printf ( "OUTPUT : %s\n", symtab[i].rawstring );
         else if ( symtab[i].type == SYMBOL_INOUT ) printf ( "INOUT : %s\n", symtab[i].rawstring );
@@ -1016,7 +1018,7 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
     symbol_t rvalue, *sym;
     token_t * token;
     number_t mvalue;
-    int uop = NOP, op = NOP, rval, mval;
+    int uop = NOP, op = NOP;
 
     memset ( &rvalue, 0, sizeof(symbol_t) );
 
@@ -1093,9 +1095,7 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
                         break;
                 }
             }
-            //else memcpy ( &rvalue.num, &mvalue, sizeof(number_t) );
-            //else memset (&rvalue.num, 0, sizeof(number_t) );
-            else rvalue.num.value = 12;
+            else memcpy ( &rvalue.num, &mvalue, sizeof(number_t) );
 
             curr = curr->rvalue;
         }
@@ -1145,7 +1145,7 @@ static void nonsynth_expr_parser (token_t * token)
         if ( lvalue ) {
             evaluate (expr->rvalue->rvalue, lvalue);
             lvalue->type = SYMBOL_PARAM;
-            printf ( "LVALUE : %s\n", lvalue->num.value );
+            printf ( "LVALUE : %i\n", lvalue->num.value );
         }
         else warning ( "Lvalue not defined : %s", expr->token.rawstring );
 
