@@ -1,132 +1,18 @@
-type: OP, op: !
-type: OP, op: !=
-type: OP, op: !==
-type: OP, op: =
-type: OP, op: ==
-type: OP, op: ===
-type: OP, op: R&
-type: OP, op: &&
-type: OP, op: =
-type: OP, op: R&
-type: IDENT, raw='x'
-type: OP, op: |
-type: OP, op: ||
-type: OP, op: =
-type: OP, op: R|
-type: IDENT, raw='x'
-type: OP, op: ^
-type: OP, op: R~^
-type: OP, op: =
-type: OP, op: R^
-type: IDENT, raw='x'
-type: OP, op: =
-type: OP, op: R~^
-type: IDENT, raw='x'
-type: OP, op: ~
-type: OP, op: R~^
-type: OP, op: R~|
-type: OP, op: R~&
-type: OP, op: =
-type: OP, op: R~^
-type: IDENT, raw='x'
-type: OP, op: =
-type: OP, op: R~|
-type: IDENT, raw='x'
-type: OP, op: =
-type: OP, op: R~^
-type: IDENT, raw='x'
-type: KEYWORD, keyword: 28, raw='parameter'
-type: IDENT, raw='DUMMY'
-type: OP, op: =
-type: NUMBER, raw='1'
-type: OP, op: ,
-type: IDENT, raw='NBIT'
-type: OP, op: =
-type: NUMBER, raw='4'
-type: OP, op: ;
-type: KEYWORD, keyword: 17, raw='input'
-type: IDENT, raw='CLK'
-type: OP, op: ;
-type: KEYWORD, keyword: 43, raw='wire'
-type: IDENT, raw='a'
-type: OP, op: ,
-type: IDENT, raw='b'
-type: OP, op: ,
-type: IDENT, raw='c'
-type: OP, op: ;
-type: KEYWORD, keyword: 43, raw='wire'
-type: OP, op: [
-type: NUMBER, raw='7'
-type: OP, op: :
-type: NUMBER, raw='0'
-type: OP, op: ]
-type: IDENT, raw='___busa'
-type: OP, op: ;
-type: KEYWORD, keyword: 43, raw='wire'
-type: OP, op: [
-type: NUMBER, raw='0'
-type: OP, op: :
-type: NUMBER, raw='9'
-type: OP, op: ]
-type: IDENT, raw='busb'
-type: OP, op: ;
-type: KEYWORD, keyword: 41, raw='wand'
-type: KEYWORD, keyword: 40, raw='vectored'
-type: OP, op: [
-type: NUMBER, raw='7'
-type: OP, op: :
-type: NUMBER, raw='0'
-type: OP, op: ]
-type: IDENT, raw='andbus'
-type: OP, op: ;
-type: KEYWORD, keyword: 30, raw='reg'
-type: OP, op: [
-type: IDENT, raw='NBIT'
-type: OP, op: --
-type: NUMBER, raw='1'
-type: OP, op: :
-type: NUMBER, raw='0'
-type: OP, op: ]
-type: IDENT, raw='dout'
-type: OP, op: ;
-type: KEYWORD, keyword: 39, raw='trireg'
-type: OP, op: [
-type: NUMBER, raw='7'
-type: OP, op: :
-type: NUMBER, raw='0'
-type: OP, op: ]
-type: IDENT, raw='treg'
-type: OP, op: ;
-type: KEYWORD, keyword: 30, raw='reg'
-type: IDENT, raw='MYREG2'
-type: OP, op: ;
-type: KEYWORD, keyword: 1, raw='always'
-type: OP, op: @
-type: OP, op: (
-type: IDENT, raw='CLK'
-type: OP, op: )
-type: IDENT, raw='MYREG2'
-type: OP, op: =
-type: IDENT, raw='MYREG2'
-type: OP, op: ++
-type: NUMBER, raw='1'
-type: OP, op: ;
-type: IDENT, raw='MYREG2'
-type: OP, op: =
-type: OP, op: -
-type: IDENT, raw='MYREG2'
-type: OP, op: ;
-type: KEYWORD, keyword: 11, raw='end'
-SYMBOL : x, hash : 16357CE4, type : 101
-SYMBOL : DUMMY, hash : 320A859F, type : 101
-SYMBOL : NBIT, hash : 9F9961A8, type : 101
-SYMBOL : CLK, hash : 1E9CEC28, type : 101
-SYMBOL : a, hash : 92685F5E, type : 101
-SYMBOL : b, hash : 86B7B9F4, type : 101
-SYMBOL : c, hash : 2CF62649, type : 101
-SYMBOL : ___busa, hash : 2A63DBA7, type : 101
-SYMBOL : busb, hash : F47317DB, type : 101
-SYMBOL : andbus, hash : AB1DF451, type : 101
-SYMBOL : dout, hash : 59273FC0, type : 101
-SYMBOL : treg, hash : DECD9BC2, type : 101
-SYMBOL : MYREG2, hash : 293F3616, type : 101
+LVALUE : -3
+LVALUE : 25
+LVALUE : 3
+LVALUE(inner) : 22
+LVALUE : 22
+PARAM : a, value : -3
+PARAM : b, value : 25
+PARAM : x, value : 22
+PARAM : z, value : 22
+SYMBOL : CLK
+SYMBOL : c
+SYMBOL : ___busa
+SYMBOL : busb
+SYMBOL : andbus
+SYMBOL : NBIT
+SYMBOL : dout
+SYMBOL : treg
+SYMBOL : MYREG2
