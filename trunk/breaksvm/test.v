@@ -5,8 +5,8 @@
 
     // проверка синтезируемого парсера (parameter)
 
-parameter a = -3, b = 25, x = 3;
-parameter z = x = a + b;
+parameter a = 10, b = 7, c = 5;
+parameter z = a + b * c;
 
 
     

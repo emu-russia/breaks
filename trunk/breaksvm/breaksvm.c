@@ -1,5 +1,3 @@
-#pragma pack(1)
-
 // Комментарии на русском (не вижу причин вообще писать комменты НЕ на родном языке).
 #include "breaksvm.h"
 //#include <pthread.h>
@@ -1092,6 +1090,15 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
                         break;
                     case PLUS_BINARY:
                         rvalue.num.value += mvalue.value;
+                        break;
+                    case MUL:
+                        rvalue.num.value *= mvalue.value;
+                        break;
+                    case DIV:
+                        if (mvalue.value) rvalue.num.value /= mvalue.value;
+                        break;
+                    case MOD:
+                        if (mvalue.value) rvalue.num.value %= mvalue.value;
                         break;
                 }
             }
