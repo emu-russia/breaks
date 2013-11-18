@@ -957,7 +957,7 @@ Expressions.
 */
 
 // приоритеты операций.
-static int prio[] = {
+static int opprio[] = {
     1,      // nop
     12, 12,       // { }
     12, 12,       // [ ]
@@ -983,16 +983,18 @@ typedef struct node_struct_t
     struct node_struct_t  *lvalue;
     struct node_struct_t  *rvalue;
     token_t token;
+    int     depth;
 } node_t;
 
 static node_t  tree[10000];
 static int     tree_nodes = 0;
 
-static node_t * addnode (token_t * token)       // добавление новой ветки
+static node_t * addnode (token_t * token, int depth)       // добавление новой ветки
 {
     node_t * node;
     node = &tree[tree_nodes];
     node->lvalue = node->rvalue = NULL;
+    node->depth = depth;
     memcpy ( &node->token, token, sizeof(token_t) );
     tree_nodes++;
     return node;
@@ -1010,17 +1012,20 @@ static void dummy_parser (token_t * token)
 }
 
 // исполняем дерево (семанический анализ)
-static void evaluate (node_t * expr, symbol_t *lvalue)
+static node_t * evaluate (node_t * expr, symbol_t *lvalue)
 {
     node_t * curr;
-    symbol_t rvalue, *sym;
+    symbol_t rvalue, *sym, mvalue;
     token_t * token;
-    number_t mvalue;
     int uop = NOP, op = NOP;
+    int debug = 1;
+
+    if (debug) printf ( "[" );
 
     memset ( &rvalue, 0, sizeof(symbol_t) );
 
-    // вложенные evaluations.
+    // вложенные evaluations.  -- это чухня. надо переосмыслить a = b = ...  потому что lvalue может быть например reg[2] (reg [ 2 ])
+/*
     if ( expr->token.type == TOKEN_IDENT && expr->rvalue->token.type == TOKEN_OP && expr->rvalue->token.op == EQ ) { 
         sym = check_symbol (expr->token.rawstring);
         if ( sym ) {
@@ -1032,14 +1037,17 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
         else warning ( "Lvalue not defined : %s", expr->token.rawstring );
         return;
     }
+*/
 
-    // rvalue .= { [uop] ident [op] }
+    // lvalue = { [uop] <ident|expr> [op] }
     curr = expr;
     while (curr) {
 
-        // необязательная унарная операция.
+        if (curr->depth < expr->depth) break;
+
+        // необязательная унарная операция или приравнивание.
         token = &curr->token;
-        if ( token->type == TOKEN_OP && isunary(token->op) ) {
+        if ( token->type == TOKEN_OP && (isunary(token->op) || token->op == EQ || token->op == POST_EQ) ) {
             if ( curr->rvalue == NULL ) error ( "Missing identifier" );
             else {
                 curr = curr->rvalue;
@@ -1048,19 +1056,30 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
         }
         else uop = NOP;
 
-        // обязательный идентификатор.
+        if (uop != NOP && debug) printf ( "%s ", opstr(uop) );
+
+        // обязательный идентификатор или вложенное выражение.
         token = &curr->token;
-        if ( token->type == TOKEN_IDENT || token->type == TOKEN_NUMBER ) {
+        if ( token->type == TOKEN_IDENT || token->type == TOKEN_NUMBER || curr->depth > expr->depth ) {
 
-            memset ( &mvalue, 0, sizeof(number_t) );
+            memset ( &mvalue, 0, sizeof(symbol_t) );
 
-            if ( token->type == TOKEN_IDENT ) { 
+            if ( curr->depth > expr->depth ) {  // вложенное выражение
+                if (debug) printf ( "SUBEVAL " );
+                curr = evaluate (curr, &mvalue);
+                //printf ( "SUB LVALUE : %i\n", mvalue.num.value );
+            }
+            else if ( token->type == TOKEN_IDENT ) { 
+                curr = curr->rvalue;
                 sym = check_symbol (token->rawstring);
-                if (sym && sym->type == SYMBOL_PARAM) memcpy ( &mvalue, &sym->num, sizeof(number_t) );
+                if (sym && sym->type == SYMBOL_PARAM) memcpy ( &mvalue.num, &sym->num, sizeof(number_t) );
                 else warning ( "Undefined symbol : %s", token->rawstring );
+                if (debug) printf ( "SYMBOL " );
             }
             else if ( token->type == TOKEN_NUMBER ) {
-                memcpy ( &mvalue, &token->num, sizeof(number_t) );
+                curr = curr->rvalue;
+                memcpy ( &mvalue.num, &token->num, sizeof(number_t) );
+                if (debug) printf ( "NUMBER " );
             }
 
             // выполняем унарную операцию над MVALUE
@@ -1068,15 +1087,15 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
                 switch (uop)
                 {
                     case MINUS_UNARY:
-                        mvalue.value = -mvalue.value;
+                        mvalue.num.value = -mvalue.num.value;
                         break;
                     case PLUS_UNARY:
                         break;
                     case NOT:
-                        mvalue.value = !mvalue.value;
+                        mvalue.num.value = !mvalue.num.value;
                         break;
                     case NEG:
-                        mvalue.value = ~mvalue.value;
+                        mvalue.num.value = ~mvalue.num.value;
                         break;
                 }
             }
@@ -1086,46 +1105,50 @@ static void evaluate (node_t * expr, symbol_t *lvalue)
                 switch (op)
                 {
                     case MINUS_BINARY:
-                        rvalue.num.value -= mvalue.value;
+                        rvalue.num.value -= mvalue.num.value;
                         break;
                     case PLUS_BINARY:
-                        rvalue.num.value += mvalue.value;
+                        rvalue.num.value += mvalue.num.value;
                         break;
                     case MUL:
-                        rvalue.num.value *= mvalue.value;
+                        rvalue.num.value *= mvalue.num.value;
                         break;
                     case DIV:
-                        if (mvalue.value) rvalue.num.value /= mvalue.value;
+                        if (mvalue.num.value) rvalue.num.value /= mvalue.num.value;
                         break;
                     case MOD:
-                        if (mvalue.value) rvalue.num.value %= mvalue.value;
+                        if (mvalue.num.value) rvalue.num.value %= mvalue.num.value;
                         break;
                 }
             }
-            else memcpy ( &rvalue.num, &mvalue, sizeof(number_t) );
-
-            curr = curr->rvalue;
+            else memcpy ( &rvalue.num, &mvalue.num, sizeof(number_t) );
         }
         else error ( "Identifier required" );
 
         // необязательная бинарная операция.
-        if (curr) {
+        if (curr && curr->depth == expr->depth ) {
             token = &curr->token;
             if ( token->type == TOKEN_OP && isbinary(token->op) ) {
                 curr = curr->rvalue;
                 op = token->op;
             }
             else op = NOP;
+
+            if (op != NOP && debug) printf ( "%s ", opstr(op) );
         }
     }
 
+    if (debug) printf ( "]" );
+
     memcpy ( &lvalue->num, &rvalue.num, sizeof(number_t) );
+    return curr;
 }
 
 // парсер несинтезируемых выражений. точка с запятой или запятая означает конец выражения. 
 static void nonsynth_expr_parser (token_t * token)
 {
     static node_t * expr = NULL, * curr, * node;
+    static int depth = 0, prio = 0;
     token_t * tok;
     symbol_t * lvalue;
 
@@ -1134,10 +1157,11 @@ static void nonsynth_expr_parser (token_t * token)
     if (token->type == TOKEN_OP && (token->op == COMMA || token->op == SEMICOLON) ) {   // исполняем дерево (семанический анализ)
 
         // задампим дерево.
-#if 0
+#if 1
         curr = expr;
         while (curr) {
             tok = &curr->token;
+            printf ( "(%i)", curr->depth );
             if (tok->type == TOKEN_OP) printf ("%s ", opstr(tok->op));
             else if (tok->type == TOKEN_NUMBER) printf ("%i ", tok->num.value );
             else printf ("%s ", tok->rawstring );
@@ -1150,31 +1174,47 @@ static void nonsynth_expr_parser (token_t * token)
         if ( expr->rvalue->token.type != TOKEN_OP && expr->rvalue->token.op != EQ ) warning ( "No assignment!" );
         lvalue = check_symbol (expr->token.rawstring);
         if ( lvalue ) {
-            evaluate (expr->rvalue->rvalue, lvalue);
+            evaluate (expr->rvalue, lvalue);
             lvalue->type = SYMBOL_PARAM;
             printf ( "LVALUE : %i\n", lvalue->num.value );
         }
         else warning ( "Lvalue not defined : %s", expr->token.rawstring );
 
         expr = NULL;
+        depth = prio = 0;
         pop_parser ();   // возвращаемся в парсер parameter
         if ( token->op == SEMICOLON ) pop_parser ();   // возвращаемся в парсер module
     }
     else {  // растим дерево (синтаксический анализ)
 
-        node = addnode ( token );
+        //dummy_parser (token);
+
+        node = addnode ( token, depth );
 
         if (expr == NULL)
         {
             expr = curr = node;
         }
         else {
+
+            if ( token->type == TOKEN_OP ) {
+                if ( token->op == LPAREN) { depth++; return; }
+                else if ( token->op == RPAREN ) {
+                    if (depth > 0) depth--;
+                    else warning ( "Unmatched parenthesis" );
+                    return;
+                }
+                else if ( opprio[token->op] > prio ) {
+                    prio = opprio[token->op];
+                    depth++;
+                }
+            }
+            // незакрытые скобки и понижение приоритета операций мы просто игнорируем.
+
             curr->rvalue = node;
             node->lvalue = curr;
             curr = node;
         }
-
-        //dummy_parser (token);
 
     }
 }
