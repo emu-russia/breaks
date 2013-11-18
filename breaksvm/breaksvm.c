@@ -1204,12 +1204,16 @@ static void nonsynth_expr_parser (token_t * token)
                     else warning ( "Unmatched parenthesis" );
                     return;
                 }
-                else if ( opprio[token->op] > prio ) {
+                else if ( opprio[token->op] > prio ) {  // повышение приоритета
                     prio = opprio[token->op];
                     depth++;
                 }
+                else if ( opprio[token->op] < prio ) { // понижение приоритета
+                    prio = opprio[token->op];
+                    depth--;
+                }
             }
-            // незакрытые скобки и понижение приоритета операций мы просто игнорируем.
+            // незакрытые скобки мы просто игнорируем.
 
             curr->rvalue = node;
             node->lvalue = curr;
