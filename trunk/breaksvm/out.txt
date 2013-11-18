@@ -1,7 +1,11 @@
-LVALUE : 10
-LVALUE : 7
-LVALUE : 5
-LVALUE : 85
+(0)a (0)= (1)10 
+[= SUBEVAL [NUMBER ]]LVALUE : 10
+(0)b (0)= (1)7 
+[= SUBEVAL [NUMBER ]]LVALUE : 7
+(0)c (0)= (1)5 
+[= SUBEVAL [NUMBER ]]LVALUE : 5
+(0)z (0)= (1)a (1)++ (1)b (1)* (2)c 
+[= SUBEVAL [SYMBOL ++ SYMBOL * SUBEVAL [SYMBOL ]]]LVALUE : 85
 PARAM : a, value : 10
 PARAM : b, value : 7
 PARAM : c, value : 5
