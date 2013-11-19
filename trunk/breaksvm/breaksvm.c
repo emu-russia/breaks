@@ -1079,7 +1079,7 @@ static node_t * evaluate (node_t * expr, symbol_t *lvalue)
             else if ( token->type == TOKEN_NUMBER ) {
                 curr = curr->rvalue;
                 memcpy ( &mvalue.num, &token->num, sizeof(number_t) );
-                if (debug) printf ( "NUMBER " );
+                if (debug) printf ( "NUMBER(%i) ", mvalue.num.value );
             }
 
             // выполняем унарную операцию над MVALUE
@@ -1148,7 +1148,7 @@ static node_t * evaluate (node_t * expr, symbol_t *lvalue)
 static void nonsynth_expr_parser (token_t * token)
 {
     static node_t * expr = NULL, * curr, * node;
-    static int depth = 0, prio = 0;
+    static int depth, prio, prio_stack[1000];
     token_t * tok;
     symbol_t * lvalue;
 
@@ -1170,18 +1170,20 @@ static void nonsynth_expr_parser (token_t * token)
         printf ("\n");
 #endif
 
+        // выполним выражение.
+#if 1
         if ( expr->token.type != TOKEN_IDENT ) warning ( "Wrong lvalue!" );
         if ( expr->rvalue->token.type != TOKEN_OP && expr->rvalue->token.op != EQ ) warning ( "No assignment!" );
         lvalue = check_symbol (expr->token.rawstring);
         if ( lvalue ) {
             evaluate (expr->rvalue, lvalue);
             lvalue->type = SYMBOL_PARAM;
-            printf ( "LVALUE : %i\n", lvalue->num.value );
+            printf ( "LVALUE : %i (0x%08X)\n", lvalue->num.value, lvalue->num.value );
         }
         else warning ( "Lvalue not defined : %s", expr->token.rawstring );
+#endif
 
         expr = NULL;
-        depth = prio = 0;
         pop_parser ();   // возвращаемся в парсер parameter
         if ( token->op == SEMICOLON ) pop_parser ();   // возвращаемся в парсер module
     }
@@ -1194,24 +1196,36 @@ static void nonsynth_expr_parser (token_t * token)
         if (expr == NULL)
         {
             expr = curr = node;
+            depth = prio = 0;
+            memset ( prio_stack, 0, sizeof(prio_stack) );
         }
         else {
 
             if ( token->type == TOKEN_OP ) {
-                if ( token->op == LPAREN) { depth++; return; }
+                if ( token->op == LPAREN) {
+                    prio++;
+                    depth++;
+                    return;
+                }
                 else if ( token->op == RPAREN ) {
+                    prio--;
                     if (depth > 0) depth--;
                     else warning ( "Unmatched parenthesis" );
                     return;
                 }
-                else if ( opprio[token->op] > prio ) {  // повышение приоритета
-                    prio = opprio[token->op];
+                else if ( opprio[token->op] > prio_stack[prio] ) {  // повышение приоритета. для бинарных операций также повышается приоритет предыдущего токена.
+                    if ( isbinary (token->op) ) curr->depth++;
+                    node->depth++;
+                    prio_stack[prio] = opprio[token->op];
                     depth++;
                 }
-                else if ( opprio[token->op] < prio ) { // понижение приоритета
-                    prio = opprio[token->op];
+                else if ( opprio[token->op] < prio_stack[prio] ) { // понижение приоритета
+                    prio_stack[prio] = opprio[token->op];
+                    node->depth--;
                     depth--;
                 }
+
+                printf ( "op %s, prio: %i\n", opstr(token->op), opprio[token->op] );
             }
             // незакрытые скобки мы просто игнорируем.
 

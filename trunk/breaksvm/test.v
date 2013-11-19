@@ -5,12 +5,10 @@
 
     // проверка синтезируемого парсера (parameter)
 
-parameter a = 10, b = 7, c = 5;
-parameter z = -a + b * c;       // ухах! ))  
+//parameter a = 10, b = 7, c = 5, d = 12;
+//parameter z = (a + b) * (c + -d);   /// хз как но работает.
+parameter test = 2*3 - 4*5 + 6/3;
 
-// TODO : разобраться с приоритетами, какая-то хня происходит.
-
-    
 
     //parameter DUMMY = 1, NBIT = 4;
     input CLK;

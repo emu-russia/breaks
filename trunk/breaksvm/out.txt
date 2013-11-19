@@ -1,16 +1,16 @@
-(0)a (0)= (1)10 
-[= SUBEVAL [NUMBER ]]LVALUE : 10
-(0)b (0)= (1)7 
-[= SUBEVAL [NUMBER ]]LVALUE : 7
-(0)c (0)= (1)5 
-[= SUBEVAL [NUMBER ]]LVALUE : 5
-(0)z (0)= (1)- (2)a (2)++ (1)b (1)* (2)c 
-[= SUBEVAL [- SUBEVAL [SYMBOL ++ ]SYMBOL * SUBEVAL [SYMBOL ]]]LVALUE : 35
-PARAM : a, value : 10
-PARAM : b, value : 7
-PARAM : c, value : 5
-PARAM : z, value : 35
+op =, prio: 9
+op *, prio: 10
+op --, prio: 9
+op *, prio: 10
+op ++, prio: 9
+op /, prio: 10
+(0)test (1)= (2)2 (2)* (2)3 (1)-- (2)4 (2)* (2)5 (1)++ (2)6 (2)/ (2)3 
+[= SUBEVAL [NUMBER(2) * NUMBER(3) ]-- SUBEVAL [NUMBER(4) * NUMBER(5) ]++ SUBEVAL [NUMBER(6) / NUMBER(3) ]]LVALUE : -12 (0xFFFFFFF4)
+PARAM : test, value : -12
 SYMBOL : CLK
+SYMBOL : a
+SYMBOL : b
+SYMBOL : c
 SYMBOL : ___busa
 SYMBOL : busb
 SYMBOL : andbus
