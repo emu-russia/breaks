@@ -1,11 +1,4 @@
-op =, prio: 9
-op *, prio: 10
-op --, prio: 9
-op *, prio: 10
-op ++, prio: 9
-op /, prio: 10
-(0)test (1)= (2)2 (2)* (2)3 (1)-- (2)4 (2)* (2)5 (1)++ (2)6 (2)/ (2)3 
-[= SUBEVAL [NUMBER(2) * NUMBER(3) ]-- SUBEVAL [NUMBER(4) * NUMBER(5) ]++ SUBEVAL [NUMBER(6) / NUMBER(3) ]]LVALUE : -12 (0xFFFFFFF4)
+LVALUE : -12 (0xFFFFFFF4)
 PARAM : test, value : -12
 SYMBOL : CLK
 SYMBOL : a

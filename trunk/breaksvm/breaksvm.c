@@ -96,22 +96,6 @@ static int keyword_ids[] = {    // должна соответствовать �
     SYMBOL_KEYWORD_ENDMODULE,
 };
 
-typedef struct number_t
-{
-    u32     value;
-    u32     xmask;
-    u32     zmask;
-    int     lsb, msb, len;
-} number_t;
-
-typedef struct symbol_t
-{
-    char    rawstring[256];
-    number_t    num;
-    u32     hash;
-    int     type;
-} symbol_t;
-
 static  symbol_t symtab[1000];
 static  int sym_num;
 
@@ -241,15 +225,6 @@ enum TOKEN_TYPE
     TOKEN_KEYWORD,
     TOKEN_MAX_TYPE,
 };
-
-typedef struct token_t
-{
-    int     type;
-    char    rawstring[256];
-    symbol_t * sym;
-    number_t num;
-    int     op;         // operation
-} token_t;
 
 enum OPS
 {
@@ -978,14 +953,6 @@ static int opprio[] = {
     1, 1, 1,  // . , ;
 };
 
-typedef struct node_struct_t
-{
-    struct node_struct_t  *lvalue;
-    struct node_struct_t  *rvalue;
-    token_t token;
-    int     depth;
-} node_t;
-
 static node_t  tree[10000];
 static int     tree_nodes = 0;
 
@@ -1018,7 +985,7 @@ static node_t * evaluate (node_t * expr, symbol_t *lvalue)
     symbol_t rvalue, *sym, mvalue;
     token_t * token;
     int uop = NOP, op = NOP;
-    int debug = 1;
+    int debug = 0;
 
     if (debug) printf ( "[" );
 
@@ -1157,7 +1124,7 @@ static void nonsynth_expr_parser (token_t * token)
     if (token->type == TOKEN_OP && (token->op == COMMA || token->op == SEMICOLON) ) {   // исполняем дерево (семанический анализ)
 
         // задампим дерево.
-#if 1
+#if 0
         curr = expr;
         while (curr) {
             tok = &curr->token;
@@ -1178,7 +1145,7 @@ static void nonsynth_expr_parser (token_t * token)
         if ( lvalue ) {
             evaluate (expr->rvalue, lvalue);
             lvalue->type = SYMBOL_PARAM;
-            printf ( "LVALUE : %i (0x%08X)\n", lvalue->num.value, lvalue->num.value );
+            //printf ( "LVALUE : %i (0x%08X)\n", lvalue->num.value, lvalue->num.value );
         }
         else warning ( "Lvalue not defined : %s", expr->token.rawstring );
 #endif
@@ -1224,8 +1191,6 @@ static void nonsynth_expr_parser (token_t * token)
                     node->depth--;
                     depth--;
                 }
-
-                printf ( "op %s, prio: %i\n", opstr(token->op), opprio[token->op] );
             }
             // незакрытые скобки мы просто игнорируем.
 
@@ -1293,9 +1258,6 @@ int breaksvm_load (char *filename)
 }
 
 // ------------------------------------------------------------------------------------
-// EDIF 2 0 0 nodelist generator
-
-// ------------------------------------------------------------------------------------
 // nodelist JIT-compiler (транслятор)
 
 // ------------------------------------------------------------------------------------
@@ -1303,15 +1265,7 @@ int breaksvm_load (char *filename)
 
 // virtual devices
 
-void breaksvm_input_real (char *input_name, void (*callback)(float *real))
-{
-}
-
 void breaksvm_input_reg (char *input_name, void (*callback)(unsigned char *reg))
-{
-}
-
-void breaksvm_output_real (char *output_name, void (*callback)(float *real))
 {
 }
 
