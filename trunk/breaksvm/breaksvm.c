@@ -1261,15 +1261,15 @@ int breaksvm_load (char *filename)
 // nodelist JIT-compiler (транслятор)
 
 // ------------------------------------------------------------------------------------
-// simulator and standard cells
+// simulator
 
 // virtual devices
 
-void breaksvm_input_reg (char *input_name, void (*callback)(unsigned char *reg))
+void breaksvm_input_reg (char *input_name, void (*callback)(number_t *reg))
 {
 }
 
-void breaksvm_output_reg (char *output_name, void (*callback)(unsigned char *reg))
+void breaksvm_output_reg (char *output_name, void (*callback)(number_t *reg))
 {
 }
 
