@@ -1,21 +1,25 @@
-WARNING (test.v, line 27): Redefinition of DUMMY
-MODULE 0: []
-SYMBOL : bla, module ID: 0
-SYMBOL : test, module ID: 0
-SYMBOL : test2, module ID: 0
-MODULE 1: [test]
-PARAM : DUMMY, value : 1, module ID: 1
-PARAM : NBIT, value : 8, module ID: 1
-SYMBOL : CLK, module ID: 1
-SYMBOL : dout, module ID: 1
-SYMBOL : a, module ID: 1
-SYMBOL : b, module ID: 1
-SYMBOL : c, module ID: 1
-SYMBOL : ___busa, module ID: 1
-SYMBOL : busb, module ID: 1
-SYMBOL : MYREG2, module ID: 1
-SYMBOL : dout2, module ID: 1
-MODULE 2: [test2]
-PARAM : DUMMY, value : 2, module ID: 2
-PARAM : ZBIT, value : 33, module ID: 2
-MODULE 3: [bla]
+
+
+Dump:
+=== MODULE 0: [] ===
+SYMBOL : 001temp
+SYMBOL : 002temp
+SYMBOL : 003temp
+SYMBOL : bla
+SYMBOL : test
+SYMBOL : test2
+=== MODULE 1: [test] ===
+PARAM : DUMMY, value : 1
+PARAM : NBIT, value : 8
+SYMBOL : CLK
+ARRAY [12] REG : [7:2] dout
+WIRE : [0:0] a
+WIRE : [0:0] b
+WIRE : [0:0] c
+WIRE : [7:0] ___busa
+WIRE : [0:9] busb
+REG : [0:3] MYREG2
+=== MODULE 2: [test2] ===
+PARAM : DUMMY, value : 2
+PARAM : ZBIT, value : 22
+=== MODULE 3: [bla] ===
