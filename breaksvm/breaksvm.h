@@ -16,8 +16,10 @@ typedef struct symbol_t
 {
     char    rawstring[256];
     number_t    num;
+    number_t    *array;
     u32     hash;
     int     type;
+    int     module_id;  // module_id определяет видимость символа (wire, reg, parameter). входы/выходы имеют глобальную видимость (module_id = 0)
 } symbol_t;
 
 typedef struct token_t
@@ -36,6 +38,13 @@ typedef struct node_struct_t
     token_t token;
     int     depth;
 } node_t;
+
+typedef struct module_t
+{
+    char        name[256];
+    symbol_t    *io;    // dynamic array.
+    int         ionum;
+} module_t;
 
 int     breaksvm_init (void);
 void    breaksvm_shutdown (void);

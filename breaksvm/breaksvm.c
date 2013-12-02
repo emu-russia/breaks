@@ -29,6 +29,10 @@ static void warning (char *fmt, ...)
     printf ( "WARNING (%s, line %i): %s\n", VM_FILE, VM_LINE, buf );
 }
 
+static module_t modules[256];
+static int modulenum = 1;
+static int CurrentModule = 0;
+
 // ------------------------------------------------------------------------------------
 // verilog tokenizer
 
@@ -56,12 +60,13 @@ enum SYMBOL_TYPE
 
     SYMBOL_NOT_KEYWORDS = 100,
     SYMBOL_IDENT,   // просто идентификатор (пока неизвестно какого типа)
-    SYMBOL_INPUT,
-    SYMBOL_OUTPUT,
-    SYMBOL_INOUT,
     SYMBOL_REG,
     SYMBOL_WIRE,
     SYMBOL_PARAM,
+    SYMBOL_INPUT = 0x100,
+    SYMBOL_OUTPUT = 0x200,
+    SYMBOL_INOUT = SYMBOL_INPUT | SYMBOL_OUTPUT,
+    SYMBOL_ARRAY = 0x1000,
 };
 
 static char * keywords[] = {
@@ -141,19 +146,24 @@ static u32 MurmurHash (char * key)      // https://code.google.com/p/smhasher/
   return h;
 }
 
-static symbol_t * check_symbol (char *name)   // проверить есть ли в таблице символов указанный символ. Вернуть NULL если не найден, или объект если найден.
+static symbol_t * check_symbol (char *name, int module_id)   // проверить есть ли в таблице символов указанный символ. Вернуть NULL если не найден, или объект если найден.
 {
     symbol_t *symbol;
-    int i;
+    int i, in_scope;
     u32 hash = MurmurHash (name);
+
     for (i=0; i<sym_num; i++) {
         symbol = &symtab[i];
-        if ( symbol->hash == hash ) return symbol;
+        in_scope = (symbol->type == SYMBOL_REG) || (symbol->type == SYMBOL_WIRE) || (symbol->type == SYMBOL_PARAM);
+        if ( symbol->hash == hash ) {
+            if ( symbol->module_id != module_id && in_scope) continue;
+            else return symbol;
+        }
     }
     return NULL;
 }
 
-static symbol_t * add_symbol (char *name, int type)     // добавить символ, вернуть описатель или NULL
+static symbol_t * add_symbol (char *name, int type, int module_id)     // добавить символ, вернуть описатель или NULL
 {
     symbol_t *symbol;
     if ( strlen (name) > 255 ) {
@@ -163,23 +173,26 @@ static symbol_t * add_symbol (char *name, int type)     // добавить си
     strncpy ( symbol->rawstring, name, 255 );
     symbol->type = type;
     symbol->hash = MurmurHash (symbol->rawstring);     // calculate hash for truncated name!
+    symbol->module_id = module_id;
     memset ( &symbol->num, 0, sizeof(number_t) );
     sym_num++;
     return &symtab[sym_num - 1];
 }
 
-static void dump_symbols (void)
+static void dump_symbols (int module_id)
 {
     int i;
     for (i=0; i<sym_num; i++) {
+        if ( symtab[i].module_id != module_id ) continue;
         if ( symtab[i].type < SYMBOL_NOT_KEYWORDS ) continue;   // don't dump keywords.
-        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, value : %i\n", symtab[i].rawstring, symtab[i].num.value );
+        if ( symtab[i].type & SYMBOL_ARRAY ) printf ( "ARRAY " );
+        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, value : %i, module ID: %i\n", symtab[i].rawstring, symtab[i].num.value, symtab[i].module_id );
         else if ( symtab[i].type == SYMBOL_INPUT ) printf ( "INPUT : %s\n", symtab[i].rawstring );
         else if ( symtab[i].type == SYMBOL_OUTPUT ) printf ( "OUTPUT : %s\n", symtab[i].rawstring );
         else if ( symtab[i].type == SYMBOL_INOUT ) printf ( "INOUT : %s\n", symtab[i].rawstring );
-        else if ( symtab[i].type == SYMBOL_WIRE ) printf ( "WIRE : %s\n", symtab[i].rawstring );
-        else if ( symtab[i].type == SYMBOL_REG ) printf ( "REG : %s\n", symtab[i].rawstring );
-        else printf ( "SYMBOL : %s\n", symtab[i].rawstring );
+        else if ( symtab[i].type == SYMBOL_WIRE ) printf ( "WIRE : %s, module ID: %i\n", symtab[i].rawstring, symtab[i].module_id );
+        else if ( symtab[i].type == SYMBOL_REG ) printf ( "REG : %s, module ID: %i\n", symtab[i].rawstring, symtab[i].module_id );
+        else printf ( "SYMBOL : %s, module ID: %i\n", symtab[i].rawstring, symtab[i].module_id );
     }
 }
 
@@ -564,7 +577,7 @@ static token_t * next_token (void)  // получить следующий то�
         if (ident_max_size == 0) warning ( "Identifier max. length exceeds limit" );
 
         // вернуть ключевое слово или идентификатор.
-        sym = check_symbol (ident);
+        sym = check_symbol (ident, CurrentModule);
         if (sym) {
             if (sym->type > SYMBOL_NOT_KEYWORDS) current_token.type = TOKEN_IDENT;
             else current_token.type = TOKEN_KEYWORD;
@@ -573,7 +586,7 @@ static token_t * next_token (void)  // получить следующий то�
         }
         else         // добавим идентификатор (параметром или чем либо ещё он может стать потом)
         {
-            sym = add_symbol (ident, SYMBOL_IDENT);
+            sym = add_symbol (ident, SYMBOL_IDENT, CurrentModule);
             current_token.type = TOKEN_IDENT;
             strncpy ( current_token.rawstring, ident, 255 );
             current_token.sym = sym;
@@ -994,7 +1007,7 @@ static node_t * evaluate (node_t * expr, symbol_t *lvalue)
     // вложенные evaluations.  -- это чухня. надо переосмыслить a = b = ...  потому что lvalue может быть например reg[2] (reg [ 2 ])
 /*
     if ( expr->token.type == TOKEN_IDENT && expr->rvalue->token.type == TOKEN_OP && expr->rvalue->token.op == EQ ) { 
-        sym = check_symbol (expr->token.rawstring);
+        sym = check_symbol (expr->token.rawstring, CurrentModule);
         if ( sym ) {
             evaluate (expr->rvalue->rvalue, sym);
             sym->type = SYMBOL_PARAM;
@@ -1038,7 +1051,7 @@ static node_t * evaluate (node_t * expr, symbol_t *lvalue)
             }
             else if ( token->type == TOKEN_IDENT ) { 
                 curr = curr->rvalue;
-                sym = check_symbol (token->rawstring);
+                sym = check_symbol (token->rawstring, CurrentModule);
                 if (sym && sym->type == SYMBOL_PARAM) memcpy ( &mvalue.num, &sym->num, sizeof(number_t) );
                 else warning ( "Undefined symbol : %s", token->rawstring );
                 if (debug) printf ( "SYMBOL " );
@@ -1111,62 +1124,21 @@ static node_t * evaluate (node_t * expr, symbol_t *lvalue)
     return curr;
 }
 
-// парсер несинтезируемых выражений. точка с запятой или запятая означает конец выражения. 
-static void nonsynth_expr_parser (token_t * token)
+// растим синтаксическое дерево
+static void grow ( node_t **expr, token_t * token)
 {
-    static node_t * expr = NULL, * curr, * node;
+    static node_t * curr, * node;
     static int depth, prio, prio_stack[1000];
-    token_t * tok;
-    symbol_t * lvalue;
 
-    if ( token->type == TOKEN_NULL ) return;
+    node = addnode ( token, depth );
 
-    if (token->type == TOKEN_OP && (token->op == COMMA || token->op == SEMICOLON) ) {   // исполняем дерево (семанический анализ)
-
-        // задампим дерево.
-#if 0
-        curr = expr;
-        while (curr) {
-            tok = &curr->token;
-            printf ( "(%i)", curr->depth );
-            if (tok->type == TOKEN_OP) printf ("%s ", opstr(tok->op));
-            else if (tok->type == TOKEN_NUMBER) printf ("%i ", tok->num.value );
-            else printf ("%s ", tok->rawstring );
-            curr = curr->rvalue;
-        }
-        printf ("\n");
-#endif
-
-        // выполним выражение.
-#if 1
-        if ( expr->token.type != TOKEN_IDENT ) warning ( "Wrong lvalue!" );
-        if ( expr->rvalue->token.type != TOKEN_OP && expr->rvalue->token.op != EQ ) warning ( "No assignment!" );
-        lvalue = check_symbol (expr->token.rawstring);
-        if ( lvalue ) {
-            evaluate (expr->rvalue, lvalue);
-            lvalue->type = SYMBOL_PARAM;
-            //printf ( "LVALUE : %i (0x%08X)\n", lvalue->num.value, lvalue->num.value );
-        }
-        else warning ( "Lvalue not defined : %s", expr->token.rawstring );
-#endif
-
-        expr = NULL;
-        pop_parser ();   // возвращаемся в парсер parameter
-        if ( token->op == SEMICOLON ) pop_parser ();   // возвращаемся в парсер module
+    if (*expr == NULL)
+    {
+        *expr = curr = node;
+        depth = prio = 0;
+        memset ( prio_stack, 0, sizeof(prio_stack) );
     }
-    else {  // растим дерево (синтаксический анализ)
-
-        //dummy_parser (token);
-
-        node = addnode ( token, depth );
-
-        if (expr == NULL)
-        {
-            expr = curr = node;
-            depth = prio = 0;
-            memset ( prio_stack, 0, sizeof(prio_stack) );
-        }
-        else {
+    else {
 
             if ( token->type == TOKEN_OP ) {
                 if ( token->op == LPAREN) {
@@ -1197,9 +1169,55 @@ static void nonsynth_expr_parser (token_t * token)
             curr->rvalue = node;
             node->lvalue = curr;
             curr = node;
-        }
-
     }
+}
+
+// парсер несинтезируемых выражений. точка с запятой или запятая означает конец выражения. 
+static void nonsynth_expr_parser (token_t * token)
+{
+    static node_t * expr = NULL, * curr;
+    token_t * tok;
+    symbol_t * lvalue;
+
+    if ( token->type == TOKEN_NULL ) return;
+
+    if (token->type == TOKEN_OP && (token->op == COMMA || token->op == SEMICOLON) ) {   // исполняем дерево (семанический анализ)
+
+        // задампим дерево.
+#if 0
+        curr = expr;
+        while (curr) {
+            tok = &curr->token;
+            printf ( "(%i)", curr->depth );
+            if (tok->type == TOKEN_OP) printf ("%s ", opstr(tok->op));
+            else if (tok->type == TOKEN_NUMBER) printf ("%i ", tok->num.value );
+            else printf ("%s ", tok->rawstring );
+            curr = curr->rvalue;
+        }
+        printf ("\n");
+#endif
+
+        // выполним выражение.
+#if 1
+        if ( expr->token.type != TOKEN_IDENT ) warning ( "Wrong lvalue!" );
+        if ( expr->rvalue->token.type != TOKEN_OP && expr->rvalue->token.op != EQ ) warning ( "No assignment!" );
+        lvalue = check_symbol (expr->token.rawstring, CurrentModule);
+        if ( lvalue ) {
+            if ( lvalue->type == SYMBOL_PARAM ) warning ( "Redefinition of %s", expr->token.rawstring );
+            else {
+                evaluate (expr->rvalue, lvalue);
+                lvalue->type = SYMBOL_PARAM;
+                //printf ( "LVALUE : %i (0x%08X)\n", lvalue->num.value, lvalue->num.value );
+            }
+        }
+        else warning ( "Lvalue not defined : %s", expr->token.rawstring );
+#endif
+
+        expr = NULL;
+        pop_parser ();   // возвращаемся в парсер parameter
+        if ( token->op == SEMICOLON ) pop_parser ();   // возвращаемся в парсер module
+    }
+    else grow (&expr, token);
 }
 
 // парсер выражений ключевого слова parameter.
@@ -1209,13 +1227,103 @@ static void parameter_parser (token_t * token)
     push_parser (nonsynth_expr_parser);
 }
 
+static int reg_not_wire;
+
+// парсер reg/wire
+static void regwire_parser (token_t * token)
+{
+}
+
 // парсер модуля.
 static void module_parser (token_t * token)
 {
-    if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_PARAMETER ) {   // parameter <expr1>, <expr2>, ..., <exprN> ;
-        push_parser ( parameter_parser );
+    static int step = 0;    // 0 - мы начинаем парсить формальные параметры, ожидаем (
+                            // 1 - скобка открывается (, ожидаем параметры через запятую
+                            // 2 - скобка закрывается ), ожидаем имя_модуля
+                            // 3 - встретили идентификатор, создаем новый модуль, ожидаем ;
+                            // 4 - встретили ;, ожидаем тело модуля
+
+    if ( token->type == TOKEN_NULL ) return;
+
+    if (step == 0) {
+
+        
+
+        if ( token->type == TOKEN_OP && token->op == LPAREN ) step++;
+        else if (token->type == TOKEN_IDENT && CurrentModule == 0) {
+            step = 2;
+            goto addmodule;
+        }
+        else warning ( "Unexpected shit in token stream" );
     }
-    //else dummy_parser (token);
+
+    else if (step == 1) {
+        if ( (token->type == TOKEN_OP && token->op == COMMA) || (token->type == TOKEN_IDENT) ) return;
+        else if ( token->type == TOKEN_OP && token->op == RPAREN ) step++;
+        else warning ( "Unexpected shit in module formal parameters list" );
+    }
+
+    else if (step == 2) {
+        if (token->type == TOKEN_IDENT && CurrentModule == 0) {   // добавляем новый модуль
+addmodule:;
+            strcpy (modules[modulenum].name, token->sym->rawstring);
+            modules[modulenum].ionum = 0;
+            CurrentModule = modulenum;
+            modulenum++;
+            step++;
+        }
+        else warning ( "Unexpected shit in module name" );
+    }
+
+    else if (step == 3) {
+        if ( token->type == TOKEN_OP && token->op == SEMICOLON ) step++;
+        else warning ( "Required ;" );
+    }
+
+    else if (step == 4) {    
+        if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_PARAMETER ) {   // parameter <expr1>, <expr2>, ..., <exprN> ;
+            push_parser ( parameter_parser );
+        }
+
+        if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_REG ) {     // reg <[[expr_lsb:expr_msb]] name [[array]]>, ..., <> ;
+            reg_not_wire = 1;
+            push_parser (regwire_parser);
+        }
+
+/*
+        if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_WIRE ) {     // wire <[[expr_lsb:expr_msb]] name>, ..., <> ;
+            reg_not_wire = 0;
+            push_parser (regwire_parser);
+        }
+*/
+
+        if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_ENDMODULE ) {
+            step = 0;
+            CurrentModule = 0;  // root
+            pop_parser ();
+        }
+    }
+
+    else warning ( "Module parser shoudn't run here!" );
+//    else dummy_parser (token);
+}
+
+// корневой парсер.
+static void root_parser (token_t * token)
+{
+    if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_MODULE ) {  // module [(formal,parameters,...,list)] module_name;
+        push_parser (module_parser);
+    }
+    else dummy_parser (token);
+}
+
+static void dump_modules (void)
+{
+    int n;
+    for (n=0; n<modulenum; n++) {
+        printf ("MODULE %i: [%s]\n", n, modules[n].name );
+        dump_symbols (n);
+    }
 }
 
 int breaksvm_load (char *filename)
@@ -1246,14 +1354,15 @@ int breaksvm_load (char *filename)
     VM_LINE = 1;
 
     tokenize_file ( content, filesize);
-    push_parser ( module_parser );
+    push_parser ( root_parser );
 
     do {    // запустить лексический анализ.
         token = next_token ();
         if (token) feed_token ( token );
     } while (token);
     
-    dump_symbols ();
+    dump_modules ();
+
     return 1;
 }
 
@@ -1298,10 +1407,10 @@ int breaksvm_init (void)
 
     // Добавим ключевые слова в таблицу символов.
     {
-        add_symbol ( "", SYMBOL_UNKNOWN );
+        add_symbol ( "", SYMBOL_UNKNOWN, 0 );
         int i = 0;
         while ( keywords[i] ) {
-            add_symbol ( keywords[i], keyword_ids[i] );
+            add_symbol ( keywords[i], keyword_ids[i], 0 );
             i++;
         }
     }
