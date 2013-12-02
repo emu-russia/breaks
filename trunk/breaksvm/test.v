@@ -1,30 +1,33 @@
 // Тестовая программа на Verilog
 
 // Пока мы модули не используем, будем считать что мы уже внутри модуля.
-//module test;
+module (bla,bla,bla) test;
 
-    // проверка синтезируемого парсера (parameter)
-
-//parameter a = 10, b = 7, c = 5, d = 12;
-//parameter z = (a + b) * (c + -d);   /// хз как но работает.
-parameter test = 2*3 - 4*5 + 6/3;
-
-
-    //parameter DUMMY = 1, NBIT = 4;
+    parameter DUMMY = 1, NBIT = 4+4;
     input CLK;
+    output dout;
 
     wire a, b, c;
     wire [7:0] ___busa;
     wire [0:9] busb;
-    wand vectored [7:0] andbus;
     reg [NBIT-1:0] dout;
-    trireg [7:0] treg;
 
     reg MYREG2;
 
     always @ (CLK)
-        MYREG2 = MYREG2 + 1;        // бинарный плюс
-        MYREG2 = -MYREG2;       // унарный минус
+        dout2 = dout2 + 1;        // бинарный плюс
+        dout2 = -dout;       // унарный минус
     end
 
-//endmodule
+endmodule
+
+
+module test2;
+
+    parameter DUMMY = 2, DUMMY = 55, ZBIT=33-11;
+
+endmodule
+
+module bla;
+endmodule
+

@@ -1,13 +1,21 @@
-LVALUE : -12 (0xFFFFFFF4)
-PARAM : test, value : -12
-SYMBOL : CLK
-SYMBOL : a
-SYMBOL : b
-SYMBOL : c
-SYMBOL : ___busa
-SYMBOL : busb
-SYMBOL : andbus
-SYMBOL : NBIT
-SYMBOL : dout
-SYMBOL : treg
-SYMBOL : MYREG2
+WARNING (test.v, line 27): Redefinition of DUMMY
+MODULE 0: []
+SYMBOL : bla, module ID: 0
+SYMBOL : test, module ID: 0
+SYMBOL : test2, module ID: 0
+MODULE 1: [test]
+PARAM : DUMMY, value : 1, module ID: 1
+PARAM : NBIT, value : 8, module ID: 1
+SYMBOL : CLK, module ID: 1
+SYMBOL : dout, module ID: 1
+SYMBOL : a, module ID: 1
+SYMBOL : b, module ID: 1
+SYMBOL : c, module ID: 1
+SYMBOL : ___busa, module ID: 1
+SYMBOL : busb, module ID: 1
+SYMBOL : MYREG2, module ID: 1
+SYMBOL : dout2, module ID: 1
+MODULE 2: [test2]
+PARAM : DUMMY, value : 2, module ID: 2
+PARAM : ZBIT, value : 33, module ID: 2
+MODULE 3: [bla]
