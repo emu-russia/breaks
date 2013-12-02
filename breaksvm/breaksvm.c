@@ -4,6 +4,10 @@
 #include <stdarg.h>
 #include <stdio.h>
 
+#define TEMP1 "001temp"
+#define TEMP2 "002temp"
+#define TEMP3 "003temp"
+
 static char VM_FILE[256] = "Not yet";
 static int  VM_LINE = 0;
 static int  VM_TERMINATE = 0;
@@ -149,12 +153,13 @@ static u32 MurmurHash (char * key)      // https://code.google.com/p/smhasher/
 static symbol_t * check_symbol (char *name, int module_id)   // проверить есть ли в таблице символов указанный символ. Вернуть NULL если не найден, или объект если найден.
 {
     symbol_t *symbol;
-    int i, in_scope;
+    int i, in_scope, type;
     u32 hash = MurmurHash (name);
 
     for (i=0; i<sym_num; i++) {
         symbol = &symtab[i];
-        in_scope = (symbol->type == SYMBOL_REG) || (symbol->type == SYMBOL_WIRE) || (symbol->type == SYMBOL_PARAM);
+        type = symbol->type & ~SYMBOL_ARRAY;
+        in_scope = (type == SYMBOL_REG) || (type == SYMBOL_WIRE) || (type == SYMBOL_PARAM);
         if ( symbol->hash == hash ) {
             if ( symbol->module_id != module_id && in_scope) continue;
             else return symbol;
@@ -181,18 +186,19 @@ static symbol_t * add_symbol (char *name, int type, int module_id)     // доб
 
 static void dump_symbols (int module_id)
 {
-    int i;
+    int i, type;
     for (i=0; i<sym_num; i++) {
+        type = symtab[i].type;
         if ( symtab[i].module_id != module_id ) continue;
-        if ( symtab[i].type < SYMBOL_NOT_KEYWORDS ) continue;   // don't dump keywords.
-        if ( symtab[i].type & SYMBOL_ARRAY ) printf ( "ARRAY " );
-        if ( symtab[i].type == SYMBOL_PARAM ) printf ( "PARAM : %s, value : %i, module ID: %i\n", symtab[i].rawstring, symtab[i].num.value, symtab[i].module_id );
-        else if ( symtab[i].type == SYMBOL_INPUT ) printf ( "INPUT : %s\n", symtab[i].rawstring );
-        else if ( symtab[i].type == SYMBOL_OUTPUT ) printf ( "OUTPUT : %s\n", symtab[i].rawstring );
-        else if ( symtab[i].type == SYMBOL_INOUT ) printf ( "INOUT : %s\n", symtab[i].rawstring );
-        else if ( symtab[i].type == SYMBOL_WIRE ) printf ( "WIRE : %s, module ID: %i\n", symtab[i].rawstring, symtab[i].module_id );
-        else if ( symtab[i].type == SYMBOL_REG ) printf ( "REG : %s, module ID: %i\n", symtab[i].rawstring, symtab[i].module_id );
-        else printf ( "SYMBOL : %s, module ID: %i\n", symtab[i].rawstring, symtab[i].module_id );
+        if ( type < SYMBOL_NOT_KEYWORDS ) continue;   // don't dump keywords.
+        if ( type & SYMBOL_ARRAY ) { printf ( "ARRAY [%i] ", symtab[i].array_len ); type &= ~SYMBOL_ARRAY; }
+        if ( type == SYMBOL_PARAM ) printf ( "PARAM : %s, value : %i\n", symtab[i].rawstring, symtab[i].num.value );
+        else if ( type == SYMBOL_INPUT ) printf ( "INPUT : %s\n", symtab[i].rawstring );
+        else if ( type == SYMBOL_OUTPUT ) printf ( "OUTPUT : %s\n", symtab[i].rawstring );
+        else if ( type == SYMBOL_INOUT ) printf ( "INOUT : %s\n", symtab[i].rawstring );
+        else if ( type == SYMBOL_WIRE ) printf ( "WIRE : [%i:%i] %s\n", symtab[i].num.lsb, symtab[i].num.msb, symtab[i].rawstring );
+        else if ( type == SYMBOL_REG ) printf ( "REG : [%i:%i] %s\n", symtab[i].num.lsb, symtab[i].num.msb, symtab[i].rawstring );
+        else printf ( "SYMBOL : %s\n", symtab[i].rawstring );
     }
 }
 
@@ -1215,7 +1221,7 @@ static void nonsynth_expr_parser (token_t * token)
 
         expr = NULL;
         pop_parser ();   // возвращаемся в парсер parameter
-        if ( token->op == SEMICOLON ) pop_parser ();   // возвращаемся в парсер module
+        if ( token->type == TOKEN_OP && token->op == SEMICOLON ) pop_parser ();   // возвращаемся в парсер module
     }
     else grow (&expr, token);
 }
@@ -1227,11 +1233,119 @@ static void parameter_parser (token_t * token)
     push_parser (nonsynth_expr_parser);
 }
 
-static int reg_not_wire;
+static int reg_not_wire;    // 1 - парсим как reg
+                            // 0 - парсим как wire
 
-// парсер reg/wire
+// парсер ключевого слова reg/wire
 static void regwire_parser (token_t * token)
 {
+    static node_t * expr = NULL;
+    symbol_t * lvalue;
+    static int lsb, msb, array_len, n;
+    static char name[1024];
+
+    static int step = 0;    // 0 - начинаем опционально парсить [lsb:msb], ожидаем [. Если [ не встретилось, переходим на [3]
+                            // 1 - начинаем парсить const_expr lsb, ожидаем токены)) евалуируем выражение когда встретится :
+                            // 2 - начинаем парсить const_expr msb, ожидаем токены, евалуируем выражение когда встретится ]
+                            // 3 - парсим имя, ожидаем идентификатор. если идентификатор не встретился, пнх программера
+
+                            // 4 - эта ветка активна только для reg. начинаем опционально парсить размер массива. ожидаем [. Если не встретилось переходим на 6
+                            // 5 - начинаем парсить const_expr размера массива, ожидаем токены, евалируем когда встретилось ]
+
+                            // 6 - проверка конца, ожидаем запятую или точку с запятой. если запятая - то пропускаем и переходим на 0. Если ; - попаем парсер на верх.
+
+    if ( token->type == TOKEN_NULL ) return;
+
+    if (step == 0) {
+        lsb = msb = array_len = name[0] = 0;
+        if ( token->type == TOKEN_OP && token->op == LSQUARE ) { step++; return; }
+        else step = 3;
+    }
+
+    if (step == 1) {    // вычисляем lsb
+        if ( token->type == TOKEN_OP && token->op == COLON ) {
+            lvalue = check_symbol (TEMP1, 0);
+            if ( lvalue ) {
+                evaluate (expr, lvalue);
+                expr = NULL;
+                lsb = lvalue->num.value;
+            }
+            else warning ( "TEMP1 not defined, WTF!" );
+            step++; return;
+        }
+        else { grow (&expr, token); return; }
+    }
+
+    if (step == 2) {    // вычисляем msb
+        if ( token->type == TOKEN_OP && token->op == RSQUARE ) {
+            lvalue = check_symbol (TEMP2, 0);
+            if ( lvalue ) {
+                evaluate (expr, lvalue);
+                expr = NULL;
+                msb = lvalue->num.value;
+            }
+            else warning ( "TEMP2 not defined, WTF!" );
+            step++; return;
+        }
+        else { grow (&expr, token); return; }
+    }
+
+    if (step == 3) {
+        if (token->type == TOKEN_IDENT) {
+            strcpy ( name, token->sym->rawstring );
+            if (reg_not_wire) step++;
+            else step = 6;
+            return;
+        }
+        else warning ( "Reg/wire name required" );
+    }
+
+    if (step == 4) {
+        if ( token->type == TOKEN_OP && token->op == LSQUARE ) { step++; return; }
+        else step = 6;
+    }
+    if (step == 5) {
+        if ( token->type == TOKEN_OP && token->op == RSQUARE ) {
+            lvalue = check_symbol (TEMP3, 0);
+            if ( lvalue ) {
+                evaluate (expr, lvalue);
+                expr = NULL;
+                array_len = lvalue->num.value;
+            }
+            else warning ( "TEMP3 not defined, WTF!" );
+            step++; return;
+        }
+        else { grow (&expr, token); return; }
+    }
+
+    if (step == 6) {
+        lvalue = check_symbol (name, CurrentModule);
+        if (lvalue) lvalue->type = (reg_not_wire) ? SYMBOL_REG : SYMBOL_WIRE;
+        lvalue->num.lsb = lsb;
+        lvalue->num.msb = msb;
+        lvalue->num.len = abs (lsb - msb) + 1;
+        lvalue->num.value = lvalue->num.xmask = lvalue->num.zmask = 0;
+
+        if (reg_not_wire && array_len > 0) { // создадим массив.
+            lvalue->array = (number_t *)malloc (sizeof(number_t) * array_len);
+            if ( lvalue->array ) {
+                lvalue->type |= SYMBOL_ARRAY;
+                for (n=0; n<array_len; n++) {
+                    lvalue->array[n].lsb = lsb;
+                    lvalue->array[n].msb = msb;
+                    lvalue->array[n].len = lvalue->num.len;
+                    lvalue->array[n].value = lvalue->array[n].xmask = lvalue->array[n].zmask = 0;
+                }
+                lvalue->array_len = array_len;
+            }
+            else error ( "Not enough memory for array!" );
+        }
+//        printf ( "[%i:%i] %s [%i]\n", lsb, msb, name, array_len);
+
+        if ( token->type == TOKEN_OP && token->op == COMMA ) { step = 0; }
+        else if ( token->type == TOKEN_OP && token->op == SEMICOLON ) { step = 0; pop_parser(); }
+        else { step = 0; warning ( "Colon or semicolon required" ); }
+    }
 }
 
 // парсер модуля.
@@ -1246,41 +1360,37 @@ static void module_parser (token_t * token)
     if ( token->type == TOKEN_NULL ) return;
 
     if (step == 0) {
-
-        
-
-        if ( token->type == TOKEN_OP && token->op == LPAREN ) step++;
+        if ( token->type == TOKEN_OP && token->op == LPAREN ) { step++; return; }
         else if (token->type == TOKEN_IDENT && CurrentModule == 0) {
             step = 2;
-            goto addmodule;
         }
         else warning ( "Unexpected shit in token stream" );
     }
 
-    else if (step == 1) {
+    if (step == 1) {
         if ( (token->type == TOKEN_OP && token->op == COMMA) || (token->type == TOKEN_IDENT) ) return;
-        else if ( token->type == TOKEN_OP && token->op == RPAREN ) step++;
+        else if ( token->type == TOKEN_OP && token->op == RPAREN ) { step++; return; }
         else warning ( "Unexpected shit in module formal parameters list" );
     }
 
-    else if (step == 2) {
+    if (step == 2) {
         if (token->type == TOKEN_IDENT && CurrentModule == 0) {   // добавляем новый модуль
-addmodule:;
             strcpy (modules[modulenum].name, token->sym->rawstring);
             modules[modulenum].ionum = 0;
             CurrentModule = modulenum;
             modulenum++;
             step++;
+            return;
         }
         else warning ( "Unexpected shit in module name" );
     }
 
-    else if (step == 3) {
-        if ( token->type == TOKEN_OP && token->op == SEMICOLON ) step++;
+    if (step == 3) {
+        if ( token->type == TOKEN_OP && token->op == SEMICOLON ) { step++; return; }
         else warning ( "Required ;" );
     }
 
-    else if (step == 4) {    
+    if (step == 4) {    
         if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_PARAMETER ) {   // parameter <expr1>, <expr2>, ..., <exprN> ;
             push_parser ( parameter_parser );
         }
@@ -1290,12 +1400,10 @@ addmodule:;
             push_parser (regwire_parser);
         }
 
-/*
         if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_WIRE ) {     // wire <[[expr_lsb:expr_msb]] name>, ..., <> ;
             reg_not_wire = 0;
             push_parser (regwire_parser);
         }
-*/
 
         if ( token->type == TOKEN_KEYWORD && token->sym->type == SYMBOL_KEYWORD_ENDMODULE ) {
             step = 0;
@@ -1304,7 +1412,6 @@ addmodule:;
         }
     }
 
-    else warning ( "Module parser shoudn't run here!" );
 //    else dummy_parser (token);
 }
 
@@ -1320,8 +1427,9 @@ static void root_parser (token_t * token)
 static void dump_modules (void)
 {
     int n;
+    printf ( "\n\nDump:\n" );
     for (n=0; n<modulenum; n++) {
-        printf ("MODULE %i: [%s]\n", n, modules[n].name );
+        printf ("=== MODULE %i: [%s] ===\n", n, modules[n].name );
         dump_symbols (n);
     }
 }
@@ -1414,6 +1522,11 @@ int breaksvm_init (void)
             i++;
         }
     }
+
+    // Временные значения для вычисления выражений
+    add_symbol ( TEMP1, SYMBOL_IDENT, 0 );
+    add_symbol ( TEMP2, SYMBOL_IDENT, 0 );
+    add_symbol ( TEMP3, SYMBOL_IDENT, 0 );
 
     tokenization_started = 0;
 

@@ -10,13 +10,13 @@ module (bla,bla,bla) test;
     wire a, b, c;
     wire [7:0] ___busa;
     wire [0:9] busb;
-    reg [NBIT-1:0] dout;
+    reg [=NBIT-1:2] dout [12];      ///  пока только так выражения вычисляются, нужно переделать evaluate() немного.
 
-    reg MYREG2;
+    reg [0:3] MYREG2;
 
     always @ (CLK)
-        dout2 = dout2 + 1;        // бинарный плюс
-        dout2 = -dout;       // унарный минус
+        MYREG2 = MYREG2 + 1;        // бинарный плюс
+        MYREG2 = -MYREG2;       // унарный минус
     end
 
 endmodule
@@ -24,7 +24,7 @@ endmodule
 
 module test2;
 
-    parameter DUMMY = 2, DUMMY = 55, ZBIT=33-11;
+    parameter DUMMY = 2, ZBIT=33-11;
 
 endmodule
 

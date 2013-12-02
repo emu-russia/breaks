@@ -17,6 +17,7 @@ typedef struct symbol_t
     char    rawstring[256];
     number_t    num;
     number_t    *array;
+    int     array_len;
     u32     hash;
     int     type;
     int     module_id;  // module_id определяет видимость символа (wire, reg, parameter). входы/выходы имеют глобальную видимость (module_id = 0)
