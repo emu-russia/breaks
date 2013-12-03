@@ -948,6 +948,11 @@ Expressions.
 
 Ну по ходу дела разберемся )
 
+Выражения могут иметь три формы :
+1. declaration = const_expr: используется для задания параметров (констант)
+2. const_expr: используется для индексации массивов и разрядов reg/wire
+3. lvalue_expr = rvalue_expr: используется в синтезируемой логике. lvalue может быть только типа reg, rvalue может быть reg или wire.
+
 */
 
 // приоритеты операций.
@@ -998,6 +1003,7 @@ static void dummy_parser (token_t * token)
 }
 
 // исполняем дерево (семанический анализ)
+// в качестве const_expr выражения выступает всё что после знака =
 static node_t * evaluate (node_t * expr, symbol_t *lvalue)
 {
     node_t * curr;
@@ -1010,30 +1016,15 @@ static node_t * evaluate (node_t * expr, symbol_t *lvalue)
 
     memset ( &rvalue, 0, sizeof(symbol_t) );
 
-    // вложенные evaluations.  -- это чухня. надо переосмыслить a = b = ...  потому что lvalue может быть например reg[2] (reg [ 2 ])
-/*
-    if ( expr->token.type == TOKEN_IDENT && expr->rvalue->token.type == TOKEN_OP && expr->rvalue->token.op == EQ ) { 
-        sym = check_symbol (expr->token.rawstring, CurrentModule);
-        if ( sym ) {
-            evaluate (expr->rvalue->rvalue, sym);
-            sym->type = SYMBOL_PARAM;
-            memcpy ( &lvalue->num, &sym->num, sizeof(number_t) );
-            printf ( "LVALUE(inner) : %i\n", sym->num.value );
-        }
-        else warning ( "Lvalue not defined : %s", expr->token.rawstring );
-        return;
-    }
-*/
-
     // lvalue = { [uop] <ident|expr> [op] }
     curr = expr;
     while (curr) {
 
         if (curr->depth < expr->depth) break;
 
-        // необязательная унарная операция или приравнивание.
+        // необязательная унарная операция.
         token = &curr->token;
-        if ( token->type == TOKEN_OP && (isunary(token->op) || token->op == EQ || token->op == POST_EQ) ) {
+        if ( token->type == TOKEN_OP && isunary(token->op) ) {
             if ( curr->rvalue == NULL ) error ( "Missing identifier" );
             else {
                 curr = curr->rvalue;
@@ -1211,7 +1202,7 @@ static void nonsynth_expr_parser (token_t * token)
         if ( lvalue ) {
             if ( lvalue->type == SYMBOL_PARAM ) warning ( "Redefinition of %s", expr->token.rawstring );
             else {
-                evaluate (expr->rvalue, lvalue);
+                evaluate (expr->rvalue->rvalue, lvalue);
                 lvalue->type = SYMBOL_PARAM;
                 //printf ( "LVALUE : %i (0x%08X)\n", lvalue->num.value, lvalue->num.value );
             }
@@ -1479,6 +1470,10 @@ int breaksvm_load (char *filename)
 
 // ------------------------------------------------------------------------------------
 // simulator
+
+/*
+
+*/
 
 // virtual devices
 
