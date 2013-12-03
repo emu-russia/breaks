@@ -1,33 +1,29 @@
 // Тестовая программа на Verilog
 
-// Пока мы модули не используем, будем считать что мы уже внутри модуля.
-module (bla,bla,bla) test;
+module or_latch;
 
-    parameter DUMMY = 1, NBIT = 4+4;
-    input CLK;
-    output dout;
+    input a, b;
+    output out;
 
-    wire a, b, c;
-    wire [7:0] ___busa;
-    wire [0:9] busb;
-    reg [=NBIT-1:2] dout [12];      ///  пока только так выражения вычисляются, нужно переделать evaluate() немного.
+    wire a, b;
+    reg out;
 
-    reg [0:3] MYREG2;
-
-    always @ (CLK)
-        MYREG2 = MYREG2 + 1;        // бинарный плюс
-        MYREG2 = -MYREG2;       // унарный минус
+    always @* begin
+        out = a | b;
     end
 
 endmodule
 
+module test;
 
-module test2;
+    input CLK;
+    output a, b;
+    reg a, b;
 
-    parameter DUMMY = 2, ZBIT=33-11;
+    always @ (CLK) begin
+        a = CLK;
+        b = 1; 
+    end
 
-endmodule
-
-module bla;
 endmodule
 
