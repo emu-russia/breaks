@@ -90,24 +90,29 @@ void Step6502 (M6502 *cpu)
 
 main ()
 {
-    int i, a,b;
+    int old = 0;
+    int i, a, b, clk = 0, out, _4, old_3 = 0;
 
-<<<<<<< .mine
-    for (i=0; i<4; i++) {
-        a = BIT (i >> 0);
-        b = BIT (i >> 1);
-=======
-    for (i=0; i<4; i++) {
-        a = BIT (i >> 1);
-        b = BIT (i >> 0);
->>>>>>> .r291
+    a = 0;     // reset
+    b = 0;     // set
 
-<<<<<<< .mine
-        printf ( "%i %i | %i (%i)\n", a,b, !a^!b, a^b  );
-=======
-        printf ( "%i %i | %i %i\n", a,b, NOT(a)^NOT(b), BIT(a^b) );
->>>>>>> .r291
+    for (i=0; i<10; i++) {
+
+	//b = i & 1;
+            
+        if (clk == 0) {
+		out = NAND (a, old);
+		_4 = NOT(b);
+//		old = NOT(out);
+	}
+	else {
+		out = NAND (a, _4);
+		old = NOT(out);
+	}
+
+	printf ( "CLK:%i, /Q:%i\n", clk, out);
+
+        clk ^= 1;
     }
-
 }
 
