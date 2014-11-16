@@ -75,14 +75,7 @@ module Decoder (
     assign inputs[19] = _timer[4];
     assign inputs[20] = _timer[5];
 
-//always      // By default all decoder outputs are zero.
-//    for (i=0; i<130; i++)
-//    begin
-//        decoder_out[i] = 0'b0;
-//    end
-//end
-
-always #10 begin
+always #1 @(*) begin
 
     // By default all decoder outputs are zero.
     decoder_out = 0;        // CHECK : Is it synthesizable ??? Can we just zero it?
@@ -187,7 +180,7 @@ module InterruptControl (
     assign Z_ADL1 = ~ADL1_Latch_Out;
     assign Z_ADL2 = ADL2_Latch_Out;     // watch this carefully
 
-always #10 @(PHI2) begin    // Lock pads on input FFs         
+always #1 @(PHI2) begin    // Lock pads on input FFs         
     NMIP_FF <= _NMI;
     IRQP_FF <= _IRQ;
     RESP_FF <= _RES;
@@ -356,7 +349,7 @@ module ALU (
     assign _DAA = 1'b1;
 `endif
 
-always @(PHI1 or PHI2) begin
+always @(*) begin
 
     carry_out = _ADDC;
 
@@ -533,7 +526,7 @@ module TestBench;
         PHI0, _NMI, _IRQ, _RES, RDY, SO,
         DATA );
 
-    always #10 PHI0 <= ~PHI0;
+    always #1 PHI0 <= ~PHI0;
 
 initial begin
     //$dumpfile("core.vcd");
