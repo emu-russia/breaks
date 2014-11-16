@@ -1,6 +1,8 @@
 // Synthesizable MOS 6502 on Verilog
 // Project Breaks http://breaknes.com
 
+//`define QUARTUS
+
 // Enable APU 2A03 Decimal Correction hack (disable BCD correction)
 // Appliable only for NES / Famicom.
 //`define BCD_HACK
@@ -15,6 +17,7 @@ module latch(
    // Inputs 
    din, en 
 );
+`ifndef QUARTUS
     input din; 
     output dout; 
     input  en; // latch enable 
@@ -22,6 +25,9 @@ module latch(
     always @(din or en) 
          if (en == 1'b1) 
            dout <= din;   //Use non-blocking
+`else
+    LATCH MyLatch (.d(din), .ena(en), .q(dout));
+`endif      // QUARTUS
 endmodule // latch
 
 // --------------------------------------------------------------------------------
