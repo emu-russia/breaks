@@ -374,6 +374,7 @@ always @(PHI1 or PHI2) begin
     // Inputs
     // Potentially we can get rid of simultaneous control signals assertion by reserved opcodes.
     // Thats why we need to precharge AI/BI latches to mimic original 6502 behavior.
+    // We perform 'AND' operation to follow generic bus-conflict work-around: "Ground wins"
         if (SB_ADD) AI[n] = AI[n] & SB[n];
         if (Z_ADD) AI[n] = 1'b0;
         if (DB_ADD) BI[n] = BI[n] & DB[n];
