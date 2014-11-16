@@ -199,11 +199,12 @@ endmodule   // InterruptControl
 // Random Logic
 
 module RandomLogic (
-  // Outputs
+    // Outputs
 
-  // Inputs
+    // Inputs
 
 );
+
 
     // Temp Wires and Latches (helpers)
 
@@ -239,9 +240,9 @@ endmodule   // RandomLogic
 // Dispatcher
 
 module Dispatcher (
-  // Outputs
+    // Outputs
 
-  // Inputs
+    // Inputs
 
 );
 
@@ -276,6 +277,182 @@ endmodule   // Dispatcher
 
 // ------------------
 // ALU
+
+// https://www.google.com/patents/US3991307
+
+module ALU (
+    // Outputs
+    ACR, AVR,
+    // Inputs
+    PHI0,
+    Z_ADD, SB_ADD, DB_ADD, NDB_ADD, ADL_ADD, SB_AC,
+    ORS, ANDS, EORS, SUMS, SRS, 
+    ADD_SB06, ADD_SB7, ADD_ADL, AC_SB, AC_DB,
+    _ADDC, _DAA, _DSA,
+    // Buses
+    SB, DB, ADL
+);
+
+    input PHI0;
+    input Z_ADD, SB_ADD, DB_ADD, NDB_ADD, ADL_ADD, SB_AC;
+    input ORS, ANDS, EORS, SUMS, SRS;
+    input ADD_SB06, ADD_SB7, ADD_ADL, AC_SB, AC_DB;
+    input _ADDC, _DAA, _DSA;
+
+    output ACR, AVR;        // Carry & Overflow Return
+
+    inout [7:0] SB, DB, ADL;     // Buses
+
+    wire   ACR, AVR;
+    wire  [7:0] SB, DB, ADL;
+
+    // Clocks
+    wire PHI1, PHI2;
+    assign PHI1 = ~PHI0;
+    assign PHI2 = PHI0;
+
+    integer n;      // Loop counter (bit number)
+
+    reg carry_out;      // wire on real 6502 (carry chain)
+
+    reg [7:0] AI, BI;       // MOSFET gate latches on real ALU (values can evaporate in time)
+    reg [7:0] _ADD;         // Adder Hold. Value is saved in inverted form here (active-low)
+    reg [7:0] AC;           // Accumulator (A)
+    reg [7:0] nors, nands, enors, eors, sums;       // intermediate results
+    reg BC0, BC3, BC4, BC6, DC3, DC7;      // Binary/decimal carries
+
+    wire DAAL, DSAL, DAAH, DSAH;
+    reg a, b, c;   // temp vars
+
+    wire BinaryCarry, DecimalCarry;
+    wire OverflowLatch_Out;
+    assign BinaryCarry = ~carry_out;
+    assign DecimalCarry = DC7;
+    latch OverflowLatch (OverflowLatch_Out, ~(nors[7] & BC6) & (nands[7] | BC6), PHI2 );
+
+    wire LatchDAA_Out, LatchDSA_Out, LatchDAAL_Out, LatchDSAL_Out;
+    latch LatchDAA (LatchDAA_Out, ~_DAA, PHI2);
+    latch LatchDSA (LatchDSA_Out, ~_DSA, PHI2);
+    latch LatchDAAL (LatchDAAL_Out, ~(~BC3 & LatchDAA_Out), PHI2);
+    latch LatchDSAL (LatchDSAL_Out, ~(~BC3 | ~LatchDSA_Out), PHI2);
+
+    assign ACR = BinaryCarry | DecimalCarry;
+    assign AVR = ~OverflowLatch_Out;
+    assign DAAL = ~LatchDAAL_Out;
+    assign DSAL = LatchDSAL_Out;
+    assign DAAH = ~(~ACR | ~LatchDAA_Out);
+    assign DSAH = ~(ACR | ~LatchDSA_Out);
+
+    // Assign outputs
+    assign SB[6:0] = ADD_SB06 ? ~_ADD[6:0] : 7'bzzzzzzz;
+    assign SB[7] = ADD_SB7 ? ~_ADD[7] : 1'bz;
+    assign ADL = ADD_ADL ? ~_ADD : 8'bzzzzzzzz;
+    assign SB = AC_SB ? AC : 8'bzzzzzzzz;
+    assign DB = AC_DB ? AC : 8'bzzzzzzzz;
+
+    // Ricoh 2A03 Hack (disable BCD correction)
+`ifdef BCD_HACK
+    assign _DSA = 1'b1;
+    assign _DAA = 1'b1;
+`endif
+
+always @(PHI1 or PHI2) begin
+
+    carry_out = _ADDC;
+
+    // Only if any input control enabled
+    if (SB_ADD | Z_ADD | DB_ADD | NDB_ADD | ADL_ADD) begin 
+        AI = 8'b11111111;   // precharge to get rid of bus conflicts (see below)
+        BI = 8'b11111111;
+    end         // otherwise keep the charge.
+
+    // Same method to get rid of possible bus conflicts in Adder Hold.
+    if (ORS | ANDS | EORS | SRS | SUMS)
+        _ADD = 8'b11111111;
+
+    for (n=0; n<8; n=n+1) begin
+    // Inputs
+    // Potentially we can get rid of simultaneous control signals assertion by reserved opcodes.
+    // Thats why we need to precharge AI/BI latches to mimic original 6502 behavior.
+        if (SB_ADD) AI[n] = AI[n] & SB[n];
+        if (Z_ADD) AI[n] = 1'b0;
+        if (DB_ADD) BI[n] = BI[n] & DB[n];
+        if (NDB_ADD) BI[n] = BI[n] & ~DB[n];
+        if (ADL_ADD) BI[n] = BI[n] & ADL[n];
+
+    // Logic part
+        nors[n] <= ~(AI[n] | BI[n]);
+        nands[n] <= ~(AI[n] & BI[n]);
+
+    // Arithmetic part + inverted carry chain + decimal carry lookahead (US Patent 3991307)
+        if (n & 1) begin
+            eors[n] = ~( ~nands[n] | nors[n] );
+            sums[n] = ~(eors[n] & ~carry_out) & (eors[n] | ~carry_out);
+            carry_out = ~(~nors[n] & carry_out) & nands[n];
+        end
+        else begin
+            enors[n] = ~(~nors[n] & nands[n]);
+            sums[n] = ~(enors[n] & ~carry_out) & (enors[n] | ~carry_out);
+            carry_out = ~(nands[n] & carry_out) & ~nors[n];
+        end
+
+        if (n == 0) BC0 = carry_out;
+        else if (n == 4) BC4 = carry_out;
+        else if (n == 6) BC6 = carry_out;
+
+        // decimal half-carry look-ahead
+        if (n == 3) begin
+            if ( ~_DAA) begin
+                a <= ~( ~(~nands[1] & BC0) | nors[2]);
+                b <= ~(eors[3] | ~nands[2]);
+                c <= ~(eors[1] | ~nands[1]) & ~BC0 & ( ~nands[2] | nors[2]);
+                DC3 = a | ~(b | c);
+            end
+            else DC3 = 1'b0;
+            BC3 = carry_out & ~DC3;
+        end
+
+        // decimal carry look-ahead
+        if (n == 7) begin
+            if (~_DAA) begin
+                a <= ~( ~(~nands[5] & BC4) | enors[6]);
+                b <= ~(~nands[6] | eors[7]);
+                c <= ~(~nands[5] | eors[5]) & ~(BC4 | ~enors[6]);
+                DC7 = a | ~(b | c);
+            end
+            else DC7 = 1'b0;
+        end 
+
+    // Hold result in temporary latch (active-low)
+    if (PHI2) begin
+        if (ORS) _ADD[n] = _ADD[n] & nors[n];
+        if (ANDS) _ADD[n] = _ADD[n] & nands[n];
+        if (EORS) begin
+            if (n & 1) _ADD[n] = _ADD[n] & ~eors[n];
+            else _ADD[n] = _ADD[n] & enors[n];
+        end     // EORS
+        if (SRS && n != 0) _ADD[n-1] = _ADD[n-1] & nands[n];  // 7th bit is precharged to 1.
+        if (SUMS) _ADD[n] = _ADD[n] & sums[n];
+    end     // PHI2
+
+    // Decimal adjustment
+        if ( SB_AC ) begin
+            if (n == 0) AC[0] <= SB[0];
+            if (n == 1) AC[1] <= ~(SB[1] ^ ~(DSAL | DAAL));
+            if (n == 2) AC[2] <= ~(SB[2] ^ ( ~(~_ADD[1] & DSAL) & ~(_ADD[1] & DAAL)) );
+            if (n == 3) AC[3] <= ~(SB[3] ^ (~((_ADD[1]|_ADD[2]) & DSAL) & ~(~(_ADD[1] & _ADD[2]) & DAAL)) );
+
+            if (n == 4) AC[4] <= SB[4];
+            if (n == 5) AC[5] <= ~(SB[5] ^ ~(DSAH | DAAH));
+            if (n == 6) AC[6] <= ~(SB[6] ^ ( ~(~_ADD[5] & DSAH) & ~(_ADD[5] & DAAH)) );
+            if (n == 7) AC[7] <= ~(SB[7] ^ (~((_ADD[5]|_ADD[6]) & DSAH) & ~(~(_ADD[5] & _ADD[6]) & DAAH)) );
+        end     // SB_AC
+
+    end     // for
+
+end
+
+endmodule       // ALU
 
 // ------------------
 // Program Counter
@@ -343,7 +520,7 @@ endmodule   // Core6502
 
 `ifdef ICARUS
 
-module TestBench();
+module TestBench;
 
     reg PHI0, _NMI, _IRQ, _RES, RDY, SO;
     wire PHI1, PHI2, RW, SYNC;
