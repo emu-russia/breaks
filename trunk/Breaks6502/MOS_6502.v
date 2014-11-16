@@ -8,6 +8,7 @@
 `define TEST_BENCH
 
 // Level-sensitive D-latch (required for N-MOS)
+// http://quartushelp.altera.com/14.0/mergedProjects/hdl/prim/prim_file_latch.htm
 module latch( 
    // Outputs 
    dout, 
@@ -305,7 +306,7 @@ module Core6502 (
 
     // Internal buses
     wire [7:0]  DB, SB, ADH, ADL;
-    
+
     // Clock Generator.
     assign PHI1 = ~PHI0;
     assign PHI2 = PHI0;
