@@ -265,6 +265,8 @@ endmodule   // Dispatcher
 // ------------------
 // Internal Buses
 
+    // SB_DB
+
 // ------------------
 // XYS Registers
 
