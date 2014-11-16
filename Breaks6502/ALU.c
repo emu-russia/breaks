@@ -120,7 +120,7 @@ void ALU2 (int clk, int ain, int bin, int carry, int adc)
                 c = NOR(eor[1], NOT(nand[1])) & NOT(BC0) & (NOT(nand[2]) | nor[2]);
                 DC3 = a | NOR (b, c);
             } else DC3 = 0;
-            BC3 = carry_out = carry_out & NOT(DC3);
+            BC3 = carry_out & NOT(DC3);
         }
         if (n == 7) {   // decimal carry look-ahead
             if ( NOT(ALU_nDAA) ) {
