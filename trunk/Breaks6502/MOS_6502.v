@@ -2,12 +2,11 @@
 // Project Breaks http://breaknes.com
 
 //`define QUARTUS
+`define ICARUS
 
 // Enable APU 2A03 Decimal Correction hack (disable BCD correction)
 // Appliable only for NES / Famicom.
 //`define BCD_HACK
-
-`define TEST_BENCH
 
 // Level-sensitive D-latch (required for N-MOS)
 // http://quartushelp.altera.com/14.0/mergedProjects/hdl/prim/prim_file_latch.htm
@@ -342,7 +341,7 @@ endmodule   // Core6502
 // --------------------------------------------------------------------------------
 // Test application / Icarus Verilog.
 
-`ifdef TEST_BENCH
+`ifdef ICARUS
 
 module TestBench();
 
@@ -375,4 +374,4 @@ end
 
 endmodule
 
-`endif      // TEST_BENCH
+`endif      // ICARUS
