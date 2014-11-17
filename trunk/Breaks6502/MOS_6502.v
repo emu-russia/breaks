@@ -102,6 +102,9 @@ endmodule     // Decoder
 // ------------------
 // Interrupt Control
 
+// This stuff looks complicated, because of old-school style #NMI edge-detection
+// (edge detection is based on cross-coupled RS flip/flops)
+
 module InterruptControl (
     // Outputs
     Z_ADL0, Z_ADL1, Z_ADL2, DORES, RESP, BRK6E, B_OUT,
@@ -141,10 +144,10 @@ module InterruptControl (
     mylatch Latch5 (
         Latch5_Out,
         ~(BRK6E | ~(~Latch4_Out | ~Latch5_Out) ), PHI1);
-    assign DORES = (~Latch4_Out | ~Latch5_Out);
+    assign DORES = (~Latch4_Out | ~Latch5_Out);     // DO Reset
 
     // NMI Edge Detection
-    // CHECK : Does this shit actually work at all after synthesize?
+    // CHECK : Does this stuff actually work at all after synthesize?
     wire _DONMI;        // internal
     wire Latch6_Out, Latch7_Out, Latch8_Out, Latch9_Out;
     wire Latch10_Out, Latch11_Out, Latch12_Out, LastLatch_Out;
@@ -158,7 +161,7 @@ module InterruptControl (
     assign temp = ~( Latch6_Out | (~( Latch11_Out | Latch12_Out)) );
     mylatch Latch12 (Latch12_Out, temp, PHI2);
     mylatch LastLatch ( LastLatch_Out, ~(~Latch7_Out | _NMIP | temp), PHI1);
-    assign _DONMI = ~( LastLatch_Out | ~(Latch8_Out | Latch9_Out) );
+    assign _DONMI = ~( LastLatch_Out | ~(Latch8_Out | Latch9_Out) );        // DO NMI after all
 
     // Interrupt Check
     wire IntCheck;      // internal
@@ -169,9 +172,12 @@ module InterruptControl (
     wire BLatch1_Out, BLatch2_Out;
     mylatch BLatch1 (BLatch1_Out, ~(BRK6E | BLatch2_Out), PHI1);
     mylatch BLatch2 (BLatch2_Out, IntCheck & ~BLatch1_Out, PHI2);
-    assign B_OUT = ~( (~(BRK6E | BLatch2_Out)) | DORES);
+    assign B_OUT = ~( (~(BRK6E | BLatch2_Out)) | DORES);        // no need to do additional checks for RESET
 
     // Interrupt Vector address lines controls.
+    // 0xFFFA   NMI         (ADL[2:0] = 3'b010)
+    // 0xFFFC   RESET       (ADL[2:0] = 3'b100)
+    // 0xFFFE   IRQ         (ADL[2:0] = 3'b110)
     wire ADL0_Latch_Out, ADL1_Latch_Out, ADL2_Latch_Out;
     mylatch ADL0_Latch ( ADL0_Latch_Out, BRK5, PHI2);
     mylatch ADL1_Latch ( ADL1_Latch_Out, (BRK7 | ~DORES), PHI2);
@@ -589,12 +595,12 @@ endmodule       // ALU
 // Core
 
 // Pads:
-// #NMI : Non-maskable interrupt (active-low + edge triggered)
+// #NMI : Non-maskable interrupt (active-low, edge triggered)
 // #IRQ : Maskable Interrupt (active-low, level triggered)
-// #RES : Reset (aactive-low, level triggered)
+// #RES : Reset (active-low, level triggered)
 // RDY : Halt CPU execution during RDY = 0 
 // SO : Set Overflow flag
-// R/w : Read/NotWrite
+// R/W : Read/NotWrite
 // SYNC : Active during opcode fetch cycle (useless at most 6502 applications)
 
 module Core6502 (
