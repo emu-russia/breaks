@@ -10,16 +10,16 @@
 
 // Level-sensitive D-latch (required for N-MOS)
 // http://quartushelp.altera.com/14.0/mergedProjects/hdl/prim/prim_file_latch.htm
-module latch( 
+module mylatch( 
    // Outputs 
    dout, 
    // Inputs 
    din, en 
 );
-`ifndef QUARTUS
     input din; 
     output dout; 
     input  en; // latch enable 
+`ifndef QUARTUS
     reg dout; 
     always @(din or en) 
          if (en == 1'b1) 
@@ -27,7 +27,7 @@ module latch(
 `else
     LATCH MyLatch (.d(din), .ena(en), .q(dout));
 `endif      // QUARTUS
-endmodule // latch
+endmodule // mylatch
 
 // --------------------------------------------------------------------------------
 // TOP PART
@@ -124,21 +124,21 @@ module InterruptControl (
     reg NMIP_FF, IRQP_FF, RESP_FF;
     wire _NMIP, _IRQP;      // internal wires.
     assign _NMIP = NMIP_FF;
-    latch IRQP_Latch (_IRQP, IRQP_FF, PHI1);
-    latch RESP_Latch (RESP, ~RESP_FF, PHI1);
+    mylatch IRQP_Latch (_IRQP, IRQP_FF, PHI1);
+    mylatch RESP_Latch (RESP, ~RESP_FF, PHI1);
 
     // Interrupt cycle 6-7.
     wire BRK7;  // internal
     wire Latch1_Out, Latch2_Out;
-    latch Latch1 (Latch1_Out, BRK5 & ~_ready, PHI2);
-    latch Latch2 (Latch2_Out, ~(BRK5 & Latch2_Out) & ~Latch1_Out, PHI1);
-    latch Latch3 (BRK6E, Latch2_Out, PHI2);
+    mylatch Latch1 (Latch1_Out, BRK5 & ~_ready, PHI2);
+    mylatch Latch2 (Latch2_Out, ~(BRK5 & Latch2_Out) & ~Latch1_Out, PHI1);
+    mylatch Latch3 (BRK6E, Latch2_Out, PHI2);
     assign BRK7 = ~(Latch2_Out | BRK5);
 
     // Reset FLIP/FLOP
     wire Latch4_Out, Latch5_Out; 
-    latch Latch4 (Latch4_Out, RESP, PHI2);
-    latch Latch5 (
+    mylatch Latch4 (Latch4_Out, RESP, PHI2);
+    mylatch Latch5 (
         Latch5_Out,
         ~(BRK6E | ~(~Latch4_Out | ~Latch5_Out) ), PHI1);
     assign DORES = (~Latch4_Out | ~Latch5_Out);
@@ -149,15 +149,15 @@ module InterruptControl (
     wire Latch6_Out, Latch7_Out, Latch8_Out, Latch9_Out;
     wire Latch10_Out, Latch11_Out, Latch12_Out, LastLatch_Out;
     wire temp;
-    latch Latch6 (Latch6_Out, _NMIP, PHI1);
-    latch Latch7 (Latch7_Out, BRK7, PHI2);
-    latch Latch8 (Latch8_Out, _DONMI, PHI2);
-    latch Latch9 (Latch9_Out, BRK6E & ~_ready, PHI1);
-    latch Latch10 (Latch10_Out, _DONMI, PHI2);
-    latch Latch11 (Latch11_Out, ~Latch10_Out, PHI1);
+    mylatch Latch6 (Latch6_Out, _NMIP, PHI1);
+    mylatch Latch7 (Latch7_Out, BRK7, PHI2);
+    mylatch Latch8 (Latch8_Out, _DONMI, PHI2);
+    mylatch Latch9 (Latch9_Out, BRK6E & ~_ready, PHI1);
+    mylatch Latch10 (Latch10_Out, _DONMI, PHI2);
+    mylatch Latch11 (Latch11_Out, ~Latch10_Out, PHI1);
     assign temp = ~( Latch6_Out | (~( Latch11_Out | Latch12_Out)) );
-    latch Latch12 (Latch12_Out, temp, PHI2);
-    latch LastLatch ( LastLatch_Out, ~(~Latch7_Out | _NMIP | temp), PHI1);
+    mylatch Latch12 (Latch12_Out, temp, PHI2);
+    mylatch LastLatch ( LastLatch_Out, ~(~Latch7_Out | _NMIP | temp), PHI1);
     assign _DONMI = ~( LastLatch_Out | ~(Latch8_Out | Latch9_Out) );
 
     // Interrupt Check
@@ -167,15 +167,15 @@ module InterruptControl (
 
     // B-Flag
     wire BLatch1_Out, BLatch2_Out;
-    latch BLatch1 (BLatch1_Out, ~(BRK6E | BLatch2_Out), PHI1);
-    latch BLatch2 (BLatch2_Out, IntCheck & ~BLatch1_Out, PHI2);
+    mylatch BLatch1 (BLatch1_Out, ~(BRK6E | BLatch2_Out), PHI1);
+    mylatch BLatch2 (BLatch2_Out, IntCheck & ~BLatch1_Out, PHI2);
     assign B_OUT = ~( (~(BRK6E | BLatch2_Out)) | DORES);
 
     // Interrupt Vector address lines controls.
     wire ADL0_Latch_Out, ADL1_Latch_Out, ADL2_Latch_Out;
-    latch ADL0_Latch ( ADL0_Latch_Out, BRK5, PHI2);
-    latch ADL1_Latch ( ADL1_Latch_Out, (BRK7 | ~DORES), PHI2);
-    latch ADL2_Latch ( ADL2_Latch_Out, ~(BRK7 | _DONMI | DORES), PHI2);
+    mylatch ADL0_Latch ( ADL0_Latch_Out, BRK5, PHI2);
+    mylatch ADL1_Latch ( ADL1_Latch_Out, (BRK7 | ~DORES), PHI2);
+    mylatch ADL2_Latch ( ADL2_Latch_Out, ~(BRK7 | _DONMI | DORES), PHI2);
     assign Z_ADL0 = ~ADL0_Latch_Out;
     assign Z_ADL1 = ~ADL1_Latch_Out;
     assign Z_ADL2 = ADL2_Latch_Out;     // watch this carefully
@@ -221,10 +221,92 @@ endmodule   // RandomLogic
 // Flags
 
 // ------------------
-// Instruction Register
+// Instruction Register (IR)
+
+// Controls:
+// FETCH: Load IR from PD (Predecode Latch)
+
+module InstructionRegister (
+    // Outputs
+    IR,
+    // Inputs
+    PHI0, FETCH, _PD
+);
+
+    input PHI0, FETCH;
+    input [7:0] _PD;        // Active-low!
+
+    output [7:0] IR;
+
+    // Clocks
+    wire PHI1, PHI2;
+    assign PHI1 = ~PHI0;
+    assign PHI2 = PHI0;
+
+    reg [7:0] IR = 8'b11111111;     // Power-up state (IR = 0xFF)
+
+initial begin
+    IR = 8'b11111111;       // For safety.
+end
+
+always @(PHI1) begin
+    if (FETCH) IR = ~_PD;
+end
+
+endmodule   // InstructionRegister
 
 // ------------------
 // Predecode
+
+// Controls:
+// 0/IR : "Inject" BRK opcode after interrupt (force IR = 0x00), to initiate common "BRK-sequence" service
+// #IMPLIED : NOT Implied instruction (has operands)
+// #TWOCYCLE : NOT short two-cycle instruction (more than 2 cycle)
+
+module Predecode (
+    // Outputs
+    PD, _IMPLIED, _TWOCYCLE,
+    // Inputs
+    PHI0, Z_IR,
+    // Buses
+    DATA
+);
+
+    input PHI0, Z_IR;
+
+    output [7:0] PD;
+    output _IMPLIED, _TWOCYCLE;
+
+    inout [7:0] DATA;
+
+    wire [7:0] DATA;
+
+    reg [7:0] PD = 8'b00000000;     // Power-up state
+
+    // Clocks
+    wire PHI1, PHI2;
+    assign PHI1 = ~PHI0;
+    assign PHI2 = PHI0;
+
+    wire temp1, temp2;
+    wire [7:0] pdout;
+    assign pdout = Z_IR ? 8'b00000000 : PD;
+
+    assign _IMPLIED = (pdout[0] | pdout[2] | ~pdout[3]);
+
+    assign temp1 = ~(~pdout[0] | pdout[2] | ~pdout[3] | pdout[4]);
+    assign temp2 = ~(pdout[0] | pdout[2] | pdout[3] | pdout[4] | ~pdout[7]); 
+    assign _TWOCYCLE = (~(temp1 | temp2) & ~(~_IMPLIED & (pdout[1] | pdout[4] | pdout[7])));
+
+initial begin
+    PD = 8'b00000000;       // For safety
+end
+
+always @(PHI2) begin        // D-latch array on real 6502
+    PD = DATA;
+end
+
+endmodule   // Predecode
 
 // ------------------
 // Branch Logic
@@ -274,6 +356,16 @@ endmodule   // Dispatcher
 // XYS Registers
 
 // On real 6502 XYS registers are "refreshed" during PHI2 and loaded by new values during PHI1.
+
+// Controls:
+// X/SB : Put X on SB bus
+// Y/SB : Put Y on SB bus
+// SB/X : Load X from SB bus
+// SB/Y : Load Y from SB bus
+// S/SB : Put S on SB bus
+// S/ADL : Put S on ADL bus
+// S/S : Maintain S (refresh)
+// SB/S : Load S from SB bus
 
 module XYSRegs (
     // Inputs
@@ -363,13 +455,13 @@ module ALU (
     wire OverflowLatch_Out;
     assign BinaryCarry = ~carry_out;
     assign DecimalCarry = DC7;
-    latch OverflowLatch (OverflowLatch_Out, ~(nors[7] & BC6) & (nands[7] | BC6), PHI2 );
+    mylatch OverflowLatch (OverflowLatch_Out, ~(nors[7] & BC6) & (nands[7] | BC6), PHI2 );
 
     wire LatchDAA_Out, LatchDSA_Out, LatchDAAL_Out, LatchDSAL_Out;
-    latch LatchDAA (LatchDAA_Out, ~_DAA, PHI2);
-    latch LatchDSA (LatchDSA_Out, ~_DSA, PHI2);
-    latch LatchDAAL (LatchDAAL_Out, ~(~BC3 & LatchDAA_Out), PHI2);
-    latch LatchDSAL (LatchDSAL_Out, ~(~BC3 | ~LatchDSA_Out), PHI2);
+    mylatch LatchDAA (LatchDAA_Out, ~_DAA, PHI2);
+    mylatch LatchDSA (LatchDSA_Out, ~_DSA, PHI2);
+    mylatch LatchDAAL (LatchDAAL_Out, ~(~BC3 & LatchDAA_Out), PHI2);
+    mylatch LatchDSAL (LatchDSAL_Out, ~(~BC3 | ~LatchDSA_Out), PHI2);
 
     assign ACR = BinaryCarry | DecimalCarry;
     assign AVR = ~OverflowLatch_Out;
@@ -496,6 +588,15 @@ endmodule       // ALU
 // --------------------------------------------------------------------------------
 // Core
 
+// Pads:
+// #NMI : Non-maskable interrupt (active-low + edge triggered)
+// #IRQ : Maskable Interrupt (active-low, level triggered)
+// #RES : Reset (aactive-low, level triggered)
+// RDY : Halt CPU execution during RDY = 0 
+// SO : Set Overflow flag
+// R/w : Read/NotWrite
+// SYNC : Active during opcode fetch cycle (useless at most 6502 applications)
+
 module Core6502 (
     // Outputs
     PHI1, PHI2, RW, SYNC, ADDR,
@@ -521,20 +622,32 @@ module Core6502 (
     wire [7:0]   DATA;
 
     // Internal wires
+    
+    wire ACR, AVR;
 
     // Internal buses
     wire [7:0]  DB, SB, ADH, ADL;
+    
+    wire Z_ADD, SB_ADD, DB_ADD, NDB_ADD, ADL_ADD, SB_AC;
+    wire ORS, ANDS, EORS, SUMS, SRS;
+    wire ADD_SB06, ADD_SB7, ADD_ADL, AC_SB, AC_DB;
+    wire _ADDC, _DAA, _DSA;
 
     // Clock Generator.
     assign PHI1 = ~PHI0;
     assign PHI2 = PHI0;
+    
+    wire Z_ADL0, Z_ADL1, Z_ADL2, DORES, RESP, BRK6E, B_OUT;
+    wire _I_OUT, BR2, T0, BRK5, _ready;
 
     // Break that shit.
 
-/*
     InterruptControl interrupts (
+        Z_ADL0, Z_ADL1, Z_ADL2, DORES, RESP, BRK6E, B_OUT,
+        PHI0, _NMI, _IRQ, _RES, _I_OUT, BR2, T0, BRK5, _ready
     );
 
+/*
     Dispatcher dispatch (
     );
 
@@ -547,6 +660,14 @@ module Core6502 (
     Flags flags (
     );
 */
+
+    ALU alu ( ACR, AVR, PHI0, 
+        Z_ADD, SB_ADD, DB_ADD, NDB_ADD, ADL_ADD, SB_AC,
+        ORS, ANDS, EORS, SUMS, SRS, 
+        ADD_SB06, ADD_SB7, ADD_ADL, AC_SB, AC_DB,
+        _ADDC, _DAA, _DSA,
+        SB, DB, ADL
+    );
 
 endmodule   // Core6502
 
