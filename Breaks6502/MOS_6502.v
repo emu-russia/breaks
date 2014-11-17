@@ -265,10 +265,50 @@ endmodule   // Dispatcher
 // ------------------
 // Internal Buses
 
+    // Precharge buses
+    // Precharge is not only used in mean of optimized value exchange, but also in special cases
+    // (for example during interrupt vector assignment)
     // SB_DB
 
 // ------------------
 // XYS Registers
+
+// On real 6502 XYS registers are "refreshed" during PHI2 and loaded by new values during PHI1.
+
+module XYSRegs (
+    // Inputs
+    Y_SB, SB_Y, X_SB, SB_X, S_SB, S_ADL, S_S, SB_S,
+    // Buses
+    SB, ADL
+);
+
+    input Y_SB, SB_Y, X_SB, SB_X, S_SB, S_ADL, S_S, SB_S;
+
+    inout [7:0] SB, ADL;
+
+    wire [7:0] SB, ADL;
+
+    reg [7:0] X = 8'b00000000, Y = 8'b00000000, S = 8'b11111111;    // Power-up state
+
+    assign SB = X_SB ? X : 8'bzzzzzzzz;
+    assign SB = Y_SB ? Y : 8'bzzzzzzzz;
+    assign SB = S_SB ? S : 8'bzzzzzzzz;
+    assign ADL = S_ADL ? S : 8'bzzzzzzzz;
+
+initial begin           // Power-up state for safety
+    X = 8'b00000000;
+    Y = 8'b00000000;
+    S = 8'b11111111;
+end
+
+always @(*) begin
+    if (SB_X) X = SB;
+    if (SB_Y) Y = SB;
+    if (SB_S) S = SB;
+    if (S_S) S = S;     // refresh
+end
+
+endmodule   // XYSRegs
 
 // ------------------
 // ALU
