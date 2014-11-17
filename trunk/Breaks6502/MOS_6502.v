@@ -267,7 +267,7 @@ endmodule   // InstructionRegister
 // Controls:
 // 0/IR : "Inject" BRK opcode after interrupt (force IR = 0x00), to initiate common "BRK-sequence" service
 // #IMPLIED : NOT Implied instruction (has operands)
-// #TWOCYCLE : NOT short two-cycle instruction (more than 2 cycle)
+// #TWOCYCLE : NOT short two-cycle instruction (more than 2 cycles)
 
 module Predecode (
     // Outputs
