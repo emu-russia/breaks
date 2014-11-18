@@ -317,6 +317,42 @@ endmodule   // Predecode
 // ------------------
 // Branch Logic
 
+module BranchLogic (
+    // Outputs
+    BRFW, _BRTAKEN,
+    // Inputs
+    PHI0, BR2, DB7, _IR5, _IR6, _IR7, _C_OUT, _V_OUT, _N_OUT, _Z_OUT
+);
+
+    input PHI0, BR2, DB7, _IR5, _IR6, _IR7, _C_OUT, _V_OUT, _N_OUT, _Z_OUT;
+
+    output BRFW, _BRTAKEN;
+
+    wire BRFW, _BRTAKEN;
+
+    // Clocks
+    wire PHI1, PHI2;
+    assign PHI1 = ~PHI0;
+    assign PHI2 = PHI0;
+
+    // Branch Forward
+    wire BR2Latch_Out, Latch1_Out, Latch2_Out;
+    mylatch BR2Latch ( BR2Latch_Out, BR2, PHI2);
+    mylatch Latch1 ( Latch1_Out, (~(~DB7 & BR2Latch_Out) & ~(~BR2Latch_Out & Latch2_Out)), PHI1);
+    mylatch Latch2 ( Latch2_Out, ~Latch1_Out, PHI2);
+    assign BRFW = Latch1_Out;
+
+    // Branch Taken
+    wire temp;
+    assign temp = ~(
+        (_C_OUT | ~_IR6 | _IR7) |
+        (_V_OUT | _IR6 | ~_IR7) |
+        (_N_OUT | ~_IR6 | ~_IR7) |
+        (_Z_OUT | _IR6 | _IR7) );
+    assign _BRTAKEN = ~(temp & _IR5) & (temp | _IR5);
+
+endmodule   // BranchLogic
+
 // ------------------
 // Dispatcher
 
@@ -646,6 +682,10 @@ module Core6502 (
     wire Z_ADL0, Z_ADL1, Z_ADL2, DORES, RESP, BRK6E, B_OUT;
     wire _I_OUT, BR2, T0, BRK5, _ready;
 
+    wire BRFW, _BRTAKEN;
+
+    wire DB7, _IR5, _IR6, _IR7, _C_OUT, _V_OUT, _N_OUT, _Z_OUT;
+
     // Break that shit.
 
     InterruptControl interrupts (
@@ -673,6 +713,11 @@ module Core6502 (
         ADD_SB06, ADD_SB7, ADD_ADL, AC_SB, AC_DB,
         _ADDC, _DAA, _DSA,
         SB, DB, ADL
+    );
+
+    BranchLogic branch (
+        BRFW, _BRTAKEN,
+        PHI0, BR2, DB7, _IR5, _IR6, _IR7, _C_OUT, _V_OUT, _N_OUT, _Z_OUT
     );
 
 endmodule   // Core6502
