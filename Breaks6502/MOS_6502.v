@@ -345,10 +345,10 @@ module BranchLogic (
     // Branch Taken
     wire temp;
     assign temp = ~(
-        (_C_OUT | ~_IR6 | _IR7) |
-        (_V_OUT | _IR6 | ~_IR7) |
-        (_N_OUT | ~_IR6 | ~_IR7) |
-        (_Z_OUT | _IR6 | _IR7) );
+        ~(_C_OUT | ~_IR6 | _IR7) |
+        ~(_V_OUT | _IR6 | ~_IR7) |
+        ~(_N_OUT | ~_IR6 | ~_IR7) |
+        ~(_Z_OUT | _IR6 | _IR7) );
     assign _BRTAKEN = ~(temp & _IR5) & (temp | _IR5);
 
 endmodule   // BranchLogic
