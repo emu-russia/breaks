@@ -479,7 +479,7 @@ endmodule   // Dispatcher
 // BOTTOM PART
 
 // ------------------
-// Internal Buses
+// Buses
 
     // Precharge buses
     // Precharge is not only used in mean of optimized value exchange, but also in special cases
@@ -804,7 +804,7 @@ module Core6502 (
 */
 
     Decoder decode ( decoder, IR, _T );
-    
+
     ALU alu ( ACR, AVR, PHI0, 
         Z_ADD, SB_ADD, DB_ADD, NDB_ADD, ADL_ADD, SB_AC,
         ORS, ANDS, EORS, SUMS, SRS, 
