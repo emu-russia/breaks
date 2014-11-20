@@ -42,60 +42,152 @@ module Decoder (
   // Outputs
   decoder_out,
   // Inputs
-  instr_reg, _timer
+  IR, _T
 );
 
-    input [7:0] instr_reg;
-    input [5:0] _timer;
+    input [7:0] IR;
+    input [5:0] _T;
     output [129:0] decoder_out;
+    wire [129:0] decoder_out;
 
-    reg [129:0] decoder_out;        // On real 6502 these are actually wires array
-    wire [20:0] inputs;
+    wire IR01;
 
-    // Assign inputs as it happen in real decoder.
-    assign inputs[0] = _timer[1];
-    assign inputs[1] = _timer[0];
-    assign inputs[2] = ~ instr_reg[5];
-    assign inputs[3] = instr_reg[5];
-    assign inputs[4] = ~ instr_reg[6];
-    assign inputs[5] = instr_reg[6];
-    assign inputs[6] = ~ instr_reg[2];
-    assign inputs[7] = instr_reg[2];
-    assign inputs[8] = ~ instr_reg[3];
-    assign inputs[9] = instr_reg[3];
-    assign inputs[10] = ~ instr_reg[4];
-    assign inputs[11] = instr_reg[4];
-    assign inputs[12] = ~ instr_reg[7];
-    assign inputs[13] = instr_reg[7];
-    assign inputs[14] = ~ instr_reg[0];
-    assign inputs[15] = instr_reg[0] | instr_reg[1];    // IR01
-    assign inputs[16] = ~ instr_reg[1];
-    assign inputs[17] = _timer[2];
-    assign inputs[18] = _timer[3];
-    assign inputs[19] = _timer[4];
-    assign inputs[20] = _timer[5];
+    assign IR01 = IR[0] | IR[1];
 
-always #1 @(*) begin
-
-    // By default all decoder outputs are zero.
-    decoder_out = 0;        // CHECK : Is it synthesizable ??? Can we just zero it?
-
-    case (inputs)
-        21'b000101100000100100000: decoder_out[0] <= 1'b1;
-        21'b000000010110001000100: decoder_out[1] <= 1'b1;
-        21'b000000011010001001000: decoder_out[2] <= 1'b1;
-        21'b010100011001100100000: decoder_out[3] <= 1'b1;
-        21'b010101011010100100000: decoder_out[4] <= 1'b1;
-        21'b010110000001100100000: decoder_out[5] <= 1'b1;
-
-    endcase
+    assign decoder_out[0] = ~(IR[5] | IR[6] | ~IR[2] | ~IR[7] | IR01);
+    assign decoder_out[1] = ~(IR[2] | IR[3] | ~IR[4] | ~IR[0] | _T[3]);
+    assign decoder_out[2] = ~(IR[2] | ~IR[3] | ~IR[4] | ~IR[0] | _T[2]);
+    assign decoder_out[3] = ~(_T[0] | IR[5] | IR[2] | ~IR[3] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[4] = ~(_T[0] | IR[5] | IR[6] | IR[2] | ~IR[3] | ~IR[4] | ~IR[7] | IR01);
+    assign decoder_out[5] = ~(_T[0] | IR[5] | ~IR[6] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[6] = ~(~IR[2] | ~IR[4] | _T[2]);
+    assign decoder_out[7] = ~(IR[6] | ~IR[7] | ~IR[1]);
+    assign decoder_out[8] = ~(IR[2] | IR[3] | IR[4] | ~IR[0] | _T[2]);
+    assign decoder_out[9] = ~(_T[0] | IR[5] | IR[6] | IR[2] | ~IR[3] | IR[4] | ~IR[7] | ~IR[1]);
+    assign decoder_out[10] = ~(_T[0] | IR[5] | ~IR[6] | IR[2] | ~IR[3] | IR[4] | ~IR[7] | ~IR[1]);
+    assign decoder_out[11] = ~(_T[0] | ~IR[5] | ~IR[6] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[12] = ~(IR[5] | IR[6] | ~IR[7] | ~IR[1]);
+    assign decoder_out[13] = ~(_T[0] | IR[5] | IR[6] | IR[2] | ~IR[3] | ~IR[4] | ~IR[7] | ~IR[1]);
+    assign decoder_out[14] = ~(_T[0] | ~IR[5] | IR[6] | ~IR[7] | ~IR[1]);
+    assign decoder_out[15] = ~(_T[1] | IR[5] | ~IR[6] | IR[2] | ~IR[3] | IR[4] | ~IR[7] | ~IR[1]);
+    assign decoder_out[16] = ~(_T[1] | ~IR[5] | ~IR[6] | IR[2] | ~IR[3] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[17] = ~(_T[0] | ~IR[5] | IR[6] | IR[2] | ~IR[3] | ~IR[4] | ~IR[7] | ~IR[1]);
+    assign decoder_out[18] = ~(_T[1] | IR[5] | IR[2] | ~IR[3] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[19] = ~(_T[0] | ~IR[5] | IR[6] | ~IR[2] | ~IR[7] | IR01);
+    assign decoder_out[20] = ~(_T[0] | ~IR[5] | IR[6] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[21] = ~(_T[0] | ~IR[5] | IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[22] = ~(IR[5] | IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[5]);
+    assign decoder_out[23] = ~(_T[0] | IR[5] | IR[2] | ~IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[24] = ~(~IR[5] | ~IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[4]);
+    assign decoder_out[25] = ~(~IR[5] | IR[2] | ~IR[3] | IR[4] | IR[7] | IR01 | _T[3]);
+    assign decoder_out[26] = ~(IR[5] | ~IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[5]);
+    assign decoder_out[27] = ~(~IR[5] | ~IR[6] | IR[7] | ~IR[1]);
+    assign decoder_out[28] = ~(_T[2]);
+    assign decoder_out[29] = ~(_T[0] | IR[5] | ~IR[6] | IR[7] | ~IR[0]);
+    assign decoder_out[30] = ~(~IR[6] | ~IR[2] | ~IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[31] = ~(~IR[2] | ~IR[3] | IR[4] | _T[2]);
+    assign decoder_out[32] = ~(_T[0] | IR[5] | IR[6] | IR[7] | ~IR[0]);
+    assign decoder_out[33] = ~(IR[3] | _T[2]);
+    assign decoder_out[34] = ~(_T[0]);
+    assign decoder_out[35] = ~(IR[2] | IR[4] | IR[7] | IR01 | _T[2]);
+    assign decoder_out[36] = ~(IR[4] | IR[7] | IR01 | _T[3]);
+    assign decoder_out[37] = ~(IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[4]);
+    assign decoder_out[38] = ~(IR[5] | ~IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[4]);
+    assign decoder_out[39] = ~(IR[2] | IR[3] | IR[4] | ~IR[0] | _T[3]);
+    assign decoder_out[40] = ~(IR[2] | IR[3] | ~IR[4] | ~IR[0] | _T[4]);
+    assign decoder_out[41] = ~(IR[2] | IR[3] | ~IR[4] | ~IR[0] | _T[2]);
+    assign decoder_out[42] = ~(~IR[3] | ~IR[4] | _T[3]);
+    assign decoder_out[43] = ~(~IR[5] | IR[2] | ~IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[44] = ~(~IR[5] | ~IR[6] | ~IR[7] | ~IR[1]);
+    assign decoder_out[45] = ~(IR[2] | IR[3] | IR[4] | ~IR[0] | _T[4]);
+    assign decoder_out[46] = ~(IR[2] | IR[3] | ~IR[4] | ~IR[0] | _T[3]);
+    assign decoder_out[47] = ~(~IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[48] = ~(~IR[5] | IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[2]);
+    assign decoder_out[49] = ~(_T[0] | ~IR[6] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[50] = ~(_T[0] | IR[5] | ~IR[6] | ~IR[7] | ~IR[0]);
+    assign decoder_out[51] = ~(_T[0] | ~IR[5] | ~IR[6] | ~IR[7] | ~IR[0]);
+    assign decoder_out[52] = ~(_T[0] | ~IR[5] | ~IR[6] | ~IR[0]);
+    assign decoder_out[53] = ~(~IR[5] | IR[6] | IR[7] | ~IR[1]);
+    assign decoder_out[54] = ~(~IR[6] | ~IR[2] | ~IR[3] | IR[4] | IR[7] | IR01 | _T[3]);
+    assign decoder_out[55] = ~(IR[6] | IR[7] | ~IR[1]);
+    assign decoder_out[56] = ~(~IR[5] | IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[5]);
+    assign decoder_out[57] = ~(IR[2] | IR[4] | IR[7] | IR01 | _T[2]);
+    assign decoder_out[58] = ~(_T[0] | IR[5] | IR[6] | IR[2] | ~IR[3] | ~IR[4] | ~IR[7] | IR01);
+    assign decoder_out[59] = ~(_T[1] | IR[7] | ~IR[0]);
+    assign decoder_out[60] = ~(_T[1] | ~IR[5] | ~IR[6] | ~IR[0]);
+    assign decoder_out[61] = ~(_T[1] | IR[2] | ~IR[3] | IR[4] | IR[7] | ~IR[1]);
+    assign decoder_out[62] = ~(_T[0] | IR[5] | IR[6] | IR[2] | ~IR[3] | IR[4] | ~IR[7] | ~IR[1]);
+    assign decoder_out[63] = ~(_T[0] | ~IR[5] | ~IR[6] | IR[2] | ~IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[64] = ~(_T[0] | ~IR[5] | IR[6] | ~IR[7] | ~IR[0]);
+    assign decoder_out[65] = ~(_T[0] | ~IR[0]);
+    assign decoder_out[66] = ~(_T[0] | ~IR[5] | IR[6] | IR[2] | ~IR[3] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[67] = ~(_T[0] | IR[2] | ~IR[3] | IR[4] | IR[7] | ~IR[1]);
+    assign decoder_out[68] = ~(_T[0] | ~IR[5] | IR[6] | IR[2] | ~IR[3] | IR[4] | ~IR[7] | ~IR[1]);
+    assign decoder_out[69] = ~(_T[0] | ~IR[5] | IR[6] | ~IR[2] | IR[4] | IR[7] | IR01);
+    assign decoder_out[70] = ~(_T[0] | ~IR[5] | IR[6] | IR[7] | ~IR[0]);
+    assign decoder_out[71] = ~(~IR[3] | ~IR[4] | _T[4]);
+    assign decoder_out[72] = ~(IR[2] | IR[3] | ~IR[4] | ~IR[0] | _T[5]);
+    assign decoder_out[73] = ~(_T[0] | IR[2] | IR[3] | ~IR[4] | IR01);
+    assign decoder_out[74] = ~(IR[5] | ~IR[6] | IR[2] | ~IR[3] | IR[4] | IR[7] | IR01 | _T[2]);
+    assign decoder_out[75] = ~(_T[0] | ~IR[6] | IR[2] | ~IR[3] | IR[4] | IR[7] | ~IR[1]);
+    assign decoder_out[76] = ~(~IR[6] | IR[7] | ~IR[1]);
+    assign decoder_out[77] = ~(IR[5] | IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[2]);
+    assign decoder_out[78] = ~(~IR[5] | IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[3]);
+    assign decoder_out[79] = ~(IR[5] | IR[6] | ~IR[7] | ~IR[0]);
+    assign decoder_out[80] = ~(IR[2] | IR[3] | ~IR[4] | IR01 | _T[2]);
+    assign decoder_out[81] = ~(~IR[2] | IR[3] | _T[2]);
+    assign decoder_out[82] = ~(IR[2] | IR[3] | ~IR[0] | _T[2]);
+    assign decoder_out[83] = ~(~IR[3] | _T[2]);
+    assign decoder_out[84] = ~(~IR[5] | ~IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[5]);
+    assign decoder_out[85] = ~(_T[4]);
+    assign decoder_out[86] = ~(_T[3]);
+    assign decoder_out[87] = ~(_T[0] | IR[5] | IR[2] | IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[88] = ~(_T[0] | ~IR[6] | ~IR[2] | ~IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[89] = ~(IR[2] | IR[3] | IR[4] | ~IR[0] | _T[5]);
+    assign decoder_out[90] = ~(~IR[3] | _T[3]);
+    assign decoder_out[91] = ~(IR[2] | IR[3] | ~IR[4] | ~IR[0] | _T[4]);
+    assign decoder_out[92] = ~(~IR[3] | ~IR[4] | _T[3]);
+    assign decoder_out[93] = ~(IR[2] | IR[3] | ~IR[4] | IR01 | _T[3]);
+    assign decoder_out[94] = ~(IR[5] | IR[2] | IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[95] = ~(~IR[5] | IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[96] = ~(~IR[6] | ~IR[2] | ~IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[97] = ~(IR[5] | IR[6] | ~IR[7]);
+    assign decoder_out[98] = ~(IR[5] | IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[4]);
+    assign decoder_out[99] = ~(IR[5] | IR[6] | IR[2] | ~IR[3] | IR[4] | IR[7] | IR01 | _T[2]);
+    assign decoder_out[100] = ~(IR[5] | IR[2] | ~IR[3] | IR[4] | IR[7] | IR01 | _T[2]);
+    assign decoder_out[101] = ~(~IR[6] | ~IR[2] | ~IR[3] | IR[4] | IR[7] | IR01 | _T[4]);
+    assign decoder_out[102] = ~(~IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[5]);
+    assign decoder_out[103] = ~(~IR[5] | IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[5]);
+    assign decoder_out[104] = ~(IR[5] | ~IR[6] | ~IR[2] | ~IR[3] | IR[4] | IR[7] | IR01 | _T[2]);
+    assign decoder_out[105] = ~(~IR[5] | IR[2] | ~IR[3] | IR[4] | IR[7] | IR01 | _T[3]);
+    assign decoder_out[106] = ~(~IR[6] | ~IR[1]);
+    assign decoder_out[107] = ~(IR[6] | IR[7] | ~IR[1]);
+    assign decoder_out[108] = ~(_T[0] | ~IR[6] | IR[2] | ~IR[3] | ~IR[4] | IR[7] | IR01);
+    assign decoder_out[109] = ~(_T[1] | ~IR[5] | IR[6] | ~IR[2] | IR[4] | IR[7] | IR01);
+    assign decoder_out[110] = ~(_T[0] | IR[6] | IR[2] | ~IR[3] | ~IR[4] | IR[7] | IR01);
+    assign decoder_out[111] = ~(~IR[2] | IR[3] | ~IR[4] | _T[3]);
+    assign decoder_out[112] = ~(_T[1] | ~IR[5] | ~IR[6] | ~IR[0]);
+    assign decoder_out[113] = ~(_T[0] | ~IR[5] | IR[6] | ~IR[2] | IR[4] | IR[7] | IR01);
+    assign decoder_out[114] = ~(_T[0] | ~IR[5] | IR[6] | IR[2] | ~IR[3] | IR[4] | IR[7] | IR01);
+    assign decoder_out[115] = ~(IR[5] | ~IR[6] | IR[2] | IR[3] | IR[4] | IR[7] | IR01 | _T[4]);
+    assign decoder_out[116] = ~(_T[1] | IR[5] | ~IR[6] | ~IR[7] | ~IR[0]);
+    assign decoder_out[117] = ~(_T[1] | ~IR[6] | ~IR[2] | ~IR[3] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[118] = ~(_T[1] | IR[6] | IR[2] | ~IR[3] | IR[4] | IR[7] | ~IR[1]);
+    assign decoder_out[119] = ~(_T[1] | ~IR[6] | IR[3] | IR[4] | ~IR[7] | IR01);
+    assign decoder_out[120] = ~(_T[0] | ~IR[6] | IR[2] | ~IR[3] | ~IR[4] | ~IR[7] | IR01);
+    assign decoder_out[121] = ~(IR[6]);
+    assign decoder_out[122] = ~(~IR[2] | ~IR[3] | IR[4] | _T[3]);
+    assign decoder_out[123] = ~(~IR[2] | IR[3] | IR[4] | _T[2]);
+    assign decoder_out[124] = ~(IR[2] | IR[3] | ~IR[0] | _T[5]);
+    assign decoder_out[125] = ~(~IR[3] | ~IR[4] | _T[4]);
+    assign decoder_out[126] = ~(IR[7]);
+    assign decoder_out[127] = ~(~IR[5] | IR[6] | IR[2] | ~IR[3] | ~IR[4] | ~IR[7] | IR01);
 
     // Line 128 (IMPL)
-    decoder_out[128] <= ~ (instr_reg[0] | instr_reg[2] | ~instr_reg[3]);
+    assign decoder_out[128] = ~(IR[0] | IR[2] | ~IR[3]);
 
     // Line 129 (Push/Pull)
-
-end
+    assign decoder_out[129] = ~(IR[2] | ~IR[3] | IR[4] | IR[7] | IR01);
 
 endmodule     // Decoder
 
@@ -686,6 +778,10 @@ module Core6502 (
 
     wire DB7, _IR5, _IR6, _IR7, _C_OUT, _V_OUT, _N_OUT, _Z_OUT;
 
+    wire [7:0] IR;
+    wire [5:0] _T;
+    wire [129:0] decoder;
+
     // Break that shit.
 
     InterruptControl interrupts (
@@ -707,6 +803,8 @@ module Core6502 (
     );
 */
 
+    Decoder decode ( decoder, IR, _T );
+    
     ALU alu ( ACR, AVR, PHI0, 
         Z_ADD, SB_ADD, DB_ADD, NDB_ADD, ADL_ADD, SB_AC,
         ORS, ANDS, EORS, SUMS, SRS, 
