@@ -713,10 +713,10 @@ initial begin           // Power-up state for safety
 end
 
 always @(*) begin
-    if (SB_X) X = SB;
-    if (SB_Y) Y = SB;
-    if (SB_S) S = SB;
-    if (S_S) S = S;     // refresh
+    if (SB_X) X <= SB;
+    if (SB_Y) Y <= SB;
+    if (SB_S) S <= SB;
+    if (S_S) S <= S;     // refresh
 end
 
 endmodule   // XYSRegs
@@ -939,6 +939,7 @@ module Core6502 (
     wire  SYNC;
 
     wire [7:0]   DATA;
+    wire [15:0]  ADDR;
 
     // Internal wires
     
