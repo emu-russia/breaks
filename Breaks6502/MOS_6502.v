@@ -498,7 +498,7 @@ initial begin
 end
 
 always @(PHI2) begin        // D-latch array on real 6502
-    PD = DATA;
+    PD <= DATA;
 end
 
 endmodule   // Predecode
