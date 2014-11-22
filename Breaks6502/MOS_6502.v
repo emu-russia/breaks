@@ -578,10 +578,98 @@ endmodule   // Dispatcher
 // ------------------
 // Buses
 
+module Buses (
+    // Inputs
+    PHI0,
+    Z_ADL0, Z_ADL1, Z_ADL2, ADL_ABL, ADH_ABH, SB_DB, SB_ADH, Z_ADH0, Z_ADH17, DL_ADL, DL_ADH, DL_DB, RD,
+    // Outputs
+    ADDR,
+    // Buses
+    DATA, SB, DB, ADL, ADH
+);
+
+    input PHI0, Z_ADL0, Z_ADL1, Z_ADL2, ADL_ABL, ADH_ABH, SB_DB, SB_ADH, Z_ADH0, Z_ADH17, DL_ADL, DL_ADH, DL_DB, RD;
+
+    output [15:0] ADDR;
+    wire [15:0] ADDR;
+
+    inout [7:0] DATA, SB, DB, ADL, ADH;
+    wire [7:0] DATA, SB, DB, ADL, ADH;
+
+    // Clocks
+    wire PHI1, PHI2;
+    assign PHI1 = ~PHI0;
+    assign PHI2 = PHI0;
+
+    // SB/DB
+    assign SB = (SB_DB) ? DB : 8'bzzzzzzzz;
+    assign DB = (SB_DB) ? SB : 8'bzzzzzzzz;
+
+    // SB/ADH
+    assign SB = (SB_ADH) ? ADH : 8'bzzzzzzzz;
+    assign ADH = (SB_ADH) ? SB : 8'bzzzzzzzz;
+
+    reg [7:0] ABH, ABL;
+
     // Precharge buses
     // Precharge is not only used in mean of optimized value exchange, but also in special cases
     // (for example during interrupt vector assignment)
-    // SB_DB
+    assign SB = (PHI2) ? 8'b11111111 : 8'bzzzzzzzz;
+    assign DB = (PHI2) ? 8'b11111111 : 8'bzzzzzzzz;
+    assign ADH = (PHI2) ? 8'b11111111 : 8'bzzzzzzzz;
+    assign ADL = (PHI2) ? 8'b11111111 : 8'bzzzzzzzz;
+
+    // Data latch Input.
+    wire [7:0] DataLatchInput;
+    mylatch DataLatch0 ( DataLatchInput[0], ~DB[0], PHI2 );
+    mylatch DataLatch1 ( DataLatchInput[1], ~DB[1], PHI2 );
+    mylatch DataLatch2 ( DataLatchInput[2], ~DB[2], PHI2 );
+    mylatch DataLatch3 ( DataLatchInput[3], ~DB[3], PHI2 );
+    mylatch DataLatch4 ( DataLatchInput[4], ~DB[4], PHI2 );
+    mylatch DataLatch5 ( DataLatchInput[5], ~DB[5], PHI2 );
+    mylatch DataLatch6 ( DataLatchInput[6], ~DB[6], PHI2 );
+    mylatch DataLatch7 ( DataLatchInput[7], ~DB[7], PHI2 );
+    assign ADL = (PHI1 & DL_ADL) ? ~DataLatchInput : 8'bzzzzzzzz;
+    assign ADH = (PHI1 & DL_ADH) ? ~DataLatchInput : 8'bzzzzzzzz;
+    assign DB = (PHI1 & DL_DB) ? ~DataLatchInput : 8'bzzzzzzzz;
+
+    // Data Latch Output
+    wire [7:0] DataLatchOutput;
+    mylatch DataLatch8 ( DataLatchOutput[0], ~DB[0], PHI1 );
+    mylatch DataLatch9 ( DataLatchOutput[1], ~DB[1], PHI1 );
+    mylatch DataLatch10 ( DataLatchOutput[2], ~DB[2], PHI1 );
+    mylatch DataLatch11 ( DataLatchOutput[3], ~DB[3], PHI1 );
+    mylatch DataLatch12 ( DataLatchOutput[4], ~DB[4], PHI1 );
+    mylatch DataLatch13 ( DataLatchOutput[5], ~DB[5], PHI1 );
+    mylatch DataLatch14 ( DataLatchOutput[6], ~DB[6], PHI1 );
+    mylatch DataLatch15 ( DataLatchOutput[7], ~DB[7], PHI1 );
+    assign DATA = (~RD) ? ~DataLatchOutput : 8'bzzzzzzzz;
+
+    // External address bus
+    assign ADDR[7:0] = ABL[7:0];
+    assign ADDR[15:8] = ABH[7:0];
+
+always @(*) begin
+    if (ADL_ABL & PHI1) begin
+        ABL[0] <= ADL[0] & ~Z_ADL0;
+        ABL[1] <= ADL[1] & ~Z_ADL1;
+        ABL[2] <= ADL[2] & ~Z_ADL2;
+        ABL[7:3] <= ADL[7:3];
+    end     // ADL_ABL
+
+    if (ADH_ABH & PHI1) begin
+        ABH[0] <= ADH[0] & ~Z_ADH0;
+        ABH[1] <= ADH[1] & ~Z_ADH17;
+        ABH[2] <= ADH[2] & ~Z_ADH17;
+        ABH[3] <= ADH[3] & ~Z_ADH17;
+        ABH[4] <= ADH[4] & ~Z_ADH17;
+        ABH[5] <= ADH[5] & ~Z_ADH17;
+        ABH[6] <= ADH[6] & ~Z_ADH17;
+        ABH[7] <= ADH[7] & ~Z_ADH17;
+    end     // ADH_ABH
+end
+
+endmodule   // Buses
 
 // ------------------
 // XYS Registers
@@ -868,7 +956,7 @@ module Core6502 (
     assign PHI1 = ~PHI0;
     assign PHI2 = PHI0;
     
-    wire Z_ADL0, Z_ADL1, Z_ADL2, DORES, RESP, BRK6E, B_OUT;
+    wire DORES, RESP, BRK6E, B_OUT;
     wire _I_OUT, BR2, T0, BRK5, _ready;
 
     wire BRFW, _BRTAKEN;
@@ -878,6 +966,8 @@ module Core6502 (
     wire P_DB, DB_P, DBZ_Z, DB_N, IR5_C, ACR_C, DB_C, IR5_D, IR5_I, AVR_V, DB_V, ZERO_V, ONE_V;
 
     wire Y_SB, SB_Y, X_SB, SB_X, S_SB, S_ADL, S_S, SB_S;
+
+    wire Z_ADL0, Z_ADL1, Z_ADL2, ADL_ABL, ADH_ABH, SB_DB, SB_ADH, Z_ADH0, Z_ADH17, DL_ADL, DL_ADH, DL_DB, RD;
 
     wire [7:0] IR;
     wire [7:0] PD;
@@ -931,6 +1021,12 @@ module Core6502 (
         PHI0, Z_IR,
         DATA
     );
+
+    Buses buses (
+        PHI0,
+        Z_ADL0, Z_ADL1, Z_ADL2, ADL_ABL, ADH_ABH, SB_DB, SB_ADH, Z_ADH0, Z_ADH17, DL_ADL, DL_ADH, DL_DB, RD,
+        ADDR,
+        DATA, SB, DB, ADL, ADH );
 
 endmodule   // Core6502
 
