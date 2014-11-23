@@ -904,6 +904,147 @@ endmodule       // ALU
 // ------------------
 // Program Counter
 
+// Program Counter using inverted carry chain.
+
+module ProgramCounter (
+    // Inputs
+    PHI0,
+    _IPC, PCL_PCL, PCL_ADL, ADL_PCL, PCL_DB, PCH_PCH, PCH_ADH, ADH_PCH, PCH_DB,
+    // Buses
+    DB, ADL, ADH
+);
+
+    input PHI0, _IPC, PCL_PCL, PCL_ADL, ADL_PCL, PCL_DB, PCH_PCH, PCH_ADH, ADH_PCH, PCH_DB;
+
+    inout [7:0] DB, ADL, ADH;
+    wire [7:0] DB, ADL, ADH;
+
+    reg [7:0] PCL = 8'b00000000, PCLS, PCH = 8'b00000000, PCHS;
+
+    // Clocks
+    wire PHI1, PHI2;
+    assign PHI1 = ~PHI0;
+    assign PHI2 = PHI0;
+
+    assign DB[0] = PCL_DB ? PCL[0] : 1'bz;
+    assign DB[1] = PCL_DB ? ~PCL[1] : 1'bz;
+    assign DB[2] = PCL_DB ? PCL[2] : 1'bz;
+    assign DB[3] = PCL_DB ? ~PCL[3] : 1'bz;
+    assign DB[4] = PCL_DB ? PCL[4] : 1'bz;
+    assign DB[5] = PCL_DB ? ~PCL[5] : 1'bz;
+    assign DB[6] = PCL_DB ? PCL[6] : 1'bz;
+    assign DB[7] = PCL_DB ? ~PCL[7] : 1'bz;
+
+    assign ADL[0] = PCL_ADL ? PCL[0] : 1'bz;
+    assign ADL[1] = PCL_ADL ? ~PCL[1] : 1'bz;
+    assign ADL[2] = PCL_ADL ? PCL[2] : 1'bz;
+    assign ADL[3] = PCL_ADL ? ~PCL[3] : 1'bz;
+    assign ADL[4] = PCL_ADL ? PCL[4] : 1'bz;
+    assign ADL[5] = PCL_ADL ? ~PCL[5] : 1'bz;
+    assign ADL[6] = PCL_ADL ? PCL[6] : 1'bz;
+    assign ADL[7] = PCL_ADL ? ~PCL[7] : 1'bz;
+
+    assign DB[0] = PCH_DB ? ~PCH[0] : 1'bz;
+    assign DB[1] = PCH_DB ? PCH[1] : 1'bz;
+    assign DB[2] = PCH_DB ? ~PCH[2] : 1'bz;
+    assign DB[3] = PCH_DB ? PCH[3] : 1'bz;
+    assign DB[4] = PCH_DB ? ~PCH[4] : 1'bz;
+    assign DB[5] = PCH_DB ? PCH[5] : 1'bz;
+    assign DB[6] = PCH_DB ? ~PCH[6] : 1'bz;
+    assign DB[7] = PCH_DB ? PCH[7] : 1'bz;
+
+    assign ADH[0] = PCH_ADH ? ~PCH[0] : 1'bz;
+    assign ADH[1] = PCH_ADH ? PCH[1] : 1'bz;
+    assign ADH[2] = PCH_ADH ? ~PCH[2] : 1'bz;
+    assign ADH[3] = PCH_ADH ? PCH[3] : 1'bz;
+    assign ADH[4] = PCH_ADH ? ~PCH[4] : 1'bz;
+    assign ADH[5] = PCH_ADH ? PCH[5] : 1'bz;
+    assign ADH[6] = PCH_ADH ? ~PCH[6] : 1'bz;
+    assign ADH[7] = PCH_ADH ? PCH[7] : 1'bz;
+
+    reg carry_out, old_carry;
+    integer n;
+
+    wire PCLC, PCHC;
+
+    assign PCLC = ~( ~PCLS[0] | ~PCLS[1] | ~PCLS[2] | ~PCLS[3] | ~PCLS[4] | ~PCLS[5] | ~PCLS[6] | ~PCLS[7] );
+    assign PCHC = ~( ~PCLC | ~PCHS[0] | ~PCHS[1] | ~PCHS[2] | ~PCHS[3]);
+
+always @(posedge PHI2) begin
+
+    carry_out = _IPC;
+
+    for (n=0; n<8; n=n+1) begin         // PCL 0...7
+        if ( n & 1) begin
+            old_carry = carry_out;
+            carry_out = ~(carry_out & PCLS[n]);
+            PCL[n] = ~(old_carry | PCLS[n]) | ~carry_out;
+        end
+        else begin
+            old_carry = carry_out;
+            carry_out = ~(carry_out | ~PCLS[n]);
+            PCL[n] = ~(old_carry & ~PCLS[n]) & ~carry_out;
+        end
+    end
+
+    carry_out = PCLC;
+
+    for (n=0; n<4; n=n+1) begin         // PCH 0...3
+        if ( n & 1) begin
+            old_carry = carry_out;
+            carry_out = ~(carry_out | ~PCHS[n]);
+            PCH[n] = ~(old_carry & ~PCHS[n]) & ~carry_out;            
+        end
+        else begin
+            old_carry = carry_out;
+            carry_out = ~(carry_out & PCHS[n]);
+            PCH[n] = ~(old_carry | PCHS[n]) | ~carry_out;
+        end
+    end
+
+    carry_out = PCHC;
+
+    for (n=4; n<8; n=n+1) begin         // PCH 4...7
+        if ( n & 1) begin
+            old_carry = carry_out;
+            carry_out = ~(carry_out | ~PCHS[n]);
+            PCH[n] = ~(old_carry & ~PCHS[n]) & ~carry_out;            
+        end
+        else begin
+            old_carry = carry_out;
+            carry_out = ~(carry_out & PCHS[n]);
+            PCH[n] = ~(old_carry | PCHS[n]) | ~carry_out;
+        end
+    end
+
+end
+
+always @(*) begin
+    for (n=0; n<8; n=n+1) begin
+        if (n & 1) begin 
+            if (PCL_PCL) PCLS[n] = ~PCL[n];
+            if (ADL_PCL) PCLS[n] = ADL[n];
+        end
+        else begin
+            if (PCL_PCL) PCLS[n] = PCL[n];
+            if (ADL_PCL) PCLS[n] = ADL[n];
+        end
+    end
+
+    for (n=0; n<8; n=n+1) begin
+        if (n & 1) begin 
+            if (PCH_PCH) PCHS[n] = PCH[n];
+            if (ADH_PCH) PCHS[n] = ADH[n];
+        end
+        else begin
+            if (PCH_PCH) PCHS[n] = ~PCH[n];
+            if (ADH_PCH) PCHS[n] = ADH[n];
+        end
+    end
+end 
+
+endmodule   // ProgramCounter
+
 // --------------------------------------------------------------------------------
 // Core
 
@@ -970,6 +1111,8 @@ module Core6502 (
 
     wire Z_ADL0, Z_ADL1, Z_ADL2, ADL_ABL, ADH_ABH, SB_DB, SB_ADH, Z_ADH0, Z_ADH17, DL_ADL, DL_ADH, DL_DB, RD;
 
+    wire _IPC, PCL_PCL, PCL_ADL, ADL_PCL, PCL_DB, PCH_PCH, PCH_ADH, ADH_PCH, PCH_DB;
+
     wire [7:0] IR;
     wire [7:0] PD;
     wire [5:0] _T;
@@ -1028,6 +1171,11 @@ module Core6502 (
         Z_ADL0, Z_ADL1, Z_ADL2, ADL_ABL, ADH_ABH, SB_DB, SB_ADH, Z_ADH0, Z_ADH17, DL_ADL, DL_ADH, DL_DB, RD,
         ADDR,
         DATA, SB, DB, ADL, ADH );
+
+    ProgramCounter pc (
+        PHI0,
+        _IPC, PCL_PCL, PCL_ADL, ADL_PCL, PCL_DB, PCH_PCH, PCH_ADH, ADH_PCH, PCH_DB,
+        DB, ADL, ADH );
 
 endmodule   // Core6502
 
