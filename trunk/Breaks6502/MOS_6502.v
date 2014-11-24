@@ -291,21 +291,99 @@ endmodule   // InterruptControl
 
 module RandomLogic (
     // Outputs
-
+    BRK5, BR2, _ADL_PCL, PC_DB, 
+    ADH_ABH, ADL_ABL, Y_SB, X_SB, SB_Y, SB_X, S_SB, S_ADL, SB_S, S_S, 
+    NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD, ANDS, EORS, ORS, _ADDC, SRS, SUMS, _DAA, ADD_SB7, ADD_SB06, ADD_ADL, _DSA,
+    Z_ADH0, SB_DB, SB_AC, SB_ADH, Z_ADH17, AC_SB, AC_DB, 
+    ADH_PCH, PCH_PCH, PCH_DB, PCL_DB, PCH_ADH, PCL_PCL, PCL_ADL, ADL_PCL, DL_ADL, DL_ADH, DL_DB,
+    P_DB, ACR_C, AVR_V, DBZ_Z, DB_N, DB_P, DB_C, DB_V, IR5_C, IR5_I, IR5_D, ZERO_V, ONE_V,
     // Inputs
-
+    PHI0, BRK6E, Z_ADL0, SO, RDY, BRFW, ACRL2, _C_OUT, _D_OUT, _ready, T0, T1, T5, T6,
+    decoder
 );
+    output wire BRK5, BR2, _ADL_PCL, PC_DB;
+    output wire ADH_ABH, ADL_ABL, Y_SB, X_SB, SB_Y, SB_X, S_SB, S_ADL, SB_S, S_S;
+    output wire NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD, ANDS, EORS, ORS, _ADDC, SRS, SUMS, _DAA, ADD_SB7, ADD_SB06, ADD_ADL, _DSA;
+    output wire Z_ADH0, SB_DB, SB_AC, SB_ADH, Z_ADH17, AC_SB, AC_DB;
+    output wire ADH_PCH, PCH_PCH, PCH_DB, PCL_DB, PCH_ADH, PCL_PCL, PCL_ADL, ADL_PCL, DL_ADL, DL_ADH, DL_DB;
+    output wire P_DB, ACR_C, AVR_V, DBZ_Z, DB_N, DB_P, DB_C, DB_V, IR5_C, IR5_I, IR5_D, ZERO_V, ONE_V;
 
+    input PHI0, BRK6E, Z_ADL0, SO, RDY, BRFW, ACRL2, _C_OUT, _D_OUT, _ready, T0, T1, T5, T6;
+
+    input [129:0] decoder;
+
+    // Clocks
+    wire PHI1, PHI2;
+    assign PHI1 = ~PHI0;
+    assign PHI2 = PHI0;
 
     // Temp Wires and Latches (helpers)
+    wire NotReadyPhi1, ReadyDelay1_Out, ReadyDelay2_Out;
+    wire BR0, BR3, PGX, JSR_5, RTS_5, RTI_5, PushPull, IND, IMPL, _MemOP, JB, STKOP, STOR, STXY, SBXY, STK2, TXS, JSR2;
+    mylatch NotReadyPhi1_Latch ( NotReadyPhi1, _ready, PHI1 );
+    assign PGX = ~(decoder[71] | decoder[72]) & ~BR0;
+    mylatch ReadyDelay1 ( ReadyDelay1_Out, ~RDY, PHI2 );
+    mylatch ReadyDelay2 ( ReadyDelay2_Out, ~ReadyDelay1_Out, PHI1 );
+    assign BR0 = ~(~ReadyDelay2_Out | decoder[73]);
+    assign BR2 = decoder[80];
+    assign BR3 = decoder[93];
+    assign JSR_5 = decoder[56];
+    assign RTS_5 = decoder[84];
+    assign RTI_5 = decoder[26];
+    assign BRK5 = decoder[22];
+    assign PushPull = decoder[129];
+    assign STK2 = decoder[35];
+    assign TXS = decoder[13];
+    assign JSR2 = decoder[48];
+    assign IND = ( decoder[89] | ~(PushPull | decoder[90]) | decoder[91] | RTS_5 );
+    assign IMPL = decoder[128] & ~PushPull;
+    assign _MemOP = ~( decoder[111] | decoder[122] | decoder[123] | decoder[124] | decoder[125] );
+    assign JB = ~( decoder[94] | decoder[95] | decoder[96] );
+    assign STKOP = ~( NotReadyPhi1 | ~(decoder[21] | BRK5 | decoder[23] | decoder[24] | decoder[25] | RTI_5) );
+    assign STOR = ~( ~decoder[97] | _MemOP );
+    assign STXY = ~(STOR & decoder[0]) & ~(STOR & decoder[12]);
+    assign SBXY = ~(_SB_X & _SB_Y);
 
     // XYS Regs Control
+    wire YSB_Out, XSB_Out, _SB_X, _SB_Y, SBY_Out, SBX_Out, SSB_Out, SADL_Out, _SB_S, SBS_Out, SS_Out;
+    mylatch YSB ( YSB_Out, 
+        (~(STOR & decoder[0])) & (~(decoder[1]|decoder[2]|decoder[3]|decoder[4]|decoder[5])) & (~(decoder[6] & decoder[7])),
+        PHI2 );
+    mylatch XSB ( XSB_Out,
+        (~(decoder[6] & ~decoder[7])) & (~(decoder[8]|decoder[9]|decoder[10]|decoder[11]|TXS)) & (~(STOR & decoder[12])),
+        PHI2 );
+    assign Y_SB = ~YSB_Out & ~PHI2;
+    assign X_SB = ~XSB_Out & ~PHI2;
+    assign _SB_X = ~(decoder[14] | decoder[15] | decoder[16]);
+    assign _SB_Y = ~(decoder[18] | decoder[19] | decoder[20]);
+    mylatch SBY ( SBY_Out, _SB_Y, PHI2 );
+    assign SB_Y = ~SBY_Out & ~PHI2;
+    mylatch SBX ( SBX_Out, _SB_X, PHI2 );
+    assign SB_X = ~SBX_Out & ~PHI2;
+    mylatch SSB ( SSB_Out, ~decoder[17], PHI2 );
+    assign S_SB = ~SSB_Out;
+    mylatch SADL ( SADL_Out, ~(decoder[21] & ~NotReadyPhi1) & ~STK2, PHI2 );
+    assign S_ADL = ~SADL_Out;
+    assign _SB_S = ~( STKOP | ~(~JSR2 | NotReadyPhi1) | TXS );
+    mylatch SBS ( SBS_Out, _SB_S, PHI2 );
+    assign SB_S = ~SBS_Out & ~PHI2;
+    mylatch SS ( SS_Out, ~_SB_S, PHI2 );
+    assign S_S = ~SS_Out & ~PHI2;
 
     // ALU Control
 
     // ADH/ADL Control
+    wire ADHABH_Out;
+    mylatch ADHABH ( ADHABH_Out, 
+        ( ~(~( ~(T2 | _PCH_PCH | JSR_5 | IND) | _ready) | ~(~(~NotReadyPhi1 & ACRL2) | _SB_ADH)) | BR3) & ~Z_ADL0,
+        PHI2 );
+    assign ADH_ABH = ~ADHABH_Out;
 
     // SB/DB Control
+    wire _SB_ADH, SBADH_Out;
+    assign _SB_ADH = ~(PGX | BR3);
+    mylatch SBADH ( SBADH_Out, _SB_ADH, PHI2 );
+    assign SB_ADH = ~SBADH_Out;
 
     // PCH/PCL Control
 
@@ -550,12 +628,12 @@ module Dispatcher (
     _ready, _IPC, _T0X, _T1X, T0, T1, _T2, _T3, _T4, _T5, T5, T6, RD, Z_IR, FETCH, RW, SYNC, ACRL2, 
     // Inputs
     PHI0, RDY,
-    DORES, RESP, B_OUT, BRK6E, BRFW, _BRTAKEN, ACR, _ADL_PCL, PC_DB, BR2, BR3, _IMPLIED, _TWOCYCLE, 
+    DORES, RESP, B_OUT, BRK6E, BRFW, _BRTAKEN, ACR, _ADL_PCL, PC_DB, _IMPLIED, _TWOCYCLE, 
     decoder
 );
 
     input PHI0, RDY;
-    input DORES, RESP, B_OUT, BRK6E, BRFW, _BRTAKEN, ACR, _ADL_PCL, PC_DB, BR2, BR3, _IMPLIED, _TWOCYCLE;
+    input DORES, RESP, B_OUT, BRK6E, BRFW, _BRTAKEN, ACR, _ADL_PCL, PC_DB, _IMPLIED, _TWOCYCLE;
     input [129:0] decoder;
 
     output _ready, _IPC, _T0X, _T1X, T0, T1, _T2, _T3, _T4, _T5, T5, T6, RD, Z_IR, FETCH, RW, SYNC, ACRL2;
@@ -567,7 +645,9 @@ module Dispatcher (
     assign PHI2 = PHI0;
 
     // Misc
-    wire _MemOP, STOR, _SHIFT, _STORE;
+    wire BR2, BR3, _MemOP, STOR, _SHIFT, _STORE;
+    assign BR2 = decoder[80];
+    assign BR3 = decoder[93];
     assign _MemOP = ~( decoder[111] | decoder[122] | decoder[123] | decoder[124] | decoder[125] );
     assign STOR = ~( ~decoder[97] | _MemOP );
     assign _SHIFT = ~( decoder[106] | decoder[107] );
@@ -1217,7 +1297,7 @@ module Core6502 (
     
     wire DORES, RESP, BRK6E, B_OUT;
     
-    wire _ready, T0, T1, T5, T6, BR2, BR3, BRK5, _ADL_PCL, PC_DB, ACRL2;
+    wire _ready, T0, T1, T5, T6, BR2, BRK5, _ADL_PCL, PC_DB, ACRL2;
 
     wire BRFW, _BRTAKEN;
 
@@ -1267,7 +1347,17 @@ module Core6502 (
     Dispatcher dispatch (
         _ready, _IPC, _T[0], _T[1], T0, T1, _T[2], _T[3], _T[4], _T[5], T5, T6, RD, Z_IR, FETCH, RW, SYNC, ACRL2, 
         PHI0, RDY,
-        DORES, RESP, B_OUT, BRK6E, BRFW, _BRTAKEN, ACR, _ADL_PCL, PC_DB, BR2, BR3, _IMPLIED, _TWOCYCLE, 
+        DORES, RESP, B_OUT, BRK6E, BRFW, _BRTAKEN, ACR, _ADL_PCL, PC_DB, _IMPLIED, _TWOCYCLE, 
+        decoder );
+
+    RandomLogic random (
+        BRK5, BR2, _ADL_PCL, PC_DB, 
+        ADH_ABH, ADL_ABL, Y_SB, X_SB, SB_Y, SB_X, S_SB, S_ADL, SB_S, S_S, 
+        NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD, ANDS, EORS, ORS, _ADDC, SRS, SUMS, _DAA, ADD_SB7, ADD_SB06, ADD_ADL, _DSA,
+        Z_ADH0, SB_DB, SB_AC, SB_ADH, Z_ADH17, AC_SB, AC_DB, 
+        ADH_PCH, PCH_PCH, PCH_DB, PCL_DB, PCH_ADH, PCL_PCL, PCL_ADL, ADL_PCL, DL_ADL, DL_ADH, DL_DB,
+        P_DB, ACR_C, AVR_V, DBZ_Z, DB_N, DB_P, DB_C, DB_V, IR5_C, IR5_I, IR5_D, ZERO_V, ONE_V,
+        PHI0, BRK6E, Z_ADL0, SO, RDY, BRFW, ACRL2, _C_OUT, _D_OUT, _ready, T0, T1, T5, T6,
         decoder );
 
     ALU alu ( ACR, AVR, PHI0, 
