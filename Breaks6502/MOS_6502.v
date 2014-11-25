@@ -354,7 +354,7 @@ module RandomLogic (
     assign NOADL = ~( decoder[85] | decoder[86] | RTS_5 | RTI_5 | decoder[87] | decoder[88] | decoder[89] );
     assign BRX = decoder[49] | decoder[50] | ~(~BR3 | BRFW);
     assign INC_SB = ~(~(decoder[39] | decoder[40] | decoder[41] | decoder[42] | decoder[43]) & ~(decoder[44] & T5));
-    assign CSET = ~( ( ( ~(T0 | T5) | _C_OUT) | ~(decoder[52 | decoder[53]])) & ~decoder[54]);
+    assign CSET = ~( ( ( ~(T0 | T5) | _C_OUT) | ~(decoder[52] | decoder[53])) & ~decoder[54]);
 
     // XYS Regs Control
     wire YSB_Out, XSB_Out, _SB_X, _SB_Y, SBY_Out, SBX_Out, SSB_Out, SADL_Out, _SB_S, SBS_Out, SS_Out;
