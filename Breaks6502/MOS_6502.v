@@ -319,7 +319,8 @@ module RandomLogic (
 
     // Temp Wires and Latches (helpers)
     wire NotReadyPhi1, ReadyDelay1_Out, ReadyDelay2_Out;
-    wire BR0, BR3, PGX, JSR_5, RTS_5, RTI_5, PushPull, IND, IMPL, _MemOP, JB, STKOP, STOR, STXY, SBXY, STK2, TXS, JSR2;
+    wire BR0, BR3, PGX, JSR_5, RTS_5, RTI_5, PushPull, IND, IMPL, _MemOP, JB, STKOP, STOR, STXY, SBXY, STK2, TXS, JSR2, SBC0;
+    wire ROR, _SRS, _ANDS, _EORS, _ORS, NOADL, BRX, RET, INC_SB, CSET;
     mylatch NotReadyPhi1_Latch ( NotReadyPhi1, _ready, PHI1 );
     assign PGX = ~(decoder[71] | decoder[72]) & ~BR0;
     mylatch ReadyDelay1 ( ReadyDelay1_Out, ~RDY, PHI2 );
@@ -335,6 +336,9 @@ module RandomLogic (
     assign STK2 = decoder[35];
     assign TXS = decoder[13];
     assign JSR2 = decoder[48];
+    assign SBC0 = decoder[51];
+    assign ROR = decoder[27];
+    assign RET = decoder[47];
     assign IND = ( decoder[89] | ~(PushPull | decoder[90]) | decoder[91] | RTS_5 );
     assign IMPL = decoder[128] & ~PushPull;
     assign _MemOP = ~( decoder[111] | decoder[122] | decoder[123] | decoder[124] | decoder[125] );
@@ -343,6 +347,14 @@ module RandomLogic (
     assign STOR = ~( ~decoder[97] | _MemOP );
     assign STXY = ~(STOR & decoder[0]) & ~(STOR & decoder[12]);
     assign SBXY = ~(_SB_X & _SB_Y);
+    assign _SRS = ~(~(decoder[76] & T5) & ~decoder[75]);
+    assign _ANDS = decoder[69] | decoder[70];
+    assign _EORS = decoder[29];
+    assign _ORS = _ready | decoder[32];
+    assign NOADL = ~( decoder[85] | decoder[86] | RTS_5 | RTI_5 | decoder[87] | decoder[88] | decoder[89] );
+    assign BRX = decoder[49] | decoder[50] | ~(~BR3 | BRFW);
+    assign INC_SB = ~(~(decoder[39] | decoder[40] | decoder[41] | decoder[42] | decoder[43]) & ~(decoder[44] & T5));
+    assign CSET = ~( ( ( ~(T0 | T5) | _C_OUT) | ~(decoder[52 | decoder[53]])) & ~decoder[54]);
 
     // XYS Regs Control
     wire YSB_Out, XSB_Out, _SB_X, _SB_Y, SBY_Out, SBX_Out, SSB_Out, SADL_Out, _SB_S, SBS_Out, SS_Out;
@@ -371,6 +383,68 @@ module RandomLogic (
     assign S_S = ~SS_Out & ~PHI2;
 
     // ALU Control
+    wire _NDB_ADD, _ADL_ADD, SB_ADD_Int, NDBADD_Out, DBADD_Out, ZADD_Out, SBADD_Out, ADLADD_Out;
+    assign _NDB_ADD = ~( BRX | SBC0 | JSR_5) | _ready;
+    assign _ADL_ADD = ~(decoder[33] & ~decoder[34]) & ~( STK2 | decoder[36] | decoder[37] | decoder[38] | decoder[39] | _ready );
+    assign SB_ADD_Int = ~( decoder[30] | decoder[31] | RET | _ready | STKOP | INC_SB | decoder[45] | BRK6E | JSR2 );
+    mylatch NDBADD (NDBADD_Out, _NDB_ADD, PHI2 );
+    assign NDB_ADD = ~NDBADD_Out & ~PHI2;
+    mylatch DBADD (DBADD_Out, ~(_NDB_ADD & _ADL_ADD), PHI2 );
+    assign DB_ADD = ~DBADD_Out & ~PHI2;
+    mylatch ZADD (ZADD_Out, SB_ADD_Int, PHI2 );
+    assign Z_ADD = ~ZADD_Out & ~PHI2;
+    mylatch SBADD (SBADD_Out, ~SB_ADD_Int, PHI2);
+    assign SB_ADD = ~SBADD_Out & ~PHI2;
+    mylatch ADLADD ( ADLADD_Out, _ADL_ADD, PHI2 );
+    assign ADL_ADD = ~ADLADD_Out & ~PHI2;
+    wire ANDS1_Out, ANDS2_Out, EORS1_Out, EORS2_Out, ORS1_Out, ORS2_Out, SRS1_Out, SRS2_Out, SUMS1_Out, SUMS2_Out;
+    mylatch ANDS1 ( ANDS1_Out, _ANDS, PHI2 );
+    mylatch ANDS2 ( ANDS2_Out, ~ANDS1_Out, PHI1 );
+    assign ANDS = ~ANDS2_Out;
+    mylatch EORS1 ( EORS1_Out, _EORS, PHI2 );
+    mylatch EORS2 ( EORS2_Out, ~EORS1_Out, PHI1 );
+    assign EORS = ~EORS2_Out;
+    mylatch ORS1 ( ORS1_Out, _ORS, PHI2 );
+    mylatch ORS2 ( ORS2_Out, ~ORS1_Out, PHI1 );
+    assign ORS = ~ORS2_Out;
+    mylatch SRS1 ( SRS1_Out, _SRS, PHI2 );
+    mylatch SRS2 ( SRS2_Out, ~SRS1_Out, PHI1 );
+    assign SRS = ~SRS2_Out;
+    mylatch SUMS1 ( SUMS1_Out, ~( _ANDS | _EORS | _ORS | _SRS ), PHI2 );
+    mylatch SUMS2 ( SUMS2_Out, ~SUMS1_Out, PHI1 );
+    assign SUMS = ~SUMS2_Out;
+    wire [6:0] ADDSB7_Out;
+    wire _ADD_SB7, _ADD_SB06, ADD_SB7_Out, ADD_SB06_Out;
+    mylatch ADDSB7_1 ( ADDSB7_Out[1], ~_C_OUT, PHI2 );
+    mylatch ADDSB7_2 ( ADDSB7_Out[2], ~(NotReadyPhi1 | ~_SRS), PHI2 );
+    mylatch ADDSB7_3 ( ADDSB7_Out[3], _SRS, PHI2 );
+    mylatch ADDSB7_4 ( ADDSB7_Out[4], ~ADDSB7_Out[3], PHI1 );
+    mylatch ADDSB7_5 ( ADDSB7_Out[5], ~(~ADDSB7_Out[1] & ADDSB7_Out[2]) & ~(~ADDSB7_Out[2] & ADDSB7_Out[6]), PHI1 );
+    mylatch ADDSB7_6 ( ADDSB7_Out[6], ~ADDSB7_Out[5], PHI2 );
+    assign _ADD_SB7 = ~( ~ADDSB7_Out[4] | ~ROR | ~ADDSB7_Out[5] );
+    assign _ADD_SB06 = ~( T6 | STKOP | PGX | T1 | JSR_5 );
+    mylatch ADD_SB7Latch ( ADD_SB7_Out, ~(_ADD_SB7 | _ADD_SB06), PHI2 );
+    assign ADD_SB7 = ~ADD_SB7_Out;
+    mylatch ADD_SB06Latch ( ADD_SB06_Out, _ADD_SB06, PHI2 );
+    assign ADD_SB06 = ~ADD_SB06_Out;
+    wire ADDADL_Out;
+    mylatch ADDADL ( ADDADL_Out, PGX | NOADL, PHI2 );
+    assign ADD_ADL = ~ADDADL_Out;
+    wire DSA1_Out, DSA2_Out, DAA1_Out, DAA2_Out;
+    mylatch DSA1 ( DSA1_Out, SBC0 | ~(decoder[52] & ~_D_OUT), PHI2 );
+    mylatch DSA2 ( DSA2_Out, ~DSA1_Out, PHI1 );
+    assign _DSA = ~DSA2_Out;
+    mylatch DAA1 ( DAA1_Out, ~(SBC0 & ~_D_OUT), PHI2 );
+    mylatch DAA2 ( DAA2_Out, ~DAA1_Out, PHI1 );
+    assign _DAA = ~DAA2_Out;
+    wire ACIN1_Out, ACIN2_Out, ACIN3_Out, ACIN4_Out, _ACIN_Int;
+    mylatch ACIN1 ( ACIN1_Out, ~(~RET | _ADL_ADD), PHI2 );
+    mylatch ACIN2 ( ACIN2_Out, INC_SB, PHI2 );
+    mylatch ACIN3 ( ACIN3_Out, BRX, PHI2 );
+    mylatch ACIN4 ( ACIN4_Out, CSET, PHI2 );
+    assign _ACIN_Int = ~(ACIN1_Out | ACIN2_Out | ACIN3_Out | ACIN4_Out);
+    mylatch ACIN ( _ADDC, _ACIN_Int, PHI1 );
+    // TODO: SB_AC, AC_SB, AC_DB
 
     // ADH/ADL Control
     wire ADHABH_Out;
