@@ -320,7 +320,7 @@ module RandomLogic (
     // Temp Wires and Latches (helpers)
     wire NotReadyPhi1, ReadyDelay1_Out, ReadyDelay2_Out;
     wire BR0, BR3, PGX, JSR_5, RTS_5, RTI_5, PushPull, IND, IMPL, _MemOP, JB, STKOP, STOR, STXY, SBXY, STK2, TXS, JSR2, SBC0;
-    wire ROR, _SRS, _ANDS, _EORS, _ORS, NOADL, BRX, RET, INC_SB, CSET;
+    wire ROR, _SRS, _ANDS, _EORS, _ORS, NOADL, BRX, RET, INC_SB, CSET, STA, JSXY, _ZTST, ABS_2, JMP_4;
     mylatch NotReadyPhi1_Latch ( NotReadyPhi1, _ready, PHI1 );
     assign PGX = ~(decoder[71] | decoder[72]) & ~BR0;
     mylatch ReadyDelay1 ( ReadyDelay1_Out, ~RDY, PHI2 );
@@ -339,6 +339,8 @@ module RandomLogic (
     assign SBC0 = decoder[51];
     assign ROR = decoder[27];
     assign RET = decoder[47];
+    assign STA = decoder[79];
+    assign JMP_4 = decoder[102];
     assign IND = ( decoder[89] | ~(PushPull | decoder[90]) | decoder[91] | RTS_5 );
     assign IMPL = decoder[128] & ~PushPull;
     assign _MemOP = ~( decoder[111] | decoder[122] | decoder[123] | decoder[124] | decoder[125] );
@@ -355,6 +357,9 @@ module RandomLogic (
     assign BRX = decoder[49] | decoder[50] | ~(~BR3 | BRFW);
     assign INC_SB = ~(~(decoder[39] | decoder[40] | decoder[41] | decoder[42] | decoder[43]) & ~(decoder[44] & T5));
     assign CSET = ~( ( ( ~(T0 | T5) | _C_OUT) | ~(decoder[52] | decoder[53])) & ~decoder[54]);
+    assign JSXY = ~(~JSR2 & STXY);
+    assign _ZTST = ~( ~_SB_AC | SBXY | T6 | _ANDS );
+    assign ABS_2 = ~( decoder[83] | PushPull);
 
     // XYS Regs Control
     wire YSB_Out, XSB_Out, _SB_X, _SB_Y, SBY_Out, SBX_Out, SSB_Out, SADL_Out, _SB_S, SBS_Out, SS_Out;
@@ -444,26 +449,111 @@ module RandomLogic (
     mylatch ACIN4 ( ACIN4_Out, CSET, PHI2 );
     assign _ACIN_Int = ~(ACIN1_Out | ACIN2_Out | ACIN3_Out | ACIN4_Out);
     mylatch ACIN ( _ADDC, _ACIN_Int, PHI1 );
-    // TODO: SB_AC, AC_SB, AC_DB
+    wire _SB_AC, _AC_SB, _AC_DB, SBAC_Out, ACSB_Out, ACDB_Out;
+    assign _SB_AC = ~( decoder[58] | decoder[59] | decoder[60] | decoder[61] | decoder[62] | decoder[63] | decoder[64] );
+    mylatch SBAC ( SBAC_Out, _SB_AC, PHI2 );
+    assign SB_AC = ~SBAC_Out & ~PHI2;
+    assign _AC_SB = (~(decoder[65] & ~decoder[64])) & ~( decoder[66] | decoder[67] | decoder[68] | _ANDS);
+    mylatch ACSB ( ACSB_Out, _AC_SB, PHI2 );
+    assign AC_SB = ~ACSB_Out & ~PHI2;
+    assign _AC_DB = ~(STA & STOR) & ~decoder[74];
+    mylatch ACDB ( ACDB_Out, _AC_DB, PHI2 );
+    assign AC_DB = ~ACDB_Out & ~PHI2;
 
     // ADH/ADL Control
-    wire ADHABH_Out;
+    wire _Z_ADH17, _ADL_ABL, ADHABH_Out, ADLABL_Out, ZADH0_Out, ZADH17_Out;
     mylatch ADHABH ( ADHABH_Out, 
         ( ~(~( ~(T2 | _PCH_PCH | JSR_5 | IND) | _ready) | ~(~(~NotReadyPhi1 & ACRL2) | _SB_ADH)) | BR3) & ~Z_ADL0,
         PHI2 );
     assign ADH_ABH = ~ADHABH_Out;
+    assign _ADL_ABL = ~(~((decoder[71] | decoder[72]) | _ready) & ~(T5 | T6));
+    mylatch ADLABL ( ADLABL_Out, _ADL_ABL, PHI2 );
+    assign ADL_ABL = ~ADLABL_Out;
+    mylatch ZADH0 ( ZADH0_Out, _DL_ADL, PHI2 );
+    assign Z_ADH0 = ~ZADH0_Out;
+    assign _Z_ADH17 = ~(decoder[57] | ~_DL_ADL);
+    mylatch ZADH17 ( ZADH17_Out, _Z_ADH17, PHI2 );
+    assign Z_ADH17 = ~ZADH17_Out;
 
     // SB/DB Control
-    wire _SB_ADH, SBADH_Out;
+    wire _SB_ADH, _SB_DB, SBADH_Out, SBDB_Out;
     assign _SB_ADH = ~(PGX | BR3);
     mylatch SBADH ( SBADH_Out, _SB_ADH, PHI2 );
     assign SB_ADH = ~SBADH_Out;
+    assign _SB_DB = ~( ~(_ZTST | _ANDS) | decoder[67] | (decoder[55] & T5) | T1 | BR2 | JSXY);
+    mylatch SBDB ( SBDB_Out, _SB_DB, PHI2 );
+    assign SB_DB = ~SBDB_Out;
 
     // PCH/PCL Control
+    wire _ADH_PCH, _PCH_DB, _PCL_DB, ADHPCH_Out, PCHPCH_Out, PCHDB_Out, PCLDB1_Out, PCLDB2_Out, PCLDB_Out;
+    assign _ADH_PCH = ~( RTS_5 | ABS_2 | BR3 | T1 | BR2 | T0 );
+    mylatch ADHPCH ( ADHPCH_Out, _ADH_PCH, PHI2 );
+    assign ADH_PCH = ~ADHPCH_Out & ~PHI2;
+    mylatch PCHPCH ( PCHPCH_Out, ~_ADH_PCH, PHI2 );
+    assign PCH_PCH = ~PCHPCH_Out & ~PHI2;
+    assign _PCH_DB = ~( decoder[77] | decoder[78] );
+    mylatch PCHDB ( PCHDB_Out, _PCH_DB, PHI2 );
+    assign PCH_DB = ~PCHDB_Out;
+    mylatch PCLDB1 ( PCLDB1_Out, _PCH_DB, PHI2 );
+    mylatch PCLDB2 ( PCLDB2_Out, ~( PCLDB1_Out | _ready), PHI1 );
+    assign _PCL_DB = PCLDB2_Out;
+    mylatch PCLDB ( PCLDB_Out, _PCL_DB, PHI2 );
+    assign PCL_DB = ~PCLDB_Out;
+    assign PC_DB = ~(_PCH_DB & _PCL_DB);
+    wire _PCH_ADH, _PCL_ADL, PCHADH_Out, PCLPCL_Out, ADLPCL_Out, PCLADL_Out;
+    assign _PCH_ADH = ~( ~(_PCL_ADL | BR0 | DL_PCH) | BR3);
+    mylatch PCHADH ( PCHADH_Out, _PCH_ADH, PHI2 );
+    assign _PCL_ADL = ~( ABS_2 | T1 | BR2 | JSR_5 | ~( ~(JB | NotReadyPhi1) | ~T0));
+    assign _ADL_PCL = ~(~_PCL_ADL | T0 | RTS_5) & ~(BR3 & ~NotReadyPhi1);
+    mylatch PCLCPL ( PCLPCL_Out, ~_ADL_PCL, PHI2);
+    assign PCL_PCL = ~PCLPCL_Out & ~PHI2;
+    mylatch PCLADL ( PCLADL_Out, _PCL_ADL, PHI2 );
+    assign PCL_ADL = ~PCLADL_Out;
+    mylatch ADLPCL ( ADLPCL_Out, _ADL_PCL, PHI2 );
+    assign ADL_PCL = ~ADLPCL_Out & ~PHI2;
 
     // DL Control
+    wire _DL_ADL, DL_PCH, DLADL_Out, DLADH_Out, DLDB_Out;
+    assign _DL_ADL = ~(decoder[81] | decoder[82]);
+    mylatch DLADL ( DLADL_Out, _DL_ADL, PHI2 );
+    assign DL_ADL = ~DLADL_Out;
+    assign DL_PCH = ~( ~T0 | JB);
+    mylatch DLADH ( DLADH_Out, ~(DL_PCH | IND), PHI2 );
+    assign DL_ADH = ~DLADH_Out;
+    assign temp = INC_SB | BRK6E | JSR2 | decoder[45] | decoder[46] | RET;
+    mylatch DLDB ( DLDB_Out, ~( JMP_4 | T5 | temp | ~(~(ABS_2 | T0) | IMPL) | BR2 ), PHI2 );
+    assign DL_DB = ~DLDB_Out;
 
     // Flags Control
+    wire PDB_Out, ACRC_Out, DBZZ_Out, PIN_Out, BIT1_Out, DBC_Out, DBV_Out, IR5C_Out, IR5I_Out, IR5D_Out, ZEROV_Out;
+    wire SODelay1_Out, SODelay2_Out, SODelay3_Out;
+    mylatch PDB ( PDB_Out, ~(decoder[98] | decoder[99]), PHI2 );
+    assign P_DB = ~PDB_Out;
+    mylatch ACRC ( ACRC_Out, ~(decoder[112] | decoder[116] | decoder[117] | decoder[118] | decoder[119]) & ~(decoder[107] & T6), PHI2 );
+    assign ACR_C = ~ACRC_Out;
+    mylatch AVRV ( AVR_V, decoder[112], PHI2 );
+    mylatch DBZZ ( DBZZ_Out, ~(ACR_C | decoder[109] | ~_ZTST), PHI2 );
+    assign DBZ_Z = ~DBZZ_Out;
+    mylatch PIN ( PIN_Out, ~(decoder[114] | decoder[115]), PHI2 );
+    mylatch BIT1 ( BIT1_Out, decoder[109], PHI2 );
+    assign DB_N = ~(PIN_Out & DBZZ_Out) & ~BIT1_Out;
+    assign DB_P = PIN_Out & ~_ready;
+    mylatch DBC ( DBC_Out, ~(_SRS | DB_P), PHI2 );
+    assign DB_C = ~DBC_Out;
+    mylatch DBV ( DBV_Out, ~decoder[113], PHI2 );
+    assign DB_V = ~(DBV_Out & PIN_Out);
+    mylatch IR5C ( IR5C_Out, ~decoder[110], PHI2 );
+    assign IR5_C = ~IR5C_Out;
+    mylatch IR5I ( IR5I_Out, ~decoder[108], PHI2 );
+    assign IR5_I = ~IR5I_Out;
+    mylatch IR5D ( IR5D_Out, ~decoder[120], PHI2 );
+    assign IR5_D = ~IR5D_Out;
+    mylatch ZEROV ( ZEROV_Out, ~decoder[127], PHI2 );
+    assign ZERO_V = ~ZEROV_Out;
+    mylatch SODelay1 ( SODelay1_Out, ~SO, PHI1 );
+    mylatch SODelay2 ( SODelay2_Out, ~SODelay1_Out, PHI2 );
+    mylatch SODelay3 ( SODelay3_Out, ~SODelay2_Out, PHI1 );
+    mylatch ONEV ( ONE_V, ~(SODelay3_Out | ~SODelay1_Out), PHI2 );
 
 endmodule   // RandomLogic
 
