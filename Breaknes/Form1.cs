@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Breaknes
 {
@@ -15,9 +16,18 @@ namespace Breaknes
         private FamiBoard board = new FamiBoard();
         private Loader loader = new Loader();
 
+        [DllImport("kernel32.dll",
+                    EntryPoint = "AllocConsole",
+                    SetLastError = true,
+                    CharSet = CharSet.Auto,
+                    CallingConvention = CallingConvention.StdCall)]
+        private static extern int AllocConsole(); 
+
         public Form1()
         {
             InitializeComponent();
+
+            AllocConsole();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,6 +111,13 @@ namespace Breaknes
             {
                 board.Clk = ~board.Clk & 1;
             }
+        }
+
+        private void joypadsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            JoypadSettings joypadSettings = new JoypadSettings();
+
+            joypadSettings.Show();
         }
 
     }

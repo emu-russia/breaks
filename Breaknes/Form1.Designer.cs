@@ -49,6 +49,8 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tvScreen1 = new System.Windows.Forms.TvScreen();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.joypadsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -58,6 +60,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.controlToolStripMenuItem,
+            this.settingsToolStripMenuItem,
             this.debugToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -208,6 +211,7 @@
             // 
             this.tvScreen1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tvScreen1.Location = new System.Drawing.Point(0, 24);
+            this.tvScreen1.Mode = System.Windows.Forms.DisplayMode.Native;
             this.tvScreen1.Name = "tvScreen1";
             this.tvScreen1.ScreenHeight = 512;
             this.tvScreen1.ScreenType = System.Windows.Forms.PixelGeometry.Stripes;
@@ -215,6 +219,21 @@
             this.tvScreen1.Size = new System.Drawing.Size(684, 369);
             this.tvScreen1.TabIndex = 2;
             this.tvScreen1.Text = "tvScreen1";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.joypadsToolStripMenuItem});
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            // 
+            // joypadsToolStripMenuItem
+            // 
+            this.joypadsToolStripMenuItem.Name = "joypadsToolStripMenuItem";
+            this.joypadsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.joypadsToolStripMenuItem.Text = "Joypads...";
+            this.joypadsToolStripMenuItem.Click += new System.EventHandler(this.joypadsToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -259,6 +278,8 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.TvScreen tvScreen1;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem joypadsToolStripMenuItem;
     }
 }
 

@@ -21,6 +21,13 @@ namespace System.Windows.Forms
         Triangular
     }
 
+    public enum DisplayMode
+    {
+        BlackScreen,
+        TV,
+        Native,
+    }
+
     public struct ScreenElement
     {
         public int Red;
@@ -38,6 +45,7 @@ namespace System.Windows.Forms
         private PixelGeometry _ScreenType = PixelGeometry.Stripes;
         private ScreenElement[] _screen;
         private Bitmap _screenBitmap;
+        private DisplayMode _mode;
 
         [Category("Screen Settings")]
         public int ScreenWidth
@@ -58,6 +66,13 @@ namespace System.Windows.Forms
         {
             get { return _ScreenType; }
             set { _ScreenType = value; }
+        }
+
+        [Category("Screen Settings")]
+        public DisplayMode Mode
+        {
+            get { return _mode; }
+            set { _mode = value; }
         }
 
         private void ReinitScreen ()
@@ -176,33 +191,48 @@ namespace System.Windows.Forms
             if (gfx == null)
                 ReallocateGraphics();
 
-            RefreshBitmap();
+            switch (_mode)
+            {
+                case DisplayMode.BlackScreen:
+                    gfx.Graphics.FillRectangle(Brushes.Black, 0, 0, Width, Height);
+                    break;
 
-            gfx.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                case DisplayMode.TV:
+                    RefreshBitmap();
 
-            float brightness = 1.1f;
-            float contrast = 1.0f;
-            float gamma = 1.0f; 
+                    gfx.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
-            float adjustedBrightness = brightness - 1.0f;
-            // create matrix that will brighten and contrast the image
-            float[][] ptsArray ={
-            new float[] {contrast, 0, 0, 0, 0}, // scale red
-            new float[] {0, contrast, 0, 0, 0}, // scale green
-            new float[] {0, 0, contrast, 0, 0}, // scale blue
-            new float[] {0, 0, 0, 1.0f, 0}, // don't scale alpha
-            new float[] {adjustedBrightness, adjustedBrightness, adjustedBrightness, 0, 1}};
+                    float brightness = 1.1f;
+                    float contrast = 1.0f;
+                    float gamma = 1.0f; 
 
-            ImageAttributes imageAttributes = new ImageAttributes();
-            imageAttributes.ClearColorMatrix();
-            imageAttributes.SetColorMatrix(new ColorMatrix(ptsArray), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
-            imageAttributes.SetGamma(gamma, ColorAdjustType.Bitmap);
+                    float adjustedBrightness = brightness - 1.0f;
+                    // create matrix that will brighten and contrast the image
+                    float[][] ptsArray ={
+                    new float[] {contrast, 0, 0, 0, 0}, // scale red
+                    new float[] {0, contrast, 0, 0, 0}, // scale green
+                    new float[] {0, 0, contrast, 0, 0}, // scale blue
+                    new float[] {0, 0, 0, 1.0f, 0}, // don't scale alpha
+                    new float[] {adjustedBrightness, adjustedBrightness, adjustedBrightness, 0, 1}};
 
-            Rectangle rect = new Rectangle(0, 0, Width, Height);
+                    ImageAttributes imageAttributes = new ImageAttributes();
+                    imageAttributes.ClearColorMatrix();
+                    imageAttributes.SetColorMatrix(new ColorMatrix(ptsArray), ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                    imageAttributes.SetGamma(gamma, ColorAdjustType.Bitmap);
 
-            gfx.Graphics.DrawImage( _screenBitmap, rect,
-                                    0, 0, _screenBitmap.Width, _screenBitmap.Height,
-                                    GraphicsUnit.Pixel, imageAttributes);
+                    Rectangle rect = new Rectangle(0, 0, Width, Height);
+
+                    gfx.Graphics.DrawImage( _screenBitmap, rect,
+                                            0, 0, _screenBitmap.Width, _screenBitmap.Height,
+                                            GraphicsUnit.Pixel, imageAttributes);
+                    break;
+
+                case DisplayMode.Native:
+                    
+                    // TODO
+
+                    break;
+            }
 
             gfx.Render(e.Graphics);
         }
