@@ -73,6 +73,7 @@
     <Compile Include="Ppu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Smpte.cs" />
     <Compile Include="SoundRender.cs" />
     <Compile Include="VideoRender.cs">
       <SubType>Component</SubType>
