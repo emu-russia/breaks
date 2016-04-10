@@ -503,6 +503,7 @@ module RandomLogic (
     wire _PCH_ADH, _PCL_ADL, PCHADH_Out, PCLPCL_Out, ADLPCL_Out, PCLADL_Out;
     assign _PCH_ADH = ~( ~(_PCL_ADL | BR0 | DL_PCH) | BR3);
     mylatch PCHADH ( PCHADH_Out, _PCH_ADH, PHI2 );
+    assign PCH_ADH = ~PCHADH_Out;
     assign _PCL_ADL = ~( ABS_2 | T1 | BR2 | JSR_5 | ~( ~(JB | NotReadyPhi1) | ~T0));
     assign _ADL_PCL = ~(~_PCL_ADL | T0 | RTS_5) & ~(BR3 & ~NotReadyPhi1);
     mylatch PCLCPL ( PCLPCL_Out, ~_ADL_PCL, PHI2);
