@@ -29,76 +29,88 @@ namespace PpuTestSuite
         private void Form1_Load(object sender, EventArgs e)
         {
             ppu = new Ppu();
-
-            textBox1.Text = ppu.CLKin.ToString();
-            
-            textBox4.Text = ppu.nRES.ToString();
-            textBox5.Text = ppu.RESCL.ToString();
-            textBox6.Text = ppu.ResetFF.ToString();
-        }
-
-        /// <summary>
-        /// Toggle CLK
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ppu.CLKin = Convert.ToInt32(textBox1.Text) & 1;
-
-            ppu.ToggleClock();
-
-            textBox1.Text = ppu.CLKin.ToString();
-            textBox2.Text = ppu.CLKout.ToString();
-            textBox3.Text = ppu.NotCLKout.ToString();
-        }
-
-        /// <summary>
-        /// Reset Logic
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ppu.nRES = Convert.ToInt32(textBox4.Text) & 1;
-            ppu.RESCL = Convert.ToInt32(textBox5.Text) & 1;
-
-            ppu.ResetPadLogic();
-
-            textBox8.Text = ppu.RES.ToString();
-            textBox7.Text = ppu.RC.ToString();
-            textBox6.Text = ppu.ResetFF.ToString();
-        }
-
-        /// <summary>
-        /// Toggle /RES
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            ppu.nRES = Base.Toggle(ppu.nRES);
-
-            textBox4.Text = ppu.nRES.ToString();
-        }
-
-        /// <summary>
-        /// Toggle RESCL
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button4_Click(object sender, EventArgs e)
-        {
-            ppu.RESCL = Base.Toggle(ppu.RESCL);
-
-            textBox5.Text = ppu.RESCL.ToString();
+            ShowAll();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormAbout about = new FormAbout();
-            about.ShowDialog();
+            about.MdiParent = this;
+            about.Show();
+        }
+
+        private void showPadsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowPads();
+        }
+
+        private void showResetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowReset();
+        }
+
+        private void showClkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowClk();
+        }
+
+        private void showPCLKToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowPixelClock();
+        }
+
+        private void showRWDecoderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowAll();
+        }
+
+        private void ShowPads()
+        {
+            FormPads dlg = new FormPads(ppu);
+            dlg.MdiParent = this;
+            dlg.Show();
+        }
+
+        private void ShowReset()
+        {
+            FormReset dlg = new FormReset(ppu);
+            dlg.MdiParent = this;
+            dlg.Show();
+        }
+
+        private void ShowClk()
+        {
+            FormClk dlg = new FormClk(ppu);
+            dlg.MdiParent = this;
+            dlg.Show();
+        }
+
+        private void ShowPixelClock()
+        {
+            FormPixelClock dlg = new FormPixelClock(ppu);
+            dlg.MdiParent = this;
+            dlg.Show();
+        }
+
+        private void ShowRWDecoder()
+        {
+            FormRwDecoder dlg = new FormRwDecoder(ppu);
+            dlg.MdiParent = this;
+            dlg.Show();
+        }
+
+        private void ShowAll()
+        {
+            ShowPads();
+            ShowReset();
+            ShowClk();
+            ShowPixelClock();
+            ShowRWDecoder();
         }
 
 

@@ -12,6 +12,8 @@ using System.Windows.Forms;
 
 public class Base
 {
+    private static Random rnd = new Random();
+
     public static int Not(int n)
     {
         return ~(n & 1) & 1;
@@ -44,4 +46,12 @@ public class Base
         return n & 1;
     }
 
+    /// <summary>
+    /// Поучить случайное значение неопределенной сущности
+    /// </summary>
+    /// <returns>Случайное значение 0/1</returns>
+    public static int GetUndefined()
+    {
+        return (rnd.Next(0, 2) == 0) ? 1 : 0;
+    }
 }

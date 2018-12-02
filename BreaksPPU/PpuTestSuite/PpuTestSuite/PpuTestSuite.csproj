@@ -34,6 +34,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +58,37 @@
     <Compile Include="FormAbout.Designer.cs">
       <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormClk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormClk.Designer.cs">
+      <DependentUpon>FormClk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPads.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPads.Designer.cs">
+      <DependentUpon>FormPads.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPixelClock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPixelClock.Designer.cs">
+      <DependentUpon>FormPixelClock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormReset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormReset.Designer.cs">
+      <DependentUpon>FormReset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRwDecoder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRwDecoder.Designer.cs">
+      <DependentUpon>FormRwDecoder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="Ppu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +97,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAbout.resx">
       <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormClk.resx">
+      <DependentUpon>FormClk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPads.resx">
+      <DependentUpon>FormPads.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPixelClock.resx">
+      <DependentUpon>FormPixelClock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormReset.resx">
+      <DependentUpon>FormReset.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRwDecoder.resx">
+      <DependentUpon>FormRwDecoder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -87,6 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="GraphLib\GraphLib.csproj">
+      <Project>{0C0A1F4D-1363-4544-A7C5-196C76D26CCA}</Project>
+      <Name>GraphLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
