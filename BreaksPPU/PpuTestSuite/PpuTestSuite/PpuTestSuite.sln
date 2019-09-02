@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PpuTestSuite", "PpuTestSuite.csproj", "{8986F14E-3438-4278-91AF-53EB36CC36F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphLib", "GraphLib\GraphLib.csproj", "{0C0A1F4D-1363-4544-A7C5-196C76D26CCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClkUnitTest", "..\ClkUnitTest\ClkUnitTest.csproj", "{BEEB1BE9-B4E2-4546-9996-A8D9A8663AD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{A82651D5-99F6-4CDE-AC7D-766AAC1FF2DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +25,18 @@ Global
 		{0C0A1F4D-1363-4544-A7C5-196C76D26CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C0A1F4D-1363-4544-A7C5-196C76D26CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C0A1F4D-1363-4544-A7C5-196C76D26CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEB1BE9-B4E2-4546-9996-A8D9A8663AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEB1BE9-B4E2-4546-9996-A8D9A8663AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEB1BE9-B4E2-4546-9996-A8D9A8663AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEB1BE9-B4E2-4546-9996-A8D9A8663AD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BEEB1BE9-B4E2-4546-9996-A8D9A8663AD1} = {A82651D5-99F6-4CDE-AC7D-766AAC1FF2DD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25E495CC-E130-48E6-9F92-F0C0C5992DE7}
 	EndGlobalSection
 EndGlobal
