@@ -1,7 +1,5 @@
 // 2C02 Ppu Model
 //
-// Пишу в промежутках между работой чтобы не зачахнуть
-// Комментарии смешанные, но скорее всего перейду полностью на русский
 
 using System;
 using System.Collections.Generic;
@@ -28,7 +26,7 @@ public class Ppu
     /// Внешние потребители могут инициировать процесс обновления друг друга, путем регистрации "слушателей" изменения контекста PPU
     /// </summary>
 
-    #region Реактивные связи
+    #region "Реактивные связи"
 
     public delegate void PpuListener(object sender);
 
@@ -64,13 +62,13 @@ public class Ppu
         }
     }
 
-    #endregion
+    #endregion "Реактивные связи"
 
     /// <summary>
     /// Контакты
     /// </summary>
 
-    #region Pads
+    #region "Pads"
 
     public class PpuPads
     {
@@ -226,13 +224,13 @@ public class Ppu
         }
     }
 
-    #endregion
+    #endregion "Pads"
 
     /// <summary>
     /// В клоке ничего интересного, просто дергается соотв. лапка
     /// </summary>
 
-    #region CLK
+    #region "CLK"
 
     public int? CLKout;                  // Inner CLK to pixel clock and phase shifter
     public int? NotCLKout;               // Inner CLK# to pixel clock and phase shifter
@@ -254,13 +252,13 @@ public class Ppu
         ToggleCounter++;
     }
 
-    #endregion
+    #endregion "CLK"
 
     /// <summary>
     /// Сброс PPU
     /// </summary>
 
-    #region Reset
+    #region "Reset"
 
     public int? RES;            // Внутренний сигнал сброса
     public int? RC;             // Внутренний сигнал очистки регистров (register clear)
@@ -298,13 +296,13 @@ public class Ppu
         }
     }
 
-    #endregion
+    #endregion "Reset"
 
     /// <summary>
     /// PCLK = CLK / 4
     /// </summary>
 
-    #region Pixel Clock
+    #region "Pixel Clock"
 
     /// Делитель реализуется путем последовательной передачи значения между защелками по кругу
     /// Значение защелок хранится как емкость на затворах FET
@@ -363,13 +361,13 @@ public class Ppu
         nPCLK = Base.Not((int)PCLK);
     }
 
-    #endregion
+    #endregion "Pixel Clock"
 
     ///
     /// Схема выборки регистров состоит из R/W декодера и RS декодера
     /// 
 
-    #region PPU Register Select
+    #region "PPU Register Select"
 
     public int? nRDInternal;            // Внутренний сигнал /RD для регистров
     public int? nWRInternal;            // Внутренний сигнал /WR для регистров
@@ -385,6 +383,6 @@ public class Ppu
             );
     }
 
-    #endregion 
+    #endregion "PPU Register Select"
 
 }
