@@ -133,16 +133,23 @@ namespace GraphFlow
 
         public void Propagate()
         {
+            // TODO: Slice propagation onto Node instance sub-classes (Node::Fet::Propagate, Node::Power::Propagate etc.)
             if (name == "1")
             {
+                // Power
+
                 Value = 1;
             }
             else if (name == "0")
             {
+                // Ground
+
                 Value = 0;
             }
             else if (name.Contains("nfet") || name.Contains("pfet"))
             {
+                // Fets
+
                 List<Edge> inputs = Inputs();
 
                 Edge source = null;
@@ -169,12 +176,12 @@ namespace GraphFlow
 
                 if (source == null)
                 {
-                    throw new Exception("Specifiy source to fet");
+                    throw new Exception("Specify source to fet");
                 }
 
                 if (gate == null)
                 {
-                    throw new Exception("Specifiy gate to fet");
+                    throw new Exception("Specify gate to fet");
                 }
 
                 // Check gate value
@@ -193,17 +200,22 @@ namespace GraphFlow
                 else
                 {
                     // Imitate gate capacity (keep value as D-latch)
+                    // TODO: Add decay parameter?
 
                     Value = Value;
                 }
             }
             else
             {
+                // Vias (connection)
+
                 int? value = null;
                 List<Edge> inputs = Inputs();
 
                 if (inputs.Count() == 0)
                 {
+                    // Input pads
+
                     value = Value;
                 }
 
@@ -556,12 +568,12 @@ namespace GraphFlow
 
                         if (source == null)
                         {
-                            throw new Exception("Specifiy source to fet");
+                            throw new Exception("Specify source to fet");
                         }
 
                         if (gate == null)
                         {
-                            throw new Exception("Specifiy gate to fet");
+                            throw new Exception("Specify gate to fet");
                         }
 
                         if (gate.Value != null)
