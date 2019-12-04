@@ -516,7 +516,69 @@ namespace GraphFlow
             foreach (var node in nodes)
             {
                 node.Visited = false;
+
+                if ( node.Inputs().Count() == 0)
+                {
+                    if (node.name == "1" || node.name == "0" )
+                    {
+                        node.Value = null;
+                    }
+                }
+                else
+                {
+                    // Do not clear floating gate value
+
+                    if ( node.name.Contains("nfet") || node.name.Contains("pfet"))
+                    {
+                        List<Edge> inputs = node.Inputs();
+
+                        Edge source = null;
+                        Edge gate = null;
+
+                        foreach (var edge in inputs)
+                        {
+                            if (edge.name.Contains("g"))
+                            {
+                                gate = edge;
+                            }
+                            else
+                            {
+                                if (source == null)
+                                {
+                                    source = edge;
+                                }
+                                else
+                                {
+                                    throw new Exception("fet with multiple sources is prohibited");
+                                }
+                            }
+                        }
+
+                        if (source == null)
+                        {
+                            throw new Exception("Specifiy source to fet");
+                        }
+
+                        if (gate == null)
+                        {
+                            throw new Exception("Specifiy gate to fet");
+                        }
+
+                        if (gate.Value != null)
+                        {
+                            node.Value = null;
+                        }
+                    }
+
+                    node.Value = null;
+                }
+
                 node.OldValue = null;
+            }
+            foreach (var edge in edges)
+            {
+                edge.Value = null;
+                edge.OldValue = null;
             }
         }
 
