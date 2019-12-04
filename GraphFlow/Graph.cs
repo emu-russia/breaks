@@ -6,15 +6,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Xml;
+
 namespace GraphFlow
 {
 
     class Node
     {
-        private int id = -1;
-        public string name = "";
+        private int id { get; set; } = -1;
+        public string name { get; set; } = "";
         public Graph graph;
-        public bool Visited = false;
+        public bool Visited { get; set; } = false;
 
         private int? NewValue = null;
         public int? Value
@@ -237,10 +239,10 @@ namespace GraphFlow
 
     class Edge
     {
-        private int id = -1;
-        public string name = "";
-        public Node source;
-        public Node dest;
+        private int id { get; set; } = -1;
+        public string name { get; set; } = "";
+        public Node source { get; set; } = null;
+        public Node dest { get; set; } = null;
         public Graph graph;
 
         private int? NewValue = null;
@@ -332,13 +334,120 @@ namespace GraphFlow
 
     class Graph
     {
-        public string name = "Graph " + Guid.NewGuid().ToString();
-        public List<Node> nodes = new List<Node>();
-        public List<Edge> edges = new List<Edge>();
+        public string name { get; set; } = "Graph " + Guid.NewGuid().ToString();
+        public List<Node> nodes { get; set; } = new List<Node>();
+        public List<Edge> edges { get; set; } = new List<Edge>();
 
+        public Graph()
+        {}
+
+        public Graph(string _name)
+        {
+            name = _name;
+        }
+
+        /// <summary>
+        /// Load graph from Yed graphml
+        /// </summary>
+        /// <param name="text"></param>
         public void FromGraphML (string text)
         {
+            nodes.Clear();
+            edges.Clear();
 
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(text);
+
+            // Find graph root 
+
+            XmlNode graph = null;
+
+            foreach (XmlNode node in doc.DocumentElement.ChildNodes)
+            {
+                if ( node.Name == "graph")
+                {
+                    graph = node;
+                    break;
+                }
+            }
+
+            if ( graph == null)
+            {
+                throw new Exception("Invalid format");
+            }
+
+            // Enumerate graph for nodes
+
+            foreach (XmlNode entity in graph)
+            {
+                if ( entity.Name == "node")
+                {
+                    int id = Convert.ToInt32(entity.Attributes["id"].Value.Substring(1));
+
+                    nodes.Add(new Node(this, id, GetYedNodeName(entity)));
+                }
+            }
+
+            // Enumerate graph for edges
+
+            foreach (XmlNode entity in graph)
+            {
+                if (entity.Name == "edge")
+                {
+                    int id = Convert.ToInt32(entity.Attributes["id"].Value.Substring(1));
+                    int source = Convert.ToInt32(entity.Attributes["source"].Value.Substring(1));
+                    int target = Convert.ToInt32(entity.Attributes["target"].Value.Substring(1));
+
+                    edges.Add(new Edge(this, id, source, target, GetYedEdgeName(entity)));
+                }
+            }
+
+        }
+
+        private string GetYedNodeName (XmlNode parent)
+        {
+            foreach (XmlNode node in parent)
+            {
+                if ( node.Name == "data")
+                {
+                    if ( node.Attributes["key"].Value == "d6")
+                    {
+                        foreach (XmlNode inner in node)
+                        {
+                            if (inner.Name == "y:ShapeNode")
+                            {
+                                return inner.InnerText;
+                            }
+                        }
+
+                    }
+                }
+            }
+            return "";
+        }
+
+        private string GetYedEdgeName(XmlNode parent)
+        {
+            foreach (XmlNode node in parent)
+            {
+                if (node.Name == "data")
+                {
+                    if (node.Attributes["key"].Value == "d10")
+                    {
+                        XmlNode innerNode = node.ChildNodes[0];
+
+                        foreach (XmlNode inner in innerNode)
+                        {
+                            if (inner.Name == "y:EdgeLabel")
+                            {
+                                return inner.InnerText;
+                            }
+                        }
+
+                    }
+                }
+            }
+            return "";
         }
 
         /// <summary>
@@ -348,6 +457,11 @@ namespace GraphFlow
         public virtual void Walk()
         {
             List<Node> inputNodes = GetInputNodes();
+
+            foreach (var node in nodes)
+            {
+                node.Visited = false;
+            }
 
             int timeOut = 100;      // Should be enough to abort propagation since of auto-generation effects
             int walkCounter = 1;
@@ -391,6 +505,20 @@ namespace GraphFlow
             }
 
             Console.WriteLine("Completed in {0} iterations", walkCounter);
+        }
+
+        private void ResetGraph()
+        {
+            foreach (var node in nodes)
+            {
+                // Сбросить значения для всех нодов, кроме входов
+
+                //if ( node.Inputs().Count != 0)
+                //{
+                //    node.Value = null;
+                //    node.OldValue = null;
+                //}
+            }
         }
 
         public void Dump()

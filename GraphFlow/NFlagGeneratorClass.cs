@@ -13,7 +13,7 @@ namespace GraphFlow
 
         public static Graph GenerateNFlag ()
         {
-            Graph nflag = new Graph();
+            Graph nflag = new Graph("6502 N-Flag");
 
             // Nodes
 

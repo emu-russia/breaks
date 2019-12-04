@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace GraphFlow
 {
@@ -21,7 +22,7 @@ namespace GraphFlow
                     CallingConvention = CallingConvention.StdCall)]
         private static extern int AllocConsole();
 
-        private Graph NFlag;
+        private Graph RootGraph;
 
         public Form1()
         {
@@ -35,35 +36,55 @@ namespace GraphFlow
             Close();
         }
 
-        private void generateAndDumpNFLAGCircuiteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            NFlag = NFlagGeneratorClass.GenerateNFlag();
-
-            //NFlag.Dump();
-        }
-
-        private void walkGraphToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Generate hardcoded sample graph
+        /// </summary>
+        private void GenerateNflag ()
         {
             int phi = 0;
 
-            if (NFlag == null)
-            {
-                NFlag = NFlagGeneratorClass.GenerateNFlag();
-            }
+            RootGraph = NFlagGeneratorClass.GenerateNFlag();
 
-            Node dbn = NFlag.GetNodeByName("DB/N");
-            Node ndb7 = NFlag.GetNodeByName("/DB7");
-            Node phi1 = NFlag.GetNodeByName("PHI1");
-            Node phi2 = NFlag.GetNodeByName("PHI2");
+            Node dbn = RootGraph.GetNodeByName("DB/N");
+            Node ndb7 = RootGraph.GetNodeByName("/DB7");
+            Node phi1 = RootGraph.GetNodeByName("PHI1");
+            Node phi2 = RootGraph.GetNodeByName("PHI2");
 
             dbn.Value = 1;
             ndb7.Value = 0;
             phi1.Value = phi != 0 ? 0 : 1;
             phi2.Value = phi != 0 ? 1 : 0;
 
-            NFlag.Walk();
+            propertyGrid1.SelectedObject = RootGraph;
 
-            NFlag.DumpNodeValues();
+            //RootGraph.Dump();
+        }
+
+        private void generateAndDumpNFLAGCircuiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GenerateNflag();
+        }
+
+        private void walkGraphToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RootGraph == null)
+            {
+                MessageBox.Show("No graph!");
+                return;
+            }
+
+            RootGraph.Walk();
+            RootGraph.DumpNodeValues();
+        }
+
+        private void loadYedGraphMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ( openFileDialog1.ShowDialog() == DialogResult.OK )
+            {
+                RootGraph = new Graph(openFileDialog1.FileName);
+                RootGraph.FromGraphML(File.ReadAllText(openFileDialog1.FileName));
+                propertyGrid1.SelectedObject = RootGraph;
+            }
         }
     }
 }
