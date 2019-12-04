@@ -141,7 +141,7 @@ namespace GraphFlow
             {
                 Value = 0;
             }
-            else if (name.Contains("nfet"))
+            else if (name.Contains("nfet") || name.Contains("pfet"))
             {
                 List<Edge> inputs = Inputs();
 
@@ -181,7 +181,14 @@ namespace GraphFlow
 
                 if (gate.Value != null)
                 {
-                    Value = gate.Value != 0 ? source.Value : null;
+                    if ( name[0] == 'n')
+                    {
+                        Value = gate.Value != 0 ? source.Value : null;
+                    }
+                    else
+                    {
+                        Value = gate.Value == 0 ? source.Value : null;
+                    }
                 }
                 else
                 {
@@ -458,10 +465,7 @@ namespace GraphFlow
         {
             List<Node> inputNodes = GetInputNodes();
 
-            foreach (var node in nodes)
-            {
-                node.Visited = false;
-            }
+            ResetGraphWalk();
 
             int timeOut = 100;      // Should be enough to abort propagation since of auto-generation effects
             int walkCounter = 1;
@@ -507,17 +511,12 @@ namespace GraphFlow
             Console.WriteLine("Completed in {0} iterations", walkCounter);
         }
 
-        private void ResetGraph()
+        private void ResetGraphWalk()
         {
             foreach (var node in nodes)
             {
-                // Сбросить значения для всех нодов, кроме входов
-
-                //if ( node.Inputs().Count != 0)
-                //{
-                //    node.Value = null;
-                //    node.OldValue = null;
-                //}
+                node.Visited = false;
+                node.OldValue = null;
             }
         }
 

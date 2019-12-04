@@ -86,5 +86,21 @@ namespace GraphFlow
                 propertyGrid1.SelectedObject = RootGraph;
             }
         }
+
+        private void dumpGraphToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if ( RootGraph != null)
+            {
+                RootGraph.Dump();
+            }
+        }
+
+        private void dumpGraphValuesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RootGraph != null)
+            {
+                RootGraph.DumpNodeValues();
+            }
+        }
     }
 }

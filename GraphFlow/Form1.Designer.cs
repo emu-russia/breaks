@@ -37,6 +37,9 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dumpGraphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dumpGraphValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -46,7 +49,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.debugToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1150, 24);
@@ -118,6 +122,29 @@
             this.propertyGrid1.Size = new System.Drawing.Size(475, 542);
             this.propertyGrid1.TabIndex = 0;
             // 
+            // debugToolStripMenuItem
+            // 
+            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dumpGraphToolStripMenuItem,
+            this.dumpGraphValuesToolStripMenuItem});
+            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.debugToolStripMenuItem.Text = "Debug";
+            // 
+            // dumpGraphToolStripMenuItem
+            // 
+            this.dumpGraphToolStripMenuItem.Name = "dumpGraphToolStripMenuItem";
+            this.dumpGraphToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dumpGraphToolStripMenuItem.Text = "Dump Graph";
+            this.dumpGraphToolStripMenuItem.Click += new System.EventHandler(this.dumpGraphToolStripMenuItem_Click);
+            // 
+            // dumpGraphValuesToolStripMenuItem
+            // 
+            this.dumpGraphValuesToolStripMenuItem.Name = "dumpGraphValuesToolStripMenuItem";
+            this.dumpGraphValuesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.dumpGraphValuesToolStripMenuItem.Text = "Dump Graph Values";
+            this.dumpGraphValuesToolStripMenuItem.Click += new System.EventHandler(this.dumpGraphValuesToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -149,6 +176,9 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dumpGraphToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dumpGraphValuesToolStripMenuItem;
     }
 }
 
