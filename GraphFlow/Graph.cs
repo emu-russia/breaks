@@ -737,11 +737,14 @@ namespace GraphFlow
 
                             if (sourceSourceName.Contains("nfet") || sourceSourceName.Contains("pfet"))
                             {
+                                edge.Item.Width = 4;
                                 continue;
                             }
                         }
                     }
                 }
+
+                edge.Item.Width = 2;
 
                 edge.Value = null;
                 edge.OldValue = null;
