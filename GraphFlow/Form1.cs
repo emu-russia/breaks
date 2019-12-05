@@ -89,7 +89,7 @@ namespace GraphFlow
             {
                 if (node.Item != null)
                 {
-                    canvasControl1.AddItem((CanvasItem)node.Item);
+                    canvasControl1.AddItem(node.Item);
                 }
             }
 
@@ -97,7 +97,7 @@ namespace GraphFlow
             {
                 if (edge.Item != null)
                 {
-                    canvasControl1.AddItem((CanvasItem)edge.Item);
+                    canvasControl1.AddItem(edge.Item);
                 }
             }
 

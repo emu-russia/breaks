@@ -20,7 +20,7 @@ namespace GraphFlow
         public string name { get; set; } = "";
         public Graph graph;
         public bool Visited { get; set; } = false;
-        public object Item = null;    // Associate with someting to draw
+        public CanvasItem Item = null;    // Associate with someting to draw
 
         private int? NewValue = null;
         public int? Value
@@ -33,15 +33,13 @@ namespace GraphFlow
 
                 if (Item != null)
                 {
-                    CanvasItem item = (CanvasItem)Item;
-
                     if (value != null)
                     {
-                        item.BorderColor = (value == 0) ? Color.ForestGreen : Color.Chartreuse;      // 0 / 1
+                        Item.BorderColor = (value == 0) ? Color.ForestGreen : Color.Chartreuse;      // 0 / 1
                     }
                     else
                     {
-                        item.BorderColor = Color.DodgerBlue;  // z
+                        Item.BorderColor = Color.DodgerBlue;  // z
                     }
                 }
             }
@@ -281,7 +279,7 @@ namespace GraphFlow
         public Node source { get; set; } = null;
         public Node dest { get; set; } = null;
         public Graph graph;
-        public object Item = null;    // Associate with someting to draw
+        public CanvasItem Item = null;    // Associate with someting to draw
 
         private int? NewValue = null;
         public int? Value
@@ -294,15 +292,13 @@ namespace GraphFlow
 
                 if (Item != null)
                 {
-                    CanvasItem item = (CanvasItem)Item;
-
                     if (value != null)
                     {
-                        item.FrontColor = (value == 0) ? Color.ForestGreen : Color.Chartreuse;      // 0 / 1
+                        Item.FrontColor = (value == 0) ? Color.ForestGreen : Color.Chartreuse;      // 0 / 1
                     }
                     else
                     {
-                        item.FrontColor = Color.DodgerBlue;  // z
+                        Item.FrontColor = Color.DodgerBlue;  // z
                     }
                 }
             }
@@ -439,6 +435,7 @@ namespace GraphFlow
                     Node node = new Node(this, id, GetYedNodeName(entity));
 
                     node.Item = GetYedNodeShape(entity, node);
+                    node.Item.UserData = node;
 
                     nodes.Add(node);
                 }
@@ -457,11 +454,13 @@ namespace GraphFlow
                     Edge edge = new Edge(this, id, source, target, GetYedEdgeName(entity));
 
                     edge.Item = GetYedEdgeShape(entity, edge);
+                    edge.Item.UserData = edge;
 
                     edges.Add(edge);
                 }
             }
 
+            ResetGraphWalk();
         }
 
         private string GetYedNodeName (XmlNode parent)
@@ -598,7 +597,7 @@ namespace GraphFlow
 
             Node startNode = edge.source;
 
-            CanvasItem startItem = (CanvasItem)startNode.Item;
+            CanvasItem startItem = startNode.Item;
 
             float sx = startItem.Pos.X;
             float sy = startItem.Pos.Y;
@@ -642,7 +641,7 @@ namespace GraphFlow
 
             Node destNode = edge.dest;
 
-            CanvasItem destItem = (CanvasItem)destNode.Item;
+            CanvasItem destItem = destNode.Item;
 
             float dx = destItem.Pos.X;
             float dy = destItem.Pos.Y;
@@ -714,6 +713,8 @@ namespace GraphFlow
 
                 if ( node.Inputs().Count() == 0)
                 {
+                    // Do not touch input pads
+
                     if (node.name == "1" || node.name == "0" )
                     {
                         node.Value = null;
@@ -721,50 +722,6 @@ namespace GraphFlow
                 }
                 else
                 {
-                    // Do not clear floating gate value
-
-                    if ( node.name.Contains("nfet") || node.name.Contains("pfet"))
-                    {
-                        List<Edge> inputs = node.Inputs();
-
-                        Edge source = null;
-                        Edge gate = null;
-
-                        foreach (var edge in inputs)
-                        {
-                            if (edge.name.Contains("g"))
-                            {
-                                gate = edge;
-                            }
-                            else
-                            {
-                                if (source == null)
-                                {
-                                    source = edge;
-                                }
-                                else
-                                {
-                                    throw new Exception("fet with multiple sources is prohibited");
-                                }
-                            }
-                        }
-
-                        if (source == null)
-                        {
-                            throw new Exception("Specify source to fet");
-                        }
-
-                        if (gate == null)
-                        {
-                            throw new Exception("Specify gate to fet");
-                        }
-
-                        if (gate.Value != null)
-                        {
-                            node.Value = null;
-                        }
-                    }
-
                     node.Value = null;
                 }
 

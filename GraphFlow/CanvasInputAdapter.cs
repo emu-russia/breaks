@@ -50,37 +50,34 @@ namespace GraphFlow
                 {
                     // Нажали внутри итема
 
-                    if (!item.Selected)
+                    // Циклические меняем значение ассоциированного с итемом узла графа
+
+                    if ( item.UserData != null)
                     {
-                        // Если не выделен - выделить
-
-                        if (canvas.GetModifierKeys() != Keys.Shift)
-                            canvas.UnselectAll();
-
-                        item.Select();
-                        canvas.Invalidate();
-                    }
-                    else
-                    {
-                        // Если выделен - начать перетаскивание
-
-                        selectedDragItems = canvas.GetSelected();
-
-                        foreach(var next in selectedDragItems)
+                        if ( item.UserData is GraphFlow.Node )
                         {
-                            next.SavedPos = new PointF(next.Pos.X, next.Pos.Y);
-                            next.SavedPosEnd = new PointF(next.PosEnd.X, next.PosEnd.Y);
+                            Node node = item.UserData as GraphFlow.Node;
 
-                            next.SavedPoints = new List<PointF>();
-                            foreach(var point in next.Points)
+                            if (node.Value != null)
                             {
-                                next.SavedPoints.Add(point);
+                                if (node.Value == 0)
+                                {
+                                    node.Value = 1;
+                                }
+                                else
+                                {
+                                    node.Value = null;
+                                }
                             }
-                        }
+                            else
+                            {
+                                node.Value = 0;
+                            }
 
-                        savedMouse = new Point(e.X, e.Y);
-                        draggingBegin = true;
+                            canvas.Invalidate();
+                        }
                     }
+
                 }
                 else
                 {
