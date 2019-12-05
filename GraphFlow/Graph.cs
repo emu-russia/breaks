@@ -465,7 +465,7 @@ namespace GraphFlow
                 }
             }
 
-            ResetGraphWalk();
+            Reset();
         }
 
         private string GetYedNodeName (XmlNode parent)
@@ -673,7 +673,7 @@ namespace GraphFlow
         {
             List<Node> inputNodes = GetInputNodes();
 
-            ResetGraphWalk();
+            GraphWalkPrepare();
 
             int timeOut = 100;      // Should be enough to abort propagation since of auto-generation effects
             int walkCounter = 1;
@@ -719,7 +719,7 @@ namespace GraphFlow
             Console.WriteLine("Completed in {0} iterations", walkCounter);
         }
 
-        public void ResetGraphWalk()
+        private void GraphWalkPrepare()
         {
             foreach (var edge in edges)
             {
@@ -842,6 +842,20 @@ namespace GraphFlow
             }
 
             return list;
+        }
+
+        public void Reset()
+        {
+            foreach(var node in nodes)
+            {
+                node.Value = 0;
+                node.OldValue = 0;
+            }
+            foreach(var edge in edges)
+            {
+                edge.Value = 0;
+                edge.OldValue = 0;
+            }
         }
 
     }

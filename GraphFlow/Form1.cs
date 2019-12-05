@@ -104,5 +104,13 @@ namespace GraphFlow
             canvasControl1.Invalidate();
         }
 
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (RootGraph != null)
+            {
+                RootGraph.Reset();
+                canvasControl1.Invalidate();
+            }
+        }
     }
 }
