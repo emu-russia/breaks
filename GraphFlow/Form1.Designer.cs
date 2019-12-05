@@ -103,14 +103,14 @@
             // dumpGraphToolStripMenuItem
             // 
             this.dumpGraphToolStripMenuItem.Name = "dumpGraphToolStripMenuItem";
-            this.dumpGraphToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.dumpGraphToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dumpGraphToolStripMenuItem.Text = "Dump Graph";
             this.dumpGraphToolStripMenuItem.Click += new System.EventHandler(this.dumpGraphToolStripMenuItem_Click);
             // 
             // dumpGraphValuesToolStripMenuItem
             // 
             this.dumpGraphValuesToolStripMenuItem.Name = "dumpGraphValuesToolStripMenuItem";
-            this.dumpGraphValuesToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.dumpGraphValuesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.dumpGraphValuesToolStripMenuItem.Text = "Dump Graph Values";
             this.dumpGraphValuesToolStripMenuItem.Click += new System.EventHandler(this.dumpGraphValuesToolStripMenuItem_Click);
             // 

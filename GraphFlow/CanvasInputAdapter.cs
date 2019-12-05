@@ -60,14 +60,18 @@ namespace GraphFlow
 
                             if (node.Value != null)
                             {
-                                if (node.Value == 0)
-                                {
-                                    node.Value = 1;
-                                }
-                                else
-                                {
-                                    node.Value = null;
-                                }
+                                node.Value = (node.Value == 0) ? 1 : 0;
+
+                                // Tristage Logic
+
+                                //if (node.Value == 0)
+                                //{
+                                //    node.Value = 1;
+                                //}
+                                //else
+                                //{
+                                //    node.Value = null;
+                                //}
                             }
                             else
                             {

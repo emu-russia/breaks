@@ -206,16 +206,22 @@ namespace GraphFlow
                 {
                     if ( name[0] == 'n')
                     {
-                        Value = gate.Value != 0 ? source.Value : null;
+                        if (gate.Value != 0)
+                        {
+                            Value = source.Value;
+                        }
                     }
                     else
                     {
-                        Value = gate.Value == 0 ? source.Value : null;
+                        if (gate.Value == 0)
+                        {
+                            Value = source.Value;
+                        }
                     }
                 }
                 else
                 {
-                    // Imitate gate capacity (keep value as D-latch)
+                    // Keep value as D-latch
                     // TODO: Add decay parameter?
 
                     Value = Value;
@@ -230,7 +236,12 @@ namespace GraphFlow
 
                 if (inputs.Count() == 0)
                 {
-                    // Input pads
+                    // Do not propagate disconnected inputs
+
+                    if (Value == null)
+                        return;
+
+                    // Get value from input pad
 
                     value = Value;
                 }
@@ -532,7 +543,16 @@ namespace GraphFlow
 
             if (found)
             {
-                CanvasPoint item = new CanvasPoint(pos, width, color);
+                CanvasItem item;
+                
+                if(width == height)
+                {
+                    item = new CanvasPoint(pos, width, color);
+                }
+                else
+                {
+                    item = new CanvasRect(pos, width, height, color);
+                }
 
                 item.BorderWidth = 2;
 
@@ -705,15 +725,31 @@ namespace GraphFlow
             Console.WriteLine("Completed in {0} iterations", walkCounter);
         }
 
-        private void ResetGraphWalk()
+        public void ResetGraphWalk()
         {
+            foreach (var edge in edges)
+            {
+                // Do not clear floating gate value
+
+                if (edge.name.Contains("g"))
+                {
+                    if (edge.dest.name.Contains("nfet") || edge.dest.name.Contains("pfet"))
+                    {
+                        continue;
+                    }
+                }
+
+                edge.Value = null;
+                edge.OldValue = null;
+            }
+
             foreach (var node in nodes)
             {
                 node.Visited = false;
 
                 if ( node.Inputs().Count() == 0)
                 {
-                    // Do not touch input pads
+                    // Do not touch input pads, except power/ground
 
                     if (node.name == "1" || node.name == "0" )
                     {
@@ -726,11 +762,6 @@ namespace GraphFlow
                 }
 
                 node.OldValue = null;
-            }
-            foreach (var edge in edges)
-            {
-                edge.Value = null;
-                edge.OldValue = null;
             }
         }
 
