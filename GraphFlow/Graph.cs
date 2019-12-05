@@ -5,8 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.Globalization;
 
 using System.Xml;
+using CanvasControl;
 
 namespace GraphFlow
 {
@@ -274,6 +277,20 @@ namespace GraphFlow
             {
                 OldValue = NewValue;
                 NewValue = value;
+
+                if (Item != null)
+                {
+                    CanvasItem item = (CanvasItem)Item;
+
+                    if (value != null)
+                    {
+                        item.FrontColor = (value == 0) ? Color.ForestGreen : Color.Chartreuse;      // 0 / 1
+                    }
+                    else
+                    {
+                        item.FrontColor = Color.DodgerBlue;  // z
+                    }
+                }
             }
         }  // Associated value
         public int? OldValue = null;    // Used to keep track of propagation changes
@@ -405,7 +422,11 @@ namespace GraphFlow
                 {
                     int id = Convert.ToInt32(entity.Attributes["id"].Value.Substring(1));
 
-                    nodes.Add(new Node(this, id, GetYedNodeName(entity)));
+                    Node node = new Node(this, id, GetYedNodeName(entity));
+
+                    node.Item = GetYedNodeShape(entity, node);
+
+                    nodes.Add(node);
                 }
             }
 
@@ -419,7 +440,11 @@ namespace GraphFlow
                     int source = Convert.ToInt32(entity.Attributes["source"].Value.Substring(1));
                     int target = Convert.ToInt32(entity.Attributes["target"].Value.Substring(1));
 
-                    edges.Add(new Edge(this, id, source, target, GetYedEdgeName(entity)));
+                    Edge edge = new Edge(this, id, source, target, GetYedEdgeName(entity));
+
+                    edge.Item = GetYedEdgeShape(entity, edge);
+
+                    edges.Add(edge);
                 }
             }
 
@@ -447,6 +472,77 @@ namespace GraphFlow
             return "";
         }
 
+        private CanvasItem GetYedNodeShape(XmlNode parent, Node node)
+        {
+            PointF pos = new PointF(0,0);
+            int width = 100;
+            int height = 100;
+            Color color = Color.Gold;
+
+            bool found = false;
+
+            foreach (XmlNode xmlNode in parent)
+            {
+                if (xmlNode.Name == "data")
+                {
+                    if (xmlNode.Attributes["key"].Value == "d6")
+                    {
+                        foreach (XmlNode inner in xmlNode)
+                        {
+                            if (inner.Name == "y:ShapeNode")
+                            {
+                                foreach (XmlNode props in inner)
+                                {
+                                    if (props.Name == "y:Geometry")
+                                    {
+                                        width = (int)float.Parse(props.Attributes["width"].Value, CultureInfo.InvariantCulture);
+                                        height = (int)float.Parse(props.Attributes["height"].Value, CultureInfo.InvariantCulture);
+                                        float x = float.Parse(props.Attributes["x"].Value, CultureInfo.InvariantCulture);
+                                        float y = float.Parse(props.Attributes["y"].Value, CultureInfo.InvariantCulture);
+
+                                        pos = new PointF(x, y);
+
+                                        found = true;
+                                    }
+
+                                    if (props.Name == "y:Fill")
+                                    {
+                                        color = StringToColor(props.Attributes["color"].Value);
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            if (found)
+            {
+                return new CanvasPoint(pos, width, color);
+            }
+
+            return null;
+        }
+
+        public static Color StringToColor(string text)
+        {
+            if (text[0] == '#')
+            {
+                char[] rchars = { text[1], text[2] };
+                int r = Convert.ToInt32(new string(rchars), 16);
+
+                char[] gchars = { text[3], text[4] };
+                int g = Convert.ToInt32(new string(gchars), 16);
+
+                char[] bchars = { text[5], text[6] };
+                int b = Convert.ToInt32(new string(bchars), 16);
+
+                return Color.FromArgb(255, r, g, b);
+            }
+            else return Color.Black;
+        }
+
         private string GetYedEdgeName(XmlNode parent)
         {
             foreach (XmlNode node in parent)
@@ -456,6 +552,11 @@ namespace GraphFlow
                     if (node.Attributes["key"].Value == "d10")
                     {
                         XmlNode innerNode = node.ChildNodes[0];
+
+                        if (innerNode.Name != "y:PolyLineEdge")
+                        {
+                            throw new Exception("Wrong edge format!");
+                        }
 
                         foreach (XmlNode inner in innerNode)
                         {
@@ -469,6 +570,68 @@ namespace GraphFlow
                 }
             }
             return "";
+        }
+
+        private CanvasItem GetYedEdgeShape(XmlNode parent, Edge edge)
+        {
+            List<PointF> points = new List<PointF>();
+
+            // Add start node center as polyline start points
+
+            Node startNode = edge.source;
+
+            CanvasItem startItem = (CanvasItem)startNode.Item;
+
+            float sx = startItem.Pos.X;
+            float sy = startItem.Pos.Y;
+
+            points.Add(new PointF(sx, sy));
+
+            // Add path
+
+            foreach (XmlNode node in parent)
+            {
+                if (node.Name == "data")
+                {
+                    if (node.Attributes["key"].Value == "d10")
+                    {
+                        XmlNode innerNode = node.ChildNodes[0];
+
+                        if (innerNode.Name != "y:PolyLineEdge")
+                        {
+                            throw new Exception("Wrong edge format!");
+                        }
+
+                        foreach (XmlNode inner in innerNode)
+                        {
+                            if (inner.Name == "y:Path")
+                            {
+                                foreach (XmlNode point in inner)
+                                {
+                                    float x = float.Parse(point.Attributes["x"].Value, CultureInfo.InvariantCulture) - startItem.Width / 2;
+                                    float y = float.Parse(point.Attributes["y"].Value, CultureInfo.InvariantCulture) - startItem.Height / 2;
+
+                                    points.Add(new PointF(x, y));
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            // Add end node center as polyline end point
+
+            Node destNode = edge.dest;
+
+            CanvasItem destItem = (CanvasItem)destNode.Item;
+
+            float dx = destItem.Pos.X;
+            float dy = destItem.Pos.Y;
+
+            points.Add(new PointF(dx, dy));
+
+            return new CanvasPolyLine(points, 2, Color.Black);
         }
 
         /// <summary>

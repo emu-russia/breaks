@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using System.IO;
+using CanvasControl;
 
 namespace GraphFlow
 {
@@ -39,11 +40,6 @@ namespace GraphFlow
             Close();
         }
 
-        private void walkGraphToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void loadYedGraphMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if ( openFileDialog1.ShowDialog() == DialogResult.OK )
@@ -51,6 +47,7 @@ namespace GraphFlow
                 RootGraph = new Graph(openFileDialog1.FileName);
                 RootGraph.FromGraphML(File.ReadAllText(openFileDialog1.FileName));
                 propertyGrid1.SelectedObject = RootGraph;
+                VisualizeGraph(RootGraph);
             }
         }
 
@@ -80,6 +77,32 @@ namespace GraphFlow
 
             RootGraph.Walk();
             RootGraph.DumpNodeValues();
+
+            canvasControl1.Invalidate();
         }
+
+        private void VisualizeGraph (Graph graph)
+        {
+            canvasControl1.RemoveAllItems();
+
+            foreach (var node in graph.nodes)
+            {
+                if (node.Item != null)
+                {
+                    canvasControl1.AddItem((CanvasItem)node.Item);
+                }
+            }
+
+            foreach ( var edge in graph.edges)
+            {
+                if (edge.Item != null)
+                {
+                    canvasControl1.AddItem((CanvasItem)edge.Item);
+                }
+            }
+
+            canvasControl1.Invalidate();
+        }
+
     }
 }
