@@ -46,7 +46,6 @@ namespace GraphFlow
             {
                 RootGraph = new Graph(openFileDialog1.FileName);
                 RootGraph.FromGraphML(File.ReadAllText(openFileDialog1.FileName));
-                propertyGrid1.SelectedObject = RootGraph;
                 VisualizeGraph(RootGraph);
             }
         }
