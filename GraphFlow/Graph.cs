@@ -206,17 +206,11 @@ namespace GraphFlow
                 {
                     if ( name[0] == 'n')
                     {
-                        if (gate.Value != 0)
-                        {
-                            Value = source.Value;
-                        }
+                        Value = gate.Value != 0 ? source.Value : null;
                     }
                     else
                     {
-                        if (gate.Value == 0)
-                        {
-                            Value = source.Value;
-                        }
+                        Value = gate.Value == 0 ? source.Value : null;
                     }
                 }
                 else
@@ -266,7 +260,7 @@ namespace GraphFlow
 
             Console.WriteLine("Propagated node {0} {1}, value={2}, oldValue={3}", id, name, Value, OldValue);
 
-            if (Value != null)
+            if (Value != null )
             {
                 List<Edge> outputs = Outputs();
 
@@ -735,7 +729,17 @@ namespace GraphFlow
                 {
                     if (edge.dest.name.Contains("nfet") || edge.dest.name.Contains("pfet"))
                     {
-                        continue;
+                        List<Edge> sourceInputs = edge.source.Inputs();
+
+                        if (sourceInputs.Count == 1)
+                        {
+                            string sourceSourceName = sourceInputs[0].source.name;
+
+                            if (sourceSourceName.Contains("nfet") || sourceSourceName.Contains("pfet"))
+                            {
+                                continue;
+                            }
+                        }
                     }
                 }
 
