@@ -30,6 +30,20 @@ namespace GraphFlow
             {
                 OldValue = NewValue;
                 NewValue = value;
+
+                if (Item != null)
+                {
+                    CanvasItem item = (CanvasItem)Item;
+
+                    if (value != null)
+                    {
+                        item.BorderColor = (value == 0) ? Color.ForestGreen : Color.Chartreuse;      // 0 / 1
+                    }
+                    else
+                    {
+                        item.BorderColor = Color.DodgerBlue;  // z
+                    }
+                }
             }
         }  // Associated value
         public int? OldValue = null;    // Used to keep track of propagation changes
@@ -519,7 +533,11 @@ namespace GraphFlow
 
             if (found)
             {
-                return new CanvasPoint(pos, width, color);
+                CanvasPoint item = new CanvasPoint(pos, width, color);
+
+                item.BorderWidth = 2;
+
+                return item;
             }
 
             return null;
