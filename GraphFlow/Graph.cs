@@ -17,6 +17,7 @@ namespace GraphFlow
         public string name { get; set; } = "";
         public Graph graph;
         public bool Visited { get; set; } = false;
+        public object Item = null;    // Associate with someting to draw
 
         private int? NewValue = null;
         public int? Value
@@ -263,6 +264,7 @@ namespace GraphFlow
         public Node source { get; set; } = null;
         public Node dest { get; set; } = null;
         public Graph graph;
+        public object Item = null;    // Associate with someting to draw
 
         private int? NewValue = null;
         public int? Value

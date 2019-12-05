@@ -23,12 +23,15 @@ namespace GraphFlow
         private static extern int AllocConsole();
 
         private Graph RootGraph;
+        private CanvasInputAdapter input;
 
         public Form1()
         {
             InitializeComponent();
 
             AllocConsole();
+
+            input = new CanvasInputAdapter(canvasControl1);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,45 +39,9 @@ namespace GraphFlow
             Close();
         }
 
-        /// <summary>
-        /// Generate hardcoded sample graph
-        /// </summary>
-        private void GenerateNflag ()
-        {
-            int phi = 0;
-
-            RootGraph = NFlagGeneratorClass.GenerateNFlag();
-
-            Node dbn = RootGraph.GetNodeByName("DB/N");
-            Node ndb7 = RootGraph.GetNodeByName("/DB7");
-            Node phi1 = RootGraph.GetNodeByName("PHI1");
-            Node phi2 = RootGraph.GetNodeByName("PHI2");
-
-            dbn.Value = 1;
-            ndb7.Value = 0;
-            phi1.Value = phi != 0 ? 0 : 1;
-            phi2.Value = phi != 0 ? 1 : 0;
-
-            propertyGrid1.SelectedObject = RootGraph;
-
-            //RootGraph.Dump();
-        }
-
-        private void generateAndDumpNFLAGCircuiteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            GenerateNflag();
-        }
-
         private void walkGraphToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (RootGraph == null)
-            {
-                MessageBox.Show("No graph!");
-                return;
-            }
 
-            RootGraph.Walk();
-            RootGraph.DumpNodeValues();
         }
 
         private void loadYedGraphMLToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,6 +68,18 @@ namespace GraphFlow
             {
                 RootGraph.DumpNodeValues();
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (RootGraph == null)
+            {
+                MessageBox.Show("No graph!");
+                return;
+            }
+
+            RootGraph.Walk();
+            RootGraph.DumpNodeValues();
         }
     }
 }
