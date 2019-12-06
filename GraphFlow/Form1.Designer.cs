@@ -41,13 +41,13 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.canvasControl1 = new CanvasControl.CanvasControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.canvasControl1 = new CanvasControl.CanvasControl();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -80,19 +80,19 @@
             // loadYedGraphMLToolStripMenuItem
             // 
             this.loadYedGraphMLToolStripMenuItem.Name = "loadYedGraphMLToolStripMenuItem";
-            this.loadYedGraphMLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadYedGraphMLToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.loadYedGraphMLToolStripMenuItem.Text = "Load Graph...";
             this.loadYedGraphMLToolStripMenuItem.Click += new System.EventHandler(this.loadYedGraphMLToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -155,21 +155,6 @@
             this.toolStripButton2.Text = "Reset";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
-            // canvasControl1
-            // 
-            this.canvasControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.canvasControl1.GridColor = System.Drawing.Color.Black;
-            this.canvasControl1.GridSize = 20;
-            this.canvasControl1.Location = new System.Drawing.Point(0, 0);
-            this.canvasControl1.Name = "canvasControl1";
-            this.canvasControl1.OriginColor = System.Drawing.Color.Red;
-            this.canvasControl1.ShowGrid = true;
-            this.canvasControl1.ShowOrigin = true;
-            this.canvasControl1.Size = new System.Drawing.Size(630, 505);
-            this.canvasControl1.TabIndex = 3;
-            this.canvasControl1.Text = "canvasControl1";
-            this.canvasControl1.Zoom = 100;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -223,6 +208,22 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "edges";
+            // 
+            // canvasControl1
+            // 
+            this.canvasControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.canvasControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.canvasControl1.GridColor = System.Drawing.Color.Black;
+            this.canvasControl1.GridSize = 20;
+            this.canvasControl1.Location = new System.Drawing.Point(0, 0);
+            this.canvasControl1.Name = "canvasControl1";
+            this.canvasControl1.OriginColor = System.Drawing.Color.Red;
+            this.canvasControl1.ShowGrid = true;
+            this.canvasControl1.ShowOrigin = true;
+            this.canvasControl1.Size = new System.Drawing.Size(630, 505);
+            this.canvasControl1.TabIndex = 3;
+            this.canvasControl1.Text = "canvasControl1";
+            this.canvasControl1.Zoom = 100;
             // 
             // Form1
             // 

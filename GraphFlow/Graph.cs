@@ -440,6 +440,7 @@ namespace GraphFlow
                     Node node = new Node(this, id, GetYedNodeName(entity));
 
                     node.Item = GetYedNodeShape(entity, node);
+                    node.Item.Text = node.name;
                     node.Item.UserData = node;
 
                     nodes.Add(node);
@@ -459,6 +460,7 @@ namespace GraphFlow
                     Edge edge = new Edge(this, id, source, target, GetYedEdgeName(entity));
 
                     edge.Item = GetYedEdgeShape(entity, edge);
+                    edge.Item.Text = edge.name;
                     edge.Item.UserData = edge;
 
                     edges.Add(edge);
