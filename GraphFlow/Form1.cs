@@ -24,6 +24,7 @@ namespace GraphFlow
         private static extern int AllocConsole();
 
         private Graph RootGraph;
+        private List<Graph> graphs = new List<Graph>();
         private CanvasInputAdapter input;
 
         public Form1()
@@ -44,9 +45,46 @@ namespace GraphFlow
         {
             if ( openFileDialog1.ShowDialog() == DialogResult.OK )
             {
-                RootGraph = new Graph(openFileDialog1.FileName);
-                RootGraph.FromGraphML(File.ReadAllText(openFileDialog1.FileName));
-                VisualizeGraph(RootGraph);
+                string graphName = Path.GetFileNameWithoutExtension(openFileDialog1.FileName);
+
+                // Check if alreay exists
+
+                foreach (var g in graphs)
+                {
+                    if (g.name == graphName)
+                    {
+                        return;
+                    }
+                }
+
+                // Load graph
+
+                Graph graph = new Graph(Path.GetFileNameWithoutExtension(openFileDialog1.FileName));
+                graph.FromGraphML(File.ReadAllText(openFileDialog1.FileName));
+
+                // Add in collection
+
+                ListViewItem item = new ListViewItem(graphName);
+
+                item.SubItems.Add(graph.GetType().ToString());
+                item.SubItems.Add(graph.nodes.Count.ToString());
+                item.SubItems.Add(graph.edges.Count.ToString());
+
+                item.Tag = graph;
+
+                graphs.Add(graph);
+
+                listView1.Items.Add(item);
+
+                // TODO: Resolve Xrefs
+
+                // Display is nothing yet shown
+
+                if (RootGraph == null)
+                {
+                    RootGraph = graph;
+                    VisualizeGraph(graph);
+                }
             }
         }
 
@@ -109,6 +147,16 @@ namespace GraphFlow
             {
                 RootGraph.Reset();
                 canvasControl1.Invalidate();
+            }
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count == 1)
+            {
+                Graph graph = listView1.SelectedItems[0].Tag as Graph;
+                RootGraph = graph;
+                VisualizeGraph(graph);
             }
         }
     }
