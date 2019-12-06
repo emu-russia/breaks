@@ -134,17 +134,17 @@ namespace GraphFlow
 
         public List<Edge> Outputs()
         {
-            List<Edge> inputs = new List<Edge>();
+            List<Edge> outputs = new List<Edge>();
 
             foreach (var edge in graph.edges)
             {
                 if (edge.source == this)
                 {
-                    inputs.Add(edge);
+                    outputs.Add(edge);
                 }
             }
 
-            return inputs;
+            return outputs;
         }
 
         public void Propagate()
@@ -929,6 +929,8 @@ namespace GraphFlow
 
         public void ResolveXrefs (List<Graph> existing)
         {
+            List<Node> pendingDelete = new List<Node>();
+
             // Existing graphs nodes
 
             foreach ( var g in existing)
@@ -938,6 +940,7 @@ namespace GraphFlow
                     if (node.name == name)
                     {
                         LinkGraphNode(Clone(), node);
+                        pendingDelete.Add(node);
                     }
                 }
             }
@@ -951,8 +954,14 @@ namespace GraphFlow
                     if ( node.name == g.name)
                     {
                         LinkGraphNode(g.Clone(), node);
+                        pendingDelete.Add(node);
                     }
                 }
+            }
+
+            foreach (Node node in pendingDelete)
+            {
+                node.graph.nodes.Remove(node);
             }
         }
 
@@ -968,28 +977,29 @@ namespace GraphFlow
             if ( nodeInputs.Count == 1 && graphInputs.Count == 1)
             {
                 nodeInputs[0].dest = graphInputs[0];
+                ///graph.edges.Add(nodeInputs[0]);
             }
-            else
-            {
-                foreach (Edge nodeInput in nodeInputs)
-                {
-                    bool found = false;
+            //else
+            //{
+            //    foreach (Edge nodeInput in nodeInputs)
+            //    {
+            //        bool found = false;
 
-                    foreach (Node graphInput in graphInputs)
-                    {
-                        if (nodeInput.name == graphInput.name)
-                        {
-                            nodeInput.dest = graphInput;
-                            found = true;
-                        }
-                    }
+            //        foreach (Node graphInput in graphInputs)
+            //        {
+            //            if (nodeInput.name == graphInput.name)
+            //            {
+            //                nodeInput.dest = graphInput;
+            //                found = true;
+            //            }
+            //        }
 
-                    if (!found)
-                    {
-                        throw new Exception("Input not found: " + nodeInput.name);
-                    }
-                }
-            }
+            //        if (!found)
+            //        {
+            //            throw new Exception("Input not found: " + nodeInput.name);
+            //        }
+            //    }
+            //}
 
             // Outputs
 
@@ -999,28 +1009,30 @@ namespace GraphFlow
             if ( nodeOutputs.Count == 1 && graphOutputs.Count == 1)
             {
                 nodeOutputs[0].source = graphOutputs[0];
+                graph.edges.Add(nodeOutputs[0]);
             }
-            else
-            {
-                foreach (Edge nodeOutput in nodeOutputs)
-                {
-                    bool found = false;
+            //else
+            //{
+            //    foreach (Edge nodeOutput in nodeOutputs)
+            //    {
+            //        bool found = false;
 
-                    foreach (Node graphOutput in graphOutputs)
-                    {
-                        if (nodeOutput.name == graphOutput.name)
-                        {
-                            nodeOutput.source = graphOutput;
-                            found = true;
-                        }
-                    }
+            //        foreach (Node graphOutput in graphOutputs)
+            //        {
+            //            if (nodeOutput.name == graphOutput.name)
+            //            {
+            //                nodeOutput.source = graphOutput;
+            //                graph.edges.Add(nodeOutput);
+            //                found = true;
+            //            }
+            //        }
 
-                    if (!found)
-                    {
-                        throw new Exception("Output not found: " + nodeOutput.name);
-                    }
-                }
-            }
+            //        if (!found)
+            //        {
+            //            throw new Exception("Output not found: " + nodeOutput.name);
+            //        }
+            //    }
+            //}
         }
 
     }
