@@ -33,7 +33,7 @@ namespace GraphFlow
 
             AllocConsole();
 
-            input = new CanvasInputAdapter(canvasControl1);
+            input = new CanvasInputAdapter(canvasControl1, this);
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -159,5 +159,18 @@ namespace GraphFlow
                 VisualizeGraph(graph);
             }
         }
+
+        public void ShowGraph (string name)
+        {
+            foreach ( Graph graph in graphs)
+            {
+                if (graph.name == name)
+                {
+                    RootGraph = graph;
+                    VisualizeGraph(graph);
+                }
+            }
+        }
+
     }
 }

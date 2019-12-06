@@ -26,8 +26,11 @@ namespace GraphFlow
         private bool draggingBegin = false;
         private List<CanvasItem> selectedDragItems = new List<CanvasItem>();
 
-        public CanvasInputAdapter (CanvasControl.CanvasControl control)
+        private Form1 parentForm;
+
+        public CanvasInputAdapter (CanvasControl.CanvasControl control, Form1 _parentForm)
         {
+            parentForm = _parentForm;
             canvas = control;
 
             canvas.MouseDown += Canvas_MouseDown;
@@ -50,32 +53,44 @@ namespace GraphFlow
                 {
                     // Нажали внутри итема
 
-                    // Циклические меняем значение ассоциированного с итемом узла графа
-
                     if ( item.UserData != null)
                     {
                         if ( item.UserData is GraphFlow.Node )
                         {
                             Node node = item.UserData as GraphFlow.Node;
 
-                            if (node.Value != null)
+                            if (e.Clicks >= 2)      // Doubleclick?
                             {
-                                node.Value = (node.Value == 0) ? 1 : 0;
+                                // Show inner graph
 
-                                // Tristage Logic
-
-                                //if (node.Value == 0)
-                                //{
-                                //    node.Value = 1;
-                                //}
-                                //else
-                                //{
-                                //    node.Value = null;
-                                //}
+                                if (node.name != "")
+                                {
+                                    parentForm.ShowGraph(node.name);
+                                }
                             }
                             else
                             {
-                                node.Value = 0;
+                                // Циклические меняем значение ассоциированного с итемом узла графа
+
+                                if (node.Value != null)
+                                {
+                                    node.Value = (node.Value == 0) ? 1 : 0;
+
+                                    // Tristage Logic
+
+                                    //if (node.Value == 0)
+                                    //{
+                                    //    node.Value = 1;
+                                    //}
+                                    //else
+                                    //{
+                                    //    node.Value = null;
+                                    //}
+                                }
+                                else
+                                {
+                                    node.Value = 0;
+                                }
                             }
 
                             canvas.Invalidate();
