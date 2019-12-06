@@ -98,7 +98,7 @@ namespace GraphFlow
 
                 foreach (var edge in inputs)
                 {
-                    Console.Write(" {0}", edge.GetId().ToString());
+                    Console.Write(" {0}", edge.name == "" ? "<empty>" : edge.name);
                 }
             }
 
@@ -110,7 +110,7 @@ namespace GraphFlow
 
                 foreach (var edge in outputs)
                 {
-                    Console.Write(" {0}", edge.GetId().ToString());
+                    Console.Write(" {0}", edge.name == "" ? "<empty>" : edge.name);
                 }
             }
 
@@ -283,7 +283,7 @@ namespace GraphFlow
             node.SetId(GetId());
             node.Value = Value;
             node.OldValue = OldValue;
-            node.Item = Item.Clone();
+            node.Item = null;
 
             return node;
         }
@@ -292,7 +292,6 @@ namespace GraphFlow
 
     public class Edge
     {
-        private int id { get; set; } = -1;
         public string name { get; set; } = "";
         public Node source { get; set; } = null;
         public Node dest { get; set; } = null;
@@ -331,18 +330,7 @@ namespace GraphFlow
             graph = _graph;
         }
 
-        private void CheckId(int _id)
-        {
-            foreach (var edge in graph.edges)
-            {
-                if (edge.GetId() == _id)
-                {
-                    throw new Exception("Edge ID " + _id.ToString() + " already exists");
-                }
-            }
-        }
-
-        private void EdgeCtor(Graph _graph, int _id, int _sourceId, int _destId, string _name="")
+        private void EdgeCtor(Graph _graph, int _sourceId, int _destId, string _name="")
         {
             graph = _graph;
             Node sourceNode = null;
@@ -372,45 +360,34 @@ namespace GraphFlow
             source = sourceNode;
             dest = destNode;
             name = _name;
-            SetId(_id);
         }
 
-        public Edge(Graph _graph, int _id, int sourceId, int destId)
+        public Edge(Graph _graph, int sourceId, int destId)
         {
-            EdgeCtor(_graph, _id, sourceId, destId);
+            EdgeCtor(_graph, sourceId, destId);
         }
 
-        public Edge(Graph _graph, int _id, int sourceId, int destId, string _name)
+        public Edge(Graph _graph, int sourceId, int destId, string _name)
         {
-            EdgeCtor(_graph, _id, sourceId, destId, _name);
-        }
-
-        public void SetId(int _id)
-        {
-            CheckId(_id);
-            id = _id;
-        }
-
-        public int GetId()
-        {
-            return id;
+            EdgeCtor(_graph, sourceId, destId, _name);
         }
 
         public void Dump()
         {
-            Console.WriteLine("{0} {1}: {2}({3}) -> {4}({5})", id, name, 
-                source.GetId(), source.name, 
-                dest.GetId(), dest.name);
+            Console.WriteLine("{0}: {1}({2}) -> {3}({4})", 
+                name == "" ? "<empty>" : name,
+                source.name, source.GetId(),
+                dest.name, dest.GetId());
         }
 
         public Edge Clone(Graph _graph)
         {
-            Edge edge = new Edge(_graph, GetId(), sourceId, destId);
+            Edge edge = new Edge(_graph, sourceId, destId);
 
             edge.name = name;
             edge.Value = Value;
             edge.OldValue = OldValue;
-            edge.Item = Item.Clone();
+            edge.Item = null;
 
             return edge;
         }
@@ -484,11 +461,10 @@ namespace GraphFlow
             {
                 if (entity.Name == "edge")
                 {
-                    int id = Convert.ToInt32(entity.Attributes["id"].Value.Substring(1));
                     int source = Convert.ToInt32(entity.Attributes["source"].Value.Substring(1));
                     int target = Convert.ToInt32(entity.Attributes["target"].Value.Substring(1));
 
-                    Edge edge = new Edge(this, id, source, target, GetYedEdgeName(entity));
+                    Edge edge = new Edge(this, source, target, GetYedEdgeName(entity));
 
                     edge.Item = GetYedEdgeShape(entity, edge);
                     edge.Item.Text = edge.name;
@@ -770,14 +746,20 @@ namespace GraphFlow
 
                             if (sourceSourceName.Contains("nfet") || sourceSourceName.Contains("pfet"))
                             {
-                                edge.Item.Width = 4;
+                                if (edge.Item != null)
+                                {
+                                    edge.Item.Width = 4;
+                                }
                                 continue;
                             }
                         }
                     }
                 }
 
-                edge.Item.Width = 2;
+                if (edge.Item != null)
+                {
+                    edge.Item.Width = 2;
+                }
 
                 edge.Value = null;
                 edge.OldValue = null;
@@ -929,20 +911,27 @@ namespace GraphFlow
 
         public void ResolveXrefs (List<Graph> existing)
         {
-            List<Node> pendingDelete = new List<Node>();
-
             // Existing graphs nodes
 
             foreach ( var g in existing)
             {
-                foreach (Node node in g.nodes)
+                bool again = false;
+
+                do
                 {
-                    if (node.name == name)
+                    again = false;
+
+                    foreach (Node node in g.nodes)
                     {
-                        LinkGraphNode(Clone(), node);
-                        pendingDelete.Add(node);
+                        if (node.name == name)
+                        {
+                            LinkGraphNode(this, node);
+                            node.name = "_" + node.name + "_";
+                            again = true;
+                            break;
+                        }
                     }
-                }
+                } while (again);
             }
 
             // This graph nodes
@@ -953,86 +942,39 @@ namespace GraphFlow
                 {
                     if ( node.name == g.name)
                     {
-                        LinkGraphNode(g.Clone(), node);
-                        pendingDelete.Add(node);
+                        LinkGraphNode(g, node);
+                        break;
                     }
                 }
             }
-
-            foreach (Node node in pendingDelete)
-            {
-                node.graph.nodes.Remove(node);
-            }
         }
 
-        private void LinkGraphNode (Graph graph, Node node)
+        private void LinkGraphNode (Graph sourceGraph, Node targetNode)
         {
-            Console.WriteLine("Linked graph {0} with node {1}", graph.name, node.name);
+            Console.WriteLine("Link graph {0} with node {1}", sourceGraph.name, targetNode.name);
 
-            // Inputs
+            targetNode.graph.Add(sourceGraph);
+        }
 
-            List<Edge> nodeInputs = node.Inputs();
-            List<Node> graphInputs = graph.GetInputNodes(true);     // except power/ground
+        /// <summary>
+        /// Concatenate another graph to this.
+        /// </summary>
+        /// <param name="graph"></param>
+        public void Add(Graph graph)
+        {
+            int maxId = nodes.Max(x => x.GetId()) + 1;
 
-            if ( nodeInputs.Count == 1 && graphInputs.Count == 1)
+            foreach ( Node node in graph.nodes)
             {
-                nodeInputs[0].dest = graphInputs[0];
-                ///graph.edges.Add(nodeInputs[0]);
+                Node clone = new Node(this, maxId + node.GetId(), node.name);
+                nodes.Add(clone);
             }
-            //else
-            //{
-            //    foreach (Edge nodeInput in nodeInputs)
-            //    {
-            //        bool found = false;
 
-            //        foreach (Node graphInput in graphInputs)
-            //        {
-            //            if (nodeInput.name == graphInput.name)
-            //            {
-            //                nodeInput.dest = graphInput;
-            //                found = true;
-            //            }
-            //        }
-
-            //        if (!found)
-            //        {
-            //            throw new Exception("Input not found: " + nodeInput.name);
-            //        }
-            //    }
-            //}
-
-            // Outputs
-
-            List<Edge> nodeOutputs = node.Outputs();
-            List<Node> graphOutputs = graph.GetOutputNodes();
-
-            if ( nodeOutputs.Count == 1 && graphOutputs.Count == 1)
+            foreach (Edge edge in graph.edges)
             {
-                nodeOutputs[0].source = graphOutputs[0];
-                graph.edges.Add(nodeOutputs[0]);
+                Edge clone = new Edge(this, maxId + edge.sourceId, maxId + edge.destId, edge.name);
+                edges.Add(clone);
             }
-            //else
-            //{
-            //    foreach (Edge nodeOutput in nodeOutputs)
-            //    {
-            //        bool found = false;
-
-            //        foreach (Node graphOutput in graphOutputs)
-            //        {
-            //            if (nodeOutput.name == graphOutput.name)
-            //            {
-            //                nodeOutput.source = graphOutput;
-            //                graph.edges.Add(nodeOutput);
-            //                found = true;
-            //            }
-            //        }
-
-            //        if (!found)
-            //        {
-            //            throw new Exception("Output not found: " + nodeOutput.name);
-            //        }
-            //    }
-            //}
         }
 
     }
