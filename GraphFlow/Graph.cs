@@ -14,7 +14,7 @@ using CanvasControl;
 namespace GraphFlow
 {
 
-    class Node
+    public class Node
     {
         private int id { get; set; } = -1;
         public string name { get; set; } = "";
@@ -275,14 +275,30 @@ namespace GraphFlow
             }
         }
 
+        public Node Clone(Graph _graph)
+        {
+            Node node = new Node(_graph);
+
+            node.name = name;
+            node.SetId(GetId());
+            node.Value = Value;
+            node.OldValue = OldValue;
+            node.Item = Item.Clone();
+
+            return node;
+        }
+
     }
 
-    class Edge
+    public class Edge
     {
         private int id { get; set; } = -1;
         public string name { get; set; } = "";
         public Node source { get; set; } = null;
         public Node dest { get; set; } = null;
+        public int sourceId { get; set; } = -1;
+        public int destId { get; set; } = -1;
+
         public Graph graph;
         public CanvasItem Item = null;    // Associate with someting to draw
 
@@ -326,11 +342,14 @@ namespace GraphFlow
             }
         }
 
-        private void EdgeCtor(Graph _graph, int _id, int sourceId, int destId, string _name="")
+        private void EdgeCtor(Graph _graph, int _id, int _sourceId, int _destId, string _name="")
         {
             graph = _graph;
             Node sourceNode = null;
             Node destNode = null;
+
+            sourceId = _sourceId;
+            destId = _destId;
 
             foreach (var node in graph.nodes)
             {
@@ -383,9 +402,21 @@ namespace GraphFlow
                 source.GetId(), source.name, 
                 dest.GetId(), dest.name);
         }
+
+        public Edge Clone(Graph _graph)
+        {
+            Edge edge = new Edge(_graph, GetId(), sourceId, destId);
+
+            edge.name = name;
+            edge.Value = Value;
+            edge.OldValue = OldValue;
+            edge.Item = Item.Clone();
+
+            return edge;
+        }
     }
 
-    class Graph
+    public class Graph
     {
         public string name { get; set; } = "Graph " + Guid.NewGuid().ToString();
         public List<Node> nodes { get; set; } = new List<Node>();
@@ -812,7 +843,7 @@ namespace GraphFlow
         /// Get all input pads
         /// </summary>
         /// <returns></returns>
-        public List<Node> GetInputNodes ()
+        public List<Node> GetInputNodes (bool excludePowerGround = false)
         {
             List<Node> list = new List<Node>();
 
@@ -820,6 +851,12 @@ namespace GraphFlow
             {
                 if ( node.Inputs().Count == 0 )
                 {
+                    if (excludePowerGround)
+                    {
+                        if (node.name == "0" || node.name == "1")
+                            continue;
+                    }
+
                     list.Add(node);
                 }
             }
@@ -828,7 +865,7 @@ namespace GraphFlow
         }
 
         /// <summary>
-        /// Get all output pads
+        /// Get all outputs pads
         /// </summary>
         /// <returns></returns>
         public List<Node> GetOutputNodes()
@@ -846,6 +883,10 @@ namespace GraphFlow
             return list;
         }
 
+        /// <summary>
+        /// Reset graph state
+        /// </summary>
+
         public void Reset()
         {
             foreach(var node in nodes)
@@ -857,6 +898,128 @@ namespace GraphFlow
             {
                 edge.Value = 0;
                 edge.OldValue = 0;
+            }
+        }
+
+        /// <summary>
+        /// Clone graph
+        /// </summary>
+        /// <returns></returns>
+        public Graph Clone()
+        {
+            Graph graph = new Graph(name);
+
+            foreach (var node in nodes)
+            {
+                graph.nodes.Add(node.Clone(graph));
+            }
+
+            foreach (var edge in edges)
+            {
+                graph.edges.Add(edge.Clone(graph));
+            }
+
+            return graph;
+        }
+
+        /// <summary>
+        /// Resolve Xrefs
+        /// </summary>
+        /// <param name="existing"></param>
+
+        public void ResolveXrefs (List<Graph> existing)
+        {
+            // Existing graphs nodes
+
+            foreach ( var g in existing)
+            {
+                foreach (Node node in g.nodes)
+                {
+                    if (node.name == name)
+                    {
+                        LinkGraphNode(Clone(), node);
+                    }
+                }
+            }
+
+            // This graph nodes
+
+            foreach (Node node in nodes)
+            {
+                foreach (var g in existing)
+                {
+                    if ( node.name == g.name)
+                    {
+                        LinkGraphNode(g.Clone(), node);
+                    }
+                }
+            }
+        }
+
+        private void LinkGraphNode (Graph graph, Node node)
+        {
+            Console.WriteLine("Linked graph {0} with node {1}", graph.name, node.name);
+
+            // Inputs
+
+            List<Edge> nodeInputs = node.Inputs();
+            List<Node> graphInputs = graph.GetInputNodes(true);     // except power/ground
+
+            if ( nodeInputs.Count == 1 && graphInputs.Count == 1)
+            {
+                nodeInputs[0].dest = graphInputs[0];
+            }
+            else
+            {
+                foreach (Edge nodeInput in nodeInputs)
+                {
+                    bool found = false;
+
+                    foreach (Node graphInput in graphInputs)
+                    {
+                        if (nodeInput.name == graphInput.name)
+                        {
+                            nodeInput.dest = graphInput;
+                            found = true;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        throw new Exception("Input not found: " + nodeInput.name);
+                    }
+                }
+            }
+
+            // Outputs
+
+            List<Edge> nodeOutputs = node.Outputs();
+            List<Node> graphOutputs = graph.GetOutputNodes();
+
+            if ( nodeOutputs.Count == 1 && graphOutputs.Count == 1)
+            {
+                nodeOutputs[0].source = graphOutputs[0];
+            }
+            else
+            {
+                foreach (Edge nodeOutput in nodeOutputs)
+                {
+                    bool found = false;
+
+                    foreach (Node graphOutput in graphOutputs)
+                    {
+                        if (nodeOutput.name == graphOutput.name)
+                        {
+                            nodeOutput.source = graphOutput;
+                            found = true;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        throw new Exception("Output not found: " + nodeOutput.name);
+                    }
+                }
             }
         }
 

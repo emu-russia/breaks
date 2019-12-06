@@ -76,7 +76,9 @@ namespace GraphFlow
 
                 listView1.Items.Add(item);
 
-                // TODO: Resolve Xrefs
+                // Resolve Xrefs
+
+                graph.ResolveXrefs(graphs);
 
                 // Display is nothing yet shown
 
@@ -166,11 +168,41 @@ namespace GraphFlow
             {
                 if (graph.name == name)
                 {
-                    RootGraph = graph;
-                    VisualizeGraph(graph);
+                    ShowGraph(graph);
                 }
             }
         }
 
+        public void ShowGraph(Graph graph)
+        {
+            RootGraph = graph;
+            VisualizeGraph(graph);
+        }
+
+        private void dumpInputNodesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RootGraph == null)
+                return;
+
+            List<Node> inputs = RootGraph.GetInputNodes(true);
+
+            foreach (Node node in inputs)
+            {
+                node.Dump();
+            }
+        }
+
+        private void dumpOutputNodesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (RootGraph == null)
+                return;
+
+            List<Node> outputs = RootGraph.GetOutputNodes();
+
+            foreach (Node node in outputs)
+            {
+                node.Dump();
+            }
+        }
     }
 }

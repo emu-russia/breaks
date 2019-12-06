@@ -48,6 +48,8 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.canvasControl1 = new CanvasControl.CanvasControl();
+            this.dumpInputNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dumpOutputNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -100,7 +102,9 @@
             // 
             this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dumpGraphToolStripMenuItem,
-            this.dumpGraphValuesToolStripMenuItem});
+            this.dumpGraphValuesToolStripMenuItem,
+            this.dumpInputNodesToolStripMenuItem,
+            this.dumpOutputNodesToolStripMenuItem});
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
             this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.debugToolStripMenuItem.Text = "Debug";
@@ -108,14 +112,14 @@
             // dumpGraphToolStripMenuItem
             // 
             this.dumpGraphToolStripMenuItem.Name = "dumpGraphToolStripMenuItem";
-            this.dumpGraphToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.dumpGraphToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.dumpGraphToolStripMenuItem.Text = "Dump Graph";
             this.dumpGraphToolStripMenuItem.Click += new System.EventHandler(this.dumpGraphToolStripMenuItem_Click);
             // 
             // dumpGraphValuesToolStripMenuItem
             // 
             this.dumpGraphValuesToolStripMenuItem.Name = "dumpGraphValuesToolStripMenuItem";
-            this.dumpGraphValuesToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.dumpGraphValuesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.dumpGraphValuesToolStripMenuItem.Text = "Dump Graph Values";
             this.dumpGraphValuesToolStripMenuItem.Click += new System.EventHandler(this.dumpGraphValuesToolStripMenuItem_Click);
             // 
@@ -225,6 +229,20 @@
             this.canvasControl1.Text = "canvasControl1";
             this.canvasControl1.Zoom = 100;
             // 
+            // dumpInputNodesToolStripMenuItem
+            // 
+            this.dumpInputNodesToolStripMenuItem.Name = "dumpInputNodesToolStripMenuItem";
+            this.dumpInputNodesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.dumpInputNodesToolStripMenuItem.Text = "Dump Input Nodes";
+            this.dumpInputNodesToolStripMenuItem.Click += new System.EventHandler(this.dumpInputNodesToolStripMenuItem_Click);
+            // 
+            // dumpOutputNodesToolStripMenuItem
+            // 
+            this.dumpOutputNodesToolStripMenuItem.Name = "dumpOutputNodesToolStripMenuItem";
+            this.dumpOutputNodesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.dumpOutputNodesToolStripMenuItem.Text = "Dump Output Nodes";
+            this.dumpOutputNodesToolStripMenuItem.Click += new System.EventHandler(this.dumpOutputNodesToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +289,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ToolStripMenuItem dumpInputNodesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dumpOutputNodesToolStripMenuItem;
     }
 }
 
