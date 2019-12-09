@@ -31,7 +31,9 @@ namespace GraphFlow
         {
             InitializeComponent();
 
+#if DEBUG
             AllocConsole();
+#endif
 
             input = new CanvasInputAdapter(canvasControl1, this);
         }

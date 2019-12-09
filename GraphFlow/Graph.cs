@@ -258,7 +258,9 @@ namespace GraphFlow
 
             Visited = true;
 
+#if DEBUG
             Console.WriteLine("Propagated node {0} {1}, value={2}, oldValue={3}", id, name, Value, OldValue);
+#endif
 
             if (Value != null )
             {
@@ -689,7 +691,9 @@ namespace GraphFlow
 
             while (timeOut-- != 0)
             {
+#if DEBUG
                 Console.WriteLine("Walk: {0}", walkCounter);
+#endif
 
                 // Propagate inputs
 
@@ -708,7 +712,9 @@ namespace GraphFlow
                     {
                         if (node.Outputs().Count != 0)
                         {
+#if DEBUG
                             Console.WriteLine("Node {0} {1} pending", node.GetId(), node.name);
+#endif
                             again = true;
                         }
                     }
@@ -725,7 +731,9 @@ namespace GraphFlow
                 throw new Exception("Auto-Generation detected!");
             }
 
+#if DEBUG
             Console.WriteLine("Completed in {0} iterations", walkCounter);
+#endif
         }
 
         private void GraphWalkPrepare()
@@ -953,28 +961,93 @@ namespace GraphFlow
         {
             Console.WriteLine("Link graph {0} with node {1}", sourceGraph.name, targetNode.name);
 
-            targetNode.graph.Add(sourceGraph);
+            Graph subGraph = targetNode.graph.Add(sourceGraph);
+
+            // Inputs
+
+            List<Node> inputPads = subGraph.GetInputNodes(true);
+            List<Edge> inputEdges = targetNode.Inputs();
+
+            if (inputPads.Count == 1 && inputEdges.Count == 1)
+            {
+                inputEdges[0].dest = inputPads[0];
+            }
+            else
+            {
+                foreach (Edge edge in inputEdges)
+                {
+                    if (edge.name == "")
+                    {
+                        throw new Exception("Edge name empty!");
+                    }
+
+                    foreach (Node node in inputPads)
+                    {
+                        if (edge.name == node.name)
+                        {
+                            edge.dest = node;
+                        }
+                    }
+                }
+            }
+
+            // Outputs
+
+            List<Node> outputPads = subGraph.GetOutputNodes();
+            List<Edge> outputEdges = targetNode.Outputs();
+
+            if (outputPads.Count == 1 && outputEdges.Count == 1)
+            {
+                outputEdges[0].source = outputPads[0];
+            }
+            else
+            {
+                foreach (Edge edge in outputEdges)
+                {
+                    if (edge.name == "")
+                    {
+                        throw new Exception("Edge name empty!");
+                    }
+
+                    foreach (Node node in outputPads)
+                    {
+                        if (edge.name == node.name)
+                        {
+                            edge.source = node;
+                        }
+                    }
+                }
+            }
+
         }
 
         /// <summary>
         /// Concatenate another graph to this.
         /// </summary>
         /// <param name="graph"></param>
-        public void Add(Graph graph)
+        /// <returns>Concatenated Subgraph</returns>
+
+        public Graph Add(Graph graph)
         {
+            Graph subGraph = new Graph(graph.name);
+
             int maxId = nodes.Max(x => x.GetId()) + 1;
 
             foreach ( Node node in graph.nodes)
             {
                 Node clone = new Node(this, maxId + node.GetId(), node.name);
                 nodes.Add(clone);
+                subGraph.nodes.Add(clone);
             }
 
             foreach (Edge edge in graph.edges)
             {
                 Edge clone = new Edge(this, maxId + edge.sourceId, maxId + edge.destId, edge.name);
                 edges.Add(clone);
+                subGraph.edges.Add(clone);
             }
+
+            return subGraph;
         }
 
     }
