@@ -752,21 +752,12 @@ namespace GraphFlow
                         {
                             string sourceSourceName = sourceInputs[0].source.name;
 
-                            if (sourceSourceName.Contains("nfet") || sourceSourceName.Contains("pfet"))
+                            if (sourceInputs[0].Value == null)
                             {
-                                if (edge.Item != null)
-                                {
-                                    edge.Item.Width = 4;
-                                }
                                 continue;
                             }
                         }
                     }
-                }
-
-                if (edge.Item != null)
-                {
-                    edge.Item.Width = 2;
                 }
 
                 edge.Value = null;
