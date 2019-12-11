@@ -72,20 +72,23 @@ namespace GraphFlow
                             {
                                 // Циклические меняем значение ассоциированного с итемом узла графа
 
+                                bool triStatePads = parentForm.TrisatePadMode();
+
                                 if (node.Value != null)
                                 {
-                                    node.Value = (node.Value == 0) ? 1 : 0;
-
                                     // Tristage Logic
 
-                                    //if (node.Value == 0)
-                                    //{
-                                    //    node.Value = 1;
-                                    //}
-                                    //else
-                                    //{
-                                    //    node.Value = null;
-                                    //}
+                                    if (triStatePads)
+                                    {
+                                        if (node.Value == 0)
+                                            node.Value = 1;
+                                        else
+                                            node.Value = null;
+                                    }
+                                    else
+                                    {
+                                        node.Value = (node.Value == 0) ? 1 : 0;
+                                    }
                                 }
                                 else
                                 {

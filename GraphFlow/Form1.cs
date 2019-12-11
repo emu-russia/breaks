@@ -206,5 +206,11 @@ namespace GraphFlow
                 node.Dump();
             }
         }
+
+        public bool TrisatePadMode()
+        {
+            return toolStripButton3.Checked;
+        }
+
     }
 }

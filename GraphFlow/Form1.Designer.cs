@@ -37,6 +37,8 @@
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumpGraphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dumpGraphValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dumpInputNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dumpOutputNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -48,8 +50,7 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.canvasControl1 = new CanvasControl.CanvasControl();
-            this.dumpInputNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dumpOutputNodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -123,6 +124,20 @@
             this.dumpGraphValuesToolStripMenuItem.Text = "Dump Graph Values";
             this.dumpGraphValuesToolStripMenuItem.Click += new System.EventHandler(this.dumpGraphValuesToolStripMenuItem_Click);
             // 
+            // dumpInputNodesToolStripMenuItem
+            // 
+            this.dumpInputNodesToolStripMenuItem.Name = "dumpInputNodesToolStripMenuItem";
+            this.dumpInputNodesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.dumpInputNodesToolStripMenuItem.Text = "Dump Input Nodes";
+            this.dumpInputNodesToolStripMenuItem.Click += new System.EventHandler(this.dumpInputNodesToolStripMenuItem_Click);
+            // 
+            // dumpOutputNodesToolStripMenuItem
+            // 
+            this.dumpOutputNodesToolStripMenuItem.Name = "dumpOutputNodesToolStripMenuItem";
+            this.dumpOutputNodesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.dumpOutputNodesToolStripMenuItem.Text = "Dump Output Nodes";
+            this.dumpOutputNodesToolStripMenuItem.Click += new System.EventHandler(this.dumpOutputNodesToolStripMenuItem_Click);
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.DefaultExt = "graphml";
@@ -132,7 +147,8 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(934, 28);
@@ -229,19 +245,14 @@
             this.canvasControl1.Text = "canvasControl1";
             this.canvasControl1.Zoom = 100;
             // 
-            // dumpInputNodesToolStripMenuItem
+            // toolStripButton3
             // 
-            this.dumpInputNodesToolStripMenuItem.Name = "dumpInputNodesToolStripMenuItem";
-            this.dumpInputNodesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.dumpInputNodesToolStripMenuItem.Text = "Dump Input Nodes";
-            this.dumpInputNodesToolStripMenuItem.Click += new System.EventHandler(this.dumpInputNodesToolStripMenuItem_Click);
-            // 
-            // dumpOutputNodesToolStripMenuItem
-            // 
-            this.dumpOutputNodesToolStripMenuItem.Name = "dumpOutputNodesToolStripMenuItem";
-            this.dumpOutputNodesToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.dumpOutputNodesToolStripMenuItem.Text = "Dump Output Nodes";
-            this.dumpOutputNodesToolStripMenuItem.Click += new System.EventHandler(this.dumpOutputNodesToolStripMenuItem_Click);
+            this.toolStripButton3.CheckOnClick = true;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(93, 25);
+            this.toolStripButton3.Text = "Tristate Pads";
             // 
             // Form1
             // 
@@ -291,6 +302,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ToolStripMenuItem dumpInputNodesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dumpOutputNodesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }
 
