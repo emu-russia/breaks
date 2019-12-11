@@ -509,6 +509,7 @@ namespace GraphFlow
             Color color = Color.Gold;
 
             bool found = false;
+            string type = "rectangle";
 
             foreach (XmlNode xmlNode in parent)
             {
@@ -538,6 +539,11 @@ namespace GraphFlow
                                     {
                                         color = StringToColor(props.Attributes["color"].Value);
                                     }
+
+                                    if (props.Name == "y:Shape")
+                                    {
+                                        type = props.Attributes["type"].Value;
+                                    }
                                 }
                             }
                         }
@@ -549,14 +555,16 @@ namespace GraphFlow
             if (found)
             {
                 CanvasItem item;
-                
-                if(width == height)
+
+                switch (type)
                 {
-                    item = new CanvasPoint(pos, width, color);
-                }
-                else
-                {
-                    item = new CanvasRect(pos, width, height, color);
+                    case "ellipse":
+                        item = new CanvasPoint(pos, width, color);
+                        break;
+
+                    default:
+                        item = new CanvasRect(pos, width, height, color);
+                        break;
                 }
 
                 item.BorderWidth = 2;
@@ -627,6 +635,12 @@ namespace GraphFlow
             float sx = startItem.Pos.X;
             float sy = startItem.Pos.Y;
 
+            if (startItem is CanvasRect)
+            {
+                sx += startItem.Width / 2;
+                sy += startItem.Height / 2;
+            }
+
             points.Add(new PointF(sx, sy));
 
             // Add path
@@ -653,6 +667,12 @@ namespace GraphFlow
                                     float x = float.Parse(point.Attributes["x"].Value, CultureInfo.InvariantCulture) - startItem.Width / 2;
                                     float y = float.Parse(point.Attributes["y"].Value, CultureInfo.InvariantCulture) - startItem.Height / 2;
 
+                                    if (startItem is CanvasRect)
+                                    {
+                                        x += startItem.Width / 2;
+                                        y += startItem.Height / 2;
+                                    }
+
                                     points.Add(new PointF(x, y));
                                 }
                             }
@@ -671,9 +691,15 @@ namespace GraphFlow
             float dx = destItem.Pos.X;
             float dy = destItem.Pos.Y;
 
+            if (destItem is CanvasRect)
+            {
+                dx += destItem.Width / 2;
+                dy += destItem.Height / 2;
+            }
+
             points.Add(new PointF(dx, dy));
 
-            return new CanvasPolyLine(points, 2, Color.Black);
+            return new CanvasPolyLine(points, 1, Color.Black);
         }
 
         /// <summary>
