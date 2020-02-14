@@ -12,7 +12,7 @@ Project goals:
 
 Headquarters: http://breaknes.com
 
-Wiki: http://breaknes.com/wiki
+Wiki: http://wiki.breaknes.com
 
 ## Why Breaks?
 
