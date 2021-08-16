@@ -17,8 +17,8 @@
 	- [Управление шинами](bus_control.md)
 	- [Логика исполнения (dispatch)](dispatch.md)
 	- [Логика установки флагов](flags_control.md)
-- [Флаги](flags.md)
-- [Логика условных переходов](branch_logic.md)
+	- [Флаги](flags.md)
+	- [Логика условных переходов](branch_logic.md)
 - [Управляющие команды контекстом](context_control.md)
 
 ## НИЖНЯЯ ЧАСТЬ

@@ -1,12 +1,14 @@
-FIXME Красивая транзисторная схема
+# Обработка прерываний
 
-FIXME Подробное описание работы всех узлов
+![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Красивая транзисторная схема
 
-FIXME Логическая схема
+![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Подробное описание работы всех узлов
 
-{{:6502:intr.jpg?900}}
+![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Логическая схема
 
-====== Verilog ======
+<img src="/BreakingNESWiki/imgstore/intr.jpg" width="900px">
+
+## Verilog
 
 ```verilog
 // ------------------

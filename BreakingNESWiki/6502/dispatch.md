@@ -1,16 +1,16 @@
-==== Логика управления (dispatch) ====
+# Логика управления (dispatch)
 
 Логика управления (исполнения) -- это ключевой механизм 6502, который "дирижирует" выполнением инструкций.
 
-{{6502:random:dispatch.jpg?600}}
+<img src="/BreakingNESWiki/imgstore/dispatch.jpg" width="600px">
 
-==== Цикл записи и RDY ====
+## Цикл записи и RDY
 
 Во время цикла записи (WR=1) внутренняя линия /ready принудительно устанавливается в 0, тем самым процессор будет "готов", даже если внешний сигнал RDY = 0.
 
-{{:6502:random:rdy_wr.jpg?200|}} {{:6502:random:rdy_wr_flow.jpg?200|}}
+<img src="/BreakingNESWiki/imgstore/rdy_wr.jpg" width="200px"> <img src="/BreakingNESWiki/imgstore/rdy_wr_flow.jpg" width="200px">
 
-==== Verilog ====
+## Verilog
 
 ```verilog
 // ------------------

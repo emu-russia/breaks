@@ -1,1 +1,3 @@
-{{:6502:random:flagscontrol.jpg}}
+# Логика установки флагов
+
+![flagscontrol](/BreakingNESWiki/imgstore/flagscontrol.jpg)
