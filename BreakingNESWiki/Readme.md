@@ -8,7 +8,7 @@
 
 Процессор 6502:
 
-![mos_6502ad_top](/BreakingNESWiki/imgstore/mos_6502ad_top.jpg | width=300)
+![mos_6502ad_top](/BreakingNESWiki/imgstore/mos_6502ad_top.jpg){:width="300px"}
 
 Микросхемы APU и PPU различных ревизий:
 
