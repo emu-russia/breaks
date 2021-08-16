@@ -22,9 +22,7 @@
 
 Микросхемы под микроскопом выглядят примерно вот так (6502, APU и PPU соответственно):
 
-<img src="/BreakingNESWiki/imgstore/6502_die_shot.jpg" width="180px">
-<img src="/BreakingNESWiki/imgstore/apu_die_shot.jpg" width="200px">
-<img src="/BreakingNESWiki/imgstore/ppu_die_shot.jpg" width="210px">
+<img src="/BreakingNESWiki/imgstore/6502_die_shot.jpg" width="180px"> <img src="/BreakingNESWiki/imgstore/apu_die_shot.jpg" width="200px"> <img src="/BreakingNESWiki/imgstore/ppu_die_shot.jpg" width="210px">
 
 После получения векторных масок на них производится поиск транзисторов, которые в итоге формируют логическую схему.
 Процесс создания векторных масок, рисование транзисторных и логических схем подробно освещён в моих стримах.
