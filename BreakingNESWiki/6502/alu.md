@@ -1,7 +1,9 @@
-FIXME Красивая транзисторная схема
+# АЛУ
 
-FIXME Описание контрольных линий
+![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Красивая транзисторная схема
 
-FIXME Логическая схема в sPlan
+![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Описание контрольных линий
 
-{{:6502:alu.jpg?900}}
+![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Логическая схема
+
+<img src="/BreakingNESWiki/imgstore/alu.jpg" width="900px">

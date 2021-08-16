@@ -1,1 +1,3 @@
-{{:6502:random:bus_control.jpg?900}}
+# Управление шинами
+
+<img src="/BreakingNESWiki/imgstore/bus_control.jpg" width="900px">

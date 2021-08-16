@@ -1,8 +1,8 @@
-====== Флаги ======
+# Флаги
 
-{{:6502:random:flags_trans.jpg?1000}}
+<img src="/BreakingNESWiki/imgstore/flags_trans.jpg" width="1000px">
 
-====== Verilog ======
+## Verilog
 
 ```verilog
 // ------------------

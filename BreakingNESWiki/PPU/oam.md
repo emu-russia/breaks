@@ -4,10 +4,10 @@
 
 Расположение спрайтовой памяти на кристалле и комбинированное изображение топологии:
 
-{{ppu:ppu_oam_preview.jpg?280}} {{ppu:ppu_oam_closeup.jpg?400}}
+<img src="/BreakingNESWiki/imgstore/ppu_oam_preview.jpg" width="280px"> <img src="/BreakingNESWiki/imgstore/ppu_oam_closeup.jpg" width="400px">
 
 Долгое время не удавалось получить нормальных изображений PPU, без снятого слоя металла, поэтому не получалось в деталях понять работу памяти из-за того, что диффузия совсем не видна под металлическими дорожками.
 
 Но теперь мы имеем эту возможность:
 
-{{ppu:ppu_oam_diffusion.jpg?500}}
+<img src="/BreakingNESWiki/imgstore/ppu_oam_diffusion.jpg" width="500px">
