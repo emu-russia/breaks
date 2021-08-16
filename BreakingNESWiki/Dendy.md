@@ -24,7 +24,7 @@
 
 <img src="/BreakingNESWiki/imgstore/2652378.png" width="800px">
 
-(c) [[http://forum.emu-russia.net/memberlist.php?mode=viewprofile&u=120|Evgen]]
+(c) [Evgen](http://forum.emu-russia.net/memberlist.php?mode=viewprofile&u=120)
 
 Как дело обстояло в других странах точно не известно.
 
