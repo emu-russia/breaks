@@ -12,7 +12,7 @@
 
 Микросхемы APU и PPU различных ревизий:
 
-![2701408_600px](/BreakingNESWiki/imgstore/2701408_600px.jpg | width=400)
+<img src="/BreakingNESWiki/imgstore/2701408_600px.jpg" width="400px">
 
 ## Источник информации
 
@@ -22,7 +22,9 @@
 
 Микросхемы под микроскопом выглядят примерно вот так (6502, APU и PPU соответственно):
 
-![6502_die_shot](/BreakingNESWiki/imgstore/6502_die_shot.jpg | width=180) ![apu_die_shot](/BreakingNESWiki/imgstore/apu_die_shot.jpg | width=200) ![ppu_die_shot](/BreakingNESWiki/imgstore/ppu_die_shot.jpg | width=210)
+<img src="/BreakingNESWiki/imgstore/6502_die_shot.jpg" width="180px">
+<img src="/BreakingNESWiki/imgstore/apu_die_shot.jpg" width="200px">
+<img src="/BreakingNESWiki/imgstore/ppu_die_shot.jpg" width="210px">
 
 После получения векторных масок на них производится поиск транзисторов, которые в итоге формируют логическую схему.
 Процесс создания векторных масок, рисование транзисторных и логических схем подробно освещён в моих стримах.
