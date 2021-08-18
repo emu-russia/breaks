@@ -12,6 +12,6 @@ H/V-логика управляет всеми остальными узлами
 
 ## Логика ODD/EVEN
 
-![5c4d95b2bf506ef6b183cf8bb46e9433](/BreakingNESWiki/imgstore/5c4d95b2bf506ef6b183cf8bb46e9433.jpg)
+![odd_1](/BreakingNESWiki/imgstore/5c4d95b2bf506ef6b183cf8bb46e9433.jpg) ![odd_2](/BreakingNESWiki/imgstore/e4220e0351932b00026250fc2f3c858a.jpg) ![odd_3](/BreakingNESWiki/imgstore/e7d09137ee29ae53340df1cb2285585f.jpg)
 
 Логика ODD/EVEN состоит из двух замкнутых друг на друга псевдозащелок, управляемых двумя мультиплексорами. Получается такая очень хитрая "макро"-защелка.
