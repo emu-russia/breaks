@@ -31,7 +31,7 @@ Pixel clock (сокращенно PCLK) используется всеми уз
 ```c
 if ( CLK == 1 )
 {
-    PCLK_Latch[0] = PCLK_Latch[3] & ~RES;
+    PCLK_Latch[0] = NOR(~PCLK_Latch[3], RES);
     PCLK_Latch[2] = ~PCLK_Latch[1];
 }
 else
