@@ -36,8 +36,8 @@ def NAND(a, b):
                 |
                 =  (Vss)
 
-	This kind of latch is also called `transparent D-latch'.
-	
+	This kind of latch is also called `transparent D-latch`.
+
 """
 class DLatch:
 	g = 0
