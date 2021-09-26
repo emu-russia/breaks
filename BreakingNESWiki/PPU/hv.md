@@ -8,7 +8,7 @@ H/V-счетчики считают количество пикселей в с�
 
 Рассмотрим работу одной стадии (разряда) счетчика на примере V-Counter.
 
-![hv_stage](/BreakingNESWiki/imgstore/hv_stage.jpg)
+![HV_stage](/BreakingNESWiki/imgstore/HV_stage.jpg)
 
 ![hv_stage2](/BreakingNESWiki/imgstore/hv_stage2.jpg)
 
