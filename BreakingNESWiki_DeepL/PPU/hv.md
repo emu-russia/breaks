@@ -29,7 +29,7 @@ A nice scheme from Logisim:
 
 ![hv_stage_logisim](/BreakingNESWiki/imgstore/hv_stage_logisim.jpg)
 
-## H/V counter design
+## H/V Counters Design
 
 TODO: redo, simplify a bit
 
