@@ -1,14 +1,60 @@
 """
 	Basic logic primitives used in N-MOS chips.
 
+	Combinatorial primitives are implemented using ordinary methods.
+
+	Sequential primitives are implemented using classes.
+
 """
 
+"""
+	The simplest element, implemented with a single N-MOS FET.
+
+	Circuit:
+
+                   o (Vdd)
+                   |
+             in    Z (N-Channel Depletion MOSFET)
+             --    |
+            |  |   |
+ (Vss)  ||--    ---.---> /out
+
+"""
 def NOT(a):
 	return ~a & 1
 
+"""
+	2-nor
+
+	Circuit:
+
+                   o (Vdd)
+                   |
+             a     Z    b
+             --    |    --
+            |  |   |   |  |
+ (Vss)  ||--    ---.---    --|| (Vss)
+                   |
+                    ---> /out
+
+
+"""
 def NOR(a, b):
 	return (~(a | b)) & 1
 
+"""
+	2-nand
+
+	Circuit:
+
+                          o (Vdd)
+                          |
+             a      b     Z (N-Channel Depletion MOSFET)
+             --     --    |
+            |  |   |  |   |
+ (Vss)  ||--    ---    ---.---> /out
+
+"""
 def NAND(a, b):
 	return (~(a & b)) & 1
 
@@ -36,7 +82,7 @@ def NAND(a, b):
                 |
                 =  (Vss)
 
-	This kind of latch is also called `transparent D-latch`.
+	This kind of latch is also called `transparent` or `static` D-latch.
 
 """
 class DLatch:
@@ -48,3 +94,30 @@ class DLatch:
 
 	def get(self):
 		return NOT(self.g)
+
+"""
+	The most tricky element, as it is difficult to identify at first glance.
+
+	The peculiarity is that its output is usually not connected to the "drive" (Depleted FET), but is connected to various other elements indirectly.
+
+	Example MUX:
+
+
+        /sel
+         ---   
+        |   |  
+ in0 ---     ---.
+                |
+         sel    |
+         ---    |
+        |   |   |
+ in1 ---     ---.----->out
+
+	The transistors used are essentially complementary tri-states. (The values on their gates can never be the same).
+
+"""
+def MUX(sel, in0, in1):
+	if sel & 1 == 0:
+		return in0 & 1
+	else:
+		return in1 & 1

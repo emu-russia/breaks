@@ -32,3 +32,8 @@ if __name__ == '__main__':
 
 	latch1.set (1, 1)
 	print ("latch1: ", latch1.get())
+
+	# Multiplexer demonstration
+
+	out = MUX(1, 0, 1)
+	print ("MUX out:", out)
