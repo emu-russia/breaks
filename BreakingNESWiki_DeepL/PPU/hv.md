@@ -43,6 +43,8 @@ Table of states for counting circuit:
 |1|0|1|
 |1|1|0|
 
+Maybe there is actually some JK trigger hiding here, but I don't know about these JKs. There's a big article on Wiki about counters, if you're interested read it.
+
 ## H/V Counters Design
 
 TODO: redo, simplify a bit

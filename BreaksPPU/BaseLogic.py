@@ -1,7 +1,7 @@
 """
 	Basic logic primitives used in N-MOS chips.
 
-	Combinatorial primitives are implemented using ordinary methods.
+	Combinational primitives are implemented using ordinary methods.
 
 	Sequential primitives are implemented using classes.
 

@@ -25,15 +25,39 @@ class CounterStage:
 		nCarryOut = NOR (NOT(self.ff), NOT(nCarry))
 		return [ out, nCarryOut ]
 
+	def get(self):
+		return self.ff
+
 	def dump(self):
 		print ("ff, latch: ", self.ff, self.latch.get())
+
 
 """
 	Implementation of a full counter (H or V).
 
 """
-class Counter:
-	pass
+class HVCounter:
+	stages = [CounterStage() for i in range(2)]
+
+	def sim(self, nCarry, PCLK, CLR, RES):
+		for s in reversed(self.stages):
+			nCarry = s.sim(nCarry, PCLK, CLR, RES) [1]
+			#s.sim(nCarry, PCLK, CLR, RES)
+			s.dump()
+
+	def get(self):
+		val = 0
+		for s in self.stages:
+			val |= s.get()
+			val <<= 1
+		return val
+
+	def dump(self):
+		print ("val: ", self.get(), ", bits: ", end='')
+		for s in self.stages:
+			print (s.get(), end='')
+		print(" ")
+
 
 class PPU:
 	pass
