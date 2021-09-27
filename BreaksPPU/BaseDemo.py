@@ -26,12 +26,12 @@ if __name__ == '__main__':
 
 	latch1 = DLatch()
 	latch1.set (1, 0)
-	print ("latch1: ", latch1.get())
+	print ("latch1: ", latch1.nget())
 
 	# Attempting to set the latch when D=1. The value on the latch must update (1) and therefore the output must be /out = 0 (inverted latch value).
 
 	latch1.set (1, 1)
-	print ("latch1: ", latch1.get())
+	print ("latch1: ", latch1.nget())
 
 	# Multiplexer demonstration
 
