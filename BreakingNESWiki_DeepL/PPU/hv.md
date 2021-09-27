@@ -29,11 +29,24 @@ A nice scheme from Logisim:
 
 ![hv_stage_logisim](/BreakingNESWiki/imgstore/hv_stage_logisim.jpg)
 
+The meaning is as follows:
+- Virtually the current FF value can be represented as a multiplexer output controlled by PCLK
+- In the state PCLK=0 the FF value is regenerated with the old value (taking into account the global reset `RES`). Also, this state engages the counting circuit, which is implemented on the Carry-multiplexer and static latch
+- In the state PCLK=1 value FF updated with the new value from the counting circuit
+
+Table of states for counting circuit:
+
+|Current value of FF|carry_in (In straight logic)|New value on DLatch|
+|---|---|---|
+|0|0|0|
+|0|1|1|
+|1|0|1|
+|1|1|0|
+
 ## H/V Counters Design
 
 TODO: redo, simplify a bit
 
-Since the H-counter counts all the time, the input of the very first stage is wired to Vdd.
 The V-Counter input is regulated by the H-decoder. when H=340, the V-Counter `/V_IN` input is set to 0 (`/carry_in` = 0), which gives the ability to increase its value by 1.
 The output carry of each previous stage is wired to the input carry of the next, to form an inverted carry-chain.
 
@@ -46,3 +59,16 @@ The counters include such a small piece:
 What is it for? Most likely to reduce the propagation delay of the carry chain.
 
 ## Simulation
+
+```python
+class CounterStage:
+	ff = 0					# This variable is used as a replacement for the hybrid FF built on MUX
+	latch = DLatch()
+
+	def sim(self, nCarry, PCLK, CLR, RES):
+		self.ff = MUX(PCLK, NOR(NOT(self.ff), RES), NOR(self.latch.get(), CLR))
+		self.latch.set (MUX(nCarry, NOT(self.ff), self.ff), NOT(PCLK))
+		out = NOR(NOT(self.ff), RES)
+		nCarryOut = NOR (NOT(self.ff), NOT(nCarry))
+		return [ out, nCarryOut ]
+```

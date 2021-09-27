@@ -23,6 +23,7 @@
 def NOT(a):
 	return ~a & 1
 
+
 """
 	2-nor
 
@@ -42,6 +43,7 @@ def NOT(a):
 def NOR(a, b):
 	return (~(a | b)) & 1
 
+
 """
 	2-nand
 
@@ -57,6 +59,7 @@ def NOR(a, b):
 """
 def NAND(a, b):
 	return (~(a & b)) & 1
+
 
 """
 	The real latch works as a pair of N-MOS transistors.
@@ -93,7 +96,11 @@ class DLatch:
 			self.g = a & 1
 
 	def get(self):
+		return self.g
+
+	def nget(self):
 		return NOT(self.g)
+
 
 """
 	The most tricky element, as it is difficult to identify at first glance.
