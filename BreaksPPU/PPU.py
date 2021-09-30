@@ -36,28 +36,34 @@ class CounterStage:
 """
 	Implementation of a full counter (H or V).
 
+	The `bits` constructor parameter specifies the bits of the counter.
+
 """
 class HVCounter:
-	def __init__(self):
-		self.stages = [CounterStage() for i in range(2)]
+	def __init__(self, bits):
+		self.stages = [CounterStage() for i in range(bits)]
 
 	def sim(self, nCarry, PCLK, CLR, RES):
-		for s in reversed(self.stages):
+		for s in self.stages:
 			nCarry = s.sim(nCarry, PCLK, CLR, RES) [1]
 
 	def get(self):
 		val = 0
-		for s in self.stages:
-			val <<= 1			
+		for s in reversed(self.stages): 		# The counter stages must be enumerated backwards, so that the msb is shifted to the left.
+			val <<= 1
 			val |= s.get()
 		return val
 
 	def dump(self):
 		print ("val: ", self.get(), ", bits: ", end='')
-		for s in self.stages:
+		for s in reversed(self.stages): 		# The counter stages must be enumerated backwards, so that the msb is shifted to the left.
 			print (s.get(), end='')
 		print(" ")
 
 
+"""
+	Pythonized PPU (nothing here yet, we need more circuits to get something rolling)
+
+"""
 class PPU:
 	pass

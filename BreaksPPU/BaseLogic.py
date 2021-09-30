@@ -89,7 +89,8 @@ def NAND(a, b):
 
 """
 class DLatch:
-	g = 0
+	def __init__(self):
+		self.g = 0;
 
 	def set(self, a, d):
 		if d:

@@ -42,7 +42,7 @@ def TestCounterStage():
 
 def TestCounter():
 	print ("TestCounter:")
-	cnt = HVCounter()
+	cnt = HVCounter(2)
 
 	not_carry = 1 				# Input carry for the very first bit
 	CLR = 0
