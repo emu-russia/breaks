@@ -15,8 +15,9 @@ from BaseLogic import *
 
 """
 class CounterStage:
-	ff = 0					# This variable is used as a replacement for the hybrid FF built on MUX
-	latch = DLatch()
+	def __init__(self):
+		self.ff = 0 		# This variable is used as a replacement for the hybrid FF built on MUX
+		self.latch = DLatch()		
 
 	def sim(self, nCarry, PCLK, CLR, RES):
 		self.ff = MUX(PCLK, NOR(NOT(self.ff), RES), NOR(self.latch.get(), CLR))
@@ -37,19 +38,18 @@ class CounterStage:
 
 """
 class HVCounter:
-	stages = [CounterStage() for i in range(2)]
+	def __init__(self):
+		self.stages = [CounterStage() for i in range(2)]
 
 	def sim(self, nCarry, PCLK, CLR, RES):
 		for s in reversed(self.stages):
 			nCarry = s.sim(nCarry, PCLK, CLR, RES) [1]
-			#s.sim(nCarry, PCLK, CLR, RES)
-			s.dump()
 
 	def get(self):
 		val = 0
 		for s in self.stages:
+			val <<= 1			
 			val |= s.get()
-			val <<= 1
 		return val
 
 	def dump(self):
