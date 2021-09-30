@@ -1,7 +1,7 @@
 """
 	Basic logic primitives used in N-MOS chips.
 
-	Combinatorial primitives are implemented using ordinary methods.
+	Combinational primitives are implemented using ordinary methods.
 
 	Sequential primitives are implemented using classes.
 
@@ -89,7 +89,8 @@ def NAND(a, b):
 
 """
 class DLatch:
-	g = 0
+	def __init__(self):
+		self.g = 0;
 
 	def set(self, a, d):
 		if d:
