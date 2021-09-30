@@ -64,8 +64,9 @@ What is it for? Most likely to reduce the propagation delay of the carry chain.
 
 ```python
 class CounterStage:
-	ff = 0					# This variable is used as a replacement for the hybrid FF built on MUX
-	latch = DLatch()
+	def __init__(self):
+		self.ff = 0 		# This variable is used as a replacement for the hybrid FF built on MUX
+		self.latch = DLatch()		
 
 	def sim(self, nCarry, PCLK, CLR, RES):
 		self.ff = MUX(PCLK, NOR(NOT(self.ff), RES), NOR(self.latch.get(), CLR))
