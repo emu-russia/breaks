@@ -15,8 +15,6 @@ Probably exist (but no one has seen them):
 - 2C01: Debug version of NTSC PPU (?)
 - 2C06: Debug version of PAL PPU (?)
 
-Translated with www.DeepL.com/Translator (free version)
-
 ## Architecture
 
 Main components of PPU:
