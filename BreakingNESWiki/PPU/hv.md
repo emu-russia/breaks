@@ -74,4 +74,12 @@ class CounterStage:
 		out = NOR(NOT(self.ff), RES)
 		nCarryOut = NOR (NOT(self.ff), NOT(nCarry))
 		return [ out, nCarryOut ]
+		
+class HVCounter:
+	def __init__(self, bits):
+		self.stages = [CounterStage() for i in range(bits)]
+
+	def sim(self, nCarry, PCLK, CLR, RES):
+		for s in self.stages:
+			nCarry = s.sim(nCarry, PCLK, CLR, RES) [1]
 ```
