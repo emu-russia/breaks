@@ -60,7 +60,7 @@ def TestCounter():
 
 def TestHDecoder():
 	print ("TestHDecoder:")
-	pla = HDecoder()
+	pla = HDecoder(True) 		# True: NTSC, False: PAL
 
 	# Simulate one full line (HCounter = 0-340) and print all active PLA outputs for each line.
 	for i in range(341):
