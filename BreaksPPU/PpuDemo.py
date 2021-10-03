@@ -59,14 +59,16 @@ def TestCounter():
 
 
 def TestHDecoder():
+	print ("TestHDecoder:")
 	pla = HDecoder()
 
+	# Simulate one full line (HCounter = 0-340) and print all active PLA outputs for each line.
 	for i in range(341):
 		outs = pla.sim(i, 0, 0)
 		print (i, ": ", end='')
 		for n in range(len(outs)):
 			if outs[n] != 0:
-				print (f"/HPLA_{n}, ", end='')
+				print (f"{n}, ", end='')
 		print (" ")
 
 
