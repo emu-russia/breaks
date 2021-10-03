@@ -1,48 +1,48 @@
 # Breaking NES Wiki
 
-Данный ресурс содержит исчерпывающую информацию по трём микросхемам: [MOS](MOS.md) [6502](6502/Readme.md), [Ricoh](Ricoh.md) 2A03 и Ricoh 2C02.
+This resource contains comprehensive information on three chips: [MOS](MOS.md) [6502](6502/Readme.md), [Ricoh](Ricoh.md) 2A03 and Ricoh 2C02.
 
-Микросхемы 2A03 ([APU](APU/Readme.md)) и 2С02 ([PPU](PPU/Readme.md)) являются основой игровой приставки Nintendo NES, Famicom и их [многочисленных аналогов](Dendy.md).
+The 2A03 ([APU](APU/Readme.md)) and 2C02 ([PPU](PPU/Readme.md)) chips are the basis of the Nintendo NES, Famicom and their [numerous analogs](Dendy.md) game consoles.
 
-Поскольку процессор 6502 в немного "урезанном" варианте входит в состав микросхемы 2A03, он изучается отдельно.
+Since the 6502 processor is part of the 2A03 chip in a slightly "stripped-down" version, it is studied separately.
 
-Процессор 6502:
+The 6502 processor:
 
 <img src="/BreakingNESWiki/imgstore/mos_6502ad_top.jpg" width="300px">
 
-Микросхемы APU и PPU различных ревизий:
+APU and PPU chips of different revisions:
 
 <img src="/BreakingNESWiki/imgstore/2701408_600px.jpg" width="400px">
 
-## Источник информации
+## Source of information
 
-Источником информации являются микрофотографии микросхем в высоком разрешении.
+The source of the information is high-resolution microphotographs of the ICs.
 
-В то время микросхемы были очень простые и производились по технологии [[NMOS]], с одним поверхностным слоем металла. Поэтому для получения векторных масок достаточно сделать два типа фотографий: фотографию поверхности с металлом и фотографию без металла. Обычно для снятия металла со старых микросхем применяют кипящую кислоту.
+At that time ICs were very simple and were produced by [[NMOS]] technology, with one surface layer of metal. Therefore, to obtain vector masks, two types of photos were sufficient: a photo of the surface with metal and a photo without metal. Usually boiling acid is used to remove metal from old ICs.
 
-Микросхемы под микроскопом выглядят примерно вот так (6502, APU и PPU соответственно):
+The chips under the microscope look like this (6502, APU and PPU, respectively):
 
 <img src="/BreakingNESWiki/imgstore/6502_die_shot.jpg" width="180px"> <img src="/BreakingNESWiki/imgstore/apu_die_shot.jpg" width="200px"> <img src="/BreakingNESWiki/imgstore/ppu_die_shot.jpg" width="210px">
 
-После получения векторных масок на них производится поиск транзисторов, которые в итоге формируют логическую схему.
-Процесс создания векторных масок, рисование транзисторных и логических схем подробно освещён в моих стримах.
+After the vector masks are obtained, they are used to search for transistors, which eventually form a logic circuit.
+The process of creating vector masks, drawing transistors and logic circuits is covered in detail in my streams.
 
-## Структура и назначение вики
+## Structure and purpose of the wiki
 
-Все основные фото и видео-материалы вы можете найти на [главном сайте проекта](http://breaknes.com).
+All basic photo and video materials can be found at [main project website](http://breaknes.com).
 
-В функции вики входит подробное описание всех функциональных блоков микросхем, с результатами программной симуляции каждого блока. Тем самым мы постепенно заменяем раздел "Чтиво" с главного сайта, поскольку там не очень удобно было отслеживать изменения. А тут вы можете сразу узнать что новенького :smiley:
+The functions of the wiki include a detailed description of all the functional blocks of the chips, with the results of the software simulation of each block. Thus we gradually replace the "Read" section from the main site, as it was not very convenient to keep track of changes there. Here you can find out what's new at once :smiley:
 
-Вики разделена на 3 раздела, по количеству изучаемых микросхем. Через навигационное меню можно ознакомиться с основными функциональными блоками каждой микросхемы.
+The wiki is divided into 3 sections, according to the number of chips being studied. Through the navigation menu you can get acquainted with the main functional blocks of each chip.
 
-Каждый раздел представляет собой подробное рассмотрение вначале транзисторной схемы, потом логической схемы и в результате производится симуляция всего блока, для проверки логики его работы. В качестве "базовой" логики используются следующие "примитивы" на языке Си:
+Each section is a detailed look at first the transistor circuit, then the logic circuit and the result is a simulation of the entire block, to check the logic of its operation. The following C "primitives" are used as "basic" logic:
 ```c
-#define BIT(n)     ( (n) & 1 )    // вырезать все лишнее
-int NOT(int a) { return (~a & 1); }       // НЕ
-int NAND(int a, int b) { return ~((a & 1) & (b & 1)) & 1; }     // И-НЕ
-int NOR(int a, int b) { return ~((a & 1) | (b & 1)) & 1; }      // ИЛИ-НЕ
+#define BIT(n)     ( (n) & 1 )    // cut out all unnecessary stuff
+int NOT(int a) { return (~a & 1); }
+int NAND(int a, int b) { return ~((a & 1) & (b & 1)) & 1; }
+int NOR(int a, int b) { return ~((a & 1) | (b & 1)) & 1; }
 ```
 
-Как обычно, для понимания материала необходимо знание микроэлектроники и программирования. Раньше требовался туго набитый косячок, но после различных собеседований в разных компаниях когда я показывал вики как своё портфолио - эту шутку воспринимали буквально, поэтому я убрал это требование.
+As usual, a knowledge of microelectronics and programming is required to understand the material. Earlier a tightly packed joint was required, but after various interviews in different companies when I showed the wiki as my portfolio - this joke was taken literally, so I removed this requirement.
 
-Приятного просмотра!
+Enjoy watching it!
