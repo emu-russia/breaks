@@ -8,8 +8,8 @@ Sample picture that the PPU can produce:
 
 There are the following versions of the PPU chips:
 - 2C02: used in the Famicom and the American version of the NES. It generates an NTSC signal.
-- 2C07: PAL version of the PPU for the European NES.
 - 2C03, 2C04, 2C05: RGB-versions for arcade machines based on NES (PlayChoise-10, Vs. System)
+- 2C07: PAL version of the PPU for the European NES.
 
 Probably exist (but no one has seen them):
 - 2C01: Debug version of NTSC PPU (?)
