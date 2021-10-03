@@ -173,6 +173,16 @@ class VDecoder:
 
 
 """
+	Implementation of the H/V state machine. This part is the main "brain" of the PPU, which controls all other parts.
+
+"""
+class HV_FSM:
+	def __init__(self):
+
+	def sim(self):
+
+
+"""
 	Pythonized PPU.
 
 	- Instead of the real CLK, the PCLK is used for now.
