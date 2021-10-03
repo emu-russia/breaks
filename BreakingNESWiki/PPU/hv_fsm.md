@@ -14,7 +14,7 @@ TBD.
 
 ### Декодер H PAL
 
-![pal_h](/BreakingNESWiki/imgstore/pal_h.jpg)
+![pal_h](/BreakingNESWiki/imgstore/pal_h.png)
 
 ```
 0 01010 101 01000 01001 00000
@@ -70,7 +70,7 @@ TBD.
 
 ### Декодер V PAL
 
-![pal_v](/BreakingNESWiki/imgstore/pal_v.jpg)
+![pal_v](/BreakingNESWiki/imgstore/pal_v.png)
 
 ```
 001 00100 00
