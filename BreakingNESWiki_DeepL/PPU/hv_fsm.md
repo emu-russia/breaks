@@ -2,7 +2,7 @@
 
 ## H/V Decoder
 
-The H/V decoder selects the necessary pixels and lines for the H/V logic.
+The H/V decoder selects the necessary pixels and lines for the rest of H/V logic.
 
 ### H Decoder (NTSC PPU)
 
