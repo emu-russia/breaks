@@ -1,20 +1,22 @@
 # H/V Control Logic
 
-## H/V FSM
-
 The H/V logic is a finite state machine (FSM) that controls all other PPU parts. Schematically it is just a set of latches, like "this latch is active from 64th to 128th pixel", so the corresponding control line coming from this latch is also active.
 
-Preliminary results of the H/V logic circuits. We will need to check the "inversion" of the names later (slash before the line name).
+## HPos Logic
 
 "Horizontal" logic, responsible for generating control lines depending on the horizontal position of the beam (H):
 
 <img src="/BreakingNESWiki/imgstore/7fc48a229053d2cf091195ec01a345ce.jpg" width="1000px">
 
-### Cleaning H/V Counters
+## VPos Logic
 
 TBD.
 
-### ODD/EVEN Logic
+## Cleaning H/V Counters
+
+TBD.
+
+## ODD/EVEN Logic
 
 ![odd_1](/BreakingNESWiki/imgstore/5c4d95b2bf506ef6b183cf8bb46e9433.jpg) ![odd_2](/BreakingNESWiki/imgstore/e4220e0351932b00026250fc2f3c858a.jpg) ![odd_3](/BreakingNESWiki/imgstore/e7d09137ee29ae53340df1cb2285585f.jpg)
 
