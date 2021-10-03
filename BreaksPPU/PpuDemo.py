@@ -57,6 +57,20 @@ def TestCounter():
 		cnt.dump()
 		print(" ")
 
+
+def TestHDecoder():
+	pla = HDecoder()
+
+	for i in range(341):
+		outs = pla.sim(i, 0, 0)
+		print (i, ": ", end='')
+		for n in range(len(outs)):
+			if outs[n] != 0:
+				print (f"/HPLA_{n}, ", end='')
+		print (" ")
+
+
 if __name__ == '__main__':
 	#TestCounterStage()
-	TestCounter()
+	#TestCounter()
+	TestHDecoder()
