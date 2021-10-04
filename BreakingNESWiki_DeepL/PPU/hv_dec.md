@@ -57,6 +57,8 @@ The H/V decoder selects the necessary pixels and lines for the rest of H/V logic
 |22|308| | |BURST/VSYNC FF|
 |23|340| | |HCounter clear / VCounter step|
 
+\* - A "pixel" refers to a time interval that is based on PCLK. Not all "pixels" are displayed as an image, some are defined by different control portions of the signal, such as HSync, Color Burst, etc.
+
 ## V Decoder (NTSC PPU)
 
 ![ntsc_v](/BreakingNESWiki/imgstore/ntsc_v.png)
