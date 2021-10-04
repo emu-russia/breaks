@@ -154,10 +154,10 @@ All other circuits are clocked by [Pixel Clock](pclk.md)
 
 (contact pad not shown)
 
-After the external /RES = 0 signal arrives, the latch is set so that the reset signal is not "lost".
-The latch remains set until cleared by `RESCL` = 1.
+After the external /RES = 0 signal arrives, the `Reset FF` is set so that the reset signal is not "lost".
+The `Reset FF` remains set until cleared by `RESCL` = 1.
 
-The output value of the latch is fed to the register clearing circuit (the `RC` - Register Clear signal).
+The output value of the `Reset FF` is fed to the register clearing circuit (the `RC` - Register Clear signal).
 
 At power-up the `Reset FF` (marked with a yellow hexagon in the figure) takes an undefined value (x).
 
