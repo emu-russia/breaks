@@ -2,7 +2,7 @@
 
 Pixel clock (abbreviated as PCLK) is used by all PPU parts (except the video phase generator).
 
-And both low level (`/PCLK`) and high level (`PCLK`) are used symmetrically. This approach of internal cycle implementation was widespread in the era of NMOS chips. Therefore, when analyzing PPU circuits, one should not think of PCLK as the clock signal, but rather the two "states" - PCLK=0 and PCLK=1.
+Both low level (`/PCLK`) and high level (`PCLK`) are used symmetrically. This approach of internal cycle implementation was widespread in the era of NMOS chips. Therefore, when analyzing PPU circuits, one should not think of PCLK as the clock signal, but rather the two "states" - PCLK=0 and PCLK=1.
 
 Conventionally, `/PCLK` may be called "preparation" and `PCLK` may be called "pixel output".
 
