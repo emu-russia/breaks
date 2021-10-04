@@ -124,8 +124,8 @@ This interface is implemented by the EXT0-EXT3 inout pins.
 
 <img src="/BreakingNESWiki/imgstore/20181128-100636.png" width="600px">
 
-The developers have provided for the interaction of several PPU. The scheme of interaction is simple and looks as follows:
-- Inside the PPU is a [multiplexer] (mux.md) that can optionally send a "picture" to both the screen or the external EXT pins
+Developers have made provisions for the interaction of several PPUs. The scheme of interaction is simple and looks as follows:
+- Inside the PPU is a [multiplexer](mux.md) that can optionally send a "picture" to both the screen or the external EXT pins
 - The multiplexer can also receive a "picture" from the external EXT pins
 
 The term "picture" refers to a set of abstract video data to explain the interaction between the PPUs.
