@@ -4,7 +4,7 @@
 
 |Name|Direction|Description|
 |---|---|---|
-|R/W	|in PPU	|Read-notWrite. Used to read/write PPU registers. If R/W = 1 it reads, otherwise it writes. The contact is easy to remember: "Read(1), do not write".|
+|R/W	|in PPU	|Read-notWrite. Used to read/write PPU registers. If R/W = 1 it reads, otherwise it writes. It is easy to remember: "Read(1), do not write".|
 |D0-D7	|bidirectional	|The data bus for transferring register values. When /DBE = 1 the bus is disconnected (Z)|
 |RS0-RS2	|in PPU	|Register Select. Sets the PPU register number (0-7)|
 |/DBE	|in PPU	|Data Bus Enable. If /DBE = 0, then the D0-D7 bus is used to exchange values with the PPU registers, otherwise the bus is disconnected.|
