@@ -16,7 +16,7 @@ Examine the operation of a single counter stage (single bit) using the V-Counter
 
 - `carry_in`: input carry
 - `carry_out`: output carry
-- `out`: output of one counter bit
+- `out`: output of single counter bit
 - `VC` (or `HC` at H-Counter): the clear signal of the entire counter. This clearing method is used to control counter clearing from the H/V FSM circuit side.
 - `RES`: general reset signal. This is the global reset signal of all sequential PPU circuits.
 - `PCLK`: Pixel Clock
