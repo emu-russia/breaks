@@ -19,12 +19,12 @@ class CounterStage:
 		self.ff = 0 		# This variable is used as a replacement for the hybrid FF built on MUX
 		self.latch = DLatch()		
 
-	def sim(self, nCarry, PCLK, CLR, RES):
+	def sim(self, Carry, PCLK, CLR, RES):
 		self.ff = MUX(PCLK, NOR(NOT(self.ff), RES), NOR(self.latch.get(), CLR))
-		self.latch.set (MUX(nCarry, NOT(self.ff), self.ff), NOT(PCLK))
+		self.latch.set (MUX(Carry, NOT(self.ff), self.ff), NOT(PCLK))
 		out = NOR(NOT(self.ff), RES)
-		nCarryOut = NOR (NOT(self.ff), NOT(nCarry))
-		return [ out, nCarryOut ]
+		CarryOut = NOR (NOT(self.ff), NOT(Carry))
+		return [ out, CarryOut ]
 
 	def get(self):
 		return self.ff
@@ -46,9 +46,9 @@ class HVCounter:
 	def __init__(self, bits):
 		self.stages = [CounterStage() for i in range(bits)]
 
-	def sim(self, nCarry, PCLK, CLR, RES):
+	def sim(self, Carry, PCLK, CLR, RES):
 		for s in self.stages:
-			nCarry = s.sim(nCarry, PCLK, CLR, RES) [1]
+			Carry = s.sim(Carry, PCLK, CLR, RES) [1]
 
 	def get(self):
 		val = 0
