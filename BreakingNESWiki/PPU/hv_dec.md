@@ -35,7 +35,7 @@ H/V-декодер выбирает нужные пиксели и строки 
 |0|279| | |FPorch FF|
 |1|256| | |FPorch FF|
 |2|65| |yes|S/EV|
-|3|0-7| | |CLIP_O / CLIP_B|
+|3|0-7, 256-263| | |CLIP_O / CLIP_B|
 |4|0-255|yes| |CLIP_O / CLIP_B|
 |5|339| |yes|0/HPOS|
 |6|63| |yes|EVAL|
@@ -129,7 +129,7 @@ H/V-декодер выбирает нужные пиксели и строки 
 |0|277| | |FPorch FF|
 |1|256| | |FPorch FF|
 |2|65| |yes|S/EV|
-|3|0-7, 256-263(?)| | |CLIP_O / CLIP_B|
+|3|0-7, 256-263| | |CLIP_O / CLIP_B|
 |4|0-255|yes| |CLIP_O / CLIP_B|
 |5|339| |yes|0/HPOS|
 |6|63| |yes|EVAL|
