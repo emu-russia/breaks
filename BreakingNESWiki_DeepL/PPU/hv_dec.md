@@ -2,6 +2,8 @@
 
 The H/V decoder selects the necessary pixels and lines for the rest of H/V logic.
 
+A "pixel" refers to a time interval that is based on PCLK. Not all "pixels" are displayed as an image, some are defined by different control portions of the signal, such as HSync, Color Burst, etc.
+
 ## H Decoder (NTSC PPU)
 
 ![ntsc_h](/BreakingNESWiki/imgstore/ntsc_h.png)
@@ -30,7 +32,7 @@ The H/V decoder selects the necessary pixels and lines for the rest of H/V logic
 0 01001 111 11100 11000 00000
 ```
 
-|HPLA output|Pixel\* numbers of the line|VB|BLNK|Meaning|
+|HPLA output|Pixel numbers of the line|VB|BLNK|Meaning|
 |---|---|---|---|---|
 |0|279| | |FPorch FF|
 |1|256| | |FPorch FF|
@@ -56,8 +58,6 @@ The H/V decoder selects the necessary pixels and lines for the rest of H/V logic
 |21|323| | |BURST/VSYNC FF|
 |22|308| | |BURST/VSYNC FF|
 |23|340| | |HCounter clear / VCounter step|
-
-\* - A "pixel" refers to a time interval that is based on PCLK. Not all "pixels" are displayed as an image, some are defined by different control portions of the signal, such as HSync, Color Burst, etc.
 
 ## V Decoder (NTSC PPU)
 
@@ -124,7 +124,7 @@ The H/V decoder selects the necessary pixels and lines for the rest of H/V logic
 0 01001 111 11100 11000 00000
 ```
 
-|HPLA output|Pixel\* numbers of the line|VB|BLNK|Meaning|
+|HPLA output|Pixel numbers of the line|VB|BLNK|Meaning|
 |---|---|---|---|---|
 |0|277| | |FPorch FF|
 |1|256| | |FPorch FF|
@@ -150,8 +150,6 @@ The H/V decoder selects the necessary pixels and lines for the rest of H/V logic
 |21|321| | |BURST/VSYNC FF|
 |22|306| | |BURST/VSYNC FF|
 |23|340| | |HCounter clear / VCounter step|
-
-\* - A "pixel" refers to a time interval that is based on PCLK. Not all "pixels" are displayed as an image, some are defined by different control portions of the signal, such as HSync, Color Burst, etc.
 
 ## V Decoder (PAL PPU)
 
