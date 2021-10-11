@@ -3,6 +3,8 @@
 
 	Both NTSC version of the chip (Ricoh 2C02) and PAL (Ricoh 2C07) are supported.
 
+	All related documentation can be found here: https://github.com/emu-russia/breaks/tree/master/BreakingNESWiki_DeepL/PPU
+
 """
 
 from BaseLogic import *
@@ -10,8 +12,6 @@ from BaseLogic import *
 
 """
 	One stage of H/V counters.
-
-	https://github.com/emu-russia/breaks/blob/master/BreakingNESWiki_DeepL/PPU/hv.md
 
 """
 class CounterStage:
