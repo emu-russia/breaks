@@ -31,7 +31,7 @@ TBD.
 
 No differences in the circuit were found.
 
-<img src="/BreakingNESWiki/imgstore/vram_control_pal.jpg" width="1000px">
+<img src="/BreakingNESWiki/imgstore/vram_ctrl_pal.jpg" width="1000px">
 
 The surface of the chip in this area was a little dirty, but I marked all the key control lines, so there is no doubt that the circuit is identical to the NTSC PPU.
 
