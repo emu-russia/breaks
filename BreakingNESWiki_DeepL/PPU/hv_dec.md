@@ -35,7 +35,7 @@ The H/V decoder selects the necessary pixels and lines for the rest of H/V logic
 |0|279| | |FPorch FF|
 |1|256| | |FPorch FF|
 |2|65| |yes|S/EV|
-|3|0-7| | |CLIP_O / CLIP_B|
+|3|0-7, 256-263| | |CLIP_O / CLIP_B|
 |4|0-255|yes| |CLIP_O / CLIP_B|
 |5|339| |yes|0/HPOS|
 |6|63| |yes|EVAL|
@@ -43,12 +43,12 @@ The H/V decoder selects the necessary pixels and lines for the rest of H/V logic
 |8|0-63| |yes|I/OAM2|
 |9|256-319| |yes|PAR/O|
 |10|0-255|yes|yes|/VIS|
-|11|0..1| |yes|F/NT|
-|12|6..7| | |F/TB|
-|13|4..5| | |F/TA|
+|11|Each 0..1| |yes|F/NT|
+|12|Each 6..7| | |F/TB|
+|13|Each 4..5| | |F/TA|
 |14|320-335| |yes|/FO|
 |15|0-255| |yes|F/AT|
-|16|2..3| | |F/AT|
+|16|Each 2..3| | |F/AT|
 |17|270| | |BPorch FF|
 |18|328| | |BPorch FF|
 |19|279| | |HBlank FF|
@@ -129,7 +129,7 @@ The H/V decoder selects the necessary pixels and lines for the rest of H/V logic
 |0|277| | |FPorch FF|
 |1|256| | |FPorch FF|
 |2|65| |yes|S/EV|
-|3|0-7, 256-263(?)| | |CLIP_O / CLIP_B|
+|3|0-7, 256-263| | |CLIP_O / CLIP_B|
 |4|0-255|yes| |CLIP_O / CLIP_B|
 |5|339| |yes|0/HPOS|
 |6|63| |yes|EVAL|
