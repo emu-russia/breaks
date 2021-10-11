@@ -31,7 +31,7 @@ TBD.
 
 Отличий в схеме не обнаружено.
 
-<img src="/BreakingNESWiki/imgstore/vram_control_pal.jpg" width="1000px">
+<img src="/BreakingNESWiki/imgstore/vram_ctrl_pal.jpg" width="1000px">
 
 Поверхность исследуемой микросхемы в этом месте была немного грязновата, но я пометил все ключевые контрольные линии, поэтому нет сомнений, что схема идентична NTSC PPU.
 
