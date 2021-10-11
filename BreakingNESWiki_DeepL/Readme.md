@@ -45,6 +45,6 @@ int NOR(int a, int b) { return ~((a & 1) | (b & 1)) & 1; }
 
 As usual, a knowledge of microelectronics and programming is required to understand the material. Earlier a tightly packed joint was required, but after various interviews in different companies when I showed the wiki as my portfolio - this joke was taken literally, so I removed this requirement.
 
-Note on the English version: the translation was done with the service [DeepL.com](http://DeepL.com), so it may seem awkward somewhere for native speakers. You are free to contribute your own edits to make it `human`.
+Note on the English version: the translation was done with the service [DeepL.com](http://DeepL.com), so it may seem awkward somewhere for native speakers. You are free to contribute your own edits to make it "human".
 
 Enjoy watching it!
