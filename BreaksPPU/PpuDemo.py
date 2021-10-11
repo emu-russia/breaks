@@ -58,21 +58,65 @@ def TestCounter():
 		print(" ")
 
 
-def TestHDecoder():
+def TestHDecoder(ntsc):
 	print ("TestHDecoder:")
-	pla = HDecoder(True) 		# True: NTSC, False: PAL
+	pla = HDecoder(ntsc)
+	hist = []
 
-	# Simulate one full line (HCounter = 0-340) and print all active PLA outputs for each line.
+	# Simulate one full line (HCounter = 0-340) and print all active PLA outputs.
 	for i in range(341):
 		outs = pla.sim(i, 0, 0)
+		hist.append(outs)
 		print (i, ": ", end='')
 		for n in range(len(outs)):
 			if outs[n] != 0:
 				print (f"{n}, ", end='')
 		print (" ")
 
+	# Now perform the transpose operation - list all the history of outputs and output at what values of `H` this or that output is active
+	for i in range(pla.NumOuts):
+		print (f"PLA Output {i}: ", end='')
+		n = 0
+		for h in hist:
+			if h[i] == 1:
+				print (f"{n}, ", end='')
+			n = n + 1
+		print (" ")
+
+
+def TestVDecoder(ntsc):
+	print ("TestVDecoder:")
+	pla = VDecoder(ntsc)
+	hist = []
+
+	if ntsc:
+		Vmax = 262
+	else:
+		Vmax = 312
+
+	# Simulate one full field (VCounter = 0-Vmax) and print all active PLA outputs.
+	for i in range(Vmax):
+		outs = pla.sim(i)
+		hist.append(outs)
+		print (i, ": ", end='')
+		for n in range(len(outs)):
+			if outs[n] != 0:
+				print (f"{n}, ", end='')
+		print (" ")
+
+	# Now perform the transpose operation - list all the history of outputs and output at what values of `V` this or that output is active
+	for i in range(pla.NumOuts):
+		print (f"PLA Output {i}: ", end='')
+		n = 0
+		for h in hist:
+			if h[i] == 1:
+				print (f"{n}, ", end='')
+			n = n + 1
+		print (" ")
+
 
 if __name__ == '__main__':
 	TestCounterStage()
 	TestCounter()
-	TestHDecoder()
+	TestHDecoder(False)
+	TestVDecoder(False)
