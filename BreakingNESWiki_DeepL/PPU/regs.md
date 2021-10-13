@@ -6,7 +6,7 @@ The other registers are evenly "spread out" over all parts of the PPU and are pa
 
 CPU Interface:
 
-|Name|Direction|Description|
+|Name|Direction (in relation to PPU)|Description|
 |---|---|---|
 |R/W	|input	|Read-notWrite. Used to read/write PPU registers. If R/W = 1 it reads, otherwise it writes. The contact is easy to remember: "Read(1), do not write".|
 |D0-D7	|inout	|The data bus for transferring register values. When /DBE = 1 the bus is disconnected (Z)|
