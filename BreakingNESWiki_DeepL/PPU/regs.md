@@ -51,7 +51,7 @@ The circuitry is below the sprite logic above the multiplexer (MUX).
 
 ## Special Note
 
-It should be understood that the access to the control registers is not related to PCLK in any way. Therefore, programmer can interfere with PPU rendering process at any time.
+It should be understood that the access to the PPU registers is not related to PCLK in any way. Therefore, programmer can interfere with PPU rendering process at any time.
 Technically it can be done, but it is not recommended because it can lead to different side-effects. Information on when registers can be accessed without consequences can be found in any PPU Reference Manual.
 
 But on the other hand it can be used (and is used in games in fact) to get interesting visual effects.
