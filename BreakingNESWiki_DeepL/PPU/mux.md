@@ -4,8 +4,6 @@ The PPU multiplexer is the little wicked circuit that deals with the selection o
 
 As usual, "color" and "pixel" are understood as abstract concepts: color is the color/brightness combination for the phase generator, and pixel is part of the visible video signal.
 
-Translated with www.DeepL.com/Translator (free version)
-
 Inputs:
 - Backround color (4 bits)
 - Sprite color (4 bits)
