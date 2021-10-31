@@ -24,7 +24,7 @@
 
 ![ppu_mux_logisim](/BreakingNESWiki/imgstore/ppu_mux_logisim.jpg)
 
-(Кусок схемы для проверки Sprite 0 Hit не показана и отмечена как "to strike test").
+(Кусок схемы для проверки Sprite 0 Hit не показан и отмечен как "to strike test").
 
 Сигналы:
 
