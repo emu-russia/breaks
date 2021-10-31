@@ -42,7 +42,7 @@ Signals:
 As you can see the circuit is a cascade of multiplexers, between which are D-Latch:
 - The first state selects the color of the background/sprite. Which color is selected is determined by the circuit by the bits BGC0-1, ZCOL0-1 and the priority of the sprites (ZPRIO). The result of this circuitry is an internal `OCOL` control signal that is applied to the bit multiplexers;
 - In the second state a choice is made between the previous result and the external color from the EXT pins;
-- In the third state a choice is made between the result of the second state and the direct color from the TH (Tile Horizontal) counter. The priority of the direct color is set by the control signal `TH/MUX` (more details about this will be added, after considering the scheme [Data Reader](dataread.md), where TH is located).
+- In the third state a choice is made between the result of the second state and the direct color from the TH (Tile Horizontal) counter. The priority of the direct color is set by the control signal `TH/MUX` (more details about this will be added, after considering the [Data Reader](dataread.md) circuit, where TH is located).
 
 "Direct color" looks intriguing because it sounds like the ability to output direct bitmap images, bypassing the PPU tile/sprite graphics features. This question needs more research.
 
