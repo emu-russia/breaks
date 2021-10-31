@@ -65,6 +65,6 @@ Sprite 0 Hit circuit:
 
 ![spr0hit](/BreakingNESWiki/imgstore/spr0hit.jpg)
 
-The control output `STRIKE` is 1 only when BGC0=1 or BGC=1 with all other inputs set to 0.
+The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
 The control signal `SPR0HIT` comes from the sprite priority control circuit (see [OAM FIFO](fifo.md)) and the control signal `LOL` (its exact meaning is not yet known) from [sprite comparison circuit](sprite_eval.md).
