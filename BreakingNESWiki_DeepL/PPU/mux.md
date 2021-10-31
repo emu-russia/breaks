@@ -18,7 +18,7 @@ Outputs:
 
 ![ppu_mux](/BreakingNESWiki/imgstore/ppu_mux.jpg)
 
-As you can see, the circuit looks very confusing at first glance. This is because the multipliers (as circuit elements) are very difficult to recognize from the NMOS transistors.
+As you can see, the circuit looks very confusing at first glance. This is because the multiplexers (as circuit elements) are very difficult to recognize from the NMOS transistors.
 
 ## Logisim Circuit
 
