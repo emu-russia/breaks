@@ -30,4 +30,4 @@ Main components of PPU:
 - Sprite Logic. Based on the H-counter, selects the 8 current sprites which are placed in additional OAM memory during the comparison process.
 - Sprite FIFO (OAM FIFO). Contains a circuit that activates the output of the 8 selected sprites at the right time, as well as a circuit to control their priority.
 - Address bus control circuitry. Controls the VRAM addressing.
-- Data reader circuit (data fetcher). Circuit for fetching source data from VRAM: tiles and attributes.
+- Data fetcher circuit (DATA READER). Circuit for fetching source data from VRAM: tiles and attributes.

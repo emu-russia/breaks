@@ -35,7 +35,7 @@ The output of the circuit produces many control lines which activate a read or w
 
 ## $2005/$2006 Special Processing
 
-As you know, 2 consecutive writes to register $2005 or $2006 actually write a value first to the low half and then to the high half of the corresponding internal 16-bit register (FV/FH).
+As you know, 2 consecutive writes to registers $2005 or $2006 actually write a value to the dual registers $2005/$2006 (FV/FH/TV/TH).
 
 A latch circuit is used to keep track of the write history in $2005/$2006.
 
