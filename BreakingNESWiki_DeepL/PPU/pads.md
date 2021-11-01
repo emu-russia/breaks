@@ -8,7 +8,7 @@
 |D0-D7	|bidirectional	|The data bus for transferring register values. When /DBE = 1 the bus is disconnected (Z)|
 |RS0-RS2	|in PPU	|Register Select. Sets the PPU register number (0-7)|
 |/DBE	|in PPU	|Data Bus Enable. If /DBE = 0, then the D0-D7 bus is used to exchange values with the PPU registers, otherwise the bus is disconnected.|
-|EXT0-EXT3	|bidirectional	|The bus is used to mix the color of the current pixel from another PPU (slave mode), or to output the current color to the outside (master mode). The direction of the bus is determined by the register bit $2002\[6\] (0: PPU slave mode, 1: PPU master mode) (_I apologize for using the old master/slave terms_)|
+|EXT0-EXT3	|bidirectional	|The bus is used to mix the color of the current pixel from another PPU (slave mode), or to output the current color to the outside (master mode). The direction of the bus is determined by the register bit $2000\[6\] (0: PPU slave mode, 1: PPU master mode) (_I apologize for using the old master/slave terms_)|
 |CLK	|in PPU	|Main Clock|
 |/INT	|from PPU	|PPU interrupt signal (VBlank)|
 |ALE	|from PPU	|Address Latch Enable. If ALE=1, then the bus AD0-AD7 operates as an address bus (A0-A7), otherwise it operates as a data bus (D0-D7)|
