@@ -46,8 +46,6 @@ As you can see the circuit is a cascade of multiplexers, between which are D-Lat
 
 "Direct color" is a special processing to access the palette memory from the CPU interface side. Since the palette memory is mapped to the PPU address space - when the palette is accessed, its index is temporarily stored on the PAR TH counter (5 bits). When this happens, the [VRAM controller](vram_ctrl.md) sets the TH/MUX signal, which indicates that the TH counter contains the selected palette index (color). The outputs from the TH counter (THO0-4) go to the multiplexer, which selects the desired palette index.
 
-Translated with www.DeepL.com/Translator (free version)
-
 ## Sprite 0 Hit
 
 Sprite 0 Hit is an alien PPU feature.
