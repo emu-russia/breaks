@@ -14,7 +14,7 @@ Outputs:
 - Color Index for Palette (5 bits)
 - Color for external contacts (EXT Out) (4 bits)
 
-## Transistor circuit
+## Transistor Circuit
 
 ![ppu_mux](/BreakingNESWiki/imgstore/ppu_mux.jpg)
 
@@ -68,3 +68,25 @@ Sprite 0 Hit circuit:
 The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
 The control signal `SPR0HIT` comes from the sprite priority control circuit (see [OAM FIFO](fifo.md)) and the control signal `LOL` (its exact meaning is not yet known) from [sprite comparison circuit](sprite_eval.md).
+
+## Multiplexer Tricks
+
+Knowing the features of the multiplexer, you can exploit them to obtain various visual effects.
+
+### Direct Color Mode
+
+This trick is only applicable with PPU rendering turned off (OAM/Background = OFF).
+
+In this mode, the PPU gets the palette index from the TH register as described above, so by writing to the PPU address space at addresses $3Fxx (where xx = 0x00 ... 0x1F) you can trick the PPU into showing the palette color with the specified index.
+
+This technique is demonstrated in the `Full palette demo` (by Blargg): https://wiki.nesdev.org/w/index.php/Full_palette_demo
+
+There it is also stated that the speed of the NES CPU is not sufficient to simulate full bitmap graphics (1 CPU cycle corresponds to 3 PPU "pixels")
+
+### Exploiting EXT Pins
+
+The value from the EXT pins can be used as another color source. But since these pins are usually connected to GND you can only get a black color from them, which can be used to erase the screen with arbitrary patterns.
+
+To do this, you need to program the PPU to Slave mode ($2002\[6\] = 0) when the H/V PPU counters are at the desired location on the screen.
+
+This technique has not yet been confirmed experimentally and exists only as a hypothesis.
