@@ -8,7 +8,7 @@ Inputs:
 - Backround color (4 bits)
 - Sprite color (4 bits)
 - Color from external contacts (EXT In) (4 bits)
-- Direct color from TH (5 bits)
+- Direct color from PAR TH Counter (5 bits)
 
 Outputs:
 - Color Index for Palette (5 bits)
@@ -33,7 +33,7 @@ Signals:
 |BGC0-3|The color of the background
 |ZCOL0-3|Sprite color|
 |EXT0-3 IN|Input color from EXT pins|
-|THO0-4|Input color from TH|
+|THO0-4|Input color from TH counter|
 |TH/MUX|Prioritizes the direct color from TH over all other colors|
 |ZPRIO|Prioritizes the sprite color over the background color|
 |EXT0-3 OUT|The output color for EXT contacts|
@@ -42,9 +42,11 @@ Signals:
 As you can see the circuit is a cascade of multiplexers, between which are D-Latch:
 - The first state selects the color of the background/sprite. Which color is selected is determined by the circuit by the bits BGC0-1, ZCOL0-1 and the priority of the sprites (ZPRIO). The result of this circuitry is an internal `OCOL` control signal that is applied to the bit multiplexers;
 - In the second state a choice is made between the previous result and the external color from the EXT pins;
-- In the third state a choice is made between the result of the second state and the direct color from the TH (Tile Horizontal) counter. The priority of the direct color is set by the control signal `TH/MUX` (more details about this will be added, after considering the [Data Reader](dataread.md) circuit, where TH is located).
+- In the third state a choice is made between the result of the second state and the direct color from the TH (Tile Horizontal) counter. The priority of the direct color is set by the control signal `TH/MUX`.
 
-"Direct color" looks intriguing because it sounds like the ability to output direct bitmap images, bypassing the PPU tile/sprite graphics features. This question needs more research.
+"Direct color" is a special processing to access the palette memory from the CPU interface side. Since the palette memory is mapped to the PPU address space - when the palette is accessed, its index is temporarily stored on the PAR TH counter (5 bits). When this happens, the [VRAM controller](vram_ctrl.md) sets the TH/MUX signal, which indicates that the TH counter contains the selected palette index (color). The outputs from the TH counter (THO0-4) go to the multiplexer, which selects the desired palette index.
+
+Translated with www.DeepL.com/Translator (free version)
 
 ## Sprite 0 Hit
 
