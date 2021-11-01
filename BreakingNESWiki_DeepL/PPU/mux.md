@@ -87,6 +87,6 @@ There it is also stated that the speed of the NES CPU is not sufficient to simul
 
 The value from the EXT pins can be used as another color source. But since these pins are usually connected to GND you can only get a black color from them, which can be used to erase the screen with arbitrary patterns.
 
-To do this, you need to program the PPU to Slave mode ($2002\[6\] = 0) when the H/V PPU counters are at the desired location on the screen.
+To do this, you need to program the PPU to Slave mode ($2000\[6\] = 0) when the H/V PPU counters are at the desired location on the screen.
 
 This technique has not yet been confirmed experimentally and exists only as a hypothesis.
