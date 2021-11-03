@@ -2,6 +2,8 @@
 
 The circuitry is the "auxiliary brain" of the bottom of the PPU to control the VRAM interface.
 
+In addition, the controller also includes a READ BUFFER (RB), an intermediate data storage for exchange with VRAM.
+
 ## Transistor Circuit
 
 <img src="/BreakingNESWiki/imgstore/vram_control_tran.jpg" width="1000px">
@@ -34,6 +36,12 @@ No differences in the circuit were found.
 <img src="/BreakingNESWiki/imgstore/vram_ctrl_pal.jpg" width="1000px">
 
 The surface of the chip in this area was a little dirty, but I marked all the key control lines, so there is no doubt that the circuit is identical to the NTSC PPU.
+
+## Read Buffer (RB)
+
+Located to the right of [OAM FIFO](fifo.md).
+
+![ppu_readbuffer](/BreakingNESWiki/imgstore/ppu_readbuffer.jpg)
 
 ## Simulation
 
