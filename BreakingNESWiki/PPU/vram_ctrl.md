@@ -2,6 +2,8 @@
 
 Схема представляет собой "вспомогательный мозг" нижней части PPU для управления интерфейсом VRAM.
 
+Кроме этого в состав контроллера также входит READ BUFFER (RB) - промежуточное хранилище данных для обмена с VRAM.
+
 ## Транзисторная схема
 
 <img src="/BreakingNESWiki/imgstore/vram_control_tran.jpg" width="1000px">
@@ -34,6 +36,12 @@ TBD.
 <img src="/BreakingNESWiki/imgstore/vram_ctrl_pal.jpg" width="1000px">
 
 Поверхность исследуемой микросхемы в этом месте была немного грязновата, но я пометил все ключевые контрольные линии, поэтому нет сомнений, что схема идентична NTSC PPU.
+
+## Read Buffer (RB)
+
+Находится правее [OAM FIFO](fifo.md).
+
+![ppu_readbuffer](/BreakingNESWiki/imgstore/ppu_readbuffer.jpg)
 
 ## Симуляция
 
