@@ -1,3 +1,5 @@
 Temp
 *.pyc
 .vs
+
+Docs export-ignore
