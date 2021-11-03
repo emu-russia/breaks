@@ -2,19 +2,29 @@
 
 Логика H/V представляет собой конечный автомат (FSM), который управляет всеми остальными узлами PPU. Схематически это просто набор защелок, по типу "эта защелка активна от 64го до 128го пикселя", значит соответствующая контрольная линия идущая от этой защелки тоже активна.
 
+## Выдача наружу значений разрядов H
+
+Разряды счетчика H используются на других компонентах PPU.
+
+![h_counter_output](/BreakingNESWiki/imgstore/h_counter_output.jpg)
+
 ## Горизонтальная логика
 
 "Горизонтальная" логика, отвечает за генерацию контрольных линий в зависимости от горизонтального положения луча (H):
+
+![hv_fporch](/BreakingNESWiki/imgstore/hv_fporch.jpg)
+
+![hv_fsm_horz](/BreakingNESWiki/imgstore/hv_fsm_horz.jpg)
 
 <img src="/BreakingNESWiki/imgstore/7fc48a229053d2cf091195ec01a345ce.jpg" width="1000px">
 
 ## Вертикальная логика
 
-TBD.
+![hv_fsm_vert](/BreakingNESWiki/imgstore/hv_fsm_vert.jpg)
 
-### Очистка H/V счетчиков
+### Управление H/V счетчиками
 
-TBD.
+![hv_counters_control](/BreakingNESWiki/imgstore/hv_counters_control.jpg)
 
 ### Логика ODD/EVEN
 
