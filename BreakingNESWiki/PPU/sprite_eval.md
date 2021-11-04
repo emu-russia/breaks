@@ -38,3 +38,7 @@
 ## Схема управления сравнением
 
 ![oam_eval_control](/BreakingNESWiki/imgstore/oam_eval_control.jpg)
+
+## Схема Logisim
+
+![ppu_logisim_oam_eval](/BreakingNESWiki/imgstore/ppu_logisim_oam_eval.jpg)
