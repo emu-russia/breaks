@@ -1,5 +1,7 @@
 # PPU Pinout
 
+The study of any IC begins with the pinout.
+
 ![ppu_pads](/BreakingNESWiki/imgstore/ppu_pads.jpg)
 
 |Name|Direction|Description|
