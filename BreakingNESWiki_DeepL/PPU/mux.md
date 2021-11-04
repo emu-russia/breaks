@@ -5,7 +5,7 @@ The PPU multiplexer is the little wicked circuit that deals with the selection o
 As usual, "color" and "pixel" are understood as abstract concepts: color is the color/brightness combination for the phase generator, and pixel is part of the visible video signal.
 
 Inputs:
-- Backround color (4 bits)
+- Background color (4 bits)
 - Sprite color (4 bits)
 - Color from external contacts (EXT In) (4 bits)
 - Direct color from PAR TH Counter (5 bits)
@@ -30,7 +30,7 @@ Signals:
 
 |Signal|Purpose|
 |---|---|
-|BGC0-3|The color of the background
+|BGC0-3|The color of the background|
 |ZCOL0-3|Sprite color|
 |EXT0-3 IN|Input color from EXT pins|
 |THO0-4|Input color from TH counter|
@@ -52,11 +52,11 @@ Sprite 0 Hit is an alien PPU feature.
 
 This feature is designed to detect when sprite #0 has "crossed over" to the background.
 
-This event is stored as a bit of register $2002[6].
+This event is stored as a bit of register $2002\[6\].
 
 This feature can be used by the programmer to determine when a certain point on the screen is rendered:
 - Sprite #0 is set to a certain position
-- Polling of register $2002[6] is done.
+- Polling of register $2002\[6\] is done.
 - The program performs additional actions when Sprite 0 Hit is detected.
 
 This is usually used to create "Split Screen" effects.
