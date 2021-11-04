@@ -91,3 +91,5 @@ HINV and HDIR are two complementary signals (they can never take the same value)
 It was also decided to include a small circuit for getting SHx values (Sprite H) as part of the FIFO. The circuit is above the multiplexer, but the SHx outputs are only used in the OAM FIFO.
 
 ![sprite_h](/BreakingNESWiki/imgstore/sprite_h.jpg)
+
+![ppu_logisim_sprite_h](/BreakingNESWiki/imgstore/ppu_logisim_sprite_h.jpg)

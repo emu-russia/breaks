@@ -91,3 +91,5 @@ HINV и HDIR - это два комплементарных сигнала (он
 Также в состав FIFO было решено включить небольшую схему для получения значений SHx (Sprite H). Схема находится выше мультиплексора, но выходы SHx используются только в OAM FIFO.
 
 ![sprite_h](/BreakingNESWiki/imgstore/sprite_h.jpg)
+
+![ppu_logisim_sprite_h](/BreakingNESWiki/imgstore/ppu_logisim_sprite_h.jpg)
