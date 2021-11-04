@@ -30,4 +30,4 @@
 
 For now in this version, then we will saw into pieces, for easy perception:
 
-![ppu_logisim_bgcol](/BreakingNESWiki/imgstore/ppu_logisim_bgcol.jpg)
+<img src="/BreakingNESWiki/imgstore/ppu_logisim_bgcol.jpg" width="1000px">
