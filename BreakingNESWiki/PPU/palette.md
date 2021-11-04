@@ -14,6 +14,8 @@ Color Buffer (CB) используется для хранения текуще�
 
 ![ppu_cb_control](/BreakingNESWiki/imgstore/ppu_cb_control.jpg)
 
+![ppu_logisim_color_control](/BreakingNESWiki/imgstore/ppu_logisim_color_control.jpg)
+
 ### Схема хранения одного разряда CB
 
 ![ppu_color_buffer_bit](/BreakingNESWiki/imgstore/ppu_color_buffer_bit.jpg)

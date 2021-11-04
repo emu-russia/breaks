@@ -57,3 +57,9 @@
 ![ppu_dataread_par_low](/BreakingNESWiki/imgstore/ppu_dataread_par_low.jpg)
 
 ![ppu_dataread_par_high](/BreakingNESWiki/imgstore/ppu_dataread_par_high.jpg)
+
+## Схема Logisim
+
+Пока в таком варианте, потом распилим на кусочки, для удобства восприятия:
+
+![ppu_logisim_pargen](/BreakingNESWiki/imgstore/ppu_logisim_pargen.jpg)
