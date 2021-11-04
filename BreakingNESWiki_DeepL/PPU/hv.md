@@ -4,7 +4,7 @@ H/V counters count the number of pixels per line and the number of lines, respec
 
 Technically the counters consist of 9 bits, so they can count from 0 to 0x1FF, but they never count completely and are limited to the maximum H and V values. To do this, the H/V FSM circuit periodically resets them.
 
-## Counter stage
+## Counter Stage
 
 Examine the operation of a single counter stage (single bit) using the V-Counter as an example.
 
@@ -22,7 +22,6 @@ Examine the operation of a single counter stage (single bit) using the V-Counter
 - `PCLK`: Pixel Clock
 
 In the image the transistors that form the logic elements are highlighted.
-
 The circuit is not very complicated, except for the unusual FF organization based on two 2-nor and two multiplexers that form the FF loop.
 
 Nice scheme from Logisim:
@@ -45,6 +44,7 @@ I didn't want to spam big pictures, but I guess I have to.
 - HCounter always counts because the carry_in of bit 0 is always 1 (connected to Vdd)
 - VCounter increments by 1 only when input `V_IN` is active
 - The output carry of each previous bit is set to the input carry of the next bit to form the carry-chain
+- Each counter includes additional transfer logic (below), for this reason I had to post large pictures of counters to see this logic
 
 ## Extra Carry Logic
 

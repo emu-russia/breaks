@@ -21,11 +21,9 @@ TBD: This is where you need to write how the cells are stacked and how the memor
 
 ![oam_cell](/BreakingNESWiki/imgstore/oam_cell.jpg)
 
-The cell is a typical 4T cell, but with one exception - the transistors of the cell where the value is stored are not connected to Vdd, 
-so the value on the cell is constantly degrading because without a pull-up it is essentially stored on the gate of the transistors.
+The cell is a typical 4T cell, but with one exception - the transistors of the cell where the value is stored are not connected to Vdd, so the value on the cell is constantly degrading because without a pull-up it is essentially stored on the gate of the transistors.
 
-The OAM memory degradation effect is called "OAM Corruption" and it is widely known. To combat this effect, programs for the NES
-contain an OAM cache in regular CPU memory and every VBlank copies this cache to OAM using the APU's sprite DMA.
+The OAM memory degradation effect is called "OAM Corruption" and it is widely known. To combat this effect, programs for the NES contain an OAM cache in regular CPU memory and every VBlank copies this cache to OAM using the APU's sprite DMA.
 
 TBD: Calculate or measure cell degradation timings.
 
