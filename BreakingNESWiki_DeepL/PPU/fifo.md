@@ -34,6 +34,8 @@ The circuit shown is for sprite #0. For all others (1-7) you must replace the na
 
 ![fifo_counter](/BreakingNESWiki/imgstore/fifo_counter.jpg)
 
+![ppu_logisim_fifo_counter](/BreakingNESWiki/imgstore/ppu_logisim_fifo_counter.jpg)
+
 ### Pipeline Control
 
 The circuit for sprite #0 is shown. For all others (1-7) the signal names 0/EN, 0/COL2, 0/COL3 and 0/PRIO must be changed to x/EN, x/COL2, x/COL3 and x/PRIO.
