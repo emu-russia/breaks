@@ -25,3 +25,9 @@
 ### Выходы BG COL
 
 ![ppu_dataread_bgcol_out](/BreakingNESWiki/imgstore/ppu_dataread_bgcol_out.jpg)
+
+## Схема Logisim
+
+Пока в таком варианте, потом распилим на кусочки, для удобства восприятия:
+
+![ppu_logisim_bgcol](/BreakingNESWiki/imgstore/ppu_logisim_bgcol.jpg)

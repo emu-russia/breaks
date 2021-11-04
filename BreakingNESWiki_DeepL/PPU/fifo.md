@@ -59,7 +59,7 @@ The circuit shown is for sprite #0. For all others (1-7) you must replace the si
 
 ![fifo_sr](/BreakingNESWiki/imgstore/fifo_sr.jpg)
 
-TBD: The unsigned transistors receive the `EN' signal from the Pipeline control circuit.
+TBD: The unsigned transistors receive the `EN` signal from the Pipeline control circuit.
 
 ### Sprite Priority
 
@@ -83,6 +83,8 @@ The result of the circuit operation (output) is the `SPR0HIT` signal, which goes
 ![ppu_hinv](/BreakingNESWiki/imgstore/ppu_hinv.jpg)
 
 HINV and HDIR are two complementary signals (they can never take the same value). In essence these two signals are one multiplexer control signal that selects between the two PD bus bits. If HINV = 1, it means that the PD bus is output in inverted to the T0-7 outputs. If HDIR = 1 it means that the PD bus is outputted in direct way to T0-7 outputs.
+
+![ppu_logisim_hinv](/BreakingNESWiki/imgstore/ppu_logisim_hinv.jpg)
 
 ### Sprite H
 

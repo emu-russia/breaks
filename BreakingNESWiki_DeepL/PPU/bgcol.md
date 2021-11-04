@@ -25,3 +25,9 @@
 ### BG COL Outputs
 
 ![ppu_dataread_bgcol_out](/BreakingNESWiki/imgstore/ppu_dataread_bgcol_out.jpg)
+
+## Logisim Circuit
+
+For now in this version, then we will saw into pieces, for easy perception:
+
+![ppu_logisim_bgcol](/BreakingNESWiki/imgstore/ppu_logisim_bgcol.jpg)

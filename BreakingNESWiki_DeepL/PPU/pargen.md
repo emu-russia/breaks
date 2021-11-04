@@ -57,3 +57,9 @@
 ![ppu_dataread_par_low](/BreakingNESWiki/imgstore/ppu_dataread_par_low.jpg)
 
 ![ppu_dataread_par_high](/BreakingNESWiki/imgstore/ppu_dataread_par_high.jpg)
+
+## Logisim Circuit
+
+For now in this version, then we will saw into pieces, for easy perception:
+
+![ppu_logisim_pargen](/BreakingNESWiki/imgstore/ppu_logisim_pargen.jpg)
