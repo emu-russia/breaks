@@ -62,4 +62,4 @@
 
 Пока в таком варианте, потом распилим на кусочки, для удобства восприятия:
 
-![ppu_logisim_pargen](/BreakingNESWiki/imgstore/ppu_logisim_pargen.jpg)
+<img src="/BreakingNESWiki/imgstore/ppu_logisim_pargen.jpg" width="1000px">
