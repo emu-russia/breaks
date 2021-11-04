@@ -27,6 +27,8 @@
 
 ![oam2_index_counter](/BreakingNESWiki/imgstore/oam2_index_counter.jpg)
 
+![ppu_logisim_oam2_counter](/BreakingNESWiki/imgstore/ppu_logisim_oam2_counter.jpg)
+
 ## Общее управление счетчиками
 
 ![oam_counters_control](/BreakingNESWiki/imgstore/oam_counters_control.jpg)

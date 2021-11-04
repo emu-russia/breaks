@@ -34,6 +34,8 @@ FIFO состоит из 3х частей: обратного счетчика �
 
 ![fifo_counter](/BreakingNESWiki/imgstore/fifo_counter.jpg)
 
+![ppu_logisim_fifo_counter](/BreakingNESWiki/imgstore/ppu_logisim_fifo_counter.jpg)
+
 ### Схема контроля пайплайна
 
 Показана схема для спрайта #0. Для всех остальных (1-7) нужно заменить название сигналов 0/EN, 0/COL2, 0/COL3 и 0/PRIO на x/EN, x/COL2, x/COL3 и x/PRIO.

@@ -27,6 +27,8 @@ Also the circuits contain a large number of signals which are not yet clear (e.g
 
 ![oam2_index_counter](/BreakingNESWiki/imgstore/oam2_index_counter.jpg)
 
+![ppu_logisim_oam2_counter](/BreakingNESWiki/imgstore/ppu_logisim_oam2_counter.jpg)
+
 ## Counters Control
 
 ![oam_counters_control](/BreakingNESWiki/imgstore/oam_counters_control.jpg)
