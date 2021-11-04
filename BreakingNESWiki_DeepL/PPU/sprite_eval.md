@@ -38,3 +38,7 @@ Also the circuits contain a large number of signals which are not yet clear (e.g
 ## Comparison Control
 
 ![oam_eval_control](/BreakingNESWiki/imgstore/oam_eval_control.jpg)
+
+## Logisim Circuit
+
+![ppu_logisim_oam_eval](/BreakingNESWiki/imgstore/ppu_logisim_oam_eval.jpg)
