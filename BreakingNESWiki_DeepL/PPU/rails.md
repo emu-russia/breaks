@@ -2,6 +2,10 @@
 
 This section contains a summary table of all signals.
 
+TBD: The inversion of some signals can be corrected after clarification. At present, the main task is to understand their essence.
+
+If a signal is repeated somewhere, it is usually not specified again, except in cases where it is important.
+
 ## Left Side
 
 ![rails1](/BreakingNESWiki/imgstore/rails1.jpg)
