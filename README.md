@@ -1,5 +1,7 @@
 # Breaks - Nintendo Entertainment System (NES) / Famicom / Dendy chip reversing
 
+![dolbanem_6502](/BreakingNESWiki/imgstore/dolbanem_6502.jpg)
+
 This project is aimed to reverse engineer following integrated circuits:
 - MOS 6502
 - Ricoh 2A03 (known as NES APU)
