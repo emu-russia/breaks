@@ -10,10 +10,6 @@ Project goals:
 - Convert transistor circuits to more high-level logic gates
 - Simulate circuits and write logic gate-level emulator
 
-Headquarters: http://breaknes.com
-
-Wiki: http://wiki.breaknes.com
-
 ## Why Breaks?
 
 We're breaking chips here :)
