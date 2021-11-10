@@ -1,6 +1,6 @@
 # Breaks - Nintendo Entertainment System (NES) / Famicom / Dendy chip reversing
 
-![dolbanem_6502](/BreakingNESWiki/imgstore/dolbanem_6502.jpg)
+<img src="/BreakingNESWiki/imgstore/dolbanem_6502.jpg" width="200px">
 
 This project is aimed to reverse engineer following integrated circuits:
 - MOS 6502
