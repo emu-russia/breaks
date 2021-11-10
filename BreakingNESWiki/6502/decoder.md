@@ -14,9 +14,11 @@
 
 То есть выходы декодера не в инверсной логике (как это обычно принято), а в прямой.
 
-<img src="/BreakingNESWiki/imgstore/decoder_nice.jpg" width="1000px">
+![decoder_nice1](/BreakingNESWiki/imgstore/decoder_nice1.jpg)
 
-Таблица опкодов 6502:
+![decoder_nice2](/BreakingNESWiki/imgstore/decoder_nice2.jpg)
+
+Таблица опкодов 6502 (для справки):
 
 ![6502_opcode_table](/BreakingNESWiki/imgstore/6502_opcode_table.jpg)
 
