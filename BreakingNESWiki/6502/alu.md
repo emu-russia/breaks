@@ -1,5 +1,7 @@
 # АЛУ
 
+![6502_locator_alu](/BreakingNESWiki/imgstore/6502_locator_alu.jpg)
+
 ![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Красивая транзисторная схема
 
 ![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Описание контрольных линий
