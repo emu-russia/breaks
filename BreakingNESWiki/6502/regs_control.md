@@ -1,5 +1,7 @@
 # Управление регистрами
 
+![6502_locator_reg_control](/BreakingNESWiki/imgstore/6502_locator_reg_control.jpg)
+
 Схема управления регистрами отвечает за генерацию [команд управления](context_control.md) обмена регистров с внутренними шинами: Y/SB, X/SB, SB/X, SB/Y, S/SB, SB/S, S/ADL, S/S.
 
 ![regs_control](/BreakingNESWiki/imgstore/regs_control.jpg)
