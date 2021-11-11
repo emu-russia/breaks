@@ -18,10 +18,6 @@ That is, the decoder outputs are not in inverse logic (as is usual), but in dire
 
 ![decoder_nice2](/BreakingNESWiki/imgstore/decoder_nice2.jpg)
 
-Table of 6502 opcodes (for reference):
-
-![6502_opcode_table](/BreakingNESWiki/imgstore/6502_opcode_table.jpg)
-
 ## Special lines.
 
 Additional logical operations are applied to some decoder outputs, which although territorially are in the decoder area, are actually part of [random logic](random_logic.md). Most likely this logic got into the decoder simply because it was more convenient to split the connections that way.
