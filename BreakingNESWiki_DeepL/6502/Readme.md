@@ -145,7 +145,7 @@ Summary of instructions:
 |TXS |Transfer Index X to Stack Pointer|
 |TYA |Transfer Index Y to Accumulator|
 
-The developers chose the encoding so that it would be easier to process by [decoder](decoder.md) and [random_logic](random_logic.md).
+The developers chose the encoding so that it would be easier to process by [decoder](decoder.md) and [random logic](random_logic.md).
 
 Table of 6502 opcodes (for reference):
 
