@@ -158,7 +158,7 @@ You can find a description of the instructions in any Reference Manual for 6502.
 6502 interrupts:
 - IRQ: hardware interrupt. Can be disabled with flag I (interrupt disable), if flag I=1 the interrupt is "disabled" and does not go to the CPU. 
 - NMI: non-maskable interrupt. It has higher priority than IRQ, triggered on falling edge. 
-- RES: hardware reset. After enabling 6502 it is necessary to set /RES to 0 for some cycles to make the processor "come to life".
+- RES: hardware reset. After powering up the 6502 it is necessary to set the /RES pin to 0 for a few cycles so that the processor "comes to its senses".
 - BRK: software interrupt. It is initiated by the `BRK` instruction.
 
 ## Note on Transistor Circuits
