@@ -12,7 +12,7 @@ In both cases the top part is occupied by the decoder and random logic, and the 
 
 The processor is divided into two parts: the upper part and the lower part.
 
-The upper part contains the control logic, which issues a number of control lines ("commands") to control the lower part.
+The upper part contains the control logic, which issues a number of control lines ("commands") to the lower part.
 The lower part contains the context of the processor: internal buses and registers, with one exception - the flags register (P) is in the upper part in a " spread out" form.
 
 Also in the lower part is the ALU.
