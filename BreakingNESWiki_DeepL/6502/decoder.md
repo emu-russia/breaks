@@ -1,10 +1,12 @@
 # Decoder
 
-The decoder 6502 is an ordinary demultiplexer, but a very large one. The formula for the demultiplexer is 21-to-130. Sometimes the 6502 instruction decoder is also called a PLA.
+![6502_locator_decoder](/BreakingNESWiki/imgstore/6502_locator_decoder.jpg)
+
+The decoder is an ordinary demultiplexer, but a very large one. The formula for the demultiplexer is 21-to-130. Sometimes the 6502 instruction decoder is also called a PLA.
 
 Topologically, the decoder is divided by ground lines into several groups, so we'll stick to the same division, for convenience.
 
-The input lines are:
+The input signals are:
 - /T0, /T1X: current cycle for short (2 clock) instructions. These signals are output from [dispatch logic](dispatch.md).
 - /T2, /T3, /T4, /T5: current cycle for long instructions. Signals are output from [extended cycle counter](extra_counter.md).
 - /IR0, /IR1, IR01: the lower bits of the operation code from [instruction register](ir.md). To reduce the number of lines 0 and 1 bits are combined into one control line `IR01`.
@@ -18,7 +20,7 @@ That is, the decoder outputs are not in inverse logic (as is usual), but in dire
 
 ![decoder_nice2](/BreakingNESWiki/imgstore/decoder_nice2.jpg)
 
-## Special lines.
+## Special Lines
 
 Additional logical operations are applied to some decoder outputs, which although territorially are in the decoder area, are actually part of [random logic](random_logic.md). Most likely this logic got into the decoder simply because it was more convenient to split the connections that way.
 
@@ -29,7 +31,7 @@ List:
 
 ## PLA Contents
 
-|Group |N | Mask value (Raw bits) |Decoded mask value |Cycle (T) |Comments|Where to use|
+|Group|N|Mask value (Raw bits)|Decoded mask value|Cycle (T)|Comments|Where to use|
 |---|---|---|---|---|---|---|
 |A|||||||
 |A01   |0 |000101100000100100000   |100XX100 |TX     |STY| |
