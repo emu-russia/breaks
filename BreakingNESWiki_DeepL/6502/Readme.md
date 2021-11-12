@@ -17,9 +17,9 @@ The lower part contains the context of the processor: internal buses and registe
 
 Also in the lower part is the [ALU](alu.md).
 
-The processor is clocked by the PHI0 clock pulse, both half-steps are used.
-During the first half-step (PHI1) the processor is in "talking" mode. At this time the processor is outputting data to the outside.
-During the second half-step (PHI2) the processor is in "listening" mode, during this half-step external devices can put data on the data bus for the processor to process it.
+The processor is clocked by the PHI0 clock pulse, both half-cycles are used.
+During the first half-cycle (PHI1) the processor is in "talking" mode. At this time the processor is outputting data to the outside.
+During the second half-cycle (PHI2) the processor is in "listening" mode, during this half-cycle external devices can put data on the data bus for the processor to process it.
 
 ## Registers
 
