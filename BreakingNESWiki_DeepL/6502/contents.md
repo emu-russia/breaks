@@ -1,10 +1,10 @@
 # Contents
 
 - [Pinout](pads.md)
+- [Clock](clock.md)
 
 ## Top Part
 
-- [Clock](clock.md)
 - [Instruction Register](ir.md)
 - [Extended Cycle Counter](extra_counter.md)
 - [Decoder](decoder.md)
