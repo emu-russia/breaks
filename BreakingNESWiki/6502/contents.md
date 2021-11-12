@@ -13,13 +13,13 @@
 - [Рандомная логика](random_logic.md)
 	- [Управление регистрами](regs_control.md)
 	- [Управление АЛУ](alu_control.md)
-	- [Управление program counter-ом](pc_control.md)
+	- [Управление счетчиком инструкций](pc_control.md)
 	- [Управление шинами](bus_control.md)
 	- [Логика исполнения (dispatch)](dispatch.md)
 	- [Логика установки флагов](flags_control.md)
 	- [Флаги](flags.md)
 	- [Логика условных переходов](branch_logic.md)
-- [Управляющие команды контекстом](context_control.md)
+- [Команды управления контекстом](context_control.md)
 
 ## НИЖНЯЯ ЧАСТЬ
 
