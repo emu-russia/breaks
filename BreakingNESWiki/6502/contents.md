@@ -15,7 +15,7 @@
 	- [Управление АЛУ](alu_control.md)
 	- [Управление счетчиком инструкций (PC)](pc_control.md)
 	- [Управление шинами](bus_control.md)
-	- [Логика исполнения (dispatch)](dispatch.md)
+	- [Логика исполнения](dispatch.md)
 	- [Логика установки флагов](flags_control.md)
 	- [Флаги](flags.md)
 	- [Логика условных переходов](branch_logic.md)
