@@ -20,9 +20,11 @@
 
 ## Логическая схема
 
-![predecode_logic](/BreakingNESWiki/imgstore/predecode_logic.jpg)
+На транзисторной схеме отмечены соответствующие вентили:
 
-TBD: Раздеморганить схему, чтобы была больше похожа на транзисторную.
+![predecode_tran_gates](/BreakingNESWiki/imgstore/predecode_tran_gates.jpg)
+
+![predecode_logic](/BreakingNESWiki/imgstore/predecode_logic.jpg)
 
 Логика предекодирования самоописательная:
 - 2-х тактовые инструкции это: Инструкции с непосредственным операндом ИЛИ все однобайтовые инструкции КРОМЕ инструкций push/pull (задаются маской XXX010X1 + 1XX000X0 + XXXX10X0 - 0XX0XX0X)

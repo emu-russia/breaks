@@ -20,9 +20,11 @@ The pre-decode circuit works closely with the [dispatcher](dispatch.md), all con
 
 ## Logic
 
-![predecode_logic](/BreakingNESWiki/imgstore/predecode_logic.jpg)
+The corresponding gates are marked on the transistor schematic:
 
-TBD: Decouple the circuit to be more like a transistor circuit.
+![predecode_tran_gates](/BreakingNESWiki/imgstore/predecode_tran_gates.jpg)
+
+![predecode_logic](/BreakingNESWiki/imgstore/predecode_logic.jpg)
 
 The predecoding logic is self-descriptive:
 - 2-cycle instructions are: Direct operand instructions OR all single-byte instructions EXCEPT push/pull instructions (specified by mask XXX010X1 + 1XX000X0 + XXXX10X0 - 0XX0XX0X)
