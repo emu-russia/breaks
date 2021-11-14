@@ -1,5 +1,7 @@
 # Extended Сycle Сounter
 
+![6502_locator_extended_counter](/BreakingNESWiki/imgstore/6502_locator_extended_counter.jpg)
+
 The 6502 has 3 cycle counters:
 - The base counter, used for short instructions (Counts T0-T1 cycles)
 - Extended counter (which we will talk about here) used for long instructions (Counts cycles T2-T5)
