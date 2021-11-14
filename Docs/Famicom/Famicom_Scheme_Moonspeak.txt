@@ -3,7 +3,7 @@ CPU 基 板 回 路 図
 CPU board back road map
 
 注 ) 回 路 の 防 練 部 は 1 ( 水 晶 子 ) が 異 は 又 は 背 の チ ュ ー プ 付 の 選 合 で す 。
-な お , 色 の 1 の 合 は 下 記 の 回 加 と 「 な り ま す 。
+な お , 色 の X'tal の 合 は 下 記 の 回 加 と 「 な り ま す 。
 
 Note: 1 ( crystal crystal ) is different from each other or is selected with a back of the tip.
 Note that the color of 1 will be the same as the number of times added below .
