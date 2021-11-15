@@ -44,7 +44,7 @@
 |---|---|
 |![rdy_tran](/BreakingNESWiki/imgstore/rdy_tran.jpg)|![rdy_nice](/BreakingNESWiki/imgstore/rdy_nice.jpg)|
 
-Контакт RDY идёт на внутренний сигнал  `RDY`, а также через цепочку задержки на DLATCH как сигнал `/PRDY` ("Previous Ready").
+Контакт RDY идёт на внутренний сигнал  `RDY`, а также через цепочку задержки из DLATCH как сигнал `/PRDY` ("Previous Ready").
 /PRDY идёт на вход [декодера](decoder.md) `Branch T0`.
 
 Контакт RDY может быть использован для временной приостановки работы процессора, например пока внешнее устройство совершает DMA.
