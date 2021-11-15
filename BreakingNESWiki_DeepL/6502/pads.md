@@ -28,7 +28,7 @@ The study of any integrated circuit begins with the pinout.
 
 From the official datasheet we know that the operating range of Vcc = +5.0 volts +/- 5%.
 
-## Clock frequency generator
+## Clock Generator
 
 The clock signals are described in a separate section (see [clock generator](clock.md)).
 
