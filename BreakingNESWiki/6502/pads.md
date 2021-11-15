@@ -40,9 +40,8 @@
 
 ## RDY
 
-|||
-|---|---|
 |![rdy_tran](/BreakingNESWiki/imgstore/rdy_tran.jpg)|![rdy_nice](/BreakingNESWiki/imgstore/rdy_nice.jpg)|
+|---|---|
 
 Контакт RDY идёт на внутренний сигнал  `RDY`, а также через цепочку задержки из DLATCH как сигнал `/PRDY` ("Previous Ready").
 /PRDY идёт на вход [декодера](decoder.md) `Branch T0`.
@@ -51,9 +50,8 @@
 
 ## SYNC
 
-|||
-|---|---|
 |![sync_tran](/BreakingNESWiki/imgstore/sync_tran.jpg)|![sync_nice](/BreakingNESWiki/imgstore/sync_nice.jpg)|
+|---|---|
 
 Сигнал SYNC выходит с внутреннего сигнала T1 (выборка кода операции).
 
