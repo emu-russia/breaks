@@ -43,7 +43,7 @@ Each contact contains a FF where the interrupt arrival event is stored. The FF v
 |![rdy_tran](/BreakingNESWiki/imgstore/rdy_tran.jpg)|![rdy_nice](/BreakingNESWiki/imgstore/rdy_nice.jpg)|
 |---|---|
 
-The RDY pin goes to the internal `RDY` signal and also through the delay chain from DLATCH as the `/PRDY` ("Previous Ready") signal.
+The RDY pin goes to the internal `RDY` signal and also through the DLATCH delay chain as the `/PRDY` ("Previous Ready") signal.
 /PRDY goes to the [decoder](decoder.md) input `Branch T0`.
 
 The RDY pin can be used to temporarily suspend the processor, e.g. while an external device performs a DMA.
