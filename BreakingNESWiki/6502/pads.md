@@ -63,6 +63,10 @@
 
 ![rw_tran](/BreakingNESWiki/imgstore/rw_tran.jpg)
 
-## Адресная шина и шина данных
+## Адресная шина
 
-См. [Адресная шина](address_bus.md) и [Шина данных](data_bus.md)
+См. [Адресная шина](address_bus.md)
+
+## Шина данных
+
+См. [Шина данных](data_bus.md)
