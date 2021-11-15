@@ -7,7 +7,7 @@ The 6502 has 3 cycle counters:
 - Extended counter (which we will talk about here) used for long instructions (Counts cycles T2-T5)
 - Counter for very long instructions (Counts cycles T6-T7)
 
-One cycle (T) refers to two consecutive half-cycles (PHI2->PHI1) of the processor.
+One cycle (T) refers to two consecutive half-cycles (PHI1 + PHI2) of the processor.
 
 ## Transistor Circuit
 
