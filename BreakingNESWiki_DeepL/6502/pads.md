@@ -38,6 +38,8 @@ The clock signals are described in a separate section (see [clock generator](clo
 
 Each contact contains a FF where the interrupt arrival event is stored. The FF value corresponds to the control signals `/NMIP`, `/IRQP` and `RESP` (the value from FF for contact /RES is output as direct value).
 
+The "P" in the name of the control signals stands for "Pad" (contact).
+
 ## RDY
 
 |![rdy_tran](/BreakingNESWiki/imgstore/rdy_tran.jpg)|![rdy_nice](/BreakingNESWiki/imgstore/rdy_nice.jpg)|
