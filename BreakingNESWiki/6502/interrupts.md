@@ -1,108 +1,52 @@
 # Обработка прерываний
 
-![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Красивая транзисторная схема
+![6502_locator_intr](/BreakingNESWiki/imgstore/6502_locator_intr.jpg)
 
-![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Подробное описание работы всех узлов
+Обработка прерывания включает в себя следующие схемы:
+- Детектирование фронта NMI
+- Счетчик циклов 6-7 для обработки прерываний
+- Установка младщих разрядов адреса вектора прерывания (ADL0-3)
+- Схема выдачи внутреннего сигнала `RESP`
+- Флаг B
 
-![FIXME](/BreakingNESWiki/imgstore/fixme.gif) Логическая схема
+На вход схем приходят три сигнала `/NMIP`, `/IRQP` и `RESP` с соответствующих входных контактов.
 
-<img src="/BreakingNESWiki/imgstore/intr.jpg" width="900px">
+## Обработка NMI
 
-## Verilog
+Транзисторная схема (включает счетчик циклов 6-7 и детектор фронта NMI):
 
-```verilog
-// ------------------
-// Interrupt Control
+![intr_cycles_nmip_tran](/BreakingNESWiki/imgstore/intr_cycles_nmip_tran.jpg)
 
-// This stuff looks complicated, because of old-school style #NMI edge-detection
-// (edge detection is based on cross-coupled RS flip/flops)
+## Установка вектора прерывания и RESP
 
-module InterruptControl (
-    // Outputs
-    Z_ADL0, Z_ADL1, Z_ADL2, DORES, RESP, BRK6E, B_OUT,
-    // Inputs
-    PHI0, _NMI, _IRQ, _RES, _I_OUT, BR2, T0, BRK5, _ready
-);
+Транзисторная схема:
 
-    input PHI0, _NMI, _IRQ, _RES, _I_OUT, BR2, T0, BRK5, _ready;
-    output Z_ADL0, Z_ADL1, Z_ADL2, DORES, RESP, BRK6E, B_OUT;
+![intr_resp_address_tran](/BreakingNESWiki/imgstore/intr_resp_address_tran.jpg)
 
-    wire Z_ADL0, Z_ADL1, Z_ADL2;
-    wire DORES, RESP, BRK6E, B_OUT;
+Схема получения контрольного сигнала `RESP` (который разводится на все остальные внутренности) скомбинирована со схемой установки вектора прерывания для экономии места.
 
-    // Clocks
-    wire PHI1, PHI2;
-    assign PHI1 = ~PHI0;
-    assign PHI2 = PHI0;
+Логическая схема установки адреса прерывания:
 
-    // Input pads flip/flops.
-    reg NMIP_FF, IRQP_FF, RESP_FF;
-    wire _NMIP, _IRQP;      // internal wires.
-    assign _NMIP = NMIP_FF;
-    mylatch IRQP_Latch (_IRQP, IRQP_FF, PHI1);
-    mylatch RESP_Latch (RESP, ~RESP_FF, PHI1);
+![intr_address_logic](/BreakingNESWiki/imgstore/intr_address_logic.jpg)
 
-    // Interrupt cycle 6-7.
-    wire BRK7;  // internal
-    wire Latch1_Out, Latch2_Out;
-    mylatch Latch1 (Latch1_Out, BRK5 & ~_ready, PHI2);
-    mylatch Latch2 (Latch2_Out, ~(BRK5 & Latch2_Out) & ~Latch1_Out, PHI1);
-    mylatch Latch3 (BRK6E, Latch2_Out, PHI2);
-    assign BRK7 = ~(Latch2_Out | BRK5);
+## Флаг B
 
-    // Reset FLIP/FLOP
-    wire Latch4_Out, Latch5_Out; 
-    mylatch Latch4 (Latch4_Out, RESP, PHI2);
-    mylatch Latch5 (
-        Latch5_Out,
-        ~(BRK6E | ~(~Latch4_Out | ~Latch5_Out) ), PHI1);
-    assign DORES = (~Latch4_Out | ~Latch5_Out);     // DO Reset
+Транзисторная схема:
 
-    // NMI Edge Detection
-    // CHECK : Does this stuff actually work at all after synthesize?
-    wire _DONMI;        // internal
-    wire Latch6_Out, Latch7_Out, Latch8_Out, Latch9_Out;
-    wire Latch10_Out, Latch11_Out, Latch12_Out, LastLatch_Out;
-    wire temp;
-    mylatch Latch6 (Latch6_Out, _NMIP, PHI1);
-    mylatch Latch7 (Latch7_Out, BRK7, PHI2);
-    mylatch Latch8 (Latch8_Out, _DONMI, PHI2);
-    mylatch Latch9 (Latch9_Out, BRK6E & ~_ready, PHI1);
-    mylatch Latch10 (Latch10_Out, _DONMI, PHI2);
-    mylatch Latch11 (Latch11_Out, ~Latch10_Out, PHI1);
-    assign temp = ~( Latch6_Out | (~( Latch11_Out | Latch12_Out)) );
-    mylatch Latch12 (Latch12_Out, temp, PHI2);
-    mylatch LastLatch ( LastLatch_Out, ~(~Latch7_Out | _NMIP | temp), PHI1);
-    assign _DONMI = ~( LastLatch_Out | ~(Latch8_Out | Latch9_Out) );        // DO NMI after all
+![intr_b_flag_tran](/BreakingNESWiki/imgstore/intr_b_flag_tran.jpg)
 
-    // Interrupt Check
-    wire IntCheck;      // internal
-    assign IntCheck = 
-        ( (~( ( ~( ~(_I_OUT & ~BRK6E) | _IRQP) ) | ~_DONMI )) | ~(BR2 | T0));
+## Логическая схема
 
-    // B-Flag
-    wire BLatch1_Out, BLatch2_Out;
-    mylatch BLatch1 (BLatch1_Out, ~(BRK6E | BLatch2_Out), PHI1);
-    mylatch BLatch2 (BLatch2_Out, IntCheck & ~BLatch1_Out, PHI2);
-    assign B_OUT = ~( (~(BRK6E | BLatch2_Out)) | DORES);        // no need to do additional checks for RESET
+Комбинированная схема всех компонентов, участвующих в обработке прерываний:
 
-    // Interrupt Vector address lines controls.
-    // 0xFFFA   NMI         (ADL[2:0] = 3'b010)
-    // 0xFFFC   RESET       (ADL[2:0] = 3'b100)
-    // 0xFFFE   IRQ         (ADL[2:0] = 3'b110)
-    wire ADL0_Latch_Out, ADL1_Latch_Out, ADL2_Latch_Out;
-    mylatch ADL0_Latch ( ADL0_Latch_Out, BRK5, PHI2);
-    mylatch ADL1_Latch ( ADL1_Latch_Out, (BRK7 | ~DORES), PHI2);
-    mylatch ADL2_Latch ( ADL2_Latch_Out, ~(BRK7 | _DONMI | DORES), PHI2);
-    assign Z_ADL0 = ~ADL0_Latch_Out;
-    assign Z_ADL1 = ~ADL1_Latch_Out;
-    assign Z_ADL2 = ADL2_Latch_Out;     // watch this carefully
+![intr_logic](/BreakingNESWiki/imgstore/intr_logic.jpg)
 
-always #1 @(PHI2) begin    // Lock pads on input FFs         
-    NMIP_FF <= _NMI;
-    IRQP_FF <= _IRQ;
-    RESP_FF <= _RES;
-end
+Для обработки прерываний дополнительно требуется схема генерации 6 и 7 циклов (так как они не поступают с декодера) (контрольные сигналы `BRK6E` и `BRK7`). Причём контрольный сигнал BRK6E начинается во время PHI2 6-го цикла и заканчивается во время PHI1 7-го цикла. Сделано это для того, чтобы определить фронт (edge) сигнала /NMI.
 
-endmodule   // InterruptControl
-```
+Определением фронта /NMI занимается классическая схема edge detect на базе двух RS-триггеров.
+
+Сигнал /RES дополнительно сохраняется на RESET FLIP/FLOP, так как он требуется для других схем рандомной логики (в частности для особого управления контактом R/W).
+
+Факт прихода любого прерывания отражается на флаге B, выход которого (B_OUT) принудительно заставляет процессор выполнить инструкцию BRK (код операции 0x00). Таким образом разрабочтики унифицировали обработку всех прерываний.
+
+Последняя небольшая схема формирует адрес (или вектор) прерывания (контрольные линии 0/ADL0, 0/ADL1 и 0/ADL2), которые управляют младшими 3 разрядами шины адреса.
