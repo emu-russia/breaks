@@ -8,13 +8,15 @@
 
 PCL:
 
-|![pcl03_tran](/BreakingNESWiki/imgstore/pcl03_tran.jpg)|![pcl47_tran](/BreakingNESWiki/imgstore/pcl47_tran.jpg)|
+|PCL 0-3|PCL 4-7|
 |---|---|
+|![pcl03_tran](/BreakingNESWiki/imgstore/pcl03_tran.jpg)|![pcl47_tran](/BreakingNESWiki/imgstore/pcl47_tran.jpg)|
 
 PCH:
 
-|![pch03_tran](/BreakingNESWiki/imgstore/pch03_tran.jpg)|![pch47_tran](/BreakingNESWiki/imgstore/pch47_tran.jpg)|
+|PCH 0-3|PCH 4-7|
 |---|---|
+|![pch03_tran](/BreakingNESWiki/imgstore/pch03_tran.jpg)|![pch47_tran](/BreakingNESWiki/imgstore/pch47_tran.jpg)|
 
 Схема отмеченная как "patch" на самом деле находится между контрольными выходами `ADL/PCL` и `#1/PC`.
 
