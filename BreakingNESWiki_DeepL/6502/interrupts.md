@@ -41,6 +41,8 @@ Combined circuit of all components involved in interrupt handling:
 
 ![intr_logic](/BreakingNESWiki/imgstore/intr_logic.jpg)
 
+TBD: Split the schematic into its component parts so that it takes up less space.
+
 To handle interrupts an additional circuit is required to generate cycles 6 and 7 (because they do not come from the decoder) (control signals `BRK6E` and `BRK7`). And the control signal BRK6E ("Break Cycle 6 End") starts during PHI2 of cycle 6 and ends during PHI1 of cycle 7. This is done to determine the edge of the /NMI signal.
 
 The detection of the /NMI edge is done by a classic edge detection circuit based on two RS triggers.
