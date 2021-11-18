@@ -20,6 +20,8 @@ Each register bit is based on a trigger, loading and unloading of values on the 
 - SB/S: Load the S register value from the SB bus
 - S/S: Refresh S register, active when SB/S = 0
 
+So the registers can only connect to two buses: SB and ADL.
+
 ## Logic
 
 ![regs_logic](/BreakingNESWiki/imgstore/regs_logic.jpg)
