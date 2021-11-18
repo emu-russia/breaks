@@ -19,7 +19,7 @@ Represents the low 8 least significant bits of PC.
 - PCLC (PCL Carry): Carry from the lowest 8 bits (PC\[0-7\]) to the highest (PC\[8-15\])
 - PCL connects to two buses: ADL and DB
 - PCL/PCL is used when PCL is not connected to any bus (to maintain the current state)
-- Each digit contains two latches (input latch `PCLSx` and output latch `PCLx`) which implement the counter logic
+- Each bit contains two latches (input latch `PCLSx` and output latch `PCLx`) which implement the counter logic
 
 ## PCH
 
