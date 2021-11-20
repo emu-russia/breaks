@@ -45,7 +45,7 @@ Schematics for bits 1, 3, 5, 7:
 
 ![alu_bit_odd_tran](/BreakingNESWiki/imgstore/alu_bit_odd_tran.jpg)
 
-(Показана схема для разряда 1, остальные аналогично)
+(The circuit for bit 1 is shown, the rest are the same)
 
 Schematics for bits 2, 4, 6:
 
