@@ -91,6 +91,10 @@
 
 Схемы для удобства восприятия "положены на бок".
 
+Необозначенный выход подключается к цепочке переносов следующим образом:
+
+![alu_carry3_tran](/BreakingNESWiki/imgstore/alu_carry3_tran.jpg)
+
 Как именно работает эта схема написано в патенте, мне добавить особо нечего. Просто месиво логических вентилей - делай так же и будет работать.
 
 Кроме вычисления переноса для BCD схема также формирует контрольные сигналы `ACR` (перенос АЛУ для флагов) и `DAAH` для схемы BCD коррекции.
@@ -133,6 +137,12 @@
 |Разряд 1|Разряд 2|Разряд 3|Разряд 5|Разряд 6|Разряд 7|
 |---|---|---|---|---|---|
 |![alu_bcd1_tran](/BreakingNESWiki/imgstore/alu_bcd1_tran.jpg)|![alu_bcd2_tran](/BreakingNESWiki/imgstore/alu_bcd2_tran.jpg)|![alu_bcd3_tran](/BreakingNESWiki/imgstore/alu_bcd3_tran.jpg)|![alu_bcd5_tran](/BreakingNESWiki/imgstore/alu_bcd5_tran.jpg)|![alu_bcd6_tran](/BreakingNESWiki/imgstore/alu_bcd6_tran.jpg)|![alu_bcd7_tran](/BreakingNESWiki/imgstore/alu_bcd7_tran.jpg)|
+
+Причем вспомогательные сигналы /ADDx на схемах BCD коррекции получаются из значений разрядов защелки ADD следующим образом:
+
+![alu_add_temp_tran](/BreakingNESWiki/imgstore/alu_add_temp_tran.jpg)
+
+(На примере `/ADD5`)
 
 ## Аккумулятор (AC)
 
