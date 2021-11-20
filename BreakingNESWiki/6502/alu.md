@@ -118,9 +118,9 @@
 
 Схемы для получения вспомогательных сигналов:
 
-|DAAL|DAAH|DSAH|
+|DAAL|DSAL|DSAH|
 |---|---|---|
-|![alu_daal_tran](/BreakingNESWiki/imgstore/alu_daal_tran.jpg)|![alu_daah_tran](/BreakingNESWiki/imgstore/alu_daah_tran.jpg)|![alu_dsah_tran](/BreakingNESWiki/imgstore/alu_dsah_tran.jpg)|
+|![alu_daal_tran](/BreakingNESWiki/imgstore/alu_daal_tran.jpg)|![alu_dsal_tran](/BreakingNESWiki/imgstore/alu_dsal_tran.jpg)|![alu_dsah_tran](/BreakingNESWiki/imgstore/alu_dsah_tran.jpg)|
 
 Схема `DAAH` находится в схеме переноса.
 
