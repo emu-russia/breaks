@@ -61,6 +61,8 @@ The SYNC signal comes from the internal T1 signal (opcode fetch).
 
 ![so_tran](/BreakingNESWiki/imgstore/so_tran.jpg)
 
+The internal signal `SO` is fed to the [flag V](flags.md) input to process the control signal `1/V`.
+
 ## R/W
 
 ![rw_tran](/BreakingNESWiki/imgstore/rw_tran.jpg)

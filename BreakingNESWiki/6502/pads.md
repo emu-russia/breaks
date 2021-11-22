@@ -61,6 +61,8 @@
 
 ![so_tran](/BreakingNESWiki/imgstore/so_tran.jpg)
 
+Внутренний сигнал `SO` подается на вход [флага V](flags.md) для обработки управляющего сигнала `1/V`.
+
 ## R/W
 
 ![rw_tran](/BreakingNESWiki/imgstore/rw_tran.jpg)
