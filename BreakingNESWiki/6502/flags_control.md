@@ -28,3 +28,5 @@
 
 ## Управление флагами
 
+|![flags_control_tran1](/BreakingNESWiki/imgstore/flags_control_tran4.jpg)|![flags_control_tran1](/BreakingNESWiki/imgstore/flags_control_tran5.jpg)|
+|---|---|
