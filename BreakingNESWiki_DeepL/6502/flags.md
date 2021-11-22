@@ -94,4 +94,6 @@ Correspondence of the bits of the DB bus and the flag register P:
 |6|V|
 |7|N|
 
+"Crazy Zebra I Dont Bother Very Nice"
+
 Flag 5 is not used. The DB5 bit is not changed (not connected) when saving the register P to the DB bus. However, the value of the DB5 bit is checked by the `/DBZ` control signal (to compare the value on the DB bus with zero).
