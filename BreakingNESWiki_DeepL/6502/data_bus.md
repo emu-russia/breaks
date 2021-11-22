@@ -21,6 +21,6 @@ The external data bus (pins D0-D7) is also directly connected to the input of th
 
 ## WR Latch
 
-The latch circuit receives a `WR` control signal from the R/W pin. The circuit outputs a control signal `RD` which controls the direction of the external data bus.
+From the R/W control circuit, the latch circuit receives a control signal `WR`. The circuit outputs a control signal `RD` which controls the direction of the external data bus.
 
 ![6502_wr_latch_tran](/BreakingNESWiki/imgstore/6502_wr_latch_tran.jpg)
