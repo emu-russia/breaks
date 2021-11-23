@@ -1,6 +1,6 @@
 # 6502
 
-The 6502 processor was developed by [MOS](../MOS.md). It was based on the architecture of the Motorolla 6800 processor:
+The 6502 processor was developed by [MOS](../MOS.md). It was based on the architecture of the Motorola 6800 processor:
 
 |6502|6800|
 |---|---|
