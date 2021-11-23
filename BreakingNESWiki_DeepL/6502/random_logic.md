@@ -34,4 +34,9 @@ All this is closely coupled to control the lower part of the processor, where it
 
 This section contains a table of auxiliary signals exchanged between all parts of the random logic (for reference):
 
-TBD: Table.
+|Name|From|To|Description|
+|---|---|---|---|
+|BRFW|Branch Logic|PC Control|Branch forward (whenever taken)|
+|/BRTAKEN|Branch Logic|PC Control|Branch taken|
+
+TBD: Finish table.
