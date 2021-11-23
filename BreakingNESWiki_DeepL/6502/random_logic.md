@@ -25,7 +25,7 @@ Below you can see all the function blocks of the random logic:
 In general, the operation of the logic is quite complex (did you think I would say simple again? :smiley:):
 - The execution logic (dispatch) conducts the work of the entire processor. It determines when to terminate an instruction and also controls the PC increment and the cycle counter. Additionally it includes a processor readiness circuit (RDY) which is controlled by the RDY pin.
 - After the execution logic has started executing the next instruction - the code of that instruction as well as the current cycle is fed to the decoder
-- Depending on the results of decoding, the control circuits: registers, ALU, PC and buses issue special [control commands](context_control.md) to the bottom
+- Depending on the results of decoding the control circuitry of registers, ALU, PC and buses give outward to the lower part special [control commands](context_control.md)
 - Additionally, the behavior of the processor is affected by its flags as well as interrupt handling logic. And flags are also affected by executable instructions.
 
 All this is closely coupled to control the lower part of the processor, where its context (registers), ALU and communication with the outside world via buses are located.
