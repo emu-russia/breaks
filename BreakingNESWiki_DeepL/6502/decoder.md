@@ -119,7 +119,7 @@ List:
 |F05  |77 |000101010101010101000   |00000000 |T2     |BRK| |
 |F06  |78 |001001010101010100100   |00100000 |T3     |JSR| |
 |F07  |79 |000101000000101000000   |100XXXX1 |TX     |STA| |
-|F08  |80 |000000010110000101000   |XXX10000 |T2     |BR2| |
+|F08  |80 |000000010110000101000   |XXX10000 |T2     |BR2 (Branch T2)|PC control circuit and PC increment circuit|
 |F09  |81 |000000100100000001000   |XXXX01XX |T2     |zero page| |
 |F10  |82 |000000010100001001000   |XXXX00X1 |T2     |ALU indirect| |
 |F11  |83 |000000001000000001000   |XXXX1XXX |T2     |The entire "right" half of the opcode table (`X8-XF` values). The Push/Pull opcode exclusion operation is additionally applied to this line, right in place| |
@@ -133,7 +133,7 @@ List:
 |G|||||||
 |G01  |91 |000000010110001000010   |XXX100X1 |T4     |OP ind, Y| |
 |G02  |92 |000000001010000000100   |XXX11XXX |T3     |RIGHT ODD| |
-|G03  |93 |000000010110000100100   |XXX10000 |T3     |Branch| |
+|G03  |93 |000000010110000100100   |XXX10000 |T3     |BR3 (Branch T3)|PC control circuit and PC increment circuit|
 |G04  |94 |000100010101010100000   |0X000000 |TX     |BRK RTI| |
 |G05  |95 |001001010101010100000   |00100000 |TX     |JSR| |
 |G06  |96 |000010101001010100000   |01X01100 |TX     |JMP| |
