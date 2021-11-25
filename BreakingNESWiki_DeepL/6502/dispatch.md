@@ -81,7 +81,7 @@ TBD: Trace where the `/ACR` signal comes from. It is supposed to be derived from
 
 ![dispatch_pc_tran](/BreakingNESWiki/imgstore/dispatch_pc_tran.jpg)
 
-The circuit contains 3 "branches" of combinatorial logic, which finally form the [control command](context_control.md) increment PC (`#1/PC`).
+The circuit contains 3 "branches" of combinatorial logic, which finally form the [control command](context_control.md) to increment PC (`#1/PC`).
 
 The circuit also generates the following signals:
 - T1: Processor in cycle T1
