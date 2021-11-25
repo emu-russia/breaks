@@ -77,6 +77,8 @@ All commands are discussed in more detail in their respective sections. The summ
 
 ## PHI2 Pullup
 
-On the left side is a small circuit for the PHI2 pull-up:
+On the left side is a small circuit to pull up PHI2 (which is used by a lot of cutoff transistors, so it must be quite powerful):
 
 ![phi2_pullup_tran](/BreakingNESWiki/imgstore/phi2_pullup_tran.jpg)
+
+It doesn't carry any logical meaning, but it looks cool.
