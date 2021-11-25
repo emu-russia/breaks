@@ -6,7 +6,7 @@ The name has nothing to do with random numbers, it simply reflects the essence o
 
 This logic is the thinking organ of the processor and completely determines its behavior when processing and executing instructions.
 
-From the hardware point of view, the random logic is a "handmade" product of [MOS](.../MOS.md) engineers, which is a mess of transistors and wires.
+From the hardware point of view, the random logic is a "handmade" product of [MOS](.../MOS.md) engineers, which is a mess of transistors and wires. Therefore, it would be more correct to use the name "chaotic logic" instead of random logic.
 
 There is no need to give a full-size transistor circuit here, because it will be easier to master it by component parts.
 
@@ -36,6 +36,8 @@ This section contains a table of auxiliary signals exchanged between all parts o
 
 |Name|From|To|Description|
 |---|---|---|---|
+|BR2|Decoder|PC Control, PC Increment|Branch T2|
+|BR3|Decoder|PC Control, PC Increment|Branch T3|
 |BRFW|Branch Logic|PC Control|Branch forward (whenever taken)|
 |/BRTAKEN|Branch Logic|PC Control|Branch taken|
 
