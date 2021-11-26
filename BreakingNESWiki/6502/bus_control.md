@@ -1,3 +1,76 @@
 # Управление шинами
 
-<img src="/BreakingNESWiki/imgstore/bus_control.jpg" width="900px">
+![6502_locator_bus_control](/BreakingNESWiki/imgstore/6502_locator_bus_control.jpg)
+
+Управление шинами больше всего "раскидано" по поверхности процессора. Проще всего будет вначале дать описание всех [команд управления](context_control.md) шинами, а потом по отдельности рассмотреть соответствующие схемы.
+
+Команды управления шинами:
+
+|Команда|Описание|
+|---|---|
+|Управление внешней шиной адреса||
+|ADH/ABH|Установить старшие 8 разрядов внешней шины адреса, в соотвествии со значением внутренней шины ADH|
+|ADL/ABL|Установить младшине 8 разрядов внешней шины адреса, в соотвествии со значением внутренней шины ADL|
+|Управление внутренними шинами SB, DB и ADH||
+|SB/DB|Соединить шины SB и DB|
+|SB/ADH|Соединить шины SB и ADH|
+|0/ADH0|Принудительно очистить разряд ADH\[0\]|
+|0/ADH17|Принудительно очистить разряды ADH\[1-7\]|
+|Управление внешней шиной данных||
+|DL/ADL|Записать значение DL на шину ADL|
+|DL/ADH|Записать значение DL на шину ADH|
+|DL/DB|Обменять значение DL и шины DB. Направление обмена зависит от режима работы внешней шины данных (чтение/запись)|
+
+## Вспомогательные сигналы
+
+Схема для получения вспомогательных сигналов `NOADL` и `IND`:
+
+![bus_noadl_ind_tran.jpg](/BreakingNESWiki/imgstore/bus_noadl_ind_tran.jpg.jpg)
+
+## Управление внешней шиной адреса
+
+Схема для формирования промежуточного сигнала #ADL/ABL:
+
+![bus_adlabl_tran](/BreakingNESWiki/imgstore/bus_adlabl_tran.jpg)
+
+Схема для формирования промежуточного сигнала #ADH/ABH:
+
+![bus_adhabh_tran1](/BreakingNESWiki/imgstore/bus_adhabh_tran1.jpg)
+
+![bus_adhabh_tran2](/BreakingNESWiki/imgstore/bus_adhabh_tran2.jpg)
+
+Выходные защелки команд управления ADL/ABL и ADH/ABH
+
+![bus_addr_bus_commands_tran](/BreakingNESWiki/imgstore/bus_addr_bus_commands_tran.jpg)
+
+## Управление внутренними шинами SB, DB и ADH
+
+Схема для формирования промежуточного сигнала #SB/DB (также #0/ADH17):
+
+![bus_control_tran1](/BreakingNESWiki/imgstore/bus_control_tran1.jpg)
+
+Схема для формирования промежуточного сигнала #0/ADH0:
+
+![bus_0adh0_tran](/BreakingNESWiki/imgstore/bus_0adh0_tran.jpg)
+
+Схема для формирования промежуточного сигнала #SB/ADH:
+
+![bus_sbadh_tran](/BreakingNESWiki/imgstore/bus_sbadh_tran.jpg)
+
+Выходные защелки команд управления SB/DB, SB/ADH, 0/ADH0, 0/ADH17:
+
+![bus_sb_commands_tran](/BreakingNESWiki/imgstore/bus_sb_commands_tran.jpg)
+
+## Управление внешней шиной данных
+
+Схема для формирования промежуточного сигнала #DL/ADL:
+
+![bus_dladl_tran](/BreakingNESWiki/imgstore/bus_dladl_tran.jpg)
+
+Схема для формирования промежуточного сигнала #DL/DB:
+
+![bus_dldb_tran](/BreakingNESWiki/imgstore/bus_dldb_tran.jpg)
+
+Выходные защелки команд управления DL/ADL, DL/ADH, DL/DB:
+
+![bus_data_latch_commands_tran](/BreakingNESWiki/imgstore/bus_data_latch_commands_tran.jpg)
