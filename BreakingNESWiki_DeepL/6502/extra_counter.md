@@ -5,7 +5,7 @@
 The 6502 has 3 cycle counters:
 - The base counter, used for short instructions (Counts T0-T1 cycles)
 - Extended counter (which we will talk about here) used for long instructions (Counts cycles T2-T5)
-- Counter for very long instructions (Counts cycles T6-T7)
+- Counter for very long instructions (Counts cycles T5-T6)
 
 One cycle (T) refers to two consecutive half-cycles (PHI1 + PHI2) of the processor.
 
