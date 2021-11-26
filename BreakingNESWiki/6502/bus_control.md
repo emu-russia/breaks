@@ -75,7 +75,9 @@
 |---|---|---|
 |![bus_adlabl_tran](/BreakingNESWiki/imgstore/bus_adlabl_tran.jpg)|![bus_adhabh_tran1](/BreakingNESWiki/imgstore/bus_adhabh_tran1.jpg)|![bus_adhabh_tran2](/BreakingNESWiki/imgstore/bus_adhabh_tran2.jpg)|
 
-Выходные защелки команд управления ADL/ABL и ADH/ABH
+Первый кусок схемы #ADH/ABH находится правее флага B, второй кусок находится в схеме формирования адреса прерывания. Сигнал #ADH/ABH соединяется напрямую между этими двумя частями.
+
+Выходные защелки команд управления ADL/ABL и ADH/ABH:
 
 ![bus_addr_bus_commands_tran](/BreakingNESWiki/imgstore/bus_addr_bus_commands_tran.jpg)
 
