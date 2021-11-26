@@ -48,7 +48,7 @@ List:
 |B05  |10 |010110011001100010000   |1100101X |T0     |DEX              |Register control|
 |B06  |11 |011010000001100100000   |1110XX00 |T0     |CPX INX          |Register control|
 |B07  |12 |000101000000100010000   |100XXX1X |TX     |STX TXA TXS|Register control|
-|B08  |13 |010101011010100010000   |1001101X |T0     |TXS                |TXS auxiliary signal|
+|B08  |13 |010101011010100010000   |1001101X |T0     |TXS                |Register control|
 |B09  |14 |011001000000100010000   |101XXX1X |T0     |LDX TAX TSX|Register control|
 |B10  |15 |100110011001100010000   |1100101X |T1     |DEX|Register control|
 |B11  |16 |101010011001100100000   |11101000 |T1     |INX|Register control|
