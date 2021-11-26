@@ -64,15 +64,11 @@
 
 ## Управление внешней шиной адреса
 
-Схема для формирования промежуточного сигнала #ADL/ABL:
+Схемы для формирования промежуточных сигналов:
 
-![bus_adlabl_tran](/BreakingNESWiki/imgstore/bus_adlabl_tran.jpg)
-
-Схема для формирования промежуточного сигнала #ADH/ABH:
-
-![bus_adhabh_tran1](/BreakingNESWiki/imgstore/bus_adhabh_tran1.jpg)
-
-![bus_adhabh_tran2](/BreakingNESWiki/imgstore/bus_adhabh_tran2.jpg)
+|#ADL/ABL|#ADH/ABH (1)|#ADH/ABH (2)|
+|---|---|---|
+|![bus_adlabl_tran](/BreakingNESWiki/imgstore/bus_adlabl_tran.jpg)|![bus_adhabh_tran1](/BreakingNESWiki/imgstore/bus_adhabh_tran1.jpg)|![bus_adhabh_tran2](/BreakingNESWiki/imgstore/bus_adhabh_tran2.jpg)|
 
 Выходные защелки команд управления ADL/ABL и ADH/ABH
 
