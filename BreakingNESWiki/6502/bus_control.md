@@ -95,19 +95,13 @@
 
 ## Управление внешней шиной данных
 
-Схема для формирования промежуточного сигнала #DL/ADL:
+Схемы для формирования промежуточных сигналов:
 
-![bus_dladl_tran](/BreakingNESWiki/imgstore/bus_dladl_tran.jpg)
+|#DL/ADL|#DL/DB (1)|#DL/DB (2)|
+|---|---|---|
+|![bus_dladl_tran](/BreakingNESWiki/imgstore/bus_dladl_tran.jpg)|![bus_dldb_tran](/BreakingNESWiki/imgstore/bus_dldb_tran.jpg)|![bus_dldb_tran2](/BreakingNESWiki/imgstore/bus_dldb_tran2.jpg)|
 
-Схема для формирования промежуточного сигнала #DL/DB:
-
-![bus_dldb_tran](/BreakingNESWiki/imgstore/bus_dldb_tran.jpg)
-
-(Кусок рядом со схемой `ACR Latch`)
-
-![bus_dldb_tran2](/BreakingNESWiki/imgstore/bus_dldb_tran2.jpg)
-
-(Кусок в схеме управления АЛУ. Сигнал #DL/DB соединяется напрямую между этими двумя частями)
+Первый кусок схемы #DL/DB находится рядом с ACR Latch, второй кусок прямо внутри схемы управления АЛУ. Сигнал #DL/DB соединяется напрямую между этими двумя частями.
 
 Выходные защелки команд управления DL/ADL, DL/ADH, DL/DB:
 
