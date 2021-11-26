@@ -39,6 +39,17 @@ This section contains a table of auxiliary signals exchanged between all parts o
 |BR2|Decoder|PC Control, PC Increment|Branch T2|
 |BR3|Decoder|PC Control, PC Increment|Branch T3|
 |BRFW|Branch Logic|PC Control|Branch forward (whenever taken)|
+|BRK5|Decoder|Interrupts, Regs Control|Used to obtain the `STKOP` signal and also goes into the [interrupt handling](interrupts.md) circuit|
 |/BRTAKEN|Branch Logic|PC Control|Branch taken|
+|JSR2|Decoder|Bus Control|To obtain the `JSXY` signal and other bus control circuits|
+|/JSR2|Bus Control|Regs Control|Intermediate signal, JSR2 inversion|
+|RTI/5|Decoder|Regs Control, ALU Control|Used to obtain `STKOP` and `NOADL` signals|
+|SBXY|Regs Control|Bus Control|Intermediate signal|
+|STK2|Decoder|Regs Control, ALU Control|Auxiliary signal from decoder (X35)|
+|STKOP|Regs Control|ALU Control|Intermediate signal|
+|STOR|Dispatcher|Regs Control, ALU Control, RW Control|Intermediate signal|
+|STXY|Regs Control|Bus Control|Intermediate signal|
+
+Do not look for any sacred meaning in the auxiliary signals - just take them as intermediate values of combinatorial logic.
 
 TBD: Finish table.
