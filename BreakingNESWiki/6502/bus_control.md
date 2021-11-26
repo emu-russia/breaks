@@ -25,7 +25,7 @@
 
 Схема для получения вспомогательных сигналов `NOADL` и `IND`:
 
-![bus_noadl_ind_tran.jpg](/BreakingNESWiki/imgstore/bus_noadl_ind_tran.jpg.jpg)
+![bus_noadl_ind_tran](/BreakingNESWiki/imgstore/bus_noadl_ind_tran.jpg)
 
 ## Управление внешней шиной адреса
 
