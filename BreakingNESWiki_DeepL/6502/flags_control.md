@@ -55,7 +55,7 @@ Input signals:
 |X110|see above|
 |!POUT|see above|
 |BIT1|see above|
-|ZTST|TBD: Что это и откуда?|
+|ZTST|Comes from SB/DB [bus control circuitry](bus_control.md)|
 |/ARIT|see above|
 |SR|Shift instruction from [ALU control logic](alu_control.md)|
 |/ready|Global internal processor readiness signal|
