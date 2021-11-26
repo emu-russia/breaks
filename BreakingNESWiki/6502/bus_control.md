@@ -27,6 +27,38 @@
 
 ![bus_noadl_ind_tran](/BreakingNESWiki/imgstore/bus_noadl_ind_tran.jpg)
 
+Остальные вспомогательные и промежуточные сигналы:
+
+|Сигнал|Описание|
+|---|---|
+|RTS/5| |
+|RTI/5| |
+|BR0| |
+|T5| |
+|T6| |
+|PGX| |
+|JSR/5| |
+|T2| |
+|!PCH/PCH| |
+|SBA|Сигнал выход из схемы получения сигнала #SB/ADH|
+|/ready| |
+|BR3| |
+|0/ADL0| |
+|#SB/AC| |
+|SBXY| |
+|JSXY| |
+|AND| |
+|T1| |
+|BR2| |
+|ZTST| |
+|BR3| |
+|ACRL2| |
+|T0| |
+|ABS/2| |
+|JMP/4| |
+|IMPL| |
+|DL/PCH| |
+
 ## Управление внешней шиной адреса
 
 Схема для формирования промежуточного сигнала #ADL/ABL:
@@ -70,6 +102,12 @@
 Схема для формирования промежуточного сигнала #DL/DB:
 
 ![bus_dldb_tran](/BreakingNESWiki/imgstore/bus_dldb_tran.jpg)
+
+(Кусок рядом со схемой `ACR Latch`)
+
+![bus_dldb_tran2](/BreakingNESWiki/imgstore/bus_dldb_tran2.jpg)
+
+(Кусок в схеме управления АЛУ. Сигнал #DL/DB соединяется напрямую между этими двумя частями)
 
 Выходные защелки команд управления DL/ADL, DL/ADH, DL/DB:
 
