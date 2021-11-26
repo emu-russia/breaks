@@ -80,23 +80,17 @@
 
 ## Управление внутренними шинами SB, DB и ADH
 
-Схема для формирования промежуточного сигнала #SB/DB (также #0/ADH17):
+Схемы для формирования промежуточных сигналов (для 0/ADH0 получается сразу управляющая команда):
 
-![bus_control_tran1](/BreakingNESWiki/imgstore/bus_control_tran1.jpg)
-
-Схема для формирования команды 0/ADH0:
-
-![bus_0adh0_tran](/BreakingNESWiki/imgstore/bus_0adh0_tran.jpg)
-
-Схема для формирования промежуточного сигнала #SB/ADH:
-
-![bus_sbadh_tran](/BreakingNESWiki/imgstore/bus_sbadh_tran.jpg)
+|#SB/DB (также #0/ADH17)|0/ADH0|#SB/ADH|
+|---|---|---|
+|![bus_control_tran1](/BreakingNESWiki/imgstore/bus_control_tran1.jpg)|![bus_0adh0_tran](/BreakingNESWiki/imgstore/bus_0adh0_tran.jpg)|![bus_sbadh_tran](/BreakingNESWiki/imgstore/bus_sbadh_tran.jpg)|
 
 Выходные защелки команд управления SB/DB, SB/ADH, 0/ADH17:
 
 ![bus_sb_commands_tran](/BreakingNESWiki/imgstore/bus_sb_commands_tran.jpg)
 
-(Схема получения команды 0/ADH0 выше)
+(Схема получения команды и защелка 0/ADH0 выше)
 
 ## Управление внешней шиной данных
 
