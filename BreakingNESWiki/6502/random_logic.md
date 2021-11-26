@@ -39,6 +39,17 @@
 |BR2|Decoder|PC Control, PC Increment|Branch T2|
 |BR3|Decoder|PC Control, PC Increment|Branch T3|
 |BRFW|Branch Logic|PC Control|Условный переход вперед|
+|BRK5|Decoder|Interrupts, Regs Control|Используется для получения сигнала `STKOP`, а также уходит в схему [обработки прерываний](interrupts.md)|
 |/BRTAKEN|Branch Logic|PC Control|Выполнить условный переход|
+|JSR2|Decoder|Bus Control|Для получения сигнала `JSXY` и других схем управления шинами|
+|/JSR2|Bus Control|Regs Control|Промежуточный сигнал, инверсия JSR2|
+|RTI/5|Decoder|Regs Control, ALU Control|Используется для получения сигналов `STKOP` и `NOADL`|
+|SBXY|Regs Control|Bus Control|Промежуточный сигнал|
+|STK2|Decoder|Regs Control, ALU Control|Вспомогательный сигнал с декодера (X35)|
+|STKOP|Regs Control|ALU Control|Промежуточный сигнал|
+|STOR|Dispatcher|Regs Control, ALU Control, RW Control|Промежуточный сигнал|
+|STXY|Regs Control|Bus Control|Промежуточный сигнал|
+
+Во вспомогательных сигналах не стоить искать какой-то сакральный смысл - воcпринимайте их просто как промежуточные значения комбинаторной логики.
 
 TBD: Закончить таблицу.
