@@ -24,7 +24,7 @@ Outputs:
 |---|---|
 |SBXY|Intermediate signal for [bus control circuitry](bus_control.md)|
 |STXY|Intermediate signal for bus control circuitry|
-|STKOP|Intermediate signal for the [ALU control circuit](alu_control.md)|
+|STKOP|Intermediate signal ("Stack Operation") for the [ALU control circuit](alu_control.md)|
 |#Y/SB|Intermediate signal to latch, to obtain a Y/SB command|
 |#X/SB|Intermediate signal to latch, to obtain a X/SB command|
 |#SB/X|Intermediate signal to latch, to obtain a SB/X command|
