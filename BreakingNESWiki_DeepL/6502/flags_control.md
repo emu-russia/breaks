@@ -64,7 +64,7 @@ Input signals:
 |/CSD|see above|
 |CLV|see above|
 
-[Flag](flags.md) control output signals:
+Output [Flag](flags.md) control signals:
 
 |Signal|Flag|Purpose|
 |---|---|---|
