@@ -4,9 +4,9 @@
 
 ## Промежуточные сигналы
 
-|/ROR|#AC/DB, SR|#SB/AC, #AC/SB, AND|CSET|
+|/ROR|SR|AND|CSET|
 |---|---|---|---|
-|![alu_setup_ror_tran](/BreakingNESWiki/imgstore/alu_setup_ror_tran.jpg)|![alu_setup_acdb_sr_tran](/BreakingNESWiki/imgstore/alu_setup_acdb_sr_tran.jpg)|![alu_setup_acsb_and_tran](/BreakingNESWiki/imgstore/alu_setup_acsb_and_tran.jpg)|![alu_setup_cset_tran](/BreakingNESWiki/imgstore/alu_setup_cset_tran.jpg)|
+|![alu_setup_ror_tran](/BreakingNESWiki/imgstore/alu_setup_ror_tran.jpg)|![alu_setup_sr_tran](/BreakingNESWiki/imgstore/alu_setup_sr_tran.jpg)|![alu_setup_and_tran](/BreakingNESWiki/imgstore/alu_setup_and_tran.jpg)|![alu_setup_cset_tran](/BreakingNESWiki/imgstore/alu_setup_cset_tran.jpg)|
 
 ## Управление АЛУ (основная часть)
 

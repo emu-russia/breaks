@@ -11,6 +11,10 @@ Bus control commands:
 |External address bus control||
 |ADH/ABH|Set the high 8 bits of the external address bus, in accordance with the value of the internal bus ADH|
 |ADL/ABL|Set the low-order 8 bits of the external address bus, in accordance with the value of the internal bus ADL|
+|Соединение АЛУ с шинами SB, DB||
+|AC/DB|Place the AC value on the DB bus|
+|SB/AC|Place the value from the SB bus/BCD correction circuit into the accumulator|
+|AC/SB|Place the AC value on the SB bus|
 |Control of the SB, DB and ADH internal buses||
 |SB/DB|Connect the SB and DB buses|
 |SB/ADH|Connect SB and ADH buses|
@@ -54,10 +58,12 @@ The other auxiliary and intermediate signals that can be found in the schematics
 |/ready|Global internal processor readiness signal|
 |BR3|Decoder X93|
 |0/ADL0|Comes from the interrupt vector setting circuit|
-|#SB/AC|Comes from the [ALU control](alu_control.md) SB/AC circuit|
+|AND|Comes from the [ALU control](alu_control.md) circuit|
+|STA|Decoder X79|
+|STOR|Intermediate signal from the dispatcher|
 |SBXY|Comes from a register control circuit (not to be confused with STXY)|
 |AND|Comes from the ALU control circuit|
-|T1|Comes from the PC increment circuit (see [dispatcher](dispatcher.md))|
+|T1|Comes from the PC increment circuit (see [dispatcher](dispatch.md))|
 |BR2|Decoder X80|
 |ZTST|Output signal for [flags control](flags_control.md) from SB/DB circuit|
 |ACRL2|One of the ACR Latch outputs|
@@ -86,6 +92,18 @@ The first piece of the #ADH/ABH circuit is to the right of flag B, the second pi
 The output latches of the ADL/ABL and ADH/ABH control commands:
 
 ![bus_addr_bus_commands_tran](/BreakingNESWiki/imgstore/bus_addr_bus_commands_tran.jpg)
+
+## ALU Connection to SB, DB
+
+Circuits for the generation of intermediate signals:
+
+|#AC/DB|#SB/AC, #AC/SB|
+|---|---|
+|![bus_acdb_tran](/BreakingNESWiki/imgstore/bus_acdb_tran.jpg)|![bus_acsb_tran](/BreakingNESWiki/imgstore/bus_acsb_tran.jpg)|
+
+AC/DB, SB/AC, AC/SB control command output latches:
+
+![bus_alu_commands_tran](/BreakingNESWiki/imgstore/bus_alu_commands_tran.jpg)
 
 ## SB, DB, ADH Control
 
