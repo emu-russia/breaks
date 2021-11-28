@@ -36,18 +36,38 @@
 
 |Название|Откуда|Куда|Описание|
 |---|---|---|---|
+|ACRL1|Dispatch|Dispatch|Один из выходов ACR Latch|
+|ACRL2|Dispatch|Bus Control|Один из выходов ACR Latch|
+|AND|ALU Control|Bus Control|Используется при формировании команды АЛУ `ANDS`|
 |BR2|Decoder|PC Control, PC Increment|Branch T2|
 |BR3|Decoder|PC Control, PC Increment|Branch T3|
 |BRFW|Branch Logic, ALU Control|PC Control|Условный переход вперед|
 |BRK5|Decoder|Interrupts, Regs Control|Используется для получения сигнала `STKOP`, а также уходит в схему [обработки прерываний](interrupts.md)|
+|BRK6E|Interrupts|ALU Control, Bus Control|BRK6 (цикл 6 выполнения процедуры прерывания), во время полутакта PHI2|
 |/BRTAKEN|Branch Logic|PC Control|Выполнить условный переход|
+|C_OUT|Flags|ALU Control|Значение флага C|
+|/C_OUT|Flags|ALU Control|Значение флага C (инвертированное)|
+|DL/PCH|PC Control|Bus Control|Промежуточный сигнал|
+|D_OUT|Flags|ALU Control|Значение флага D|
 |JSR2|Decoder|Bus Control|Для получения сигнала `JSXY` и других схем управления шинами|
 |/JSR2|Bus Control|Regs Control|Промежуточный сигнал, инверсия JSR2|
+|IMPL|Decoder|ALU Control|Декодер X128. Дополнительно модифицирован сигналами Push/Pull (X129) и IR0.|
+|INC_SB|ALU Control|Bus Control|Промежуточный сигнал ("Increment SB")|
+|NOADL|Bus Control|ALU Control|Промежуточный сигнал ("No ADL")|
+|PC/DB|PC Control|Dispatch|Выходной вспомогательный сигнал для схемы RW Control, которая входит в состав диспатчера|
+|PGX|Bus Control|ALU Control|Промежуточный сигнал ("Page X")|
+|/ready|Dispatch|All|Глобальный внутренний сигнал готовности процессора|
 |RTI/5|Decoder|Regs Control, ALU Control|Используется для получения сигналов `STKOP` и `NOADL`|
-|SBXY|Regs Control|Bus Control|Промежуточный сигнал|
+|SBXY|Regs Control|Bus Control|Промежуточный сигнал ("SB Bus X,Y")|
 |STK2|Decoder|Regs Control, ALU Control|Вспомогательный сигнал с декодера (X35)|
-|STKOP|Regs Control|ALU Control|Промежуточный сигнал|
+|STKOP|Regs Control|ALU Control|Промежуточный сигнал ("Stack Operation")|
 |STOR|Dispatcher|Regs Control, ALU Control, RW Control|Промежуточный сигнал|
-|STXY|Regs Control|Bus Control|Промежуточный сигнал|
+|STXY|Regs Control|Bus Control|Промежуточный сигнал ("Store X,Y")|
+|T0|Short Cycle Counter|All|Процессор в цикле T0 выполнения инструкции|
+|T1|PC Control|All|Процессор в цикле T1|
+|T2|Decoder|All|Процессор в цикле T2|
+|T5|Long Cycle Counter|All|Процессор в цикле T5|
+|T6|Long Cycle Counter|All|Процессор в цикле T6|
+|ZTST|Bus Control|Flags Control|Промежуточный сигнал ("Z Test")|
 
 Во вспомогательных сигналах не стоить искать какой-то сакральный смысл - воcпринимайте их просто как промежуточные значения комбинаторной логики.
