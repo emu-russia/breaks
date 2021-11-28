@@ -62,7 +62,6 @@ The other auxiliary and intermediate signals that can be found in the schematics
 |STA|Decoder X79|
 |STOR|Intermediate signal from the dispatcher|
 |SBXY|Comes from a register control circuit (not to be confused with STXY)|
-|AND|Comes from the ALU control circuit|
 |T1|Comes from the PC increment circuit (see [dispatcher](dispatch.md))|
 |BR2|Decoder X80|
 |ZTST|Output signal for [flags control](flags_control.md) from SB/DB circuit|
