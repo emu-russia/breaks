@@ -10,7 +10,7 @@
 |---|---|---|---|
 |![alu_setup_ror_tran](/BreakingNESWiki/imgstore/alu_setup_ror_tran.jpg)|![alu_setup_sr_tran](/BreakingNESWiki/imgstore/alu_setup_sr_tran.jpg)|![alu_setup_and_tran](/BreakingNESWiki/imgstore/alu_setup_and_tran.jpg)|![alu_setup_cset_tran](/BreakingNESWiki/imgstore/alu_setup_cset_tran.jpg)|
 
-Таблица вспомогательных и промежуточных сигналов:
+Таблица вспомогательных и промежуточных сигналов, которые встречаются далее на схемах:
 
 |Сигнал|Описание|
 |---|---|
