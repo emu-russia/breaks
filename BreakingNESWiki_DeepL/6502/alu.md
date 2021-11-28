@@ -58,7 +58,7 @@ Anatomically, the left side deals with logical operations, the right side is the
 Control signals for ALU operations:
 - ORS: Logical OR operation (AI | BI)
 - ANDS: Logical AND operation (AI & BI)
-- XORS: Logical XOR operation (AI ^ BI)
+- EORS: Logical XOR operation (AI ^ BI)
 - SRS: Shift Right. For this the result of the current `nand` operation is stored as the result of the previous bit.  
 - SUMS: Summation (AI + BI)
 
