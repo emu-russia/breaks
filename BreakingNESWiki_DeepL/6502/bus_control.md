@@ -11,7 +11,7 @@ Bus control commands:
 |External address bus control||
 |ADH/ABH|Set the high 8 bits of the external address bus, in accordance with the value of the internal bus ADH|
 |ADL/ABL|Set the low-order 8 bits of the external address bus, in accordance with the value of the internal bus ADL|
-|Соединение АЛУ с шинами SB, DB||
+|ALU connection to SB, DB buses||
 |AC/DB|Place the AC value on the DB bus|
 |SB/AC|Place the value from the SB bus/BCD correction circuit into the accumulator|
 |AC/SB|Place the AC value on the SB bus|
