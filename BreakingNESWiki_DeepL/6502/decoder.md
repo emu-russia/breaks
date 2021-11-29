@@ -107,29 +107,29 @@ List:
 |E13  |66 |011001011001100100000   |10101000 |T0     |TAY|Bus Control|
 |E14  |67 |010000011001010010000   |0XX0101X |T0     |ASL ROL LSR ROR|Bus Control|
 |E15  |68 |011001011001100010000   |1010101X |T0     |TAX|Bus Control|
-|E16  |69 |011001100001010100000   |0010X100 |T0     |BIT0|ALU Control|
-|E17  |70 |011001000000011000000   |001XXXX1 |T0     |AND0|ALU Control|
+|E16  |69 |011001100001010100000   |0010X100 |T0     |BIT0|ALU Control (AND)|
+|E17  |70 |011001000000011000000   |001XXXX1 |T0     |AND0|ALU Control (AND)|
 |E18  |71 |000000001010000000010   |XXX11XXX |T4     |OP abs,XY|Bus Control (ADL/ABL)|
 |E19  |72 |000000010110001000001   |XXX100X1 |T5     |OP ind,Y|Bus Control (ADL/ABL)|
 |F|||||||
-|F01  |73 |010000010110000100000   |XXX10000 |T0 |<-  Branch, additionally affected by the /PRDY line (from the RDY contact), immediately on the spot| |
-|F02  |74 |000110011001010101000   |01001000 |T2     |PHA| |
-|F03  |75 |010010011001010010000   |01X0101X |T0     |LSR ROR| |
-|F04  |76 |000010000000010010000   |01XXXX1X |TX     |LSR ROR| |
-|F05  |77 |000101010101010101000   |00000000 |T2     |BRK| |
-|F06  |78 |001001010101010100100   |00100000 |T3     |JSR| |
-|F07  |79 |000101000000101000000   |100XXXX1 |TX     |STA| |
+|F01  |73 |010000010110000100000   |XXX10000 |T0 |<-  Branch, additionally affected by the /PRDY line (from the RDY contact), immediately on the spot|Auxiliary signal BR0|
+|F02  |74 |000110011001010101000   |01001000 |T2     |PHA|Bus Control (AC/DB)|
+|F03  |75 |010010011001010010000   |01X0101X |T0     |LSR ROR|ALU Control (SR)|
+|F04  |76 |000010000000010010000   |01XXXX1X |TX     |LSR ROR|ALU Control (SR)|
+|F05  |77 |000101010101010101000   |00000000 |T2     |BRK|PC Control|
+|F06  |78 |001001010101010100100   |00100000 |T3     |JSR|PC Control|
+|F07  |79 |000101000000101000000   |100XXXX1 |TX     |STA|Auxiliary signal STA|
 |F08  |80 |000000010110000101000   |XXX10000 |T2     |BR2 (Branch T2)|PC control circuit and PC increment circuit|
-|F09  |81 |000000100100000001000   |XXXX01XX |T2     |zero page| |
-|F10  |82 |000000010100001001000   |XXXX00X1 |T2     |ALU indirect| |
-|F11  |83 |000000001000000001000   |XXXX1XXX |T2     |The entire "right" half of the opcode table (`X8-XF` values). The Push/Pull opcode exclusion operation is additionally applied to this line, right in place| |
-|F12  |84 |001010010101010100001   |01100000 |T5     |RTS| |
-|F13  |85 |000000000000000000010   |XXXXXXXX |T4     |T4 ANY| |
-|F14  |86 |000000000000000000100   |XXXXXXXX |T3     |T3 ANY| |
-|F15  |87 |010100010101010100000   |0X000000 |T0     |BRK RTI| |
-|F16  |88 |010010101001010100000   |01X01100 |T0     |JMP| |
-|F17  |89 |000000010101001000001   |XXX000X1 |T5     |OP X, ind| |
-|F18  |90 |000000001000000000100   |XXXX1XXX |T3     |The entire "right" half of the opcode table (`X8-XF` values). The Push/Pull opcode exclusion operation is additionally applied to this line, right in place| |
+|F09  |81 |000000100100000001000   |XXXX01XX |T2     |zero page|Bus Control (DL/ADL)|
+|F10  |82 |000000010100001001000   |XXXX00X1 |T2     |ALU indirect|Bus Control (DL/ADL)|
+|F11  |83 |000000001000000001000   |XXXX1XXX |T2     |The entire "right" half of the opcode table (`X8-XF` values). The Push/Pull opcode exclusion operation is additionally applied to this line, right in place|Auxiliary signal ABS/2|
+|F12  |84 |001010010101010100001   |01100000 |T5     |RTS|Auxiliary signal RTS/5|
+|F13  |85 |000000000000000000010   |XXXXXXXX |T4     |T4 ANY|Bus Control (NOADL)|
+|F14  |86 |000000000000000000100   |XXXXXXXX |T3     |T3 ANY|Bus Control (NOADL)|
+|F15  |87 |010100010101010100000   |0X000000 |T0     |BRK RTI|Bus Control (NOADL)|
+|F16  |88 |010010101001010100000   |01X01100 |T0     |JMP|Bus Control (IND)|
+|F17  |89 |000000010101001000001   |XXX000X1 |T5     |OP X, ind|Bus Control (NOADL, IND)|
+|F18  |90 |000000001000000000100   |XXXX1XXX |T3     |The entire "right" half of the opcode table (`X8-XF` values). The Push/Pull opcode exclusion operation is additionally applied to this line, right in place|Bus Control (IND)|
 |G|||||||
 |G01  |91 |000000010110001000010   |XXX100X1 |T4     |OP ind, Y| |
 |G02  |92 |000000001010000000100   |XXX11XXX |T3     |RIGHT ODD| |
