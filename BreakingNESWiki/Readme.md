@@ -1,7 +1,7 @@
 # Breaking NES Wiki
 
 Данный ресурс содержит исчерпывающую информацию по трём микросхемам:
-- [MOS](MOS.md) [6502](6502/Readme.md)-
+- [MOS](MOS.md) [6502](6502/Readme.md)
 - [Ricoh](Ricoh.md) 2A03 
 - Ricoh 2C02
 
