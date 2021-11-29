@@ -131,14 +131,14 @@ List:
 |F17  |89 |000000010101001000001   |XXX000X1 |T5     |OP X, ind|Bus Control (NOADL, IND)|
 |F18  |90 |000000001000000000100   |XXXX1XXX |T3     |The entire "right" half of the opcode table (`X8-XF` values). The Push/Pull opcode exclusion operation is additionally applied to this line, right in place|Bus Control (IND)|
 |G|||||||
-|G01  |91 |000000010110001000010   |XXX100X1 |T4     |OP ind, Y| |
-|G02  |92 |000000001010000000100   |XXX11XXX |T3     |RIGHT ODD| |
+|G01  |91 |000000010110001000010   |XXX100X1 |T4     |OP ind, Y|Cycle Counter Reset, Bus Control (IND)|
+|G02  |92 |000000001010000000100   |XXX11XXX |T3     |RIGHT ODD|Cycle Counter Reset|
 |G03  |93 |000000010110000100100   |XXX10000 |T3     |BR3 (Branch T3)|PC control circuit and PC increment circuit|
-|G04  |94 |000100010101010100000   |0X000000 |TX     |BRK RTI| |
-|G05  |95 |001001010101010100000   |00100000 |TX     |JSR| |
-|G06  |96 |000010101001010100000   |01X01100 |TX     |JMP| |
+|G04  |94 |000100010101010100000   |0X000000 |TX     |BRK RTI|PC Control (JB)|
+|G05  |95 |001001010101010100000   |00100000 |TX     |JSR|PC Control (JB)|
+|G06  |96 |000010101001010100000   |01X01100 |TX     |JMP|PC Control (JB), ENDX (Long instruction completion)|
 |P/P |129 |000000011001010100000   |0XX01000 |TX |<-  Push/pull opcodes, used as an exclusive for F11 & F18||
-|G07  |97 |000101000000100000000   |100XXXXX |TX     |STORE| |
+|G07  |97 |000101000000100000000   |100XXXXX |TX     |STORE|For RW Control and to obtain an auxiliary STOR signal|
 |G08  |98 |000101010101010100010   |00000000 |T4     |BRK|RW Control, !POUT (flags control)|
 |G09  |99 |000101011001010101000   |00001000 |T2     |PHP|!POUT (flags control)|
 |G10 |100 |000100011001010101000   |0X001000 |T2     |Push|RW Control, ENDX (Long instruction completion)|
