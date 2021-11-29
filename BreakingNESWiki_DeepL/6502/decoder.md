@@ -25,7 +25,7 @@ That is, the decoder outputs are not in inverse logic (as is usual), but in dire
 Additional logical operations are applied to some decoder outputs, which although territorially are in the decoder area, are actually part of [random logic](random_logic.md). Most likely this logic got into the decoder simply because it was more convenient to split the connections that way.
 
 List:
-- Internal Push/Pull line: a special (129th) line that does not extend beyond the decoder. It is used to "cut off" Push/pull instructions when selecting instructions. It is used in three lines: 83, 90, and 128.
+- Internal Push/Pull line: a special (129th) line that does not extend beyond the decoder. It is used to "cut off" Push/pull instructions when selecting instructions. It is used in three lines: 83, 90, and 128. Appears on the schematic in duplicate, for different parts of the decoder.
 - /PRDY: this line goes to decoder line 73 (Branch T0)
 - IR0: normally the common signal IR01 is used to check the two lowest bits of the operation code, but exclusively for the 128th line (IMPL), IR0 is used (IR0 is not included in the mask for the table below).
 
@@ -137,14 +137,14 @@ List:
 |G04  |94 |000100010101010100000   |0X000000 |TX     |BRK RTI| |
 |G05  |95 |001001010101010100000   |00100000 |TX     |JSR| |
 |G06  |96 |000010101001010100000   |01X01100 |TX     |JMP| |
-|P/P |129 |000000011001010100000   |0XX01000 |TX |<-  Push/pull opcodes, used as an exclusive for F11 & F18| |
+|P/P |129 |000000011001010100000   |0XX01000 |TX |<-  Push/pull opcodes, used as an exclusive for F11 & F18||
 |G07  |97 |000101000000100000000   |100XXXXX |TX     |STORE| |
 |G08  |98 |000101010101010100010   |00000000 |T4     |BRK|RW Control, !POUT (flags control)|
 |G09  |99 |000101011001010101000   |00001000 |T2     |PHP|!POUT (flags control)|
-|G10 |100 |000100011001010101000   |0X001000 |T2     |Push| |
-|G11 |101 |000010101001010100010   |01X01100 |T4     |JMP ind| |
-|G12 |102 |000010010101010100001   |01X00000 |T5     |RTI RTS| |
-|G13 |103 |001001010101010100001   |00100000 |T5     |JSR| |
+|G10 |100 |000100011001010101000   |0X001000 |T2     |Push|RW Control, ENDX (Long instruction completion)|
+|G11 |101 |000010101001010100010   |01X01100 |T4     |JMP ind|ENDX, Bus Control; Auxiliary signal JMP/4|
+|G12 |102 |000010010101010100001   |01X00000 |T5     |RTI RTS|ENDX (Long instruction completion)|
+|G13 |103 |001001010101010100001   |00100000 |T5     |JSR|ENDX (Long instruction completion)|
 |H|||||||
 |H01 |104 |000110101001010101000   |01001100 |T2     |JMP abs|ENDX (Long instruction completion)|
 |H02 |105 |001000011001010100100   |0X101000 |T3     |Pull|ENDX (Long instruction completion)|
@@ -163,16 +163,16 @@ List:
 |H15 |118 |100001011001010010000   |00X0101X |T1     |ASL ROL|flags control|
 |H16 |119 |100010000101100100000   |11X00X00 |T1     |CPY CPX zpg/immed|flags control|
 |K|||||||
-|P/P |129 |000000011001010100000   |0XX01000 |TX     |<-  Push/pull opcodes, used as an exclusive for K09| |
-|K01 |120 |010010011010100100000   |11X11000 |T0     |CLD SED| |
-|K02 |121 |000001000000000000000   |X0XXXXXX |TX     |/IR6| |
-|K03 |122 |000000101001000000100   |XXX011XX |T3     |Memory absolute| |
-|K04 |123 |000000100101000001000   |XXX001XX |T2     |Memory zero page| |
-|K05 |124 |000000010100001000001   |XXXX00X1 |T5     |Memory indirect| |
-|K06 |125 |000000001010000000010   |XXX11XXX |T4     |Memory absolute X/Y| |
-|K07 |126 |000000000000010000000   |0XXXXXXX |TX     |/IR7| |
-|K08 |127 |001001011010100100000   |10111000 |TX     |CLV| |
-|K09 |128 |000000011000000000000   |XXXX10X0 |TX     |IMPL. The Push/Pull opcode exclusion operation is additionally applied to this line, right on the spot. Also, the mask for this line does not take into account the `& ~IR0` operation| |
+|P/P |129 |000000011001010100000   |0XX01000 |TX     |<-  Push/pull opcodes, used as an exclusive for K09||
+|K01 |120 |010010011010100100000   |11X11000 |T0     |CLD SED|flags control|
+|K02 |121 |000001000000000000000   |X0XXXXXX |TX     |/IR6|Branch Logic|
+|K03 |122 |000000101001000000100   |XXX011XX |T3     |Memory absolute|MemOP|
+|K04 |123 |000000100101000001000   |XXX001XX |T2     |Memory zero page|MemOP|
+|K05 |124 |000000010100001000001   |XXXX00X1 |T5     |Memory indirect|MemOP|
+|K06 |125 |000000001010000000010   |XXX11XXX |T4     |Memory absolute X/Y|MemOP|
+|K07 |126 |000000000000010000000   |0XXXXXXX |TX     |/IR7|Branch Logic|
+|K08 |127 |001001011010100100000   |10111000 |TX     |CLV|flags control|
+|K09 |128 |000000011000000000000   |XXXX10X0 |TX     |IMPL. The Push/Pull opcode exclusion operation is additionally applied to this line, right on the spot. Also, the mask for this line does not take into account the `& ~IR0` operation|Bus Control (DL/DB)|
 
 ## What Raw bits mean
 
