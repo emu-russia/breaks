@@ -74,7 +74,7 @@ The attentive reader will notice that the processor has support for bit rotation
 |ALU operation commands||
 |ANDS|Logical AND operation (AI & BI)|
 |EORS|Logical XOR operation (AI ^ BI)|
-|ORS|Logical OR operation (AI | BI)|
+|ORS|Logical OR operation (AI \| BI)|
 |SRS|Shift Right|
 |SUMS|Summation (AI + BI)|
 |Control commands of the intermediate ALU result||
