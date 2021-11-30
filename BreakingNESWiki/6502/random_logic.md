@@ -49,7 +49,7 @@
 |/C_OUT|Flags|ALU Control|Значение флага C (инвертированное)|
 |DL/PCH|PC Control|Bus Control|Промежуточный сигнал|
 |D_OUT|Flags|ALU Control|Значение флага D|
-|JSR2|Decoder|Bus Control|Для получения сигнала `JSXY` и других схем управления шинами|
+|JSR2|Decoder|Regs Control, ALU Control, Bus Control|Для получения сигнала `JSXY` и других схем управления шинами|
 |/JSR2|Bus Control|Regs Control|Промежуточный сигнал, инверсия JSR2|
 |IMPL|Decoder|ALU Control|Декодер X128. Дополнительно модифицирован сигналами Push/Pull (X129) и IR0.|
 |INC_SB|ALU Control|Bus Control|Промежуточный сигнал ("Increment SB")|

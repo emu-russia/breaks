@@ -71,7 +71,7 @@
 |C12  |32 |010101000000011000000   |000XXXX1 |T0     |ORA|ALU Control|
 |C13  |33 |000000000100000001000   |XXXX0XXX |T2     |Вся "левая" половина таблицы опкодов (значения `X0-X7`)|ALU Control|
 |C14  |34 |010000000000000000000   |XXXXXXXX |T0     |T0 ANY|ALU Control|
-|C15  |35 |000000010001010101000   |0XX0X000 |T2     |BRK JSR RTI RTS Push/pull - stack operations on T2|ALU Control; Вспомогательный сигнал STK2|
+|C15  |35 |000000010001010101000   |0XX0X000 |T2     |BRK JSR RTI RTS Push/pull - stack operations on T2|Regs Control, ALU Control; Вспомогательный сигнал STK2|
 |C16  |36 |000000000001010100100   |0XX0XX00 |T3     |BRK JSR RTI RTS Push/pull + BIT JMP|ALU Control|
 |D|||||||
 |D01  |37 |000001010101010100010   |00X00000 |T4     |BRK JSR|ALU Control|
