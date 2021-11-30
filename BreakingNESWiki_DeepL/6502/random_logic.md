@@ -49,7 +49,7 @@ This section contains a table of auxiliary signals exchanged between all parts o
 |/C_OUT|Flags|ALU Control|Flag C value (inverted)|
 |DL/PCH|PC Control|Bus Control|Intermediate signal|
 |D_OUT|Flags|ALU Control|Flag D value|
-|JSR2|Decoder|Bus Control|To obtain the `JSXY` signal and other bus control circuits|
+|JSR2|Decoder|Regs Control, ALU Control, Bus Control|To obtain the `JSXY` signal and other bus control circuits|
 |/JSR2|Bus Control|Regs Control|Intermediate signal, JSR2 inversion|
 |IMPL|Decoder|ALU Control|Decoder X128. Additionally modified with Push/Pull (X129) and IR0 signals.|
 |INC_SB|ALU Control|Bus Control|Intermediate signal ("Increment SB")|
