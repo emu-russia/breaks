@@ -22,6 +22,19 @@ ABH bits:
 
 ![abh_tran](/BreakingNESWiki/imgstore/abh_tran.jpg)
 
+Control commands:
+
 - 0/ADL0, 0/ADL1, 0/ADL2: The lower 3 bits of the ADL bus can be forced to zero by commands when setting [interrupts vector](interrupts.md)
 - ADL/ABL: Place the value of the internal ADL bus on the ABL register
 - ADH/ABH: Place the ADH internal bus value on the ABH register
+
+## Circuit Flow
+
+Consider the behavior of the circuit when ADL = 0:
+
+![abl_flow_tran](/BreakingNESWiki/imgstore/abl_flow_tran.jpg)
+
+- The flip/flop of the ABL bit is organized on two inverters (not2 and not3) with not2 acting simultaneously as a DLatch (whose input D is connected to PHI2)
+- PHI2: FF is "refreshed" in this half-step.
+- PHI1: In this half-step the old FF is "cut off" by the PHI2 tristate (located to the left of not2) and the new FF is loaded from the ADL bus (inverted, see not1) but only if an ADL/ABL command is active
+- The output from not2 organizes the final generation of the output value for the external address bus. This part of the circuit contains an inverter not3 to form the FF and also an inverter not4 which controls the amplifier "comb" of the Ax contacts
