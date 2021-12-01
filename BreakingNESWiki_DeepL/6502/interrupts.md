@@ -9,7 +9,7 @@ Interrupt processing includes the following circuits:
 - Circuit for issuing internal signal `DORES`.
 - B Flag
 
-Three signals `/NMIP`, `/IRQP` and `RESP` come to the input of the circuits from the corresponding input contacts.
+Three signals `/NMIP`, `/IRQP` and `RESP` come to the input of the circuits from the corresponding input pads.
 
 ## NMI Processing
 
