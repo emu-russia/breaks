@@ -22449,28 +22449,63 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <circ-port height="8" pin="80,50" width="8" x="46" y="56"/>
       <circ-port height="8" pin="80,90" width="8" x="46" y="66"/>
       <circ-port height="8" pin="80,180" width="8" x="46" y="86"/>
-      <circ-port height="8" pin="80,220" width="8" x="46" y="96"/>
-      <circ-port height="8" pin="80,280" width="8" x="46" y="106"/>
-      <circ-port height="10" pin="370,50" width="10" x="125" y="65"/>
+      <circ-port height="8" pin="80,130" width="8" x="46" y="96"/>
+      <circ-port height="8" pin="80,230" width="8" x="46" y="106"/>
+      <circ-port height="10" pin="360,180" width="10" x="125" y="65"/>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
     </appear>
-    <comp lib="0" loc="(370,50)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="label" val="Ax"/>
-      <a name="labelloc" val="east"/>
+    <wire from="(80,230)" to="(140,230)"/>
+    <wire from="(80,50)" to="(170,50)"/>
+    <wire from="(260,160)" to="(280,160)"/>
+    <wire from="(260,180)" to="(280,180)"/>
+    <wire from="(260,120)" to="(260,160)"/>
+    <wire from="(260,180)" to="(260,220)"/>
+    <wire from="(210,220)" to="(260,220)"/>
+    <wire from="(110,180)" to="(130,180)"/>
+    <wire from="(170,220)" to="(190,220)"/>
+    <wire from="(240,120)" to="(260,120)"/>
+    <wire from="(130,210)" to="(140,210)"/>
+    <wire from="(80,180)" to="(90,180)"/>
+    <wire from="(170,110)" to="(210,110)"/>
+    <wire from="(320,180)" to="(360,180)"/>
+    <wire from="(130,180)" to="(130,210)"/>
+    <wire from="(170,50)" to="(170,110)"/>
+    <wire from="(80,130)" to="(210,130)"/>
+    <comp lib="6" loc="(106,94)" name="Text">
+      <a name="text" val="not used"/>
+    </comp>
+    <comp lib="1" loc="(240,120)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(80,90)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="PHI2"/>
     </comp>
-    <comp lib="0" loc="(80,280)" name="Pin">
+    <comp lib="0" loc="(360,180)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="Ax"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(80,130)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="ADL/ABL"/>
+    </comp>
+    <comp lib="0" loc="(80,230)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="ADLx"/>
     </comp>
-    <comp lib="0" loc="(80,220)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="ADL/ABL"/>
+    <comp lib="1" loc="(110,180)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(210,220)" name="NOT Gate">
+      <a name="size" val="20"/>
+      <a name="label" val="not1"/>
+    </comp>
+    <comp lib="1" loc="(170,220)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(80,50)" name="Pin">
       <a name="tristate" val="false"/>
@@ -22479,6 +22514,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(80,180)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="0/ADLx"/>
+    </comp>
+    <comp lib="4" loc="(320,160)" name="D Flip-Flop">
+      <a name="trigger" val="high"/>
+      <a name="label" val="not2+not3"/>
     </comp>
   </circuit>
   <circuit name="ABL_BIT">
@@ -22496,32 +22535,61 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="9" text-anchor="middle" x="117" y="73">Ax</text>
       <circ-port height="8" pin="80,50" width="8" x="46" y="56"/>
       <circ-port height="8" pin="80,90" width="8" x="46" y="66"/>
-      <circ-port height="8" pin="80,220" width="8" x="46" y="86"/>
-      <circ-port height="8" pin="80,280" width="8" x="46" y="96"/>
-      <circ-port height="10" pin="370,50" width="10" x="125" y="65"/>
+      <circ-port height="8" pin="80,160" width="8" x="46" y="86"/>
+      <circ-port height="8" pin="80,220" width="8" x="46" y="96"/>
+      <circ-port height="10" pin="350,180" width="10" x="125" y="65"/>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
     </appear>
+    <wire from="(290,180)" to="(350,180)"/>
+    <wire from="(80,160)" to="(140,160)"/>
+    <wire from="(80,50)" to="(140,50)"/>
+    <wire from="(230,120)" to="(230,160)"/>
+    <wire from="(230,180)" to="(230,220)"/>
+    <wire from="(180,220)" to="(230,220)"/>
+    <wire from="(210,120)" to="(230,120)"/>
+    <wire from="(230,180)" to="(250,180)"/>
+    <wire from="(230,160)" to="(250,160)"/>
+    <wire from="(80,220)" to="(160,220)"/>
+    <wire from="(140,110)" to="(180,110)"/>
+    <wire from="(140,130)" to="(180,130)"/>
+    <wire from="(140,130)" to="(140,160)"/>
+    <wire from="(140,50)" to="(140,110)"/>
     <comp lib="0" loc="(80,50)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="PHI1"/>
     </comp>
-    <comp lib="0" loc="(80,280)" name="Pin">
+    <comp lib="0" loc="(80,160)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="ADLx"/>
+      <a name="label" val="ADL/ABL"/>
+    </comp>
+    <comp lib="1" loc="(180,220)" name="NOT Gate">
+      <a name="size" val="20"/>
+      <a name="label" val="not1"/>
+    </comp>
+    <comp lib="0" loc="(350,180)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="Ax"/>
+      <a name="labelloc" val="east"/>
     </comp>
     <comp lib="0" loc="(80,220)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="ADL/ABL"/>
+      <a name="label" val="ADLx"/>
+    </comp>
+    <comp lib="4" loc="(290,160)" name="D Flip-Flop">
+      <a name="trigger" val="high"/>
+      <a name="label" val="not2+not3"/>
+    </comp>
+    <comp lib="1" loc="(210,120)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(80,90)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="PHI2"/>
     </comp>
-    <comp lib="0" loc="(370,50)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="label" val="Ax"/>
-      <a name="labelloc" val="east"/>
+    <comp lib="6" loc="(106,94)" name="Text">
+      <a name="text" val="not used"/>
     </comp>
   </circuit>
   <circuit name="ABH_BIT">
@@ -22539,32 +22607,61 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="9" text-anchor="middle" x="118" y="73">Ax</text>
       <circ-port height="8" pin="80,50" width="8" x="46" y="56"/>
       <circ-port height="8" pin="80,90" width="8" x="46" y="66"/>
-      <circ-port height="8" pin="80,220" width="8" x="46" y="86"/>
-      <circ-port height="8" pin="80,280" width="8" x="46" y="96"/>
-      <circ-port height="10" pin="370,50" width="10" x="125" y="65"/>
+      <circ-port height="8" pin="80,160" width="8" x="46" y="86"/>
+      <circ-port height="8" pin="80,220" width="8" x="46" y="96"/>
+      <circ-port height="10" pin="350,180" width="10" x="125" y="65"/>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
     </appear>
-    <comp lib="0" loc="(80,220)" name="Pin">
+    <wire from="(290,180)" to="(350,180)"/>
+    <wire from="(80,50)" to="(140,50)"/>
+    <wire from="(80,160)" to="(140,160)"/>
+    <wire from="(230,120)" to="(230,160)"/>
+    <wire from="(230,180)" to="(230,220)"/>
+    <wire from="(180,220)" to="(230,220)"/>
+    <wire from="(210,120)" to="(230,120)"/>
+    <wire from="(230,160)" to="(250,160)"/>
+    <wire from="(230,180)" to="(250,180)"/>
+    <wire from="(80,220)" to="(160,220)"/>
+    <wire from="(140,110)" to="(180,110)"/>
+    <wire from="(140,130)" to="(180,130)"/>
+    <wire from="(140,130)" to="(140,160)"/>
+    <wire from="(140,50)" to="(140,110)"/>
+    <comp lib="6" loc="(106,94)" name="Text">
+      <a name="text" val="not used"/>
+    </comp>
+    <comp lib="0" loc="(80,160)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="ADH/ABH"/>
     </comp>
-    <comp lib="0" loc="(370,50)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="label" val="Ax"/>
-      <a name="labelloc" val="east"/>
+    <comp lib="4" loc="(290,160)" name="D Flip-Flop">
+      <a name="trigger" val="high"/>
+      <a name="label" val="not2+not3"/>
     </comp>
     <comp lib="0" loc="(80,50)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="PHI1"/>
     </comp>
+    <comp lib="1" loc="(210,120)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(350,180)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="label" val="Ax"/>
+      <a name="labelloc" val="east"/>
+    </comp>
     <comp lib="0" loc="(80,90)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="PHI2"/>
     </comp>
-    <comp lib="0" loc="(80,280)" name="Pin">
+    <comp lib="0" loc="(80,220)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="ADHx"/>
+    </comp>
+    <comp lib="1" loc="(180,220)" name="NOT Gate">
+      <a name="size" val="20"/>
+      <a name="label" val="not1"/>
     </comp>
   </circuit>
 </project>
