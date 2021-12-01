@@ -38,3 +38,13 @@ Consider the behavior of the circuit when ADL = 0:
 - PHI2: FF is "refreshed" in this half-step.
 - PHI1: In this half-step the old FF value is "cut off" by the PHI2 tristate (located to the left of not2) and the new FF value is loaded from the ADL bus (inverted, see not1) but only if an ADL/ABL command is active
 - The output from not2 organizes the final generation of the output value for the external address bus. This part of the circuit contains an inverter not3 to form the FF and also an inverter not4 which controls the amplifier "comb" of the Ax contacts
+
+## Logic
+
+On the logic circuits PHI2 is not used, and FF organized on two inverters is replaced by a regular trigger.
+
+![abl02_logisim](/BreakingNESWiki/imgstore/abl02_logisim.jpg)
+
+![abl_logisim](/BreakingNESWiki/imgstore/abl_logisim.jpg)
+
+![abh_logisim](/BreakingNESWiki/imgstore/abh_logisim.jpg)
