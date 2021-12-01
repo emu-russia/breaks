@@ -4,7 +4,7 @@
 
 Although the 6502 communicates with the outside world on a 16-bit address bus, but because the processor is 8-bit in nature, the address bus is internally divided into two 8-bit halves: an upper (ADH) and a lower (ADL).
 
-The internal ADH/ADL address bus connects to the external 16-bit bus (pins A0-A15) through registers ABH/ABL, which contain the last written value.
+The internal ADH/ADL address bus connects to the external 16-bit bus (pins A0-A15) through registers ABH/ABL, which contain the last written value (address that has been set).
 
 The address bus is unidirectional. It can only be controlled by the 6502.
 
