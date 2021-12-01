@@ -18,7 +18,7 @@ At the output of the divider there are many push/pull amplifier stages, because 
 
 ![pclk_amp](/BreakingNESWiki/imgstore/pclk_amp.jpg)
 
-The input clock signal `CLK` is used exclusively in the [phase generator of the video path](video_out.md) PPU.
+The `CLK` input clock signal is used exclusively in the [phase generator](video_out.md) of the PPU video path.
 
 ## Power On Status
 
