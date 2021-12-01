@@ -21,6 +21,8 @@ The processor is clocked by the PHI0 clock pulse, both half-cycles are used.
 During the first half-cycle (PHI1) the processor is in "talking" mode. At this time the processor is outputting data to the outside.
 During the second half-cycle (PHI2) the processor is in "listening" mode, during this half-cycle external devices can put data on the data bus for the processor to process it.
 
+![6502_logisim_big](/BreakingNESWiki/imgstore/6502_logisim_big.png)
+
 ## Registers
 
 - PD: current operation code for precoding
