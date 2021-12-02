@@ -15,7 +15,7 @@ Represents the low 8 least significant bits of PC.
 |![pcl03_tran](/BreakingNESWiki/imgstore/pcl03_tran.jpg)|![pcl47_tran](/BreakingNESWiki/imgstore/pcl47_tran.jpg)|
 
 - The circuits alternate for even and odd bits because an optimization known as an inverted carry chain is used
-- The control signal `#1/PC` (perform PC increment) comes to the PCL0 bit
+- The control signal `#1/PC` (0: perform PC increment) comes to the PCL0 bit
 - PCLC (PCL Carry): Carry from the lowest 8 bits (PC\[0-7\]) to the highest (PC\[8-15\])
 - PCL connects to two buses: ADL and DB
 - PCL/PCL is used when PCL is not connected to any bus (to maintain the current state)
@@ -43,3 +43,19 @@ In between the PC bits you can find transistors for precharge of the ADL and ADH
 ![adl_adh_precharge_tran](/BreakingNESWiki/imgstore/adl_adh_precharge_tran.jpg)
 
 (The image shows the precharge transistors for ADH4 and ADL5. The others are similar)
+
+## Logic
+
+It makes sense to show only the bit schematics (the circuitry alternates between even and odd PCL/PCH bits).
+
+This circuit is used, for example, in PCL0:
+
+![pc_even_bit_logisim.jpg](/BreakingNESWiki/imgstore/pc_even_bit_logisim.jpg.jpg)
+
+This circuit is used, for example, in PCL1:
+
+![pc_odd_bit_logisim.jpg.jpg](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg.jpg)
+
+For these circuits to work correctly in the simulator, FF uses a posedge trigger for the PCL/PCH register.
+
+To confuse the reader even more, here's another fact: the alternation of circuits in PCH occurs not only between bits, but the order itself changes on the PCH4 bit.
