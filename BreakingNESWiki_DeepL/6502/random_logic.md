@@ -20,6 +20,10 @@ Below you can see all the function blocks of the random logic:
 - [Flags](flags.md)
 - [Conditional branch logic](branch_logic.md)
 
+Overview schematic:
+
+![random_logic_logisim](/BreakingNESWiki/imgstore/random_logic_logisim.jpg)
+
 ## Principle of Operation
 
 In general, the operation of the logic is quite complex (did you think I would say simple again? :smiley:):
