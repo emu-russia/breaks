@@ -20,6 +20,10 @@
 - [Флаги](flags.md)
 - [Логика условных переходов](branch_logic.md)
 
+Обзорная схема:
+
+![random_logic_logisim](/BreakingNESWiki/imgstore/random_logic_logisim.jpg)
+
 ## Принцип работы
 
 В целом работа логики довольно комплексная (вы думали я опять скажу - простая? :smiley:):
