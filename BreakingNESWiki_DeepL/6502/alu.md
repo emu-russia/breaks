@@ -16,6 +16,10 @@ The ALU consists of the following components:
 
 Generally speaking the ALU is a mess of transistors and wires, but its workings are not very complicated, as you can see later.
 
+Overview of the ALU connections:
+
+![alu_logisim](/BreakingNESWiki/imgstore/alu_logisim.jpg)
+
 ## AI/BI Latches
 
 The input circuits consist of 8 identical chunks, which are designed to load input values on the AI and BI latches:
