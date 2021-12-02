@@ -50,11 +50,11 @@
 
 Данная схема используется, например, в PCL0:
 
-![pc_even_bit_logisim.jpg](/BreakingNESWiki/imgstore/pc_even_bit_logisim.jpg.jpg)
+![pc_even_bit_logisim](/BreakingNESWiki/imgstore/pc_even_bit_logisim.jpg)
 
 Данная схема используется, например, в PCL1:
 
-![pc_odd_bit_logisim.jpg.jpg](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg.jpg)
+![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg)
 
 Чтобы данные схемы корректно работали в симуляторе, FF для разряда регистра PCL/PCH использует триггер по заднему фронту (posedge).
 

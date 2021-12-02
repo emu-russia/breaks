@@ -50,11 +50,11 @@ It makes sense to show only the bit schematics (the circuitry alternates between
 
 This circuit is used, for example, in PCL0:
 
-![pc_even_bit_logisim.jpg](/BreakingNESWiki/imgstore/pc_even_bit_logisim.jpg.jpg)
+![pc_even_bit_logisim](/BreakingNESWiki/imgstore/pc_even_bit_logisim.jpg)
 
 This circuit is used, for example, in PCL1:
 
-![pc_odd_bit_logisim.jpg.jpg](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg.jpg)
+![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg)
 
 For these circuits to work correctly in the simulator, FF uses a posedge trigger for the PCL/PCH register.
 
