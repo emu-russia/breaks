@@ -95,7 +95,7 @@ This is the circuit that appears in patent US 3991307 (https://patents.google.co
 
 The schematics are "layered on the side" for easy perception.
 
-The unmarked output is connected to the carry chain as follows:
+`DC3` output is connected to the carry chain as follows:
 
 ![alu_carry3_tran](/BreakingNESWiki/imgstore/alu_carry3_tran.jpg)
 
@@ -130,7 +130,7 @@ Circuits for obtaining auxiliary signals:
 |---|---|---|
 |![alu_daal_tran](/BreakingNESWiki/imgstore/alu_daal_tran.jpg)|![alu_dsal_tran](/BreakingNESWiki/imgstore/alu_dsal_tran.jpg)|![alu_dsah_tran](/BreakingNESWiki/imgstore/alu_dsah_tran.jpg)|
 
-The `DAAH` circuit is in the carryover circuit.
+The `DAAH` circuit is in the carry circuit.
 
 The correction circuits use a common motif:
 - The input combinatorial circuits, in various combinations accounting for the 4 auxiliary signals and the bits of the intermediate result (ADD latches)
