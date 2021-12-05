@@ -81,6 +81,14 @@
 
 (Показан разряд 1, для остальных разрядов мотив выглядит аналогично)
 
+Логическая схема для четных разрядов:
+
+![alu_even_bit_logisim](/BreakingNESWiki/imgstore/logisim/alu_even_bit_logisim.jpg)
+
+Логическая схема для нечетных разрядов:
+
+![alu_odd_bit_logisim](/BreakingNESWiki/imgstore/logisim/alu_odd_bit_logisim.jpg)
+
 Вычисление переполнения (контрольный сигнал `AVR`):
 
 ![alu_avr_tran](/BreakingNESWiki/imgstore/alu_avr_tran.jpg)
@@ -102,6 +110,10 @@
 Как именно работает эта схема написано в патенте, мне добавить особо нечего. Просто месиво логических вентилей - делай так же и будет работать.
 
 Кроме вычисления переноса для BCD схема также формирует контрольные сигналы `ACR` (перенос АЛУ для флагов) и `DAAH` для схемы BCD коррекции.
+
+Логическая схема:
+
+![alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_carry_logisim.jpg)
 
 ## Промежуточный результат (ADD)
 
@@ -147,6 +159,10 @@
 ![alu_add_temp_tran](/BreakingNESWiki/imgstore/alu_add_temp_tran.jpg)
 
 (На примере `/ADD5`)
+
+Логическая схема:
+
+![alu_bcd_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_logisim.jpg)
 
 ## Аккумулятор (AC)
 

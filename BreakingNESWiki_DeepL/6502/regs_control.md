@@ -53,3 +53,7 @@ Register control commands:
 |S/ADL|Place the value of register S on the ADL bus|
 |SB/S|Place the SB bus value on the S register|
 |S/S|Refresh the value of the S register. The S/S control command is obtained by a complement of the SB/S signal (active when the SB/S command is inactive)|
+
+## Logic
+
+![regs_control_logisim](/BreakingNESWiki/imgstore/logisim/regs_control_logisim.jpg)

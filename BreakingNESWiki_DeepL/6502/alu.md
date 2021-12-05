@@ -81,6 +81,14 @@ To make it clearer how the intermediate results are obtained, all the main motif
 
 (Bit 1 is shown, for the other bits the motif looks similar)
 
+Logic for even bits:
+
+![alu_even_bit_logisim](/BreakingNESWiki/imgstore/logisim/alu_even_bit_logisim.jpg)
+
+Logic for odd bits:
+
+![alu_odd_bit_logisim](/BreakingNESWiki/imgstore/logisim/alu_odd_bit_logisim.jpg)
+
 Overflow calculation (control signal `AVR`):
 
 ![alu_avr_tran](/BreakingNESWiki/imgstore/alu_avr_tran.jpg)
@@ -102,6 +110,10 @@ The schematics are "layered on the side" for easy perception.
 How exactly this circuit works is written in the patent, I have nothing much to add. Just a mishmash of logic gates - do the same and it will work.
 
 Besides calculating the carry for BCD the circuit also generates the `ACR` (ALU carry for flags) and `DAAH` control signals for the BCD correction circuit.
+
+Logic:
+
+![alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_carry_logisim.jpg)
 
 ## Intermediate Result (ADD)
 
@@ -147,6 +159,10 @@ The auxiliary signals /ADDx on the BCD correction circuits are derived from the 
 ![alu_add_temp_tran](/BreakingNESWiki/imgstore/alu_add_temp_tran.jpg)
 
 (Using `/ADD5` as an example)
+
+Logic:
+
+![alu_bcd_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_logisim.jpg)
 
 ## Accumulator (AC)
 

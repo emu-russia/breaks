@@ -93,3 +93,7 @@ The circuit also generates the following signals:
 
 - FETCH: Fetch opcode to [instruction register](ir.md)
 - 0/IR: Inject `BRK` operation code, for [interrupt handling](interrupts.md)
+
+## Logic
+
+![dispatcher_logisim](/BreakingNESWiki/imgstore/logisim/dispatcher_logisim.jpg)

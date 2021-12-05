@@ -131,3 +131,7 @@
 Выходные защелки команд управления DL/ADL, DL/ADH, DL/DB:
 
 ![bus_data_latch_commands_tran](/BreakingNESWiki/imgstore/bus_data_latch_commands_tran.jpg)
+
+## Логическая схема
+
+![bus_control_logisim](/BreakingNESWiki/imgstore/logisim/bus_control_logisim.jpg)

@@ -93,3 +93,7 @@ TBD: Проследить откуда получается сигнал `/ACR`.
 
 - FETCH: Выполнить загрузку опкода на [регистр инструкций](ir.md)
 - 0/IR: Инжектировать код операции `BRK`, для [обработки прерываний](interrupts.md)
+
+## Логическая схема
+
+![dispatcher_logisim](/BreakingNESWiki/imgstore/logisim/dispatcher_logisim.jpg)

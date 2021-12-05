@@ -28,3 +28,7 @@ The output of `/BRTAKEN` is in inverse logic, that is, if branch is triggered, t
 Inputs `/IR6` and `/IR7` are decoder outputs X121 and X126 respectively. The `/IR5` input comes directly from the [instruction register](ir.md).
 
 Note: The Branch Taken logic operates continuously and the value of the /BRTAKEN control line is updated every cycle, regardless of which instruction is being processed by the processor at the time.
+
+## Logic
+
+![branch_logic_logisim](/BreakingNESWiki/imgstore/logisim/branch_logic_logisim.jpg)

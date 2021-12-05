@@ -81,3 +81,7 @@ Output [Flag](flags.md) control signals:
 |DB/P|All|Place the DB bus value on the flag register P|
 
 The control signal `1/V` is obtained by the input contact `SO` and is not shown here.
+
+## Logic
+
+![flags_control_logisim](/BreakingNESWiki/imgstore/logisim/flags_control_logisim.jpg)
