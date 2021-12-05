@@ -131,3 +131,7 @@ The first piece of #DL/DB circuitry is next to the ACR Latch, the second piece i
 DL/ADL, DL/ADH, DL/DB control command output latches:
 
 ![bus_data_latch_commands_tran](/BreakingNESWiki/imgstore/bus_data_latch_commands_tran.jpg)
+
+## Logic
+
+![bus_control_logisim](/BreakingNESWiki/imgstore/logisim/bus_control_logisim.jpg)

@@ -85,3 +85,7 @@ The attentive reader will notice that the processor has support for bit rotation
 |/ACIN|Input carry|
 |/DAA|Perform correction after addition|
 |/DSA|Perform correction after subtraction|
+
+## Logic
+
+![alu_control_logisim](/BreakingNESWiki/imgstore/logisim/alu_control_logisim.jpg)

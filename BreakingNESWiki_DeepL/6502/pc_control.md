@@ -47,3 +47,7 @@ Control commands:
 |PCL/PCL|If ADL/PCL is not running, this command is executed (refresh PCL)|
 |PCL/ADL|Write the PCL register value to the ADL bus|
 |PCL/DB|Write the PCL register value to the DB bus|
+
+## Logic
+
+![pc_control_logisim](/BreakingNESWiki/imgstore/logisim/pc_control_logisim.jpg)

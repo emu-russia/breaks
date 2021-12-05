@@ -85,3 +85,7 @@ BCD коррекция производится в следующих случа
 |/ACIN|Входной перенос|
 |/DAA|Выполнить коррекцию после сложения|
 |/DSA|Выполнить коррекцию после вычитания|
+
+## Логическая схема
+
+![alu_control_logisim](/BreakingNESWiki/imgstore/logisim/alu_control_logisim.jpg)

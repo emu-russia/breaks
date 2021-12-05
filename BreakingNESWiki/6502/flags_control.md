@@ -81,3 +81,7 @@
 |DB/P|Все|Поместить значение шины DB на регистр флагов P|
 
 Контрольный сигнал `1/V` получается входным контактом `SO` и здесь не показан.
+
+## Логическая схема
+
+![flags_control_logisim](/BreakingNESWiki/imgstore/logisim/flags_control_logisim.jpg)

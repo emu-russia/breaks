@@ -47,3 +47,7 @@
 |PCL/PCL|Если не выполняется ADL/PCL, то выполняется эта команда (рефрешить PCL)|
 |PCL/ADL|Записать значение регистра PCL на шину ADL|
 |PCL/DB|Записать значение регистра PCL на шину DB|
+
+## Логическая схема
+
+![pc_control_logisim](/BreakingNESWiki/imgstore/logisim/pc_control_logisim.jpg)
