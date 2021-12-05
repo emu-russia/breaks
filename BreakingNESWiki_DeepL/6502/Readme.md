@@ -167,7 +167,7 @@ You can find a description of the instructions in any Reference Manual for 6502.
 
 ## Note on Transistor Circuits
 
-The transistor schematics of each component are ruthlessly chopped into component parts so that they don't take up too much space.
+The transistor circuits of each component are chopped into component parts so that they don't take up too much space.
 
 To keep you from getting lost, each section includes a special "locator" at the beginning that marks the approximate location of the component being studied on the large 6502 "family portrait" (https://github.com/emu-russia/breaks/blob/master/Docs/6502/6502.jpg)
 
