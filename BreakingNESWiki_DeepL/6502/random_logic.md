@@ -67,5 +67,11 @@ This section contains a table of auxiliary signals exchanged between all parts o
 |STKOP|Regs Control|ALU Control|Intermediate signal ("Stack Operation")|
 |STOR|Dispatcher|Regs Control, ALU Control, RW Control|Intermediate signal|
 |STXY|Regs Control|Bus Control|Intermediate signal ("Store X,Y")|
+|T0|Short Cycle Counter|All|Processor in the T0 instruction execution cycle|
+|T1|PC Control|All|Processor in the T1 cycle|
+|T2|Decoder|All|Processor in the T2 cycle|
+|T5|Long Cycle Counter|All|Processor in the T5 cycle|
+|T6|Long Cycle Counter|All|Processor in the T6 cycle|
+|ZTST|Bus Control|Flags Control|Intermediate signal ("Z Test")|
 
 Do not look for any sacred meaning in the auxiliary signals - just take them as intermediate values of combinatorial logic.
