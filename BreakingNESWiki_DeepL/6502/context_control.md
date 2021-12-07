@@ -1,4 +1,4 @@
-# Context Controls
+# Control Commands
 
 ![6502_locator_controls](/BreakingNESWiki/imgstore/6502_locator_controls.jpg)
 
