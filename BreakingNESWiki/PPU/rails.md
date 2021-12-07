@@ -8,7 +8,9 @@ TBD: Инверсность некоторых сигналов может бы�
 
 ## Левая часть
 
-![rails1](/BreakingNESWiki/imgstore/rails1.jpg)
+![ppu_locator_rails_left](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_left.jpg)
+
+![rails1](/BreakingNESWiki/imgstore/ppu/rails1.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -44,7 +46,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |EVAL| | | |
 |H0'| | | |
 
-![rails2](/BreakingNESWiki/imgstore/rails2.jpg)
+![rails2](/BreakingNESWiki/imgstore/ppu/rails2.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -74,7 +76,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |TH/MUX| | | |
 |DB/PAR| | | |
 
-![rails3](/BreakingNESWiki/imgstore/rails3.jpg)
+![rails3](/BreakingNESWiki/imgstore/ppu/rails3.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -82,14 +84,16 @@ TBD: Инверсность некоторых сигналов может бы�
 
 ## Правая часть
 
-![rails4](/BreakingNESWiki/imgstore/rails4.jpg)
+![ppu_locator_rails_right](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_right.jpg)
+
+![rails4](/BreakingNESWiki/imgstore/ppu/rails4.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
 |/OAM0-2| | | |
 |OAM8| | | |
 
-![rails5](/BreakingNESWiki/imgstore/rails5.jpg)
+![rails5](/BreakingNESWiki/imgstore/ppu/rails5.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -97,7 +101,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |OAM8| | | |
 |OB0-7'| | | |
 
-![rails6](/BreakingNESWiki/imgstore/rails6.jpg)
+![rails6](/BreakingNESWiki/imgstore/ppu/rails6.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -106,7 +110,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |OB7| | | |
 |I1/32| | | |
 
-![rails7](/BreakingNESWiki/imgstore/rails7.jpg)
+![rails7](/BreakingNESWiki/imgstore/ppu/rails7.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -122,7 +126,9 @@ TBD: Инверсность некоторых сигналов может бы�
 
 ## Нижная часть
 
-![rails8](/BreakingNESWiki/imgstore/rails8.jpg)
+![ppu_locator_rails_bottom](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_bottom.jpg)
+
+![rails8](/BreakingNESWiki/imgstore/ppu/rails8.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -133,7 +139,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |BGSEL| | | |
 |OV0-3| | | |
 
-![rails9](/BreakingNESWiki/imgstore/rails9.jpg)
+![rails9](/BreakingNESWiki/imgstore/ppu/rails9.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -146,7 +152,7 @@ TBD: Инверсность некоторых сигналов может бы�
 
 `/PA0-7` не показаны на картинке, находятся в правой части [Генератора адреса PPU](pargen.md).
 
-![rails10](/BreakingNESWiki/imgstore/rails10.jpg)
+![rails10](/BreakingNESWiki/imgstore/ppu/rails10.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -156,7 +162,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |BGC0-3| | | |
 |FH0-2| | | |
 
-![rails11](/BreakingNESWiki/imgstore/rails11.jpg)
+![rails11](/BreakingNESWiki/imgstore/ppu/rails11.jpg)
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
