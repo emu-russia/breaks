@@ -19,7 +19,7 @@
 	- [Flags Control](flags_control.md)
 	- [Flags](flags.md)
 	- [Branch Logic](branch_logic.md)
-- [Context Controls](context_control.md)
+- [Control Commands](context_control.md)
 
 ## Bottom Part
 
