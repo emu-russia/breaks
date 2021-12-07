@@ -17,7 +17,7 @@ The execution logic consists of the following circuits:
 
 [Long instruction cycle counter](extra_counter.md) (T2-T5) is discussed in the corresponding section.
 
-## Intermediate signals
+## Intermediate Signals
 
 Intermediate signals are obtained from the decoder outputs without any regularity. It was very difficult to separate them from the intermediate signals of the other control circuits, because of the chaotic connections.
 
