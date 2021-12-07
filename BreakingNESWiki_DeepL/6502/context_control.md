@@ -54,7 +54,7 @@ All commands are discussed in more detail in their respective sections. The summ
 |AC/SB|✓| |AC => SB|
 |AC/DB|✓| |AC => DB|
 |Program counter (PC) control commands||||
-|#1/PC|✓|✓|Increment the program counter|
+|#1/PC|✓|✓|0: Increment the program counter|
 |ADH/PCH|✓| |ADH => PCH|
 |PCH/PCH|✓| |If ADH/PCH is not performed, this command is performed (refresh PCH)|
 |PCH/ADH|✓|✓|PCH => ADH|
