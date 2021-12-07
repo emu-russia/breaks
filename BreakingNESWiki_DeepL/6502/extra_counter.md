@@ -1,4 +1,4 @@
-# Extended Сycle Сounter
+# Extended Cycle Counter
 
 ![6502_locator_extended_counter](/BreakingNESWiki/imgstore/6502_locator_extended_counter.jpg)
 
