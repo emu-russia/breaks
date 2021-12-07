@@ -8,7 +8,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 ## Left Side
 
-![rails1](/BreakingNESWiki/imgstore/rails1.jpg)
+![ppu_locator_rails_left](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_left.jpg)
+
+![rails1](/BreakingNESWiki/imgstore/ppu/rails1.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -44,7 +46,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |EVAL| | | |
 |H0'| | | |
 
-![rails2](/BreakingNESWiki/imgstore/rails2.jpg)
+![rails2](/BreakingNESWiki/imgstore/ppu/rails2.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -74,7 +76,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |TH/MUX| | | |
 |DB/PAR| | | |
 
-![rails3](/BreakingNESWiki/imgstore/rails3.jpg)
+![rails3](/BreakingNESWiki/imgstore/ppu/rails3.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -82,14 +84,16 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 ## Right Side
 
-![rails4](/BreakingNESWiki/imgstore/rails4.jpg)
+![ppu_locator_rails_right](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_right.jpg)
+
+![rails4](/BreakingNESWiki/imgstore/ppu/rails4.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
 |/OAM0-2| | | |
 |OAM8| | | |
 
-![rails5](/BreakingNESWiki/imgstore/rails5.jpg)
+![rails5](/BreakingNESWiki/imgstore/ppu/rails5.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -97,7 +101,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |OAM8| | | |
 |OB0-7'| | | |
 
-![rails6](/BreakingNESWiki/imgstore/rails6.jpg)
+![rails6](/BreakingNESWiki/imgstore/ppu/rails6.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -106,7 +110,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |OB7| | | |
 |I1/32| | | |
 
-![rails7](/BreakingNESWiki/imgstore/rails7.jpg)
+![rails7](/BreakingNESWiki/imgstore/ppu/rails7.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -122,7 +126,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 ## Bottom Part
 
-![rails8](/BreakingNESWiki/imgstore/rails8.jpg)
+![ppu_locator_rails_bottom](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_bottom.jpg)
+
+![rails8](/BreakingNESWiki/imgstore/ppu/rails8.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -133,7 +139,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |BGSEL| | | |
 |OV0-3| | | |
 
-![rails9](/BreakingNESWiki/imgstore/rails9.jpg)
+![rails9](/BreakingNESWiki/imgstore/ppu/rails9.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -146,7 +152,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 `/PA0-7` are not shown in the picture, they are on the right side of the [PPU address generator](pargen.md).
 
-![rails10](/BreakingNESWiki/imgstore/rails10.jpg)
+![rails10](/BreakingNESWiki/imgstore/ppu/rails10.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -156,7 +162,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |BGC0-3| | | |
 |FH0-2| | | |
 
-![rails11](/BreakingNESWiki/imgstore/rails11.jpg)
+![rails11](/BreakingNESWiki/imgstore/ppu/rails11.jpg)
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
