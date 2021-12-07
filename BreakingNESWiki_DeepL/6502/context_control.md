@@ -45,8 +45,8 @@ All commands are discussed in more detail in their respective sections. The summ
 |ORS|✓|✓|AI | BI|
 |SRS|✓|✓|>>= 1|
 |SUMS|✓|✓|AI + BI|
-|/DAA|✓|✓|Perform BCD correction after addition|
-|/DSA|✓|✓|Perform BCD correction after subtraction|
+|/DAA|✓|✓|0: Perform BCD correction after addition|
+|/DSA|✓|✓|0: Perform BCD correction after subtraction|
 |ADD/SB7|✓|✓|ADD\[7\] => SB\[7\]|
 |ADD/SB06|✓|✓|ADD\[0-6\] => SB\[0-6\]|
 |ADD/ADL|✓|✓|ADD => ADL|
