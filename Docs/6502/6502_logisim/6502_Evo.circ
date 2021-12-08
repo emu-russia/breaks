@@ -11543,10 +11543,7 @@
       <a name="facing" val="east"/>
       <a name="label" val="BRK6E"/>
     </comp>
-    <comp lib="0" loc="(260,110)" name="Tunnel">
-      <a name="label" val="BRK5"/>
-    </comp>
-    <comp lib="0" loc="(260,220)" name="Tunnel">
+    <comp lib="0" loc="(230,220)" name="Tunnel">
       <a name="label" val="L_ready_9a3f8f92"/>
     </comp>
     <comp lib="0" loc="(290,1180)" name="Tunnel">
@@ -11620,10 +11617,6 @@
     <comp lib="0" loc="(670,540)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="PHI1"/>
-    </comp>
-    <comp lib="0" loc="(690,240)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="BRK5"/>
     </comp>
     <comp lib="0" loc="(790,180)" name="Tunnel">
       <a name="label" val="BRK6E"/>
@@ -11814,13 +11807,12 @@
     <wire from="(180,60)" to="(210,60)"/>
     <wire from="(180,710)" to="(320,710)"/>
     <wire from="(210,110)" to="(210,140)"/>
-    <wire from="(210,110)" to="(260,110)"/>
     <wire from="(210,140)" to="(280,140)"/>
     <wire from="(210,160)" to="(210,180)"/>
     <wire from="(210,160)" to="(250,160)"/>
     <wire from="(210,180)" to="(210,220)"/>
     <wire from="(210,180)" to="(450,180)"/>
-    <wire from="(210,220)" to="(260,220)"/>
+    <wire from="(210,220)" to="(230,220)"/>
     <wire from="(220,960)" to="(240,960)"/>
     <wire from="(220,990)" to="(290,990)"/>
     <wire from="(240,960)" to="(240,970)"/>
@@ -11828,7 +11820,10 @@
     <wire from="(270,160)" to="(280,160)"/>
     <wire from="(270,970)" to="(290,970)"/>
     <wire from="(290,1180)" to="(310,1180)"/>
-    <wire from="(310,150)" to="(380,150)"/>
+    <wire from="(310,150)" to="(320,150)"/>
+    <wire from="(320,150)" to="(320,190)"/>
+    <wire from="(320,150)" to="(380,150)"/>
+    <wire from="(320,190)" to="(390,190)"/>
     <wire from="(320,580)" to="(320,710)"/>
     <wire from="(320,580)" to="(530,580)"/>
     <wire from="(320,710)" to="(380,710)"/>
@@ -11856,6 +11851,8 @@
     <wire from="(370,890)" to="(380,890)"/>
     <wire from="(370,960)" to="(380,960)"/>
     <wire from="(380,1170)" to="(390,1170)"/>
+    <wire from="(390,190)" to="(390,240)"/>
+    <wire from="(390,240)" to="(700,240)"/>
     <wire from="(410,1170)" to="(420,1170)"/>
     <wire from="(420,1140)" to="(420,1170)"/>
     <wire from="(420,1140)" to="(450,1140)"/>
@@ -11961,7 +11958,6 @@
     <wire from="(670,120)" to="(680,120)"/>
     <wire from="(670,540)" to="(680,540)"/>
     <wire from="(690,1110)" to="(710,1110)"/>
-    <wire from="(690,240)" to="(700,240)"/>
     <wire from="(700,1300)" to="(740,1300)"/>
     <wire from="(710,1110)" to="(710,1220)"/>
     <wire from="(720,140)" to="(740,140)"/>
@@ -30353,30 +30349,6 @@
       <circ-port height="8" pin="190,720" width="8" x="46" y="196"/>
       <circ-port height="8" pin="230,870" width="8" x="46" y="226"/>
     </appear>
-    <boardmap boardname="BASYS2">
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-      <mc/>
-    </boardmap>
     <comp lib="0" loc="(190,110)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="n_carry3"/>
