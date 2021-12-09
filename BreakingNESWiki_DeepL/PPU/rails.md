@@ -99,7 +99,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |/OAM0-2| | | |
 |OAM8| | | |
 
-![rails5](/BreakingNESWiki/imgstore/ppu/rails5.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails5](/BreakingNESWiki/imgstore/ppu/ntsc_rails5.jpg)|![rails5](/BreakingNESWiki/imgstore/ppu/pal_rails5.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -107,7 +109,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |OAM8| | | |
 |OB0-7'| | | |
 
-![rails6](/BreakingNESWiki/imgstore/ppu/rails6.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails6](/BreakingNESWiki/imgstore/ppu/ntsc_rails6.jpg)|![rails6](/BreakingNESWiki/imgstore/ppu/pal_rails6.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -116,7 +120,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |OB7| | | |
 |I1/32| | | |
 
-![rails7](/BreakingNESWiki/imgstore/ppu/rails7.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails7](/BreakingNESWiki/imgstore/ppu/ntsc_rails7.jpg)|![rails7](/BreakingNESWiki/imgstore/ppu/pal_rails7.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -145,7 +151,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |BGSEL| | | |
 |OV0-3| | | |
 
-![rails9](/BreakingNESWiki/imgstore/ppu/rails9.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails9](/BreakingNESWiki/imgstore/ppu/ntsc_rails9.jpg)|![pal_rails9](/BreakingNESWiki/imgstore/ppu/pal_rails9.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -158,7 +166,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 `/PA0-7` are not shown in the picture, they are on the right side of the [PPU address generator](pargen.md).
 
-![rails10](/BreakingNESWiki/imgstore/ppu/rails10.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails10](/BreakingNESWiki/imgstore/ppu/ntsc_rails10.jpg)|![pal_rails10](/BreakingNESWiki/imgstore/ppu/pal_rails10.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -168,7 +178,10 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |BGC0-3| | | |
 |FH0-2| | | |
 
-![rails11](/BreakingNESWiki/imgstore/ppu/rails11.jpg)
+|PPU Version|Image|
+|---|---|
+|NTSC|![ntsc_rails11](/BreakingNESWiki/imgstore/ppu/ntsc_rails11.jpg)|
+|PAL|![pal_rails11](/BreakingNESWiki/imgstore/ppu/pal_rails11.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|

@@ -99,7 +99,9 @@ TBD: Инверсность некоторых сигналов может бы�
 |/OAM0-2| | | |
 |OAM8| | | |
 
-![rails5](/BreakingNESWiki/imgstore/ppu/rails5.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails5](/BreakingNESWiki/imgstore/ppu/ntsc_rails5.jpg)|![rails5](/BreakingNESWiki/imgstore/ppu/pal_rails5.jpg)|
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -107,7 +109,9 @@ TBD: Инверсность некоторых сигналов может бы�
 |OAM8| | | |
 |OB0-7'| | | |
 
-![rails6](/BreakingNESWiki/imgstore/ppu/rails6.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails6](/BreakingNESWiki/imgstore/ppu/ntsc_rails6.jpg)|![rails6](/BreakingNESWiki/imgstore/ppu/pal_rails6.jpg)|
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -116,7 +120,9 @@ TBD: Инверсность некоторых сигналов может бы�
 |OB7| | | |
 |I1/32| | | |
 
-![rails7](/BreakingNESWiki/imgstore/ppu/rails7.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails7](/BreakingNESWiki/imgstore/ppu/ntsc_rails7.jpg)|![rails7](/BreakingNESWiki/imgstore/ppu/pal_rails7.jpg)|
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -145,7 +151,9 @@ TBD: Инверсность некоторых сигналов может бы�
 |BGSEL| | | |
 |OV0-3| | | |
 
-![rails9](/BreakingNESWiki/imgstore/ppu/rails9.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails9](/BreakingNESWiki/imgstore/ppu/ntsc_rails9.jpg)|![pal_rails9](/BreakingNESWiki/imgstore/ppu/pal_rails9.jpg)|
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -158,7 +166,9 @@ TBD: Инверсность некоторых сигналов может бы�
 
 `/PA0-7` не показаны на картинке, находятся в правой части [Генератора адреса PPU](pargen.md).
 
-![rails10](/BreakingNESWiki/imgstore/ppu/rails10.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails10](/BreakingNESWiki/imgstore/ppu/ntsc_rails10.jpg)|![pal_rails10](/BreakingNESWiki/imgstore/ppu/pal_rails10.jpg)|
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -168,7 +178,10 @@ TBD: Инверсность некоторых сигналов может бы�
 |BGC0-3| | | |
 |FH0-2| | | |
 
-![rails11](/BreakingNESWiki/imgstore/ppu/rails11.jpg)
+|Версия PPU|Изображение|
+|---|---|
+|NTSC|![ntsc_rails11](/BreakingNESWiki/imgstore/ppu/ntsc_rails11.jpg)|
+|PAL|![pal_rails11](/BreakingNESWiki/imgstore/ppu/pal_rails11.jpg)|
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
