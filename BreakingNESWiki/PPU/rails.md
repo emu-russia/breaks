@@ -92,7 +92,9 @@ TBD: Инверсность некоторых сигналов может бы�
 
 ![ppu_locator_rails_right](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_right.jpg)
 
-![rails4](/BreakingNESWiki/imgstore/ppu/rails4.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails4](/BreakingNESWiki/imgstore/ppu/ntsc_rails4.jpg)|![pal_rails4](/BreakingNESWiki/imgstore/ppu/pal_rails4.jpg)|
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
@@ -140,7 +142,9 @@ TBD: Инверсность некоторых сигналов может бы�
 
 ![ppu_locator_rails_bottom](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_bottom.jpg)
 
-![rails8](/BreakingNESWiki/imgstore/ppu/rails8.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails8](/BreakingNESWiki/imgstore/ppu/ntsc_rails8.jpg)|![pal_rails8](/BreakingNESWiki/imgstore/ppu/pal_rails8.jpg)|
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|

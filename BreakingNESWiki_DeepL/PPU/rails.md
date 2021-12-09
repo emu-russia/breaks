@@ -92,7 +92,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 ![ppu_locator_rails_right](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_right.jpg)
 
-![rails4](/BreakingNESWiki/imgstore/ppu/rails4.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails4](/BreakingNESWiki/imgstore/ppu/ntsc_rails4.jpg)|![pal_rails4](/BreakingNESWiki/imgstore/ppu/pal_rails4.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -140,7 +142,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 ![ppu_locator_rails_bottom](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_bottom.jpg)
 
-![rails8](/BreakingNESWiki/imgstore/ppu/rails8.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails8](/BreakingNESWiki/imgstore/ppu/ntsc_rails8.jpg)|![pal_rails8](/BreakingNESWiki/imgstore/ppu/pal_rails8.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
