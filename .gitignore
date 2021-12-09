@@ -1,5 +1,11 @@
 Temp
 *.pyc
 .vs
+*.vcxproj.user
+
+Debug
+Release
+Win32
+x64
 
 Docs export-ignore
