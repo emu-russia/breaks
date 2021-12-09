@@ -38,7 +38,7 @@
 
 ### R/W
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-101155.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_rw.png" width="600px">
 
 Сигнал R/W определяет направление обмена данных по шине D0-D7:
 - R/W=0: Write. Шина данных становится input
@@ -46,7 +46,7 @@
 
 ### D0-D7
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-101050.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_d.png" width="600px">
 
 Шина данных D0-D7 используется для обмена данными между CPU и регистрами PPU.
 
@@ -54,13 +54,13 @@
 
 ### RS0-RS2
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-100949.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_rs.png" width="600px">
 
 Сигналы RS0-RS2 выбирают индекс регистра PPU (0-7) для обмена данными с CPU.
 
 ### /DBE
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-100801.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_dbe.png" width="600px">
 
 Контакт запрещает обмен по шине D0-D7, то есть полностью отключает интерфейс с CPU.
 
@@ -78,7 +78,7 @@
 
 ### ALE
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-101334.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_ale.png" width="600px">
 
 Сигнал ALE (Address Latch Enable) используется для мультиплексирования шины AD0-AD7:
 - Когда ALE=1 шина AD0-AD7 работает как адресная шина VRAM (A0-A7)
@@ -90,13 +90,13 @@
 
 ### AD0-AD7
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-101650.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_ad.png" width="600px">
 
 Двунаправленная мультиплексируемая шина данных/адреса для обмена данными с VRAM.
 
 ### A8-A13
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-101736.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_a.png" width="600px">
 
 Шина адреса VRAM.
 
@@ -104,7 +104,7 @@
 
 ### /RD
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-101819.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_rd.png" width="600px">
 
 Сигнал /RD является комплементарным сигналу /WR (они не могут принимать одинаковые значения).
 
@@ -112,7 +112,7 @@
 
 ### /WR
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-101848.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_wr.png" width="600px">
 
 Сигнал /WR является комплементарным сигналу /RD (они не могут принимать одинаковые значения).
 
@@ -124,7 +124,7 @@
 
 Данный интерфейс реализуется inout контактами EXT0-EXT3.
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-100636.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_ext.png" width="600px">
 
 Разработчики предусмотрели взаимодействие нескольких PPU. Схема взаимодействия немудреная и выглядит следующим образом:
 - Внутри PPU находится [мультиплексор](mux.md), который по выбору может направлять "картинку" как на экран, так и на внешние контакты EXT
@@ -167,7 +167,7 @@ CLK используется исключительно в фазогенера�
 
 ### /INT
 
-<img src="/BreakingNESWiki/imgstore/ppu/20181128-101916.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_int.png" width="600px">
 
 Выходной сигнал /INT используется для сигнализации CPU о прерывании VBlank.
 

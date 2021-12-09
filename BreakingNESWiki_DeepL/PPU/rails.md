@@ -10,7 +10,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 ![ppu_locator_rails_left](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_left.jpg)
 
-![rails1](/BreakingNESWiki/imgstore/ppu/rails1.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails1](/BreakingNESWiki/imgstore/ppu/ntsc_rails1.jpg)|![pal_rails1](/BreakingNESWiki/imgstore/ppu/pal_rails1.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -46,7 +48,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |EVAL| | | |
 |H0'| | | |
 
-![rails2](/BreakingNESWiki/imgstore/ppu/rails2.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails2](/BreakingNESWiki/imgstore/ppu/ntsc_rails2.jpg)|![pal_rails2](/BreakingNESWiki/imgstore/ppu/pal_rails2.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
@@ -76,7 +80,9 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |TH/MUX| | | |
 |DB/PAR| | | |
 
-![rails3](/BreakingNESWiki/imgstore/ppu/rails3.jpg)
+|NTSC|PAL|
+|---|---|
+|![ntsc_rails3](/BreakingNESWiki/imgstore/ppu/ntsc_rails3.jpg)|![pal_rails3](/BreakingNESWiki/imgstore/ppu/pal_rails3.jpg)|
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
