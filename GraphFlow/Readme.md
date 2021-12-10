@@ -1,79 +1,78 @@
 # GraphFlow
 
-GraphFlow - симулятор цифровых схем с поддержкой виртуальных графов.
+GraphFlow is a digital circuit simulator with virtual graph support.
 
 ![demo](ScreenShots/demo.png)
 
-## Обзор
+## Overview
 
-В основе работы GraphFlow лежит метод обхода графа (Graph::Walk), который имитирует базовую логику цифровых схем.
+GraphFlow is based on the graph traversal method (`Graph::Walk`), which mimics the basic logic of digital circuits.
 
-Формат графов - yEd GraphML. Программа yEd (https://www.yworks.com/products/yed) расширяет базовый формат GraphML геометрическим описанием вершин и ребер, т.е.
-вместе с картой графа yEd .graphml файл содержит также положение, размеры, цвет, название и другие атрибуты.
+The graph format is yEd GraphML. The yEd program (https://www.yworks.com/products/yed) extends the basic GraphML format with a geometric description of nodes and edges, i.e.
+along with the yEd graph map, the .graphml file also contains position, dimensions, color, name, and other attributes.
 
-GraphFlow использует эти дополнительные атрибуты следующим образом:
-- Если у вершины имя содержит "pfet" или "nfet", то эта вершина считается затвором MOSFET (примеры названий: "nfet1", "nfet_alu2")
-- Если в названии ребра встречается буква "g" и при этом ребро является входом для fet, то данный вход считается входом на затвор. Другой вход принимается за source.
-- У транзистора может быть только один gate и только один source
-- Если вершина называется "1" (точно), то она принимается за Power
-- Если вершина называется "0" (точно), то она принимается за Ground
+GraphFlow uses these additional attributes as follows:
+- If a node has a name that contains "pfet" or "nfet", then that node is considered a MOSFET gate (examples of names: "nfet1", "nfet_alu2")
+- If there is a "g" in the name of an edge and the edge is an input for a fet, then this input is considered to be a gate input. The other input is taken as source.
+- A transistor can have only one gate and only one source
+- If a node is named "1" (exact) then it is taken as power
+- If the node is named "0" (exactly), then it is taken as Ground
 
-Все остальные элементы можно делать произвольными (цвет, размер, форму и проч.)
+All other elements can be made arbitrary (color, size, shape, etc.)
 
-Пример транзистора:
+Example of a transistor:
 
 ![not](ScreenShots/not.png)
 
-Направление графа строго ориентированное, то же самое касается транзисторов.
+The direction of the graph is strictly oriented, the same is true for the transistors.
 
-## Хранение значений
+## Storing Values
 
-Значения вершин и ребер хранятся как nullable int. 1 и 0 означают логические уровни. null соответствует значению z (отсоединено, floating).
+Node and edge values are stored as nullable int. 1 and 0 stand for logical levels. null corresponds to a z-value (disconnected, floating).
 
-## Вложенные графы
+## Nested Graphs
 
-Если какая-то вершина соответствует названию какого-то графа, то исполнение заходит "внутрь" соответствующего графа.
+If any node corresponds to the name of some graph, the execution goes "inside" the corresponding graph.
 
-При этом должно соблюдаться правило соотвествия в названиях входных/выходных вершин вложенного графа и входных/выходных ребер исходного графа.
+The rule of correspondence in names of input/output nodes of nested graph and input/output edges of source graph must be observed.
 
-Пример:
+Example:
 
 ![inner_graph](ScreenShots/inner_graph.png)
 
-Если входов или выходов ровно 1, то называть ребра не обязательно (соответствие и так очевидно).
+If the inputs or outputs are exactly 1, it is not necessary to name the edges (the correspondence is obvious).
 
-## Виртуальные графы
+## Virtual Graphs
 
-Существует (пока не существует) возможность симулировать работу вложенного графа, путём выполнения программного кода.
+It is possible (not yet) to simulate the operation of a nested graph by executing program code.
 
-Для этого к основной программе подключаются дополнительные .DLL, которые содержат реализацию виртуальных графов.
+To do this, additional .DLLs are plugged into the main program that contain the implementation of virtual graphs.
 
-Виртуальный граф принимает список входов и возвращает список выходов, а вся внутренняя логика работы зависит от реализации. То есть получается своего рода "черный ящик".
+The virtual graph accepts a list of inputs and returns a list of outputs, and all internal logic depends on the implementation. So it becomes a kind of "black box".
 
-Виртуальные графы позволят значительно ускорить симуляцию цифровых схем, например для ускорения работы стандартных ячеек или целиком отдельных блоков микросхемы.
+Virtual graphs can significantly speed up the simulation of digital circuits, for example to accelerate the operation of standard cells or entire individual blocks of the chip.
 
-## Управление графами
+## Managing Graphs
 
-Для загрузки дополнительного графа в коллекцию нужно выполнить File -> Load Graph...
+To load an additional graph into the collection, execute File -> Load Graph...
 
-Загруженный граф добавится к текущей коллекции (List<Graph>). Имя графа задается в соответствии с именем файла (без расширения).
+The loaded graph will be added to the current collection (`List<Graph>`). The name of the graph is set according to the file name (without extension).
 
-Если граф с таким именем уже есть в коллекции, то он не добавляется.
+If a graph with this name already exists in the collection, it is not added.
 
-Коллекция отображается в левой части экрана. Выбрать текущий (RootGraph) можно кликнув по графу из списка. Либо двойным кликом по вершине, которая соответствует вложенному графу.
+The collection is displayed on the left side of the screen. You can select the current one (RootGraph) by clicking on the graph in the list. Or by double-clicking on the node that corresponds to the nested graph.
 
-Виртуальные графы добавляются в коллекцию сразу после запуска программы.
+Virtual graphs are added to the collection immediately after you start the program.
 
-## Соединение графов (Xrefs)
+## Connecting Graphs (Xrefs)
 
-При добавлении нового графа производится перебор всех вершин существующих графов и если встречается вершина с именем добавляемого графа,
-то все ребра этой вершины соединяются с соответствующими ребрами добавляемого графа.
+When a new graph is added all nodes of existing graphs are searched and if there is a node with the name of added graph,
+all edges of this node are connected with corresponding edges of added graph.
 
-Затем производится перебор всех вершин добавляемого графа в поисках связей с уже существующими графами.
+Then all nodes of the added graph are searched for connections with already existing graphs.
 
-Для каждой связываемой вершины создается отдельная инстанция под-графа. Данный под-граф "вклеивается" в текущий граф, но все его элементы не отображаются на экране (не имеют визуальных элементов).
+For each connected node a separate instance of a sub-graph is created. This sub-graph is "glued" to the current graph, but all its elements are not displayed on the screen (have no visual elements).
 
-## Почему орграфы
+## Why orgraphs.
 
-Весомая причина выбора в сторону направленных графов - все современные FET устроены так, что могут хорошо работать только в одном направлении (Source -> Gate).
-
+A compelling reason to choose directional graphs is that all modern FETs are arranged so that they can work well in only one direction (Source -> Gate).
