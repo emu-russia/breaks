@@ -73,6 +73,6 @@ Then all nodes of the added graph are searched for connections with already exis
 
 For each connected node a separate instance of a sub-graph is created. This sub-graph is "glued" to the current graph, but all its elements are not displayed on the screen (have no visual elements).
 
-## Why orgraphs.
+## Why Orgraphs
 
 A compelling reason to choose directional graphs is that all modern FETs are arranged so that they can work well in only one direction (Source -> Gate).
