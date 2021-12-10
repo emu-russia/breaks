@@ -13,8 +13,6 @@ The circuit includes:
 
 The circuits for controlling the counters are separated beforehand, maybe it makes sense to combine them into one circuit.
 
-Also the circuits contain a large number of signals which are not yet clear (e.g. `LOL`, `MILF`, `OMFG` etc.).
-
 ## OAM Index Counter
 
 ![oam_index_counter](/BreakingNESWiki/imgstore/oam_index_counter.jpg)
