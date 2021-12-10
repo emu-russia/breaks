@@ -6,6 +6,8 @@ TBD: The inversion of some signals can be corrected after clarification. At pres
 
 If a signal is repeated somewhere, it is usually not specified again, except in cases where it is important.
 
+The signals for the PAL version of the PPU are marked in the pictures only where there are differences from NTSC.
+
 ## Left Side
 
 ![ppu_locator_rails_left](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_left.jpg)
@@ -39,12 +41,15 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |/R4| | | |
 |V0-7| | | |
 |RESCL| | | |
+|OMFG| | | |
 |DB/OAM| | | |
 |PAR/O| | | |
+|ASAP| | | |
 |/VIS| | | |
 |I/OAM2| | | |
 |BLNK| | | |
 |/H2'| | | |
+|SPR_OV| | | |
 |EVAL| | | |
 |H0'| | | |
 
@@ -71,6 +76,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |/TR| | | |
 |SC/CNT| | | |
 |0/HPOS| | | |
+|I2SEV| | | |
 |/OBCLIP| | | |
 |/BGCLIP| | | |
 |H0'' - H5''| | | |
@@ -110,6 +116,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |---|---|---|---|
 |/OAM0-7| | | |
 |OAM8| | | |
+|OAMCTR2| | | |
 |OB0-7'| | | |
 
 |NTSC|PAL|
@@ -121,6 +128,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 |OV0-3| | | |
 |O8/16| | | |
 |OB7| | | |
+|0/FIFO| | | |
 |I1/32| | | |
 
 |NTSC|PAL|
