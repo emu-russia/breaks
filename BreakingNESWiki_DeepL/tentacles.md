@@ -1,6 +1,6 @@
 # Signal Manifest
 
-The connections inside the chips are made with metal wires and sometimes with polysilicone tracks. Between each other we call the connections "signals", "wires", "cords", "hoses" or "tentacles".
+The connections inside the chips are made with metal wires and sometimes with polysilicon tracks. Between each other we call the connections "signals", "wires", "cords", "hoses" or "tentacles".
 
 This section contains a variety of information on this subject area.
 
