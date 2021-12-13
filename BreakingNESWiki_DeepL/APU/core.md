@@ -19,4 +19,4 @@ The research process: http://youtu.be/Gmi1DgysGR0
 
 The key parts of the analysis (decoder, random logic, flags and ALU) are shown in the following image:
 
-<img src="/BreakingNESWiki/imgstore/2a03_6502_diff_sm.jpg" width="400px">
+<img src="/BreakingNESWiki/imgstore/apu/2a03_6502_diff_sm.jpg" width="400px">

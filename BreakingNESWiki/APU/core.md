@@ -19,4 +19,4 @@
 
 Ключевые узлы по которым был проведен анализ (декодер, рандомная логика, флаги и АЛУ) представлена на следующем изображении:
 
-<img src="/BreakingNESWiki/imgstore/2a03_6502_diff_sm.jpg" width="400px">
+<img src="/BreakingNESWiki/imgstore/apu/2a03_6502_diff_sm.jpg" width="400px">
