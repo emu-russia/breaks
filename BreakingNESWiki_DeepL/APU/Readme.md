@@ -22,6 +22,4 @@ The DAC makes the APU a semi-analog circuit, but the digital outputs of the tone
 
 Also to be taken into account is the fact that the 6502 core which is part of the APU is controlled by a DMA controller and therefore is a "common" device sharing the bus with other devices which use DMA.
 
-<img src="/BreakingNESWiki/imgstore/apu_blocks.jpg" width="900px">
-
-[nesdev.com / 2A03 Technical Reference](http://nesdev.com/2A03%20technical%20reference.txt)
+<img src="/BreakingNESWiki/imgstore/apu/apu_blocks.jpg" width="900px">

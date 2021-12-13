@@ -22,7 +22,7 @@ Low-frequency counter (LFO) или Frame Counter - это специальный
 
 ## Аппаратный интерфейс
 
-<img src="/BreakingNESWiki/imgstore/lfo_hwi.jpg" width="400px">
+<img src="/BreakingNESWiki/imgstore/apu/lfo_hwi.jpg" width="400px">
 
 - PHI: на самом деле представлен двумя линиями PHI1/PHI2, те самые, которые выходят наружу из ядра 6502. PHI1 - это низкий уровень CLK, а PHI2 - высокий.
 - ACLK: также на самом деле 2 линии, соответствующие двум полутактам: /ACLK - соответствует PHI1, ACLK - соответствует PHI2.
@@ -36,11 +36,11 @@ Low-frequency counter (LFO) или Frame Counter - это специальный
 
 Изначально схема предполагалась такой:
 
-![lfo_aclk_circuit_1](/BreakingNESWiki/imgstore/lfo_aclk_circuit_1.jpg)
+![lfo_aclk_circuit_1](/BreakingNESWiki/imgstore/apu/lfo_aclk_circuit_1.jpg)
 
 То есть во время сброса (/RES=0) все внутренние схемы APU (кроме ядра 6502) бездействуют (ACLK не тактируется). Но по какой-то причине от этого решения отказались и добавили небольшую заплаточку (скорее всего потому что внутренний сигнал RES идёт в прямой логике, а для задуманной схемы нужна инверсная, такая же, как на контакте /RES):
 
-![apu_aclk_reset_fix](/BreakingNESWiki/imgstore/apu_aclk_reset_fix.jpg)
+![apu_aclk_reset_fix](/BreakingNESWiki/imgstore/apu/apu_aclk_reset_fix.jpg)
 
 Которая всегда игнорирует факт сброса и схема работает в обычном режиме:
 
@@ -49,6 +49,6 @@ Low-frequency counter (LFO) или Frame Counter - это специальный
 ACLK = PHI2
 ```
 
-![lfo_aclk_circuit](/BreakingNESWiki/imgstore/lfo_aclk_circuit.jpg)
+![lfo_aclk_circuit](/BreakingNESWiki/imgstore/apu/lfo_aclk_circuit.jpg)
 
 Два D-latch которые присутствуют в схеме возможно предполагалось использовать как дополнительный делитель для тактового сигнала ACLK, от которого также отказались. Таким образом все тональные генераторы и прочие устройства APU работают на тактовой частоте ядра 6502 (PHI).

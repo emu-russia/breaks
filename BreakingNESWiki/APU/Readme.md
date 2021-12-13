@@ -22,4 +22,4 @@
 
 Также необходимо принимать в расчёт тот факт, что ядро 6502, входящее в состав APU находится под управлением DMA-контроллера и соответственно является "рядовым" устройством, разделяющим шину с другими устройствами, использующими DMA.
 
-<img src="/BreakingNESWiki/imgstore/apu_blocks.jpg" width="900px">
+<img src="/BreakingNESWiki/imgstore/apu/apu_blocks.jpg" width="900px">
