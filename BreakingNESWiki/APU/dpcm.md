@@ -1,3 +1,3 @@
 # Дельта-модуляция (DPCM)
 
-![FIXME](/BreakingNESWiki/imgstore/fixme.gif)
+![apu_locator_dpcm](/BreakingNESWiki/imgstore/apu/apu_locator_dpcm.jpg)

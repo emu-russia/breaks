@@ -1,3 +1,3 @@
 # Прямоугольный канал
 
-![FIXME](/BreakingNESWiki/imgstore/fixme.gif)
+![apu_locator_square](/BreakingNESWiki/imgstore/apu/apu_locator_square.jpg)

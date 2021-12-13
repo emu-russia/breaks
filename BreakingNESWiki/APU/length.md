@@ -1,3 +1,3 @@
 # Счетчики длительности
 
-![FIXME](/BreakingNESWiki/imgstore/fixme.gif)
+![apu_locator_length](/BreakingNESWiki/imgstore/apu/apu_locator_length.jpg)

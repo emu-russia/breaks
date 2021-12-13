@@ -1,3 +1,3 @@
 # Треугольный канал
 
-![FIXME](/BreakingNESWiki/imgstore/fixme.gif)
+![apu_locator_triangle](/BreakingNESWiki/imgstore/apu/apu_locator_triangle.jpg)

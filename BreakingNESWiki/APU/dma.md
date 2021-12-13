@@ -1,3 +1,3 @@
 # Спрайтовая DMA и DMA-контроллер
 
-![FIXME](/BreakingNESWiki/imgstore/fixme.gif)
+![apu_locator_dma](/BreakingNESWiki/imgstore/apu/apu_locator_dma.jpg)
