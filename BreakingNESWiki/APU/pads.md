@@ -11,4 +11,4 @@
 
 Количество транзисторов: 54
 
-<img src="/BreakingNESWiki/imgstore/apu/apu_rw_pad.jpg" width="600px">
+<img src="/BreakingNESWiki/imgstore/apu/pad_rw.jpg" width="600px">
