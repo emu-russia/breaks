@@ -20,6 +20,12 @@
 
 Как видно, схема выглядит весьма запутано на первый взгляд. Это по причине того, что мультиплексоры (как элементы схемы) очень сложно распознать из NMOS транзисторов.
 
+Сигналы `THOx'` получаются из защелок THO следующим образом:
+
+![tho_latches_tran](/BreakingNESWiki/imgstore/ppu/tho_latches_tran.jpg)
+
+(Находится в правом нижнем углу MUX).
+
 ## Схема Logisim
 
 ![ppu_mux_logisim](/BreakingNESWiki/imgstore/ppu_mux_logisim.jpg)
