@@ -6,6 +6,8 @@
 
 ## Делитель частоты
 
+![CLK_DIVIDER_trans](/BreakingNESWiki/imgstore/apu/CLK_DIVIDER_trans.png)
+
 ## Встроенное ядро 6502
 
 ### Соединение 6502 и APU
@@ -31,6 +33,16 @@
 
 ## Выбор регистра
 
+![RW_DECODE](/BreakingNESWiki/imgstore/apu/RW_DECODE.png)
+
+![REG_SELECT](/BreakingNESWiki/imgstore/apu/REG_SELECT.png)
+
 ## Отладочные регистры
 
+![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)
+
+![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)
+
 ## Порты ввода/вывода
+
+![io_tran](/BreakingNESWiki/imgstore/apu/io_tran.jpg)
