@@ -15,10 +15,26 @@ Low-frequency counter (LFO) или Frame Counter - это специальный
 ## Программная модель
 
 Управляется LFO регистром 4017 (write-only):
-- 4017.6: маскирует прерывание от LFO (1-LFO interrupt disable, 0-enable)
-- 4017.7: Запись в этот бит выбирает режим NTSC/PAL (0/1).
+- $4017\[6\]: маскирует прерывание от LFO (1-LFO interrupt disable, 0-enable)
+- $4017\[7\]: Запись в этот бит выбирает режим NTSC/PAL (0/1).
 
-Разряд регистра 4015.6 содержит статус прерывания. Как очищается статус прерывания пока хз.
+Разряд регистра $4015\[6\] содержит статус прерывания. Как очищается статус прерывания пока хз.
+
+## Генератор ACLK
+
+![lfo_aclk_gen_tran](/BreakingNESWiki/imgstore/apu/lfo_aclk_gen_tran.jpg)
+
+## Управление LFO
+
+![lfo_control_tran](/BreakingNESWiki/imgstore/apu/lfo_control_tran.jpg)
+
+## Счетчик LFO
+
+![lfo_counter_tran](/BreakingNESWiki/imgstore/apu/lfo_counter_tran.jpg)
+
+## Управление счетчиком LFO
+
+![lfo_counter_control_tran](/BreakingNESWiki/imgstore/apu/lfo_counter_control_tran.jpg)
 
 ## Аппаратный интерфейс
 
