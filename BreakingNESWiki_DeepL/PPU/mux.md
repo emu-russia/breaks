@@ -20,6 +20,12 @@ Outputs:
 
 As you can see, the circuit looks very confusing at first glance. This is because the multiplexers (as circuit elements) are very difficult to recognize from the NMOS transistors.
 
+The signals `THOx'` are obtained from the THO latches as follows:
+
+![tho_latches_tran](/BreakingNESWiki/imgstore/ppu/tho_latches_tran.jpg)
+
+(Located in the bottom right corner of the MUX).
+
 ## Logisim Circuit
 
 ![ppu_mux_logisim](/BreakingNESWiki/imgstore/ppu_mux_logisim.jpg)
