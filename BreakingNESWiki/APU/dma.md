@@ -16,6 +16,10 @@
 
 ![sprdma_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_control_tran.jpg)
 
+## SPR DMA Buffer
+
+![sprdma_buffer_tran](/BreakingNESWiki/imgstore/apu/sprdma_buffer_tran.jpg)
+
 ## Address Latch
 
 Управление адресной защелкой:
