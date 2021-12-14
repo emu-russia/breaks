@@ -6,7 +6,7 @@
 
 ![dpcm_control_reg_tran](/BreakingNESWiki/imgstore/apu/dpcm_control_reg_tran.jpg)
 
-## Interupt Control
+## Interrupt Control
 
 ![dpcm_int_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_int_control_tran.jpg)
 
@@ -56,7 +56,7 @@
 
 ## DPCM Address Register ($4012)
 
-![dpcm_addr_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_low_tran.jpg)
+![dpcm_addr_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_addr_in_tran.jpg)
 
 ## DPCM Address
 
