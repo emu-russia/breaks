@@ -17,7 +17,7 @@ CPU Interface:
 
 The circuit is located above the sprite logic.
 
-The decoder is designed to obtain two complementary control lines `/RD` and `/WR` from the input pad of the CPU R/W interface.
+The decoder is designed to obtain two complementary control lines `/RD` and `/WR` from the input pad of the CPU R/W interface, which are used for the external data bus D0-D7.
 
 ![ppu_rw_decoder](/BreakingNESWiki/imgstore/ppu_rw_decoder.jpg)
 
@@ -27,7 +27,7 @@ The circuit is on the right side of the H/V counters.
 
 The circuit is engaged in selecting a register operation. The input is:
 - RS0-2 (CPU interface input pads): PPU register index (0-7)
-- /RD, /WR (derived by R/W decoder): Type of operation (read or write)
+- R/W: Type of operation (read or write)
 
 The output of the circuit produces many control lines which activate a read or write operation for the corresponding register (e.g. `/R7` - means "Read register $2007")
 
