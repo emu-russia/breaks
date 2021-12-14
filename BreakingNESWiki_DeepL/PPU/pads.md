@@ -52,6 +52,8 @@ The D0-D7 data bus is used to exchange data between the CPU and the PPU register
 
 The register index is selected by pins RS0-RS2.
 
+The internal signals `/RD` and `/WR`, which are used in pins D0-D7, are obtained by the [RW Decoder](regs.md) circuit.
+
 ### RS0-RS2
 
 <img src="/BreakingNESWiki/imgstore/ppu/pad_rs.png" width="600px">
@@ -110,6 +112,8 @@ The /RD signal is complementary to the /WR signal (they cannot take the same val
 
 When /RD=0 the AD0-AD7 data bus is used to read VRAM data (input).
 
+The value of the /RD pin comes from the internal `RD` signal that comes out of [VRAM controller](vram_ctrl.md).
+
 ### /WR
 
 <img src="/BreakingNESWiki/imgstore/ppu/pad_wr.png" width="600px">
@@ -118,7 +122,7 @@ The /WR signal is complementary to the /RD signal (they cannot take the same val
 
 When /WR=0 the AD0-AD7 data bus is used to write VRAM data (output).
 
-The /RD and /WR signals can be confused with the internal signals `RD_internal` and `WR_internal`, which are used in the [VRAM controller](vram_ctrl.md).
+The value of the /WR pin comes from the internal `WR` signal that comes out of [VRAM controller](vram_ctrl.md).
 
 ## Interface with other PPUs
 
