@@ -201,6 +201,6 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 |---|---|---|---|
 |PD/RB| | | |
 |XRB| | | |
-|RD\_internal| | | |
-|WR\_internal| | | |
+|RD| | | |
+|WR| | | |
 |/ALE| | | |
