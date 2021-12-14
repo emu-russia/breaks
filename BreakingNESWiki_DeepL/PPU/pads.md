@@ -118,7 +118,7 @@ The /WR signal is complementary to the /RD signal (they cannot take the same val
 
 When /WR=0 the AD0-AD7 data bus is used to write VRAM data (output).
 
-The /RD and /WR signals can be confused with the internal signals /RD\_internal and /WR\_internal, which are used in the [VRAM controller](vram_ctrl.md).
+The /RD and /WR signals can be confused with the internal signals `RD_internal` and `WR_internal`, which are used in the [VRAM controller](vram_ctrl.md).
 
 ## Interface with other PPUs
 
