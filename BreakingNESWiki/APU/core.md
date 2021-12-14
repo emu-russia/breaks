@@ -39,9 +39,17 @@
 
 ## Отладочные регистры
 
+Square 1 Debug:
+
 ![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)
 
+Triangle Debug:
+
 ![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)
+
+Noise Debug:
+
+![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)
 
 ## Порты ввода/вывода
 
