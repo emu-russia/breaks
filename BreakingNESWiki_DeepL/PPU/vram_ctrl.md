@@ -8,12 +8,12 @@ In addition, the controller also includes a READ BUFFER (RB), an intermediate da
 
 <img src="/BreakingNESWiki/imgstore/vram_control_tran.jpg" width="1000px">
 
-Anatomically the circuit is divided into 2 large halves, the left one is more connected to the WR_internal control signal and the right one to the RD_internal.
+Anatomically the circuit is divided into 2 large halves, the left one is more connected to the `WR` control signal and the right one to the `RD`.
 Each half includes an RS trigger and a delay line that automatically sets the trigger.
 
 The circuit outputs a number of control lines to the outside:
-- RD (RD_internal): to /RD output
-- WR (WR_internal): to /WR output
+- RD: to /RD output
+- WR: to /WR output
 - /ALE: to the ALE output (ALE=1 when the AD bus works as an address bus, ALE=0 when AD works as a data bus)
 - TSTEP: to the DATAREAD circuit, allows TV/TH counters to perform incremental
 - DB/PAR: on the DATAREAD circuit, connects the internal PPU DB bus to the PAR (PPU address register) pseudo register
