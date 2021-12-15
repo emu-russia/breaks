@@ -42,12 +42,11 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 |V0-7| | | |
 |RESCL| | | |
 |OMFG| | | |
-|DB/OAM| | | |
+|BLNK| | | |
 |PAR/O| | | |
 |ASAP| | | |
 |/VIS| | | |
 |I/OAM2| | | |
-|BLNK| | | |
 |/H2'| | | |
 |SPR_OV| | | |
 |EVAL| | | |
