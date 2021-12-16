@@ -18,29 +18,29 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|PCLK| | | |
-|/PCLK| | | |
-|RC| | | |
-|EXT0-3 IN| | | |
-|EXT0-3 OUT| | | |
-|/SLAVE| | | |
-|R/W| | | |
-|/DBE| | | |
-|RS0-3| | | |
-|/W6/1| | | |
-|/W6/2| | | |
-|/W5/1| | | |
-|/W5/2| | | |
-|/R7| | | |
-|/W7| | | |
-|/W4| | | |
-|/W3| | | |
-|/R2| | | |
-|/W1| | | |
-|/W0| | | |
-|/R4| | | |
-|V0-7| | | |
-|RESCL| | | |
+|PCLK|PCLK Gen|All|The PPU is in the PCLK=1 state|
+|/PCLK|PCLK Gen|All|The PPU is in the PCLK=0 state|
+|RC|/RES Pad|Regs|"Registers Clear"|
+|EXT0-3 IN|EXT Pads|MUX|Input subcolor from Master PPU|
+|EXT0-3 OUT|EXT Pads|MUX|Output color for Slave PPU|
+|/SLAVE|Regs $2000\[6\]|EXT Pads|PPU operating mode (Master/Slave)|
+|R/W|R/W Pad|RW Decoder, Reg Select|CPU interface operating mode (read/write)|
+|/DBE|/DBE Pad|Regs|"Data Bus Enable", enable CPU interface|
+|RS0-3|RS Pads|Reg Select|Selecting a register for the CPU interface|
+|/W6/1|Reg Select| |First write to $2006|
+|/W6/2|Reg Select| |Second write to $2006|
+|/W5/1|Reg Select| |First write to $2005|
+|/W5/2|Reg Select| |Second write to $2005|
+|/R7|Reg Select| |Read $2007|
+|/W7|Reg Select| |Write $2007|
+|/W4|Reg Select| |Write $2004|
+|/W3|Reg Select| |Write $2003|
+|/R2|Reg Select| |Read $2002|
+|/W1|Reg Select| |Write $2001|
+|/W0|Reg Select| |Write $2000|
+|/R4|Reg Select| |Read $2004|
+|V0-7|VCounter| |Digits of V counter|
+|RESCL| | |"RES FF Clear". Clear the /RES latch|
 |OMFG| | | |
 |BLNK| | | |
 |PAR/O| | | |
@@ -69,19 +69,19 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 |F/TB| | | |
 |CLIP_O| | | |
 |CLIP_B| | | |
-|VBL| | | |
-|/TB| | | |
-|/TG| | | |
-|/TR| | | |
+|VBL|Regs $2000\[7\]| | |
+|/TB|Regs $2001\[7\]| |"Tint Blue". Modifying value for Emphasis|
+|/TG|Regs $2001\[6\]| |"Tint Green". Modifying value for Emphasis|
+|/TR|Regs $2001\[5\]| |"Tint Red". Modifying value for Emphasis|
 |SC/CNT| | | |
 |0/HPOS| | | |
 |I2SEV| | | |
-|/OBCLIP| | | |
-|/BGCLIP| | | |
+|/OBCLIP|Regs $2001\[2\]| | |
+|/BGCLIP|Regs $2001\[1\]| | |
 |H0'' - H5''| | | |
 |BLACK| | | |
 |DB0-7| | | |
-|B/W| | | |
+|B/W|Regs $2001\[0\]| | |
 |TH/MUX| | | |
 |DB/PAR| | | |
 
@@ -125,10 +125,12 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 |Signal|From|Where|Purpose|
 |---|---|---|---|
 |OV0-3| | | |
-|O8/16| | | |
 |OB7| | | |
 |0/FIFO| | | |
-|I1/32| | | |
+|I1/32|Regs $2000\[2\]| |Increment PPU address 1/32. PAL PPU uses an inverse version of the signal (#I1/32)|
+|OGSEL|Regs $2000\[3\]| | |
+|BGSEL|Regs $2000\[4\]| | |
+|O8/16|Regs $2000\[5\]| |Object lines 8/16 (sprite size). The PAL PPU uses an inverse version of the signal (#O8/16)|
 
 |NTSC|PAL|
 |---|---|
