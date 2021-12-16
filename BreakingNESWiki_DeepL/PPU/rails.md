@@ -128,7 +128,7 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 |OB7| | | |
 |0/FIFO| | | |
 |I1/32|Regs $2000\[2\]| |Increment PPU address 1/32. PAL PPU uses an inverse version of the signal (#I1/32)|
-|OGSEL|Regs $2000\[3\]| | |
+|OBSEL|Regs $2000\[3\]| | |
 |BGSEL|Regs $2000\[4\]| | |
 |O8/16|Regs $2000\[5\]| |Object lines 8/16 (sprite size). The PAL PPU uses an inverse version of the signal (#O8/16)|
 
