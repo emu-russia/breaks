@@ -31,6 +31,14 @@ The circuits for controlling the counters are separated beforehand, maybe it mak
 
 ![oam_counters_control](/BreakingNESWiki/imgstore/oam_counters_control.jpg)
 
+## H0'' Auxiliary Circuit
+
+The `H0''` signal which is used in the counter control circuits does not come from the H-Outputs which are in the [H/V FSM](hv_fsm.md) circuit, but is derived by the circuit which is in between the connections to the left of the sprite logic.
+
+This special `H0''` signal (but essentially a variation of the regular H0'' signal) is marked with an arrow on the transistor circuits.
+
+![h0_dash_dash_tran](/BreakingNESWiki/imgstore/ppu/h0_dash_dash_tran.jpg)
+
 ## Comparator
 
 ![oam_cmpr](/BreakingNESWiki/imgstore/oam_cmpr.jpg)
