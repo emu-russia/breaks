@@ -118,5 +118,5 @@ def TestVDecoder(ntsc):
 if __name__ == '__main__':
 	TestCounterStage()
 	TestCounter()
-	TestHDecoder(False)
-	TestVDecoder(False)
+	TestHDecoder(True)
+	TestVDecoder(True)
