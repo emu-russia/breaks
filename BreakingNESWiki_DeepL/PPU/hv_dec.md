@@ -4,190 +4,107 @@ The H/V decoder selects the necessary pixels and lines for the rest of H/V logic
 
 A "pixel" refers to a time interval that is based on PCLK. Not all "pixels" are displayed as an image, some are defined by different control portions of the signal, such as HSync, Color Burst, etc.
 
+The principle of operation is as follows:
+- The inputs are on the left, the outputs on the bottom. The inputs for the counter digits are in top-down order, starting from msb, for example: H8, /H8, H7, /H7 etc.
+- The direct and inverse inputs are needed to check the value of the corresponding digit to `0` or `1`. For example, if the bit H8=1 and there is a transistor in the decoder, the output is "zeroed" (inactive).
+- Each output takes the value `1` only for the required H or V values
+- H Decoder has 2 additional inputs: VB and BLNK, which cut off the corresponding outputs when VB=1 or BLNK=1
+- Technically, each decoder line is a multi-input NOR gate
+
 ## H Decoder (NTSC PPU)
 
 ![ntsc_h](/BreakingNESWiki/imgstore/ntsc_h.png)
 
-```
-0 01010 101 01000 01000 00000
-1 10001 000 10000 10011 11111
-1 11101 101 10000 00011 11111
-0 00000 010 00000 00000 00000
-1 10100 101 10000 00010 11010
-0 01001 010 00000 10001 00101
-1 11101 000 00000 10011 10101
-0 00000 110 00000 00000 01010
-0 11100 000 00000 10011 00100
-1 00001 110 00000 00000 11011
-1 11101 000 00000 00000 11111
-0 00000 110 00000 00011 00000
-0 11001 000 00100 00101 01100
-1 00000 110 00011 00010 10011
-0 11000 000 00101 00001 01011
-1 00001 110 00010 00110 10100
-0 10000 000 00000 00011 01011
-1 01001 110 00000 00000 10100
-
-0 00010 000 01000 00000 00000
-0 01001 111 11100 11000 00000
-```
-
-|HPLA output|Pixel numbers of the line|VB|BLNK|Meaning|
-|---|---|---|---|---|
-|0|279| | |FPorch FF|
-|1|256| | |FPorch FF|
-|2|65| |yes|S/EV|
-|3|0-7, 256-263| | |CLIP_O / CLIP_B|
-|4|0-255|yes| |CLIP_O / CLIP_B|
-|5|339| |yes|0/HPOS|
-|6|63| |yes|EVAL|
-|7|255| |yes|E/EV|
-|8|0-63| |yes|I/OAM2|
-|9|256-319| |yes|PAR/O|
-|10|0-255|yes|yes|/VIS|
-|11|Each 0..1| |yes|F/NT|
-|12|Each 6..7| | |F/TB|
-|13|Each 4..5| | |F/TA|
-|14|320-335| |yes|/FO|
-|15|0-255| |yes|F/AT|
-|16|Each 2..3| | |F/AT|
-|17|270| | |BPorch FF|
-|18|328| | |BPorch FF|
-|19|279| | |HBlank FF|
-|20|304| | |HBlank FF|
-|21|323| | |BURST/VSYNC FF|
-|22|308| | |BURST/VSYNC FF|
-|23|340| | |HCounter clear / VCounter step|
+|HPLA output|Pixel numbers of the line|Bitmask|VB Tran|BLNK Tran|Involved|
+|---|---|---|---|---|---|
+|0|279|01101010011001010100| | |FPorch FF|
+|1|256|01101010101010101000| | |FPorch FF|
+|2|65|10100110101010100101| |yes|S/EV|
+|3|0-7, 256-263|00101010101000000000| | |CLIP_O / CLIP_B|
+|4|0-255|10000000000000000010|yes| |CLIP_O / CLIP_B|
+|5|339|01100110011010010101| |yes|0/HPOS|
+|6|63|10101001010101010101| |yes|EVAL|
+|7|255|00010101010101010101| |yes|E/EV|
+|8|0-63|10101000000000000001| |yes|I/OAM2|
+|9|256-319|01101000000000000001| |yes|PAR/O|
+|10|0-255|10000000000000000011|yes|yes|/VIS|
+|11|Each 0..1|00000000000010100001| |yes|F/NT|
+|12|Each 6..7|00000000000001010000| | |F/TB|
+|13|Each 4..5|00000000000001100000| | |F/TA|
+|14|320-335|01000110100000000001| |yes|/FO|
+|15|0-255|10000000000000000001| |yes|F/AT|
+|16|Each 2..3|00000000000010010000| | |F/AT|
+|17|270|01101010100101011000| | |BPorch FF|
+|18|328|01100110100110101000| | |BPorch FF|
+|19|279|01101010011001010100| | |HBlank FF|
+|20|304|01101001011010101000| | |HBlank FF|
+|21|323|01100110101010010100| | |BURST/VSYNC FF|
+|22|308|01101001011001101000| | |BURST/VSYNC FF|
+|23|340|01100110011001101000| | |HCounter clear / VCounter step|
 
 ## V Decoder (NTSC PPU)
 
 ![ntsc_v](/BreakingNESWiki/imgstore/ntsc_v.png)
 
-```
-000 00100 0
-001 00001 1
-001 00101 1
-110 11010 0
-001 00101 1
-110 11010 0
-001 00101 1
-110 11010 0
-001 00101 1
-110 11010 0
-111 11111 1
-000 00000 0
-000 11110 0
-111 00001 1
-011 11111 1
-100 00000 0
-010 00110 0
-101 11001 1
-```
-
-|VPLA output|Line number|Meaning|
-|---|---|---|
-|0|247| |
-|1|244| |
-|2|261| |
-|3|241| |
-|4|241| |
-|5|0| |
-|6|240| |
-|7|261| |
-|8|261| |
+|VPLA output|Line number|Bitmask|Involved|
+|---|---|---|---|
+|0|247|000101010110010101| |
+|1|244|000101010110011010| |
+|2|261|011010101010011001| |
+|3|241|000101010110101001| |
+|4|241|000101010110101001| |
+|5|0|101010101010101010| |
+|6|240|000101010110101010| |
+|7|261|011010101010011001| |
+|8|261|011010101010011001| |
 
 ## H Decoder (PAL PPU)
 
 ![pal_h](/BreakingNESWiki/imgstore/pal_h.png)
 
-```
-0 01010 101 01000 01001 00000
-1 10001 000 10000 10010 11111
-1 11101 101 10000 00011 11111
-0 00000 010 00000 00000 00000
-1 10100 101 10000 00011 11010
-0 01001 010 00000 10000 00101
-1 11101 000 00000 10011 10101
-0 00000 110 00000 00000 01010
-0 11100 000 00000 10011 01100
-1 00001 110 00000 00000 10011
-1 11101 000 00000 00011 10111
-0 00000 110 00000 00000 01000
-0 11001 000 00100 00110 00110
-1 00000 110 00011 00001 11001
-1 11000 000 00101 00011 10101
-0 00001 110 00010 00100 01010
-0 10000 000 00000 00011 01011
-1 01001 110 00000 00000 10100
-
-0 00010 000 01000 00000 00000
-0 01001 111 11100 11000 00000
-```
-
-|HPLA output|Pixel numbers of the line|VB|BLNK|Meaning|
-|---|---|---|---|---|
-|0|277| | |FPorch FF|
-|1|256| | |FPorch FF|
-|2|65| |yes|S/EV|
-|3|0-7, 256-263| | |CLIP_O / CLIP_B|
-|4|0-255|yes| |CLIP_O / CLIP_B|
-|5|339| |yes|0/HPOS|
-|6|63| |yes|EVAL|
-|7|255| |yes|E/EV|
-|8|0-63| |yes|I/OAM2|
-|9|256-319| |yes|PAR/O|
-|10|0-255|yes|yes|/VIS|
-|11|Each 0..1| |yes|F/NT|
-|12|Each 6..7| | |F/TB|
-|13|Each 4..5| | |F/TA|
-|14|320-335| |yes|/FO|
-|15|0-255| |yes|F/AT|
-|16|Each 2..3| | |F/AT|
-|17|256| | |BPorch FF|
-|18|4| | |BPorch FF|
-|19|277| | |HBlank FF|
-|20|302| | |HBlank FF|
-|21|321| | |BURST/VSYNC FF|
-|22|306| | |BURST/VSYNC FF|
-|23|340| | |HCounter clear / VCounter step|
+|HPLA output|Pixel numbers of the line|Bitmask|VB Tran|BLNK Tran|Involved|
+|---|---|---|---|---|---|
+|0|277|011010100110011001 00| | |FPorch FF|
+|1|256|011010101010101010 00| | |FPorch FF|
+|2|65|101001101010101001 01| |yes|S/EV|
+|3|0-7, 256-263|001010101010000000 00| | |CLIP_O / CLIP_B|
+|4|0-255|100000000000000000 10|yes| |CLIP_O / CLIP_B|
+|5|339|011001100110100101 01| |yes|0/HPOS|
+|6|63|101010010101010101 01| |yes|EVAL|
+|7|255|000101010101010101 01| |yes|E/EV|
+|8|0-63|101010000000000000 01| |yes|I/OAM2|
+|9|256-319|011010000000000000 01| |yes|PAR/O|
+|10|0-255|100000000000000000 11|yes|yes|/VIS|
+|11|Each 0..1|000000000000101000 01| |yes|F/NT|
+|12|Each 6..7|000000000000010100 00| | |F/TB|
+|13|Each 4..5|000000000000011000 00| | |F/TA|
+|14|320-335|010001101000000000 01| |yes|/FO|
+|15|0-255|100000000000000000 01| |yes|F/AT|
+|16|Each 2..3|000000000000100100 00| | |F/AT|
+|17|256|011010101010101010 00| | |BPorch FF|
+|18|4|101010101010011010 00| | |BPorch FF|
+|19|277|011010100110011001 00| | |HBlank FF|
+|20|302|011010011001010110 00| | |HBlank FF|
+|21|321|011001101010101001 00| | |BURST/VSYNC FF|
+|22|306|011010010110100110 00| | |BURST/VSYNC FF|
+|23|340|011001100110011010 00| | |HCounter clear / VCounter step|
 
 ## V Decoder (PAL PPU)
 
 ![pal_v](/BreakingNESWiki/imgstore/pal_v.png)
 
-```
-001 00100 00
-110 00001 11
-111 00101 11
-000 11010 00
-111 00101 11
-000 11010 00
-111 00100 01
-000 11011 10
-011 00100 01
-100 11011 10
-101 11111 10
-010 00000 01
-101 11110 01
-010 00001 10
-111 11110 01
-000 00001 10
-100 10110 00
-011 01001 11
-```
-
-|VPLA output|Line number|Meaning|
-|---|---|---|
-|0|272| |
-|1|269| |
-|2|1| |
-|3|240| |
-|4|241| |
-|5|0| |
-|6|240| |
-|7|311| |
-|8|311| |
-|9|265| |
+|VPLA output|Line number|Bitmask|Involved|
+|---|---|---|---|
+|0|272|011010100110101010| |
+|1|269|011010101001011001| |
+|2|1|101010101010101001| |
+|3|240|000101010110101010| |
+|4|241|000101010110101001| |
+|5|0|101010101010101010| |
+|6|240|000101010110101010| |
+|7|311|011010010110010101| |
+|8|311|011010010110010101| |
+|9|265|011010101001101001| |
 
 ## Simulation
 
