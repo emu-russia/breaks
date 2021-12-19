@@ -62,7 +62,7 @@
 |PICTURE| |Видимая часть строк|
 |VB| | |
 |BLNK| | |
-|RESCL (VCLR)| |"/RES FF Clear" / "VBlank Clear". Событие окончания периода VBlank.|
+|RESCL (VCLR)| |"Reset FF Clear" / "VBlank Clear". Событие окончания периода VBlank.|
 |Прочее|||
 |HC|HCounter|"HCounter Clear". Очистить HCounter.|
 |VC|VCounter|"VCounter Clear". Очистить VCounter.|
