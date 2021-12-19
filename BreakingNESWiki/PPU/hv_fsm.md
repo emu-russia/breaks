@@ -43,18 +43,18 @@
 |S/EV| |"Start Sprite Evaluation"|
 |CLIP_O| |"Clip Objects"|
 |CLIP_B| |"Clip Background"|
-|0/HPOS| | |
+|0/HPOS| |"Clear HPos". Очистить счетчики H в [спрайтовой FIFO](fifo.md) и начать работу FIFO|
 |EVAL| |"Sprite Evaluation in Progress"|
 |E/EV| |"End Sprite Evaluation"|
 |I/OAM2| |"Increment OAM2 Counter"|
-|PAR/O| |"Connect PAR with Object?" (забыл расшифровку)|
+|PAR/O| |"PAR for Object". Выборка тайла для объекта (спрайта).|
 |/VIS| |Видимая часть строки ("пиксели")|
 |F/NT| |"Fetch Name Table"|
 |F/TB| |"Fetch Tile B"|
 |F/TA| |"Fetch Tile A"|
-|/FO| |"Fetch Object?" (забыл расшифровку)|
+|/FO| |"Fetch Output Enable"|
 |F/AT| |"Fetch Attribute Table"|
-|SC/CNT| |"SC Counter?" (забыл расшифровку)|
+|SC/CNT| |"Scroll Counters". Обновить регистры скроллинга.|
 |BURST| |Цветовая вспышка|
 |SYNC| |Синхронизация строки|
 |**Вертикальные управляющие сигналы**|||
