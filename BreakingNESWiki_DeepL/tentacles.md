@@ -16,7 +16,7 @@ Now a little bit about names:
 - The connection of two parts of a circuit is sometimes designated as `A/B`, e.g. `X/SB`
 - If the signal is part of a bus, then a digit is indicated at the end, e.g. `DB0`
 
-But in general the naming practice is quite chaotic, so be prepared, for example, that `I/OAM2` does not mean "connect I and OAM2" but "increment OAM2".
+But in general the naming practice is quite chaotic, so be prepared, for example, that `I/OAM2` does not mean "connect I and OAM2" but "init OAM2".
 
 ## Difficulties With Inversion
 
