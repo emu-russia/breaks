@@ -34,12 +34,12 @@
 
 |Сигнал|Куда|Описание|
 |---|---|---|
-|Выходы HCounter с задержкой|||
+|**Выходы HCounter с задержкой**|||
 |H0'| | |
 |/H1'| | |
 |/H2'| | |
 |H0''-H5''| | |
-|Горизонтальные управляющие сигналы|||
+|**Горизонтальные управляющие сигналы**|||
 |S/EV| |"Start Sprite Evaluation"|
 |CLIP_O| |"Clip Objects"|
 |CLIP_B| |"Clip Background"|
@@ -57,13 +57,13 @@
 |SC/CNT| |"SC Counter?" (забыл расшифровку)|
 |BURST| |Цветовая вспышка|
 |SYNC| |Синхронизация строки|
-|Вертикальные управляющие сигналы|||
+|**Вертикальные управляющие сигналы**|||
 |VSYNC| |Невидимая часть строк (VBlank)|
 |PICTURE| |Видимая часть строк|
 |VB| | |
 |BLNK| | |
 |RESCL (VCLR)| |"Reset FF Clear" / "VBlank Clear". Событие окончания периода VBlank.|
-|Прочее|||
+|**Прочее**|||
 |HC|HCounter|"HCounter Clear". Очистить HCounter.|
 |VC|VCounter|"VCounter Clear". Очистить VCounter.|
 |V_IN|VCounter|"VCounter In". Выполнить инкремент VCounter.|
