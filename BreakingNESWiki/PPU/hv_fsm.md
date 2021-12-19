@@ -62,7 +62,7 @@
 |PICTURE| |Видимая часть строк|
 |VB| | |
 |BLNK| | |
-|RESCL (VCLR)| |"Reset FF Clear" / "VBlank Clear". Событие окончания периода VBlank.|
+|RESCL (VCLR)| |"Reset FF Clear" / "VBlank Clear". Событие окончания периода VBlank. Вначале была установлена связь с контактом /RES, но потом выяснилось более глобальное назначение сигнала. Поэтому у сигнала два названия.|
 |**Прочее**|||
 |HC|HCounter|"HCounter Clear". Очистить HCounter.|
 |VC|VCounter|"VCounter Clear". Очистить VCounter.|
