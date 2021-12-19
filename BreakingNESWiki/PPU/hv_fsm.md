@@ -99,6 +99,8 @@
 
 ## Обработка прерывания PPU
 
+![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)
+
 ## Управление H/V счетчиками
 
 ![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)
