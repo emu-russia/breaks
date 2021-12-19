@@ -93,6 +93,11 @@
 
 ![hv_fsm_horz](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz.jpg)
 
+|"Pixel"|0||1||
+|---|---|---|---|---|
+|PCLK|0|1|0|1|
+|Smth|Smth=1||||
+
 ## Вертикальная логика
 
 ![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert.jpg)
