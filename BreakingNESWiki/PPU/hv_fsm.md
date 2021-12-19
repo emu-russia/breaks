@@ -6,49 +6,28 @@
 
 Разряды счетчика H используются в других компонентах PPU.
 
-![h_counter_output](/BreakingNESWiki/imgstore/h_counter_output.jpg)
+![h_counter_output](/BreakingNESWiki/imgstore/ppu/h_counter_output.jpg)
 
 ## Горизонтальная логика
 
 "Горизонтальная" логика, отвечает за генерацию контрольных линий в зависимости от горизонтального положения луча (H):
 
-![hv_fporch](/BreakingNESWiki/imgstore/hv_fporch.jpg)
+![hv_fporch](/BreakingNESWiki/imgstore/ppu/hv_fporch.jpg)
 
-![hv_fsm_horz](/BreakingNESWiki/imgstore/hv_fsm_horz.jpg)
-
-<img src="/BreakingNESWiki/imgstore/7fc48a229053d2cf091195ec01a345ce.jpg" width="1000px">
+![hv_fsm_horz](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz.jpg)
 
 ## Вертикальная логика
 
-![hv_fsm_vert](/BreakingNESWiki/imgstore/hv_fsm_vert.jpg)
+![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert.jpg)
 
 ### Управление H/V счетчиками
 
-![hv_counters_control](/BreakingNESWiki/imgstore/hv_counters_control.jpg)
+![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)
 
-### Логика ODD/EVEN
+### Логика EVEN/ODD
 
-![odd_1](/BreakingNESWiki/imgstore/5c4d95b2bf506ef6b183cf8bb46e9433.jpg) ![odd_2](/BreakingNESWiki/imgstore/e4220e0351932b00026250fc2f3c858a.jpg) ![odd_3](/BreakingNESWiki/imgstore/e7d09137ee29ae53340df1cb2285585f.jpg)
+![even_odd_tran](/BreakingNESWiki/imgstore/ppu/even_odd_tran.jpg) ![even_odd_flow1](/BreakingNESWiki/imgstore/ppu/even_odd_flow1.jpg) ![even_odd_flow2](/BreakingNESWiki/imgstore/ppu/even_odd_flow2.jpg)
 
-Логика ODD/EVEN состоит из двух замкнутых друг на друга псевдозащелок, управляемых двумя мультиплексорами. Получается такая очень хитрая "макро"-защелка.
+Логика EVEN/ODD состоит из двух замкнутых друг на друга псевдозащелок, управляемых двумя мультиплексорами. Получается такая очень хитрая "макро"-защелка.
 
 TODO: Схему нужно проанализровать ещё раз, т.к. что это за фигня такая - "макро-защелка".. К тому же схема для PAL PPU отличается от NTSC версии.
-
-HardWareMan — Сегодня, в 19:03
-```
-Она не добавляет строки, потому как PAL PPU выдаёт 288р.
-[19:03]
-На обычном телике нет дрожжания деинтерлейса.
-[19:03]
-Каждое полуполе рисуется строго поверх старого
-[19:03]
-Т.е., ODD/EVEN там только для хромы и HUE.
-[19:03]
-Это в ПАЛ
-[19:04]
-А вот в NTSC оно не вырезает ЦЕЛУЮ СТРОКУ, а только 1 ПИКСЕЛЬ в 0 строке.
-[19:04]
-И нужно это для скольжения поднесущей цвета
-[19:04]
-Я убирал эту схему и всё, NTSC показывал статичный свитер точно так же, как и PAL
-```
