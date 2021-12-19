@@ -2,6 +2,73 @@
 
 Логика H/V представляет собой конечный автомат (FSM), который управляет всеми остальными узлами PPU. Схематически это просто набор защелок, по типу "эта защелка активна от 64го до 128го пикселя", значит соответствующая контрольная линия идущая от этой защелки тоже активна.
 
+Входные сигналы:
+
+|Сигнал|Откуда|Описание|
+|---|---|---|
+|H0-5|HCounter|Разряды 0-5 HCounter|
+|V8|VCounter|Разряд 8 VCounter|
+|/V8|VDecoder|Разряд 8 VCounter (инвертированное значение)|
+|HPLA_0-23|HDecoder|Выходы с декодера H|
+|VPLA_0-8|VDecoder|Выходы с декодера V|
+|/OBCLIP|Control Regs|Для формирования контрольного сигнала CLIP_O|
+|/BGCLIP|Control Regs|Для формирования контрольного сигнала CLIP_B|
+|BLACK|Control Regs| |
+|DB7|Внутренняя шина данных DB|Для чтения $2002\[7\]|
+|VBL|Control Regs| |
+|/R2|Reg Select|Регистровая операция чтения $2002|
+|/DBE|Контакт /DBE|Включение CPU интерфейса|
+|RES|Контакт /RES|Глобальный сигнал сброса|
+
+Выходные сигналы:
+
+|Сигнал|Куда|Описание|
+|---|---|---|
+|Выходы HCounter с задержкой|||
+|H0'| | |
+|/H1'| | |
+|/H2'| | |
+|H0''-H5''| | |
+|Горизонтальные управляющие сигналы|||
+|S/EV| |"Start Sprite Evaluation"|
+|CLIP_O| |"Clip Objects"|
+|CLIP_B| |"Clip Background"|
+|0/HPOS| | |
+|EVAL| |"Sprite Evaluation in Progress"|
+|E/EV| |"End Sprite Evaluation"|
+|I/OAM2| |"Increment OAM2 Counter"|
+|PAR/O| |"Connect PAR with Object"|
+|/VIS| | |
+|F/NT| |"Fetch Name Table"|
+|F/TB| |"Fetch Tile B"|
+|F/TA| |"Fetch Tile A"|
+|/FO| |"Fetch Object"|
+|F/AT| |"Fetch Attribute Table"|
+|SC/CNT| |"SC Counter?"|
+|BURST| | |
+|SYNC| | |
+|Вертикальные управляющие сигналы|||
+|VSYNC| | |
+|PICTURE| | |
+|VB| | |
+|BLNK| | |
+|RESCL| | |
+|Прочее|||
+|HC| |"HCounter Clear"|
+|VC| |"VCounter Clear"|
+|V_IN| |"VCounter In"|
+|INT| |"Interrupt"|
+
+Вспомогательные сигналы:
+
+|Сигнал|Откуда|Куда|Описание|
+|---|---|---|---|
+|/FPORCH| | |"Front Porch"|
+|BPORCH| | |"Back Porch"|
+|/HB| | |"HBlank"|
+|/VSET| | |"VBlank Set"|
+|EvenOddOut| | | |
+
 ## Выдача наружу значений разрядов H
 
 Разряды счетчика H используются в других компонентах PPU.
