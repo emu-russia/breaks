@@ -6,30 +6,28 @@ The H/V logic is a finite state machine (FSM) that controls all other PPU parts.
 
 H counter bits are used on other PPU components.
 
-![h_counter_output](/BreakingNESWiki/imgstore/h_counter_output.jpg)
+![h_counter_output](/BreakingNESWiki/imgstore/ppu/h_counter_output.jpg)
 
 ## HPos Logic
 
 "Horizontal" logic, responsible for generating control lines depending on the horizontal position of the beam (H):
 
-![hv_fporch](/BreakingNESWiki/imgstore/hv_fporch.jpg)
+![hv_fporch](/BreakingNESWiki/imgstore/ppu/hv_fporch.jpg)
 
-![hv_fsm_horz](/BreakingNESWiki/imgstore/hv_fsm_horz.jpg)
-
-<img src="/BreakingNESWiki/imgstore/7fc48a229053d2cf091195ec01a345ce.jpg" width="1000px">
+![hv_fsm_horz](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz.jpg)
 
 ## VPos Logic
 
-![hv_fsm_vert](/BreakingNESWiki/imgstore/hv_fsm_vert.jpg)
+![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert.jpg)
 
 ### H/V Counters Control
 
-![hv_counters_control](/BreakingNESWiki/imgstore/hv_counters_control.jpg)
+![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)
 
-### ODD/EVEN Logic
+### EVEN/ODD Logic
 
-![odd_1](/BreakingNESWiki/imgstore/5c4d95b2bf506ef6b183cf8bb46e9433.jpg) ![odd_2](/BreakingNESWiki/imgstore/e4220e0351932b00026250fc2f3c858a.jpg) ![odd_3](/BreakingNESWiki/imgstore/e7d09137ee29ae53340df1cb2285585f.jpg)
+![even_odd_tran](/BreakingNESWiki/imgstore/ppu/even_odd_tran.jpg) ![even_odd_flow1](/BreakingNESWiki/imgstore/ppu/even_odd_flow1.jpg) ![even_odd_flow2](/BreakingNESWiki/imgstore/ppu/even_odd_flow2.jpg)
 
-The ODD/EVEN logic consists of two closed to each other pseudo latches controlled by two multiplexers. This results in a very clever "macro" latch.
+The EVEN/ODD logic consists of two closed to each other pseudo latches controlled by two multiplexers. This results in a very clever "macro" latch.
 
 TODO: The schematic should be analyzed again, because what the hell is this "macro-latch"... In addition, the scheme for PAL PPU is different from the NTSC version.
