@@ -54,7 +54,7 @@
 |F/TA| |"Fetch Tile A"|
 |/FO| |"Fetch Output Enable"|
 |F/AT| |"Fetch Attribute Table"|
-|SC/CNT| |"Scroll Counters". Обновить регистры скроллинга.|
+|SC/CNT| |"Scroll Counters Control". Обновить регистры скроллинга.|
 |BURST| |Цветовая вспышка|
 |SYNC| |Импульс горизонтальной синхронизации|
 |**Вертикальные управляющие сигналы**|||
