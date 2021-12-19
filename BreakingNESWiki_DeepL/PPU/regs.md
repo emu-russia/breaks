@@ -8,10 +8,10 @@ CPU Interface:
 
 |Name|Direction (in relation to PPU)|Description|
 |---|---|---|
-|R/W	|input	|Read-notWrite. Used to read/write PPU registers. If R/W = 1 it reads, otherwise it writes. The contact is easy to remember: "Read(1), do not write".|
-|D0-D7	|inout	|The data bus for transferring register values. When /DBE = 1 the bus is disconnected (Z)|
-|RS0-RS2	|input	|Register Select. Sets the PPU register number (0-7)|
-|/DBE	|input	|Data Bus Enable. If /DBE = 0, then the D0-D7 bus is used to exchange values with the PPU registers, otherwise the bus is disconnected.|
+|R/W|input|Read-notWrite. Used to read/write PPU registers. If R/W = 1 it reads, otherwise it writes. The contact is easy to remember: "Read(1), do not write".|
+|D0-D7|inOut|The data bus for transferring register values. When /DBE = 1 the bus is disconnected (Z)|
+|RS0-RS2|input|Register Select. Sets the PPU register number (0-7)|
+|/DBE|input|Data Bus Enable. If /DBE = 0, then the D0-D7 bus is used to exchange values with the PPU registers, otherwise the bus is disconnected.|
 
 ## R/W Decoder
 
@@ -49,13 +49,21 @@ The circuitry is below the sprite logic above the multiplexer (MUX).
 
 <img src="/BreakingNESWiki/imgstore/ppu_control_regs.jpg" width="1000px">
 
-## Special Note
+### Special Note
 
 It should be understood that the access to the PPU registers is not related to PCLK in any way. Therefore, programmer can interfere with PPU rendering process at any time.
 Technically it can be done, but it is not recommended because it can lead to different side-effects. Information on when registers can be accessed without consequences can be found in any PPU Reference Manual.
 
 But on the other hand it can be used (and is used in games in fact) to get interesting visual effects.
 
-## Simulation
+### CLPB/CLPO
 
-TBD.
+Below the control registers is a small circuit, for getting the control signals `CLPB` and `CLPO`:
+
+![clp_tran](/BreakingNESWiki/imgstore/ppu/clp_tran.jpg)
+
+It's supposed to belong more to control logic, but topologically it's in a completely different place, so it's discussed in this section.
+
+### Control Regs Logic
+
+![control_regs_logic](/BreakingNESWiki/imgstore/ppu/control_regs_logic.jpg)

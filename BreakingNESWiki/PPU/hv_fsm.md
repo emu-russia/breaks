@@ -41,8 +41,8 @@
 |H0''-H5''|All|Сигналы H0-H5 задержанные двумя DLatch|
 |**Горизонтальные управляющие сигналы**|||
 |S/EV|Sprite Logic|"Start Sprite Evaluation"|
-|CLIP_O|CLPO|"Clip Objects". Не показывать левые 8 точек экрана для спрайтов. Используется для получения сигнала `CLPO`, который уходит в OAM FIFO.|
-|CLIP_B|CLPB|"Clip Background". Не показывать левые 8 точек экрана для бэкграунда. Используется для получения сигнала `CLPB`, который уходит в Data Reader.|
+|CLIP_O|Control Regs|"Clip Objects". Не показывать левые 8 точек экрана для спрайтов. Используется для получения сигнала `CLPO`, который уходит в OAM FIFO.|
+|CLIP_B|Control Regs|"Clip Background". Не показывать левые 8 точек экрана для бэкграунда. Используется для получения сигнала `CLPB`, который уходит в Data Reader.|
 |0/HPOS|OAM FIFO|"Clear HPos". Очистить счетчики H в [спрайтовой FIFO](fifo.md) и начать работу FIFO|
 |EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
