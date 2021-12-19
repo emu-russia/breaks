@@ -41,8 +41,8 @@
 |H0''-H5''| |Сигналы H0-H5 задержанные двумя DLatch|
 |**Горизонтальные управляющие сигналы**|||
 |S/EV| |"Start Sprite Evaluation"|
-|CLIP_O| |"Clip Objects"|
-|CLIP_B| |"Clip Background"|
+|CLIP_O| |"Clip Objects". Не показывать левые 8 точек экрана для спрайтов|
+|CLIP_B| |"Clip Background". Не показывать левые 8 точек экрана для бэкграунда|
 |0/HPOS| |"Clear HPos". Очистить счетчики H в [спрайтовой FIFO](fifo.md) и начать работу FIFO|
 |EVAL| |"Sprite Evaluation in Progress"|
 |E/EV| |"End Sprite Evaluation"|
