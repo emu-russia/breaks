@@ -47,7 +47,7 @@
 |EVAL| |"Sprite Evaluation in Progress"|
 |E/EV| |"End Sprite Evaluation"|
 |I/OAM2| |"Increment OAM2 Counter"|
-|PAR/O| |"Connect PAR with Object"|
+|PAR/O| |"Connect PAR with Object?" (забыл расшифровку)|
 |/VIS| |Видимая часть строки ("пиксели")|
 |F/NT| |"Fetch Name Table"|
 |F/TB| |"Fetch Tile B"|
