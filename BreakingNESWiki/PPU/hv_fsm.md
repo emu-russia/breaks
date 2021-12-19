@@ -46,7 +46,7 @@
 |0/HPOS| |"Clear HPos". Очистить счетчики H в [спрайтовой FIFO](fifo.md) и начать работу FIFO|
 |EVAL| |"Sprite Evaluation in Progress"|
 |E/EV| |"End Sprite Evaluation"|
-|I/OAM2| |"Increment OAM2 Counter"|
+|I/OAM2| |"Init OAM2". Инициализировать дополнительную [OAM](oam.md)|
 |PAR/O| |"PAR for Object". Выборка тайла для объекта (спрайта).|
 |/VIS| |"Not Visible". Невидимая часть сигнала (использует [спрайтовая логика](sprite_eval.md))|
 |F/NT| |"Fetch Name Table"|
@@ -58,7 +58,7 @@
 |BURST| |Цветовая вспышка|
 |SYNC| |Синхронизация строки|
 |**Вертикальные управляющие сигналы**|||
-|VSYNC| |Невидимая часть строк (VBlank)|
+|VSYNC| |Импульс вертикальной синхронизации|
 |PICTURE| |Видимая часть строк|
 |VB| | |
 |BLNK| | |
