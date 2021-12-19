@@ -48,7 +48,7 @@
 |E/EV| |"End Sprite Evaluation"|
 |I/OAM2| |"Increment OAM2 Counter"|
 |PAR/O| |"PAR for Object". Выборка тайла для объекта (спрайта).|
-|/VIS| |Видимая часть строки ("пиксели")|
+|/VIS| |"Not Visible". Невидимая часть сигнала (использует [спрайтовая логика](sprite_eval.md))|
 |F/NT| |"Fetch Name Table"|
 |F/TB| |"Fetch Tile B"|
 |F/TA| |"Fetch Tile A"|
