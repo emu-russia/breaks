@@ -97,7 +97,7 @@
 
 ![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert.jpg)
 
-## Обработка прерывания PPU
+## Обработка прерывания VBlank
 
 ![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)
 
