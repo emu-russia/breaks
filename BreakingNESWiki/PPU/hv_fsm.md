@@ -21,9 +21,9 @@
 |/V8|VDecoder|Разряд 8 VCounter (инвертированное значение). Используется в логике EVEN/ODD.|
 |HPLA_0-23|HDecoder|Выходы с декодера H|
 |VPLA_0-8|VDecoder|Выходы с декодера V|
-|/OBCLIP|Control Regs|Для формирования контрольного сигнала `CLIP_O`|
-|/BGCLIP|Control Regs|Для формирования контрольного сигнала `CLIP_B`|
-|BLACK|Control Regs| |
+|/OBCLIP|Control Regs ($2001\[2\])|Для формирования контрольного сигнала `CLIP_O`|
+|/BGCLIP|Control Regs ($2001\[1\])|Для формирования контрольного сигнала `CLIP_B`|
+|BLACK|Control Regs|Активен когда рендеринг PPU отключен (см. $2001\[3\] и $2001\[4\])|
 |DB7|Внутренняя шина данных DB|Для чтения $2002\[7\]. Используется в схеме обработки прерывания VBlank.|
 |VBL|Control Regs|Используется в схеме обработки прерывания VBlank.|
 |/R2|Reg Select|Регистровая операция чтения $2002. Используется в схеме обработки прерывания VBlank.|
@@ -35,34 +35,34 @@
 |Сигнал|Куда|Описание|
 |---|---|---|
 |**Выходы HCounter с задержкой**|||
-|H0'| |Сигнал H0 задержанный одним DLatch|
-|/H1'| |Сигнал H1 задержанный одним DLatch (в инверсной логике)|
-|/H2'| |Сигнал H2 задержанный одним DLatch (в инверсной логике)|
-|H0''-H5''| |Сигналы H0-H5 задержанные двумя DLatch|
+|H0'|All|Сигнал H0 задержанный одним DLatch|
+|/H1'|All|Сигнал H1 задержанный одним DLatch (в инверсной логике)|
+|/H2'|All|Сигнал H2 задержанный одним DLatch (в инверсной логике)|
+|H0''-H5''|All|Сигналы H0-H5 задержанные двумя DLatch|
 |**Горизонтальные управляющие сигналы**|||
-|S/EV| |"Start Sprite Evaluation"|
-|CLIP_O| |"Clip Objects". Не показывать левые 8 точек экрана для спрайтов|
-|CLIP_B| |"Clip Background". Не показывать левые 8 точек экрана для бэкграунда|
-|0/HPOS| |"Clear HPos". Очистить счетчики H в [спрайтовой FIFO](fifo.md) и начать работу FIFO|
-|EVAL| |"Sprite Evaluation in Progress"|
-|E/EV| |"End Sprite Evaluation"|
-|I/OAM2| |"Init OAM2". Инициализировать дополнительную [OAM](oam.md)|
-|PAR/O| |"PAR for Object". Выборка тайла для объекта (спрайта).|
-|/VIS| |"Not Visible". Невидимая часть сигнала (использует [спрайтовая логика](sprite_eval.md))|
-|F/NT| |"Fetch Name Table"|
-|F/TB| |"Fetch Tile B"|
-|F/TA| |"Fetch Tile A"|
-|/FO| |"Fetch Output Enable"|
-|F/AT| |"Fetch Attribute Table"|
-|SC/CNT| |"Scroll Counters Control". Обновить регистры скроллинга.|
-|BURST| |Цветовая вспышка|
-|SYNC| |Импульс горизонтальной синхронизации|
+|S/EV|Sprite Logic|"Start Sprite Evaluation"|
+|CLIP_O|CLPO|"Clip Objects". Не показывать левые 8 точек экрана для спрайтов. Используется для получения сигнала `CLPO`, который уходит в OAM FIFO.|
+|CLIP_B|CLPB|"Clip Background". Не показывать левые 8 точек экрана для бэкграунда. Используется для получения сигнала `CLPB`, который уходит в Data Reader.|
+|0/HPOS|OAM FIFO|"Clear HPos". Очистить счетчики H в [спрайтовой FIFO](fifo.md) и начать работу FIFO|
+|EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
+|E/EV|Sprite Logic|"End Sprite Evaluation"|
+|I/OAM2|Sprite Logic|"Init OAM2". Инициализировать дополнительную [OAM](oam.md)|
+|PAR/O|All|"PAR for Object". Выборка тайла для объекта (спрайта).|
+|/VIS|Sprite Logic|"Not Visible". Невидимая часть сигнала (использует [спрайтовая логика](sprite_eval.md))|
+|F/NT|Data Reader|"Fetch Name Table"|
+|F/TB|Data Reader|"Fetch Tile B"|
+|F/TA|Data Reader|"Fetch Tile A"|
+|/FO|Data Reader|"Fetch Output Enable"|
+|F/AT|Data Reader|"Fetch Attribute Table"|
+|SC/CNT|Data Reader|"Scroll Counters Control". Обновить регистры скроллинга.|
+|BURST|Video Out|Цветовая вспышка|
+|SYNC|Video Out|Импульс горизонтальной синхронизации|
 |**Вертикальные управляющие сигналы**|||
-|VSYNC| |Импульс вертикальной синхронизации|
-|PICTURE| |Видимая часть строк|
-|VB| | |
-|BLNK| | |
-|RESCL (VCLR)| |"Reset FF Clear" / "VBlank Clear". Событие окончания периода VBlank. Вначале была установлена связь с контактом /RES, но потом выяснилось более глобальное назначение сигнала. Поэтому у сигнала два названия.|
+|VSYNC|Video Out|Импульс вертикальной синхронизации|
+|PICTURE|Video Out|Видимая часть строк|
+|VB|HDecoder|Активен когда выводится невидимая часть видеосигнала (используется только H Decoder)|
+|BLNK|HDecoder, All|Активен когда рендеринг PPU отключен (сигналом `BLACK`) или во время VBlank|
+|RESCL (VCLR)|All|"Reset FF Clear" / "VBlank Clear". Событие окончания периода VBlank. Вначале была установлена связь с контактом /RES, но потом выяснилось более глобальное назначение сигнала. Поэтому у сигнала два названия.|
 |**Прочее**|||
 |HC|HCounter|"HCounter Clear". Очистить HCounter.|
 |VC|VCounter|"VCounter Clear". Очистить VCounter.|
