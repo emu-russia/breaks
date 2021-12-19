@@ -101,10 +101,6 @@
 
 ![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)
 
-## Управление H/V счетчиками
-
-![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)
-
 ## Логика EVEN/ODD
 
 ![even_odd_tran](/BreakingNESWiki/imgstore/ppu/even_odd_tran.jpg) ![even_odd_flow1](/BreakingNESWiki/imgstore/ppu/even_odd_flow1.jpg) ![even_odd_flow2](/BreakingNESWiki/imgstore/ppu/even_odd_flow2.jpg)
@@ -112,3 +108,7 @@
 Логика EVEN/ODD состоит из двух замкнутых друг на друга псевдозащелок, управляемых двумя мультиплексорами. Получается такая очень хитрая "макро"-защелка.
 
 TODO: Схему нужно проанализровать ещё раз, т.к. что это за фигня такая - "макро-защелка".. К тому же схема для PAL PPU отличается от NTSC версии.
+
+## Управление H/V счетчиками
+
+![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)
