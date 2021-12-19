@@ -2,6 +2,16 @@
 
 Логика H/V представляет собой конечный автомат (FSM), который управляет всеми остальными узлами PPU. Схематически это просто набор защелок, по типу "эта защелка активна от 64го до 128го пикселя", значит соответствующая контрольная линия идущая от этой защелки тоже активна.
 
+В состав H/V FSM входят следующие компоненты:
+- Схемы выдачи значений счетчика H с задержкой
+- Горизонтальная логика, ассоциированная с H декодером
+- Вертикальная логика, ассоциированная с V декодером
+- Обработка прерывания PPU (VBlank)
+- Схема EVEN/ODD
+- Схема управления H/V счетчиками
+
+Управляющая логика насыщена разного рода сигналами, которые приходят и уходят практически во все возможные узлы PPU.
+
 Входные сигналы:
 
 |Сигнал|Откуда|Описание|
@@ -38,36 +48,36 @@
 |E/EV| |"End Sprite Evaluation"|
 |I/OAM2| |"Increment OAM2 Counter"|
 |PAR/O| |"Connect PAR with Object"|
-|/VIS| | |
+|/VIS| |Видимая часть строки ("пиксели")|
 |F/NT| |"Fetch Name Table"|
 |F/TB| |"Fetch Tile B"|
 |F/TA| |"Fetch Tile A"|
-|/FO| |"Fetch Object"|
+|/FO| |"Fetch Object?" (забыл расшифровку)|
 |F/AT| |"Fetch Attribute Table"|
-|SC/CNT| |"SC Counter?"|
-|BURST| | |
-|SYNC| | |
+|SC/CNT| |"SC Counter?" (забыл расшифровку)|
+|BURST| |Цветовая вспышка|
+|SYNC| |Синхронизация строки|
 |Вертикальные управляющие сигналы|||
-|VSYNC| | |
-|PICTURE| | |
+|VSYNC| |Невидимая часть строк (VBlank)|
+|PICTURE| |Видимая часть строк|
 |VB| | |
 |BLNK| | |
 |RESCL| | |
 |Прочее|||
-|HC| |"HCounter Clear"|
-|VC| |"VCounter Clear"|
-|V_IN| |"VCounter In"|
-|INT| |"Interrupt"|
+|HC|HCounter|"HCounter Clear". Очистить HCounter.|
+|VC|VCounter|"VCounter Clear". Очистить VCounter.|
+|V_IN|VCounter|"VCounter In". Выполнить инкремент VCounter.|
+|INT|Контакт /INT|"Interrupt". Прерывание PPU|
 
 Вспомогательные сигналы:
 
 |Сигнал|Откуда|Куда|Описание|
 |---|---|---|---|
-|/FPORCH| | |"Front Porch"|
-|BPORCH| | |"Back Porch"|
-|/HB| | |"HBlank"|
-|/VSET| | |"VBlank Set"|
-|EvenOddOut| | | |
+|/FPORCH|Горизонтальная логика (FPORCH FF)|Получение контрольного сигнала SYNC|"Front Porch"|
+|BPORCH|Горизонтальная логика (BPORCH FF)|Получение контрольного сигнала PICTURE|"Back Porch"|
+|/HB|Горизонтальная логика (HBLANK FF)|Получение контрольного сигнала VSYNC|"HBlank"|
+|/VSET|Вертикальная логика|Схема обработки прерывания VBlank|"VBlank Set"|
+|EvenOddOut|Схема EVEN/ODD| | |
 
 ## Выдача наружу значений разрядов H
 
@@ -87,11 +97,13 @@
 
 ![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert.jpg)
 
-### Управление H/V счетчиками
+## Обработка прерывания PPU
+
+## Управление H/V счетчиками
 
 ![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)
 
-### Логика EVEN/ODD
+## Логика EVEN/ODD
 
 ![even_odd_tran](/BreakingNESWiki/imgstore/ppu/even_odd_tran.jpg) ![even_odd_flow1](/BreakingNESWiki/imgstore/ppu/even_odd_flow1.jpg) ![even_odd_flow2](/BreakingNESWiki/imgstore/ppu/even_odd_flow2.jpg)
 
