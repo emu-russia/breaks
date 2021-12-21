@@ -115,6 +115,8 @@
 
 Данная схема реализует логику т.н. NTSC Crawl (ползание/дрожание). Это необходимо для исключения вывода 1 пикселя каждый кадр, чтобы снять кратность PCLK и поднесущей цветности, во избежание артефактов на Ч/Б телевизоре.
 
+![even_odd_logic](/BreakingNESWiki/imgstore/ppu/even_odd_logic.jpg)
+
 ## Управление H/V счетчиками
 
 ![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)

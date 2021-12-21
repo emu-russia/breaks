@@ -56,9 +56,14 @@
     <a name="circuit" val="HV_FSM"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
-    <comp loc="(310,160)" name="DelayedH">
+    <comp loc="(250,130)" name="DelayedH">
       <a name="label" val="DelayedH_inst"/>
       <a name="labelfont" val="SansSerif plain 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(250,370)" name="EvenOdd">
+      <a name="label" val="EvenOdd_inst"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
   </circuit>
@@ -375,10 +380,124 @@
     <wire from="(550,540)" to="(560,540)"/>
   </circuit>
   <circuit name="EvenOdd">
-    <a name="appearance" val="logisim_evolution"/>
+    <a name="appearance" val="custom"/>
     <a name="circuit" val="EvenOdd"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
+    <appear>
+      <rect fill="none" height="80" stroke="#000000" width="100" x="50" y="50"/>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="99" y="39">EVEN/ODD</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="63" y="60">V8</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="80">RES</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="71" y="100">/HPLA_5</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="79" y="119">RESCL(VCLR)</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="125" y="59">EvenOddOut</text>
+      <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
+      <circ-port height="10" pin="710,160" width="10" x="145" y="55"/>
+      <circ-port height="8" pin="110,110" width="8" x="46" y="76"/>
+      <circ-port height="8" pin="110,170" width="8" x="46" y="96"/>
+      <circ-port height="8" pin="110,230" width="8" x="46" y="116"/>
+      <circ-port height="8" pin="110,50" width="8" x="46" y="56"/>
+    </appear>
+    <comp lib="0" loc="(110,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(110,170)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_HPLA_5"/>
+    </comp>
+    <comp lib="0" loc="(110,230)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RESCL"/>
+    </comp>
+    <comp lib="0" loc="(110,50)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="V8"/>
+    </comp>
+    <comp lib="0" loc="(710,160)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="EvenOddOut"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="1" loc="(290,230)" name="NOT Gate">
+      <a name="facing" val="west"/>
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(310,170)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(500,170)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(590,160)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(620,210)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(690,160)" name="NOR Gate">
+      <a name="inputs" val="3"/>
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="2" loc="(260,170)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+    </comp>
+    <comp lib="2" loc="(440,170)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+    </comp>
+    <wire from="(110,110)" to="(190,110)"/>
+    <wire from="(110,170)" to="(150,170)"/>
+    <wire from="(110,230)" to="(140,230)"/>
+    <wire from="(110,50)" to="(240,50)"/>
+    <wire from="(140,230)" to="(140,270)"/>
+    <wire from="(140,270)" to="(590,270)"/>
+    <wire from="(150,170)" to="(150,260)"/>
+    <wire from="(150,260)" to="(580,260)"/>
+    <wire from="(190,70)" to="(190,110)"/>
+    <wire from="(190,70)" to="(540,70)"/>
+    <wire from="(210,160)" to="(230,160)"/>
+    <wire from="(210,180)" to="(210,230)"/>
+    <wire from="(210,180)" to="(230,180)"/>
+    <wire from="(210,230)" to="(260,230)"/>
+    <wire from="(210,90)" to="(210,160)"/>
+    <wire from="(210,90)" to="(520,90)"/>
+    <wire from="(240,50)" to="(240,150)"/>
+    <wire from="(240,50)" to="(420,50)"/>
+    <wire from="(260,170)" to="(290,170)"/>
+    <wire from="(260,230)" to="(260,250)"/>
+    <wire from="(260,230)" to="(290,230)"/>
+    <wire from="(260,250)" to="(380,250)"/>
+    <wire from="(310,170)" to="(350,170)"/>
+    <wire from="(310,230)" to="(350,230)"/>
+    <wire from="(350,170)" to="(350,230)"/>
+    <wire from="(380,180)" to="(380,250)"/>
+    <wire from="(380,180)" to="(410,180)"/>
+    <wire from="(390,120)" to="(390,160)"/>
+    <wire from="(390,120)" to="(610,120)"/>
+    <wire from="(390,160)" to="(410,160)"/>
+    <wire from="(420,50)" to="(420,150)"/>
+    <wire from="(440,170)" to="(480,170)"/>
+    <wire from="(500,170)" to="(520,170)"/>
+    <wire from="(520,170)" to="(550,170)"/>
+    <wire from="(520,90)" to="(520,170)"/>
+    <wire from="(540,150)" to="(550,150)"/>
+    <wire from="(540,70)" to="(540,150)"/>
+    <wire from="(580,180)" to="(580,260)"/>
+    <wire from="(580,180)" to="(630,180)"/>
+    <wire from="(590,160)" to="(610,160)"/>
+    <wire from="(590,210)" to="(590,270)"/>
+    <wire from="(590,210)" to="(600,210)"/>
+    <wire from="(610,120)" to="(610,150)"/>
+    <wire from="(610,150)" to="(610,160)"/>
+    <wire from="(610,150)" to="(650,150)"/>
+    <wire from="(620,210)" to="(640,210)"/>
+    <wire from="(630,160)" to="(630,180)"/>
+    <wire from="(630,160)" to="(650,160)"/>
+    <wire from="(640,170)" to="(640,210)"/>
+    <wire from="(640,170)" to="(650,170)"/>
+    <wire from="(690,160)" to="(710,160)"/>
   </circuit>
   <circuit name="HPosLogic">
     <a name="appearance" val="logisim_evolution"/>
