@@ -66,6 +66,9 @@ class HVCounter:
 		print(" ")
 
 
+# TODO: Make a generalized PLA simulation.
+
+
 """
 	H PLA.
 
@@ -229,30 +232,103 @@ class HV_FSM:
 	def __init__(self, ntsc):
 		self.ntsc = ntsc
 
+		self.EvenOddFF_1 = 0
+		self.EvenOddFF_2 = 0
+
+		self.fp_latch1 = DLatch()
+		self.fp_latch2 = DLatch()
+		self.FPROCH_FF = 0
+
+		self.sev_latch1 = DLatch()
+		self.sev_latch2 = DLatch()
+		self.clpo_latch1 = DLatch()
+		self.clpo_latch2 = DLatch()
+		self.clpb_latch1 = DLatch()
+		self.clpb_latch2 = DLatch()
+		self.hpos_latch1 = DLatch()
+		self.hpos_latch2 = DLatch()
+		self.eval_latch1 = DLatch()
+		self.eval_latch2 = DLatch()
+		self.eev_latch1 = DLatch()
+		self.eev_latch2 = DLatch()
+		self.oam_latch1 = DLatch()
+		self.oam_latch2 = DLatch()
+		self.paro_latch1 = DLatch()
+		self.paro_latch2 = DLatch()
+		self.nvis_latch1 = DLatch()
+		self.nvis_latch2 = DLatch()
+		self.fnt_latch1 = DLatch()
+		self.fnt_latch2 = DLatch()
+		self.ftb_latch1 = DLatch()
+		self.ftb_latch2 = DLatch()
+		self.fta_latch1 = DLatch()
+		self.fta_latch2 = DLatch()
+		self.fo_latch1 = DLatch()
+		self.fo_latch2 = DLatch()
+		self.fo_latch3 = DLatch()
+		self.fat_latch1 = DLatch()
+
+		self.bp_latch1 = DLatch()
+		self.bp_latch2 = DLatch()
+		self.hb_latch1 = DLatch()
+		self.hb_latch2 = DLatch()
+		self.cb_latch1 = DLatch()
+		self.cb_latch2 = DLatch()
+		self.sync_latch1 = DLatch()
+		self.sync_latch2 = DLatch()
+		self.BPROCH_FF = 0
+		self.HBLANK_FF = 0
+		self.BURST_FF = 0
+
+		self.vsync_latch1 = DLatch()
+		self.pic_latch1 = DLatch()
+		self.pic_latch2 = DLatch()
+		self.vset_latch1 = DLatch()
+		self.vb_latch1 = DLatch()
+		self.vb_latch2 = DLatch()
+		self.blnk_latch1 = DLatch()
+		self.vclr_latch1 = DLatch()
+		self.vclr_latch2 = DLatch()
+		self.VSYNC_FF = 0
+		self.PICTURE_FF = 0
+		self.VB_FF = 0
+		self.BLNK_FF = 0
+
+		self.ctrl_latch1 = DLatch()
+		self.ctrl_latch2 = DLatch()
+
 	def sim(self, PCLK, h, v, hpla_in, vpla_in, n_OBCLIP, n_BGCLIP, BLACK, RES):
+		self.vset_latch1.set (vpla_in[4], NOT(PCLK))
+		self.vclr_latch1.set (vpla_in[8], NOT(PCLK))
+		self.vclr_latch2.set (self.vclr_latch1.nget(), PCLK)
+
 		return
 
 	def GetHPosControls(self):
-		return { '/FPORCH': 0, 'S/EV': 0, 'CLIP_O': 0, 'CLIP_B': 0, '0/HPOS': 0, 'EVAL': 0, 'E/EV': 0, 'I/OAM2': 0, 'PAR/O': 0, '/VIS': 0, 'F/NT': 0, 'F/TB': 0, 'F/TA': 0, '/FO': 0, 'F/AT': 0, 'BPORCH': 0, 'SC/CNT': 0, '/HB': 0, 'BURST': 0, 'SYNC': 0 }
+		hctrl = { '/FPORCH': 0, 'S/EV': 0, 'CLIP_O': 0, 'CLIP_B': 0, '0/HPOS': 0, 'EVAL': 0, 'E/EV': 0, 'I/OAM2': 0, 'PAR/O': 0, '/VIS': 0, 'F/NT': 0, 'F/TB': 0, 'F/TA': 0, '/FO': 0, 'F/AT': 0, 'BPORCH': 0, 'SC/CNT': 0, '/HB': 0, 'BURST': 0, 'SYNC': 0 }
 
-	def GetVPosControls(self):
-		return { 'VSYNC': 0, 'PICTURE': 0, '/VSET': 0, 'VB': self.GetVB(), 'BLNK': self.GetBLNK(), 'RESCL': 0 }
+		return hctrl
 
-	def GetVB(self):
-		return 0
-
-	def GetBLNK(self):
-		return 0
+	def GetVPosControls(self, BLACK):
+		vctrl = { 'VSYNC': 0, 'PICTURE': 0, '/VSET': 0, 'VB': 0, 'BLNK': 0, 'RESCL': 0 }
+		vctrl['VSYNC'] = self.vsync_latch1.get()
+		vctrl['PICTURE'] = NOT(NOR(self.pic_latch1.get(), self.pic_latch2.get()))
+		vctrl['/VSET'] = self.vset_latch1.nget()
+		vctrl['VB'] = NOT(self.VB_FF)
+		# The BLACK signal is involved in getting the output value, so it is rooted here
+		vctrl['BLNK'] = NAND(NOT(self.BLNK_FF), NOT(BLACK))
+		vctrl['RESCL'] = self.vclr_latch2.nget()
+		return vctrl
 
 	def GetHC(self):
-		return 0
+		return self.ctrl_latch1.nget()
 
 	def GetVC(self):
-		return 0
+		return NOR (NOT(self.ctrl_latch1.nget()), self.ctrl_latch2.nget())
 
-	def dump(self):
+	def dump(self, BLACK):
 		print (self.GetHPosControls())
-		print (self.GetVPosControls())
+		print (self.GetVPosControls(BLACK))
 
 
 """
