@@ -153,7 +153,11 @@
       <a name="labelfont" val="SansSerif plain 9"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(520,590)" name="VPosLogic"/>
+    <comp loc="(520,590)" name="VPosLogic">
+      <a name="label" val="VPos_inst"/>
+      <a name="labelfont" val="SansSerif plain 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
     <wire from="(100,360)" to="(100,710)"/>
     <wire from="(100,360)" to="(190,360)"/>
     <wire from="(100,710)" to="(100,880)"/>
