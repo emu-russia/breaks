@@ -87,9 +87,9 @@
 
 Задержка вывода значений используется в PPU во многих местах (например выходы Color Buffer). Данный феномен пока не находит объяснений. Возможно это связано с учетом задержки работы остальных узлов PPU.
 
-![h_counter_output](/BreakingNESWiki/imgstore/ppu/h_counter_output.jpg)
-
-![h_counter_output_logic](/BreakingNESWiki/imgstore/ppu/h_counter_output_logic.jpg)
+|Транзисторная схема|Логическая схема|
+|---|---|
+|![h_counter_output](/BreakingNESWiki/imgstore/ppu/h_counter_output.jpg)|![h_counter_output_logic](/BreakingNESWiki/imgstore/ppu/h_counter_output_logic.jpg)|
 
 ## Горизонтальная логика
 
