@@ -109,6 +109,13 @@
 |---|---|
 |![hv_fsm_int](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)|![hv_fsm_int_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_int_logic.jpg)|
 
+Принцип работы:
+- На входе находится edge детектор, который ловит событие начала VBlank (сигнал `/VSET`)
+- Событие начала VBlank запоминается на INT_FF
+- Сигнал `RESCL(VCLR)` очищает INT_FF
+- Выходной сигнал `INT` уходит на внешний контакт `/INT` для сигнализрования внешних устройств о прерывании (CPU)
+- Программист может узнать состояние флага прерывания (INT_FF) прочитав $2002\[7\]. При этом FF, где хранится флаг устроен так, что чтение флага также очищает его (см. 3-NOR на одном из плеч FF).
+
 ## Логика EVEN/ODD
 
 ![even_odd_tran](/BreakingNESWiki/imgstore/ppu/even_odd_tran.jpg)

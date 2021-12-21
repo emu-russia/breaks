@@ -256,7 +256,7 @@ class HV_FSM:
 
 
 """
-	Schematic to simulate the processing of a VBlank interrupt. Part of the H/V FSM.
+	Processing of a VBlank interrupt. Part of the H/V FSM.
 
 	- n_VSET: "VBlank Set". VBlank period start event.
 	- VCLR (RESCL): VBlank period end event.

@@ -56,14 +56,19 @@
     <a name="circuit" val="HV_FSM"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
-    <comp loc="(250,130)" name="DelayedH">
+    <comp loc="(150,100)" name="DelayedH">
       <a name="label" val="DelayedH_inst"/>
       <a name="labelfont" val="SansSerif plain 9"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(250,370)" name="EvenOdd">
+    <comp loc="(150,330)" name="EvenOdd">
       <a name="label" val="EvenOdd_inst"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelfont" val="SansSerif plain 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(330,120)" name="VBlankInterrupt">
+      <a name="label" val="VB_Intr_inst"/>
+      <a name="labelfont" val="SansSerif plain 9"/>
       <a name="labelloc" val="south"/>
     </comp>
   </circuit>
@@ -524,10 +529,33 @@
     <a name="simulationFrequency" val="256.0"/>
   </circuit>
   <circuit name="VBlankInterrupt">
-    <a name="appearance" val="logisim_evolution"/>
+    <a name="appearance" val="custom"/>
     <a name="circuit" val="VBlankInterrupt"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
+    <appear>
+      <rect fill="none" height="110" stroke="#000000" width="110" x="50" y="50"/>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="105" y="38">VBLANK INT</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="60">PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="70">/PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="66" y="89">/VSET</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="78" y="99">VCLR(RESCL)</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="70" y="120">VBL_EN</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="64" y="139">/R2</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="66" y="150">/DBE</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="140" y="90">DB7 Out</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="147" y="70">INT</text>
+      <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
+      <circ-port height="10" pin="790,150" width="10" x="155" y="65"/>
+      <circ-port height="10" pin="790,260" width="10" x="155" y="85"/>
+      <circ-port height="8" pin="110,150" width="8" x="46" y="86"/>
+      <circ-port height="8" pin="110,200" width="8" x="46" y="116"/>
+      <circ-port height="8" pin="110,250" width="8" x="46" y="96"/>
+      <circ-port height="8" pin="110,320" width="8" x="46" y="136"/>
+      <circ-port height="8" pin="110,360" width="8" x="46" y="146"/>
+      <circ-port height="8" pin="110,50" width="8" x="46" y="56"/>
+      <circ-port height="8" pin="110,90" width="8" x="46" y="66"/>
+    </appear>
     <comp lib="0" loc="(110,150)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="n_VSET"/>
