@@ -95,9 +95,15 @@
 
 "Горизонтальная" логика, отвечает за генерацию контрольных сигналов в зависимости от горизонтального положения луча (H):
 
+Транзисторная схема:
+
 ![hv_fporch](/BreakingNESWiki/imgstore/ppu/hv_fporch.jpg)
 
 ![hv_fsm_horz](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz.jpg)
+
+Логическая схема:
+
+![hv_fsm_horz_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz_logic.jpg)
 
 ## Вертикальная логика
 
