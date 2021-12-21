@@ -304,7 +304,9 @@ class HV_FSM:
 		self.vclr_latch1.set (vpla_in[8], NOT(PCLK))
 		self.vclr_latch2.set (self.vclr_latch1.nget(), PCLK)
 
-		return
+		EvenOddOut = 0
+		self.ctrl_latch1.set (NOR(hpla_in[23], EvenOddOut), NOT(PCLK))
+		self.ctrl_latch2.set (vpla_in[2], NOT(PCLK))
 
 	def GetHPosControls(self, n_OBCLIP, n_BGCLIP, BLACK):
 		hctrl = {}
@@ -348,7 +350,7 @@ class HV_FSM:
 
 	def dump(self, n_OBCLIP, n_BGCLIP, BLACK):
 		# The n_OBCLIP/n_BGCLIP/BLACK signals are involved in getting output values, so they are rooted here
-		print (self.GetHPosControls(n_OBCLIP, n_BGCLIP, BLACK))
+		#print (self.GetHPosControls(n_OBCLIP, n_BGCLIP, BLACK))
 		print (self.GetVPosControls(BLACK))
 
 
