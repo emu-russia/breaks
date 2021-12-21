@@ -375,6 +375,7 @@ class HV_FSM:
 
 	def GetHPosControls(self, n_OBCLIP, n_BGCLIP, BLACK):
 		hctrl = {}
+		hctrl['/FPORCH'] = self.FPORCH_FF
 		hctrl['S/EV'] = self.sev_latch2.nget()
 		hctrl['CLIP_O'] = NOR(n_OBCLIP, self.clpo_latch2.get())
 		hctrl['CLIP_B'] = NOR(n_BGCLIP, self.clpb_latch2.get())
@@ -416,6 +417,7 @@ class HV_FSM:
 	def dump(self, n_OBCLIP, n_BGCLIP, BLACK):
 		# The n_OBCLIP/n_BGCLIP/BLACK signals are involved in getting output values, so they are rooted here
 		print (self.GetHPosControls(n_OBCLIP, n_BGCLIP, BLACK))
+		# DEBUG: Disabled for now as unnecessary
 		#print (self.GetVPosControls(BLACK))
 
 
