@@ -79,38 +79,75 @@ Auxiliary signals:
 |/VSET|Vertical logic|VBlank interrupt handling circuit|"VBlank Set". VBlank period start event.|
 |EvenOddOut|EVEN/ODD circuit|H/V counter control|Intermediate signal for the HCounter control circuit.|
 
-## Outputting the H
+## Delayed H Outputs
 
-H counter bits are used in other PPU components.
+The H0-H5 counter bits are used in other PPU components.
 
-![h_counter_output](/BreakingNESWiki/imgstore/ppu/h_counter_output.jpg)
+A signal name with one dash (e.g. `/H2'`) means that the value is delayed by one DLatch. A signal name with two dashes (e.g. `H0''`) means that the value is delayed by two DLatch.
+
+Delayed value output is used in PPU in many places (e.g. Color Buffer outputs). This phenomenon has not yet found an explanation. Perhaps it is related to the latency of the rest of the PPU parts.
+
+|Transistor Circuit|Logic|
+|---|---|
+|![h_counter_output](/BreakingNESWiki/imgstore/ppu/h_counter_output.jpg)|![h_counter_output_logic](/BreakingNESWiki/imgstore/ppu/h_counter_output_logic.jpg)|
 
 ## HPos Logic
 
-"Horizontal" logic, responsible for generating control lines depending on the horizontal position of the beam (H):
+"Horizontal" logic, responsible for generating control signals depending on the horizontal position of the beam (H):
+
+Transistor Circuit:
 
 ![hv_fporch](/BreakingNESWiki/imgstore/ppu/hv_fporch.jpg)
 
 ![hv_fsm_horz](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz.jpg)
 
+Logic:
+
+![hv_fsm_horz_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz_logic.jpg)
+
 ## VPos Logic
 
 "Vertical" logic.
 
+Transistor Circuit:
+
 ![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert.jpg)
+
+Logic:
+
+![hv_fsm_vert_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert_logic.jpg)
 
 ## VBlank Interrupt Handling
 
-![hv_fsm_int](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)
+|Transistor Circuit|Logic|
+|---|---|
+|![hv_fsm_int](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)|![hv_fsm_int_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_int_logic.jpg)|
+
+Principle of operation:
+- There is an edge detector on the input that catches the VBlank start event (`/VSET` signal)
+- The VBlank start event is memorized on INT_FF
+- The `RESCL(VCLR)` signal clears INT_FF
+- Output signal `INT` goes to external contact `/INT` to signal external devices to interrupt (CPU)
+- The programmer can find out the state of the interrupt flag (INT_FF) by reading $2002\[7\]. The FF where the flag is stored is designed so that reading the flag also clears it (see 3-NOR on one of the FF arms).
 
 ## EVEN/ODD Logic
 
-![even_odd_tran](/BreakingNESWiki/imgstore/ppu/even_odd_tran.jpg) ![even_odd_flow1](/BreakingNESWiki/imgstore/ppu/even_odd_flow1.jpg) ![even_odd_flow2](/BreakingNESWiki/imgstore/ppu/even_odd_flow2.jpg)
+![even_odd_tran](/BreakingNESWiki/imgstore/ppu/even_odd_tran.jpg)
 
-The EVEN/ODD logic consists of two closed to each other pseudo latches controlled by two multiplexers. This results in a very clever "macro" latch.
+(The circuit is placed "on its side" for convenience)
 
-TODO: The schematic should be analyzed again, because what the hell is this "macro-latch"... In addition, the scheme for PAL PPU is different from the NTSC version.
+The EVEN/ODD logic consists of two FFs closed to each other, controlled by two multiplexers. It is analogous to DFF, but without input.
+
+This circuit implements the so-called NTSC Crawl logic. It is necessary to eliminate 1 pixel output each frame to remove the multiplicity of PCLK and color subcarrier, to avoid artifacts on the B/W TV.
+
+![even_odd_logic](/BreakingNESWiki/imgstore/ppu/even_odd_logic.jpg)
 
 ## H/V Counters Control
 
+Transistor Circuit:
+
 ![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)
+
+Logic:
+
+![hv_counters_control_logic](/BreakingNESWiki/imgstore/ppu/hv_counters_control_logic.jpg)
