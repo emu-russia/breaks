@@ -227,6 +227,8 @@ class VDecoder:
 	- BLACK ($2001[3] and $2001[4]): Active when PPU rendering is disabled
 	- RES: Global reset signal (from /RES Pad)
 
+	The simulation of FSM sequential circuits is separated from the acquisition of output signals, for convenience.
+
 """
 class HV_FSM:
 	def __init__(self, ntsc):
@@ -297,16 +299,35 @@ class HV_FSM:
 		self.ctrl_latch1 = DLatch()
 		self.ctrl_latch2 = DLatch()
 
-	def sim(self, PCLK, h, v, hpla_in, vpla_in, n_OBCLIP, n_BGCLIP, BLACK, RES):
+	def sim(self, PCLK, h, v, hpla_in, vpla_in, RES):
 		self.vset_latch1.set (vpla_in[4], NOT(PCLK))
 		self.vclr_latch1.set (vpla_in[8], NOT(PCLK))
 		self.vclr_latch2.set (self.vclr_latch1.nget(), PCLK)
 
 		return
 
-	def GetHPosControls(self):
-		hctrl = { '/FPORCH': 0, 'S/EV': 0, 'CLIP_O': 0, 'CLIP_B': 0, '0/HPOS': 0, 'EVAL': 0, 'E/EV': 0, 'I/OAM2': 0, 'PAR/O': 0, '/VIS': 0, 'F/NT': 0, 'F/TB': 0, 'F/TA': 0, '/FO': 0, 'F/AT': 0, 'BPORCH': 0, 'SC/CNT': 0, '/HB': 0, 'BURST': 0, 'SYNC': 0 }
-
+	def GetHPosControls(self, n_OBCLIP, n_BGCLIP, BLACK):
+		hctrl = { 'S/EV': 0, 'CLIP_O': 0, 'CLIP_B': 0, '0/HPOS': 0, 'EVAL': 0, 'E/EV': 0, 'I/OAM2': 0, 'PAR/O': 0, '/VIS': 0, 'F/NT': 0, 'F/TB': 0, 'F/TA': 0, '/FO': 0, 'F/AT': 0, 'BPORCH': 0, 'SC/CNT': 0, '/HB': 0, 'BURST': 0, 'SYNC': 0 }
+		hctrl['S/EV'] = self.sev_latch2.nget()
+		hctrl['CLIP_O'] = NOR(n_OBCLIP, self.clpo_latch2.get())
+		hctrl['CLIP_B'] = NOR(n_BGCLIP, self.clpb_latch2.get())
+		hctrl['0/HPOS'] = self.hpos_latch2.nget()
+		hctrl['EVAL'] = NOT(self.eval_latch2.nget())
+		hctrl['E/EV'] = self.eev_latch2.nget()
+		hctrl['I/OAM2'] = self.oam_latch2.nget()
+		hctrl['PAR/O'] = self.paro_latch2.nget()
+		hctrl['/VIS'] = NOT(self.nvis_latch2.nget())
+		hctrl['F/NT'] = NOT(self.fnt_latch2.nget())
+		hctrl['F/TB'] = NOR(self.ftb_latch2.get(), self.fo_latch3.get())
+		hctrl['F/TA'] = NOR(self.fta_latch2.get(), self.fo_latch3.get())
+		hctrl['/FO'] = self.fo_latch3.nget()
+		hctrl['F/AT'] = NOR( NOR(self.fo_latch1.get(), self.fo_latch2.get()), self.fat_latch1.nget() )
+		hctrl['BPORCH'] = self.BPROCH_FF;
+		hctrl['SC/CNT'] = NOR(BLACK, NOT(self.HBLANK_FF))
+		hctrl['/HB'] = self.HBLANK_FF
+		VSYNC = self.vsync_latch1.get()
+		hctrl['SYNC'] = NOR(self.sync_latch2.get(), VSYNC)
+		hctrl['BURST'] = NOR(self.sync_latch1.get(), hctrl['SYNC'])
 		return hctrl
 
 	def GetVPosControls(self, BLACK):
@@ -315,7 +336,6 @@ class HV_FSM:
 		vctrl['PICTURE'] = NOT(NOR(self.pic_latch1.get(), self.pic_latch2.get()))
 		vctrl['/VSET'] = self.vset_latch1.nget()
 		vctrl['VB'] = NOT(self.VB_FF)
-		# The BLACK signal is involved in getting the output value, so it is rooted here
 		vctrl['BLNK'] = NAND(NOT(self.BLNK_FF), NOT(BLACK))
 		vctrl['RESCL'] = self.vclr_latch2.nget()
 		return vctrl
@@ -326,8 +346,9 @@ class HV_FSM:
 	def GetVC(self):
 		return NOR (NOT(self.ctrl_latch1.nget()), self.ctrl_latch2.nget())
 
-	def dump(self, BLACK):
-		print (self.GetHPosControls())
+	def dump(self, n_OBCLIP, n_BGCLIP, BLACK):
+		# The n_OBCLIP/n_BGCLIP/BLACK signals are involved in getting output values, so they are rooted here
+		print (self.GetHPosControls(n_OBCLIP, n_BGCLIP, BLACK))
 		print (self.GetVPosControls(BLACK))
 
 
