@@ -71,6 +71,7 @@
       <a name="labelfont" val="SansSerif plain 9"/>
       <a name="labelloc" val="south"/>
     </comp>
+    <comp loc="(340,330)" name="HVCountersControl"/>
   </circuit>
   <circuit name="DLatch">
     <a name="appearance" val="custom"/>
@@ -523,10 +524,108 @@
     <a name="simulationFrequency" val="256.0"/>
   </circuit>
   <circuit name="HVCountersControl">
-    <a name="appearance" val="logisim_evolution"/>
+    <a name="appearance" val="custom"/>
     <a name="circuit" val="HVCountersControl"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
+    <appear>
+      <rect fill="none" height="70" stroke="#000000" width="90" x="50" y="50"/>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="99" y="39">H/V CNT CTRL</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="66" y="60">/PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="71" y="80">HPLA_23</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="75" y="90">EvenOddOut</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="69" y="99">VPLA_2</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="125" y="59">V_IN</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="127" y="79">HC</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="128" y="99">VC</text>
+      <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
+      <circ-port height="10" pin="510,150" width="10" x="135" y="75"/>
+      <circ-port height="10" pin="510,200" width="10" x="135" y="95"/>
+      <circ-port height="10" pin="510,80" width="10" x="135" y="55"/>
+      <circ-port height="8" pin="140,130" width="8" x="46" y="76"/>
+      <circ-port height="8" pin="140,170" width="8" x="46" y="86"/>
+      <circ-port height="8" pin="140,210" width="8" x="46" y="96"/>
+      <circ-port height="8" pin="140,50" width="8" x="46" y="56"/>
+    </appear>
+    <comp lib="0" loc="(140,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="HPLA_23"/>
+    </comp>
+    <comp lib="0" loc="(140,170)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="EvenOddOut"/>
+    </comp>
+    <comp lib="0" loc="(140,210)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="VPLA_2"/>
+    </comp>
+    <comp lib="0" loc="(140,50)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_PCLK"/>
+    </comp>
+    <comp lib="0" loc="(510,150)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="HC"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(510,200)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="VC"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(510,80)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="V_IN"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="1" loc="(240,150)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(430,190)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(480,200)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp loc="(310,130)" name="DLatch">
+      <a name="label" val="ctrl_latch1"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(310,230)" name="DLatch">
+      <a name="label" val="ctrl_latch2"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <wire from="(140,130)" to="(170,130)"/>
+    <wire from="(140,170)" to="(170,170)"/>
+    <wire from="(140,210)" to="(240,210)"/>
+    <wire from="(140,50)" to="(290,50)"/>
+    <wire from="(170,130)" to="(170,140)"/>
+    <wire from="(170,140)" to="(200,140)"/>
+    <wire from="(170,160)" to="(170,170)"/>
+    <wire from="(170,160)" to="(200,160)"/>
+    <wire from="(170,80)" to="(170,130)"/>
+    <wire from="(170,80)" to="(510,80)"/>
+    <wire from="(240,150)" to="(310,150)"/>
+    <wire from="(240,210)" to="(240,250)"/>
+    <wire from="(240,250)" to="(310,250)"/>
+    <wire from="(290,130)" to="(290,230)"/>
+    <wire from="(290,130)" to="(310,130)"/>
+    <wire from="(290,230)" to="(310,230)"/>
+    <wire from="(290,50)" to="(290,130)"/>
+    <wire from="(350,150)" to="(390,150)"/>
+    <wire from="(350,250)" to="(390,250)"/>
+    <wire from="(390,150)" to="(390,190)"/>
+    <wire from="(390,150)" to="(510,150)"/>
+    <wire from="(390,190)" to="(410,190)"/>
+    <wire from="(390,210)" to="(390,250)"/>
+    <wire from="(390,210)" to="(440,210)"/>
+    <wire from="(430,190)" to="(440,190)"/>
+    <wire from="(480,200)" to="(510,200)"/>
   </circuit>
   <circuit name="VBlankInterrupt">
     <a name="appearance" val="custom"/>

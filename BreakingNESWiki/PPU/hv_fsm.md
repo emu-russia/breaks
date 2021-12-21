@@ -130,4 +130,10 @@
 
 ## Управление H/V счетчиками
 
+Транзисторная схема:
+
 ![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)
+
+Логическая схема:
+
+![hv_counters_control_logic](/BreakingNESWiki/imgstore/ppu/hv_counters_control_logic.jpg)
