@@ -159,7 +159,7 @@ def TestFSM(ntsc):
 	else:
 		maxSteps = 312 * 341 * 2
 
-	maxSteps = 341 * 2 		# DEBUG!!! Only first visible line 0
+	maxSteps = 2 * 341 * 2 		# DEBUG!!! Only first 2 visible lines
 
 	for step in range(maxSteps):
 		vctrl = fsm.GetVPosControls(BLACK)
