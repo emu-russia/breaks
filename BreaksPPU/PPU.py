@@ -66,6 +66,9 @@ class HVCounter:
 		print(" ")
 
 
+# TODO: Make a generalized PLA simulation.
+
+
 """
 	H PLA.
 
@@ -224,35 +227,198 @@ class VDecoder:
 	- BLACK ($2001[3] and $2001[4]): Active when PPU rendering is disabled
 	- RES: Global reset signal (from /RES Pad)
 
+	The simulation of FSM sequential circuits is separated from the acquisition of output signals, for convenience.
+
 """
 class HV_FSM:
 	def __init__(self, ntsc):
 		self.ntsc = ntsc
 
-	def sim(self, PCLK, h, v, hpla_in, vpla_in, n_OBCLIP, n_BGCLIP, BLACK, RES):
-		return
+		self.EvenOddFF_1 = 0
+		self.EvenOddFF_2 = 0
 
-	def GetHPosControls(self):
-		return { '/FPORCH': 0, 'S/EV': 0, 'CLIP_O': 0, 'CLIP_B': 0, '0/HPOS': 0, 'EVAL': 0, 'E/EV': 0, 'I/OAM2': 0, 'PAR/O': 0, '/VIS': 0, 'F/NT': 0, 'F/TB': 0, 'F/TA': 0, '/FO': 0, 'F/AT': 0, 'BPORCH': 0, 'SC/CNT': 0, '/HB': 0, 'BURST': 0, 'SYNC': 0 }
+		self.fp_latch1 = DLatch()
+		self.fp_latch2 = DLatch()
+		self.FPORCH_FF = 0
 
-	def GetVPosControls(self):
-		return { 'VSYNC': 0, 'PICTURE': 0, '/VSET': 0, 'VB': self.GetVB(), 'BLNK': self.GetBLNK(), 'RESCL': 0 }
+		self.sev_latch1 = DLatch()
+		self.sev_latch2 = DLatch()
+		self.clpo_latch1 = DLatch()
+		self.clpo_latch2 = DLatch()
+		self.clpb_latch1 = DLatch()
+		self.clpb_latch2 = DLatch()
+		self.hpos_latch1 = DLatch()
+		self.hpos_latch2 = DLatch()
+		self.eval_latch1 = DLatch()
+		self.eval_latch2 = DLatch()
+		self.eev_latch1 = DLatch()
+		self.eev_latch2 = DLatch()
+		self.oam_latch1 = DLatch()
+		self.oam_latch2 = DLatch()
+		self.paro_latch1 = DLatch()
+		self.paro_latch2 = DLatch()
+		self.nvis_latch1 = DLatch()
+		self.nvis_latch2 = DLatch()
+		self.fnt_latch1 = DLatch()
+		self.fnt_latch2 = DLatch()
+		self.ftb_latch1 = DLatch()
+		self.ftb_latch2 = DLatch()
+		self.fta_latch1 = DLatch()
+		self.fta_latch2 = DLatch()
+		self.fo_latch1 = DLatch()
+		self.fo_latch2 = DLatch()
+		self.fo_latch3 = DLatch()
+		self.fat_latch1 = DLatch()
 
-	def GetVB(self):
-		return 0
+		self.bp_latch1 = DLatch()
+		self.bp_latch2 = DLatch()
+		self.hb_latch1 = DLatch()
+		self.hb_latch2 = DLatch()
+		self.cb_latch1 = DLatch()
+		self.cb_latch2 = DLatch()
+		self.sync_latch1 = DLatch()
+		self.sync_latch2 = DLatch()
+		self.BPORCH_FF = 0
+		self.HBLANK_FF = 0
+		self.BURST_FF = 0
 
-	def GetBLNK(self):
-		return 0
+		self.vsync_latch1 = DLatch()
+		self.pic_latch1 = DLatch()
+		self.pic_latch2 = DLatch()
+		self.vset_latch1 = DLatch()
+		self.vb_latch1 = DLatch()
+		self.vb_latch2 = DLatch()
+		self.blnk_latch1 = DLatch()
+		self.vclr_latch1 = DLatch()
+		self.vclr_latch2 = DLatch()
+		self.VSYNC_FF = 0
+		self.PICTURE_FF = 0
+		self.VB_FF = 0
+		self.BLNK_FF = 0
+
+		self.ctrl_latch1 = DLatch()
+		self.ctrl_latch2 = DLatch()
+
+	def sim(self, PCLK, h, v, hpla_in, vpla_in, RES):
+		self.fp_latch1.set (hpla_in[0], NOT(PCLK))
+		self.fp_latch2.set (hpla_in[1], NOT(PCLK))
+		self.FPORCH_FF = NOR (self.fp_latch2.get(), NOR(self.fp_latch1.get(), self.FPORCH_FF) )
+		n_FPORCH = self.FPORCH_FF
+
+		self.sev_latch1.set (hpla_in[2], NOT(PCLK))
+		self.sev_latch2.set (self.sev_latch1.nget(), PCLK)
+		self.clpo_latch1.set (hpla_in[3], NOT(PCLK))
+		self.clpb_latch1.set (hpla_in[4], NOT(PCLK))
+		clpnor = NOR(self.clpo_latch1.get(), self.clpb_latch1.nget())
+		self.clpo_latch2.set (clpnor, PCLK)
+		self.clpb_latch2.set (clpnor, PCLK)
+		self.hpos_latch1.set (hpla_in[5], NOT(PCLK))
+		self.hpos_latch2.set (self.hpos_latch1.nget(), PCLK)
+		self.eev_latch1.set (hpla_in[7], NOT(PCLK))
+		self.eev_latch2.set (self.eev_latch1.nget(), PCLK)
+		self.eval_latch1.set (hpla_in[6], NOT(PCLK))
+		self.eval_latch2.set ( NOR3(self.hpos_latch1.get(), self.eval_latch1.get(), self.eev_latch1.get()), PCLK)
+		self.oam_latch1.set (hpla_in[8], NOT(PCLK))
+		self.oam_latch2.set (self.oam_latch1.nget(), PCLK)
+		self.paro_latch1.set (hpla_in[9], NOT(PCLK))
+		self.paro_latch2.set (self.paro_latch1.nget(), PCLK)
+		self.nvis_latch1.set (hpla_in[10], NOT(PCLK))
+		self.nvis_latch2.set (self.nvis_latch1.nget(), PCLK)
+		self.fnt_latch1.set (hpla_in[11], NOT(PCLK))
+		self.fnt_latch2.set (self.fnt_latch1.nget(), PCLK)
+		self.ftb_latch1.set (hpla_in[12], NOT(PCLK))
+		self.ftb_latch2.set (self.ftb_latch1.nget(), PCLK)
+		self.fta_latch1.set (hpla_in[13], NOT(PCLK))
+		self.fta_latch2.set (self.fta_latch1.nget(), PCLK)
+		self.fo_latch1.set (hpla_in[14], NOT(PCLK))
+		self.fo_latch2.set (hpla_in[15], NOT(PCLK))
+		fonor = NOR(self.fo_latch1.get(), self.fo_latch2.get())
+		self.fo_latch3.set (fonor, PCLK)
+		self.fat_latch1.set (hpla_in[16], NOT(PCLK))
+
+		self.bp_latch1.set (hpla_in[17], NOT(PCLK))
+		self.bp_latch2.set (hpla_in[18], NOT(PCLK))
+		self.BPORCH_FF = NOR ( self.bp_latch1.get(), NOR(self.bp_latch2.get(), self.BPORCH_FF) )
+		self.hb_latch1.set (hpla_in[19], NOT(PCLK))
+		self.hb_latch2.set (hpla_in[20], NOT(PCLK))
+		self.HBLANK_FF = NOR (self.hb_latch2.get(), NOR(self.hb_latch1.get(), self.HBLANK_FF) )
+		self.cb_latch1.set (hpla_in[21], NOT(PCLK))
+		self.cb_latch2.set (hpla_in[22], NOT(PCLK))
+		self.BURST_FF = NOR (self.cb_latch2.get(), NOR(self.cb_latch1.get(), self.BURST_FF) )
+		self.sync_latch1.set (self.BURST_FF, PCLK)
+		self.sync_latch2.set (NOT(n_FPORCH), PCLK)
+
+		n_HB = self.HBLANK_FF
+		self.VSYNC_FF = NOR ( AND(n_HB, vpla_in[0]), NOR(AND(n_HB, vpla_in[1]), self.VSYNC_FF) )
+		self.vsync_latch1.set (NOR(n_HB, self.VSYNC_FF), PCLK)
+		BPORCH = self.BPORCH_FF
+		self.PICTURE_FF = NOR ( AND(BPORCH, vpla_in[2]), NOR(AND(BPORCH, vpla_in[3]), self.PICTURE_FF) )
+		self.pic_latch1.set (self.PICTURE_FF, PCLK)
+		self.pic_latch2.set (BPORCH, PCLK)
+		self.vset_latch1.set (vpla_in[4], NOT(PCLK))
+		self.vb_latch1.set (vpla_in[5], NOT(PCLK))
+		self.vb_latch2.set (vpla_in[6], NOT(PCLK))
+		self.VB_FF = NOR ( self.vb_latch2.get(), NOR(self.vb_latch1.get(), self.VB_FF) )
+		self.blnk_latch1.set (vpla_in[7], NOT(PCLK))
+		self.BLNK_FF = NOR (self.blnk_latch1.get(), NOR(self.vb_latch2.get(), self.BLNK_FF) )
+		self.vclr_latch1.set (vpla_in[8], NOT(PCLK))
+		self.vclr_latch2.set (self.vclr_latch1.nget(), PCLK)
+
+		V8 = (v >> 8) & 1
+		self.EvenOddFF_1 = NOT ( NOT(MUX(V8, NOT(self.EvenOddFF_2), self.EvenOddFF_1)) )
+		self.EvenOddFF_2 = NOR ( NOT(MUX(V8, self.EvenOddFF_2, self.EvenOddFF_1)), RES )
+
+		RESCL = self.vclr_latch2.nget()
+		EvenOddOut = NOR3 (self.EvenOddFF_2, NOT(hpla_in[5]), NOT(RESCL))
+		self.ctrl_latch1.set (NOR(hpla_in[23], EvenOddOut), NOT(PCLK))
+		self.ctrl_latch2.set (vpla_in[2], NOT(PCLK))
+
+	def GetHPosControls(self, n_OBCLIP, n_BGCLIP, BLACK):
+		hctrl = {}
+		hctrl['/FPORCH'] = self.FPORCH_FF
+		hctrl['S/EV'] = self.sev_latch2.nget()
+		hctrl['CLIP_O'] = NOR(n_OBCLIP, self.clpo_latch2.get())
+		hctrl['CLIP_B'] = NOR(n_BGCLIP, self.clpb_latch2.get())
+		hctrl['0/HPOS'] = self.hpos_latch2.nget()
+		hctrl['EVAL'] = NOT(self.eval_latch2.nget())
+		hctrl['E/EV'] = self.eev_latch2.nget()
+		hctrl['I/OAM2'] = self.oam_latch2.nget()
+		hctrl['PAR/O'] = self.paro_latch2.nget()
+		hctrl['/VIS'] = NOT(self.nvis_latch2.nget())
+		hctrl['F/NT'] = NOT(self.fnt_latch2.nget())
+		hctrl['F/TB'] = NOR(self.ftb_latch2.get(), self.fo_latch3.get())
+		hctrl['F/TA'] = NOR(self.fta_latch2.get(), self.fo_latch3.get())
+		hctrl['/FO'] = self.fo_latch3.nget()
+		hctrl['F/AT'] = NOR( NOR(self.fo_latch1.get(), self.fo_latch2.get()), self.fat_latch1.nget() )
+		hctrl['BPORCH'] = self.BPORCH_FF;
+		hctrl['SC/CNT'] = NOR(BLACK, NOT(self.HBLANK_FF))
+		hctrl['/HB'] = self.HBLANK_FF
+		VSYNC = self.vsync_latch1.get()
+		hctrl['SYNC'] = NOR(self.sync_latch2.get(), VSYNC)
+		hctrl['BURST'] = NOR(self.sync_latch1.get(), hctrl['SYNC'])
+		return hctrl
+
+	def GetVPosControls(self, BLACK):
+		vctrl = {}
+		vctrl['VSYNC'] = self.vsync_latch1.get()
+		vctrl['PICTURE'] = NOT(NOR(self.pic_latch1.get(), self.pic_latch2.get()))
+		vctrl['/VSET'] = self.vset_latch1.nget()
+		vctrl['VB'] = NOT(self.VB_FF)
+		vctrl['BLNK'] = NAND(NOT(self.BLNK_FF), NOT(BLACK))
+		vctrl['RESCL'] = self.vclr_latch2.nget()
+		return vctrl
 
 	def GetHC(self):
-		return 0
+		return self.ctrl_latch1.nget()
 
 	def GetVC(self):
-		return 0
+		return NOR (NOT(self.ctrl_latch1.nget()), self.ctrl_latch2.nget())
 
-	def dump(self):
-		print (self.GetHPosControls())
-		print (self.GetVPosControls())
+	def dump(self, n_OBCLIP, n_BGCLIP, BLACK):
+		# The n_OBCLIP/n_BGCLIP/BLACK signals are involved in getting output values, so they are rooted here
+		print (self.GetHPosControls(n_OBCLIP, n_BGCLIP, BLACK))
+		# DEBUG: Disabled for now as unnecessary
+		#print (self.GetVPosControls(BLACK))
 
 
 """

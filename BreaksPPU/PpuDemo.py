@@ -144,6 +144,12 @@ def TestFSM(ntsc):
 
 	RES = 0
 
+	# Make dummy outputs from control registers $2000/$2001
+
+	BLACK = 0
+	n_OBCLIP = 1
+	n_BGCLIP = 1
+
 	# Perform the number of half-cycles required to simulate a full frame
 
 	start_time = time.time()
@@ -153,16 +159,18 @@ def TestFSM(ntsc):
 	else:
 		maxSteps = 312 * 341 * 2
 
-	maxSteps = 1000 		# DEBUG
+	maxSteps = 341 * 2 		# DEBUG!!! Only first visible line 0
 
 	for step in range(maxSteps):
-		hpla_out = hpla.sim(hcnt.get(), fsm.GetVB(), fsm.GetBLNK())
+		vctrl = fsm.GetVPosControls(BLACK)
+
+		hpla_out = hpla.sim(hcnt.get(), vctrl['VB'], vctrl['BLNK'])
 		vpla_out = vpla.sim(vcnt.get())
 
 		V_IN = hpla_out[23]
 
-		fsm.sim(PCLK, hcnt.get(), vcnt.get(), hpla_out, vpla_out, 1, 1, 0, RES)
-		fsm.dump()
+		fsm.sim(PCLK, hcnt.get(), vcnt.get(), hpla_out, vpla_out, RES)
+		fsm.dump(n_OBCLIP, n_BGCLIP, BLACK)
 
 		hcnt.sim(1, PCLK, fsm.GetHC(), RES)
 		vcnt.sim(V_IN, PCLK, fsm.GetVC(), RES)
