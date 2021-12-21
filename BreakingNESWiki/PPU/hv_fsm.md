@@ -105,7 +105,9 @@
 
 ## Обработка прерывания VBlank
 
-![hv_fsm_int](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)
+|Транзисторная схема|Логическая схема|
+|---|---|
+|![hv_fsm_int](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)|![hv_fsm_int_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_int_logic.jpg)|
 
 ## Логика EVEN/ODD
 
