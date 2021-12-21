@@ -307,7 +307,7 @@ class HV_FSM:
 		return
 
 	def GetHPosControls(self, n_OBCLIP, n_BGCLIP, BLACK):
-		hctrl = { 'S/EV': 0, 'CLIP_O': 0, 'CLIP_B': 0, '0/HPOS': 0, 'EVAL': 0, 'E/EV': 0, 'I/OAM2': 0, 'PAR/O': 0, '/VIS': 0, 'F/NT': 0, 'F/TB': 0, 'F/TA': 0, '/FO': 0, 'F/AT': 0, 'BPORCH': 0, 'SC/CNT': 0, '/HB': 0, 'BURST': 0, 'SYNC': 0 }
+		hctrl = {}
 		hctrl['S/EV'] = self.sev_latch2.nget()
 		hctrl['CLIP_O'] = NOR(n_OBCLIP, self.clpo_latch2.get())
 		hctrl['CLIP_B'] = NOR(n_BGCLIP, self.clpb_latch2.get())
@@ -331,7 +331,7 @@ class HV_FSM:
 		return hctrl
 
 	def GetVPosControls(self, BLACK):
-		vctrl = { 'VSYNC': 0, 'PICTURE': 0, '/VSET': 0, 'VB': 0, 'BLNK': 0, 'RESCL': 0 }
+		vctrl = {}
 		vctrl['VSYNC'] = self.vsync_latch1.get()
 		vctrl['PICTURE'] = NOT(NOR(self.pic_latch1.get(), self.pic_latch2.get()))
 		vctrl['/VSET'] = self.vset_latch1.nget()
