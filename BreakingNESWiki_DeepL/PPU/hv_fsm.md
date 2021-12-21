@@ -10,6 +10,8 @@ The H/V FSM includes the following components:
 - EVEN/ODD circuitry
 - H/V counter control circuitry
 
+![hv_fsm_all](/BreakingNESWiki/imgstore/ppu/hv_fsm_all.jpg)
+
 The control logic is loaded with all kinds of signals that come and go to almost every possible PPU component.
 
 Inputs:
