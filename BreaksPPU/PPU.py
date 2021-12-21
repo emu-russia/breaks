@@ -239,7 +239,7 @@ class HV_FSM:
 
 		self.fp_latch1 = DLatch()
 		self.fp_latch2 = DLatch()
-		self.FPROCH_FF = 0
+		self.FPORCH_FF = 0
 
 		self.sev_latch1 = DLatch()
 		self.sev_latch2 = DLatch()
@@ -278,7 +278,7 @@ class HV_FSM:
 		self.cb_latch2 = DLatch()
 		self.sync_latch1 = DLatch()
 		self.sync_latch2 = DLatch()
-		self.BPROCH_FF = 0
+		self.BPORCH_FF = 0
 		self.HBLANK_FF = 0
 		self.BURST_FF = 0
 
@@ -300,11 +300,76 @@ class HV_FSM:
 		self.ctrl_latch2 = DLatch()
 
 	def sim(self, PCLK, h, v, hpla_in, vpla_in, RES):
+		self.fp_latch1.set (hpla_in[0], NOT(PCLK))
+		self.fp_latch2.set (hpla_in[1], NOT(PCLK))
+		self.FPORCH_FF = NOR (self.fp_latch2.get(), NOR(self.fp_latch1.get(), self.FPORCH_FF) )
+		n_FPORCH = self.FPORCH_FF
+
+		self.sev_latch1.set (hpla_in[2], NOT(PCLK))
+		self.sev_latch2.set (self.sev_latch1.nget(), PCLK)
+		self.clpo_latch1.set (hpla_in[3], NOT(PCLK))
+		self.clpb_latch1.set (hpla_in[4], NOT(PCLK))
+		clpnor = NOR(self.clpo_latch1.get(), self.clpb_latch1.nget())
+		self.clpo_latch2.set (clpnor, PCLK)
+		self.clpb_latch2.set (clpnor, PCLK)
+		self.hpos_latch1.set (hpla_in[5], NOT(PCLK))
+		self.hpos_latch2.set (self.hpos_latch1.nget(), PCLK)
+		self.eev_latch1.set (hpla_in[7], NOT(PCLK))
+		self.eev_latch2.set (self.eev_latch1.nget(), PCLK)
+		self.eval_latch1.set (hpla_in[6], NOT(PCLK))
+		self.eval_latch2.set ( NOR3(self.hpos_latch1.get(), self.eval_latch1.get(), self.eev_latch1.get()), PCLK)
+		self.oam_latch1.set (hpla_in[8], NOT(PCLK))
+		self.oam_latch2.set (self.oam_latch1.nget(), PCLK)
+		self.paro_latch1.set (hpla_in[9], NOT(PCLK))
+		self.paro_latch2.set (self.paro_latch1.nget(), PCLK)
+		self.nvis_latch1.set (hpla_in[10], NOT(PCLK))
+		self.nvis_latch2.set (self.nvis_latch1.nget(), PCLK)
+		self.fnt_latch1.set (hpla_in[11], NOT(PCLK))
+		self.fnt_latch2.set (self.fnt_latch1.nget(), PCLK)
+		self.ftb_latch1.set (hpla_in[12], NOT(PCLK))
+		self.ftb_latch2.set (self.ftb_latch1.nget(), PCLK)
+		self.fta_latch1.set (hpla_in[13], NOT(PCLK))
+		self.fta_latch2.set (self.fta_latch1.nget(), PCLK)
+		self.fo_latch1.set (hpla_in[14], NOT(PCLK))
+		self.fo_latch2.set (hpla_in[15], NOT(PCLK))
+		fonor = NOR(self.fo_latch1.get(), self.fo_latch2.get())
+		self.fo_latch3.set (fonor, PCLK)
+		self.fat_latch1.set (hpla_in[16], NOT(PCLK))
+
+		self.bp_latch1.set (hpla_in[17], NOT(PCLK))
+		self.bp_latch2.set (hpla_in[18], NOT(PCLK))
+		self.BPORCH_FF = NOR ( self.bp_latch1.get(), NOR(self.bp_latch2.get(), self.BPORCH_FF) )
+		self.hb_latch1.set (hpla_in[19], NOT(PCLK))
+		self.hb_latch2.set (hpla_in[20], NOT(PCLK))
+		self.HBLANK_FF = NOR (self.hb_latch2.get(), NOR(self.hb_latch1.get(), self.HBLANK_FF) )
+		self.cb_latch1.set (hpla_in[21], NOT(PCLK))
+		self.cb_latch2.set (hpla_in[22], NOT(PCLK))
+		self.BURST_FF = NOR (self.cb_latch2.get(), NOR(self.cb_latch1.get(), self.BURST_FF) )
+		self.sync_latch1.set (self.BURST_FF, PCLK)
+		self.sync_latch2.set (NOT(n_FPORCH), PCLK)
+
+		n_HB = self.HBLANK_FF
+		self.VSYNC_FF = NOR ( AND(n_HB, vpla_in[0]), NOR(AND(n_HB, vpla_in[1]), self.VSYNC_FF) )
+		self.vsync_latch1.set (NOR(n_HB, self.VSYNC_FF), PCLK)
+		BPORCH = self.BPORCH_FF
+		self.PICTURE_FF = NOR ( AND(BPORCH, vpla_in[2]), NOR(AND(BPORCH, vpla_in[3]), self.PICTURE_FF) )
+		self.pic_latch1.set (self.PICTURE_FF, PCLK)
+		self.pic_latch2.set (BPORCH, PCLK)
 		self.vset_latch1.set (vpla_in[4], NOT(PCLK))
+		self.vb_latch1.set (vpla_in[5], NOT(PCLK))
+		self.vb_latch2.set (vpla_in[6], NOT(PCLK))
+		self.VB_FF = NOR ( self.vb_latch2.get(), NOR(self.vb_latch1.get(), self.VB_FF) )
+		self.blnk_latch1.set (vpla_in[7], NOT(PCLK))
+		self.BLNK_FF = NOR (self.blnk_latch1.get(), NOR(self.vb_latch2.get(), self.BLNK_FF) )
 		self.vclr_latch1.set (vpla_in[8], NOT(PCLK))
 		self.vclr_latch2.set (self.vclr_latch1.nget(), PCLK)
 
-		EvenOddOut = 0
+		V8 = (v >> 8) & 1
+		self.EvenOddFF_1 = NOT ( NOT(MUX(V8, NOT(self.EvenOddFF_2), self.EvenOddFF_1)) )
+		self.EvenOddFF_2 = NOR ( NOT(MUX(V8, self.EvenOddFF_2, self.EvenOddFF_1)), RES )
+
+		RESCL = self.vclr_latch2.nget()
+		EvenOddOut = NOR3 (self.EvenOddFF_2, NOT(hpla_in[5]), NOT(RESCL))
 		self.ctrl_latch1.set (NOR(hpla_in[23], EvenOddOut), NOT(PCLK))
 		self.ctrl_latch2.set (vpla_in[2], NOT(PCLK))
 
@@ -324,7 +389,7 @@ class HV_FSM:
 		hctrl['F/TA'] = NOR(self.fta_latch2.get(), self.fo_latch3.get())
 		hctrl['/FO'] = self.fo_latch3.nget()
 		hctrl['F/AT'] = NOR( NOR(self.fo_latch1.get(), self.fo_latch2.get()), self.fat_latch1.nget() )
-		hctrl['BPORCH'] = self.BPROCH_FF;
+		hctrl['BPORCH'] = self.BPORCH_FF;
 		hctrl['SC/CNT'] = NOR(BLACK, NOT(self.HBLANK_FF))
 		hctrl['/HB'] = self.HBLANK_FF
 		VSYNC = self.vsync_latch1.get()
@@ -350,8 +415,8 @@ class HV_FSM:
 
 	def dump(self, n_OBCLIP, n_BGCLIP, BLACK):
 		# The n_OBCLIP/n_BGCLIP/BLACK signals are involved in getting output values, so they are rooted here
-		#print (self.GetHPosControls(n_OBCLIP, n_BGCLIP, BLACK))
-		print (self.GetVPosControls(BLACK))
+		print (self.GetHPosControls(n_OBCLIP, n_BGCLIP, BLACK))
+		#print (self.GetVPosControls(BLACK))
 
 
 """

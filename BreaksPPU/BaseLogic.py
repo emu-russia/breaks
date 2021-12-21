@@ -43,6 +43,9 @@ def NOT(a):
 def NOR(a, b):
 	return (~(a | b)) & 1
 
+def NOR3(a, b, c):
+	return (~(a | b | c)) & 1
+
 
 """
 	2-nand
@@ -59,6 +62,9 @@ def NOR(a, b):
 """
 def NAND(a, b):
 	return (~(a & b)) & 1
+
+def AND(a, b):
+	return NOT(NAND(a, b))
 
 
 """
