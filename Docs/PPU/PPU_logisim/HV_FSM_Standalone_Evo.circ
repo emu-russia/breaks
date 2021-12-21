@@ -532,13 +532,13 @@
       <a name="appearance" val="classic"/>
       <a name="label" val="n_VSET"/>
     </comp>
-    <comp lib="0" loc="(110,190)" name="Pin">
-      <a name="appearance" val="classic"/>
-      <a name="label" val="RESCL"/>
-    </comp>
-    <comp lib="0" loc="(110,260)" name="Pin">
+    <comp lib="0" loc="(110,200)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="VBL"/>
+    </comp>
+    <comp lib="0" loc="(110,250)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RESCL"/>
     </comp>
     <comp lib="0" loc="(110,320)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -630,15 +630,13 @@
       <a name="labelloc" val="south"/>
     </comp>
     <wire from="(110,150)" to="(210,150)"/>
-    <wire from="(110,190)" to="(210,190)"/>
-    <wire from="(110,260)" to="(360,260)"/>
+    <wire from="(110,200)" to="(560,200)"/>
+    <wire from="(110,250)" to="(420,250)"/>
     <wire from="(110,320)" to="(210,320)"/>
     <wire from="(110,360)" to="(210,360)"/>
     <wire from="(110,50)" to="(250,50)"/>
     <wire from="(110,90)" to="(330,90)"/>
     <wire from="(210,150)" to="(250,150)"/>
-    <wire from="(210,190)" to="(210,290)"/>
-    <wire from="(210,290)" to="(420,290)"/>
     <wire from="(210,320)" to="(210,330)"/>
     <wire from="(210,330)" to="(240,330)"/>
     <wire from="(210,350)" to="(210,360)"/>
@@ -659,12 +657,10 @@
     <wire from="(350,340)" to="(350,370)"/>
     <wire from="(350,340)" to="(480,340)"/>
     <wire from="(350,370)" to="(610,370)"/>
-    <wire from="(360,200)" to="(360,260)"/>
-    <wire from="(360,200)" to="(560,200)"/>
     <wire from="(390,140)" to="(420,140)"/>
     <wire from="(420,140)" to="(420,160)"/>
     <wire from="(420,160)" to="(480,160)"/>
-    <wire from="(420,290)" to="(420,330)"/>
+    <wire from="(420,250)" to="(420,330)"/>
     <wire from="(420,330)" to="(480,330)"/>
     <wire from="(440,150)" to="(480,150)"/>
     <wire from="(440,70)" to="(440,150)"/>
