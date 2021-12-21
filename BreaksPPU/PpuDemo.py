@@ -170,6 +170,9 @@ def TestFSM(ntsc):
 		V_IN = hpla_out[23]
 
 		fsm.sim(PCLK, hcnt.get(), vcnt.get(), hpla_out, vpla_out, RES)
+
+		print (f"H: {hcnt.get()}; ", end='')
+		print (f"PCLK: {PCLK}; ", end='')
 		fsm.dump(n_OBCLIP, n_BGCLIP, BLACK)
 
 		hcnt.sim(1, PCLK, fsm.GetHC(), RES)
