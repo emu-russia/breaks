@@ -81,34 +81,71 @@
 
 ## Выдача наружу значений разрядов H
 
-Разряды счетчика H используются в других компонентах PPU.
+Разряды счетчика H0-H5 используются в других компонентах PPU.
 
-![h_counter_output](/BreakingNESWiki/imgstore/ppu/h_counter_output.jpg)
+Название сигнала с одним dash (например `/H2'`) означает что значение задержано одним DLatch. Название сигнала с двумя dash (например `H0''`) означает что значение задержано двумя DLatch.
+
+Задержка вывода значений используется в PPU во многих местах (например выходы Color Buffer). Данный феномен пока не находит объяснений. Возможно это связано с учетом задержки работы остальных узлов PPU.
+
+|Транзисторная схема|Логическая схема|
+|---|---|
+|![h_counter_output](/BreakingNESWiki/imgstore/ppu/h_counter_output.jpg)|![h_counter_output_logic](/BreakingNESWiki/imgstore/ppu/h_counter_output_logic.jpg)|
 
 ## Горизонтальная логика
 
-"Горизонтальная" логика, отвечает за генерацию контрольных линий в зависимости от горизонтального положения луча (H):
+"Горизонтальная" логика, отвечает за генерацию контрольных сигналов в зависимости от горизонтального положения луча (H):
+
+Транзисторная схема:
 
 ![hv_fporch](/BreakingNESWiki/imgstore/ppu/hv_fporch.jpg)
 
 ![hv_fsm_horz](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz.jpg)
 
+Логическая схема:
+
+![hv_fsm_horz_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz_logic.jpg)
+
 ## Вертикальная логика
+
+Транзисторная схема:
 
 ![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert.jpg)
 
+Логическая схема:
+
+![hv_fsm_vert_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert_logic.jpg)
+
 ## Обработка прерывания VBlank
 
-![hv_fsm_int](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)
+|Транзисторная схема|Логическая схема|
+|---|---|
+|![hv_fsm_int](/BreakingNESWiki/imgstore/ppu/hv_fsm_int.jpg)|![hv_fsm_int_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_int_logic.jpg)|
+
+Принцип работы:
+- На входе находится edge детектор, который ловит событие начала VBlank (сигнал `/VSET`)
+- Событие начала VBlank запоминается на INT_FF
+- Сигнал `RESCL(VCLR)` очищает INT_FF
+- Выходной сигнал `INT` уходит на внешний контакт `/INT` для сигнализрования внешних устройств о прерывании (CPU)
+- Программист может узнать состояние флага прерывания (INT_FF) прочитав $2002\[7\]. При этом FF, где хранится флаг устроен так, что чтение флага также очищает его (см. 3-NOR на одном из плеч FF).
 
 ## Логика EVEN/ODD
 
-![even_odd_tran](/BreakingNESWiki/imgstore/ppu/even_odd_tran.jpg) ![even_odd_flow1](/BreakingNESWiki/imgstore/ppu/even_odd_flow1.jpg) ![even_odd_flow2](/BreakingNESWiki/imgstore/ppu/even_odd_flow2.jpg)
+![even_odd_tran](/BreakingNESWiki/imgstore/ppu/even_odd_tran.jpg)
 
-Логика EVEN/ODD состоит из двух замкнутых друг на друга псевдозащелок, управляемых двумя мультиплексорами. Получается такая очень хитрая "макро"-защелка.
+(Для удобства схема положена "на бок")
 
-TODO: Схему нужно проанализровать ещё раз, т.к. что это за фигня такая - "макро-защелка".. К тому же схема для PAL PPU отличается от NTSC версии.
+Логика EVEN/ODD состоит из двух замкнутых друг на друга FF, управляемых двумя мультиплексорами. Получается аналог DFF, но без входа.
+
+Данная схема реализует логику т.н. NTSC Crawl (ползание/дрожание). Это необходимо для исключения вывода 1 пикселя каждый кадр, чтобы снять кратность PCLK и поднесущей цветности, во избежание артефактов на Ч/Б телевизоре.
+
+![even_odd_logic](/BreakingNESWiki/imgstore/ppu/even_odd_logic.jpg)
 
 ## Управление H/V счетчиками
 
+Транзисторная схема:
+
 ![hv_counters_control](/BreakingNESWiki/imgstore/ppu/hv_counters_control.jpg)
+
+Логическая схема:
+
+![hv_counters_control_logic](/BreakingNESWiki/imgstore/ppu/hv_counters_control_logic.jpg)
