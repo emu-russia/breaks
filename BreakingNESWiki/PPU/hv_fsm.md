@@ -107,7 +107,13 @@
 
 ## Вертикальная логика
 
+Транзисторная схема:
+
 ![hv_fsm_vert](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert.jpg)
+
+Логическая схема:
+
+![hv_fsm_vert_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert_logic.jpg)
 
 ## Обработка прерывания VBlank
 
