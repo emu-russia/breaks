@@ -17,7 +17,7 @@ from BaseLogic import *
 class CounterStage:
 	def __init__(self):
 		self.ff = 0 		# This variable is used as a replacement for the hybrid FF built on MUX
-		self.latch = DLatch()		
+		self.latch = DLatch()
 
 	def sim(self, Carry, PCLK, CLR, RES):
 		self.ff = MUX(PCLK, NOR(NOT(self.ff), RES), NOR(self.latch.get(), CLR))
@@ -71,6 +71,9 @@ class HVCounter:
 
 	Essentially every PLA output is a big multi-input NOR, but we take a different
 	approach instead, so that the PLA matrix is comparable to the chip image.
+
+	- VB: Active when the invisible part of the video signal is output (used only in H Decoder)
+	- BLNK: Active when PPU rendering is disabled (by BLACK signal) or during VBlank
 
 """
 class HDecoder:
@@ -216,13 +219,55 @@ class VDecoder:
 """
 	Implementation of the H/V state machine. This part is the main "brain" of the PPU, which controls all other parts.
 
+	- n_OBCLIP ($2001[2]): To generate the CLIP_O control signal
+	- n_BGCLIP ($2001[1]): To generate the CLIP_B control signal
+	- BLACK ($2001[3] and $2001[4]): Active when PPU rendering is disabled
+	- RES: Global reset signal (from /RES Pad)
+
 """
 class HV_FSM:
-	def __init__(self):
+	def __init__(self, ntsc):
+		self.ntsc = ntsc
+
+	def sim(self, PCLK, h, v, hpla_in, vpla_in, n_OBCLIP, n_BGCLIP, BLACK, RES):
 		return
 
-	def sim(self):
-		return
+	def GetHPosControls(self):
+		return { '/FPORCH': 0, 'S/EV': 0, 'CLIP_O': 0, 'CLIP_B': 0, '0/HPOS': 0, 'EVAL': 0, 'E/EV': 0, 'I/OAM2': 0, 'PAR/O': 0, '/VIS': 0, 'F/NT': 0, 'F/TB': 0, 'F/TA': 0, '/FO': 0, 'F/AT': 0, 'BPORCH': 0, 'SC/CNT': 0, '/HB': 0, 'BURST': 0, 'SYNC': 0 }
+
+	def GetVPosControls(self):
+		return { 'VSYNC': 0, 'PICTURE': 0, '/VSET': 0, 'VB': self.GetVB(), 'BLNK': self.GetBLNK(), 'RESCL': 0 }
+
+	def GetVB(self):
+		return 0
+
+	def GetBLNK(self):
+		return 0
+
+	def GetHC(self):
+		return 0
+
+	def GetVC(self):
+		return 0
+
+	def dump(self):
+		print (self.GetHPosControls())
+		print (self.GetVPosControls())
+
+
+"""
+	Schematic to simulate the processing of a VBlank interrupt. Part of the H/V FSM.
+
+	- n_VSET: "VBlank Set". VBlank period start event.
+	- VCLR (RESCL): VBlank period end event.
+	- VBL: $2000[7]
+	- n_R2: Register $2002 read operation
+	- n_DBE: Enable the CPU interface
+
+"""
+class VBlank:
+	def sim(self, PCLK, n_VSET, VCLR, VBL, n_R2, n_DBE):
+		return	
 
 
 """

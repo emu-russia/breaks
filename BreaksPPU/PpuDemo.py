@@ -4,6 +4,7 @@
 """
 
 from PPU import *
+import time
 
 
 def TestCounterStage():
@@ -115,8 +116,70 @@ def TestVDecoder(ntsc):
 		print (" ")
 
 
+def TestFSM(ntsc):
+	print ("TestFSM:")
+
+	# Create the parts necessary for the H/V FSM to work
+
+	hcnt = HVCounter(9)
+	vcnt = HVCounter(9)
+	hpla = HDecoder(ntsc)
+	vpla = VDecoder(ntsc)
+
+	fsm = HV_FSM(ntsc)
+
+	# Simulate reset
+	# Required for cleaning the H/V counters. Everything else is independent of the RES signal. (Actually EVEN/ODD logic relies on the RES signal, but this can be ignored).
+
+	RES = 1
+	PCLK = 0
+
+	for step in range(8):
+		hcnt.sim(0, PCLK, 0, RES)
+		vcnt.sim(0, PCLK, 0, RES)
+		if PCLK:
+			PCLK = 0
+		else:
+			PCLK = 1		
+
+	RES = 0
+
+	# Perform the number of half-cycles required to simulate a full frame
+
+	start_time = time.time()
+
+	if ntsc:
+		maxSteps = 262 * 341 * 2
+	else:
+		maxSteps = 312 * 341 * 2
+
+	maxSteps = 1000 		# DEBUG
+
+	for step in range(maxSteps):
+		hpla_out = hpla.sim(hcnt.get(), fsm.GetVB(), fsm.GetBLNK())
+		vpla_out = vpla.sim(vcnt.get())
+
+		V_IN = hpla_out[23]
+
+		fsm.sim(PCLK, hcnt.get(), vcnt.get(), hpla_out, vpla_out, 1, 1, 0, RES)
+		fsm.dump()
+
+		hcnt.sim(1, PCLK, fsm.GetHC(), RES)
+		vcnt.sim(V_IN, PCLK, fsm.GetVC(), RES)
+
+		if PCLK:
+			PCLK = 0
+		else:
+			PCLK = 1
+
+	end_time = time.time()
+	time_elapsed = (end_time - start_time)
+	print(f"time_elapsed: {time_elapsed} seconds")
+
+
 if __name__ == '__main__':
-	TestCounterStage()
-	TestCounter()
-	TestHDecoder(True)
-	TestVDecoder(True)
+	#TestCounterStage()
+	#TestCounter()
+	#TestHDecoder(ntsc=True)
+	#TestVDecoder(ntsc=True)
+	TestFSM(ntsc=True)
