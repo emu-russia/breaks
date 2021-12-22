@@ -212,6 +212,7 @@ def TestFSM(ntsc):
 	FntYet = True
 	FoNyet = True
 	BporchNyet = True
+	FporchNyet = True
 	BurstNyet = True
 
 	# Perform the number of half-cycles required
@@ -303,8 +304,9 @@ def TestFSM(ntsc):
 		if hctrl['BPORCH'] == 1 and prev_hctrl['BPORCH'] == 0:
 			EndEvent (trace, 15, timeStamp)
 			closeBporch = False
-		if hctrl['/FPORCH'] == 0 and prev_hctrl['/FPORCH'] == 1:
+		if hctrl['/FPORCH'] == 0 and (prev_hctrl['/FPORCH'] == 1 or FporchNyet):
 			BeginEvent (trace, 16, timeStamp, "/FPORCH")
+			FporchNyet = False
 		if hctrl['/FPORCH'] == 1 and prev_hctrl['/FPORCH'] == 0:
 			EndEvent (trace, 16, timeStamp)			
 		if hctrl['SC/CNT'] == 1 and prev_hctrl['SC/CNT'] == 0:
