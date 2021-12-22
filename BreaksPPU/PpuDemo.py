@@ -159,7 +159,7 @@ def TestFSM(ntsc):
 
 	if ntsc:
 		maxSteps = 262 * 341 * 2 * frames
-		stepMcs = 0.0725
+		stepMcs = 0.093
 	else:
 		maxSteps = 312 * 341 * 2 * frames
 		stepMcs = 0.0935
