@@ -24,7 +24,7 @@ Timings:
 
 |PPU|CLK|CLK Cycle Duration|PCLK|PCLK Cycle Duration|
 |---|---|---|---|---|
-|NTSC|27477272 Hz|~0,036 µs|6869318 Hz|~0,145 µs|
+|NTSC|21477272 Hz|~0,046 µs|5369318 Hz|~0,186 µs|
 |PAL|26601712 Hz|~0,037 µs|5320342.4 Hz|~0,187 µs|
 
 ## Power On Status

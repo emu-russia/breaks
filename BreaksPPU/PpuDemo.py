@@ -154,10 +154,15 @@ def TestFSM(ntsc):
 
 	start_time = time.time()
 
+	timeStamp = 0.0
+	frames = 1
+
 	if ntsc:
-		maxSteps = 262 * 341 * 2
+		maxSteps = 262 * 341 * 2 * frames
+		stepMcs = 0.0725
 	else:
-		maxSteps = 312 * 341 * 2
+		maxSteps = 312 * 341 * 2 * frames
+		stepMcs = 0.0935
 
 	maxSteps = 2 * 341 * 2 		# DEBUG!!! Only first 2 visible lines
 
@@ -183,9 +188,11 @@ def TestFSM(ntsc):
 		else:
 			PCLK = 1
 
+		timeStamp += stepMcs
+
 	end_time = time.time()
 	time_elapsed = (end_time - start_time)
-	print(f"time_elapsed: {time_elapsed} seconds")
+	print(f"Real time elapsed: {time_elapsed} seconds; PPU time: {timeStamp} mcs.")
 
 
 if __name__ == '__main__':
