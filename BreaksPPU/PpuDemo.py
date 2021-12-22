@@ -196,12 +196,22 @@ def TestFSM(ntsc):
 
 	prev_hctrl = fsm.GetHPosControls(n_OBCLIP, n_BGCLIP, BLACK)
 	prev_vctrl = fsm.GetVPosControls(BLACK)
-	prev_h = -1
-	prev_v = -1
+
+	# Some signals need to be "closed" after the simulation ends, so as not to leave open trace segments.
+
 	closeScan = False
 	closeVis = False
 	closeBporch = False
 	closeFnt = False
+
+	# Some signals are already active from the beginning of the simulation when the previous H/V logic values have not yet changed.
+	# NotYet logic is used to display these signals.
+
+	Ioam2Nyet = True
+	VisNyet = True
+	FoNyet = True
+	BporchNyet = True
+	BurstNyet = True
 
 	# Perform the number of half-cycles required
 
@@ -243,17 +253,19 @@ def TestFSM(ntsc):
 			BeginEvent (trace, 6, timeStamp, "E/EV")
 		if hctrl['E/EV'] == 0 and prev_hctrl['E/EV'] == 1:
 			EndEvent (trace, 6, timeStamp)
-		if hctrl['I/OAM2'] == 1 and prev_hctrl['I/OAM2'] == 0:
+		if hctrl['I/OAM2'] == 1 and (prev_hctrl['I/OAM2'] == 0 or Ioam2Nyet):
 			BeginEvent (trace, 7, timeStamp, "I/OAM2")
+			Ioam2Nyet = False
 		if hctrl['I/OAM2'] == 0 and prev_hctrl['I/OAM2'] == 1:
 			EndEvent (trace, 7, timeStamp)
 		if hctrl['PAR/O'] == 1 and prev_hctrl['PAR/O'] == 0:
 			BeginEvent (trace, 8, timeStamp, "PAR/O")
 		if hctrl['PAR/O'] == 0 and prev_hctrl['PAR/O'] == 1:
 			EndEvent (trace, 8, timeStamp)
-		if hctrl['/VIS'] == 1 and prev_hctrl['/VIS'] == 0:
+		if hctrl['/VIS'] == 1 and (prev_hctrl['/VIS'] == 0 or VisNyet):
 			BeginEvent (trace, 9, timeStamp, "/VIS")
-			closeVis = True			
+			closeVis = True
+			VisNyet = False
 		if hctrl['/VIS'] == 0 and prev_hctrl['/VIS'] == 1:
 			EndEvent (trace, 9, timeStamp)
 			closeVis = False
@@ -277,13 +289,15 @@ def TestFSM(ntsc):
 		if hctrl['F/TB'] == 0 and prev_hctrl['F/TB'] == 1:
 			EndEvent (trace, 13, timeStamp)
 
-		if hctrl['/FO'] == 1 and prev_hctrl['/FO'] == 0:
+		if hctrl['/FO'] == 1 and (prev_hctrl['/FO'] == 0 or FoNyet):
 			BeginEvent (trace, 14, timeStamp, "/FO")
+			FoNyet = False
 		if hctrl['/FO'] == 0 and prev_hctrl['/FO'] == 1:
 			EndEvent (trace, 14, timeStamp)
-		if hctrl['BPORCH'] == 0 and prev_hctrl['BPORCH'] == 1:
+		if hctrl['BPORCH'] == 0 and (prev_hctrl['BPORCH'] == 1 or BporchNyet):
 			BeginEvent (trace, 15, timeStamp, "BPORCH")
 			closeBporch = True
+			BporchNyet = False
 		if hctrl['BPORCH'] == 1 and prev_hctrl['BPORCH'] == 0:
 			EndEvent (trace, 15, timeStamp)
 			closeBporch = False
@@ -303,8 +317,9 @@ def TestFSM(ntsc):
 			BeginEvent (trace, 19, timeStamp, "SYNC")
 		if hctrl['SYNC'] == 0 and prev_hctrl['SYNC'] == 1:
 			EndEvent (trace, 19, timeStamp)
-		if hctrl['BURST'] == 1 and prev_hctrl['BURST'] == 0:
+		if hctrl['BURST'] == 1 and (prev_hctrl['BURST'] == 0 or BurstNyet):
 			BeginEvent (trace, 20, timeStamp, "BURST")
+			BurstNyet = False
 		if hctrl['BURST'] == 0 and prev_hctrl['BURST'] == 1:
 			EndEvent (trace, 20, timeStamp)
 
@@ -325,8 +340,6 @@ def TestFSM(ntsc):
 
 		prev_hctrl = hctrl
 		prev_vctrl = vctrl
-		prev_h = h
-		prev_v = v
 
 	# Close open tracing segments
 
