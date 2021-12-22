@@ -209,6 +209,7 @@ def TestFSM(ntsc):
 
 	Ioam2Nyet = True
 	VisNyet = True
+	FntYet = True
 	FoNyet = True
 	BporchNyet = True
 	BurstNyet = True
@@ -270,9 +271,10 @@ def TestFSM(ntsc):
 			EndEvent (trace, 9, timeStamp)
 			closeVis = False
 
-		if hctrl['F/NT'] == 0 and prev_hctrl['F/NT'] == 1:
+		if hctrl['F/NT'] == 0 and (prev_hctrl['F/NT'] == 1 or FntYet):
 			BeginEvent (trace, 10, timeStamp, "F/NT")
 			closeFnt = True
+			FntYet = False
 		if hctrl['F/NT'] == 1 and prev_hctrl['F/NT'] == 0:
 			EndEvent (trace, 10, timeStamp)
 			closeFnt = False
