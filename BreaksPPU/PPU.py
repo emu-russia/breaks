@@ -364,14 +364,17 @@ class HV_FSM:
 		self.vclr_latch1.set (vpla_in[8], NOT(PCLK))
 		self.vclr_latch2.set (self.vclr_latch1.nget(), PCLK)
 
-		V8 = (v >> 8) & 1
-		self.EvenOddFF_1 = NOT ( NOT(MUX(V8, NOT(self.EvenOddFF_2), self.EvenOddFF_1)) )
-		self.EvenOddFF_2 = NOR ( NOT(MUX(V8, self.EvenOddFF_2, self.EvenOddFF_1)), RES )
-
-		RESCL = self.vclr_latch2.nget()
-		EvenOddOut = NOR3 (self.EvenOddFF_2, NOT(hpla_in[5]), NOT(RESCL))
-		self.ctrl_latch1.set (NOR(hpla_in[23], EvenOddOut), NOT(PCLK))
-		self.ctrl_latch2.set (vpla_in[2], NOT(PCLK))
+		if self.ntsc:
+			V8 = (v >> 8) & 1
+			self.EvenOddFF_1 = NOT ( NOT(MUX(V8, NOT(self.EvenOddFF_2), self.EvenOddFF_1)) )
+			self.EvenOddFF_2 = NOR ( NOT(MUX(V8, self.EvenOddFF_2, self.EvenOddFF_1)), RES )
+			RESCL = self.vclr_latch2.nget()
+			EvenOddOut = NOR3 (self.EvenOddFF_2, NOT(hpla_in[5]), NOT(RESCL))
+			self.ctrl_latch1.set (NOR(hpla_in[23], EvenOddOut), NOT(PCLK))
+			self.ctrl_latch2.set (vpla_in[2], NOT(PCLK))
+		else:
+			self.ctrl_latch1.set (NOT(hpla_in[23]), NOT(PCLK))
+			self.ctrl_latch2.set (vpla_in[8], NOT(PCLK))
 
 	def GetHPosControls(self, n_OBCLIP, n_BGCLIP, BLACK):
 		hctrl = {}
