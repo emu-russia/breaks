@@ -163,7 +163,7 @@ List:
 |H15 |118 |100001011001010010000   |00X0101X |T1     |ASL ROL|flags control|
 |H16 |119 |100010000101100100000   |11X00X00 |T1     |CPY CPX zpg/immed|flags control|
 |K|||||||
-|P/P |129 |000000011001010100000   |0XX01000 |TX     |<-  Push/pull opcodes, used as an exclusive for K09||
+|P/P |129 |000000011001010100000   |0XX01000 |TX     |<-  Push/pull opcodes, used as an exclusive for K09|![pp](/BreakingNESWiki/imgstore/6502/pp.jpg)|
 |K01 |120 |010010011010100100000   |11X11000 |T0     |CLD SED|flags control|
 |K02 |121 |000001000000000000000   |X0XXXXXX |TX     |/IR6|Branch Logic|
 |K03 |122 |000000101001000000100   |XXX011XX |T3     |Memory absolute|MemOP|
