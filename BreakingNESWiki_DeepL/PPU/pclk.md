@@ -20,6 +20,13 @@ At the output of the divider there are many push/pull amplifier stages, because 
 
 The `CLK` input clock signal is used exclusively in the [phase generator](video_out.md) of the PPU video path.
 
+Timings:
+
+|PPU|CLK|CLK Cycle Duration|PCLK|PCLK Cycle Duration|
+|---|---|---|---|---|
+|NTSC|27477272 Hz|~0,036 µs|6869318 Hz|~0,145 µs|
+|PAL|26601712 Hz|~0,037 µs|5320342.4 Hz|~0,187 µs|
+
 ## Power On Status
 
 It is hard to say what values are on the latches (gates). If we assume that after power-up `CLK` is 0 and `z` (in HDL terms meaning "disconnected") on the gate is the same as 0 (gate closed), then the latch values will take the following values: [ 0, 1, 0, 1 ]
