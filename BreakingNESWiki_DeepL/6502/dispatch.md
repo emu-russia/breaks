@@ -75,8 +75,6 @@ The `/ready` is the global ready signal of the processor, derived from the `RDY`
 
 Outputs 2 internal intermediate signals: ACRL1 and ACRL2.
 
-TBD: Trace where the `/ACR` signal comes from. It is supposed to be derived from the `ACR` signal (output carry of the ALU).
-
 ## Increment PC
 
 ![dispatch_pc_tran](/BreakingNESWiki/imgstore/dispatch_pc_tran.jpg)
