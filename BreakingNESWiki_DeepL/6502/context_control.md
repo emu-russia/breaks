@@ -75,6 +75,10 @@ All commands are discussed in more detail in their respective sections. The summ
 |DL/ADH|✓|✓|DL => ADH|
 |DL/DB|✓|✓|DL <=> DB|
 
+## ADD/SB7
+
+Be careful, all output values are inverse latch values, except for `ADD/SB7`.
+
 ## PHI2 Pullup
 
 On the left side is a small circuit to pull up PHI2 (which is used by a lot of cutoff transistors, so it must be quite powerful):
