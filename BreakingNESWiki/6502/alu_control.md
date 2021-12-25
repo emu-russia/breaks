@@ -61,7 +61,7 @@ BCD коррекция производится в следующих случа
 
 Логическая схема:
 
-![alu_control_addsb7](/BreakingNESWiki/imgstore/alu_control_addsb7.jpg)
+![alu_control_addsb7](/BreakingNESWiki/imgstore/logisim/alu_control_addsb7.jpg)
 
 ## Управляющие команды АЛУ
 
