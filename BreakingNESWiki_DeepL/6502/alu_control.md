@@ -59,6 +59,10 @@ The attentive reader will notice that the processor has support for bit rotation
 
 ![alu_setup_addsb7_tran](/BreakingNESWiki/imgstore/alu_setup_addsb7_tran.jpg)
 
+Logic:
+
+![alu_control_addsb7](/BreakingNESWiki/imgstore/alu_control_addsb7.jpg)
+
 ## ALU Control Commands
 
 ![alu_control_commands_tran](/BreakingNESWiki/imgstore/alu_control_commands_tran.jpg)
