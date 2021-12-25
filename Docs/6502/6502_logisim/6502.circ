@@ -12798,7 +12798,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(460,430)" name="NOR Gate">
       <a name="size" val="70"/>
       <a name="inputs" val="7"/>
-      <a name="label" val="2"/>
     </comp>
     <comp lib="1" loc="(870,420)" name="Buffer"/>
     <comp lib="6" loc="(116,1041)" name="Text">
@@ -12814,7 +12813,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(620,640)" name="NAND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="11"/>
     </comp>
     <comp lib="0" loc="(90,800)" name="Pin">
       <a name="tristate" val="false"/>
@@ -12823,7 +12821,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(240,850)" name="NOR Gate">
       <a name="size" val="70"/>
       <a name="inputs" val="6"/>
-      <a name="label" val="13"/>
     </comp>
     <comp lib="6" loc="(196,580)" name="Text">
       <a name="text" val="#SB/X"/>
@@ -12831,7 +12828,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(170,590)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="3"/>
-      <a name="label" val="9"/>
     </comp>
     <comp lib="1" loc="(790,690)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -12867,7 +12863,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(420,780)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="14"/>
     </comp>
     <comp loc="(720,580)" name="D-latch">
       <a name="label" val="sbx_latch"/>
@@ -12879,9 +12874,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="labelloc" val="south"/>
       <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
-    <comp lib="6" loc="(113,945)" name="Text">
-      <a name="text" val="JSR2"/>
-    </comp>
     <comp lib="1" loc="(790,570)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
@@ -12892,7 +12884,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(460,240)" name="NOR Gate">
       <a name="size" val="70"/>
       <a name="inputs" val="7"/>
-      <a name="label" val="1"/>
     </comp>
     <comp lib="6" loc="(630,235)" name="Text">
       <a name="text" val="#Y/SB"/>
@@ -12915,7 +12906,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(170,710)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="3"/>
-      <a name="label" val="10"/>
     </comp>
     <comp lib="1" loc="(830,580)" name="AND Gate">
       <a name="size" val="30"/>
@@ -12945,7 +12935,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(600,360)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="4"/>
     </comp>
     <comp lib="0" loc="(90,990)" name="Pin">
       <a name="tristate" val="false"/>
@@ -12954,7 +12943,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(430,880)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="15"/>
     </comp>
     <comp lib="6" loc="(633,516)" name="Text">
       <a name="text" val="#S/SB"/>
@@ -12988,7 +12976,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(230,360)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="7"/>
     </comp>
     <comp lib="0" loc="(90,260)" name="Pin">
       <a name="tristate" val="false"/>
@@ -12997,7 +12984,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(600,300)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="4"/>
     </comp>
     <comp lib="0" loc="(90,710)" name="Pin">
       <a name="tristate" val="false"/>
@@ -13035,7 +13021,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(320,960)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="17"/>
     </comp>
     <comp lib="0" loc="(90,70)" name="Pin">
       <a name="tristate" val="false"/>
@@ -13055,9 +13040,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="text" val="SBXY"/>
     </comp>
     <comp lib="1" loc="(830,520)" name="Buffer"/>
-    <comp lib="6" loc="(178,391)" name="Text">
-      <a name="text" val="3"/>
-    </comp>
     <comp loc="(720,840)" name="D-latch">
       <a name="label" val="ss_latch"/>
       <a name="labelloc" val="south"/>
@@ -13066,12 +13048,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(230,310)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="6"/>
     </comp>
     <comp lib="1" loc="(560,1020)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="14"/>
     </comp>
     <comp lib="1" loc="(870,580)" name="Buffer"/>
     <comp lib="0" loc="(90,560)" name="Pin">
@@ -13100,9 +13080,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="6" loc="(625,773)" name="Text">
       <a name="text" val="#SB/S"/>
     </comp>
-    <comp lib="6" loc="(149,636)" name="Text">
-      <a name="text" val="12"/>
-    </comp>
     <comp lib="1" loc="(830,420)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
@@ -13110,7 +13087,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(350,360)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="8"/>
     </comp>
     <comp lib="0" loc="(900,880)" name="Pin">
       <a name="facing" val="west"/>
@@ -13201,12 +13177,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(720,330)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="4"/>
     </comp>
     <comp lib="1" loc="(350,310)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="5"/>
     </comp>
     <comp lib="0" loc="(90,40)" name="Pin">
       <a name="tristate" val="false"/>
@@ -13230,7 +13204,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(560,780)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="3"/>
-      <a name="label" val="16"/>
     </comp>
     <comp lib="0" loc="(90,680)" name="Pin">
       <a name="tristate" val="false"/>
@@ -13252,6 +13225,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="1" loc="(870,840)" name="Buffer"/>
+    <comp lib="6" loc="(116,945)" name="Text">
+      <a name="text" val="JSR2"/>
+    </comp>
   </circuit>
   <circuit name="ABH">
     <a name="circuit" val="ABH"/>
