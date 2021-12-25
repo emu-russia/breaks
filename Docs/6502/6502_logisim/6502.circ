@@ -13991,7 +13991,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1510,380)" to="(1530,380)"/>
     <wire from="(620,1040)" to="(620,1220)"/>
     <wire from="(1070,460)" to="(1280,460)"/>
-    <wire from="(1050,960)" to="(1220,960)"/>
     <wire from="(400,970)" to="(450,970)"/>
     <wire from="(1380,110)" to="(1480,110)"/>
     <wire from="(860,580)" to="(860,650)"/>
@@ -14174,6 +14173,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1080,110)" to="(1080,170)"/>
     <wire from="(340,230)" to="(940,230)"/>
     <wire from="(830,760)" to="(860,760)"/>
+    <wire from="(1060,960)" to="(1220,960)"/>
     <wire from="(1050,500)" to="(1080,500)"/>
     <wire from="(220,1040)" to="(620,1040)"/>
     <wire from="(1250,1090)" to="(1340,1090)"/>
@@ -32292,22 +32292,22 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
     <appear>
-      <rect fill="none" height="115" stroke="#000000" stroke-width="2" width="80" x="50" y="55"/>
+      <rect fill="none" height="115" stroke="#000000" stroke-width="2" width="90" x="50" y="55"/>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="91" y="48">ADD_SB7</text>
-      <text font-family="SansSerif" font-size="8" text-anchor="middle" x="104" y="73">#ADD/SB7</text>
-      <text font-family="SansSerif" font-size="8" text-anchor="middle" x="67" y="73">PHI1</text>
-      <text font-family="SansSerif" font-size="8" text-anchor="middle" x="67" y="83">PHI2</text>
-      <text font-family="SansSerif" font-size="8" text-anchor="middle" x="72" y="103">/C_OUT</text>
-      <text font-family="SansSerif" font-size="8" text-anchor="middle" x="69" y="122">/ready</text>
-      <text font-family="SansSerif" font-size="8" text-anchor="middle" x="64" y="143">SR</text>
-      <text font-family="SansSerif" font-size="8" text-anchor="middle" x="68" y="163">/ROR</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="111" y="74">#ADD/SB7</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="65" y="74">PHI1</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="65" y="84">PHI2</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="72" y="103">/C_OUT</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="66" y="124">/ready</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="62" y="144">SR</text>
+      <text font-family="SansSerif" font-size="10" text-anchor="middle" x="66" y="164">/ROR</text>
       <circ-port height="8" pin="160,50" width="8" x="46" y="66"/>
       <circ-port height="8" pin="160,80" width="8" x="46" y="76"/>
       <circ-port height="8" pin="160,140" width="8" x="46" y="96"/>
       <circ-port height="8" pin="160,230" width="8" x="46" y="116"/>
       <circ-port height="8" pin="160,350" width="8" x="46" y="136"/>
       <circ-port height="8" pin="160,460" width="8" x="46" y="156"/>
-      <circ-port height="10" pin="890,410" width="10" x="125" y="65"/>
+      <circ-port height="10" pin="890,410" width="10" x="135" y="65"/>
       <circ-anchor facing="east" height="6" width="6" x="47" y="67"/>
     </appear>
     <wire from="(440,220)" to="(630,220)"/>
