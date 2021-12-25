@@ -14010,6 +14010,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(160,1390)" to="(190,1390)"/>
     <wire from="(210,1280)" to="(240,1280)"/>
     <wire from="(620,1220)" to="(640,1220)"/>
+    <wire from="(1380,930)" to="(1460,930)"/>
     <wire from="(290,560)" to="(320,560)"/>
     <wire from="(810,880)" to="(810,1050)"/>
     <wire from="(440,310)" to="(440,740)"/>
@@ -14048,6 +14049,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1470,600)" to="(1490,600)"/>
     <wire from="(700,810)" to="(1030,810)"/>
     <wire from="(1000,520)" to="(1080,520)"/>
+    <wire from="(1460,930)" to="(1460,950)"/>
     <wire from="(160,1140)" to="(220,1140)"/>
     <wire from="(190,1260)" to="(190,1270)"/>
     <wire from="(620,1240)" to="(620,1330)"/>
@@ -14234,7 +14236,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1190,880)" to="(1340,880)"/>
     <wire from="(1010,740)" to="(1020,740)"/>
     <wire from="(1410,650)" to="(1430,650)"/>
-    <wire from="(1380,950)" to="(1490,950)"/>
     <wire from="(1280,410)" to="(1580,410)"/>
     <wire from="(1000,450)" to="(1000,520)"/>
     <wire from="(480,340)" to="(480,610)"/>
@@ -14275,6 +14276,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(420,890)" to="(430,890)"/>
     <wire from="(1310,160)" to="(1340,160)"/>
     <wire from="(350,980)" to="(360,980)"/>
+    <wire from="(1460,950)" to="(1490,950)"/>
     <wire from="(210,1160)" to="(220,1160)"/>
     <wire from="(1550,240)" to="(1580,240)"/>
     <wire from="(770,640)" to="(770,700)"/>
@@ -14282,9 +14284,15 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(220,920)" to="(220,1040)"/>
     <wire from="(1050,550)" to="(1070,550)"/>
     <comp loc="(1380,940)" name="D-latch"/>
+    <comp lib="6" loc="(1102,954)" name="Text">
+      <a name="text" val="#ADD/SB7"/>
+    </comp>
     <comp lib="1" loc="(1510,380)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="6" loc="(1446,924)" name="Text">
+      <a name="text" val="care!"/>
     </comp>
     <comp lib="6" loc="(603,855)" name="Text">
       <a name="text" val="BRX"/>
@@ -15129,9 +15137,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(1010,740)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="T6"/>
-    </comp>
-    <comp lib="6" loc="(1093,954)" name="Text">
-      <a name="text" val="#ADD/SB7"/>
     </comp>
     <comp lib="0" loc="(1580,170)" name="Pin">
       <a name="facing" val="west"/>
