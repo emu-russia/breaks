@@ -107,6 +107,10 @@ Logic:
 
 ![hv_fsm_horz_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz_logic.jpg)
 
+As a result, the circuit generates the following signal diagram:
+
+![ppu_ntsc_line](/BreakingNESWiki/imgstore/ppu/ppu_ntsc_line.png)
+
 ## VPos Logic
 
 "Vertical" logic.

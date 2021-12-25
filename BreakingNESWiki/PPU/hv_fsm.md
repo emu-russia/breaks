@@ -107,6 +107,10 @@
 
 ![hv_fsm_horz_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz_logic.jpg)
 
+В результате работы схема формирует следующую диаграмму сигналов:
+
+![ppu_ntsc_line](/BreakingNESWiki/imgstore/ppu/ppu_ntsc_line.png)
+
 ## Вертикальная логика
 
 Транзисторная схема:
