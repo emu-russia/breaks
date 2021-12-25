@@ -18,7 +18,7 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 - /IR5: Inverted IR5 value
 - /DB0: Input value from DB bus, in inverted form
 - ACR: Result of a carry from the ALU
-- /ACR: The result of the carry from the ALU, in inverted form. Also used in [ACR Latch](dispatch.md)
+- /ACR: The result of the carry from the ALU, in inverted form. Also used in [dispatcher](dispatch.md)
 - /C_OUT: Output value of flag C, in inverted form
 
 ## D Flag
