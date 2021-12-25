@@ -111,6 +111,8 @@ As a result, the circuit generates the following signal diagram:
 
 ![ppu_ntsc_line](/BreakingNESWiki/imgstore/ppu/ppu_ntsc_line.png)
 
+(Some signals such as `/FO` are "highlighted" in the diagram in an inverse way to make the picture clearer)
+
 ## VPos Logic
 
 "Vertical" logic.
