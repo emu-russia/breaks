@@ -10,7 +10,7 @@
 
 ## Флаг C
 
-![flag_c_tran](/BreakingNESWiki/imgstore/flag_c_tran.jpg)
+![flag_c_tran](/BreakingNESWiki/imgstore/6502/flag_c_tran.jpg)
 
 - IR5/C: Изменить значение флага в соответствии с разрядом IR5 (применяется во время выполнения инструкций `SEC` и `CLC`)
 - ACR/C: Изменить значение флага в соответствии со значением ACR
@@ -18,11 +18,12 @@
 - /IR5: Значение разряда IR5, в инвертированном виде
 - /DB0: Входное значение с шины DB, в инвертированном виде
 - ACR: Результат переноса с АЛУ
+- /ACR: Результат переноса с АЛУ, в инвертированном виде. Также используется в [ACR Latch](dispatch.md)
 - /C_OUT: Выходное значение флага C, в инвертированном виде
 
 ## Флаг D
 
-![flag_d_tran](/BreakingNESWiki/imgstore/flag_d_tran.jpg)
+![flag_d_tran](/BreakingNESWiki/imgstore/6502/flag_d_tran.jpg)
 
 - IR5/D: Изменить значение флага в соответствии с разрядом IR5 (применяется во время выполнения инструкций `SED` и `CLD`)
 - DB/P: Общий контрольный сигнал, поместить значение шины DB на регистр флагов P
@@ -32,7 +33,7 @@
 
 ## Флаг I
 
-![flag_i_tran](/BreakingNESWiki/imgstore/flag_i_tran.jpg)
+![flag_i_tran](/BreakingNESWiki/imgstore/6502/flag_i_tran.jpg)
 
 - IR5/I: Изменить значение флага в соответствии с разрядом IR5 (применяется во время выполнения инструкций `SEI` и `CLI`)
 - DB/P: Общий контрольный сигнал, поместить значение шины DB на регистр флагов P
@@ -42,7 +43,7 @@
 
 ## Флаг N
 
-![flag_n_tran](/BreakingNESWiki/imgstore/flag_n_tran.jpg)
+![flag_n_tran](/BreakingNESWiki/imgstore/6502/flag_n_tran.jpg)
 
 - DB/N: Изменить значение флага в соответствии с разрядом DB7
 - /DB7: Входное значение с шины DB, в инвертированном виде
@@ -50,7 +51,7 @@
 
 ## Флаг V
 
-![flag_v_tran](/BreakingNESWiki/imgstore/flag_v_tran.jpg)
+![flag_v_tran](/BreakingNESWiki/imgstore/6502/flag_v_tran.jpg)
 
 - 0/V: Очистить флаг V (применяется во время выполнения инструкций `CLV`)
 - 1/V: Установить флаг V. Принудительная установка флага производится с помощью контакта `SO`.
@@ -63,7 +64,7 @@
 
 ## Флаг Z
 
-![flag_z_tran](/BreakingNESWiki/imgstore/flag_z_tran.jpg)
+![flag_z_tran](/BreakingNESWiki/imgstore/6502/flag_z_tran.jpg)
 
 - DBZ/Z: Изменить значение флага в соответствии со значением /DBZ
 - DB/P: Общий контрольный сигнал, поместить значение шины DB на регистр флагов P
@@ -73,7 +74,7 @@
 
 ## Флаги и шина DB
 
-![flags_io_tran](/BreakingNESWiki/imgstore/flags_io_tran.jpg)
+![flags_io_tran](/BreakingNESWiki/imgstore/6502/flags_io_tran.jpg)
 
 - С_OUT: Значение флага C в прямом виде, используется в [схеме управления АЛУ](alu_control.md) (в схеме для формирования сигнала `ADD/SB7`)
 - D_OUT: Значение флага D в прямом виде, используется в схеме управления АЛУ (для формирования сигналов BCD коррекции DAA/DSA)

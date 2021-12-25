@@ -10,7 +10,7 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 
 ## C Flag
 
-![flag_c_tran](/BreakingNESWiki/imgstore/flag_c_tran.jpg)
+![flag_c_tran](/BreakingNESWiki/imgstore/6502/flag_c_tran.jpg)
 
 - IR5/C: Change the flag value according to the IR5 bit (applies during execution of the `SEC` and `CLC` instructions)
 - ACR/C: Change the flag value according to the ACR value
@@ -18,11 +18,12 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 - /IR5: Inverted IR5 value
 - /DB0: Input value from DB bus, in inverted form
 - ACR: Result of a carry from the ALU
+- /ACR: The result of the carry from the ALU, in inverted form. Also used in [ACR Latch](dispatch.md)
 - /C_OUT: Output value of flag C, in inverted form
 
 ## D Flag
 
-![flag_d_tran](/BreakingNESWiki/imgstore/flag_d_tran.jpg)
+![flag_d_tran](/BreakingNESWiki/imgstore/6502/flag_d_tran.jpg)
 
 - IR5/D: Change the flag value according to the IR5 bit (applied during execution of `SED` and `CLD` instructions)
 - DB/P: Common control signal, place the DB bus value on the flag register P
@@ -32,7 +33,7 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 
 ## I Flag
 
-![flag_i_tran](/BreakingNESWiki/imgstore/flag_i_tran.jpg)
+![flag_i_tran](/BreakingNESWiki/imgstore/6502/flag_i_tran.jpg)
 
 - IR5/I: Change the flag value according to the IR5 bit (applied during execution of `SEI` and `CLI` instructions)
 - DB/P: Common control signal, place the DB bus value on the flag register P
@@ -42,7 +43,7 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 
 ## N Flag
 
-![flag_n_tran](/BreakingNESWiki/imgstore/flag_n_tran.jpg)
+![flag_n_tran](/BreakingNESWiki/imgstore/6502/flag_n_tran.jpg)
 
 - DB/N: Change the flag value according to DB7
 - /DB7: Input value from DB bus, in inverted form
@@ -50,7 +51,7 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 
 ## V Flag
 
-![flag_v_tran](/BreakingNESWiki/imgstore/flag_v_tran.jpg)
+![flag_v_tran](/BreakingNESWiki/imgstore/6502/flag_v_tran.jpg)
 
 - 0/V: Clear flag V (applies during execution of `CLV` instructions)
 - 1/V: Set flag V. Forced flag setting is done by the `SO` pin.
@@ -63,7 +64,7 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 
 ## Z Flag
 
-![flag_z_tran](/BreakingNESWiki/imgstore/flag_z_tran.jpg)
+![flag_z_tran](/BreakingNESWiki/imgstore/6502/flag_z_tran.jpg)
 
 - DBZ/Z: Change the flag value according to the /DBZ value
 - DB/P: Common control signal, place the DB bus value on the flag P register
@@ -73,7 +74,7 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 
 ## Flags I/O
 
-![flags_io_tran](/BreakingNESWiki/imgstore/flags_io_tran.jpg)
+![flags_io_tran](/BreakingNESWiki/imgstore/6502/flags_io_tran.jpg)
 
 - C_OUT: Flag C value in direct form, used in [ALU control circuit](alu_control.md) (in the circuit to form the `ADD/SB7` signal)
 - D_OUT: Flag D value in direct form, used in the ALU control circuit (to form BCD correction signals DAA/DSA)
