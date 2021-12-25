@@ -8237,9 +8237,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="nor2"/>
       <a name="labelfont" val="SansSerif plain 9"/>
     </comp>
-    <comp lib="1" loc="(540,150)" name="NOT Gate">
-      <a name="size" val="20"/>
-    </comp>
     <comp lib="1" loc="(950,70)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
@@ -8413,6 +8410,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="inputs" val="2"/>
       <a name="label" val="nor5"/>
       <a name="labelfont" val="SansSerif plain 9"/>
+    </comp>
+    <comp lib="1" loc="(540,150)" name="NOT Gate">
+      <a name="size" val="20"/>
     </comp>
     <comp lib="0" loc="(70,60)" name="Pin">
       <a name="tristate" val="false"/>
@@ -13867,7 +13867,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(220,1290)" to="(240,1290)"/>
     <wire from="(220,1180)" to="(220,1230)"/>
     <wire from="(1310,930)" to="(1340,930)"/>
-    <wire from="(160,1540)" to="(620,1540)"/>
     <wire from="(810,100)" to="(950,100)"/>
     <wire from="(1410,720)" to="(1430,720)"/>
     <wire from="(1470,460)" to="(1490,460)"/>
@@ -14128,6 +14127,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1470,1160)" to="(1580,1160)"/>
     <wire from="(600,320)" to="(1240,320)"/>
     <wire from="(190,510)" to="(310,510)"/>
+    <wire from="(160,1540)" to="(210,1540)"/>
     <wire from="(430,930)" to="(430,950)"/>
     <wire from="(1310,720)" to="(1310,790)"/>
     <wire from="(200,1270)" to="(240,1270)"/>
@@ -14179,6 +14179,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1420,230)" to="(1450,230)"/>
     <wire from="(1200,770)" to="(1200,940)"/>
     <wire from="(1510,170)" to="(1530,170)"/>
+    <wire from="(230,1540)" to="(620,1540)"/>
     <wire from="(300,930)" to="(300,1000)"/>
     <wire from="(160,770)" to="(480,770)"/>
     <wire from="(460,330)" to="(520,330)"/>
@@ -14874,6 +14875,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="D75"/>
     </comp>
+    <comp lib="6" loc="(282,1534)" name="Text">
+      <a name="text" val="D_OUT"/>
+    </comp>
     <comp lib="0" loc="(160,1210)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="D85"/>
@@ -14909,6 +14913,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(940,670)" name="NOR Gate">
       <a name="inputs" val="4"/>
       <a name="label" val="25"/>
+    </comp>
+    <comp lib="1" loc="(230,1540)" name="NOT Gate">
+      <a name="size" val="20"/>
     </comp>
     <comp lib="0" loc="(160,1050)" name="Pin">
       <a name="tristate" val="false"/>
@@ -19137,56 +19144,43 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(110,520)" to="(190,520)"/>
     <wire from="(160,90)" to="(290,90)"/>
     <wire from="(560,590)" to="(570,590)"/>
-    <comp lib="6" loc="(149,143)" name="Text">
-      <a name="text" val="2"/>
+    <comp loc="(480,180)" name="D-latch">
+      <a name="label" val="irc_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
-    <comp lib="6" loc="(431,183)" name="Text">
-      <a name="text" val="6"/>
-    </comp>
-    <comp loc="(480,180)" name="D-latch"/>
     <comp lib="0" loc="(80,370)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="D107"/>
-    </comp>
-    <comp lib="6" loc="(429,644)" name="Text">
-      <a name="text" val="22"/>
-    </comp>
-    <comp lib="6" loc="(429,393)" name="Text">
-      <a name="text" val="13"/>
     </comp>
     <comp lib="0" loc="(80,480)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="D116"/>
     </comp>
-    <comp lib="6" loc="(149,180)" name="Text">
-      <a name="text" val="5"/>
-    </comp>
     <comp lib="0" loc="(80,850)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="D115"/>
     </comp>
-    <comp loc="(480,40)" name="D-latch"/>
-    <comp lib="6" loc="(430,745)" name="Text">
-      <a name="text" val="16"/>
+    <comp loc="(480,40)" name="D-latch">
+      <a name="label" val="pdb_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
-    <comp loc="(480,390)" name="D-latch"/>
-    <comp lib="6" loc="(149,887)" name="Text">
-      <a name="text" val="11"/>
-    </comp>
-    <comp lib="6" loc="(467,852)" name="Text">
-      <a name="text" val="20"/>
+    <comp loc="(480,390)" name="D-latch">
+      <a name="label" val="acrc_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(80,650)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="D109"/>
     </comp>
-    <comp lib="1" loc="(160,330)" name="NOT Gate">
-      <a name="size" val="20"/>
-      <a name="label" val="9"/>
-    </comp>
     <comp lib="0" loc="(80,900)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="D113"/>
+    </comp>
+    <comp lib="1" loc="(160,330)" name="NOT Gate">
+      <a name="size" val="20"/>
     </comp>
     <comp lib="6" loc="(258,826)" name="Text">
       <a name="text" val="/PIN"/>
@@ -19223,14 +19217,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(270,500)" name="NOR Gate">
       <a name="size" val="70"/>
       <a name="inputs" val="6"/>
-      <a name="label" val="1"/>
     </comp>
     <comp lib="0" loc="(80,150)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="D108"/>
-    </comp>
-    <comp lib="6" loc="(429,254)" name="Text">
-      <a name="text" val="18"/>
     </comp>
     <comp lib="6" loc="(188,84)" name="Text">
       <a name="text" val="/POUT"/>
@@ -19256,11 +19246,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(630,610)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="22"/>
     </comp>
-    <comp loc="(480,740)" name="D-latch"/>
-    <comp lib="6" loc="(425,894)" name="Text">
-      <a name="text" val="12,2"/>
+    <comp loc="(480,740)" name="D-latch">
+      <a name="label" val="dbc_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(80,610)" name="Pin">
       <a name="tristate" val="false"/>
@@ -19275,13 +19265,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(560,590)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="21"/>
-    </comp>
-    <comp lib="6" loc="(446,565)" name="Text">
-      <a name="text" val="17"/>
-    </comp>
-    <comp lib="6" loc="(445,852)" name="Text">
-      <a name="text" val="12"/>
     </comp>
     <comp lib="6" loc="(103,896)" name="Text">
       <a name="text" val="BIT0"/>
@@ -19298,13 +19281,17 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(80,690)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="/READY"/>
+      <a name="label" val="/ready"/>
     </comp>
     <comp lib="0" loc="(80,400)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="T6"/>
     </comp>
-    <comp loc="(480,250)" name="D-latch"/>
+    <comp loc="(480,250)" name="D-latch">
+      <a name="label" val="ird_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="0" loc="(640,120)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -19316,18 +19303,18 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="D110"/>
     </comp>
-    <comp loc="(480,890)" name="D-latch"/>
+    <comp loc="(480,890)" name="D-latch">
+      <a name="label" val="bit_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="1" loc="(400,540)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="3"/>
-      <a name="label" val="14"/>
     </comp>
     <comp lib="0" loc="(80,80)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="D98"/>
-    </comp>
-    <comp lib="6" loc="(429,324)" name="Text">
-      <a name="text" val="10"/>
     </comp>
     <comp lib="0" loc="(640,190)" name="Pin">
       <a name="facing" val="west"/>
@@ -19339,10 +19326,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(570,680)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="20"/>
-    </comp>
-    <comp lib="6" loc="(428,114)" name="Text">
-      <a name="text" val="7"/>
     </comp>
     <comp lib="0" loc="(640,750)" name="Pin">
       <a name="facing" val="west"/>
@@ -19365,10 +19348,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="D119"/>
     </comp>
-    <comp lib="6" loc="(150,250)" name="Text">
-      <a name="text" val="19"/>
+    <comp loc="(480,530)" name="D-latch">
+      <a name="label" val="dbz_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
-    <comp loc="(480,530)" name="D-latch"/>
     <comp lib="6" loc="(113,644)" name="Text">
       <a name="text" val="BIT1"/>
     </comp>
@@ -19383,21 +19367,22 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="SR"/>
     </comp>
-    <comp loc="(480,320)" name="D-latch"/>
+    <comp loc="(480,320)" name="D-latch">
+      <a name="label" val="zv_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="1" loc="(570,820)" name="NAND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="12"/>
     </comp>
     <comp lib="1" loc="(160,830)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="3"/>
     </comp>
     <comp lib="1" loc="(150,390)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="1"/>
     </comp>
     <comp lib="0" loc="(80,260)" name="Pin">
       <a name="tristate" val="false"/>
@@ -19407,21 +19392,18 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="D114"/>
     </comp>
-    <comp lib="6" loc="(470,565)" name="Text">
-      <a name="text" val="21"/>
-    </comp>
-    <comp lib="6" loc="(491,852)" name="Text">
-      <a name="text" val="21,1"/>
-    </comp>
     <comp lib="1" loc="(160,150)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
     <comp lib="1" loc="(400,750)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="15"/>
     </comp>
-    <comp loc="(480,110)" name="D-latch"/>
+    <comp loc="(480,110)" name="D-latch">
+      <a name="label" val="iri_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="1" loc="(160,190)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
@@ -19429,10 +19411,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="D112"/>
     </comp>
-    <comp lib="6" loc="(429,42)" name="Text">
-      <a name="text" val="8"/>
+    <comp loc="(480,640)" name="D-latch">
+      <a name="label" val="dbn_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
-    <comp loc="(480,640)" name="D-latch"/>
     <comp lib="0" loc="(640,50)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -19446,9 +19429,12 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(160,90)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
-      <a name="label" val="4"/>
     </comp>
-    <comp loc="(480,820)" name="D-latch"/>
+    <comp loc="(480,820)" name="D-latch">
+      <a name="label" val="pin_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="0" loc="(640,260)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -19852,9 +19838,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(620,1350)" name="AND Gate">
       <a name="inputs" val="4"/>
     </comp>
-    <comp lib="6" loc="(303,1385)" name="Text">
-      <a name="text" val="AVR/V"/>
-    </comp>
     <comp lib="1" loc="(510,890)" name="NAND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
@@ -19894,7 +19877,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="DB3"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp loc="(400,1560)" name="D-latch"/>
+    <comp loc="(400,1560)" name="D-latch">
+      <a name="label" val="so_latch1"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="6" loc="(960,345)" name="Text">
       <a name="text" val="N.C."/>
     </comp>
@@ -19916,7 +19903,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(970,140)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp loc="(500,1560)" name="D-latch"/>
+    <comp loc="(500,1560)" name="D-latch">
+      <a name="label" val="so_latch2"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="1" loc="(970,420)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
@@ -20018,21 +20009,36 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
+    <comp lib="6" loc="(113,1384)" name="Text">
+      <a name="text" val="AVR/V"/>
+    </comp>
     <comp lib="1" loc="(510,640)" name="NAND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
-    <comp loc="(750,190)" name="D-latch"/>
+    <comp loc="(750,190)" name="D-latch">
+      <a name="label" val="z_latch1"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="0" loc="(90,1270)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="AVR"/>
     </comp>
-    <comp loc="(750,290)" name="D-latch"/>
+    <comp loc="(750,290)" name="D-latch">
+      <a name="label" val="z_latch2"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="1" loc="(420,730)" name="NOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="3"/>
     </comp>
-    <comp loc="(580,1560)" name="D-latch"/>
+    <comp loc="(580,1560)" name="D-latch">
+      <a name="label" val="so_latch3"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="6" loc="(410,1437)" name="Text">
       <a name="text" val="0/V"/>
     </comp>
@@ -20078,7 +20084,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
-    <comp loc="(750,660)" name="D-latch"/>
+    <comp loc="(750,660)" name="D-latch">
+      <a name="label" val="c_latch1"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="0" loc="(110,550)" name="Tunnel">
       <a name="label" val="DB/N"/>
     </comp>
@@ -20093,8 +20103,16 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(340,90)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp loc="(750,510)" name="D-latch"/>
-    <comp loc="(750,760)" name="D-latch"/>
+    <comp loc="(750,510)" name="D-latch">
+      <a name="label" val="n_latch2"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp loc="(750,760)" name="D-latch">
+      <a name="label" val="c_latch2"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="0" loc="(380,1320)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="DB6"/>
@@ -20116,9 +20134,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="6" loc="(732,833)" name="Text">
       <a name="text" val="D FLAG"/>
       <a name="font" val="SansSerif bold 16"/>
-    </comp>
-    <comp lib="6" loc="(442,1286)" name="Text">
-      <a name="text" val="AVR/V"/>
     </comp>
     <comp lib="0" loc="(90,390)" name="Pin">
       <a name="tristate" val="false"/>
@@ -20157,7 +20172,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="east"/>
       <a name="label" val="DB/P"/>
     </comp>
-    <comp loc="(750,1200)" name="D-latch"/>
+    <comp loc="(750,1200)" name="D-latch">
+      <a name="label" val="i_latch2"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="0" loc="(90,190)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="DB2"/>
@@ -20188,7 +20207,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
-    <comp loc="(750,1550)" name="D-latch"/>
+    <comp loc="(750,1550)" name="D-latch">
+      <a name="label" val="vset_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="1" loc="(1010,260)" name="Controlled Buffer">
       <a name="control" val="left"/>
     </comp>
@@ -20299,7 +20322,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="/IR5"/>
     </comp>
-    <comp loc="(750,1340)" name="D-latch"/>
+    <comp loc="(750,1340)" name="D-latch">
+      <a name="label" val="v_latch1"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="0" loc="(1030,710)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -20364,7 +20391,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="6" loc="(786,1344)" name="Text">
       <a name="text" val="/V_OUT"/>
     </comp>
-    <comp loc="(750,1100)" name="D-latch"/>
+    <comp loc="(750,1100)" name="D-latch">
+      <a name="label" val="i_latch1"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="6" loc="(784,1105)" name="Text">
       <a name="text" val="/I_OUT"/>
     </comp>
@@ -20383,8 +20414,16 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="east"/>
       <a name="label" val="PHI2"/>
     </comp>
-    <comp loc="(750,880)" name="D-latch"/>
-    <comp loc="(220,1380)" name="D-latch"/>
+    <comp loc="(750,880)" name="D-latch">
+      <a name="label" val="d_latch1"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp loc="(220,1380)" name="D-latch">
+      <a name="label" val="avr_latch"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="2" loc="(650,420)" name="Multiplexer">
       <a name="selloc" val="tr"/>
       <a name="enable" val="false"/>
@@ -20444,11 +20483,19 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="text" val="Z FLAG"/>
       <a name="font" val="SansSerif bold 16"/>
     </comp>
-    <comp loc="(750,410)" name="D-latch"/>
+    <comp loc="(750,410)" name="D-latch">
+      <a name="label" val="n_latch1"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="1" loc="(1010,420)" name="Controlled Buffer">
       <a name="control" val="left"/>
     </comp>
-    <comp loc="(750,980)" name="D-latch"/>
+    <comp loc="(750,980)" name="D-latch">
+      <a name="label" val="d_latch2"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="6" loc="(785,663)" name="Text">
       <a name="text" val="/C_OUT"/>
     </comp>
@@ -20504,7 +20551,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="DB1"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp loc="(750,1440)" name="D-latch"/>
+    <comp loc="(750,1440)" name="D-latch">
+      <a name="label" val="v_latch2"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
     <comp lib="0" loc="(1030,220)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -22203,10 +22254,12 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(310,160)" name="D-latch">
       <a name="label" val="DL"/>
       <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp loc="(310,370)" name="D-latch">
       <a name="label" val="DOR"/>
       <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="1" loc="(510,410)" name="Controlled Buffer">
       <a name="control" val="left"/>
@@ -24144,6 +24197,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(840,620)" name="D-latch">
       <a name="label" val="ACLatch"/>
       <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(80,830)" name="Pin">
       <a name="tristate" val="false"/>
@@ -24294,6 +24348,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(840,540)" name="D-latch">
       <a name="label" val="DCLatch"/>
       <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(1460,1070)" name="Pin">
       <a name="facing" val="west"/>
@@ -24525,6 +24580,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(840,700)" name="D-latch">
       <a name="label" val="AVRLatch"/>
       <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(80,370)" name="Pin">
       <a name="tristate" val="false"/>
@@ -30984,7 +31040,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(350,410)" to="(470,410)"/>
     <wire from="(250,120)" to="(250,200)"/>
     <wire from="(490,600)" to="(790,600)"/>
-    <wire from="(320,360)" to="(560,360)"/>
     <wire from="(200,850)" to="(240,850)"/>
     <wire from="(450,640)" to="(450,730)"/>
     <wire from="(510,700)" to="(530,700)"/>
@@ -31015,6 +31070,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(190,240)" to="(190,280)"/>
     <wire from="(490,410)" to="(510,410)"/>
     <wire from="(200,650)" to="(200,690)"/>
+    <wire from="(320,370)" to="(320,410)"/>
     <wire from="(310,580)" to="(310,750)"/>
     <wire from="(340,390)" to="(490,390)"/>
     <wire from="(220,540)" to="(240,540)"/>
@@ -31097,16 +31153,16 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(350,70)" to="(350,110)"/>
     <wire from="(120,110)" to="(140,110)"/>
     <wire from="(160,870)" to="(180,870)"/>
-    <wire from="(560,130)" to="(560,360)"/>
     <wire from="(420,180)" to="(430,180)"/>
     <wire from="(400,480)" to="(410,480)"/>
     <wire from="(350,110)" to="(360,110)"/>
-    <wire from="(320,360)" to="(320,410)"/>
+    <wire from="(560,130)" to="(560,370)"/>
     <wire from="(300,780)" to="(360,780)"/>
     <wire from="(190,200)" to="(190,210)"/>
     <wire from="(210,440)" to="(330,440)"/>
     <wire from="(550,650)" to="(590,650)"/>
     <wire from="(550,730)" to="(590,730)"/>
+    <wire from="(320,370)" to="(560,370)"/>
     <wire from="(230,750)" to="(230,840)"/>
     <wire from="(230,720)" to="(230,750)"/>
     <wire from="(500,680)" to="(590,680)"/>
@@ -31213,7 +31269,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="inputs" val="2"/>
     </comp>
     <comp loc="(400,260)" name="D-latch">
+      <a name="label" val="dsal_latch"/>
       <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="1" loc="(550,420)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -31272,16 +31330,15 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="size" val="20"/>
     </comp>
     <comp loc="(400,190)" name="D-latch">
+      <a name="label" val="daah_latch"/>
       <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="1" loc="(550,470)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
     <comp lib="6" loc="(582,386)" name="Text">
       <a name="text" val="DSAL"/>
-    </comp>
-    <comp lib="6" loc="(340,375)" name="Text">
-      <a name="text" val="DAAL"/>
     </comp>
     <comp lib="6" loc="(514,242)" name="Text">
       <a name="text" val="DSAL"/>
@@ -31310,7 +31367,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="inputs" val="2"/>
     </comp>
     <comp loc="(400,330)" name="D-latch">
+      <a name="label" val="dsah_latch"/>
       <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(120,720)" name="Pin">
       <a name="tristate" val="false"/>
@@ -31332,7 +31391,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="inputs" val="2"/>
     </comp>
     <comp loc="(400,120)" name="D-latch">
+      <a name="label" val="daal_latch"/>
       <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="1" loc="(400,510)" name="NAND Gate">
       <a name="size" val="30"/>
@@ -31351,6 +31412,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(120,400)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="SB0"/>
+    </comp>
+    <comp lib="6" loc="(299,376)" name="Text">
+      <a name="text" val="DAAL"/>
     </comp>
     <comp lib="1" loc="(630,430)" name="XOR Gate">
       <a name="size" val="30"/>
