@@ -14,6 +14,7 @@
 - [Спрайтовая память (OAM)](oam.md)
 - [OAM FIFO](fifo.md)
 - [Схема выборки данных](dataread.md)
+  - [Регистры скроллинга](scroll_regs.md)
   - [Генератор адреса PAR](pargen.md)
   - [Схема получения цвета бэкграунда](bgcol.md)
 - [Контроллер VRAM](vram_ctrl.md)
