@@ -14808,6 +14808,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="D27"/>
     </comp>
+    <comp lib="1" loc="(580,970)" name="NAND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </comp>
     <comp lib="0" loc="(1010,790)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="T1"/>
@@ -15057,10 +15061,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="adladd_latch"/>
       <a name="labelloc" val="south"/>
       <a name="labelfont" val="SansSerif plain 10"/>
-    </comp>
-    <comp lib="1" loc="(580,970)" name="NOR Gate">
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
     </comp>
     <comp lib="1" loc="(340,360)" name="NOT Gate">
       <a name="size" val="20"/>
