@@ -51,6 +51,7 @@ Correction history:
 |LOL|I2SEV|
 |OMFG|The purpose of the signal is still unclear|
 |ASAP|The purpose of the signal is still unclear|
+|SH5, SH7|Were mixed up|
 
 ## APU
 
