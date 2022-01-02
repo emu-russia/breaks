@@ -4,7 +4,7 @@
 
 It is not possible to show the whole ALU circuit, so let's saw it into its component parts and consider each one separately.
 
-![alu_preview](/BreakingNESWiki/imgstore/alu_preview.jpg)
+![alu_preview](/BreakingNESWiki/imgstore/6502/alu_preview.jpg)
 
 The ALU consists of the following components:
 - Input circuits for AI/BI latch loading
@@ -18,13 +18,13 @@ Generally speaking the ALU is a mess of transistors and wires, but its workings 
 
 Overview of the ALU connections:
 
-![alu_logisim](/BreakingNESWiki/imgstore/alu_logisim.jpg)
+![alu_logisim](/BreakingNESWiki/imgstore/6502/alu_logisim.jpg)
 
 ## AI/BI Latches
 
 The input circuits consist of 8 identical chunks, which are designed to load input values on the AI and BI latches:
 
-![alu_input_tran](/BreakingNESWiki/imgstore/alu_input_tran.jpg)
+![alu_input_tran](/BreakingNESWiki/imgstore/6502/alu_input_tran.jpg)
 
 (The picture shows the circuit for bit 0, the rest are the same)
 
@@ -43,17 +43,17 @@ Bit 0 is slightly different from the other even bits because it has an input car
 
 Schematic for bit 0:
 
-![alu_bit0_tran](/BreakingNESWiki/imgstore/alu_bit0_tran.jpg)
+![alu_bit0_tran](/BreakingNESWiki/imgstore/6502/alu_bit0_tran.jpg)
 
 Schematics for bits 1, 3, 5, 7:
 
-![alu_bit_odd_tran](/BreakingNESWiki/imgstore/alu_bit_odd_tran.jpg)
+![alu_bit_odd_tran](/BreakingNESWiki/imgstore/6502/alu_bit_odd_tran.jpg)
 
 (The circuit for bit 1 is shown, the rest are the same)
 
 Schematics for bits 2, 4, 6:
 
-![alu_bit_even_tran](/BreakingNESWiki/imgstore/alu_bit_even_tran.jpg)
+![alu_bit_even_tran](/BreakingNESWiki/imgstore/6502/alu_bit_even_tran.jpg)
 
 (The circuit for bit 2 is shown, the rest are the same)
 
@@ -77,7 +77,7 @@ Notations on the schematics:
 
 To make it clearer how the intermediate results are obtained, all the main motifs are marked in the image below:
 
-![alu_bit_annotated_tran](/BreakingNESWiki/imgstore/alu_bit_annotated_tran.jpg)
+![alu_bit_annotated_tran](/BreakingNESWiki/imgstore/6502/alu_bit_annotated_tran.jpg)
 
 (Bit 1 is shown, for the other bits the motif looks similar)
 
@@ -97,15 +97,15 @@ Overflow calculation (control signal `AVR`):
 
 This is the circuit that appears in patent US 3991307 (https://patents.google.com/patent/US3991307A).
 
-![alu_bcd_carry_tran1](/BreakingNESWiki/imgstore/alu_bcd_carry_tran1.jpg)
+![alu_bcd_carry_tran1](/BreakingNESWiki/imgstore/6502/alu_bcd_carry_tran1.jpg)
 
-![alu_bcd_carry_tran2](/BreakingNESWiki/imgstore/alu_bcd_carry_tran2.jpg)
+![alu_bcd_carry_tran2](/BreakingNESWiki/imgstore/6502/alu_bcd_carry_tran2.jpg)
 
 The schematics are "layered on the side" for easy perception.
 
 `DC3` output is connected to the carry chain as follows:
 
-![alu_carry3_tran](/BreakingNESWiki/imgstore/alu_carry3_tran.jpg)
+![alu_carry3_tran](/BreakingNESWiki/imgstore/6502/alu_carry3_tran.jpg)
 
 How exactly this circuit works is written in the patent, I have nothing much to add. Just a mishmash of logic gates - do the same and it will work.
 
@@ -119,7 +119,7 @@ Logic:
 
 The intermediate result is stored on the ADD latch (stored in inverted form, output to the buses in direct form). The ADD latch circuit consists of 8 identical pieces:
 
-![alu_add_tran](/BreakingNESWiki/imgstore/alu_add_tran.jpg)
+![alu_add_tran](/BreakingNESWiki/imgstore/6502/alu_add_tran.jpg)
 
 (The circuit is shown for bit 0, the others are the same)
 
@@ -140,7 +140,7 @@ Circuits for obtaining auxiliary signals:
 
 |DAAL|DSAL|DSAH|
 |---|---|---|
-|![alu_daal_tran](/BreakingNESWiki/imgstore/alu_daal_tran.jpg)|![alu_dsal_tran](/BreakingNESWiki/imgstore/alu_dsal_tran.jpg)|![alu_dsah_tran](/BreakingNESWiki/imgstore/alu_dsah_tran.jpg)|
+|![alu_daal_tran](/BreakingNESWiki/imgstore/6502/alu_daal_tran.jpg)|![alu_dsal_tran](/BreakingNESWiki/imgstore/6502/alu_dsal_tran.jpg)|![alu_dsah_tran](/BreakingNESWiki/imgstore/6502/alu_dsah_tran.jpg)|
 
 The `DAAH` circuit is in the carry circuit.
 
@@ -152,11 +152,11 @@ Sawed schematics:
 
 |Bit 1|Bit 2|Bit 3|Bit 5|Bit 6|Bit 7|
 |---|---|---|---|---|---|
-|![alu_bcd1_tran](/BreakingNESWiki/imgstore/alu_bcd1_tran.jpg)|![alu_bcd2_tran](/BreakingNESWiki/imgstore/alu_bcd2_tran.jpg)|![alu_bcd3_tran](/BreakingNESWiki/imgstore/alu_bcd3_tran.jpg)|![alu_bcd5_tran](/BreakingNESWiki/imgstore/alu_bcd5_tran.jpg)|![alu_bcd6_tran](/BreakingNESWiki/imgstore/alu_bcd6_tran.jpg)|![alu_bcd7_tran](/BreakingNESWiki/imgstore/alu_bcd7_tran.jpg)|
+|![alu_bcd1_tran](/BreakingNESWiki/imgstore/6502/alu_bcd1_tran.jpg)|![alu_bcd2_tran](/BreakingNESWiki/imgstore/6502/alu_bcd2_tran.jpg)|![alu_bcd3_tran](/BreakingNESWiki/imgstore/6502/alu_bcd3_tran.jpg)|![alu_bcd5_tran](/BreakingNESWiki/imgstore/6502/alu_bcd5_tran.jpg)|![alu_bcd6_tran](/BreakingNESWiki/imgstore/6502/alu_bcd6_tran.jpg)|![alu_bcd7_tran](/BreakingNESWiki/imgstore/6502/alu_bcd7_tran.jpg)|
 
 The auxiliary signals /ADDx on the BCD correction circuits are derived from the values of the ADD latch bits as follows:
 
-![alu_add_temp_tran](/BreakingNESWiki/imgstore/alu_add_temp_tran.jpg)
+![alu_add_temp_tran](/BreakingNESWiki/imgstore/6502/alu_add_temp_tran.jpg)
 
 (Using `/ADD5` as an example)
 
@@ -168,7 +168,7 @@ Logic:
 
 The accumulator consists of eight identical pieces:
 
-![alu_ac_tran](/BreakingNESWiki/imgstore/alu_ac_tran.jpg)
+![alu_ac_tran](/BreakingNESWiki/imgstore/6502/alu_ac_tran.jpg)
 
 (The circuit for bit 3 is shown, the others are the same)
 
