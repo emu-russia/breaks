@@ -4,7 +4,7 @@
 
 Показать всю схему АЛУ не представляется возможным, поэтому распилим её на составные части и рассмотрим каждую по отдельности.
 
-![alu_preview](/BreakingNESWiki/imgstore/alu_preview.jpg)
+![alu_preview](/BreakingNESWiki/imgstore/6502/alu_preview.jpg)
 
 АЛУ состоит из следующих компонентов:
 - Входные схемы для загрузки защелок AI/BI
@@ -18,13 +18,13 @@
 
 Большая схема:
 
-![alu_logisim](/BreakingNESWiki/imgstore/alu_logisim.jpg)
+![alu_logisim](/BreakingNESWiki/imgstore/6502/alu_logisim.jpg)
 
 ## Защелки AI/BI
 
 Входные схемы состоят из 8 одинаковых кусков, которые предназначены для загрузки входных значений на защелки AI и BI:
 
-![alu_input_tran](/BreakingNESWiki/imgstore/alu_input_tran.jpg)
+![alu_input_tran](/BreakingNESWiki/imgstore/6502/alu_input_tran.jpg)
 
 (На картинке показана схема для разряда 0, остальные аналогично)
 
@@ -43,17 +43,17 @@
 
 Схема для разряда 0:
 
-![alu_bit0_tran](/BreakingNESWiki/imgstore/alu_bit0_tran.jpg)
+![alu_bit0_tran](/BreakingNESWiki/imgstore/6502/alu_bit0_tran.jpg)
 
 Схемы для разрядов 1, 3, 5, 7:
 
-![alu_bit_odd_tran](/BreakingNESWiki/imgstore/alu_bit_odd_tran.jpg)
+![alu_bit_odd_tran](/BreakingNESWiki/imgstore/6502/alu_bit_odd_tran.jpg)
 
 (Показана схема для разряда 1, остальные аналогично)
 
 Схемы для разрядов 2, 4, 6:
 
-![alu_bit_even_tran](/BreakingNESWiki/imgstore/alu_bit_even_tran.jpg)
+![alu_bit_even_tran](/BreakingNESWiki/imgstore/6502/alu_bit_even_tran.jpg)
 
 (Показана схема для разряда 2, остальные аналогично)
 
@@ -77,7 +77,7 @@
 
 Чтобы было понятней как получаются промежуточные результаты, на изображении ниже отмечены все основные мотивы:
 
-![alu_bit_annotated_tran](/BreakingNESWiki/imgstore/alu_bit_annotated_tran.jpg)
+![alu_bit_annotated_tran](/BreakingNESWiki/imgstore/6502/alu_bit_annotated_tran.jpg)
 
 (Показан разряд 1, для остальных разрядов мотив выглядит аналогично)
 
@@ -91,21 +91,21 @@
 
 Вычисление переполнения (контрольный сигнал `AVR`):
 
-![alu_avr_tran](/BreakingNESWiki/imgstore/alu_avr_tran.jpg)
+![alu_avr_tran](/BreakingNESWiki/imgstore/6502/alu_avr_tran.jpg)
 
 ## Быстрый перенос BCD
 
 Именно эта схема фигурирует в патенте US 3991307 (https://patents.google.com/patent/US3991307A).
 
-![alu_bcd_carry_tran1](/BreakingNESWiki/imgstore/alu_bcd_carry_tran1.jpg)
+![alu_bcd_carry_tran1](/BreakingNESWiki/imgstore/6502/alu_bcd_carry_tran1.jpg)
 
-![alu_bcd_carry_tran2](/BreakingNESWiki/imgstore/alu_bcd_carry_tran2.jpg)
+![alu_bcd_carry_tran2](/BreakingNESWiki/imgstore/6502/alu_bcd_carry_tran2.jpg)
 
 Схемы для удобства восприятия "положены на бок".
 
 Выход `DC3` подключается к цепочке переносов следующим образом:
 
-![alu_carry3_tran](/BreakingNESWiki/imgstore/alu_carry3_tran.jpg)
+![alu_carry3_tran](/BreakingNESWiki/imgstore/6502/alu_carry3_tran.jpg)
 
 Как именно работает эта схема написано в патенте, мне добавить особо нечего. Просто месиво логических вентилей - делай так же и будет работать.
 
@@ -119,7 +119,7 @@
 
 Промежуточный результат хранится на защелке ADD (хранится в инвертированном виде, выдается на шины в прямом виде). Схема защелки ADD состоит из 8 одинаковых кусков: 
 
-![alu_add_tran](/BreakingNESWiki/imgstore/alu_add_tran.jpg)
+![alu_add_tran](/BreakingNESWiki/imgstore/6502/alu_add_tran.jpg)
 
 (Показана схема для разряда 0, остальные аналогично)
 
@@ -140,7 +140,7 @@
 
 |DAAL|DSAL|DSAH|
 |---|---|---|
-|![alu_daal_tran](/BreakingNESWiki/imgstore/alu_daal_tran.jpg)|![alu_dsal_tran](/BreakingNESWiki/imgstore/alu_dsal_tran.jpg)|![alu_dsah_tran](/BreakingNESWiki/imgstore/alu_dsah_tran.jpg)|
+|![alu_daal_tran](/BreakingNESWiki/imgstore/6502/alu_daal_tran.jpg)|![alu_dsal_tran](/BreakingNESWiki/imgstore/6502/alu_dsal_tran.jpg)|![alu_dsah_tran](/BreakingNESWiki/imgstore/6502/alu_dsah_tran.jpg)|
 
 Схема `DAAH` находится в схеме переноса.
 
@@ -152,11 +152,11 @@
 
 |Разряд 1|Разряд 2|Разряд 3|Разряд 5|Разряд 6|Разряд 7|
 |---|---|---|---|---|---|
-|![alu_bcd1_tran](/BreakingNESWiki/imgstore/alu_bcd1_tran.jpg)|![alu_bcd2_tran](/BreakingNESWiki/imgstore/alu_bcd2_tran.jpg)|![alu_bcd3_tran](/BreakingNESWiki/imgstore/alu_bcd3_tran.jpg)|![alu_bcd5_tran](/BreakingNESWiki/imgstore/alu_bcd5_tran.jpg)|![alu_bcd6_tran](/BreakingNESWiki/imgstore/alu_bcd6_tran.jpg)|![alu_bcd7_tran](/BreakingNESWiki/imgstore/alu_bcd7_tran.jpg)|
+|![alu_bcd1_tran](/BreakingNESWiki/imgstore/6502/alu_bcd1_tran.jpg)|![alu_bcd2_tran](/BreakingNESWiki/imgstore/6502/alu_bcd2_tran.jpg)|![alu_bcd3_tran](/BreakingNESWiki/imgstore/6502/alu_bcd3_tran.jpg)|![alu_bcd5_tran](/BreakingNESWiki/imgstore/6502/alu_bcd5_tran.jpg)|![alu_bcd6_tran](/BreakingNESWiki/imgstore/6502/alu_bcd6_tran.jpg)|![alu_bcd7_tran](/BreakingNESWiki/imgstore/6502/alu_bcd7_tran.jpg)|
 
 Причем вспомогательные сигналы /ADDx на схемах BCD коррекции получаются из значений разрядов защелки ADD следующим образом:
 
-![alu_add_temp_tran](/BreakingNESWiki/imgstore/alu_add_temp_tran.jpg)
+![alu_add_temp_tran](/BreakingNESWiki/imgstore/6502/alu_add_temp_tran.jpg)
 
 (На примере `/ADD5`)
 
@@ -168,7 +168,7 @@
 
 Аккумулятор состоит из 8 одинаковых кусков:
 
-![alu_ac_tran](/BreakingNESWiki/imgstore/alu_ac_tran.jpg)
+![alu_ac_tran](/BreakingNESWiki/imgstore/6502/alu_ac_tran.jpg)
 
 (Показана схема для разряда 3, остальные аналогично)
 
