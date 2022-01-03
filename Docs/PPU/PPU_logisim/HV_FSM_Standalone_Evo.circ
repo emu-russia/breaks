@@ -333,18 +333,18 @@
     <a name="simulationFrequency" val="256.0"/>
     <appear>
       <rect fill="none" height="150" stroke="#000000" width="100" x="50" y="50"/>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="60">PCLK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="70">/PCLK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="170">H_Input</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="139" y="60">H0''</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="138" y="70">H0'</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="139" y="89">H1''</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="138" y="99">/H1'</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="139" y="119">H2''</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="138" y="129">/H2'</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="139" y="149">H3''</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="139" y="169">H4''</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="139" y="189">H5''</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="65" y="60">PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="65" y="70">/PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="69" y="170">H_Input</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="139" y="60">H0''</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="138" y="70">H0'</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="139" y="89">H1''</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="138" y="99">/H1'</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="139" y="119">H2''</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="138" y="129">/H2'</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="139" y="149">H3''</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="139" y="169">H4''</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="139" y="189">H5''</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="99" y="39">DELAYED H</text>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
       <circ-port height="10" pin="560,130" width="10" x="145" y="185"/>
@@ -594,11 +594,11 @@
     <appear>
       <rect fill="none" height="80" stroke="#000000" width="100" x="50" y="50"/>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="99" y="39">EVEN/ODD</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="63" y="60">V8</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="80">RES</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="71" y="100">/HPLA_5</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="79" y="119">RESCL(VCLR)</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="125" y="59">EvenOddOut</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="62" y="60">V8</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="64" y="80">RES</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="71" y="100">/HPLA_5</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="82" y="119">RESCL(VCLR)</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="122" y="59">EvenOddOut</text>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
       <circ-port height="10" pin="710,160" width="10" x="145" y="55"/>
       <circ-port height="8" pin="110,110" width="8" x="46" y="76"/>
@@ -720,32 +720,32 @@
     <appear>
       <rect fill="none" height="220" stroke="#000000" width="130" x="50" y="50"/>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="119" y="39">HPOS LOGIC</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="68" y="60">PCLK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="68" y="70">/PCLK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="71" y="109">HPLA In</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="70" y="130">/OBCLIP</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="70" y="150">/BGCLIP</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="69" y="169">VSYNC</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="68" y="190">BLACK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="163" y="60">S/EV</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="160" y="70">CLIP_O</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="160" y="80">CLIP_B</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="159" y="90">0/HPOS</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="162" y="99">EVAL</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="163" y="109">E/EV</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="160" y="119">I/OAM2</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="160" y="129">PAR/O</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="164" y="139">/VIS</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="164" y="150">F/NT</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="164" y="160">F/TB</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="164" y="170">F/TA</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="165" y="180">/FO</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="163" y="190">F/AT</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="159" y="209">BPORCH</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="161" y="220">SC/CNT</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="166" y="229">/HB</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="161" y="239">BURST</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="161" y="249">HSYNC</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="68" y="60">PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="68" y="70">/PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="71" y="109">HPLA In</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="70" y="130">/OBCLIP</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="70" y="150">/BGCLIP</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="69" y="169">VSYNC</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="68" y="190">BLACK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="163" y="60">S/EV</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="70">CLIP_O</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="80">CLIP_B</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="159" y="90">0/HPOS</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="162" y="99">EVAL</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="163" y="109">E/EV</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="119">I/OAM2</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="129">PAR/O</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="164" y="139">/VIS</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="164" y="150">F/NT</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="164" y="160">F/TB</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="164" y="170">F/TA</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="165" y="180">/FO</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="163" y="190">F/AT</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="159" y="209">BPORCH</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="161" y="220">SC/CNT</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="166" y="229">/HB</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="161" y="239">BURST</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="161" y="249">HSYNC</text>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
       <circ-port height="10" pin="1140,1110" width="10" x="175" y="175"/>
       <circ-port height="10" pin="1140,120" width="10" x="175" y="55"/>
@@ -1671,19 +1671,19 @@
     <a name="simulationFrequency" val="256.0"/>
     <appear>
       <rect fill="none" height="140" stroke="#000000" width="130" x="50" y="50"/>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="68" y="60">PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="68" y="60">PCLK</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="119" y="39">VPOS LOGIC</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="68" y="70">/PCLK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="90">/HB</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="72" y="110">BPORCH</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="69" y="130">BLACK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="71" y="170">VPLA In</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="158" y="59">PICTURE</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="151" y="69">RESCL (VCLR)</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="161" y="89">VSYNC</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="162" y="100">/VSET</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="166" y="120">VB</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="163" y="130">BLNK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="68" y="70">/PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="65" y="90">/HB</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="72" y="110">BPORCH</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="69" y="130">BLACK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="71" y="170">VPLA In</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="158" y="59">PICTURE</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="151" y="69">RESCL (VCLR)</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="161" y="89">VSYNC</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="162" y="100">/VSET</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="166" y="120">VB</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="163" y="130">BLNK</text>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
       <circ-port height="10" pin="1130,230" width="10" x="175" y="115"/>
       <circ-port height="10" pin="1130,610" width="10" x="175" y="65"/>
@@ -2089,13 +2089,13 @@
     <appear>
       <rect fill="none" height="70" stroke="#000000" width="90" x="50" y="50"/>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="96" y="39">H/V CNT CTRL</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="66" y="60">/PCLK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="71" y="80">HPLA_23</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="75" y="90">EvenOddOut</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="69" y="99">VPLA_2</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="125" y="59">V_IN</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="127" y="79">HC</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="128" y="99">VC</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="66" y="60">/PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="71" y="80">HPLA_23</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="77" y="90">EvenOddOut</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="69" y="99">VPLA_2</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="125" y="59">V_IN</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="127" y="79">HC</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="128" y="99">VC</text>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
       <circ-port height="10" pin="510,150" width="10" x="135" y="75"/>
       <circ-port height="10" pin="510,200" width="10" x="135" y="95"/>
@@ -2193,15 +2193,15 @@
     <appear>
       <rect fill="none" height="110" stroke="#000000" width="110" x="50" y="50"/>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="105" y="38">VBLANK INT</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="60">PCLK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="65" y="70">/PCLK</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="66" y="89">/VSET</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="78" y="99">VCLR(RESCL)</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="70" y="120">VBL_EN</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="64" y="139">/R2</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="66" y="150">/DBE</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="140" y="90">DB7 Out</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="6" text-anchor="middle" x="147" y="70">INT</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="65" y="60">PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="65" y="70">/PCLK</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="66" y="89">/VSET</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="80" y="99">VCLR(RESCL)</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="70" y="120">VBL_EN</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="64" y="139">/R2</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="66" y="150">/DBE</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="140" y="90">DB7 Out</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="147" y="70">INT</text>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
       <circ-port height="10" pin="790,150" width="10" x="155" y="65"/>
       <circ-port height="10" pin="790,260" width="10" x="155" y="85"/>
