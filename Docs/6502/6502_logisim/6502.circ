@@ -17841,7 +17841,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(620,330)" to="(640,330)"/>
     <wire from="(280,300)" to="(310,300)"/>
     <wire from="(680,1270)" to="(700,1270)"/>
-    <wire from="(650,1160)" to="(670,1160)"/>
     <wire from="(700,1130)" to="(720,1130)"/>
     <wire from="(260,370)" to="(280,370)"/>
     <wire from="(280,1110)" to="(300,1110)"/>
@@ -17985,6 +17984,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(100,1570)" to="(110,1570)"/>
     <wire from="(170,670)" to="(240,670)"/>
     <wire from="(310,700)" to="(310,760)"/>
+    <wire from="(650,1160)" to="(660,1160)"/>
     <wire from="(340,970)" to="(590,970)"/>
     <wire from="(470,230)" to="(660,230)"/>
     <wire from="(180,930)" to="(240,930)"/>
@@ -18431,6 +18431,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(700,1150)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
+      <a name="negate1" val="true"/>
     </comp>
     <comp lib="1" loc="(300,1400)" name="NAND Gate">
       <a name="size" val="30"/>
