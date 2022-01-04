@@ -55,6 +55,11 @@ namespace BaseLogic
 		return NOT(NAND(a, b));
 	}
 
+	TriState XOR(TriState a, TriState b)
+	{
+		return (TriState)((a ^ b) & 1);
+	}
+
 	void DLatch::set(TriState val, TriState en)
 	{
 		if (en == TriState::One)

@@ -84,6 +84,14 @@ namespace BaseLogic
 	TriState AND(TriState a, TriState b);
 
 	/// <summary>
+	/// 2-xor
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <returns></returns>
+	TriState XOR(TriState a, TriState b);
+
+	/// <summary>
 	/// The real latch works as a pair of N-MOS transistors.
 	/// The first transistor is the tri-state (`d`). It opens the input to the gate of the second transistor, where the value is stored.
 	/// After closing the tri-state the value is stored as a `floating` value on the gate of the second transistor.

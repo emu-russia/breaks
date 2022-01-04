@@ -1,5 +1,7 @@
 #include "pch.h"
 
+using namespace BaseLogic;
+
 namespace M6502Core
 {
 	IR::IR()
@@ -10,7 +12,7 @@ namespace M6502Core
 	{
 	}
 
-	void IR::sim(BaseLogic::TriState PHI1, BaseLogic::TriState FETCH, BaseLogic::TriState n_in[8])
+	void IR::sim(TriState PHI1, TriState FETCH, TriState n_in[8])
 	{
 		for (size_t n = 0; n < 8; n++)
 		{
@@ -18,7 +20,7 @@ namespace M6502Core
 		}
 	}
 
-	void IR::get(BaseLogic::TriState IR[8])
+	void IR::get(TriState IR[8])
 	{
 		for (size_t n = 0; n < 8; n++)
 		{

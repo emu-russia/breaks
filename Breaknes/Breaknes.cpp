@@ -16,20 +16,20 @@ static int GetTimeStamp()
 
 int main()
 {
-    Breaknes::Famicom* fami = new Breaknes::Famicom;
+	Breaknes::Famicom* fami = new Breaknes::Famicom;
 
-    size_t maxHalfcycles = 10000;         // DEBUG
+	size_t maxHalfcycles = 10000;         // DEBUG
 
 	int ts1 = GetTimeStamp();
 
-    for (size_t n = 0; n < maxHalfcycles; n++)
-    {
-        fami->sim();
-    }
+	for (size_t n = 0; n < maxHalfcycles; n++)
+	{
+		fami->sim();
+	}
 
 	int ts2 = GetTimeStamp();
 
-    delete fami;
+	delete fami;
 
-    printf("Done in %d microseconds!\n", ts2 - ts1);
+	printf("Done in %d microseconds!\n", ts2 - ts1);
 }
