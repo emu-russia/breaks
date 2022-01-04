@@ -14,9 +14,9 @@ namespace Breaknes
 
 	void Famicom::sim()
 	{
-		BaseLogic::TriState core_inputs[M6502Core::InputPad::InputPad_Max];
-		BaseLogic::TriState core_outputs[M6502Core::OutputPad::OutputPad_Max];
-		BaseLogic::TriState core_inOuts[M6502Core::InOutPad::InOutPad_Max];
+		BaseLogic::TriState core_inputs[(size_t)M6502Core::InputPad::Max];
+		BaseLogic::TriState core_outputs[(size_t)M6502Core::OutputPad::Max];
+		BaseLogic::TriState core_inOuts[(size_t)M6502Core::InOutPad::Max];
 
 		core->sim(core_inputs, core_outputs, core_inOuts);
 

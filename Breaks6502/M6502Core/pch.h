@@ -9,3 +9,4 @@
 #include "ir.h"
 #include "predecode.h"
 #include "dispatch.h"
+#include "regs_control.h"

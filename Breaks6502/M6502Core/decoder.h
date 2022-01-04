@@ -2,7 +2,7 @@
 
 namespace M6502Core
 {
-	enum DecoderInput
+	enum class DecoderInput
 	{
 		n_T1X = 0,
 		n_T0,
@@ -25,13 +25,13 @@ namespace M6502Core
 		n_T3,
 		n_T4,
 		n_T5,
-		DecoderInput_Max,
+		Max,
 	};
 
 	class Decoder
 	{
 	public:
-		static const size_t inputs_count = DecoderInput_Max;
+		static const size_t inputs_count = (size_t)DecoderInput::Max;
 		static const size_t outputs_count = 130;
 
 		BaseLogic::PLA *pla = nullptr;
