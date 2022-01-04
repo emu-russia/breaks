@@ -18,7 +18,7 @@ int main()
 {
     Breaknes::Famicom* fami = new Breaknes::Famicom;
 
-    size_t maxHalfcycles = 1000000;         // DEBUG
+    size_t maxHalfcycles = 10000;         // DEBUG
 
 	int ts1 = GetTimeStamp();
 
