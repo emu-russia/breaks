@@ -44,7 +44,3 @@ TBD.
 ![ppu_readbuffer](/BreakingNESWiki/imgstore/ppu_readbuffer.jpg)
 
 ![ppu_logisim_rb](/BreakingNESWiki/imgstore/ppu_logisim_rb.jpg)
-
-## Симуляция
-
-TBD.

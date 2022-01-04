@@ -19,9 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\alu_control.cpp" />
+    <ClCompile Include="..\..\branch_logic.cpp" />
+    <ClCompile Include="..\..\bus_control.cpp" />
     <ClCompile Include="..\..\core.cpp" />
     <ClCompile Include="..\..\decoder.cpp" />
     <ClCompile Include="..\..\dispatch.cpp" />
+    <ClCompile Include="..\..\extra_counter.cpp" />
+    <ClCompile Include="..\..\flags.cpp" />
+    <ClCompile Include="..\..\flags_control.cpp" />
+    <ClCompile Include="..\..\interrupts.cpp" />
     <ClCompile Include="..\..\ir.cpp" />
     <ClCompile Include="..\..\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -29,16 +36,27 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\pc_control.cpp" />
     <ClCompile Include="..\..\predecode.cpp" />
+    <ClCompile Include="..\..\random_logic.cpp" />
     <ClCompile Include="..\..\regs_control.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\alu_control.h" />
+    <ClInclude Include="..\..\branch_logic.h" />
+    <ClInclude Include="..\..\bus_control.h" />
     <ClInclude Include="..\..\core.h" />
     <ClInclude Include="..\..\decoder.h" />
     <ClInclude Include="..\..\dispatch.h" />
+    <ClInclude Include="..\..\extra_counter.h" />
+    <ClInclude Include="..\..\flags.h" />
+    <ClInclude Include="..\..\flags_control.h" />
+    <ClInclude Include="..\..\interrupts.h" />
     <ClInclude Include="..\..\ir.h" />
     <ClInclude Include="..\..\pch.h" />
+    <ClInclude Include="..\..\pc_control.h" />
     <ClInclude Include="..\..\predecode.h" />
+    <ClInclude Include="..\..\random_logic.h" />
     <ClInclude Include="..\..\regs_control.h" />
   </ItemGroup>
   <ItemGroup>
