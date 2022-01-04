@@ -7,13 +7,13 @@
 /// </summary>
 namespace BaseLogic
 {
-	typedef enum
+	enum TriState
 	{
 		Zero = 0,
 		One = 1,
 		Z = -1,
 		X = -2,
-	} TriState;
+	};
 
 	/// <summary>
 	/// The simplest element, implemented with a single N-MOS FET.
