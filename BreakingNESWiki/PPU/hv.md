@@ -58,27 +58,3 @@ H/V-счетчики считают количество пикселей в с�
 Зачем она нужна? Скорее всего, чтобы уменьшить propagation delay цепочки переносов.
 
 При симуляции можно вполне обойтись без этих "патчей", работа счетчиков не будет отличаться.
-
-## Симуляция
-
-```python
-class CounterStage:
-	def __init__(self):
-		self.ff = 0 		# This variable is used as a replacement for the hybrid FF built on MUX
-		self.latch = DLatch()		
-
-	def sim(self, Carry, PCLK, CLR, RES):
-		self.ff = MUX(PCLK, NOR(NOT(self.ff), RES), NOR(self.latch.get(), CLR))
-		self.latch.set (MUX(Carry, NOT(self.ff), self.ff), NOT(PCLK))
-		out = NOR(NOT(self.ff), RES)
-		CarryOut = NOR (NOT(self.ff), NOT(Carry))
-		return [ out, CarryOut ]
-		
-class HVCounter:
-	def __init__(self, bits):
-		self.stages = [CounterStage() for i in range(bits)]
-
-	def sim(self, Carry, PCLK, CLR, RES):
-		for s in self.stages:
-			Carry = s.sim(Carry, PCLK, CLR, RES) [1]
-```

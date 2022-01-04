@@ -34,21 +34,3 @@ Pixel clock (сокращенно PCLK) используется всеми уз
 (Первая защелка находится рядом с сигналом `RES`)
 
 Но вообще правильнее считать, что значение защелок не определено (`x`)
-
-## Псевдокод логики PCLK
-
-```c
-if ( CLK == 1 )
-{
-    PCLK_Latch[0] = NOR(~PCLK_Latch[3], RES);
-    PCLK_Latch[2] = ~PCLK_Latch[1];
-}
-else
-{
-    PCLK_Latch[1] = ~PCLK_Latch[0];
-    PCLK_Latch[3] = ~PCLK_Latch[2];
-}
-
-PCLK = ~PCLK_Latch[3];
-nPCLK = ~PCLK;
-```
