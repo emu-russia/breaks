@@ -25,11 +25,15 @@ namespace M6502Core
 		n_T3,
 		n_T4,
 		n_T5,
+		DecoderInput_Max,
 	};
 
 	class Decoder
 	{
 	public:
+		static const size_t inputs_count = DecoderInput_Max;
+		static const size_t outputs_count = 130;
+
 		BaseLogic::PLA *pla = nullptr;
 
 		Decoder();

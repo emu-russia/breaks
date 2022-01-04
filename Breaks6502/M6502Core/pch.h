@@ -8,3 +8,4 @@
 #include "decoder.h"
 #include "ir.h"
 #include "predecode.h"
+#include "dispatch.h"

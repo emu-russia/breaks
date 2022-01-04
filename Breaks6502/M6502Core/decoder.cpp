@@ -4,12 +4,12 @@ namespace M6502Core
 {
 	Decoder::Decoder()
 	{
-		pla = new BaseLogic::PLA(21, 130);
+		pla = new BaseLogic::PLA(inputs_count, outputs_count);
 
 		// The bitmask corresponds to the values from the Breaking NES Wiki:
 		// https://github.com/emu-russia/breaks/blob/master/BreakingNESWiki_DeepL/6502/decoder.md
 
-		size_t bitmask[130] = {
+		size_t bitmask[outputs_count] = {
 			// A
 			0b000101100000100100000,
 			0b000000010110001000100,

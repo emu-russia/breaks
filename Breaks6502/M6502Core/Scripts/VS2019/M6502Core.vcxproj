@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\core.cpp" />
     <ClCompile Include="..\..\decoder.cpp" />
+    <ClCompile Include="..\..\dispatch.cpp" />
     <ClCompile Include="..\..\ir.cpp" />
     <ClCompile Include="..\..\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -33,6 +34,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\core.h" />
     <ClInclude Include="..\..\decoder.h" />
+    <ClInclude Include="..\..\dispatch.h" />
     <ClInclude Include="..\..\ir.h" />
     <ClInclude Include="..\..\pch.h" />
     <ClInclude Include="..\..\predecode.h" />
