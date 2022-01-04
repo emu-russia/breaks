@@ -36,6 +36,9 @@ namespace M6502Core
 
 	class M6502
 	{
+		BaseLogic::DLatch prdy_latch1;
+		BaseLogic::DLatch prdy_latch2;
+
 	public:
 		M6502();
 		~M6502();

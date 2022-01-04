@@ -20,6 +20,22 @@ namespace M6502Core
 
 	void M6502::sim(TriState inputs[], TriState outputs[], TriState inOuts[])
 	{
+		TriState n_NMI = inputs[(size_t)InputPad::n_NMI];
+		TriState n_IRQ = inputs[(size_t)InputPad::n_IRQ];
+		TriState n_RES = inputs[(size_t)InputPad::n_RES];
+		TriState PHI0 = inputs[(size_t)InputPad::PHI0];
+		TriState RDY = inputs[(size_t)InputPad::RDY];
+		TriState SO = inputs[(size_t)InputPad::SO];
+
+		TriState PHI1 = NOT(PHI0);
+		TriState PHI2 = PHI0;
+
+		prdy_latch1.set(NOT(RDY), PHI2);
+		prdy_latch2.set(prdy_latch1.nget(), PHI1);
+		TriState n_PRDY = prdy_latch2.nget();
+
+		// Dispatcher and other auxiliary logic
+
 		TriState decoder_in[Decoder::inputs_count];
 		TriState decoder_out[Decoder::outputs_count];
 
@@ -36,7 +52,14 @@ namespace M6502Core
 
 		regs_control->sim(regs_control_in, decoder_out, regs_control_out);
 
+		// Random Logic
 
+		// Bottom Part
+
+		// Outputs
+
+		outputs[(size_t)OutputPad::PHI1] = PHI1;
+		outputs[(size_t)OutputPad::PHI2] = PHI2;
 	}
 
 }
