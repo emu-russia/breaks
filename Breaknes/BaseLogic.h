@@ -7,13 +7,13 @@
 /// </summary>
 namespace BaseLogic
 {
-	enum TriState
+	typedef enum
 	{
 		Zero = 0,
 		One = 1,
 		Z = -1,
 		X = -2,
-	};
+	} TriState;
 
 	/// <summary>
 	/// The simplest element, implemented with a single N-MOS FET.
@@ -84,6 +84,7 @@ namespace BaseLogic
 
 	/// <summary>
 	/// Generalized PLA matrix emulator.
+	/// Although PLA is a combinatorial element, it is made as a class because of its complexity.
 	/// </summary>
 	class PLA
 	{
