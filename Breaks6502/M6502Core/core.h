@@ -27,11 +27,15 @@ namespace M6502Core
 		D0, D1, D2, D3, D4, D5, D6, D7,
 	};
 
+	class Decoder;
+
 	class M6502
 	{
 	public:
 		M6502();
 		~M6502();
+
+		Decoder* decoder;
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
 	};
