@@ -143,6 +143,11 @@ namespace BaseLogic
 		size_t romInputs = 0;			// Saved number of decoder inputs (set in the constructor)
 		size_t romOutputs = 0;			// Saved number of decoder outputs (set in the constructor)
 
+		std::unordered_map<size_t, TriState*> cache;
+
+		bool Exists(TriState inputs[], TriState outputs[]);
+		void Map(TriState inputs[], TriState outputs[]);
+
 	public:
 		PLA(size_t inputs, size_t outputs);
 		~PLA();
