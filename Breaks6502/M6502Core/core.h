@@ -31,6 +31,7 @@ namespace M6502Core
 	};
 
 	class Decoder;
+	class PreDecode;
 	class RegsControl;
 
 	class M6502
@@ -40,6 +41,7 @@ namespace M6502Core
 		~M6502();
 
 		Decoder* decoder;
+		PreDecode* predecode;
 		RegsControl* regs_control;
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);

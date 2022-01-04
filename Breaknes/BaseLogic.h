@@ -40,6 +40,20 @@ namespace BaseLogic
 	TriState NOR3(TriState a, TriState b, TriState c);
 
 	/// <summary>
+	/// 4-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR4(TriState in[4]);
+
+	/// <summary>
+	/// 5-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR5(TriState in[5]);
+
+	/// <summary>
 	/// 6-nor
 	/// </summary>
 	/// <param name="in"></param>

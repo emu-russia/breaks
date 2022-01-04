@@ -25,6 +25,16 @@ namespace BaseLogic
 		return (TriState)((~(a | b | c)) & 1);
 	}
 
+	TriState NOR4(TriState in[4])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3])) & 1);
+	}
+
+	TriState NOR5(TriState in[5])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4])) & 1);
+	}
+
 	TriState NOR6(TriState in[6])
 	{
 		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4] | in[5])) & 1);
