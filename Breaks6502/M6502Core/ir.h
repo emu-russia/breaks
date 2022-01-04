@@ -2,7 +2,6 @@
 
 namespace M6502Core
 {
-
 	class IR
 	{
 		BaseLogic::DLatch ir_latch[8];
@@ -15,5 +14,4 @@ namespace M6502Core
 
 		void get(BaseLogic::TriState IR[8]);
 	};
-
 }

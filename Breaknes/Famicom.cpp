@@ -27,6 +27,9 @@ namespace Breaknes
 			core_inOuts[n] = TriState::Zero;
 		}
 
+		core_inputs[(size_t)M6502Core::InputPad::RDY] = TriState::One;
+		core_inputs[(size_t)M6502Core::InputPad::PHI0] = CLK;
+
 		core->sim(core_inputs, core_outputs, core_inOuts);
 
 		CLK = CLK == TriState::Zero ? TriState::One : TriState::Zero;

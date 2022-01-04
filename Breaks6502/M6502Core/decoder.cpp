@@ -1,10 +1,12 @@
 #include "pch.h"
 
+using namespace BaseLogic;
+
 namespace M6502Core
 {
 	Decoder::Decoder()
 	{
-		pla = new BaseLogic::PLA(inputs_count, outputs_count);
+		pla = new PLA(inputs_count, outputs_count);
 
 		// The bitmask corresponds to the values from the Breaking NES Wiki:
 		// https://github.com/emu-russia/breaks/blob/master/BreakingNESWiki_DeepL/6502/decoder.md
@@ -167,7 +169,7 @@ namespace M6502Core
 		delete pla;
 	}
 
-	void Decoder::sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[])
+	void Decoder::sim(TriState inputs[], TriState outputs[])
 	{
 		pla->sim(inputs, outputs);
 	}

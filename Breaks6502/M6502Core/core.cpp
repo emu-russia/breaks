@@ -8,14 +8,22 @@ namespace M6502Core
 	{
 		decoder = new Decoder;
 		predecode = new PreDecode;
-		regs_control = new RegsControl;
+		ir = new IR;
+		exT = new ExtraCounter;
+		brk = new BRKProcessing;
+		disp = new Dispatcher;
+		random = new RandomLogic;
 	}
 
 	M6502::~M6502()
 	{
 		delete decoder;
 		delete predecode;
-		delete regs_control;
+		delete ir;
+		delete exT;
+		delete brk;
+		delete disp;
+		delete random;
 	}
 
 	void M6502::sim(TriState inputs[], TriState outputs[], TriState inOuts[])
@@ -47,12 +55,9 @@ namespace M6502Core
 
 		predecode->sim(pd_in, inOuts, pd_out, n_PD);
 
-		TriState regs_control_in[(size_t)RegsControl_Input::Max];
-		TriState regs_control_out[(size_t)RegsControl_Output::Max];
-
-		regs_control->sim(regs_control_in, decoder_out, regs_control_out);
-
 		// Random Logic
+
+		random->sim(decoder_out);
 
 		// Bottom Part
 
