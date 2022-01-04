@@ -82,4 +82,32 @@ namespace BaseLogic
 	/// <returns></returns>
 	TriState MUX(TriState sel, TriState in0, TriState in1);
 
+	/// <summary>
+	/// Generalized PLA matrix emulator.
+	/// </summary>
+	class PLA
+	{
+		uint8_t* rom = nullptr;			// ROM Matrix. We do not use `TriState` to define transistors in the `1` places.
+		size_t romSize = 0;				// ROM matrix size in bytes
+		size_t romInputs = 0;			// Saved number of decoder inputs (set in the constructor)
+		size_t romOutputs = 0;			// Saved number of decoder outputs (set in the constructor)
+
+	public:
+		PLA(size_t inputs, size_t outputs);
+		~PLA();
+
+		/// <summary>
+		/// Set the decoder matrix.
+		/// </summary>
+		/// <param name="bitmask">An array of bit values. msb corresponds to input `0`. lsb corresponds to input `romInputs-1`.</param>
+		void SetMatrix(size_t bitmask[]);
+
+		/// <summary>
+		/// Simulate decoder.
+		/// </summary>
+		/// <param name="inputs">Input values. The index 0 defines the input `0`. The last index defines the input `romInputs-1`.</param>
+		/// <param name="outputs">Output values. The number of outputs must correspond to the value defined in the constructor.</param>
+		void sim(TriState inputs[], TriState outputs[]);
+	};
+
 }
