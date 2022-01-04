@@ -2,5 +2,10 @@
 
 int main()
 {
-    std::cout << "Hello Breaks!\n";
+    Breaknes::Famicom* fami = new Breaknes::Famicom;
+
+
+    delete fami;
+
+    printf("Done!\n");
 }

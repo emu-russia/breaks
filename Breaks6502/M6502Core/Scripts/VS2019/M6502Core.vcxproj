@@ -37,6 +37,9 @@
     <ClInclude Include="..\..\pch.h" />
     <ClInclude Include="..\..\predecode.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Readme.md" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
