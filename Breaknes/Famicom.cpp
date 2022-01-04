@@ -1,5 +1,7 @@
 #include "pch.h"
 
+using namespace BaseLogic;
+
 namespace Breaknes
 {
 	Famicom::Famicom()
@@ -14,12 +16,19 @@ namespace Breaknes
 
 	void Famicom::sim()
 	{
-		BaseLogic::TriState core_inputs[(size_t)M6502Core::InputPad::Max];
-		BaseLogic::TriState core_outputs[(size_t)M6502Core::OutputPad::Max];
-		BaseLogic::TriState core_inOuts[(size_t)M6502Core::InOutPad::Max];
+		TriState core_inputs[(size_t)M6502Core::InputPad::Max];
+		TriState core_outputs[(size_t)M6502Core::OutputPad::Max];
+		TriState core_inOuts[(size_t)M6502Core::InOutPad::Max];
+
+		// DEBUG: Clear the data bus for debugging the logic
+
+		for (size_t n = 0; n < (size_t)M6502Core::InOutPad::Max; n++)
+		{
+			core_inOuts[n] = TriState::Zero;
+		}
 
 		core->sim(core_inputs, core_outputs, core_inOuts);
 
-		CLK = CLK == BaseLogic::TriState::Zero ? BaseLogic::TriState::One : BaseLogic::TriState::Zero;
+		CLK = CLK == TriState::Zero ? TriState::One : TriState::Zero;
 	}
 }
