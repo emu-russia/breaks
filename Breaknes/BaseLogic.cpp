@@ -73,6 +73,16 @@ namespace BaseLogic
 		return NOT(g);
 	}
 
+	void FF::set(TriState val)
+	{
+		g = val;
+	}
+
+	TriState FF::get()
+	{
+		return g;
+	}
+
 	TriState MUX(TriState sel, TriState in0, TriState in1)
 	{
 		return ((sel & 1) == 0) ? in0 : in1;

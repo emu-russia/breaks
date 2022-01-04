@@ -32,17 +32,28 @@ namespace M6502Core
 
 	class Decoder;
 	class PreDecode;
-	class RegsControl;
+	class IR;
+	class ExtraCounter;
+	class BRKProcessing;
+	class Dispatcher;
+	class RandomLogic;
 
 	class M6502
 	{
+		BaseLogic::DLatch prdy_latch1;
+		BaseLogic::DLatch prdy_latch2;
+
 	public:
 		M6502();
 		~M6502();
 
-		Decoder* decoder;
-		PreDecode* predecode;
-		RegsControl* regs_control;
+		Decoder* decoder = nullptr;
+		PreDecode* predecode = nullptr;
+		IR* ir = nullptr;
+		ExtraCounter* exT = nullptr;
+		BRKProcessing* brk = nullptr;
+		Dispatcher* disp = nullptr;
+		RandomLogic* random = nullptr;
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
 	};

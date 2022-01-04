@@ -102,6 +102,20 @@ namespace BaseLogic
 	};
 
 	/// <summary>
+	/// Flip/Flop.
+	/// Instead of using ordinary variables, a class is used to emphasize the circuitry nature.
+	/// </summary>
+	class FF
+	{
+		TriState g = TriState::Zero;
+
+	public:
+
+		void set(TriState val);
+		TriState get();
+	};
+
+	/// <summary>
 	/// 2-mux
 	/// </summary>
 	/// <param name="sel"></param>

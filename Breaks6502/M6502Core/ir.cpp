@@ -25,5 +25,4 @@ namespace M6502Core
 			IR[n] = ir_latch[n].nget();
 		}
 	}
-
 }
