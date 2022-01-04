@@ -30,6 +30,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="..\..\predecode.cpp" />
+    <ClCompile Include="..\..\regs_control.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\core.h" />
@@ -38,6 +39,7 @@
     <ClInclude Include="..\..\ir.h" />
     <ClInclude Include="..\..\pch.h" />
     <ClInclude Include="..\..\predecode.h" />
+    <ClInclude Include="..\..\regs_control.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Readme.md" />

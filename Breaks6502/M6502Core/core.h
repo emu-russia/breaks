@@ -2,7 +2,7 @@
 
 namespace M6502Core
 {
-	enum InputPad
+	enum class InputPad
 	{
 		n_NMI = 0,
 		n_IRQ,
@@ -10,10 +10,10 @@ namespace M6502Core
 		PHI0,
 		RDY,
 		SO,
-		InputPad_Max,
+		Max,
 	};
 
-	enum OutputPad
+	enum class OutputPad
 	{
 		PHI1 = 0,
 		PHI2,
@@ -21,16 +21,17 @@ namespace M6502Core
 		SYNC,
 		A0, A1, A2, A3, A4, A5, A6, A7,
 		A8, A9, A10, A11, A12, A13, A14, A15,
-		OutputPad_Max,
+		Max,
 	};
 
-	enum InOutPad
+	enum class InOutPad
 	{
 		D0 = 0, D1, D2, D3, D4, D5, D6, D7,
-		InOutPad_Max,
+		Max,
 	};
 
 	class Decoder;
+	class RegsControl;
 
 	class M6502
 	{
@@ -39,6 +40,7 @@ namespace M6502Core
 		~M6502();
 
 		Decoder* decoder;
+		RegsControl* regs_control;
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
 	};
