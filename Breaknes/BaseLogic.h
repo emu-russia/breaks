@@ -84,6 +84,7 @@ namespace BaseLogic
 
 	/// <summary>
 	/// Generalized PLA matrix emulator.
+	/// Although PLA is a combinatorial element, it is made as a class because of its complexity.
 	/// </summary>
 	class PLA
 	{

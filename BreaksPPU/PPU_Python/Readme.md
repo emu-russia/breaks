@@ -1,4 +1,4 @@
-# BreaksPPU
+# PPU_Python
 
 PPU simulation in Python.
 
