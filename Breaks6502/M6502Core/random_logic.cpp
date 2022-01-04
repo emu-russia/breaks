@@ -38,6 +38,10 @@ namespace M6502Core
 		bus_control->sim();
 		flags_control->sim();
 		flags->sim();
-		branch_logic->sim();
+
+		TriState branch_logic_in[(size_t)BranchLogic_Input::Max] = { TriState::Zero };	// DEBUG
+		TriState branch_logic_out[(size_t)BranchLogic_Output::Max] = { TriState::Zero };	// DEBUG
+
+		branch_logic->sim(branch_logic_in, branch_logic_out);
 	}
 }
