@@ -91,7 +91,7 @@ Logic for odd bits:
 
 Overflow calculation (control signal `AVR`):
 
-![alu_avr_tran](/BreakingNESWiki/imgstore/alu_avr_tran.jpg)
+![alu_avr_tran](/BreakingNESWiki/imgstore/6502/alu_avr_tran.jpg)
 
 ## Fast BCD Carry
 
