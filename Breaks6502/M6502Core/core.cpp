@@ -44,6 +44,17 @@ namespace M6502Core
 		prdy_latch2.set(prdy_latch1.nget(), PHI1);
 		TriState n_PRDY = prdy_latch2.nget();
 
+		nmip_ff.set(NOR(NOR(nmip_ff.get(), AND(NOT(n_NMI), PHI2)), AND(n_NMI, PHI2)));
+		TriState n_NMIP = NOT(nmip_ff.get());
+
+		irqp_ff.set(NOR(NOR(irqp_ff.get(), AND(NOT(n_IRQ), PHI2)), AND(n_IRQ, PHI2)));
+		irqp_latch.set(irqp_ff.get(), PHI1);
+		TriState n_IRQP = irqp_latch.nget();
+
+		resp_ff.set(NOR(NOR(resp_ff.get(), AND(n_RES, PHI2)), AND(NOT(n_RES), PHI2)));
+		resp_latch.set(resp_ff.get(), PHI1);
+		TriState RESP = resp_latch.nget();
+
 		// Dispatcher and other auxiliary logic
 
 		disp->sim();

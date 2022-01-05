@@ -18,6 +18,12 @@ int main()
 {
 	Breaknes::Famicom* fami = new Breaknes::Famicom;
 
+	// Simulate reset
+
+	fami->reset();
+
+	// Continue executing the instructions in the usual way.
+
 	size_t maxHalfcycles = 32;         // DEBUG
 
 	int ts1 = GetTimeStamp();
