@@ -55,6 +55,11 @@ namespace BaseLogic
 		return NOT(NAND(a, b));
 	}
 
+	TriState OR(TriState a, TriState b)
+	{
+		return (TriState)((a | b) & 1);
+	}
+
 	TriState XOR(TriState a, TriState b)
 	{
 		return (TriState)((a ^ b) & 1);
