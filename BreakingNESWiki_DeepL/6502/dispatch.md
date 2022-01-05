@@ -21,7 +21,7 @@ The execution logic consists of the following circuits:
 
 Intermediate signals are obtained from the decoder outputs without any regularity. It was very difficult to separate them from the intermediate signals of the other control circuits, because of the chaotic connections.
 
-|BR2|BR3|/MemOP|STORE, STOR|/SHIFT|
+|BR2|BR3, D91_92|/MemOP|STORE, STOR|/SHIFT|
 |---|---|---|---|---|
 |![dispatch_br2_tran](/BreakingNESWiki/imgstore/dispatch_br2_tran.jpg)|![dispatch_br3_tran](/BreakingNESWiki/imgstore/dispatch_br3_tran.jpg)|![dispatch_memop_tran](/BreakingNESWiki/imgstore/dispatch_memop_tran.jpg)|![dispatch_store_tran](/BreakingNESWiki/imgstore/dispatch_store_tran.jpg)|![dispatch_shift_tran](/BreakingNESWiki/imgstore/dispatch_shift_tran.jpg)|
 
