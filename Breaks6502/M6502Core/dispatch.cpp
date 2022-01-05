@@ -133,13 +133,14 @@ namespace M6502Core
 
 		// Instruction Completion
 
+		ends_latch1.set(MUX(n_ready, NOR(T0, AND(n_BRTAKEN, BR2)), NOT(t1_ff.get())), PHI2);
+		ends_latch2.set(RESP, PHI2);
 		TriState ENDS = NOR(ends_latch1.get(), ends_latch2.get());
 		TriState n_TRES1 = NOR(NOR(step_ff.get(), n_ready), ENDS);
 		t1_latch.set(n_TRES1, PHI1);
 		TriState TRES1 = NOT(n_TRES1);
 		TriState T1 = t1_latch.nget();
-		ends_latch1.set(MUX(n_ready, NOR(T0, AND(n_BRTAKEN, BR2)), NOT(T1)), PHI2);
-		ends_latch2.set(RESP, PHI2);
+		t1_ff.set(T1);
 
 		tresx_latch1.set(NOR(d[91], d[92]), PHI2);
 
@@ -202,5 +203,10 @@ namespace M6502Core
 	TriState Dispatcher::getTRES2()
 	{
 		return tres2_latch.nget();
+	}
+
+	TriState Dispatcher::getT1()
+	{
+		return t1_ff.get();
 	}
 }

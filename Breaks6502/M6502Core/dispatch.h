@@ -74,6 +74,7 @@ namespace M6502Core
 		BaseLogic::DLatch step_latch2;
 		BaseLogic::FF step_ff;
 		BaseLogic::DLatch t1_latch;
+		BaseLogic::FF t1_ff;
 
 		BaseLogic::DLatch comp_latch1;
 		BaseLogic::DLatch comp_latch2;
@@ -101,5 +102,7 @@ namespace M6502Core
 		void sim_AfterRandomLogic(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
 
 		BaseLogic::TriState getTRES2();
+
+		BaseLogic::TriState getT1();
 	};
 }

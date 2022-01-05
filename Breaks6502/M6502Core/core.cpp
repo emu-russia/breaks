@@ -88,6 +88,8 @@ namespace M6502Core
 
 		ext_in[(size_t)ExtraCounter_Input::PHI1] = PHI1;
 		ext_in[(size_t)ExtraCounter_Input::PHI2] = PHI2;
+		ext_in[(size_t)ExtraCounter_Input::T1] = disp->getT1();
+		ext_in[(size_t)ExtraCounter_Input::TRES2] = disp->getTRES2();
 
 		ext->sim(ext_in, ext_out);
 
