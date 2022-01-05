@@ -40,6 +40,12 @@ namespace M6502Core
 
 	class M6502
 	{
+		BaseLogic::FF nmip_ff;
+		BaseLogic::FF irqp_ff;
+		BaseLogic::FF resp_ff;
+		BaseLogic::DLatch irqp_latch;
+		BaseLogic::DLatch resp_latch;
+
 		BaseLogic::DLatch prdy_latch1;
 		BaseLogic::DLatch prdy_latch2;
 

@@ -12,5 +12,6 @@ namespace Breaknes
 		~Famicom();
 
 		void sim();
+		void reset();
 	};
 }
