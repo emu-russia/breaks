@@ -44,8 +44,6 @@ namespace M6502Core
 		BaseLogic::DLatch sadl_latch;
 
 	public:
-		RegsControl();
-		~RegsControl();
 
 		void sim (BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
 	};

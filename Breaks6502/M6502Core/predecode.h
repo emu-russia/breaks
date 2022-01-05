@@ -23,8 +23,6 @@ namespace M6502Core
 		BaseLogic::DLatch pd_latch[8];
 
 	public:
-		PreDecode();
-		~PreDecode();
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[8], BaseLogic::TriState outputs[], BaseLogic::TriState n_PD[8]);
 	};

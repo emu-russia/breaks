@@ -33,8 +33,6 @@ namespace M6502Core
 		BaseLogic::FF brfw_ff;
 
 	public:
-		BranchLogic();
-		~BranchLogic();
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
 
