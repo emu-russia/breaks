@@ -151,6 +151,9 @@ namespace M6502Core
 		disp_late_in[(size_t)Dispatcher_Input::n_IMPLIED] = pd_out[(size_t)PreDecode_Output::n_IMPLIED];
 		disp_late_in[(size_t)Dispatcher_Input::PC_DB] = rand_out[(size_t)RandomLogic_Output::PC_DB];
 		disp_late_in[(size_t)Dispatcher_Input::n_ADL_PCL] = rand_out[(size_t)RandomLogic_Output::n_ADL_PCL];
+		disp_late_in[(size_t)Dispatcher_Input::n_ready] = disp_early_out[(size_t)Dispatcher_Output::n_ready];
+		disp_late_in[(size_t)Dispatcher_Input::T0] = disp_early_out[(size_t)Dispatcher_Output::T0];
+		disp_late_in[(size_t)Dispatcher_Input::B_OUT] = brk->getB_OUT();
 
 		disp->sim_AfterRandomLogic(disp_late_in, decoder_out, disp_late_out);
 

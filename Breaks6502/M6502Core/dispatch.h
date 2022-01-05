@@ -19,6 +19,8 @@ namespace M6502Core
 		n_IMPLIED,
 		PC_DB,
 		n_ADL_PCL,
+		n_ready,
+		T0,
 		Max,
 	};
 
@@ -30,13 +32,13 @@ namespace M6502Core
 		Z_IR,
 		FETCH,
 		n_ready,
+		WR,
 		TRES2,
 
 		ACRL2,
 		T1,
 		T5,
 		T6,
-		WR,
 		n_1PC,
 		Max,
 	};
@@ -77,6 +79,9 @@ namespace M6502Core
 		BaseLogic::DLatch comp_latch2;
 		BaseLogic::DLatch comp_latch3;
 
+		BaseLogic::DLatch rdydelay_latch1;
+		BaseLogic::DLatch rdydelay_latch2;
+
 		BaseLogic::DLatch t0_latch;
 		BaseLogic::DLatch t1x_latch;
 		BaseLogic::FF t0_ff;
@@ -90,6 +95,8 @@ namespace M6502Core
 	public:
 		
 		void sim_BeforeDecoder(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
+
+		void sim_BeforeRandomLogic(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
 
 		void sim_AfterRandomLogic(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
 
