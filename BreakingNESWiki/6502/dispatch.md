@@ -21,7 +21,7 @@
 
 Промежуточные сигналы получаются из выходов декодера без какой-либо закономерности. Очень сложно было их отделить от промежуточных сигналов остальных схем управления, по причине хаотичности соединений.
 
-|BR2|BR3|/MemOP|STORE, STOR|/SHIFT|
+|BR2|BR3, D91_92|/MemOP|STORE, STOR|/SHIFT|
 |---|---|---|---|---|
 |![dispatch_br2_tran](/BreakingNESWiki/imgstore/dispatch_br2_tran.jpg)|![dispatch_br3_tran](/BreakingNESWiki/imgstore/dispatch_br3_tran.jpg)|![dispatch_memop_tran](/BreakingNESWiki/imgstore/dispatch_memop_tran.jpg)|![dispatch_store_tran](/BreakingNESWiki/imgstore/dispatch_store_tran.jpg)|![dispatch_shift_tran](/BreakingNESWiki/imgstore/dispatch_shift_tran.jpg)|
 
