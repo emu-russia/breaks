@@ -91,7 +91,7 @@ namespace M6502Core
 		
 		void sim_BeforeDecoder(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
 
-		void sim_AfterRandomLogic(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
+		void sim_AfterRandomLogic(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
 
 		BaseLogic::TriState getTRES2();
 	};

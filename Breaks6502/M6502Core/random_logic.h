@@ -2,6 +2,22 @@
 
 namespace M6502Core
 {
+	enum class RandomLogic_Input
+	{
+		PHI1 = 0,
+		PHI2,
+		Max,
+	};
+
+	enum class RandomLogic_Output
+	{
+		BRFW = 0,
+		n_BRTAKEN,
+		PC_DB,
+		n_ADL_PCL,
+		Max,
+	};
+
 	class RandomLogic
 	{
 	public:
@@ -16,6 +32,6 @@ namespace M6502Core
 		RandomLogic();
 		~RandomLogic();
 
-		void sim(BaseLogic::TriState d[]);
+		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
 	};
 }

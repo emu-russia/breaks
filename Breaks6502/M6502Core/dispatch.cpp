@@ -45,8 +45,20 @@ namespace M6502Core
 		outputs[(size_t)Dispatcher_Output::n_ready] = n_ready;
 	}
 
-	void Dispatcher::sim_AfterRandomLogic(TriState inputs[], TriState outputs[])
+	void Dispatcher::sim_AfterRandomLogic(TriState inputs[], TriState d[], TriState outputs[])
 	{
+		TriState PHI1 = inputs[(size_t)Dispatcher_Input::PHI1];
+		TriState PHI2 = inputs[(size_t)Dispatcher_Input::PHI2];
+		TriState BRK6E = inputs[(size_t)Dispatcher_Input::BRK6E];
+		TriState RESP = inputs[(size_t)Dispatcher_Input::RESP];
+		TriState ACR = inputs[(size_t)Dispatcher_Input::ACR];
+		TriState BRFW = inputs[(size_t)Dispatcher_Input::BRFW];
+		TriState n_BRTAKEN = inputs[(size_t)Dispatcher_Input::n_BRTAKEN];
+		TriState n_TWOCYCLE = inputs[(size_t)Dispatcher_Input::n_TWOCYCLE];
+		TriState n_IMPLIED = inputs[(size_t)Dispatcher_Input::n_IMPLIED];
+		TriState PC_DB = inputs[(size_t)Dispatcher_Input::PC_DB];
+		TriState n_ADL_PCL = inputs[(size_t)Dispatcher_Input::n_ADL_PCL];
+
 
 	}
 
