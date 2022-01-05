@@ -63,10 +63,9 @@ namespace M6502Core
 		disp_early_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
 		disp_early_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
 		disp_early_in[(size_t)Dispatcher_Input::RDY] = RDY;
-		disp_early_in[(size_t)Dispatcher_Input::BRK6E] = TriState::Zero; // DEBUG: BRK6E
 		disp_early_in[(size_t)Dispatcher_Input::RESP] = RESP;
-		disp_early_in[(size_t)Dispatcher_Input::DORES] = TriState::Zero; // DEBUG: DORES
-		disp_early_in[(size_t)Dispatcher_Input::B_OUT] = TriState::Zero; // DEBUG: B_OUT
+		disp_early_in[(size_t)Dispatcher_Input::DORES] = brk->getDORES();
+		disp_early_in[(size_t)Dispatcher_Input::B_OUT] = brk->getB_OUT();
 
 		disp->sim_BeforeDecoder(disp_early_in, disp_early_out);
 

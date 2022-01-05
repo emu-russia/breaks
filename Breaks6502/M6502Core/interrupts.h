@@ -58,5 +58,8 @@ namespace M6502Core
 	public:
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
+
+		BaseLogic::TriState getDORES();
+		BaseLogic::TriState getB_OUT();
 	};
 }
