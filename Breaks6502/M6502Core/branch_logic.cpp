@@ -4,14 +4,12 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void BranchLogic::sim(TriState inputs[], TriState outputs[])
+	void BranchLogic::sim(TriState inputs[], BaseLogic::TriState d[], TriState outputs[])
 	{
 		TriState PHI1 = inputs[(size_t)BranchLogic_Input::PHI1];
 		TriState PHI2 = inputs[(size_t)BranchLogic_Input::PHI2];
 
 		TriState n_IR5 = inputs[(size_t)BranchLogic_Input::n_IR5];
-		TriState D121 = inputs[(size_t)BranchLogic_Input::D121];
-		TriState D126 = inputs[(size_t)BranchLogic_Input::D126];
 
 		TriState n_C_OUT = inputs[(size_t)BranchLogic_Input::n_C_OUT];
 		TriState n_V_OUT = inputs[(size_t)BranchLogic_Input::n_V_OUT];
@@ -19,14 +17,14 @@ namespace M6502Core
 		TriState n_Z_OUT = inputs[(size_t)BranchLogic_Input::n_Z_OUT];
 
 		TriState DB7 = inputs[(size_t)BranchLogic_Input::DB7];
-		TriState BR2 = inputs[(size_t)BranchLogic_Input::BR2];
+		TriState BR2 = d[80];
 
 		// BRTAKEN
 
-		TriState res_C = NOR3(n_C_OUT, D126, NOT(D121));
-		TriState res_V = NOR3(n_V_OUT, D121, NOT(D126));
-		TriState res_N = NOR3(n_N_OUT, NOT(D126), NOT(D121));
-		TriState res_Z = NOR3(n_Z_OUT, D126, D121);
+		TriState res_C = NOR3(n_C_OUT, d[126], NOT(d[121]));
+		TriState res_V = NOR3(n_V_OUT, d[121], NOT(d[126]));
+		TriState res_N = NOR3(n_N_OUT, NOT(d[126]), NOT(d[121]));
+		TriState res_Z = NOR3(n_Z_OUT, d[126], d[121]);
 
 		TriState in1[4];
 

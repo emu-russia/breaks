@@ -6,6 +6,9 @@ namespace M6502Core
 	{
 		PHI1 = 0,
 		PHI2,
+		n_ready,
+		T0,
+		T1,
 		Max,
 	};
 
