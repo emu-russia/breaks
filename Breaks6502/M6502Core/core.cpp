@@ -69,6 +69,9 @@ namespace M6502Core
 
 		disp->sim_BeforeDecoder(disp_early_in, disp_early_out);
 
+		TriState n_ready = disp_early_out[(size_t)Dispatcher_Output::n_ready];
+		TriState T0 = disp_early_out[(size_t)Dispatcher_Output::T0];
+
 		TriState FETCH = disp_early_out[(size_t)Dispatcher_Output::FETCH];
 		TriState Z_IR = disp_early_out[(size_t)Dispatcher_Output::Z_IR];
 
@@ -136,6 +139,12 @@ namespace M6502Core
 		TriState rand_in[(size_t)RandomLogic_Input::Max];
 		TriState rand_out[(size_t)RandomLogic_Output::Max];
 
+		rand_in[(size_t)RandomLogic_Input::PHI1] = PHI1;
+		rand_in[(size_t)RandomLogic_Input::PHI2] = PHI2;
+		rand_in[(size_t)RandomLogic_Input::n_ready] = n_ready;
+		rand_in[(size_t)RandomLogic_Input::T0] = T0;
+		rand_in[(size_t)RandomLogic_Input::T1] = disp->getT1();
+
 		random->sim(rand_in, decoder_out, rand_out);
 
 		TriState disp_late_in[(size_t)Dispatcher_Input::Max];
@@ -143,7 +152,6 @@ namespace M6502Core
 
 		disp_late_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
 		disp_late_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
-
 		disp_late_in[(size_t)Dispatcher_Input::BRK6E] = int_out[(size_t)BRKProcessing_Output::BRK6E];
 		disp_late_in[(size_t)Dispatcher_Input::RESP] = RESP;
 		disp_late_in[(size_t)Dispatcher_Input::ACR] = TriState::Zero;	// TODO: ACR
@@ -153,8 +161,8 @@ namespace M6502Core
 		disp_late_in[(size_t)Dispatcher_Input::n_IMPLIED] = pd_out[(size_t)PreDecode_Output::n_IMPLIED];
 		disp_late_in[(size_t)Dispatcher_Input::PC_DB] = rand_out[(size_t)RandomLogic_Output::PC_DB];
 		disp_late_in[(size_t)Dispatcher_Input::n_ADL_PCL] = rand_out[(size_t)RandomLogic_Output::n_ADL_PCL];
-		disp_late_in[(size_t)Dispatcher_Input::n_ready] = disp_early_out[(size_t)Dispatcher_Output::n_ready];
-		disp_late_in[(size_t)Dispatcher_Input::T0] = disp_early_out[(size_t)Dispatcher_Output::T0];
+		disp_late_in[(size_t)Dispatcher_Input::n_ready] = n_ready;
+		disp_late_in[(size_t)Dispatcher_Input::T0] = T0;
 		disp_late_in[(size_t)Dispatcher_Input::B_OUT] = brk->getB_OUT();
 
 		disp->sim_AfterRandomLogic(disp_late_in, decoder_out, disp_late_out);

@@ -6,11 +6,8 @@ namespace M6502Core
 	{
 		PHI1 = 0,
 		PHI2,
-		BR2,
 		DB7,
 		n_IR5,
-		D121,
-		D126,
 		n_C_OUT,
 		n_V_OUT,
 		n_N_OUT,
@@ -34,7 +31,7 @@ namespace M6502Core
 
 	public:
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
+		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
 
 		BaseLogic::TriState getBRFW();
 	};
