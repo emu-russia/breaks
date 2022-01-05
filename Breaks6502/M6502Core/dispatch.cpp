@@ -38,6 +38,12 @@ namespace M6502Core
 
 		// Outputs
 
+		if (traceBeforeDecoder)
+		{
+			printf("Dispatcher BeforeDecoder: PHI1: %d, PHI2: %d, /T0: %d, /T1X: %d, 0/IR: %d, FETCH: %d, /ready: %d, WR: %d\n",
+				PHI1, PHI2, n_T0, n_T1X, Z_IR, FETCH, n_ready, WR);
+		}
+
 		outputs[(size_t)Dispatcher_Output::T0] = T0;
 		outputs[(size_t)Dispatcher_Output::n_T0] = n_T0;
 		outputs[(size_t)Dispatcher_Output::n_T1X] = n_T1X;
@@ -192,6 +198,12 @@ namespace M6502Core
 		wr_latch.set(NOR6(wr_in), PHI2);
 
 		// Outputs
+
+		if (traceAfterRandom)
+		{
+			printf("Dispatcher AfterRandomLogic: PHI1: %d, PHI2: %d, n_TWOCYCLE: %d, n_IMPLIED: %d\n",
+				PHI1, PHI2, n_TWOCYCLE, n_IMPLIED );
+		}
 
 		outputs[(size_t)Dispatcher_Output::ACRL2] = ACRL2;
 		outputs[(size_t)Dispatcher_Output::T1] = T1;
