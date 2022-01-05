@@ -101,6 +101,13 @@ namespace M6502Core
 
 		decoder->sim(decoder_in, decoder_out);
 
+		// Interrupt handling
+
+		TriState int_in[(size_t)BRKProcessing_Input::Max] = { TriState::Zero };
+		TriState int_out[(size_t)BRKProcessing_Output::Max] = { TriState::Zero };
+
+		brk->sim(int_in, int_out);
+
 		// Random Logic
 
 		random->sim(decoder_out);

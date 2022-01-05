@@ -84,6 +84,14 @@ namespace BaseLogic
 	TriState AND(TriState a, TriState b);
 
 	/// <summary>
+	/// 2-or
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <returns></returns>
+	TriState OR(TriState a, TriState b);
+
+	/// <summary>
 	/// 2-xor
 	/// </summary>
 	/// <param name="a"></param>
