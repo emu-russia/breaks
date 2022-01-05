@@ -25,10 +25,6 @@ Transistor circuit:
 
 The circuit for getting the control signal `DORES` ("Do Reset") (which is binned to all other internals) is combined here with the interrupt vector setting circuit to save space.
 
-The logic circuit for setting the interrupt address:
-
-![intr_address_logic](/BreakingNESWiki/imgstore/intr_address_logic.jpg)
-
 ## B Flag
 
 Transistor circuit:
@@ -41,10 +37,6 @@ Interrupt handling schematic:
 
 ![int_control_logisim](/BreakingNESWiki/imgstore/logisim/int_control_logisim.jpg)
 
-Schematic for setting the address of the interrupt handler:
-
-![int_address_logisim](/BreakingNESWiki/imgstore/logisim/int_address_logisim.jpg)
-
 To handle interrupts an additional circuit is required to generate cycles 6 and 7 (because they do not come from the decoder) (control signals `BRK6E` and `BRK7`). And the control signal BRK6E ("Break Cycle 6 End") starts during PHI2 of cycle 6 and ends during PHI1 of cycle 7. This is done to determine the edge of the /NMI signal.
 
 The detection of the /NMI edge is done by a classic edge detection circuit based on two RS triggers.
@@ -54,3 +46,7 @@ The /RES signal is additionally stored on RESET FLIP/FLOP, because it is require
 The arrival of any interrupt is reflected on flag B, the output of which (`B_OUT`) forces the processor to execute a BRK instruction (operation code 0x00). This way the developers have unified the handling of all interrupts.
 
 The last small circuit forms the address (or vector) of the interrupts (control signals 0/ADL0, 0/ADL1 and 0/ADL2), which control the lowest 3 bits of the address bus.
+
+Schematic for setting the address of the interrupt handler:
+
+![int_address_logisim](/BreakingNESWiki/imgstore/logisim/int_address_logisim.jpg)
