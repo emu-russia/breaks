@@ -57,10 +57,21 @@ namespace M6502Core
 
 		// Dispatcher and other auxiliary logic
 
-		disp->sim();
+		TriState disp_early_in[(size_t)Dispatcher_Input::Max];
+		TriState disp_early_out[(size_t)Dispatcher_Output::Max];
 
-		TriState FETCH = TriState::Zero;
-		TriState Z_IR = TriState::Zero;
+		disp_early_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
+		disp_early_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
+		disp_early_in[(size_t)Dispatcher_Input::RDY] = RDY;
+		disp_early_in[(size_t)Dispatcher_Input::BRK6E] = TriState::Zero; // DEBUG: BRK6E
+		disp_early_in[(size_t)Dispatcher_Input::RESP] = RESP;
+		disp_early_in[(size_t)Dispatcher_Input::DORES] = TriState::Zero; // DEBUG: DORES
+		disp_early_in[(size_t)Dispatcher_Input::B_OUT] = TriState::Zero; // DEBUG: B_OUT
+
+		disp->sim_BeforeDecoder(disp_early_in, disp_early_out);
+
+		TriState FETCH = disp_early_out[(size_t)Dispatcher_Output::FETCH];
+		TriState Z_IR = disp_early_out[(size_t)Dispatcher_Output::Z_IR];
 
 		TriState pd_in[(size_t)PreDecode_Input::Max];
 		TriState pd_out[(size_t)PreDecode_Output::Max];
@@ -103,8 +114,8 @@ namespace M6502Core
 		decoder_in[(size_t)DecoderInput::n_IR7] = NOT(IR[7]);
 		decoder_in[(size_t)DecoderInput::IR7] = IR[7];
 
-		decoder_in[(size_t)DecoderInput::n_T0] = TriState::Zero;
-		decoder_in[(size_t)DecoderInput::n_T1X] = TriState::Zero;
+		decoder_in[(size_t)DecoderInput::n_T0] = disp_early_out[(size_t)Dispatcher_Output::n_T0];
+		decoder_in[(size_t)DecoderInput::n_T1X] = disp_early_out[(size_t)Dispatcher_Output::n_T1X];
 		decoder_in[(size_t)DecoderInput::n_T2] = ext_out[(size_t)ExtraCounter_Output::n_T2];
 		decoder_in[(size_t)DecoderInput::n_T3] = ext_out[(size_t)ExtraCounter_Output::n_T3];
 		decoder_in[(size_t)DecoderInput::n_T4] = ext_out[(size_t)ExtraCounter_Output::n_T4];
@@ -122,6 +133,11 @@ namespace M6502Core
 		// Random Logic
 
 		random->sim(decoder_out);
+
+		TriState disp_late_in[(size_t)Dispatcher_Input::Max];
+		TriState disp_late_out[(size_t)Dispatcher_Output::Max];
+
+		disp->sim_AfterRandomLogic(disp_late_in, disp_late_out);
 
 		// Bottom Part
 

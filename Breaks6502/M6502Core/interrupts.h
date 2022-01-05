@@ -4,7 +4,7 @@ namespace M6502Core
 {
 	enum class BRKProcessing_Input
 	{
-		PHI1,
+		PHI1 = 0,
 		PHI2,
 		BRK5,
 		n_ready,
@@ -19,7 +19,7 @@ namespace M6502Core
 
 	enum class BRKProcessing_Output
 	{
-		BRK6E,
+		BRK6E = 0,
 		BRK7,
 		DORES,
 		B_OUT,
