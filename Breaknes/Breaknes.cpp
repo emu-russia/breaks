@@ -20,11 +20,15 @@ int main()
 
 	// Simulate reset
 
+	printf("Before Reset:\n");
+
 	fami->reset();
 
 	// Continue executing the instructions in the usual way.
 
-	size_t maxHalfcycles = 32;         // DEBUG
+	printf("After Reset:\n");
+
+	size_t maxHalfcycles = 16;         // DEBUG: Execute several cycles sufficient to execute at least one 6502 instruction.
 
 	int ts1 = GetTimeStamp();
 
