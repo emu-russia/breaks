@@ -7,10 +7,10 @@ namespace M6502Core
 		PHI1 = 0,
 		PHI2,
 		RDY,
-		RESP,
 		DORES,
 		B_OUT,
 
+		RESP,
 		BRK6E,
 		ACR,
 		BRFW,

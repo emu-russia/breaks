@@ -9,7 +9,6 @@ namespace M6502Core
 		TriState PHI1 = inputs[(size_t)Dispatcher_Input::PHI1];
 		TriState PHI2 = inputs[(size_t)Dispatcher_Input::PHI2];
 		TriState RDY = inputs[(size_t)Dispatcher_Input::RDY];
-		TriState RESP = inputs[(size_t)Dispatcher_Input::RESP];
 		TriState DORES = inputs[(size_t)Dispatcher_Input::DORES];
 		TriState B_OUT = inputs[(size_t)Dispatcher_Input::B_OUT];
 
