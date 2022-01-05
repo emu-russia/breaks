@@ -4,14 +4,6 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	PreDecode::PreDecode()
-	{
-	}
-
-	PreDecode::~PreDecode()
-	{
-	}
-
 	void PreDecode::sim(TriState inputs[], TriState d[8], TriState outputs[], TriState n_PD[8])
 	{
 		TriState PHI2 = inputs[(size_t)PreDecode_Input::PHI2];

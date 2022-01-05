@@ -9,7 +9,7 @@ namespace M6502Core
 		decoder = new Decoder;
 		predecode = new PreDecode;
 		ir = new IR;
-		exT = new ExtraCounter;
+		ext = new ExtraCounter;
 		brk = new BRKProcessing;
 		disp = new Dispatcher;
 		random = new RandomLogic;
@@ -20,7 +20,7 @@ namespace M6502Core
 		delete decoder;
 		delete predecode;
 		delete ir;
-		delete exT;
+		delete ext;
 		delete brk;
 		delete disp;
 		delete random;
@@ -35,6 +35,8 @@ namespace M6502Core
 		TriState RDY = inputs[(size_t)InputPad::RDY];
 		TriState SO = inputs[(size_t)InputPad::SO];
 
+		// Logic associated with external input terminals
+
 		TriState PHI1 = NOT(PHI0);
 		TriState PHI2 = PHI0;
 
@@ -44,16 +46,34 @@ namespace M6502Core
 
 		// Dispatcher and other auxiliary logic
 
-		TriState decoder_in[Decoder::inputs_count];
-		TriState decoder_out[Decoder::outputs_count];
+		disp->sim();
 
-		decoder->sim(decoder_in, decoder_out);
+		TriState FETCH = TriState::Zero;
+		TriState Z_IR = TriState::Zero;
 
 		TriState pd_in[(size_t)PreDecode_Input::Max];
 		TriState pd_out[(size_t)PreDecode_Output::Max];
 		TriState n_PD[8];
 
+		pd_in[(size_t)PreDecode_Input::PHI2] = PHI2;
+		pd_in[(size_t)PreDecode_Input::Z_IR] = Z_IR;
+
 		predecode->sim(pd_in, inOuts, pd_out, n_PD);
+
+		ir->sim(PHI1, FETCH, n_PD);
+
+		TriState ext_in[(size_t)ExtraCounter_Input::Max] = { TriState::Zero };
+		TriState ext_out[(size_t)ExtraCounter_Output::Max] = { TriState::Zero };
+
+		ext_in[(size_t)ExtraCounter_Input::PHI1] = PHI1;
+		ext_in[(size_t)ExtraCounter_Input::PHI2] = PHI2;
+
+		ext->sim(ext_in, ext_out);
+
+		TriState decoder_in[Decoder::inputs_count];
+		TriState decoder_out[Decoder::outputs_count];
+
+		decoder->sim(decoder_in, decoder_out);
 
 		// Random Logic
 

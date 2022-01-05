@@ -4,14 +4,6 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	IR::IR()
-	{
-	}
-
-	IR::~IR()
-	{
-	}
-
 	void IR::sim(TriState PHI1, TriState FETCH, TriState n_in[8])
 	{
 		for (size_t n = 0; n < 8; n++)

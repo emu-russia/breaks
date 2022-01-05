@@ -50,7 +50,7 @@ namespace M6502Core
 		Decoder* decoder = nullptr;
 		PreDecode* predecode = nullptr;
 		IR* ir = nullptr;
-		ExtraCounter* exT = nullptr;
+		ExtraCounter* ext = nullptr;
 		BRKProcessing* brk = nullptr;
 		Dispatcher* disp = nullptr;
 		RandomLogic* random = nullptr;

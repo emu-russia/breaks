@@ -4,14 +4,6 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	BranchLogic::BranchLogic()
-	{
-	}
-
-	BranchLogic::~BranchLogic()
-	{
-	}
-
 	void BranchLogic::sim(TriState inputs[], TriState outputs[])
 	{
 		TriState PHI1 = inputs[(size_t)BranchLogic_Input::PHI1];

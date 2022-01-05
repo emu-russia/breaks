@@ -4,14 +4,6 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	RegsControl::RegsControl()
-	{
-	}
-
-	RegsControl::~RegsControl()
-	{
-	}
-
 	void RegsControl::sim(TriState inputs[], TriState d[], TriState outputs[])
 	{
 		TriState PHI1 = inputs[(size_t)RegsControl_Input::PHI1];
