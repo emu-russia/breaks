@@ -67,6 +67,8 @@ The internal signal `SO` is fed to the [flag V](flags.md) input to process the c
 
 ![rw_tran](/BreakingNESWiki/imgstore/rw_tran.jpg)
 
+The `WR` signal comes from [dispatcher](dispatch.md) and defines the operating mode of the processor (WR:1 - processor writes data, WR:0 - processor reads data).
+
 ## Address Bus
 
 See [Address Bus](address_bus.md).
