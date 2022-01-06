@@ -42,6 +42,7 @@ namespace M6502Core
 		regs_control_in[(size_t)RegsControl_Input::PHI1] = PHI1;
 		regs_control_in[(size_t)RegsControl_Input::PHI2] = PHI2;
 		regs_control_in[(size_t)RegsControl_Input::n_ready] = n_ready;
+		regs_control_in[(size_t)RegsControl_Input::STOR] = TriState::Zero; // TODO
 
 		regs_control->sim(regs_control_in, d, regs_control_out);
 
@@ -69,7 +70,16 @@ namespace M6502Core
 
 		// Flags control logic
 
-		flags_control->sim();
+		TriState flags_ctrl_in[(size_t)FlagsControl_Input::Max];
+		TriState flags_ctrl_out[(size_t)FlagsControl_Output::Max];
+
+		flags_ctrl_in[(size_t)FlagsControl_Input::PHI2] = PHI2;
+		flags_ctrl_in[(size_t)FlagsControl_Input::T6] = TriState::Zero; // TODO
+		flags_ctrl_in[(size_t)FlagsControl_Input::ZTST] = TriState::Zero; // TODO
+		flags_ctrl_in[(size_t)FlagsControl_Input::SR] = TriState::Zero; // TODO
+		flags_ctrl_in[(size_t)FlagsControl_Input::n_ready] = n_ready;
+
+		flags_control->sim(flags_ctrl_in, d, flags_ctrl_out);
 
 		// Flags
 
@@ -77,11 +87,17 @@ namespace M6502Core
 
 		// Conditional branch logic
 
-		TriState branch_logic_in[(size_t)BranchLogic_Input::Max] = { TriState::Zero };	// DEBUG
-		TriState branch_logic_out[(size_t)BranchLogic_Output::Max] = { TriState::Zero };	// DEBUG
+		TriState branch_logic_in[(size_t)BranchLogic_Input::Max];
+		TriState branch_logic_out[(size_t)BranchLogic_Output::Max];
 
 		branch_logic_in[(size_t)BranchLogic_Input::PHI1] = PHI1;
 		branch_logic_in[(size_t)BranchLogic_Input::PHI2] = PHI2;
+		branch_logic_in[(size_t)BranchLogic_Input::DB7] = TriState::Zero;	// TODO
+		branch_logic_in[(size_t)BranchLogic_Input::n_IR5] = TriState::Zero;	// TODO
+		branch_logic_in[(size_t)BranchLogic_Input::n_C_OUT] = TriState::Zero;	// TODO
+		branch_logic_in[(size_t)BranchLogic_Input::n_V_OUT] = TriState::Zero;	// TODO
+		branch_logic_in[(size_t)BranchLogic_Input::n_N_OUT] = TriState::Zero;	// TODO
+		branch_logic_in[(size_t)BranchLogic_Input::n_Z_OUT] = TriState::Zero;	// TODO
 
 		branch_logic->sim(branch_logic_in, d, branch_logic_out);
 
