@@ -67,6 +67,16 @@ namespace M6502Core
 		resp_latch.set(resp_ff.get(), PHI1);
 		TriState RESP = resp_latch.nget();
 
+		// Precharge internal buses
+
+		if (PHI2)
+		{
+			Unpack(0xff, SB);
+			Unpack(0xff, DB);
+			Unpack(0xff, ADL);
+			Unpack(0xff, ADH);
+		}
+
 		// Dispatcher and other auxiliary logic
 
 		TriState disp_early_in[(size_t)Dispatcher_Input::Max];
