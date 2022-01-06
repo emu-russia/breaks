@@ -27,22 +27,18 @@ namespace M6502Core
 		TriState res2 = NOR3(PD[1], PD[4], PD[7]);
 
 		TriState in3[4];
-
 		in3[0] = NOT(PD[0]);
 		in3[1] = PD[2];
 		in3[2] = NOT(PD[3]);
 		in3[3] = PD[4];
-
 		TriState res3 = NOR4(in3);
 
 		TriState in4[5];
-
 		in4[0] = PD[0];
 		in4[1] = PD[2];
 		in4[2] = PD[3];
 		in4[3] = PD[4];
 		in4[4] = NOT(PD[7]);
-
 		TriState res4 = NOR5(in4);
 
 		TriState n_TWOCYCLE = AND (NAND(IMPLIED, NOT(res2)), NOR(res3, res4));
