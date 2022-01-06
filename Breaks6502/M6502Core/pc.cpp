@@ -4,7 +4,7 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void ProgramCounter::sim()
+	void ProgramCounter::sim(TriState inputs[], TriState DB[], TriState ADL[], TriState ADH[])
 	{
 
 	}
