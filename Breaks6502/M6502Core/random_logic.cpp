@@ -36,6 +36,13 @@ namespace M6502Core
 		TriState IR0 = inputs[(size_t)RandomLogic_Input::IR0];
 		TriState n_IR5 = inputs[(size_t)RandomLogic_Input::n_IR5];
 		TriState n_PRDY = inputs[(size_t)RandomLogic_Input::n_PRDY];
+		TriState ACR = inputs[(size_t)RandomLogic_Input::ACR];
+		TriState AVR = inputs[(size_t)RandomLogic_Input::AVR];
+		TriState Z_ADL0 = inputs[(size_t)RandomLogic_Input::Z_ADL0];
+		TriState Z_ADL1 = inputs[(size_t)RandomLogic_Input::Z_ADL1];
+		TriState Z_ADL2 = inputs[(size_t)RandomLogic_Input::Z_ADL2];
+		TriState BRK6E = inputs[(size_t)RandomLogic_Input::BRK6E];
+		TriState SO = inputs[(size_t)RandomLogic_Input::SO];
 		
 		TriState BR0 = AND(d[73], NOT(n_PRDY));
 
@@ -60,7 +67,7 @@ namespace M6502Core
 		alu_control_in[(size_t)ALUControl_Input::PHI2] = PHI2;
 		alu_control_in[(size_t)ALUControl_Input::BRFW] = branch_logic->getBRFW();
 		alu_control_in[(size_t)ALUControl_Input::n_ready] = n_ready;
-		alu_control_in[(size_t)ALUControl_Input::BRK6E] = TriState::Zero; // TODO
+		alu_control_in[(size_t)ALUControl_Input::BRK6E] = BRK6E;
 		alu_control_in[(size_t)ALUControl_Input::STKOP] = regs_control_out[(size_t)RegsControl_Output::STKOP];
 		alu_control_in[(size_t)ALUControl_Input::T0] = T0;
 		alu_control_in[(size_t)ALUControl_Input::T1] = T1;
@@ -97,12 +104,12 @@ namespace M6502Core
 		bus_in[(size_t)BusControl_Input::STXY] = regs_control_out[(size_t)RegsControl_Output::STXY];
 		bus_in[(size_t)BusControl_Input::AND] = alu_control_out[(size_t)ALUControl_Output::AND];
 		bus_in[(size_t)BusControl_Input::STOR] = TriState::Zero; // TODO
-		bus_in[(size_t)BusControl_Input::Z_ADL0] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::Z_ADL0] = Z_ADL0;
 		bus_in[(size_t)BusControl_Input::ACRL2] = TriState::Zero; // TODO
 		bus_in[(size_t)BusControl_Input::DL_PCH] = pc_out[(size_t)PC_Control_Output::DL_PCH];
 		bus_in[(size_t)BusControl_Input::n_ready] = n_ready;
 		bus_in[(size_t)BusControl_Input::INC_SB] = alu_control_out[(size_t)ALUControl_Output::INC_SB];
-		bus_in[(size_t)BusControl_Input::BRK6E] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::BRK6E] = BRK6E;
 		bus_in[(size_t)BusControl_Input::n_PCH_PCH] = pc_out[(size_t)PC_Control_Output::n_PCH_PCH];
 		bus_in[(size_t)BusControl_Input::T0] = T0;
 		bus_in[(size_t)BusControl_Input::T1] = T1;
@@ -132,10 +139,10 @@ namespace M6502Core
 
 		flags_in[(size_t)Flags_Input::PHI1] = PHI1;
 		flags_in[(size_t)Flags_Input::PHI2] = PHI2;
-		flags_in[(size_t)Flags_Input::SO] = TriState::Zero; // TODO
+		flags_in[(size_t)Flags_Input::SO] = SO;
 		flags_in[(size_t)Flags_Input::B_OUT] = TriState::Zero; // TODO
-		flags_in[(size_t)Flags_Input::ACR] = TriState::Zero; // TODO
-		flags_in[(size_t)Flags_Input::AVR] = TriState::Zero; // TODO
+		flags_in[(size_t)Flags_Input::ACR] = ACR;
+		flags_in[(size_t)Flags_Input::AVR] = AVR;
 		flags_in[(size_t)Flags_Input::n_IR5] = n_IR5;
 		flags_in[(size_t)Flags_Input::P_DB] = flags_ctrl_out[(size_t)FlagsControl_Output::P_DB];
 		flags_in[(size_t)Flags_Input::DB_P] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_P];
@@ -169,6 +176,54 @@ namespace M6502Core
 		branch_logic->sim(branch_logic_in, d, branch_logic_out);
 
 		// Outputs
+
+		outputs[(size_t)RandomLogic_Output::Y_SB] = regs_control_out[(size_t)RegsControl_Output::Y_SB];
+		outputs[(size_t)RandomLogic_Output::SB_Y] = regs_control_out[(size_t)RegsControl_Output::SB_Y];
+		outputs[(size_t)RandomLogic_Output::X_SB] = regs_control_out[(size_t)RegsControl_Output::X_SB];
+		outputs[(size_t)RandomLogic_Output::SB_X] = regs_control_out[(size_t)RegsControl_Output::SB_X];
+		outputs[(size_t)RandomLogic_Output::S_ADL] = regs_control_out[(size_t)RegsControl_Output::S_ADL];
+		outputs[(size_t)RandomLogic_Output::S_SB] = regs_control_out[(size_t)RegsControl_Output::S_SB];
+		outputs[(size_t)RandomLogic_Output::SB_S] = regs_control_out[(size_t)RegsControl_Output::SB_S];
+		outputs[(size_t)RandomLogic_Output::S_S] = regs_control_out[(size_t)RegsControl_Output::S_S];
+		outputs[(size_t)RandomLogic_Output::NDB_ADD] = alu_control_out[(size_t)ALUControl_Output::NDB_ADD];
+		outputs[(size_t)RandomLogic_Output::DB_ADD] = alu_control_out[(size_t)ALUControl_Output::DB_ADD];
+		outputs[(size_t)RandomLogic_Output::Z_ADD] = alu_control_out[(size_t)ALUControl_Output::Z_ADD];
+		outputs[(size_t)RandomLogic_Output::SB_ADD] = alu_control_out[(size_t)ALUControl_Output::SB_ADD];
+		outputs[(size_t)RandomLogic_Output::ADL_ADD] = alu_control_out[(size_t)ALUControl_Output::ADL_ADD];
+		outputs[(size_t)RandomLogic_Output::n_ACIN] = alu_control_out[(size_t)ALUControl_Output::n_ACIN];
+		outputs[(size_t)RandomLogic_Output::ANDS] = alu_control_out[(size_t)ALUControl_Output::ANDS];
+		outputs[(size_t)RandomLogic_Output::EORS] = alu_control_out[(size_t)ALUControl_Output::EORS];
+		outputs[(size_t)RandomLogic_Output::ORS] = alu_control_out[(size_t)ALUControl_Output::ORS];
+		outputs[(size_t)RandomLogic_Output::SRS] = alu_control_out[(size_t)ALUControl_Output::SRS];
+		outputs[(size_t)RandomLogic_Output::SUMS] = alu_control_out[(size_t)ALUControl_Output::SUMS];
+		outputs[(size_t)RandomLogic_Output::n_DAA] = alu_control_out[(size_t)ALUControl_Output::n_DAA];
+		outputs[(size_t)RandomLogic_Output::n_DSA] = alu_control_out[(size_t)ALUControl_Output::n_DSA];
+		outputs[(size_t)RandomLogic_Output::ADD_SB7] = alu_control_out[(size_t)ALUControl_Output::ADD_SB7];
+		outputs[(size_t)RandomLogic_Output::ADD_SB06] = alu_control_out[(size_t)ALUControl_Output::ADD_SB06];
+		outputs[(size_t)RandomLogic_Output::ADD_ADL] = alu_control_out[(size_t)ALUControl_Output::ADD_ADL];
+		outputs[(size_t)RandomLogic_Output::SB_AC] = bus_out[(size_t)BusControl_Output::SB_AC];
+		outputs[(size_t)RandomLogic_Output::AC_SB] = bus_out[(size_t)BusControl_Output::AC_SB];
+		outputs[(size_t)RandomLogic_Output::AC_DB] = bus_out[(size_t)BusControl_Output::AC_DB];
+		outputs[(size_t)RandomLogic_Output::ADH_PCH] = pc_out[(size_t)PC_Control_Output::ADH_PCH];
+		outputs[(size_t)RandomLogic_Output::PCH_PCH] = pc_out[(size_t)PC_Control_Output::PCH_PCH];
+		outputs[(size_t)RandomLogic_Output::PCH_ADH] = pc_out[(size_t)PC_Control_Output::PCH_ADH];
+		outputs[(size_t)RandomLogic_Output::PCH_DB] = pc_out[(size_t)PC_Control_Output::PCH_DB];
+		outputs[(size_t)RandomLogic_Output::ADL_PCL] = pc_out[(size_t)PC_Control_Output::ADL_PCL];
+		outputs[(size_t)RandomLogic_Output::PCL_PCL] = pc_out[(size_t)PC_Control_Output::PCL_PCL];
+		outputs[(size_t)RandomLogic_Output::PCL_ADL] = pc_out[(size_t)PC_Control_Output::PCL_ADL];
+		outputs[(size_t)RandomLogic_Output::PCL_DB] = pc_out[(size_t)PC_Control_Output::PCL_DB];
+		outputs[(size_t)RandomLogic_Output::ADH_ABH] = bus_out[(size_t)BusControl_Output::ADH_ABH];
+		outputs[(size_t)RandomLogic_Output::ADL_ABL] = bus_out[(size_t)BusControl_Output::ADL_ABL];
+		outputs[(size_t)RandomLogic_Output::Z_ADL0] = Z_ADL0;	// pass through
+		outputs[(size_t)RandomLogic_Output::Z_ADL1] = Z_ADL1;	// pass through
+		outputs[(size_t)RandomLogic_Output::Z_ADL2] = Z_ADL2;	// pass through
+		outputs[(size_t)RandomLogic_Output::Z_ADH0] = bus_out[(size_t)BusControl_Output::Z_ADH0];
+		outputs[(size_t)RandomLogic_Output::Z_ADH17] = bus_out[(size_t)BusControl_Output::Z_ADH17];
+		outputs[(size_t)RandomLogic_Output::SB_DB] = bus_out[(size_t)BusControl_Output::SB_DB];
+		outputs[(size_t)RandomLogic_Output::SB_ADH] = bus_out[(size_t)BusControl_Output::SB_ADH];
+		outputs[(size_t)RandomLogic_Output::DL_ADL] = bus_out[(size_t)BusControl_Output::DL_ADL];
+		outputs[(size_t)RandomLogic_Output::DL_ADH] = bus_out[(size_t)BusControl_Output::DL_ADH];
+		outputs[(size_t)RandomLogic_Output::DL_DB] = bus_out[(size_t)BusControl_Output::DL_DB];
 
 		outputs[(size_t)RandomLogic_Output::BRFW] = branch_logic_out[(size_t)BranchLogic_Output::BRFW];
 		outputs[(size_t)RandomLogic_Output::n_BRTAKEN] = branch_logic_out[(size_t)BranchLogic_Output::n_BRTAKEN];

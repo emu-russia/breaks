@@ -170,6 +170,13 @@ namespace M6502Core
 		rand_in[(size_t)RandomLogic_Input::IR0] = IR[0];			// Used for IMPL (D128)
 		rand_in[(size_t)RandomLogic_Input::n_IR5] = NOT(IR[5]);
 		rand_in[(size_t)RandomLogic_Input::n_PRDY] = n_PRDY;		// Used for BR0
+		rand_in[(size_t)RandomLogic_Input::ACR] = alu->getACR();
+		rand_in[(size_t)RandomLogic_Input::AVR] = alu->getAVR();
+		rand_in[(size_t)RandomLogic_Input::Z_ADL0] = int_out[(size_t)BRKProcessing_Output::Z_ADL0];
+		rand_in[(size_t)RandomLogic_Input::Z_ADL1] = int_out[(size_t)BRKProcessing_Output::Z_ADL1];
+		rand_in[(size_t)RandomLogic_Input::Z_ADL2] = int_out[(size_t)BRKProcessing_Output::Z_ADL2];
+		rand_in[(size_t)RandomLogic_Input::BRK6E] = int_out[(size_t)BRKProcessing_Output::BRK6E];
+		rand_in[(size_t)RandomLogic_Input::SO] = SO;
 
 		random->sim(rand_in, decoder_out, rand_out, DB);
 
@@ -180,7 +187,7 @@ namespace M6502Core
 		disp_late_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
 		disp_late_in[(size_t)Dispatcher_Input::BRK6E] = int_out[(size_t)BRKProcessing_Output::BRK6E];
 		disp_late_in[(size_t)Dispatcher_Input::RESP] = RESP;
-		disp_late_in[(size_t)Dispatcher_Input::ACR] = TriState::Zero; // TODO
+		disp_late_in[(size_t)Dispatcher_Input::ACR] = alu->getACR();
 		disp_late_in[(size_t)Dispatcher_Input::BRFW] = rand_out[(size_t)RandomLogic_Output::BRFW];
 		disp_late_in[(size_t)Dispatcher_Input::n_BRTAKEN] = rand_out[(size_t)RandomLogic_Output::n_BRTAKEN];
 		disp_late_in[(size_t)Dispatcher_Input::n_TWOCYCLE] = pd_out[(size_t)PreDecode_Output::n_TWOCYCLE];
@@ -199,7 +206,34 @@ namespace M6502Core
 
 		regs->sim();
 
-		alu->sim();
+		TriState alu_in[(size_t)ALU_Input::Max];
+
+		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
+		alu_in[(size_t)ALU_Input::NDB_ADD] = rand_out[(size_t)RandomLogic_Output::NDB_ADD];
+		alu_in[(size_t)ALU_Input::DB_ADD] = rand_out[(size_t)RandomLogic_Output::DB_ADD];
+		alu_in[(size_t)ALU_Input::Z_ADD] = rand_out[(size_t)RandomLogic_Output::Z_ADD];
+		alu_in[(size_t)ALU_Input::SB_ADD] = rand_out[(size_t)RandomLogic_Output::SB_ADD];
+		alu_in[(size_t)ALU_Input::ADL_ADD] = rand_out[(size_t)RandomLogic_Output::ADL_ADD];
+		alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
+		alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
+		alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
+		alu_in[(size_t)ALU_Input::ANDS] = rand_out[(size_t)RandomLogic_Output::ANDS];
+		alu_in[(size_t)ALU_Input::EORS] = rand_out[(size_t)RandomLogic_Output::EORS];
+		alu_in[(size_t)ALU_Input::ORS] = rand_out[(size_t)RandomLogic_Output::ORS];
+		alu_in[(size_t)ALU_Input::SRS] = rand_out[(size_t)RandomLogic_Output::SRS];
+		alu_in[(size_t)ALU_Input::SUMS] = rand_out[(size_t)RandomLogic_Output::SUMS];
+		alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
+		alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
+		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
+		alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
+		alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
+		alu_in[(size_t)ALU_Input::Z_ADH0] = rand_out[(size_t)RandomLogic_Output::Z_ADH0];
+		alu_in[(size_t)ALU_Input::Z_ADH17] = rand_out[(size_t)RandomLogic_Output::Z_ADH17];
+		alu_in[(size_t)ALU_Input::n_ACIN] = rand_out[(size_t)RandomLogic_Output::n_ACIN];
+		alu_in[(size_t)ALU_Input::n_DAA] = rand_out[(size_t)RandomLogic_Output::n_DAA];
+		alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
+
+		alu->sim(alu_in, SB, DB, ADL, ADH);
 
 		pc->sim();
 
