@@ -9,6 +9,9 @@ namespace M6502Core
 		n_ready,
 		T0,
 		T1,
+		IR0,
+		n_IR5,
+		n_PRDY,
 		Max,
 	};
 
