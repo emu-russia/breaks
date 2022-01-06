@@ -116,19 +116,19 @@ namespace M6502Core
 			}
 #endif
 
-			if (ANDS)
+			if (ANDS == TriState::One)
 			{
 				n_res[n] = nands[n];
 			}
-			if (EORS)
+			if (EORS == TriState::One)
 			{
 				n_res[n] = NOT(eors[n]);
 			}
-			if (ORS)
+			if (ORS == TriState::One)
 			{
 				n_res[n] = nors[n];
 			}
-			if (SRS)
+			if (SRS == TriState::One)
 			{
 				if (n != 7)
 				{
@@ -139,7 +139,7 @@ namespace M6502Core
 					n_res[n] = TriState::One;
 				}
 			}
-			if (SUMS)
+			if (SUMS == TriState::One)
 			{
 				n_res[n] = sums[n];
 			}
@@ -163,11 +163,11 @@ namespace M6502Core
 
 			n_ADD[n].set(n_res[n], PHI2);
 
-			if (ADD_ADL)
+			if (ADD_ADL == TriState::One)
 			{
 				ADL[n] = n_ADD[n].nget();
 			}
-			if ((ADD_SB06 && n != 7) || (ADD_SB7 && n == 7))
+			if ((ADD_SB06 == TriState::One && n != 7) || (ADD_SB7 == TriState::One && n == 7))
 			{
 				SB[n] = n_ADD[n].nget();
 			}
@@ -199,7 +199,7 @@ namespace M6502Core
 
 		for (size_t n = 0; n < 8; n++)
 		{
-			if (PHI2)
+			if (PHI2 == TriState::One)
 			{
 				AC[n].set(AC_FF[n].get(), PHI2);
 			}
@@ -211,23 +211,23 @@ namespace M6502Core
 
 			// This is where the very brainy construction related to the connection of the busses is located.
 
-			if (AC_SB)
+			if (AC_SB == TriState::One)
 			{
 				SB[n] = AC_FF[n].get();
 			}
-			if (AC_DB)
+			if (AC_DB == TriState::One)
 			{
 				DB[n] = AC_FF[n].get();
 			}
-			if (SB_DB)
+			if (SB_DB == TriState::One)
 			{
 				BusConnect(SB[n], DB[n]);
 			}
-			if ((Z_ADH0 && n == 0) || (Z_ADH17 && n != 0))
+			if ((Z_ADH0 == TriState::One && n == 0) || (Z_ADH17 == TriState::One && n != 0))
 			{
 				ADH[n] = TriState::Zero;
 			}
-			if (SB_ADH)
+			if (SB_ADH == TriState::One)
 			{
 				BusConnect(SB[n], ADH[n]);
 			}

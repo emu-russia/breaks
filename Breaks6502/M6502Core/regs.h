@@ -18,6 +18,12 @@ namespace M6502Core
 
 	class Regs
 	{
+		BaseLogic::FF Y[8];
+		BaseLogic::FF X[8];
+		BaseLogic::FF S[8];
+
+		void sim_Bit(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState ADL[], size_t n);
+
 	public:
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState ADL[]);

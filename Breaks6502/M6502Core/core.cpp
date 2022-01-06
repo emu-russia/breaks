@@ -69,7 +69,7 @@ namespace M6502Core
 
 		// Precharge internal buses
 
-		if (PHI2)
+		if (PHI2 == TriState::One)
 		{
 			Unpack(0xff, SB);
 			Unpack(0xff, DB);
