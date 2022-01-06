@@ -13,6 +13,12 @@ namespace M6502Core
 		brk = new BRKProcessing;
 		disp = new Dispatcher;
 		random = new RandomLogic;
+
+		addr_bus = new AddressBus;
+		regs = new Regs;
+		alu = new ALU;
+		pc = new ProgramCounter;
+		data_bus = new DataBus;
 	}
 
 	M6502::~M6502()
@@ -24,6 +30,12 @@ namespace M6502Core
 		delete brk;
 		delete disp;
 		delete random;
+
+		delete addr_bus;
+		delete regs;
+		delete alu;
+		delete pc;
+		delete data_bus;
 	}
 
 	void M6502::sim(TriState inputs[], TriState outputs[], TriState inOuts[])
@@ -63,7 +75,6 @@ namespace M6502Core
 		disp_early_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
 		disp_early_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
 		disp_early_in[(size_t)Dispatcher_Input::RDY] = RDY;
-		disp_early_in[(size_t)Dispatcher_Input::RESP] = RESP;
 		disp_early_in[(size_t)Dispatcher_Input::DORES] = brk->getDORES();
 		disp_early_in[(size_t)Dispatcher_Input::B_OUT] = brk->getB_OUT();
 
@@ -86,13 +97,14 @@ namespace M6502Core
 
 		ir->sim(PHI1, FETCH, n_PD);
 
-		TriState ext_in[(size_t)ExtraCounter_Input::Max] = { TriState::Zero };
-		TriState ext_out[(size_t)ExtraCounter_Output::Max] = { TriState::Zero };
+		TriState ext_in[(size_t)ExtraCounter_Input::Max];
+		TriState ext_out[(size_t)ExtraCounter_Output::Max];
 
 		ext_in[(size_t)ExtraCounter_Input::PHI1] = PHI1;
 		ext_in[(size_t)ExtraCounter_Input::PHI2] = PHI2;
 		ext_in[(size_t)ExtraCounter_Input::T1] = disp->getT1();
 		ext_in[(size_t)ExtraCounter_Input::TRES2] = disp->getTRES2();
+		ext_in[(size_t)ExtraCounter_Input::n_ready] = n_ready;
 
 		ext->sim(ext_in, ext_out);
 
@@ -129,8 +141,19 @@ namespace M6502Core
 
 		// Interrupt handling
 
-		TriState int_in[(size_t)BRKProcessing_Input::Max] = { TriState::Zero };
-		TriState int_out[(size_t)BRKProcessing_Output::Max] = { TriState::Zero };
+		TriState int_in[(size_t)BRKProcessing_Input::Max];
+		TriState int_out[(size_t)BRKProcessing_Output::Max];
+
+		int_in[(size_t)BRKProcessing_Input::PHI1] = PHI1;
+		int_in[(size_t)BRKProcessing_Input::PHI2] = PHI2;
+		int_in[(size_t)BRKProcessing_Input::BRK5] = decoder_out[22];
+		int_in[(size_t)BRKProcessing_Input::n_ready] = n_ready;
+		int_in[(size_t)BRKProcessing_Input::RESP] = RESP;
+		int_in[(size_t)BRKProcessing_Input::n_NMIP] = n_NMIP;
+		int_in[(size_t)BRKProcessing_Input::n_IRQP] = n_IRQP;
+		int_in[(size_t)BRKProcessing_Input::T0] = T0;
+		int_in[(size_t)BRKProcessing_Input::BR2] = decoder_out[80];
+		int_in[(size_t)BRKProcessing_Input::n_I_OUT] = random->flags->getn_I_OUT();
 
 		brk->sim(int_in, int_out);
 
@@ -157,7 +180,7 @@ namespace M6502Core
 		disp_late_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
 		disp_late_in[(size_t)Dispatcher_Input::BRK6E] = int_out[(size_t)BRKProcessing_Output::BRK6E];
 		disp_late_in[(size_t)Dispatcher_Input::RESP] = RESP;
-		disp_late_in[(size_t)Dispatcher_Input::ACR] = TriState::Zero;	// TODO: ACR
+		disp_late_in[(size_t)Dispatcher_Input::ACR] = TriState::Zero; // TODO
 		disp_late_in[(size_t)Dispatcher_Input::BRFW] = rand_out[(size_t)RandomLogic_Output::BRFW];
 		disp_late_in[(size_t)Dispatcher_Input::n_BRTAKEN] = rand_out[(size_t)RandomLogic_Output::n_BRTAKEN];
 		disp_late_in[(size_t)Dispatcher_Input::n_TWOCYCLE] = pd_out[(size_t)PreDecode_Output::n_TWOCYCLE];
@@ -171,6 +194,16 @@ namespace M6502Core
 		disp->sim_AfterRandomLogic(disp_late_in, decoder_out, disp_late_out);
 
 		// Bottom Part
+
+		addr_bus->sim();
+
+		regs->sim();
+
+		alu->sim();
+
+		pc->sim();
+
+		data_bus->sim();
 
 		// Outputs
 

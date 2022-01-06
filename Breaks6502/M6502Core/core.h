@@ -38,6 +38,12 @@ namespace M6502Core
 	class Dispatcher;
 	class RandomLogic;
 
+	class AddressBus;
+	class Regs;
+	class ALU;
+	class ProgramCounter;
+	class DataBus;
+
 	class M6502
 	{
 		BaseLogic::FF nmip_ff;
@@ -63,7 +69,12 @@ namespace M6502Core
 		Dispatcher* disp = nullptr;
 		RandomLogic* random = nullptr;
 
+		AddressBus* addr_bus = nullptr;
+		Regs* regs = nullptr;
+		ALU* alu = nullptr;
+		ProgramCounter* pc = nullptr;
+		DataBus* data_bus = nullptr;
+
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
 	};
-
 }

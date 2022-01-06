@@ -22,3 +22,9 @@
 #include "flags_control.h"
 #include "branch_logic.h"
 #include "random_logic.h"
+
+#include "address_bus.h"
+#include "regs.h"
+#include "alu.h"
+#include "pc.h"
+#include "data_bus.h"
