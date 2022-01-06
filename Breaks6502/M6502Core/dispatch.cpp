@@ -81,13 +81,11 @@ namespace M6502Core
 		TriState n_SHIFT = NOR(d[106], d[107]);
 
 		TriState memop_in[5];
-
 		memop_in[0] = d[111];
 		memop_in[1] = d[122];
 		memop_in[2] = d[123];
 		memop_in[3] = d[124];
 		memop_in[4] = d[125];
-
 		TriState n_MemOp = NOR5(memop_in);
 
 		TriState n_STORE = NOT(d[97]);
@@ -151,7 +149,6 @@ namespace M6502Core
 		tresx_latch1.set(NOR(d[91], d[92]), PHI2);
 
 		TriState endx_1[6];
-
 		endx_1[0] = d[100];
 		endx_1[1] = d[101];
 		endx_1[2] = d[102];
@@ -160,7 +157,6 @@ namespace M6502Core
 		endx_1[5] = d[105];
 
 		TriState endx_2[4];
-
 		endx_2[0] = NOR3(d[96], NOT(n_SHIFT), n_MemOp);
 		endx_2[1] = T6;
 		endx_2[2] = NOT(NOR6(endx_1));
@@ -171,12 +167,10 @@ namespace M6502Core
 		tresx_latch2.set(NOR3(RESP, ENDS, NOR(n_ready, ENDX)), PHI2);
 
 		TriState tresx_nor[4];
-
 		tresx_nor[0] = ACRL1;
 		tresx_nor[1] = tresx_latch1.get();
 		tresx_nor[2] = n_ready;
 		tresx_nor[3] = REST;
-
 		TriState TRESX = NOR3(NOR4(tresx_nor), BRK6E, tresx_latch2.nget());
 		tres2_latch.set(TRESX, PHI1);
 
@@ -187,14 +181,12 @@ namespace M6502Core
 		// WR
 
 		TriState wr_in[6];
-
 		wr_in[0] = STOR;
 		wr_in[1] = PC_DB;
 		wr_in[2] = d[98];
 		wr_in[3] = d[100];
 		wr_in[4] = T5;
 		wr_in[5] = T6;
-
 		wr_latch.set(NOR6(wr_in), PHI2);
 
 		// Outputs

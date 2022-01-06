@@ -233,4 +233,11 @@ namespace BaseLogic
 	/// <param name="in"></param>
 	void Dump(TriState in[8], const char* name);
 
+	/// <summary>
+	/// Connect the two buses using the "Ground Wins" rule.
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	void BusConnect(TriState& a, TriState& b);
+
 }

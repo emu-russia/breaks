@@ -38,6 +38,26 @@ namespace M6502Core
 
 	class ALU
 	{
+		BaseLogic::DLatch AI[8];
+		BaseLogic::DLatch BI[8];
+		BaseLogic::DLatch n_ADD[8];
+		BaseLogic::DLatch AC[8];
+		BaseLogic::FF AC_FF[8];
+
+		BaseLogic::DLatch BC7_latch;
+		BaseLogic::DLatch DC7_latch;
+
+		BaseLogic::DLatch daal_latch;
+		BaseLogic::DLatch daah_latch;
+		BaseLogic::DLatch dsal_latch;
+		BaseLogic::DLatch dsah_latch;
+
+		BaseLogic::DLatch DCLatch;
+		BaseLogic::DLatch ACLatch;
+		BaseLogic::DLatch AVRLatch;
+
+		bool BCD_Hack = false;		// BCD correction hack for NES/Famicom.
+
 	public:
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[]);

@@ -18,7 +18,6 @@ namespace M6502Core
 		// Register control commands and auxiliary signals for other parts of the random logic
 
 		TriState n1[7];
-
 		n1[0] = d[1];
 		n1[1] = d[2];
 		n1[2] = d[3];
@@ -26,12 +25,10 @@ namespace M6502Core
 		n1[4] = d[5];
 		n1[5] = AND(d[6], d[7]);
 		n1[6] = AND(d[0], STOR);
-
 		TriState n_Y_SB = NOR7(n1);
 		ysb_latch.set(n_Y_SB, PHI2);
 
 		TriState n2[7];
-
 		n2[0] = AND(STOR, d[12]);
 		n2[1] = AND(d[6], NOT(d[7]));
 		n2[2] = d[8];
@@ -39,7 +36,6 @@ namespace M6502Core
 		n2[4] = d[10];
 		n2[5] = d[11];
 		n2[6] = TXS;
-
 		TriState n_X_SB = NOR7(n2);
 		xsb_latch.set(n_X_SB, PHI2);
 
@@ -55,14 +51,12 @@ namespace M6502Core
 		TriState SBXY = NAND(n_SB_X, n_SB_Y);
 
 		TriState n3[6];
-
 		n3[0] = d[21];
 		n3[1] = d[22];
 		n3[2] = d[23];
 		n3[3] = d[24];
 		n3[4] = d[25];
 		n3[5] = d[26];
-
 		TriState STKOP = NOR(nready_latch.get(), NOR6(n3));
 
 		TriState n_SB_S = NOR3(TXS, NOR(NOT(d[48]), n_ready), STKOP);
