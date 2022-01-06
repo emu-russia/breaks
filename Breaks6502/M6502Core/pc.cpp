@@ -9,11 +9,11 @@ namespace M6502Core
 		TriState cin, TriState& cout, TriState& sout, size_t n,
 		DLatch PCx[], DLatch PCxS[])
 	{
-		if (PCx_PCx)
+		if (PCx_PCx == TriState::One)
 		{
 			PCxS[n].set(NOT(PCx[n].get()), BaseLogic::One);
 		}
-		if (ADx_PCx)
+		if (ADx_PCx == TriState::One)
 		{
 			PCxS[n].set(ADx[n], BaseLogic::One);
 		}
@@ -25,11 +25,11 @@ namespace M6502Core
 
 		TriState out = NOT(PCx[n].nget());
 
-		if (PCx_DB)
+		if (PCx_DB == TriState::One)
 		{
 			DB[n] = out;
 		}
-		if (PCx_ADx)
+		if (PCx_ADx == TriState::One)
 		{
 			ADx[n] = out;
 		}
@@ -40,11 +40,11 @@ namespace M6502Core
 		TriState cin, TriState& cout, TriState& sout, size_t n,
 		DLatch PCx[], DLatch PCxS[])
 	{
-		if (PCx_PCx)
+		if (PCx_PCx == TriState::One)
 		{
 			PCxS[n].set(PCx[n].get(), BaseLogic::One);
 		}
-		if (ADx_PCx)
+		if (ADx_PCx == TriState::One)
 		{
 			PCxS[n].set(ADx[n], BaseLogic::One);
 		}
@@ -56,11 +56,11 @@ namespace M6502Core
 
 		TriState out = PCx[n].nget();
 
-		if (PCx_DB)
+		if (PCx_DB == TriState::One)
 		{
 			DB[n] = out;
 		}
-		if (PCx_ADx)
+		if (PCx_ADx == TriState::One)
 		{
 			ADx[n] = out;
 		}
