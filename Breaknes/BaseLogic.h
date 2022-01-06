@@ -68,6 +68,13 @@ namespace BaseLogic
 	TriState NOR7(TriState in[7]);
 
 	/// <summary>
+	/// 8-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR8(TriState in[8]);
+
+	/// <summary>
 	/// 2-nand
 	/// </summary>
 	/// <param name="a"></param>
@@ -82,6 +89,22 @@ namespace BaseLogic
 	/// <param name="b"></param>
 	/// <returns></returns>
 	TriState AND(TriState a, TriState b);
+
+	/// <summary>
+	/// 3-and
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <param name="c"></param>
+	/// <returns></returns>
+	TriState AND3(TriState a, TriState b, TriState c);
+
+	/// <summary>
+	/// 4-and
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState AND4(TriState in[4]);
 
 	/// <summary>
 	/// 2-or

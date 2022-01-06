@@ -35,6 +35,6 @@ namespace M6502Core
 		RandomLogic();
 		~RandomLogic();
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
+		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[], BaseLogic::TriState DB[]);
 	};
 }

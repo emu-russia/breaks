@@ -26,7 +26,7 @@ namespace M6502Core
 		delete branch_logic;
 	}
 
-	void RandomLogic::sim(TriState inputs[], TriState d[], TriState outputs[])
+	void RandomLogic::sim(TriState inputs[], TriState d[], TriState outputs[], TriState DB[])
 	{
 		TriState PHI1 = inputs[(size_t)RandomLogic_Input::PHI1];
 		TriState PHI2 = inputs[(size_t)RandomLogic_Input::PHI2];
@@ -83,7 +83,29 @@ namespace M6502Core
 
 		// Flags
 
-		flags->sim();
+		TriState flags_in[(size_t)Flags_Input::Max];
+
+		flags_in[(size_t)Flags_Input::PHI1] = PHI1;
+		flags_in[(size_t)Flags_Input::PHI2] = PHI2;
+		flags_in[(size_t)Flags_Input::SO] = TriState::Zero; // TODO
+		flags_in[(size_t)Flags_Input::B_OUT] = TriState::Zero; // TODO
+		flags_in[(size_t)Flags_Input::ACR] = TriState::Zero; // TODO
+		flags_in[(size_t)Flags_Input::AVR] = TriState::Zero; // TODO
+		flags_in[(size_t)Flags_Input::n_IR5] = TriState::Zero; // TODO
+		flags_in[(size_t)Flags_Input::P_DB] = flags_ctrl_out[(size_t)FlagsControl_Output::P_DB];
+		flags_in[(size_t)Flags_Input::DB_P] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_P];
+		flags_in[(size_t)Flags_Input::DBZ_Z] = flags_ctrl_out[(size_t)FlagsControl_Output::DBZ_Z];
+		flags_in[(size_t)Flags_Input::DB_N] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_N];
+		flags_in[(size_t)Flags_Input::IR5_C] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_C];
+		flags_in[(size_t)Flags_Input::DB_C] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_C];
+		flags_in[(size_t)Flags_Input::ACR_C] = flags_ctrl_out[(size_t)FlagsControl_Output::ACR_C];
+		flags_in[(size_t)Flags_Input::IR5_D] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_D];
+		flags_in[(size_t)Flags_Input::IR5_I] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_I];
+		flags_in[(size_t)Flags_Input::DB_V] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_V];
+		flags_in[(size_t)Flags_Input::AVR_V] = d[112];
+		flags_in[(size_t)Flags_Input::Z_V] = flags_ctrl_out[(size_t)FlagsControl_Output::Z_V];
+
+		flags->sim(flags_in, DB);
 
 		// Conditional branch logic
 
@@ -92,12 +114,12 @@ namespace M6502Core
 
 		branch_logic_in[(size_t)BranchLogic_Input::PHI1] = PHI1;
 		branch_logic_in[(size_t)BranchLogic_Input::PHI2] = PHI2;
-		branch_logic_in[(size_t)BranchLogic_Input::DB7] = TriState::Zero;	// TODO
+		branch_logic_in[(size_t)BranchLogic_Input::DB7] = DB[7];
 		branch_logic_in[(size_t)BranchLogic_Input::n_IR5] = TriState::Zero;	// TODO
-		branch_logic_in[(size_t)BranchLogic_Input::n_C_OUT] = TriState::Zero;	// TODO
-		branch_logic_in[(size_t)BranchLogic_Input::n_V_OUT] = TriState::Zero;	// TODO
-		branch_logic_in[(size_t)BranchLogic_Input::n_N_OUT] = TriState::Zero;	// TODO
-		branch_logic_in[(size_t)BranchLogic_Input::n_Z_OUT] = TriState::Zero;	// TODO
+		branch_logic_in[(size_t)BranchLogic_Input::n_C_OUT] = flags->getn_C_OUT();
+		branch_logic_in[(size_t)BranchLogic_Input::n_V_OUT] = flags->getn_V_OUT();
+		branch_logic_in[(size_t)BranchLogic_Input::n_N_OUT] = flags->getn_N_OUT();
+		branch_logic_in[(size_t)BranchLogic_Input::n_Z_OUT] = flags->getn_Z_OUT();
 
 		branch_logic->sim(branch_logic_in, d, branch_logic_out);
 

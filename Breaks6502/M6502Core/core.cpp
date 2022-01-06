@@ -145,7 +145,7 @@ namespace M6502Core
 		rand_in[(size_t)RandomLogic_Input::T0] = T0;
 		rand_in[(size_t)RandomLogic_Input::T1] = disp->getT1();
 
-		random->sim(rand_in, decoder_out, rand_out);
+		random->sim(rand_in, decoder_out, rand_out, DB);
 
 		TriState disp_late_in[(size_t)Dispatcher_Input::Max];
 		TriState disp_late_out[(size_t)Dispatcher_Output::Max];
