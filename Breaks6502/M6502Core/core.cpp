@@ -328,5 +328,4 @@ namespace M6502Core
 		outputs[(size_t)OutputPad::RnW] = rw_latch.nget();
 		outputs[(size_t)OutputPad::SYNC] = disp->getT1();
 	}
-
 }
