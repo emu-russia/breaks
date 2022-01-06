@@ -94,6 +94,12 @@ namespace BaseLogic
 	{
 		if (en == TriState::One)
 		{
+			if (val == TriState::Z)
+			{
+				// The floating input does not change the state of the latch.
+				return;
+			}
+
 			g = val;
 		}
 	}
@@ -267,6 +273,21 @@ namespace BaseLogic
 			}
 		}
 		printf("\n");
+	}
+
+	void BusConnect(TriState& a, TriState& b)
+	{
+		if (a != b)
+		{
+			if (a == TriState::Zero)
+			{
+				b = TriState::Zero;
+			}
+			if (b == TriState::Zero)
+			{
+				a = TriState::Zero;
+			}
+		}
 	}
 
 }

@@ -16,14 +16,12 @@ namespace M6502Core
 		TriState n_PIN = NOR(d[114], d[115]);
 
 		TriState n1[6];
-
 		n1[0] = AND(d[107], T6);
 		n1[1] = d[112];		// AVR/V
 		n1[2] = d[116];
 		n1[3] = d[117];
 		n1[4] = d[118];
 		n1[5] = d[119];
-
 		TriState n_ARIT = NOR6(n1);
 
 		// Latches

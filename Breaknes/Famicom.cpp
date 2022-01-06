@@ -28,6 +28,7 @@ namespace Breaknes
 		}
 
 		core_inputs[(size_t)M6502Core::InputPad::RDY] = TriState::One;
+		core_inputs[(size_t)M6502Core::InputPad::SO] = TriState::Zero;
 		core_inputs[(size_t)M6502Core::InputPad::PHI0] = CLK;
 
 		core_inputs[(size_t)M6502Core::InputPad::n_IRQ] = TriState::One;
@@ -57,6 +58,7 @@ namespace Breaknes
 		}
 
 		core_inputs[(size_t)M6502Core::InputPad::RDY] = TriState::One;
+		core_inputs[(size_t)M6502Core::InputPad::SO] = TriState::Zero;
 
 		core_inputs[(size_t)M6502Core::InputPad::n_IRQ] = TriState::One;
 		core_inputs[(size_t)M6502Core::InputPad::n_NMI] = TriState::One;
