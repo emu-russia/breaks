@@ -227,9 +227,32 @@ namespace M6502Core
 
 		// Bottom Part
 
-		addr_bus->sim();
+		TriState addr_in[(size_t)AddressBus_Input::Max];
 
-		regs->sim();
+		addr_in[(size_t)AddressBus_Input::PHI1] = PHI1;
+
+		addr_in[(size_t)AddressBus_Input::PHI2] = PHI2;
+		addr_in[(size_t)AddressBus_Input::Z_ADL0] = rand_out[(size_t)RandomLogic_Output::Z_ADL0];
+		addr_in[(size_t)AddressBus_Input::Z_ADL1] = rand_out[(size_t)RandomLogic_Output::Z_ADL1];
+		addr_in[(size_t)AddressBus_Input::Z_ADL2] = rand_out[(size_t)RandomLogic_Output::Z_ADL2];
+		addr_in[(size_t)AddressBus_Input::ADL_ABL] = rand_out[(size_t)RandomLogic_Output::ADL_ABL];
+		addr_in[(size_t)AddressBus_Input::ADH_ABH] = rand_out[(size_t)RandomLogic_Output::ADH_ABH];
+
+		addr_bus->sim(addr_in, ADL, ADH, outputs);
+
+		TriState regs_in[(size_t)Regs_Input::Max];
+
+		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
+		regs_in[(size_t)Regs_Input::Y_SB] = rand_out[(size_t)RandomLogic_Output::Y_SB];
+		regs_in[(size_t)Regs_Input::SB_Y] = rand_out[(size_t)RandomLogic_Output::SB_Y];
+		regs_in[(size_t)Regs_Input::X_SB] = rand_out[(size_t)RandomLogic_Output::X_SB];
+		regs_in[(size_t)Regs_Input::SB_X] = rand_out[(size_t)RandomLogic_Output::SB_X];
+		regs_in[(size_t)Regs_Input::S_ADL] = rand_out[(size_t)RandomLogic_Output::S_ADL];
+		regs_in[(size_t)Regs_Input::S_SB] = rand_out[(size_t)RandomLogic_Output::S_SB];
+		regs_in[(size_t)Regs_Input::SB_S] = rand_out[(size_t)RandomLogic_Output::SB_S];
+		regs_in[(size_t)Regs_Input::S_S] = rand_out[(size_t)RandomLogic_Output::S_S];
+
+		regs->sim(regs_in, SB, ADL);
 
 		TriState alu_in[(size_t)ALU_Input::Max];
 
@@ -260,9 +283,31 @@ namespace M6502Core
 
 		alu->sim(alu_in, SB, DB, ADL, ADH);
 
-		pc->sim();
+		TriState pc_in[(size_t)ProgramCounter_Input::Max];
 
-		data_bus->sim();
+		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
+		pc_in[(size_t)ProgramCounter_Input::ADL_PCL] = rand_out[(size_t)RandomLogic_Output::ADL_PCL];
+		pc_in[(size_t)ProgramCounter_Input::PCL_PCL] = rand_out[(size_t)RandomLogic_Output::PCL_PCL];
+		pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = rand_out[(size_t)RandomLogic_Output::PCL_ADL];
+		pc_in[(size_t)ProgramCounter_Input::PCL_DB] = rand_out[(size_t)RandomLogic_Output::PCL_DB];
+		pc_in[(size_t)ProgramCounter_Input::ADH_PCH] = rand_out[(size_t)RandomLogic_Output::ADH_PCH];
+		pc_in[(size_t)ProgramCounter_Input::PCH_PCH] = rand_out[(size_t)RandomLogic_Output::PCH_PCH];
+		pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = rand_out[(size_t)RandomLogic_Output::PCH_ADH];
+		pc_in[(size_t)ProgramCounter_Input::PCH_DB] = rand_out[(size_t)RandomLogic_Output::PCH_DB];
+		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
+
+		pc->sim(pc_in, DB, ADL, ADH);
+
+		TriState data_in[(size_t)DataBus_Input::Max];
+
+		data_in[(size_t)DataBus_Input::PHI1] = PHI1;
+		data_in[(size_t)DataBus_Input::PHI2] = PHI2;
+		data_in[(size_t)DataBus_Input::WR] = WR;
+		data_in[(size_t)DataBus_Input::DL_ADL] = rand_out[(size_t)RandomLogic_Output::DL_ADL];
+		data_in[(size_t)DataBus_Input::DL_ADH] = rand_out[(size_t)RandomLogic_Output::DL_ADH];
+		data_in[(size_t)DataBus_Input::DL_DB] = rand_out[(size_t)RandomLogic_Output::DL_DB];
+
+		data_bus->sim(data_in, DB, ADL, ADH, inOuts);
 
 		// Outputs
 
