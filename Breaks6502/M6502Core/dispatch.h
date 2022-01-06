@@ -21,6 +21,10 @@ namespace M6502Core
 		n_ADL_PCL,
 		n_ready,
 		T0,
+		T5,
+		T6,
+		ACRL1,
+		ACRL2,
 		Max,
 	};
 
@@ -35,6 +39,7 @@ namespace M6502Core
 		WR,
 		TRES2,
 
+		ACRL1,
 		ACRL2,
 		T1,
 		T5,
@@ -107,5 +112,7 @@ namespace M6502Core
 		BaseLogic::TriState getTRES2();
 
 		BaseLogic::TriState getT1();
+
+		BaseLogic::TriState getSTOR(BaseLogic::TriState d[]);
 	};
 }

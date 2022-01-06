@@ -19,6 +19,11 @@ namespace M6502Core
 		Z_ADL2,		// pass through
 		BRK6E,
 		SO,
+		STOR,
+		B_OUT,
+		T5,
+		T6,
+		ACRL2,
 		Max,
 	};
 

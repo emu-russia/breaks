@@ -55,7 +55,51 @@ namespace M6502Core
 
 	void Dispatcher::sim_BeforeRandomLogic(TriState inputs[], TriState d[], TriState outputs[])
 	{
-		// TODO..
+		TriState PHI1 = inputs[(size_t)Dispatcher_Input::PHI1];
+		TriState PHI2 = inputs[(size_t)Dispatcher_Input::PHI2];
+		TriState ACR = inputs[(size_t)Dispatcher_Input::ACR];
+		TriState n_ready = inputs[(size_t)Dispatcher_Input::n_ready];
+
+		TriState n_SHIFT = NOR(d[106], d[107]);
+
+		TriState memop_in[5];
+		memop_in[0] = d[111];
+		memop_in[1] = d[122];
+		memop_in[2] = d[123];
+		memop_in[3] = d[124];
+		memop_in[4] = d[125];
+		TriState n_MemOp = NOR5(memop_in);
+
+		// Ready Delay
+
+		rdydelay_latch1.set(n_ready, PHI1);
+		rdydelay_latch2.set(rdydelay_latch1.nget(), PHI2);
+		TriState NotReadyPhi1 = rdydelay_latch2.nget();
+
+		// ACRL
+
+		TriState ACRL1 = NOR(AND(NOT(ACR), NOT(NotReadyPhi1)), NOR(NOT(NotReadyPhi1), acrl_ff.get()));
+		acr_latch1.set(ACRL1, PHI1);
+		acr_latch2.set(acr_latch1.nget(), PHI2);
+		acrl_ff.set(acr_latch2.nget());
+		TriState ACRL2 = acrl_ff.get();
+
+		// T5 / T6
+
+		t56_latch.set(NOR3(n_SHIFT, n_MemOp, n_ready), PHI2);
+		t5_latch2.set(t5_ff.get(), PHI2);
+		t5_latch1.set(NOR(AND(t5_latch2.get(), n_ready), t56_latch.get()), PHI1);
+		t5_ff.set(t5_latch1.get());
+		TriState T5 = t5_ff.get();
+
+		t6_latch1.set(NAND(T5, NOT(n_ready)), PHI2);
+		t6_latch2.set(t6_latch1.nget(), PHI1);
+		TriState T6 = NOT(t6_latch2.nget());
+
+		outputs[(size_t)Dispatcher_Output::ACRL1] = ACRL1;
+		outputs[(size_t)Dispatcher_Output::ACRL2] = ACRL2;
+		outputs[(size_t)Dispatcher_Output::T5] = T5;
+		outputs[(size_t)Dispatcher_Output::T6] = T6;
 	}
 
 	void Dispatcher::sim_AfterRandomLogic(TriState inputs[], TriState d[], TriState outputs[])
@@ -74,6 +118,10 @@ namespace M6502Core
 		TriState n_ready = inputs[(size_t)Dispatcher_Input::n_ready];
 		TriState T0 = inputs[(size_t)Dispatcher_Input::T0];
 		TriState B_OUT = inputs[(size_t)Dispatcher_Input::B_OUT];
+		TriState T5 = inputs[(size_t)Dispatcher_Input::T5];
+		TriState T6 = inputs[(size_t)Dispatcher_Input::T6];
+		TriState ACRL1 = inputs[(size_t)Dispatcher_Input::ACRL1];
+		TriState ACRL2 = inputs[(size_t)Dispatcher_Input::ACRL2];
 
 		TriState BR2 = d[80];
 		TriState BR3 = d[93];
@@ -92,19 +140,9 @@ namespace M6502Core
 		TriState STOR = NOR(n_MemOp, n_STORE);
 		TriState REST = NAND(n_SHIFT, n_STORE);
 
-		// Ready Delay
+		// Ready Delay (get)
 
-		rdydelay_latch1.set(n_ready, PHI1);
-		rdydelay_latch2.set(rdydelay_latch1.nget(), PHI2);
 		TriState NotReadyPhi1 = rdydelay_latch2.nget();
-
-		// ACRL
-
-		TriState ACRL1 = NOR( AND(NOT(ACR), NOT(NotReadyPhi1)), NOR(NOT(NotReadyPhi1), acrl_ff.get()) );
-		acr_latch1.set(ACRL1, PHI1);
-		acr_latch2.set(acr_latch1.nget(), PHI2);
-		acrl_ff.set(acr_latch2.nget());
-		TriState ACRL2 = acrl_ff.get();
 
 		// Increment PC
 
@@ -122,18 +160,6 @@ namespace M6502Core
 		step_latch1.set(NOR3(nready_latch.get(), RESP, step_latch2.get()), PHI2);
 		step_ff.set(NOR(step_latch1.get(), ipc_temp));
 		step_latch2.set(step_ff.get(), PHI1);
-
-		// T5 / T6
-
-		t56_latch.set(NOR3(n_SHIFT, n_MemOp, n_ready), PHI2);
-		t5_latch2.set(t5_ff.get(), PHI2);
-		t5_latch1.set(NOR(AND(t5_latch2.get(), n_ready), t56_latch.get()), PHI1);
-		t5_ff.set(t5_latch1.get());
-		TriState T5 = t5_ff.get();
-
-		t6_latch1.set(NAND(T5, NOT(n_ready)), PHI2);
-		t6_latch2.set(t6_latch1.nget(), PHI1);
-		TriState T6 = NOT(t6_latch2.nget());
 
 		// Instruction Completion
 
@@ -197,10 +223,7 @@ namespace M6502Core
 				PHI1, PHI2, n_TWOCYCLE, n_IMPLIED );
 		}
 
-		outputs[(size_t)Dispatcher_Output::ACRL2] = ACRL2;
 		outputs[(size_t)Dispatcher_Output::T1] = T1;
-		outputs[(size_t)Dispatcher_Output::T5] = T5;
-		outputs[(size_t)Dispatcher_Output::T6] = T6;
 		outputs[(size_t)Dispatcher_Output::n_1PC] = n_1PC;
 	}
 
@@ -212,5 +235,21 @@ namespace M6502Core
 	TriState Dispatcher::getT1()
 	{
 		return t1_ff.get();
+	}
+
+	TriState Dispatcher::getSTOR(TriState d[])
+	{
+		TriState memop_in[5];
+		memop_in[0] = d[111];
+		memop_in[1] = d[122];
+		memop_in[2] = d[123];
+		memop_in[3] = d[124];
+		memop_in[4] = d[125];
+		TriState n_MemOp = NOR5(memop_in);
+
+		TriState n_STORE = NOT(d[97]);
+		TriState STOR = NOR(n_MemOp, n_STORE);
+
+		return STOR;
 	}
 }
