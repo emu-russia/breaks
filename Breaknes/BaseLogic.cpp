@@ -225,4 +225,48 @@ namespace BaseLogic
 		cache[k] = savedOut;
 	}
 
+	uint8_t Pack(TriState in[8])
+	{
+		uint8_t val = 0;
+		for (size_t i = 0; i < 8; i++)
+		{
+			val <<= 1;
+			val |= (in[7 - i] == TriState::One) ? 1 : 0;
+		}
+		return val;
+	}
+
+	void Unpack(uint8_t val, TriState out[8])
+	{
+		for (size_t i = 0; i < 8; i++)
+		{
+			out[i] = (val & 1) ? TriState::One : TriState::Zero;
+			val >>= 1;
+		}
+	}
+
+	void Dump(TriState in[8], const char *name)
+	{
+		printf("%s: ", name);
+		for (size_t i = 0; i < 8; i++)
+		{
+			switch (in[7 - i])
+			{
+				case TriState::Zero:
+					printf("0 ");
+					break;
+				case TriState::One:
+					printf("1 ");
+					break;
+				case TriState::Z:
+					printf("z ");
+					break;
+				case TriState::X:
+					printf("x ");
+					break;
+			}
+		}
+		printf("\n");
+	}
+
 }

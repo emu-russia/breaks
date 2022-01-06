@@ -213,4 +213,24 @@ namespace BaseLogic
 		void sim(TriState inputs[], TriState outputs[]);
 	};
 
+	/// <summary>
+	/// Pack a bit vector into a byte.
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	uint8_t Pack(TriState in[8]);
+
+	/// <summary>
+	/// Unpack a byte into a bit vector.
+	/// </summary>
+	/// <param name="val"></param>
+	/// <param name="out"></param>
+	void Unpack(uint8_t val, TriState out[8]);
+
+	/// <summary>
+	/// Dump vector.
+	/// </summary>
+	/// <param name="in"></param>
+	void Dump(TriState in[8], const char* name);
+
 }

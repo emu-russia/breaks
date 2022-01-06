@@ -14,8 +14,26 @@ static int GetTimeStamp()
 }
 #endif
 
+void PackUnpackTest()
+{
+	uint8_t val = 0xa5;
+	BaseLogic::TriState n[8];
+	BaseLogic::TriState n2[8];
+
+	BaseLogic::Unpack(val, n);
+	BaseLogic::Dump(n, "n");
+
+	uint8_t val2 = BaseLogic::Pack(n);
+	if (val != val2)
+	{
+		throw "Pack/Unpack failed!";
+	}
+}
+
 int main()
 {
+	//PackUnpackTest();
+
 	Breaknes::Famicom* fami = new Breaknes::Famicom;
 
 	// Simulate reset
