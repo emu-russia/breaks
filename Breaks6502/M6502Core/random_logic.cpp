@@ -33,6 +33,11 @@ namespace M6502Core
 		TriState n_ready = inputs[(size_t)RandomLogic_Input::n_ready];
 		TriState T0 = inputs[(size_t)RandomLogic_Input::T0];
 		TriState T1 = inputs[(size_t)RandomLogic_Input::T1];
+		TriState IR0 = inputs[(size_t)RandomLogic_Input::IR0];
+		TriState n_IR5 = inputs[(size_t)RandomLogic_Input::n_IR5];
+		TriState n_PRDY = inputs[(size_t)RandomLogic_Input::n_PRDY];
+		
+		TriState BR0 = AND(d[73], NOT(n_PRDY));
 
 		// Register control
 
@@ -60,13 +65,36 @@ namespace M6502Core
 		pc_in[(size_t)PC_Control_Input::n_ready] = n_ready;
 		pc_in[(size_t)PC_Control_Input::T0] = T0;
 		pc_in[(size_t)PC_Control_Input::T1] = T1;
-		pc_in[(size_t)PC_Control_Input::BR0] = TriState::Zero;
+		pc_in[(size_t)PC_Control_Input::BR0] = BR0;
 
 		pc_control->sim(pc_in, d, pc_out);
 
 		// Bus control
 
-		bus_control->sim();
+		TriState bus_in[(size_t)BusControl_Input::Max];
+		TriState bus_out[(size_t)BusControl_Output::Max];
+
+		bus_in[(size_t)BusControl_Input::PHI1] = PHI1;
+		bus_in[(size_t)BusControl_Input::PHI2] = PHI2;
+		bus_in[(size_t)BusControl_Input::SBXY] = regs_control_out[(size_t)RegsControl_Output::SBXY];
+		bus_in[(size_t)BusControl_Input::STXY] = regs_control_out[(size_t)RegsControl_Output::STXY];
+		bus_in[(size_t)BusControl_Input::AND] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::STOR] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::Z_ADL0] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::ACRL2] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::DL_PCH] = pc_out[(size_t)PC_Control_Output::DL_PCH];
+		bus_in[(size_t)BusControl_Input::n_ready] = n_ready;
+		bus_in[(size_t)BusControl_Input::INC_SB] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::BRK6E] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::n_PCH_PCH] = pc_out[(size_t)PC_Control_Output::n_PCH_PCH];
+		bus_in[(size_t)BusControl_Input::T0] = T0;
+		bus_in[(size_t)BusControl_Input::T1] = T1;
+		bus_in[(size_t)BusControl_Input::T5] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::T6] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::BR0] = BR0;
+		bus_in[(size_t)BusControl_Input::IR0] = IR0;
+
+		bus_control->sim(bus_in, d, bus_out);
 
 		// Flags control logic
 
@@ -75,7 +103,7 @@ namespace M6502Core
 
 		flags_ctrl_in[(size_t)FlagsControl_Input::PHI2] = PHI2;
 		flags_ctrl_in[(size_t)FlagsControl_Input::T6] = TriState::Zero; // TODO
-		flags_ctrl_in[(size_t)FlagsControl_Input::ZTST] = TriState::Zero; // TODO
+		flags_ctrl_in[(size_t)FlagsControl_Input::ZTST] = bus_out[(size_t)BusControl_Output::ZTST];
 		flags_ctrl_in[(size_t)FlagsControl_Input::SR] = TriState::Zero; // TODO
 		flags_ctrl_in[(size_t)FlagsControl_Input::n_ready] = n_ready;
 
@@ -91,7 +119,7 @@ namespace M6502Core
 		flags_in[(size_t)Flags_Input::B_OUT] = TriState::Zero; // TODO
 		flags_in[(size_t)Flags_Input::ACR] = TriState::Zero; // TODO
 		flags_in[(size_t)Flags_Input::AVR] = TriState::Zero; // TODO
-		flags_in[(size_t)Flags_Input::n_IR5] = TriState::Zero; // TODO
+		flags_in[(size_t)Flags_Input::n_IR5] = n_IR5;
 		flags_in[(size_t)Flags_Input::P_DB] = flags_ctrl_out[(size_t)FlagsControl_Output::P_DB];
 		flags_in[(size_t)Flags_Input::DB_P] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_P];
 		flags_in[(size_t)Flags_Input::DBZ_Z] = flags_ctrl_out[(size_t)FlagsControl_Output::DBZ_Z];
@@ -115,7 +143,7 @@ namespace M6502Core
 		branch_logic_in[(size_t)BranchLogic_Input::PHI1] = PHI1;
 		branch_logic_in[(size_t)BranchLogic_Input::PHI2] = PHI2;
 		branch_logic_in[(size_t)BranchLogic_Input::DB7] = DB[7];
-		branch_logic_in[(size_t)BranchLogic_Input::n_IR5] = TriState::Zero;	// TODO
+		branch_logic_in[(size_t)BranchLogic_Input::n_IR5] = n_IR5;
 		branch_logic_in[(size_t)BranchLogic_Input::n_C_OUT] = flags->getn_C_OUT();
 		branch_logic_in[(size_t)BranchLogic_Input::n_V_OUT] = flags->getn_V_OUT();
 		branch_logic_in[(size_t)BranchLogic_Input::n_N_OUT] = flags->getn_N_OUT();

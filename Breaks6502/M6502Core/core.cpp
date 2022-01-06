@@ -144,6 +144,9 @@ namespace M6502Core
 		rand_in[(size_t)RandomLogic_Input::n_ready] = n_ready;
 		rand_in[(size_t)RandomLogic_Input::T0] = T0;
 		rand_in[(size_t)RandomLogic_Input::T1] = disp->getT1();
+		rand_in[(size_t)RandomLogic_Input::IR0] = IR[0];			// Used for IMPL (D128)
+		rand_in[(size_t)RandomLogic_Input::n_IR5] = NOT(IR[5]);
+		rand_in[(size_t)RandomLogic_Input::n_PRDY] = n_PRDY;		// Used for BR0
 
 		random->sim(rand_in, decoder_out, rand_out, DB);
 
