@@ -57,5 +57,3 @@ This circuit is used, for example, in PCL1:
 ![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg)
 
 For these circuits to work correctly in the simulator, FF uses a posedge trigger for the PCL/PCH register.
-
-To confuse the reader even more, here's another fact: the alternation of circuits in PCH occurs not only between bits, but the order itself changes on the PCH4 bit.
