@@ -2,6 +2,9 @@
 
 namespace M6502Core
 {
+	// Some of the outputs from the earlier stages of the dispatcher are used as inputs for later stages.
+	// Signals are sorted, if possible, in order from earlier use, to later use.
+
 	enum class Dispatcher_Input
 	{
 		PHI1 = 0,
