@@ -49,6 +49,8 @@ namespace M6502Core
 		BaseLogic::DLatch prdy_latch1;
 		BaseLogic::DLatch prdy_latch2;
 
+		BaseLogic::TriState DB[8];
+
 	public:
 		M6502();
 		~M6502();

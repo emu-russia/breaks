@@ -45,6 +45,11 @@ namespace BaseLogic
 		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4] | in[5] | in[6])) & 1);
 	}
 
+	TriState NOR8(TriState in[8])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4] | in[5] | in[6] | in[7])) & 1);
+	}
+
 	TriState NAND(TriState a, TriState b)
 	{
 		return (TriState)((~(a & b)) & 1);
@@ -53,6 +58,16 @@ namespace BaseLogic
 	TriState AND(TriState a, TriState b)
 	{
 		return NOT(NAND(a, b));
+	}
+
+	TriState AND3(TriState a, TriState b, TriState c)
+	{
+		return (TriState)(((a & b) & c) & 1);
+	}
+
+	TriState AND4(TriState in[4])
+	{
+		return (TriState)(((in[0] & in[1] & in[2] & in[3])) & 1);
 	}
 
 	TriState OR(TriState a, TriState b)
