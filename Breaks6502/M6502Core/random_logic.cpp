@@ -53,7 +53,24 @@ namespace M6502Core
 
 		// ALU control
 
-		alu_control->sim();
+		TriState alu_control_in[(size_t)ALUControl_Input::Max];
+		TriState alu_control_out[(size_t)ALUControl_Output::Max];
+
+		alu_control_in[(size_t)ALUControl_Input::PHI1] = PHI1;
+		alu_control_in[(size_t)ALUControl_Input::PHI2] = PHI2;
+		alu_control_in[(size_t)ALUControl_Input::BRFW] = branch_logic->getBRFW();
+		alu_control_in[(size_t)ALUControl_Input::n_ready] = n_ready;
+		alu_control_in[(size_t)ALUControl_Input::BRK6E] = TriState::Zero; // TODO
+		alu_control_in[(size_t)ALUControl_Input::STKOP] = regs_control_out[(size_t)RegsControl_Output::STKOP];
+		alu_control_in[(size_t)ALUControl_Input::T0] = T0;
+		alu_control_in[(size_t)ALUControl_Input::T1] = T1;
+		alu_control_in[(size_t)ALUControl_Input::T5] = TriState::Zero; // TODO
+		alu_control_in[(size_t)ALUControl_Input::T6] = TriState::Zero; // TODO
+		alu_control_in[(size_t)ALUControl_Input::PGX] = bus_control->getPGX(d, BR0);
+		alu_control_in[(size_t)ALUControl_Input::n_D_OUT] = flags->getn_D_OUT();
+		alu_control_in[(size_t)ALUControl_Input::n_C_OUT] = flags->getn_C_OUT();
+
+		alu_control->sim(alu_control_in, d, alu_control_out);
 
 		// Program counter (PC) control
 
@@ -78,13 +95,13 @@ namespace M6502Core
 		bus_in[(size_t)BusControl_Input::PHI2] = PHI2;
 		bus_in[(size_t)BusControl_Input::SBXY] = regs_control_out[(size_t)RegsControl_Output::SBXY];
 		bus_in[(size_t)BusControl_Input::STXY] = regs_control_out[(size_t)RegsControl_Output::STXY];
-		bus_in[(size_t)BusControl_Input::AND] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::AND] = alu_control_out[(size_t)ALUControl_Output::AND];
 		bus_in[(size_t)BusControl_Input::STOR] = TriState::Zero; // TODO
 		bus_in[(size_t)BusControl_Input::Z_ADL0] = TriState::Zero; // TODO
 		bus_in[(size_t)BusControl_Input::ACRL2] = TriState::Zero; // TODO
 		bus_in[(size_t)BusControl_Input::DL_PCH] = pc_out[(size_t)PC_Control_Output::DL_PCH];
 		bus_in[(size_t)BusControl_Input::n_ready] = n_ready;
-		bus_in[(size_t)BusControl_Input::INC_SB] = TriState::Zero; // TODO
+		bus_in[(size_t)BusControl_Input::INC_SB] = alu_control_out[(size_t)ALUControl_Output::INC_SB];
 		bus_in[(size_t)BusControl_Input::BRK6E] = TriState::Zero; // TODO
 		bus_in[(size_t)BusControl_Input::n_PCH_PCH] = pc_out[(size_t)PC_Control_Output::n_PCH_PCH];
 		bus_in[(size_t)BusControl_Input::T0] = T0;
@@ -104,7 +121,7 @@ namespace M6502Core
 		flags_ctrl_in[(size_t)FlagsControl_Input::PHI2] = PHI2;
 		flags_ctrl_in[(size_t)FlagsControl_Input::T6] = TriState::Zero; // TODO
 		flags_ctrl_in[(size_t)FlagsControl_Input::ZTST] = bus_out[(size_t)BusControl_Output::ZTST];
-		flags_ctrl_in[(size_t)FlagsControl_Input::SR] = TriState::Zero; // TODO
+		flags_ctrl_in[(size_t)FlagsControl_Input::SR] = alu_control_out[(size_t)ALUControl_Output::SR];
 		flags_ctrl_in[(size_t)FlagsControl_Input::n_ready] = n_ready;
 
 		flags_control->sim(flags_ctrl_in, d, flags_ctrl_out);
