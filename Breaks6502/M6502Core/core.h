@@ -55,6 +55,8 @@ namespace M6502Core
 		BaseLogic::DLatch prdy_latch1;
 		BaseLogic::DLatch prdy_latch2;
 
+		BaseLogic::DLatch rw_latch;
+
 		BaseLogic::TriState SB[8];
 		BaseLogic::TriState DB[8];
 		BaseLogic::TriState ADL[8];

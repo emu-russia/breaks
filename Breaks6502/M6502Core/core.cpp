@@ -82,6 +82,7 @@ namespace M6502Core
 
 		TriState n_ready = disp_early_out[(size_t)Dispatcher_Output::n_ready];
 		TriState T0 = disp_early_out[(size_t)Dispatcher_Output::T0];
+		TriState WR = disp_early_out[(size_t)Dispatcher_Output::WR];
 
 		TriState FETCH = disp_early_out[(size_t)Dispatcher_Output::FETCH];
 		TriState Z_IR = disp_early_out[(size_t)Dispatcher_Output::Z_IR];
@@ -159,6 +160,21 @@ namespace M6502Core
 
 		// Random Logic
 
+		TriState disp_mid_in[(size_t)Dispatcher_Input::Max];
+		TriState disp_mid_out[(size_t)Dispatcher_Output::Max];
+
+		disp_mid_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
+		disp_mid_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
+		disp_mid_in[(size_t)Dispatcher_Input::ACR] = alu->getACR();
+		disp_mid_in[(size_t)Dispatcher_Input::n_ready] = n_ready;
+
+		disp->sim_BeforeRandomLogic(disp_mid_in, decoder_out, disp_mid_out);
+
+		TriState T5 = disp_mid_out[(size_t)Dispatcher_Output::T5];
+		TriState T6 = disp_mid_out[(size_t)Dispatcher_Output::T6];
+		TriState ACRL1 = disp_mid_out[(size_t)Dispatcher_Output::ACRL1];
+		TriState ACRL2 = disp_mid_out[(size_t)Dispatcher_Output::ACRL2];
+
 		TriState rand_in[(size_t)RandomLogic_Input::Max];
 		TriState rand_out[(size_t)RandomLogic_Output::Max];
 
@@ -177,6 +193,11 @@ namespace M6502Core
 		rand_in[(size_t)RandomLogic_Input::Z_ADL2] = int_out[(size_t)BRKProcessing_Output::Z_ADL2];
 		rand_in[(size_t)RandomLogic_Input::BRK6E] = int_out[(size_t)BRKProcessing_Output::BRK6E];
 		rand_in[(size_t)RandomLogic_Input::SO] = SO;
+		rand_in[(size_t)RandomLogic_Input::STOR] = disp->getSTOR(decoder_out);
+		rand_in[(size_t)RandomLogic_Input::B_OUT] = int_out[(size_t)BRKProcessing_Output::B_OUT];
+		rand_in[(size_t)RandomLogic_Input::T5] = T5;
+		rand_in[(size_t)RandomLogic_Input::T6] = T6;
+		rand_in[(size_t)RandomLogic_Input::ACRL2] = ACRL2;
 
 		random->sim(rand_in, decoder_out, rand_out, DB);
 
@@ -197,6 +218,10 @@ namespace M6502Core
 		disp_late_in[(size_t)Dispatcher_Input::n_ready] = n_ready;
 		disp_late_in[(size_t)Dispatcher_Input::T0] = T0;
 		disp_late_in[(size_t)Dispatcher_Input::B_OUT] = brk->getB_OUT();
+		disp_late_in[(size_t)Dispatcher_Input::T5] = T5;
+		disp_late_in[(size_t)Dispatcher_Input::T6] = T6;
+		disp_late_in[(size_t)Dispatcher_Input::ACRL1] = ACRL1;
+		disp_late_in[(size_t)Dispatcher_Input::ACRL2] = ACRL2;
 
 		disp->sim_AfterRandomLogic(disp_late_in, decoder_out, disp_late_out);
 
@@ -241,8 +266,12 @@ namespace M6502Core
 
 		// Outputs
 
+		rw_latch.set(WR, PHI1);
+
 		outputs[(size_t)OutputPad::PHI1] = PHI1;
 		outputs[(size_t)OutputPad::PHI2] = PHI2;
+		outputs[(size_t)OutputPad::RnW] = rw_latch.nget();
+		outputs[(size_t)OutputPad::SYNC] = disp->getT1();
 	}
 
 }
