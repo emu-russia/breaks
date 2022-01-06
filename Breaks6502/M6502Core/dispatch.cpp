@@ -2,6 +2,10 @@
 
 using namespace BaseLogic;
 
+// The dispatcher simulation is divided into three stages: before decoder, before random logic, and after random logic.
+
+// So far in this form (critical mass of code). In the process of debugging, it is possible to rearrange some sections.
+
 namespace M6502Core
 {
 	void Dispatcher::sim_BeforeDecoder(TriState inputs[], TriState outputs[])
