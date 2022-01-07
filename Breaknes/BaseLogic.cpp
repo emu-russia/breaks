@@ -142,12 +142,6 @@ namespace BaseLogic
 	{
 		if (rom)
 			delete[] rom;
-
-		for (auto it = cache.begin(); it != cache.end(); ++it)
-		{
-			delete it->second;
-		}
-		cache.clear();
 	}
 
 	void PLA::SetMatrix(size_t bitmask[])
@@ -166,9 +160,6 @@ namespace BaseLogic
 
 	void PLA::sim(TriState inputs[], TriState outputs[])
 	{
-		if (Exists(inputs, outputs))
-			return;
-
 		for (size_t out = 0; out < romOutputs; out++)
 		{
 			// Since the decoder lines are multi-input NORs - the default output is `1`.
@@ -184,51 +175,6 @@ namespace BaseLogic
 				}
 			}
 		}
-
-		Map(inputs, outputs);
-	}
-
-	bool PLA::Exists(TriState inputs[], TriState outputs[])
-	{
-		size_t k = 0;
-
-		for (size_t bit = 0; bit < romInputs; bit++)
-		{
-			k |= (inputs[bit] == TriState::One ? 1 : 0);
-			k <<= 1;
-		}
-		
-		auto it = cache.find(k);
-		if (it != cache.end())
-		{
-			for (size_t n = 0; n < romOutputs; n++)
-			{
-				outputs[n] = it->second[n];
-			}
-
-			return true;
-		}
-
-		return false;
-	}
-
-	void PLA::Map(TriState inputs[], TriState outputs[])
-	{
-		size_t k = 0;
-
-		for (size_t bit = 0; bit < romInputs; bit++)
-		{
-			k |= (inputs[bit] == TriState::One ? 1 : 0);
-			k <<= 1;
-		}
-
-		TriState* savedOut = new TriState[romOutputs];
-		for (size_t n = 0; n < romOutputs; n++)
-		{
-			savedOut[n] = outputs[n];
-		}
-
-		cache[k] = savedOut;
 	}
 
 	uint8_t Pack(TriState in[8])
