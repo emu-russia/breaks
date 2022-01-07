@@ -15,6 +15,10 @@ namespace M6502Core
 
 	class DataBus
 	{
+		BaseLogic::DLatch rd_latch;
+		BaseLogic::DLatch DL[8];
+		BaseLogic::DLatch DOR[8];
+
 	public:
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[], BaseLogic::TriState cpu_inOut[]);

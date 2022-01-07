@@ -11,7 +11,9 @@ namespace M6502Core
 
 		for (size_t n = 0; n < 8; n++)
 		{
-			pd_latch[n].set(NOT(d[n]), PHI2);
+			TriState Dn = d[(size_t)InOutPad::D0 + n];
+
+			pd_latch[n].set(Dn == TriState::Z ? TriState::One : NOT(Dn), PHI2);
 		}
 
 		TriState PD[8];
