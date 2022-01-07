@@ -237,19 +237,6 @@ namespace M6502Core
 
 		// Bottom Part
 
-		TriState addr_in[(size_t)AddressBus_Input::Max];
-
-		addr_in[(size_t)AddressBus_Input::PHI1] = PHI1;
-
-		addr_in[(size_t)AddressBus_Input::PHI2] = PHI2;
-		addr_in[(size_t)AddressBus_Input::Z_ADL0] = rand_out[(size_t)RandomLogic_Output::Z_ADL0];
-		addr_in[(size_t)AddressBus_Input::Z_ADL1] = rand_out[(size_t)RandomLogic_Output::Z_ADL1];
-		addr_in[(size_t)AddressBus_Input::Z_ADL2] = rand_out[(size_t)RandomLogic_Output::Z_ADL2];
-		addr_in[(size_t)AddressBus_Input::ADL_ABL] = rand_out[(size_t)RandomLogic_Output::ADL_ABL];
-		addr_in[(size_t)AddressBus_Input::ADH_ABH] = rand_out[(size_t)RandomLogic_Output::ADH_ABH];
-
-		addr_bus->sim(addr_in, ADL, ADH, outputs);
-
 		TriState regs_in[(size_t)Regs_Input::Max];
 
 		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
@@ -318,6 +305,18 @@ namespace M6502Core
 		data_in[(size_t)DataBus_Input::DL_DB] = rand_out[(size_t)RandomLogic_Output::DL_DB];
 
 		data_bus->sim(data_in, DB, ADL, ADH, inOuts);
+
+		TriState addr_in[(size_t)AddressBus_Input::Max];
+
+		addr_in[(size_t)AddressBus_Input::PHI1] = PHI1;
+		addr_in[(size_t)AddressBus_Input::PHI2] = PHI2;
+		addr_in[(size_t)AddressBus_Input::Z_ADL0] = rand_out[(size_t)RandomLogic_Output::Z_ADL0];
+		addr_in[(size_t)AddressBus_Input::Z_ADL1] = rand_out[(size_t)RandomLogic_Output::Z_ADL1];
+		addr_in[(size_t)AddressBus_Input::Z_ADL2] = rand_out[(size_t)RandomLogic_Output::Z_ADL2];
+		addr_in[(size_t)AddressBus_Input::ADL_ABL] = rand_out[(size_t)RandomLogic_Output::ADL_ABL];
+		addr_in[(size_t)AddressBus_Input::ADH_ABH] = rand_out[(size_t)RandomLogic_Output::ADH_ABH];
+
+		addr_bus->sim(addr_in, ADL, ADH, outputs);
 
 		// Outputs
 
