@@ -30,15 +30,5 @@ namespace M6502Core
 		outputs[(size_t)ExtraCounter_Output::n_T3] = NOT(NOR(t3_latch1.get(), TRES2));
 		outputs[(size_t)ExtraCounter_Output::n_T4] = NOT(NOR(t4_latch1.get(), TRES2));
 		outputs[(size_t)ExtraCounter_Output::n_T5] = NOT(NOR(t5_latch1.get(), TRES2));
-
-		if (trace)
-		{
-			printf("ExtraCounter: PHI1: %d, PHI2: %d, /ready: %d, T1: %d, /T2: %d, /T3: %d, /T4: %d, /T5: %d\n",
-				PHI1, PHI2, n_ready, T1,
-				outputs[(size_t)ExtraCounter_Output::n_T2],
-				outputs[(size_t)ExtraCounter_Output::n_T3],
-				outputs[(size_t)ExtraCounter_Output::n_T4],
-				outputs[(size_t)ExtraCounter_Output::n_T5]);
-		}
 	}
 }

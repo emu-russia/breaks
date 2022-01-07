@@ -101,9 +101,6 @@ namespace M6502Core
 		BaseLogic::DLatch ipc_latch2;
 		BaseLogic::DLatch ipc_latch3;
 
-		bool traceBeforeDecoder = true;
-		bool traceAfterRandom = false;
-
 	public:
 		
 		void sim_BeforeDecoder(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);

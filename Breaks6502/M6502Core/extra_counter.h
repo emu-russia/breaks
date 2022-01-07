@@ -33,8 +33,6 @@ namespace M6502Core
 		BaseLogic::DLatch t5_latch1;
 		BaseLogic::DLatch t5_latch2;
 
-		bool trace = false;
-
 	public:
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
