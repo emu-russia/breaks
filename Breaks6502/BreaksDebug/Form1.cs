@@ -21,7 +21,6 @@ namespace BreaksDebug
         BogusSystem sys = new BogusSystem();
         byte[] sram = new byte[0x10000];
         IByteProvider memProvider;
-        long LastHexDumpAddress = 0;
 
         public Form1()
         {
@@ -35,7 +34,9 @@ namespace BreaksDebug
             sys.AttatchMemory(memProvider);
             UpdateAll();
 
+#if DEBUG
             AllocConsole();
+#endif
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
