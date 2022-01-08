@@ -62,10 +62,6 @@ namespace M6502Core
 		BaseLogic::TriState ADL[8];
 		BaseLogic::TriState ADH[8];
 
-	public:
-		M6502();
-		~M6502();
-
 		Decoder* decoder = nullptr;
 		PreDecode* predecode = nullptr;
 		IR* ir = nullptr;
@@ -79,6 +75,10 @@ namespace M6502Core
 		ALU* alu = nullptr;
 		ProgramCounter* pc = nullptr;
 		DataBus* data_bus = nullptr;
+
+	public:
+		M6502();
+		~M6502();
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
 	};
