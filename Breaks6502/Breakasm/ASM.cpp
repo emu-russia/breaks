@@ -53,7 +53,7 @@ label_s *add_label (const char *name, long orig)
     char temp_name[0x200] = { 0 };
     strcpy(temp_name, name);
 
-    int len = strlen (temp_name), i;
+    int len = (int)strlen (temp_name), i;
     label_s * label;
     for (i=len-1; i>=0; i--) {
         if (temp_name[i] <= ' ') temp_name[i] = 0;
@@ -219,7 +219,7 @@ int eval (char *text, eval_t *result)
 
     // Indirect test
     result->indirect = 0;
-    len = strlen (text);
+    len = (int)strlen (text);
     for (i=0; i<len; i++) {
         c = text[i];
         if ( (c == '(' || c == ')') && quot == 0 ) {
