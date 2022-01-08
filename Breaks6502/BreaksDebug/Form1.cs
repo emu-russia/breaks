@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using System.Runtime.InteropServices;
 using Be.Windows.Forms;
+using System.IO;
 
 namespace BreaksDebug
 {
@@ -21,6 +22,7 @@ namespace BreaksDebug
         BogusSystem sys = new BogusSystem();
         byte[] sram = new byte[0x10000];
         IByteProvider memProvider;
+        string testAsmName = "Test.asm";
 
         public Form1()
         {
@@ -29,14 +31,26 @@ namespace BreaksDebug
 
         private void Form1_Load(object sender, EventArgs e)
         {
+#if DEBUG
+            AllocConsole();
+#endif
+
+            toolStripButton4.Checked = true;    // /NMI
+            toolStripButton5.Checked = true;    // /IRQ
+            toolStripButton6.Checked = false;   // /RES
+            toolStripButton3.Checked = false;   // SO
+            toolStripButton2.Checked = true;    // RES
+            ButtonsToPads();
+
             memProvider = new DynamicByteProvider(sram);
             hexBox1.ByteProvider = memProvider;
             sys.AttatchMemory(memProvider);
             UpdateAll();
 
-#if DEBUG
-            AllocConsole();
-#endif
+            if (File.Exists(testAsmName))
+            {
+                LoadAsm(testAsmName);
+            }
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -73,11 +87,142 @@ namespace BreaksDebug
             hexBox1.Refresh();
         }
 
+        void UpdateCpuPads()
+        {
+            propertyGrid1.SelectedObject = sys.cpu_pads;
+        }
+
+        void UpdateState()
+        {
+            if (sys.cpu_pads.PHI1 != 0)
+            {
+                label3.Text = "PHI1 (Talking)";
+            }
+
+            if (sys.cpu_pads.PHI2 != 0)
+            {
+                label3.Text = "PHI2 (Listening)";
+            }
+        }
+
+        void UpdateCpuDebugInfo()
+        {
+            // TODO
+        }
+
         void UpdateAll()
         {
             UpdateCycleStats();
             UpdateMemoryDump();
+            UpdateCpuPads();
+            UpdateState();
+            UpdateCpuDebugInfo();
         }
 
+        private void loadMemoryDumpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult res = openFileDialog2.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                byte[] dump = File.ReadAllBytes(openFileDialog2.FileName);
+
+                for (int i=0; i<sram.Length; i++)
+                {
+                    memProvider.WriteByte(i, dump[i]);
+                }
+
+                hexBox1.Refresh();
+            }
+        }
+
+        private void saveTheMemoryDumpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult res = saveFileDialog1.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                byte[] dump = new byte[sram.Length];
+
+                for (int i = 0; i < sram.Length; i++)
+                {
+                    dump[i] = memProvider.ReadByte(i);
+                }
+
+                File.WriteAllBytes(saveFileDialog1.FileName, dump);
+            }
+        }
+
+        private void loadAssemblySourceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult res = openFileDialog1.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                LoadAsm(openFileDialog1.FileName);
+            }
+
+            tabControl2.SelectTab(1);
+        }
+
+        void LoadAsm(string filename)
+        {
+            richTextBox1.Text = File.ReadAllText(filename);
+            Console.WriteLine("Loaded " + filename);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Assemble();
+        }
+
+        void Assemble()
+        {
+            // TODO: Transfer control to Breakasm
+
+            hexBox1.Refresh();
+        }
+
+        void ButtonsToPads()
+        {
+            sys.cpu_pads.n_NMI = (byte)(toolStripButton4.Checked ? 1 : 0);
+            sys.cpu_pads.n_IRQ = (byte)(toolStripButton5.Checked ? 1 : 0);
+            sys.cpu_pads.n_RES = (byte)(toolStripButton6.Checked ? 1 : 0);
+            sys.cpu_pads.SO = (byte)(toolStripButton3.Checked ? 1 : 0);
+            sys.cpu_pads.RDY = (byte)(toolStripButton2.Checked ? 1 : 0);
+        }
+
+        private void toolStripButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            ButtonsToPads();
+            UpdateCpuPads();
+        }
+
+        private void toolStripButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            ButtonsToPads();
+            UpdateCpuPads();
+        }
+
+        private void toolStripButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            ButtonsToPads();
+            UpdateCpuPads();
+        }
+
+        private void toolStripButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            ButtonsToPads();
+            UpdateCpuPads();
+        }
+
+        private void toolStripButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            ButtonsToPads();
+            UpdateCpuPads();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormAbout dlg = new FormAbout();
+            dlg.ShowDialog();
+        }
     }
 }
