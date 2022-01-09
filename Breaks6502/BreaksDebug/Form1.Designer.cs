@@ -403,7 +403,7 @@ namespace BreaksDebug
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(943, 212);
+            this.tabPage4.Size = new System.Drawing.Size(997, 254);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Assembler";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -411,6 +411,7 @@ namespace BreaksDebug
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer3.Location = new System.Drawing.Point(3, 3);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -422,16 +423,18 @@ namespace BreaksDebug
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.button2);
-            this.splitContainer3.Size = new System.Drawing.Size(937, 206);
-            this.splitContainer3.SplitterDistance = 163;
+            this.splitContainer3.Size = new System.Drawing.Size(991, 248);
+            this.splitContainer3.SplitterDistance = 196;
             this.splitContainer3.TabIndex = 0;
             // 
             // richTextBox1
             // 
+            this.richTextBox1.AcceptsTab = true;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(937, 163);
+            this.richTextBox1.Size = new System.Drawing.Size(991, 196);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
