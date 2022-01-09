@@ -171,9 +171,8 @@ namespace BreaksDebug
             if (res == DialogResult.OK)
             {
                 LoadAsm(openFileDialog1.FileName);
+                tabControl2.SelectTab(1);
             }
-
-            tabControl2.SelectTab(1);
         }
 
         void LoadAsm(string filename)
