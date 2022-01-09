@@ -223,30 +223,35 @@ namespace BreaksDebug
 
         private void toolStripButton4_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("/NMI changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
 
         private void toolStripButton5_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("/IRQ changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
 
         private void toolStripButton6_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("/RES changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
 
         private void toolStripButton3_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("SO changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
 
         private void toolStripButton2_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("RDY changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
