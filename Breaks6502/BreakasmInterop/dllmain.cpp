@@ -16,3 +16,11 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     }
     return TRUE;
 }
+
+extern "C"
+{
+    __declspec(dllexport) int Assemble(char* str, uint8_t* buffer)
+    {
+        return assemble(str, buffer);
+    }
+}

@@ -50,6 +50,7 @@ namespace BreaksDebug
             if (File.Exists(testAsmName))
             {
                 LoadAsm(testAsmName);
+                Assemble();
             }
         }
 
@@ -175,10 +176,27 @@ namespace BreaksDebug
 
         void Assemble()
         {
-            // TODO: Transfer control to Breakasm
+            byte[] buffer = new byte[sram.Length];
+
+            int num_err = Assemble(richTextBox1.Text, buffer);
+            if (num_err != 0)
+            {
+                MessageBox.Show(
+                    "Errors occurred during the assembling process. Num erros: " + num_err.ToString(), 
+                    "Assembling error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation );
+                return;
+            }
+
+            for (int i = 0; i < sram.Length; i++)
+            {
+                memProvider.WriteByte(i, buffer[i]);
+            }
 
             hexBox1.Refresh();
         }
+
+        [DllImport("BreakasmInterop.dll", CallingConvention = CallingConvention.Cdecl)]
+        static extern int Assemble(string text, byte [] buffer);
 
         void ButtonsToPads()
         {

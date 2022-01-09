@@ -7,6 +7,8 @@ LABEL1:
 
     DEFINE  KONST   #5
 
+RESET:
+
     LDX     KONST
 
 AGAIN:
@@ -28,5 +30,14 @@ ADDSOME:                        ; Test ALU
 SOMEDATA:
     BYTE    12, $FF, "Hello, world" 
     WORD    AGAIN
+
+BogusInterrupt:
+    RTI
+
+    ORG $FFFA
+
+    WORD BogusInterrupt
+    WORD RESET
+    WORD BogusInterrupt
 
 END
