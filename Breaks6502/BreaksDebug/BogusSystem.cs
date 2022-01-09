@@ -2,8 +2,13 @@
 // Contains 64 Kbytes of memory and nothing else.
 
 using System;
+using System.Text;
+using System.Globalization;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
 
 using Be.Windows.Forms;
 
@@ -41,7 +46,7 @@ namespace BreaksDebug
             [Category("Address Bus")]
             public byte[] A { get; set; } = new byte[16];
             [Category("Address Bus")]
-            public string Addr { get; set; } = "?";
+            public string Addr { get; set; }
             [Category("Data Bus")]
             public byte [] D { get; set; } = new byte[8];
         }
@@ -63,19 +68,121 @@ namespace BreaksDebug
             public fixed byte D[8];
         }
 
-        public class CpuDebugInfo
+        public class CpuDebugInfo_RegsBuses
         {
-            public int bogus;
+            [Category("Internal buses")]
+            public string SB { get; set; }
+            [Category("Internal buses")]
+            public string DB { get; set; }
+            [Category("Internal buses")]
+            public string ADL { get; set; }
+            [Category("Internal buses")]
+            public string ADH { get; set; }
         }
+
+        public class CpuDebugInfo_Decoder
+        {
+            // Decoder
+
+            [TypeConverter(typeof(ListConverter))]
+            [Category("Decoder")]
+            public List<string> decoder_out { get; set; } = new List<string>();
+        }
+
+        public class CpuDebugInfo_Commands
+        {
+            // Control commands
+
+            [TypeConverter(typeof(ListConverter))]
+            [Category("Control commands")]
+            public List<string> commands { get; set; } = new List<string>();
+            [Category("Control commands")]
+            public byte n_ACIN { get; set; }
+            [Category("Control commands")]
+            public byte n_DAA { get; set; }
+            [Category("Control commands")]
+            public byte n_DSA { get; set; }
+            [Category("Control commands")]
+            public byte n_1PC { get; set; }
+        }
+
+        enum ControlCommand
+        {
+            Y_SB = 0,
+            SB_Y,
+            X_SB,
+            SB_X,
+            S_ADL,
+            S_SB,
+            SB_S,
+            S_S,
+            NDB_ADD,
+            DB_ADD,
+            Z_ADD,
+            SB_ADD,
+            ADL_ADD,
+            ANDS,
+            EORS,
+            ORS,
+            SRS,
+            SUMS,
+            ADD_SB7,
+            ADD_SB06,
+            ADD_ADL,
+            SB_AC,
+            AC_SB,
+            AC_DB,
+            ADH_PCH,
+            PCH_PCH,
+            PCH_ADH,
+            PCH_DB,
+            ADL_PCL,
+            PCL_PCL,
+            PCL_ADL,
+            PCL_DB,
+            ADH_ABH,
+            ADL_ABL,
+            Z_ADL0,
+            Z_ADL1,
+            Z_ADL2,
+            Z_ADH0,
+            Z_ADH17,
+            SB_DB,
+            SB_ADH,
+            DL_ADL,
+            DL_ADH,
+            DL_DB,
+            Max,
+        }
+
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         unsafe struct CpuDebugInfoRaw
         {
-            public byte bogus;
+            // Regs & Buses
+
+            public byte SB;
+            public byte DB;
+            public byte ADL;
+            public byte ADH;
+
+            // Dispatcher
+
+            // Decoder
+
+            public fixed byte decoder_out[130];
+
+            // Control commands
+
+            public fixed byte cmd[(int)ControlCommand.Max];
+            public byte n_ACIN;
+            public byte n_DAA;
+            public byte n_DSA;
+            public byte n_1PC;          // From Dispatcher
         }
 
         public CpuPads cpu_pads = new CpuPads();
-        public CpuDebugInfo cpu_debugInfo = new CpuDebugInfo();
+        CpuDebugInfoRaw info = new CpuDebugInfoRaw();
 
         public void Step()
         {
@@ -86,7 +193,6 @@ namespace BreaksDebug
             // Execute M6502Core::sim
 
             CpuPadsRaw pads = SerializePads (cpu_pads);
-            CpuDebugInfoRaw info = new CpuDebugInfoRaw();
 
             Sim(ref pads, ref info);
 
@@ -230,8 +336,140 @@ namespace BreaksDebug
             return pads;
         }
 
+        public CpuDebugInfo_RegsBuses GetRegsBuses()
+        {
+            CpuDebugInfo_RegsBuses res = new CpuDebugInfo_RegsBuses();
+
+            res.SB = "0x" + info.SB.ToString("X2");
+            res.DB = "0x" + info.DB.ToString("X2");
+            res.ADL = "0x" + info.ADL.ToString("X2");
+            res.ADH = "0x" + info.ADH.ToString("X2");
+
+            return res;
+        }
+
+        public CpuDebugInfo_Decoder GetDecoder()
+        {
+            CpuDebugInfo_Decoder res = new CpuDebugInfo_Decoder();
+
+            res.decoder_out.Add("xxx");
+
+            return res;
+        }
+
+        public CpuDebugInfo_Commands GetCommands()
+        {
+            CpuDebugInfo_Commands res = new CpuDebugInfo_Commands();
+
+            res.commands.Add("xxx");
+
+            return res;
+        }
+
         [DllImport("M6502CoreInterop.dll", CallingConvention = CallingConvention.Cdecl)]
         static extern void Sim(ref CpuPadsRaw pads, ref CpuDebugInfoRaw debugInfo);
+
+
+        // https://stackoverflow.com/questions/32582504/propertygrid-expandable-collection
+
+        public class ListConverter : CollectionConverter
+        {
+            public override bool GetPropertiesSupported(ITypeDescriptorContext context)
+            {
+                return true;
+            }
+
+            public override PropertyDescriptorCollection GetProperties(ITypeDescriptorContext context, object value, Attribute[] attributes)
+            {
+                IList list = value as IList;
+                if (list == null || list.Count == 0)
+                    return base.GetProperties(context, value, attributes);
+
+                var items = new PropertyDescriptorCollection(null);
+                for (int i = 0; i < list.Count; i++)
+                {
+                    object item = list[i];
+                    items.Add(new ExpandableCollectionPropertyDescriptor(list, i));
+                }
+                return items;
+            }
+
+            public class ExpandableCollectionPropertyDescriptor : PropertyDescriptor
+            {
+                private IList collection;
+                private readonly int _index;
+
+                public ExpandableCollectionPropertyDescriptor(IList coll, int idx)
+                    : base(GetDisplayName(coll, idx), null)
+                {
+                    collection = coll;
+                    _index = idx;
+                }
+
+                private static string GetDisplayName(IList list, int index)
+                {
+                    return "[" + index + "]  " + CSharpName(list[index].GetType());
+                }
+
+                private static string CSharpName(Type type)
+                {
+                    var sb = new StringBuilder();
+                    var name = type.Name;
+                    if (!type.IsGenericType)
+                        return name;
+                    sb.Append(name.Substring(0, name.IndexOf('`')));
+                    sb.Append("<");
+                    sb.Append(string.Join(", ", type.GetGenericArguments().Select(CSharpName)));
+                    sb.Append(">");
+                    return sb.ToString();
+                }
+
+                public override bool CanResetValue(object component)
+                {
+                    return true;
+                }
+
+                public override Type ComponentType
+                {
+                    get { return this.collection.GetType(); }
+                }
+
+                public override object GetValue(object component)
+                {
+                    return collection[_index];
+                }
+
+                public override bool IsReadOnly
+                {
+                    get { return false; }
+                }
+
+                public override string Name
+                {
+                    get { return _index.ToString(CultureInfo.InvariantCulture); }
+                }
+
+                public override Type PropertyType
+                {
+                    get { return collection[_index].GetType(); }
+                }
+
+                public override void ResetValue(object component)
+                {
+                }
+
+                public override bool ShouldSerializeValue(object component)
+                {
+                    return true;
+                }
+
+                public override void SetValue(object component, object value)
+                {
+                    collection[_index] = value;
+                }
+            }
+        }
+
     }
 
 }

@@ -31,12 +31,12 @@ namespace M6502Core
 				
 				if (DL_ADH == TriState::One)
 				{
-					ADH[n] == DL[n].nget();
+					ADH[n] = DL[n].nget();
 				}
 
 				if (DL_DB == TriState::One)
 				{
-					DB[n] == DL[n].nget();
+					DB[n] = DL[n].nget();
 				}
 			}
 
