@@ -132,4 +132,28 @@ namespace M6502Core
 			}
 		}
 	}
+
+	uint8_t ProgramCounter::getPCL()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = PCL[n].nget();
+		}
+
+		return Pack(v);
+	}
+
+	uint8_t ProgramCounter::getPCH()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = PCH[n].nget();
+		}
+
+		return Pack(v);
+	}
 }

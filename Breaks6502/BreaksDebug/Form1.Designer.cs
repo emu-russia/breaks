@@ -424,9 +424,9 @@ namespace BreaksDebug
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(399, 20);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(61, 13);
+            this.label6.Size = new System.Drawing.Size(115, 13);
             this.label6.TabIndex = 7;
-            this.label6.Text = "Dispatcher:";
+            this.label6.Text = "Dispatcher / interrupts:";
             // 
             // label7
             // 

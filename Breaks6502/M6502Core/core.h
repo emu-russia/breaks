@@ -51,6 +51,30 @@ namespace M6502Core
 		uint8_t ADL;
 		uint8_t ADH;
 
+		uint8_t IR;
+		uint8_t PD;
+		uint8_t Y; 
+		uint8_t X;
+		uint8_t S;
+		uint8_t AI;
+		uint8_t BI;
+		uint8_t ADD;
+		uint8_t AC;
+		uint8_t PCL;
+		uint8_t PCH;
+		uint8_t ABL;
+		uint8_t ABH;
+		uint8_t DL;
+		uint8_t DOR;
+
+		uint8_t C_OUT;
+		uint8_t Z_OUT;
+		uint8_t I_OUT;
+		uint8_t D_OUT;
+		uint8_t B_OUT;
+		uint8_t V_OUT;
+		uint8_t N_OUT;
+
 		// Dispatcher
 
 		// Decoder

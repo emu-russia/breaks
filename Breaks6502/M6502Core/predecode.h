@@ -24,6 +24,8 @@ namespace M6502Core
 
 	public:
 
+		BaseLogic::TriState PD[8];
+
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[8], BaseLogic::TriState outputs[], BaseLogic::TriState n_PD[8]);
 	};
 }

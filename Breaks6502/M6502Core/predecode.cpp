@@ -16,8 +16,6 @@ namespace M6502Core
 			pd_latch[n].set(Dn == TriState::Z ? TriState::One : NOT(Dn), PHI2);
 		}
 
-		TriState PD[8];
-
 		for (size_t n = 0; n < 8; n++)
 		{
 			PD[n] = NOR(pd_latch[n].get(), Z_IR);

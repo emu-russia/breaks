@@ -27,5 +27,9 @@ namespace M6502Core
 	public:
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState ADL[]);
+
+		uint8_t getY();
+		uint8_t getX();
+		uint8_t getS();
 	};
 }

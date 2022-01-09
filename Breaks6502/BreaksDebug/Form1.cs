@@ -188,6 +188,8 @@ namespace BreaksDebug
 
         void Assemble()
         {
+            Console.WriteLine("Assemble");
+
             byte[] buffer = new byte[sram.Length];
 
             int num_err = Assemble(richTextBox1.Text, buffer);

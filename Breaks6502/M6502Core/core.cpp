@@ -332,6 +332,32 @@ namespace M6502Core
 		info->ADL = Pack(ADL);
 		info->ADH = Pack(ADH);
 
+		TriState IR[8];
+		ir->get(IR);
+		info->IR = Pack(IR);
+		info->PD = Pack(predecode->PD);
+		info->Y = regs->getY();
+		info->X = regs->getX();
+		info->S = regs->getS();
+		info->AI = alu->getAI();
+		info->BI = alu->getBI();
+		info->ADD = alu->getADD();
+		info->AC = alu->getAC();
+		info->PCL = pc->getPCL();
+		info->PCH = pc->getPCH();
+		info->ABL = addr_bus->getABL();
+		info->ABH = addr_bus->getABH();
+		info->DL = data_bus->getDL();
+		info->DOR = data_bus->getDOR();
+
+		info->C_OUT = NOT(random->flags->getn_C_OUT()) == TriState::One ? 1 : 0;
+		info->Z_OUT = NOT(random->flags->getn_Z_OUT()) == TriState::One ? 1 : 0;
+		info->I_OUT = NOT(random->flags->getn_I_OUT()) == TriState::One ? 1 : 0;
+		info->D_OUT = NOT(random->flags->getn_D_OUT()) == TriState::One ? 1 : 0;
+		info->B_OUT = brk->getB_OUT() == TriState::One ? 1 : 0;
+		info->V_OUT = NOT(random->flags->getn_V_OUT()) == TriState::One ? 1 : 0;
+		info->N_OUT = NOT(random->flags->getn_N_OUT()) == TriState::One ? 1 : 0;
+
 		for (size_t n=0; n<Decoder::outputs_count; n++)
 		{
 			info->decoder_out[n] = decoder_out[n] == TriState::One ? 1 : 0;

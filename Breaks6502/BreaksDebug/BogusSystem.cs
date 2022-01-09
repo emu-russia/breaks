@@ -78,6 +78,53 @@ namespace BreaksDebug
             public string ADL { get; set; }
             [Category("Internal buses")]
             public string ADH { get; set; }
+
+
+            [Category("Regs")]
+            public string IR { get; set; }
+            [Category("Regs")]
+            public string PD { get; set; }
+            [Category("Regs")]
+            public string Y { get; set; }
+            [Category("Regs")]
+            public string X { get; set; }
+            [Category("Regs")]
+            public string S { get; set; }
+            [Category("Regs")]
+            public string AI { get; set; }
+            [Category("Regs")]
+            public string BI { get; set; }
+            [Category("Regs")]
+            public string ADD { get; set; }
+            [Category("Regs")]
+            public string AC { get; set; }
+            [Category("Regs")]
+            public string PCL { get; set; }
+            [Category("Regs")]
+            public string PCH { get; set; }
+            [Category("Regs")]
+            public string ABL { get; set; }
+            [Category("Regs")]
+            public string ABH { get; set; }
+            [Category("Regs")]
+            public string DL { get; set; }
+            [Category("Regs")]
+            public string DOR { get; set; }
+
+            [Category("Flags")]
+            public byte C_OUT { get; set; }
+            [Category("Flags")]
+            public byte Z_OUT { get; set; }
+            [Category("Flags")]
+            public byte I_OUT { get; set; }
+            [Category("Flags")]
+            public byte D_OUT { get; set; }
+            [Category("Flags")]
+            public byte B_OUT { get; set; }
+            [Category("Flags")]
+            public byte V_OUT { get; set; }
+            [Category("Flags")]
+            public byte N_OUT { get; set; }
         }
 
         public class CpuDebugInfo_Decoder
@@ -165,6 +212,30 @@ namespace BreaksDebug
             public byte DB;
             public byte ADL;
             public byte ADH;
+
+            public byte IR;
+            public byte PD;
+            public byte Y;
+            public byte X;
+            public byte S;
+            public byte AI;
+            public byte BI;
+            public byte ADD;
+            public byte AC;
+            public byte PCL;
+            public byte PCH;
+            public byte ABL;
+            public byte ABH;
+            public byte DL;
+            public byte DOR;
+
+            public byte C_OUT;
+            public byte Z_OUT;
+            public byte I_OUT;
+            public byte D_OUT;
+            public byte B_OUT;
+            public byte V_OUT;
+            public byte N_OUT;
 
             // Dispatcher
 
@@ -344,6 +415,30 @@ namespace BreaksDebug
             res.DB = "0x" + info.DB.ToString("X2");
             res.ADL = "0x" + info.ADL.ToString("X2");
             res.ADH = "0x" + info.ADH.ToString("X2");
+
+            res.IR = "0x" + info.IR.ToString("X2");
+            res.PD = "0x" + info.PD.ToString("X2");
+            res.Y = "0x" + info.Y.ToString("X2");
+            res.X = "0x" + info.X.ToString("X2");
+            res.S = "0x" + info.S.ToString("X2");
+            res.AI = "0x" + info.AI.ToString("X2");
+            res.BI = "0x" + info.BI.ToString("X2");
+            res.ADD = "0x" + info.ADD.ToString("X2");
+            res.AC = "0x" + info.AC.ToString("X2");
+            res.PCL = "0x" + info.PCL.ToString("X2");
+            res.PCH = "0x" + info.PCH.ToString("X2");
+            res.ABL = "0x" + info.ABL.ToString("X2");
+            res.ABH = "0x" + info.ABH.ToString("X2");
+            res.DL = "0x" + info.DL.ToString("X2");
+            res.DOR = "0x" + info.DOR.ToString("X2");
+
+            res.C_OUT = info.C_OUT;
+            res.Z_OUT = info.Z_OUT;
+            res.I_OUT = info.I_OUT;
+            res.D_OUT = info.D_OUT;
+            res.B_OUT = info.B_OUT;
+            res.V_OUT = info.V_OUT;
+            res.N_OUT = info.N_OUT;
 
             return res;
         }
