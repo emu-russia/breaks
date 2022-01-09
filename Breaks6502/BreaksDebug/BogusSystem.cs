@@ -352,7 +352,17 @@ namespace BreaksDebug
         {
             CpuDebugInfo_Decoder res = new CpuDebugInfo_Decoder();
 
-            res.decoder_out.Add("xxx");
+            for (int n = 0; n < 130; n++)
+            {
+                unsafe
+                {
+                    if (info.decoder_out[n] != 0)
+                    {
+                        string text = n.ToString() + ": " + DecoderDecoder.GetDecoderOutName(n);
+                        res.decoder_out.Add(text);
+                    }
+                }
+            }
 
             return res;
         }
@@ -361,7 +371,21 @@ namespace BreaksDebug
         {
             CpuDebugInfo_Commands res = new CpuDebugInfo_Commands();
 
-            res.commands.Add("xxx");
+            for (int n=0; n<(int)ControlCommand.Max; n++)
+            {
+                unsafe
+                {
+                    if (info.cmd[n] != 0)
+                    {
+                        res.commands.Add(((ControlCommand)n).ToString());
+                    }
+                }
+            }
+
+            res.n_ACIN = info.n_ACIN;
+            res.n_DAA = info.n_DAA;
+            res.n_DSA = info.n_DSA;
+            res.n_1PC = info.n_1PC;
 
             return res;
         }
