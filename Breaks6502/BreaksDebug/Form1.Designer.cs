@@ -32,10 +32,10 @@ namespace BreaksDebug
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadAssemblySourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.loadMemoryDumpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveTheMemoryDumpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.loadAssemblySourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -60,10 +60,6 @@ namespace BreaksDebug
             this.propertyGrid4 = new System.Windows.Forms.PropertyGrid();
             this.label6 = new System.Windows.Forms.Label();
             this.propertyGrid3 = new System.Windows.Forms.PropertyGrid();
-            this.label5 = new System.Windows.Forms.Label();
-            this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
-            this.label4 = new System.Windows.Forms.Label();
-            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -72,11 +68,16 @@ namespace BreaksDebug
             this.button2 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.hexBox1 = new Be.Windows.Forms.HexBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.hexBox1 = new Be.Windows.Forms.HexBox();
+            this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -93,8 +94,10 @@ namespace BreaksDebug
             this.splitContainer3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,7 +108,7 @@ namespace BreaksDebug
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(951, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1005, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -122,6 +125,18 @@ namespace BreaksDebug
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
+            // loadAssemblySourceToolStripMenuItem
+            // 
+            this.loadAssemblySourceToolStripMenuItem.Name = "loadAssemblySourceToolStripMenuItem";
+            this.loadAssemblySourceToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.loadAssemblySourceToolStripMenuItem.Text = "Load assembly source";
+            this.loadAssemblySourceToolStripMenuItem.Click += new System.EventHandler(this.loadAssemblySourceToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(198, 6);
+            // 
             // loadMemoryDumpToolStripMenuItem
             // 
             this.loadMemoryDumpToolStripMenuItem.Name = "loadMemoryDumpToolStripMenuItem";
@@ -135,18 +150,6 @@ namespace BreaksDebug
             this.saveTheMemoryDumpToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
             this.saveTheMemoryDumpToolStripMenuItem.Text = "Save the memory dump";
             this.saveTheMemoryDumpToolStripMenuItem.Click += new System.EventHandler(this.saveTheMemoryDumpToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(198, 6);
-            // 
-            // loadAssemblySourceToolStripMenuItem
-            // 
-            this.loadAssemblySourceToolStripMenuItem.Name = "loadAssemblySourceToolStripMenuItem";
-            this.loadAssemblySourceToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.loadAssemblySourceToolStripMenuItem.Text = "Load assembly source";
-            this.loadAssemblySourceToolStripMenuItem.Click += new System.EventHandler(this.loadAssemblySourceToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -171,7 +174,7 @@ namespace BreaksDebug
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -188,7 +191,7 @@ namespace BreaksDebug
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(951, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(1005, 39);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -271,9 +274,9 @@ namespace BreaksDebug
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 512);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 509);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(951, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1005, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -286,6 +289,7 @@ namespace BreaksDebug
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.Location = new System.Drawing.Point(0, 63);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -297,8 +301,8 @@ namespace BreaksDebug
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(951, 449);
-            this.splitContainer1.SplitterDistance = 238;
+            this.splitContainer1.Size = new System.Drawing.Size(1005, 446);
+            this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.TabIndex = 3;
             // 
             // tabControl2
@@ -309,27 +313,16 @@ namespace BreaksDebug
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(951, 238);
+            this.tabControl2.Size = new System.Drawing.Size(1005, 280);
             this.tabControl2.TabIndex = 0;
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.label8);
-            this.tabPage3.Controls.Add(this.propertyGrid5);
-            this.tabPage3.Controls.Add(this.label7);
-            this.tabPage3.Controls.Add(this.propertyGrid4);
-            this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.propertyGrid3);
-            this.tabPage3.Controls.Add(this.label5);
-            this.tabPage3.Controls.Add(this.propertyGrid2);
-            this.tabPage3.Controls.Add(this.label4);
-            this.tabPage3.Controls.Add(this.propertyGrid1);
-            this.tabPage3.Controls.Add(this.label3);
-            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Controls.Add(this.tableLayoutPanel1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(943, 212);
+            this.tabPage3.Size = new System.Drawing.Size(997, 254);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "6502 Core";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -337,7 +330,7 @@ namespace BreaksDebug
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(747, 23);
+            this.label8.Location = new System.Drawing.Point(795, 20);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(97, 13);
             this.label8.TabIndex = 11;
@@ -345,15 +338,16 @@ namespace BreaksDebug
             // 
             // propertyGrid5
             // 
-            this.propertyGrid5.Location = new System.Drawing.Point(747, 39);
+            this.propertyGrid5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid5.Location = new System.Drawing.Point(795, 43);
             this.propertyGrid5.Name = "propertyGrid5";
-            this.propertyGrid5.Size = new System.Drawing.Size(179, 167);
+            this.propertyGrid5.Size = new System.Drawing.Size(193, 202);
             this.propertyGrid5.TabIndex = 10;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(562, 23);
+            this.label7.Location = new System.Drawing.Point(597, 20);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 13);
             this.label7.TabIndex = 9;
@@ -361,15 +355,16 @@ namespace BreaksDebug
             // 
             // propertyGrid4
             // 
-            this.propertyGrid4.Location = new System.Drawing.Point(562, 39);
+            this.propertyGrid4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid4.Location = new System.Drawing.Point(597, 43);
             this.propertyGrid4.Name = "propertyGrid4";
-            this.propertyGrid4.Size = new System.Drawing.Size(179, 167);
+            this.propertyGrid4.Size = new System.Drawing.Size(192, 202);
             this.propertyGrid4.TabIndex = 8;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(376, 23);
+            this.label6.Location = new System.Drawing.Point(399, 20);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 7;
@@ -377,48 +372,17 @@ namespace BreaksDebug
             // 
             // propertyGrid3
             // 
-            this.propertyGrid3.Location = new System.Drawing.Point(376, 39);
+            this.propertyGrid3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid3.Location = new System.Drawing.Point(399, 43);
             this.propertyGrid3.Name = "propertyGrid3";
-            this.propertyGrid3.Size = new System.Drawing.Size(179, 167);
+            this.propertyGrid3.Size = new System.Drawing.Size(192, 202);
             this.propertyGrid3.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(191, 23);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Regs && Buses:";
-            // 
-            // propertyGrid2
-            // 
-            this.propertyGrid2.Location = new System.Drawing.Point(191, 39);
-            this.propertyGrid2.Name = "propertyGrid2";
-            this.propertyGrid2.Size = new System.Drawing.Size(179, 167);
-            this.propertyGrid2.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 23);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Pads:";
-            // 
-            // propertyGrid1
-            // 
-            this.propertyGrid1.Location = new System.Drawing.Point(6, 39);
-            this.propertyGrid1.Name = "propertyGrid1";
-            this.propertyGrid1.Size = new System.Drawing.Size(179, 167);
-            this.propertyGrid1.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(46, 3);
+            this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 1;
@@ -427,7 +391,7 @@ namespace BreaksDebug
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 3);
+            this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 0;
@@ -439,7 +403,7 @@ namespace BreaksDebug
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(943, 212);
+            this.tabPage4.Size = new System.Drawing.Size(997, 254);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Assembler";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -447,6 +411,7 @@ namespace BreaksDebug
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer3.Location = new System.Drawing.Point(3, 3);
             this.splitContainer3.Name = "splitContainer3";
             this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -458,16 +423,18 @@ namespace BreaksDebug
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.button2);
-            this.splitContainer3.Size = new System.Drawing.Size(937, 206);
-            this.splitContainer3.SplitterDistance = 163;
+            this.splitContainer3.Size = new System.Drawing.Size(991, 248);
+            this.splitContainer3.SplitterDistance = 196;
             this.splitContainer3.TabIndex = 0;
             // 
             // richTextBox1
             // 
+            this.richTextBox1.AcceptsTab = true;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(937, 163);
+            this.richTextBox1.Size = new System.Drawing.Size(991, 196);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
@@ -488,49 +455,19 @@ namespace BreaksDebug
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(951, 207);
+            this.tabControl1.Size = new System.Drawing.Size(1005, 162);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.splitContainer2);
+            this.tabPage1.Controls.Add(this.hexBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(943, 181);
+            this.tabPage1.Size = new System.Drawing.Size(997, 136);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "CPU Memory";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.hexBox1);
-            this.splitContainer2.Size = new System.Drawing.Size(937, 175);
-            this.splitContainer2.SplitterDistance = 134;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // hexBox1
-            // 
-            this.hexBox1.ColumnInfoVisible = true;
-            this.hexBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.hexBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.hexBox1.LineInfoVisible = true;
-            this.hexBox1.Location = new System.Drawing.Point(0, 0);
-            this.hexBox1.Name = "hexBox1";
-            this.hexBox1.ReadOnly = true;
-            this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
-            this.hexBox1.Size = new System.Drawing.Size(937, 134);
-            this.hexBox1.StringViewVisible = true;
-            this.hexBox1.TabIndex = 0;
-            this.hexBox1.UseFixedBytesPerLine = true;
-            this.hexBox1.VScrollBarVisible = true;
             // 
             // openFileDialog1
             // 
@@ -547,11 +484,108 @@ namespace BreaksDebug
             this.saveFileDialog1.DefaultExt = "bin";
             this.saveFileDialog1.Filter = "Binary files|*.bin|All files|*.*";
             // 
+            // hexBox1
+            // 
+            this.hexBox1.ColumnInfoVisible = true;
+            this.hexBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.hexBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.hexBox1.LineInfoVisible = true;
+            this.hexBox1.Location = new System.Drawing.Point(3, 3);
+            this.hexBox1.Name = "hexBox1";
+            this.hexBox1.ReadOnly = true;
+            this.hexBox1.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
+            this.hexBox1.Size = new System.Drawing.Size(991, 130);
+            this.hexBox1.StringViewVisible = true;
+            this.hexBox1.TabIndex = 1;
+            this.hexBox1.UseFixedBytesPerLine = true;
+            this.hexBox1.VScrollBarVisible = true;
+            // 
+            // propertyGrid2
+            // 
+            this.propertyGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid2.Location = new System.Drawing.Point(201, 43);
+            this.propertyGrid2.Name = "propertyGrid2";
+            this.propertyGrid2.Size = new System.Drawing.Size(192, 202);
+            this.propertyGrid2.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(201, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Regs && Buses:";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 5;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.propertyGrid1, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.propertyGrid2, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.propertyGrid3, 2, 2);
+            this.tableLayoutPanel1.Controls.Add(this.propertyGrid4, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.propertyGrid5, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.splitContainer2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 3;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(991, 248);
+            this.tableLayoutPanel1.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 20);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(34, 13);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Pads:";
+            // 
+            // propertyGrid1
+            // 
+            this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.Location = new System.Drawing.Point(3, 43);
+            this.propertyGrid1.Name = "propertyGrid1";
+            this.propertyGrid1.Size = new System.Drawing.Size(192, 202);
+            this.propertyGrid1.TabIndex = 13;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer2.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.label2);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.label3);
+            this.splitContainer2.Size = new System.Drawing.Size(192, 14);
+            this.splitContainer2.SplitterDistance = 41;
+            this.splitContainer2.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 534);
+            this.ClientSize = new System.Drawing.Size(1005, 531);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -559,6 +593,7 @@ namespace BreaksDebug
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(960, 570);
             this.Name = "Form1";
             this.Text = "Breaks Debugger";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -575,7 +610,6 @@ namespace BreaksDebug
             this.splitContainer1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
@@ -583,7 +617,12 @@ namespace BreaksDebug
             this.splitContainer3.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -618,7 +657,6 @@ namespace BreaksDebug
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem loadAssemblySourceToolStripMenuItem;
         private System.Windows.Forms.Label label8;
@@ -627,19 +665,21 @@ namespace BreaksDebug
         private System.Windows.Forms.PropertyGrid propertyGrid4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PropertyGrid propertyGrid3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PropertyGrid propertyGrid2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PropertyGrid propertyGrid1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button button2;
-        private Be.Windows.Forms.HexBox hexBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog2;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private Be.Windows.Forms.HexBox hexBox1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.PropertyGrid propertyGrid1;
+        private System.Windows.Forms.PropertyGrid propertyGrid2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.SplitContainer splitContainer2;
     }
 }
 
