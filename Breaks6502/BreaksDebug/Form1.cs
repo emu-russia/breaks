@@ -108,7 +108,12 @@ namespace BreaksDebug
 
         void UpdateCpuDebugInfo()
         {
-            // TODO
+            propertyGrid2.SelectedObject = sys.GetRegsBuses();
+            //propertyGrid3.SelectedObject = TODO;
+            propertyGrid4.SelectedObject = sys.GetDecoder();
+            propertyGrid4.ExpandAllGridItems();
+            propertyGrid5.SelectedObject = sys.GetCommands();
+            propertyGrid5.ExpandAllGridItems();
 
             UpdateDisasm(0x00);
         }
@@ -183,6 +188,8 @@ namespace BreaksDebug
 
         void Assemble()
         {
+            Console.WriteLine("Assemble");
+
             byte[] buffer = new byte[sram.Length];
 
             int num_err = Assemble(richTextBox1.Text, buffer);

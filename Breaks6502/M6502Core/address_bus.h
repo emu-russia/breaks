@@ -24,7 +24,6 @@ namespace M6502Core
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[], BaseLogic::TriState cpu_out[]);
 
 		uint8_t getABL();
-
 		uint8_t getABH();
 	};
 }

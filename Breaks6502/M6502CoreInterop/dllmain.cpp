@@ -41,15 +41,13 @@ struct CpuPadsRaw
     uint8_t D[8];
 };
 
-struct CpuDebugInfoRaw
-{
-    uint8_t bogus;
-};
+typedef struct M6502Core::DebugInfo CpuDebugInfoRaw;
+
 #pragma pack(pop)
 
 extern "C"
 {
-    __declspec(dllexport) void Sim(CpuPadsRaw *pads, CpuDebugInfoRaw*debugInfo)
+    __declspec(dllexport) void Sim(CpuPadsRaw* pads, CpuDebugInfoRaw* debugInfo)
     {
         TriState inputs[(size_t)M6502Core::InputPad::Max];
         TriState outputs[(size_t)M6502Core::OutputPad::Max];
@@ -83,6 +81,8 @@ extern "C"
         }
 
         cpu.sim(inputs, outputs, inOuts);
+
+        cpu.getDebug(debugInfo);
 
         pads->PHI1 = outputs[(size_t)M6502Core::OutputPad::PHI1] == TriState::One ? 1 : 0;
         pads->PHI2 = outputs[(size_t)M6502Core::OutputPad::PHI2] == TriState::One ? 1 : 0;

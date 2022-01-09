@@ -31,12 +31,12 @@ namespace M6502Core
 				
 				if (DL_ADH == TriState::One)
 				{
-					ADH[n] == DL[n].nget();
+					ADH[n] = DL[n].nget();
 				}
 
 				if (DL_DB == TriState::One)
 				{
-					DB[n] == DL[n].nget();
+					DB[n] = DL[n].nget();
 				}
 			}
 
@@ -47,5 +47,29 @@ namespace M6502Core
 				cpu_inOut[(size_t)InOutPad::D0 + n] = DOR[n].nget();
 			}
 		}
+	}
+
+	uint8_t DataBus::getDL()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = DL[n].nget();
+		}
+
+		return Pack(v);
+	}
+
+	uint8_t DataBus::getDOR()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = DOR[n].nget();
+		}
+
+		return Pack(v);
 	}
 }

@@ -65,5 +65,10 @@ namespace M6502Core
 		BaseLogic::TriState getACR();
 
 		BaseLogic::TriState getAVR();
+
+		uint8_t getAI();
+		uint8_t getBI();
+		uint8_t getADD();
+		uint8_t getAC();
 	};
 }

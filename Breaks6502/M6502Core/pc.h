@@ -37,5 +37,8 @@ namespace M6502Core
 	public:
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[]);
+
+		uint8_t getPCL();
+		uint8_t getPCH();
 	};
 }

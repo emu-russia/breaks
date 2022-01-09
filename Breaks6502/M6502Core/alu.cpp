@@ -243,4 +243,52 @@ namespace M6502Core
 	{
 		return AVRLatch.nget();
 	}
+
+	uint8_t ALU::getAI()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = AI[n].get();
+		}
+
+		return Pack(v);
+	}
+
+	uint8_t ALU::getBI()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = BI[n].get();
+		}
+
+		return Pack(v);
+	}
+
+	uint8_t ALU::getADD()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = n_ADD[n].nget();
+		}
+
+		return Pack(v);
+	}
+
+	uint8_t ALU::getAC()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = AC[n].get();
+		}
+
+		return Pack(v);
+	}
 }

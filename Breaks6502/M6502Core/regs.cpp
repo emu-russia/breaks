@@ -103,4 +103,40 @@ namespace M6502Core
 			sim_Bit(inputs, SB, ADL, n);
 		}
 	}
+
+	uint8_t Regs::getY()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = Y[n].get();
+		}
+
+		return Pack(v);
+	}
+
+	uint8_t Regs::getX()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = X[n].get();
+		}
+
+		return Pack(v);
+	}
+
+	uint8_t Regs::getS()
+	{
+		TriState v[8];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			v[n] = S[n].get();
+		}
+
+		return Pack(v);
+	}
 }
