@@ -50,6 +50,7 @@ namespace BreaksDebug
             if (File.Exists(testAsmName))
             {
                 LoadAsm(testAsmName);
+                Assemble();
             }
         }
 
