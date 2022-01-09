@@ -363,8 +363,6 @@ namespace BreaksDebug
 
             cpu_pads = DeserializePads(pads);
 
-            // TODO: CpuDebugInfo
-
             // Handling memory operations
 
             UInt16 address = 0;
