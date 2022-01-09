@@ -368,6 +368,7 @@ namespace BreaksDebug
             // propertyGrid1
             // 
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid1.HelpVisible = false;
             this.propertyGrid1.Location = new System.Drawing.Point(3, 43);
             this.propertyGrid1.Name = "propertyGrid1";
             this.propertyGrid1.Size = new System.Drawing.Size(192, 202);
@@ -376,6 +377,7 @@ namespace BreaksDebug
             // propertyGrid2
             // 
             this.propertyGrid2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid2.HelpVisible = false;
             this.propertyGrid2.Location = new System.Drawing.Point(201, 43);
             this.propertyGrid2.Name = "propertyGrid2";
             this.propertyGrid2.Size = new System.Drawing.Size(192, 202);
@@ -384,6 +386,7 @@ namespace BreaksDebug
             // propertyGrid3
             // 
             this.propertyGrid3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid3.HelpVisible = false;
             this.propertyGrid3.Location = new System.Drawing.Point(399, 43);
             this.propertyGrid3.Name = "propertyGrid3";
             this.propertyGrid3.Size = new System.Drawing.Size(192, 202);
@@ -392,6 +395,7 @@ namespace BreaksDebug
             // propertyGrid4
             // 
             this.propertyGrid4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid4.HelpVisible = false;
             this.propertyGrid4.Location = new System.Drawing.Point(597, 43);
             this.propertyGrid4.Name = "propertyGrid4";
             this.propertyGrid4.Size = new System.Drawing.Size(192, 202);
@@ -400,6 +404,7 @@ namespace BreaksDebug
             // propertyGrid5
             // 
             this.propertyGrid5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.propertyGrid5.HelpVisible = false;
             this.propertyGrid5.Location = new System.Drawing.Point(795, 43);
             this.propertyGrid5.Name = "propertyGrid5";
             this.propertyGrid5.Size = new System.Drawing.Size(193, 202);

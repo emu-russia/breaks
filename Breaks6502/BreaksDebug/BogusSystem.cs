@@ -13,6 +13,7 @@ namespace BreaksDebug
     {
         public int Cycle = 0;
 
+        byte CLK = 0;
         IByteProvider mem;
 
         public class CpuPads
@@ -80,6 +81,8 @@ namespace BreaksDebug
         {
             Console.WriteLine("Step");
 
+            cpu_pads.PHI0 = CLK;
+
             // Execute M6502Core::sim
 
             CpuPadsRaw pads = SerializePads (cpu_pads);
@@ -140,14 +143,14 @@ namespace BreaksDebug
 
             // Clockgen
 
-            if (cpu_pads.PHI0 != 0)
+            if (CLK != 0)
             {
-                cpu_pads.PHI0 = 0;
+                CLK = 0;
                 Cycle++;
             }
             else
             {
-                cpu_pads.PHI0 = 1;
+                CLK = 1;
             }
         }
   
