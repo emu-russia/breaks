@@ -25,55 +25,55 @@ All commands are discussed in more detail in their respective sections. The summ
 |Name|PHI1|PHI2|Description|
 |---|---|---|---|
 |Register control commands||||
-|Y/SB|✓| |Y => SB|
-|SB/Y|✓| |SB => Y|
-|X/SB|✓| |X => SB|
-|SB/X|✓| |SB => X|
-|S/ADL|✓|✓|S => ADL|
-|S/SB|✓|✓|S => SB|
-|SB/S|✓| |SB => S|
-|S/S|✓| |The S/S command is active if the SB/S command is inactive. This command simply "refreshes" the current state of the S register.|
+|Y/SB|√| |Y => SB|
+|SB/Y|√| |SB => Y|
+|X/SB|√| |X => SB|
+|SB/X|√| |SB => X|
+|S/ADL|√|√|S => ADL|
+|S/SB|√|√|S => SB|
+|SB/S|√| |SB => S|
+|S/S|√| |The S/S command is active if the SB/S command is inactive. This command simply "refreshes" the current state of the S register.|
 |ALU control commands||||
-|NDB/ADD|✓| |~DB => BI|
-|DB/ADD|✓| |DB => BI|
-|0/ADD|✓| |0 => AI|
-|SB/ADD|✓| |SB => AI|
-|ADL/ADD|✓| |ADL => BI|
-|/ACIN|✓|✓|ALU input carry. The ALU also returns the result of carry (`ACR`) and overflow (`AVR`)|
-|ANDS|✓|✓|AI & BI|
-|EORS|✓|✓|AI ^ BI|
-|ORS|✓|✓|AI | BI|
-|SRS|✓|✓|>>= 1|
-|SUMS|✓|✓|AI + BI|
-|/DAA|✓|✓|0: Perform BCD correction after addition|
-|/DSA|✓|✓|0: Perform BCD correction after subtraction|
-|ADD/SB7|✓|✓|ADD\[7\] => SB\[7\]|
-|ADD/SB06|✓|✓|ADD\[0-6\] => SB\[0-6\]|
-|ADD/ADL|✓|✓|ADD => ADL|
-|SB/AC|✓| |SB => AC|
-|AC/SB|✓| |AC => SB|
-|AC/DB|✓| |AC => DB|
+|NDB/ADD|√| |~DB => BI|
+|DB/ADD|√| |DB => BI|
+|0/ADD|√| |0 => AI|
+|SB/ADD|√| |SB => AI|
+|ADL/ADD|√| |ADL => BI|
+|/ACIN|√|√|ALU input carry. The ALU also returns the result of carry (`ACR`) and overflow (`AVR`)|
+|ANDS|√|√|AI & BI|
+|EORS|√|√|AI ^ BI|
+|ORS|√|√|AI | BI|
+|SRS|√|√|>>= 1|
+|SUMS|√|√|AI + BI|
+|/DAA|√|√|0: Perform BCD correction after addition|
+|/DSA|√|√|0: Perform BCD correction after subtraction|
+|ADD/SB7|√|√|ADD\[7\] => SB\[7\]|
+|ADD/SB06|√|√|ADD\[0-6\] => SB\[0-6\]|
+|ADD/ADL|√|√|ADD => ADL|
+|SB/AC|√| |SB => AC|
+|AC/SB|√| |AC => SB|
+|AC/DB|√| |AC => DB|
 |Program counter (PC) control commands||||
-|#1/PC|✓|✓|0: Increment the program counter|
-|ADH/PCH|✓| |ADH => PCH|
-|PCH/PCH|✓| |If ADH/PCH is not performed, this command is performed (refresh PCH)|
-|PCH/ADH|✓|✓|PCH => ADH|
-|PCH/DB|✓|✓|PCH => DB|
-|ADL/PCL|✓| |ADL => PCL|
-|PCL/PCL|✓| |If ADL/PCL is not performed, this command is performed (refresh PCL)|
-|PCL/ADL|✓|✓|PCL => ADL|
-|PCL/DB|✓|✓|PCL => DB|
+|#1/PC|√|√|0: Increment the program counter|
+|ADH/PCH|√| |ADH => PCH|
+|PCH/PCH|√| |If ADH/PCH is not performed, this command is performed (refresh PCH)|
+|PCH/ADH|√|√|PCH => ADH|
+|PCH/DB|√|√|PCH => DB|
+|ADL/PCL|√| |ADL => PCL|
+|PCL/PCL|√| |If ADL/PCL is not performed, this command is performed (refresh PCL)|
+|PCL/ADL|√|√|PCL => ADL|
+|PCL/DB|√|√|PCL => DB|
 |Bus control commands||||
-|ADH/ABH|✓|✓|ADH => ABH|
-|ADL/ABL|✓|✓|ADL => ABL|
-|0/ADL0, 0/ADL1, 0/ADL2|✓|✓|Reset some of the ADL bus bits. Used to set the interrupt vector.|
-|0/ADH0, 0/ADH17|✓|✓|Reset some of the ADH bus bits|
-|SB/DB|✓|✓|SB <=> DB, connect the two buses|
-|SB/ADH|✓|✓|SB <=> ADH|
+|ADH/ABH|√|√|ADH => ABH|
+|ADL/ABL|√|√|ADL => ABL|
+|0/ADL0, 0/ADL1, 0/ADL2|√|√|Reset some of the ADL bus bits. Used to set the interrupt vector.|
+|0/ADH0, 0/ADH17|√|√|Reset some of the ADH bus bits|
+|SB/DB|√|√|SB <=> DB, connect the two buses|
+|SB/ADH|√|√|SB <=> ADH|
 |DL latch control commands||||
-|DL/ADL|✓|✓|DL => ADL|
-|DL/ADH|✓|✓|DL => ADH|
-|DL/DB|✓|✓|DL <=> DB|
+|DL/ADL|√|√|DL => ADL|
+|DL/ADH|√|√|DL => ADH|
+|DL/DB|√|√|DL <=> DB|
 
 ## ADD/SB7
 
