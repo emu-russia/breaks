@@ -110,7 +110,7 @@ namespace BreaksDebug
         {
             var regsBuses = sys.GetRegsBuses();
             propertyGrid2.SelectedObject = regsBuses;
-            //propertyGrid3.SelectedObject = TODO;
+            propertyGrid3.SelectedObject = sys.GetInternals();
             propertyGrid4.SelectedObject = sys.GetDecoder();
             propertyGrid4.ExpandAllGridItems();
             propertyGrid5.SelectedObject = sys.GetCommands();

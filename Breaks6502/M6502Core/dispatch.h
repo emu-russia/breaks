@@ -48,6 +48,12 @@ namespace M6502Core
 		T5,
 		T6,
 		n_1PC,
+
+		ENDS,
+		ENDX,
+		TRES1,
+		TRESX,
+
 		Max,
 	};
 

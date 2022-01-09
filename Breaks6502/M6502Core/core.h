@@ -1,6 +1,8 @@
 #pragma once
 
 #include "decoder.h"
+#include "extra_counter.h"
+#include "interrupts.h"
 #include "flags.h"
 #include "regs_control.h"
 #include "alu_control.h"
@@ -75,7 +77,37 @@ namespace M6502Core
 		uint8_t V_OUT;
 		uint8_t N_OUT;
 
-		// Dispatcher
+		// Internals
+
+		uint8_t n_PRDY;
+		uint8_t n_NMIP;
+		uint8_t n_IRQP;
+		uint8_t RESP;
+		uint8_t BRK6E;
+		uint8_t BRK7;
+		uint8_t DORES;
+		uint8_t n_DONMI;
+		uint8_t n_T2;
+		uint8_t n_T3;
+		uint8_t n_T4;
+		uint8_t n_T5;
+		uint8_t T0;
+		uint8_t n_T0;
+		uint8_t n_T1X;
+		uint8_t Z_IR;
+		uint8_t FETCH;
+		uint8_t n_ready;
+		uint8_t WR;
+		uint8_t TRES2;
+		uint8_t ACRL1;
+		uint8_t ACRL2;
+		uint8_t T1;
+		uint8_t T5;
+		uint8_t T6;
+		uint8_t ENDS;
+		uint8_t ENDX;
+		uint8_t TRES1;
+		uint8_t TRESX;
 
 		// Decoder
 
@@ -136,8 +168,6 @@ namespace M6502Core
 
 	class PreDecode;
 	class IR;
-	class ExtraCounter;
-	class BRKProcessing;
 
 	class AddressBus;
 	class Regs;
@@ -178,8 +208,12 @@ namespace M6502Core
 		DataBus* data_bus = nullptr;
 
 		BaseLogic::TriState decoder_out[Decoder::outputs_count];
+		BaseLogic::TriState ext_out[(size_t)ExtraCounter_Output::Max];
 		BaseLogic::TriState rand_out[(size_t)RandomLogic_Output::Max];
+		BaseLogic::TriState disp_early_out[(size_t)Dispatcher_Output::Max];
+		BaseLogic::TriState disp_mid_out[(size_t)Dispatcher_Output::Max];
 		BaseLogic::TriState disp_late_out[(size_t)Dispatcher_Output::Max];
+		BaseLogic::TriState int_out[(size_t)BRKProcessing_Output::Max];
 
 	public:
 		M6502();

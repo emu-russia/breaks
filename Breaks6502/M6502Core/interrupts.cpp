@@ -77,10 +77,10 @@ namespace M6502Core
 		outputs[(size_t)BRKProcessing_Output::BRK7] = BRK7;
 		outputs[(size_t)BRKProcessing_Output::DORES] = DORES;
 		outputs[(size_t)BRKProcessing_Output::B_OUT] = B_OUT;
-
 		outputs[(size_t)BRKProcessing_Output::Z_ADL0] = zadl_latch[0].nget();
 		outputs[(size_t)BRKProcessing_Output::Z_ADL1] = zadl_latch[1].nget();
 		outputs[(size_t)BRKProcessing_Output::Z_ADL2] = NOT(zadl_latch[2].nget());
+		outputs[(size_t)BRKProcessing_Output::n_DONMI] = n_DONMI;
 	}
 
 	TriState BRKProcessing::getDORES()
