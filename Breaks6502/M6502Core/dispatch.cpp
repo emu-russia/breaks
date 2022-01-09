@@ -217,6 +217,11 @@ namespace M6502Core
 
 		outputs[(size_t)Dispatcher_Output::T1] = T1;
 		outputs[(size_t)Dispatcher_Output::n_1PC] = n_1PC;
+
+		outputs[(size_t)Dispatcher_Output::ENDS] = ENDS;
+		outputs[(size_t)Dispatcher_Output::ENDX] = ENDX;
+		outputs[(size_t)Dispatcher_Output::TRES1] = TRES1;
+		outputs[(size_t)Dispatcher_Output::TRESX] = TRESX;
 	}
 
 	TriState Dispatcher::getTRES2()

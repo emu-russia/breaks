@@ -80,7 +80,6 @@ namespace M6502Core
 		// Dispatcher and other auxiliary logic
 
 		TriState disp_early_in[(size_t)Dispatcher_Input::Max];
-		TriState disp_early_out[(size_t)Dispatcher_Output::Max];
 
 		disp_early_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
 		disp_early_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
@@ -93,7 +92,6 @@ namespace M6502Core
 		TriState n_ready = disp_early_out[(size_t)Dispatcher_Output::n_ready];
 		TriState T0 = disp_early_out[(size_t)Dispatcher_Output::T0];
 		TriState WR = disp_early_out[(size_t)Dispatcher_Output::WR];
-
 		TriState FETCH = disp_early_out[(size_t)Dispatcher_Output::FETCH];
 		TriState Z_IR = disp_early_out[(size_t)Dispatcher_Output::Z_IR];
 
@@ -109,7 +107,6 @@ namespace M6502Core
 		ir->sim(PHI1, FETCH, n_PD);
 
 		TriState ext_in[(size_t)ExtraCounter_Input::Max];
-		TriState ext_out[(size_t)ExtraCounter_Output::Max];
 
 		ext_in[(size_t)ExtraCounter_Input::PHI1] = PHI1;
 		ext_in[(size_t)ExtraCounter_Input::PHI2] = PHI2;
@@ -152,7 +149,6 @@ namespace M6502Core
 		// Interrupt handling
 
 		TriState int_in[(size_t)BRKProcessing_Input::Max];
-		TriState int_out[(size_t)BRKProcessing_Output::Max];
 
 		int_in[(size_t)BRKProcessing_Input::PHI1] = PHI1;
 		int_in[(size_t)BRKProcessing_Input::PHI2] = PHI2;
@@ -170,7 +166,6 @@ namespace M6502Core
 		// Random Logic
 
 		TriState disp_mid_in[(size_t)Dispatcher_Input::Max];
-		TriState disp_mid_out[(size_t)Dispatcher_Output::Max];
 
 		disp_mid_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
 		disp_mid_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
@@ -357,6 +352,36 @@ namespace M6502Core
 		info->B_OUT = brk->getB_OUT() == TriState::One ? 1 : 0;
 		info->V_OUT = NOT(random->flags->getn_V_OUT()) == TriState::One ? 1 : 0;
 		info->N_OUT = NOT(random->flags->getn_N_OUT()) == TriState::One ? 1 : 0;
+
+		info->n_PRDY = prdy_latch2.nget() == TriState::One ? 1 : 0;
+		info->n_NMIP = NOT(nmip_ff.get()) == TriState::One ? 1 : 0;
+		info->n_IRQP = irqp_latch.nget() == TriState::One ? 1 : 0;
+		info->RESP = resp_latch.nget() == TriState::One ? 1 : 0;
+		info->BRK6E = int_out[(size_t)BRKProcessing_Output::BRK6E] == TriState::One ? 1 : 0;
+		info->BRK7 = int_out[(size_t)BRKProcessing_Output::BRK7] == TriState::One ? 1 : 0;
+		info->DORES = int_out[(size_t)BRKProcessing_Output::DORES] == TriState::One ? 1 : 0;
+		info->n_DONMI = int_out[(size_t)BRKProcessing_Output::n_DONMI] == TriState::One ? 1 : 0;
+		info->n_T2 = ext_out[(size_t)ExtraCounter_Output::n_T2] == TriState::One ? 1 : 0;
+		info->n_T3 = ext_out[(size_t)ExtraCounter_Output::n_T3] == TriState::One ? 1 : 0;
+		info->n_T4 = ext_out[(size_t)ExtraCounter_Output::n_T4] == TriState::One ? 1 : 0;
+		info->n_T5 = ext_out[(size_t)ExtraCounter_Output::n_T5] == TriState::One ? 1 : 0;
+		info->T0 = disp_early_out[(size_t)Dispatcher_Output::T0] == TriState::One ? 1 : 0;
+		info->n_T0 = disp_early_out[(size_t)Dispatcher_Output::n_T0] == TriState::One ? 1 : 0;
+		info->n_T1X = disp_early_out[(size_t)Dispatcher_Output::n_T1X] == TriState::One ? 1 : 0;
+		info->Z_IR = disp_early_out[(size_t)Dispatcher_Output::Z_IR] == TriState::One ? 1 : 0;
+		info->FETCH = disp_early_out[(size_t)Dispatcher_Output::FETCH] == TriState::One ? 1 : 0;
+		info->n_ready = disp_early_out[(size_t)Dispatcher_Output::n_ready] == TriState::One ? 1 : 0;
+		info->WR = disp_early_out[(size_t)Dispatcher_Output::WR] == TriState::One ? 1 : 0;
+		info->TRES2 = disp->getTRES2() == TriState::One ? 1 : 0;
+		info->ACRL1 = disp_mid_out[(size_t)Dispatcher_Output::ACRL1] == TriState::One ? 1 : 0;
+		info->ACRL2 = disp_mid_out[(size_t)Dispatcher_Output::ACRL2] == TriState::One ? 1 : 0;
+		info->T1 = disp->getT1() == TriState::One ? 1 : 0;
+		info->T5 = disp_mid_out[(size_t)Dispatcher_Output::T5] == TriState::One ? 1 : 0;
+		info->T6 = disp_mid_out[(size_t)Dispatcher_Output::T6] == TriState::One ? 1 : 0;
+		info->ENDS = disp_late_out[(size_t)Dispatcher_Output::ENDS] == TriState::One ? 1 : 0;
+		info->ENDX = disp_late_out[(size_t)Dispatcher_Output::ENDX] == TriState::One ? 1 : 0;
+		info->TRES1 = disp_late_out[(size_t)Dispatcher_Output::TRES1] == TriState::One ? 1 : 0;
+		info->TRESX = disp_late_out[(size_t)Dispatcher_Output::TRESX] == TriState::One ? 1 : 0;
 
 		for (size_t n=0; n<Decoder::outputs_count; n++)
 		{

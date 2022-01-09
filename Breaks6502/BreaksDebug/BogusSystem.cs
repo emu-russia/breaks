@@ -125,6 +125,70 @@ namespace BreaksDebug
             public byte V_OUT { get; set; }
             [Category("Flags")]
             public byte N_OUT { get; set; }
+
+            public byte IRForDisasm;
+        }
+
+        public class CpuDebugInfo_Internals
+        {
+            [Category("Prev Ready")]
+            public byte n_PRDY { get; set; }
+            [Category("Interrupts")]
+            public byte n_NMIP { get; set; }
+            [Category("Interrupts")]
+            public byte n_IRQP { get; set; }
+            [Category("Interrupts")]
+            public byte RESP { get; set; }
+            [Category("Interrupts")]
+            public byte BRK6E { get; set; }
+            [Category("Interrupts")]
+            public byte BRK7 { get; set; }
+            [Category("Interrupts")]
+            public byte DORES { get; set; }
+            [Category("Interrupts")]
+            public byte n_DONMI { get; set; }
+            [Category("Extra Cycle Counter")]
+            public byte n_T2 { get; set; }
+            [Category("Extra Cycle Counter")]
+            public byte n_T3 { get; set; }
+            [Category("Extra Cycle Counter")]
+            public byte n_T4 { get; set; }
+            [Category("Extra Cycle Counter")]
+            public byte n_T5 { get; set; }
+            [Category("Dispatcher")]
+            public byte T0 { get; set; }
+            [Category("Dispatcher")]
+            public byte n_T0 { get; set; }
+            [Category("Dispatcher")]
+            public byte n_T1X { get; set; }
+            [Category("Dispatcher")]
+            public byte Z_IR { get; set; }
+            [Category("Dispatcher")]
+            public byte FETCH { get; set; }
+            [Category("Dispatcher")]
+            public byte n_ready { get; set; }
+            [Category("Dispatcher")]
+            public byte WR { get; set; }
+            [Category("Dispatcher")]
+            public byte TRES2 { get; set; }
+            [Category("Dispatcher")]
+            public byte ACRL1 { get; set; }
+            [Category("Dispatcher")]
+            public byte ACRL2 { get; set; }
+            [Category("Dispatcher")]
+            public byte T1 { get; set; }
+            [Category("Dispatcher")]
+            public byte T5 { get; set; }
+            [Category("Dispatcher")]
+            public byte T6 { get; set; }
+            [Category("Dispatcher")]
+            public byte ENDS { get; set; }
+            [Category("Dispatcher")]
+            public byte ENDX { get; set; }
+            [Category("Dispatcher")]
+            public byte TRES1 { get; set; }
+            [Category("Dispatcher")]
+            public byte TRESX { get; set; }
         }
 
         public class CpuDebugInfo_Decoder
@@ -237,7 +301,37 @@ namespace BreaksDebug
             public byte V_OUT;
             public byte N_OUT;
 
-            // Dispatcher
+            // Internals
+
+            public byte n_PRDY;
+            public byte n_NMIP;
+            public byte n_IRQP;
+            public byte RESP;
+            public byte BRK6E;
+            public byte BRK7;
+            public byte DORES;
+            public byte n_DONMI;
+            public byte n_T2;
+            public byte n_T3;
+            public byte n_T4;
+            public byte n_T5;
+            public byte T0;
+            public byte n_T0;
+            public byte n_T1X;
+            public byte Z_IR;
+            public byte FETCH;
+            public byte n_ready;
+            public byte WR;
+            public byte TRES2;
+            public byte ACRL1;
+            public byte ACRL2;
+            public byte T1;
+            public byte T5;
+            public byte T6;
+            public byte ENDS;
+            public byte ENDX;
+            public byte TRES1;
+            public byte TRESX;
 
             // Decoder
 
@@ -439,6 +533,46 @@ namespace BreaksDebug
             res.B_OUT = info.B_OUT;
             res.V_OUT = info.V_OUT;
             res.N_OUT = info.N_OUT;
+
+            res.IRForDisasm = info.IR;
+
+            return res;
+        }
+
+        public CpuDebugInfo_Internals GetInternals()
+        {
+            CpuDebugInfo_Internals res = new CpuDebugInfo_Internals();
+
+            res.n_PRDY = info.n_PRDY;
+
+            res.n_NMIP = info.n_NMIP;
+            res.n_IRQP = info.n_IRQP;
+            res.RESP = info.RESP;
+            res.BRK6E = info.BRK6E;
+            res.BRK7 = info.BRK7;
+            res.DORES = info.DORES;
+            res.n_DONMI = info.n_DONMI;
+            res.n_T2 = info.n_T2;
+            res.n_T3 = info.n_T3;
+            res.n_T4 = info.n_T4;
+            res.n_T5 = info.n_T5;
+            res.T0 = info.T0;
+            res.n_T0 = info.n_T0;
+            res.n_T1X = info.n_T1X;
+            res.Z_IR = info.Z_IR;
+            res.FETCH = info.FETCH;
+            res.n_ready = info.n_ready;
+            res.WR = info.WR;
+            res.TRES2 = info.TRES2;
+            res.ACRL1 = info.ACRL1;
+            res.ACRL2 = info.ACRL2;
+            res.T1 = info.T1;
+            res.T5 = info.T5;
+            res.T6 = info.T6;
+            res.ENDS = info.ENDS;
+            res.ENDX = info.ENDX;
+            res.TRES1 = info.TRES1;
+            res.TRESX = info.TRESX;
 
             return res;
         }

@@ -108,14 +108,15 @@ namespace BreaksDebug
 
         void UpdateCpuDebugInfo()
         {
-            propertyGrid2.SelectedObject = sys.GetRegsBuses();
-            //propertyGrid3.SelectedObject = TODO;
+            var regsBuses = sys.GetRegsBuses();
+            propertyGrid2.SelectedObject = regsBuses;
+            propertyGrid3.SelectedObject = sys.GetInternals();
             propertyGrid4.SelectedObject = sys.GetDecoder();
             propertyGrid4.ExpandAllGridItems();
             propertyGrid5.SelectedObject = sys.GetCommands();
             propertyGrid5.ExpandAllGridItems();
 
-            UpdateDisasm(0x00);
+            UpdateDisasm(regsBuses.IRForDisasm);
         }
 
         void UpdateDisasm(byte ir)
@@ -170,9 +171,8 @@ namespace BreaksDebug
             if (res == DialogResult.OK)
             {
                 LoadAsm(openFileDialog1.FileName);
+                tabControl2.SelectTab(1);
             }
-
-            tabControl2.SelectTab(1);
         }
 
         void LoadAsm(string filename)
@@ -223,30 +223,35 @@ namespace BreaksDebug
 
         private void toolStripButton4_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("/NMI changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
 
         private void toolStripButton5_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("/IRQ changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
 
         private void toolStripButton6_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("/RES changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
 
         private void toolStripButton3_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("SO changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
 
         private void toolStripButton2_CheckedChanged(object sender, EventArgs e)
         {
+            Console.WriteLine("RDY changed");
             ButtonsToPads();
             UpdateCpuPads();
         }
