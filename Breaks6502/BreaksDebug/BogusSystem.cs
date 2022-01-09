@@ -125,6 +125,8 @@ namespace BreaksDebug
             public byte V_OUT { get; set; }
             [Category("Flags")]
             public byte N_OUT { get; set; }
+
+            public byte IRForDisasm;
         }
 
         public class CpuDebugInfo_Decoder
@@ -439,6 +441,8 @@ namespace BreaksDebug
             res.B_OUT = info.B_OUT;
             res.V_OUT = info.V_OUT;
             res.N_OUT = info.N_OUT;
+
+            res.IRForDisasm = info.IR;
 
             return res;
         }

@@ -108,14 +108,15 @@ namespace BreaksDebug
 
         void UpdateCpuDebugInfo()
         {
-            propertyGrid2.SelectedObject = sys.GetRegsBuses();
+            var regsBuses = sys.GetRegsBuses();
+            propertyGrid2.SelectedObject = regsBuses;
             //propertyGrid3.SelectedObject = TODO;
             propertyGrid4.SelectedObject = sys.GetDecoder();
             propertyGrid4.ExpandAllGridItems();
             propertyGrid5.SelectedObject = sys.GetCommands();
             propertyGrid5.ExpandAllGridItems();
 
-            UpdateDisasm(0x00);
+            UpdateDisasm(regsBuses.IRForDisasm);
         }
 
         void UpdateDisasm(byte ir)
