@@ -109,6 +109,13 @@ namespace BreaksDebug
         void UpdateCpuDebugInfo()
         {
             // TODO
+
+            UpdateDisasm(0x00);
+        }
+
+        void UpdateDisasm(byte ir)
+        {
+            label9.Text = QuickDisasm.Disasm(ir);
         }
 
         void UpdateAll()
