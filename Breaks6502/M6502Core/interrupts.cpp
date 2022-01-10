@@ -19,13 +19,13 @@ namespace M6502Core
 
 		// Interrupt cycle 6-7
 
-		TriState brk5_ready = AND(BRK5, NOT(n_ready));
-		brk5_latch.set(brk5_ready, PHI2);
+		TriState BRK5_RDY = AND(BRK5, NOT(n_ready));
+		brk5_latch.set(BRK5_RDY, PHI2);
 		brk6_latch1.set(AND(NOT(brk5_latch.get()), NAND(n_ready, brk_ff.get())), PHI1);
 		brk_ff.set(brk6_latch1.nget());
 		brk6_latch2.set(brk_ff.get(), PHI2);
 		TriState BRK6E = NOR(brk6_latch2.nget(), n_ready);
-		TriState BRK7 = NOR(brk_ff.get(), brk5_ready);
+		TriState BRK7 = NOR(brk_ff.get(), BRK5_RDY);
 
 		// Reset FF
 
@@ -81,6 +81,7 @@ namespace M6502Core
 		outputs[(size_t)BRKProcessing_Output::Z_ADL1] = zadl_latch[1].nget();
 		outputs[(size_t)BRKProcessing_Output::Z_ADL2] = NOT(zadl_latch[2].nget());
 		outputs[(size_t)BRKProcessing_Output::n_DONMI] = n_DONMI;
+		outputs[(size_t)BRKProcessing_Output::BRK5_RDY] = BRK5_RDY;
 	}
 
 	TriState BRKProcessing::getDORES()
