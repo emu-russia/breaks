@@ -83,14 +83,12 @@ namespace M6502Core
 
 		// T5 / T6
 
-		t56_latch.set(NOR3(n_SHIFT, n_MemOp, n_ready), PHI2);
-		t5_latch2.set(t5_ff.get(), PHI2);
 		t5_latch1.set(NOR(AND(t5_latch2.get(), n_ready), t56_latch.get()), PHI1);
-		t5_ff.set(t5_latch1.get());
-		TriState T5 = t5_ff.get();
-
-		t6_latch1.set(NAND(T5, NOT(n_ready)), PHI2);
 		t6_latch2.set(t6_latch1.nget(), PHI1);
+		t56_latch.set(NOR3(n_SHIFT, n_MemOp, n_ready), PHI2);
+		t5_latch2.set(t5_latch1.nget(), PHI2);
+		TriState T5 = t5_latch1.nget();
+		t6_latch1.set(NAND(T5, NOT(n_ready)), PHI2);
 		TriState T6 = NOT(t6_latch2.nget());
 
 		outputs[(size_t)Dispatcher_Output::T5] = T5;
@@ -152,20 +150,18 @@ namespace M6502Core
 		// Step T1
 
 		nready_latch.set(NOT(n_ready), PHI1);
+		step_latch2.set(NOR(step_latch1.get(), ipc_temp), PHI1);
 		step_latch1.set(NOR3(nready_latch.get(), RESP, step_latch2.get()), PHI2);
-		step_ff.set(NOR(step_latch1.get(), ipc_temp));
-		step_latch2.set(step_ff.get(), PHI1);
 
 		// Instruction Completion
 
-		ends_latch1.set(MUX(n_ready, NOR(T0, AND(n_BRTAKEN, BR2)), NOT(t1_ff.get())), PHI2);
-		ends_latch2.set(RESP, PHI2);
 		TriState ENDS = NOR(ends_latch1.get(), ends_latch2.get());
-		TriState n_TRES1 = NOR(NOR(step_ff.get(), n_ready), ENDS);
+		TriState n_TRES1 = NOR(NOR(NOR(step_latch1.get(), ipc_temp), n_ready), ENDS);
 		t1_latch.set(n_TRES1, PHI1);
-		TriState TRES1 = NOT(n_TRES1);
 		TriState T1 = t1_latch.nget();
-		t1_ff.set(T1);
+		ends_latch1.set(MUX(n_ready, NOR(T0, AND(n_BRTAKEN, BR2)), NOT(T1)), PHI2);
+		ends_latch2.set(RESP, PHI2);
+		TriState TRES1 = NOT(n_TRES1);
 
 		tresx_latch1.set(NOR(d[91], d[92]), PHI2);
 
@@ -228,7 +224,7 @@ namespace M6502Core
 
 	TriState Dispatcher::getT1()
 	{
-		return t1_ff.get();
+		return t1_latch.nget();
 	}
 
 	TriState Dispatcher::getSTOR(TriState d[])

@@ -19,7 +19,7 @@ namespace M6502Core
 			if (PHI2 == TriState::One)
 			{
 				ABL[n].set(NOT(NOT(ABL[n].get())));
-				ABH[n].set(NOT(NOT(ABL[n].get())));
+				ABH[n].set(NOT(NOT(ABH[n].get())));
 			}
 
 			if (n == 0 && Z_ADL0 == TriState::One)

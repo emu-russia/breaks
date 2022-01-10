@@ -392,6 +392,8 @@ namespace BreaksDebug
                         cpu_pads.D[i] = 0;
                     }
                 }
+
+                Console.WriteLine("CPU Read " + address.ToString("X4") + " " + data.ToString("X2"));
             }
             else
             {
@@ -407,7 +409,15 @@ namespace BreaksDebug
                     }
                 }
 
-                mem.WriteByte(address, data);
+                if (address < 0xF000)
+                {
+                    mem.WriteByte(address, data);
+                    Console.WriteLine("CPU Write " + address.ToString("X4") + " " + data.ToString("X2"));
+                }
+                else
+                {
+                    Console.WriteLine("CPU Write " + address.ToString("X4") + " ignored");
+                }
             }
 
             // Clockgen
