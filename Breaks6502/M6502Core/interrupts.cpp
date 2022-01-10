@@ -83,7 +83,7 @@ namespace M6502Core
 
 		TriState intr = NAND(
 			OR(BR2, T0),
-			NAND(n_DONMI, OR(n_IRQP, NOT(AND(n_I_OUT, NOT(BRK6E)))))
+			NAND(n_DONMI, OR(n_IRQP, NOT(n_I_OUT)))
 		);
 
 		b_latch2.set(b_ff.get(), PHI1);
