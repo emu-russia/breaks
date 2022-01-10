@@ -81,13 +81,13 @@ namespace M6502Core
 
 		// B Flag
 
-		TriState intr = NAND(
+		TriState int_set = NAND(
 			OR(BR2, T0),
-			NAND(n_DONMI, OR(n_IRQP, NOT(AND(n_I_OUT, NOT(BRK6E)))))
+			NAND(n_DONMI, OR(n_IRQP, NOT(n_I_OUT)))
 		);
 
 		b_latch2.set(b_ff.get(), PHI1);
-		b_latch1.set(AND(intr, NOT(b_latch2.get())), PHI2);
+		b_latch1.set(AND(int_set, NOT(b_latch2.get())), PHI2);
 		b_ff.set(NOR(b_latch1.get(), BRK6E));
 		TriState B_OUT = NOR(DORES, b_ff.get());
 
