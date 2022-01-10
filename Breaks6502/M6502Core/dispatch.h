@@ -67,7 +67,6 @@ namespace M6502Core
 		BaseLogic::DLatch t5_latch2;
 		BaseLogic::DLatch t6_latch1;
 		BaseLogic::DLatch t6_latch2;
-		BaseLogic::FF t5_ff;
 		
 		BaseLogic::DLatch tres2_latch;
 		BaseLogic::DLatch tresx_latch1;
@@ -84,9 +83,7 @@ namespace M6502Core
 		BaseLogic::DLatch nready_latch;
 		BaseLogic::DLatch step_latch1;
 		BaseLogic::DLatch step_latch2;
-		BaseLogic::FF step_ff;
 		BaseLogic::DLatch t1_latch;
-		BaseLogic::FF t1_ff;
 
 		BaseLogic::DLatch comp_latch1;
 		BaseLogic::DLatch comp_latch2;

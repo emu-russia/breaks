@@ -76,13 +76,7 @@ namespace M6502Core
 			}
 
 			// S/S and SB/S are complementary signals.
-
-#if _DEBUG
-			//if (S_S == SB_S)
-			//{
-			//	throw "Something scary happened in the random logic, making S/S = SB/S.";
-			//}
-#endif
+			// But in the very first half-cycle all commands are set, because the output latches have an undefined state (X, but essentially - no electrons on the gate yet, so the FETs are closed).
 
 			if (S_S == TriState::One)
 			{
