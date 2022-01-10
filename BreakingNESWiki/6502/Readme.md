@@ -174,3 +174,13 @@
 Пример локатора:
 
 ![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502_locator_alu_control.jpg)
+
+## Примечание по логическим схемам
+
+Логические схемы в основном сделаны в программе Logisim. Для обозначения DLatch применяется такой элемент:
+
+|DLatch (транзисторная схема)|DLatch (логический эквивалент)|
+|---|---|
+|![dlatch_tran](/BreakingNESWiki/imgstore/dlatch_tran.jpg)|![dlatch_logic](/BreakingNESWiki/imgstore/dlatch_logic.jpg)|
+
+Для удобства логический вариант DLatch имеет два выхода (`out` и `/out`), так как текущее значение DLatch (out) нередко используется как вход для операции NOR.
