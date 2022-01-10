@@ -9,6 +9,8 @@ Interrupt processing includes the following circuits:
 - Circuit for issuing internal signal `DORES`.
 - B Flag
 
+The common designation for the 6502 interrupt handling process is called "BRK-sequence".
+
 Three signals `/NMIP`, `/IRQP` and `RESP` come to the input of the circuits from the corresponding input pads.
 
 ## NMI Processing
