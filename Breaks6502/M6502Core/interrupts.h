@@ -27,6 +27,7 @@ namespace M6502Core
 		Z_ADL1,
 		Z_ADL2,
 		n_DONMI,
+		BRK5_RDY,
 		Max,
 	};
 
