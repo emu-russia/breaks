@@ -4,7 +4,7 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void BRKProcessing::sim(TriState inputs[], TriState outputs[])
+	void BRKProcessing::sim_BeforeRandom(TriState inputs[], TriState outputs[])
 	{
 		TriState PHI1 = inputs[(size_t)BRKProcessing_Input::PHI1];
 		TriState PHI2 = inputs[(size_t)BRKProcessing_Input::PHI2];
@@ -12,10 +12,6 @@ namespace M6502Core
 		TriState n_ready = inputs[(size_t)BRKProcessing_Input::n_ready];
 		TriState RESP = inputs[(size_t)BRKProcessing_Input::RESP];
 		TriState n_NMIP = inputs[(size_t)BRKProcessing_Input::n_NMIP];
-		TriState n_IRQP = inputs[(size_t)BRKProcessing_Input::n_IRQP];
-		TriState T0 = inputs[(size_t)BRKProcessing_Input::T0];
-		TriState BR2 = inputs[(size_t)BRKProcessing_Input::BR2];
-		TriState n_I_OUT = inputs[(size_t)BRKProcessing_Input::n_I_OUT];
 
 		// Interrupt cycle 6-7
 
@@ -53,21 +49,9 @@ namespace M6502Core
 		ff2_latch.set(nmi_ff2.get(), PHI2);
 		nmi_ff2.set(NOR(nmip_latch.get(), NOR(ff2_latch.get(), delay_latch2.get())));
 
-		// B Flag
-
-		TriState intr = NAND(
-			OR(BR2, T0),
-			NAND( n_DONMI, OR (n_IRQP, NOT(AND(n_I_OUT, NOT(BRK6E)))) )
-		);
-
-		b_latch2.set(b_ff.get(), PHI1);
-		b_latch1.set(AND(intr, NOT(b_latch2.get())), PHI2);
-		b_ff.set(NOR(b_latch1.get(), BRK6E));
-		TriState B_OUT = NOR(DORES, b_ff.get());
-
 		// Interrupt vector
 
-		zadl_latch[0].set(NOT(BRK5), PHI2);
+		zadl_latch[0].set(NOT(BRK5_RDY), PHI2);
 		zadl_latch[1].set(NOT(NOR(BRK7, NOT(DORES))), PHI2);
 		zadl_latch[2].set(NOR3(BRK7, DORES, n_DONMI), PHI2);
 
@@ -76,12 +60,38 @@ namespace M6502Core
 		outputs[(size_t)BRKProcessing_Output::BRK6E] = BRK6E;
 		outputs[(size_t)BRKProcessing_Output::BRK7] = BRK7;
 		outputs[(size_t)BRKProcessing_Output::DORES] = DORES;
-		outputs[(size_t)BRKProcessing_Output::B_OUT] = B_OUT;
 		outputs[(size_t)BRKProcessing_Output::Z_ADL0] = zadl_latch[0].nget();
 		outputs[(size_t)BRKProcessing_Output::Z_ADL1] = zadl_latch[1].nget();
 		outputs[(size_t)BRKProcessing_Output::Z_ADL2] = NOT(zadl_latch[2].nget());
 		outputs[(size_t)BRKProcessing_Output::n_DONMI] = n_DONMI;
 		outputs[(size_t)BRKProcessing_Output::BRK5_RDY] = BRK5_RDY;
+	}
+
+	void BRKProcessing::sim_AfterRandom(TriState inputs[], TriState outputs[])
+	{
+		TriState PHI1 = inputs[(size_t)BRKProcessing_Input::PHI1];
+		TriState PHI2 = inputs[(size_t)BRKProcessing_Input::PHI2];
+		TriState T0 = inputs[(size_t)BRKProcessing_Input::T0];
+		TriState BR2 = inputs[(size_t)BRKProcessing_Input::BR2];
+		TriState n_I_OUT = inputs[(size_t)BRKProcessing_Input::n_I_OUT];
+		TriState n_IRQP = inputs[(size_t)BRKProcessing_Input::n_IRQP];
+		TriState n_DONMI = inputs[(size_t)BRKProcessing_Input::n_DONMI];
+		TriState BRK6E = inputs[(size_t)BRKProcessing_Input::BRK6E];
+		TriState DORES = inputs[(size_t)BRKProcessing_Input::DORES];
+
+		// B Flag
+
+		TriState intr = NAND(
+			OR(BR2, T0),
+			NAND(n_DONMI, OR(n_IRQP, NOT(AND(n_I_OUT, NOT(BRK6E)))))
+		);
+
+		b_latch2.set(b_ff.get(), PHI1);
+		b_latch1.set(AND(intr, NOT(b_latch2.get())), PHI2);
+		b_ff.set(NOR(b_latch1.get(), BRK6E));
+		TriState B_OUT = NOR(DORES, b_ff.get());
+
+		outputs[(size_t)BRKProcessing_Output::B_OUT] = B_OUT;
 	}
 
 	TriState BRKProcessing::getDORES()

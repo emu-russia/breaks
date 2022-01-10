@@ -149,6 +149,7 @@ namespace M6502Core
 		flags_in[(size_t)Flags_Input::ACR] = ACR;
 		flags_in[(size_t)Flags_Input::AVR] = AVR;
 		flags_in[(size_t)Flags_Input::n_IR5] = n_IR5;
+		flags_in[(size_t)Flags_Input::BRK6E] = BRK6E;
 		flags_in[(size_t)Flags_Input::P_DB] = flags_ctrl_out[(size_t)FlagsControl_Output::P_DB];
 		flags_in[(size_t)Flags_Input::DB_P] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_P];
 		flags_in[(size_t)Flags_Input::DBZ_Z] = flags_ctrl_out[(size_t)FlagsControl_Output::DBZ_Z];

@@ -13,6 +13,7 @@ namespace M6502Core
 		TriState ACR = inputs[(size_t)Flags_Input::ACR];
 		TriState AVR = inputs[(size_t)Flags_Input::AVR];
 		TriState n_IR5 = inputs[(size_t)Flags_Input::n_IR5];
+		TriState BRK6E = inputs[(size_t)Flags_Input::BRK6E];
 
 		TriState P_DB = inputs[(size_t)Flags_Input::P_DB];
 		TriState DB_P = inputs[(size_t)Flags_Input::DB_P];
@@ -43,7 +44,6 @@ namespace M6502Core
 		// C
 
 		TriState c[4];
-
 		c[0] = NAND(n_IR5, IR5_C);
 		c[1] = NAND(NOT(ACR), ACR_C);
 		c[2] = NAND(NOT(DB[0]), DB_C);
@@ -55,7 +55,6 @@ namespace M6502Core
 		// D
 
 		TriState d[3];
-
 		d[0] = NAND(IR5_D, n_IR5);
 		d[1] = NAND(NOT(DB[3]), DB_P);
 		d[2] = NAND(NOR(IR5_D, DB_P), d_latch2.get());
@@ -66,13 +65,12 @@ namespace M6502Core
 		// I
 
 		TriState i[3];
-
 		i[0] = NAND(n_IR5, IR5_I);
 		i[1] = NAND(NOT(DB[2]), DB_P);
 		i[2] = NAND(NOR(DB_P, IR5_I), i_latch2.get());
 
 		i_latch1.set(AND3(i[0], i[1], i[2]), PHI1);
-		i_latch2.set(i_latch1.nget(), PHI2);
+		i_latch2.set(AND(i_latch1.nget(), NOT(BRK6E)), PHI2);
 
 		// V
 
@@ -83,7 +81,6 @@ namespace M6502Core
 		vset_latch.set(NOR(so_latch1.nget(), so_latch3.get()), PHI2);
 
 		TriState v[4];
-
 		v[0] = NAND(NOT(AVR), avr_latch.nget());
 		v[1] = NAND(NOT(DB[6]), DB_V);
 		v[2] = NAND(NOR3(DB_V, avr_latch.nget(), vset_latch.get()), v_latch2.get());
@@ -113,9 +110,9 @@ namespace M6502Core
 		return d_latch1.nget();
 	}
 
-	BaseLogic::TriState Flags::getn_I_OUT()
+	BaseLogic::TriState Flags::getn_I_OUT(TriState BRK6E)
 	{
-		return i_latch1.nget();
+		return AND(i_latch1.nget(), NOT(BRK6E));
 	}
 
 	BaseLogic::TriState Flags::getn_V_OUT()

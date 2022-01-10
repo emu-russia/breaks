@@ -156,12 +156,10 @@ namespace M6502Core
 		int_in[(size_t)BRKProcessing_Input::n_ready] = n_ready;
 		int_in[(size_t)BRKProcessing_Input::RESP] = RESP;
 		int_in[(size_t)BRKProcessing_Input::n_NMIP] = n_NMIP;
-		int_in[(size_t)BRKProcessing_Input::n_IRQP] = n_IRQP;
-		int_in[(size_t)BRKProcessing_Input::T0] = T0;
-		int_in[(size_t)BRKProcessing_Input::BR2] = decoder_out[80];
-		int_in[(size_t)BRKProcessing_Input::n_I_OUT] = random->flags->getn_I_OUT();
 
-		brk->sim(int_in, int_out);
+		brk->sim_BeforeRandom(int_in, int_out);
+
+		TriState BRK6E = int_out[(size_t)BRKProcessing_Output::BRK6E];
 
 		// Random Logic
 
@@ -194,15 +192,30 @@ namespace M6502Core
 		rand_in[(size_t)RandomLogic_Input::Z_ADL0] = int_out[(size_t)BRKProcessing_Output::Z_ADL0];
 		rand_in[(size_t)RandomLogic_Input::Z_ADL1] = int_out[(size_t)BRKProcessing_Output::Z_ADL1];
 		rand_in[(size_t)RandomLogic_Input::Z_ADL2] = int_out[(size_t)BRKProcessing_Output::Z_ADL2];
-		rand_in[(size_t)RandomLogic_Input::BRK6E] = int_out[(size_t)BRKProcessing_Output::BRK6E];
+		rand_in[(size_t)RandomLogic_Input::BRK6E] = BRK6E;
 		rand_in[(size_t)RandomLogic_Input::SO] = SO;
 		rand_in[(size_t)RandomLogic_Input::STOR] = disp->getSTOR(decoder_out);
-		rand_in[(size_t)RandomLogic_Input::B_OUT] = int_out[(size_t)BRKProcessing_Output::B_OUT];
+		rand_in[(size_t)RandomLogic_Input::B_OUT] = brk->getB_OUT();
 		rand_in[(size_t)RandomLogic_Input::T5] = T5;
 		rand_in[(size_t)RandomLogic_Input::T6] = T6;
 		rand_in[(size_t)RandomLogic_Input::ACRL2] = ACRL2;
 
 		random->sim(rand_in, decoder_out, rand_out, DB);
+
+		TriState int_late_in[(size_t)BRKProcessing_Input::Max];
+		TriState int_late_out[(size_t)BRKProcessing_Output::Max];
+
+		int_late_in[(size_t)BRKProcessing_Input::PHI1] = PHI1;
+		int_late_in[(size_t)BRKProcessing_Input::PHI2] = PHI2;
+		int_late_in[(size_t)BRKProcessing_Input::T0] = T0;
+		int_late_in[(size_t)BRKProcessing_Input::BR2] = decoder_out[80];
+		int_late_in[(size_t)BRKProcessing_Input::n_I_OUT] = random->flags->getn_I_OUT(BRK6E);
+		int_late_in[(size_t)BRKProcessing_Input::n_IRQP] = n_IRQP;
+		int_late_in[(size_t)BRKProcessing_Input::n_DONMI] = int_out[(size_t)BRKProcessing_Output::n_DONMI];
+		int_late_in[(size_t)BRKProcessing_Input::BRK6E] = BRK6E;
+		int_late_in[(size_t)BRKProcessing_Input::DORES] = int_out[(size_t)BRKProcessing_Output::DORES];
+
+		brk->sim_AfterRandom(int_late_in, int_late_out);
 
 		TriState disp_late_in[(size_t)Dispatcher_Input::Max];
 
@@ -347,7 +360,7 @@ namespace M6502Core
 
 		info->C_OUT = NOT(random->flags->getn_C_OUT()) == TriState::One ? 1 : 0;
 		info->Z_OUT = NOT(random->flags->getn_Z_OUT()) == TriState::One ? 1 : 0;
-		info->I_OUT = NOT(random->flags->getn_I_OUT()) == TriState::One ? 1 : 0;
+		info->I_OUT = NOT(random->flags->getn_I_OUT(int_out[(size_t)BRKProcessing_Output::BRK6E])) == TriState::One ? 1 : 0;
 		info->D_OUT = NOT(random->flags->getn_D_OUT()) == TriState::One ? 1 : 0;
 		info->B_OUT = brk->getB_OUT() == TriState::One ? 1 : 0;
 		info->V_OUT = NOT(random->flags->getn_V_OUT()) == TriState::One ? 1 : 0;

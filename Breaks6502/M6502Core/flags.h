@@ -11,6 +11,7 @@ namespace M6502Core
 		ACR,
 		AVR,
 		n_IR5,
+		BRK6E,
 		P_DB,
 		DB_P,
 		DBZ_Z,
@@ -56,7 +57,7 @@ namespace M6502Core
 		BaseLogic::TriState getn_N_OUT();
 		BaseLogic::TriState getn_C_OUT();
 		BaseLogic::TriState getn_D_OUT();
-		BaseLogic::TriState getn_I_OUT();
+		BaseLogic::TriState getn_I_OUT(BaseLogic::TriState BRK6E);
 		BaseLogic::TriState getn_V_OUT();
 	};
 }
