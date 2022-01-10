@@ -15,21 +15,33 @@ namespace M6502Core
 		TriState RDY = inputs[(size_t)Dispatcher_Input::RDY];
 		TriState DORES = inputs[(size_t)Dispatcher_Input::DORES];
 		TriState B_OUT = inputs[(size_t)Dispatcher_Input::B_OUT];
+		TriState ACR = inputs[(size_t)Dispatcher_Input::ACR];
 
 		// Processor Readiness
 
-		ready_latch1.set(NOR(RDY, ready_latch2.get()), PHI2);
-		rdy_ff.set(NOT(ready_latch1.nget()));
-		TriState WR = NOR3(rdy_ff.get(), wr_latch.get(), DORES);
+		TriState WR = NOR3(NOT(ready_latch1.nget()), wr_latch.get(), DORES);
 		ready_latch2.set(WR, PHI1);
-		TriState n_ready = rdy_ff.get();
+		ready_latch1.set(NOR(RDY, ready_latch2.get()), PHI2);
+		TriState n_ready = NOT(ready_latch1.nget());
+
+		// Ready Delay
+
+		rdydelay_latch1.set(n_ready, PHI1);
+		rdydelay_latch2.set(rdydelay_latch1.nget(), PHI2);
+		TriState NotReadyPhi1 = rdydelay_latch2.nget();
+
+		// ACRL
+
+		TriState ACRL1 = NOR(AND(NOT(ACR), NOT(NotReadyPhi1)), NOR(NOT(NotReadyPhi1), acr_latch2.nget()));
+		acr_latch1.set(ACRL1, PHI1);
+		acr_latch2.set(acr_latch1.nget(), PHI2);
+		TriState ACRL2 = acr_latch2.nget();
 
 		// Short Cycle Counter
 
-		TriState n_T0 = NOR(NOR(comp_latch1.get(), AND(comp_latch2.get(), comp_latch3.get())), NOR(t0_ff.get(), t1x_latch.get()));
+		t1x_latch.set(NOR(t0_latch.get(), n_ready), PHI1);
+		TriState n_T0 = NOR(NOR(comp_latch1.get(), AND(comp_latch2.get(), comp_latch3.get())), NOR(t0_latch.get(), t1x_latch.get()));
 		t0_latch.set(n_T0, PHI2);
-		t0_ff.set(t0_latch.get());
-		t1x_latch.set(NOR(t0_ff.get(), n_ready), PHI1);
 		TriState T0 = NOT(n_T0);
 		TriState n_T1X = t1x_latch.nget();
 
@@ -49,13 +61,14 @@ namespace M6502Core
 		outputs[(size_t)Dispatcher_Output::FETCH] = FETCH;
 		outputs[(size_t)Dispatcher_Output::n_ready] = n_ready;
 		outputs[(size_t)Dispatcher_Output::WR] = WR;
+		outputs[(size_t)Dispatcher_Output::ACRL1] = ACRL1;
+		outputs[(size_t)Dispatcher_Output::ACRL2] = ACRL2;
 	}
 
 	void Dispatcher::sim_BeforeRandomLogic(TriState inputs[], TriState d[], TriState outputs[])
 	{
 		TriState PHI1 = inputs[(size_t)Dispatcher_Input::PHI1];
 		TriState PHI2 = inputs[(size_t)Dispatcher_Input::PHI2];
-		TriState ACR = inputs[(size_t)Dispatcher_Input::ACR];
 		TriState n_ready = inputs[(size_t)Dispatcher_Input::n_ready];
 
 		TriState n_SHIFT = NOR(d[106], d[107]);
@@ -67,20 +80,6 @@ namespace M6502Core
 		memop_in[3] = d[124];
 		memop_in[4] = d[125];
 		TriState n_MemOp = NOR5(memop_in);
-
-		// Ready Delay
-
-		rdydelay_latch1.set(n_ready, PHI1);
-		rdydelay_latch2.set(rdydelay_latch1.nget(), PHI2);
-		TriState NotReadyPhi1 = rdydelay_latch2.nget();
-
-		// ACRL
-
-		TriState ACRL1 = NOR(AND(NOT(ACR), NOT(NotReadyPhi1)), NOR(NOT(NotReadyPhi1), acrl_ff.get()));
-		acr_latch1.set(ACRL1, PHI1);
-		acr_latch2.set(acr_latch1.nget(), PHI2);
-		acrl_ff.set(acr_latch2.nget());
-		TriState ACRL2 = acrl_ff.get();
 
 		// T5 / T6
 
@@ -94,8 +93,6 @@ namespace M6502Core
 		t6_latch2.set(t6_latch1.nget(), PHI1);
 		TriState T6 = NOT(t6_latch2.nget());
 
-		outputs[(size_t)Dispatcher_Output::ACRL1] = ACRL1;
-		outputs[(size_t)Dispatcher_Output::ACRL2] = ACRL2;
 		outputs[(size_t)Dispatcher_Output::T5] = T5;
 		outputs[(size_t)Dispatcher_Output::T6] = T6;
 	}

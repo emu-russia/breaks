@@ -12,10 +12,10 @@ namespace M6502Core
 		RDY,
 		DORES,
 		B_OUT,
+		ACR,
 
 		RESP,
 		BRK6E,
-		ACR,
 		BRFW,
 		n_BRTAKEN,
 		n_TWOCYCLE,
@@ -41,9 +41,9 @@ namespace M6502Core
 		n_ready,
 		WR,
 		TRES2,
-
 		ACRL1,
 		ACRL2,
+
 		T1,
 		T5,
 		T6,
@@ -61,7 +61,6 @@ namespace M6502Core
 	{
 		BaseLogic::DLatch acr_latch1;
 		BaseLogic::DLatch acr_latch2;
-		BaseLogic::FF acrl_ff;
 
 		BaseLogic::DLatch t56_latch;
 		BaseLogic::DLatch t5_latch1;
@@ -78,7 +77,6 @@ namespace M6502Core
 		BaseLogic::DLatch wr_latch;
 		BaseLogic::DLatch ready_latch1;
 		BaseLogic::DLatch ready_latch2;
-		BaseLogic::FF rdy_ff;
 
 		BaseLogic::DLatch ends_latch1;
 		BaseLogic::DLatch ends_latch2;
@@ -99,7 +97,6 @@ namespace M6502Core
 
 		BaseLogic::DLatch t0_latch;
 		BaseLogic::DLatch t1x_latch;
-		BaseLogic::FF t0_ff;
 
 		BaseLogic::DLatch br_latch1;
 		BaseLogic::DLatch br_latch2;
