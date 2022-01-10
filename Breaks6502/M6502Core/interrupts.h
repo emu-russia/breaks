@@ -14,6 +14,10 @@ namespace M6502Core
 		T0,
 		BR2,
 		n_I_OUT,
+
+		n_DONMI,
+		BRK6E,
+		DORES,
 		Max,
 	};
 
@@ -59,7 +63,8 @@ namespace M6502Core
 
 	public:
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
+		void sim_BeforeRandom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
+		void sim_AfterRandom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
 
 		BaseLogic::TriState getDORES();
 		BaseLogic::TriState getB_OUT();
