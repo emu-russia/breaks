@@ -64,7 +64,7 @@ namespace M6502Core
 		n1[1] = T2;
 		n1[2] = n_PCH_PCH;
 		n1[3] = JSR_5;
-		TriState n_ADH_ABH = NOR(Z_ADL0, AND(OR(SBA, NOR(n_ready, NOR4(n1))), BR3));
+		TriState n_ADH_ABH = NOR(Z_ADL0, AND(OR(SBA, NOR(n_ready, NOR4(n1))), NOT(BR3)));
 		adh_abh_latch.set(n_ADH_ABH, PHI2);
 
 		// ALU connection to SB, DB buses (AC/DB, SB/AC, AC/SB)

@@ -27,7 +27,6 @@ namespace M6502Core
 		BaseLogic::DLatch br2_latch;
 		BaseLogic::DLatch brfw_latch1;
 		BaseLogic::DLatch brfw_latch2;
-		BaseLogic::FF brfw_ff;
 
 	public:
 
