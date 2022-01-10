@@ -41,6 +41,10 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 - /DB2: Input value from the DB bus, in inverted form
 - /I_OUT: Output value of flag I, in inverted form. This signal goes to two places: to the interrupt processing circuit and to the circuit for exchanging flag register values with the DB bus (below).
 
+The `/I_OUT` signal is further modified by the `BRK6E` signal in flag B circuitry:
+
+![intr_b_flag_tran](/BreakingNESWiki/imgstore/intr_b_flag_tran.jpg)
+
 ## N Flag
 
 ![flag_n_tran](/BreakingNESWiki/imgstore/6502/flag_n_tran.jpg)
