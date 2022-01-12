@@ -26,8 +26,6 @@ namespace M6502Core
 		AC_DB,
 		SB_DB,
 		SB_ADH,
-		Z_ADH0,
-		Z_ADH17,
 
 		n_ACIN,
 		n_DAA,

@@ -25,8 +25,6 @@ namespace M6502Core
 		TriState AC_DB = inputs[(size_t)ALU_Input::AC_DB];
 		TriState SB_DB = inputs[(size_t)ALU_Input::SB_DB];
 		TriState SB_ADH = inputs[(size_t)ALU_Input::SB_ADH];
-		TriState Z_ADH0 = inputs[(size_t)ALU_Input::Z_ADH0];
-		TriState Z_ADH17 = inputs[(size_t)ALU_Input::Z_ADH17];
 		TriState n_ACIN = inputs[(size_t)ALU_Input::n_ACIN];
 		TriState n_DAA = inputs[(size_t)ALU_Input::n_DAA];
 		TriState n_DSA = inputs[(size_t)ALU_Input::n_DSA];
@@ -222,10 +220,6 @@ namespace M6502Core
 			if (SB_DB == TriState::One)
 			{
 				BusConnect(SB[n], DB[n]);
-			}
-			if ((Z_ADH0 == TriState::One && n == 0) || (Z_ADH17 == TriState::One && n != 0))
-			{
-				ADH[n] = TriState::Zero;
 			}
 			if (SB_ADH == TriState::One)
 			{
