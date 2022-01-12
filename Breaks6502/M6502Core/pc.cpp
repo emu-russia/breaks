@@ -11,7 +11,7 @@ namespace M6502Core
 	{
 		if (PCx_PCx == TriState::One)
 		{
-			PCxS[n].set(NOT(PCx[n].get()), BaseLogic::One);
+			PCxS[n].set(NOT(PCx[n].nget()), BaseLogic::One);
 		}
 		if (ADx_PCx == TriState::One)
 		{
@@ -42,7 +42,7 @@ namespace M6502Core
 	{
 		if (PCx_PCx == TriState::One)
 		{
-			PCxS[n].set(PCx[n].get(), BaseLogic::One);
+			PCxS[n].set(PCx[n].nget(), BaseLogic::One);
 		}
 		if (ADx_PCx == TriState::One)
 		{
