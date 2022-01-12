@@ -245,7 +245,7 @@ void DumpDecoderStates()
 
             for (int n = 0; n < M6502Core::Decoder::outputs_count; n++)
             {
-                if (outputs[n] == TriState::One)
+                if (outputs[n] == TriState::One && !(n == 121 || n == 126))
                 {
                     if (comma)
                     {
