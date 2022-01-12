@@ -60,7 +60,6 @@ namespace M6502Core
 		outputs[(size_t)Dispatcher_Output::Z_IR] = Z_IR;
 		outputs[(size_t)Dispatcher_Output::FETCH] = FETCH;
 		outputs[(size_t)Dispatcher_Output::n_ready] = n_ready;
-		outputs[(size_t)Dispatcher_Output::WR] = WR;
 		outputs[(size_t)Dispatcher_Output::ACRL1] = ACRL1;
 		outputs[(size_t)Dispatcher_Output::ACRL2] = ACRL2;
 	}
@@ -115,6 +114,8 @@ namespace M6502Core
 		TriState T6 = inputs[(size_t)Dispatcher_Input::T6];
 		TriState ACRL1 = inputs[(size_t)Dispatcher_Input::ACRL1];
 		TriState ACRL2 = inputs[(size_t)Dispatcher_Input::ACRL2];
+		TriState RDY = inputs[(size_t)Dispatcher_Input::RDY];
+		TriState DORES = inputs[(size_t)Dispatcher_Input::DORES];
 
 		TriState BR2 = d[80];
 		TriState BR3 = d[93];
@@ -206,10 +207,17 @@ namespace M6502Core
 		wr_in[5] = T6;
 		wr_latch.set(NOR6(wr_in), PHI2);
 
+		// Processor Readiness
+
+		TriState WR = NOR3(NOT(ready_latch1.nget()), wr_latch.get(), DORES);
+		ready_latch2.set(WR, PHI1);
+		ready_latch1.set(NOR(RDY, ready_latch2.get()), PHI2);
+
 		// Outputs
 
 		outputs[(size_t)Dispatcher_Output::T1] = T1;
 		outputs[(size_t)Dispatcher_Output::n_1PC] = n_1PC;
+		outputs[(size_t)Dispatcher_Output::WR] = WR;
 
 		outputs[(size_t)Dispatcher_Output::ENDS] = ENDS;
 		outputs[(size_t)Dispatcher_Output::ENDX] = ENDX;

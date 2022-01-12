@@ -92,7 +92,6 @@ namespace M6502Core
 
 		TriState n_ready = disp_early_out[(size_t)Dispatcher_Output::n_ready];
 		TriState T0 = disp_early_out[(size_t)Dispatcher_Output::T0];
-		TriState WR = disp_early_out[(size_t)Dispatcher_Output::WR];
 		TriState FETCH = disp_early_out[(size_t)Dispatcher_Output::FETCH];
 		TriState Z_IR = disp_early_out[(size_t)Dispatcher_Output::Z_IR];
 		TriState ACRL1 = disp_early_out[(size_t)Dispatcher_Output::ACRL1];
@@ -237,8 +236,12 @@ namespace M6502Core
 		disp_late_in[(size_t)Dispatcher_Input::T6] = T6;
 		disp_late_in[(size_t)Dispatcher_Input::ACRL1] = ACRL1;
 		disp_late_in[(size_t)Dispatcher_Input::ACRL2] = ACRL2;
+		disp_late_in[(size_t)Dispatcher_Input::RDY] = RDY;
+		disp_late_in[(size_t)Dispatcher_Input::DORES] = brk->getDORES();
 
 		disp->sim_AfterRandomLogic(disp_late_in, decoder_out, disp_late_out);
+
+		TriState WR = disp_late_out[(size_t)Dispatcher_Output::WR];
 
 		// Bottom Part
 
@@ -389,7 +392,7 @@ namespace M6502Core
 		info->Z_IR = disp_early_out[(size_t)Dispatcher_Output::Z_IR] == TriState::One ? 1 : 0;
 		info->FETCH = disp_early_out[(size_t)Dispatcher_Output::FETCH] == TriState::One ? 1 : 0;
 		info->n_ready = disp_early_out[(size_t)Dispatcher_Output::n_ready] == TriState::One ? 1 : 0;
-		info->WR = disp_early_out[(size_t)Dispatcher_Output::WR] == TriState::One ? 1 : 0;
+		info->WR = disp_late_out[(size_t)Dispatcher_Output::WR] == TriState::One ? 1 : 0;
 		info->TRES2 = disp->getTRES2() == TriState::One ? 1 : 0;
 		info->ACRL1 = disp_early_out[(size_t)Dispatcher_Output::ACRL1] == TriState::One ? 1 : 0;
 		info->ACRL2 = disp_early_out[(size_t)Dispatcher_Output::ACRL2] == TriState::One ? 1 : 0;
