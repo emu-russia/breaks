@@ -360,6 +360,7 @@ namespace BreaksDebug
             CpuPadsRaw pads = SerializePads (cpu_pads);
 
             Sim(ref pads, ref info);
+            Sim(ref pads, ref info);
 
             cpu_pads = DeserializePads(pads);
 

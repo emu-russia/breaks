@@ -70,12 +70,12 @@ namespace M6502Core
 
 		outputs[(size_t)RegsControl_Output::Y_SB] = NOR(ysb_latch.get(), PHI2);
 		outputs[(size_t)RegsControl_Output::X_SB] = NOR(xsb_latch.get(), PHI2);
-		outputs[(size_t)RegsControl_Output::S_SB] = NOR(ssb_latch.nget(), PHI2);
+		outputs[(size_t)RegsControl_Output::S_SB] = ssb_latch.nget();
 		outputs[(size_t)RegsControl_Output::SB_X] = NOR(sbx_latch.get(), PHI2);
 		outputs[(size_t)RegsControl_Output::SB_Y] = NOR(sby_latch.get(), PHI2);
 		outputs[(size_t)RegsControl_Output::SB_S] = NOR(sbs_latch.get(), PHI2);
 		outputs[(size_t)RegsControl_Output::S_S] = NOR(ss_latch.get(), PHI2);
-		outputs[(size_t)RegsControl_Output::S_ADL] = NOR(sadl_latch.nget(), PHI2);
+		outputs[(size_t)RegsControl_Output::S_ADL] = sadl_latch.nget();
 
 		outputs[(size_t)RegsControl_Output::STXY] = STXY;
 		outputs[(size_t)RegsControl_Output::SBXY] = SBXY;
