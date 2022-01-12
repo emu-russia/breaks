@@ -9,6 +9,8 @@ namespace M6502Core
 		Z_ADL0,
 		Z_ADL1,
 		Z_ADL2,
+		Z_ADH0,
+		Z_ADH17,
 		ADL_ABL,
 		ADH_ABH,
 		Max,
@@ -21,7 +23,9 @@ namespace M6502Core
 
 	public:
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[], BaseLogic::TriState cpu_out[]);
+		void sim_Early(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[]);
+
+		void sim_Late(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[], BaseLogic::TriState cpu_out[]);
 
 		uint8_t getABL();
 		uint8_t getABH();

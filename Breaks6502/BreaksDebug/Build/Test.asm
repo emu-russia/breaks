@@ -3,7 +3,7 @@
 LABEL1:
 
     PROCESSOR 6502
-;    ORG     $100
+    ORG     $C000
 
     DEFINE  KONST   #5
 

@@ -4,24 +4,16 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void AddressBus::sim(TriState inputs[], TriState ADL[], TriState ADH[], TriState cpu_out[])
+	void AddressBus::sim_Early(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[])
 	{
-		TriState PHI1 = inputs[(size_t)AddressBus_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)AddressBus_Input::PHI2];
 		TriState Z_ADL0 = inputs[(size_t)AddressBus_Input::Z_ADL0];
 		TriState Z_ADL1 = inputs[(size_t)AddressBus_Input::Z_ADL1];
 		TriState Z_ADL2 = inputs[(size_t)AddressBus_Input::Z_ADL2];
-		TriState ADL_ABL = inputs[(size_t)AddressBus_Input::ADL_ABL];
-		TriState ADH_ABH = inputs[(size_t)AddressBus_Input::ADH_ABH];
+		TriState Z_ADH0 = inputs[(size_t)AddressBus_Input::Z_ADH0];
+		TriState Z_ADH17 = inputs[(size_t)AddressBus_Input::Z_ADH17];
 
 		for (size_t n = 0; n < 8; n++)
 		{
-			if (PHI2 == TriState::One)
-			{
-				ABL[n].set(NOT(NOT(ABL[n].get())));
-				ABH[n].set(NOT(NOT(ABH[n].get())));
-			}
-
 			if (n == 0 && Z_ADL0 == TriState::One)
 			{
 				ADL[0] = TriState::Zero;
@@ -35,6 +27,33 @@ namespace M6502Core
 			if (n == 2 && Z_ADL2 == TriState::One)
 			{
 				ADL[2] = TriState::Zero;
+			}
+
+			if (Z_ADH0 == TriState::One && n == 0)
+			{
+				ADH[n] = TriState::Zero;
+			}
+
+			if (Z_ADH17 == TriState::One && n != 0)
+			{
+				ADH[n] = TriState::Zero;
+			}
+		}
+	}
+
+	void AddressBus::sim_Late(TriState inputs[], TriState ADL[], TriState ADH[], TriState cpu_out[])
+	{
+		TriState PHI1 = inputs[(size_t)AddressBus_Input::PHI1];
+		TriState PHI2 = inputs[(size_t)AddressBus_Input::PHI2];
+		TriState ADL_ABL = inputs[(size_t)AddressBus_Input::ADL_ABL];
+		TriState ADH_ABH = inputs[(size_t)AddressBus_Input::ADH_ABH];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			if (PHI2 == TriState::One)
+			{
+				ABL[n].set(NOT(NOT(ABL[n].get())));
+				ABH[n].set(NOT(NOT(ABH[n].get())));
 			}
 
 			if (PHI1 == TriState::One && ADL_ABL == TriState::One)

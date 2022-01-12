@@ -242,6 +242,16 @@ namespace M6502Core
 
 		// Bottom Part
 
+		TriState addr_in_early[(size_t)AddressBus_Input::Max];
+
+		addr_in_early[(size_t)AddressBus_Input::Z_ADL0] = rand_out[(size_t)RandomLogic_Output::Z_ADL0];
+		addr_in_early[(size_t)AddressBus_Input::Z_ADL1] = rand_out[(size_t)RandomLogic_Output::Z_ADL1];
+		addr_in_early[(size_t)AddressBus_Input::Z_ADL2] = rand_out[(size_t)RandomLogic_Output::Z_ADL2];
+		addr_in_early[(size_t)AddressBus_Input::Z_ADH0] = rand_out[(size_t)RandomLogic_Output::Z_ADH0];
+		addr_in_early[(size_t)AddressBus_Input::Z_ADH17] = rand_out[(size_t)RandomLogic_Output::Z_ADH17];
+
+		addr_bus->sim_Early(addr_in_early, ADL, ADH);
+
 		TriState regs_in[(size_t)Regs_Input::Max];
 
 		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
@@ -277,8 +287,6 @@ namespace M6502Core
 		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
 		alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
 		alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
-		alu_in[(size_t)ALU_Input::Z_ADH0] = rand_out[(size_t)RandomLogic_Output::Z_ADH0];
-		alu_in[(size_t)ALU_Input::Z_ADH17] = rand_out[(size_t)RandomLogic_Output::Z_ADH17];
 		alu_in[(size_t)ALU_Input::n_ACIN] = rand_out[(size_t)RandomLogic_Output::n_ACIN];
 		alu_in[(size_t)ALU_Input::n_DAA] = rand_out[(size_t)RandomLogic_Output::n_DAA];
 		alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
@@ -311,17 +319,14 @@ namespace M6502Core
 
 		data_bus->sim(data_in, DB, ADL, ADH, inOuts);
 
-		TriState addr_in[(size_t)AddressBus_Input::Max];
+		TriState addr_in_late[(size_t)AddressBus_Input::Max];
 
-		addr_in[(size_t)AddressBus_Input::PHI1] = PHI1;
-		addr_in[(size_t)AddressBus_Input::PHI2] = PHI2;
-		addr_in[(size_t)AddressBus_Input::Z_ADL0] = rand_out[(size_t)RandomLogic_Output::Z_ADL0];
-		addr_in[(size_t)AddressBus_Input::Z_ADL1] = rand_out[(size_t)RandomLogic_Output::Z_ADL1];
-		addr_in[(size_t)AddressBus_Input::Z_ADL2] = rand_out[(size_t)RandomLogic_Output::Z_ADL2];
-		addr_in[(size_t)AddressBus_Input::ADL_ABL] = rand_out[(size_t)RandomLogic_Output::ADL_ABL];
-		addr_in[(size_t)AddressBus_Input::ADH_ABH] = rand_out[(size_t)RandomLogic_Output::ADH_ABH];
+		addr_in_late[(size_t)AddressBus_Input::PHI1] = PHI1;
+		addr_in_late[(size_t)AddressBus_Input::PHI2] = PHI2;
+		addr_in_late[(size_t)AddressBus_Input::ADL_ABL] = rand_out[(size_t)RandomLogic_Output::ADL_ABL];
+		addr_in_late[(size_t)AddressBus_Input::ADH_ABH] = rand_out[(size_t)RandomLogic_Output::ADH_ABH];
 
-		addr_bus->sim(addr_in, ADL, ADH, outputs);
+		addr_bus->sim_Late(addr_in_late, ADL, ADH, outputs);
 
 		// Outputs
 
