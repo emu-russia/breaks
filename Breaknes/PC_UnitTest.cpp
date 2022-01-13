@@ -20,7 +20,7 @@ static void ResetPcInputs(TriState inputs[])
     inputs[(size_t)ProgramCounter_Input::n_1PC] = TriState::One;
 }
 
-void PC_Test(uint16_t initial_pc, uint16_t expected_pc, bool inc)
+void PC_Test(uint16_t initial_pc, uint16_t expected_pc, bool inc, const char *test_name)
 {
     ProgramCounter pc;
 
@@ -79,7 +79,7 @@ void PC_Test(uint16_t initial_pc, uint16_t expected_pc, bool inc)
 
     // Store
 
-    printf("Before store PCH: 0x%02X, PCL: 0x%02X\n", pc.getPCH(), pc.getPCL());
+    //printf("Before store PCH: 0x%02X, PCL: 0x%02X\n", pc.getPCH(), pc.getPCL());
 
     ResetPcInputs(inputs);
     inputs[(size_t)ProgramCounter_Input::PHI2] = TriState::Zero;
@@ -101,7 +101,8 @@ void PC_Test(uint16_t initial_pc, uint16_t expected_pc, bool inc)
 
     if (pc_from_bus != expected_pc)
     {
-        printf("The test failed! PC from bus (0x%04X) != Expected PC (0x%04X)\n", pc_from_bus, expected_pc);
+        printf("`%s` test failed! PC from bus (0x%04X) != Expected PC (0x%04X)\n", test_name, pc_from_bus, expected_pc);
+        return;
     }
 
     // Check direct values
@@ -112,51 +113,23 @@ void PC_Test(uint16_t initial_pc, uint16_t expected_pc, bool inc)
 
     if (PC != expected_pc)
     {
-        printf("The test failed! PC (0x%04X) != Expected PC (0x%04X)\n", PC, expected_pc);
+        printf("`%s` test failed! PC (0x%04X) != Expected PC (0x%04X)\n", test_name, PC, expected_pc);
+        return;
     }
+
+    printf("`%s` test pass!\n", test_name);
 }
 
 void PC_UnitTest()
 {
-    // PC = 0x0000
-
-    PC_Test(0x0000, 0x0000, false);
-
-    // PC = 0xA5A5
-
-    PC_Test(0xA5A5, 0xA5A5, false);
-
-    // PC = 0x5A5A
-
-    PC_Test(0x5A5A, 0x5A5A, false);
-
-    // PC = 0xFFFE
-
-    PC_Test(0xFFFE, 0xFFFE, false);
-
-    // PC = 0xFFFF -- Bug?
-
-    PC_Test(0xFFFF, 0xFFFF, false);
-
-    return;
-
-    // PC = 0x0000 -> Increment -> Check PC = 0x0001
-
-    PC_Test(0x0000, 0x0001, true);
-
-    // PC = 0xA5A5 -> Increment -> Check PC = 0xA5A6
-
-    PC_Test(0xA5A5, 0xA5A6, true);
-
-    // PC = 0x5A5A -> Increment -> Check PC = 0x5A5B
-
-    PC_Test(0x5A5A, 0x5A5B, true);
-
-    // PC = 0xFFFE -> Increment -> Check PC = 0xFFFF    -- Bug?
-
-    PC_Test(0xFFFE, 0xFFFF, true);
-
-    // PC = 0xFFFF -> Increment -> Check PC = 0x0000    -- Bug?
-
-    PC_Test(0xFFFF, 0x0000, true);
+    PC_Test(0x0000, 0x0000, false, "PC = 0x0000");
+    PC_Test(0xA5A5, 0xA5A5, false, "PC = 0xA5A5");
+    PC_Test(0x5A5A, 0x5A5A, false, "PC = 0x5A5A");
+    PC_Test(0xFFFE, 0xFFFE, false, "PC = 0xFFFE");
+    PC_Test(0xFFFF, 0xFFFF, false, "PC = 0xFFFF");      // Bug! Fix!
+    PC_Test(0x0000, 0x0001, true, "PC = 0x0000 -> Increment -> Check PC = 0x0001");
+    PC_Test(0xA5A5, 0xA5A6, true, "PC = 0xA5A5 -> Increment -> Check PC = 0xA5A6");
+    PC_Test(0x5A5A, 0x5A5B, true, "PC = 0x5A5A -> Increment -> Check PC = 0x5A5B");
+    PC_Test(0xFFFE, 0xFFFF, true, "PC = 0xFFFE -> Increment -> Check PC = 0xFFFF");     // Bug! Fix!
+    PC_Test(0xFFFF, 0x0000, true, "PC = 0xFFFF -> Increment -> Check PC = 0x0000");     // Bug! Fix!
 }
