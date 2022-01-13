@@ -25,6 +25,10 @@
 
 Представляет собой старшие разряды PC\[8-15\].
 
+:warning: 
+Схемы для четных битов (0, 2, ...) PCH повторяют схемы для нечетных битов (1, 3, ...) PCL.
+Аналогично, схемы для нечетных битов (1, 3, ...) PCH повторяют схемы для четных битов (0, 2, ...) PCL.
+
 |PCH 0-3|PCH 4-7|
 |---|---|
 |![pch03_tran](/BreakingNESWiki/imgstore/pch03_tran.jpg)|![pch47_tran](/BreakingNESWiki/imgstore/pch47_tran.jpg)|
@@ -48,11 +52,11 @@
 
 Имеет смысл показать только схемы разрядов (схемы чередуются между четными и нечетными разрядами PCL/PCH).
 
-Данная схема используется, например, в PCL0:
+Данная схема используется, например, в PCL0 или PCH1:
 
 ![pc_even_bit_logisim](/BreakingNESWiki/imgstore/pc_even_bit_logisim.jpg)
 
-Данная схема используется, например, в PCL1:
+Данная схема используется, например, в PCL1 или PCH0:
 
 ![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg)
 

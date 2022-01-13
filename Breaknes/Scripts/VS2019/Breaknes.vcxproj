@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\BaseLogic.cpp" />
     <ClCompile Include="..\..\Breaknes.cpp" />
+    <ClCompile Include="..\..\DecoderDecoder.cpp" />
     <ClCompile Include="..\..\Famicom.cpp" />
     <ClCompile Include="..\..\NES.cpp" />
     <ClCompile Include="..\..\pch.cpp">
@@ -29,13 +30,16 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\PC_UnitTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\AbstractSystem.h" />
     <ClInclude Include="..\..\BaseLogic.h" />
+    <ClInclude Include="..\..\DecoderDecoder.h" />
     <ClInclude Include="..\..\Famicom.h" />
     <ClInclude Include="..\..\NES.h" />
     <ClInclude Include="..\..\pch.h" />
+    <ClInclude Include="..\..\PC_UnitTest.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Breaks6502\M6502Core\Scripts\VS2019\M6502Core.vcxproj">
