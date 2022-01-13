@@ -38,7 +38,7 @@ namespace M6502Core
 		delete data_bus;
 	}
 
-	void M6502::sim(TriState inputs[], TriState outputs[], TriState inOuts[])
+	void M6502::sim_Top(TriState inputs[], TriState outputs[], TriState inOuts[])
 	{
 		TriState n_NMI = inputs[(size_t)InputPad::n_NMI];
 		TriState n_IRQ = inputs[(size_t)InputPad::n_IRQ];
@@ -242,6 +242,14 @@ namespace M6502Core
 		disp->sim_AfterRandomLogic(disp_late_in, decoder_out, disp_late_out);
 
 		TriState WR = disp_late_out[(size_t)Dispatcher_Output::WR];
+	}
+
+	void M6502::sim_Bottom(TriState inputs[], TriState outputs[], TriState inOuts[])
+	{
+		TriState PHI0 = inputs[(size_t)InputPad::PHI0];
+		TriState PHI1 = NOT(PHI0);
+		TriState PHI2 = PHI0;
+		TriState WR = disp_late_out[(size_t)Dispatcher_Output::WR];
 
 		// Bottom Part
 
@@ -339,6 +347,17 @@ namespace M6502Core
 		outputs[(size_t)OutputPad::PHI2] = PHI2;
 		outputs[(size_t)OutputPad::RnW] = rw_latch.nget();
 		outputs[(size_t)OutputPad::SYNC] = disp->getT1();
+	}
+
+	void M6502::sim(TriState inputs[], TriState outputs[], TriState inOuts[])
+	{
+		// TODO: To stabilize latches, all parts are simulated 2 times each. We need to optimize the propagation delay emulation and break all cycles normally.
+
+		sim_Top(inputs, outputs, inOuts);
+		sim_Top(inputs, outputs, inOuts);
+
+		sim_Bottom(inputs, outputs, inOuts);
+		sim_Bottom(inputs, outputs, inOuts);
 	}
 
 	void M6502::getDebug(DebugInfo* info)
