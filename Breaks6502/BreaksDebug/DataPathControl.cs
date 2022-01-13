@@ -18,6 +18,7 @@ namespace BreaksDebug
         BogusSystem.CpuDebugInfo_Commands cur_info = null;
         Pen path_pen = new Pen(new SolidBrush(Color.OrangeRed), 5);
         Font labelFont = new Font("Segoe UI", 10.0f, FontStyle.Bold);
+        Brush labelBrush = new SolidBrush(Color.Black);
 
         public DataPathView()
         {
@@ -327,27 +328,27 @@ namespace BreaksDebug
 
             if (cur_info.cmd[(int)BogusSystem.ControlCommand.ANDS] != 0)
             {
-                gr.DrawString("ANDS", labelFont, new SolidBrush(Color.Black), point);
+                gr.DrawString("ANDS", labelFont, labelBrush, point);
             }
 
             if (cur_info.cmd[(int)BogusSystem.ControlCommand.EORS] != 0)
             {
-                gr.DrawString("EORS", labelFont, new SolidBrush(Color.Black), point);
+                gr.DrawString("EORS", labelFont, labelBrush, point);
             }
 
             if (cur_info.cmd[(int)BogusSystem.ControlCommand.ORS] != 0)
             {
-                gr.DrawString("ORS", labelFont, new SolidBrush(Color.Black), point);
+                gr.DrawString("ORS", labelFont, labelBrush, point);
             }
 
             if (cur_info.cmd[(int)BogusSystem.ControlCommand.SRS] != 0)
             {
-                gr.DrawString("SRS", labelFont, new SolidBrush(Color.Black), point);
+                gr.DrawString("SRS", labelFont, labelBrush, point);
             }
 
             if (cur_info.cmd[(int)BogusSystem.ControlCommand.SUMS] != 0)
             {
-                gr.DrawString("SUMS", labelFont, new SolidBrush(Color.Black), point);
+                gr.DrawString("SUMS", labelFont, labelBrush, point);
             }
         }
 
