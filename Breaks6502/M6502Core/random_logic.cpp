@@ -231,6 +231,19 @@ namespace M6502Core
 		outputs[(size_t)RandomLogic_Output::DL_ADH] = bus_out[(size_t)BusControl_Output::DL_ADH];
 		outputs[(size_t)RandomLogic_Output::DL_DB] = bus_out[(size_t)BusControl_Output::DL_DB];
 
+		outputs[(size_t)RandomLogic_Output::P_DB] = flags_ctrl_out[(size_t)FlagsControl_Output::P_DB];
+		outputs[(size_t)RandomLogic_Output::DB_P] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_P];
+		outputs[(size_t)RandomLogic_Output::DBZ_Z] = flags_ctrl_out[(size_t)FlagsControl_Output::DBZ_Z];
+		outputs[(size_t)RandomLogic_Output::DB_N] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_N];
+		outputs[(size_t)RandomLogic_Output::IR5_C] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_C];
+		outputs[(size_t)RandomLogic_Output::DB_C] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_C];
+		outputs[(size_t)RandomLogic_Output::ACR_C] = flags_ctrl_out[(size_t)FlagsControl_Output::ACR_C];
+		outputs[(size_t)RandomLogic_Output::IR5_D] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_D];
+		outputs[(size_t)RandomLogic_Output::IR5_I] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_I];
+		outputs[(size_t)RandomLogic_Output::DB_V] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_V];
+		outputs[(size_t)RandomLogic_Output::AVR_V] = d[112];
+		outputs[(size_t)RandomLogic_Output::Z_V] = flags_ctrl_out[(size_t)FlagsControl_Output::Z_V];
+
 		outputs[(size_t)RandomLogic_Output::BRFW] = branch_logic_out[(size_t)BranchLogic_Output::BRFW];
 		outputs[(size_t)RandomLogic_Output::n_BRTAKEN] = branch_logic_out[(size_t)BranchLogic_Output::n_BRTAKEN];
 		outputs[(size_t)RandomLogic_Output::PC_DB] = pc_out[(size_t)PC_Control_Output::PC_DB];

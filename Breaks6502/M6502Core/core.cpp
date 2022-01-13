@@ -67,16 +67,6 @@ namespace M6502Core
 		resp_latch.set(resp_ff.get(), PHI1);
 		TriState RESP = resp_latch.nget();
 
-		// Precharge internal buses
-
-		if (PHI2 == TriState::One)
-		{
-			Unpack(0xff, SB);
-			Unpack(0xff, DB);
-			Unpack(0xff, ADL);
-			Unpack(0xff, ADH);
-		}
-
 		// Dispatcher and other auxiliary logic
 
 		TriState disp_early_in[(size_t)Dispatcher_Input::Max];
@@ -351,12 +341,25 @@ namespace M6502Core
 
 	void M6502::sim(TriState inputs[], TriState outputs[], TriState inOuts[])
 	{
+		TriState PHI0 = inputs[(size_t)InputPad::PHI0];
+		TriState PHI2 = PHI0;
+
 		// TODO: To stabilize latches, all parts are simulated 2 times each. We need to optimize the propagation delay emulation and break all cycles normally.
 
-		sim_Top(inputs, outputs, inOuts);
-		sim_Top(inputs, outputs, inOuts);
+		// Precharge internal buses
 
+		if (PHI2 == TriState::One)
+		{
+			Unpack(0xff, SB);
+			Unpack(0xff, DB);
+			Unpack(0xff, ADL);
+			Unpack(0xff, ADH);
+		}
+
+		sim_Top(inputs, outputs, inOuts);
 		sim_Bottom(inputs, outputs, inOuts);
+
+		sim_Top(inputs, outputs, inOuts);
 		sim_Bottom(inputs, outputs, inOuts);
 	}
 
@@ -476,5 +479,18 @@ namespace M6502Core
 		info->DL_ADL = rand_out[(size_t)RandomLogic_Output::DL_ADL] == TriState::One ? 1 : 0;
 		info->DL_ADH = rand_out[(size_t)RandomLogic_Output::DL_ADH] == TriState::One ? 1 : 0;
 		info->DL_DB = rand_out[(size_t)RandomLogic_Output::DL_DB] == TriState::One ? 1 : 0;
+
+		info->P_DB = rand_out[(size_t)RandomLogic_Output::P_DB] == TriState::One ? 1 : 0;
+		info->DB_P = rand_out[(size_t)RandomLogic_Output::DB_P] == TriState::One ? 1 : 0;
+		info->DBZ_Z = rand_out[(size_t)RandomLogic_Output::DBZ_Z] == TriState::One ? 1 : 0;
+		info->DB_N = rand_out[(size_t)RandomLogic_Output::DB_N] == TriState::One ? 1 : 0;
+		info->IR5_C = rand_out[(size_t)RandomLogic_Output::IR5_C] == TriState::One ? 1 : 0;
+		info->DB_C = rand_out[(size_t)RandomLogic_Output::DB_C] == TriState::One ? 1 : 0;
+		info->ACR_C = rand_out[(size_t)RandomLogic_Output::ACR_C] == TriState::One ? 1 : 0;
+		info->IR5_D = rand_out[(size_t)RandomLogic_Output::IR5_D] == TriState::One ? 1 : 0;
+		info->IR5_I = rand_out[(size_t)RandomLogic_Output::IR5_I] == TriState::One ? 1 : 0;
+		info->DB_V = rand_out[(size_t)RandomLogic_Output::DB_V] == TriState::One ? 1 : 0;
+		info->AVR_V = rand_out[(size_t)RandomLogic_Output::AVR_V] == TriState::One ? 1 : 0;
+		info->Z_V = rand_out[(size_t)RandomLogic_Output::Z_V] == TriState::One ? 1 : 0;
 	}
 }

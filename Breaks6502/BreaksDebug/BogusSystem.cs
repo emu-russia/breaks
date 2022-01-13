@@ -263,6 +263,18 @@ namespace BreaksDebug
             DL_ADL,
             DL_ADH,
             DL_DB,
+            P_DB,
+            DB_P,
+            DBZ_Z,
+            DB_N,
+            IR5_C,
+            DB_C,
+            ACR_C,
+            IR5_D,
+            IR5_I,
+            DB_V,
+            AVR_V,
+            Z_V,
             Max,
         }
 
@@ -552,7 +564,6 @@ namespace BreaksDebug
             CpuDebugInfo_Internals res = new CpuDebugInfo_Internals();
 
             res.n_PRDY = info.n_PRDY;
-
             res.n_NMIP = info.n_NMIP;
             res.n_IRQP = info.n_IRQP;
             res.RESP = info.RESP;

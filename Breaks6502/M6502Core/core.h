@@ -159,6 +159,20 @@ namespace M6502Core
 		uint8_t DL_ADL;
 		uint8_t DL_ADH;
 		uint8_t DL_DB;
+
+		uint8_t P_DB;
+		uint8_t DB_P;
+		uint8_t DBZ_Z;
+		uint8_t DB_N;
+		uint8_t IR5_C;
+		uint8_t DB_C;
+		uint8_t ACR_C;
+		uint8_t IR5_D;
+		uint8_t IR5_I;
+		uint8_t DB_V;
+		uint8_t AVR_V;
+		uint8_t Z_V;
+
 		uint8_t n_ACIN;
 		uint8_t n_DAA;
 		uint8_t n_DSA;
