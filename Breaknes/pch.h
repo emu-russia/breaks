@@ -9,3 +9,6 @@
 
 #include "NES.h"
 #include "Famicom.h"
+
+#include "DecoderDecoder.h"
+#include "PC_UnitTest.h"

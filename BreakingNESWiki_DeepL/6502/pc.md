@@ -25,6 +25,10 @@ Represents the low 8 least significant bits of PC.
 
 Represents the top 8 most significant bits of PC.
 
+:warning: 
+The circuits for the even bits (0, 2, ...) of the PCH repeat the circuits for the odd bits (1, 3, ...) of the PCL.
+Similarly, circuits for odd bits (1, 3, ...) of PCH repeat circuits for even bits (0, 2, ...) of PCL.
+
 |PCH 0-3|PCH 4-7|
 |---|---|
 |![pch03_tran](/BreakingNESWiki/imgstore/pch03_tran.jpg)|![pch47_tran](/BreakingNESWiki/imgstore/pch47_tran.jpg)|
@@ -48,11 +52,11 @@ In between the PC bits you can find transistors for precharge of the ADL and ADH
 
 It makes sense to show only the bit schematics (the circuitry alternates between even and odd PCL/PCH bits).
 
-This circuit is used, for example, in PCL0:
+This circuit is used, for example, in PCL0 or PCH1:
 
 ![pc_even_bit_logisim](/BreakingNESWiki/imgstore/pc_even_bit_logisim.jpg)
 
-This circuit is used, for example, in PCL1:
+This circuit is used, for example, in PCL1 or PCH0:
 
 ![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg)
 

@@ -21,7 +21,7 @@ namespace M6502Core
 		sout = PCxS[n].nget();
 		cout = NOR(cin, sout);
 
-		PCx[n].set(AND(NAND(cin, sout), NOT(cout)), PHI2);
+		PCx[n].set(NOR(AND(sout, cin), cout), PHI2);
 
 		TriState out = NOT(PCx[n].nget());
 
@@ -52,7 +52,7 @@ namespace M6502Core
 		sout = PCxS[n].nget();
 		cout = NAND(cin, NOT(sout));
 
-		PCx[n].set(OR(NOR(cin, NOT(sout)), NOT(cout)), PHI2);
+		PCx[n].set(NAND(OR(NOT(sout), cin), cout), PHI2);
 
 		TriState out = PCx[n].nget();
 
@@ -100,6 +100,9 @@ namespace M6502Core
 
 		// PCH
 
+		// The circuits for the even bits (0, 2, ...) of the PCH repeat the circuits for the odd bits (1, 3, ...) of the PCL.
+		// Similarly, circuits for odd bits (1, 3, ...) of PCH repeat circuits for even bits (0, 2, ...) of PCL.
+
 		cin = PCLC;
 		TriState pchc[5];
 		pchc[0] = NOT(PCLC);
@@ -108,11 +111,11 @@ namespace M6502Core
 		{
 			if (n & 1)
 			{
-				sim_OddBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, pchc[n + 1], n, PCH, PCHS);
+				sim_EvenBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, pchc[n + 1], n, PCH, PCHS);
 			}
 			else
 			{
-				sim_EvenBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, pchc[n + 1], n, PCH, PCHS);
+				sim_OddBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, pchc[n + 1], n, PCH, PCHS);
 			}
 		}
 
@@ -124,11 +127,11 @@ namespace M6502Core
 		{
 			if (n & 1)
 			{
-				sim_OddBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, bogus, n, PCH, PCHS);
+				sim_EvenBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, bogus, n, PCH, PCHS);
 			}
 			else
 			{
-				sim_EvenBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, bogus, n, PCH, PCHS);
+				sim_OddBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, bogus, n, PCH, PCHS);
 			}
 		}
 	}
@@ -137,9 +140,18 @@ namespace M6502Core
 	{
 		TriState v[8];
 
+		// The value stored in PCL alternates between inversion, because of the inverted carry chain.
+
 		for (size_t n = 0; n < 8; n++)
 		{
-			v[n] = PCL[n].nget();
+			if (n & 1)
+			{
+				v[n] = PCL[n].nget();
+			}
+			else
+			{
+				v[n] = NOT(PCL[n].nget());
+			}
 		}
 
 		return Pack(v);
@@ -149,9 +161,19 @@ namespace M6502Core
 	{
 		TriState v[8];
 
+		// The value stored in PCH alternates between inversion, because of the inverted carry chain.
+		// The storage inversion is different from the storage inversion of the PCL register (because of the alteration of the PCL and PCH bit circuits).
+
 		for (size_t n = 0; n < 8; n++)
 		{
-			v[n] = PCH[n].nget();
+			if (n & 1)
+			{
+				v[n] = NOT(PCH[n].nget());
+			}
+			else
+			{
+				v[n] = PCH[n].nget();
+			}
 		}
 
 		return Pack(v);
