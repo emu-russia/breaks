@@ -35,7 +35,7 @@ During the second half-cycle (PHI2) the processor is in "listening" mode, during
 - ADD: Intermediate result of an ALU operation
 - AC: accumulator
 - PCH/PCL: program counter in two halves
-- PCHS/PCLS: program counter auxiliary registers (S stands for "set" (?))
+- PCHS/PCLS: program counter auxiliary registers (S stands for "Select")
 - ABH/ABL: registers for output to the external address bus
 - DL: data latch, stores the last read value of the external data bus
 - DOR: data output register, holds the value which will be written to the data bus
