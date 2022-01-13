@@ -215,6 +215,10 @@ namespace M6502Core
 		BaseLogic::TriState disp_late_out[(size_t)Dispatcher_Output::Max];
 		BaseLogic::TriState int_out[(size_t)BRKProcessing_Output::Max];
 
+		void sim_Top(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
+
+		void sim_Bottom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
+
 	public:
 		M6502();
 		~M6502();
