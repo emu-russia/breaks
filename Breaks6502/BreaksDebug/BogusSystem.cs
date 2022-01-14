@@ -217,6 +217,7 @@ namespace BreaksDebug
             public byte n_1PC { get; set; }
 
             public byte [] cmd = new byte [(int)ControlCommand.Max];
+            public bool WR = false;
         }
 
         public enum ControlCommand
@@ -637,7 +638,8 @@ namespace BreaksDebug
             res.n_DAA = info.n_DAA;
             res.n_DSA = info.n_DSA;
             res.n_1PC = info.n_1PC;
-
+            res.WR = info.WR != 0 ? true : false;
+            
             return res;
         }
 

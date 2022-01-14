@@ -14,3 +14,5 @@ Breakasm and M6502Core are in their respective Interop DLLs.
 ## Build
 
 You must use Debug/Release x86/x64 configuration to build. AnyCPU is not suitable because it uses native code in Interop DLLs.
+
+Just don't forget to switch back to Any CPU when you need to edit forms. Microsoft has a problem with this.
