@@ -14,7 +14,7 @@ using Be.Windows.Forms;
 
 namespace BreaksDebug
 {
-    class BogusSystem
+    public class BogusSystem
     {
         public int Cycle = 0;
 
@@ -215,9 +215,12 @@ namespace BreaksDebug
             public byte n_DSA { get; set; }
             [Category("Control commands")]
             public byte n_1PC { get; set; }
+
+            public byte [] cmd = new byte [(int)ControlCommand.Max];
+            public bool WR = false;
         }
 
-        enum ControlCommand
+        public enum ControlCommand
         {
             Y_SB = 0,
             SB_Y,
@@ -627,6 +630,7 @@ namespace BreaksDebug
                     {
                         res.commands.Add(((ControlCommand)n).ToString());
                     }
+                    res.cmd[n] = info.cmd[n];
                 }
             }
 
@@ -634,7 +638,8 @@ namespace BreaksDebug
             res.n_DAA = info.n_DAA;
             res.n_DSA = info.n_DSA;
             res.n_1PC = info.n_1PC;
-
+            res.WR = info.WR != 0 ? true : false;
+            
             return res;
         }
 

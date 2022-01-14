@@ -113,8 +113,11 @@ namespace BreaksDebug
             propertyGrid3.SelectedObject = sys.GetInternals();
             propertyGrid4.SelectedObject = sys.GetDecoder();
             propertyGrid4.ExpandAllGridItems();
-            propertyGrid5.SelectedObject = sys.GetCommands();
+            var commands = sys.GetCommands();
+            propertyGrid5.SelectedObject = commands;
             propertyGrid5.ExpandAllGridItems();
+
+            dataPathView1.ShowCpuCommands(commands);
 
             UpdateDisasm(regsBuses.IRForDisasm);
         }

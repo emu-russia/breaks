@@ -75,6 +75,8 @@ namespace BreaksDebug
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataPathView1 = new BreaksDebug.DataPathView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.hexBox1 = new Be.Windows.Forms.HexBox();
@@ -104,6 +106,7 @@ namespace BreaksDebug
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -316,6 +319,7 @@ namespace BreaksDebug
             // 
             this.tabControl2.Controls.Add(this.tabPage3);
             this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Controls.Add(this.tabPage2);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Location = new System.Drawing.Point(0, 0);
             this.tabControl2.Name = "tabControl2";
@@ -580,6 +584,26 @@ namespace BreaksDebug
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.dataPathView1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(997, 254);
+            this.tabPage2.TabIndex = 2;
+            this.tabPage2.Text = "Core Data Path";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataPathView1
+            // 
+            this.dataPathView1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("dataPathView1.BackgroundImage")));
+            this.dataPathView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataPathView1.Location = new System.Drawing.Point(0, 0);
+            this.dataPathView1.Name = "dataPathView1";
+            this.dataPathView1.Size = new System.Drawing.Size(997, 254);
+            this.dataPathView1.TabIndex = 0;
+            this.dataPathView1.Text = "dataPathView1";
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -680,6 +704,7 @@ namespace BreaksDebug
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -740,6 +765,8 @@ namespace BreaksDebug
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TabPage tabPage2;
+        private DataPathView dataPathView1;
     }
 }
 

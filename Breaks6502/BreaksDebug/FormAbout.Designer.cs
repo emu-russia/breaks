@@ -34,6 +34,7 @@ namespace BreaksDebug
             this.label1 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,12 +56,12 @@ namespace BreaksDebug
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(174, 32);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Breaks Debugger, v. 1.1\r\n© 2022, emu-russia";
+            this.label1.Text = "Breaks Debugger, v. 1.2\r\n© 2022, emu-russia";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(96, 55);
+            this.linkLabel1.Location = new System.Drawing.Point(12, 98);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(187, 13);
             this.linkLabel1.TabIndex = 2;
@@ -70,7 +71,7 @@ namespace BreaksDebug
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(306, 88);
+            this.button1.Location = new System.Drawing.Point(317, 95);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 30);
             this.button1.TabIndex = 3;
@@ -78,11 +79,21 @@ namespace BreaksDebug
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(95, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(175, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "6502 Data Path diagram by ttlworks";
+            // 
             // FormAbout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(412, 130);
+            this.ClientSize = new System.Drawing.Size(423, 137);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label1);
@@ -106,5 +117,6 @@ namespace BreaksDebug
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label2;
     }
 }
