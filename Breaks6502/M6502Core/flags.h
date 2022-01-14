@@ -51,7 +51,9 @@ namespace M6502Core
 
 	public:
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState DB[]);
+		void sim_Load(BaseLogic::TriState inputs[], BaseLogic::TriState DB[]);
+
+		void sim_Store(BaseLogic::TriState P_DB, BaseLogic::TriState BRK6E, BaseLogic::TriState B_OUT, BaseLogic::TriState DB[], bool DB_Dirty[8]);
 
 		BaseLogic::TriState getn_Z_OUT();
 		BaseLogic::TriState getn_N_OUT();

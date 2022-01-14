@@ -34,10 +34,10 @@ It should be noted that the 6502 has quite a few hidden and quite twisted loops,
 ## Buses
 
 Modules that are connected to internal buses require a special approach:
-- First, the output of values to the buses from registers/flags is simulated. Instead of Bus = Reg, the operation Bus &= Reg is done to take into account possible bus conflicts when several modules put their values to the buses (the operation AND implements the rule " Ground wins")
+- First, the output of values to the buses from registers/flags is simulated. Instead of Bus = Reg, the operation Bus &= Reg is done to take into account possible bus conflicts when several modules put their values to the buses (the operation AND implements the rule "Ground wins")
 - Then loading values from buses into computing modules (ALU, PC) is simulated
 - Then the computing part is simulated (e.g. ALU operations, PC increment)
 - Then it simulates saving of output values from computing modules (ALU, PC) to buses using the "ground wins" rule
 - After that we simulate loading values from buses to registers/flags.
 
-This takes into account the 6502 feature where buses are "recharged" during PHI2. This is required to form constants (stack address, interrupt address). Charging is done at the very beginning of the simulation.
+This takes into account the 6502 feature where buses are "precharged" during PHI2. This is required to form constants (stack address, interrupt address). Charging is done at the very beginning of the simulation.

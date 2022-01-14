@@ -4,7 +4,7 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void Flags::sim(TriState inputs[], TriState DB[])
+	void Flags::sim_Load(TriState inputs[], TriState DB[])
 	{
 		TriState PHI1 = inputs[(size_t)Flags_Input::PHI1];
 		TriState PHI2 = inputs[(size_t)Flags_Input::PHI2];
@@ -88,6 +88,84 @@ namespace M6502Core
 
 		v_latch1.set(AND4(v), PHI1);
 		v_latch2.set(v_latch1.nget(), PHI2);
+	}
+
+	void Flags::sim_Store(TriState P_DB, TriState BRK6E, TriState B_OUT, TriState DB[], bool DB_Dirty[8])
+	{
+		if (P_DB == TriState::One)
+		{
+			if (DB_Dirty[0])
+			{
+				DB[0] = AND(DB[0], NOT(getn_C_OUT()));
+			}
+			else
+			{
+				DB[0] = NOT(getn_C_OUT());
+				DB_Dirty[0] = true;
+			}
+
+			if (DB_Dirty[1])
+			{
+				DB[1] = AND(DB[1], NOT(getn_Z_OUT()));
+			}
+			else
+			{
+				DB[1] = NOT(getn_Z_OUT());
+				DB_Dirty[1] = true;
+			}
+
+			if (DB_Dirty[2])
+			{
+				DB[2] = AND(DB[2], NOT(getn_I_OUT(BRK6E)));
+			}
+			else
+			{
+				DB[2] = NOT(getn_I_OUT(BRK6E));
+				DB_Dirty[2] = true;
+			}
+
+			if (DB_Dirty[3])
+			{
+				DB[3] = AND(DB[3], NOT(getn_D_OUT()));
+			}
+			else
+			{
+				DB[3] = NOT(getn_D_OUT());
+				DB_Dirty[3] = true;
+			}
+
+			if (DB_Dirty[4])
+			{
+				DB[4] = AND(DB[4], B_OUT);
+			}
+			else
+			{
+				DB[4] = B_OUT;
+				DB_Dirty[4] = true;
+			}
+
+			DB[5];
+
+			if (DB_Dirty[6])
+			{
+				DB[6] = AND(DB[6], NOT(getn_V_OUT()));
+			}
+			else
+			{
+				DB[6] = NOT(getn_V_OUT());
+				DB_Dirty[6] = true;
+			}
+
+			if (DB_Dirty[7])
+			{
+				DB[7] = AND(DB[7], NOT(getn_N_OUT()));
+			}
+			else
+			{
+				DB[7] = NOT(getn_N_OUT());
+				DB_Dirty[7] = true;
+			}
+		}
 	}
 
 	BaseLogic::TriState Flags::getn_Z_OUT()

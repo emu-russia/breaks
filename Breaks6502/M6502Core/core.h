@@ -207,6 +207,11 @@ namespace M6502Core
 		BaseLogic::TriState ADL[8];
 		BaseLogic::TriState ADH[8];
 
+		bool SB_Dirty[8];
+		bool DB_Dirty[8];
+		bool ADL_Dirty[8];
+		bool ADH_Dirty[8];
+
 		Decoder* decoder = nullptr;
 		PreDecode* predecode = nullptr;
 		IR* ir = nullptr;
