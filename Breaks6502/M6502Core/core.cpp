@@ -290,17 +290,19 @@ namespace M6502Core
 		// 2. Then loading values from buses into computing modules (ALU, PC) is simulated
 
 		// TODO: alu->sim_Load
-		// TODO: pc->sim_Load
+
+		TriState pc_in[(size_t)ProgramCounter_Input::Max];
+
+		pc_in[(size_t)ProgramCounter_Input::ADL_PCL] = rand_out[(size_t)RandomLogic_Output::ADL_PCL];
+		pc_in[(size_t)ProgramCounter_Input::PCL_PCL] = rand_out[(size_t)RandomLogic_Output::PCL_PCL];
+		pc_in[(size_t)ProgramCounter_Input::ADH_PCH] = rand_out[(size_t)RandomLogic_Output::ADH_PCH];
+		pc_in[(size_t)ProgramCounter_Input::PCH_PCH] = rand_out[(size_t)RandomLogic_Output::PCH_PCH];
+
+		pc->sim_Load(pc_in, ADL, ADH);
 
 		// 3. Then the computing part is simulated (e.g. ALU operations, PC increment)
 
 		// TODO: alu->sim
-		// TODO: pc->sim
-
-		// 4. Then it simulates saving of output values from computing modules (ALU, PC) to buses using the "ground wins" rule
-
-		// TODO: alu->sim_Store
-		// TODO: pc->sim_Store
 
 		{
 			// TODO: Legacy approach
@@ -331,22 +333,23 @@ namespace M6502Core
 			alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
 
 			alu->sim(alu_in, SB, DB, ADL, ADH);
-
-			TriState pc_in[(size_t)ProgramCounter_Input::Max];
-
-			pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
-			pc_in[(size_t)ProgramCounter_Input::ADL_PCL] = rand_out[(size_t)RandomLogic_Output::ADL_PCL];
-			pc_in[(size_t)ProgramCounter_Input::PCL_PCL] = rand_out[(size_t)RandomLogic_Output::PCL_PCL];
-			pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = rand_out[(size_t)RandomLogic_Output::PCL_ADL];
-			pc_in[(size_t)ProgramCounter_Input::PCL_DB] = rand_out[(size_t)RandomLogic_Output::PCL_DB];
-			pc_in[(size_t)ProgramCounter_Input::ADH_PCH] = rand_out[(size_t)RandomLogic_Output::ADH_PCH];
-			pc_in[(size_t)ProgramCounter_Input::PCH_PCH] = rand_out[(size_t)RandomLogic_Output::PCH_PCH];
-			pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = rand_out[(size_t)RandomLogic_Output::PCH_ADH];
-			pc_in[(size_t)ProgramCounter_Input::PCH_DB] = rand_out[(size_t)RandomLogic_Output::PCH_DB];
-			pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
-
-			pc->sim(pc_in, DB, ADL, ADH);
 		}
+
+		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
+		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
+
+		pc->sim(pc_in);
+
+		// 4. Then it simulates saving of output values from computing modules (ALU, PC) to buses using the "ground wins" rule
+
+		// TODO: alu->sim_Store
+
+		pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = rand_out[(size_t)RandomLogic_Output::PCL_ADL];
+		pc_in[(size_t)ProgramCounter_Input::PCL_DB] = rand_out[(size_t)RandomLogic_Output::PCL_DB];
+		pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = rand_out[(size_t)RandomLogic_Output::PCH_ADH];
+		pc_in[(size_t)ProgramCounter_Input::PCH_DB] = rand_out[(size_t)RandomLogic_Output::PCH_DB];
+
+		pc->sim_Store(pc_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty);
 
 		// 5. After that we simulate loading values from buses to registers/flags.
 

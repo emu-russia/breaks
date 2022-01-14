@@ -4,79 +4,23 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void ProgramCounter::sim_EvenBit(
-		TriState PHI2, TriState ADx_PCx, TriState PCx_PCx, TriState PCx_ADx, TriState PCx_DB, TriState DB[], TriState ADx[],
-		TriState cin, TriState& cout, TriState& sout, size_t n,
-		DLatch PCx[], DLatch PCxS[])
+	void ProgramCounter::sim_EvenBit(TriState PHI2, TriState cin, TriState& cout, TriState& sout, size_t n, DLatch PCx[], DLatch PCxS[])
 	{
-		if (PCx_PCx == TriState::One)
-		{
-			PCxS[n].set(NOT(PCx[n].nget()), BaseLogic::One);
-		}
-		if (ADx_PCx == TriState::One)
-		{
-			PCxS[n].set(ADx[n], BaseLogic::One);
-		}
-
 		sout = PCxS[n].nget();
 		cout = NOR(cin, sout);
-
 		PCx[n].set(NOR(AND(sout, cin), cout), PHI2);
-
-		TriState out = NOT(PCx[n].nget());
-
-		if (PCx_DB == TriState::One)
-		{
-			DB[n] = out;
-		}
-		if (PCx_ADx == TriState::One)
-		{
-			ADx[n] = out;
-		}
 	}
 
-	void ProgramCounter::sim_OddBit(
-		TriState PHI2, TriState ADx_PCx, TriState PCx_PCx, TriState PCx_ADx, TriState PCx_DB, TriState DB[], TriState ADx[],
-		TriState cin, TriState& cout, TriState& sout, size_t n,
-		DLatch PCx[], DLatch PCxS[])
+	void ProgramCounter::sim_OddBit(TriState PHI2, TriState cin, TriState& cout, TriState& sout, size_t n, DLatch PCx[], DLatch PCxS[])
 	{
-		if (PCx_PCx == TriState::One)
-		{
-			PCxS[n].set(PCx[n].nget(), BaseLogic::One);
-		}
-		if (ADx_PCx == TriState::One)
-		{
-			PCxS[n].set(ADx[n], BaseLogic::One);
-		}
-
 		sout = PCxS[n].nget();
 		cout = NAND(cin, NOT(sout));
-
 		PCx[n].set(NAND(OR(NOT(sout), cin), cout), PHI2);
-
-		TriState out = PCx[n].nget();
-
-		if (PCx_DB == TriState::One)
-		{
-			DB[n] = out;
-		}
-		if (PCx_ADx == TriState::One)
-		{
-			ADx[n] = out;
-		}
 	}
 
-	void ProgramCounter::sim(TriState inputs[], TriState DB[], TriState ADL[], TriState ADH[])
+	void ProgramCounter::sim(TriState inputs[])
 	{
 		TriState PHI2 = inputs[(size_t)ProgramCounter_Input::PHI2];
-		TriState ADL_PCL = inputs[(size_t)ProgramCounter_Input::ADL_PCL];
-		TriState PCL_PCL = inputs[(size_t)ProgramCounter_Input::PCL_PCL];
-		TriState PCL_ADL = inputs[(size_t)ProgramCounter_Input::PCL_ADL];
-		TriState PCL_DB = inputs[(size_t)ProgramCounter_Input::PCL_DB];
-		TriState ADH_PCH = inputs[(size_t)ProgramCounter_Input::ADH_PCH];
-		TriState PCH_PCH = inputs[(size_t)ProgramCounter_Input::PCH_PCH];
-		TriState PCH_ADH = inputs[(size_t)ProgramCounter_Input::PCH_ADH];
-		TriState PCH_DB = inputs[(size_t)ProgramCounter_Input::PCH_DB];
 		TriState n_1PC = inputs[(size_t)ProgramCounter_Input::n_1PC];
 
 		// PCL
@@ -88,11 +32,11 @@ namespace M6502Core
 		{
 			if (n & 1)
 			{
-				sim_OddBit(PHI2, ADL_PCL, PCL_PCL, PCL_ADL, PCL_DB, DB, ADL, cin, cin, souts[n], n, PCL, PCLS);
+				sim_OddBit(PHI2, cin, cin, souts[n], n, PCL, PCLS);
 			}
 			else
 			{
-				sim_EvenBit(PHI2, ADL_PCL, PCL_PCL, PCL_ADL, PCL_DB, DB, ADL, cin, cin, souts[n], n, PCL, PCLS);
+				sim_EvenBit(PHI2, cin, cin, souts[n], n, PCL, PCLS);
 			}
 		}
 
@@ -111,11 +55,11 @@ namespace M6502Core
 		{
 			if (n & 1)
 			{
-				sim_EvenBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, pchc[n + 1], n, PCH, PCHS);
+				sim_EvenBit(PHI2, cin, cin, pchc[n + 1], n, PCH, PCHS);
 			}
 			else
 			{
-				sim_OddBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, pchc[n + 1], n, PCH, PCHS);
+				sim_OddBit(PHI2, cin, cin, pchc[n + 1], n, PCH, PCHS);
 			}
 		}
 
@@ -127,11 +71,136 @@ namespace M6502Core
 		{
 			if (n & 1)
 			{
-				sim_EvenBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, bogus, n, PCH, PCHS);
+				sim_EvenBit(PHI2, cin, cin, bogus, n, PCH, PCHS);
 			}
 			else
 			{
-				sim_OddBit(PHI2, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB, DB, ADH, cin, cin, bogus, n, PCH, PCHS);
+				sim_OddBit(PHI2, cin, cin, bogus, n, PCH, PCHS);
+			}
+		}
+	}
+
+	void ProgramCounter::sim_Load(TriState inputs[], TriState ADL[], TriState ADH[])
+	{
+		TriState ADL_PCL = inputs[(size_t)ProgramCounter_Input::ADL_PCL];
+		TriState PCL_PCL = inputs[(size_t)ProgramCounter_Input::PCL_PCL];
+		TriState ADH_PCH = inputs[(size_t)ProgramCounter_Input::ADH_PCH];
+		TriState PCH_PCH = inputs[(size_t)ProgramCounter_Input::PCH_PCH];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			if (n & 1)
+			{
+				if (PCL_PCL == TriState::One)
+				{
+					PCLS[n].set(PCL[n].nget(), BaseLogic::One);
+				}
+				if (PCH_PCH == TriState::One)
+				{
+					PCHS[n].set(NOT(PCH[n].nget()), BaseLogic::One);
+				}
+			}
+			else
+			{
+				if (PCL_PCL == TriState::One)
+				{
+					PCLS[n].set(NOT(PCL[n].nget()), BaseLogic::One);
+				}
+				if (PCH_PCH == TriState::One)
+				{
+					PCHS[n].set(PCH[n].nget(), BaseLogic::One);
+				}
+			}
+			if (ADL_PCL == TriState::One)
+			{
+				PCLS[n].set(ADL[n], BaseLogic::One);
+			}
+			if (ADH_PCH == TriState::One)
+			{
+				PCHS[n].set(ADH[n], BaseLogic::One);
+			}
+		}
+	}
+
+	void ProgramCounter::sim_Store(TriState inputs[], TriState DB[], TriState ADL[], TriState ADH[], bool DB_Dirty[8], bool ADL_Dirty[8], bool ADH_Dirty[8])
+	{
+		TriState PCL_ADL = inputs[(size_t)ProgramCounter_Input::PCL_ADL];
+		TriState PCL_DB = inputs[(size_t)ProgramCounter_Input::PCL_DB];
+		TriState PCH_ADH = inputs[(size_t)ProgramCounter_Input::PCH_ADH];
+		TriState PCH_DB = inputs[(size_t)ProgramCounter_Input::PCH_DB];
+		TriState out;
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			if (n & 1)
+			{
+				out = PCL[n].nget();
+			}
+			else
+			{
+				out = NOT(PCL[n].nget());
+			}
+
+			if (PCL_DB == TriState::One)
+			{
+				if (DB_Dirty[n])
+				{
+					DB[n] = AND(DB[n], out);
+				}
+				else
+				{
+					DB[n] = out;
+					DB_Dirty[n] = true;
+				}
+			}
+			if (PCL_ADL == TriState::One)
+			{
+				if (ADL_Dirty[n])
+				{
+					ADL[n] = AND(ADL[n], out);
+				}
+				else
+				{
+					ADL[n] = out;
+					ADL_Dirty[n] = true;
+				}
+			}
+		}
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			if (n & 1)
+			{
+				out = NOT(PCH[n].nget());
+			}
+			else
+			{
+				out = PCH[n].nget();
+			}
+
+			if (PCH_DB == TriState::One)
+			{
+				if (DB_Dirty[n])
+				{
+					DB[n] = AND(DB[n], out);
+				}
+				else
+				{
+					DB[n] = out;
+					DB_Dirty[n] = true;
+				}
+			}
+			if (PCH_ADH == TriState::One)
+			{
+				if (ADH_Dirty[n])
+				{
+					ADH[n] = AND(ADH[n], out);
+				}
+				else
+				{
+					ADH[n] = out;
+					ADH_Dirty[n] = true;
+				}
 			}
 		}
 	}
