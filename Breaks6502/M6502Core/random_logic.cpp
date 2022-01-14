@@ -131,39 +131,14 @@ namespace M6502Core
 		TriState flags_ctrl_out[(size_t)FlagsControl_Output::Max];
 
 		flags_ctrl_in[(size_t)FlagsControl_Input::PHI2] = PHI2;
-		flags_ctrl_in[(size_t)FlagsControl_Input::T6] = TriState::Zero; // TODO
+		flags_ctrl_in[(size_t)FlagsControl_Input::T6] = T6;
 		flags_ctrl_in[(size_t)FlagsControl_Input::ZTST] = bus_out[(size_t)BusControl_Output::ZTST];
 		flags_ctrl_in[(size_t)FlagsControl_Input::SR] = alu_control_out[(size_t)ALUControl_Output::SR];
 		flags_ctrl_in[(size_t)FlagsControl_Input::n_ready] = n_ready;
 
 		flags_control->sim(flags_ctrl_in, d, flags_ctrl_out);
 
-		// Flags
-
-		TriState flags_in[(size_t)Flags_Input::Max];
-
-		flags_in[(size_t)Flags_Input::PHI1] = PHI1;
-		flags_in[(size_t)Flags_Input::PHI2] = PHI2;
-		flags_in[(size_t)Flags_Input::SO] = SO;
-		flags_in[(size_t)Flags_Input::B_OUT] = B_OUT;
-		flags_in[(size_t)Flags_Input::ACR] = ACR;
-		flags_in[(size_t)Flags_Input::AVR] = AVR;
-		flags_in[(size_t)Flags_Input::n_IR5] = n_IR5;
-		flags_in[(size_t)Flags_Input::BRK6E] = BRK6E;
-		flags_in[(size_t)Flags_Input::P_DB] = flags_ctrl_out[(size_t)FlagsControl_Output::P_DB];
-		flags_in[(size_t)Flags_Input::DB_P] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_P];
-		flags_in[(size_t)Flags_Input::DBZ_Z] = flags_ctrl_out[(size_t)FlagsControl_Output::DBZ_Z];
-		flags_in[(size_t)Flags_Input::DB_N] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_N];
-		flags_in[(size_t)Flags_Input::IR5_C] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_C];
-		flags_in[(size_t)Flags_Input::DB_C] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_C];
-		flags_in[(size_t)Flags_Input::ACR_C] = flags_ctrl_out[(size_t)FlagsControl_Output::ACR_C];
-		flags_in[(size_t)Flags_Input::IR5_D] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_D];
-		flags_in[(size_t)Flags_Input::IR5_I] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_I];
-		flags_in[(size_t)Flags_Input::DB_V] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_V];
-		flags_in[(size_t)Flags_Input::AVR_V] = d[112];
-		flags_in[(size_t)Flags_Input::Z_V] = flags_ctrl_out[(size_t)FlagsControl_Output::Z_V];
-
-		flags->sim(flags_in, DB);
+		// The processing of loading flags has moved to the bottom part.
 
 		// Conditional branch logic
 

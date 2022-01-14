@@ -4,7 +4,7 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void AddressBus::sim_Early(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[])
+	void AddressBus::sim_ConstGen(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[], bool ADL_Dirty[8], bool ADH_Dirty[8])
 	{
 		TriState Z_ADL0 = inputs[(size_t)AddressBus_Input::Z_ADL0];
 		TriState Z_ADL1 = inputs[(size_t)AddressBus_Input::Z_ADL1];
@@ -17,31 +17,36 @@ namespace M6502Core
 			if (n == 0 && Z_ADL0 == TriState::One)
 			{
 				ADL[0] = TriState::Zero;
+				ADL_Dirty[0] = true;
 			}
 
 			if (n == 1 && Z_ADL1 == TriState::One)
 			{
 				ADL[1] = TriState::Zero;
+				ADL_Dirty[1] = true;
 			}
 
 			if (n == 2 && Z_ADL2 == TriState::One)
 			{
 				ADL[2] = TriState::Zero;
+				ADL_Dirty[2] = true;
 			}
 
 			if (Z_ADH0 == TriState::One && n == 0)
 			{
 				ADH[n] = TriState::Zero;
+				ADH_Dirty[n] = true;
 			}
 
 			if (Z_ADH17 == TriState::One && n != 0)
 			{
 				ADH[n] = TriState::Zero;
+				ADH_Dirty[n] = true;
 			}
 		}
 	}
 
-	void AddressBus::sim_Late(TriState inputs[], TriState ADL[], TriState ADH[], TriState cpu_out[])
+	void AddressBus::sim_Output(TriState inputs[], TriState ADL[], TriState ADH[], TriState cpu_out[])
 	{
 		TriState PHI1 = inputs[(size_t)AddressBus_Input::PHI1];
 		TriState PHI2 = inputs[(size_t)AddressBus_Input::PHI2];

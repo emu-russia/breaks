@@ -239,75 +239,20 @@ namespace M6502Core
 		TriState PHI0 = inputs[(size_t)InputPad::PHI0];
 		TriState PHI1 = NOT(PHI0);
 		TriState PHI2 = PHI0;
+		TriState SO = inputs[(size_t)InputPad::SO];
 		TriState WR = disp_late_out[(size_t)Dispatcher_Output::WR];
+		TriState P_DB = rand_out[(size_t)RandomLogic_Output::P_DB];
+		TriState BRK6E = int_out[(size_t)BRKProcessing_Output::BRK6E];
 
 		// Bottom Part
 
-		TriState addr_in_early[(size_t)AddressBus_Input::Max];
+		// When you simulate the lower part, you have to turn on the man in you to the fullest and imagine that you are possessed by Chuck Peddle.
+		// From the development history of the 6502, we know that one developer did the upper part and another (Chuck) did the lower part. 
+		// So to simulate the lower part you have to abstract as much as possible and work only with what you have (registers, buses and set of control commands from the upper part).
 
-		addr_in_early[(size_t)AddressBus_Input::Z_ADL0] = rand_out[(size_t)RandomLogic_Output::Z_ADL0];
-		addr_in_early[(size_t)AddressBus_Input::Z_ADL1] = rand_out[(size_t)RandomLogic_Output::Z_ADL1];
-		addr_in_early[(size_t)AddressBus_Input::Z_ADL2] = rand_out[(size_t)RandomLogic_Output::Z_ADL2];
-		addr_in_early[(size_t)AddressBus_Input::Z_ADH0] = rand_out[(size_t)RandomLogic_Output::Z_ADH0];
-		addr_in_early[(size_t)AddressBus_Input::Z_ADH17] = rand_out[(size_t)RandomLogic_Output::Z_ADH17];
-
-		addr_bus->sim_Early(addr_in_early, ADL, ADH);
-
-		TriState regs_in[(size_t)Regs_Input::Max];
-
-		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
-		regs_in[(size_t)Regs_Input::Y_SB] = rand_out[(size_t)RandomLogic_Output::Y_SB];
-		regs_in[(size_t)Regs_Input::SB_Y] = rand_out[(size_t)RandomLogic_Output::SB_Y];
-		regs_in[(size_t)Regs_Input::X_SB] = rand_out[(size_t)RandomLogic_Output::X_SB];
-		regs_in[(size_t)Regs_Input::SB_X] = rand_out[(size_t)RandomLogic_Output::SB_X];
-		regs_in[(size_t)Regs_Input::S_ADL] = rand_out[(size_t)RandomLogic_Output::S_ADL];
-		regs_in[(size_t)Regs_Input::S_SB] = rand_out[(size_t)RandomLogic_Output::S_SB];
-		regs_in[(size_t)Regs_Input::SB_S] = rand_out[(size_t)RandomLogic_Output::SB_S];
-		regs_in[(size_t)Regs_Input::S_S] = rand_out[(size_t)RandomLogic_Output::S_S];
-
-		regs->sim(regs_in, SB, ADL);
-
-		TriState alu_in[(size_t)ALU_Input::Max];
-
-		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
-		alu_in[(size_t)ALU_Input::NDB_ADD] = rand_out[(size_t)RandomLogic_Output::NDB_ADD];
-		alu_in[(size_t)ALU_Input::DB_ADD] = rand_out[(size_t)RandomLogic_Output::DB_ADD];
-		alu_in[(size_t)ALU_Input::Z_ADD] = rand_out[(size_t)RandomLogic_Output::Z_ADD];
-		alu_in[(size_t)ALU_Input::SB_ADD] = rand_out[(size_t)RandomLogic_Output::SB_ADD];
-		alu_in[(size_t)ALU_Input::ADL_ADD] = rand_out[(size_t)RandomLogic_Output::ADL_ADD];
-		alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
-		alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
-		alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
-		alu_in[(size_t)ALU_Input::ANDS] = rand_out[(size_t)RandomLogic_Output::ANDS];
-		alu_in[(size_t)ALU_Input::EORS] = rand_out[(size_t)RandomLogic_Output::EORS];
-		alu_in[(size_t)ALU_Input::ORS] = rand_out[(size_t)RandomLogic_Output::ORS];
-		alu_in[(size_t)ALU_Input::SRS] = rand_out[(size_t)RandomLogic_Output::SRS];
-		alu_in[(size_t)ALU_Input::SUMS] = rand_out[(size_t)RandomLogic_Output::SUMS];
-		alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
-		alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
-		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
-		alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
-		alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
-		alu_in[(size_t)ALU_Input::n_ACIN] = rand_out[(size_t)RandomLogic_Output::n_ACIN];
-		alu_in[(size_t)ALU_Input::n_DAA] = rand_out[(size_t)RandomLogic_Output::n_DAA];
-		alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
-
-		alu->sim(alu_in, SB, DB, ADL, ADH);
-
-		TriState pc_in[(size_t)ProgramCounter_Input::Max];
-
-		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
-		pc_in[(size_t)ProgramCounter_Input::ADL_PCL] = rand_out[(size_t)RandomLogic_Output::ADL_PCL];
-		pc_in[(size_t)ProgramCounter_Input::PCL_PCL] = rand_out[(size_t)RandomLogic_Output::PCL_PCL];
-		pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = rand_out[(size_t)RandomLogic_Output::PCL_ADL];
-		pc_in[(size_t)ProgramCounter_Input::PCL_DB] = rand_out[(size_t)RandomLogic_Output::PCL_DB];
-		pc_in[(size_t)ProgramCounter_Input::ADH_PCH] = rand_out[(size_t)RandomLogic_Output::ADH_PCH];
-		pc_in[(size_t)ProgramCounter_Input::PCH_PCH] = rand_out[(size_t)RandomLogic_Output::PCH_PCH];
-		pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = rand_out[(size_t)RandomLogic_Output::PCH_ADH];
-		pc_in[(size_t)ProgramCounter_Input::PCH_DB] = rand_out[(size_t)RandomLogic_Output::PCH_DB];
-		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
-
-		pc->sim(pc_in, DB, ADL, ADH);
+		// 1. First, the output of values to the buses from registers/flags is simulated. 
+		// Instead of Bus = Reg, the operation Bus &= Reg is done to take into account possible bus conflicts when several modules 
+		// put their values to the buses (the operation AND implements the rule "Ground wins")
 
 		TriState data_in[(size_t)DataBus_Input::Max];
 
@@ -318,7 +263,137 @@ namespace M6502Core
 		data_in[(size_t)DataBus_Input::DL_ADH] = rand_out[(size_t)RandomLogic_Output::DL_ADH];
 		data_in[(size_t)DataBus_Input::DL_DB] = rand_out[(size_t)RandomLogic_Output::DL_DB];
 
-		data_bus->sim(data_in, DB, ADL, ADH, inOuts);
+		data_bus->sim_Store(data_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty, inOuts);
+
+		TriState regs_in[(size_t)Regs_Input::Max];
+
+		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
+		regs_in[(size_t)Regs_Input::Y_SB] = rand_out[(size_t)RandomLogic_Output::Y_SB];
+		regs_in[(size_t)Regs_Input::X_SB] = rand_out[(size_t)RandomLogic_Output::X_SB];
+		regs_in[(size_t)Regs_Input::S_ADL] = rand_out[(size_t)RandomLogic_Output::S_ADL];
+		regs_in[(size_t)Regs_Input::S_SB] = rand_out[(size_t)RandomLogic_Output::S_SB];
+
+		regs->sim_Store(regs_in, SB, ADL, SB_Dirty, ADL_Dirty);
+
+		random->flags->sim_Store(P_DB, BRK6E, brk->getB_OUT(), DB, DB_Dirty);
+
+		TriState addr_in_early[(size_t)AddressBus_Input::Max];
+
+		addr_in_early[(size_t)AddressBus_Input::Z_ADL0] = rand_out[(size_t)RandomLogic_Output::Z_ADL0];
+		addr_in_early[(size_t)AddressBus_Input::Z_ADL1] = rand_out[(size_t)RandomLogic_Output::Z_ADL1];
+		addr_in_early[(size_t)AddressBus_Input::Z_ADL2] = rand_out[(size_t)RandomLogic_Output::Z_ADL2];
+		addr_in_early[(size_t)AddressBus_Input::Z_ADH0] = rand_out[(size_t)RandomLogic_Output::Z_ADH0];
+		addr_in_early[(size_t)AddressBus_Input::Z_ADH17] = rand_out[(size_t)RandomLogic_Output::Z_ADH17];
+
+		addr_bus->sim_ConstGen(addr_in_early, ADL, ADH, ADL_Dirty, ADH_Dirty);
+
+		// 2. Then loading values from buses into computing modules (ALU, PC) is simulated
+
+		// TODO: alu->sim_Load
+		// TODO: pc->sim_Load
+
+		// 3. Then the computing part is simulated (e.g. ALU operations, PC increment)
+
+		// TODO: alu->sim
+		// TODO: pc->sim
+
+		// 4. Then it simulates saving of output values from computing modules (ALU, PC) to buses using the "ground wins" rule
+
+		// TODO: alu->sim_Store
+		// TODO: pc->sim_Store
+
+		{
+			// TODO: Legacy approach
+
+			TriState alu_in[(size_t)ALU_Input::Max];
+
+			alu_in[(size_t)ALU_Input::PHI2] = PHI2;
+			alu_in[(size_t)ALU_Input::NDB_ADD] = rand_out[(size_t)RandomLogic_Output::NDB_ADD];
+			alu_in[(size_t)ALU_Input::DB_ADD] = rand_out[(size_t)RandomLogic_Output::DB_ADD];
+			alu_in[(size_t)ALU_Input::Z_ADD] = rand_out[(size_t)RandomLogic_Output::Z_ADD];
+			alu_in[(size_t)ALU_Input::SB_ADD] = rand_out[(size_t)RandomLogic_Output::SB_ADD];
+			alu_in[(size_t)ALU_Input::ADL_ADD] = rand_out[(size_t)RandomLogic_Output::ADL_ADD];
+			alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
+			alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
+			alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
+			alu_in[(size_t)ALU_Input::ANDS] = rand_out[(size_t)RandomLogic_Output::ANDS];
+			alu_in[(size_t)ALU_Input::EORS] = rand_out[(size_t)RandomLogic_Output::EORS];
+			alu_in[(size_t)ALU_Input::ORS] = rand_out[(size_t)RandomLogic_Output::ORS];
+			alu_in[(size_t)ALU_Input::SRS] = rand_out[(size_t)RandomLogic_Output::SRS];
+			alu_in[(size_t)ALU_Input::SUMS] = rand_out[(size_t)RandomLogic_Output::SUMS];
+			alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
+			alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
+			alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
+			alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
+			alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
+			alu_in[(size_t)ALU_Input::n_ACIN] = rand_out[(size_t)RandomLogic_Output::n_ACIN];
+			alu_in[(size_t)ALU_Input::n_DAA] = rand_out[(size_t)RandomLogic_Output::n_DAA];
+			alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
+
+			alu->sim(alu_in, SB, DB, ADL, ADH);
+
+			TriState pc_in[(size_t)ProgramCounter_Input::Max];
+
+			pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
+			pc_in[(size_t)ProgramCounter_Input::ADL_PCL] = rand_out[(size_t)RandomLogic_Output::ADL_PCL];
+			pc_in[(size_t)ProgramCounter_Input::PCL_PCL] = rand_out[(size_t)RandomLogic_Output::PCL_PCL];
+			pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = rand_out[(size_t)RandomLogic_Output::PCL_ADL];
+			pc_in[(size_t)ProgramCounter_Input::PCL_DB] = rand_out[(size_t)RandomLogic_Output::PCL_DB];
+			pc_in[(size_t)ProgramCounter_Input::ADH_PCH] = rand_out[(size_t)RandomLogic_Output::ADH_PCH];
+			pc_in[(size_t)ProgramCounter_Input::PCH_PCH] = rand_out[(size_t)RandomLogic_Output::PCH_PCH];
+			pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = rand_out[(size_t)RandomLogic_Output::PCH_ADH];
+			pc_in[(size_t)ProgramCounter_Input::PCH_DB] = rand_out[(size_t)RandomLogic_Output::PCH_DB];
+			pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
+
+			pc->sim(pc_in, DB, ADL, ADH);
+		}
+
+		// 5. After that we simulate loading values from buses to registers/flags.
+
+		TriState flags_in[(size_t)Flags_Input::Max];
+
+		TriState IR[8];
+		ir->get(IR);
+
+		flags_in[(size_t)Flags_Input::PHI1] = PHI1;
+		flags_in[(size_t)Flags_Input::PHI2] = PHI2;
+		flags_in[(size_t)Flags_Input::SO] = SO;
+		flags_in[(size_t)Flags_Input::B_OUT] = brk->getB_OUT();
+		flags_in[(size_t)Flags_Input::ACR] = alu->getACR();
+		flags_in[(size_t)Flags_Input::AVR] = alu->getAVR();
+		flags_in[(size_t)Flags_Input::n_IR5] = NOT(IR[5]);
+		flags_in[(size_t)Flags_Input::BRK6E] = BRK6E;
+		flags_in[(size_t)Flags_Input::P_DB] = rand_out[(size_t)RandomLogic_Output::P_DB];
+		flags_in[(size_t)Flags_Input::DB_P] = rand_out[(size_t)RandomLogic_Output::DB_P];
+		flags_in[(size_t)Flags_Input::DBZ_Z] = rand_out[(size_t)RandomLogic_Output::DBZ_Z];
+		flags_in[(size_t)Flags_Input::DB_N] = rand_out[(size_t)RandomLogic_Output::DB_N];
+		flags_in[(size_t)Flags_Input::IR5_C] = rand_out[(size_t)RandomLogic_Output::IR5_C];
+		flags_in[(size_t)Flags_Input::DB_C] = rand_out[(size_t)RandomLogic_Output::DB_C];
+		flags_in[(size_t)Flags_Input::ACR_C] = rand_out[(size_t)RandomLogic_Output::ACR_C];
+		flags_in[(size_t)Flags_Input::IR5_D] = rand_out[(size_t)RandomLogic_Output::IR5_D];
+		flags_in[(size_t)Flags_Input::IR5_I] = rand_out[(size_t)RandomLogic_Output::IR5_I];
+		flags_in[(size_t)Flags_Input::DB_V] = rand_out[(size_t)RandomLogic_Output::DB_V];
+		flags_in[(size_t)Flags_Input::AVR_V] = rand_out[(size_t)RandomLogic_Output::AVR_V];
+		flags_in[(size_t)Flags_Input::Z_V] = rand_out[(size_t)RandomLogic_Output::Z_V];
+
+		random->flags->sim_Load(flags_in, DB);
+
+		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
+		regs_in[(size_t)Regs_Input::SB_Y] = rand_out[(size_t)RandomLogic_Output::SB_Y];
+		regs_in[(size_t)Regs_Input::SB_X] = rand_out[(size_t)RandomLogic_Output::SB_X];
+		regs_in[(size_t)Regs_Input::SB_S] = rand_out[(size_t)RandomLogic_Output::SB_S];
+		regs_in[(size_t)Regs_Input::S_S] = rand_out[(size_t)RandomLogic_Output::S_S];
+
+		regs->sim_Load(regs_in, SB);
+
+		data_in[(size_t)DataBus_Input::PHI1] = PHI1;
+		data_in[(size_t)DataBus_Input::PHI2] = PHI2;
+		data_in[(size_t)DataBus_Input::WR] = WR;
+		data_in[(size_t)DataBus_Input::DL_ADL] = rand_out[(size_t)RandomLogic_Output::DL_ADL];
+		data_in[(size_t)DataBus_Input::DL_ADH] = rand_out[(size_t)RandomLogic_Output::DL_ADH];
+		data_in[(size_t)DataBus_Input::DL_DB] = rand_out[(size_t)RandomLogic_Output::DL_DB];
+
+		data_bus->sim_Load(data_in, DB, inOuts);
 
 		TriState addr_in_late[(size_t)AddressBus_Input::Max];
 
@@ -327,7 +402,7 @@ namespace M6502Core
 		addr_in_late[(size_t)AddressBus_Input::ADL_ABL] = rand_out[(size_t)RandomLogic_Output::ADL_ABL];
 		addr_in_late[(size_t)AddressBus_Input::ADH_ABH] = rand_out[(size_t)RandomLogic_Output::ADH_ABH];
 
-		addr_bus->sim_Late(addr_in_late, ADL, ADH, outputs);
+		addr_bus->sim_Output(addr_in_late, ADL, ADH, outputs);
 
 		// Outputs
 
@@ -344,9 +419,8 @@ namespace M6502Core
 		TriState PHI0 = inputs[(size_t)InputPad::PHI0];
 		TriState PHI2 = PHI0;
 
-		// TODO: To stabilize latches, all parts are simulated 2 times each. We need to optimize the propagation delay emulation and break all cycles normally.
-
-		// Precharge internal buses
+		// Precharge internal buses.
+		// This operation is critical because it is used to form the interrupt address and the stack pointer.
 
 		if (PHI2 == TriState::One)
 		{
@@ -355,6 +429,18 @@ namespace M6502Core
 			Unpack(0xff, ADL);
 			Unpack(0xff, ADH);
 		}
+
+		// These variables are used to mark the "dirty" bits of the internal buses. This is used to resolve conflicts, according to the "Ground wins" rule.
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			SB_Dirty[n] = false;
+			DB_Dirty[n] = false;
+			ADL_Dirty[n] = false;
+			ADH_Dirty[n] = false;
+		}
+
+		// TODO: To stabilize latches, all parts are simulated 2 times each. We need to optimize the propagation delay emulation and break all cycles normally.
 
 		sim_Top(inputs, outputs, inOuts);
 		sim_Bottom(inputs, outputs, inOuts);
