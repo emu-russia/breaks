@@ -28,11 +28,18 @@ void PC_Test(uint16_t initial_pc, uint16_t expected_pc, bool inc, const char *te
     TriState ADL[8];
     TriState ADH[8];
 
+    bool DB_Dirty[8];
+    bool ADL_Dirty[8];
+    bool ADH_Dirty[8];
+
     for (size_t n = 0; n < 8; n++)
     {
         DB[n] = TriState::Zero;
         ADL[n] = TriState::Zero;
         ADH[n] = TriState::Zero;
+        DB_Dirty[n] = false;
+        ADL_Dirty[n] = false;
+        ADH_Dirty[n] = false;
     }
 
     TriState inputs[(size_t)ProgramCounter_Input::Max];
@@ -43,55 +50,44 @@ void PC_Test(uint16_t initial_pc, uint16_t expected_pc, bool inc, const char *te
     Unpack((uint8_t)(initial_pc >> 8), ADH);
 
     ResetPcInputs(inputs);
-    inputs[(size_t)ProgramCounter_Input::PHI2] = TriState::Zero;
     inputs[(size_t)ProgramCounter_Input::ADL_PCL] = TriState::One;
-    pc.sim(inputs, DB, ADL, ADH);
-
-    ResetPcInputs(inputs);
-    inputs[(size_t)ProgramCounter_Input::PHI2] = TriState::One;
-    pc.sim(inputs, DB, ADL, ADH);
-
-    ResetPcInputs(inputs);
-    inputs[(size_t)ProgramCounter_Input::PHI2] = TriState::Zero;
     inputs[(size_t)ProgramCounter_Input::ADH_PCH] = TriState::One;
-    pc.sim(inputs, DB, ADL, ADH);
+    pc.sim_Load(inputs, ADL, ADH);
 
     ResetPcInputs(inputs);
-    inputs[(size_t)ProgramCounter_Input::PHI2] = TriState::One;
-    pc.sim(inputs, DB, ADL, ADH);
+    pc.sim_Load(inputs, ADL, ADH);
 
     // Increment?
-
-    if (inc)
-    {
-        ResetPcInputs(inputs);
-        inputs[(size_t)ProgramCounter_Input::PHI2] = TriState::Zero;
-        inputs[(size_t)ProgramCounter_Input::PCL_PCL] = TriState::One;
-        inputs[(size_t)ProgramCounter_Input::PCH_PCH] = TriState::One;
-        inputs[(size_t)ProgramCounter_Input::n_1PC] = TriState::Zero;
-        pc.sim(inputs, DB, ADL, ADH);
-
-        ResetPcInputs(inputs);
-        inputs[(size_t)ProgramCounter_Input::PHI2] = TriState::One;
-        inputs[(size_t)ProgramCounter_Input::n_1PC] = TriState::Zero;
-        pc.sim(inputs, DB, ADL, ADH);
-    }
-
-    // Store
-
-    //printf("Before store PCH: 0x%02X, PCL: 0x%02X\n", pc.getPCH(), pc.getPCL());
 
     ResetPcInputs(inputs);
     inputs[(size_t)ProgramCounter_Input::PHI2] = TriState::Zero;
     inputs[(size_t)ProgramCounter_Input::PCL_PCL] = TriState::One;
     inputs[(size_t)ProgramCounter_Input::PCH_PCH] = TriState::One;
-    pc.sim(inputs, DB, ADL, ADH);
+    if (inc)
+    {
+        inputs[(size_t)ProgramCounter_Input::n_1PC] = TriState::Zero;
+    }
+    pc.sim(inputs);
 
     ResetPcInputs(inputs);
     inputs[(size_t)ProgramCounter_Input::PHI2] = TriState::One;
+    if (inc)
+    {
+        inputs[(size_t)ProgramCounter_Input::n_1PC] = TriState::Zero;
+    }
+    pc.sim(inputs);
+
+    // Store
+
+    ResetPcInputs(inputs);
+    inputs[(size_t)ProgramCounter_Input::PCL_PCL] = TriState::One;
+    inputs[(size_t)ProgramCounter_Input::PCH_PCH] = TriState::One;
+    pc.sim_Store(inputs, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty);
+
+    ResetPcInputs(inputs);
     inputs[(size_t)ProgramCounter_Input::PCL_ADL] = TriState::One;
     inputs[(size_t)ProgramCounter_Input::PCH_ADH] = TriState::One;
-    pc.sim(inputs, DB, ADL, ADH);
+    pc.sim_Store(inputs, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty);
 
     // Check bus value
 
@@ -130,6 +126,6 @@ void PC_UnitTest()
     PC_Test(0x0000, 0x0001, true, "PC = 0x0000 -> Increment -> Check PC = 0x0001");
     PC_Test(0xA5A5, 0xA5A6, true, "PC = 0xA5A5 -> Increment -> Check PC = 0xA5A6");
     PC_Test(0x5A5A, 0x5A5B, true, "PC = 0x5A5A -> Increment -> Check PC = 0x5A5B");
-    PC_Test(0xFFFE, 0xFFFF, true, "PC = 0xFFFE -> Increment -> Check PC = 0xFFFF");     // Bug! Fix!
-    PC_Test(0xFFFF, 0x0000, true, "PC = 0xFFFF -> Increment -> Check PC = 0x0000");     // Bug! Fix!
+    PC_Test(0xFFFE, 0xFFFF, true, "PC = 0xFFFE -> Increment -> Check PC = 0xFFFF");
+    PC_Test(0xFFFF, 0x0000, true, "PC = 0xFFFF -> Increment -> Check PC = 0x0000");
 }
