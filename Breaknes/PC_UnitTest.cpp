@@ -122,7 +122,7 @@ void PC_UnitTest()
     PC_Test(0xA5A5, 0xA5A5, false, "PC = 0xA5A5");
     PC_Test(0x5A5A, 0x5A5A, false, "PC = 0x5A5A");
     PC_Test(0xFFFE, 0xFFFE, false, "PC = 0xFFFE");
-    PC_Test(0xFFFF, 0xFFFF, false, "PC = 0xFFFF");      // Bug! Fix!
+    PC_Test(0xFFFF, 0xFFFF, false, "PC = 0xFFFF");
     PC_Test(0x0000, 0x0001, true, "PC = 0x0000 -> Increment -> Check PC = 0x0001");
     PC_Test(0xA5A5, 0xA5A6, true, "PC = 0xA5A5 -> Increment -> Check PC = 0xA5A6");
     PC_Test(0x5A5A, 0x5A5B, true, "PC = 0x5A5A -> Increment -> Check PC = 0x5A5B");

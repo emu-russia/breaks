@@ -26,21 +26,22 @@ namespace M6502Core
 		// PCL
 
 		TriState cin = n_1PC;
-		TriState souts[8];
+		TriState souts[9];
+		souts[0] = n_1PC;
 
 		for (size_t n = 0; n < 8; n++)
 		{
 			if (n & 1)
 			{
-				sim_OddBit(PHI2, cin, cin, souts[n], n, PCL, PCLS);
+				sim_OddBit(PHI2, cin, cin, souts[n + 1], n, PCL, PCLS);
 			}
 			else
 			{
-				sim_EvenBit(PHI2, cin, cin, souts[n], n, PCL, PCLS);
+				sim_EvenBit(PHI2, cin, cin, souts[n + 1], n, PCL, PCLS);
 			}
 		}
 
-		TriState PCLC = NOR8(souts);
+		TriState PCLC = NOR9(souts);
 
 		// PCH
 
