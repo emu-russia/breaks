@@ -610,6 +610,23 @@ namespace BreaksDebug
             {
                 gr.DrawString("SUMS", labelFont, labelBrush, point);
             }
+
+            if (cur_info.n_ACIN == 0)
+            {
+                gr.DrawString("+C", labelFont, labelBrush, new Point(300, 70));
+            }
+            if (cur_info.n_DAA == 0)
+            {
+                gr.DrawString("DAA", labelFont, labelBrush, new Point(367, 52));
+            }
+            if (cur_info.n_DSA == 0)
+            {
+                gr.DrawString("DSA", labelFont, labelBrush, new Point(367, 72));
+            }
+            if (cur_info.n_1PC == 0)
+            {
+                gr.DrawString("+1", labelFont, labelBrush, new Point(635, 64));
+            }
         }
 
         public void ShowCpuCommands(BogusSystem.CpuDebugInfo_Commands info)
