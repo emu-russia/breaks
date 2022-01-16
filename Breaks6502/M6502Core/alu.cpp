@@ -197,6 +197,17 @@ namespace M6502Core
 		TriState SB_ADD = inputs[(size_t)ALU_Input::SB_ADD];
 		TriState ADL_ADD = inputs[(size_t)ALU_Input::ADL_ADD];
 
+		// Special case when SB/ADD and 0/ADD are active at the same time (this only happens with Power Up).
+
+		if (SB_ADD == TriState::One && Z_ADD == TriState::One)
+		{
+			for (size_t n = 0; n < 8; n++)
+			{
+				SB[n] = TriState::Zero;
+				SB_Dirty[n] = true;
+			}
+		}
+
 		// AI/BI Latches
 
 		for (size_t n = 0; n < 8; n++)
