@@ -35,7 +35,8 @@ int main()
 {
 	//PackUnpackTest();
 	//DumpDecoderStates();
-	PC_UnitTest();
+	//PC_UnitTest();
+	ALU_UnitTest(); return 0;
 
 	Breaknes::Famicom* fami = new Breaknes::Famicom;
 

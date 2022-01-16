@@ -41,7 +41,6 @@ namespace M6502Core
 		BaseLogic::DLatch BI[8];
 		BaseLogic::DLatch n_ADD[8];
 		BaseLogic::DLatch AC[8];
-		BaseLogic::FF AC_FF[8];
 
 		BaseLogic::DLatch BC7_latch;
 		BaseLogic::DLatch DC7_latch;

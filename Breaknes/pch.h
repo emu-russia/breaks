@@ -12,3 +12,4 @@
 
 #include "DecoderDecoder.h"
 #include "PC_UnitTest.h"
+#include "ALU_UnitTest.h"
