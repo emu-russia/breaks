@@ -79,7 +79,6 @@ namespace BreaksDebug
             [Category("Internal buses")]
             public string ADH { get; set; }
 
-
             [Category("Regs")]
             public string IR { get; set; }
             [Category("Regs")]

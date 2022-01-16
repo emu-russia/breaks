@@ -440,13 +440,13 @@ namespace M6502Core
 			ADH_Dirty[n] = false;
 		}
 
-		// TODO: To stabilize latches, all parts are simulated 2 times each. We need to optimize the propagation delay emulation and break all cycles normally.
+		// To stabilize latches, all parts are simulated multiple times.
 
-		sim_Top(inputs, outputs, inOuts);
-		sim_Bottom(inputs, outputs, inOuts);
-
-		sim_Top(inputs, outputs, inOuts);
-		sim_Bottom(inputs, outputs, inOuts);
+		for (size_t n = 0; n < StablizeSteps; n++)
+		{
+			sim_Top(inputs, outputs, inOuts);
+			sim_Bottom(inputs, outputs, inOuts);
+		}
 	}
 
 	void M6502::getDebug(DebugInfo* info)
