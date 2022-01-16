@@ -1,6 +1,12 @@
 // Synthesizable MOS 6502 on Verilog
 // Project Breaks http://breaknes.com
 
+// Note from Future:
+// It is possible to work with this verilog, but you should take into account that there may be old uncorrected errors in the circuits.
+// Therefore, if someone goes on, you will need to consider all current logic circuits from the 6502 wiki: 
+// https://github.com/emu-russia/breaks/tree/master/BreakingNESWiki_DeepL/6502
+// In general, the verilog motif can be taken as a basis. The only thing I don't really like is the way the ALU is made.
+
 //`define QUARTUS
 `define ICARUS
 
