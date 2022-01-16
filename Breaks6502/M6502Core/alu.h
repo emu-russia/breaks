@@ -11,6 +11,7 @@ namespace M6502Core
 		Z_ADD,
 		SB_ADD,
 		ADL_ADD,
+
 		ADD_SB06,
 		ADD_SB7,
 		ADD_ADL,
@@ -54,11 +55,18 @@ namespace M6502Core
 		BaseLogic::DLatch ACLatch;
 		BaseLogic::DLatch AVRLatch;
 
+		BaseLogic::TriState bcd_out[8];
+
 		bool BCD_Hack = false;		// BCD correction hack for NES/Famicom.
 
 	public:
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[]);
+		void sim_Load(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], bool SB_Dirty[8]);
+
+		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState ADL[], bool SB_Dirty[8], bool ADL_Dirty[8]);
+
+		void sim_Store(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], BaseLogic::TriState ADH[], 
+			bool SB_Dirty[8], bool DB_Dirty[8], bool ADH_Dirty[8]);
 
 		BaseLogic::TriState getACR();
 
