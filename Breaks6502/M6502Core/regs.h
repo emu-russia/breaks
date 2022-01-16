@@ -24,9 +24,11 @@ namespace M6502Core
 
 	public:
 
-		void sim_Load(BaseLogic::TriState inputs[], BaseLogic::TriState SB[]);
+		void sim_LoadSB(BaseLogic::TriState inputs[], BaseLogic::TriState SB[]);
 
-		void sim_Store(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState ADL[], bool SB_Dirty[8], bool ADL_Dirty[8]);
+		void sim_StoreSB(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], bool SB_Dirty[8]);
+
+		void sim_StoreADL(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], bool ADL_Dirty[8]);
 
 		uint8_t getY();
 		uint8_t getX();

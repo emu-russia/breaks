@@ -641,16 +641,18 @@ namespace BreaksDebug
         {
             ImageFormat imageFormat;
             string ext;
-            Point sceneSize = new Point(Width, Height);
 
-            int bitmapWidth = Width;
-            int bitmapHeight = Height;
+            if (BackgroundImage == null)
+                return;
+
+            int bitmapWidth = BackgroundImage.Width;
+            int bitmapHeight = BackgroundImage.Height;
 
             Bitmap bitmap = new Bitmap(bitmapWidth, bitmapHeight, PixelFormat.Format16bppRgb565);
 
             Graphics gr = Graphics.FromImage(bitmap);
 
-            DrawScene(gr, sceneSize.X, sceneSize.Y);
+            DrawScene(gr, bitmapWidth, bitmapHeight);
 
             ext = Path.GetExtension(FileName);
 

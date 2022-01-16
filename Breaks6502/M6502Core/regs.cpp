@@ -4,7 +4,7 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void Regs::sim_Load(TriState inputs[], TriState SB[])
+	void Regs::sim_LoadSB(TriState inputs[], TriState SB[])
 	{
 		TriState PHI2 = inputs[(size_t)Regs_Input::PHI2];
 		TriState SB_Y = inputs[(size_t)Regs_Input::SB_Y];
@@ -50,12 +50,11 @@ namespace M6502Core
 		}
 	}
 
-	void Regs::sim_Store(TriState inputs[], TriState SB[], TriState ADL[], bool SB_Dirty[8], bool ADL_Dirty[8])
+	void Regs::sim_StoreSB(TriState inputs[], TriState SB[], bool SB_Dirty[8])
 	{
 		TriState PHI2 = inputs[(size_t)Regs_Input::PHI2];
 		TriState Y_SB = inputs[(size_t)Regs_Input::Y_SB];
 		TriState X_SB = inputs[(size_t)Regs_Input::X_SB];
-		TriState S_ADL = inputs[(size_t)Regs_Input::S_ADL];
 		TriState S_SB = inputs[(size_t)Regs_Input::S_SB];
 
 		for (size_t n = 0; n < 8; n++)
@@ -70,19 +69,6 @@ namespace M6502Core
 				{
 					SB[n] = S[n].get();
 					SB_Dirty[n] = true;
-				}
-			}
-
-			if (S_ADL == TriState::One)
-			{
-				if (ADL_Dirty[n])
-				{
-					ADL[n] = AND(ADL[n], S[n].get());
-				}
-				else
-				{
-					ADL[n] = S[n].get();
-					ADL_Dirty[n] = true;
 				}
 			}
 
@@ -120,6 +106,27 @@ namespace M6502Core
 						SB[n] = X[n].get();
 						SB_Dirty[n] = true;
 					}
+				}
+			}
+		}
+	}
+
+	void Regs::sim_StoreADL(TriState inputs[], TriState ADL[], bool ADL_Dirty[8])
+	{
+		TriState S_ADL = inputs[(size_t)Regs_Input::S_ADL];
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			if (S_ADL == TriState::One)
+			{
+				if (ADL_Dirty[n])
+				{
+					ADL[n] = AND(ADL[n], S[n].get());
+				}
+				else
+				{
+					ADL[n] = S[n].get();
+					ADL_Dirty[n] = true;
 				}
 			}
 		}
