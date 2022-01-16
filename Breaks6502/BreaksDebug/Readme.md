@@ -16,3 +16,7 @@ Breakasm and M6502Core are in their respective Interop DLLs.
 You must use Debug/Release x86/x64 configuration to build. AnyCPU is not suitable because it uses native code in Interop DLLs.
 
 Just don't forget to switch back to Any CPU when you need to edit forms. Microsoft has a problem with this.
+
+## Processor state dump
+
+To enable a detailed dump of all internals directly in Markdown and with pictures, you need to create the `WikiMarkdown` folder.

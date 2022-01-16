@@ -4,7 +4,8 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void ALU::sim(TriState inputs[], TriState SB[], TriState ADL[], bool SB_Dirty[8], bool ADL_Dirty[8])
+	void ALU::sim(TriState inputs[], TriState SB[], TriState DB[], TriState ADL[], TriState ADH[], 
+		bool SB_Dirty[8], bool DB_Dirty[8], bool ADL_Dirty[8], bool ADH_Dirty[8])
 	{
 		TriState PHI2 = inputs[(size_t)ALU_Input::PHI2];
 		TriState ADD_SB06 = inputs[(size_t)ALU_Input::ADD_SB06];
@@ -15,6 +16,8 @@ namespace M6502Core
 		TriState ORS = inputs[(size_t)ALU_Input::ORS];
 		TriState SRS = inputs[(size_t)ALU_Input::SRS];
 		TriState SUMS = inputs[(size_t)ALU_Input::SUMS];
+		TriState SB_DB = inputs[(size_t)ALU_Input::SB_DB];
+		TriState SB_ADH = inputs[(size_t)ALU_Input::SB_ADH];
 		TriState n_ACIN = inputs[(size_t)ALU_Input::n_ACIN];
 		TriState n_DAA = inputs[(size_t)ALU_Input::n_DAA];
 		TriState n_DSA = inputs[(size_t)ALU_Input::n_DSA];
@@ -178,6 +181,24 @@ namespace M6502Core
 		TriState DSAL = dsal_latch.get();
 		TriState DSAH = NOR(ACR, dsah_latch.nget());
 
+		// This is where the very brainy construction related to the connection of the busses is located.
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			if (SB_DB == TriState::One)
+			{
+				BusConnect(SB[n], DB[n]);
+				SB_Dirty[n] = true;
+				DB_Dirty[n] = true;
+			}
+			if (SB_ADH == TriState::One)
+			{
+				BusConnect(SB[n], ADH[n]);
+				SB_Dirty[n] = true;
+				ADH_Dirty[n] = true;
+			}
+		}
+
 		bcd_out[0] = SB[0];
 		bcd_out[1] = XOR(NOR(DSAL, DAAL), NOT(SB[1]));
 		bcd_out[2] = XOR(AND(NAND(n_ADD[1].get(), DAAL), NAND(NOT(n_ADD[1].get()), DSAL)), NOT(SB[2]));
@@ -226,8 +247,6 @@ namespace M6502Core
 		TriState SB_AC = inputs[(size_t)ALU_Input::SB_AC];
 		TriState AC_SB = inputs[(size_t)ALU_Input::AC_SB];
 		TriState AC_DB = inputs[(size_t)ALU_Input::AC_DB];
-		TriState SB_DB = inputs[(size_t)ALU_Input::SB_DB];
-		TriState SB_ADH = inputs[(size_t)ALU_Input::SB_ADH];
 
 		// Accumulator (AC)
 
@@ -241,8 +260,6 @@ namespace M6502Core
 			{
 				AC[n].set(bcd_out[n], SB_AC);
 			}
-
-			// This is where the very brainy construction related to the connection of the busses is located.
 
 			if (AC_SB == TriState::One)
 			{
@@ -267,18 +284,6 @@ namespace M6502Core
 					DB[n] = NOT(AC[n].nget());
 					DB_Dirty[n] = true;
 				}
-			}
-			if (SB_DB == TriState::One)
-			{
-				BusConnect(SB[n], DB[n]);
-				SB_Dirty[n] = true;
-				DB_Dirty[n] = true;
-			}
-			if (SB_ADH == TriState::One)
-			{
-				BusConnect(SB[n], ADH[n]);
-				SB_Dirty[n] = true;
-				ADH_Dirty[n] = true;
 			}
 		}
 	}

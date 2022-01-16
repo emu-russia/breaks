@@ -115,7 +115,7 @@ static int TestCompute(uint8_t a, uint8_t b, uint8_t expected, ALU_Input op, boo
 	inputs[(size_t)ALU_Input::n_ACIN] = carry ? TriState::Zero : TriState::One;
 	inputs[(size_t)ALU_Input::n_DAA] = bcd ? TriState::Zero : TriState::One;
 
-	alu.sim(inputs, SB, ADL, SB_Dirty, ADL_Dirty);
+	alu.sim(inputs, SB, DB, ADL, ADH, SB_Dirty, DB_Dirty, ADL_Dirty, ADH_Dirty);
 
 	// Store
 
