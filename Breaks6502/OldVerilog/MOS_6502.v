@@ -1,6 +1,12 @@
 // Synthesizable MOS 6502 on Verilog
 // Project Breaks http://breaknes.com
 
+// Note from Future:
+// It is possible to work with this verilog, but you should take into account that there may be old uncorrected errors in the circuits.
+// Therefore, if someone goes on, you will need to consider all current logic circuits from the 6502 wiki: 
+// https://github.com/emu-russia/breaks/tree/master/BreakingNESWiki_DeepL/6502
+// In general, the verilog motif can be taken as a basis. The only thing I don't really like is the way the ALU is made.
+
 //`define QUARTUS
 `define ICARUS
 
@@ -258,7 +264,7 @@ module InterruptControl (
     // Interrupt Check
     wire IntCheck;      // internal
     assign IntCheck = 
-        ( (~( ( ~( ~(_I_OUT & ~BRK6E) | _IRQP) ) | ~_DONMI )) | ~(BR2 | T0));
+        ( (~( ( ~( ~_I_OUT | _IRQP) ) | ~_DONMI )) | ~(BR2 | T0));
 
     // B-Flag
     wire BLatch1_Out, BLatch2_Out;
@@ -567,7 +573,7 @@ module Flags (
     // Inputs
     PHI0, 
     P_DB, DB_P, DBZ_Z, DB_N, IR5_C, ACR_C, DB_C, IR5_D, IR5_I, AVR_V, DB_V, ZERO_V, ONE_V, 
-    _IR5, ACR, AVR, B_OUT,
+    _IR5, ACR, AVR, B_OUT, BRK6E, 
     // Buses
     DB
 );
@@ -628,13 +634,15 @@ module Flags (
 
     // I FLAG
     wire _I_OUT;
-    wire I_LatchOut;
+    wire I_Latch1Out;
+    wire I_Latch2Out;
     wire i;
     assign i = ~(_IR5 & IR5_I) &
                ~(~DB[2] & DB_P) &
-               ~(I_LatchOut & ~(IR5_I | DB_P));
-    mylatch I_Latch1 ( _I_OUT, i, PHI1 );
-    mylatch I_Latch2 ( I_LatchOut, _I_OUT, PHI2 );
+               ~(I_Latch2Out & ~(IR5_I | DB_P));
+    mylatch I_Latch1 ( I_Latch1Out, i, PHI1 );
+    assign _I_OUT = ~(~I_Latch1Out & ~BRK6E);
+    mylatch I_Latch2 ( I_Latch2Out, _I_OUT, PHI2 );
 
     // V FLAG
     wire _V_OUT;
@@ -828,7 +836,7 @@ module Dispatcher (
     wire WRLatch_Out, RWLatch_Out;
     wire WR;
     mylatch WRLatch ( WRLatch_Out, ~( decoder[98] | decoder[100] | T5 | STOR | T6 | PC_DB), PHI2 );
-    assign WR = ~ ( _ready | REST | WRLatch_Out );
+    assign WR = ~ ( _ready | DORES | WRLatch_Out );
     mylatch RWLatch ( RWLatch_Out, WR, PHI1 );
     assign RW = ~RWLatch_Out;
     assign RD = (PHI1 | ~RWLatch_Out);
@@ -881,7 +889,7 @@ module Dispatcher (
     // Instruction Termination (reset cycle counters)
     wire REST, ENDS, ENDX, TRES2;
     wire ENDS1_Out, ENDS2_Out;
-    assign REST = ~(_STORE & _SHIFT) & DORES;
+    assign REST = ~(_STORE & _SHIFT);
 
     mylatch ENDS1 ( ENDS1_Out, _ready ? ~T1 : (~(_BRTAKEN & BR2) & ~T0), PHI2 );
     mylatch ENDS2 ( ENDS2_Out, RESP, PHI2 );
@@ -927,7 +935,7 @@ module Dispatcher (
 
     wire BRFWLatch_Out;
     mylatch BRFWLatch ( BRFWLatch_Out, ~(~BR3 | ReadyDelay), PHI2 );
-    assign Brfw = ~(BRFW ^ ACR) & BRFWLatch_Out;
+    assign Brfw = ~((BRFW ^ ~ACR) | ~BRFWLatch_Out);
 
     wire RouteCLatch_Out, a_out, b_out, c_out;
     mylatch RouteCLatch ( RouteCLatch_Out, ~(BR2 & _BRTAKEN) & (_ADL_PCL | BR2 | BR3), PHI2 );
@@ -1339,7 +1347,7 @@ module ProgramCounter (
 
     wire PCLC, PCHC;
 
-    assign PCLC = ~( ~PCLS[0] | ~PCLS[1] | ~PCLS[2] | ~PCLS[3] | ~PCLS[4] | ~PCLS[5] | ~PCLS[6] | ~PCLS[7] );
+    assign PCLC = ~( _IPC | ~PCLS[0] | ~PCLS[1] | ~PCLS[2] | ~PCLS[3] | ~PCLS[4] | ~PCLS[5] | ~PCLS[6] | ~PCLS[7] );
     assign PCHC = ~( ~PCLC | ~PCHS[0] | ~PCHS[1] | ~PCHS[2] | ~PCHS[3]);
 
 always @(posedge PHI2) begin
@@ -1505,7 +1513,7 @@ module Core6502 (
         _Z_OUT, _N_OUT, _C_OUT, _D_OUT, _I_OUT, _V_OUT,
         PHI0, 
         P_DB, DB_P, DBZ_Z, DB_N, IR5_C, ACR_C, DB_C, IR5_D, IR5_I, AVR_V, DB_V, ZERO_V, ONE_V, 
-        ~IR[5], ACR, AVR, B_OUT,
+        ~IR[5], ACR, AVR, B_OUT, BRK6E, 
         DB
     );
 

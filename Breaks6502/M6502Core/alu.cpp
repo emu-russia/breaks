@@ -235,13 +235,12 @@ namespace M6502Core
 		{
 			if (PHI2 == TriState::One)
 			{
-				AC[n].set(AC_FF[n].get(), PHI2);
+				AC[n].set(NOT(AC[n].nget()), PHI2);
 			}
 			else
 			{
 				AC[n].set(bcd_out[n], SB_AC);
 			}
-			AC_FF[n].set(NOT(AC[n].nget()));
 
 			// This is where the very brainy construction related to the connection of the busses is located.
 
@@ -249,11 +248,11 @@ namespace M6502Core
 			{
 				if (SB_Dirty[n])
 				{
-					SB[n] = AND(SB[n], AC_FF[n].get());
+					SB[n] = AND(SB[n], NOT(AC[n].nget()));
 				}
 				else
 				{
-					SB[n] = AC_FF[n].get();
+					SB[n] = NOT(AC[n].nget());
 					SB_Dirty[n] = true;
 				}
 			}
@@ -261,11 +260,11 @@ namespace M6502Core
 			{
 				if (DB_Dirty[n])
 				{
-					DB[n] = AND(DB[n], AC_FF[n].get());
+					DB[n] = AND(DB[n], NOT(AC[n].nget()));
 				}
 				else
 				{
-					DB[n] = AC_FF[n].get();
+					DB[n] = NOT(AC[n].nget());
 					DB_Dirty[n] = true;
 				}
 			}
