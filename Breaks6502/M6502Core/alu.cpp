@@ -4,14 +4,9 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void ALU::sim(TriState inputs[], TriState SB[], TriState DB[], TriState ADL[], TriState ADH[])
+	void ALU::sim(TriState inputs[], TriState SB[], TriState ADL[], bool SB_Dirty[8], bool ADL_Dirty[8])
 	{
 		TriState PHI2 = inputs[(size_t)ALU_Input::PHI2];
-		TriState NDB_ADD = inputs[(size_t)ALU_Input::NDB_ADD];
-		TriState DB_ADD = inputs[(size_t)ALU_Input::DB_ADD];
-		TriState Z_ADD = inputs[(size_t)ALU_Input::Z_ADD];
-		TriState SB_ADD = inputs[(size_t)ALU_Input::SB_ADD];
-		TriState ADL_ADD = inputs[(size_t)ALU_Input::ADL_ADD];
 		TriState ADD_SB06 = inputs[(size_t)ALU_Input::ADD_SB06];
 		TriState ADD_SB7 = inputs[(size_t)ALU_Input::ADD_SB7];
 		TriState ADD_ADL = inputs[(size_t)ALU_Input::ADD_ADL];
@@ -20,11 +15,6 @@ namespace M6502Core
 		TriState ORS = inputs[(size_t)ALU_Input::ORS];
 		TriState SRS = inputs[(size_t)ALU_Input::SRS];
 		TriState SUMS = inputs[(size_t)ALU_Input::SUMS];
-		TriState SB_AC = inputs[(size_t)ALU_Input::SB_AC];
-		TriState AC_SB = inputs[(size_t)ALU_Input::AC_SB];
-		TriState AC_DB = inputs[(size_t)ALU_Input::AC_DB];
-		TriState SB_DB = inputs[(size_t)ALU_Input::SB_DB];
-		TriState SB_ADH = inputs[(size_t)ALU_Input::SB_ADH];
 		TriState n_ACIN = inputs[(size_t)ALU_Input::n_ACIN];
 		TriState n_DAA = inputs[(size_t)ALU_Input::n_DAA];
 		TriState n_DSA = inputs[(size_t)ALU_Input::n_DSA];
@@ -34,21 +24,10 @@ namespace M6502Core
 			n_DAA = n_DSA = TriState::One;
 		}
 
-		TriState nors[8], nands[8], eors[8], sums[8], n_res[8] = { TriState::Z }, bcd_out[8];
+		TriState nors[8], nands[8], eors[8], sums[8], n_res[8] = { TriState::Z };
 		TriState carry[8];		// Inverted carry chain. Even bits in direct logic, odd bits in inverted logic.
 		TriState DC3, DC7;
 		TriState n4[4], t1, t2;
-
-		// AI/BI Latches
-
-		for (size_t n = 0; n < 8; n++)
-		{
-			AI[n].set(SB[n], SB_ADD);
-			AI[n].set(TriState::Zero, Z_ADD);
-			BI[n].set(DB[n], DB_ADD);
-			BI[n].set(NOT(DB[n]), NDB_ADD);
-			BI[n].set(ADL[n], ADL_ADD);
-		}
 
 		// Computational Part
 
@@ -163,11 +142,27 @@ namespace M6502Core
 
 			if (ADD_ADL == TriState::One)
 			{
-				ADL[n] = n_ADD[n].nget();
+				if (ADL_Dirty[n])
+				{
+					ADL[n] = AND(ADL[n], n_ADD[n].nget());
+				}
+				else
+				{
+					ADL[n] = n_ADD[n].nget();
+					ADL_Dirty[n] = true;
+				}
 			}
 			if ((ADD_SB06 == TriState::One && n != 7) || (ADD_SB7 == TriState::One && n == 7))
 			{
-				SB[n] = n_ADD[n].nget();
+				if (SB_Dirty[n])
+				{
+					SB[n] = AND(SB[n], n_ADD[n].nget());
+				}
+				else
+				{
+					SB[n] = n_ADD[n].nget();
+					SB_Dirty[n] = true;
+				}
 			}
 		}
 
@@ -192,6 +187,36 @@ namespace M6502Core
 		bcd_out[5] = XOR(NOR(DAAH, DSAH), NOT(SB[5]));
 		bcd_out[6] = XOR(AND(NAND(n_ADD[5].get(), DAAH), NAND(NOT(n_ADD[5].get()), DSAH)), NOT(SB[6]));
 		bcd_out[7] = XOR(AND(NAND(NAND(n_ADD[5].get(), n_ADD[6].get()), DAAH), NAND(NOT(NOR(n_ADD[5].get(), n_ADD[6].get())), DSAH)), NOT(SB[7]));
+	}
+
+	void ALU::sim_Load(TriState inputs[], TriState SB[], TriState DB[], TriState ADL[], bool SB_Dirty[8])
+	{
+		TriState NDB_ADD = inputs[(size_t)ALU_Input::NDB_ADD];
+		TriState DB_ADD = inputs[(size_t)ALU_Input::DB_ADD];
+		TriState Z_ADD = inputs[(size_t)ALU_Input::Z_ADD];
+		TriState SB_ADD = inputs[(size_t)ALU_Input::SB_ADD];
+		TriState ADL_ADD = inputs[(size_t)ALU_Input::ADL_ADD];
+
+		// AI/BI Latches
+
+		for (size_t n = 0; n < 8; n++)
+		{
+			AI[n].set(SB[n], SB_ADD);
+			AI[n].set(TriState::Zero, Z_ADD);
+			BI[n].set(DB[n], DB_ADD);
+			BI[n].set(NOT(DB[n]), NDB_ADD);
+			BI[n].set(ADL[n], ADL_ADD);
+		}
+	}
+
+	void ALU::sim_Store(TriState inputs[], TriState SB[], TriState DB[], TriState ADH[], bool SB_Dirty[8], bool DB_Dirty[8], bool ADH_Dirty[8])
+	{
+		TriState PHI2 = inputs[(size_t)ALU_Input::PHI2];
+		TriState SB_AC = inputs[(size_t)ALU_Input::SB_AC];
+		TriState AC_SB = inputs[(size_t)ALU_Input::AC_SB];
+		TriState AC_DB = inputs[(size_t)ALU_Input::AC_DB];
+		TriState SB_DB = inputs[(size_t)ALU_Input::SB_DB];
+		TriState SB_ADH = inputs[(size_t)ALU_Input::SB_ADH];
 
 		// Accumulator (AC)
 
@@ -211,19 +236,39 @@ namespace M6502Core
 
 			if (AC_SB == TriState::One)
 			{
-				SB[n] = AC_FF[n].get();
+				if (SB_Dirty[n])
+				{
+					SB[n] = AND(SB[n], AC_FF[n].get());
+				}
+				else
+				{
+					SB[n] = AC_FF[n].get();
+					SB_Dirty[n] = true;
+				}
 			}
 			if (AC_DB == TriState::One)
 			{
-				DB[n] = AC_FF[n].get();
+				if (DB_Dirty[n])
+				{
+					DB[n] = AND(DB[n], AC_FF[n].get());
+				}
+				else
+				{
+					DB[n] = AC_FF[n].get();
+					DB_Dirty[n] = true;
+				}
 			}
 			if (SB_DB == TriState::One)
 			{
 				BusConnect(SB[n], DB[n]);
+				SB_Dirty[n] = true;
+				DB_Dirty[n] = true;
 			}
 			if (SB_ADH == TriState::One)
 			{
 				BusConnect(SB[n], ADH[n]);
+				SB_Dirty[n] = true;
+				ADH_Dirty[n] = true;
 			}
 		}
 	}

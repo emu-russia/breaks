@@ -289,7 +289,15 @@ namespace M6502Core
 
 		// 2. Then loading values from buses into computing modules (ALU, PC) is simulated
 
-		// TODO: alu->sim_Load
+		TriState alu_in[(size_t)ALU_Input::Max];
+
+		alu_in[(size_t)ALU_Input::NDB_ADD] = rand_out[(size_t)RandomLogic_Output::NDB_ADD];
+		alu_in[(size_t)ALU_Input::DB_ADD] = rand_out[(size_t)RandomLogic_Output::DB_ADD];
+		alu_in[(size_t)ALU_Input::Z_ADD] = rand_out[(size_t)RandomLogic_Output::Z_ADD];
+		alu_in[(size_t)ALU_Input::SB_ADD] = rand_out[(size_t)RandomLogic_Output::SB_ADD];
+		alu_in[(size_t)ALU_Input::ADL_ADD] = rand_out[(size_t)RandomLogic_Output::ADL_ADD];
+
+		alu->sim_Load(alu_in, SB, DB, ADL, SB_Dirty);
 
 		TriState pc_in[(size_t)ProgramCounter_Input::Max];
 
@@ -302,38 +310,20 @@ namespace M6502Core
 
 		// 3. Then the computing part is simulated (e.g. ALU operations, PC increment)
 
-		// TODO: alu->sim
+		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
+		alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
+		alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
+		alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
+		alu_in[(size_t)ALU_Input::ANDS] = rand_out[(size_t)RandomLogic_Output::ANDS];
+		alu_in[(size_t)ALU_Input::EORS] = rand_out[(size_t)RandomLogic_Output::EORS];
+		alu_in[(size_t)ALU_Input::ORS] = rand_out[(size_t)RandomLogic_Output::ORS];
+		alu_in[(size_t)ALU_Input::SRS] = rand_out[(size_t)RandomLogic_Output::SRS];
+		alu_in[(size_t)ALU_Input::SUMS] = rand_out[(size_t)RandomLogic_Output::SUMS];
+		alu_in[(size_t)ALU_Input::n_ACIN] = rand_out[(size_t)RandomLogic_Output::n_ACIN];
+		alu_in[(size_t)ALU_Input::n_DAA] = rand_out[(size_t)RandomLogic_Output::n_DAA];
+		alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
 
-		{
-			// TODO: Legacy approach
-
-			TriState alu_in[(size_t)ALU_Input::Max];
-
-			alu_in[(size_t)ALU_Input::PHI2] = PHI2;
-			alu_in[(size_t)ALU_Input::NDB_ADD] = rand_out[(size_t)RandomLogic_Output::NDB_ADD];
-			alu_in[(size_t)ALU_Input::DB_ADD] = rand_out[(size_t)RandomLogic_Output::DB_ADD];
-			alu_in[(size_t)ALU_Input::Z_ADD] = rand_out[(size_t)RandomLogic_Output::Z_ADD];
-			alu_in[(size_t)ALU_Input::SB_ADD] = rand_out[(size_t)RandomLogic_Output::SB_ADD];
-			alu_in[(size_t)ALU_Input::ADL_ADD] = rand_out[(size_t)RandomLogic_Output::ADL_ADD];
-			alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
-			alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
-			alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
-			alu_in[(size_t)ALU_Input::ANDS] = rand_out[(size_t)RandomLogic_Output::ANDS];
-			alu_in[(size_t)ALU_Input::EORS] = rand_out[(size_t)RandomLogic_Output::EORS];
-			alu_in[(size_t)ALU_Input::ORS] = rand_out[(size_t)RandomLogic_Output::ORS];
-			alu_in[(size_t)ALU_Input::SRS] = rand_out[(size_t)RandomLogic_Output::SRS];
-			alu_in[(size_t)ALU_Input::SUMS] = rand_out[(size_t)RandomLogic_Output::SUMS];
-			alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
-			alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
-			alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
-			alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
-			alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
-			alu_in[(size_t)ALU_Input::n_ACIN] = rand_out[(size_t)RandomLogic_Output::n_ACIN];
-			alu_in[(size_t)ALU_Input::n_DAA] = rand_out[(size_t)RandomLogic_Output::n_DAA];
-			alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
-
-			alu->sim(alu_in, SB, DB, ADL, ADH);
-		}
+		alu->sim(alu_in, SB, ADL, SB_Dirty, ADL_Dirty);
 
 		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
 		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
@@ -342,7 +332,14 @@ namespace M6502Core
 
 		// 4. Then it simulates saving of output values from computing modules (ALU, PC) to buses using the "ground wins" rule
 
-		// TODO: alu->sim_Store
+		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
+		alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
+		alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
+		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
+		alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
+		alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
+
+		alu->sim_Store(alu_in, SB, DB, ADH, SB_Dirty, DB_Dirty, ADH_Dirty);
 
 		pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = rand_out[(size_t)RandomLogic_Output::PCL_ADL];
 		pc_in[(size_t)ProgramCounter_Input::PCL_DB] = rand_out[(size_t)RandomLogic_Output::PCL_DB];
