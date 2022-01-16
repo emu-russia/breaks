@@ -20,9 +20,11 @@ BRK-последовательность - это унифицированный
 |T5|Прочитать адрес вектора прерывания (младший байт)|
 |T6|Прочитать адрес вектора прерывания (старший байт)|
 
-## Сброс
+## Включение питания
 
-### T0 (PHI1)
+При включении питания процессор выполняет особенную последовательность (Pre-BRK).
+
+## UB (0xFF), T1 (PHI1)
 
 Верхняя часть:
 
@@ -84,7 +86,201 @@ BRK-последовательность - это унифицированный
 
 Феномен: Все части процессора "сходят с ума", но чудесным образом в результате всех операции процессор делает запись 0x00 по адресу 0x0000.
 
-### T0 (PHI2)
+![FF_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/FF_UB_T1_PHI1.jpg)
+
+## UB (0xFF), T1 (PHI2)
+
+|Component/Signal|State|
+|---|---|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 0, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T5: 0, T6: 1, ENDS: 0, ENDX: 0, TRES1: 0, TRESX: 0|
+|Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
+|Extra Cycle Counter|T1: 1, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
+|Decoder|44: INC NOP (TX), 60: ADC SBC (T1), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX), 112: ADC SBC (T1)|
+|Commands|ADD_SB7, ADD_SB06, PCH_ADH, PCL_ADL, PCL_DB, ADH_ABH, SB_DB, DBZ_Z, DB_N, ACR_C, AVR_V|
+|ALU Carry In|0|
+|DAA|1|
+|DSA|1|
+|Increment PC|0|
+|Regs||
+|IR|0xFF|
+|PD|0x00|
+|Y|0x00|
+|X|0x00|
+|S|0x00|
+|AI|0x00|
+|BI|0xFC|
+|ADD|0xFF|
+|AC|0x0A|
+|PCL|0x00|
+|PCH|0x00|
+|ABL|0x00|
+|ABH|0x00|
+|DL|0x00|
+|DOR|0x00|
+|Flags|C: 0, Z: 0, I: 0, D: 0, B: 0, V: 0, N: 0|
+|Buses||
+|SB|0xFF|
+|DB|0x00|
+|ADL|0x00|
+|ADH|0x00|
+
+![FF_UB_T1_PHI2](/BreakingNESWiki/imgstore/ops/FF_UB_T1_PHI2.jpg)
+
+## PreBRK (0x00), T0 (PHI1)
+
+|Component/Signal|State|
+|---|---|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
+|Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
+|Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
+|Commands|S_S, DB_ADD, SB_ADD, SUMS, ADD_SB7, ADD_SB06, SB_AC, ADH_PCH, PCH_ADH, ADL_PCL, PCL_ADL, PCL_DB, ADH_ABH, SB_DB, DBZ_Z, DB_N, ACR_C|
+|ALU Carry In|0|
+|DAA|0|
+|DSA|0|
+|Increment PC|0|
+|Regs||
+|IR|0x00|
+|PD|0x00|
+|Y|0x00|
+|X|0x00|
+|S|0x00|
+|AI|0xFF|
+|BI|0x00|
+|ADD|0xFF|
+|AC|0xAA|
+|PCL|0x00|
+|PCH|0x00|
+|ABL|0x00|
+|ABH|0x00|
+|DL|0x00|
+|DOR|0x00|
+|Flags|C: 1, Z: 1, I: 0, D: 0, B: 0, V: 0, N: 0|
+|Buses||
+|SB|0x00|
+|DB|0x00|
+|ADL|0x00|
+|ADH|0x00|
+
+![00_PreBRK_T0_PHI1](/BreakingNESWiki/imgstore/ops/00_PreBRK_T0_PHI1.jpg)
+
+## PreBRK (0x00), T0 (PHI2)
+
+|Component/Signal|State|
+|---|---|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 1, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
+|Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
+|Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
+|Commands|SUMS, ADD_ADL, ADH_ABH, ADL_ABL, DL_ADH, DL_DB|
+|ALU Carry In|0|
+|DAA|0|
+|DSA|0|
+|Increment PC|0|
+|Regs||
+|IR|0x00|
+|PD|0x00|
+|Y|0x00|
+|X|0x00|
+|S|0x00|
+|AI|0xFF|
+|BI|0x00|
+|ADD|0xFF|
+|AC|0xAA|
+|PCL|0x00|
+|PCH|0x00|
+|ABL|0x00|
+|ABH|0x00|
+|DL|0x00|
+|DOR|0x00|
+|Flags|C: 1, Z: 1, I: 0, D: 0, B: 0, V: 0, N: 0|
+|Buses||
+|SB|0xFF|
+|DB|0xFF|
+|ADL|0xFF|
+|ADH|0xFF|
+
+![00_PreBRK_T0_PHI2](/BreakingNESWiki/imgstore/ops/00_PreBRK_T0_PHI2.jpg)
+
+## PreBRK (0x00), T01 (PHI1)
+
+|Component/Signal|State|
+|---|---|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
+|Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
+|Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
+|Commands|S_S, DB_ADD, SB_ADD, SUMS, ADD_ADL, ADH_PCH, ADL_PCL, ADH_ABH, ADL_ABL, DL_ADH, DL_DB|
+|ALU Carry In|0|
+|DAA|0|
+|DSA|0|
+|Increment PC|0|
+|Regs||
+|IR|0x00|
+|PD|0x00|
+|Y|0x00|
+|X|0x00|
+|S|0x00|
+|AI|0xFF|
+|BI|0x00|
+|ADD|0xFF|
+|AC|0xAA|
+|PCL|0xFF|
+|PCH|0x00|
+|ABL|0xFF|
+|ABH|0x00|
+|DL|0x00|
+|DOR|0x00|
+|Flags|C: 1, Z: 1, I: 0, D: 0, B: 0, V: 0, N: 0|
+|Buses||
+|SB|0xFF|
+|DB|0x00|
+|ADL|0xFF|
+|ADH|0x00|
+
+![00_PreBRK_T01_PHI1](/BreakingNESWiki/imgstore/ops/00_PreBRK_T01_PHI1.jpg)
+
+## PreBRK (0x00), T01 (PHI2)
+
+|Component/Signal|State|
+|---|---|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
+|Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
+|Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
+|Commands|SUMS, ADD_ADL, ADH_ABH, ADL_ABL, DL_ADH, DL_DB|
+|ALU Carry In|0|
+|DAA|0|
+|DSA|0|
+|Increment PC|0|
+|Regs||
+|IR|0x00|
+|PD|0x00|
+|Y|0x00|
+|X|0x00|
+|S|0x00|
+|AI|0xFF|
+|BI|0x00|
+|ADD|0xFF|
+|AC|0xAA|
+|PCL|0xFF|
+|PCH|0x00|
+|ABL|0xFF|
+|ABH|0x00|
+|DL|0x00|
+|DOR|0x00|
+|Flags|C: 1, Z: 1, I: 0, D: 0, B: 0, V: 0, N: 0|
+|Buses||
+|SB|0xFF|
+|DB|0xFF|
+|ADL|0xFF|
+|ADH|0xFF|
+
+![00_PreBRK_T01_PHI2](/BreakingNESWiki/imgstore/ops/00_PreBRK_T01_PHI2.jpg)
+
+Дальше пока /RES не примет значение 1 - процессор будет исполнять в цикле PreBRK T0+T1.
+
+## Сброс
 
 TBD.
 
