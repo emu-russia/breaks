@@ -26,6 +26,10 @@ namespace BreaksDebug
             {
                 Tx = "T01";
             }
+            else if (internals.n_T0 == 0 && internals.n_T2 == 0)
+            {
+                Tx = "T02";
+            }
             else if (internals.n_T0 == 0)
             {
                 Tx = "T0";
@@ -82,7 +86,7 @@ namespace BreaksDebug
 
             string md = "";
 
-            md += "## " + iname + " (0x" + opcodeHex + "), " + Tx + " " + Phi + "\n\n";
+            md += "## " + iname + " (0x" + opcodeHex + "), " + Tx + " (" + Phi + ")\n\n";
 
             md += "|Component/Signal|State|\n";
             md += "|---|---|\n";
