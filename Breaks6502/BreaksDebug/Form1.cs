@@ -23,6 +23,10 @@ namespace BreaksDebug
         byte[] sram = new byte[0x10000];
         IByteProvider memProvider;
         string testAsmName = "Test.asm";
+        string MarkdownDir = "WikiMarkdown";        // To dump the state as Markdown text, you need to create this directory.
+        string MarkdownImgDir = "imgstore/ops";
+        string WikiRoot = "/BreakingNESWiki/";
+        bool MarkdownOutput = false;
 
         public Form1()
         {
@@ -51,6 +55,12 @@ namespace BreaksDebug
             {
                 LoadAsm(testAsmName);
                 Assemble();
+            }
+
+            MarkdownOutput = Directory.Exists(MarkdownDir);
+            if (MarkdownOutput)
+            {
+                Directory.CreateDirectory(MarkdownDir + "/" + MarkdownImgDir);
             }
         }
 
@@ -110,8 +120,10 @@ namespace BreaksDebug
         {
             var regsBuses = sys.GetRegsBuses();
             propertyGrid2.SelectedObject = regsBuses;
-            propertyGrid3.SelectedObject = sys.GetInternals();
-            propertyGrid4.SelectedObject = sys.GetDecoder();
+            var internals = sys.GetInternals();
+            propertyGrid3.SelectedObject = internals;
+            var decoderOut = sys.GetDecoder();
+            propertyGrid4.SelectedObject = decoderOut;
             propertyGrid4.ExpandAllGridItems();
             var commands = sys.GetCommands();
             propertyGrid5.SelectedObject = commands;
@@ -120,6 +132,14 @@ namespace BreaksDebug
             dataPathView1.ShowCpuCommands(commands);
 
             UpdateDisasm(regsBuses.IRForDisasm);
+
+            // Dump the state of the processor in a representative form for the wiki.
+
+            if (MarkdownOutput)
+            {
+                MarkdownDump.ExportStepMarkdown(regsBuses, internals, decoderOut, commands, 
+                    sys.cpu_pads.PHI1, sys.cpu_pads.PHI2, dataPathView1, MarkdownDir, MarkdownImgDir, WikiRoot);
+            }
         }
 
         void UpdateDisasm(byte ir)

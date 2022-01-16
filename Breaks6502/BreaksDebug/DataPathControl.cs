@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
 
+using System.IO;
+
 namespace BreaksDebug
 {
     public partial class DataPathView : Control
@@ -633,6 +635,38 @@ namespace BreaksDebug
         {
             cur_info = info;
             Invalidate();
+        }
+
+        public void SaveSceneAsImage(string FileName)
+        {
+            ImageFormat imageFormat;
+            string ext;
+            Point sceneSize = new Point(Width, Height);
+
+            int bitmapWidth = Width;
+            int bitmapHeight = Height;
+
+            Bitmap bitmap = new Bitmap(bitmapWidth, bitmapHeight, PixelFormat.Format16bppRgb565);
+
+            Graphics gr = Graphics.FromImage(bitmap);
+
+            DrawScene(gr, sceneSize.X, sceneSize.Y);
+
+            ext = Path.GetExtension(FileName);
+
+            if (ext.ToLower() == ".jpg" || ext.ToLower() == ".jpeg")
+                imageFormat = ImageFormat.Jpeg;
+            else if (ext.ToLower() == ".png")
+                imageFormat = ImageFormat.Png;
+            else if (ext.ToLower() == ".bmp")
+                imageFormat = ImageFormat.Bmp;
+            else
+                imageFormat = ImageFormat.Jpeg;
+
+            bitmap.Save(FileName, imageFormat);
+
+            bitmap.Dispose();
+            gr.Dispose();
         }
 
     }
