@@ -138,7 +138,9 @@ The term "picture" refers to a set of abstract video data to explain the interac
 
 So PPUs could be connected in a chain and each PPU could "mix" its part of the picture with the resulting "picture".
 
-In practice this arrangement has not (to my knowledge) been used, probably because the PPU does not have a SYNC signal between several PPUs. Without such a signal it is difficult to synchronize data exchange via EXT pins, because it is not clear what to do now - to take new data or give them out.
+The synchronization between PPUs is done simply by the sequence of EXT pins output and receive data (see multiplexer). The patent suggests that, for additional synchronization of the PPUs, their /RES pins should be combined so that all H/V registers and counters are reset simultaneously.
+
+![ext_pads](/BreakingNESWiki/imgstore/ppu/ext_pads.png)
 
 ## Control signals
 
