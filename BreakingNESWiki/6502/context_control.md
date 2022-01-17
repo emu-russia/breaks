@@ -95,18 +95,18 @@
 
 - Загрузка на шины из DL: DL_DB (WR = 0), DL_ADL, DL_ADH
 - Регистры на шину SB: Y_SB, X_SB, S_SB
-- Загрузка флагов: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
+- Сохранение флагов на шину DB: P_DB
 - Загрузка операндов АЛУ: NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD
 - Операция на АЛУ и сохранение ADD на SB/ADL: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA, ADD_SB7, ADD_SB06, ADD_ADL
 - Мультплексирование шин: SB_DB, SB_ADH
 - BCD-коррекция через шину SB: SB_AC
 - Сохранение AC: AC_SB, AC_DB
-- Сохранение флагов на шину DB: P_DB
+- Загрузка флагов: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 - Загрузка регистров: SB_X, SB_Y, SB_S / S_S
 - Сохранение указателя стека на шину ADL: S_ADL
 - Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Загрузка PC с шин: ADH_PCH, ADL_PCL
 - Инкремент PC: n_1PC, PCL_PCL, PCH_PCH
 - Сохранение PC на шины: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB (с учетом генератора констант)
-- Сохранение DB на DOR: DL_DB (WR = 1)
+- Сохранение DB на DOR: (WR = 1)
 - Установка внешней шины адреса: ADH_ABH, ADL_ABL
