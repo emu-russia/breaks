@@ -53,12 +53,6 @@ namespace M6502Core
 		BaseLogic::DLatch b_latch1;
 		BaseLogic::DLatch b_latch2;
 
-		BaseLogic::FF brk_ff;
-		BaseLogic::FF res_ff;
-		BaseLogic::FF nmi_ff1;
-		BaseLogic::FF nmi_ff2;
-		BaseLogic::FF b_ff;
-
 		BaseLogic::DLatch zadl_latch[3];
 
 	public:
@@ -67,6 +61,7 @@ namespace M6502Core
 		void sim_AfterRandom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
 
 		BaseLogic::TriState getDORES();
-		BaseLogic::TriState getB_OUT();
+		BaseLogic::TriState getB_OUT(BaseLogic::TriState BRK6E);
+		BaseLogic::TriState getn_BRK6_LATCH2();
 	};
 }

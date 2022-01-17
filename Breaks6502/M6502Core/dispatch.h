@@ -103,7 +103,7 @@ namespace M6502Core
 
 	public:
 		
-		void sim_BeforeDecoder(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
+		void sim_BeforeDecoder(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BRKProcessing* brk);
 
 		void sim_BeforeRandomLogic(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
 
