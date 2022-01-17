@@ -86,3 +86,27 @@ On the left side is a small circuit to pull up PHI2 (which is used by a lot of c
 ![phi2_pullup_tran](/BreakingNESWiki/imgstore/phi2_pullup_tran.jpg)
 
 It doesn't carry any logical meaning, but it looks cool.
+
+## Command Priority
+
+Although in a real processor all commands are "executed" at the same time, it is still possible to outline some priority that the developers have laid down.
+
+The commands on the bottom of the 6502, in order of execution:
+
+- Bus load from DL: DL_DB (WR = 0), DL_ADL, DL_ADH
+- Registers to the SB bus: Y_SB, X_SB, S_SB
+- Load flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
+- Loading ALU operands: NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD
+- ALU operation and ADD saving on SB/ADL: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA, ADD_SB7, ADD_SB06, ADD_ADL
+- Bus multiplexing: SB_DB, SB_ADH
+- BCD correction via SB bus: SB_AC
+- Saving AC: AC_SB, AC_DB
+- Saving flags on DB bus: P_DB
+- Load registers: SB_X, SB_Y, SB_S / S_S
+- Stack pointer saving on ADL bus: S_ADL
+- Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
+- PC loading from buses: ADH_PCH, ADL_PCL
+- Increment PC: n_1PC, PCL_PCL, PCH_PCH
+- Saving PC to buses: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB (considering constant generator)
+- Saving DB to DOR: DL_DB (WR = 1)
+- Set external address bus: ADH_ABH, ADL_ABL
