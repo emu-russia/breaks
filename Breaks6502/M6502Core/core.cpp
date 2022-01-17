@@ -459,8 +459,8 @@ namespace M6502Core
 		// To stabilize latches, the top part is simulated twice.
 
 		sim_Top(inputs, outputs, inOuts);
-		sim_Bottom(inputs, outputs, inOuts);
 		sim_Top(inputs, outputs, inOuts);
+		sim_Bottom(inputs, outputs, inOuts);
 	}
 
 	void M6502::getDebug(DebugInfo* info)
