@@ -44,7 +44,3 @@ Located to the right of [OAM FIFO](fifo.md).
 ![ppu_readbuffer](/BreakingNESWiki/imgstore/ppu_readbuffer.jpg)
 
 ![ppu_logisim_rb](/BreakingNESWiki/imgstore/ppu_logisim_rb.jpg)
-
-## Simulation
-
-TBD.

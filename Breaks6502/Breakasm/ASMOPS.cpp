@@ -849,7 +849,7 @@ void opBYTE (char *cmd, char *ops)
             emit ( val.address & 0xff );
         }
         else if ( type == EVAL_STRING ) {
-            len = strlen ( val.string );
+            len = (int)strlen ( val.string );
             for ( c=0; c<len; c++) emit ( val.string[c] );
         }
     }

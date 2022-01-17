@@ -35,7 +35,7 @@ During the second half-cycle (PHI2) the processor is in "listening" mode, during
 - ADD: Intermediate result of an ALU operation
 - AC: accumulator
 - PCH/PCL: program counter in two halves
-- PCHS/PCLS: program counter auxiliary registers (S stands for "set" (?))
+- PCHS/PCLS: program counter auxiliary registers (S stands for "Select")
 - ABH/ABL: registers for output to the external address bus
 - DL: data latch, stores the last read value of the external data bus
 - DOR: data output register, holds the value which will be written to the data bus
@@ -174,3 +174,13 @@ To keep you from getting lost, each section includes a special "locator" at the 
 Example locator:
 
 ![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502_locator_alu_control.jpg)
+
+## Note on Logic Circuits
+
+The logic circuits are mostly made in the Logisim program. The following element is used to denote DLatch:
+
+|DLatch (transistor circuit)|DLatch (logic equivalent)|
+|---|---|
+|![dlatch_tran](/BreakingNESWiki/imgstore/dlatch_tran.jpg)|![dlatch_logic](/BreakingNESWiki/imgstore/dlatch_logic.jpg)|
+
+For convenience, the logical variant of DLatch has two outputs (`out` and `/out`), since the current value of DLatch (out) is often used as an input of a NOR operation.

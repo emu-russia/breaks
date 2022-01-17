@@ -34,21 +34,3 @@ It is hard to say what values are on the latches (gates). If we assume that afte
 (The first latch is next to the `RES` signal.)
 
 But in general it is more correct to assume that the value of the latches is undefined (`x`)
-
-## PCLK logic pseudocode
-
-```c
-if ( CLK == 1 )
-{
-    PCLK_Latch[0] = NOR(~PCLK_Latch[3], RES);
-    PCLK_Latch[2] = ~PCLK_Latch[1];
-}
-else
-{
-    PCLK_Latch[1] = ~PCLK_Latch[0];
-    PCLK_Latch[3] = ~PCLK_Latch[2];
-}
-
-PCLK = ~PCLK_Latch[3];
-nPCLK = ~PCLK;
-```

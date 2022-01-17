@@ -40,6 +40,48 @@ namespace BaseLogic
 	TriState NOR3(TriState a, TriState b, TriState c);
 
 	/// <summary>
+	/// 4-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR4(TriState in[4]);
+
+	/// <summary>
+	/// 5-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR5(TriState in[5]);
+
+	/// <summary>
+	/// 6-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR6(TriState in[6]);
+
+	/// <summary>
+	/// 7-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR7(TriState in[7]);
+
+	/// <summary>
+	/// 8-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR8(TriState in[8]);
+
+	/// <summary>
+	/// 9-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR9(TriState in[9]);
+
+	/// <summary>
 	/// 2-nand
 	/// </summary>
 	/// <param name="a"></param>
@@ -54,6 +96,47 @@ namespace BaseLogic
 	/// <param name="b"></param>
 	/// <returns></returns>
 	TriState AND(TriState a, TriState b);
+
+	/// <summary>
+	/// 3-and
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <param name="c"></param>
+	/// <returns></returns>
+	TriState AND3(TriState a, TriState b, TriState c);
+
+	/// <summary>
+	/// 4-and
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState AND4(TriState in[4]);
+
+	/// <summary>
+	/// 2-or
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <returns></returns>
+	TriState OR(TriState a, TriState b);
+
+	/// <summary>
+	/// 3-or
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <param name="c"></param>
+	/// <returns></returns>
+	TriState OR3(TriState a, TriState b, TriState c);
+
+	/// <summary>
+	/// 2-xor
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	/// <returns></returns>
+	TriState XOR(TriState a, TriState b);
 
 	/// <summary>
 	/// The real latch works as a pair of N-MOS transistors.
@@ -74,6 +157,20 @@ namespace BaseLogic
 	};
 
 	/// <summary>
+	/// Flip/Flop.
+	/// Instead of using ordinary variables, a class is used to emphasize the circuitry nature.
+	/// </summary>
+	class FF
+	{
+		TriState g = TriState::Zero;
+
+	public:
+
+		void set(TriState val);
+		TriState get();
+	};
+
+	/// <summary>
 	/// 2-mux
 	/// </summary>
 	/// <param name="sel"></param>
@@ -84,6 +181,7 @@ namespace BaseLogic
 
 	/// <summary>
 	/// Generalized PLA matrix emulator.
+	/// Although PLA is a combinatorial element, it is made as a class because of its complexity.
 	/// </summary>
 	class PLA
 	{
@@ -109,5 +207,32 @@ namespace BaseLogic
 		/// <param name="outputs">Output values. The number of outputs must correspond to the value defined in the constructor.</param>
 		void sim(TriState inputs[], TriState outputs[]);
 	};
+
+	/// <summary>
+	/// Pack a bit vector into a byte.
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	uint8_t Pack(TriState in[8]);
+
+	/// <summary>
+	/// Unpack a byte into a bit vector.
+	/// </summary>
+	/// <param name="val"></param>
+	/// <param name="out"></param>
+	void Unpack(uint8_t val, TriState out[8]);
+
+	/// <summary>
+	/// Dump vector.
+	/// </summary>
+	/// <param name="in"></param>
+	void Dump(TriState in[8], const char* name);
+
+	/// <summary>
+	/// Connect the two buses using the "Ground Wins" rule.
+	/// </summary>
+	/// <param name="a"></param>
+	/// <param name="b"></param>
+	void BusConnect(TriState& a, TriState& b);
 
 }

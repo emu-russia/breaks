@@ -25,6 +25,36 @@ namespace BaseLogic
 		return (TriState)((~(a | b | c)) & 1);
 	}
 
+	TriState NOR4(TriState in[4])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3])) & 1);
+	}
+
+	TriState NOR5(TriState in[5])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4])) & 1);
+	}
+
+	TriState NOR6(TriState in[6])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4] | in[5])) & 1);
+	}
+
+	TriState NOR7(TriState in[7])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4] | in[5] | in[6])) & 1);
+	}
+
+	TriState NOR8(TriState in[8])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4] | in[5] | in[6] | in[7])) & 1);
+	}
+
+	TriState NOR9(TriState in[9])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4] | in[5] | in[6] | in[7] | in[8])) & 1);
+	}
+
 	TriState NAND(TriState a, TriState b)
 	{
 		return (TriState)((~(a & b)) & 1);
@@ -35,10 +65,41 @@ namespace BaseLogic
 		return NOT(NAND(a, b));
 	}
 
+	TriState AND3(TriState a, TriState b, TriState c)
+	{
+		return (TriState)(((a & b) & c) & 1);
+	}
+
+	TriState AND4(TriState in[4])
+	{
+		return (TriState)(((in[0] & in[1] & in[2] & in[3])) & 1);
+	}
+
+	TriState OR(TriState a, TriState b)
+	{
+		return (TriState)((a | b) & 1);
+	}
+
+	TriState OR3(TriState a, TriState b, TriState c)
+	{
+		return (TriState)((a | b | c) & 1);
+	}
+
+	TriState XOR(TriState a, TriState b)
+	{
+		return (TriState)((a ^ b) & 1);
+	}
+
 	void DLatch::set(TriState val, TriState en)
 	{
 		if (en == TriState::One)
 		{
+			if (val == TriState::Z)
+			{
+				// The floating input does not change the state of the latch.
+				return;
+			}
+
 			g = val;
 		}
 	}
@@ -51,6 +112,16 @@ namespace BaseLogic
 	TriState DLatch::nget()
 	{
 		return NOT(g);
+	}
+
+	void FF::set(TriState val)
+	{
+		g = val;
+	}
+
+	TriState FF::get()
+	{
+		return g;
 	}
 
 	TriState MUX(TriState sel, TriState in0, TriState in1)
@@ -102,6 +173,65 @@ namespace BaseLogic
 					outputs[out] = TriState::Zero;
 					break;
 				}
+			}
+		}
+	}
+
+	uint8_t Pack(TriState in[8])
+	{
+		uint8_t val = 0;
+		for (size_t i = 0; i < 8; i++)
+		{
+			val <<= 1;
+			val |= (in[7 - i] == TriState::One) ? 1 : 0;
+		}
+		return val;
+	}
+
+	void Unpack(uint8_t val, TriState out[8])
+	{
+		for (size_t i = 0; i < 8; i++)
+		{
+			out[i] = (val & 1) ? TriState::One : TriState::Zero;
+			val >>= 1;
+		}
+	}
+
+	void Dump(TriState in[8], const char *name)
+	{
+		printf("%s: ", name);
+		for (size_t i = 0; i < 8; i++)
+		{
+			switch (in[7 - i])
+			{
+				case TriState::Zero:
+					printf("0 ");
+					break;
+				case TriState::One:
+					printf("1 ");
+					break;
+				case TriState::Z:
+					printf("z ");
+					break;
+				case TriState::X:
+					printf("x ");
+					break;
+			}
+		}
+		printf("\n");
+	}
+
+	void BusConnect(TriState& a, TriState& b)
+	{
+		if (a != b)
+		{
+			if (a == TriState::Zero)
+			{
+				b = TriState::Zero;
+			}
+			if (b == TriState::Zero)
+			{
+				a = TriState::Zero;
 			}
 		}
 	}

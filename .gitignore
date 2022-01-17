@@ -8,4 +8,9 @@ Release
 Win32
 x64
 
+# So that thick folders don't end up in the source code when the release is published.
+
 Docs export-ignore
+BreakingNESWiki export-ignore
+BreakingNESWiki_DeepL export-ignore
+BreakingNESWiki_MoonSpeak export-ignore
