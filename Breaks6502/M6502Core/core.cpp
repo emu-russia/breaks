@@ -374,7 +374,7 @@ namespace M6502Core
 
 		regs_in[(size_t)Regs_Input::S_ADL] = rand_out[(size_t)RandomLogic_Output::S_ADL];
 
-		regs->sim_StoreADL(regs_in, ADL, ADL_Dirty);
+		regs->sim_StoreOldS(regs_in, ADL, ADL_Dirty);
 
 		// PC loading from buses: ADH_PCH, ADL_PCL
 
