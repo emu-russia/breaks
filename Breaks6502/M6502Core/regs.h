@@ -20,7 +20,8 @@ namespace M6502Core
 	{
 		BaseLogic::FF Y[8];
 		BaseLogic::FF X[8];
-		BaseLogic::FF S[8];
+		BaseLogic::DLatch S_in[8];
+		BaseLogic::DLatch S_out[8];
 
 	public:
 

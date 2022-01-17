@@ -20,7 +20,8 @@ namespace M6502Core
 
 				Y[n].set(NOT(NOT(Y[n].get())));
 				X[n].set(NOT(NOT(X[n].get())));
-				S[n].set(NOT(NOT(S[n].get())));
+
+				S_out[n].set(S_in[n].nget(), TriState::One);
 			}
 			else
 			{
@@ -39,12 +40,12 @@ namespace M6502Core
 
 				if (S_S == TriState::One)
 				{
-					S[n].set(NOT(NOT(S[n].get())));
+					S_in[n].set(S_out[n].nget(), TriState::One);
 				}
 
 				if (SB_S == TriState::One)
 				{
-					S[n].set(NOT(NOT(SB[n])));
+					S_in[n].set(SB[n], TriState::One);
 				}
 			}
 		}
@@ -63,11 +64,11 @@ namespace M6502Core
 			{
 				if (SB_Dirty[n])
 				{
-					SB[n] = AND(SB[n], S[n].get());
+					SB[n] = AND(SB[n], S_out[n].nget());
 				}
 				else
 				{
-					SB[n] = S[n].get();
+					SB[n] = S_out[n].nget();
 					SB_Dirty[n] = true;
 				}
 			}
@@ -78,7 +79,8 @@ namespace M6502Core
 
 				Y[n].set(NOT(NOT(Y[n].get())));
 				X[n].set(NOT(NOT(X[n].get())));
-				S[n].set(NOT(NOT(S[n].get())));
+
+				S_out[n].set(S_in[n].nget(), TriState::One);
 			}
 			else
 			{
@@ -121,11 +123,11 @@ namespace M6502Core
 			{
 				if (ADL_Dirty[n])
 				{
-					ADL[n] = AND(ADL[n], S[n].get());
+					ADL[n] = AND(ADL[n], S_out[n].nget());
 				}
 				else
 				{
-					ADL[n] = S[n].get();
+					ADL[n] = S_out[n].nget();
 					ADL_Dirty[n] = true;
 				}
 			}
@@ -162,7 +164,7 @@ namespace M6502Core
 
 		for (size_t n = 0; n < 8; n++)
 		{
-			v[n] = S[n].get();
+			v[n] = S_out[n].nget();
 		}
 
 		return Pack(v);
