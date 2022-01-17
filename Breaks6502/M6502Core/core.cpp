@@ -254,7 +254,7 @@ namespace M6502Core
 		// From the development history of the 6502, we know that one developer did the upper part and another (Chuck) did the lower part. 
 		// So to simulate the lower part you have to abstract as much as possible and work only with what you have (registers, buses and set of control commands from the upper part).
 
-		// Bus load from DL: DL_DB (WR = 0), DL_ADL, DL_ADH
+		// Bus load from DL: DL_DB, DL_ADL, DL_ADH
 
 		data_in[(size_t)DataBus_Input::PHI1] = PHI1;
 		data_in[(size_t)DataBus_Input::PHI2] = PHI2;
@@ -277,6 +277,28 @@ namespace M6502Core
 		// Saving flags on DB bus: P_DB
 
 		random->flags->sim_Store(P_DB, BRK6E, brk->getB_OUT(BRK6E), DB, DB_Dirty);
+
+		// Stack pointer saving on ADL bus: S_ADL
+
+		regs_in[(size_t)Regs_Input::S_ADL] = rand_out[(size_t)RandomLogic_Output::S_ADL];
+
+		regs->sim_StoreOldS(regs_in, ADL, ADL_Dirty);
+
+		// Increment PC: n_1PC
+
+		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
+		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
+
+		pc->sim(pc_in);
+
+		// Saving PC to buses: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
+
+		pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = rand_out[(size_t)RandomLogic_Output::PCL_ADL];
+		pc_in[(size_t)ProgramCounter_Input::PCL_DB] = rand_out[(size_t)RandomLogic_Output::PCL_DB];
+		pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = rand_out[(size_t)RandomLogic_Output::PCH_ADH];
+		pc_in[(size_t)ProgramCounter_Input::PCH_DB] = rand_out[(size_t)RandomLogic_Output::PCH_DB];
+
+		pc->sim_Store(pc_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty);
 
 		// Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 
@@ -370,13 +392,7 @@ namespace M6502Core
 
 		regs->sim_LoadSB(regs_in, SB);
 
-		// Stack pointer saving on ADL bus: S_ADL
-
-		regs_in[(size_t)Regs_Input::S_ADL] = rand_out[(size_t)RandomLogic_Output::S_ADL];
-
-		regs->sim_StoreOldS(regs_in, ADL, ADL_Dirty);
-
-		// PC loading from buses: ADH_PCH, ADL_PCL
+		// PC loading from buses / keep: ADH_PCH/PCH_PCH, ADL_PCL/PCL_PCL
 
 		pc_in[(size_t)ProgramCounter_Input::ADL_PCL] = rand_out[(size_t)RandomLogic_Output::ADL_PCL];
 		pc_in[(size_t)ProgramCounter_Input::PCL_PCL] = rand_out[(size_t)RandomLogic_Output::PCL_PCL];
@@ -385,23 +401,7 @@ namespace M6502Core
 
 		pc->sim_Load(pc_in, ADL, ADH);
 
-		// Increment PC: n_1PC, PCL_PCL, PCH_PCH
-
-		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
-		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
-
-		pc->sim(pc_in);
-
-		// Saving PC to buses: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB (considering constant generator)
-
-		pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = rand_out[(size_t)RandomLogic_Output::PCL_ADL];
-		pc_in[(size_t)ProgramCounter_Input::PCL_DB] = rand_out[(size_t)RandomLogic_Output::PCL_DB];
-		pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = rand_out[(size_t)RandomLogic_Output::PCH_ADH];
-		pc_in[(size_t)ProgramCounter_Input::PCH_DB] = rand_out[(size_t)RandomLogic_Output::PCH_DB];
-
-		pc->sim_Store(pc_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty);
-
-		// Saving DB to DOR: (WR = 1)
+		// Saving DB to DOR
 
 		data_in[(size_t)DataBus_Input::PHI1] = PHI1;
 		data_in[(size_t)DataBus_Input::PHI2] = PHI2;
