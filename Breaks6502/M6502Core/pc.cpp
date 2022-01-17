@@ -92,34 +92,17 @@ namespace M6502Core
 		{
 			if (n & 1)
 			{
-				if (PCL_PCL == TriState::One)
-				{
-					PCLS[n].set(PCL[n].nget(), BaseLogic::One);
-				}
-				if (PCH_PCH == TriState::One)
-				{
-					PCHS[n].set(NOT(PCH[n].nget()), BaseLogic::One);
-				}
+				PCLS[n].set(PCL[n].nget(), PCL_PCL);
+				PCHS[n].set(NOT(PCH[n].nget()), PCH_PCH);
 			}
 			else
 			{
-				if (PCL_PCL == TriState::One)
-				{
-					PCLS[n].set(NOT(PCL[n].nget()), BaseLogic::One);
-				}
-				if (PCH_PCH == TriState::One)
-				{
-					PCHS[n].set(PCH[n].nget(), BaseLogic::One);
-				}
+				PCLS[n].set(NOT(PCL[n].nget()), PCL_PCL);
+				PCHS[n].set(PCH[n].nget(), PCH_PCH);
 			}
-			if (ADL_PCL == TriState::One)
-			{
-				PCLS[n].set(ADL[n], BaseLogic::One);
-			}
-			if (ADH_PCH == TriState::One)
-			{
-				PCHS[n].set(ADH[n], BaseLogic::One);
-			}
+
+			PCLS[n].set(ADL[n], ADL_PCL);
+			PCHS[n].set(ADH[n], ADH_PCH);
 		}
 	}
 
