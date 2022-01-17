@@ -21,15 +21,9 @@ namespace M6502Core
 
 	public:
 
-		/// <summary>
-		/// Buses -> DL/DOR
-		/// </summary>
-		void sim_Load(BaseLogic::TriState inputs[], BaseLogic::TriState DB[], BaseLogic::TriState cpu_inOut[]);
+		void sim_SetExternalBus(BaseLogic::TriState inputs[], BaseLogic::TriState DB[], BaseLogic::TriState cpu_inOut[]);
 
-		/// <summary>
-		/// DL/DOR -> Buses
-		/// </summary>
-		void sim_Store(BaseLogic::TriState inputs[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[], 
+		void sim_GetExternalBus(BaseLogic::TriState inputs[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[],
 			bool DB_Dirty[8], bool ADL_Dirty[8], bool ADH_Dirty[8], BaseLogic::TriState cpu_inOut[]);
 
 		uint8_t getDL();

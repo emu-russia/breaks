@@ -129,7 +129,7 @@ namespace BreaksDebug
             propertyGrid5.SelectedObject = commands;
             propertyGrid5.ExpandAllGridItems();
 
-            dataPathView1.ShowCpuCommands(commands);
+            dataPathView1.ShowCpuCommands(commands, sys.cpu_pads.PHI1 != 0);
 
             UpdateDisasm(regsBuses.IRForDisasm);
 

@@ -20,7 +20,8 @@ namespace M6502Core
 	{
 		BaseLogic::FF Y[8];
 		BaseLogic::FF X[8];
-		BaseLogic::FF S[8];
+		BaseLogic::DLatch S_in[8];
+		BaseLogic::DLatch S_out[8];
 
 	public:
 
@@ -28,7 +29,7 @@ namespace M6502Core
 
 		void sim_StoreSB(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], bool SB_Dirty[8]);
 
-		void sim_StoreADL(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], bool ADL_Dirty[8]);
+		void sim_StoreOldS(BaseLogic::TriState inputs[], BaseLogic::TriState ADL[], bool ADL_Dirty[8]);
 
 		uint8_t getY();
 		uint8_t getX();

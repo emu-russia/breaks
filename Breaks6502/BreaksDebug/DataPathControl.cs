@@ -20,6 +20,7 @@ namespace BreaksDebug
         GraphicsPath cpu_write = new GraphicsPath();
         GraphicsPath cpu_read = new GraphicsPath();
         BogusSystem.CpuDebugInfo_Commands cur_info = null;
+        bool SavedPHI1 = false;
         Pen path_pen = new Pen(new SolidBrush(Color.OrangeRed), 5);
         Font labelFont = new Font("Segoe UI", 10.0f, FontStyle.Bold);
         Brush labelBrush = new SolidBrush(Color.Black);
@@ -564,6 +565,13 @@ namespace BreaksDebug
             {
                 if (cur_info.cmd[i] != 0)
                 {
+                    // ABH/ABL are only set during PHI1, even if commands are active, they are blocked.
+
+                    if ((i == (int)BogusSystem.ControlCommand.ADL_ABL || i == (int)BogusSystem.ControlCommand.ADH_ABH) && !SavedPHI1)
+                    {
+                        continue;
+                    }
+
                     gr.DrawPath(path_pen, mapping[i]);
                 }
             }
@@ -631,9 +639,10 @@ namespace BreaksDebug
             }
         }
 
-        public void ShowCpuCommands(BogusSystem.CpuDebugInfo_Commands info)
+        public void ShowCpuCommands(BogusSystem.CpuDebugInfo_Commands info, bool PHI1)
         {
             cur_info = info;
+            SavedPHI1 = PHI1;
             Invalidate();
         }
 

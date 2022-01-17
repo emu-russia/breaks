@@ -20,7 +20,8 @@ namespace M6502Core
 
 				Y[n].set(NOT(NOT(Y[n].get())));
 				X[n].set(NOT(NOT(X[n].get())));
-				S[n].set(NOT(NOT(S[n].get())));
+
+				S_out[n].set(S_in[n].nget(), TriState::One);
 			}
 			else
 			{
@@ -35,17 +36,9 @@ namespace M6502Core
 				}
 
 				// S/S and SB/S are complementary signals.
-				// But in the very first half-cycle all commands are set, because the output latches have an undefined state (X, but essentially - no electrons on the gate yet, so the FETs are closed).
 
-				if (S_S == TriState::One)
-				{
-					S[n].set(NOT(NOT(S[n].get())));
-				}
-
-				if (SB_S == TriState::One)
-				{
-					S[n].set(NOT(NOT(SB[n])));
-				}
+				S_in[n].set(S_out[n].nget(), S_S);
+				S_in[n].set(SB[n], SB_S);
 			}
 		}
 	}
@@ -59,59 +52,50 @@ namespace M6502Core
 
 		for (size_t n = 0; n < 8; n++)
 		{
+			S_out[n].set(S_in[n].nget(), PHI2);
+
 			if (S_SB == TriState::One)
 			{
 				if (SB_Dirty[n])
 				{
-					SB[n] = AND(SB[n], S[n].get());
+					SB[n] = AND(SB[n], S_out[n].nget());
 				}
 				else
 				{
-					SB[n] = S[n].get();
+					SB[n] = S_out[n].nget();
 					SB_Dirty[n] = true;
 				}
 			}
 
-			if (PHI2 == TriState::One)
+			if (Y_SB == TriState::One)
 			{
-				// During PHI2 none of the register loading commands are active and the registers are "refreshed".
-
-				Y[n].set(NOT(NOT(Y[n].get())));
-				X[n].set(NOT(NOT(X[n].get())));
-				S[n].set(NOT(NOT(S[n].get())));
-			}
-			else
-			{
-				if (Y_SB == TriState::One)
+				if (SB_Dirty[n])
 				{
-					if (SB_Dirty[n])
-					{
-						SB[n] = AND(SB[n], Y[n].get());
-					}
-					else
-					{
-						SB[n] = Y[n].get();
-						SB_Dirty[n] = true;
-					}
+					SB[n] = AND(SB[n], Y[n].get());
 				}
-
-				if (X_SB == TriState::One)
+				else
 				{
-					if (SB_Dirty[n])
-					{
-						SB[n] = AND(SB[n], X[n].get());
-					}
-					else
-					{
-						SB[n] = X[n].get();
-						SB_Dirty[n] = true;
-					}
+					SB[n] = Y[n].get();
+					SB_Dirty[n] = true;
+				}
+			}
+
+			if (X_SB == TriState::One)
+			{
+				if (SB_Dirty[n])
+				{
+					SB[n] = AND(SB[n], X[n].get());
+				}
+				else
+				{
+					SB[n] = X[n].get();
+					SB_Dirty[n] = true;
 				}
 			}
 		}
 	}
 
-	void Regs::sim_StoreADL(TriState inputs[], TriState ADL[], bool ADL_Dirty[8])
+	void Regs::sim_StoreOldS(TriState inputs[], TriState ADL[], bool ADL_Dirty[8])
 	{
 		TriState S_ADL = inputs[(size_t)Regs_Input::S_ADL];
 
@@ -121,11 +105,11 @@ namespace M6502Core
 			{
 				if (ADL_Dirty[n])
 				{
-					ADL[n] = AND(ADL[n], S[n].get());
+					ADL[n] = AND(ADL[n], S_out[n].nget());
 				}
 				else
 				{
-					ADL[n] = S[n].get();
+					ADL[n] = S_out[n].nget();
 					ADL_Dirty[n] = true;
 				}
 			}
@@ -162,7 +146,7 @@ namespace M6502Core
 
 		for (size_t n = 0; n < 8; n++)
 		{
-			v[n] = S[n].get();
+			v[n] = S_out[n].nget();
 		}
 
 		return Pack(v);

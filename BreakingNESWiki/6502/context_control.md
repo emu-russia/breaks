@@ -93,20 +93,37 @@
 
 Команды нижней части 6502, в порядке очередности исполнения:
 
-- Загрузка на шины из DL: DL_DB (WR = 0), DL_ADL, DL_ADH
+PHI1 "Установка адреса и режима R/W":
+
+- Загрузка на шины из DL: DL_DB, DL_ADL, DL_ADH
 - Регистры на шину SB: Y_SB, X_SB, S_SB
-- Загрузка флагов: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
+- Сохранение флагов на шину DB: P_DB
+- Сохранение ADD на SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
+- Сохранение старого значения указателя стека на шину ADL: S_ADL
+- Инкремент PC: n_1PC
+- Сохранение PC на шины: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
+- Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
+- Мультиплексирование шин: SB_DB, SB_ADH
 - Загрузка операндов АЛУ: NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD
-- Операция на АЛУ и сохранение ADD на SB/ADL: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA, ADD_SB7, ADD_SB06, ADD_ADL
-- Мультплексирование шин: SB_DB, SB_ADH
 - BCD-коррекция через шину SB: SB_AC
 - Сохранение AC: AC_SB, AC_DB
-- Сохранение флагов на шину DB: P_DB
+- Загрузка флагов: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 - Загрузка регистров: SB_X, SB_Y, SB_S / S_S
-- Сохранение указателя стека на шину ADL: S_ADL
-- Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
-- Загрузка PC с шин: ADH_PCH, ADL_PCL
-- Инкремент PC: n_1PC, PCL_PCL, PCH_PCH
-- Сохранение PC на шины: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB (с учетом генератора констант)
-- Сохранение DB на DOR: DL_DB (WR = 1)
+- Загрузка PC с шин или хранение старого значения: ADH_PCH/PCH_PCH, ADL_PCL/PCL_PCL
+- Сохранение DB на DOR
 - Установка внешней шины адреса: ADH_ABH, ADL_ABL
+
+PHI2 "Чтение/запись данных":
+
+- Загрузка DL значением с внешней шины данных
+- Регистры на шину SB: S_SB
+- Сохранение флагов на шину DB: P_DB
+- Операция на АЛУ: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA
+- Сохранение ADD на SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
+- Сохранение старого значения указателя стека на шину ADL: S_ADL
+- Инкремент PC: n_1PC (в этом полуцикле происходит увеличение PC)
+- Сохранение PC на шины: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
+- Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
+- Мультиплексирование шин: SB_DB, SB_ADH
+- Загрузка флагов: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
+- Установка внешней шины данных из DOR: Если WR = 1
