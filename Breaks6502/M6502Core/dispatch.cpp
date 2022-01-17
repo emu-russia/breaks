@@ -8,13 +8,12 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void Dispatcher::sim_BeforeDecoder(TriState inputs[], TriState outputs[])
+	void Dispatcher::sim_BeforeDecoder(TriState inputs[], TriState outputs[], BRKProcessing *brk)
 	{
 		TriState PHI1 = inputs[(size_t)Dispatcher_Input::PHI1];
 		TriState PHI2 = inputs[(size_t)Dispatcher_Input::PHI2];
 		TriState RDY = inputs[(size_t)Dispatcher_Input::RDY];
 		TriState DORES = inputs[(size_t)Dispatcher_Input::DORES];
-		TriState B_OUT = inputs[(size_t)Dispatcher_Input::B_OUT];
 		TriState ACR = inputs[(size_t)Dispatcher_Input::ACR];
 
 		// Processor Readiness
@@ -46,6 +45,9 @@ namespace M6502Core
 		TriState n_T1X = t1x_latch.nget();
 
 		// Opcode Fetch
+
+		TriState BRK6E = NOR(brk->getn_BRK6_LATCH2(), n_ready);
+		TriState B_OUT = brk->getB_OUT(BRK6E);
 
 		TriState T1 = t1_latch.nget();
 		fetch_latch.set(T1, PHI2);
