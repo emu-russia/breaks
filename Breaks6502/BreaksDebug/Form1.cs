@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Be.Windows.Forms;
 using System.IO;
+using System.Text.Json;
 
 namespace BreaksDebug
 {
@@ -20,13 +21,49 @@ namespace BreaksDebug
         static extern bool AllocConsole();
 
         BogusSystem sys = new BogusSystem();
-        byte[] sram = new byte[0x10000];
+        byte[] mem = new byte[0x10000];
         IByteProvider memProvider;
         string testAsmName = "Test.asm";
         string MarkdownDir = "WikiMarkdown";        // To dump the state as Markdown text, you need to create this directory.
         string MarkdownImgDir = "imgstore/ops";
         string WikiRoot = "/BreakingNESWiki/";
         bool MarkdownOutput = false;
+
+        class UnitTestParam
+        {
+            public bool CompileFromSource = true;
+            public string MemDumpInput = "mem.bin";
+            public string AsmSource = "Test.asm";
+            public string RamStart = "0";
+            public string RamSize = "0x800";
+            public string RomStart = "0xc000";
+            public string RomSize = "0x4000";
+            public bool RunUntilBrk = true;
+            public bool RunCycleAmount = true;
+            public int CycleMax = 10000;
+            public bool DumpMem = true;
+            public string JsonResult = "res.json";
+            public string MemDumpOutput = "mem2.bin";
+        }
+
+        class UnitTestResult
+        {
+            public string A { get; set; } = "0x00";
+            public string X { get; set; } = "0x00";
+            public string Y { get; set; } = "0x00";
+            public string S { get; set; } = "0x00";
+            public string PC { get; set; } = "0x0000";
+            public int C { get; set; } = 0;
+            public int Z { get; set; } = 0;
+            public int I { get; set; } = 0;
+            public int D { get; set; } = 0;
+            public int V { get; set; } = 0;
+            public int N { get; set; } = 0;
+        }
+
+        bool UnitTestMode = false;
+        string TestInputJson;
+        UnitTestParam testParam;
 
         public Form1()
         {
@@ -46,22 +83,151 @@ namespace BreaksDebug
             toolStripButton2.Checked = true;    // RES
             ButtonsToPads();
 
-            memProvider = new DynamicByteProvider(sram);
+            memProvider = new DynamicByteProvider(mem);
             hexBox1.ByteProvider = memProvider;
             sys.AttatchMemory(memProvider);
             UpdateAll();
 
-            if (File.Exists(testAsmName))
+            // Select the operating mode - manual or automatic unit test.
+
+            string[] args = Environment.GetCommandLineArgs();
+
+            UnitTestMode = args.Length > 1;
+            if (UnitTestMode)
             {
-                LoadAsm(testAsmName);
-                Assemble();
+                TestInputJson = args[1];
+                Console.WriteLine("Running UnitTest from " + TestInputJson);
+
+                string json = File.ReadAllText(TestInputJson);
+                testParam = JsonSerializer.Deserialize<UnitTestParam>(json);
+
+                InitUnitTest();
+                StartUnitTest();
+            }
+            else
+            {
+                if (File.Exists(testAsmName))
+                {
+                    LoadAsm(testAsmName);
+                    Assemble();
+                }
             }
 
             MarkdownOutput = Directory.Exists(MarkdownDir);
-            if (MarkdownOutput)
+            if (MarkdownOutput && !UnitTestMode)
             {
                 Directory.CreateDirectory(MarkdownDir + "/" + MarkdownImgDir);
             }
+        }
+
+        int Strtol(string str)
+        {
+            str = str.Trim();
+
+            return (str.Contains("0x") || str.Contains("0X")) ?
+                Convert.ToInt32(str, 16) :
+                    str[0] == '0' ? Convert.ToInt32(str, 8) : Convert.ToInt32(str, 10);
+        }
+
+        void InitUnitTest()
+        {
+            BogusSystem.MemoryMapping map = new BogusSystem.MemoryMapping();
+
+            map.RamStart = Strtol(testParam.RamStart);
+            map.RamSize = Strtol(testParam.RamSize);
+            map.RomStart = Strtol(testParam.RomStart);
+            map.RomSize = Strtol(testParam.RomSize);
+
+            sys.SetMemoryMapping(map);
+
+            if (testParam.CompileFromSource)
+            {
+                LoadAsm(testParam.AsmSource);
+                Assemble();
+            }
+            else
+            {
+                LoadMemDump(testParam.MemDumpInput);
+            }
+
+            // Perform the PreBRK PowerUP sequence
+
+            for (int i=0; i<8; i++)
+            {
+                Step();
+            }
+
+            // Cancel Reset and wait for Reset BRK to complete
+
+            toolStripButton6.Checked = true;
+
+            int timeout = 0x100;
+
+            while (timeout-- != 0)
+            {
+                Step();
+
+                var regsBuses = sys.GetRegsBuses();
+                if (regsBuses.IRForDisasm != 0x00)
+                {
+                    break;
+                }
+            }
+
+            if (timeout == 0)
+            {
+                Console.WriteLine("The operation of the simulator is broken. BRK-sequence is not completed.");
+            }
+        }
+
+        void StartUnitTest()
+        {
+            while (true)
+            {
+                Step();
+
+                if (sys.Cycle >= testParam.CycleMax && testParam.RunCycleAmount)
+                {
+                    break;
+                }
+
+                var regsBuses = sys.GetRegsBuses();
+                if (regsBuses.IRForDisasm == 0x00 && testParam.RunUntilBrk)
+                {
+                    break;
+                }
+            }
+
+            SaveUnitTestResults();
+        }
+
+        void SaveUnitTestResults()
+        {
+            if (testParam.DumpMem)
+            {
+                SaveMemDump(testParam.MemDumpOutput);
+            }
+
+            UnitTestResult res = new UnitTestResult();
+
+            var regsBuses = sys.GetRegsBuses();
+
+            res.A = regsBuses.AC;
+            res.X = regsBuses.X;
+            res.Y = regsBuses.Y;
+            res.S = regsBuses.S;
+            res.PC = "0x" + regsBuses.PCForUnitTest.ToString("X4");
+            res.C = regsBuses.C_OUT;
+            res.Z = regsBuses.Z_OUT;
+            res.I = regsBuses.I_OUT;
+            res.D = regsBuses.D_OUT;
+            res.V = regsBuses.V_OUT;
+            res.N = regsBuses.N_OUT;
+
+            string json = JsonSerializer.Serialize<UnitTestResult>(res);
+            File.WriteAllText(testParam.JsonResult, json);
+
+            Close();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,12 +237,15 @@ namespace BreaksDebug
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Step();
+            if (!UnitTestMode)
+            {
+                Step();
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F11)
+            if (e.KeyCode == Keys.F11 && !UnitTestMode)
             {
                 Step();
             }
@@ -85,7 +254,10 @@ namespace BreaksDebug
         void Step()
         {
             sys.Step();
-            UpdateAll();
+            if (!UnitTestMode)
+            {
+                UpdateAll();
+            }
         }
 
         void UpdateCycleStats()
@@ -156,19 +328,38 @@ namespace BreaksDebug
             UpdateCpuDebugInfo();
         }
 
+        void LoadMemDump(string file)
+        {
+            byte[] dump = File.ReadAllBytes(file);
+
+            for (int i = 0; i < mem.Length; i++)
+            {
+                memProvider.WriteByte(i, dump[i]);
+            }
+
+            hexBox1.Refresh();
+            Console.WriteLine("Loaded memory dump: " + file);
+        }
+
+        void SaveMemDump(string file)
+        {
+            byte[] dump = new byte[mem.Length];
+
+            for (int i = 0; i < mem.Length; i++)
+            {
+                dump[i] = memProvider.ReadByte(i);
+            }
+
+            File.WriteAllBytes(file, dump);
+            Console.WriteLine("Saved memory dump: " + file);
+        }
+
         private void loadMemoryDumpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult res = openFileDialog2.ShowDialog();
             if (res == DialogResult.OK)
             {
-                byte[] dump = File.ReadAllBytes(openFileDialog2.FileName);
-
-                for (int i=0; i<sram.Length; i++)
-                {
-                    memProvider.WriteByte(i, dump[i]);
-                }
-
-                hexBox1.Refresh();
+                LoadMemDump(openFileDialog2.FileName);
             }
         }
 
@@ -177,14 +368,7 @@ namespace BreaksDebug
             DialogResult res = saveFileDialog1.ShowDialog();
             if (res == DialogResult.OK)
             {
-                byte[] dump = new byte[sram.Length];
-
-                for (int i = 0; i < sram.Length; i++)
-                {
-                    dump[i] = memProvider.ReadByte(i);
-                }
-
-                File.WriteAllBytes(saveFileDialog1.FileName, dump);
+                SaveMemDump(saveFileDialog1.FileName);
             }
         }
 
@@ -213,7 +397,7 @@ namespace BreaksDebug
         {
             Console.WriteLine("Assemble");
 
-            byte[] buffer = new byte[sram.Length];
+            byte[] buffer = new byte[mem.Length];
 
             int num_err = Assemble(richTextBox1.Text, buffer);
             if (num_err != 0)
@@ -224,7 +408,7 @@ namespace BreaksDebug
                 return;
             }
 
-            for (int i = 0; i < sram.Length; i++)
+            for (int i = 0; i < mem.Length; i++)
             {
                 memProvider.WriteByte(i, buffer[i]);
             }

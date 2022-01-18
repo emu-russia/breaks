@@ -1,0 +1,15 @@
+{
+	"CompileFromSource": true,
+	"MemDumpInput": "mem.bin",
+	"AsmSource": "Test.asm",
+	"RamStart": "0",
+	"RamSize": "0x800",
+	"RomStart": "0xc000",
+	"RomSize": "0x4000",
+	"RunUntilBrk": true,
+	"RunCycleAmount": true,
+	"CycleMax": 10000,
+	"DumpMem": true,
+	"JsonResult": "res.json",
+	"MemDumpOutput": "mem2.bin"
+}
