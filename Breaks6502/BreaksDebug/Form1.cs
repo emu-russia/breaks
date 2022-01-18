@@ -75,6 +75,8 @@ namespace BreaksDebug
 #if DEBUG
             AllocConsole();
 #endif
+            
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             toolStripButton4.Checked = true;    // /NMI
             toolStripButton5.Checked = true;    // /IRQ
@@ -284,12 +286,12 @@ namespace BreaksDebug
         {
             if (sys.cpu_pads.PHI1 != 0)
             {
-                label3.Text = "PHI1 (Talking)";
+                label3.Text = "PHI1 (Set Address + R/W Mode)";
             }
 
             if (sys.cpu_pads.PHI2 != 0)
             {
-                label3.Text = "PHI2 (Listening)";
+                label3.Text = "PHI2 (Read/Write Mem)";
             }
         }
 
@@ -308,7 +310,7 @@ namespace BreaksDebug
 
             dataPathView1.ShowCpuCommands(commands, sys.cpu_pads.PHI1 != 0);
 
-            UpdateDisasm(regsBuses.IRForDisasm);
+            UpdateDisasm(regsBuses.IRForDisasm, regsBuses.PDForDisasm, internals.FETCH != 0);
 
             // Dump the state of the processor in a representative form for the wiki.
 
@@ -319,9 +321,13 @@ namespace BreaksDebug
             }
         }
 
-        void UpdateDisasm(byte ir)
+        void UpdateDisasm(byte ir, byte pd, bool fetch)
         {
-            label9.Text = QuickDisasm.Disasm(ir);
+            label9.Text = QuickDisasm.Disasm(ir) + " (current)" ;
+            if (fetch)
+            {
+                label9.Text += ", " + QuickDisasm.Disasm(pd) + " (fetched)";
+            }
         }
 
         void UpdateAll()

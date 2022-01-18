@@ -126,6 +126,7 @@ namespace BreaksDebug
             public byte N_OUT { get; set; }
 
             public byte IRForDisasm;
+            public byte PDForDisasm;
             public UInt16 PCForUnitTest;
         }
 
@@ -611,6 +612,7 @@ namespace BreaksDebug
             res.N_OUT = info.N_OUT;
 
             res.IRForDisasm = info.IR;
+            res.PDForDisasm = info.PD;
             res.PCForUnitTest = (UInt16)(((UInt16)info.PCH << 8) | (UInt16)info.PCL);
 
             return res;
