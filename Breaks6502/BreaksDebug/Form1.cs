@@ -101,8 +101,10 @@ namespace BreaksDebug
                 string json = File.ReadAllText(TestInputJson);
                 testParam = JsonSerializer.Deserialize<UnitTestParam>(json);
 
-                InitUnitTest();
-                StartUnitTest();
+                if (InitUnitTest() == 0)
+                {
+                    StartUnitTest();
+                }
             }
             else
             {
@@ -129,7 +131,7 @@ namespace BreaksDebug
                     str[0] == '0' ? Convert.ToInt32(str, 8) : Convert.ToInt32(str, 10);
         }
 
-        void InitUnitTest()
+        int InitUnitTest()
         {
             BogusSystem.MemoryMapping map = new BogusSystem.MemoryMapping();
 
@@ -177,7 +179,10 @@ namespace BreaksDebug
             if (timeout == 0)
             {
                 Console.WriteLine("The operation of the simulator is broken. BRK-sequence is not completed.");
+                return -1;
             }
+
+            return 0;
         }
 
         void StartUnitTest()
