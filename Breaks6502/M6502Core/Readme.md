@@ -37,6 +37,6 @@ Modules connected to internal buses require a special approach and a certain ord
 https://github.com/emu-russia/breaks/blob/master/BreakingNESWiki_DeepL/6502/context_control.md
 
 You should also consider the case when several sources (e.g. registers) put their values on the same bus at the same time.
-To solve such situations ("bus conflicts") it is necessary to use the rule "Ground wins".
+To solve such situations ("bus conflicts") it is necessary to use the "Ground wins" rule.
 
-This takes into account the 6502 feature where buses are "precharged" during PHI2. This is required to form constants (stack address, interrupt address). Charging is done at the very beginning of the simulation.
+This takes into account the 6502 feature where buses are "precharged" during PHI2. This is required to form constants (e.g. stack address, interrupt address). Charging is done at the very beginning of the simulation.
