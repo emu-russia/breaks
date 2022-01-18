@@ -126,6 +126,7 @@ namespace BreaksDebug
             public byte N_OUT { get; set; }
 
             public byte IRForDisasm;
+            public UInt16 PCForUnitTest;
         }
 
         public class CpuDebugInfo_Internals
@@ -371,67 +372,24 @@ namespace BreaksDebug
 
             // Execute M6502Core::sim
 
+            // Reading must be done before the processor simulation, so that data is already on the data bus,
+            // and writing must be done after the simulation, because the processor must first put something on the data bus.
+
+            if (cpu_pads.PHI1 == 1)
+            {
+                // Although all memory operations are performed only during PHI2, a check is made here on PHI1, since the output of PHI2 is not yet set by the simulator.
+                MemRead();
+            }
+
             CpuPadsRaw pads = SerializePads (cpu_pads);
 
             Sim(ref pads, ref info);
 
             cpu_pads = DeserializePads(pads);
 
-            // Handling memory operations
-
-            UInt16 address = 0;
-
-            for (int i = 0; i < 16; i++)
+            if (cpu_pads.PHI2 == 1)
             {
-                if (cpu_pads.A[i] != 0)
-                {
-                    address |= (UInt16)(1 << i);
-                }
-            }
-
-            if (cpu_pads.RnW == 1)
-            {
-                // CPU Read
-
-                byte data = mem.ReadByte(address);
-
-                for (int i =0; i<8; i++)
-                {
-                    if ((data & (1 << i)) != 0)
-                    {
-                        cpu_pads.D[i] = 1;
-                    }
-                    else
-                    {
-                        cpu_pads.D[i] = 0;
-                    }
-                }
-
-                Console.WriteLine("CPU Read " + address.ToString("X4") + " " + data.ToString("X2"));
-            }
-            else
-            {
-                // CPU Write
-
-                byte data = 0;
-
-                for (int i = 0; i < 8; i++)
-                {
-                    if (cpu_pads.D[i] != 0)
-                    {
-                        data |= (byte)(1 << i);
-                    }
-                }
-
-                if (address < 0xF000)
-                {
-                    mem.WriteByte(address, data);
-                    Console.WriteLine("CPU Write " + address.ToString("X4") + " " + data.ToString("X2"));
-                }
-                else
-                {
-                    Console.WriteLine("CPU Write " + address.ToString("X4") + " ignored");
-                }
+                MemWrite();
             }
 
             // Clockgen
@@ -450,6 +408,102 @@ namespace BreaksDebug
         public void AttatchMemory (IByteProvider prov)
         {
             mem = prov;
+        }
+
+        public class MemoryMapping
+        {
+            public int RamStart = 0;
+            public int RamSize = 0x800;
+            public int RomStart = 0xc000;
+            public int RomSize = 0x4000;
+        }
+
+        MemoryMapping memMap = new MemoryMapping();
+
+        public void SetMemoryMapping(MemoryMapping map)
+        {
+            memMap = map;
+        }
+
+        void MemRead()
+        {
+            if (cpu_pads.RnW == 1)
+            {
+                long address = 0;
+
+                for (int i = 0; i < 16; i++)
+                {
+                    if (cpu_pads.A[i] != 0)
+                    {
+                        address |= (UInt16)(1 << i);
+                    }
+                }
+
+                // CPU Read
+
+                byte data = 0xff;       // Open bus by default
+
+                if ( (address >= memMap.RamStart && address < (memMap.RamStart + memMap.RamSize)) || 
+                    (address >= memMap.RomStart && address < (memMap.RomStart + memMap.RomSize)) )
+                {
+                    data = mem.ReadByte(address);
+                    Console.WriteLine("CPU Read " + address.ToString("X4") + " " + data.ToString("X2"));
+                }
+                else
+                {
+                    Console.WriteLine("CPU Read " + address.ToString("X4") + " ignored");
+                }
+
+                for (int i = 0; i < 8; i++)
+                {
+                    if ((data & (1 << i)) != 0)
+                    {
+                        cpu_pads.D[i] = 1;
+                    }
+                    else
+                    {
+                        cpu_pads.D[i] = 0;
+                    }
+                }
+            }
+        }
+
+        void MemWrite()
+        {
+            if (cpu_pads.RnW == 0)
+            {
+                long address = 0;
+
+                for (int i = 0; i < 16; i++)
+                {
+                    if (cpu_pads.A[i] != 0)
+                    {
+                        address |= (UInt16)(1 << i);
+                    }
+                }
+
+                // CPU Write
+
+                byte data = 0;
+
+                for (int i = 0; i < 8; i++)
+                {
+                    if (cpu_pads.D[i] != 0)
+                    {
+                        data |= (byte)(1 << i);
+                    }
+                }
+
+                if (address >= memMap.RamStart && address < (memMap.RamStart + memMap.RamSize))
+                {
+                    mem.WriteByte(address, data);
+                    Console.WriteLine("CPU Write " + address.ToString("X4") + " " + data.ToString("X2"));
+                }
+                else
+                {
+                    Console.WriteLine("CPU Write " + address.ToString("X4") + " ignored");
+                }
+            }
         }
 
         CpuPadsRaw SerializePads (CpuPads pads)
@@ -557,6 +611,7 @@ namespace BreaksDebug
             res.N_OUT = info.N_OUT;
 
             res.IRForDisasm = info.IR;
+            res.PCForUnitTest = (UInt16)(((UInt16)info.PCH << 8) | (UInt16)info.PCL);
 
             return res;
         }
@@ -644,7 +699,6 @@ namespace BreaksDebug
 
         [DllImport("M6502CoreInterop.dll", CallingConvention = CallingConvention.Cdecl)]
         static extern void Sim(ref CpuPadsRaw pads, ref CpuDebugInfoRaw debugInfo);
-
 
         // https://stackoverflow.com/questions/32582504/propertygrid-expandable-collection
 

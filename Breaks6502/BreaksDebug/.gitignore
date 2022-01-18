@@ -1,2 +1,6 @@
 Build/*
 !Build/*.asm
+!Build/*.json
+*.csproj.user
+packages
+Build/res.json
