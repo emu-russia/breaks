@@ -61,6 +61,12 @@ label_s *add_label (const char *name, long orig)
     //printf ( "ADD LABEL(%i): \'%s\' = %08X\n", linenum, temp_name, orig);
     label = label_lookup (temp_name);
     if ( label == NULL ) {
+        if (labels_num >= MAX_LABELS)
+        {
+            printf("ERROR: Number of labels exceeded (%d)\n", MAX_LABELS);
+            errors++;
+            return NULL;
+        }
         label = &labels[labels_num];
         labels_num++;
         strcpy (label->name, temp_name);
@@ -103,6 +109,12 @@ static void dump_labels (void)
 
 void add_patch (label_s *label, long orig, int branch, int line)
 {
+    if (patch_num >= MAX_PATCH)
+    {
+        printf("ERROR: Number of patches exceeded (%d)\n", MAX_PATCH);
+        errors++;
+        return;
+    }
     patch_s * patch;
     patch = &patchs[patch_num];
     patch_num++;
@@ -125,14 +137,26 @@ static void do_patch (void)
             errors++;
         }
         else { 
-            if ( patch->branch ) {
-                org = patch->orig;
-                rel = orig - org - 1;
-                if ( rel > 127 || rel < -128 ) {
-                    printf ("ERROR(%i): Branch relative offset to %s out of range\n", patch->line, patch->label->name );
-                    errors++;
+            if ( patch->branch != 0) {
+                if (patch->branch > 0)
+                {
+                    org = patch->orig;
+                    rel = orig - org - 1;
+                    if (rel > 127 || rel < -128) {
+                        printf("ERROR(%i): Branch relative offset to %s out of range\n", patch->line, patch->label->name);
+                        errors++;
+                    }
+                    else emit(rel & 0xff);
                 }
-                else emit ( rel & 0xff );
+                else
+                {
+                    // Special option for the CASE directive.
+
+                    org = patch->orig;
+                    orig--;
+                    emit(orig & 0xff);
+                    emit((orig >> 8) & 0xff);
+                }
             }
             else {
                 org = patch->orig;
@@ -186,6 +210,12 @@ define_s *add_define (char *name, char *replace)
         strcpy (def->replace, replace);
     }
     else {
+        if (define_num >= MAX_DEFINE)
+        {
+            printf("ERROR: Number of macros exceeded (%d)\n", MAX_DEFINE);
+            errors++;
+            return NULL;
+        }
         def = &defines[define_num];
         define_num++;
         strcpy (def->name, name);
@@ -489,6 +519,7 @@ static oplink optab[] = {
     { "DEFINE", opDEFINE },
     { "BYTE", opBYTE },
     { "WORD", opWORD },
+    { "CASE", opCASE },
     { "ORG", opORG },
     { "END", opEND },
     { "PROCESSOR", opDUMMY },

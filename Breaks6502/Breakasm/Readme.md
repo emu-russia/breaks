@@ -28,6 +28,7 @@ The label (`LABEL`) is optional. The command (`COMMAND`) contains 6502 instructi
 |DEFINE|Define a simple constant|
 |BYTE|Output a byte or string|
 |WORD|Output uint16_t in little-endian order. You can use both numbers as well as labels and addresses.|
+|CASE|Special version of WORD for Switch/Case labels, which are usually used in conjunction with RTS. The only difference from WORD is that the value will be written as an address - 1|
 |END|Finish the assembling|
 |PROCESSOR|Defines type of processor for informational purposes|
 
@@ -69,3 +70,11 @@ SOMEDATA:
 
 END
 ```
+
+## Limitations
+
+- Maximum number of labels: 1024
+- Maximum number of XREFs: 1024
+- Maximum number of Defines: 1024
+
+If you need more, you need to override the values in `ASM.h`.

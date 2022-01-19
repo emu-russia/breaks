@@ -33,14 +33,24 @@ int main(int argc, char** argv)
 		return -100;
 	}
 
+	// One more byte of memory is allocated to complete the text with the null character (END).
+
 	fseek(f, 0, SEEK_END);
-	long size = ftell(f);
+	long size = ftell(f) + 1;
 	fseek(f, 0, SEEK_SET);
 
 	char* text = new char[size];
+	memset(text, 0, size);
 
-	fread(text, 1, size, f);
+	size_t readSize = fread(text, 1, size, f);
 	fclose(f);
+	if (readSize >= size)
+	{
+		delete[] text;
+		delete[] prg;
+		printf("ERROR: Error loading the source file.\n");
+		return -101;
+	}
 
 	// Assemble
 

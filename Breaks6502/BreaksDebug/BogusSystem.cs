@@ -442,7 +442,15 @@ namespace BreaksDebug
 
                 // CPU Read
 
-                byte data = 0xff;       // Open bus by default
+                byte data = 0;       // Open bus by default
+
+                for (int i = 0; i < 8; i++)
+                {
+                    if (cpu_pads.D[i] != 0)
+                    {
+                        data |= (byte)(1 << i);
+                    }
+                }
 
                 if ( (address >= memMap.RamStart && address < (memMap.RamStart + memMap.RamSize)) || 
                     (address >= memMap.RomStart && address < (memMap.RomStart + memMap.RomSize)) )
