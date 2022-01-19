@@ -139,57 +139,59 @@ IndirectLabel:
 
 ; abs, Y
 
-	ora $4000, y
-	and $4000, y
-	eor $4000, y
-	adc $4000, y
-	sta $4000, y
-	lda $4000, y
-	cmp $4000, y
-	sbc $4000, y
+define ABS_ADDR $700
+
+	ora ABS_ADDR, y
+	and ABS_ADDR, y
+	eor ABS_ADDR, y
+	adc ABS_ADDR, y
+	sta ABS_ADDR, y
+	lda ABS_ADDR, y
+	cmp ABS_ADDR, y
+	sbc ABS_ADDR, y
 
 ; abs
 
-	ora $4000
-	asl $4000
-	bit $4000
-	and $4000
-	rol $4000
-	eor $4000
-	lsr $4000
-	adc $4000
-	ror $4000
-	sty $4000
-	sta $4000
-	stx $4000
-	ldy $4000
-	lda $4000
-	ldx $4000
-	cpy $4000
-	cmp $4000
-	dec $4000
-	cpx $4000
-	sbc $4000
-	inc $4000
+	ora ABS_ADDR
+	asl ABS_ADDR
+	bit ABS_ADDR
+	and ABS_ADDR
+	rol ABS_ADDR
+	eor ABS_ADDR
+	lsr ABS_ADDR
+	adc ABS_ADDR
+	ror ABS_ADDR
+	sty ABS_ADDR
+	sta ABS_ADDR
+	stx ABS_ADDR
+	ldy ABS_ADDR
+	lda ABS_ADDR
+	ldx ABS_ADDR
+	cpy ABS_ADDR
+	cmp ABS_ADDR
+	dec ABS_ADDR
+	cpx ABS_ADDR
+	sbc ABS_ADDR
+	inc ABS_ADDR
 
 ; abs, X (except LDX)
 
-	ora $4000, x
-	asl $4000, x
-	and $4000, x
-	rol $4000, x
-	eor $4000, x
-	lsr $4000, x
-	adc $4000, x
-	ror $4000, x
-	sta $4000, x
-	ldy $4000, x
-	lda $4000, x
-	ldx $4000, Y   ; Care!
-	cmp $4000, x
-	dec $4000, x
-	sbc $4000, x
-	inc $4000, x
+	ora ABS_ADDR, x
+	asl ABS_ADDR, x
+	and ABS_ADDR, x
+	rol ABS_ADDR, x
+	eor ABS_ADDR, x
+	lsr ABS_ADDR, x
+	adc ABS_ADDR, x
+	ror ABS_ADDR, x
+	sta ABS_ADDR, x
+	ldy ABS_ADDR, x
+	lda ABS_ADDR, x
+	ldx ABS_ADDR, Y   ; Care!
+	cmp ABS_ADDR, x
+	dec ABS_ADDR, x
+	sbc ABS_ADDR, x
+	inc ABS_ADDR, x
 
 ; pp
 
