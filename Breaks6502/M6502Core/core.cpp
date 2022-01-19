@@ -282,6 +282,13 @@ namespace M6502Core
 
 		alu->sim_StoreADD(alu_in, SB, ADL, SB_Dirty, ADH_Dirty);
 
+		// Saving AC: AC_SB, AC_DB
+
+		alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
+		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
+
+		alu->sim_StoreAC(alu_in, SB, DB, SB_Dirty, DB_Dirty);
+
 		// Saving flags on DB bus: P_DB
 
 		random->flags->sim_Store(P_DB, BRK6E, brk->getB_OUT(BRK6E), DB, DB_Dirty);
@@ -352,13 +359,6 @@ namespace M6502Core
 		alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
 
 		alu->sim(alu_in, SB, DB, ADL, ADH, SB_Dirty, DB_Dirty, ADL_Dirty, ADH_Dirty);
-
-		// Saving AC: AC_SB, AC_DB
-
-		alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
-		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
-
-		alu->sim_StoreAC(alu_in, SB, DB, SB_Dirty, DB_Dirty);
 
 		// Load flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 
@@ -493,6 +493,8 @@ namespace M6502Core
 		info->AC = alu->getAC();
 		info->PCL = pc->getPCL();
 		info->PCH = pc->getPCH();
+		info->PCLS = pc->getPCLS();
+		info->PCHS = pc->getPCHS();
 		info->ABL = addr_bus->getABL();
 		info->ABH = addr_bus->getABH();
 		info->DL = data_bus->getDL();
@@ -535,6 +537,10 @@ namespace M6502Core
 		info->ENDX = disp_late_out[(size_t)Dispatcher_Output::ENDX] == TriState::One ? 1 : 0;
 		info->TRES1 = disp_late_out[(size_t)Dispatcher_Output::TRES1] == TriState::One ? 1 : 0;
 		info->TRESX = disp_late_out[(size_t)Dispatcher_Output::TRESX] == TriState::One ? 1 : 0;
+		info->BRFW = rand_out[(size_t)RandomLogic_Output::BRFW] == TriState::One ? 1 : 0;
+		info->n_BRTAKEN = rand_out[(size_t)RandomLogic_Output::n_BRTAKEN] == TriState::One ? 1 : 0;
+		info->ACR = alu->getACR() == TriState::One ? 1 : 0;
+		info->AVR = alu->getAVR() == TriState::One ? 1 : 0;
 
 		for (size_t n=0; n<Decoder::outputs_count; n++)
 		{

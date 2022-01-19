@@ -102,6 +102,10 @@ namespace BreaksDebug
             [Category("Regs")]
             public string PCH { get; set; }
             [Category("Regs")]
+            public string PCLS { get; set; }
+            [Category("Regs")]
+            public string PCHS { get; set; }
+            [Category("Regs")]
             public string ABL { get; set; }
             [Category("Regs")]
             public string ABH { get; set; }
@@ -190,6 +194,14 @@ namespace BreaksDebug
             public byte TRES1 { get; set; }
             [Category("Dispatcher")]
             public byte TRESX { get; set; }
+            [Category("Branch Logic")]
+            public byte BRFW { get; set; }
+            [Category("Branch Logic")]
+            public byte n_BRTAKEN { get; set; }
+            [Category("ALU Output")]
+            public byte ACR { get; set; }
+            [Category("ALU Output")]
+            public byte AVR { get; set; }
         }
 
         public class CpuDebugInfo_Decoder
@@ -304,6 +316,8 @@ namespace BreaksDebug
             public byte AC;
             public byte PCL;
             public byte PCH;
+            public byte PCLS;
+            public byte PCHS;
             public byte ABL;
             public byte ABH;
             public byte DL;
@@ -348,6 +362,10 @@ namespace BreaksDebug
             public byte ENDX;
             public byte TRES1;
             public byte TRESX;
+            public byte BRFW;
+            public byte n_BRTAKEN;
+            public byte ACR;
+            public byte AVR;
 
             // Decoder
 
@@ -606,6 +624,8 @@ namespace BreaksDebug
             res.AC = "0x" + info.AC.ToString("X2");
             res.PCL = "0x" + info.PCL.ToString("X2");
             res.PCH = "0x" + info.PCH.ToString("X2");
+            res.PCLS = "0x" + info.PCLS.ToString("X2");
+            res.PCHS = "0x" + info.PCHS.ToString("X2");
             res.ABL = "0x" + info.ABL.ToString("X2");
             res.ABH = "0x" + info.ABH.ToString("X2");
             res.DL = "0x" + info.DL.ToString("X2");
@@ -659,6 +679,10 @@ namespace BreaksDebug
             res.ENDX = info.ENDX;
             res.TRES1 = info.TRES1;
             res.TRESX = info.TRESX;
+            res.BRFW = info.BRFW;
+            res.n_BRTAKEN = info.n_BRTAKEN;
+            res.ACR = info.ACR;
+            res.AVR = info.AVR;
 
             return res;
         }

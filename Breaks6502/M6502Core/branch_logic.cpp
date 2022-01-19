@@ -18,10 +18,13 @@ namespace M6502Core
 
 		// BRTAKEN
 
-		TriState res_C = NOR3(n_C_OUT, d[126], NOT(d[121]));
-		TriState res_V = NOR3(n_V_OUT, d[121], NOT(d[126]));
-		TriState res_N = NOR3(n_N_OUT, NOT(d[126]), NOT(d[121]));
-		TriState res_Z = NOR3(n_Z_OUT, d[126], d[121]);
+		TriState n_IR6 = d[121];
+		TriState n_IR7 = d[126];
+
+		TriState res_C = NOR3(n_C_OUT, NOT(n_IR6), n_IR7);
+		TriState res_V = NOR3(n_V_OUT, n_IR6, NOT(n_IR7));
+		TriState res_N = NOR3(n_N_OUT, NOT(n_IR6), NOT(n_IR7));
+		TriState res_Z = NOR3(n_Z_OUT, n_IR6, n_IR7);
 
 		TriState in1[4];
 		in1[0] = res_C;

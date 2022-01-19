@@ -99,6 +99,7 @@ PHI1 "Set Address and R/W Mode":
 - Registers to the SB bus: Y_SB, X_SB, S_SB
 - Saving flags on the DB bus: P_DB
 - ADD saving on SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
+- Saving AC: AC_SB, AC_DB
 - Saving of old stack pointer value to ADL bus: S_ADL
 - Increment PC: n_1PC
 - Saving PC to bus: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
@@ -106,7 +107,6 @@ PHI1 "Set Address and R/W Mode":
 - Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Loading ALU operands: NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD
 - BCD correction via SB bus: SB_AC
-- Saving AC: AC_SB, AC_DB
 - Loading flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 - Loading registers: SB_X, SB_Y, SB_S / S_S
 - Load PC from bus or keep old value: ADH_PCH/PCH_PCH, ADL_PCL/PCL_PCL

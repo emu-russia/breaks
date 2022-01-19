@@ -187,15 +187,45 @@ namespace M6502Core
 		{
 			if (SB_DB == TriState::One)
 			{
-				BusConnect(SB[n], DB[n]);
-				SB_Dirty[n] = true;
-				DB_Dirty[n] = true;
+				if (SB_Dirty[n] && !DB_Dirty[n])
+				{
+					DB[n] = SB[n];
+					DB_Dirty[n] = true;
+				}
+				else if (!SB_Dirty[n] && DB_Dirty[n])
+				{
+					SB[n] = DB[n];
+					SB_Dirty[n] = true;
+				}
+				else if (!SB_Dirty[n] && !DB_Dirty[n])
+				{
+					// z
+				}
+				else
+				{
+					BusConnect(SB[n], DB[n]);
+				}
 			}
 			if (SB_ADH == TriState::One)
 			{
-				BusConnect(SB[n], ADH[n]);
-				SB_Dirty[n] = true;
-				ADH_Dirty[n] = true;
+				if (SB_Dirty[n] && !ADH_Dirty[n])
+				{
+					ADH[n] = SB[n];
+					ADH_Dirty[n] = true;
+				}
+				else if (!SB_Dirty[n] && ADH_Dirty[n])
+				{
+					SB[n] = ADH[n];
+					SB_Dirty[n] = true;
+				}
+				else if (!SB_Dirty[n] && !ADH_Dirty[n])
+				{
+					// z
+				}
+				else
+				{
+					BusConnect(SB[n], ADH[n]);
+				}
 			}
 		}
 	}
