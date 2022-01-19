@@ -19,6 +19,7 @@ namespace BreaksDebug
         GraphicsPath [] mapping = new GraphicsPath[(int)BogusSystem.ControlCommand.Max];
         GraphicsPath cpu_write = new GraphicsPath();
         GraphicsPath cpu_read = new GraphicsPath();
+        GraphicsPath alu_add = new GraphicsPath();
         BogusSystem.CpuDebugInfo_Commands cur_info = null;
         bool SavedPHI1 = false;
         Pen path_pen = new Pen(new SolidBrush(Color.OrangeRed), 5);
@@ -495,6 +496,16 @@ namespace BreaksDebug
                 new Point(777, 151),
                 new Point(783, 157)
             });
+
+            // ALU -> ADD
+
+            alu_add.AddLines(new Point[] {
+                new Point(305, 112),
+                new Point(321, 112),
+                new Point(317, 108),
+                new Point(317, 116),
+                new Point(321, 112)
+            });
         }
 
         private void ReallocateGraphics()
@@ -596,35 +607,53 @@ namespace BreaksDebug
 
             Point point = new Point(263, 59);
 
-            if (cur_info.cmd[(int)BogusSystem.ControlCommand.ANDS] != 0)
+            // ALU operations are saved only during PHI2
+
+            if (!SavedPHI1)
             {
-                gr.DrawString("ANDS", labelFont, labelBrush, point);
+                bool anyOp = false;
+
+                if (cur_info.cmd[(int)BogusSystem.ControlCommand.ANDS] != 0)
+                {
+                    gr.DrawString("ANDS", labelFont, labelBrush, point);
+                    anyOp = true;
+                }
+
+                if (cur_info.cmd[(int)BogusSystem.ControlCommand.EORS] != 0)
+                {
+                    gr.DrawString("EORS", labelFont, labelBrush, point);
+                    anyOp = true;
+                }
+
+                if (cur_info.cmd[(int)BogusSystem.ControlCommand.ORS] != 0)
+                {
+                    gr.DrawString("ORS", labelFont, labelBrush, point);
+                    anyOp = true;
+                }
+
+                if (cur_info.cmd[(int)BogusSystem.ControlCommand.SRS] != 0)
+                {
+                    gr.DrawString("SRS", labelFont, labelBrush, point);
+                    anyOp = true;
+                }
+
+                if (cur_info.cmd[(int)BogusSystem.ControlCommand.SUMS] != 0)
+                {
+                    gr.DrawString("SUMS", labelFont, labelBrush, point);
+                    anyOp = true;
+                }
+
+                if (cur_info.n_ACIN == 0 && anyOp)
+                {
+                    gr.DrawString("+C", labelFont, labelBrush, new Point(300, 70));
+                }
+
+                if (anyOp)
+                {
+                    gr.DrawPath(path_pen, alu_add);
+                }
             }
 
-            if (cur_info.cmd[(int)BogusSystem.ControlCommand.EORS] != 0)
-            {
-                gr.DrawString("EORS", labelFont, labelBrush, point);
-            }
-
-            if (cur_info.cmd[(int)BogusSystem.ControlCommand.ORS] != 0)
-            {
-                gr.DrawString("ORS", labelFont, labelBrush, point);
-            }
-
-            if (cur_info.cmd[(int)BogusSystem.ControlCommand.SRS] != 0)
-            {
-                gr.DrawString("SRS", labelFont, labelBrush, point);
-            }
-
-            if (cur_info.cmd[(int)BogusSystem.ControlCommand.SUMS] != 0)
-            {
-                gr.DrawString("SUMS", labelFont, labelBrush, point);
-            }
-
-            if (cur_info.n_ACIN == 0)
-            {
-                gr.DrawString("+C", labelFont, labelBrush, new Point(300, 70));
-            }
             if (cur_info.n_DAA == 0)
             {
                 gr.DrawString("DAA", labelFont, labelBrush, new Point(367, 52));
@@ -633,6 +662,7 @@ namespace BreaksDebug
             {
                 gr.DrawString("DSA", labelFont, labelBrush, new Point(367, 72));
             }
+
             if (cur_info.n_1PC == 0)
             {
                 gr.DrawString("+1", labelFont, labelBrush, new Point(635, 64));

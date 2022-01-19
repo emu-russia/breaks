@@ -274,6 +274,21 @@ namespace M6502Core
 
 		regs->sim_StoreSB(regs_in, SB, SB_Dirty);
 
+		// ADD saving on SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
+
+		alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
+		alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
+		alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
+
+		alu->sim_StoreADD(alu_in, SB, ADL, SB_Dirty, ADH_Dirty);
+
+		// Saving AC: AC_SB, AC_DB
+
+		alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
+		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
+
+		alu->sim_StoreAC(alu_in, SB, DB, SB_Dirty, DB_Dirty);
+
 		// Saving flags on DB bus: P_DB
 
 		random->flags->sim_Store(P_DB, BRK6E, brk->getB_OUT(BRK6E), DB, DB_Dirty);
@@ -300,6 +315,13 @@ namespace M6502Core
 
 		pc->sim_Store(pc_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty);
 
+		// Bus multiplexing: SB_DB, SB_ADH
+
+		alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
+		alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
+
+		alu->sim_BusMux(alu_in, SB, DB, ADH, SB_Dirty, DB_Dirty, ADH_Dirty);
+
 		// Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 
 		TriState addr_in_early[(size_t)AddressBus_Input::Max];
@@ -322,35 +344,21 @@ namespace M6502Core
 
 		alu->sim_Load(alu_in, SB, DB, ADL, SB_Dirty);
 
-		// ALU operation and ADD saving on SB/ADL: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA, ADD_SB7, ADD_SB06, ADD_ADL
-		// Bus multiplexing: SB_DB, SB_ADH
+		// ALU operation: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA
 		// BCD correction via SB bus: SB_AC
 
 		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
-		alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
-		alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
-		alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
 		alu_in[(size_t)ALU_Input::ANDS] = rand_out[(size_t)RandomLogic_Output::ANDS];
 		alu_in[(size_t)ALU_Input::EORS] = rand_out[(size_t)RandomLogic_Output::EORS];
 		alu_in[(size_t)ALU_Input::ORS] = rand_out[(size_t)RandomLogic_Output::ORS];
 		alu_in[(size_t)ALU_Input::SRS] = rand_out[(size_t)RandomLogic_Output::SRS];
 		alu_in[(size_t)ALU_Input::SUMS] = rand_out[(size_t)RandomLogic_Output::SUMS];
-		alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
-		alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
+		alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
 		alu_in[(size_t)ALU_Input::n_ACIN] = rand_out[(size_t)RandomLogic_Output::n_ACIN];
 		alu_in[(size_t)ALU_Input::n_DAA] = rand_out[(size_t)RandomLogic_Output::n_DAA];
 		alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
 
 		alu->sim(alu_in, SB, DB, ADL, ADH, SB_Dirty, DB_Dirty, ADL_Dirty, ADH_Dirty);
-
-		// Saving AC: AC_SB, AC_DB
-
-		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
-		alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
-		alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
-		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
-
-		alu->sim_Store(alu_in, SB, DB, ADH, SB_Dirty, DB_Dirty, ADH_Dirty);
 
 		// Load flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 
@@ -459,8 +467,8 @@ namespace M6502Core
 		// To stabilize latches, the top part is simulated twice.
 
 		sim_Top(inputs, outputs, inOuts);
-		sim_Top(inputs, outputs, inOuts);
 		sim_Bottom(inputs, outputs, inOuts);
+		sim_Top(inputs, outputs, inOuts);
 	}
 
 	void M6502::getDebug(DebugInfo* info)
@@ -485,6 +493,8 @@ namespace M6502Core
 		info->AC = alu->getAC();
 		info->PCL = pc->getPCL();
 		info->PCH = pc->getPCH();
+		info->PCLS = pc->getPCLS();
+		info->PCHS = pc->getPCHS();
 		info->ABL = addr_bus->getABL();
 		info->ABH = addr_bus->getABH();
 		info->DL = data_bus->getDL();
@@ -527,6 +537,10 @@ namespace M6502Core
 		info->ENDX = disp_late_out[(size_t)Dispatcher_Output::ENDX] == TriState::One ? 1 : 0;
 		info->TRES1 = disp_late_out[(size_t)Dispatcher_Output::TRES1] == TriState::One ? 1 : 0;
 		info->TRESX = disp_late_out[(size_t)Dispatcher_Output::TRESX] == TriState::One ? 1 : 0;
+		info->BRFW = rand_out[(size_t)RandomLogic_Output::BRFW] == TriState::One ? 1 : 0;
+		info->n_BRTAKEN = rand_out[(size_t)RandomLogic_Output::n_BRTAKEN] == TriState::One ? 1 : 0;
+		info->ACR = alu->getACR() == TriState::One ? 1 : 0;
+		info->AVR = alu->getAVR() == TriState::One ? 1 : 0;
 
 		for (size_t n=0; n<Decoder::outputs_count; n++)
 		{

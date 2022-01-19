@@ -54,8 +54,6 @@ namespace M6502Core
 		BaseLogic::DLatch ACLatch;
 		BaseLogic::DLatch AVRLatch;
 
-		BaseLogic::TriState bcd_out[8];
-
 		bool BCD_Hack = false;		// BCD correction hack for NES/Famicom.
 
 	public:
@@ -65,8 +63,11 @@ namespace M6502Core
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[], 
 			bool SB_Dirty[8], bool DB_Dirty[8], bool ADL_Dirty[8], bool ADH_Dirty[8]);
 
-		void sim_Store(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], BaseLogic::TriState ADH[], 
-			bool SB_Dirty[8], bool DB_Dirty[8], bool ADH_Dirty[8]);
+		void sim_StoreADD(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState ADL[], bool SB_Dirty[8], bool ADL_Dirty[8]);
+
+		void sim_StoreAC(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], bool SB_Dirty[8], bool DB_Dirty[8]);
+
+		void sim_BusMux(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], BaseLogic::TriState ADH[], bool SB_Dirty[8], bool DB_Dirty[8], bool ADH_Dirty[8]);
 
 		BaseLogic::TriState getACR();
 

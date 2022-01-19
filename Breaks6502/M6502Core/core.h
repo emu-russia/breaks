@@ -64,6 +64,8 @@ namespace M6502Core
 		uint8_t AC;
 		uint8_t PCL;
 		uint8_t PCH;
+		uint8_t PCLS;
+		uint8_t PCHS;
 		uint8_t ABL;
 		uint8_t ABH;
 		uint8_t DL;
@@ -108,6 +110,10 @@ namespace M6502Core
 		uint8_t ENDX;
 		uint8_t TRES1;
 		uint8_t TRESX;
+		uint8_t BRFW;
+		uint8_t n_BRTAKEN;
+		uint8_t ACR;
+		uint8_t AVR;
 
 		// Decoder
 

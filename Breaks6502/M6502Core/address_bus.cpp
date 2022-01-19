@@ -53,6 +53,8 @@ namespace M6502Core
 		TriState ADL_ABL = inputs[(size_t)AddressBus_Input::ADL_ABL];
 		TriState ADH_ABH = inputs[(size_t)AddressBus_Input::ADH_ABH];
 
+		// The address bus is set during PHI1 only
+
 		for (size_t n = 0; n < 8; n++)
 		{
 			if (PHI2 == TriState::One)

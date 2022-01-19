@@ -40,5 +40,7 @@ namespace M6502Core
 
 		uint8_t getPCL();
 		uint8_t getPCH();
+		uint8_t getPCLS();
+		uint8_t getPCHS();
 	};
 }

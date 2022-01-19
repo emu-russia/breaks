@@ -99,14 +99,14 @@ PHI1 "Установка адреса и режима R/W":
 - Регистры на шину SB: Y_SB, X_SB, S_SB
 - Сохранение флагов на шину DB: P_DB
 - Сохранение ADD на SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
+- Сохранение AC: AC_SB, AC_DB
 - Сохранение старого значения указателя стека на шину ADL: S_ADL
 - Инкремент PC: n_1PC
 - Сохранение PC на шины: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
-- Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Мультиплексирование шин: SB_DB, SB_ADH
+- Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Загрузка операндов АЛУ: NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD
 - BCD-коррекция через шину SB: SB_AC
-- Сохранение AC: AC_SB, AC_DB
 - Загрузка флагов: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 - Загрузка регистров: SB_X, SB_Y, SB_S / S_S
 - Загрузка PC с шин или хранение старого значения: ADH_PCH/PCH_PCH, ADL_PCL/PCL_PCL
@@ -123,7 +123,7 @@ PHI2 "Чтение/запись данных":
 - Сохранение старого значения указателя стека на шину ADL: S_ADL
 - Инкремент PC: n_1PC (в этом полуцикле происходит увеличение PC)
 - Сохранение PC на шины: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
-- Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Мультиплексирование шин: SB_DB, SB_ADH
+- Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Загрузка флагов: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 - Установка внешней шины данных из DOR: Если WR = 1
