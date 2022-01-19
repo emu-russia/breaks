@@ -280,7 +280,7 @@ namespace M6502Core
 		alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
 		alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
 
-		alu->sim_StoreADD(alu_in, SB, ADL, SB_Dirty, ADH_Dirty);
+		alu->sim_StoreADD(alu_in, SB, ADL, SB_Dirty, ADL_Dirty);
 
 		// Saving AC: AC_SB, AC_DB
 

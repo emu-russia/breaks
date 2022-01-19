@@ -144,7 +144,7 @@ namespace M6502Core
 
 		br_latch1.set(NOR(AND(n_BRTAKEN, BR2), NOR(n_ADL_PCL, NOT(NOR(BR2, BR3)))), PHI2);
 		br_latch2.set(NOR(NOT(BR3), NotReadyPhi1), PHI2);
-		TriState ipc_temp = NOR(XOR(BRFW, NOT(ACR)), br_latch2.nget());
+		TriState ipc_temp = AND(XOR(BRFW, NOT(ACR)), NOT(br_latch2.nget()));
 		ipc_latch1.set(B_OUT, PHI1);
 		ipc_latch2.set(ipc_temp, PHI1);
 		ipc_latch3.set(NOR3(n_ready, br_latch1.get(), NOT(n_IMPLIED)), PHI1);
@@ -164,7 +164,6 @@ namespace M6502Core
 		TriState T1 = t1_latch.nget();
 		ends_latch1.set(MUX(n_ready, NOR(T0, AND(n_BRTAKEN, BR2)), NOT(T1)), PHI2);
 		ends_latch2.set(RESP, PHI2);
-		ENDS = NOR(ends_latch1.get(), ends_latch2.get());	// Update ENDS
 		TriState TRES1 = NOT(n_TRES1);
 
 		tresx_latch1.set(NOR(d[91], d[92]), PHI2);
