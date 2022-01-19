@@ -137,14 +137,26 @@ static void do_patch (void)
             errors++;
         }
         else { 
-            if ( patch->branch ) {
-                org = patch->orig;
-                rel = orig - org - 1;
-                if ( rel > 127 || rel < -128 ) {
-                    printf ("ERROR(%i): Branch relative offset to %s out of range\n", patch->line, patch->label->name );
-                    errors++;
+            if ( patch->branch != 0) {
+                if (patch->branch > 0)
+                {
+                    org = patch->orig;
+                    rel = orig - org - 1;
+                    if (rel > 127 || rel < -128) {
+                        printf("ERROR(%i): Branch relative offset to %s out of range\n", patch->line, patch->label->name);
+                        errors++;
+                    }
+                    else emit(rel & 0xff);
                 }
-                else emit ( rel & 0xff );
+                else
+                {
+                    // Special option for the CASE directive.
+
+                    org = patch->orig;
+                    orig--;
+                    emit(orig & 0xff);
+                    emit((orig >> 8) & 0xff);
+                }
             }
             else {
                 org = patch->orig;
@@ -507,6 +519,7 @@ static oplink optab[] = {
     { "DEFINE", opDEFINE },
     { "BYTE", opBYTE },
     { "WORD", opWORD },
+    { "CASE", opCASE },
     { "ORG", opORG },
     { "END", opEND },
     { "PROCESSOR", opDUMMY },

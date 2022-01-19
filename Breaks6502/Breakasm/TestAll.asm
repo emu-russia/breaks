@@ -30,6 +30,9 @@ Sub1:
 	rts
 JumpOverSub:
 
+	jmp (IndirectJumpAddr)
+IndirectLabel:
+
 ; TwoCycle opcodes
 
 	ldy #1
@@ -145,7 +148,48 @@ JumpOverSub:
 	cmp $4000, y
 	sbc $4000, y
 
-; abs, X
+; abs
+
+	ora $4000
+	asl $4000
+	bit $4000
+	and $4000
+	rol $4000
+	eor $4000
+	lsr $4000
+	adc $4000
+	ror $4000
+	sty $4000
+	sta $4000
+	stx $4000
+	ldy $4000
+	lda $4000
+	ldx $4000
+	cpy $4000
+	cmp $4000
+	dec $4000
+	cpx $4000
+	sbc $4000
+	inc $4000
+
+; abs, X (except LDX)
+
+	ora $4000, x
+	asl $4000, x
+	and $4000, x
+	rol $4000, x
+	eor $4000, x
+	lsr $4000, x
+	adc $4000, x
+	ror $4000, x
+	sta $4000, x
+	ldy $4000, x
+	lda $4000, x
+	ldx $4000, Y   ; Care!
+	cmp $4000, x
+	dec $4000, x
+	sbc $4000, x
+	inc $4000, x
 
 ; pp
 
@@ -159,6 +203,9 @@ JumpOverSub:
 	brk
 Halt:
 	jmp Halt
+
+IndirectJumpAddr:
+	word IndirectLabel
 
 BogusNMI:
 	inx
