@@ -136,6 +136,15 @@ JumpOverSub:
 
 ; abs, Y
 
+	ora $4000, y
+	and $4000, y
+	eor $4000, y
+	adc $4000, y
+	sta $4000, y
+	lda $4000, y
+	cmp $4000, y
+	sbc $4000, y
+
 ; abs, X
 
 ; pp

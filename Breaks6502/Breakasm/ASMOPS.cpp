@@ -561,12 +561,12 @@ void opALU1 (char *cmd, char *ops)
                     emit ( (val[0].address >> 8) & 0xff );
                 }
                 else if (val[1].label->orig == KEYWORD && !_stricmp(val[1].label->name, "Y")) {
-                    if ( !_stricmp ( cmd, "ORA" ) ) emit ( 0x1D );
-                    if ( !_stricmp ( cmd, "AND" ) ) emit ( 0x3D );
-                    if ( !_stricmp ( cmd, "EOR" ) ) emit ( 0x5D );
-                    if ( !_stricmp ( cmd, "ADC" ) ) emit ( 0x7D );
-                    if ( !_stricmp ( cmd, "CMP" ) ) emit ( 0xDD );
-                    if ( !_stricmp ( cmd, "SBC" ) ) emit ( 0xFD );
+                    if ( !_stricmp ( cmd, "ORA" ) ) emit ( 0x19 );
+                    if ( !_stricmp ( cmd, "AND" ) ) emit ( 0x39 );
+                    if ( !_stricmp ( cmd, "EOR" ) ) emit ( 0x59 );
+                    if ( !_stricmp ( cmd, "ADC" ) ) emit ( 0x79 );
+                    if ( !_stricmp ( cmd, "CMP" ) ) emit ( 0xD9 );
+                    if ( !_stricmp ( cmd, "SBC" ) ) emit ( 0xF9 );
                     emit ( val[0].address & 0xff );
                     emit ( (val[0].address >> 8) & 0xff );
                 }
