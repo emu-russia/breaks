@@ -885,37 +885,6 @@ void opWORD (char *cmd, char *ops)
     }
 }
 
-void opCASE (char *cmd, char *ops)
-{
-    label_s *label;
-    int i, type;
-    eval_t val;
-    split_param (ops);
-
-    for (i=0; i<param_num; i++) {
-        type = eval ( params[i].string, &val );
-        if ( type == EVAL_STRING ) {
-            printf ( "ERROR(%i): String cannot be used here\n", linenum );
-            errors++;
-        }
-        else if ( type == EVAL_NUMBER ) {
-            val.number--;
-            emit ( val.number & 0xff );
-            emit ( (val.number >> 8) & 0xff );
-        }
-        else if ( type == EVAL_ADDRESS ) {
-            val.address--;
-            emit ( val.address & 0xff );
-            emit ( (val.address >> 8) & 0xff );
-        }
-        else if ( type == EVAL_LABEL ) {
-            label = add_label (val.label->name, UNDEF);
-            add_patch (label, org, -1, linenum );
-            emit (0); emit (0);
-        }
-        else WrongParameters(cmd, ops);
-    }
-}
 
 // Misc.
 // **************************************************************
