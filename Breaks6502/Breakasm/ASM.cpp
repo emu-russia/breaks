@@ -61,6 +61,12 @@ label_s *add_label (const char *name, long orig)
     //printf ( "ADD LABEL(%i): \'%s\' = %08X\n", linenum, temp_name, orig);
     label = label_lookup (temp_name);
     if ( label == NULL ) {
+        if (labels_num >= MAX_LABELS)
+        {
+            printf("ERROR: Number of labels exceeded (%d)\n", MAX_LABELS);
+            errors++;
+            return NULL;
+        }
         label = &labels[labels_num];
         labels_num++;
         strcpy (label->name, temp_name);
@@ -103,6 +109,12 @@ static void dump_labels (void)
 
 void add_patch (label_s *label, long orig, int branch, int line)
 {
+    if (patch_num >= MAX_PATCH)
+    {
+        printf("ERROR: Number of patches exceeded (%d)\n", MAX_PATCH);
+        errors++;
+        return;
+    }
     patch_s * patch;
     patch = &patchs[patch_num];
     patch_num++;
@@ -186,6 +198,12 @@ define_s *add_define (char *name, char *replace)
         strcpy (def->replace, replace);
     }
     else {
+        if (define_num >= MAX_DEFINE)
+        {
+            printf("ERROR: Number of macros exceeded (%d)\n", MAX_DEFINE);
+            errors++;
+            return NULL;
+        }
         def = &defines[define_num];
         define_num++;
         strcpy (def->name, name);
