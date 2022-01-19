@@ -164,7 +164,6 @@ namespace M6502Core
 		TriState T1 = t1_latch.nget();
 		ends_latch1.set(MUX(n_ready, NOR(T0, AND(n_BRTAKEN, BR2)), NOT(T1)), PHI2);
 		ends_latch2.set(RESP, PHI2);
-		ENDS = NOR(ends_latch1.get(), ends_latch2.get());	// Update ENDS
 		TriState TRES1 = NOT(n_TRES1);
 
 		tresx_latch1.set(NOR(d[91], d[92]), PHI2);
