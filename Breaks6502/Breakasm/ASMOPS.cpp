@@ -96,19 +96,19 @@ void opLDST (char *cmd, char *ops)
         else if ( type[0] == EVAL_ADDRESS ) {
             if ( val[0].address >= 0x100 ) {    // Absolute
                 if ( !_stricmp (cmd, "LDA") ) emit (0xAD);
-                if ( !_stricmp (cmd, "SDA") ) emit (0x8D);
+                if ( !_stricmp (cmd, "STA") ) emit (0x8D);
                 emit (val[0].address & 0xff);
                 emit ((val[0].address >> 8) & 0xff);
             }
             else {      // Zero Page
                 if ( !_stricmp (cmd, "LDA") ) emit (0xA5);
-                if ( !_stricmp (cmd, "SDA") ) emit (0x85);
+                if ( !_stricmp (cmd, "STA") ) emit (0x85);
                 emit (val[0].address & 0xff);
             }
         }
         else if ( type[0] == EVAL_LABEL ) {     // Absolute
             if ( !_stricmp (cmd, "LDA") ) emit (0xAD);
-            if ( !_stricmp (cmd, "SDA") ) emit (0x8D);
+            if ( !_stricmp (cmd, "STA") ) emit (0x8D);
             label = add_label (val[0].label->name, UNDEF);
             add_patch (label, org, 0, linenum );
             emit (0); emit (0);
@@ -148,13 +148,13 @@ void opLDST (char *cmd, char *ops)
             else WrongParameters (cmd, ops);
         }
         else if ( type[0] == EVAL_ADDRESS ) {
-            if ( val[0].address < 0x100 ) {     // Zero page, X/Y
+            if ( val[0].address < 0x100 ) {     // Zero page, X
                 if (val[1].label->orig == KEYWORD && !_stricmp(val[1].label->name, "X")) {
-                    if ( !_stricmp ( cmd, "LDA" ) ) emit ( 0xB4 );
-                    if ( !_stricmp ( cmd, "STA" ) ) emit ( 0x94 );
+                    if ( !_stricmp ( cmd, "LDA" ) ) emit ( 0xB5 );
+                    if ( !_stricmp ( cmd, "STA" ) ) emit ( 0x95 );
                     emit ( val[0].address & 0xff );
                 }
-                else if (val[1].label->orig == KEYWORD && !_stricmp(val[1].label->name, "Y")) {
+                else if (val[1].label->orig == KEYWORD && !_stricmp(val[1].label->name, "Y")) {     // Indirect, Y
                     if ( !_stricmp ( cmd, "LDA" ) ) emit ( 0xB1 );
                     if ( !_stricmp ( cmd, "STA" ) ) emit ( 0x91 );
                     emit ( val[0].address & 0xff );
