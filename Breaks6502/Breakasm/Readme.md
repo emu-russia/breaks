@@ -69,3 +69,11 @@ SOMEDATA:
 
 END
 ```
+
+## Limitations
+
+- Maximum number of labels: 1024
+- Maximum number of XREFs: 1024
+- Maximum number of Defines: 1024
+
+If you need more, you need to override the values in `ASM.h`.
