@@ -43,7 +43,6 @@ void opCPXY(char* cmd, char* ops);
 void opDEFINE(char* cmd, char* ops);
 void opBYTE(char* cmd, char* ops);
 void opWORD(char* cmd, char* ops);
-void opCASE(char* cmd, char* ops);
 void opORG(char* cmd, char* ops);
 void opEND(char* cmd, char* ops);
 void opDUMMY(char* cmd, char* ops);
