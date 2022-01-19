@@ -274,6 +274,14 @@ namespace M6502Core
 
 		regs->sim_StoreSB(regs_in, SB, SB_Dirty);
 
+		// ADD saving on SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
+
+		alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
+		alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
+		alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
+
+		alu->sim_StoreADD(alu_in, SB, ADL, SB_Dirty, ADH_Dirty);
+
 		// Saving flags on DB bus: P_DB
 
 		random->flags->sim_Store(P_DB, BRK6E, brk->getB_OUT(BRK6E), DB, DB_Dirty);
@@ -300,6 +308,13 @@ namespace M6502Core
 
 		pc->sim_Store(pc_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty);
 
+		// Bus multiplexing: SB_DB, SB_ADH
+
+		alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
+		alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
+
+		alu->sim_BusMux(alu_in, SB, DB, ADH, SB_Dirty, DB_Dirty, ADH_Dirty);
+
 		// Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 
 		TriState addr_in_early[(size_t)AddressBus_Input::Max];
@@ -322,21 +337,16 @@ namespace M6502Core
 
 		alu->sim_Load(alu_in, SB, DB, ADL, SB_Dirty);
 
-		// ALU operation and ADD saving on SB/ADL: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA, ADD_SB7, ADD_SB06, ADD_ADL
-		// Bus multiplexing: SB_DB, SB_ADH
+		// ALU operation: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA
 		// BCD correction via SB bus: SB_AC
 
 		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
-		alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
-		alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
-		alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
 		alu_in[(size_t)ALU_Input::ANDS] = rand_out[(size_t)RandomLogic_Output::ANDS];
 		alu_in[(size_t)ALU_Input::EORS] = rand_out[(size_t)RandomLogic_Output::EORS];
 		alu_in[(size_t)ALU_Input::ORS] = rand_out[(size_t)RandomLogic_Output::ORS];
 		alu_in[(size_t)ALU_Input::SRS] = rand_out[(size_t)RandomLogic_Output::SRS];
 		alu_in[(size_t)ALU_Input::SUMS] = rand_out[(size_t)RandomLogic_Output::SUMS];
-		alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
-		alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
+		alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
 		alu_in[(size_t)ALU_Input::n_ACIN] = rand_out[(size_t)RandomLogic_Output::n_ACIN];
 		alu_in[(size_t)ALU_Input::n_DAA] = rand_out[(size_t)RandomLogic_Output::n_DAA];
 		alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
@@ -345,12 +355,10 @@ namespace M6502Core
 
 		// Saving AC: AC_SB, AC_DB
 
-		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
-		alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
 		alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
 		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
 
-		alu->sim_Store(alu_in, SB, DB, ADH, SB_Dirty, DB_Dirty, ADH_Dirty);
+		alu->sim_StoreAC(alu_in, SB, DB, SB_Dirty, DB_Dirty);
 
 		// Load flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 

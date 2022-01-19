@@ -102,14 +102,14 @@ PHI1 "Set Address and R/W Mode":
 - Saving of old stack pointer value to ADL bus: S_ADL
 - Increment PC: n_1PC
 - Saving PC to bus: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
-- Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Bus multiplexing: SB_DB, SB_ADH
+- Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Loading ALU operands: NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD
 - BCD correction via SB bus: SB_AC
 - Saving AC: AC_SB, AC_DB
 - Loading flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 - Loading registers: SB_X, SB_Y, SB_S / S_S
-- Load PC from bus or store old value: ADH_PCH/PCH_PCH, ADL_PCL/PCL_PCL
+- Load PC from bus or keep old value: ADH_PCH/PCH_PCH, ADL_PCL/PCL_PCL
 - Saving DB to DOR
 - Set external bus address: ADH_ABH, ADL_ABL
 
@@ -123,7 +123,7 @@ PHI2 "Read/Write Data":
 - Saving old stack pointer value to ADL bus: S_ADL
 - Increment PC: n_1PC (PC is incremented in this half-cycle)
 - Saving PC to bus: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
-- Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Bus multiplexing: SB_DB, SB_ADH
+- Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 - Loading flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 - Setting external data bus from DOR: If WR = 1

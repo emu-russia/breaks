@@ -17,7 +17,6 @@ AGAIN:
     JSR     ADDSOME             ; Call sub
     STA     $12, X
     CLC
-    BRK
     BCC     AGAIN               ; Test branch logic
 
 ADDSOME:                        ; Test ALU
