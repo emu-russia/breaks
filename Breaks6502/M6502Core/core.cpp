@@ -135,7 +135,7 @@ namespace M6502Core
 		decoder_in[(size_t)DecoderInput::n_T4] = ext_out[(size_t)ExtraCounter_Output::n_T4];
 		decoder_in[(size_t)DecoderInput::n_T5] = ext_out[(size_t)ExtraCounter_Output::n_T5];
 
-		decoder->sim(decoder_in, decoder_out);
+		decoder->sim(decoder_in, &decoder_out);
 
 		// Interrupt handling
 

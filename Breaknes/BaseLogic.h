@@ -194,8 +194,9 @@ namespace BaseLogic
 		size_t romOutputs = 0;			// Saved number of decoder outputs (set in the constructor)
 
 		TriState* outs = nullptr;
+		TriState* unomptimized_out = nullptr;
 
-		void sim_Unomptimized(TriState inputs[], TriState outputs[]);
+		void sim_Unomptimized(TriState inputs[], TriState** outputs);
 
 		bool Optimize = true;
 
@@ -214,7 +215,7 @@ namespace BaseLogic
 		/// </summary>
 		/// <param name="inputs">Input values. The index 0 defines the input `0`. The last index defines the input `romInputs-1`.</param>
 		/// <param name="outputs">Output values. The number of outputs must correspond to the value defined in the constructor.</param>
-		void sim(TriState inputs[], TriState outputs[]);
+		void sim(TriState inputs[], TriState** outputs);
 	};
 
 	/// <summary>

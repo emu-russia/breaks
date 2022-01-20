@@ -39,6 +39,6 @@ namespace M6502Core
 		Decoder();
 		~Decoder();
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
+		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState** outputs);
 	};
 }

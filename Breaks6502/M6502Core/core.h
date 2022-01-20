@@ -248,7 +248,7 @@ namespace M6502Core
 		ProgramCounter* pc = nullptr;
 		DataBus* data_bus = nullptr;
 
-		BaseLogic::TriState decoder_out[Decoder::outputs_count];
+		BaseLogic::TriState* decoder_out;
 		BaseLogic::TriState ext_out[(size_t)ExtraCounter_Output::Max];
 		BaseLogic::TriState rand_out[(size_t)RandomLogic_Output::Max];
 		BaseLogic::TriState disp_early_out[(size_t)Dispatcher_Output::Max];

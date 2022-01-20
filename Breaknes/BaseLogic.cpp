@@ -137,6 +137,7 @@ namespace BaseLogic
 		romSize = inputs * outputs;
 		rom = new uint8_t[romSize];
 		memset(rom, 0, romSize);
+		unomptimized_out = new TriState[romOutputs];
 	}
 
 	PLA::~PLA()
@@ -146,6 +147,9 @@ namespace BaseLogic
 
 		if (outs)
 			delete[] outs;
+
+		if (unomptimized_out)
+			delete[] unomptimized_out;
 	}
 
 	void PLA::SetMatrix(size_t bitmask[])
@@ -185,7 +189,6 @@ namespace BaseLogic
 
 			outs = new TriState[maxLane * romOutputs];
 			TriState* inputs = new TriState[romInputs];
-			TriState* outputs = new TriState[romOutputs];
 
 			for (size_t n = 0; n < maxLane; n++)
 			{
@@ -194,14 +197,13 @@ namespace BaseLogic
 					inputs[bit] = (n & (1ULL << bit)) ? TriState::One : TriState::Zero;
 				}
 
-				sim_Unomptimized(inputs, outputs);
+				sim_Unomptimized(inputs, &unomptimized_out);
 
 				TriState* lane = &outs[n * romOutputs];
-				memcpy(lane, outputs, romOutputs * sizeof(TriState));
+				memcpy(lane, unomptimized_out, romOutputs * sizeof(TriState));
 			}
 
 			delete[] inputs;
-			delete[] outputs;
 
 			fopen_s(&f, "pla.bin", "wb");
 			fwrite(outs, sizeof(TriState), maxLane * romOutputs, f);
@@ -209,7 +211,7 @@ namespace BaseLogic
 		}
 	}
 
-	void PLA::sim(TriState inputs[], TriState outputs[])
+	void PLA::sim(TriState inputs[], TriState** outputs)
 	{
 		if (!outs)
 		{
@@ -228,26 +230,27 @@ namespace BaseLogic
 		}
 
 		TriState* lane = &outs[laneNum * romOutputs];
-		memcpy(outputs, lane, romOutputs * sizeof(TriState));
+		*outputs = lane;
 	}
 
-	void PLA::sim_Unomptimized(TriState inputs[], TriState outputs[])
+	void PLA::sim_Unomptimized(TriState inputs[], TriState** outputs)
 	{
 		for (size_t out = 0; out < romOutputs; out++)
 		{
 			// Since the decoder lines are multi-input NORs - the default output is `1`.
-			outputs[out] = TriState::One;
+			unomptimized_out[out] = TriState::One;
 
 			for (size_t bit = 0; bit < romInputs; bit++)
 			{
 				// If there is a transistor at the crossing point and the corresponding input is `1` - then ground the output and abort the term.
 				if (rom[out * romInputs + bit] && (inputs[bit] == TriState::One))
 				{
-					outputs[out] = TriState::Zero;
+					unomptimized_out[out] = TriState::Zero;
 					break;
 				}
 			}
 		}
+		*outputs = unomptimized_out;
 	}
 
 	uint8_t Pack(TriState in[8])
