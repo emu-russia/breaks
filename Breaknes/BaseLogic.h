@@ -1,5 +1,8 @@
 #pragma once
 
+#include <stdint.h>
+#include <string.h>
+
 /// <summary>
 /// Basic logic primitives used in N-MOS chips.
 /// Combinational primitives are implemented using ordinary methods.
@@ -189,6 +192,12 @@ namespace BaseLogic
 		size_t romSize = 0;				// ROM matrix size in bytes
 		size_t romInputs = 0;			// Saved number of decoder inputs (set in the constructor)
 		size_t romOutputs = 0;			// Saved number of decoder outputs (set in the constructor)
+
+		TriState* outs = nullptr;
+
+		void sim_Unomptimized(TriState inputs[], TriState outputs[]);
+
+		bool Optimize = false;
 
 	public:
 		PLA(size_t inputs, size_t outputs);

@@ -81,12 +81,12 @@ namespace M6502Core
 		vset_latch.set(NOR(so_latch1.nget(), so_latch3.get()), PHI2);
 
 		TriState v[4];
-		v[0] = NAND(NOT(AVR), avr_latch.nget());
-		v[1] = NAND(NOT(DB[6]), DB_V);
-		v[2] = NAND(NOR3(DB_V, avr_latch.nget(), vset_latch.get()), v_latch2.get());
-		v[3] = NOT(Z_V);
+		v[0] = AND(NOT(AVR), avr_latch.get());
+		v[1] = AND(NOT(DB[6]), DB_V);
+		v[2] = AND(NOR3(DB_V, avr_latch.get(), vset_latch.get()), v_latch2.get());
+		v[3] = Z_V;
 
-		v_latch1.set(AND4(v), PHI1);
+		v_latch1.set(NOR4(v), PHI1);
 		v_latch2.set(v_latch1.nget(), PHI2);
 	}
 

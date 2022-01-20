@@ -1,4 +1,5 @@
-#include "pch.h"
+#include "BaseLogic.h"
+#include <stdio.h>
 
 namespace BaseLogic
 {
@@ -12,7 +13,7 @@ namespace BaseLogic
 		}
 #endif
 
-		return (TriState)(~a & 1);
+		return a == TriState::Zero ? TriState::One : TriState::Zero;
 	}
 
 	TriState NOR(TriState a, TriState b)
@@ -62,7 +63,7 @@ namespace BaseLogic
 
 	TriState AND(TriState a, TriState b)
 	{
-		return NOT(NAND(a, b));
+		return (TriState)(a & b);
 	}
 
 	TriState AND3(TriState a, TriState b, TriState c)
@@ -142,6 +143,9 @@ namespace BaseLogic
 	{
 		if (rom)
 			delete[] rom;
+
+		if (outs)
+			delete[] outs;
 	}
 
 	void PLA::SetMatrix(size_t bitmask[])
@@ -156,9 +160,64 @@ namespace BaseLogic
 				val >>= 1;
 			}
 		}
+
+		// Optimization for PLA
+
+		if (Optimize)
+		{
+			if (outs)
+			{
+				delete[] outs;
+				outs = nullptr;
+			}
+
+			size_t maxLane = (1ULL << romInputs);
+
+			outs = new TriState[maxLane * romOutputs];
+			TriState* inputs = new TriState[romInputs];
+			TriState* outputs = new TriState[romOutputs];
+
+			for (size_t n = 0; n < maxLane; n++)
+			{
+				for (size_t bit = 0; bit < romInputs; bit++)
+				{
+					inputs[bit] = (n & (1ULL << bit)) ? TriState::One : TriState::Zero;
+				}
+
+				sim_Unomptimized(inputs, outputs);
+
+				TriState* lane = &outs[n * romOutputs];
+				memcpy(lane, outputs, romOutputs * sizeof(TriState));
+			}
+
+			delete[] inputs;
+			delete[] outputs;
+		}
 	}
 
 	void PLA::sim(TriState inputs[], TriState outputs[])
+	{
+		if (!outs)
+		{
+			sim_Unomptimized(inputs, outputs);
+			return;
+		}
+
+		size_t laneNum = 0;
+
+		for (size_t bit = 0; bit < romInputs; bit++)
+		{
+			if (inputs[bit] == TriState::One)
+			{
+				laneNum |= (1ULL << bit);
+			}
+		}
+
+		TriState* lane = &outs[laneNum * romOutputs];
+		memcpy(outputs, lane, romOutputs * sizeof(TriState));
+	}
+
+	void PLA::sim_Unomptimized(TriState inputs[], TriState outputs[])
 	{
 		for (size_t out = 0; out < romOutputs; out++)
 		{
@@ -197,7 +256,7 @@ namespace BaseLogic
 		}
 	}
 
-	void Dump(TriState in[8], const char *name)
+	void Dump(TriState in[8], const char* name)
 	{
 		printf("%s: ", name);
 		for (size_t i = 0; i < 8; i++)

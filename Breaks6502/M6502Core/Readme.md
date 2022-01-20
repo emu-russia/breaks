@@ -29,7 +29,7 @@ The following approach is applied to sequential circuits (FF's):
 
 It should be noted that the 6502 has quite a few hidden and quite twisted loops, for example:
 
-![t1_ff](/BreakingNESWiki/imgstore/6502/t1_ff.jpg)
+![t1_ff](t1_ff.jpg)
 
 ## Buses
 
