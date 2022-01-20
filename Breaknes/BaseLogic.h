@@ -10,12 +10,12 @@
 /// </summary>
 namespace BaseLogic
 {
-	enum TriState
+	enum TriState : uint8_t
 	{
 		Zero = 0,
 		One = 1,
-		Z = -1,
-		X = -2,
+		Z = (uint8_t)-1,
+		X = (uint8_t)-2,
 	};
 
 	/// <summary>
@@ -197,7 +197,7 @@ namespace BaseLogic
 
 		void sim_Unomptimized(TriState inputs[], TriState outputs[]);
 
-		bool Optimize = false;
+		bool Optimize = true;
 
 	public:
 		PLA(size_t inputs, size_t outputs);

@@ -173,6 +173,16 @@ namespace BaseLogic
 
 			size_t maxLane = (1ULL << romInputs);
 
+			FILE* f;
+			fopen_s(&f, "pla.bin", "rb");
+			if (f)
+			{
+				outs = new TriState[maxLane * romOutputs];
+				fread(outs, sizeof(TriState), maxLane * romOutputs, f);
+				fclose(f);
+				return;
+			}
+
 			outs = new TriState[maxLane * romOutputs];
 			TriState* inputs = new TriState[romInputs];
 			TriState* outputs = new TriState[romOutputs];
@@ -192,6 +202,10 @@ namespace BaseLogic
 
 			delete[] inputs;
 			delete[] outputs;
+
+			fopen_s(&f, "pla.bin", "wb");
+			fwrite(outs, sizeof(TriState), maxLane * romOutputs, f);
+			fclose(f);
 		}
 	}
 
