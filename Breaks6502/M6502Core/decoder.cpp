@@ -169,7 +169,7 @@ namespace M6502Core
 		delete pla;
 	}
 
-	void Decoder::sim(TriState inputs[], TriState outputs[])
+	void Decoder::sim(TriState inputs[], TriState** outputs)
 	{
 		pla->sim(inputs, outputs);
 	}

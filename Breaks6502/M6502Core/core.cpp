@@ -135,7 +135,7 @@ namespace M6502Core
 		decoder_in[(size_t)DecoderInput::n_T4] = ext_out[(size_t)ExtraCounter_Output::n_T4];
 		decoder_in[(size_t)DecoderInput::n_T5] = ext_out[(size_t)ExtraCounter_Output::n_T5];
 
-		decoder->sim(decoder_in, decoder_out);
+		decoder->sim(decoder_in, &decoder_out);
 
 		// Interrupt handling
 
@@ -608,5 +608,22 @@ namespace M6502Core
 		info->DB_V = rand_out[(size_t)RandomLogic_Output::DB_V] == TriState::One ? 1 : 0;
 		info->AVR_V = rand_out[(size_t)RandomLogic_Output::AVR_V] == TriState::One ? 1 : 0;
 		info->Z_V = rand_out[(size_t)RandomLogic_Output::Z_V] == TriState::One ? 1 : 0;
+	}
+
+	void M6502::getUserRegs(UserRegs* userRegs)
+	{
+		userRegs->Y = regs->getY();
+		userRegs->X = regs->getX();
+		userRegs->S = regs->getS();
+		userRegs->A = alu->getAC();
+		userRegs->PCL = pc->getPCL();
+		userRegs->PCH = pc->getPCH();
+
+		userRegs->C_OUT = NOT(random->flags->getn_C_OUT()) == TriState::One ? 1 : 0;
+		userRegs->Z_OUT = NOT(random->flags->getn_Z_OUT()) == TriState::One ? 1 : 0;
+		userRegs->I_OUT = NOT(random->flags->getn_I_OUT(int_out[(size_t)BRKProcessing_Output::BRK6E])) == TriState::One ? 1 : 0;
+		userRegs->D_OUT = NOT(random->flags->getn_D_OUT()) == TriState::One ? 1 : 0;
+		userRegs->V_OUT = NOT(random->flags->getn_V_OUT()) == TriState::One ? 1 : 0;
+		userRegs->N_OUT = NOT(random->flags->getn_N_OUT()) == TriState::One ? 1 : 0;
 	}
 }

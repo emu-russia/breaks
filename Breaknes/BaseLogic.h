@@ -1,5 +1,8 @@
 #pragma once
 
+#include <stdint.h>
+#include <string.h>
+
 /// <summary>
 /// Basic logic primitives used in N-MOS chips.
 /// Combinational primitives are implemented using ordinary methods.
@@ -7,12 +10,12 @@
 /// </summary>
 namespace BaseLogic
 {
-	enum TriState
+	enum TriState : uint8_t
 	{
 		Zero = 0,
 		One = 1,
-		Z = -1,
-		X = -2,
+		Z = (uint8_t)-1,
+		X = (uint8_t)-2,
 	};
 
 	/// <summary>
@@ -190,6 +193,13 @@ namespace BaseLogic
 		size_t romInputs = 0;			// Saved number of decoder inputs (set in the constructor)
 		size_t romOutputs = 0;			// Saved number of decoder outputs (set in the constructor)
 
+		TriState* outs = nullptr;
+		TriState* unomptimized_out = nullptr;
+
+		void sim_Unomptimized(TriState inputs[], TriState** outputs);
+
+		bool Optimize = true;
+
 	public:
 		PLA(size_t inputs, size_t outputs);
 		~PLA();
@@ -205,7 +215,7 @@ namespace BaseLogic
 		/// </summary>
 		/// <param name="inputs">Input values. The index 0 defines the input `0`. The last index defines the input `romInputs-1`.</param>
 		/// <param name="outputs">Output values. The number of outputs must correspond to the value defined in the constructor.</param>
-		void sim(TriState inputs[], TriState outputs[]);
+		void sim(TriState inputs[], TriState** outputs);
 	};
 
 	/// <summary>
