@@ -31,45 +31,52 @@ namespace M6502Core
 		// Z
 
 		TriState n_DBZ = NOT(NOR8(DB));
-		TriState zin = AND(NAND(NOT(DB[1]), DB_P), NAND(n_DBZ, DBZ_Z));
+		TriState z[3];
+		z[0] = AND(NOT(DB[1]), DB_P);
+		z[1] = AND(n_DBZ, DBZ_Z);
+		z[2] = AND(NOR(DB_P, DBZ_Z), z_latch2.get());
 
-		z_latch1.set(MUX(OR(DB_P, DBZ_Z), z_latch2.nget(), zin), PHI1);
+		z_latch1.set(NOR3(z[0], z[1], z[2]), PHI1);
 		z_latch2.set(z_latch1.nget(), PHI2);
 
 		// N
 
-		n_latch1.set(MUX(DB_N, n_latch2.nget(), NAND(NOT(DB[7]), DB_N)), PHI1);
+		TriState n[2];
+		n[0] = AND(NOT(DB[7]), DB_N);
+		n[1] = AND(NOT(DB_N), n_latch2.get());
+
+		n_latch1.set(NOR(n[0], n[1]), PHI1);
 		n_latch2.set(n_latch1.nget(), PHI2);
 
 		// C
 
 		TriState c[4];
-		c[0] = NAND(n_IR5, IR5_C);
-		c[1] = NAND(NOT(ACR), ACR_C);
-		c[2] = NAND(NOT(DB[0]), DB_C);
-		c[3] = NAND(NOR3(DB_C, IR5_C, ACR_C), c_latch2.get());
+		c[0] = AND(n_IR5, IR5_C);
+		c[1] = AND(NOT(ACR), ACR_C);
+		c[2] = AND(NOT(DB[0]), DB_C);
+		c[3] = AND(NOR3(DB_C, IR5_C, ACR_C), c_latch2.get());
 
-		c_latch1.set(AND4(c), PHI1);
+		c_latch1.set(NOR4(c), PHI1);
 		c_latch2.set(c_latch1.nget(), PHI2);
 
 		// D
 
 		TriState d[3];
-		d[0] = NAND(IR5_D, n_IR5);
-		d[1] = NAND(NOT(DB[3]), DB_P);
-		d[2] = NAND(NOR(IR5_D, DB_P), d_latch2.get());
+		d[0] = AND(IR5_D, n_IR5);
+		d[1] = AND(NOT(DB[3]), DB_P);
+		d[2] = AND(NOR(IR5_D, DB_P), d_latch2.get());
 
-		d_latch1.set(AND3(d[0], d[1], d[2]), PHI1);
+		d_latch1.set(NOR3(d[0], d[1], d[2]), PHI1);
 		d_latch2.set(d_latch1.nget(), PHI2);
 
 		// I
 
 		TriState i[3];
-		i[0] = NAND(n_IR5, IR5_I);
-		i[1] = NAND(NOT(DB[2]), DB_P);
-		i[2] = NAND(NOR(DB_P, IR5_I), i_latch2.get());
+		i[0] = AND(n_IR5, IR5_I);
+		i[1] = AND(NOT(DB[2]), DB_P);
+		i[2] = AND(NOR(DB_P, IR5_I), i_latch2.get());
 
-		i_latch1.set(AND3(i[0], i[1], i[2]), PHI1);
+		i_latch1.set(NOR3(i[0], i[1], i[2]), PHI1);
 		i_latch2.set(AND(i_latch1.nget(), NOT(BRK6E)), PHI2);
 
 		// V
