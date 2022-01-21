@@ -17,27 +17,30 @@ namespace M6502Core
 
 		// Register control commands and auxiliary signals for other parts of the random logic
 
-		TriState n1[7];
-		n1[0] = d[1];
-		n1[1] = d[2];
-		n1[2] = d[3];
-		n1[3] = d[4];
-		n1[4] = d[5];
-		n1[5] = AND(d[6], d[7]);
-		n1[6] = AND(d[0], STOR);
-		TriState n_Y_SB = NOR7(n1);
-		ysb_latch.set(n_Y_SB, PHI2);
+		if (PHI2 == TriState::One)
+		{
+			TriState n1[7];
+			n1[0] = d[1];
+			n1[1] = d[2];
+			n1[2] = d[3];
+			n1[3] = d[4];
+			n1[4] = d[5];
+			n1[5] = AND(d[6], d[7]);
+			n1[6] = AND(d[0], STOR);
+			TriState n_Y_SB = NOR7(n1);
+			ysb_latch.set(n_Y_SB, PHI2);
 
-		TriState n2[7];
-		n2[0] = AND(STOR, d[12]);
-		n2[1] = AND(d[6], NOT(d[7]));
-		n2[2] = d[8];
-		n2[3] = d[9];
-		n2[4] = d[10];
-		n2[5] = d[11];
-		n2[6] = TXS;
-		TriState n_X_SB = NOR7(n2);
-		xsb_latch.set(n_X_SB, PHI2);
+			TriState n2[7];
+			n2[0] = AND(STOR, d[12]);
+			n2[1] = AND(d[6], NOT(d[7]));
+			n2[2] = d[8];
+			n2[3] = d[9];
+			n2[4] = d[10];
+			n2[5] = d[11];
+			n2[6] = TXS;
+			TriState n_X_SB = NOR7(n2);
+			xsb_latch.set(n_X_SB, PHI2);
+		}
 
 		TriState STXY = NOR(AND(STOR, d[0]), AND(STOR, d[12]));
 
@@ -59,12 +62,15 @@ namespace M6502Core
 		n3[5] = d[26];
 		TriState STKOP = NOR(nready_latch.get(), NOR6(n3));
 
-		TriState n_SB_S = NOR3(TXS, NOR(NOT(d[48]), n_ready), STKOP);
-		sbs_latch.set(n_SB_S, PHI2);
-		ss_latch.set(NOT(n_SB_S), PHI2);
+		if (PHI2 == TriState::One)
+		{
+			TriState n_SB_S = NOR3(TXS, NOR(NOT(d[48]), n_ready), STKOP);
+			sbs_latch.set(n_SB_S, PHI2);
+			ss_latch.set(NOT(n_SB_S), PHI2);
 
-		TriState n_S_ADL = NOR(AND(d[21], nready_latch.nget()), d[35]);
-		sadl_latch.set(n_S_ADL, PHI2);
+			TriState n_S_ADL = NOR(AND(d[21], nready_latch.nget()), d[35]);
+			sadl_latch.set(n_S_ADL, PHI2);
+		}
 
 		// Outputs
 
