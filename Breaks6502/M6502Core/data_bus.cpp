@@ -41,8 +41,11 @@ namespace M6502Core
 			TriState Dn = cpu_inOut[(size_t)InOutPad::D0 + n];
 
 			DL[n].set(Dn == TriState::Z ? TriState::One : NOT(Dn), PHI2);
+		}
 
-			if (PHI1 == TriState::One)
+		if ((DL_ADL || DL_ADH || DL_DB) && (PHI1 == TriState::One))
+		{
+			for (size_t n = 0; n < 8; n++)
 			{
 				if (DL_ADL == TriState::One)
 				{
@@ -56,7 +59,7 @@ namespace M6502Core
 						ADL_Dirty[n] = true;
 					}
 				}
-				
+
 				if (DL_ADH == TriState::One)
 				{
 					if (ADH_Dirty[n])

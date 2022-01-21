@@ -205,48 +205,51 @@ namespace M6502Core
 
 		// This is where the very brainy construction related to the connection of the busses is located.
 
-		for (size_t n = 0; n < 8; n++)
+		if (SB_DB || SB_ADH)
 		{
-			if (SB_DB == TriState::One)
+			for (size_t n = 0; n < 8; n++)
 			{
-				if (SB_Dirty[n] && !DB_Dirty[n])
+				if (SB_DB == TriState::One)
 				{
-					DB[n] = SB[n];
-					DB_Dirty[n] = true;
+					if (SB_Dirty[n] && !DB_Dirty[n])
+					{
+						DB[n] = SB[n];
+						DB_Dirty[n] = true;
+					}
+					else if (!SB_Dirty[n] && DB_Dirty[n])
+					{
+						SB[n] = DB[n];
+						SB_Dirty[n] = true;
+					}
+					else if (!SB_Dirty[n] && !DB_Dirty[n])
+					{
+						// z
+					}
+					else
+					{
+						BusConnect(SB[n], DB[n]);
+					}
 				}
-				else if (!SB_Dirty[n] && DB_Dirty[n])
+				if (SB_ADH == TriState::One)
 				{
-					SB[n] = DB[n];
-					SB_Dirty[n] = true;
-				}
-				else if (!SB_Dirty[n] && !DB_Dirty[n])
-				{
-					// z
-				}
-				else
-				{
-					BusConnect(SB[n], DB[n]);
-				}
-			}
-			if (SB_ADH == TriState::One)
-			{
-				if (SB_Dirty[n] && !ADH_Dirty[n])
-				{
-					ADH[n] = SB[n];
-					ADH_Dirty[n] = true;
-				}
-				else if (!SB_Dirty[n] && ADH_Dirty[n])
-				{
-					SB[n] = ADH[n];
-					SB_Dirty[n] = true;
-				}
-				else if (!SB_Dirty[n] && !ADH_Dirty[n])
-				{
-					// z
-				}
-				else
-				{
-					BusConnect(SB[n], ADH[n]);
+					if (SB_Dirty[n] && !ADH_Dirty[n])
+					{
+						ADH[n] = SB[n];
+						ADH_Dirty[n] = true;
+					}
+					else if (!SB_Dirty[n] && ADH_Dirty[n])
+					{
+						SB[n] = ADH[n];
+						SB_Dirty[n] = true;
+					}
+					else if (!SB_Dirty[n] && !ADH_Dirty[n])
+					{
+						// z
+					}
+					else
+					{
+						BusConnect(SB[n], ADH[n]);
+					}
 				}
 			}
 		}
@@ -274,15 +277,18 @@ namespace M6502Core
 		// ALU input value loading commands are active only during PHI1.
 		// Although the ALU "counts", its output value is not saved on ADD. Saving to ADD happens during PHI2 (when all operand loading commands are inactive).
 
-		for (size_t n = 0; n < 8; n++)
+		if (SB_ADD || Z_ADD || DB_ADD || NDB_ADD || ADL_ADD)
 		{
-			// AI/BI Latches
+			for (size_t n = 0; n < 8; n++)
+			{
+				// AI/BI Latches
 
-			AI[n].set(SB[n], SB_ADD);
-			AI[n].set(TriState::Zero, Z_ADD);
-			BI[n].set(DB[n], DB_ADD);
-			BI[n].set(NOT(DB[n]), NDB_ADD);
-			BI[n].set(ADL[n], ADL_ADD);
+				AI[n].set(SB[n], SB_ADD);
+				AI[n].set(TriState::Zero, Z_ADD);
+				BI[n].set(DB[n], DB_ADD);
+				BI[n].set(NOT(DB[n]), NDB_ADD);
+				BI[n].set(ADL[n], ADL_ADD);
+			}
 		}
 	}
 
@@ -294,30 +300,33 @@ namespace M6502Core
 
 		// Intermediate Result (ADD) Output
 
-		for (size_t n = 0; n < 8; n++)
+		if (ADD_ADL || ADD_SB06 || ADD_SB7)
 		{
-			if (ADD_ADL == TriState::One)
+			for (size_t n = 0; n < 8; n++)
 			{
-				if (ADL_Dirty[n])
+				if (ADD_ADL == TriState::One)
 				{
-					ADL[n] = AND(ADL[n], n_ADD[n].nget());
+					if (ADL_Dirty[n])
+					{
+						ADL[n] = AND(ADL[n], n_ADD[n].nget());
+					}
+					else
+					{
+						ADL[n] = n_ADD[n].nget();
+						ADL_Dirty[n] = true;
+					}
 				}
-				else
+				if ((ADD_SB06 == TriState::One && n != 7) || (ADD_SB7 == TriState::One && n == 7))
 				{
-					ADL[n] = n_ADD[n].nget();
-					ADL_Dirty[n] = true;
-				}
-			}
-			if ((ADD_SB06 == TriState::One && n != 7) || (ADD_SB7 == TriState::One && n == 7))
-			{
-				if (SB_Dirty[n])
-				{
-					SB[n] = AND(SB[n], n_ADD[n].nget());
-				}
-				else
-				{
-					SB[n] = n_ADD[n].nget();
-					SB_Dirty[n] = true;
+					if (SB_Dirty[n])
+					{
+						SB[n] = AND(SB[n], n_ADD[n].nget());
+					}
+					else
+					{
+						SB[n] = n_ADD[n].nget();
+						SB_Dirty[n] = true;
+					}
 				}
 			}
 		}
@@ -330,30 +339,33 @@ namespace M6502Core
 
 		// Accumulator (AC) Output
 
-		for (size_t n = 0; n < 8; n++)
+		if (AC_SB || AC_DB)
 		{
-			if (AC_SB == TriState::One)
+			for (size_t n = 0; n < 8; n++)
 			{
-				if (SB_Dirty[n])
+				if (AC_SB == TriState::One)
 				{
-					SB[n] = AND(SB[n], NOT(AC[n].nget()));
+					if (SB_Dirty[n])
+					{
+						SB[n] = AND(SB[n], NOT(AC[n].nget()));
+					}
+					else
+					{
+						SB[n] = NOT(AC[n].nget());
+						SB_Dirty[n] = true;
+					}
 				}
-				else
+				if (AC_DB == TriState::One)
 				{
-					SB[n] = NOT(AC[n].nget());
-					SB_Dirty[n] = true;
-				}
-			}
-			if (AC_DB == TriState::One)
-			{
-				if (DB_Dirty[n])
-				{
-					DB[n] = AND(DB[n], NOT(AC[n].nget()));
-				}
-				else
-				{
-					DB[n] = NOT(AC[n].nget());
-					DB_Dirty[n] = true;
+					if (DB_Dirty[n])
+					{
+						DB[n] = AND(DB[n], NOT(AC[n].nget()));
+					}
+					else
+					{
+						DB[n] = NOT(AC[n].nget());
+						DB_Dirty[n] = true;
+					}
 				}
 			}
 		}
