@@ -201,7 +201,7 @@ namespace M6502Core
 		rand_in[(size_t)RandomLogic_Input::T6] = T6;
 		rand_in[(size_t)RandomLogic_Input::ACRL2] = ACRL2;
 
-		random->sim(rand_in, decoder_out, rand_out, DB);
+		random->sim(rand_in, decoder_out, DB[7], rand_out);
 
 		TriState int_late_in[(size_t)BRKProcessing_Input::Max];
 		TriState int_late_out[(size_t)BRKProcessing_Output::Max];
