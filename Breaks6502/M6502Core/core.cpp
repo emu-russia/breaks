@@ -317,11 +317,11 @@ namespace M6502Core
 		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
 		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
 
-		//if (HLE_Mode)
-		//{
-		//	pc->sim_HLE(pc_in);  // Still buggy :(
-		//}
-		//else
+		if (HLE_Mode)
+		{
+			pc->sim_HLE(pc_in);
+		}
+		else
 		{
 			pc->sim(pc_in);
 		}

@@ -95,7 +95,7 @@ namespace M6502Core
 
 		// TODO: There's a mistake hiding somewhere. Because PCL/PCH stores bit values in alternating inversion.
 
-		if (PHI2 == TriState::One && n_1PC == TriState::Zero)
+		if (PHI2 == TriState::One)
 		{
 			uint16_t pc = 0;
 
@@ -111,25 +111,28 @@ namespace M6502Core
 				}
 			}
 
-			pc++;
+			if (n_1PC == TriState::Zero)
+			{
+				pc++;
+			}
 
 			for (size_t n = 0; n < 8; n++)
 			{
 				if (n & 1)
 				{
-					PCL[n].set(pc & (1 << n) ? TriState::Zero : TriState::One, TriState::One);
+					PCL[n].set((pc & (1 << n)) ? TriState::Zero : TriState::One, TriState::One);
 				}
 				else
 				{
-					PCL[n].set(pc & (1 << n) ? TriState::One : TriState::Zero, TriState::One);
+					PCL[n].set((pc & (1 << n)) ? TriState::One : TriState::Zero, TriState::One);
 				}
 				if (n & 1)
 				{
-					PCH[n].set(pc & (0x100 << n) ? TriState::One : TriState::Zero, TriState::One);
+					PCH[n].set((pc & (0x100 << n)) ? TriState::One : TriState::Zero, TriState::One);
 				}
 				else
 				{
-					PCH[n].set(pc & (0x100 << n) ? TriState::Zero : TriState::One, TriState::One);
+					PCH[n].set((pc & (0x100 << n)) ? TriState::Zero : TriState::One, TriState::One);
 				}
 			}
 		}
