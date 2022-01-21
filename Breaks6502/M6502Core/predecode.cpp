@@ -4,10 +4,21 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void PreDecode::sim(TriState inputs[], TriState d[8], TriState outputs[], TriState n_PD[8])
+	void PreDecode::sim(TriState inputs[], TriState d[8], TriState n_PD[8])
 	{
 		TriState PHI2 = inputs[(size_t)PreDecode_Input::PHI2];
 		TriState Z_IR = inputs[(size_t)PreDecode_Input::Z_IR];
+
+		if (PHI2 != TriState::One)
+		{
+			for (size_t n = 0; n < 8; n++)
+			{
+				PD[n] = NOR(pd_latch[n].get(), Z_IR);
+				n_PD[n] = NOT(PD[n]);
+			}
+
+			return;
+		}
 
 		for (size_t n = 0; n < 8; n++)
 		{
@@ -41,9 +52,7 @@ namespace M6502Core
 		in4[4] = NOT(PD[7]);
 		TriState res4 = NOR5(in4);
 
-		TriState n_TWOCYCLE = AND (NAND(IMPLIED, NOT(res2)), NOR(res3, res4));
-		
-		outputs[(size_t)PreDecode_Output::n_IMPLIED] = NOT(IMPLIED);
-		outputs[(size_t)PreDecode_Output::n_TWOCYCLE] = n_TWOCYCLE;
+		n_TWOCYCLE = AND (NAND(IMPLIED, NOT(res2)), NOR(res3, res4));
+		n_IMPLIED = NOT(IMPLIED);
 	}
 }

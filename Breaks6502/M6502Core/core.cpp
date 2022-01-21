@@ -101,13 +101,12 @@ namespace M6502Core
 		TriState ACRL2 = disp_early_out[(size_t)Dispatcher_Output::ACRL2];
 
 		TriState pd_in[(size_t)PreDecode_Input::Max];
-		TriState pd_out[(size_t)PreDecode_Output::Max];
 		TriState n_PD[8];
 
 		pd_in[(size_t)PreDecode_Input::PHI2] = PHI2;
 		pd_in[(size_t)PreDecode_Input::Z_IR] = Z_IR;
 
-		predecode->sim(pd_in, inOuts, pd_out, n_PD);
+		predecode->sim(pd_in, inOuts, n_PD);
 
 		ir->sim(PHI1, FETCH, n_PD);
 
@@ -228,8 +227,8 @@ namespace M6502Core
 		disp_late_in[(size_t)Dispatcher_Input::ACR] = alu->getACR();
 		disp_late_in[(size_t)Dispatcher_Input::BRFW] = rand_out[(size_t)RandomLogic_Output::BRFW];
 		disp_late_in[(size_t)Dispatcher_Input::n_BRTAKEN] = rand_out[(size_t)RandomLogic_Output::n_BRTAKEN];
-		disp_late_in[(size_t)Dispatcher_Input::n_TWOCYCLE] = pd_out[(size_t)PreDecode_Output::n_TWOCYCLE];
-		disp_late_in[(size_t)Dispatcher_Input::n_IMPLIED] = pd_out[(size_t)PreDecode_Output::n_IMPLIED];
+		disp_late_in[(size_t)Dispatcher_Input::n_TWOCYCLE] = predecode->n_TWOCYCLE;
+		disp_late_in[(size_t)Dispatcher_Input::n_IMPLIED] = predecode->n_IMPLIED;
 		disp_late_in[(size_t)Dispatcher_Input::PC_DB] = rand_out[(size_t)RandomLogic_Output::PC_DB];
 		disp_late_in[(size_t)Dispatcher_Input::n_ADL_PCL] = rand_out[(size_t)RandomLogic_Output::n_ADL_PCL];
 		disp_late_in[(size_t)Dispatcher_Input::n_ready] = n_ready;
