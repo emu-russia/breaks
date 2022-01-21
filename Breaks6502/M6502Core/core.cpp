@@ -127,7 +127,7 @@ namespace M6502Core
 
 		decoder_in[(size_t)DecoderInput::n_IR0] = NOT(IR[0]);
 		decoder_in[(size_t)DecoderInput::n_IR1] = NOT(IR[1]);
-		decoder_in[(size_t)DecoderInput::IR01] = NOT(NOR(IR[0], IR[1]));
+		decoder_in[(size_t)DecoderInput::IR01] = OR(IR[0], IR[1]);
 		decoder_in[(size_t)DecoderInput::n_IR2] = NOT(IR[2]);
 		decoder_in[(size_t)DecoderInput::IR2] = IR[2];
 		decoder_in[(size_t)DecoderInput::n_IR3] = NOT(IR[3]);
