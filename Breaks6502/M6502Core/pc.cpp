@@ -93,8 +93,6 @@ namespace M6502Core
 		TriState PHI2 = inputs[(size_t)ProgramCounter_Input::PHI2];
 		TriState n_1PC = inputs[(size_t)ProgramCounter_Input::n_1PC];
 
-		// TODO: There's a mistake hiding somewhere. Because PCL/PCH stores bit values in alternating inversion.
-
 		if (PHI2 == TriState::One)
 		{
 			uint16_t pc = 0;
