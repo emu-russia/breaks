@@ -23,6 +23,13 @@ namespace M6502Core
 		TriState PHI2 = inputs[(size_t)ProgramCounter_Input::PHI2];
 		TriState n_1PC = inputs[(size_t)ProgramCounter_Input::n_1PC];
 
+		if (PHI2 != TriState::One)
+		{
+			// The quick way out. Nothing is saved anywhere during PHI1.
+
+			return;
+		}
+
 		// PCL
 
 		TriState cin = n_1PC;
@@ -77,6 +84,53 @@ namespace M6502Core
 			else
 			{
 				sim_OddBit(PHI2, cin, cin, bogus, n, PCH, PCHS);
+			}
+		}
+	}
+
+	void ProgramCounter::sim_HLE(TriState inputs[])
+	{
+		TriState PHI2 = inputs[(size_t)ProgramCounter_Input::PHI2];
+		TriState n_1PC = inputs[(size_t)ProgramCounter_Input::n_1PC];
+
+		// TODO: There's a mistake hiding somewhere. Because PCL/PCH stores bit values in alternating inversion.
+
+		if (PHI2 == TriState::One && n_1PC == TriState::Zero)
+		{
+			uint16_t pc = 0;
+
+			for (size_t n = 0; n < 8; n++)
+			{
+				if (PCLS[n].get() == TriState::One)
+				{
+					pc |= (1 << n);
+				}
+				if (PCHS[n].get() == TriState::One)
+				{
+					pc |= (0x100 << n);
+				}
+			}
+
+			pc++;
+
+			for (size_t n = 0; n < 8; n++)
+			{
+				if (n & 1)
+				{
+					PCL[n].set(pc & (1 << n) ? TriState::Zero : TriState::One, TriState::One);
+				}
+				else
+				{
+					PCL[n].set(pc & (1 << n) ? TriState::One : TriState::Zero, TriState::One);
+				}
+				if (n & 1)
+				{
+					PCH[n].set(pc & (0x100 << n) ? TriState::One : TriState::Zero, TriState::One);
+				}
+				else
+				{
+					PCH[n].set(pc & (0x100 << n) ? TriState::Zero : TriState::One, TriState::One);
+				}
 			}
 		}
 	}

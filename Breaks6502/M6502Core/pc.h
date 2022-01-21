@@ -38,6 +38,8 @@ namespace M6502Core
 
 		void sim(BaseLogic::TriState inputs[]);
 
+		void sim_HLE(BaseLogic::TriState inputs[]);
+
 		uint8_t getPCL();
 		uint8_t getPCH();
 		uint8_t getPCLS();

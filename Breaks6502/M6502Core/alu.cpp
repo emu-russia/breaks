@@ -59,7 +59,7 @@ namespace M6502Core
 
 				// Fast BCD Carry
 
-				if (n == 3)
+				if (n == 3 && !BCD_Hack)
 				{
 					n4[0] = AND(NAND(n_ACIN, nands[0]), NOT(nors[0]));
 					n4[1] = NOR(NOT(nands[2]), nors[2]);
@@ -74,13 +74,20 @@ namespace M6502Core
 
 				if (n == 7)
 				{
-					n4[0] = carry[4];
-					n4[1] = NOT(nands[5]);
-					n4[2] = eors[5];
-					n4[3] = eors[6];
-					t1 = NOR(NOR(eors[7], NOT(nands[6])), NOR4(n4));
-					t2 = NOR(NOT(eors[6]), NAND(NOT(nands[5]), carry[4]));
-					DC7 = AND(OR(t1, t2), NOT(n_DAA));
+					if (!BCD_Hack)
+					{
+						n4[0] = carry[4];
+						n4[1] = NOT(nands[5]);
+						n4[2] = eors[5];
+						n4[3] = eors[6];
+						t1 = NOR(NOR(eors[7], NOT(nands[6])), NOR4(n4));
+						t2 = NOR(NOT(eors[6]), NAND(NOT(nands[5]), carry[4]));
+						DC7 = AND(OR(t1, t2), NOT(n_DAA));
+					}
+					else
+					{
+						DC7 = TriState::Zero;
+					}
 				}
 
 				cin = carry[n];
@@ -138,10 +145,13 @@ namespace M6502Core
 			ACLatch.set(NOT(carry[7]), PHI2);
 			AVRLatch.set(AND(NAND(carry[6], nors[7]), NOT(NOR(carry[6], carry[7]))), PHI2);
 
-			daal_latch.set(NAND(NOT(n_DAA), NOT(carry[3])), PHI2);
-			daah_latch.set(NOT(n_DAA), PHI2);
-			dsal_latch.set(NOR(NOT(carry[3]), n_DSA), PHI2);
-			dsah_latch.set(NOT(n_DSA), PHI2);
+			if (!BCD_Hack)
+			{
+				daal_latch.set(NAND(NOT(n_DAA), NOT(carry[3])), PHI2);
+				daah_latch.set(NOT(n_DAA), PHI2);
+				dsal_latch.set(NOR(NOT(carry[3]), n_DSA), PHI2);
+				dsah_latch.set(NOT(n_DSA), PHI2);
+			}
 
 			//AC[n].set(NOT(AC[n].nget()), PHI2);
 		}
@@ -152,28 +162,38 @@ namespace M6502Core
 
 			// BCD Correction
 
-			TriState bcd_out[8];
-
-			TriState DAAL = daal_latch.nget();
-			TriState DAAH = NOR(NOT(ACR), daah_latch.nget());
-			TriState DSAL = dsal_latch.get();
-			TriState DSAH = NOR(ACR, dsah_latch.nget());
-
-			bcd_out[0] = SB[0];
-			bcd_out[1] = XOR(NOR(DSAL, DAAL), NOT(SB[1]));
-			bcd_out[2] = XOR(AND(NAND(n_ADD[1].get(), DAAL), NAND(NOT(n_ADD[1].get()), DSAL)), NOT(SB[2]));
-			bcd_out[3] = XOR(AND(NAND(NOT(NOR(n_ADD[1].get(), n_ADD[2].get())), DSAL), NAND(NAND(n_ADD[1].get(), n_ADD[2].get()), DAAL)), NOT(SB[3]));
-
-			bcd_out[4] = SB[4];
-			bcd_out[5] = XOR(NOR(DAAH, DSAH), NOT(SB[5]));
-			bcd_out[6] = XOR(AND(NAND(n_ADD[5].get(), DAAH), NAND(NOT(n_ADD[5].get()), DSAH)), NOT(SB[6]));
-			bcd_out[7] = XOR(AND(NAND(NAND(n_ADD[5].get(), n_ADD[6].get()), DAAH), NAND(NOT(NOR(n_ADD[5].get(), n_ADD[6].get())), DSAH)), NOT(SB[7]));
-
-			// BCD correction via SB bus: SB_AC
-
-			for (size_t n = 0; n < 8; n++)
+			if (!BCD_Hack)
 			{
-				AC[n].set(bcd_out[n], SB_AC);
+				TriState bcd_out[8];
+
+				TriState DAAL = daal_latch.nget();
+				TriState DAAH = NOR(NOT(ACR), daah_latch.nget());
+				TriState DSAL = dsal_latch.get();
+				TriState DSAH = NOR(ACR, dsah_latch.nget());
+
+				bcd_out[0] = SB[0];
+				bcd_out[1] = XOR(NOR(DSAL, DAAL), NOT(SB[1]));
+				bcd_out[2] = XOR(AND(NAND(n_ADD[1].get(), DAAL), NAND(NOT(n_ADD[1].get()), DSAL)), NOT(SB[2]));
+				bcd_out[3] = XOR(AND(NAND(NOT(NOR(n_ADD[1].get(), n_ADD[2].get())), DSAL), NAND(NAND(n_ADD[1].get(), n_ADD[2].get()), DAAL)), NOT(SB[3]));
+
+				bcd_out[4] = SB[4];
+				bcd_out[5] = XOR(NOR(DAAH, DSAH), NOT(SB[5]));
+				bcd_out[6] = XOR(AND(NAND(n_ADD[5].get(), DAAH), NAND(NOT(n_ADD[5].get()), DSAH)), NOT(SB[6]));
+				bcd_out[7] = XOR(AND(NAND(NAND(n_ADD[5].get(), n_ADD[6].get()), DAAH), NAND(NOT(NOR(n_ADD[5].get(), n_ADD[6].get())), DSAH)), NOT(SB[7]));
+
+				// BCD correction via SB bus: SB_AC
+
+				for (size_t n = 0; n < 8; n++)
+				{
+					AC[n].set(bcd_out[n], SB_AC);
+				}
+			}
+			else
+			{
+				for (size_t n = 0; n < 8; n++)
+				{
+					AC[n].set(SB[n], SB_AC);
+				}
 			}
 		}
 	}

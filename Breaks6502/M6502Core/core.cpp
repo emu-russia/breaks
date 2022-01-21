@@ -4,8 +4,10 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	M6502::M6502()
+	M6502::M6502(bool HLE)
 	{
+		HLE_Mode = HLE;
+
 		decoder = new Decoder;
 		predecode = new PreDecode;
 		ir = new IR;
@@ -316,7 +318,14 @@ namespace M6502Core
 		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
 		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
 
-		pc->sim(pc_in);
+		//if (HLE_Mode)
+		//{
+		//	pc->sim_HLE(pc_in);  // Still buggy :(
+		//}
+		//else
+		{
+			pc->sim(pc_in);
+		}
 
 		// Saving PC to buses: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 

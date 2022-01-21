@@ -264,8 +264,10 @@ namespace M6502Core
 		BaseLogic::TriState nIRQ_Cache = BaseLogic::TriState::Z;
 		BaseLogic::TriState nRES_Cache = BaseLogic::TriState::Z;
 
+		bool HLE_Mode = false;		// Acceleration mode for fast applications. In this case we are cheating a little bit.
+
 	public:
-		M6502();
+		M6502(bool HLE);
 		~M6502();
 
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
