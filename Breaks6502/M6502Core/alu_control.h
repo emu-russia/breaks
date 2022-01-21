@@ -88,7 +88,6 @@ namespace M6502Core
 		BaseLogic::DLatch mux_latch1;
 		BaseLogic::DLatch ff_latch1;
 		BaseLogic::DLatch ff_latch2;
-		BaseLogic::FF sb7_ff;
 		BaseLogic::DLatch sr_latch1;
 		BaseLogic::DLatch sr_latch2;
 
