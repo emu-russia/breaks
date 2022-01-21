@@ -4,8 +4,10 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	M6502::M6502()
+	M6502::M6502(bool HLE)
 	{
+		HLE_Mode = HLE;
+
 		decoder = new Decoder;
 		predecode = new PreDecode;
 		ir = new IR;
@@ -99,13 +101,12 @@ namespace M6502Core
 		TriState ACRL2 = disp_early_out[(size_t)Dispatcher_Output::ACRL2];
 
 		TriState pd_in[(size_t)PreDecode_Input::Max];
-		TriState pd_out[(size_t)PreDecode_Output::Max];
 		TriState n_PD[8];
 
 		pd_in[(size_t)PreDecode_Input::PHI2] = PHI2;
 		pd_in[(size_t)PreDecode_Input::Z_IR] = Z_IR;
 
-		predecode->sim(pd_in, inOuts, pd_out, n_PD);
+		predecode->sim(pd_in, inOuts, n_PD);
 
 		ir->sim(PHI1, FETCH, n_PD);
 
@@ -126,7 +127,7 @@ namespace M6502Core
 
 		decoder_in[(size_t)DecoderInput::n_IR0] = NOT(IR[0]);
 		decoder_in[(size_t)DecoderInput::n_IR1] = NOT(IR[1]);
-		decoder_in[(size_t)DecoderInput::IR01] = NOT(NOR(IR[0], IR[1]));
+		decoder_in[(size_t)DecoderInput::IR01] = OR(IR[0], IR[1]);
 		decoder_in[(size_t)DecoderInput::n_IR2] = NOT(IR[2]);
 		decoder_in[(size_t)DecoderInput::IR2] = IR[2];
 		decoder_in[(size_t)DecoderInput::n_IR3] = NOT(IR[3]);
@@ -200,7 +201,7 @@ namespace M6502Core
 		rand_in[(size_t)RandomLogic_Input::T6] = T6;
 		rand_in[(size_t)RandomLogic_Input::ACRL2] = ACRL2;
 
-		random->sim(rand_in, decoder_out, rand_out, DB);
+		random->sim(rand_in, decoder_out, DB[7], rand_out);
 
 		TriState int_late_in[(size_t)BRKProcessing_Input::Max];
 		TriState int_late_out[(size_t)BRKProcessing_Output::Max];
@@ -226,8 +227,8 @@ namespace M6502Core
 		disp_late_in[(size_t)Dispatcher_Input::ACR] = alu->getACR();
 		disp_late_in[(size_t)Dispatcher_Input::BRFW] = rand_out[(size_t)RandomLogic_Output::BRFW];
 		disp_late_in[(size_t)Dispatcher_Input::n_BRTAKEN] = rand_out[(size_t)RandomLogic_Output::n_BRTAKEN];
-		disp_late_in[(size_t)Dispatcher_Input::n_TWOCYCLE] = pd_out[(size_t)PreDecode_Output::n_TWOCYCLE];
-		disp_late_in[(size_t)Dispatcher_Input::n_IMPLIED] = pd_out[(size_t)PreDecode_Output::n_IMPLIED];
+		disp_late_in[(size_t)Dispatcher_Input::n_TWOCYCLE] = predecode->n_TWOCYCLE;
+		disp_late_in[(size_t)Dispatcher_Input::n_IMPLIED] = predecode->n_IMPLIED;
 		disp_late_in[(size_t)Dispatcher_Input::PC_DB] = rand_out[(size_t)RandomLogic_Output::PC_DB];
 		disp_late_in[(size_t)Dispatcher_Input::n_ADL_PCL] = rand_out[(size_t)RandomLogic_Output::n_ADL_PCL];
 		disp_late_in[(size_t)Dispatcher_Input::n_ready] = n_ready;
@@ -316,7 +317,14 @@ namespace M6502Core
 		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
 		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
 
-		pc->sim(pc_in);
+		if (HLE_Mode)
+		{
+			pc->sim_HLE(pc_in);
+		}
+		else
+		{
+			pc->sim(pc_in);
+		}
 
 		// Saving PC to buses: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 

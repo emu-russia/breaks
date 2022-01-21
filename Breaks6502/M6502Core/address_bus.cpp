@@ -12,36 +12,39 @@ namespace M6502Core
 		TriState Z_ADH0 = inputs[(size_t)AddressBus_Input::Z_ADH0];
 		TriState Z_ADH17 = inputs[(size_t)AddressBus_Input::Z_ADH17];
 
-		for (size_t n = 0; n < 8; n++)
+		if (Z_ADL0 || Z_ADL1 || Z_ADL2 || Z_ADH0 || Z_ADH17)
 		{
-			if (n == 0 && Z_ADL0 == TriState::One)
+			for (size_t n = 0; n < 8; n++)
 			{
-				ADL[0] = TriState::Zero;
-				ADL_Dirty[0] = true;
-			}
+				if (n == 0 && Z_ADL0 == TriState::One)
+				{
+					ADL[0] = TriState::Zero;
+					ADL_Dirty[0] = true;
+				}
 
-			if (n == 1 && Z_ADL1 == TriState::One)
-			{
-				ADL[1] = TriState::Zero;
-				ADL_Dirty[1] = true;
-			}
+				if (n == 1 && Z_ADL1 == TriState::One)
+				{
+					ADL[1] = TriState::Zero;
+					ADL_Dirty[1] = true;
+				}
 
-			if (n == 2 && Z_ADL2 == TriState::One)
-			{
-				ADL[2] = TriState::Zero;
-				ADL_Dirty[2] = true;
-			}
+				if (n == 2 && Z_ADL2 == TriState::One)
+				{
+					ADL[2] = TriState::Zero;
+					ADL_Dirty[2] = true;
+				}
 
-			if (Z_ADH0 == TriState::One && n == 0)
-			{
-				ADH[n] = TriState::Zero;
-				ADH_Dirty[n] = true;
-			}
+				if (Z_ADH0 == TriState::One && n == 0)
+				{
+					ADH[n] = TriState::Zero;
+					ADH_Dirty[n] = true;
+				}
 
-			if (Z_ADH17 == TriState::One && n != 0)
-			{
-				ADH[n] = TriState::Zero;
-				ADH_Dirty[n] = true;
+				if (Z_ADH17 == TriState::One && n != 0)
+				{
+					ADH[n] = TriState::Zero;
+					ADH_Dirty[n] = true;
+				}
 			}
 		}
 	}

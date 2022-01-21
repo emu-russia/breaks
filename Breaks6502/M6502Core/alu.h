@@ -63,6 +63,9 @@ namespace M6502Core
 		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[], 
 			bool SB_Dirty[8], bool DB_Dirty[8], bool ADL_Dirty[8], bool ADH_Dirty[8]);
 
+		void sim_HLE(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], BaseLogic::TriState ADL[], BaseLogic::TriState ADH[],
+			bool SB_Dirty[8], bool DB_Dirty[8], bool ADL_Dirty[8], bool ADH_Dirty[8]);
+
 		void sim_StoreADD(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState ADL[], bool SB_Dirty[8], bool ADL_Dirty[8]);
 
 		void sim_StoreAC(BaseLogic::TriState inputs[], BaseLogic::TriState SB[], BaseLogic::TriState DB[], bool SB_Dirty[8], bool DB_Dirty[8]);

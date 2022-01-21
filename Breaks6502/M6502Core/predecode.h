@@ -10,14 +10,6 @@ namespace M6502Core
 		Max,
 	};
 
-	enum class PreDecode_Output
-	{
-		n_IMPLIED = 0,
-		n_TWOCYCLE,
-
-		Max,
-	};
-
 	class PreDecode
 	{
 		BaseLogic::DLatch pd_latch[8];
@@ -26,6 +18,9 @@ namespace M6502Core
 
 		BaseLogic::TriState PD[8];
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[8], BaseLogic::TriState outputs[], BaseLogic::TriState n_PD[8]);
+		BaseLogic::TriState n_IMPLIED = BaseLogic::TriState::One;
+		BaseLogic::TriState n_TWOCYCLE = BaseLogic::TriState::One;
+
+		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[8], BaseLogic::TriState n_PD[8]);
 	};
 }

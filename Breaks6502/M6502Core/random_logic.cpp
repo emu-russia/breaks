@@ -26,7 +26,7 @@ namespace M6502Core
 		delete branch_logic;
 	}
 
-	void RandomLogic::sim(TriState inputs[], TriState d[], TriState outputs[], TriState DB[])
+	void RandomLogic::sim(TriState inputs[], TriState d[], TriState DB7, TriState outputs[])
 	{
 		TriState PHI1 = inputs[(size_t)RandomLogic_Input::PHI1];
 		TriState PHI2 = inputs[(size_t)RandomLogic_Input::PHI2];
@@ -147,7 +147,7 @@ namespace M6502Core
 
 		branch_logic_in[(size_t)BranchLogic_Input::PHI1] = PHI1;
 		branch_logic_in[(size_t)BranchLogic_Input::PHI2] = PHI2;
-		branch_logic_in[(size_t)BranchLogic_Input::DB7] = DB[7];
+		branch_logic_in[(size_t)BranchLogic_Input::DB7] = DB7;
 		branch_logic_in[(size_t)BranchLogic_Input::n_IR5] = n_IR5;
 		branch_logic_in[(size_t)BranchLogic_Input::n_C_OUT] = flags->getn_C_OUT();
 		branch_logic_in[(size_t)BranchLogic_Input::n_V_OUT] = flags->getn_V_OUT();
