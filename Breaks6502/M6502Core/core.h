@@ -260,6 +260,10 @@ namespace M6502Core
 
 		void sim_Bottom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
 
+		BaseLogic::TriState nNMI_Cache = BaseLogic::TriState::Z;
+		BaseLogic::TriState nIRQ_Cache = BaseLogic::TriState::Z;
+		BaseLogic::TriState nRES_Cache = BaseLogic::TriState::Z;
+
 	public:
 		M6502();
 		~M6502();
