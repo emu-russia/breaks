@@ -10,7 +10,6 @@ Reset:
 	bcc BadRoar
 	beq BadRoar
 	bpl BadRoar
-	bvc BadRoar
 	cmp #$80
 	bne BadRoar
 	clv
