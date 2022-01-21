@@ -99,14 +99,8 @@ namespace M6502Core
 
 			for (size_t n = 0; n < 8; n++)
 			{
-				if (PCLS[n].get() == TriState::One)
-				{
-					pc |= (1 << n);
-				}
-				if (PCHS[n].get() == TriState::One)
-				{
-					pc |= (0x100 << n);
-				}
+				pc |= (PCLS[n].get() << n);
+				pc |= ((PCHS[n].get() << 8) << n);
 			}
 
 			if (n_1PC == TriState::Zero)
@@ -114,24 +108,14 @@ namespace M6502Core
 				pc++;
 			}
 
+			// PCL/PCH stores bit values in alternating inversion.
+
+			pc ^= 0b10101010'01010101;
+
 			for (size_t n = 0; n < 8; n++)
 			{
-				if (n & 1)
-				{
-					PCL[n].set((pc & (1 << n)) ? TriState::Zero : TriState::One, TriState::One);
-				}
-				else
-				{
-					PCL[n].set((pc & (1 << n)) ? TriState::One : TriState::Zero, TriState::One);
-				}
-				if (n & 1)
-				{
-					PCH[n].set((pc & (0x100 << n)) ? TriState::One : TriState::Zero, TriState::One);
-				}
-				else
-				{
-					PCH[n].set((pc & (0x100 << n)) ? TriState::Zero : TriState::One, TriState::One);
-				}
+				PCL[n].set((pc & (1 << n)) ? TriState::Zero : TriState::One, TriState::One);
+				PCH[n].set((pc & (0x100 << n)) ? TriState::Zero : TriState::One, TriState::One);
 			}
 		}
 	}
@@ -143,21 +127,30 @@ namespace M6502Core
 		TriState ADH_PCH = inputs[(size_t)ProgramCounter_Input::ADH_PCH];
 		TriState PCH_PCH = inputs[(size_t)ProgramCounter_Input::PCH_PCH];
 
-		for (size_t n = 0; n < 8; n++)
+		if (PCL_PCL || PCH_PCH)
 		{
-			if (n & 1)
+			for (size_t n = 0; n < 8; n++)
 			{
-				PCLS[n].set(PCL[n].nget(), PCL_PCL);
-				PCHS[n].set(NOT(PCH[n].nget()), PCH_PCH);
+				if (n & 1)
+				{
+					PCLS[n].set(PCL[n].nget(), PCL_PCL);
+					PCHS[n].set(NOT(PCH[n].nget()), PCH_PCH);
+				}
+				else
+				{
+					PCLS[n].set(NOT(PCL[n].nget()), PCL_PCL);
+					PCHS[n].set(PCH[n].nget(), PCH_PCH);
+				}
 			}
-			else
-			{
-				PCLS[n].set(NOT(PCL[n].nget()), PCL_PCL);
-				PCHS[n].set(PCH[n].nget(), PCH_PCH);
-			}
+		}
 
-			PCLS[n].set(ADL[n], ADL_PCL);
-			PCHS[n].set(ADH[n], ADH_PCH);
+		if (ADL_PCL || ADH_PCH)
+		{
+			for (size_t n = 0; n < 8; n++)
+			{
+				PCLS[n].set(ADL[n], ADL_PCL);
+				PCHS[n].set(ADH[n], ADH_PCH);
+			}
 		}
 	}
 
@@ -169,76 +162,82 @@ namespace M6502Core
 		TriState PCH_DB = inputs[(size_t)ProgramCounter_Input::PCH_DB];
 		TriState out;
 
-		for (size_t n = 0; n < 8; n++)
+		if (PCL_DB || PCL_ADL)
 		{
-			if (n & 1)
+			for (size_t n = 0; n < 8; n++)
 			{
-				out = PCL[n].nget();
-			}
-			else
-			{
-				out = NOT(PCL[n].nget());
-			}
+				if (n & 1)
+				{
+					out = PCL[n].nget();
+				}
+				else
+				{
+					out = NOT(PCL[n].nget());
+				}
 
-			if (PCL_DB == TriState::One)
-			{
-				if (DB_Dirty[n])
+				if (PCL_DB == TriState::One)
 				{
-					DB[n] = AND(DB[n], out);
+					if (DB_Dirty[n])
+					{
+						DB[n] = AND(DB[n], out);
+					}
+					else
+					{
+						DB[n] = out;
+						DB_Dirty[n] = true;
+					}
 				}
-				else
+				if (PCL_ADL == TriState::One)
 				{
-					DB[n] = out;
-					DB_Dirty[n] = true;
-				}
-			}
-			if (PCL_ADL == TriState::One)
-			{
-				if (ADL_Dirty[n])
-				{
-					ADL[n] = AND(ADL[n], out);
-				}
-				else
-				{
-					ADL[n] = out;
-					ADL_Dirty[n] = true;
+					if (ADL_Dirty[n])
+					{
+						ADL[n] = AND(ADL[n], out);
+					}
+					else
+					{
+						ADL[n] = out;
+						ADL_Dirty[n] = true;
+					}
 				}
 			}
 		}
 
-		for (size_t n = 0; n < 8; n++)
+		if (PCH_DB || PCH_ADH)
 		{
-			if (n & 1)
+			for (size_t n = 0; n < 8; n++)
 			{
-				out = NOT(PCH[n].nget());
-			}
-			else
-			{
-				out = PCH[n].nget();
-			}
+				if (n & 1)
+				{
+					out = NOT(PCH[n].nget());
+				}
+				else
+				{
+					out = PCH[n].nget();
+				}
 
-			if (PCH_DB == TriState::One)
-			{
-				if (DB_Dirty[n])
+				if (PCH_DB == TriState::One)
 				{
-					DB[n] = AND(DB[n], out);
+					if (DB_Dirty[n])
+					{
+						DB[n] = AND(DB[n], out);
+					}
+					else
+					{
+						DB[n] = out;
+						DB_Dirty[n] = true;
+					}
 				}
-				else
+				if (PCH_ADH == TriState::One)
 				{
-					DB[n] = out;
-					DB_Dirty[n] = true;
-				}
-			}
-			if (PCH_ADH == TriState::One)
-			{
-				if (ADH_Dirty[n])
-				{
-					ADH[n] = AND(ADH[n], out);
-				}
-				else
-				{
-					ADH[n] = out;
-					ADH_Dirty[n] = true;
+					if (ADH_Dirty[n])
+					{
+						ADH[n] = AND(ADH[n], out);
+					}
+					else
+					{
+						ADH[n] = out;
+						ADH_Dirty[n] = true;
+					}
 				}
 			}
 		}
