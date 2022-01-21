@@ -126,9 +126,8 @@ namespace M6502Core
 		sr_latch1.set(SR, PHI2);
 		sr_latch2.set(sr_latch1.nget(), PHI1);
 		ff_latch1.set(NOT(MUX(mux_latch1.get(), ff_latch2.get(), cout_latch.nget())), PHI1);
-		sb7_ff.set(ff_latch1.nget());
-		ff_latch2.set(sb7_ff.get(), PHI2);
-		TriState n_ADD_SB7 = NOR3(sb7_ff.get(), sr_latch2.get(), NOT(n_ROR));
+		ff_latch2.set(ff_latch1.nget(), PHI2);
+		TriState n_ADD_SB7 = NOR3(ff_latch1.nget(), sr_latch2.get(), n_ROR);
 
 		// Control commands of the intermediate ALU result (ADD/SB06, ADD/SB7, ADD/ADL)
 
