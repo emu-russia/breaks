@@ -80,24 +80,27 @@ namespace M6502Core
 
 		// Setting the ALU input values (NDB/ADD, DB/ADD, 0/ADD, SB/ADD, ADL/ADD)
 
-		TriState n_NDB_ADD = NAND(OR3(BRX, JSR_5, SBC0), NOT(n_ready));
-		ndbadd_latch.set(n_NDB_ADD, PHI2);
-		dbadd_latch.set(NAND(n_NDB_ADD, n_ADL_ADD), PHI2);
-		adladd_latch.set(n_ADL_ADD, PHI2);
+		if (PHI2 == TriState::One)
+		{
+			TriState n_NDB_ADD = NAND(OR3(BRX, JSR_5, SBC0), NOT(n_ready));
+			ndbadd_latch.set(n_NDB_ADD, PHI2);
+			dbadd_latch.set(NAND(n_NDB_ADD, n_ADL_ADD), PHI2);
+			adladd_latch.set(n_ADL_ADD, PHI2);
 
-		TriState sbadd[9];
-		sbadd[0] = STKOP;
-		sbadd[1] = d[30];
-		sbadd[2] = d[31];
-		sbadd[3] = d[45];
-		sbadd[4] = JSR2;
-		sbadd[5] = INC_SB;
-		sbadd[6] = RET;
-		sbadd[7] = BRK6E;
-		sbadd[8] = n_ready;
-		TriState SB_ADD = NOR9(sbadd);
-		sbadd_latch.set(NOT(SB_ADD), PHI2);
-		zadd_latch.set(SB_ADD, PHI2);
+			TriState sbadd[9];
+			sbadd[0] = STKOP;
+			sbadd[1] = d[30];
+			sbadd[2] = d[31];
+			sbadd[3] = d[45];
+			sbadd[4] = JSR2;
+			sbadd[5] = INC_SB;
+			sbadd[6] = RET;
+			sbadd[7] = BRK6E;
+			sbadd[8] = n_ready;
+			TriState SB_ADD = NOR9(sbadd);
+			sbadd_latch.set(NOT(SB_ADD), PHI2);
+			zadd_latch.set(SB_ADD, PHI2);
+		}
 
 		// ALU operation commands (ANDS, EORS, ORS, SRS, SUMS)
 
@@ -131,27 +134,30 @@ namespace M6502Core
 
 		// Control commands of the intermediate ALU result (ADD/SB06, ADD/SB7, ADD/ADL)
 
-		TriState sb06[5];
-		sb06[0] = T6;
-		sb06[1] = STKOP;
-		sb06[2] = JSR_5;
-		sb06[3] = T1;
-		sb06[4] = PGX;
-		TriState n_ADD_SB06 = NOR5(sb06);
-		addsb06_latch.set(n_ADD_SB06, PHI2);
+		if (PHI2 == TriState::One)
+		{
+			TriState sb06[5];
+			sb06[0] = T6;
+			sb06[1] = STKOP;
+			sb06[2] = JSR_5;
+			sb06[3] = T1;
+			sb06[4] = PGX;
+			TriState n_ADD_SB06 = NOR5(sb06);
+			addsb06_latch.set(n_ADD_SB06, PHI2);
 
-		addsb7_latch.set(NOR(n_ADD_SB06, n_ADD_SB7), PHI2);
+			addsb7_latch.set(NOR(n_ADD_SB06, n_ADD_SB7), PHI2);
 
-		TriState noadl[7];
-		noadl[0] = RTS_5;
-		noadl[1] = d[85];
-		noadl[2] = d[86];
-		noadl[3] = d[87];
-		noadl[4] = d[88];
-		noadl[5] = d[89];
-		noadl[6] = RTI_5;
-		TriState NOADL = NOR7(noadl);
-		addadl_latch.set(NOT(NOR(NOADL, PGX)), PHI2);
+			TriState noadl[7];
+			noadl[0] = RTS_5;
+			noadl[1] = d[85];
+			noadl[2] = d[86];
+			noadl[3] = d[87];
+			noadl[4] = d[88];
+			noadl[5] = d[89];
+			noadl[6] = RTI_5;
+			TriState NOADL = NOR7(noadl);
+			addadl_latch.set(NOT(NOR(NOADL, PGX)), PHI2);
+		}
 
 		// Outputs
 
