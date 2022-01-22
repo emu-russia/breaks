@@ -9,42 +9,33 @@ namespace M6502Core
 		TriState PHI2 = core->wire.PHI2;
 		bool SB_Y = core->cmd.SB_Y;
 		bool SB_X = core->cmd.SB_X;
-		TriState SB_S = core->cmd.SB_S ? TriState::One : TriState::Zero;
-		TriState S_S = core->cmd.S_S ? TriState::One : TriState::Zero;
+		bool SB_S = core->cmd.SB_S;
+		bool S_S = core->cmd.S_S;
 
 		if (PHI2 == TriState::One)
 		{
-			for (size_t n = 0; n < 8; n++)
-			{
-				// During PHI2 none of the register loading commands are active and the registers are "refreshed".
-
-				//Y[n].set(NOT(NOT(Y[n].get())));
-				//X[n].set(NOT(NOT(X[n].get())));
-
-				S_out[n].set(S_in[n].nget(), TriState::One);
-			}
+			S_out = ~S_in;
 		}
 		else
 		{
-			if (SB_Y || SB_X || S_S || SB_S)
+			if (SB_Y)
 			{
-				for (size_t n = 0; n < 8; n++)
-				{
-					if (SB_Y)
-					{
-						Y[n].set(NOT(NOT(core->SB[n])));
-					}
+				Y = core->SB;
+			}
 
-					if (SB_X)
-					{
-						X[n].set(NOT(NOT(core->SB[n])));
-					}
+			if (SB_X)
+			{
+				X = core->SB;
+			}
 
-					// S/S and SB/S are complementary signals.
+			if (S_S)
+			{
+				S_in = ~S_out;
+			}
 
-					S_in[n].set(S_out[n].nget(), S_S);
-					S_in[n].set(core->SB[n], SB_S);
-				}
+			if (SB_S)
+			{
+				S_in = core->SB;
 			}
 		}
 	}
@@ -56,50 +47,47 @@ namespace M6502Core
 		bool X_SB = core->cmd.X_SB;
 		bool S_SB = core->cmd.S_SB;
 
-		if (Y_SB || X_SB || S_SB)
+		if (PHI2)
 		{
-			for (size_t n = 0; n < 8; n++)
+			S_out = ~S_in;
+		}
+
+		if (S_SB)
+		{
+			if (core->SB_Dirty)
 			{
-				S_out[n].set(S_in[n].nget(), PHI2);
+				core->SB = core->SB & (~S_out);
+			}
+			else
+			{
+				core->SB = ~S_out;
+				core->SB_Dirty = true;
+			}
+		}
 
-				if (S_SB)
-				{
-					if (core->SB_Dirty[n])
-					{
-						core->SB[n] = AND(core->SB[n], S_out[n].nget());
-					}
-					else
-					{
-						core->SB[n] = S_out[n].nget();
-						core->SB_Dirty[n] = true;
-					}
-				}
+		if (Y_SB)
+		{
+			if (core->SB_Dirty)
+			{
+				core->SB = core->SB & Y;
+			}
+			else
+			{
+				core->SB = Y;
+				core->SB_Dirty = true;
+			}
+		}
 
-				if (Y_SB)
-				{
-					if (core->SB_Dirty[n])
-					{
-						core->SB[n] = AND(core->SB[n], Y[n].get());
-					}
-					else
-					{
-						core->SB[n] = Y[n].get();
-						core->SB_Dirty[n] = true;
-					}
-				}
-
-				if (X_SB)
-				{
-					if (core->SB_Dirty[n])
-					{
-						core->SB[n] = AND(core->SB[n], X[n].get());
-					}
-					else
-					{
-						core->SB[n] = X[n].get();
-						core->SB_Dirty[n] = true;
-					}
-				}
+		if (X_SB)
+		{
+			if (core->SB_Dirty)
+			{
+				core->SB = core->SB & X;
+			}
+			else
+			{
+				core->SB = X;
+				core->SB_Dirty = true;
 			}
 		}
 	}
@@ -108,61 +96,32 @@ namespace M6502Core
 	{
 		bool S_ADL = core->cmd.S_ADL;
 
-		if (!S_ADL)
+		if (S_ADL)
 		{
-			return;
-		}
-
-		for (size_t n = 0; n < 8; n++)
-		{
-			if (S_ADL)
+			if (core->ADL_Dirty)
 			{
-				if (core->ADL_Dirty[n])
-				{
-					core->ADL[n] = AND(core->ADL[n], S_out[n].nget());
-				}
-				else
-				{
-					core->ADL[n] = S_out[n].nget();
-					core->ADL_Dirty[n] = true;
-				}
+				core->ADL = core->ADL & ~S_out;
+			}
+			else
+			{
+				core->ADL = ~S_out;
+				core->ADL_Dirty = true;
 			}
 		}
 	}
 
 	uint8_t Regs::getY()
 	{
-		TriState v[8];
-
-		for (size_t n = 0; n < 8; n++)
-		{
-			v[n] = Y[n].get();
-		}
-
-		return Pack(v);
+		return Y;
 	}
 
 	uint8_t Regs::getX()
 	{
-		TriState v[8];
-
-		for (size_t n = 0; n < 8; n++)
-		{
-			v[n] = X[n].get();
-		}
-
-		return Pack(v);
+		return X;
 	}
 
 	uint8_t Regs::getS()
 	{
-		TriState v[8];
-
-		for (size_t n = 0; n < 8; n++)
-		{
-			v[n] = S_out[n].nget();
-		}
-
-		return Pack(v);
+		return ~S_out;
 	}
 }

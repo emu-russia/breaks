@@ -4,8 +4,8 @@ namespace M6502Core
 {
 	class AddressBus
 	{
-		BaseLogic::FF ABL[8];
-		BaseLogic::FF ABH[8];
+		uint8_t ABL;
+		uint8_t ABH;
 
 		M6502* core = nullptr;
 
@@ -15,7 +15,7 @@ namespace M6502Core
 
 		void sim_ConstGen();
 
-		void sim_Output(BaseLogic::TriState cpu_out[]);
+		void sim_Output(uint16_t *addr_bus);
 
 		uint8_t getABL();
 		uint8_t getABH();

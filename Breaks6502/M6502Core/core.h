@@ -49,14 +49,6 @@ namespace M6502Core
 		PHI2,
 		RnW,
 		SYNC,
-		A0, A1, A2, A3, A4, A5, A6, A7,
-		A8, A9, A10, A11, A12, A13, A14, A15,
-		Max,
-	};
-
-	enum class InOutPad
-	{
-		D0 = 0, D1, D2, D3, D4, D5, D6, D7,
 		Max,
 	};
 
@@ -250,15 +242,15 @@ namespace M6502Core
 
 		BaseLogic::DLatch rw_latch;
 
-		BaseLogic::TriState SB[8];
-		BaseLogic::TriState DB[8];
-		BaseLogic::TriState ADL[8];
-		BaseLogic::TriState ADH[8];
+		uint8_t SB;
+		uint8_t DB;
+		uint8_t ADL;
+		uint8_t ADH;
 
-		bool SB_Dirty[8];
-		bool DB_Dirty[8];
-		bool ADL_Dirty[8];
-		bool ADH_Dirty[8];
+		bool SB_Dirty;
+		bool DB_Dirty;
+		bool ADL_Dirty;
+		bool ADH_Dirty;
 
 		Decoder* decoder = nullptr;
 		PreDecode* predecode = nullptr;
@@ -276,9 +268,9 @@ namespace M6502Core
 
 		BaseLogic::TriState* decoder_out;
 
-		void sim_Top(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
+		void sim_Top(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], uint8_t* data_bus);
 
-		void sim_Bottom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
+		void sim_Bottom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], uint16_t* addr_bus, uint8_t* data_bus);
 
 		BaseLogic::TriState nNMI_Cache = BaseLogic::TriState::Z;
 		BaseLogic::TriState nIRQ_Cache = BaseLogic::TriState::Z;
@@ -412,7 +404,7 @@ namespace M6502Core
 		M6502(bool HLE);
 		~M6502();
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
+		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], uint16_t *addr_bus, uint8_t* data_bus);
 
 		void getDebug(DebugInfo* info);
 

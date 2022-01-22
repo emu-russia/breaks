@@ -80,7 +80,7 @@ namespace M6502Core
 
 		branch_logic_in[(size_t)BranchLogic_Input::PHI1] = core->wire.PHI1;
 		branch_logic_in[(size_t)BranchLogic_Input::PHI2] = core->wire.PHI2;
-		branch_logic_in[(size_t)BranchLogic_Input::DB7] = core->DB[7];
+		branch_logic_in[(size_t)BranchLogic_Input::DB7] = core->DB & 0x80 ? TriState::One : TriState::Zero;
 		branch_logic_in[(size_t)BranchLogic_Input::n_IR5] = NOT(core->ir->IROut[5]);
 		branch_logic_in[(size_t)BranchLogic_Input::n_C_OUT] = flags->getn_C_OUT();
 		branch_logic_in[(size_t)BranchLogic_Input::n_V_OUT] = flags->getn_V_OUT();

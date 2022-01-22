@@ -37,8 +37,8 @@ struct CpuPadsRaw
     uint8_t PHI2;
     uint8_t RnW;
     uint8_t SYNC;
-    uint8_t A[16];
-    uint8_t D[8];
+    uint16_t A;
+    uint8_t D;
 };
 
 typedef struct M6502Core::DebugInfo CpuDebugInfoRaw;
@@ -51,7 +51,6 @@ extern "C"
     {
         TriState inputs[(size_t)M6502Core::InputPad::Max];
         TriState outputs[(size_t)M6502Core::OutputPad::Max];
-        TriState inOuts[(size_t)M6502Core::InOutPad::Max];
 
         inputs[(size_t)M6502Core::InputPad::n_NMI] = pads->n_NMI ? TriState::One : TriState::Zero;
         inputs[(size_t)M6502Core::InputPad::n_IRQ] = pads->n_IRQ ? TriState::One : TriState::Zero;
@@ -60,27 +59,7 @@ extern "C"
         inputs[(size_t)M6502Core::InputPad::RDY] = pads->RDY ? TriState::One : TriState::Zero;
         inputs[(size_t)M6502Core::InputPad::SO] = pads->SO ? TriState::One : TriState::Zero;
 
-        for (size_t n = 0; n < 8; n++)
-        {
-            TriState Dn = TriState::X;
-
-            switch (pads->D[n])
-            {
-                case 0:
-                    Dn = TriState::Zero;
-                    break;
-                case 1:
-                    Dn = TriState::One;
-                    break;
-                case 0xff:
-                    Dn = TriState::Z;
-                    break;
-            }
-
-            inOuts[(size_t)M6502Core::InOutPad::D0 + n] = Dn;
-        }
-
-        cpu.sim(inputs, outputs, inOuts);
+        cpu.sim(inputs, outputs, &pads->A, &pads->D);
 
         cpu.getDebug(debugInfo);
 
@@ -88,30 +67,5 @@ extern "C"
         pads->PHI2 = outputs[(size_t)M6502Core::OutputPad::PHI2] == TriState::One ? 1 : 0;
         pads->RnW = outputs[(size_t)M6502Core::OutputPad::RnW] == TriState::One ? 1 : 0;
         pads->SYNC = outputs[(size_t)M6502Core::OutputPad::SYNC] == TriState::One ? 1 : 0;
-
-        for (size_t n = 0; n < 16; n++)
-        {
-            pads->A[n] = outputs[(size_t)M6502Core::OutputPad::A0 + n] == TriState::One ? 1 : 0;
-        }
-
-        for (size_t n = 0; n < 8; n++)
-        {
-            uint8_t Dn = 0;
-
-            switch (inOuts[(size_t)M6502Core::InOutPad::D0 + n])
-            {
-                case TriState::Zero:
-                    Dn = 0;
-                    break;
-                case TriState::One:
-                    Dn = 1;
-                    break;
-                case TriState::Z:
-                    Dn = 0xff;
-                    break;
-            }
-
-            pads->D[n] = Dn;
-        }
     }
 }

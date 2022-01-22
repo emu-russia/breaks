@@ -12,7 +12,7 @@ namespace M6502Core
 		bool ORS = core->cmd.ORS;
 		bool SRS = core->cmd.SRS;
 		bool SUMS = core->cmd.SUMS;
-		TriState SB_AC = core->cmd.SB_AC ? TriState::One : TriState::Zero;
+		bool SB_AC = core->cmd.SB_AC;
 		TriState n_ACIN = core->cmd.n_ACIN ? TriState::One : TriState::Zero;
 		TriState n_DAA = core->cmd.n_DAA ? TriState::One : TriState::Zero;
 		TriState n_DSA = core->cmd.n_DSA ? TriState::One : TriState::Zero;
@@ -39,9 +39,12 @@ namespace M6502Core
 
 			for (size_t n = 0; n < 8; n++)
 			{
-				nands[n] = NAND(AI[n].get(), BI[n].get());
-				nors[n] = NOR(AI[n].get(), BI[n].get());
-				eors[n] = XOR(AI[n].get(), BI[n].get());		// In a real processor, eors alternate with enors to calculate sums. But we will omit that.
+				TriState AIn = AI & (1 << n) ? TriState::One : TriState::Zero;
+				TriState BIn = BI & (1 << n) ? TriState::One : TriState::Zero;
+
+				nands[n] = NAND(AIn, BIn);
+				nors[n] = NOR(AIn, BIn);
+				eors[n] = XOR(AIn, BIn);		// In a real processor, eors alternate with enors to calculate sums. But we will omit that.
 
 				if (n & 1)
 				{
@@ -135,7 +138,17 @@ namespace M6502Core
 				// Technically it may happen that no ALU operation has been set and `res` is in floating state.
 				// In this case the value of the latch does not change.
 
-				n_ADD[n].set(n_res[n], PHI2);
+				if (PHI2)
+				{
+					n_ADD = 0;
+					for (size_t n = 0; n < 8; n++)
+					{
+						if (n_res[n])
+						{
+							n_ADD |= 1 << n;
+						}
+					}
+				}
 			}
 
 			// ACR, AVR
@@ -170,28 +183,54 @@ namespace M6502Core
 				TriState DSAL = dsal_latch.get();
 				TriState DSAH = NOR(ACR, dsah_latch.nget());
 
-				bcd_out[0] = core->SB[0];
-				bcd_out[1] = XOR(NOR(DSAL, DAAL), NOT(core->SB[1]));
-				bcd_out[2] = XOR(AND(NAND(n_ADD[1].get(), DAAL), NAND(NOT(n_ADD[1].get()), DSAL)), NOT(core->SB[2]));
-				bcd_out[3] = XOR(AND(NAND(NOT(NOR(n_ADD[1].get(), n_ADD[2].get())), DSAL), NAND(NAND(n_ADD[1].get(), n_ADD[2].get()), DAAL)), NOT(core->SB[3]));
+				TriState SB0 = core->SB & 0b00000001 ? TriState::One : TriState::Zero;
+				TriState SB1 = core->SB & 0b00000010 ? TriState::One : TriState::Zero;
+				TriState SB2 = core->SB & 0b00000100 ? TriState::One : TriState::Zero;
+				TriState SB3 = core->SB & 0b00001000 ? TriState::One : TriState::Zero;
+				TriState SB4 = core->SB & 0b00010000 ? TriState::One : TriState::Zero;
+				TriState SB5 = core->SB & 0b00100000 ? TriState::One : TriState::Zero;
+				TriState SB6 = core->SB & 0b01000000 ? TriState::One : TriState::Zero;
+				TriState SB7 = core->SB & 0b10000000 ? TriState::One : TriState::Zero;
 
-				bcd_out[4] = core->SB[4];
-				bcd_out[5] = XOR(NOR(DAAH, DSAH), NOT(core->SB[5]));
-				bcd_out[6] = XOR(AND(NAND(n_ADD[5].get(), DAAH), NAND(NOT(n_ADD[5].get()), DSAH)), NOT(core->SB[6]));
-				bcd_out[7] = XOR(AND(NAND(NAND(n_ADD[5].get(), n_ADD[6].get()), DAAH), NAND(NOT(NOR(n_ADD[5].get(), n_ADD[6].get())), DSAH)), NOT(core->SB[7]));
+				TriState n_ADD0 = n_ADD & 0b00000001 ? TriState::One : TriState::Zero;
+				TriState n_ADD1 = n_ADD & 0b00000010 ? TriState::One : TriState::Zero;
+				TriState n_ADD2 = n_ADD & 0b00000100 ? TriState::One : TriState::Zero;
+				TriState n_ADD3 = n_ADD & 0b00001000 ? TriState::One : TriState::Zero;
+				TriState n_ADD4 = n_ADD & 0b00010000 ? TriState::One : TriState::Zero;
+				TriState n_ADD5 = n_ADD & 0b00100000 ? TriState::One : TriState::Zero;
+				TriState n_ADD6 = n_ADD & 0b01000000 ? TriState::One : TriState::Zero;
+				TriState n_ADD7 = n_ADD & 0b10000000 ? TriState::One : TriState::Zero;
+
+				bcd_out[0] = SB0;
+				bcd_out[1] = XOR(NOR(DSAL, DAAL), NOT(SB1));
+				bcd_out[2] = XOR(AND(NAND(n_ADD1, DAAL), NAND(NOT(n_ADD1), DSAL)), NOT(SB2));
+				bcd_out[3] = XOR(AND(NAND(NOT(NOR(n_ADD1, n_ADD2)), DSAL), NAND(NAND(n_ADD1, n_ADD2), DAAL)), NOT(SB3));
+
+				bcd_out[4] = SB4;
+				bcd_out[5] = XOR(NOR(DAAH, DSAH), NOT(SB5));
+				bcd_out[6] = XOR(AND(NAND(n_ADD5, DAAH), NAND(NOT(n_ADD5), DSAH)), NOT(SB6));
+				bcd_out[7] = XOR(AND(NAND(NAND(n_ADD5, n_ADD6), DAAH), NAND(NOT(NOR(n_ADD5, n_ADD6)), DSAH)), NOT(SB7));
 
 				// BCD correction via SB bus: SB_AC
 
-				for (size_t n = 0; n < 8; n++)
+				if (SB_AC)
 				{
-					AC[n].set(bcd_out[n], SB_AC);
+					AC = 0;
+
+					for (size_t n = 0; n < 8; n++)
+					{
+						if (bcd_out[n])
+						{
+							AC |= (1 << n);
+						}
+					}
 				}
 			}
 			else
 			{
-				for (size_t n = 0; n < 8; n++)
+				if (SB_AC)
 				{
-					AC[n].set(core->SB[n], SB_AC);
+					AC = core->SB;
 				}
 			}
 		}
@@ -204,90 +243,93 @@ namespace M6502Core
 
 		// This is where the very brainy construction related to the connection of the busses is located.
 
-		if (SB_DB || SB_ADH)
+		if (SB_DB)
 		{
-			for (size_t n = 0; n < 8; n++)
+			if (core->SB_Dirty && !core->DB_Dirty)
 			{
-				if (SB_DB)
-				{
-					if (core->SB_Dirty[n] && !core->DB_Dirty[n])
-					{
-						core->DB[n] = core->SB[n];
-						core->DB_Dirty[n] = true;
-					}
-					else if (!core->SB_Dirty[n] && core->DB_Dirty[n])
-					{
-						core->SB[n] = core->DB[n];
-						core->SB_Dirty[n] = true;
-					}
-					else if (!core->SB_Dirty[n] && !core->DB_Dirty[n])
-					{
-						// z
-					}
-					else
-					{
-						BusConnect(core->SB[n], core->DB[n]);
-					}
-				}
-				if (SB_ADH)
-				{
-					if (core->SB_Dirty[n] && !core->ADH_Dirty[n])
-					{
-						core->ADH[n] = core->SB[n];
-						core->ADH_Dirty[n] = true;
-					}
-					else if (!core->SB_Dirty[n] && core->ADH_Dirty[n])
-					{
-						core->SB[n] = core->ADH[n];
-						core->SB_Dirty[n] = true;
-					}
-					else if (!core->SB_Dirty[n] && !core->ADH_Dirty[n])
-					{
-						// z
-					}
-					else
-					{
-						BusConnect(core->SB[n], core->ADH[n]);
-					}
-				}
+				core->DB = core->SB;
+				core->DB_Dirty = true;
+			}
+			else if (!core->SB_Dirty && core->DB_Dirty)
+			{
+				core->SB = core->DB;
+				core->SB_Dirty = true;
+			}
+			else if (!core->SB_Dirty && !core->DB_Dirty)
+			{
+				// z
+			}
+			else
+			{
+				uint8_t tmp = core->SB & core->DB;
+				core->SB = tmp;
+				core->DB = tmp;
+			}
+		}
+
+		if (SB_ADH)
+		{
+			if (core->SB_Dirty && !core->ADH_Dirty)
+			{
+				core->ADH = core->SB;
+				core->ADH_Dirty = true;
+			}
+			else if (!core->SB_Dirty && core->ADH_Dirty)
+			{
+				core->SB = core->ADH;
+				core->SB_Dirty = true;
+			}
+			else if (!core->SB_Dirty && !core->ADH_Dirty)
+			{
+				// z
+			}
+			else
+			{
+				uint8_t tmp = core->SB & core->ADH;
+				core->SB = tmp;
+				core->ADH = tmp;
 			}
 		}
 	}
 
 	void ALU::sim_Load()
 	{
-		TriState NDB_ADD = core->cmd.NDB_ADD ? TriState::One : TriState::Zero;
-		TriState DB_ADD = core->cmd.DB_ADD ? TriState::One : TriState::Zero;
-		TriState Z_ADD = core->cmd.Z_ADD ? TriState::One : TriState::Zero;
-		TriState SB_ADD = core->cmd.SB_ADD ? TriState::One : TriState::Zero;
-		TriState ADL_ADD = core->cmd.ADL_ADD ? TriState::One : TriState::Zero;
+		bool NDB_ADD = core->cmd.NDB_ADD;
+		bool DB_ADD = core->cmd.DB_ADD;
+		bool Z_ADD = core->cmd.Z_ADD;
+		bool SB_ADD = core->cmd.SB_ADD;
+		bool ADL_ADD = core->cmd.ADL_ADD;
 
 		// Special case when SB/ADD and 0/ADD are active at the same time (this only happens with Power Up).
 
 		if (SB_ADD == TriState::One && Z_ADD == TriState::One)
 		{
-			for (size_t n = 0; n < 8; n++)
-			{
-				core->SB[n] = TriState::Zero;
-				core->SB_Dirty[n] = true;
-			}
+			core->SB = 0;
+			core->SB_Dirty = true;
 		}
 
 		// ALU input value loading commands are active only during PHI1.
 		// Although the ALU "counts", its output value is not saved on ADD. Saving to ADD happens during PHI2 (when all operand loading commands are inactive).
 
-		if (SB_ADD || Z_ADD || DB_ADD || NDB_ADD || ADL_ADD)
+		if (SB_ADD)
 		{
-			for (size_t n = 0; n < 8; n++)
-			{
-				// AI/BI Latches
-
-				AI[n].set(core->SB[n], SB_ADD);
-				AI[n].set(TriState::Zero, Z_ADD);
-				BI[n].set(core->DB[n], DB_ADD);
-				BI[n].set(NOT(core->DB[n]), NDB_ADD);
-				BI[n].set(core->ADL[n], ADL_ADD);
-			}
+			AI = core->SB;
+		}
+		if (Z_ADD)
+		{
+			AI = 0;
+		}
+		if (DB_ADD)
+		{
+			BI = core->DB;
+		}
+		if (NDB_ADD)
+		{
+			BI = ~core->DB;
+		}
+		if (ADL_ADD)
+		{
+			BI = core->ADL;
 		}
 	}
 
@@ -299,35 +341,31 @@ namespace M6502Core
 
 		// Intermediate Result (ADD) Output
 
-		if (ADD_ADL || ADD_SB06 || ADD_SB7)
+		if (ADD_ADL)
 		{
-			for (size_t n = 0; n < 8; n++)
+			if (core->ADL_Dirty)
 			{
-				if (ADD_ADL)
-				{
-					if (core->ADL_Dirty[n])
-					{
-						core->ADL[n] = AND(core->ADL[n], n_ADD[n].nget());
-					}
-					else
-					{
-						core->ADL[n] = n_ADD[n].nget();
-						core->ADL_Dirty[n] = true;
-					}
-				}
-				if ((ADD_SB06 && n != 7) || (ADD_SB7 && n == 7))
-				{
-					if (core->SB_Dirty[n])
-					{
-						core->SB[n] = AND(core->SB[n], n_ADD[n].nget());
-					}
-					else
-					{
-						core->SB[n] = n_ADD[n].nget();
-						core->SB_Dirty[n] = true;
-					}
-				}
+				core->ADL = core->ADL & ~n_ADD;
 			}
+			else
+			{
+				core->ADL = ~n_ADD;
+				core->ADL_Dirty = true;
+			}
+		}
+
+		if (ADD_SB06)
+		{
+			core->SB &= 0x80;
+			core->SB |= ~n_ADD & 0x7f;
+			core->SB_Dirty = true;
+		}
+
+		if (ADD_SB7)
+		{
+			core->SB &= ~0x80;
+			core->SB |= ~n_ADD & 0x80;
+			core->SB_Dirty = true;
 		}
 	}
 
@@ -338,34 +376,29 @@ namespace M6502Core
 
 		// Accumulator (AC) Output
 
-		if (AC_SB || AC_DB)
+		if (AC_SB)
 		{
-			for (size_t n = 0; n < 8; n++)
+			if (core->SB_Dirty)
 			{
-				if (AC_SB)
-				{
-					if (core->SB_Dirty[n])
-					{
-						core->SB[n] = AND(core->SB[n], NOT(AC[n].nget()));
-					}
-					else
-					{
-						core->SB[n] = NOT(AC[n].nget());
-						core->SB_Dirty[n] = true;
-					}
-				}
-				if (AC_DB)
-				{
-					if (core->DB_Dirty[n])
-					{
-						core->DB[n] = AND(core->DB[n], NOT(AC[n].nget()));
-					}
-					else
-					{
-						core->DB[n] = NOT(AC[n].nget());
-						core->DB_Dirty[n] = true;
-					}
-				}
+				core->SB = core->SB & AC;
+			}
+			else
+			{
+				core->SB = AC;
+				core->SB_Dirty = true;
+			}
+		}
+
+		if (AC_DB)
+		{
+			if (core->DB_Dirty)
+			{
+				core->DB = core->DB & AC;
+			}
+			else
+			{
+				core->DB = AC;
+				core->DB_Dirty = true;
 			}
 		}
 	}
@@ -382,49 +415,21 @@ namespace M6502Core
 
 	uint8_t ALU::getAI()
 	{
-		TriState v[8];
-
-		for (size_t n = 0; n < 8; n++)
-		{
-			v[n] = AI[n].get();
-		}
-
-		return Pack(v);
+		return AI;
 	}
 
 	uint8_t ALU::getBI()
 	{
-		TriState v[8];
-
-		for (size_t n = 0; n < 8; n++)
-		{
-			v[n] = BI[n].get();
-		}
-
-		return Pack(v);
+		return BI;
 	}
 
 	uint8_t ALU::getADD()
 	{
-		TriState v[8];
-
-		for (size_t n = 0; n < 8; n++)
-		{
-			v[n] = n_ADD[n].nget();
-		}
-
-		return Pack(v);
+		return ~n_ADD;
 	}
 
 	uint8_t ALU::getAC()
 	{
-		TriState v[8];
-
-		for (size_t n = 0; n < 8; n++)
-		{
-			v[n] = AC[n].get();
-		}
-
-		return Pack(v);
+		return AC;
 	}
 }

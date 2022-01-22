@@ -15,6 +15,6 @@ namespace M6502Core
 		BaseLogic::TriState PD[8] = { BaseLogic::TriState::Zero };
 		BaseLogic::TriState n_PD[8];
 
-		void sim(BaseLogic::TriState d[8]);
+		void sim(uint8_t *data_bus);
 	};
 }

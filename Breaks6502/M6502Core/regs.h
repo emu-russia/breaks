@@ -4,10 +4,10 @@ namespace M6502Core
 {
 	class Regs
 	{
-		BaseLogic::FF Y[8];
-		BaseLogic::FF X[8];
-		BaseLogic::DLatch S_in[8];
-		BaseLogic::DLatch S_out[8];
+		uint8_t Y;
+		uint8_t X;
+		uint8_t S_in;
+		uint8_t S_out;
 
 		M6502* core = nullptr;
 

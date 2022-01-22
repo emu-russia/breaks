@@ -148,8 +148,8 @@ namespace M6502Core
 		{
 			for (size_t n = 0; n < 8; n++)
 			{
-				PCLS[n].set(core->ADL[n], ADL_PCL);
-				PCHS[n].set(core->ADH[n], ADH_PCH);
+				PCLS[n].set(core->ADL & (1 << n) ? TriState::One : TriState::Zero, ADL_PCL);
+				PCHS[n].set(core->ADH & (1 << n) ? TriState::One : TriState::Zero, ADH_PCH);
 			}
 		}
 	}
@@ -160,84 +160,89 @@ namespace M6502Core
 		bool PCL_DB = core->cmd.PCL_DB;
 		bool PCH_ADH = core->cmd.PCH_ADH;
 		bool PCH_DB = core->cmd.PCH_DB;
-		TriState out;
 
 		if (PCL_DB || PCL_ADL)
 		{
+			uint8_t out = 0;
+
 			for (size_t n = 0; n < 8; n++)
 			{
 				if (n & 1)
 				{
-					out = PCL[n].nget();
+					out |= PCL[n].nget() << n;
 				}
 				else
 				{
-					out = NOT(PCL[n].nget());
+					out |= NOT(PCL[n].nget()) << n;
 				}
+			}
 
-				if (PCL_DB)
+			if (PCL_DB)
+			{
+				if (core->DB_Dirty)
 				{
-					if (core->DB_Dirty[n])
-					{
-						core->DB[n] = AND(core->DB[n], out);
-					}
-					else
-					{
-						core->DB[n] = out;
-						core->DB_Dirty[n] = true;
-					}
+					core->DB = core->DB & out;
 				}
-				if (PCL_ADL)
+				else
 				{
-					if (core->ADL_Dirty[n])
-					{
-						core->ADL[n] = AND(core->ADL[n], out);
-					}
-					else
-					{
-						core->ADL[n] = out;
-						core->ADL_Dirty[n] = true;
-					}
+					core->DB = out;
+					core->DB_Dirty = true;
+				}
+			}
+
+			if (PCL_ADL)
+			{
+				if (core->ADL_Dirty)
+				{
+					core->ADL = core->ADL & out;
+				}
+				else
+				{
+					core->ADL = out;
+					core->ADL_Dirty = true;
 				}
 			}
 		}
 
 		if (PCH_DB || PCH_ADH)
 		{
+			uint8_t out = 0;
+
 			for (size_t n = 0; n < 8; n++)
 			{
 				if (n & 1)
 				{
-					out = NOT(PCH[n].nget());
+					out |= NOT(PCH[n].nget()) << n;
 				}
 				else
 				{
-					out = PCH[n].nget();
+					out |= PCH[n].nget() << n;
 				}
+			}
 
-				if (PCH_DB)
+			if (PCH_DB)
+			{
+				if (core->DB_Dirty)
 				{
-					if (core->DB_Dirty[n])
-					{
-						core->DB[n] = AND(core->DB[n], out);
-					}
-					else
-					{
-						core->DB[n] = out;
-						core->DB_Dirty[n] = true;
-					}
+					core->DB = core->DB & out;
 				}
-				if (PCH_ADH)
+				else
 				{
-					if (core->ADH_Dirty[n])
-					{
-						core->ADH[n] = AND(core->ADH[n], out);
-					}
-					else
-					{
-						core->ADH[n] = out;
-						core->ADH_Dirty[n] = true;
-					}
+					core->DB = out;
+					core->DB_Dirty = true;
+				}
+			}
+
+			if (PCH_ADH)
+			{
+				if (core->ADH_Dirty)
+				{
+					core->ADH = core->ADH & out;
+				}
+				else
+				{
+					core->ADH = out;
+					core->ADH_Dirty = true;
 				}
 			}
 		}
