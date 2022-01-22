@@ -253,31 +253,40 @@ namespace M6502Core
 		if (PHI2 == TriState::One)
 		{
 			int resInt = 0;
-			uint8_t res;
+			uint8_t res = 0;
+			bool saveRes = false;
 
 			if (ANDS == TriState::One)
 			{
 				res = AI & BI;
+				saveRes = true;
 			}
 			if (EORS == TriState::One)
 			{
 				res = AI ^ BI;
+				saveRes = true;
 			}
 			if (ORS == TriState::One)
 			{
 				res = AI | BI;
+				saveRes = true;
 			}
 			if (SRS == TriState::One)
 			{
 				res = (AI & BI) >> 1;
+				saveRes = true;
 			}
 			if (SUMS == TriState::One)
 			{
 				resInt = (uint16_t)AI + (uint16_t)BI + (n_ACIN == TriState::Zero ? 1 : 0);
 				res = (uint8_t)resInt;
+				saveRes = true;
 			}
 
-			n_ADD = ~res;
+			if (saveRes)
+			{
+				n_ADD = ~res;
+			}
 
 			// ACR, AVR
 
