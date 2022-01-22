@@ -19,7 +19,7 @@ namespace M6502Core
 		addr_bus = new AddressBus(this);
 		regs = new Regs(this);
 		alu = new ALU(this);
-		pc = new ProgramCounter(this);
+		pc = new ProgramCounter(this, HLE_Mode);
 		data_bus = new DataBus(this);
 	}
 
@@ -189,14 +189,7 @@ namespace M6502Core
 
 		// Increment PC: n_1PC
 
-		if (HLE_Mode)
-		{
-			pc->sim_HLE();
-		}
-		else
-		{
-			pc->sim();
-		}
+		pc->sim();
 
 		// Saving PC to buses: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 
