@@ -197,9 +197,6 @@ namespace M6502Core
 		core->cmd.PCL_DB = pc_out[(size_t)PC_Control_Output::PCL_DB];
 		core->cmd.ADH_ABH = bus_out[(size_t)BusControl_Output::ADH_ABH];
 		core->cmd.ADL_ABL = bus_out[(size_t)BusControl_Output::ADL_ABL];
-		core->cmd.Z_ADL0 = Z_ADL0;	// pass through
-		core->cmd.Z_ADL1 = Z_ADL1;	// pass through
-		core->cmd.Z_ADL2 = Z_ADL2;	// pass through
 		core->cmd.Z_ADH0 = bus_out[(size_t)BusControl_Output::Z_ADH0];
 		core->cmd.Z_ADH17 = bus_out[(size_t)BusControl_Output::Z_ADH17];
 		core->cmd.SB_DB = bus_out[(size_t)BusControl_Output::SB_DB];
