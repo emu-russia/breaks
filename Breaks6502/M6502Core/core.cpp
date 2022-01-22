@@ -254,7 +254,7 @@ namespace M6502Core
 		TriState PHI2 = PHI0;
 
 		// Precharge internal buses.
-		// This operation is critical because it is used to form the interrupt address and the stack pointer.
+		// This operation is critical because it is used to form the interrupt address and the stack pointer (and many other cases).
 
 		if (PHI2 == TriState::One)
 		{

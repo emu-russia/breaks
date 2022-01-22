@@ -6,7 +6,7 @@ namespace M6502Core
 	{
 		struct
 		{
-			unsigned n_T1X : 1;
+			unsigned n_T1X : 1;		// lsb (bit0)
 			unsigned n_T0 : 1;
 			unsigned n_IR5 : 1;
 			unsigned IR5 : 1;
@@ -26,18 +26,18 @@ namespace M6502Core
 			unsigned n_T2 : 1;
 			unsigned n_T3 : 1;
 			unsigned n_T4 : 1;
-			unsigned n_T5 : 1;
+			unsigned n_T5 : 1;		// msb
 		};
 		size_t packed_bits;
 	};
 
 	class Decoder
 	{
+		BaseLogic::PLA* pla = nullptr;
+
 	public:
 		static const size_t inputs_count = 21;
 		static const size_t outputs_count = 130;
-
-		BaseLogic::PLA *pla = nullptr;
 
 		Decoder();
 		~Decoder();
