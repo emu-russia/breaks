@@ -22,6 +22,6 @@ namespace M6502Core
 
 		PC_Control(M6502* parent) { core = parent; }
 
-		void sim();
+		static void sim(PC_Control* inst);
 	};
 }

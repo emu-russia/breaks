@@ -55,23 +55,23 @@ namespace M6502Core
 
 		// Register control
 
-		regs_control->sim();
+		regs_control->sim(regs_control);
 
 		// ALU control
 
-		alu_control->sim();
+		alu_control->sim(alu_control);
 
 		// Program counter (PC) control
 
-		pc_control->sim();
+		pc_control->sim(pc_control);
 
 		// Bus control
 
-		bus_control->sim();
+		bus_control->sim(bus_control);
 
 		// Flags control logic
 
-		flags_control->sim();
+		flags_control->sim(flags_control);
 
 		// The processing of loading flags has moved to the bottom part.
 

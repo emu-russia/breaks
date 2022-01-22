@@ -52,6 +52,6 @@ namespace M6502Core
 
 		ALUControl(M6502* parent) { core = parent; }
 
-		void sim();
+		static void sim(ALUControl* inst);
 	};
 }

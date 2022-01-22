@@ -4,8 +4,9 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void FlagsControl::sim()
+	void FlagsControl::sim(FlagsControl *inst)
 	{
+		M6502* core = inst->core;
 		TriState* d = core->decoder_out;
 		TriState PHI2 = core->wire.PHI2;
 		TriState n_ready = core->wire.n_ready;
@@ -56,37 +57,37 @@ namespace M6502Core
 
 			// Latches
 
-			pdb_latch.set(n_POUT, PHI2);
-			iri_latch.set(NOT(d[108]), PHI2);
-			irc_latch.set(NOT(d[110]), PHI2);
-			ird_latch.set(NOT(d[120]), PHI2);
-			zv_latch.set(NOT(d[127]), PHI2);
-			acrc_latch.set(n_ARIT, PHI2);
-			dbz_latch.set(NOR3(acrc_latch.nget(), ZTST, d[109]), PHI2);
-			dbn_latch.set(d[109], PHI2);
-			pin_latch.set(n_PIN, PHI2);
-			DB_P = NOR(pin_latch.get(), n_ready);
-			dbc_latch.set(NOR(DB_P, SR), PHI2);
-			bit_latch.set(NOT(d[113]), PHI2);
+			inst->pdb_latch.set(n_POUT, PHI2);
+			inst->iri_latch.set(NOT(d[108]), PHI2);
+			inst->irc_latch.set(NOT(d[110]), PHI2);
+			inst->ird_latch.set(NOT(d[120]), PHI2);
+			inst->zv_latch.set(NOT(d[127]), PHI2);
+			inst->acrc_latch.set(n_ARIT, PHI2);
+			inst->dbz_latch.set(NOR3(inst->acrc_latch.nget(), ZTST, d[109]), PHI2);
+			inst->dbn_latch.set(d[109], PHI2);
+			inst->pin_latch.set(n_PIN, PHI2);
+			DB_P = NOR(inst->pin_latch.get(), n_ready);
+			inst->dbc_latch.set(NOR(DB_P, SR), PHI2);
+			inst->bit_latch.set(NOT(d[113]), PHI2);
 		}
 		else
 		{
-			DB_P = NOR(pin_latch.get(), n_ready);
+			DB_P = NOR(inst->pin_latch.get(), n_ready);
 		}
 
 		// Outputs
 
-		core->cmd.P_DB = pdb_latch.nget();
-		core->cmd.IR5_I = iri_latch.nget();
-		core->cmd.IR5_C = irc_latch.nget();
-		core->cmd.IR5_D = ird_latch.nget();
+		core->cmd.P_DB = inst->pdb_latch.nget();
+		core->cmd.IR5_I = inst->iri_latch.nget();
+		core->cmd.IR5_C = inst->irc_latch.nget();
+		core->cmd.IR5_D = inst->ird_latch.nget();
 		core->cmd.AVR_V = d[112];
-		core->cmd.Z_V = zv_latch.nget();
-		core->cmd.ACR_C = acrc_latch.nget();
-		core->cmd.DBZ_Z = dbz_latch.nget();
-		core->cmd.DB_N = NOR(AND(dbz_latch.get(), pin_latch.get()), dbn_latch.get());
+		core->cmd.Z_V = inst->zv_latch.nget();
+		core->cmd.ACR_C = inst->acrc_latch.nget();
+		core->cmd.DBZ_Z = inst->dbz_latch.nget();
+		core->cmd.DB_N = NOR(AND(inst->dbz_latch.get(), inst->pin_latch.get()), inst->dbn_latch.get());
 		core->cmd.DB_P = DB_P;
-		core->cmd.DB_C = dbc_latch.nget();
-		core->cmd.DB_V = NAND(pin_latch.get(), bit_latch.get());
+		core->cmd.DB_C = inst->dbc_latch.nget();
+		core->cmd.DB_V = NAND(inst->pin_latch.get(), inst->bit_latch.get());
 	}
 }

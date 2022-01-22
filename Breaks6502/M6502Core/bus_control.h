@@ -24,7 +24,7 @@ namespace M6502Core
 
 		BusControl(M6502* parent) { core = parent; }
 
-		void sim();
+		static void sim(BusControl* inst);
 
 	};
 }

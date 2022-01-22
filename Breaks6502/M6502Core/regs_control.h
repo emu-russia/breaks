@@ -21,6 +21,6 @@ namespace M6502Core
 
 		RegsControl(M6502* parent) { core = parent; }
 
-		void sim ();
+		static void sim (RegsControl* inst);
 	};
 }
