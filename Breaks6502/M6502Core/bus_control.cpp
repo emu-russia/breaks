@@ -31,7 +31,7 @@ namespace M6502Core
 			TriState PHI1 = core->wire.PHI1;
 			TriState STOR = core->disp->getSTOR(d);
 			TriState STXY = NOR(AND(STOR, d[0]), AND(STOR, d[12]));
-			TriState Z_ADL0 = core->cmd.Z_ADL0;
+			TriState Z_ADL0 = core->cmd.Z_ADL0 ? TriState::One : TriState::Zero;
 			TriState ACRL2 = core->wire.ACRL2;
 			
 			TriState JB = NOR3(d[94], d[95], d[96]);

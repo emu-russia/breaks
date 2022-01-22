@@ -16,11 +16,11 @@ namespace M6502Core
 		disp = new Dispatcher(this);
 		random = new RandomLogic(this);
 
-		addr_bus = new AddressBus;
-		regs = new Regs;
-		alu = new ALU;
-		pc = new ProgramCounter;
-		data_bus = new DataBus;
+		addr_bus = new AddressBus(this);
+		regs = new Regs(this);
+		alu = new ALU(this);
+		pc = new ProgramCounter(this);
+		data_bus = new DataBus(this);
 	}
 
 	M6502::~M6502()
@@ -136,19 +136,6 @@ namespace M6502Core
 
 	void M6502::sim_Bottom(TriState inputs[], TriState outputs[], TriState inOuts[])
 	{
-		TriState PHI0 = wire.PHI0;
-		TriState PHI1 = wire.PHI1;
-		TriState PHI2 = wire.PHI2;
-		TriState SO = wire.SO;
-		TriState WR = wire.WR;
-		TriState P_DB = cmd.P_DB;
-		TriState BRK6E = wire.BRK6E;
-
-		TriState data_in[(size_t)DataBus_Input::Max];
-		TriState regs_in[(size_t)Regs_Input::Max];
-		TriState alu_in[(size_t)ALU_Input::Max];
-		TriState pc_in[(size_t)ProgramCounter_Input::Max];
-
 		// Bottom Part
 
 		// When you simulate the lower part, you have to turn on the man in you to the fullest and imagine that you are possessed by Chuck Peddle.
@@ -157,191 +144,86 @@ namespace M6502Core
 
 		// Bus load from DL: DL_DB, DL_ADL, DL_ADH
 
-		data_in[(size_t)DataBus_Input::PHI1] = PHI1;
-		data_in[(size_t)DataBus_Input::PHI2] = PHI2;
-		data_in[(size_t)DataBus_Input::WR] = WR;
-		data_in[(size_t)DataBus_Input::DL_ADL] = cmd.DL_ADL;
-		data_in[(size_t)DataBus_Input::DL_ADH] = cmd.DL_ADH;
-		data_in[(size_t)DataBus_Input::DL_DB] = cmd.DL_DB;
-
-		data_bus->sim_GetExternalBus(data_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty, inOuts);
+		data_bus->sim_GetExternalBus(inOuts);
 
 		// Registers to the SB bus: Y_SB, X_SB, S_SB
 
-		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
-		regs_in[(size_t)Regs_Input::Y_SB] = cmd.Y_SB;
-		regs_in[(size_t)Regs_Input::X_SB] = cmd.X_SB;
-		regs_in[(size_t)Regs_Input::S_SB] = cmd.S_SB;
-
-		regs->sim_StoreSB(regs_in, SB, SB_Dirty);
+		regs->sim_StoreSB();
 
 		// ADD saving on SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
 
-		alu_in[(size_t)ALU_Input::ADD_SB06] = cmd.ADD_SB06;
-		alu_in[(size_t)ALU_Input::ADD_SB7] = cmd.ADD_SB7;
-		alu_in[(size_t)ALU_Input::ADD_ADL] = cmd.ADD_ADL;
-
-		alu->sim_StoreADD(alu_in, SB, ADL, SB_Dirty, ADL_Dirty);
+		alu->sim_StoreADD();
 
 		// Saving AC: AC_SB, AC_DB
 
-		alu_in[(size_t)ALU_Input::AC_SB] = cmd.AC_SB;
-		alu_in[(size_t)ALU_Input::AC_DB] = cmd.AC_DB;
-
-		alu->sim_StoreAC(alu_in, SB, DB, SB_Dirty, DB_Dirty);
+		alu->sim_StoreAC();
 
 		// Saving flags on DB bus: P_DB
 
-		random->flags->sim_Store(P_DB, BRK6E, brk->getB_OUT(BRK6E), DB, DB_Dirty);
+		random->flags->sim_Store();
 
 		// Stack pointer saving on ADL bus: S_ADL
 
-		regs_in[(size_t)Regs_Input::S_ADL] = cmd.S_ADL;
-
-		regs->sim_StoreOldS(regs_in, ADL, ADL_Dirty);
+		regs->sim_StoreOldS();
 
 		// Increment PC: n_1PC
 
-		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
-		pc_in[(size_t)ProgramCounter_Input::n_1PC] = wire.n_1PC;
-
 		if (HLE_Mode)
 		{
-			pc->sim_HLE(pc_in);
+			pc->sim_HLE();
 		}
 		else
 		{
-			pc->sim(pc_in);
+			pc->sim();
 		}
 
 		// Saving PC to buses: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 
-		pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = cmd.PCL_ADL;
-		pc_in[(size_t)ProgramCounter_Input::PCL_DB] = cmd.PCL_DB;
-		pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = cmd.PCH_ADH;
-		pc_in[(size_t)ProgramCounter_Input::PCH_DB] = cmd.PCH_DB;
-
-		pc->sim_Store(pc_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty);
+		pc->sim_Store();
 
 		// Bus multiplexing: SB_DB, SB_ADH
 
-		alu_in[(size_t)ALU_Input::SB_DB] = cmd.SB_DB;
-		alu_in[(size_t)ALU_Input::SB_ADH] = cmd.SB_ADH;
-
-		alu->sim_BusMux(alu_in, SB, DB, ADH, SB_Dirty, DB_Dirty, ADH_Dirty);
+		alu->sim_BusMux();
 
 		// Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
 
-		TriState addr_in_early[(size_t)AddressBus_Input::Max];
-
-		addr_in_early[(size_t)AddressBus_Input::Z_ADL0] = cmd.Z_ADL0;
-		addr_in_early[(size_t)AddressBus_Input::Z_ADL1] = cmd.Z_ADL1;
-		addr_in_early[(size_t)AddressBus_Input::Z_ADL2] = cmd.Z_ADL2;
-		addr_in_early[(size_t)AddressBus_Input::Z_ADH0] = cmd.Z_ADH0;
-		addr_in_early[(size_t)AddressBus_Input::Z_ADH17] = cmd.Z_ADH17;
-
-		addr_bus->sim_ConstGen(addr_in_early, ADL, ADH, ADL_Dirty, ADH_Dirty);
+		addr_bus->sim_ConstGen();
 
 		// Loading ALU operands: NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD
 
-		alu_in[(size_t)ALU_Input::NDB_ADD] = cmd.NDB_ADD;
-		alu_in[(size_t)ALU_Input::DB_ADD] = cmd.DB_ADD;
-		alu_in[(size_t)ALU_Input::Z_ADD] = cmd.Z_ADD;
-		alu_in[(size_t)ALU_Input::SB_ADD] = cmd.SB_ADD;
-		alu_in[(size_t)ALU_Input::ADL_ADD] = cmd.ADL_ADD;
-
-		alu->sim_Load(alu_in, SB, DB, ADL, SB_Dirty);
+		alu->sim_Load();
 
 		// ALU operation: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA
 		// BCD correction via SB bus: SB_AC
 
-		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
-		alu_in[(size_t)ALU_Input::ANDS] = cmd.ANDS;
-		alu_in[(size_t)ALU_Input::EORS] = cmd.EORS;
-		alu_in[(size_t)ALU_Input::ORS] = cmd.ORS;
-		alu_in[(size_t)ALU_Input::SRS] = cmd.SRS;
-		alu_in[(size_t)ALU_Input::SUMS] = cmd.SUMS;
-		alu_in[(size_t)ALU_Input::SB_AC] = cmd.SB_AC;
-		alu_in[(size_t)ALU_Input::n_ACIN] = cmd.n_ACIN;
-		alu_in[(size_t)ALU_Input::n_DAA] = cmd.n_DAA;
-		alu_in[(size_t)ALU_Input::n_DSA] = cmd.n_DSA;
-
-		alu->sim(alu_in, SB, DB, ADL, ADH, SB_Dirty, DB_Dirty, ADL_Dirty, ADH_Dirty);
+		alu->sim();
 
 		// Load flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 
-		TriState flags_in[(size_t)Flags_Input::Max];
-
-		TriState IR[8];
-		ir->get(IR);
-
-		flags_in[(size_t)Flags_Input::PHI1] = PHI1;
-		flags_in[(size_t)Flags_Input::PHI2] = PHI2;
-		flags_in[(size_t)Flags_Input::SO] = SO;
-		flags_in[(size_t)Flags_Input::B_OUT] = brk->getB_OUT(BRK6E);
-		flags_in[(size_t)Flags_Input::ACR] = alu->getACR();
-		flags_in[(size_t)Flags_Input::AVR] = alu->getAVR();
-		flags_in[(size_t)Flags_Input::n_IR5] = NOT(IR[5]);
-		flags_in[(size_t)Flags_Input::BRK6E] = BRK6E;
-		flags_in[(size_t)Flags_Input::P_DB] = cmd.P_DB;
-		flags_in[(size_t)Flags_Input::DB_P] = cmd.DB_P;
-		flags_in[(size_t)Flags_Input::DBZ_Z] = cmd.DBZ_Z;
-		flags_in[(size_t)Flags_Input::DB_N] = cmd.DB_N;
-		flags_in[(size_t)Flags_Input::IR5_C] = cmd.IR5_C;
-		flags_in[(size_t)Flags_Input::DB_C] = cmd.DB_C;
-		flags_in[(size_t)Flags_Input::ACR_C] = cmd.ACR_C;
-		flags_in[(size_t)Flags_Input::IR5_D] = cmd.IR5_D;
-		flags_in[(size_t)Flags_Input::IR5_I] = cmd.IR5_I;
-		flags_in[(size_t)Flags_Input::DB_V] = cmd.DB_V;
-		flags_in[(size_t)Flags_Input::AVR_V] = cmd.AVR_V;
-		flags_in[(size_t)Flags_Input::Z_V] = cmd.Z_V;
-
-		random->flags->sim_Load(flags_in, DB);
+		random->flags->sim_Load();
 
 		// Load registers: SB_X, SB_Y, SB_S / S_S
 
-		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
-		regs_in[(size_t)Regs_Input::SB_Y] = cmd.SB_Y;
-		regs_in[(size_t)Regs_Input::SB_X] = cmd.SB_X;
-		regs_in[(size_t)Regs_Input::SB_S] = cmd.SB_S;
-		regs_in[(size_t)Regs_Input::S_S] = cmd.S_S;
-
-		regs->sim_LoadSB(regs_in, SB);
+		regs->sim_LoadSB();
 
 		// PC loading from buses / keep: ADH_PCH/PCH_PCH, ADL_PCL/PCL_PCL
 
-		pc_in[(size_t)ProgramCounter_Input::ADL_PCL] = cmd.ADL_PCL;
-		pc_in[(size_t)ProgramCounter_Input::PCL_PCL] = cmd.PCL_PCL;
-		pc_in[(size_t)ProgramCounter_Input::ADH_PCH] = cmd.ADH_PCH;
-		pc_in[(size_t)ProgramCounter_Input::PCH_PCH] = cmd.PCH_PCH;
-
-		pc->sim_Load(pc_in, ADL, ADH);
+		pc->sim_Load();
 
 		// Saving DB to DOR
 
-		data_in[(size_t)DataBus_Input::PHI1] = PHI1;
-		data_in[(size_t)DataBus_Input::PHI2] = PHI2;
-		data_in[(size_t)DataBus_Input::WR] = WR;
-
-		data_bus->sim_SetExternalBus(data_in, DB, inOuts);
+		data_bus->sim_SetExternalBus(inOuts);
 
 		// Set external address bus: ADH_ABH, ADL_ABL
 
-		TriState addr_in_late[(size_t)AddressBus_Input::Max];
-
-		addr_in_late[(size_t)AddressBus_Input::PHI1] = PHI1;
-		addr_in_late[(size_t)AddressBus_Input::PHI2] = PHI2;
-		addr_in_late[(size_t)AddressBus_Input::ADL_ABL] = cmd.ADL_ABL;
-		addr_in_late[(size_t)AddressBus_Input::ADH_ABH] = cmd.ADH_ABH;
-
-		addr_bus->sim_Output(addr_in_late, ADL, ADH, outputs);
+		addr_bus->sim_Output(outputs);
 
 		// Outputs
 
-		rw_latch.set(WR, PHI1);
+		rw_latch.set(wire.WR, wire.PHI1);
 
-		outputs[(size_t)OutputPad::PHI1] = PHI1;
-		outputs[(size_t)OutputPad::PHI2] = PHI2;
+		outputs[(size_t)OutputPad::PHI1] = wire.PHI1;
+		outputs[(size_t)OutputPad::PHI2] = wire.PHI2;
 		outputs[(size_t)OutputPad::RnW] = rw_latch.nget();
 		outputs[(size_t)OutputPad::SYNC] = disp->getT1();
 	}
@@ -455,67 +337,67 @@ namespace M6502Core
 			info->decoder_out[n] = decoder_out[n] == TriState::One ? 1 : 0;
 		}
 
-		info->Y_SB = cmd.Y_SB == TriState::One ? 1 : 0;
-		info->SB_Y = cmd.SB_Y == TriState::One ? 1 : 0;
-		info->X_SB = cmd.X_SB == TriState::One ? 1 : 0;
-		info->SB_X = cmd.SB_X == TriState::One ? 1 : 0;
-		info->S_ADL = cmd.S_ADL == TriState::One ? 1 : 0;
-		info->S_SB = cmd.S_SB == TriState::One ? 1 : 0;
-		info->SB_S = cmd.SB_S == TriState::One ? 1 : 0;
-		info->S_S = cmd.S_S == TriState::One ? 1 : 0;
-		info->NDB_ADD = cmd.NDB_ADD == TriState::One ? 1 : 0;
-		info->DB_ADD = cmd.DB_ADD == TriState::One ? 1 : 0;
-		info->Z_ADD = cmd.Z_ADD == TriState::One ? 1 : 0;
-		info->SB_ADD = cmd.SB_ADD == TriState::One ? 1 : 0;
-		info->ADL_ADD = cmd.ADL_ADD == TriState::One ? 1 : 0;
-		info->n_ACIN = cmd.n_ACIN == TriState::One ? 1 : 0;
-		info->ANDS = cmd.ANDS == TriState::One ? 1 : 0;
-		info->EORS = cmd.EORS == TriState::One ? 1 : 0;
-		info->ORS = cmd.ORS == TriState::One ? 1 : 0;
-		info->SRS = cmd.SRS == TriState::One ? 1 : 0;
-		info->SUMS = cmd.SUMS == TriState::One ? 1 : 0;
-		info->n_DAA = cmd.n_DAA == TriState::One ? 1 : 0;
-		info->n_DSA = cmd.n_DSA == TriState::One ? 1 : 0;
-		info->ADD_SB7 = cmd.ADD_SB7 == TriState::One ? 1 : 0;
-		info->ADD_SB06 = cmd.ADD_SB06 == TriState::One ? 1 : 0;
-		info->ADD_ADL = cmd.ADD_ADL == TriState::One ? 1 : 0;
-		info->SB_AC = cmd.SB_AC == TriState::One ? 1 : 0;
-		info->AC_SB = cmd.AC_SB == TriState::One ? 1 : 0;
-		info->AC_DB = cmd.AC_DB == TriState::One ? 1 : 0;
+		info->Y_SB = cmd.Y_SB;
+		info->SB_Y = cmd.SB_Y;
+		info->X_SB = cmd.X_SB;
+		info->SB_X = cmd.SB_X;
+		info->S_ADL = cmd.S_ADL;
+		info->S_SB = cmd.S_SB;
+		info->SB_S = cmd.SB_S;
+		info->S_S = cmd.S_S;
+		info->NDB_ADD = cmd.NDB_ADD;
+		info->DB_ADD = cmd.DB_ADD;
+		info->Z_ADD = cmd.Z_ADD;
+		info->SB_ADD = cmd.SB_ADD;
+		info->ADL_ADD = cmd.ADL_ADD;
+		info->n_ACIN = cmd.n_ACIN;
+		info->ANDS = cmd.ANDS;
+		info->EORS = cmd.EORS;
+		info->ORS = cmd.ORS;
+		info->SRS = cmd.SRS;
+		info->SUMS = cmd.SUMS;
+		info->n_DAA = cmd.n_DAA;
+		info->n_DSA = cmd.n_DSA;
+		info->ADD_SB7 = cmd.ADD_SB7;
+		info->ADD_SB06 = cmd.ADD_SB06;
+		info->ADD_ADL = cmd.ADD_ADL;
+		info->SB_AC = cmd.SB_AC;
+		info->AC_SB = cmd.AC_SB;
+		info->AC_DB = cmd.AC_DB;
 		info->n_1PC = wire.n_1PC == TriState::One ? 1 : 0;			// From Dispatcher
-		info->ADH_PCH = cmd.ADH_PCH == TriState::One ? 1 : 0;
-		info->PCH_PCH = cmd.PCH_PCH == TriState::One ? 1 : 0;
-		info->PCH_ADH = cmd.PCH_ADH == TriState::One ? 1 : 0;
-		info->PCH_DB = cmd.PCH_DB == TriState::One ? 1 : 0;
-		info->ADL_PCL = cmd.ADL_PCL == TriState::One ? 1 : 0;
-		info->PCL_PCL = cmd.PCL_PCL == TriState::One ? 1 : 0;
-		info->PCL_ADL = cmd.PCL_ADL == TriState::One ? 1 : 0;
-		info->PCL_DB = cmd.PCL_DB == TriState::One ? 1 : 0;
-		info->ADH_ABH = cmd.ADH_ABH == TriState::One ? 1 : 0;
-		info->ADL_ABL = cmd.ADL_ABL == TriState::One ? 1 : 0;
-		info->Z_ADL0 = cmd.Z_ADL0 == TriState::One ? 1 : 0;
-		info->Z_ADL1 = cmd.Z_ADL1 == TriState::One ? 1 : 0;
-		info->Z_ADL2 = cmd.Z_ADL2 == TriState::One ? 1 : 0;
-		info->Z_ADH0 = cmd.Z_ADH0 == TriState::One ? 1 : 0;
-		info->Z_ADH17 = cmd.Z_ADH17 == TriState::One ? 1 : 0;
-		info->SB_DB = cmd.SB_DB == TriState::One ? 1 : 0;
-		info->SB_ADH = cmd.SB_ADH == TriState::One ? 1 : 0;
-		info->DL_ADL = cmd.DL_ADL == TriState::One ? 1 : 0;
-		info->DL_ADH = cmd.DL_ADH == TriState::One ? 1 : 0;
-		info->DL_DB = cmd.DL_DB == TriState::One ? 1 : 0;
+		info->ADH_PCH = cmd.ADH_PCH;
+		info->PCH_PCH = cmd.PCH_PCH;
+		info->PCH_ADH = cmd.PCH_ADH;
+		info->PCH_DB = cmd.PCH_DB;
+		info->ADL_PCL = cmd.ADL_PCL;
+		info->PCL_PCL = cmd.PCL_PCL;
+		info->PCL_ADL = cmd.PCL_ADL;
+		info->PCL_DB = cmd.PCL_DB;
+		info->ADH_ABH = cmd.ADH_ABH;
+		info->ADL_ABL = cmd.ADL_ABL;
+		info->Z_ADL0 = cmd.Z_ADL0;
+		info->Z_ADL1 = cmd.Z_ADL1;
+		info->Z_ADL2 = cmd.Z_ADL2;
+		info->Z_ADH0 = cmd.Z_ADH0;
+		info->Z_ADH17 = cmd.Z_ADH17;
+		info->SB_DB = cmd.SB_DB;
+		info->SB_ADH = cmd.SB_ADH;
+		info->DL_ADL = cmd.DL_ADL;
+		info->DL_ADH = cmd.DL_ADH;
+		info->DL_DB = cmd.DL_DB;
 
-		info->P_DB = cmd.P_DB == TriState::One ? 1 : 0;
-		info->DB_P = cmd.DB_P == TriState::One ? 1 : 0;
-		info->DBZ_Z = cmd.DBZ_Z == TriState::One ? 1 : 0;
-		info->DB_N = cmd.DB_N == TriState::One ? 1 : 0;
-		info->IR5_C = cmd.IR5_C == TriState::One ? 1 : 0;
-		info->DB_C = cmd.DB_C == TriState::One ? 1 : 0;
-		info->ACR_C = cmd.ACR_C == TriState::One ? 1 : 0;
-		info->IR5_D = cmd.IR5_D == TriState::One ? 1 : 0;
-		info->IR5_I = cmd.IR5_I == TriState::One ? 1 : 0;
-		info->DB_V = cmd.DB_V == TriState::One ? 1 : 0;
-		info->AVR_V = cmd.AVR_V == TriState::One ? 1 : 0;
-		info->Z_V = cmd.Z_V == TriState::One ? 1 : 0;
+		info->P_DB = cmd.P_DB;
+		info->DB_P = cmd.DB_P;
+		info->DBZ_Z = cmd.DBZ_Z;
+		info->DB_N = cmd.DB_N;
+		info->IR5_C = cmd.IR5_C;
+		info->DB_C = cmd.DB_C;
+		info->ACR_C = cmd.ACR_C;
+		info->IR5_D = cmd.IR5_D;
+		info->IR5_I = cmd.IR5_I;
+		info->DB_V = cmd.DB_V;
+		info->AVR_V = cmd.AVR_V;
+		info->Z_V = cmd.Z_V;
 	}
 
 	void M6502::getUserRegs(UserRegs* userRegs)

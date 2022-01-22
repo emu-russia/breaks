@@ -12,7 +12,7 @@ namespace M6502Core
 		pc_control = new PC_Control(core, MT);
 		bus_control = new BusControl(core, MT);
 		flags_control = new FlagsControl(core);
-		flags = new Flags;
+		flags = new Flags(core);
 		branch_logic = new BranchLogic;
 	}
 

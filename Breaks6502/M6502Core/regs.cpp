@@ -4,13 +4,13 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void Regs::sim_LoadSB(TriState inputs[], TriState SB[])
+	void Regs::sim_LoadSB()
 	{
-		TriState PHI2 = inputs[(size_t)Regs_Input::PHI2];
-		TriState SB_Y = inputs[(size_t)Regs_Input::SB_Y];
-		TriState SB_X = inputs[(size_t)Regs_Input::SB_X];
-		TriState SB_S = inputs[(size_t)Regs_Input::SB_S];
-		TriState S_S = inputs[(size_t)Regs_Input::S_S];
+		TriState PHI2 = core->wire.PHI2;
+		bool SB_Y = core->cmd.SB_Y;
+		bool SB_X = core->cmd.SB_X;
+		TriState SB_S = core->cmd.SB_S ? TriState::One : TriState::Zero;
+		TriState S_S = core->cmd.S_S ? TriState::One : TriState::Zero;
 
 		if (PHI2 == TriState::One)
 		{
@@ -30,31 +30,31 @@ namespace M6502Core
 			{
 				for (size_t n = 0; n < 8; n++)
 				{
-					if (SB_Y == TriState::One)
+					if (SB_Y)
 					{
-						Y[n].set(NOT(NOT(SB[n])));
+						Y[n].set(NOT(NOT(core->SB[n])));
 					}
 
-					if (SB_X == TriState::One)
+					if (SB_X)
 					{
-						X[n].set(NOT(NOT(SB[n])));
+						X[n].set(NOT(NOT(core->SB[n])));
 					}
 
 					// S/S and SB/S are complementary signals.
 
 					S_in[n].set(S_out[n].nget(), S_S);
-					S_in[n].set(SB[n], SB_S);
+					S_in[n].set(core->SB[n], SB_S);
 				}
 			}
 		}
 	}
 
-	void Regs::sim_StoreSB(TriState inputs[], TriState SB[], bool SB_Dirty[8])
+	void Regs::sim_StoreSB()
 	{
-		TriState PHI2 = inputs[(size_t)Regs_Input::PHI2];
-		TriState Y_SB = inputs[(size_t)Regs_Input::Y_SB];
-		TriState X_SB = inputs[(size_t)Regs_Input::X_SB];
-		TriState S_SB = inputs[(size_t)Regs_Input::S_SB];
+		TriState PHI2 = core->wire.PHI2;
+		bool Y_SB = core->cmd.Y_SB;
+		bool X_SB = core->cmd.X_SB;
+		bool S_SB = core->cmd.S_SB;
 
 		if (Y_SB || X_SB || S_SB)
 		{
@@ -62,69 +62,69 @@ namespace M6502Core
 			{
 				S_out[n].set(S_in[n].nget(), PHI2);
 
-				if (S_SB == TriState::One)
+				if (S_SB)
 				{
-					if (SB_Dirty[n])
+					if (core->SB_Dirty[n])
 					{
-						SB[n] = AND(SB[n], S_out[n].nget());
+						core->SB[n] = AND(core->SB[n], S_out[n].nget());
 					}
 					else
 					{
-						SB[n] = S_out[n].nget();
-						SB_Dirty[n] = true;
+						core->SB[n] = S_out[n].nget();
+						core->SB_Dirty[n] = true;
 					}
 				}
 
-				if (Y_SB == TriState::One)
+				if (Y_SB)
 				{
-					if (SB_Dirty[n])
+					if (core->SB_Dirty[n])
 					{
-						SB[n] = AND(SB[n], Y[n].get());
+						core->SB[n] = AND(core->SB[n], Y[n].get());
 					}
 					else
 					{
-						SB[n] = Y[n].get();
-						SB_Dirty[n] = true;
+						core->SB[n] = Y[n].get();
+						core->SB_Dirty[n] = true;
 					}
 				}
 
-				if (X_SB == TriState::One)
+				if (X_SB)
 				{
-					if (SB_Dirty[n])
+					if (core->SB_Dirty[n])
 					{
-						SB[n] = AND(SB[n], X[n].get());
+						core->SB[n] = AND(core->SB[n], X[n].get());
 					}
 					else
 					{
-						SB[n] = X[n].get();
-						SB_Dirty[n] = true;
+						core->SB[n] = X[n].get();
+						core->SB_Dirty[n] = true;
 					}
 				}
 			}
 		}
 	}
 
-	void Regs::sim_StoreOldS(TriState inputs[], TriState ADL[], bool ADL_Dirty[8])
+	void Regs::sim_StoreOldS()
 	{
-		TriState S_ADL = inputs[(size_t)Regs_Input::S_ADL];
+		bool S_ADL = core->cmd.S_ADL;
 
-		if (S_ADL == TriState::Zero)
+		if (!S_ADL)
 		{
 			return;
 		}
 
 		for (size_t n = 0; n < 8; n++)
 		{
-			if (S_ADL == TriState::One)
+			if (S_ADL)
 			{
-				if (ADL_Dirty[n])
+				if (core->ADL_Dirty[n])
 				{
-					ADL[n] = AND(ADL[n], S_out[n].nget());
+					core->ADL[n] = AND(core->ADL[n], S_out[n].nget());
 				}
 				else
 				{
-					ADL[n] = S_out[n].nget();
-					ADL_Dirty[n] = true;
+					core->ADL[n] = S_out[n].nget();
+					core->ADL_Dirty[n] = true;
 				}
 			}
 		}

@@ -232,6 +232,12 @@ namespace M6502Core
 		friend BusControl;
 		friend PC_Control;
 		friend FlagsControl;
+		friend AddressBus;
+		friend Regs;
+		friend Flags;
+		friend ALU;
+		friend ProgramCounter;
+		friend DataBus;
 
 		BaseLogic::FF nmip_ff;
 		BaseLogic::FF irqp_ff;
@@ -334,69 +340,72 @@ namespace M6502Core
 		/// <summary>
 		/// Commands for bottom and flags.
 		/// </summary>
-		struct RandomLogic_Output
+		union RandomLogic_Output
 		{
-			BaseLogic::TriState Y_SB;
-			BaseLogic::TriState SB_Y;
-			BaseLogic::TriState X_SB;
-			BaseLogic::TriState SB_X;
-			BaseLogic::TriState S_ADL;
-			BaseLogic::TriState S_SB;
-			BaseLogic::TriState SB_S;
-			BaseLogic::TriState S_S;
-			BaseLogic::TriState NDB_ADD;
-			BaseLogic::TriState DB_ADD;
-			BaseLogic::TriState Z_ADD;
-			BaseLogic::TriState SB_ADD;
-			BaseLogic::TriState ADL_ADD;
-			BaseLogic::TriState n_ACIN;
-			BaseLogic::TriState ANDS;
-			BaseLogic::TriState EORS;
-			BaseLogic::TriState ORS;
-			BaseLogic::TriState SRS;
-			BaseLogic::TriState SUMS;
-			BaseLogic::TriState n_DAA;
-			BaseLogic::TriState n_DSA;
-			BaseLogic::TriState ADD_SB7;
-			BaseLogic::TriState ADD_SB06;
-			BaseLogic::TriState ADD_ADL;
-			BaseLogic::TriState SB_AC;
-			BaseLogic::TriState AC_SB;
-			BaseLogic::TriState AC_DB;
-			BaseLogic::TriState ADH_PCH;
-			BaseLogic::TriState PCH_PCH;
-			BaseLogic::TriState PCH_ADH;
-			BaseLogic::TriState PCH_DB;
-			BaseLogic::TriState ADL_PCL;
-			BaseLogic::TriState PCL_PCL;
-			BaseLogic::TriState PCL_ADL;
-			BaseLogic::TriState PCL_DB;
-			BaseLogic::TriState ADH_ABH;
-			BaseLogic::TriState ADL_ABL;
-			BaseLogic::TriState Z_ADL0;
-			BaseLogic::TriState Z_ADL1;
-			BaseLogic::TriState Z_ADL2;
-			BaseLogic::TriState Z_ADH0;
-			BaseLogic::TriState Z_ADH17;
-			BaseLogic::TriState SB_DB;
-			BaseLogic::TriState SB_ADH;
-			BaseLogic::TriState DL_ADL;
-			BaseLogic::TriState DL_ADH;
-			BaseLogic::TriState DL_DB;
+			struct
+			{
+				unsigned Y_SB : 1;
+				unsigned SB_Y : 1;
+				unsigned X_SB : 1;
+				unsigned SB_X : 1;
+				unsigned S_ADL : 1;
+				unsigned S_SB : 1;
+				unsigned SB_S : 1;
+				unsigned S_S : 1;
+				unsigned NDB_ADD : 1;
+				unsigned DB_ADD : 1;
+				unsigned Z_ADD : 1;
+				unsigned SB_ADD : 1;
+				unsigned ADL_ADD : 1;
+				unsigned n_ACIN : 1;
+				unsigned ANDS : 1;
+				unsigned EORS : 1;
+				unsigned ORS : 1;
+				unsigned SRS : 1;
+				unsigned SUMS : 1;
+				unsigned n_DAA : 1;
+				unsigned n_DSA : 1;
+				unsigned ADD_SB7 : 1;
+				unsigned ADD_SB06 : 1;
+				unsigned ADD_ADL : 1;
+				unsigned SB_AC : 1;
+				unsigned AC_SB : 1;
+				unsigned AC_DB : 1;
+				unsigned ADH_PCH : 1;
+				unsigned PCH_PCH : 1;
+				unsigned PCH_ADH : 1;
+				unsigned PCH_DB : 1;
+				unsigned ADL_PCL : 1;
+				unsigned PCL_PCL : 1;
+				unsigned PCL_ADL : 1;
+				unsigned PCL_DB : 1;
+				unsigned ADH_ABH : 1;
+				unsigned ADL_ABL : 1;
+				unsigned Z_ADL0 : 1;
+				unsigned Z_ADL1 : 1;
+				unsigned Z_ADL2 : 1;
+				unsigned Z_ADH0 : 1;
+				unsigned Z_ADH17 : 1;
+				unsigned SB_DB : 1;
+				unsigned SB_ADH : 1;
+				unsigned DL_ADL : 1;
+				unsigned DL_ADH : 1;
+				unsigned DL_DB : 1;
 
-			BaseLogic::TriState P_DB;
-			BaseLogic::TriState DB_P;
-			BaseLogic::TriState DBZ_Z;
-			BaseLogic::TriState DB_N;
-			BaseLogic::TriState IR5_C;
-			BaseLogic::TriState DB_C;
-			BaseLogic::TriState ACR_C;
-			BaseLogic::TriState IR5_D;
-			BaseLogic::TriState IR5_I;
-			BaseLogic::TriState DB_V;
-			BaseLogic::TriState AVR_V;
-			BaseLogic::TriState Z_V;
-
+				unsigned P_DB : 1;
+				unsigned DB_P : 1;
+				unsigned DBZ_Z : 1;
+				unsigned DB_N : 1;
+				unsigned IR5_C : 1;
+				unsigned DB_C : 1;
+				unsigned ACR_C : 1;
+				unsigned IR5_D : 1;
+				unsigned IR5_I : 1;
+				unsigned DB_V : 1;
+				unsigned AVR_V : 1;
+				unsigned Z_V : 1;
+			};
+			uint64_t raw;
 		} cmd;
 
 	public:

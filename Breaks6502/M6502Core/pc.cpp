@@ -18,10 +18,10 @@ namespace M6502Core
 		PCx[n].set(NAND(OR(NOT(sout), cin), cout), PHI2);
 	}
 
-	void ProgramCounter::sim(TriState inputs[])
+	void ProgramCounter::sim()
 	{
-		TriState PHI2 = inputs[(size_t)ProgramCounter_Input::PHI2];
-		TriState n_1PC = inputs[(size_t)ProgramCounter_Input::n_1PC];
+		TriState PHI2 = core->wire.PHI2;
+		TriState n_1PC = core->wire.n_1PC;
 
 		if (PHI2 != TriState::One)
 		{
@@ -88,10 +88,10 @@ namespace M6502Core
 		}
 	}
 
-	void ProgramCounter::sim_HLE(TriState inputs[])
+	void ProgramCounter::sim_HLE()
 	{
-		TriState PHI2 = inputs[(size_t)ProgramCounter_Input::PHI2];
-		TriState n_1PC = inputs[(size_t)ProgramCounter_Input::n_1PC];
+		TriState PHI2 = core->wire.PHI2;
+		TriState n_1PC = core->wire.n_1PC;
 
 		if (PHI2 == TriState::One)
 		{
@@ -120,12 +120,12 @@ namespace M6502Core
 		}
 	}
 
-	void ProgramCounter::sim_Load(TriState inputs[], TriState ADL[], TriState ADH[])
+	void ProgramCounter::sim_Load()
 	{
-		TriState ADL_PCL = inputs[(size_t)ProgramCounter_Input::ADL_PCL];
-		TriState PCL_PCL = inputs[(size_t)ProgramCounter_Input::PCL_PCL];
-		TriState ADH_PCH = inputs[(size_t)ProgramCounter_Input::ADH_PCH];
-		TriState PCH_PCH = inputs[(size_t)ProgramCounter_Input::PCH_PCH];
+		TriState ADL_PCL = core->cmd.ADL_PCL ? TriState::One : TriState::Zero;
+		TriState PCL_PCL = core->cmd.PCL_PCL ? TriState::One : TriState::Zero;
+		TriState ADH_PCH = core->cmd.ADH_PCH ? TriState::One : TriState::Zero;
+		TriState PCH_PCH = core->cmd.PCH_PCH ? TriState::One : TriState::Zero;
 
 		if (PCL_PCL || PCH_PCH)
 		{
@@ -148,18 +148,18 @@ namespace M6502Core
 		{
 			for (size_t n = 0; n < 8; n++)
 			{
-				PCLS[n].set(ADL[n], ADL_PCL);
-				PCHS[n].set(ADH[n], ADH_PCH);
+				PCLS[n].set(core->ADL[n], ADL_PCL);
+				PCHS[n].set(core->ADH[n], ADH_PCH);
 			}
 		}
 	}
 
-	void ProgramCounter::sim_Store(TriState inputs[], TriState DB[], TriState ADL[], TriState ADH[], bool DB_Dirty[8], bool ADL_Dirty[8], bool ADH_Dirty[8])
+	void ProgramCounter::sim_Store()
 	{
-		TriState PCL_ADL = inputs[(size_t)ProgramCounter_Input::PCL_ADL];
-		TriState PCL_DB = inputs[(size_t)ProgramCounter_Input::PCL_DB];
-		TriState PCH_ADH = inputs[(size_t)ProgramCounter_Input::PCH_ADH];
-		TriState PCH_DB = inputs[(size_t)ProgramCounter_Input::PCH_DB];
+		bool PCL_ADL = core->cmd.PCL_ADL;
+		bool PCL_DB = core->cmd.PCL_DB;
+		bool PCH_ADH = core->cmd.PCH_ADH;
+		bool PCH_DB = core->cmd.PCH_DB;
 		TriState out;
 
 		if (PCL_DB || PCL_ADL)
@@ -175,28 +175,28 @@ namespace M6502Core
 					out = NOT(PCL[n].nget());
 				}
 
-				if (PCL_DB == TriState::One)
+				if (PCL_DB)
 				{
-					if (DB_Dirty[n])
+					if (core->DB_Dirty[n])
 					{
-						DB[n] = AND(DB[n], out);
+						core->DB[n] = AND(core->DB[n], out);
 					}
 					else
 					{
-						DB[n] = out;
-						DB_Dirty[n] = true;
+						core->DB[n] = out;
+						core->DB_Dirty[n] = true;
 					}
 				}
-				if (PCL_ADL == TriState::One)
+				if (PCL_ADL)
 				{
-					if (ADL_Dirty[n])
+					if (core->ADL_Dirty[n])
 					{
-						ADL[n] = AND(ADL[n], out);
+						core->ADL[n] = AND(core->ADL[n], out);
 					}
 					else
 					{
-						ADL[n] = out;
-						ADL_Dirty[n] = true;
+						core->ADL[n] = out;
+						core->ADL_Dirty[n] = true;
 					}
 				}
 			}
@@ -215,28 +215,28 @@ namespace M6502Core
 					out = PCH[n].nget();
 				}
 
-				if (PCH_DB == TriState::One)
+				if (PCH_DB)
 				{
-					if (DB_Dirty[n])
+					if (core->DB_Dirty[n])
 					{
-						DB[n] = AND(DB[n], out);
+						core->DB[n] = AND(core->DB[n], out);
 					}
 					else
 					{
-						DB[n] = out;
-						DB_Dirty[n] = true;
+						core->DB[n] = out;
+						core->DB_Dirty[n] = true;
 					}
 				}
-				if (PCH_ADH == TriState::One)
+				if (PCH_ADH)
 				{
-					if (ADH_Dirty[n])
+					if (core->ADH_Dirty[n])
 					{
-						ADH[n] = AND(ADH[n], out);
+						core->ADH[n] = AND(core->ADH[n], out);
 					}
 					else
 					{
-						ADH[n] = out;
-						ADH_Dirty[n] = true;
+						core->ADH[n] = out;
+						core->ADH_Dirty[n] = true;
 					}
 				}
 			}
