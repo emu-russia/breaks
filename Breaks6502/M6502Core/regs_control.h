@@ -17,10 +17,28 @@ namespace M6502Core
 
 		M6502* core = nullptr;
 
+		Thread* regs_control_thread = nullptr;
+		volatile bool running = false;
+		bool mt;
+
 	public:
 
-		RegsControl(M6502* parent) { core = parent; }
+		RegsControl(M6502* parent, bool MT)
+		{
+			mt = MT;
+			core = parent;
+			if (mt)
+				regs_control_thread = new Thread(sim, false, this, "regs_control_thread");
+		}
+		~RegsControl()
+		{
+			if (mt)
+				delete regs_control_thread;
+		}
 
-		static void sim (RegsControl* inst);
+		static void sim (void* inst);
+
+		void mt_run();
+		void mt_wait();
 	};
 }

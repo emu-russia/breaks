@@ -5,6 +5,9 @@ namespace M6502Core
 	class M6502;
 }
 
+#include "Spinlock.h"
+#include "Thread.h"
+
 #include "decoder.h"
 #include "ir.h"
 #include "predecode.h"

@@ -4,8 +4,13 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void BusControl::sim(BusControl *inst)
+	void BusControl::sim(void* param)
 	{
+		BusControl* inst = (BusControl*)param;
+
+		if (!inst->running && inst->mt)
+			return;
+
 		M6502* core = inst->core;
 		TriState* d = core->decoder_out;
 		TriState PHI2 = core->wire.PHI2;
@@ -206,5 +211,17 @@ namespace M6502Core
 		core->cmd.DL_ADL = inst->dl_adl_latch.nget();
 		core->cmd.DL_ADH = inst->dl_adh_latch.nget();
 		core->cmd.DL_DB = inst->dl_db_latch.nget();
+
+		inst->running = false;
+	}
+
+	void BusControl::mt_run()
+	{
+		running = true;
+	}
+
+	void BusControl::mt_wait()
+	{
+		while (running);
 	}
 }

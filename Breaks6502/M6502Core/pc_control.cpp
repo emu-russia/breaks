@@ -4,8 +4,13 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void PC_Control::sim(PC_Control *inst)
+	void PC_Control::sim(void* param)
 	{
+		PC_Control* inst = (PC_Control*)param;
+
+		if (!inst->running && inst->mt)
+			return;
+
 		M6502* core = inst->core;
 		TriState* d = core->decoder_out;
 		TriState PHI1 = core->wire.PHI1;
@@ -89,5 +94,17 @@ namespace M6502Core
 
 		core->wire.PC_DB = PC_DB;
 		core->wire.n_ADL_PCL = n_ADL_PCL;
+
+		inst->running = false;
+	}
+
+	void PC_Control::mt_run()
+	{
+		running = true;
+	}
+
+	void PC_Control::mt_wait()
+	{
+		while (running);
 	}
 }

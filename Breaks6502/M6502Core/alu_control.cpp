@@ -4,8 +4,13 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void ALUControl::sim(ALUControl *inst)
+	void ALUControl::sim(void* param)
 	{
+		ALUControl* inst = (ALUControl *)param;
+
+		if (!inst->running && inst->mt)
+			return;
+
 		M6502* core = inst->core;
 		TriState* d = core->decoder_out;
 		TriState PHI1 = core->wire.PHI1;
@@ -192,5 +197,17 @@ namespace M6502Core
 		core->cmd.n_ACIN = NOT(inst->acin_latch5.nget());
 		core->cmd.n_DAA = inst->daa_latch2.nget();
 		core->cmd.n_DSA = inst->dsa_latch2.nget();
+
+		inst->running = false;
+	}
+
+	void ALUControl::mt_run()
+	{
+		running = true;
+	}
+
+	void ALUControl::mt_wait()
+	{
+		while (running);
 	}
 }

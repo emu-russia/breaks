@@ -4,8 +4,13 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void RegsControl::sim(RegsControl *inst)
+	void RegsControl::sim(void* param)
 	{
+		RegsControl* inst = (RegsControl*)param;
+
+		if (!inst->running && inst->mt)
+			return;
+
 		M6502* core = inst->core;
 		TriState* d = core->decoder_out;
 		TriState PHI1 = core->wire.PHI1;
@@ -84,5 +89,17 @@ namespace M6502Core
 		core->cmd.SB_S = NOR(inst->sbs_latch.get(), PHI2);
 		core->cmd.S_S = NOR(inst->ss_latch.get(), PHI2);
 		core->cmd.S_ADL = inst->sadl_latch.nget();
+
+		inst->running = false;
+	}
+
+	void RegsControl::mt_run()
+	{
+		running = true;
+	}
+
+	void RegsControl::mt_wait()
+	{
+		while (running);
 	}
 }
