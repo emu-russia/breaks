@@ -56,9 +56,9 @@ namespace M6502Core
 		core->wire.BRK6E = BRK6E;
 		core->wire.BRK7 = BRK7;
 		core->wire.DORES = DORES;
-		core->wire.Z_ADL0 = zadl_latch[0].nget();
-		core->wire.Z_ADL1 = zadl_latch[1].nget();
-		core->wire.Z_ADL2 = NOT(zadl_latch[2].nget());
+		core->cmd.Z_ADL0 = zadl_latch[0].nget();
+		core->cmd.Z_ADL1 = zadl_latch[1].nget();
+		core->cmd.Z_ADL2 = NOT(zadl_latch[2].nget());
 		core->wire.n_DONMI = n_DONMI;
 		core->wire.BRK5_RDY = BRK5_RDY;
 	}

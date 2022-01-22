@@ -27,7 +27,7 @@ namespace M6502Core
 		delete branch_logic;
 	}
 
-	void RandomLogic::sim(TriState outputs[])
+	void RandomLogic::sim()
 	{
 		TriState* d = core->decoder_out;
 		TriState PHI1 = core->wire.PHI1;
@@ -40,9 +40,9 @@ namespace M6502Core
 		TriState n_PRDY = core->wire.n_PRDY;
 		TriState ACR = core->alu->getACR();
 		TriState AVR = core->alu->getAVR();
-		TriState Z_ADL0 = core->wire.Z_ADL0;
-		TriState Z_ADL1 = core->wire.Z_ADL1;
-		TriState Z_ADL2 = core->wire.Z_ADL2;
+		TriState Z_ADL0 = core->cmd.Z_ADL0;
+		TriState Z_ADL1 = core->cmd.Z_ADL1;
+		TriState Z_ADL2 = core->cmd.Z_ADL2;
 		TriState BRK6E = core->wire.BRK6E;
 		TriState SO = core->wire.SO;
 		TriState STOR = core->disp->getSTOR(d);
@@ -160,66 +160,66 @@ namespace M6502Core
 
 		// Outputs
 
-		outputs[(size_t)RandomLogic_Output::Y_SB] = regs_control_out[(size_t)RegsControl_Output::Y_SB];
-		outputs[(size_t)RandomLogic_Output::SB_Y] = regs_control_out[(size_t)RegsControl_Output::SB_Y];
-		outputs[(size_t)RandomLogic_Output::X_SB] = regs_control_out[(size_t)RegsControl_Output::X_SB];
-		outputs[(size_t)RandomLogic_Output::SB_X] = regs_control_out[(size_t)RegsControl_Output::SB_X];
-		outputs[(size_t)RandomLogic_Output::S_ADL] = regs_control_out[(size_t)RegsControl_Output::S_ADL];
-		outputs[(size_t)RandomLogic_Output::S_SB] = regs_control_out[(size_t)RegsControl_Output::S_SB];
-		outputs[(size_t)RandomLogic_Output::SB_S] = regs_control_out[(size_t)RegsControl_Output::SB_S];
-		outputs[(size_t)RandomLogic_Output::S_S] = regs_control_out[(size_t)RegsControl_Output::S_S];
-		outputs[(size_t)RandomLogic_Output::NDB_ADD] = alu_control_out[(size_t)ALUControl_Output::NDB_ADD];
-		outputs[(size_t)RandomLogic_Output::DB_ADD] = alu_control_out[(size_t)ALUControl_Output::DB_ADD];
-		outputs[(size_t)RandomLogic_Output::Z_ADD] = alu_control_out[(size_t)ALUControl_Output::Z_ADD];
-		outputs[(size_t)RandomLogic_Output::SB_ADD] = alu_control_out[(size_t)ALUControl_Output::SB_ADD];
-		outputs[(size_t)RandomLogic_Output::ADL_ADD] = alu_control_out[(size_t)ALUControl_Output::ADL_ADD];
-		outputs[(size_t)RandomLogic_Output::n_ACIN] = alu_control_out[(size_t)ALUControl_Output::n_ACIN];
-		outputs[(size_t)RandomLogic_Output::ANDS] = alu_control_out[(size_t)ALUControl_Output::ANDS];
-		outputs[(size_t)RandomLogic_Output::EORS] = alu_control_out[(size_t)ALUControl_Output::EORS];
-		outputs[(size_t)RandomLogic_Output::ORS] = alu_control_out[(size_t)ALUControl_Output::ORS];
-		outputs[(size_t)RandomLogic_Output::SRS] = alu_control_out[(size_t)ALUControl_Output::SRS];
-		outputs[(size_t)RandomLogic_Output::SUMS] = alu_control_out[(size_t)ALUControl_Output::SUMS];
-		outputs[(size_t)RandomLogic_Output::n_DAA] = alu_control_out[(size_t)ALUControl_Output::n_DAA];
-		outputs[(size_t)RandomLogic_Output::n_DSA] = alu_control_out[(size_t)ALUControl_Output::n_DSA];
-		outputs[(size_t)RandomLogic_Output::ADD_SB7] = alu_control_out[(size_t)ALUControl_Output::ADD_SB7];
-		outputs[(size_t)RandomLogic_Output::ADD_SB06] = alu_control_out[(size_t)ALUControl_Output::ADD_SB06];
-		outputs[(size_t)RandomLogic_Output::ADD_ADL] = alu_control_out[(size_t)ALUControl_Output::ADD_ADL];
-		outputs[(size_t)RandomLogic_Output::SB_AC] = bus_out[(size_t)BusControl_Output::SB_AC];
-		outputs[(size_t)RandomLogic_Output::AC_SB] = bus_out[(size_t)BusControl_Output::AC_SB];
-		outputs[(size_t)RandomLogic_Output::AC_DB] = bus_out[(size_t)BusControl_Output::AC_DB];
-		outputs[(size_t)RandomLogic_Output::ADH_PCH] = pc_out[(size_t)PC_Control_Output::ADH_PCH];
-		outputs[(size_t)RandomLogic_Output::PCH_PCH] = pc_out[(size_t)PC_Control_Output::PCH_PCH];
-		outputs[(size_t)RandomLogic_Output::PCH_ADH] = pc_out[(size_t)PC_Control_Output::PCH_ADH];
-		outputs[(size_t)RandomLogic_Output::PCH_DB] = pc_out[(size_t)PC_Control_Output::PCH_DB];
-		outputs[(size_t)RandomLogic_Output::ADL_PCL] = pc_out[(size_t)PC_Control_Output::ADL_PCL];
-		outputs[(size_t)RandomLogic_Output::PCL_PCL] = pc_out[(size_t)PC_Control_Output::PCL_PCL];
-		outputs[(size_t)RandomLogic_Output::PCL_ADL] = pc_out[(size_t)PC_Control_Output::PCL_ADL];
-		outputs[(size_t)RandomLogic_Output::PCL_DB] = pc_out[(size_t)PC_Control_Output::PCL_DB];
-		outputs[(size_t)RandomLogic_Output::ADH_ABH] = bus_out[(size_t)BusControl_Output::ADH_ABH];
-		outputs[(size_t)RandomLogic_Output::ADL_ABL] = bus_out[(size_t)BusControl_Output::ADL_ABL];
-		outputs[(size_t)RandomLogic_Output::Z_ADL0] = Z_ADL0;	// pass through
-		outputs[(size_t)RandomLogic_Output::Z_ADL1] = Z_ADL1;	// pass through
-		outputs[(size_t)RandomLogic_Output::Z_ADL2] = Z_ADL2;	// pass through
-		outputs[(size_t)RandomLogic_Output::Z_ADH0] = bus_out[(size_t)BusControl_Output::Z_ADH0];
-		outputs[(size_t)RandomLogic_Output::Z_ADH17] = bus_out[(size_t)BusControl_Output::Z_ADH17];
-		outputs[(size_t)RandomLogic_Output::SB_DB] = bus_out[(size_t)BusControl_Output::SB_DB];
-		outputs[(size_t)RandomLogic_Output::SB_ADH] = bus_out[(size_t)BusControl_Output::SB_ADH];
-		outputs[(size_t)RandomLogic_Output::DL_ADL] = bus_out[(size_t)BusControl_Output::DL_ADL];
-		outputs[(size_t)RandomLogic_Output::DL_ADH] = bus_out[(size_t)BusControl_Output::DL_ADH];
-		outputs[(size_t)RandomLogic_Output::DL_DB] = bus_out[(size_t)BusControl_Output::DL_DB];
+		core->cmd.Y_SB = regs_control_out[(size_t)RegsControl_Output::Y_SB];
+		core->cmd.SB_Y = regs_control_out[(size_t)RegsControl_Output::SB_Y];
+		core->cmd.X_SB = regs_control_out[(size_t)RegsControl_Output::X_SB];
+		core->cmd.SB_X = regs_control_out[(size_t)RegsControl_Output::SB_X];
+		core->cmd.S_ADL = regs_control_out[(size_t)RegsControl_Output::S_ADL];
+		core->cmd.S_SB = regs_control_out[(size_t)RegsControl_Output::S_SB];
+		core->cmd.SB_S = regs_control_out[(size_t)RegsControl_Output::SB_S];
+		core->cmd.S_S = regs_control_out[(size_t)RegsControl_Output::S_S];
+		core->cmd.NDB_ADD = alu_control_out[(size_t)ALUControl_Output::NDB_ADD];
+		core->cmd.DB_ADD = alu_control_out[(size_t)ALUControl_Output::DB_ADD];
+		core->cmd.Z_ADD = alu_control_out[(size_t)ALUControl_Output::Z_ADD];
+		core->cmd.SB_ADD = alu_control_out[(size_t)ALUControl_Output::SB_ADD];
+		core->cmd.ADL_ADD = alu_control_out[(size_t)ALUControl_Output::ADL_ADD];
+		core->cmd.n_ACIN = alu_control_out[(size_t)ALUControl_Output::n_ACIN];
+		core->cmd.ANDS = alu_control_out[(size_t)ALUControl_Output::ANDS];
+		core->cmd.EORS = alu_control_out[(size_t)ALUControl_Output::EORS];
+		core->cmd.ORS = alu_control_out[(size_t)ALUControl_Output::ORS];
+		core->cmd.SRS = alu_control_out[(size_t)ALUControl_Output::SRS];
+		core->cmd.SUMS = alu_control_out[(size_t)ALUControl_Output::SUMS];
+		core->cmd.n_DAA = alu_control_out[(size_t)ALUControl_Output::n_DAA];
+		core->cmd.n_DSA = alu_control_out[(size_t)ALUControl_Output::n_DSA];
+		core->cmd.ADD_SB7 = alu_control_out[(size_t)ALUControl_Output::ADD_SB7];
+		core->cmd.ADD_SB06 = alu_control_out[(size_t)ALUControl_Output::ADD_SB06];
+		core->cmd.ADD_ADL = alu_control_out[(size_t)ALUControl_Output::ADD_ADL];
+		core->cmd.SB_AC = bus_out[(size_t)BusControl_Output::SB_AC];
+		core->cmd.AC_SB = bus_out[(size_t)BusControl_Output::AC_SB];
+		core->cmd.AC_DB = bus_out[(size_t)BusControl_Output::AC_DB];
+		core->cmd.ADH_PCH = pc_out[(size_t)PC_Control_Output::ADH_PCH];
+		core->cmd.PCH_PCH = pc_out[(size_t)PC_Control_Output::PCH_PCH];
+		core->cmd.PCH_ADH = pc_out[(size_t)PC_Control_Output::PCH_ADH];
+		core->cmd.PCH_DB = pc_out[(size_t)PC_Control_Output::PCH_DB];
+		core->cmd.ADL_PCL = pc_out[(size_t)PC_Control_Output::ADL_PCL];
+		core->cmd.PCL_PCL = pc_out[(size_t)PC_Control_Output::PCL_PCL];
+		core->cmd.PCL_ADL = pc_out[(size_t)PC_Control_Output::PCL_ADL];
+		core->cmd.PCL_DB = pc_out[(size_t)PC_Control_Output::PCL_DB];
+		core->cmd.ADH_ABH = bus_out[(size_t)BusControl_Output::ADH_ABH];
+		core->cmd.ADL_ABL = bus_out[(size_t)BusControl_Output::ADL_ABL];
+		core->cmd.Z_ADL0 = Z_ADL0;	// pass through
+		core->cmd.Z_ADL1 = Z_ADL1;	// pass through
+		core->cmd.Z_ADL2 = Z_ADL2;	// pass through
+		core->cmd.Z_ADH0 = bus_out[(size_t)BusControl_Output::Z_ADH0];
+		core->cmd.Z_ADH17 = bus_out[(size_t)BusControl_Output::Z_ADH17];
+		core->cmd.SB_DB = bus_out[(size_t)BusControl_Output::SB_DB];
+		core->cmd.SB_ADH = bus_out[(size_t)BusControl_Output::SB_ADH];
+		core->cmd.DL_ADL = bus_out[(size_t)BusControl_Output::DL_ADL];
+		core->cmd.DL_ADH = bus_out[(size_t)BusControl_Output::DL_ADH];
+		core->cmd.DL_DB = bus_out[(size_t)BusControl_Output::DL_DB];
 
-		outputs[(size_t)RandomLogic_Output::P_DB] = flags_ctrl_out[(size_t)FlagsControl_Output::P_DB];
-		outputs[(size_t)RandomLogic_Output::DB_P] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_P];
-		outputs[(size_t)RandomLogic_Output::DBZ_Z] = flags_ctrl_out[(size_t)FlagsControl_Output::DBZ_Z];
-		outputs[(size_t)RandomLogic_Output::DB_N] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_N];
-		outputs[(size_t)RandomLogic_Output::IR5_C] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_C];
-		outputs[(size_t)RandomLogic_Output::DB_C] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_C];
-		outputs[(size_t)RandomLogic_Output::ACR_C] = flags_ctrl_out[(size_t)FlagsControl_Output::ACR_C];
-		outputs[(size_t)RandomLogic_Output::IR5_D] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_D];
-		outputs[(size_t)RandomLogic_Output::IR5_I] = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_I];
-		outputs[(size_t)RandomLogic_Output::DB_V] = flags_ctrl_out[(size_t)FlagsControl_Output::DB_V];
-		outputs[(size_t)RandomLogic_Output::AVR_V] = d[112];
-		outputs[(size_t)RandomLogic_Output::Z_V] = flags_ctrl_out[(size_t)FlagsControl_Output::Z_V];
+		core->cmd.P_DB = flags_ctrl_out[(size_t)FlagsControl_Output::P_DB];
+		core->cmd.DB_P = flags_ctrl_out[(size_t)FlagsControl_Output::DB_P];
+		core->cmd.DBZ_Z = flags_ctrl_out[(size_t)FlagsControl_Output::DBZ_Z];
+		core->cmd.DB_N = flags_ctrl_out[(size_t)FlagsControl_Output::DB_N];
+		core->cmd.IR5_C = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_C];
+		core->cmd.DB_C = flags_ctrl_out[(size_t)FlagsControl_Output::DB_C];
+		core->cmd.ACR_C = flags_ctrl_out[(size_t)FlagsControl_Output::ACR_C];
+		core->cmd.IR5_D = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_D];
+		core->cmd.IR5_I = flags_ctrl_out[(size_t)FlagsControl_Output::IR5_I];
+		core->cmd.DB_V = flags_ctrl_out[(size_t)FlagsControl_Output::DB_V];
+		core->cmd.AVR_V = d[112];
+		core->cmd.Z_V = flags_ctrl_out[(size_t)FlagsControl_Output::Z_V];
 
 		core->wire.BRFW = branch_logic_out[(size_t)BranchLogic_Output::BRFW];
 		core->wire.n_BRTAKEN = branch_logic_out[(size_t)BranchLogic_Output::n_BRTAKEN];

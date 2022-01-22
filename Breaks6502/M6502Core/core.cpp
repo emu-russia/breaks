@@ -127,7 +127,7 @@ namespace M6502Core
 
 		disp->sim_BeforeRandomLogic();
 
-		random->sim(rand_out);
+		random->sim();
 
 		brk->sim_AfterRandom();
 
@@ -136,12 +136,12 @@ namespace M6502Core
 
 	void M6502::sim_Bottom(TriState inputs[], TriState outputs[], TriState inOuts[])
 	{
-		TriState PHI0 = inputs[(size_t)InputPad::PHI0];
-		TriState PHI1 = NOT(PHI0);
-		TriState PHI2 = PHI0;
-		TriState SO = inputs[(size_t)InputPad::SO];
+		TriState PHI0 = wire.PHI0;
+		TriState PHI1 = wire.PHI1;
+		TriState PHI2 = wire.PHI2;
+		TriState SO = wire.SO;
 		TriState WR = wire.WR;
-		TriState P_DB = rand_out[(size_t)RandomLogic_Output::P_DB];
+		TriState P_DB = cmd.P_DB;
 		TriState BRK6E = wire.BRK6E;
 
 		TriState data_in[(size_t)DataBus_Input::Max];
@@ -160,33 +160,33 @@ namespace M6502Core
 		data_in[(size_t)DataBus_Input::PHI1] = PHI1;
 		data_in[(size_t)DataBus_Input::PHI2] = PHI2;
 		data_in[(size_t)DataBus_Input::WR] = WR;
-		data_in[(size_t)DataBus_Input::DL_ADL] = rand_out[(size_t)RandomLogic_Output::DL_ADL];
-		data_in[(size_t)DataBus_Input::DL_ADH] = rand_out[(size_t)RandomLogic_Output::DL_ADH];
-		data_in[(size_t)DataBus_Input::DL_DB] = rand_out[(size_t)RandomLogic_Output::DL_DB];
+		data_in[(size_t)DataBus_Input::DL_ADL] = cmd.DL_ADL;
+		data_in[(size_t)DataBus_Input::DL_ADH] = cmd.DL_ADH;
+		data_in[(size_t)DataBus_Input::DL_DB] = cmd.DL_DB;
 
 		data_bus->sim_GetExternalBus(data_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty, inOuts);
 
 		// Registers to the SB bus: Y_SB, X_SB, S_SB
 
 		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
-		regs_in[(size_t)Regs_Input::Y_SB] = rand_out[(size_t)RandomLogic_Output::Y_SB];
-		regs_in[(size_t)Regs_Input::X_SB] = rand_out[(size_t)RandomLogic_Output::X_SB];
-		regs_in[(size_t)Regs_Input::S_SB] = rand_out[(size_t)RandomLogic_Output::S_SB];
+		regs_in[(size_t)Regs_Input::Y_SB] = cmd.Y_SB;
+		regs_in[(size_t)Regs_Input::X_SB] = cmd.X_SB;
+		regs_in[(size_t)Regs_Input::S_SB] = cmd.S_SB;
 
 		regs->sim_StoreSB(regs_in, SB, SB_Dirty);
 
 		// ADD saving on SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
 
-		alu_in[(size_t)ALU_Input::ADD_SB06] = rand_out[(size_t)RandomLogic_Output::ADD_SB06];
-		alu_in[(size_t)ALU_Input::ADD_SB7] = rand_out[(size_t)RandomLogic_Output::ADD_SB7];
-		alu_in[(size_t)ALU_Input::ADD_ADL] = rand_out[(size_t)RandomLogic_Output::ADD_ADL];
+		alu_in[(size_t)ALU_Input::ADD_SB06] = cmd.ADD_SB06;
+		alu_in[(size_t)ALU_Input::ADD_SB7] = cmd.ADD_SB7;
+		alu_in[(size_t)ALU_Input::ADD_ADL] = cmd.ADD_ADL;
 
 		alu->sim_StoreADD(alu_in, SB, ADL, SB_Dirty, ADL_Dirty);
 
 		// Saving AC: AC_SB, AC_DB
 
-		alu_in[(size_t)ALU_Input::AC_SB] = rand_out[(size_t)RandomLogic_Output::AC_SB];
-		alu_in[(size_t)ALU_Input::AC_DB] = rand_out[(size_t)RandomLogic_Output::AC_DB];
+		alu_in[(size_t)ALU_Input::AC_SB] = cmd.AC_SB;
+		alu_in[(size_t)ALU_Input::AC_DB] = cmd.AC_DB;
 
 		alu->sim_StoreAC(alu_in, SB, DB, SB_Dirty, DB_Dirty);
 
@@ -196,7 +196,7 @@ namespace M6502Core
 
 		// Stack pointer saving on ADL bus: S_ADL
 
-		regs_in[(size_t)Regs_Input::S_ADL] = rand_out[(size_t)RandomLogic_Output::S_ADL];
+		regs_in[(size_t)Regs_Input::S_ADL] = cmd.S_ADL;
 
 		regs->sim_StoreOldS(regs_in, ADL, ADL_Dirty);
 
@@ -216,17 +216,17 @@ namespace M6502Core
 
 		// Saving PC to buses: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 
-		pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = rand_out[(size_t)RandomLogic_Output::PCL_ADL];
-		pc_in[(size_t)ProgramCounter_Input::PCL_DB] = rand_out[(size_t)RandomLogic_Output::PCL_DB];
-		pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = rand_out[(size_t)RandomLogic_Output::PCH_ADH];
-		pc_in[(size_t)ProgramCounter_Input::PCH_DB] = rand_out[(size_t)RandomLogic_Output::PCH_DB];
+		pc_in[(size_t)ProgramCounter_Input::PCL_ADL] = cmd.PCL_ADL;
+		pc_in[(size_t)ProgramCounter_Input::PCL_DB] = cmd.PCL_DB;
+		pc_in[(size_t)ProgramCounter_Input::PCH_ADH] = cmd.PCH_ADH;
+		pc_in[(size_t)ProgramCounter_Input::PCH_DB] = cmd.PCH_DB;
 
 		pc->sim_Store(pc_in, DB, ADL, ADH, DB_Dirty, ADL_Dirty, ADH_Dirty);
 
 		// Bus multiplexing: SB_DB, SB_ADH
 
-		alu_in[(size_t)ALU_Input::SB_DB] = rand_out[(size_t)RandomLogic_Output::SB_DB];
-		alu_in[(size_t)ALU_Input::SB_ADH] = rand_out[(size_t)RandomLogic_Output::SB_ADH];
+		alu_in[(size_t)ALU_Input::SB_DB] = cmd.SB_DB;
+		alu_in[(size_t)ALU_Input::SB_ADH] = cmd.SB_ADH;
 
 		alu->sim_BusMux(alu_in, SB, DB, ADH, SB_Dirty, DB_Dirty, ADH_Dirty);
 
@@ -234,21 +234,21 @@ namespace M6502Core
 
 		TriState addr_in_early[(size_t)AddressBus_Input::Max];
 
-		addr_in_early[(size_t)AddressBus_Input::Z_ADL0] = rand_out[(size_t)RandomLogic_Output::Z_ADL0];
-		addr_in_early[(size_t)AddressBus_Input::Z_ADL1] = rand_out[(size_t)RandomLogic_Output::Z_ADL1];
-		addr_in_early[(size_t)AddressBus_Input::Z_ADL2] = rand_out[(size_t)RandomLogic_Output::Z_ADL2];
-		addr_in_early[(size_t)AddressBus_Input::Z_ADH0] = rand_out[(size_t)RandomLogic_Output::Z_ADH0];
-		addr_in_early[(size_t)AddressBus_Input::Z_ADH17] = rand_out[(size_t)RandomLogic_Output::Z_ADH17];
+		addr_in_early[(size_t)AddressBus_Input::Z_ADL0] = cmd.Z_ADL0;
+		addr_in_early[(size_t)AddressBus_Input::Z_ADL1] = cmd.Z_ADL1;
+		addr_in_early[(size_t)AddressBus_Input::Z_ADL2] = cmd.Z_ADL2;
+		addr_in_early[(size_t)AddressBus_Input::Z_ADH0] = cmd.Z_ADH0;
+		addr_in_early[(size_t)AddressBus_Input::Z_ADH17] = cmd.Z_ADH17;
 
 		addr_bus->sim_ConstGen(addr_in_early, ADL, ADH, ADL_Dirty, ADH_Dirty);
 
 		// Loading ALU operands: NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD
 
-		alu_in[(size_t)ALU_Input::NDB_ADD] = rand_out[(size_t)RandomLogic_Output::NDB_ADD];
-		alu_in[(size_t)ALU_Input::DB_ADD] = rand_out[(size_t)RandomLogic_Output::DB_ADD];
-		alu_in[(size_t)ALU_Input::Z_ADD] = rand_out[(size_t)RandomLogic_Output::Z_ADD];
-		alu_in[(size_t)ALU_Input::SB_ADD] = rand_out[(size_t)RandomLogic_Output::SB_ADD];
-		alu_in[(size_t)ALU_Input::ADL_ADD] = rand_out[(size_t)RandomLogic_Output::ADL_ADD];
+		alu_in[(size_t)ALU_Input::NDB_ADD] = cmd.NDB_ADD;
+		alu_in[(size_t)ALU_Input::DB_ADD] = cmd.DB_ADD;
+		alu_in[(size_t)ALU_Input::Z_ADD] = cmd.Z_ADD;
+		alu_in[(size_t)ALU_Input::SB_ADD] = cmd.SB_ADD;
+		alu_in[(size_t)ALU_Input::ADL_ADD] = cmd.ADL_ADD;
 
 		alu->sim_Load(alu_in, SB, DB, ADL, SB_Dirty);
 
@@ -256,15 +256,15 @@ namespace M6502Core
 		// BCD correction via SB bus: SB_AC
 
 		alu_in[(size_t)ALU_Input::PHI2] = PHI2;
-		alu_in[(size_t)ALU_Input::ANDS] = rand_out[(size_t)RandomLogic_Output::ANDS];
-		alu_in[(size_t)ALU_Input::EORS] = rand_out[(size_t)RandomLogic_Output::EORS];
-		alu_in[(size_t)ALU_Input::ORS] = rand_out[(size_t)RandomLogic_Output::ORS];
-		alu_in[(size_t)ALU_Input::SRS] = rand_out[(size_t)RandomLogic_Output::SRS];
-		alu_in[(size_t)ALU_Input::SUMS] = rand_out[(size_t)RandomLogic_Output::SUMS];
-		alu_in[(size_t)ALU_Input::SB_AC] = rand_out[(size_t)RandomLogic_Output::SB_AC];
-		alu_in[(size_t)ALU_Input::n_ACIN] = rand_out[(size_t)RandomLogic_Output::n_ACIN];
-		alu_in[(size_t)ALU_Input::n_DAA] = rand_out[(size_t)RandomLogic_Output::n_DAA];
-		alu_in[(size_t)ALU_Input::n_DSA] = rand_out[(size_t)RandomLogic_Output::n_DSA];
+		alu_in[(size_t)ALU_Input::ANDS] = cmd.ANDS;
+		alu_in[(size_t)ALU_Input::EORS] = cmd.EORS;
+		alu_in[(size_t)ALU_Input::ORS] = cmd.ORS;
+		alu_in[(size_t)ALU_Input::SRS] = cmd.SRS;
+		alu_in[(size_t)ALU_Input::SUMS] = cmd.SUMS;
+		alu_in[(size_t)ALU_Input::SB_AC] = cmd.SB_AC;
+		alu_in[(size_t)ALU_Input::n_ACIN] = cmd.n_ACIN;
+		alu_in[(size_t)ALU_Input::n_DAA] = cmd.n_DAA;
+		alu_in[(size_t)ALU_Input::n_DSA] = cmd.n_DSA;
 
 		alu->sim(alu_in, SB, DB, ADL, ADH, SB_Dirty, DB_Dirty, ADL_Dirty, ADH_Dirty);
 
@@ -283,37 +283,37 @@ namespace M6502Core
 		flags_in[(size_t)Flags_Input::AVR] = alu->getAVR();
 		flags_in[(size_t)Flags_Input::n_IR5] = NOT(IR[5]);
 		flags_in[(size_t)Flags_Input::BRK6E] = BRK6E;
-		flags_in[(size_t)Flags_Input::P_DB] = rand_out[(size_t)RandomLogic_Output::P_DB];
-		flags_in[(size_t)Flags_Input::DB_P] = rand_out[(size_t)RandomLogic_Output::DB_P];
-		flags_in[(size_t)Flags_Input::DBZ_Z] = rand_out[(size_t)RandomLogic_Output::DBZ_Z];
-		flags_in[(size_t)Flags_Input::DB_N] = rand_out[(size_t)RandomLogic_Output::DB_N];
-		flags_in[(size_t)Flags_Input::IR5_C] = rand_out[(size_t)RandomLogic_Output::IR5_C];
-		flags_in[(size_t)Flags_Input::DB_C] = rand_out[(size_t)RandomLogic_Output::DB_C];
-		flags_in[(size_t)Flags_Input::ACR_C] = rand_out[(size_t)RandomLogic_Output::ACR_C];
-		flags_in[(size_t)Flags_Input::IR5_D] = rand_out[(size_t)RandomLogic_Output::IR5_D];
-		flags_in[(size_t)Flags_Input::IR5_I] = rand_out[(size_t)RandomLogic_Output::IR5_I];
-		flags_in[(size_t)Flags_Input::DB_V] = rand_out[(size_t)RandomLogic_Output::DB_V];
-		flags_in[(size_t)Flags_Input::AVR_V] = rand_out[(size_t)RandomLogic_Output::AVR_V];
-		flags_in[(size_t)Flags_Input::Z_V] = rand_out[(size_t)RandomLogic_Output::Z_V];
+		flags_in[(size_t)Flags_Input::P_DB] = cmd.P_DB;
+		flags_in[(size_t)Flags_Input::DB_P] = cmd.DB_P;
+		flags_in[(size_t)Flags_Input::DBZ_Z] = cmd.DBZ_Z;
+		flags_in[(size_t)Flags_Input::DB_N] = cmd.DB_N;
+		flags_in[(size_t)Flags_Input::IR5_C] = cmd.IR5_C;
+		flags_in[(size_t)Flags_Input::DB_C] = cmd.DB_C;
+		flags_in[(size_t)Flags_Input::ACR_C] = cmd.ACR_C;
+		flags_in[(size_t)Flags_Input::IR5_D] = cmd.IR5_D;
+		flags_in[(size_t)Flags_Input::IR5_I] = cmd.IR5_I;
+		flags_in[(size_t)Flags_Input::DB_V] = cmd.DB_V;
+		flags_in[(size_t)Flags_Input::AVR_V] = cmd.AVR_V;
+		flags_in[(size_t)Flags_Input::Z_V] = cmd.Z_V;
 
 		random->flags->sim_Load(flags_in, DB);
 
 		// Load registers: SB_X, SB_Y, SB_S / S_S
 
 		regs_in[(size_t)Regs_Input::PHI2] = PHI2;
-		regs_in[(size_t)Regs_Input::SB_Y] = rand_out[(size_t)RandomLogic_Output::SB_Y];
-		regs_in[(size_t)Regs_Input::SB_X] = rand_out[(size_t)RandomLogic_Output::SB_X];
-		regs_in[(size_t)Regs_Input::SB_S] = rand_out[(size_t)RandomLogic_Output::SB_S];
-		regs_in[(size_t)Regs_Input::S_S] = rand_out[(size_t)RandomLogic_Output::S_S];
+		regs_in[(size_t)Regs_Input::SB_Y] = cmd.SB_Y;
+		regs_in[(size_t)Regs_Input::SB_X] = cmd.SB_X;
+		regs_in[(size_t)Regs_Input::SB_S] = cmd.SB_S;
+		regs_in[(size_t)Regs_Input::S_S] = cmd.S_S;
 
 		regs->sim_LoadSB(regs_in, SB);
 
 		// PC loading from buses / keep: ADH_PCH/PCH_PCH, ADL_PCL/PCL_PCL
 
-		pc_in[(size_t)ProgramCounter_Input::ADL_PCL] = rand_out[(size_t)RandomLogic_Output::ADL_PCL];
-		pc_in[(size_t)ProgramCounter_Input::PCL_PCL] = rand_out[(size_t)RandomLogic_Output::PCL_PCL];
-		pc_in[(size_t)ProgramCounter_Input::ADH_PCH] = rand_out[(size_t)RandomLogic_Output::ADH_PCH];
-		pc_in[(size_t)ProgramCounter_Input::PCH_PCH] = rand_out[(size_t)RandomLogic_Output::PCH_PCH];
+		pc_in[(size_t)ProgramCounter_Input::ADL_PCL] = cmd.ADL_PCL;
+		pc_in[(size_t)ProgramCounter_Input::PCL_PCL] = cmd.PCL_PCL;
+		pc_in[(size_t)ProgramCounter_Input::ADH_PCH] = cmd.ADH_PCH;
+		pc_in[(size_t)ProgramCounter_Input::PCH_PCH] = cmd.PCH_PCH;
 
 		pc->sim_Load(pc_in, ADL, ADH);
 
@@ -331,8 +331,8 @@ namespace M6502Core
 
 		addr_in_late[(size_t)AddressBus_Input::PHI1] = PHI1;
 		addr_in_late[(size_t)AddressBus_Input::PHI2] = PHI2;
-		addr_in_late[(size_t)AddressBus_Input::ADL_ABL] = rand_out[(size_t)RandomLogic_Output::ADL_ABL];
-		addr_in_late[(size_t)AddressBus_Input::ADH_ABH] = rand_out[(size_t)RandomLogic_Output::ADH_ABH];
+		addr_in_late[(size_t)AddressBus_Input::ADL_ABL] = cmd.ADL_ABL;
+		addr_in_late[(size_t)AddressBus_Input::ADH_ABH] = cmd.ADH_ABH;
 
 		addr_bus->sim_Output(addr_in_late, ADL, ADH, outputs);
 
@@ -455,67 +455,67 @@ namespace M6502Core
 			info->decoder_out[n] = decoder_out[n] == TriState::One ? 1 : 0;
 		}
 
-		info->Y_SB = rand_out[(size_t)RandomLogic_Output::Y_SB] == TriState::One ? 1 : 0;
-		info->SB_Y = rand_out[(size_t)RandomLogic_Output::SB_Y] == TriState::One ? 1 : 0;
-		info->X_SB = rand_out[(size_t)RandomLogic_Output::X_SB] == TriState::One ? 1 : 0;
-		info->SB_X = rand_out[(size_t)RandomLogic_Output::SB_X] == TriState::One ? 1 : 0;
-		info->S_ADL = rand_out[(size_t)RandomLogic_Output::S_ADL] == TriState::One ? 1 : 0;
-		info->S_SB = rand_out[(size_t)RandomLogic_Output::S_SB] == TriState::One ? 1 : 0;
-		info->SB_S = rand_out[(size_t)RandomLogic_Output::SB_S] == TriState::One ? 1 : 0;
-		info->S_S = rand_out[(size_t)RandomLogic_Output::S_S] == TriState::One ? 1 : 0;
-		info->NDB_ADD = rand_out[(size_t)RandomLogic_Output::NDB_ADD] == TriState::One ? 1 : 0;
-		info->DB_ADD = rand_out[(size_t)RandomLogic_Output::DB_ADD] == TriState::One ? 1 : 0;
-		info->Z_ADD = rand_out[(size_t)RandomLogic_Output::Z_ADD] == TriState::One ? 1 : 0;
-		info->SB_ADD = rand_out[(size_t)RandomLogic_Output::SB_ADD] == TriState::One ? 1 : 0;
-		info->ADL_ADD = rand_out[(size_t)RandomLogic_Output::ADL_ADD] == TriState::One ? 1 : 0;
-		info->n_ACIN = rand_out[(size_t)RandomLogic_Output::n_ACIN] == TriState::One ? 1 : 0;
-		info->ANDS = rand_out[(size_t)RandomLogic_Output::ANDS] == TriState::One ? 1 : 0;
-		info->EORS = rand_out[(size_t)RandomLogic_Output::EORS] == TriState::One ? 1 : 0;
-		info->ORS = rand_out[(size_t)RandomLogic_Output::ORS] == TriState::One ? 1 : 0;
-		info->SRS = rand_out[(size_t)RandomLogic_Output::SRS] == TriState::One ? 1 : 0;
-		info->SUMS = rand_out[(size_t)RandomLogic_Output::SUMS] == TriState::One ? 1 : 0;
-		info->n_DAA = rand_out[(size_t)RandomLogic_Output::n_DAA] == TriState::One ? 1 : 0;
-		info->n_DSA = rand_out[(size_t)RandomLogic_Output::n_DSA] == TriState::One ? 1 : 0;
-		info->ADD_SB7 = rand_out[(size_t)RandomLogic_Output::ADD_SB7] == TriState::One ? 1 : 0;
-		info->ADD_SB06 = rand_out[(size_t)RandomLogic_Output::ADD_SB06] == TriState::One ? 1 : 0;
-		info->ADD_ADL = rand_out[(size_t)RandomLogic_Output::ADD_ADL] == TriState::One ? 1 : 0;
-		info->SB_AC = rand_out[(size_t)RandomLogic_Output::SB_AC] == TriState::One ? 1 : 0;
-		info->AC_SB = rand_out[(size_t)RandomLogic_Output::AC_SB] == TriState::One ? 1 : 0;
-		info->AC_DB = rand_out[(size_t)RandomLogic_Output::AC_DB] == TriState::One ? 1 : 0;
+		info->Y_SB = cmd.Y_SB == TriState::One ? 1 : 0;
+		info->SB_Y = cmd.SB_Y == TriState::One ? 1 : 0;
+		info->X_SB = cmd.X_SB == TriState::One ? 1 : 0;
+		info->SB_X = cmd.SB_X == TriState::One ? 1 : 0;
+		info->S_ADL = cmd.S_ADL == TriState::One ? 1 : 0;
+		info->S_SB = cmd.S_SB == TriState::One ? 1 : 0;
+		info->SB_S = cmd.SB_S == TriState::One ? 1 : 0;
+		info->S_S = cmd.S_S == TriState::One ? 1 : 0;
+		info->NDB_ADD = cmd.NDB_ADD == TriState::One ? 1 : 0;
+		info->DB_ADD = cmd.DB_ADD == TriState::One ? 1 : 0;
+		info->Z_ADD = cmd.Z_ADD == TriState::One ? 1 : 0;
+		info->SB_ADD = cmd.SB_ADD == TriState::One ? 1 : 0;
+		info->ADL_ADD = cmd.ADL_ADD == TriState::One ? 1 : 0;
+		info->n_ACIN = cmd.n_ACIN == TriState::One ? 1 : 0;
+		info->ANDS = cmd.ANDS == TriState::One ? 1 : 0;
+		info->EORS = cmd.EORS == TriState::One ? 1 : 0;
+		info->ORS = cmd.ORS == TriState::One ? 1 : 0;
+		info->SRS = cmd.SRS == TriState::One ? 1 : 0;
+		info->SUMS = cmd.SUMS == TriState::One ? 1 : 0;
+		info->n_DAA = cmd.n_DAA == TriState::One ? 1 : 0;
+		info->n_DSA = cmd.n_DSA == TriState::One ? 1 : 0;
+		info->ADD_SB7 = cmd.ADD_SB7 == TriState::One ? 1 : 0;
+		info->ADD_SB06 = cmd.ADD_SB06 == TriState::One ? 1 : 0;
+		info->ADD_ADL = cmd.ADD_ADL == TriState::One ? 1 : 0;
+		info->SB_AC = cmd.SB_AC == TriState::One ? 1 : 0;
+		info->AC_SB = cmd.AC_SB == TriState::One ? 1 : 0;
+		info->AC_DB = cmd.AC_DB == TriState::One ? 1 : 0;
 		info->n_1PC = wire.n_1PC == TriState::One ? 1 : 0;			// From Dispatcher
-		info->ADH_PCH = rand_out[(size_t)RandomLogic_Output::ADH_PCH] == TriState::One ? 1 : 0;
-		info->PCH_PCH = rand_out[(size_t)RandomLogic_Output::PCH_PCH] == TriState::One ? 1 : 0;
-		info->PCH_ADH = rand_out[(size_t)RandomLogic_Output::PCH_ADH] == TriState::One ? 1 : 0;
-		info->PCH_DB = rand_out[(size_t)RandomLogic_Output::PCH_DB] == TriState::One ? 1 : 0;
-		info->ADL_PCL = rand_out[(size_t)RandomLogic_Output::ADL_PCL] == TriState::One ? 1 : 0;
-		info->PCL_PCL = rand_out[(size_t)RandomLogic_Output::PCL_PCL] == TriState::One ? 1 : 0;
-		info->PCL_ADL = rand_out[(size_t)RandomLogic_Output::PCL_ADL] == TriState::One ? 1 : 0;
-		info->PCL_DB = rand_out[(size_t)RandomLogic_Output::PCL_DB] == TriState::One ? 1 : 0;
-		info->ADH_ABH = rand_out[(size_t)RandomLogic_Output::ADH_ABH] == TriState::One ? 1 : 0;
-		info->ADL_ABL = rand_out[(size_t)RandomLogic_Output::ADL_ABL] == TriState::One ? 1 : 0;
-		info->Z_ADL0 = rand_out[(size_t)RandomLogic_Output::Z_ADL0] == TriState::One ? 1 : 0;
-		info->Z_ADL1 = rand_out[(size_t)RandomLogic_Output::Z_ADL1] == TriState::One ? 1 : 0;
-		info->Z_ADL2 = rand_out[(size_t)RandomLogic_Output::Z_ADL2] == TriState::One ? 1 : 0;
-		info->Z_ADH0 = rand_out[(size_t)RandomLogic_Output::Z_ADH0] == TriState::One ? 1 : 0;
-		info->Z_ADH17 = rand_out[(size_t)RandomLogic_Output::Z_ADH17] == TriState::One ? 1 : 0;
-		info->SB_DB = rand_out[(size_t)RandomLogic_Output::SB_DB] == TriState::One ? 1 : 0;
-		info->SB_ADH = rand_out[(size_t)RandomLogic_Output::SB_ADH] == TriState::One ? 1 : 0;
-		info->DL_ADL = rand_out[(size_t)RandomLogic_Output::DL_ADL] == TriState::One ? 1 : 0;
-		info->DL_ADH = rand_out[(size_t)RandomLogic_Output::DL_ADH] == TriState::One ? 1 : 0;
-		info->DL_DB = rand_out[(size_t)RandomLogic_Output::DL_DB] == TriState::One ? 1 : 0;
+		info->ADH_PCH = cmd.ADH_PCH == TriState::One ? 1 : 0;
+		info->PCH_PCH = cmd.PCH_PCH == TriState::One ? 1 : 0;
+		info->PCH_ADH = cmd.PCH_ADH == TriState::One ? 1 : 0;
+		info->PCH_DB = cmd.PCH_DB == TriState::One ? 1 : 0;
+		info->ADL_PCL = cmd.ADL_PCL == TriState::One ? 1 : 0;
+		info->PCL_PCL = cmd.PCL_PCL == TriState::One ? 1 : 0;
+		info->PCL_ADL = cmd.PCL_ADL == TriState::One ? 1 : 0;
+		info->PCL_DB = cmd.PCL_DB == TriState::One ? 1 : 0;
+		info->ADH_ABH = cmd.ADH_ABH == TriState::One ? 1 : 0;
+		info->ADL_ABL = cmd.ADL_ABL == TriState::One ? 1 : 0;
+		info->Z_ADL0 = cmd.Z_ADL0 == TriState::One ? 1 : 0;
+		info->Z_ADL1 = cmd.Z_ADL1 == TriState::One ? 1 : 0;
+		info->Z_ADL2 = cmd.Z_ADL2 == TriState::One ? 1 : 0;
+		info->Z_ADH0 = cmd.Z_ADH0 == TriState::One ? 1 : 0;
+		info->Z_ADH17 = cmd.Z_ADH17 == TriState::One ? 1 : 0;
+		info->SB_DB = cmd.SB_DB == TriState::One ? 1 : 0;
+		info->SB_ADH = cmd.SB_ADH == TriState::One ? 1 : 0;
+		info->DL_ADL = cmd.DL_ADL == TriState::One ? 1 : 0;
+		info->DL_ADH = cmd.DL_ADH == TriState::One ? 1 : 0;
+		info->DL_DB = cmd.DL_DB == TriState::One ? 1 : 0;
 
-		info->P_DB = rand_out[(size_t)RandomLogic_Output::P_DB] == TriState::One ? 1 : 0;
-		info->DB_P = rand_out[(size_t)RandomLogic_Output::DB_P] == TriState::One ? 1 : 0;
-		info->DBZ_Z = rand_out[(size_t)RandomLogic_Output::DBZ_Z] == TriState::One ? 1 : 0;
-		info->DB_N = rand_out[(size_t)RandomLogic_Output::DB_N] == TriState::One ? 1 : 0;
-		info->IR5_C = rand_out[(size_t)RandomLogic_Output::IR5_C] == TriState::One ? 1 : 0;
-		info->DB_C = rand_out[(size_t)RandomLogic_Output::DB_C] == TriState::One ? 1 : 0;
-		info->ACR_C = rand_out[(size_t)RandomLogic_Output::ACR_C] == TriState::One ? 1 : 0;
-		info->IR5_D = rand_out[(size_t)RandomLogic_Output::IR5_D] == TriState::One ? 1 : 0;
-		info->IR5_I = rand_out[(size_t)RandomLogic_Output::IR5_I] == TriState::One ? 1 : 0;
-		info->DB_V = rand_out[(size_t)RandomLogic_Output::DB_V] == TriState::One ? 1 : 0;
-		info->AVR_V = rand_out[(size_t)RandomLogic_Output::AVR_V] == TriState::One ? 1 : 0;
-		info->Z_V = rand_out[(size_t)RandomLogic_Output::Z_V] == TriState::One ? 1 : 0;
+		info->P_DB = cmd.P_DB == TriState::One ? 1 : 0;
+		info->DB_P = cmd.DB_P == TriState::One ? 1 : 0;
+		info->DBZ_Z = cmd.DBZ_Z == TriState::One ? 1 : 0;
+		info->DB_N = cmd.DB_N == TriState::One ? 1 : 0;
+		info->IR5_C = cmd.IR5_C == TriState::One ? 1 : 0;
+		info->DB_C = cmd.DB_C == TriState::One ? 1 : 0;
+		info->ACR_C = cmd.ACR_C == TriState::One ? 1 : 0;
+		info->IR5_D = cmd.IR5_D == TriState::One ? 1 : 0;
+		info->IR5_I = cmd.IR5_I == TriState::One ? 1 : 0;
+		info->DB_V = cmd.DB_V == TriState::One ? 1 : 0;
+		info->AVR_V = cmd.AVR_V == TriState::One ? 1 : 0;
+		info->Z_V = cmd.Z_V == TriState::One ? 1 : 0;
 	}
 
 	void M6502::getUserRegs(UserRegs* userRegs)
