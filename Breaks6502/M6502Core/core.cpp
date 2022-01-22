@@ -130,6 +130,14 @@ namespace M6502Core
 		decoder_in.n_T4 = wire.n_T4;
 		decoder_in.n_T5 = wire.n_T5;
 
+		TxBits = 0;
+		TxBits |= ((size_t)wire.n_T0 << 0);
+		TxBits |= ((size_t)wire.n_T1X << 1);
+		TxBits |= ((size_t)wire.n_T2 << 2);
+		TxBits |= ((size_t)wire.n_T3 << 3);
+		TxBits |= ((size_t)wire.n_T4 << 4);
+		TxBits |= ((size_t)wire.n_T5 << 5);
+
 		decoder->sim(decoder_in.packed_bits, &decoder_out);
 
 		// Interrupt handling

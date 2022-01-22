@@ -47,7 +47,7 @@ namespace M6502Core
 
 		// Flags control logic
 
-		flags_control->sim(flags_control);
+		flags_control->sim();
 
 		// The processing of loading flags has moved to the bottom part.
 

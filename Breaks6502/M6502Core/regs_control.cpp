@@ -42,12 +42,7 @@ namespace M6502Core
 
 			size_t n = 0;
 			n |= core->ir->IROut;
-			n |= ((size_t)core->wire.n_T0 << 8);
-			n |= ((size_t)core->wire.n_T1X << 9);
-			n |= ((size_t)core->wire.n_T2 << 10);
-			n |= ((size_t)core->wire.n_T3 << 11);
-			n |= ((size_t)core->wire.n_T4 << 12);
-			n |= ((size_t)core->wire.n_T5 << 13);
+			n |= ((size_t)core->TxBits << 8);
 			n |= ((size_t)n_ready << 14);
 			n |= ((size_t)nready_latch_val << 15);
 
@@ -115,6 +110,8 @@ namespace M6502Core
 		decoder_in.n_T5 = n_T5;
 
 		core->decoder->sim(decoder_in.packed_bits, &d);
+
+		// Wires
 
 		TriState memop_in[5];
 		memop_in[0] = d[111];

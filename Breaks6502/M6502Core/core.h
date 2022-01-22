@@ -265,6 +265,7 @@ namespace M6502Core
 		DataBus* data_bus = nullptr;
 
 		BaseLogic::TriState* decoder_out;
+		size_t TxBits;		// Used to optimize table indexing
 
 		void sim_Top(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], uint8_t* data_bus);
 
