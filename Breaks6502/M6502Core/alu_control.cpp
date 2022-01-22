@@ -21,14 +21,19 @@ namespace M6502Core
 
 		nready_latch.set(n_ready, PHI1);
 
-		TriState n3[6];
-		n3[0] = d[21];
-		n3[1] = d[22];
-		n3[2] = d[23];
-		n3[3] = d[24];
-		n3[4] = d[25];
-		n3[5] = d[26];
-		TriState STKOP = NOR(nready_latch.get(), NOR6(n3));
+		TriState STKOP;
+
+		if (PHI2)
+		{
+			TriState n3[6];
+			n3[0] = d[21];
+			n3[1] = d[22];
+			n3[2] = d[23];
+			n3[3] = d[24];
+			n3[4] = d[25];
+			n3[5] = d[26];
+			STKOP = NOR(nready_latch.get(), NOR6(n3));
+		}
 
 		TriState BR0 = AND(d[73], NOT(core->wire.n_PRDY));
 		TriState PGX = NAND(NOR(d[71], d[72]), NOT(BR0));
@@ -48,41 +53,51 @@ namespace M6502Core
 
 		// Additional signals (/ACIN, /DAA, /DSA)
 
-		TriState adladd[7];
-		adladd[0] = AND(d[33], NOT(d[34]));
-		adladd[1] = d[35];	// STK2
-		adladd[2] = d[36];
-		adladd[3] = d[37];
-		adladd[4] = d[38];
-		adladd[5] = d[39];
-		adladd[6] = n_ready;
-		TriState n_ADL_ADD = NOR7(adladd);
+		TriState n_ADL_ADD;
+		TriState INC_SB;
+		TriState BRX;
 
-		TriState incsb[6];
-		incsb[0] = d[39];
-		incsb[1] = d[40];
-		incsb[2] = d[41];
-		incsb[3] = d[42];
-		incsb[4] = d[43];
-		incsb[5] = AND(T5, d[44]);
-		TriState INC_SB = NOT(NOR6(incsb));
+		if (PHI2)
+		{
+			TriState adladd[7];
+			adladd[0] = AND(d[33], NOT(d[34]));
+			adladd[1] = d[35];	// STK2
+			adladd[2] = d[36];
+			adladd[3] = d[37];
+			adladd[4] = d[38];
+			adladd[5] = d[39];
+			adladd[6] = n_ready;
+			n_ADL_ADD = NOR7(adladd);
 
-		TriState BRX = NOT(NOR3(d[49], d[50], NOR(NOT(BR3), BRFW)));
+			TriState incsb[6];
+			incsb[0] = d[39];
+			incsb[1] = d[40];
+			incsb[2] = d[41];
+			incsb[3] = d[42];
+			incsb[4] = d[43];
+			incsb[5] = AND(T5, d[44]);
+			INC_SB = NOT(NOR6(incsb));
 
-		TriState CSET = NAND( NAND( NOR(n_C_OUT, NOR(T0, T5)), OR(d[52], d[53])), NOT(d[54]));
+			BRX = NOT(NOR3(d[49], d[50], NOR(NOT(BR3), BRFW)));
 
-		acin_latch1.set(NOR(n_ADL_ADD, NOT(RET)), PHI2);
-		acin_latch2.set(INC_SB, PHI2);
-		acin_latch3.set(BRX, PHI2);
-		acin_latch4.set(CSET, PHI2);
+			TriState CSET = NAND(NAND(NOR(n_C_OUT, NOR(T0, T5)), OR(d[52], d[53])), NOT(d[54]));
+
+			acin_latch1.set(NOR(n_ADL_ADD, NOT(RET)), PHI2);
+			acin_latch2.set(INC_SB, PHI2);
+			acin_latch3.set(BRX, PHI2);
+			acin_latch4.set(CSET, PHI2);
+		}
 		
-		TriState acin[4];
-		acin[0] = acin_latch1.get();
-		acin[1] = acin_latch2.get();
-		acin[2] = acin_latch3.get();
-		acin[3] = acin_latch4.get();
-		TriState n_ACIN = NOR4(acin);
-		acin_latch5.set(n_ACIN, PHI1);
+		if (PHI1)
+		{
+			TriState acin[4];
+			acin[0] = acin_latch1.get();
+			acin[1] = acin_latch2.get();
+			acin[2] = acin_latch3.get();
+			acin[3] = acin_latch4.get();
+			TriState n_ACIN = NOR4(acin);
+			acin_latch5.set(n_ACIN, PHI1);
+		}
 
 		TriState D_OUT = NOT(n_D_OUT);
 		daa_latch1.set(NOT(NOR(NAND(d[52], D_OUT), SBC0)), PHI2);
@@ -117,22 +132,29 @@ namespace M6502Core
 
 		// ALU operation commands (ANDS, EORS, ORS, SRS, SUMS)
 
-		ands_latch1.set(_AND, PHI2);
-		ands_latch2.set(ands_latch1.nget(), PHI1);
-		eors_latch1.set(EOR, PHI2);
-		eors_latch2.set(eors_latch1.nget(), PHI1);
-		ors_latch1.set(_OR, PHI2);
-		ors_latch2.set(ors_latch1.nget(), PHI1);
-		srs_latch1.set(SR, PHI2);
-		srs_latch2.set(srs_latch1.nget(), PHI1);
+		if (PHI2)
+		{
+			ands_latch1.set(_AND, PHI2);
+			eors_latch1.set(EOR, PHI2);
+			ors_latch1.set(_OR, PHI2);
+			srs_latch1.set(SR, PHI2);
 
-		TriState sums[4];
-		sums[0] = _AND;
-		sums[1] = EOR;
-		sums[2] = _OR;
-		sums[3] = SR;
-		sums_latch1.set(NOR4(sums), PHI2);
-		sums_latch2.set(sums_latch1.nget(), PHI1);
+			TriState sums[4];
+			sums[0] = _AND;
+			sums[1] = EOR;
+			sums[2] = _OR;
+			sums[3] = SR;
+			sums_latch1.set(NOR4(sums), PHI2);
+		}
+		else
+		{
+			ands_latch2.set(ands_latch1.nget(), PHI1);
+			eors_latch2.set(eors_latch1.nget(), PHI1);
+			ors_latch2.set(ors_latch1.nget(), PHI1);
+			srs_latch2.set(srs_latch1.nget(), PHI1);
+
+			sums_latch2.set(sums_latch1.nget(), PHI1);
+		}
 
 		// ADD/SB7
 
