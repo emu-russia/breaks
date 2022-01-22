@@ -2,51 +2,6 @@
 
 namespace M6502Core
 {
-	enum class ALUControl_Input
-	{
-		PHI1 = 0,
-		PHI2,
-		BRFW,
-		n_ready,
-		BRK6E,
-		STKOP,
-		T0,
-		T1,
-		T5,
-		T6,
-		PGX,
-		n_D_OUT,
-		n_C_OUT,
-		Max,
-	};
-
-	enum class ALUControl_Output
-	{
-		NDB_ADD = 0,
-		DB_ADD,
-		Z_ADD,
-		SB_ADD,
-		ADL_ADD,
-		ADD_SB7,
-		ADD_SB06,
-		ADD_ADL,
-
-		ANDS,
-		EORS,
-		ORS,
-		SRS,
-		SUMS,
-
-		n_ACIN,
-		n_DAA,
-		n_DSA,
-
-		AND,
-		SR,
-		INC_SB,
-		Max,
-	};
-
 	class ALUControl
 	{
 		BaseLogic::DLatch acin_latch1;
@@ -91,8 +46,12 @@ namespace M6502Core
 		BaseLogic::DLatch sr_latch1;
 		BaseLogic::DLatch sr_latch2;
 
+		M6502* core = nullptr;
+
 	public:
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
+		ALUControl(M6502* parent) { core = parent; }
+
+		void sim();
 	};
 }

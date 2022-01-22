@@ -224,6 +224,11 @@ namespace M6502Core
 		friend BRKProcessing;
 		friend Dispatcher;
 		friend RandomLogic;
+		friend RegsControl;
+		friend ALUControl;
+		friend BusControl;
+		friend PC_Control;
+		friend FlagsControl;
 
 		BaseLogic::FF nmip_ff;
 		BaseLogic::FF irqp_ff;

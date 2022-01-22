@@ -4,14 +4,15 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void PC_Control::sim(TriState inputs[], TriState d[], TriState outputs[])
+	void PC_Control::sim()
 	{
-		TriState PHI1 = inputs[(size_t)PC_Control_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)PC_Control_Input::PHI2];
-		TriState n_ready = inputs[(size_t)PC_Control_Input::n_ready];
-		TriState T0 = inputs[(size_t)PC_Control_Input::T0];
-		TriState T1 = inputs[(size_t)PC_Control_Input::T1];
-		TriState BR0 = inputs[(size_t)PC_Control_Input::BR0];
+		TriState* d = core->decoder_out;
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState n_ready = core->wire.n_ready;
+		TriState T0 = core->wire.T0;
+		TriState T1 = core->disp->getT1();
+		TriState BR0 = AND(d[73], NOT(core->wire.n_PRDY));
 
 		TriState JSR_5 = d[56];
 		TriState RTS_5 = d[84];
@@ -74,18 +75,18 @@ namespace M6502Core
 
 		// Outputs
 
-		outputs[(size_t)PC_Control_Output::PCL_DB] = pcl_db_latch2.nget();
-		outputs[(size_t)PC_Control_Output::PCH_DB] = pch_db_latch2.nget();
-		outputs[(size_t)PC_Control_Output::PCL_ADL] = pcl_adl_latch.nget();
-		outputs[(size_t)PC_Control_Output::PCH_ADH] = pch_adh_latch.nget();
-		outputs[(size_t)PC_Control_Output::PCL_PCL] = NOR(pcl_pcl_latch.get(), PHI2);
-		outputs[(size_t)PC_Control_Output::ADL_PCL] = NOR(adl_pcl_latch.get(), PHI2);
-		outputs[(size_t)PC_Control_Output::ADH_PCH] = NOR(adh_pch_latch.get(), PHI2);
-		outputs[(size_t)PC_Control_Output::PCH_PCH] = NOR(pch_pch_latch.get(), PHI2);
+		core->cmd.PCL_DB = pcl_db_latch2.nget();
+		core->cmd.PCH_DB = pch_db_latch2.nget();
+		core->cmd.PCL_ADL = pcl_adl_latch.nget();
+		core->cmd.PCH_ADH = pch_adh_latch.nget();
+		core->cmd.PCL_PCL = NOR(pcl_pcl_latch.get(), PHI2);
+		core->cmd.ADL_PCL = NOR(adl_pcl_latch.get(), PHI2);
+		core->cmd.ADH_PCH = NOR(adh_pch_latch.get(), PHI2);
+		core->cmd.PCH_PCH = NOR(pch_pch_latch.get(), PHI2);
 
-		outputs[(size_t)PC_Control_Output::PC_DB] = PC_DB;
-		outputs[(size_t)PC_Control_Output::n_ADL_PCL] = n_ADL_PCL;
-		outputs[(size_t)PC_Control_Output::DL_PCH] = DL_PCH;
-		outputs[(size_t)PC_Control_Output::n_PCH_PCH] = n_PCH_PCH;
+		// For dispatcher
+
+		core->wire.PC_DB = PC_DB;
+		core->wire.n_ADL_PCL = n_ADL_PCL;
 	}
 }
