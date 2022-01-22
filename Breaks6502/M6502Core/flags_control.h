@@ -22,6 +22,6 @@ namespace M6502Core
 
 		FlagsControl(M6502* parent) { core = parent; }
 
-		void sim();
+		static void sim(FlagsControl* inst);
 	};
 }

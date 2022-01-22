@@ -48,10 +48,28 @@ namespace M6502Core
 
 		M6502* core = nullptr;
 
+		Thread* alu_control_thread = nullptr;
+		volatile bool running = false;
+		bool mt;
+
 	public:
 
-		ALUControl(M6502* parent) { core = parent; }
+		ALUControl(M6502* parent, bool MT)
+		{
+			mt = MT;
+			core = parent;
+			if (mt)
+				alu_control_thread = new Thread(sim, false, this, "alu_control_thread");
+		}
+		~ALUControl()
+		{
+			if (mt)
+				delete alu_control_thread;
+		}
 
-		void sim();
+		static void sim(void* inst);
+
+		void mt_run();
+		void mt_wait();
 	};
 }
