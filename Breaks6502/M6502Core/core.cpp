@@ -196,7 +196,14 @@ namespace M6502Core
 		// ALU operation: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA
 		// BCD correction via SB bus: SB_AC
 
-		alu->sim();
+		if (HLE_Mode)
+		{
+			alu->sim_HLE();
+		}
+		else
+		{
+			alu->sim();
+		}
 
 		// Load flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 
