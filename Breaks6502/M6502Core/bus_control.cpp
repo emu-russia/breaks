@@ -8,20 +8,19 @@ namespace M6502Core
 	{
 		TriState* d = core->decoder_out;
 		TriState PHI2 = core->wire.PHI2;
-		TriState BR0 = AND(d[73], NOT(core->wire.n_PRDY));
-		TriState _AND = NOT(NOR(d[69], d[70]));
-		TriState T6 = core->wire.T6;
-
-		TriState n_SB_X = NOR3(d[14], d[15], d[16]);
-		TriState n_SB_Y = NOR3(d[18], d[19], d[20]);
-		TriState SBXY = NAND(n_SB_X, n_SB_Y);
-		
-		TriState PGX = NAND(NOR(d[71], d[72]), NOT(BR0));
-		TriState n_SB_AC;
-		TriState n_ZTST;
 
 		if (PHI2 == TriState::One)
 		{
+			TriState BR0 = AND(d[73], NOT(core->wire.n_PRDY));
+			TriState _AND = NOT(NOR(d[69], d[70]));
+			TriState T6 = core->wire.T6;
+
+			TriState n_SB_X = NOR3(d[14], d[15], d[16]);
+			TriState n_SB_Y = NOR3(d[18], d[19], d[20]);
+			TriState SBXY = NAND(n_SB_X, n_SB_Y);
+
+			TriState PGX = NAND(NOR(d[71], d[72]), NOT(BR0));
+
 			TriState PHI1 = core->wire.PHI1;
 			TriState STOR = core->disp->getSTOR(d);
 			TriState STXY = NOR(AND(STOR, d[0]), AND(STOR, d[12]));
@@ -108,7 +107,7 @@ namespace M6502Core
 			sbac[4] = d[62];
 			sbac[5] = d[63];
 			sbac[6] = d[64];
-			n_SB_AC = NOR7(sbac);
+			TriState n_SB_AC = NOR7(sbac);
 			sb_ac_latch.set(n_SB_AC, PHI2);
 
 			TriState acsb[5];
@@ -132,7 +131,7 @@ namespace M6502Core
 			ztst[1] = NOT(n_SB_AC);
 			ztst[2] = T6;
 			ztst[3] = _AND;
-			n_ZTST = NOR4(ztst);
+			TriState n_ZTST = NOR4(ztst);
 
 			TriState sbdb[6];
 			sbdb[0] = NOT(NAND(T5, d[55]));
@@ -167,25 +166,6 @@ namespace M6502Core
 			n3[4] = T5;
 			TriState n_DL_DB = NOR5(n3);
 			dl_db_latch.set(n_DL_DB, PHI2);
-		}
-		else
-		{
-			TriState sbac[7];
-			sbac[0] = d[58];
-			sbac[1] = d[59];
-			sbac[2] = d[60];
-			sbac[3] = d[61];
-			sbac[4] = d[62];
-			sbac[5] = d[63];
-			sbac[6] = d[64];
-			n_SB_AC = NOR7(sbac);
-
-			TriState ztst[4];
-			ztst[0] = SBXY;
-			ztst[1] = NOT(n_SB_AC);
-			ztst[2] = T6;
-			ztst[3] = _AND;
-			n_ZTST = NOR4(ztst);
 		}
 
 		// Outputs
