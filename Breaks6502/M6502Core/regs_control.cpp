@@ -23,6 +23,8 @@ namespace M6502Core
 
 			temp_tab[n] = PreCalc(ir, n_T0, n_T1X, n_T2, n_T3, n_T4, n_T5, n_ready, n_ready_latch);
 		}
+
+		prev_temp.bits = 0xff;
 	}
 
 	void RegsControl::sim()
@@ -48,14 +50,19 @@ namespace M6502Core
 
 			RegsControl_TempWire temp = temp_tab[n];
 
-			ysb_latch.set(temp.n_Y_SB ? TriState::One : TriState::Zero, PHI2);
-			xsb_latch.set(temp.n_X_SB ? TriState::One : TriState::Zero, PHI2);
+			if (prev_temp.bits != temp.bits)
+			{
+				ysb_latch.set(temp.n_Y_SB ? TriState::One : TriState::Zero, PHI2);
+				xsb_latch.set(temp.n_X_SB ? TriState::One : TriState::Zero, PHI2);
+				sbx_latch.set(temp.n_SB_X ? TriState::One : TriState::Zero, PHI2);
+				sby_latch.set(temp.n_SB_Y ? TriState::One : TriState::Zero, PHI2);
+				sbs_latch.set(temp.n_SB_S ? TriState::One : TriState::Zero, PHI2);
+				ss_latch.set(NOT(temp.n_SB_S ? TriState::One : TriState::Zero), PHI2);
+				sadl_latch.set(temp.n_S_ADL ? TriState::One : TriState::Zero, PHI2);
+				prev_temp.bits = temp.bits;
+			}
+
 			ssb_latch.set(NOT(d[17]), PHI2);
-			sbx_latch.set(temp.n_SB_X ? TriState::One : TriState::Zero, PHI2);
-			sby_latch.set(temp.n_SB_Y ? TriState::One : TriState::Zero, PHI2);
-			sbs_latch.set(temp.n_SB_S ? TriState::One : TriState::Zero, PHI2);
-			ss_latch.set(NOT(temp.n_SB_S ? TriState::One : TriState::Zero), PHI2);
-			sadl_latch.set(temp.n_S_ADL ? TriState::One : TriState::Zero, PHI2);
 		}
 
 		// Outputs
@@ -76,6 +83,7 @@ namespace M6502Core
 		DecoderInput decoder_in;
 		decoder_in.packed_bits = 0;
 		RegsControl_TempWire temp;
+		temp.bits = 0;
 
 		TriState IR0 = ir & 0b00000001 ? TriState::One : TriState::Zero;
 		TriState IR1 = ir & 0b00000010 ? TriState::One : TriState::Zero;

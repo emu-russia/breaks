@@ -32,6 +32,7 @@ namespace M6502Core
 		M6502* core = nullptr;
 
 		FlagsControl_TempWire temp_tab[0x10000];
+		RegsControl_TempWire prev_temp;
 
 		FlagsControl_TempWire PreCalc(uint8_t ir, bool n_T0, bool n_T1X, bool n_T2, bool n_T3, bool n_T4, bool n_T5, bool T5, bool T6);
 

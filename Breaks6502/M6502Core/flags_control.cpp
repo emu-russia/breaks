@@ -23,6 +23,8 @@ namespace M6502Core
 
 			temp_tab[n] = PreCalc(ir, n_T0, n_T1X, n_T2, n_T3, n_T4, n_T5, T5, T6);
 		}
+
+		prev_temp.bits = 0xff;
 	}
 
 	void FlagsControl::sim()
@@ -47,15 +49,20 @@ namespace M6502Core
 
 			// Latches
 
-			pdb_latch.set(temp.n_POUT ? TriState::One : TriState::Zero, PHI2);
+			if (prev_temp.bits != temp.bits)
+			{
+				pdb_latch.set(temp.n_POUT ? TriState::One : TriState::Zero, PHI2);
+				acrc_latch.set(temp.n_ARIT ? TriState::One : TriState::Zero, PHI2);
+				pin_latch.set(temp.n_PIN ? TriState::One : TriState::Zero, PHI2);
+				prev_temp.bits = temp.bits;
+			}
+
 			iri_latch.set(NOT(d[108]), PHI2);
 			irc_latch.set(NOT(d[110]), PHI2);
 			ird_latch.set(NOT(d[120]), PHI2);
 			zv_latch.set(NOT(d[127]), PHI2);
-			acrc_latch.set(temp.n_ARIT ? TriState::One : TriState::Zero, PHI2);
 			dbz_latch.set(NOR3(acrc_latch.nget(), temp.ZTST ? TriState::One : TriState::Zero, d[109]), PHI2);
 			dbn_latch.set(d[109], PHI2);
-			pin_latch.set(temp.n_PIN ? TriState::One : TriState::Zero, PHI2);
 			DB_P = NOR(pin_latch.get(), n_ready);
 			dbc_latch.set(NOR(DB_P, temp.SR ? TriState::One : TriState::Zero), PHI2);
 			bit_latch.set(NOT(d[113]), PHI2);
@@ -87,6 +94,7 @@ namespace M6502Core
 		DecoderInput decoder_in;
 		decoder_in.packed_bits = 0;
 		FlagsControl_TempWire temp;
+		temp.bits = 0;
 
 		TriState IR0 = ir & 0b00000001 ? TriState::One : TriState::Zero;
 		TriState IR1 = ir & 0b00000010 ? TriState::One : TriState::Zero;
