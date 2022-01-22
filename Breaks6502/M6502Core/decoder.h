@@ -2,36 +2,39 @@
 
 namespace M6502Core
 {
-	enum class DecoderInput
+	union DecoderInput
 	{
-		n_T1X = 0,
-		n_T0,
-		n_IR5,
-		IR5,
-		n_IR6,
-		IR6,
-		n_IR2,
-		IR2,
-		n_IR3,
-		IR3,
-		n_IR4,
-		IR4,
-		n_IR7,
-		IR7,
-		n_IR0,
-		IR01,
-		n_IR1,
-		n_T2,
-		n_T3,
-		n_T4,
-		n_T5,
-		Max,
+		struct
+		{
+			unsigned n_T1X : 1;
+			unsigned n_T0 : 1;
+			unsigned n_IR5 : 1;
+			unsigned IR5 : 1;
+			unsigned n_IR6 : 1;
+			unsigned IR6 : 1;
+			unsigned n_IR2 : 1;
+			unsigned IR2 : 1;
+			unsigned n_IR3 : 1;
+			unsigned IR3 : 1;
+			unsigned n_IR4 : 1;
+			unsigned IR4 : 1;
+			unsigned n_IR7 : 1;
+			unsigned IR7 : 1;
+			unsigned n_IR0 : 1;
+			unsigned IR01 : 1;
+			unsigned n_IR1 : 1;
+			unsigned n_T2 : 1;
+			unsigned n_T3 : 1;
+			unsigned n_T4 : 1;
+			unsigned n_T5 : 1;
+		};
+		size_t packed_bits;
 	};
 
 	class Decoder
 	{
 	public:
-		static const size_t inputs_count = (size_t)DecoderInput::Max;
+		static const size_t inputs_count = 21;
 		static const size_t outputs_count = 130;
 
 		BaseLogic::PLA *pla = nullptr;
@@ -39,6 +42,6 @@ namespace M6502Core
 		Decoder();
 		~Decoder();
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState** outputs);
+		void sim(size_t input_bits, BaseLogic::TriState** outputs);
 	};
 }
