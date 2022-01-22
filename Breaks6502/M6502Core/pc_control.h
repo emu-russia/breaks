@@ -18,28 +18,10 @@ namespace M6502Core
 
 		M6502* core = nullptr;
 
-		Thread* pc_control_thread = nullptr;
-		volatile bool running = false;
-		bool mt;
-
 	public:
 
-		PC_Control(M6502* parent, bool MT)
-		{
-			mt = MT;
-			core = parent;
-			if (mt)
-				pc_control_thread = new Thread(sim, false, this, "pc_control_thread");
-		}
-		~PC_Control()
-		{
-			if (mt)
-				delete pc_control_thread;
-		}
+		PC_Control(M6502* parent) { core = parent; }
 
-		static void sim(void* inst);
-
-		void mt_run();
-		void mt_wait();
+		void sim();
 	};
 }

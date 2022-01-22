@@ -65,18 +65,6 @@
     <ClCompile Include="..\..\random_logic.cpp" />
     <ClCompile Include="..\..\regs.cpp" />
     <ClCompile Include="..\..\regs_control.cpp" />
-    <ClCompile Include="..\..\Spinlock.cpp" />
-    <ClCompile Include="..\..\ThreadLinux.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Breaks|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Breaks|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug Breaks|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release Breaks|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\ThreadWindows.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\address_bus.h" />
@@ -100,8 +88,6 @@
     <ClInclude Include="..\..\random_logic.h" />
     <ClInclude Include="..\..\regs.h" />
     <ClInclude Include="..\..\regs_control.h" />
-    <ClInclude Include="..\..\Spinlock.h" />
-    <ClInclude Include="..\..\Thread.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Readme.md" />
