@@ -44,11 +44,11 @@ namespace BreaksDebug
             [Category("Outputs")]
             public byte SYNC { get; set; }
             [Category("Address Bus")]
-            public byte[] A { get; set; } = new byte[16];
+            public UInt16 A { get; set; }
             [Category("Address Bus")]
             public string Addr { get; set; }
             [Category("Data Bus")]
-            public byte [] D { get; set; } = new byte[8];
+            public byte D { get; set; }
         }
 
         [StructLayout(LayoutKind.Sequential, Pack=1)]
@@ -64,8 +64,8 @@ namespace BreaksDebug
             public byte PHI2;
             public byte RnW;
             public byte SYNC;
-            public fixed byte A[16];
-            public fixed byte D[8];
+            public UInt16 A;
+            public byte D;
         }
 
         public class CpuDebugInfo_RegsBuses
@@ -448,49 +448,19 @@ namespace BreaksDebug
         {
             if (cpu_pads.RnW == 1)
             {
-                long address = 0;
-
-                for (int i = 0; i < 16; i++)
-                {
-                    if (cpu_pads.A[i] != 0)
-                    {
-                        address |= (UInt16)(1 << i);
-                    }
-                }
+                long address = cpu_pads.A;
 
                 // CPU Read
-
-                byte data = 0;       // Open bus by default
-
-                for (int i = 0; i < 8; i++)
-                {
-                    if (cpu_pads.D[i] != 0)
-                    {
-                        data |= (byte)(1 << i);
-                    }
-                }
 
                 if ( (address >= memMap.RamStart && address < (memMap.RamStart + memMap.RamSize)) || 
                     (address >= memMap.RomStart && address < (memMap.RomStart + memMap.RomSize)) )
                 {
-                    data = mem.ReadByte(address);
-                    Console.WriteLine("CPU Read " + address.ToString("X4") + " " + data.ToString("X2"));
+                    cpu_pads.D = mem.ReadByte(address);
+                    Console.WriteLine("CPU Read " + address.ToString("X4") + " " + cpu_pads.D.ToString("X2"));
                 }
                 else
                 {
                     Console.WriteLine("CPU Read " + address.ToString("X4") + " ignored");
-                }
-
-                for (int i = 0; i < 8; i++)
-                {
-                    if ((data & (1 << i)) != 0)
-                    {
-                        cpu_pads.D[i] = 1;
-                    }
-                    else
-                    {
-                        cpu_pads.D[i] = 0;
-                    }
                 }
             }
         }
@@ -499,32 +469,14 @@ namespace BreaksDebug
         {
             if (cpu_pads.RnW == 0)
             {
-                long address = 0;
-
-                for (int i = 0; i < 16; i++)
-                {
-                    if (cpu_pads.A[i] != 0)
-                    {
-                        address |= (UInt16)(1 << i);
-                    }
-                }
+                long address = cpu_pads.A;
 
                 // CPU Write
 
-                byte data = 0;
-
-                for (int i = 0; i < 8; i++)
-                {
-                    if (cpu_pads.D[i] != 0)
-                    {
-                        data |= (byte)(1 << i);
-                    }
-                }
-
                 if (address >= memMap.RamStart && address < (memMap.RamStart + memMap.RamSize))
                 {
-                    mem.WriteByte(address, data);
-                    Console.WriteLine("CPU Write " + address.ToString("X4") + " " + data.ToString("X2"));
+                    mem.WriteByte(address, cpu_pads.D);
+                    Console.WriteLine("CPU Write " + address.ToString("X4") + " " + cpu_pads.D.ToString("X2"));
                 }
                 else
                 {
@@ -547,19 +499,8 @@ namespace BreaksDebug
             pads_raw.PHI2 = pads.PHI2;
             pads_raw.RnW = pads.RnW;
             pads_raw.SYNC = pads.SYNC;
-
-            unsafe
-            {
-                for (int i = 0; i < 16; i++)
-                {
-                    pads_raw.A[i] = pads.A[i];
-                }
-
-                for (int i = 0; i < 8; i++)
-                {
-                    pads_raw.D[i] = pads.D[i];
-                }
-            }
+            pads_raw.A = pads.A;
+            pads_raw.D = pads.D;
 
             return pads_raw;
         }
@@ -579,27 +520,9 @@ namespace BreaksDebug
             pads.RnW = pads_raw.RnW;
             pads.SYNC = pads_raw.SYNC;
 
-            unsafe
-            {
-                UInt16 Addr = 0;
-
-                for (int i = 0; i < 16; i++)
-                {
-                    pads.A[i] = pads_raw.A[i];
-
-                    if (pads.A[i] != 0)
-                    {
-                        Addr |= (UInt16)(1 << i);
-                    }
-                }
-
-                pads.Addr = "0x" + Addr.ToString("X4");
-
-                for (int i = 0; i < 8; i++)
-                {
-                    pads.D[i] = pads_raw.D[i];
-                }
-            }
+            pads.A = pads_raw.A;
+            pads.Addr = "0x" + pads.A.ToString("X4");
+            pads.D = pads_raw.D;
 
             return pads;
         }

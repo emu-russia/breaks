@@ -4,7 +4,7 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void PreDecode::sim(TriState d[8])
+	void PreDecode::sim(uint8_t* data_bus)
 	{
 		TriState PHI2 = core->wire.PHI2;
 		TriState Z_IR = core->wire.Z_IR;
@@ -22,7 +22,7 @@ namespace M6502Core
 
 		for (size_t n = 0; n < 8; n++)
 		{
-			TriState Dn = d[(size_t)InOutPad::D0 + n];
+			TriState Dn = (*data_bus) & (1 << n) ? TriState::One : TriState::Zero;
 
 			pd_latch[n].set(Dn == TriState::Z ? TriState::One : NOT(Dn), PHI2);
 		}

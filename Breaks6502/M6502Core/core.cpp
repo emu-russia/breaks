@@ -40,7 +40,7 @@ namespace M6502Core
 		delete data_bus;
 	}
 
-	void M6502::sim_Top(TriState inputs[], TriState outputs[], TriState inOuts[])
+	void M6502::sim_Top(TriState inputs[], TriState outputs[], uint8_t* data_bus)
 	{
 		wire.n_NMI = inputs[(size_t)InputPad::n_NMI];
 		wire.n_IRQ = inputs[(size_t)InputPad::n_IRQ];
@@ -85,7 +85,7 @@ namespace M6502Core
 
 		disp->sim_BeforeDecoder();
 
-		predecode->sim(inOuts);
+		predecode->sim(data_bus);
 
 		ir->sim();
 
@@ -134,7 +134,7 @@ namespace M6502Core
 		disp->sim_AfterRandomLogic();
 	}
 
-	void M6502::sim_Bottom(TriState inputs[], TriState outputs[], TriState inOuts[])
+	void M6502::sim_Bottom(TriState inputs[], TriState outputs[], uint16_t* ext_addr_bus, uint8_t* ext_data_bus)
 	{
 		// Bottom Part
 
@@ -144,7 +144,7 @@ namespace M6502Core
 
 		// Bus load from DL: DL_DB, DL_ADL, DL_ADH
 
-		data_bus->sim_GetExternalBus(inOuts);
+		data_bus->sim_GetExternalBus(ext_data_bus);
 
 		// Registers to the SB bus: Y_SB, X_SB, S_SB
 
@@ -212,11 +212,11 @@ namespace M6502Core
 
 		// Saving DB to DOR
 
-		data_bus->sim_SetExternalBus(inOuts);
+		data_bus->sim_SetExternalBus(ext_data_bus);
 
 		// Set external address bus: ADH_ABH, ADL_ABL
 
-		addr_bus->sim_Output(outputs);
+		addr_bus->sim_Output(ext_addr_bus);
 
 		// Outputs
 
@@ -228,7 +228,7 @@ namespace M6502Core
 		outputs[(size_t)OutputPad::SYNC] = disp->getT1();
 	}
 
-	void M6502::sim(TriState inputs[], TriState outputs[], TriState inOuts[])
+	void M6502::sim(TriState inputs[], TriState outputs[], uint16_t* addr_bus, uint8_t* data_bus)
 	{
 		TriState PHI0 = inputs[(size_t)InputPad::PHI0];
 		TriState PHI2 = PHI0;
@@ -238,37 +238,37 @@ namespace M6502Core
 
 		if (PHI2 == TriState::One)
 		{
-			Unpack(0xff, SB);
-			Unpack(0xff, DB);
-			Unpack(0xff, ADL);
-			Unpack(0xff, ADH);
+			SB = 0xff;
+			DB = 0xff;
+			ADL = 0xff;
+			ADH = 0xff;
 		}
 
 		// These variables are used to mark the "dirty" bits of the internal buses. This is used to resolve conflicts, according to the "Ground wins" rule.
 
 		for (size_t n = 0; n < 8; n++)
 		{
-			SB_Dirty[n] = false;
-			DB_Dirty[n] = false;
-			ADL_Dirty[n] = false;
-			ADH_Dirty[n] = false;
+			SB_Dirty = false;
+			DB_Dirty = false;
+			ADL_Dirty = false;
+			ADH_Dirty = false;
 		}
 
 		// To stabilize latches, the top part is simulated twice.
 
-		sim_Top(inputs, outputs, inOuts);
-		sim_Bottom(inputs, outputs, inOuts);
-		sim_Top(inputs, outputs, inOuts);
+		sim_Top(inputs, outputs, data_bus);
+		sim_Bottom(inputs, outputs, addr_bus, data_bus);
+		sim_Top(inputs, outputs, data_bus);
 	}
 
 	void M6502::getDebug(DebugInfo* info)
 	{
 		TriState BRK6E = wire.BRK6E;
 
-		info->SB = Pack(SB);
-		info->DB = Pack(DB);
-		info->ADL = Pack(ADL);
-		info->ADH = Pack(ADH);
+		info->SB = SB;
+		info->DB = DB;
+		info->ADL = ADL;
+		info->ADH = ADH;
 
 		TriState IR[8];
 		ir->get(IR);

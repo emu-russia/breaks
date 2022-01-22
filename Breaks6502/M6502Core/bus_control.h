@@ -20,28 +20,10 @@ namespace M6502Core
 
 		M6502* core = nullptr;
 
-		Thread* bus_control_thread = nullptr;
-		volatile bool running = false;
-		bool mt;
-
 	public:
 
-		BusControl(M6502* parent, bool MT)
-		{
-			mt = MT;
-			core = parent;
-			if (mt)	
-				bus_control_thread = new Thread(sim, false, this, "bus_control_thread");
-		}
-		~BusControl()
-		{
-			if (mt)
-				delete bus_control_thread;
-		}
+		BusControl(M6502* parent) { core = parent; }
 
-		static void sim(void* inst);
-
-		void mt_run();
-		void mt_wait();
+		void sim();
 	};
 }

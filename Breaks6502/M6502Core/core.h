@@ -5,9 +5,6 @@ namespace M6502Core
 	class M6502;
 }
 
-#include "Spinlock.h"
-#include "Thread.h"
-
 #include "decoder.h"
 #include "ir.h"
 #include "predecode.h"
@@ -49,14 +46,6 @@ namespace M6502Core
 		PHI2,
 		RnW,
 		SYNC,
-		A0, A1, A2, A3, A4, A5, A6, A7,
-		A8, A9, A10, A11, A12, A13, A14, A15,
-		Max,
-	};
-
-	enum class InOutPad
-	{
-		D0 = 0, D1, D2, D3, D4, D5, D6, D7,
 		Max,
 	};
 
@@ -250,15 +239,15 @@ namespace M6502Core
 
 		BaseLogic::DLatch rw_latch;
 
-		BaseLogic::TriState SB[8];
-		BaseLogic::TriState DB[8];
-		BaseLogic::TriState ADL[8];
-		BaseLogic::TriState ADH[8];
+		uint8_t SB;
+		uint8_t DB;
+		uint8_t ADL;
+		uint8_t ADH;
 
-		bool SB_Dirty[8];
-		bool DB_Dirty[8];
-		bool ADL_Dirty[8];
-		bool ADH_Dirty[8];
+		bool SB_Dirty;
+		bool DB_Dirty;
+		bool ADL_Dirty;
+		bool ADH_Dirty;
 
 		Decoder* decoder = nullptr;
 		PreDecode* predecode = nullptr;
@@ -276,9 +265,9 @@ namespace M6502Core
 
 		BaseLogic::TriState* decoder_out;
 
-		void sim_Top(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
+		void sim_Top(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], uint8_t* data_bus);
 
-		void sim_Bottom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
+		void sim_Bottom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], uint16_t* addr_bus, uint8_t* data_bus);
 
 		BaseLogic::TriState nNMI_Cache = BaseLogic::TriState::Z;
 		BaseLogic::TriState nIRQ_Cache = BaseLogic::TriState::Z;
@@ -340,79 +329,75 @@ namespace M6502Core
 		/// <summary>
 		/// Commands for bottom and flags.
 		/// </summary>
-		union RandomLogic_Output
+		struct RandomLogic_Output
 		{
-			struct
-			{
-				unsigned Y_SB : 1;
-				unsigned SB_Y : 1;
-				unsigned X_SB : 1;
-				unsigned SB_X : 1;
-				unsigned S_ADL : 1;
-				unsigned S_SB : 1;
-				unsigned SB_S : 1;
-				unsigned S_S : 1;
-				unsigned NDB_ADD : 1;
-				unsigned DB_ADD : 1;
-				unsigned Z_ADD : 1;
-				unsigned SB_ADD : 1;
-				unsigned ADL_ADD : 1;
-				unsigned n_ACIN : 1;
-				unsigned ANDS : 1;
-				unsigned EORS : 1;
-				unsigned ORS : 1;
-				unsigned SRS : 1;
-				unsigned SUMS : 1;
-				unsigned n_DAA : 1;
-				unsigned n_DSA : 1;
-				unsigned ADD_SB7 : 1;
-				unsigned ADD_SB06 : 1;
-				unsigned ADD_ADL : 1;
-				unsigned SB_AC : 1;
-				unsigned AC_SB : 1;
-				unsigned AC_DB : 1;
-				unsigned ADH_PCH : 1;
-				unsigned PCH_PCH : 1;
-				unsigned PCH_ADH : 1;
-				unsigned PCH_DB : 1;
-				unsigned ADL_PCL : 1;
-				unsigned PCL_PCL : 1;
-				unsigned PCL_ADL : 1;
-				unsigned PCL_DB : 1;
-				unsigned ADH_ABH : 1;
-				unsigned ADL_ABL : 1;
-				unsigned Z_ADL0 : 1;
-				unsigned Z_ADL1 : 1;
-				unsigned Z_ADL2 : 1;
-				unsigned Z_ADH0 : 1;
-				unsigned Z_ADH17 : 1;
-				unsigned SB_DB : 1;
-				unsigned SB_ADH : 1;
-				unsigned DL_ADL : 1;
-				unsigned DL_ADH : 1;
-				unsigned DL_DB : 1;
+			unsigned Y_SB;
+			unsigned SB_Y;
+			unsigned X_SB;
+			unsigned SB_X;
+			unsigned S_ADL;
+			unsigned S_SB;
+			unsigned SB_S;
+			unsigned S_S;
+			unsigned NDB_ADD;
+			unsigned DB_ADD;
+			unsigned Z_ADD;
+			unsigned SB_ADD;
+			unsigned ADL_ADD;
+			unsigned n_ACIN;
+			unsigned ANDS;
+			unsigned EORS;
+			unsigned ORS;
+			unsigned SRS;
+			unsigned SUMS;
+			unsigned n_DAA;
+			unsigned n_DSA;
+			unsigned ADD_SB7;
+			unsigned ADD_SB06;
+			unsigned ADD_ADL;
+			unsigned SB_AC;
+			unsigned AC_SB;
+			unsigned AC_DB;
+			unsigned ADH_PCH;
+			unsigned PCH_PCH;
+			unsigned PCH_ADH;
+			unsigned PCH_DB;
+			unsigned ADL_PCL;
+			unsigned PCL_PCL;
+			unsigned PCL_ADL;
+			unsigned PCL_DB;
+			unsigned ADH_ABH;
+			unsigned ADL_ABL;
+			unsigned Z_ADL0;
+			unsigned Z_ADL1;
+			unsigned Z_ADL2;
+			unsigned Z_ADH0;
+			unsigned Z_ADH17;
+			unsigned SB_DB;
+			unsigned SB_ADH;
+			unsigned DL_ADL;
+			unsigned DL_ADH;
+			unsigned DL_DB;
 
-				unsigned P_DB : 1;
-				unsigned DB_P : 1;
-				unsigned DBZ_Z : 1;
-				unsigned DB_N : 1;
-				unsigned IR5_C : 1;
-				unsigned DB_C : 1;
-				unsigned ACR_C : 1;
-				unsigned IR5_D : 1;
-				unsigned IR5_I : 1;
-				unsigned DB_V : 1;
-				unsigned AVR_V : 1;
-				unsigned Z_V : 1;
-			};
-			uint64_t raw;
+			unsigned P_DB;
+			unsigned DB_P;
+			unsigned DBZ_Z;
+			unsigned DB_N;
+			unsigned IR5_C;
+			unsigned DB_C;
+			unsigned ACR_C;
+			unsigned IR5_D;
+			unsigned IR5_I;
+			unsigned DB_V;
+			unsigned AVR_V;
+			unsigned Z_V;
 		} cmd;
 
 	public:
 		M6502(bool HLE);
 		~M6502();
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
+		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], uint16_t *addr_bus, uint8_t* data_bus);
 
 		void getDebug(DebugInfo* info);
 

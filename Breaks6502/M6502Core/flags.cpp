@@ -27,11 +27,18 @@ namespace M6502Core
 		TriState AVR_V = core->cmd.AVR_V ? TriState::One : TriState::Zero;
 		TriState Z_V = core->cmd.Z_V ? TriState::One : TriState::Zero;
 
+		TriState DB0 = core->DB & 0b00000001 ? TriState::One : TriState::Zero;
+		TriState DB1 = core->DB & 0b00000010 ? TriState::One : TriState::Zero;
+		TriState DB2 = core->DB & 0b00000100 ? TriState::One : TriState::Zero;
+		TriState DB3 = core->DB & 0b00001000 ? TriState::One : TriState::Zero;
+		TriState DB6 = core->DB & 0b01000000 ? TriState::One : TriState::Zero;
+		TriState DB7 = core->DB & 0b10000000 ? TriState::One : TriState::Zero;
+
 		// Z
 
-		TriState n_DBZ = NOT(NOR8(core->DB));
+		TriState n_DBZ = NOT(core->DB == 0 ? TriState::One : TriState::Zero);
 		TriState z[3];
-		z[0] = AND(NOT(core->DB[1]), DB_P);
+		z[0] = AND(NOT(DB1), DB_P);
 		z[1] = AND(n_DBZ, DBZ_Z);
 		z[2] = AND(NOR(DB_P, DBZ_Z), z_latch2.get());
 
@@ -41,7 +48,7 @@ namespace M6502Core
 		// N
 
 		TriState n[2];
-		n[0] = AND(NOT(core->DB[7]), DB_N);
+		n[0] = AND(NOT(DB7), DB_N);
 		n[1] = AND(NOT(DB_N), n_latch2.get());
 
 		n_latch1.set(NOR(n[0], n[1]), PHI1);
@@ -52,7 +59,7 @@ namespace M6502Core
 		TriState c[4];
 		c[0] = AND(n_IR5, IR5_C);
 		c[1] = AND(NOT(ACR), ACR_C);
-		c[2] = AND(NOT(core->DB[0]), DB_C);
+		c[2] = AND(NOT(DB0), DB_C);
 		c[3] = AND(NOR3(DB_C, IR5_C, ACR_C), c_latch2.get());
 
 		c_latch1.set(NOR4(c), PHI1);
@@ -62,7 +69,7 @@ namespace M6502Core
 
 		TriState d[3];
 		d[0] = AND(IR5_D, n_IR5);
-		d[1] = AND(NOT(core->DB[3]), DB_P);
+		d[1] = AND(NOT(DB3), DB_P);
 		d[2] = AND(NOR(IR5_D, DB_P), d_latch2.get());
 
 		d_latch1.set(NOR3(d[0], d[1], d[2]), PHI1);
@@ -72,7 +79,7 @@ namespace M6502Core
 
 		TriState i[3];
 		i[0] = AND(n_IR5, IR5_I);
-		i[1] = AND(NOT(core->DB[2]), DB_P);
+		i[1] = AND(NOT(DB2), DB_P);
 		i[2] = AND(NOR(DB_P, IR5_I), i_latch2.get());
 
 		i_latch1.set(NOR3(i[0], i[1], i[2]), PHI1);
@@ -88,7 +95,7 @@ namespace M6502Core
 
 		TriState v[4];
 		v[0] = AND(NOT(AVR), avr_latch.get());
-		v[1] = AND(NOT(core->DB[6]), DB_V);
+		v[1] = AND(NOT(DB6), DB_V);
 		v[2] = AND(NOR3(DB_V, avr_latch.get(), vset_latch.get()), v_latch2.get());
 		v[3] = Z_V;
 
@@ -100,77 +107,25 @@ namespace M6502Core
 	{
 		if (core->cmd.P_DB)
 		{
-			if (core->DB_Dirty[0])
-			{
-				core->DB[0] = AND(core->DB[0], NOT(getn_C_OUT()));
-			}
-			else
-			{
-				core->DB[0] = NOT(getn_C_OUT());
-				core->DB_Dirty[0] = true;
-			}
+			core->DB &= 0b00100000;
 
-			if (core->DB_Dirty[1])
-			{
-				core->DB[1] = AND(core->DB[1], NOT(getn_Z_OUT()));
-			}
-			else
-			{
-				core->DB[1] = NOT(getn_Z_OUT());
-				core->DB_Dirty[1] = true;
-			}
+			core->DB |= NOT(getn_C_OUT()) << 0;
 
-			if (core->DB_Dirty[2])
-			{
-				core->DB[2] = AND(core->DB[2], NOT(getn_I_OUT(core->wire.BRK6E)));
-			}
-			else
-			{
-				core->DB[2] = NOT(getn_I_OUT(core->wire.BRK6E));
-				core->DB_Dirty[2] = true;
-			}
+			core->DB |= NOT(getn_Z_OUT()) << 1;
 
-			if (core->DB_Dirty[3])
-			{
-				core->DB[3] = AND(core->DB[3], NOT(getn_D_OUT()));
-			}
-			else
-			{
-				core->DB[3] = NOT(getn_D_OUT());
-				core->DB_Dirty[3] = true;
-			}
+			core->DB |= NOT(getn_I_OUT(core->wire.BRK6E)) << 2;
 
-			if (core->DB_Dirty[4])
-			{
-				core->DB[4] = AND(core->DB[4], core->brk->getB_OUT(core->wire.BRK6E));
-			}
-			else
-			{
-				core->DB[4] = core->brk->getB_OUT(core->wire.BRK6E);
-				core->DB_Dirty[4] = true;
-			}
+			core->DB |= NOT(getn_D_OUT()) << 3;
 
-			core->DB[5];
+			core->DB |= core->brk->getB_OUT(core->wire.BRK6E) << 4;
 
-			if (core->DB_Dirty[6])
-			{
-				core->DB[6] = AND(core->DB[6], NOT(getn_V_OUT()));
-			}
-			else
-			{
-				core->DB[6] = NOT(getn_V_OUT());
-				core->DB_Dirty[6] = true;
-			}
+			//core->DB[5];
 
-			if (core->DB_Dirty[7])
-			{
-				core->DB[7] = AND(core->DB[7], NOT(getn_N_OUT()));
-			}
-			else
-			{
-				core->DB[7] = NOT(getn_N_OUT());
-				core->DB_Dirty[7] = true;
-			}
+			core->DB |= NOT(getn_V_OUT()) << 6;
+
+			core->DB |= NOT(getn_N_OUT()) << 7;
+
+			core->DB_Dirty = true;
 		}
 	}
 

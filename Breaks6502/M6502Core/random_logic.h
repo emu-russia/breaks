@@ -6,8 +6,6 @@ namespace M6502Core
 	{
 		M6502* core = nullptr;
 
-		bool MT = false;
-
 	public:
 		RegsControl* regs_control = nullptr;
 		ALUControl* alu_control = nullptr;

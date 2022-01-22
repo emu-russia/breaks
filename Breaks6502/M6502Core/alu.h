@@ -4,10 +4,10 @@ namespace M6502Core
 {
 	class ALU
 	{
-		BaseLogic::DLatch AI[8];
-		BaseLogic::DLatch BI[8];
-		BaseLogic::DLatch n_ADD[8];
-		BaseLogic::DLatch AC[8];
+		uint8_t AI;
+		uint8_t BI;
+		uint8_t n_ADD;
+		uint8_t AC;
 
 		BaseLogic::DLatch BC7_latch;
 		BaseLogic::DLatch DC7_latch;
