@@ -14,12 +14,12 @@ namespace M6502Core
 
 		nready_latch.set(n_ready, PHI1);
 
-		TriState TXS = d[13];
-
 		// Register control commands and auxiliary signals for other parts of the random logic
 
 		if (PHI2 == TriState::One)
 		{
+			TriState TXS = d[13];
+
 			TriState n1[7];
 			n1[0] = d[1];
 			n1[1] = d[2];
@@ -41,30 +41,23 @@ namespace M6502Core
 			n2[6] = TXS;
 			TriState n_X_SB = NOR7(n2);
 			xsb_latch.set(n_X_SB, PHI2);
-		}
 
-		TriState STXY = NOR(AND(STOR, d[0]), AND(STOR, d[12]));
+			ssb_latch.set(NOT(d[17]), PHI2);
 
-		ssb_latch.set(NOT(d[17]), PHI2);
+			TriState n_SB_X = NOR3(d[14], d[15], d[16]);
+			sbx_latch.set(n_SB_X, PHI2);
+			TriState n_SB_Y = NOR3(d[18], d[19], d[20]);
+			sby_latch.set(n_SB_Y, PHI2);
 
-		TriState n_SB_X = NOR3(d[14], d[15], d[16]);
-		sbx_latch.set(n_SB_X, PHI2);
-		TriState n_SB_Y = NOR3(d[18], d[19], d[20]);
-		sby_latch.set(n_SB_Y, PHI2);
+			TriState n3[6];
+			n3[0] = d[21];
+			n3[1] = d[22];
+			n3[2] = d[23];
+			n3[3] = d[24];
+			n3[4] = d[25];
+			n3[5] = d[26];
+			TriState STKOP = NOR(nready_latch.get(), NOR6(n3));
 
-		TriState SBXY = NAND(n_SB_X, n_SB_Y);
-
-		TriState n3[6];
-		n3[0] = d[21];
-		n3[1] = d[22];
-		n3[2] = d[23];
-		n3[3] = d[24];
-		n3[4] = d[25];
-		n3[5] = d[26];
-		TriState STKOP = NOR(nready_latch.get(), NOR6(n3));
-
-		if (PHI2 == TriState::One)
-		{
 			TriState n_SB_S = NOR3(TXS, NOR(NOT(d[48]), n_ready), STKOP);
 			sbs_latch.set(n_SB_S, PHI2);
 			ss_latch.set(NOT(n_SB_S), PHI2);
