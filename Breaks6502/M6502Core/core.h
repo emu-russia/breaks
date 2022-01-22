@@ -1,9 +1,17 @@
 #pragma once
 
+namespace M6502Core
+{
+	class M6502;
+}
+
 #include "decoder.h"
+#include "ir.h"
+#include "predecode.h"
 #include "extra_counter.h"
 #include "interrupts.h"
 #include "flags.h"
+
 #include "regs_control.h"
 #include "alu_control.h"
 #include "bus_control.h"
@@ -12,6 +20,12 @@
 #include "flags_control.h"
 #include "branch_logic.h"
 #include "random_logic.h"
+
+#include "address_bus.h"
+#include "regs.h"
+#include "alu.h"
+#include "pc.h"
+#include "data_bus.h"
 
 namespace M6502Core
 {
@@ -202,17 +216,20 @@ namespace M6502Core
 		uint8_t PCL;
 	};
 
-	class PreDecode;
-	class IR;
-
-	class AddressBus;
-	class Regs;
-	class ALU;
-	class ProgramCounter;
-	class DataBus;
-
 	class M6502
 	{
+		friend IR;
+		friend PreDecode;
+		friend ExtraCounter;
+		friend BRKProcessing;
+		friend Dispatcher;
+		friend RandomLogic;
+		friend RegsControl;
+		friend ALUControl;
+		friend BusControl;
+		friend PC_Control;
+		friend FlagsControl;
+
 		BaseLogic::FF nmip_ff;
 		BaseLogic::FF irqp_ff;
 		BaseLogic::FF resp_ff;
@@ -249,12 +266,6 @@ namespace M6502Core
 		DataBus* data_bus = nullptr;
 
 		BaseLogic::TriState* decoder_out;
-		BaseLogic::TriState ext_out[(size_t)ExtraCounter_Output::Max];
-		BaseLogic::TriState rand_out[(size_t)RandomLogic_Output::Max];
-		BaseLogic::TriState disp_early_out[(size_t)Dispatcher_Output::Max];
-		BaseLogic::TriState disp_mid_out[(size_t)Dispatcher_Output::Max];
-		BaseLogic::TriState disp_late_out[(size_t)Dispatcher_Output::Max];
-		BaseLogic::TriState int_out[(size_t)BRKProcessing_Output::Max];
 
 		void sim_Top(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BaseLogic::TriState inOuts[]);
 
@@ -265,6 +276,125 @@ namespace M6502Core
 		BaseLogic::TriState nRES_Cache = BaseLogic::TriState::Z;
 
 		bool HLE_Mode = false;		// Acceleration mode for fast applications. In this case we are cheating a little bit.
+
+		/// <summary>
+		/// Internal auxiliary and intermediate connections.
+		/// </summary>
+		struct InternalWires
+		{
+			BaseLogic::TriState n_NMI;
+			BaseLogic::TriState n_IRQ;
+			BaseLogic::TriState n_RES;
+			BaseLogic::TriState PHI0;
+			BaseLogic::TriState RDY;
+			BaseLogic::TriState SO;
+			BaseLogic::TriState PHI1;
+			BaseLogic::TriState PHI2;
+			BaseLogic::TriState n_PRDY;
+			BaseLogic::TriState n_NMIP;
+			BaseLogic::TriState n_IRQP;
+			BaseLogic::TriState RESP;
+			BaseLogic::TriState n_ready;
+			BaseLogic::TriState T0;
+			BaseLogic::TriState FETCH;
+			BaseLogic::TriState Z_IR;
+			BaseLogic::TriState ACRL1;
+			BaseLogic::TriState ACRL2;
+			BaseLogic::TriState n_T0;
+			BaseLogic::TriState n_T1X;
+			BaseLogic::TriState WR;
+			BaseLogic::TriState T5;
+			BaseLogic::TriState T6;
+			BaseLogic::TriState n_1PC;
+			BaseLogic::TriState ENDS;
+			BaseLogic::TriState ENDX;
+			BaseLogic::TriState TRES1;
+			BaseLogic::TriState TRESX;
+			BaseLogic::TriState n_T2;
+			BaseLogic::TriState n_T3;
+			BaseLogic::TriState n_T4;
+			BaseLogic::TriState n_T5;
+			BaseLogic::TriState n_IMPLIED;
+			BaseLogic::TriState n_TWOCYCLE;
+			BaseLogic::TriState BRK6E;
+			BaseLogic::TriState BRK7;
+			BaseLogic::TriState DORES;
+			BaseLogic::TriState n_DONMI;
+			BaseLogic::TriState BRK5_RDY;
+			BaseLogic::TriState B_OUT;
+			BaseLogic::TriState BRFW;
+			BaseLogic::TriState n_BRTAKEN;
+			BaseLogic::TriState PC_DB;
+			BaseLogic::TriState n_ADL_PCL;
+		} wire;
+
+		/// <summary>
+		/// Commands for bottom and flags.
+		/// </summary>
+		struct RandomLogic_Output
+		{
+			BaseLogic::TriState Y_SB;
+			BaseLogic::TriState SB_Y;
+			BaseLogic::TriState X_SB;
+			BaseLogic::TriState SB_X;
+			BaseLogic::TriState S_ADL;
+			BaseLogic::TriState S_SB;
+			BaseLogic::TriState SB_S;
+			BaseLogic::TriState S_S;
+			BaseLogic::TriState NDB_ADD;
+			BaseLogic::TriState DB_ADD;
+			BaseLogic::TriState Z_ADD;
+			BaseLogic::TriState SB_ADD;
+			BaseLogic::TriState ADL_ADD;
+			BaseLogic::TriState n_ACIN;
+			BaseLogic::TriState ANDS;
+			BaseLogic::TriState EORS;
+			BaseLogic::TriState ORS;
+			BaseLogic::TriState SRS;
+			BaseLogic::TriState SUMS;
+			BaseLogic::TriState n_DAA;
+			BaseLogic::TriState n_DSA;
+			BaseLogic::TriState ADD_SB7;
+			BaseLogic::TriState ADD_SB06;
+			BaseLogic::TriState ADD_ADL;
+			BaseLogic::TriState SB_AC;
+			BaseLogic::TriState AC_SB;
+			BaseLogic::TriState AC_DB;
+			BaseLogic::TriState ADH_PCH;
+			BaseLogic::TriState PCH_PCH;
+			BaseLogic::TriState PCH_ADH;
+			BaseLogic::TriState PCH_DB;
+			BaseLogic::TriState ADL_PCL;
+			BaseLogic::TriState PCL_PCL;
+			BaseLogic::TriState PCL_ADL;
+			BaseLogic::TriState PCL_DB;
+			BaseLogic::TriState ADH_ABH;
+			BaseLogic::TriState ADL_ABL;
+			BaseLogic::TriState Z_ADL0;
+			BaseLogic::TriState Z_ADL1;
+			BaseLogic::TriState Z_ADL2;
+			BaseLogic::TriState Z_ADH0;
+			BaseLogic::TriState Z_ADH17;
+			BaseLogic::TriState SB_DB;
+			BaseLogic::TriState SB_ADH;
+			BaseLogic::TriState DL_ADL;
+			BaseLogic::TriState DL_ADH;
+			BaseLogic::TriState DL_DB;
+
+			BaseLogic::TriState P_DB;
+			BaseLogic::TriState DB_P;
+			BaseLogic::TriState DBZ_Z;
+			BaseLogic::TriState DB_N;
+			BaseLogic::TriState IR5_C;
+			BaseLogic::TriState DB_C;
+			BaseLogic::TriState ACR_C;
+			BaseLogic::TriState IR5_D;
+			BaseLogic::TriState IR5_I;
+			BaseLogic::TriState DB_V;
+			BaseLogic::TriState AVR_V;
+			BaseLogic::TriState Z_V;
+
+		} cmd;
 
 	public:
 		M6502(bool HLE);

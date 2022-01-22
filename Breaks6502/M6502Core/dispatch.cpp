@@ -8,13 +8,13 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void Dispatcher::sim_BeforeDecoder(TriState inputs[], TriState outputs[], BRKProcessing *brk)
+	void Dispatcher::sim_BeforeDecoder()
 	{
-		TriState PHI1 = inputs[(size_t)Dispatcher_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)Dispatcher_Input::PHI2];
-		TriState RDY = inputs[(size_t)Dispatcher_Input::RDY];
-		TriState DORES = inputs[(size_t)Dispatcher_Input::DORES];
-		TriState ACR = inputs[(size_t)Dispatcher_Input::ACR];
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState RDY = core->wire.RDY;
+		TriState DORES = core->brk->getDORES();
+		TriState ACR = core->alu->getACR();
 
 		// Processor Readiness
 
@@ -46,8 +46,8 @@ namespace M6502Core
 
 		// Opcode Fetch
 
-		TriState BRK6E = NOR(brk->getn_BRK6_LATCH2(), n_ready);
-		TriState B_OUT = brk->getB_OUT(BRK6E);
+		TriState BRK6E = NOR(core->brk->getn_BRK6_LATCH2(), n_ready);
+		TriState B_OUT = core->brk->getB_OUT(BRK6E);
 
 		TriState T1 = t1_latch.nget();
 		fetch_latch.set(T1, PHI2);
@@ -56,21 +56,22 @@ namespace M6502Core
 
 		// Outputs
 
-		outputs[(size_t)Dispatcher_Output::T0] = T0;
-		outputs[(size_t)Dispatcher_Output::n_T0] = n_T0;
-		outputs[(size_t)Dispatcher_Output::n_T1X] = n_T1X;
-		outputs[(size_t)Dispatcher_Output::Z_IR] = Z_IR;
-		outputs[(size_t)Dispatcher_Output::FETCH] = FETCH;
-		outputs[(size_t)Dispatcher_Output::n_ready] = n_ready;
-		outputs[(size_t)Dispatcher_Output::ACRL1] = ACRL1;
-		outputs[(size_t)Dispatcher_Output::ACRL2] = ACRL2;
+		core->wire.T0 = T0;
+		core->wire.n_T0 = n_T0;
+		core->wire.n_T1X = n_T1X;
+		core->wire.Z_IR = Z_IR;
+		core->wire.FETCH = FETCH;
+		core->wire.n_ready = n_ready;
+		core->wire.ACRL1 = ACRL1;
+		core->wire.ACRL2 = ACRL2;
 	}
 
-	void Dispatcher::sim_BeforeRandomLogic(TriState inputs[], TriState d[], TriState outputs[])
+	void Dispatcher::sim_BeforeRandomLogic()
 	{
-		TriState PHI1 = inputs[(size_t)Dispatcher_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)Dispatcher_Input::PHI2];
-		TriState n_ready = inputs[(size_t)Dispatcher_Input::n_ready];
+		TriState* d = core->decoder_out;
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState n_ready = core->wire.n_ready;
 
 		TriState n_SHIFT = NOR(d[106], d[107]);
 
@@ -92,32 +93,33 @@ namespace M6502Core
 		t6_latch1.set(NAND(T5, NOT(n_ready)), PHI2);
 		TriState T6 = NOT(t6_latch2.nget());
 
-		outputs[(size_t)Dispatcher_Output::T5] = T5;
-		outputs[(size_t)Dispatcher_Output::T6] = T6;
+		core->wire.T5 = T5;
+		core->wire.T6 = T6;
 	}
 
-	void Dispatcher::sim_AfterRandomLogic(TriState inputs[], TriState d[], TriState outputs[])
+	void Dispatcher::sim_AfterRandomLogic()
 	{
-		TriState PHI1 = inputs[(size_t)Dispatcher_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)Dispatcher_Input::PHI2];
-		TriState BRK6E = inputs[(size_t)Dispatcher_Input::BRK6E];
-		TriState RESP = inputs[(size_t)Dispatcher_Input::RESP];
-		TriState ACR = inputs[(size_t)Dispatcher_Input::ACR];
-		TriState BRFW = inputs[(size_t)Dispatcher_Input::BRFW];
-		TriState n_BRTAKEN = inputs[(size_t)Dispatcher_Input::n_BRTAKEN];
-		TriState n_TWOCYCLE = inputs[(size_t)Dispatcher_Input::n_TWOCYCLE];
-		TriState n_IMPLIED = inputs[(size_t)Dispatcher_Input::n_IMPLIED];
-		TriState PC_DB = inputs[(size_t)Dispatcher_Input::PC_DB];
-		TriState n_ADL_PCL = inputs[(size_t)Dispatcher_Input::n_ADL_PCL];
-		TriState n_ready = inputs[(size_t)Dispatcher_Input::n_ready];
-		TriState T0 = inputs[(size_t)Dispatcher_Input::T0];
-		TriState B_OUT = inputs[(size_t)Dispatcher_Input::B_OUT];
-		TriState T5 = inputs[(size_t)Dispatcher_Input::T5];
-		TriState T6 = inputs[(size_t)Dispatcher_Input::T6];
-		TriState ACRL1 = inputs[(size_t)Dispatcher_Input::ACRL1];
-		TriState ACRL2 = inputs[(size_t)Dispatcher_Input::ACRL2];
-		TriState RDY = inputs[(size_t)Dispatcher_Input::RDY];
-		TriState DORES = inputs[(size_t)Dispatcher_Input::DORES];
+		TriState* d = core->decoder_out;
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState BRK6E = core->wire.BRK6E;
+		TriState RESP = core->wire.RESP;
+		TriState ACR = core->alu->getACR();
+		TriState BRFW = core->wire.BRFW;
+		TriState n_BRTAKEN = core->wire.n_BRTAKEN;
+		TriState n_TWOCYCLE = core->wire.n_TWOCYCLE;
+		TriState n_IMPLIED = core->wire.n_IMPLIED;
+		TriState PC_DB = core->wire.PC_DB;
+		TriState n_ADL_PCL = core->wire.n_ADL_PCL;
+		TriState n_ready = core->wire.n_ready;
+		TriState T0 = core->wire.T0;
+		TriState B_OUT = core->brk->getB_OUT(BRK6E);
+		TriState T5 = core->wire.T5;
+		TriState T6 = core->wire.T6;
+		TriState ACRL1 = core->wire.ACRL1;
+		TriState ACRL2 = core->wire.ACRL2;
+		TriState RDY = core->wire.RDY;
+		TriState DORES = core->wire.DORES;
 
 		TriState BR2 = d[80];
 		TriState BR3 = d[93];
@@ -217,14 +219,13 @@ namespace M6502Core
 
 		// Outputs
 
-		outputs[(size_t)Dispatcher_Output::T1] = T1;
-		outputs[(size_t)Dispatcher_Output::n_1PC] = n_1PC;
-		outputs[(size_t)Dispatcher_Output::WR] = WR;
+		core->wire.n_1PC = n_1PC;
+		core->wire.WR = WR;
 
-		outputs[(size_t)Dispatcher_Output::ENDS] = ENDS;
-		outputs[(size_t)Dispatcher_Output::ENDX] = ENDX;
-		outputs[(size_t)Dispatcher_Output::TRES1] = TRES1;
-		outputs[(size_t)Dispatcher_Output::TRESX] = TRESX;
+		core->wire.ENDS = ENDS;
+		core->wire.ENDX = ENDX;
+		core->wire.TRES1 = TRES1;
+		core->wire.TRESX = TRESX;
 	}
 
 	TriState Dispatcher::getTRES2()

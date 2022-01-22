@@ -2,50 +2,6 @@
 
 namespace M6502Core
 {
-	enum class BusControl_Input
-	{
-		PHI1 = 0,
-		PHI2,
-		SBXY,
-		STXY,
-		AND,
-		STOR,
-		Z_ADL0,
-		ACRL2,
-		DL_PCH,
-		n_ready,
-		INC_SB,
-		BRK6E,
-		n_PCH_PCH,
-		T0,
-		T1,
-		T5,
-		T6,
-		BR0,
-		IR0,
-		Max,
-	};
-
-	enum class BusControl_Output
-	{
-		ADL_ABL = 0,
-		ADH_ABH,
-		AC_DB,
-		SB_AC,
-		AC_SB,
-		SB_DB,
-		SB_ADH,
-		Z_ADH0,
-		Z_ADH17,
-		DL_ADL,
-		DL_ADH,
-		DL_DB,
-
-		ZTST,
-		PGX,
-		Max,
-	};
-
 	class BusControl
 	{
 		BaseLogic::DLatch z_adh0_latch;
@@ -62,15 +18,13 @@ namespace M6502Core
 		BaseLogic::DLatch dl_db_latch;
 		BaseLogic::DLatch nready_latch;
 
+		M6502* core = nullptr;
+
 	public:
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
+		BusControl(M6502* parent) { core = parent; }
 
-		/// <summary>
-		/// Get the PGX control signal from the decoder outputs and BR0.
-		/// </summary>
-		/// <param name="d"></param>
-		/// <returns></returns>
-		BaseLogic::TriState getPGX(BaseLogic::TriState d[], BaseLogic::TriState BR0);
+		void sim();
+
 	};
 }

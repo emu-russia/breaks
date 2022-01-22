@@ -4,21 +4,34 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void ALUControl::sim(TriState inputs[], TriState d[], TriState outputs[])
+	void ALUControl::sim()
 	{
-		TriState PHI1 = inputs[(size_t)ALUControl_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)ALUControl_Input::PHI2];
-		TriState BRFW = inputs[(size_t)ALUControl_Input::BRFW];
-		TriState n_ready = inputs[(size_t)ALUControl_Input::n_ready];
-		TriState BRK6E = inputs[(size_t)ALUControl_Input::BRK6E];
-		TriState STKOP = inputs[(size_t)ALUControl_Input::STKOP];
-		TriState T0 = inputs[(size_t)ALUControl_Input::T0];
-		TriState T1 = inputs[(size_t)ALUControl_Input::T1];
-		TriState T5 = inputs[(size_t)ALUControl_Input::T5];
-		TriState T6 = inputs[(size_t)ALUControl_Input::T6];
-		TriState PGX = inputs[(size_t)ALUControl_Input::PGX];
-		TriState n_D_OUT = inputs[(size_t)ALUControl_Input::n_D_OUT];
-		TriState n_C_OUT = inputs[(size_t)ALUControl_Input::n_C_OUT];
+		TriState* d = core->decoder_out;
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState BRFW = core->random->branch_logic->getBRFW();
+		TriState n_ready = core->wire.n_ready;
+		TriState BRK6E = core->wire.BRK6E;
+		TriState T0 = core->wire.T0;
+		TriState T1 = core->disp->getT1();
+		TriState T5 = core->wire.T5;
+		TriState T6 = core->wire.T6;
+		TriState n_D_OUT = core->random->flags->getn_D_OUT();
+		TriState n_C_OUT = core->random->flags->getn_C_OUT();
+
+		nready_latch.set(n_ready, PHI1);
+
+		TriState n3[6];
+		n3[0] = d[21];
+		n3[1] = d[22];
+		n3[2] = d[23];
+		n3[3] = d[24];
+		n3[4] = d[25];
+		n3[5] = d[26];
+		TriState STKOP = NOR(nready_latch.get(), NOR6(n3));
+
+		TriState BR0 = AND(d[73], NOT(core->wire.n_PRDY));
+		TriState PGX = NAND(NOR(d[71], d[72]), NOT(BR0));
 
 		TriState n_ROR = NOT(d[27]);
 		TriState EOR = d[29];
@@ -124,7 +137,6 @@ namespace M6502Core
 		// ADD/SB7
 
 		cout_latch.set(NOT(n_C_OUT), PHI2);
-		nready_latch.set(n_ready, PHI1);
 		mux_latch1.set(NOR(nready_latch.get(), NOT(SR)), PHI2);
 		sr_latch1.set(SR, PHI2);
 		sr_latch2.set(sr_latch1.nget(), PHI1);
@@ -161,27 +173,23 @@ namespace M6502Core
 
 		// Outputs
 
-		outputs[(size_t)ALUControl_Output::NDB_ADD] = NOR(ndbadd_latch.get(), PHI2);
-		outputs[(size_t)ALUControl_Output::DB_ADD] = NOR(dbadd_latch.get(), PHI2);
-		outputs[(size_t)ALUControl_Output::Z_ADD] = NOR(zadd_latch.get(), PHI2);
-		outputs[(size_t)ALUControl_Output::SB_ADD] = NOR(sbadd_latch.get(), PHI2);
-		outputs[(size_t)ALUControl_Output::ADL_ADD] = NOR(adladd_latch.get(), PHI2);
-		outputs[(size_t)ALUControl_Output::ADD_SB7] = addsb7_latch.get();	// care!
-		outputs[(size_t)ALUControl_Output::ADD_SB06] = addsb06_latch.nget();
-		outputs[(size_t)ALUControl_Output::ADD_ADL] = addadl_latch.nget();
+		core->cmd.NDB_ADD = NOR(ndbadd_latch.get(), PHI2);
+		core->cmd.DB_ADD = NOR(dbadd_latch.get(), PHI2);
+		core->cmd.Z_ADD = NOR(zadd_latch.get(), PHI2);
+		core->cmd.SB_ADD = NOR(sbadd_latch.get(), PHI2);
+		core->cmd.ADL_ADD = NOR(adladd_latch.get(), PHI2);
+		core->cmd.ADD_SB7 = addsb7_latch.get();	// care!
+		core->cmd.ADD_SB06 = addsb06_latch.nget();
+		core->cmd.ADD_ADL = addadl_latch.nget();
 
-		outputs[(size_t)ALUControl_Output::ANDS] = ands_latch2.nget();
-		outputs[(size_t)ALUControl_Output::EORS] = eors_latch2.nget();
-		outputs[(size_t)ALUControl_Output::ORS] = ors_latch2.nget();
-		outputs[(size_t)ALUControl_Output::SRS] = srs_latch2.nget();
-		outputs[(size_t)ALUControl_Output::SUMS] = sums_latch2.nget();
+		core->cmd.ANDS = ands_latch2.nget();
+		core->cmd.EORS = eors_latch2.nget();
+		core->cmd.ORS = ors_latch2.nget();
+		core->cmd.SRS = srs_latch2.nget();
+		core->cmd.SUMS = sums_latch2.nget();
 
-		outputs[(size_t)ALUControl_Output::n_ACIN] = NOT(acin_latch5.nget());
-		outputs[(size_t)ALUControl_Output::n_DAA] = daa_latch2.nget();
-		outputs[(size_t)ALUControl_Output::n_DSA] = dsa_latch2.nget();
-
-		outputs[(size_t)ALUControl_Output::AND] = _AND;
-		outputs[(size_t)ALUControl_Output::SR] = SR;
-		outputs[(size_t)ALUControl_Output::INC_SB] = INC_SB;
+		core->cmd.n_ACIN = NOT(acin_latch5.nget());
+		core->cmd.n_DAA = daa_latch2.nget();
+		core->cmd.n_DSA = dsa_latch2.nget();
 	}
 }

@@ -4,12 +4,13 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void RegsControl::sim(TriState inputs[], TriState d[], TriState outputs[])
+	void RegsControl::sim()
 	{
-		TriState PHI1 = inputs[(size_t)RegsControl_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)RegsControl_Input::PHI2];
-		TriState STOR = inputs[(size_t)RegsControl_Input::STOR];
-		TriState n_ready = inputs[(size_t)RegsControl_Input::n_ready];
+		TriState* d = core->decoder_out;
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState STOR = core->disp->getSTOR(d);
+		TriState n_ready = core->wire.n_ready;
 
 		nready_latch.set(n_ready, PHI1);
 
@@ -74,17 +75,13 @@ namespace M6502Core
 
 		// Outputs
 
-		outputs[(size_t)RegsControl_Output::Y_SB] = NOR(ysb_latch.get(), PHI2);
-		outputs[(size_t)RegsControl_Output::X_SB] = NOR(xsb_latch.get(), PHI2);
-		outputs[(size_t)RegsControl_Output::S_SB] = ssb_latch.nget();
-		outputs[(size_t)RegsControl_Output::SB_X] = NOR(sbx_latch.get(), PHI2);
-		outputs[(size_t)RegsControl_Output::SB_Y] = NOR(sby_latch.get(), PHI2);
-		outputs[(size_t)RegsControl_Output::SB_S] = NOR(sbs_latch.get(), PHI2);
-		outputs[(size_t)RegsControl_Output::S_S] = NOR(ss_latch.get(), PHI2);
-		outputs[(size_t)RegsControl_Output::S_ADL] = sadl_latch.nget();
-
-		outputs[(size_t)RegsControl_Output::STXY] = STXY;
-		outputs[(size_t)RegsControl_Output::SBXY] = SBXY;
-		outputs[(size_t)RegsControl_Output::STKOP] = STKOP;
+		core->cmd.Y_SB = NOR(ysb_latch.get(), PHI2);
+		core->cmd.X_SB = NOR(xsb_latch.get(), PHI2);
+		core->cmd.S_SB = ssb_latch.nget();
+		core->cmd.SB_X = NOR(sbx_latch.get(), PHI2);
+		core->cmd.SB_Y = NOR(sby_latch.get(), PHI2);
+		core->cmd.SB_S = NOR(sbs_latch.get(), PHI2);
+		core->cmd.S_S = NOR(ss_latch.get(), PHI2);
+		core->cmd.S_ADL = sadl_latch.nget();
 	}
 }

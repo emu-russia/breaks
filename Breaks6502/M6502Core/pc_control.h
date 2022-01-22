@@ -2,36 +2,6 @@
 
 namespace M6502Core
 {
-	enum class PC_Control_Input
-	{
-		PHI1 = 0,
-		PHI2,
-		n_ready,
-		T0,
-		T1,
-		BR0,		// BR0 is required as a separate input because it is modified by the /PRDY signal.
-		Max,
-	};
-
-	enum class PC_Control_Output
-	{
-		PCL_DB = 0,
-		PCH_DB,
-		PCL_ADL,
-		PCH_ADH,
-		PCL_PCL,
-		ADL_PCL,
-		ADH_PCH,
-		PCH_PCH,
-
-		PC_DB,
-		n_ADL_PCL,
-		DL_PCH,
-		n_PCH_PCH,
-
-		Max,
-	};
-
 	class PC_Control
 	{
 		BaseLogic::DLatch pcl_db_latch1;
@@ -46,8 +16,12 @@ namespace M6502Core
 		BaseLogic::DLatch adh_pch_latch;
 		BaseLogic::DLatch pch_pch_latch;
 
+		M6502* core = nullptr;
+
 	public:
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
+		PC_Control(M6502* parent) { core = parent; }
+
+		void sim();
 	};
 }

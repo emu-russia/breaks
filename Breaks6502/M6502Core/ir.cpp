@@ -4,11 +4,12 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void IR::sim(TriState PHI1, TriState FETCH, TriState n_in[8])
+	void IR::sim()
 	{
 		for (size_t n = 0; n < 8; n++)
 		{
-			ir_latch[n].set(n_in[n], AND(PHI1, FETCH));
+			ir_latch[n].set(core->predecode->n_PD[n], AND(core->wire.PHI1, core->wire.FETCH));
+			IROut[n] = ir_latch[n].nget();
 		}
 	}
 

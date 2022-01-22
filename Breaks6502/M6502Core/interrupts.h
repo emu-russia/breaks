@@ -2,39 +2,6 @@
 
 namespace M6502Core
 {
-	enum class BRKProcessing_Input
-	{
-		PHI1 = 0,
-		PHI2,
-		BRK5,
-		n_ready,
-		RESP,
-		n_NMIP,
-		n_IRQP,
-		T0,
-		BR2,
-		n_I_OUT,
-
-		n_DONMI,
-		BRK6E,
-		DORES,
-		Max,
-	};
-
-	enum class BRKProcessing_Output
-	{
-		BRK6E = 0,
-		BRK7,
-		DORES,
-		B_OUT,
-		Z_ADL0,
-		Z_ADL1,
-		Z_ADL2,
-		n_DONMI,
-		BRK5_RDY,
-		Max,
-	};
-
 	class BRKProcessing
 	{
 		BaseLogic::DLatch brk5_latch;
@@ -55,10 +22,14 @@ namespace M6502Core
 
 		BaseLogic::DLatch zadl_latch[3];
 
+		M6502* core = nullptr;
+
 	public:
 
-		void sim_BeforeRandom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
-		void sim_AfterRandom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[]);
+		BRKProcessing(M6502* parent) { core = parent; }
+
+		void sim_BeforeRandom();
+		void sim_AfterRandom();
 
 		BaseLogic::TriState getDORES();
 		BaseLogic::TriState getB_OUT(BaseLogic::TriState BRK6E);

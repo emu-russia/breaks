@@ -2,32 +2,6 @@
 
 namespace M6502Core
 {
-	enum class FlagsControl_Input
-	{
-		PHI2 = 0,
-		T6,
-		ZTST,
-		SR,
-		n_ready,
-		Max,
-	};
-
-	enum class FlagsControl_Output
-	{
-		P_DB = 0,
-		IR5_I,
-		IR5_C,
-		IR5_D,
-		Z_V,
-		ACR_C,
-		DBZ_Z,
-		DB_N,
-		DB_P,
-		DB_C,
-		DB_V,
-		Max,
-	};
-
 	class FlagsControl
 	{
 		BaseLogic::DLatch pdb_latch;
@@ -42,8 +16,12 @@ namespace M6502Core
 		BaseLogic::DLatch pin_latch;
 		BaseLogic::DLatch bit_latch;
 
+		M6502* core = nullptr;
+
 	public:
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
+		FlagsControl(M6502* parent) { core = parent; }
+
+		void sim();
 	};
 }

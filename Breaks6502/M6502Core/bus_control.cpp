@@ -4,13 +4,17 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void BusControl::sim(TriState inputs[], TriState d[], TriState outputs[])
+	void BusControl::sim()
 	{
-		TriState PHI2 = inputs[(size_t)BusControl_Input::PHI2];
-		TriState BR0 = inputs[(size_t)BusControl_Input::BR0];
-		TriState _AND = inputs[(size_t)BusControl_Input::AND];
-		TriState T6 = inputs[(size_t)BusControl_Input::T6];
-		TriState SBXY = inputs[(size_t)BusControl_Input::SBXY];
+		TriState* d = core->decoder_out;
+		TriState PHI2 = core->wire.PHI2;
+		TriState BR0 = AND(d[73], NOT(core->wire.n_PRDY));
+		TriState _AND = NOT(NOR(d[69], d[70]));
+		TriState T6 = core->wire.T6;
+
+		TriState n_SB_X = NOR3(d[14], d[15], d[16]);
+		TriState n_SB_Y = NOR3(d[18], d[19], d[20]);
+		TriState SBXY = NAND(n_SB_X, n_SB_Y);
 		
 		TriState PGX = NAND(NOR(d[71], d[72]), NOT(BR0));
 		TriState n_SB_AC;
@@ -18,20 +22,31 @@ namespace M6502Core
 
 		if (PHI2 == TriState::One)
 		{
-			TriState PHI1 = inputs[(size_t)BusControl_Input::PHI1];
-			TriState STXY = inputs[(size_t)BusControl_Input::STXY];
-			TriState STOR = inputs[(size_t)BusControl_Input::STOR];
-			TriState Z_ADL0 = inputs[(size_t)BusControl_Input::Z_ADL0];
-			TriState ACRL2 = inputs[(size_t)BusControl_Input::ACRL2];
-			TriState DL_PCH = inputs[(size_t)BusControl_Input::DL_PCH];
-			TriState n_ready = inputs[(size_t)BusControl_Input::n_ready];
-			TriState INC_SB = inputs[(size_t)BusControl_Input::INC_SB];
-			TriState BRK6E = inputs[(size_t)BusControl_Input::BRK6E];
-			TriState n_PCH_PCH = inputs[(size_t)BusControl_Input::n_PCH_PCH];
-			TriState T0 = inputs[(size_t)BusControl_Input::T0];
-			TriState T1 = inputs[(size_t)BusControl_Input::T1];
-			TriState T5 = inputs[(size_t)BusControl_Input::T5];
-			TriState IR0 = inputs[(size_t)BusControl_Input::IR0];
+			TriState PHI1 = core->wire.PHI1;
+			TriState STOR = core->disp->getSTOR(d);
+			TriState STXY = NOR(AND(STOR, d[0]), AND(STOR, d[12]));
+			TriState Z_ADL0 = core->cmd.Z_ADL0;
+			TriState ACRL2 = core->wire.ACRL2;
+			
+			TriState JB = NOR3(d[94], d[95], d[96]);
+			TriState DL_PCH = NOR(NOT(core->wire.T0), JB);
+
+			TriState n_ready = core->wire.n_ready;
+
+			TriState incsb[6];
+			incsb[0] = d[39];
+			incsb[1] = d[40];
+			incsb[2] = d[41];
+			incsb[3] = d[42];
+			incsb[4] = d[43];
+			incsb[5] = AND(core->wire.T5, d[44]);
+			TriState INC_SB = NOT(NOR6(incsb));
+
+			TriState BRK6E = core->wire.BRK6E;
+			TriState T0 = core->wire.T0;
+			TriState T1 = core->disp->getT1();
+			TriState T5 = core->wire.T5;
+			TriState IR0 = core->ir->IROut[0];
 
 			TriState n_DL_ADL = NOR(d[81], d[82]);
 			TriState RTS_5 = d[84];
@@ -55,6 +70,16 @@ namespace M6502Core
 			IMPLIED = AND(IMPLIED, NOT(IR0));
 			TriState ABS_2 = AND(d[83], NOT(pp));
 			TriState imp_abs = NOR(NOR(ABS_2, T0), IMPLIED);
+
+			TriState nap[6];
+			nap[0] = RTS_5;
+			nap[1] = ABS_2;
+			nap[2] = T0;
+			nap[3] = T1;
+			nap[4] = BR2;
+			nap[5] = BR3;
+			TriState n_ADH_PCH = NOR6(nap);
+			TriState n_PCH_PCH = NOT(n_ADH_PCH);
 
 			nready_latch.set(n_ready, PHI1);
 			TriState n_SB_ADH = NOR(PGX, BR3);
@@ -165,28 +190,20 @@ namespace M6502Core
 
 		// Outputs
 
-		outputs[(size_t)BusControl_Output::ADL_ABL] = adl_abl_latch.nget();
-		outputs[(size_t)BusControl_Output::ADH_ABH] = adh_abh_latch.nget();
+		core->cmd.ADL_ABL = adl_abl_latch.nget();
+		core->cmd.ADH_ABH = adh_abh_latch.nget();
 
-		outputs[(size_t)BusControl_Output::AC_DB] = NOR(ac_db_latch.get(), PHI2);
-		outputs[(size_t)BusControl_Output::SB_AC] = NOR(sb_ac_latch.get(), PHI2);
-		outputs[(size_t)BusControl_Output::AC_SB] = NOR(ac_sb_latch.get(), PHI2);
+		core->cmd.AC_DB = NOR(ac_db_latch.get(), PHI2);
+		core->cmd.SB_AC = NOR(sb_ac_latch.get(), PHI2);
+		core->cmd.AC_SB = NOR(ac_sb_latch.get(), PHI2);
 
-		outputs[(size_t)BusControl_Output::SB_DB] = sb_db_latch.nget();
-		outputs[(size_t)BusControl_Output::SB_ADH] = sb_adh_latch.nget();
-		outputs[(size_t)BusControl_Output::Z_ADH0] = z_adh0_latch.nget();
-		outputs[(size_t)BusControl_Output::Z_ADH17] = z_adh17_latch.nget();
+		core->cmd.SB_DB = sb_db_latch.nget();
+		core->cmd.SB_ADH = sb_adh_latch.nget();
+		core->cmd.Z_ADH0 = z_adh0_latch.nget();
+		core->cmd.Z_ADH17 = z_adh17_latch.nget();
 
-		outputs[(size_t)BusControl_Output::DL_ADL] = dl_adl_latch.nget();
-		outputs[(size_t)BusControl_Output::DL_ADH] = dl_adh_latch.nget();
-		outputs[(size_t)BusControl_Output::DL_DB] = dl_db_latch.nget();
-
-		outputs[(size_t)BusControl_Output::ZTST] = NOT(n_ZTST);
-		outputs[(size_t)BusControl_Output::PGX] = PGX;
-	}
-
-	TriState BusControl::getPGX(TriState d[], TriState BR0)
-	{
-		return NAND(NOR(d[71], d[72]), NOT(BR0));
+		core->cmd.DL_ADL = dl_adl_latch.nget();
+		core->cmd.DL_ADH = dl_adh_latch.nget();
+		core->cmd.DL_DB = dl_db_latch.nget();
 	}
 }

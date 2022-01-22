@@ -4,14 +4,14 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void BRKProcessing::sim_BeforeRandom(TriState inputs[], TriState outputs[])
+	void BRKProcessing::sim_BeforeRandom()
 	{
-		TriState PHI1 = inputs[(size_t)BRKProcessing_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)BRKProcessing_Input::PHI2];
-		TriState BRK5 = inputs[(size_t)BRKProcessing_Input::BRK5];
-		TriState n_ready = inputs[(size_t)BRKProcessing_Input::n_ready];
-		TriState RESP = inputs[(size_t)BRKProcessing_Input::RESP];
-		TriState n_NMIP = inputs[(size_t)BRKProcessing_Input::n_NMIP];
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState BRK5 = core->decoder_out[22];
+		TriState n_ready = core->wire.n_ready;
+		TriState RESP = core->wire.RESP;
+		TriState n_NMIP = core->wire.n_NMIP;
 
 		// Interrupt cycle 6-7
 
@@ -53,27 +53,27 @@ namespace M6502Core
 
 		// Outputs
 
-		outputs[(size_t)BRKProcessing_Output::BRK6E] = BRK6E;
-		outputs[(size_t)BRKProcessing_Output::BRK7] = BRK7;
-		outputs[(size_t)BRKProcessing_Output::DORES] = DORES;
-		outputs[(size_t)BRKProcessing_Output::Z_ADL0] = zadl_latch[0].nget();
-		outputs[(size_t)BRKProcessing_Output::Z_ADL1] = zadl_latch[1].nget();
-		outputs[(size_t)BRKProcessing_Output::Z_ADL2] = NOT(zadl_latch[2].nget());
-		outputs[(size_t)BRKProcessing_Output::n_DONMI] = n_DONMI;
-		outputs[(size_t)BRKProcessing_Output::BRK5_RDY] = BRK5_RDY;
+		core->wire.BRK6E = BRK6E;
+		core->wire.BRK7 = BRK7;
+		core->wire.DORES = DORES;
+		core->cmd.Z_ADL0 = zadl_latch[0].nget();
+		core->cmd.Z_ADL1 = zadl_latch[1].nget();
+		core->cmd.Z_ADL2 = NOT(zadl_latch[2].nget());
+		core->wire.n_DONMI = n_DONMI;
+		core->wire.BRK5_RDY = BRK5_RDY;
 	}
 
-	void BRKProcessing::sim_AfterRandom(TriState inputs[], TriState outputs[])
+	void BRKProcessing::sim_AfterRandom()
 	{
-		TriState PHI1 = inputs[(size_t)BRKProcessing_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)BRKProcessing_Input::PHI2];
-		TriState T0 = inputs[(size_t)BRKProcessing_Input::T0];
-		TriState BR2 = inputs[(size_t)BRKProcessing_Input::BR2];
-		TriState n_I_OUT = inputs[(size_t)BRKProcessing_Input::n_I_OUT];
-		TriState n_IRQP = inputs[(size_t)BRKProcessing_Input::n_IRQP];
-		TriState n_DONMI = inputs[(size_t)BRKProcessing_Input::n_DONMI];
-		TriState BRK6E = inputs[(size_t)BRKProcessing_Input::BRK6E];
-		TriState DORES = inputs[(size_t)BRKProcessing_Input::DORES];
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState T0 = core->wire.T0;
+		TriState BR2 = core->decoder_out[80];
+		TriState n_I_OUT = core->random->flags->getn_I_OUT(core->wire.BRK6E);
+		TriState n_IRQP = core->wire.n_IRQP;
+		TriState n_DONMI = core->wire.n_DONMI;
+		TriState BRK6E = core->wire.BRK6E;
+		TriState DORES = core->wire.DORES;
 
 		// B Flag
 
@@ -86,7 +86,7 @@ namespace M6502Core
 		b_latch1.set(AND(int_set, NOT(b_latch2.get())), PHI2);
 		TriState B_OUT = NOR(DORES, NOR(b_latch1.get(), BRK6E));
 
-		outputs[(size_t)BRKProcessing_Output::B_OUT] = B_OUT;
+		core->wire.B_OUT = B_OUT;
 	}
 
 	TriState BRKProcessing::getDORES()

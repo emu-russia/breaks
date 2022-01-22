@@ -6,9 +6,15 @@ namespace M6502Core
 	{
 		BaseLogic::DLatch ir_latch[8];
 
+		M6502* core = nullptr;
+
 	public:
 
-		void sim(BaseLogic::TriState PHI1, BaseLogic::TriState FETCH, BaseLogic::TriState n_in[8]);
+		IR(M6502* parent) { core = parent; }
+
+		BaseLogic::TriState IROut[8];
+
+		void sim();
 
 		void get(BaseLogic::TriState IR[8]);
 	};
