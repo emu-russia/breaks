@@ -188,22 +188,15 @@ namespace BaseLogic
 			}
 
 			outs = new TriState[maxLane * romOutputs];
-			TriState* inputs = new TriState[romInputs];
+			TriState* outputs;
 
 			for (size_t n = 0; n < maxLane; n++)
 			{
-				for (size_t bit = 0; bit < romInputs; bit++)
-				{
-					inputs[bit] = (n & (1ULL << bit)) ? TriState::One : TriState::Zero;
-				}
-
-				sim_Unomptimized(inputs, &unomptimized_out);
+				sim_Unomptimized(n, &outputs);
 
 				TriState* lane = &outs[n * romOutputs];
-				memcpy(lane, unomptimized_out, romOutputs * sizeof(TriState));
+				memcpy(lane, outputs, romOutputs * sizeof(TriState));
 			}
-
-			delete[] inputs;
 
 			fopen_s(&f, "pla.bin", "wb");
 			fwrite(outs, sizeof(TriState), maxLane * romOutputs, f);
@@ -211,29 +204,19 @@ namespace BaseLogic
 		}
 	}
 
-	void PLA::sim(TriState inputs[], TriState** outputs)
+	void PLA::sim(size_t input_bits, TriState** outputs)
 	{
 		if (!outs)
 		{
-			sim_Unomptimized(inputs, outputs);
+			sim_Unomptimized(input_bits, outputs);
 			return;
 		}
 
-		size_t laneNum = 0;
-
-		for (size_t bit = 0; bit < romInputs; bit++)
-		{
-			if (inputs[bit] == TriState::One)
-			{
-				laneNum |= (1ULL << bit);
-			}
-		}
-
-		TriState* lane = &outs[laneNum * romOutputs];
+		TriState* lane = &outs[input_bits * romOutputs];
 		*outputs = lane;
 	}
 
-	void PLA::sim_Unomptimized(TriState inputs[], TriState** outputs)
+	void PLA::sim_Unomptimized(size_t input_bits, TriState** outputs)
 	{
 		for (size_t out = 0; out < romOutputs; out++)
 		{
@@ -243,7 +226,7 @@ namespace BaseLogic
 			for (size_t bit = 0; bit < romInputs; bit++)
 			{
 				// If there is a transistor at the crossing point and the corresponding input is `1` - then ground the output and abort the term.
-				if (rom[out * romInputs + bit] && (inputs[bit] == TriState::One))
+				if (rom[out * romInputs + bit] && (input_bits & (1ULL << bit)))
 				{
 					unomptimized_out[out] = TriState::Zero;
 					break;

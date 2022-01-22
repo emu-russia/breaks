@@ -20,6 +20,12 @@ namespace M6502Core
 
 	void ProgramCounter::sim()
 	{
+		if (HLE)
+		{
+			sim_HLE();
+			return;
+		}
+
 		TriState PHI2 = core->wire.PHI2;
 		TriState n_1PC = core->wire.n_1PC;
 
@@ -95,33 +101,26 @@ namespace M6502Core
 
 		if (PHI2 == TriState::One)
 		{
-			uint16_t pc = 0;
-
-			for (size_t n = 0; n < 8; n++)
-			{
-				pc |= (PCLS[n].get() << n);
-				pc |= ((PCHS[n].get() << 8) << n);
-			}
+			uint16_t pc = ((uint16_t)PackedPCHS << 8) | PackedPCLS;
 
 			if (n_1PC == TriState::Zero)
 			{
 				pc++;
 			}
 
-			// PCL/PCH stores bit values in alternating inversion.
-
-			pc ^= 0b10101010'01010101;
-
-			for (size_t n = 0; n < 8; n++)
-			{
-				PCL[n].set((pc & (1 << n)) ? TriState::Zero : TriState::One, TriState::One);
-				PCH[n].set((pc & (0x100 << n)) ? TriState::Zero : TriState::One, TriState::One);
-			}
+			PackedPCL = pc & 0xff;
+			PackedPCH = pc >> 8;
 		}
 	}
 
 	void ProgramCounter::sim_Load()
 	{
+		if (HLE)
+		{
+			sim_LoadHLE();
+			return;
+		}
+
 		TriState ADL_PCL = core->cmd.ADL_PCL ? TriState::One : TriState::Zero;
 		TriState PCL_PCL = core->cmd.PCL_PCL ? TriState::One : TriState::Zero;
 		TriState ADH_PCH = core->cmd.ADH_PCH ? TriState::One : TriState::Zero;
@@ -156,6 +155,12 @@ namespace M6502Core
 
 	void ProgramCounter::sim_Store()
 	{
+		if (HLE)
+		{
+			sim_StoreHLE();
+			return;
+		}
+
 		bool PCL_ADL = core->cmd.PCL_ADL;
 		bool PCL_DB = core->cmd.PCL_DB;
 		bool PCH_ADH = core->cmd.PCH_ADH;
@@ -248,8 +253,99 @@ namespace M6502Core
 		}
 	}
 
+	void ProgramCounter::sim_LoadHLE()
+	{
+		bool ADL_PCL = core->cmd.ADL_PCL;
+		bool PCL_PCL = core->cmd.PCL_PCL;
+		bool ADH_PCH = core->cmd.ADH_PCH;
+		bool PCH_PCH = core->cmd.PCH_PCH;
+
+		if (PCL_PCL)
+		{
+			PackedPCLS = PackedPCL;
+		}
+
+		if (PCH_PCH)
+		{
+			PackedPCHS = PackedPCH;
+		}
+
+		if (ADL_PCL)
+		{
+			PackedPCLS = core->ADL;
+		}
+
+		if (ADH_PCH)
+		{
+			PackedPCHS = core->ADH;
+		}
+	}
+
+	void ProgramCounter::sim_StoreHLE()
+	{
+		bool PCL_ADL = core->cmd.PCL_ADL;
+		bool PCL_DB = core->cmd.PCL_DB;
+		bool PCH_ADH = core->cmd.PCH_ADH;
+		bool PCH_DB = core->cmd.PCH_DB;
+
+		if (PCL_DB)
+		{
+			if (core->DB_Dirty)
+			{
+				core->DB = core->DB & PackedPCL;
+			}
+			else
+			{
+				core->DB = PackedPCL;
+				core->DB_Dirty = true;
+			}
+		}
+
+		if (PCL_ADL)
+		{
+			if (core->ADL_Dirty)
+			{
+				core->ADL = core->ADL & PackedPCL;
+			}
+			else
+			{
+				core->ADL = PackedPCL;
+				core->ADL_Dirty = true;
+			}
+		}
+
+		if (PCH_DB)
+		{
+			if (core->DB_Dirty)
+			{
+				core->DB = core->DB & PackedPCH;
+			}
+			else
+			{
+				core->DB = PackedPCH;
+				core->DB_Dirty = true;
+			}
+		}
+
+		if (PCH_ADH)
+		{
+			if (core->ADH_Dirty)
+			{
+				core->ADH = core->ADH & PackedPCH;
+			}
+			else
+			{
+				core->ADH = PackedPCH;
+				core->ADH_Dirty = true;
+			}
+		}
+	}
+
 	uint8_t ProgramCounter::getPCL()
 	{
+		if (HLE)
+			return PackedPCL;
+
 		TriState v[8];
 
 		// The value stored in PCL alternates between inversion, because of the inverted carry chain.
@@ -271,6 +367,9 @@ namespace M6502Core
 
 	uint8_t ProgramCounter::getPCH()
 	{
+		if (HLE)
+			return PackedPCH;
+
 		TriState v[8];
 
 		// The value stored in PCH alternates between inversion, because of the inverted carry chain.
@@ -293,6 +392,9 @@ namespace M6502Core
 
 	uint8_t ProgramCounter::getPCLS()
 	{
+		if (HLE)
+			return PackedPCLS;
+
 		TriState v[8];
 
 		for (size_t n = 0; n < 8; n++)
@@ -305,6 +407,9 @@ namespace M6502Core
 
 	uint8_t ProgramCounter::getPCHS()
 	{
+		if (HLE)
+			return PackedPCHS;
+
 		TriState v[8];
 
 		for (size_t n = 0; n < 8; n++)

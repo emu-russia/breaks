@@ -19,7 +19,7 @@ namespace M6502Core
 		addr_bus = new AddressBus(this);
 		regs = new Regs(this);
 		alu = new ALU(this);
-		pc = new ProgramCounter(this);
+		pc = new ProgramCounter(this, HLE_Mode);
 		data_bus = new DataBus(this);
 	}
 
@@ -91,33 +91,54 @@ namespace M6502Core
 
 		ext->sim();
 
-		TriState decoder_in[Decoder::inputs_count];
-		TriState* IR = ir->IROut;
+		DecoderInput decoder_in;
+		decoder_in.packed_bits = 0;
 
-		decoder_in[(size_t)DecoderInput::n_IR0] = NOT(IR[0]);
-		decoder_in[(size_t)DecoderInput::n_IR1] = NOT(IR[1]);
-		decoder_in[(size_t)DecoderInput::IR01] = OR(IR[0], IR[1]);
-		decoder_in[(size_t)DecoderInput::n_IR2] = NOT(IR[2]);
-		decoder_in[(size_t)DecoderInput::IR2] = IR[2];
-		decoder_in[(size_t)DecoderInput::n_IR3] = NOT(IR[3]);
-		decoder_in[(size_t)DecoderInput::IR3] = IR[3];
-		decoder_in[(size_t)DecoderInput::n_IR4] = NOT(IR[4]);
-		decoder_in[(size_t)DecoderInput::IR4] = IR[4];
-		decoder_in[(size_t)DecoderInput::n_IR5] = NOT(IR[5]);
-		decoder_in[(size_t)DecoderInput::IR5] = IR[5];
-		decoder_in[(size_t)DecoderInput::n_IR6] = NOT(IR[6]);
-		decoder_in[(size_t)DecoderInput::IR6] = IR[6];
-		decoder_in[(size_t)DecoderInput::n_IR7] = NOT(IR[7]);
-		decoder_in[(size_t)DecoderInput::IR7] = IR[7];
+		uint8_t IR = ir->IROut;
 
-		decoder_in[(size_t)DecoderInput::n_T0] = wire.n_T0;
-		decoder_in[(size_t)DecoderInput::n_T1X] = wire.n_T1X;
-		decoder_in[(size_t)DecoderInput::n_T2] = wire.n_T2;
-		decoder_in[(size_t)DecoderInput::n_T3] = wire.n_T3;
-		decoder_in[(size_t)DecoderInput::n_T4] = wire.n_T4;
-		decoder_in[(size_t)DecoderInput::n_T5] = wire.n_T5;
+		TriState IR0 = IR & 0b00000001 ? TriState::One : TriState::Zero;
+		TriState IR1 = IR & 0b00000010 ? TriState::One : TriState::Zero;
+		TriState IR2 = IR & 0b00000100 ? TriState::One : TriState::Zero;
+		TriState IR3 = IR & 0b00001000 ? TriState::One : TriState::Zero;
+		TriState IR4 = IR & 0b00010000 ? TriState::One : TriState::Zero;
+		TriState IR5 = IR & 0b00100000 ? TriState::One : TriState::Zero;
+		TriState IR6 = IR & 0b01000000 ? TriState::One : TriState::Zero;
+		TriState IR7 = IR & 0b10000000 ? TriState::One : TriState::Zero;
 
-		decoder->sim(decoder_in, &decoder_out);
+		wire.n_IR5 = NOT(IR5);
+
+		decoder_in.n_IR0 = NOT(IR0);
+		decoder_in.n_IR1 = NOT(IR1);
+		decoder_in.IR01 = OR(IR0, IR1);
+		decoder_in.n_IR2 = NOT(IR2);
+		decoder_in.IR2 = IR2;
+		decoder_in.n_IR3 = NOT(IR3);
+		decoder_in.IR3 = IR3;
+		decoder_in.n_IR4 = NOT(IR4);
+		decoder_in.IR4 = IR4;
+		decoder_in.n_IR5 = wire.n_IR5;
+		decoder_in.IR5 = IR5;
+		decoder_in.n_IR6 = NOT(IR6);
+		decoder_in.IR6 = IR6;
+		decoder_in.n_IR7 = NOT(IR7);
+		decoder_in.IR7 = IR7;
+
+		decoder_in.n_T0 = wire.n_T0;
+		decoder_in.n_T1X = wire.n_T1X;
+		decoder_in.n_T2 = wire.n_T2;
+		decoder_in.n_T3 = wire.n_T3;
+		decoder_in.n_T4 = wire.n_T4;
+		decoder_in.n_T5 = wire.n_T5;
+
+		TxBits = 0;
+		TxBits |= ((size_t)wire.n_T0 << 0);
+		TxBits |= ((size_t)wire.n_T1X << 1);
+		TxBits |= ((size_t)wire.n_T2 << 2);
+		TxBits |= ((size_t)wire.n_T3 << 3);
+		TxBits |= ((size_t)wire.n_T4 << 4);
+		TxBits |= ((size_t)wire.n_T5 << 5);
+
+		decoder->sim(decoder_in.packed_bits, &decoder_out);
 
 		// Interrupt handling
 
@@ -168,14 +189,7 @@ namespace M6502Core
 
 		// Increment PC: n_1PC
 
-		if (HLE_Mode)
-		{
-			pc->sim_HLE();
-		}
-		else
-		{
-			pc->sim();
-		}
+		pc->sim();
 
 		// Saving PC to buses: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 
@@ -196,7 +210,14 @@ namespace M6502Core
 		// ALU operation: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA
 		// BCD correction via SB bus: SB_AC
 
-		alu->sim();
+		if (HLE_Mode)
+		{
+			alu->sim_HLE();
+		}
+		else
+		{
+			alu->sim();
+		}
 
 		// Load flags: DB_P, DBZ_Z, DB_N, IR5_C, DB_C, IR5_D, IR5_I, DB_V, Z_V, ACR_C, AVR_V
 
@@ -234,7 +255,7 @@ namespace M6502Core
 		TriState PHI2 = PHI0;
 
 		// Precharge internal buses.
-		// This operation is critical because it is used to form the interrupt address and the stack pointer.
+		// This operation is critical because it is used to form the interrupt address and the stack pointer (and many other cases).
 
 		if (PHI2 == TriState::One)
 		{
@@ -270,10 +291,8 @@ namespace M6502Core
 		info->ADL = ADL;
 		info->ADH = ADH;
 
-		TriState IR[8];
-		ir->get(IR);
-		info->IR = Pack(IR);
-		info->PD = Pack(predecode->PD);
+		info->IR = ir->IROut;
+		info->PD = predecode->PD;
 		info->Y = regs->getY();
 		info->X = regs->getX();
 		info->S = regs->getS();

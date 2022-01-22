@@ -138,15 +138,12 @@ namespace M6502Core
 				// Technically it may happen that no ALU operation has been set and `res` is in floating state.
 				// In this case the value of the latch does not change.
 
-				if (PHI2)
+				n_ADD = 0;
+				for (size_t n = 0; n < 8; n++)
 				{
-					n_ADD = 0;
-					for (size_t n = 0; n < 8; n++)
+					if (n_res[n])
 					{
-						if (n_res[n])
-						{
-							n_ADD |= 1 << n;
-						}
+						n_ADD |= 1 << n;
 					}
 				}
 			}
@@ -232,6 +229,67 @@ namespace M6502Core
 				{
 					AC = core->SB;
 				}
+			}
+		}
+	}
+
+	void ALU::sim_HLE()
+	{
+		if (!BCD_Hack)
+		{
+			sim();
+			return;
+		}
+
+		TriState PHI2 = core->wire.PHI2;
+		bool ANDS = core->cmd.ANDS;
+		bool EORS = core->cmd.EORS;
+		bool ORS = core->cmd.ORS;
+		bool SRS = core->cmd.SRS;
+		bool SUMS = core->cmd.SUMS;
+		bool SB_AC = core->cmd.SB_AC;
+		TriState n_ACIN = core->cmd.n_ACIN ? TriState::One : TriState::Zero;
+
+		if (PHI2 == TriState::One)
+		{
+			int resInt = 0;
+			uint8_t res;
+
+			if (ANDS == TriState::One)
+			{
+				res = AI & BI;
+			}
+			if (EORS == TriState::One)
+			{
+				res = AI ^ BI;
+			}
+			if (ORS == TriState::One)
+			{
+				res = AI | BI;
+			}
+			if (SRS == TriState::One)
+			{
+				res = (AI & BI) >> 1;
+			}
+			if (SUMS == TriState::One)
+			{
+				resInt = (uint16_t)AI + (uint16_t)BI + (n_ACIN == TriState::Zero ? 1 : 0);
+				res = (uint8_t)resInt;
+			}
+
+			n_ADD = ~res;
+
+			// ACR, AVR
+
+			DCLatch.set(TriState::Zero, PHI2);
+			ACLatch.set((resInt >> 8) != 0 ? TriState::One : TriState::Zero, PHI2);
+			AVRLatch.set((~(AI ^ BI) & (AI ^ resInt) & 0x80) != 0 ? TriState::Zero : TriState::One, PHI2);
+		}
+		else
+		{
+			if (SB_AC)
+			{
+				AC = core->SB;
 			}
 		}
 	}

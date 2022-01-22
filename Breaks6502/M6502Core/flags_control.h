@@ -2,6 +2,19 @@
 
 namespace M6502Core
 {
+	union FlagsControl_TempWire
+	{
+		struct
+		{
+			unsigned n_POUT : 1;
+			unsigned n_ARIT : 1;
+			unsigned n_PIN : 1;
+			unsigned ZTST : 1;
+			unsigned SR : 1;
+		};
+		uint8_t bits;
+	};
+
 	class FlagsControl
 	{
 		BaseLogic::DLatch pdb_latch;
@@ -18,10 +31,15 @@ namespace M6502Core
 
 		M6502* core = nullptr;
 
+		FlagsControl_TempWire temp_tab[0x10000];
+		RegsControl_TempWire prev_temp;
+
+		FlagsControl_TempWire PreCalc(uint8_t ir, bool n_T0, bool n_T1X, bool n_T2, bool n_T3, bool n_T4, bool n_T5, bool T5, bool T6);
+
 	public:
 
-		FlagsControl(M6502* parent) { core = parent; }
+		FlagsControl(M6502* parent);
 
-		static void sim(FlagsControl* inst);
+		void sim();
 	};
 }

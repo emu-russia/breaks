@@ -4,16 +4,19 @@ namespace M6502Core
 {
 	class PreDecode
 	{
-		BaseLogic::DLatch pd_latch[8];
+		uint8_t pd_latch;
 
 		M6502* core = nullptr;
 
+		BaseLogic::TriState precalc_n_TWOCYCLE[0x100];
+		BaseLogic::TriState precalc_n_IMPLIED[0x100];
+
 	public:
 
-		PreDecode(M6502* parent) { core = parent; }
+		PreDecode(M6502* parent);
 
-		BaseLogic::TriState PD[8] = { BaseLogic::TriState::Zero };
-		BaseLogic::TriState n_PD[8];
+		uint8_t PD;
+		uint8_t n_PD;
 
 		void sim(uint8_t *data_bus);
 	};
