@@ -4,8 +4,9 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	RandomLogic::RandomLogic()
+	RandomLogic::RandomLogic(M6502* parent)
 	{
+		core = parent;
 		regs_control = new RegsControl;
 		alu_control = new ALUControl;
 		pc_control = new PC_Control;
@@ -26,28 +27,29 @@ namespace M6502Core
 		delete branch_logic;
 	}
 
-	void RandomLogic::sim(TriState inputs[], TriState d[], TriState DB7, TriState outputs[])
+	void RandomLogic::sim(TriState outputs[])
 	{
-		TriState PHI1 = inputs[(size_t)RandomLogic_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)RandomLogic_Input::PHI2];
-		TriState n_ready = inputs[(size_t)RandomLogic_Input::n_ready];
-		TriState T0 = inputs[(size_t)RandomLogic_Input::T0];
-		TriState T1 = inputs[(size_t)RandomLogic_Input::T1];
-		TriState IR0 = inputs[(size_t)RandomLogic_Input::IR0];
-		TriState n_IR5 = inputs[(size_t)RandomLogic_Input::n_IR5];
-		TriState n_PRDY = inputs[(size_t)RandomLogic_Input::n_PRDY];
-		TriState ACR = inputs[(size_t)RandomLogic_Input::ACR];
-		TriState AVR = inputs[(size_t)RandomLogic_Input::AVR];
-		TriState Z_ADL0 = inputs[(size_t)RandomLogic_Input::Z_ADL0];
-		TriState Z_ADL1 = inputs[(size_t)RandomLogic_Input::Z_ADL1];
-		TriState Z_ADL2 = inputs[(size_t)RandomLogic_Input::Z_ADL2];
-		TriState BRK6E = inputs[(size_t)RandomLogic_Input::BRK6E];
-		TriState SO = inputs[(size_t)RandomLogic_Input::SO];
-		TriState STOR = inputs[(size_t)RandomLogic_Input::STOR];
-		TriState B_OUT = inputs[(size_t)RandomLogic_Input::B_OUT];
-		TriState T5 = inputs[(size_t)RandomLogic_Input::T5];
-		TriState T6 = inputs[(size_t)RandomLogic_Input::T6];
-		TriState ACRL2 = inputs[(size_t)RandomLogic_Input::ACRL2];
+		TriState* d = core->decoder_out;
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState n_ready = core->wire.n_ready;
+		TriState T0 = core->wire.T0;
+		TriState T1 = core->disp->getT1();
+		TriState IR0 = core->ir->IROut[0];
+		TriState n_IR5 = NOT(core->ir->IROut[5]);
+		TriState n_PRDY = core->wire.n_PRDY;
+		TriState ACR = core->alu->getACR();
+		TriState AVR = core->alu->getAVR();
+		TriState Z_ADL0 = core->wire.Z_ADL0;
+		TriState Z_ADL1 = core->wire.Z_ADL1;
+		TriState Z_ADL2 = core->wire.Z_ADL2;
+		TriState BRK6E = core->wire.BRK6E;
+		TriState SO = core->wire.SO;
+		TriState STOR = core->disp->getSTOR(d);
+		TriState B_OUT = core->brk->getB_OUT(core->wire.BRK6E);
+		TriState T5 = core->wire.T5;
+		TriState T6 = core->wire.T6;
+		TriState ACRL2 = core->wire.ACRL2;
 
 		TriState BR0 = AND(d[73], NOT(n_PRDY));
 
@@ -147,7 +149,7 @@ namespace M6502Core
 
 		branch_logic_in[(size_t)BranchLogic_Input::PHI1] = PHI1;
 		branch_logic_in[(size_t)BranchLogic_Input::PHI2] = PHI2;
-		branch_logic_in[(size_t)BranchLogic_Input::DB7] = DB7;
+		branch_logic_in[(size_t)BranchLogic_Input::DB7] = core->DB[7];
 		branch_logic_in[(size_t)BranchLogic_Input::n_IR5] = n_IR5;
 		branch_logic_in[(size_t)BranchLogic_Input::n_C_OUT] = flags->getn_C_OUT();
 		branch_logic_in[(size_t)BranchLogic_Input::n_V_OUT] = flags->getn_V_OUT();
@@ -219,9 +221,9 @@ namespace M6502Core
 		outputs[(size_t)RandomLogic_Output::AVR_V] = d[112];
 		outputs[(size_t)RandomLogic_Output::Z_V] = flags_ctrl_out[(size_t)FlagsControl_Output::Z_V];
 
-		outputs[(size_t)RandomLogic_Output::BRFW] = branch_logic_out[(size_t)BranchLogic_Output::BRFW];
-		outputs[(size_t)RandomLogic_Output::n_BRTAKEN] = branch_logic_out[(size_t)BranchLogic_Output::n_BRTAKEN];
-		outputs[(size_t)RandomLogic_Output::PC_DB] = pc_out[(size_t)PC_Control_Output::PC_DB];
-		outputs[(size_t)RandomLogic_Output::n_ADL_PCL] = pc_out[(size_t)PC_Control_Output::n_ADL_PCL];
+		core->wire.BRFW = branch_logic_out[(size_t)BranchLogic_Output::BRFW];
+		core->wire.n_BRTAKEN = branch_logic_out[(size_t)BranchLogic_Output::n_BRTAKEN];
+		core->wire.PC_DB = pc_out[(size_t)PC_Control_Output::PC_DB];
+		core->wire.n_ADL_PCL = pc_out[(size_t)PC_Control_Output::n_ADL_PCL];
 	}
 }

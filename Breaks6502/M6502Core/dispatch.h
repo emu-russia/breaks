@@ -31,32 +31,6 @@ namespace M6502Core
 		Max,
 	};
 
-	enum class Dispatcher_Output
-	{
-		T0 = 0,
-		n_T0,
-		n_T1X,
-		Z_IR,
-		FETCH,
-		n_ready,
-		WR,
-		TRES2,
-		ACRL1,
-		ACRL2,
-
-		T1,
-		T5,
-		T6,
-		n_1PC,
-
-		ENDS,
-		ENDX,
-		TRES1,
-		TRESX,
-
-		Max,
-	};
-
 	class Dispatcher
 	{
 		BaseLogic::DLatch acr_latch1;
@@ -101,13 +75,17 @@ namespace M6502Core
 		BaseLogic::DLatch ipc_latch2;
 		BaseLogic::DLatch ipc_latch3;
 
+		M6502* core = nullptr;
+
 	public:
+
+		Dispatcher(M6502* parent) { core = parent; }
 		
-		void sim_BeforeDecoder(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], BRKProcessing* brk);
+		void sim_BeforeDecoder();
 
-		void sim_BeforeRandomLogic(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
+		void sim_BeforeRandomLogic();
 
-		void sim_AfterRandomLogic(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState outputs[]);
+		void sim_AfterRandomLogic();
 
 		BaseLogic::TriState getTRES2();
 

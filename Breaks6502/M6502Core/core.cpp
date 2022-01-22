@@ -9,12 +9,12 @@ namespace M6502Core
 		HLE_Mode = HLE;
 
 		decoder = new Decoder;
-		predecode = new PreDecode;
-		ir = new IR;
-		ext = new ExtraCounter;
-		brk = new BRKProcessing;
-		disp = new Dispatcher;
-		random = new RandomLogic;
+		predecode = new PreDecode(this);
+		ir = new IR(this);
+		ext = new ExtraCounter(this);
+		brk = new BRKProcessing(this);
+		disp = new Dispatcher(this);
+		random = new RandomLogic(this);
 
 		addr_bus = new AddressBus;
 		regs = new Regs;
@@ -42,88 +42,57 @@ namespace M6502Core
 
 	void M6502::sim_Top(TriState inputs[], TriState outputs[], TriState inOuts[])
 	{
-		TriState n_NMI = inputs[(size_t)InputPad::n_NMI];
-		TriState n_IRQ = inputs[(size_t)InputPad::n_IRQ];
-		TriState n_RES = inputs[(size_t)InputPad::n_RES];
-		TriState PHI0 = inputs[(size_t)InputPad::PHI0];
-		TriState RDY = inputs[(size_t)InputPad::RDY];
-		TriState SO = inputs[(size_t)InputPad::SO];
+		wire.n_NMI = inputs[(size_t)InputPad::n_NMI];
+		wire.n_IRQ = inputs[(size_t)InputPad::n_IRQ];
+		wire.n_RES = inputs[(size_t)InputPad::n_RES];
+		wire.PHI0 = inputs[(size_t)InputPad::PHI0];
+		wire.RDY = inputs[(size_t)InputPad::RDY];
+		wire.SO = inputs[(size_t)InputPad::SO];
 
 		// Logic associated with external input terminals
 
-		TriState PHI1 = NOT(PHI0);
-		TriState PHI2 = PHI0;
+		wire.PHI1 = NOT(wire.PHI0);
+		wire.PHI2 = wire.PHI0;
 
-		prdy_latch1.set(NOT(RDY), PHI2);
-		prdy_latch2.set(prdy_latch1.nget(), PHI1);
-		TriState n_PRDY = prdy_latch2.nget();
+		prdy_latch1.set(NOT(wire.RDY), wire.PHI2);
+		prdy_latch2.set(prdy_latch1.nget(), wire.PHI1);
+		wire.n_PRDY = prdy_latch2.nget();
 
-		if (PHI2 == TriState::One && nNMI_Cache != n_NMI)
+		if (wire.PHI2 == TriState::One && nNMI_Cache != wire.n_NMI)
 		{
-			nmip_ff.set(NOR(NOR(nmip_ff.get(), AND(NOT(n_NMI), PHI2)), AND(n_NMI, PHI2)));
-			nNMI_Cache = n_NMI;
+			nmip_ff.set(NOR(NOR(nmip_ff.get(), AND(NOT(wire.n_NMI), wire.PHI2)), AND(wire.n_NMI, wire.PHI2)));
+			nNMI_Cache = wire.n_NMI;
 		}
-		TriState n_NMIP = NOT(nmip_ff.get());
+		wire.n_NMIP = NOT(nmip_ff.get());
 
-		if (PHI2 == TriState::One && nIRQ_Cache != n_IRQ)
+		if (wire.PHI2 == TriState::One && nIRQ_Cache != wire.n_IRQ)
 		{
-			irqp_ff.set(NOR(NOR(irqp_ff.get(), AND(NOT(n_IRQ), PHI2)), AND(n_IRQ, PHI2)));
-			nIRQ_Cache = n_IRQ;
+			irqp_ff.set(NOR(NOR(irqp_ff.get(), AND(NOT(wire.n_IRQ), wire.PHI2)), AND(wire.n_IRQ, wire.PHI2)));
+			nIRQ_Cache = wire.n_IRQ;
 		}
-		irqp_latch.set(irqp_ff.get(), PHI1);
-		TriState n_IRQP = irqp_latch.nget();
+		irqp_latch.set(irqp_ff.get(), wire.PHI1);
+		wire.n_IRQP = irqp_latch.nget();
 
-		if (PHI2 == TriState::One && nRES_Cache != n_RES)
+		if (wire.PHI2 == TriState::One && nRES_Cache != wire.n_RES)
 		{
-			resp_ff.set(NOR(NOR(resp_ff.get(), AND(n_RES, PHI2)), AND(NOT(n_RES), PHI2)));
-			nRES_Cache = n_RES;
+			resp_ff.set(NOR(NOR(resp_ff.get(), AND(wire.n_RES, wire.PHI2)), AND(NOT(wire.n_RES), wire.PHI2)));
+			nRES_Cache = wire.n_RES;
 		}
-		resp_latch.set(resp_ff.get(), PHI1);
-		TriState RESP = resp_latch.nget();
+		resp_latch.set(resp_ff.get(), wire.PHI1);
+		wire.RESP = resp_latch.nget();
 
 		// Dispatcher and other auxiliary logic
 
-		TriState disp_early_in[(size_t)Dispatcher_Input::Max];
+		disp->sim_BeforeDecoder();
 
-		disp_early_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
-		disp_early_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
-		disp_early_in[(size_t)Dispatcher_Input::RDY] = RDY;
-		disp_early_in[(size_t)Dispatcher_Input::DORES] = brk->getDORES();
-		disp_early_in[(size_t)Dispatcher_Input::ACR] = alu->getACR();
+		predecode->sim(inOuts);
 
-		disp->sim_BeforeDecoder(disp_early_in, disp_early_out, brk);
+		ir->sim();
 
-		TriState n_ready = disp_early_out[(size_t)Dispatcher_Output::n_ready];
-		TriState T0 = disp_early_out[(size_t)Dispatcher_Output::T0];
-		TriState FETCH = disp_early_out[(size_t)Dispatcher_Output::FETCH];
-		TriState Z_IR = disp_early_out[(size_t)Dispatcher_Output::Z_IR];
-		TriState ACRL1 = disp_early_out[(size_t)Dispatcher_Output::ACRL1];
-		TriState ACRL2 = disp_early_out[(size_t)Dispatcher_Output::ACRL2];
-
-		TriState pd_in[(size_t)PreDecode_Input::Max];
-		TriState n_PD[8];
-
-		pd_in[(size_t)PreDecode_Input::PHI2] = PHI2;
-		pd_in[(size_t)PreDecode_Input::Z_IR] = Z_IR;
-
-		predecode->sim(pd_in, inOuts, n_PD);
-
-		ir->sim(PHI1, FETCH, n_PD);
-
-		TriState ext_in[(size_t)ExtraCounter_Input::Max];
-
-		ext_in[(size_t)ExtraCounter_Input::PHI1] = PHI1;
-		ext_in[(size_t)ExtraCounter_Input::PHI2] = PHI2;
-		ext_in[(size_t)ExtraCounter_Input::T1] = disp->getT1();
-		ext_in[(size_t)ExtraCounter_Input::TRES2] = disp->getTRES2();
-		ext_in[(size_t)ExtraCounter_Input::n_ready] = n_ready;
-
-		ext->sim(ext_in, ext_out);
+		ext->sim();
 
 		TriState decoder_in[Decoder::inputs_count];
-
-		TriState IR[8];
-		ir->get(IR);
+		TriState* IR = ir->IROut;
 
 		decoder_in[(size_t)DecoderInput::n_IR0] = NOT(IR[0]);
 		decoder_in[(size_t)DecoderInput::n_IR1] = NOT(IR[1]);
@@ -141,109 +110,28 @@ namespace M6502Core
 		decoder_in[(size_t)DecoderInput::n_IR7] = NOT(IR[7]);
 		decoder_in[(size_t)DecoderInput::IR7] = IR[7];
 
-		decoder_in[(size_t)DecoderInput::n_T0] = disp_early_out[(size_t)Dispatcher_Output::n_T0];
-		decoder_in[(size_t)DecoderInput::n_T1X] = disp_early_out[(size_t)Dispatcher_Output::n_T1X];
-		decoder_in[(size_t)DecoderInput::n_T2] = ext_out[(size_t)ExtraCounter_Output::n_T2];
-		decoder_in[(size_t)DecoderInput::n_T3] = ext_out[(size_t)ExtraCounter_Output::n_T3];
-		decoder_in[(size_t)DecoderInput::n_T4] = ext_out[(size_t)ExtraCounter_Output::n_T4];
-		decoder_in[(size_t)DecoderInput::n_T5] = ext_out[(size_t)ExtraCounter_Output::n_T5];
+		decoder_in[(size_t)DecoderInput::n_T0] = wire.n_T0;
+		decoder_in[(size_t)DecoderInput::n_T1X] = wire.n_T1X;
+		decoder_in[(size_t)DecoderInput::n_T2] = wire.n_T2;
+		decoder_in[(size_t)DecoderInput::n_T3] = wire.n_T3;
+		decoder_in[(size_t)DecoderInput::n_T4] = wire.n_T4;
+		decoder_in[(size_t)DecoderInput::n_T5] = wire.n_T5;
 
 		decoder->sim(decoder_in, &decoder_out);
 
 		// Interrupt handling
 
-		TriState int_in[(size_t)BRKProcessing_Input::Max];
-
-		int_in[(size_t)BRKProcessing_Input::PHI1] = PHI1;
-		int_in[(size_t)BRKProcessing_Input::PHI2] = PHI2;
-		int_in[(size_t)BRKProcessing_Input::BRK5] = decoder_out[22];
-		int_in[(size_t)BRKProcessing_Input::n_ready] = n_ready;
-		int_in[(size_t)BRKProcessing_Input::RESP] = RESP;
-		int_in[(size_t)BRKProcessing_Input::n_NMIP] = n_NMIP;
-
-		brk->sim_BeforeRandom(int_in, int_out);
-
-		TriState BRK6E = int_out[(size_t)BRKProcessing_Output::BRK6E];
+		brk->sim_BeforeRandom();
 
 		// Random Logic
 
-		TriState disp_mid_in[(size_t)Dispatcher_Input::Max];
+		disp->sim_BeforeRandomLogic();
 
-		disp_mid_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
-		disp_mid_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
-		disp_mid_in[(size_t)Dispatcher_Input::n_ready] = n_ready;
+		random->sim(rand_out);
 
-		disp->sim_BeforeRandomLogic(disp_mid_in, decoder_out, disp_mid_out);
+		brk->sim_AfterRandom();
 
-		TriState T5 = disp_mid_out[(size_t)Dispatcher_Output::T5];
-		TriState T6 = disp_mid_out[(size_t)Dispatcher_Output::T6];
-
-		TriState rand_in[(size_t)RandomLogic_Input::Max];
-
-		rand_in[(size_t)RandomLogic_Input::PHI1] = PHI1;
-		rand_in[(size_t)RandomLogic_Input::PHI2] = PHI2;
-		rand_in[(size_t)RandomLogic_Input::n_ready] = n_ready;
-		rand_in[(size_t)RandomLogic_Input::T0] = T0;
-		rand_in[(size_t)RandomLogic_Input::T1] = disp->getT1();
-		rand_in[(size_t)RandomLogic_Input::IR0] = IR[0];			// Used for IMPL (D128)
-		rand_in[(size_t)RandomLogic_Input::n_IR5] = NOT(IR[5]);
-		rand_in[(size_t)RandomLogic_Input::n_PRDY] = n_PRDY;		// Used for BR0
-		rand_in[(size_t)RandomLogic_Input::ACR] = alu->getACR();
-		rand_in[(size_t)RandomLogic_Input::AVR] = alu->getAVR();
-		rand_in[(size_t)RandomLogic_Input::Z_ADL0] = int_out[(size_t)BRKProcessing_Output::Z_ADL0];
-		rand_in[(size_t)RandomLogic_Input::Z_ADL1] = int_out[(size_t)BRKProcessing_Output::Z_ADL1];
-		rand_in[(size_t)RandomLogic_Input::Z_ADL2] = int_out[(size_t)BRKProcessing_Output::Z_ADL2];
-		rand_in[(size_t)RandomLogic_Input::BRK6E] = BRK6E;
-		rand_in[(size_t)RandomLogic_Input::SO] = SO;
-		rand_in[(size_t)RandomLogic_Input::STOR] = disp->getSTOR(decoder_out);
-		rand_in[(size_t)RandomLogic_Input::B_OUT] = brk->getB_OUT(BRK6E);
-		rand_in[(size_t)RandomLogic_Input::T5] = T5;
-		rand_in[(size_t)RandomLogic_Input::T6] = T6;
-		rand_in[(size_t)RandomLogic_Input::ACRL2] = ACRL2;
-
-		random->sim(rand_in, decoder_out, DB[7], rand_out);
-
-		TriState int_late_in[(size_t)BRKProcessing_Input::Max];
-		TriState int_late_out[(size_t)BRKProcessing_Output::Max];
-
-		int_late_in[(size_t)BRKProcessing_Input::PHI1] = PHI1;
-		int_late_in[(size_t)BRKProcessing_Input::PHI2] = PHI2;
-		int_late_in[(size_t)BRKProcessing_Input::T0] = T0;
-		int_late_in[(size_t)BRKProcessing_Input::BR2] = decoder_out[80];
-		int_late_in[(size_t)BRKProcessing_Input::n_I_OUT] = random->flags->getn_I_OUT(BRK6E);
-		int_late_in[(size_t)BRKProcessing_Input::n_IRQP] = n_IRQP;
-		int_late_in[(size_t)BRKProcessing_Input::n_DONMI] = int_out[(size_t)BRKProcessing_Output::n_DONMI];
-		int_late_in[(size_t)BRKProcessing_Input::BRK6E] = BRK6E;
-		int_late_in[(size_t)BRKProcessing_Input::DORES] = int_out[(size_t)BRKProcessing_Output::DORES];
-
-		brk->sim_AfterRandom(int_late_in, int_late_out);
-
-		TriState disp_late_in[(size_t)Dispatcher_Input::Max];
-
-		disp_late_in[(size_t)Dispatcher_Input::PHI1] = PHI1;
-		disp_late_in[(size_t)Dispatcher_Input::PHI2] = PHI2;
-		disp_late_in[(size_t)Dispatcher_Input::BRK6E] = BRK6E;
-		disp_late_in[(size_t)Dispatcher_Input::RESP] = RESP;
-		disp_late_in[(size_t)Dispatcher_Input::ACR] = alu->getACR();
-		disp_late_in[(size_t)Dispatcher_Input::BRFW] = rand_out[(size_t)RandomLogic_Output::BRFW];
-		disp_late_in[(size_t)Dispatcher_Input::n_BRTAKEN] = rand_out[(size_t)RandomLogic_Output::n_BRTAKEN];
-		disp_late_in[(size_t)Dispatcher_Input::n_TWOCYCLE] = predecode->n_TWOCYCLE;
-		disp_late_in[(size_t)Dispatcher_Input::n_IMPLIED] = predecode->n_IMPLIED;
-		disp_late_in[(size_t)Dispatcher_Input::PC_DB] = rand_out[(size_t)RandomLogic_Output::PC_DB];
-		disp_late_in[(size_t)Dispatcher_Input::n_ADL_PCL] = rand_out[(size_t)RandomLogic_Output::n_ADL_PCL];
-		disp_late_in[(size_t)Dispatcher_Input::n_ready] = n_ready;
-		disp_late_in[(size_t)Dispatcher_Input::T0] = T0;
-		disp_late_in[(size_t)Dispatcher_Input::B_OUT] = brk->getB_OUT(BRK6E);
-		disp_late_in[(size_t)Dispatcher_Input::T5] = T5;
-		disp_late_in[(size_t)Dispatcher_Input::T6] = T6;
-		disp_late_in[(size_t)Dispatcher_Input::ACRL1] = ACRL1;
-		disp_late_in[(size_t)Dispatcher_Input::ACRL2] = ACRL2;
-		disp_late_in[(size_t)Dispatcher_Input::RDY] = RDY;
-		disp_late_in[(size_t)Dispatcher_Input::DORES] = brk->getDORES();
-
-		disp->sim_AfterRandomLogic(disp_late_in, decoder_out, disp_late_out);
-
-		TriState WR = disp_late_out[(size_t)Dispatcher_Output::WR];
+		disp->sim_AfterRandomLogic();
 	}
 
 	void M6502::sim_Bottom(TriState inputs[], TriState outputs[], TriState inOuts[])
@@ -252,9 +140,9 @@ namespace M6502Core
 		TriState PHI1 = NOT(PHI0);
 		TriState PHI2 = PHI0;
 		TriState SO = inputs[(size_t)InputPad::SO];
-		TriState WR = disp_late_out[(size_t)Dispatcher_Output::WR];
+		TriState WR = wire.WR;
 		TriState P_DB = rand_out[(size_t)RandomLogic_Output::P_DB];
-		TriState BRK6E = int_out[(size_t)BRKProcessing_Output::BRK6E];
+		TriState BRK6E = wire.BRK6E;
 
 		TriState data_in[(size_t)DataBus_Input::Max];
 		TriState regs_in[(size_t)Regs_Input::Max];
@@ -315,7 +203,7 @@ namespace M6502Core
 		// Increment PC: n_1PC
 
 		pc_in[(size_t)ProgramCounter_Input::PHI2] = PHI2;
-		pc_in[(size_t)ProgramCounter_Input::n_1PC] = disp_late_out[(size_t)Dispatcher_Output::n_1PC];
+		pc_in[(size_t)ProgramCounter_Input::n_1PC] = wire.n_1PC;
 
 		if (HLE_Mode)
 		{
@@ -493,7 +381,7 @@ namespace M6502Core
 
 	void M6502::getDebug(DebugInfo* info)
 	{
-		TriState BRK6E = int_out[(size_t)BRKProcessing_Output::BRK6E];
+		TriState BRK6E = wire.BRK6E;
 
 		info->SB = Pack(SB);
 		info->DB = Pack(DB);
@@ -522,7 +410,7 @@ namespace M6502Core
 
 		info->C_OUT = NOT(random->flags->getn_C_OUT()) == TriState::One ? 1 : 0;
 		info->Z_OUT = NOT(random->flags->getn_Z_OUT()) == TriState::One ? 1 : 0;
-		info->I_OUT = NOT(random->flags->getn_I_OUT(int_out[(size_t)BRKProcessing_Output::BRK6E])) == TriState::One ? 1 : 0;
+		info->I_OUT = NOT(random->flags->getn_I_OUT(BRK6E)) == TriState::One ? 1 : 0;
 		info->D_OUT = NOT(random->flags->getn_D_OUT()) == TriState::One ? 1 : 0;
 		info->B_OUT = brk->getB_OUT(BRK6E) == TriState::One ? 1 : 0;
 		info->V_OUT = NOT(random->flags->getn_V_OUT()) == TriState::One ? 1 : 0;
@@ -533,32 +421,32 @@ namespace M6502Core
 		info->n_IRQP = irqp_latch.nget() == TriState::One ? 1 : 0;
 		info->RESP = resp_latch.nget() == TriState::One ? 1 : 0;
 		info->BRK6E = BRK6E == TriState::One ? 1 : 0;
-		info->BRK7 = int_out[(size_t)BRKProcessing_Output::BRK7] == TriState::One ? 1 : 0;
-		info->DORES = int_out[(size_t)BRKProcessing_Output::DORES] == TriState::One ? 1 : 0;
-		info->n_DONMI = int_out[(size_t)BRKProcessing_Output::n_DONMI] == TriState::One ? 1 : 0;
-		info->n_T2 = ext_out[(size_t)ExtraCounter_Output::n_T2] == TriState::One ? 1 : 0;
-		info->n_T3 = ext_out[(size_t)ExtraCounter_Output::n_T3] == TriState::One ? 1 : 0;
-		info->n_T4 = ext_out[(size_t)ExtraCounter_Output::n_T4] == TriState::One ? 1 : 0;
-		info->n_T5 = ext_out[(size_t)ExtraCounter_Output::n_T5] == TriState::One ? 1 : 0;
-		info->T0 = disp_early_out[(size_t)Dispatcher_Output::T0] == TriState::One ? 1 : 0;
-		info->n_T0 = disp_early_out[(size_t)Dispatcher_Output::n_T0] == TriState::One ? 1 : 0;
-		info->n_T1X = disp_early_out[(size_t)Dispatcher_Output::n_T1X] == TriState::One ? 1 : 0;
-		info->Z_IR = disp_early_out[(size_t)Dispatcher_Output::Z_IR] == TriState::One ? 1 : 0;
-		info->FETCH = disp_early_out[(size_t)Dispatcher_Output::FETCH] == TriState::One ? 1 : 0;
-		info->n_ready = disp_early_out[(size_t)Dispatcher_Output::n_ready] == TriState::One ? 1 : 0;
-		info->WR = disp_late_out[(size_t)Dispatcher_Output::WR] == TriState::One ? 1 : 0;
+		info->BRK7 = wire.BRK7 == TriState::One ? 1 : 0;
+		info->DORES = wire.DORES == TriState::One ? 1 : 0;
+		info->n_DONMI = wire.n_DONMI == TriState::One ? 1 : 0;
+		info->n_T2 = wire.n_T2 == TriState::One ? 1 : 0;
+		info->n_T3 = wire.n_T3 == TriState::One ? 1 : 0;
+		info->n_T4 = wire.n_T4 == TriState::One ? 1 : 0;
+		info->n_T5 = wire.n_T5 == TriState::One ? 1 : 0;
+		info->T0 = wire.T0 == TriState::One ? 1 : 0;
+		info->n_T0 = wire.n_T0 == TriState::One ? 1 : 0;
+		info->n_T1X = wire.n_T1X == TriState::One ? 1 : 0;
+		info->Z_IR = wire.Z_IR == TriState::One ? 1 : 0;
+		info->FETCH = wire.FETCH == TriState::One ? 1 : 0;
+		info->n_ready = wire.n_ready == TriState::One ? 1 : 0;
+		info->WR = wire.WR == TriState::One ? 1 : 0;
 		info->TRES2 = disp->getTRES2() == TriState::One ? 1 : 0;
-		info->ACRL1 = disp_early_out[(size_t)Dispatcher_Output::ACRL1] == TriState::One ? 1 : 0;
-		info->ACRL2 = disp_early_out[(size_t)Dispatcher_Output::ACRL2] == TriState::One ? 1 : 0;
+		info->ACRL1 = wire.ACRL1 == TriState::One ? 1 : 0;
+		info->ACRL2 = wire.ACRL2 == TriState::One ? 1 : 0;
 		info->T1 = disp->getT1() == TriState::One ? 1 : 0;
-		info->T5 = disp_mid_out[(size_t)Dispatcher_Output::T5] == TriState::One ? 1 : 0;
-		info->T6 = disp_mid_out[(size_t)Dispatcher_Output::T6] == TriState::One ? 1 : 0;
-		info->ENDS = disp_late_out[(size_t)Dispatcher_Output::ENDS] == TriState::One ? 1 : 0;
-		info->ENDX = disp_late_out[(size_t)Dispatcher_Output::ENDX] == TriState::One ? 1 : 0;
-		info->TRES1 = disp_late_out[(size_t)Dispatcher_Output::TRES1] == TriState::One ? 1 : 0;
-		info->TRESX = disp_late_out[(size_t)Dispatcher_Output::TRESX] == TriState::One ? 1 : 0;
-		info->BRFW = rand_out[(size_t)RandomLogic_Output::BRFW] == TriState::One ? 1 : 0;
-		info->n_BRTAKEN = rand_out[(size_t)RandomLogic_Output::n_BRTAKEN] == TriState::One ? 1 : 0;
+		info->T5 = wire.T5 == TriState::One ? 1 : 0;
+		info->T6 = wire.T6 == TriState::One ? 1 : 0;
+		info->ENDS = wire.ENDS == TriState::One ? 1 : 0;
+		info->ENDX = wire.ENDX == TriState::One ? 1 : 0;
+		info->TRES1 = wire.TRES1 == TriState::One ? 1 : 0;
+		info->TRESX = wire.TRESX == TriState::One ? 1 : 0;
+		info->BRFW = wire.BRFW == TriState::One ? 1 : 0;
+		info->n_BRTAKEN = wire.n_BRTAKEN == TriState::One ? 1 : 0;
 		info->ACR = alu->getACR() == TriState::One ? 1 : 0;
 		info->AVR = alu->getAVR() == TriState::One ? 1 : 0;
 
@@ -594,7 +482,7 @@ namespace M6502Core
 		info->SB_AC = rand_out[(size_t)RandomLogic_Output::SB_AC] == TriState::One ? 1 : 0;
 		info->AC_SB = rand_out[(size_t)RandomLogic_Output::AC_SB] == TriState::One ? 1 : 0;
 		info->AC_DB = rand_out[(size_t)RandomLogic_Output::AC_DB] == TriState::One ? 1 : 0;
-		info->n_1PC = disp_late_out[(size_t)Dispatcher_Output::n_1PC] == TriState::One ? 1 : 0;			// From Dispatcher
+		info->n_1PC = wire.n_1PC == TriState::One ? 1 : 0;			// From Dispatcher
 		info->ADH_PCH = rand_out[(size_t)RandomLogic_Output::ADH_PCH] == TriState::One ? 1 : 0;
 		info->PCH_PCH = rand_out[(size_t)RandomLogic_Output::PCH_PCH] == TriState::One ? 1 : 0;
 		info->PCH_ADH = rand_out[(size_t)RandomLogic_Output::PCH_ADH] == TriState::One ? 1 : 0;
@@ -641,7 +529,7 @@ namespace M6502Core
 
 		userRegs->C_OUT = NOT(random->flags->getn_C_OUT()) == TriState::One ? 1 : 0;
 		userRegs->Z_OUT = NOT(random->flags->getn_Z_OUT()) == TriState::One ? 1 : 0;
-		userRegs->I_OUT = NOT(random->flags->getn_I_OUT(int_out[(size_t)BRKProcessing_Output::BRK6E])) == TriState::One ? 1 : 0;
+		userRegs->I_OUT = NOT(random->flags->getn_I_OUT(wire.BRK6E)) == TriState::One ? 1 : 0;
 		userRegs->D_OUT = NOT(random->flags->getn_D_OUT()) == TriState::One ? 1 : 0;
 		userRegs->V_OUT = NOT(random->flags->getn_V_OUT()) == TriState::One ? 1 : 0;
 		userRegs->N_OUT = NOT(random->flags->getn_N_OUT()) == TriState::One ? 1 : 0;

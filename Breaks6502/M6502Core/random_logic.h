@@ -2,31 +2,6 @@
 
 namespace M6502Core
 {
-	enum class RandomLogic_Input
-	{
-		PHI1 = 0,
-		PHI2,
-		n_ready,
-		T0,
-		T1,
-		IR0,
-		n_IR5,
-		n_PRDY,
-		ACR,
-		AVR,
-		Z_ADL0,		// pass through
-		Z_ADL1,		// pass through
-		Z_ADL2,		// pass through
-		BRK6E,
-		SO,
-		STOR,
-		B_OUT,
-		T5,
-		T6,
-		ACRL2,
-		Max,
-	};
-
 	enum class RandomLogic_Output
 	{
 		Y_SB = 0,
@@ -56,7 +31,6 @@ namespace M6502Core
 		SB_AC,
 		AC_SB,
 		AC_DB,
-		//n_1PC,			(Dispatcher)
 		ADH_PCH,
 		PCH_PCH,
 		PCH_ADH,
@@ -91,15 +65,13 @@ namespace M6502Core
 		AVR_V,
 		Z_V,
 
-		BRFW,
-		n_BRTAKEN,
-		PC_DB,
-		n_ADL_PCL,
 		Max,
 	};
 
 	class RandomLogic
 	{
+		M6502* core = nullptr;
+
 	public:
 		RegsControl* regs_control = nullptr;
 		ALUControl* alu_control = nullptr;
@@ -109,9 +81,9 @@ namespace M6502Core
 		Flags* flags = nullptr;
 		BranchLogic* branch_logic = nullptr;
 
-		RandomLogic();
+		RandomLogic(M6502* parent);
 		~RandomLogic();
 
-		void sim(BaseLogic::TriState inputs[], BaseLogic::TriState d[], BaseLogic::TriState DB7, BaseLogic::TriState outputs[]);
+		void sim(BaseLogic::TriState outputs[]);
 	};
 }

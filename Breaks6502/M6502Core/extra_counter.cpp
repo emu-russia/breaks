@@ -4,12 +4,12 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void ExtraCounter::sim(TriState inputs[], TriState outputs[])
+	void ExtraCounter::sim()
 	{
-		TriState PHI1 = inputs[(size_t)ExtraCounter_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)ExtraCounter_Input::PHI2];
-		TriState T1 = inputs[(size_t)ExtraCounter_Input::T1];
-		TriState TRES2 = inputs[(size_t)ExtraCounter_Input::TRES2];
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState T1 = core->disp->getT1();
+		TriState TRES2 = core->disp->getTRES2();
 
 		TriState T2;
 		TriState T3;
@@ -18,7 +18,7 @@ namespace M6502Core
 
 		if (PHI1 == TriState::One)
 		{
-			TriState n_ready = inputs[(size_t)ExtraCounter_Input::n_ready];
+			TriState n_ready = core->wire.n_ready;
 
 			t2_latch1.set(MUX(n_ready, t1_latch.nget(), t2_latch2.nget()), PHI1);
 			t3_latch1.set(MUX(n_ready, t2_latch2.nget(), t3_latch2.nget()), PHI1);
@@ -47,9 +47,9 @@ namespace M6502Core
 			t5_latch2.set(T5, PHI2);
 		}
 
-		outputs[(size_t)ExtraCounter_Output::n_T2] = NOT(T2);
-		outputs[(size_t)ExtraCounter_Output::n_T3] = NOT(T3);
-		outputs[(size_t)ExtraCounter_Output::n_T4] = NOT(T4);
-		outputs[(size_t)ExtraCounter_Output::n_T5] = NOT(T5);
+		core->wire.n_T2 = NOT(T2);
+		core->wire.n_T3 = NOT(T3);
+		core->wire.n_T4 = NOT(T4);
+		core->wire.n_T5 = NOT(T5);
 	}
 }
