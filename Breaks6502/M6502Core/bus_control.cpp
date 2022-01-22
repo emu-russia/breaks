@@ -45,7 +45,7 @@ namespace M6502Core
 			TriState T0 = core->wire.T0;
 			TriState T1 = core->disp->getT1();
 			TriState T5 = core->wire.T5;
-			TriState IR0 = core->ir->IROut[0];
+			TriState IR0 = core->ir->IROut & 1 ? TriState::One : TriState::Zero;
 
 			TriState n_DL_ADL = NOR(d[81], d[82]);
 			TriState RTS_5 = d[84];

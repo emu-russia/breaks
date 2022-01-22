@@ -94,23 +94,34 @@ namespace M6502Core
 		DecoderInput decoder_in;
 		decoder_in.packed_bits = 0;
 
-		TriState* IR = ir->IROut;
+		uint8_t IR = ir->IROut;
 
-		decoder_in.n_IR0 = NOT(IR[0]);
-		decoder_in.n_IR1 = NOT(IR[1]);
-		decoder_in.IR01 = OR(IR[0], IR[1]);
-		decoder_in.n_IR2 = NOT(IR[2]);
-		decoder_in.IR2 = IR[2];
-		decoder_in.n_IR3 = NOT(IR[3]);
-		decoder_in.IR3 = IR[3];
-		decoder_in.n_IR4 = NOT(IR[4]);
-		decoder_in.IR4 = IR[4];
-		decoder_in.n_IR5 = NOT(IR[5]);
-		decoder_in.IR5 = IR[5];
-		decoder_in.n_IR6 = NOT(IR[6]);
-		decoder_in.IR6 = IR[6];
-		decoder_in.n_IR7 = NOT(IR[7]);
-		decoder_in.IR7 = IR[7];
+		TriState IR0 = IR & 0b00000001 ? TriState::One : TriState::Zero;
+		TriState IR1 = IR & 0b00000010 ? TriState::One : TriState::Zero;
+		TriState IR2 = IR & 0b00000100 ? TriState::One : TriState::Zero;
+		TriState IR3 = IR & 0b00001000 ? TriState::One : TriState::Zero;
+		TriState IR4 = IR & 0b00010000 ? TriState::One : TriState::Zero;
+		TriState IR5 = IR & 0b00100000 ? TriState::One : TriState::Zero;
+		TriState IR6 = IR & 0b01000000 ? TriState::One : TriState::Zero;
+		TriState IR7 = IR & 0b10000000 ? TriState::One : TriState::Zero;
+
+		wire.n_IR5 = NOT(IR5);
+
+		decoder_in.n_IR0 = NOT(IR0);
+		decoder_in.n_IR1 = NOT(IR1);
+		decoder_in.IR01 = OR(IR0, IR1);
+		decoder_in.n_IR2 = NOT(IR2);
+		decoder_in.IR2 = IR2;
+		decoder_in.n_IR3 = NOT(IR3);
+		decoder_in.IR3 = IR3;
+		decoder_in.n_IR4 = NOT(IR4);
+		decoder_in.IR4 = IR4;
+		decoder_in.n_IR5 = wire.n_IR5;
+		decoder_in.IR5 = IR5;
+		decoder_in.n_IR6 = NOT(IR6);
+		decoder_in.IR6 = IR6;
+		decoder_in.n_IR7 = NOT(IR7);
+		decoder_in.IR7 = IR7;
 
 		decoder_in.n_T0 = wire.n_T0;
 		decoder_in.n_T1X = wire.n_T1X;
@@ -279,9 +290,7 @@ namespace M6502Core
 		info->ADL = ADL;
 		info->ADH = ADH;
 
-		TriState IR[8];
-		ir->get(IR);
-		info->IR = Pack(IR);
+		info->IR = ir->IROut;
 		info->PD = predecode->PD;
 		info->Y = regs->getY();
 		info->X = regs->getX();

@@ -6,20 +6,10 @@ namespace M6502Core
 {
 	void IR::sim()
 	{
-		for (size_t n = 0; n < 8; n++)
+		if (core->wire.PHI1 && core->wire.FETCH)
 		{
-			ir_latch[n].set(
-				core->predecode->n_PD & (1 << n) ? TriState::One : TriState::Zero, 
-				AND(core->wire.PHI1, core->wire.FETCH));
-			IROut[n] = ir_latch[n].nget();
-		}
-	}
-
-	void IR::get(TriState IR[8])
-	{
-		for (size_t n = 0; n < 8; n++)
-		{
-			IR[n] = ir_latch[n].nget();
+			ir_latch = core->predecode->n_PD;
+			IROut = ~ir_latch;
 		}
 	}
 }

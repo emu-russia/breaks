@@ -4,7 +4,7 @@ namespace M6502Core
 {
 	class IR
 	{
-		BaseLogic::DLatch ir_latch[8];
+		uint8_t ir_latch;
 
 		M6502* core = nullptr;
 
@@ -12,10 +12,8 @@ namespace M6502Core
 
 		IR(M6502* parent) { core = parent; }
 
-		BaseLogic::TriState IROut[8];
+		uint8_t IROut;
 
 		void sim();
-
-		void get(BaseLogic::TriState IR[8]);
 	};
 }

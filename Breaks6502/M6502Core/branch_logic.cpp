@@ -4,16 +4,17 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	void BranchLogic::sim(TriState inputs[], BaseLogic::TriState d[], TriState outputs[])
+	void BranchLogic::sim()
 	{
-		TriState PHI1 = inputs[(size_t)BranchLogic_Input::PHI1];
-		TriState PHI2 = inputs[(size_t)BranchLogic_Input::PHI2];
-		TriState n_IR5 = inputs[(size_t)BranchLogic_Input::n_IR5];
-		TriState n_C_OUT = inputs[(size_t)BranchLogic_Input::n_C_OUT];
-		TriState n_V_OUT = inputs[(size_t)BranchLogic_Input::n_V_OUT];
-		TriState n_N_OUT = inputs[(size_t)BranchLogic_Input::n_N_OUT];
-		TriState n_Z_OUT = inputs[(size_t)BranchLogic_Input::n_Z_OUT];
-		TriState DB7 = inputs[(size_t)BranchLogic_Input::DB7];
+		TriState* d = core->decoder_out;
+		TriState PHI1 = core->wire.PHI1;
+		TriState PHI2 = core->wire.PHI2;
+		TriState n_IR5 = core->wire.n_IR5;
+		TriState n_C_OUT = core->random->flags->getn_C_OUT();
+		TriState n_V_OUT = core->random->flags->getn_V_OUT();
+		TriState n_N_OUT = core->random->flags->getn_N_OUT();
+		TriState n_Z_OUT = core->random->flags->getn_Z_OUT();
+		TriState DB7 = core->DB & 0x80 ? TriState::One : TriState::Zero;
 		TriState BR2 = d[80];
 
 		// BRTAKEN
@@ -41,8 +42,8 @@ namespace M6502Core
 		brfw_latch2.set(brfw_latch1.nget(), PHI2);
 		TriState BRFW = NOT(brfw_latch1.nget());
 
-		outputs[(size_t)BranchLogic_Output::n_BRTAKEN] = n_BRTAKEN;
-		outputs[(size_t)BranchLogic_Output::BRFW] = BRFW;
+		core->wire.n_BRTAKEN = n_BRTAKEN;
+		core->wire.BRFW = BRFW;
 	}
 
 	TriState BranchLogic::getBRFW()

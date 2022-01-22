@@ -11,7 +11,7 @@ namespace M6502Core
 		TriState SO = core->wire.SO;
 		TriState ACR = core->alu->getACR();
 		TriState AVR = core->alu->getAVR();
-		TriState n_IR5 = NOT(core->ir->IROut[5]);
+		TriState n_IR5 = core->wire.n_IR5;
 
 		TriState DB_P = core->cmd.DB_P ? TriState::One : TriState::Zero;
 		TriState AVR_V = core->cmd.AVR_V ? TriState::One : TriState::Zero;

@@ -221,6 +221,7 @@ namespace M6502Core
 		friend BusControl;
 		friend PC_Control;
 		friend FlagsControl;
+		friend BranchLogic;
 		friend AddressBus;
 		friend Regs;
 		friend Flags;
@@ -324,6 +325,7 @@ namespace M6502Core
 			BaseLogic::TriState n_BRTAKEN;
 			BaseLogic::TriState PC_DB;
 			BaseLogic::TriState n_ADL_PCL;
+			BaseLogic::TriState n_IR5;
 		} wire;
 
 		/// <summary>
