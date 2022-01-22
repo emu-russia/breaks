@@ -8,7 +8,9 @@ namespace M6502Core
 	{
 		for (size_t n = 0; n < 8; n++)
 		{
-			ir_latch[n].set(core->predecode->n_PD[n], AND(core->wire.PHI1, core->wire.FETCH));
+			ir_latch[n].set(
+				core->predecode->n_PD & (1 << n) ? TriState::One : TriState::Zero, 
+				AND(core->wire.PHI1, core->wire.FETCH));
 			IROut[n] = ir_latch[n].nget();
 		}
 	}

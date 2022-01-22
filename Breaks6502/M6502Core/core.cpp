@@ -280,7 +280,7 @@ namespace M6502Core
 		TriState IR[8];
 		ir->get(IR);
 		info->IR = Pack(IR);
-		info->PD = Pack(predecode->PD);
+		info->PD = predecode->PD;
 		info->Y = regs->getY();
 		info->X = regs->getX();
 		info->S = regs->getS();
