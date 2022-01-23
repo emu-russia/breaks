@@ -126,16 +126,7 @@ namespace M6502Core
 
 		TriState n_SHIFT = NOR(d[106], d[107]);
 
-		TriState memop_in[5];
-		memop_in[0] = d[111];
-		memop_in[1] = d[122];
-		memop_in[2] = d[123];
-		memop_in[3] = d[124];
-		memop_in[4] = d[125];
-		TriState n_MemOp = NOR5(memop_in);
-
 		TriState n_STORE = NOT(d[97]);
-		TriState STOR = NOR(n_MemOp, n_STORE);
 		TriState REST = NAND(n_SHIFT, n_STORE);
 
 		// Ready Delay (get)
@@ -170,23 +161,41 @@ namespace M6502Core
 
 		tresx_latch1.set(NOR(d[91], d[92]), PHI2);
 
-		TriState endx_1[6];
-		endx_1[0] = d[100];
-		endx_1[1] = d[101];
-		endx_1[2] = d[102];
-		endx_1[3] = d[103];
-		endx_1[4] = d[104];
-		endx_1[5] = d[105];
+		TriState ENDX;
+		TriState n_MemOp;
 
-		TriState endx_2[4];
-		endx_2[0] = NOR3(d[96], NOT(n_SHIFT), n_MemOp);
-		endx_2[1] = T6;
-		endx_2[2] = NOT(NOR6(endx_1));
-		endx_2[3] = BR3;
+		if (PHI2)
+		{
+			TriState memop_in[5];
+			memop_in[0] = d[111];
+			memop_in[1] = d[122];
+			memop_in[2] = d[123];
+			memop_in[3] = d[124];
+			memop_in[4] = d[125];
+			n_MemOp = NOR5(memop_in);
 
-		TriState ENDX = NOR4(endx_2);
+			TriState endx_1[6];
+			endx_1[0] = d[100];
+			endx_1[1] = d[101];
+			endx_1[2] = d[102];
+			endx_1[3] = d[103];
+			endx_1[4] = d[104];
+			endx_1[5] = d[105];
 
-		tresx_latch2.set(NOR3(RESP, ENDS, NOR(n_ready, ENDX)), PHI2);
+			TriState endx_2[4];
+			endx_2[0] = NOR3(d[96], NOT(n_SHIFT), n_MemOp);
+			endx_2[1] = T6;
+			endx_2[2] = NOT(NOR6(endx_1));
+			endx_2[3] = BR3;
+
+			ENDX = NOR4(endx_2);
+
+			tresx_latch2.set(NOR3(RESP, ENDS, NOR(n_ready, ENDX)), PHI2);
+		}
+		else
+		{
+			ENDX = core->wire.ENDX;
+		}
 
 		TriState tresx_nor[4];
 		tresx_nor[0] = ACRL1;
@@ -202,14 +211,19 @@ namespace M6502Core
 
 		// WR
 
-		TriState wr_in[6];
-		wr_in[0] = STOR;
-		wr_in[1] = PC_DB;
-		wr_in[2] = d[98];
-		wr_in[3] = d[100];
-		wr_in[4] = T5;
-		wr_in[5] = T6;
-		wr_latch.set(NOR6(wr_in), PHI2);
+		if (PHI2)
+		{
+			TriState STOR = NOR(n_MemOp, n_STORE);
+
+			TriState wr_in[6];
+			wr_in[0] = STOR;
+			wr_in[1] = PC_DB;
+			wr_in[2] = d[98];
+			wr_in[3] = d[100];
+			wr_in[4] = T5;
+			wr_in[5] = T6;
+			wr_latch.set(NOR6(wr_in), PHI2);
+		}
 
 		// Processor Readiness
 

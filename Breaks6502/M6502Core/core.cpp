@@ -40,7 +40,7 @@ namespace M6502Core
 		delete data_bus;
 	}
 
-	void M6502::sim_Top(TriState inputs[], TriState outputs[], uint8_t* data_bus)
+	void M6502::sim_Top(TriState inputs[], uint8_t* data_bus)
 	{
 		wire.n_NMI = inputs[(size_t)InputPad::n_NMI];
 		wire.n_IRQ = inputs[(size_t)InputPad::n_IRQ];
@@ -89,7 +89,14 @@ namespace M6502Core
 
 		ir->sim();
 
-		ext->sim();
+		if (HLE_Mode)
+		{
+			ext->sim_HLE();
+		}
+		else
+		{
+			ext->sim();
+		}
 
 		DecoderInput decoder_in;
 		decoder_in.packed_bits = 0;
@@ -277,9 +284,9 @@ namespace M6502Core
 
 		// To stabilize latches, the top part is simulated twice.
 
-		sim_Top(inputs, outputs, data_bus);
+		sim_Top(inputs, data_bus);
 		sim_Bottom(inputs, outputs, addr_bus, data_bus);
-		sim_Top(inputs, outputs, data_bus);
+		sim_Top(inputs, data_bus);
 	}
 
 	void M6502::getDebug(DebugInfo* info)

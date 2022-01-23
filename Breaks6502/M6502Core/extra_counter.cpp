@@ -52,4 +52,38 @@ namespace M6502Core
 		core->wire.n_T4 = NOT(T4);
 		core->wire.n_T5 = NOT(T5);
 	}
+
+	void ExtraCounter::sim_HLE()
+	{
+		TriState PHI1 = core->wire.PHI1;
+		TriState T1 = core->disp->getT1();
+		TriState TRES2 = core->disp->getTRES2();
+		TriState n_ready = core->wire.n_ready;
+
+		// HLE does not use the inverse essence of the shift register latches.
+
+		if (PHI1)
+		{
+			if (n_ready)
+			{
+				latch1 = latch2;
+			}
+			else
+			{
+				latch1 = (latch2 << 1) | t1_latch.get();
+			}
+		}
+		else
+		{
+			t1_latch.set(T1, TriState::One);
+			latch2 = TRES2 ? 0 : latch1;
+		}
+
+		uint8_t Tx = TRES2 ? 0 : latch1;
+
+		core->wire.n_T2 = Tx & 0b0001 ? TriState::Zero : TriState::One;
+		core->wire.n_T3 = Tx & 0b0010 ? TriState::Zero : TriState::One;
+		core->wire.n_T4 = Tx & 0b0100 ? TriState::Zero : TriState::One;
+		core->wire.n_T5 = Tx & 0b1000 ? TriState::Zero : TriState::One;
+	}
 }
