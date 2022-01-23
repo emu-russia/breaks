@@ -267,7 +267,7 @@ namespace M6502Core
 		BaseLogic::TriState* decoder_out;
 		size_t TxBits;		// Used to optimize table indexing
 
-		void sim_Top(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], uint8_t* data_bus);
+		void sim_Top(BaseLogic::TriState inputs[], uint8_t* data_bus);
 
 		void sim_Bottom(BaseLogic::TriState inputs[], BaseLogic::TriState outputs[], uint16_t* addr_bus, uint8_t* data_bus);
 

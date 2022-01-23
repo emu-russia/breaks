@@ -16,10 +16,16 @@ namespace M6502Core
 
 		M6502* core = nullptr;
 
+		// HLE
+		uint8_t latch1 = 0;
+		uint8_t latch2 = 0;
+
 	public:
 
 		ExtraCounter(M6502* parent) { core = parent; }
 
 		void sim();
+
+		void sim_HLE();
 	};
 }
