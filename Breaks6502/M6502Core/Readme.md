@@ -40,3 +40,22 @@ You should also consider the case when several sources (e.g. registers) put thei
 To solve such situations ("bus conflicts") it is necessary to use the "Ground wins" rule.
 
 This takes into account the 6502 feature where buses are "precharged" during PHI2. This is required to form constants (e.g. stack address, interrupt address). Charging is done at the very beginning of the simulation.
+
+## Optimization
+
+The M6502Core can, with some stretch, be called suitable for real-time applications.
+
+The following approaches are used for optimization:
+- Separation of PHI1/PHI2 phases by if/else
+- Precomputing combinatorial logic with tables (see e.g. predecode.cpp).
+- Packing of bus and register bits into uint8_t, avoids for loops on all bits
+- High level logic circuits simulation (see e.g. alu.cpp).
+
+The bottleneck is random logic, which consumes 50-60% of computing time.
+
+To optimize random logic, you can do the following:
+- Precalculate a hash for each combination of decoder outputs, to use as a key
+- Using the hash of the decoder outputs, recompile (by JITC) each part of the random logic (ALU, Bus, Regs, PC, Flags Controls)
+- In the runtime instead of executing the whole circuit, call the recompiled piece of code from the hash of the decoder, which will run faster
+
+Besides, now top part is simulated 2 times every half cycle, to stabilize latches.
