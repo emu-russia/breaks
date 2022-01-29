@@ -2,11 +2,13 @@
 
 This section contains a summary table of all signals.
 
-TBD: The inversion of some signals can be corrected after clarification. At present, the main task is to understand their essence.
+TBD: The inversion of some signals can be corrected after clarification.
 
 If a signal is repeated somewhere, it is usually not specified again, except in cases where it is important.
 
 The signals for the PAL version of the PPU are marked in the pictures only where there are differences from NTSC.
+
+The most important control signals of the PPU [FSM](hv_fsm.md) are marked with a special icon (:zap:).
 
 ## Left Side
 
@@ -39,18 +41,19 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 |/W1|Reg Select| |Write $2001|
 |/W0|Reg Select| |Write $2000|
 |/R4|Reg Select| |Read $2004|
-|V0-7|VCounter| |Digits of V counter|
-|RESCL| | |"RES FF Clear". Clear the /RES latch|
-|OMFG| | | |
-|BLNK| | | |
-|PAR/O| | | |
-|ASAP| | | |
-|/VIS| | | |
-|I/OAM2| | | |
-|/H2'| | | |
-|SPR_OV| | | |
-|EVAL| | | |
-|H0'| | | |
+|V0-7|VCounter|Sprite Compare, Sprite Eval|The V counter bits. Bit V7 additionally goes into the Sprite Eval logic.|
+|:zap:RESCL (VCLR)|FSM|All|"Reset FF Clear" / "VBlank Clear". VBlank period end event. Initially the connection was established with contact /RES, but then it turned out a more global purpose of the signal. Therefore, the signal has two names.|
+|OMFG|Sprite Eval|OAM Counters Ctrl|TBD: Control signal|
+|:zap:BLNK|FSM|HDecoder, All|Active when PPU rendering is disabled (by `BLACK` signal) or during VBlank|
+|:zap:PAR/O|FSM|All|"PAR for Object". Selecting a tile for an object (sprite)|
+|ASAP|OAM Counters Ctrl|OAM Counters Ctrl|TBD: Control signal|
+|:zap:/VIS|FSM|Sprite Logic|"Not Visible". The invisible part of the signal (used in sprite logic)|
+|:zap:I/OAM2|FSM|Sprite Logic|"Init OAM2". Initialize an additional (temp) OAM|
+|/H2'|HCounter|All|H2 signal delayed by one DLatch (in inverse logic)|
+|SPR_OV|OAM Counters Ctrl|Sprite Eval|OAM counter overflow|
+|:zap:EVAL|FSM|Sprite Logic|"Sprite Evaluation in Progress"|
+|H0'|HCounter|All|H0 signal delayed by one DLatch|
+|EvenOddOut|Even/Odd Circuit|OAM Counters Ctrl|:warning: Only for PAL PPU.|
 
 |NTSC|PAL|
 |---|---|
@@ -58,32 +61,32 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|E/EV| | | |
-|S/EV| | | |
-|/H1'| | | |
-|/H2'| | | |
-|/FO| | | |
-|F/AT| | | |
-|F/NT| | | |
-|F/TA| | | |
-|F/TB| | | |
-|CLIP_O| | | |
-|CLIP_B| | | |
-|VBL|Regs $2000\[7\]| | |
-|/TB|Regs $2001\[7\]| |"Tint Blue". Modifying value for Emphasis|
-|/TG|Regs $2001\[6\]| |"Tint Green". Modifying value for Emphasis|
-|/TR|Regs $2001\[5\]| |"Tint Red". Modifying value for Emphasis|
-|SC/CNT| | | |
-|0/HPOS| | | |
-|I2SEV| | | |
-|/OBCLIP|Regs $2001\[2\]| | |
-|/BGCLIP|Regs $2001\[1\]| | |
-|H0'' - H5''| | | |
-|BLACK| | | |
-|DB0-7| | | |
-|B/W|Regs $2001\[0\]| | |
-|TH/MUX| | | |
-|DB/PAR| | | |
+|:zap:E/EV|FSM|Sprite Logic|"End Sprite Evaluation"|
+|:zap:S/EV|FSM|Sprite Logic|"Start Sprite Evaluation"|
+|/H1'|HCounter|All|H1 signal delayed by one DLatch (in inverse logic)|
+|/H2'|HCounter|All|H1 signal delayed by one DLatch (in inverse logic)|
+|:zap:/FO|FSM|Data Reader|"Fetch Output Enable"|
+|:zap:F/AT|FSM|Data Reader|"Fetch Attribute Table"|
+|:zap:F/NT|FSM|Data Reader|"Fetch Name Table"|
+|:zap:F/TA|FSM|Data Reader|"Fetch Tile A"|
+|:zap:F/TB|FSM|Data Reader|"Fetch Tile B"|
+|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
+|:zap:CLIP_B|FSM|Control Regs|"Clip Background". Do not show the left 8 points of the screen for the background. Used to get the `CLPB` signal that goes into the Data Reader.|
+|VBL|Regs $2000\[7\]|FSM|Used in the VBlank interrupt handling circuitry|
+|/TB|Regs $2001\[7\]|VideoOut|"Tint Blue". Modifying value for Emphasis|
+|/TG|Regs $2001\[6\]|VideoOut|"Tint Green". Modifying value for Emphasis|
+|/TR|Regs $2001\[5\]|VideoOut|"Tint Red". Modifying value for Emphasis|
+|:zap:SC/CNT|FSM|Data Reader|"Scroll Counters Control". Update the scrolling registers.|
+|:zap:0/HPOS|FSM|OAM FIFO|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
+|I2SEV|Sprite Eval|Spr0 Stike|To define a `Sprite 0 Hit` event|
+|/OBCLIP|Regs $2001\[2\]|FSM|To generate the `CLIP_O` control signal|
+|/BGCLIP|Regs $2001\[1\]|FSM|To generate the `CLIP_B` control signal|
+|H0'' - H5''|HCounter|All|H0-H5 signals delayed by two DLatch|
+|BLACK|Control Regs|FSM|Active when PPU rendering is disabled (see $2001[3] и $2001[4]). :warning: The circuitry for the signal generation is slightly different in the PAL PPU.|
+|DB0-7|All|All|Internal data bus DB|
+|B/W|Regs $2001\[0\]|Color Buffer|Disable Color Burst, to generate a monochrome picture|
+|TH/MUX|VRAM Ctrl|MUX, Color Buffer|Send the TH Counter value to the MUX input, which will cause the value to go into the palette as Direct Color.|
+|DB/PAR|VRAM Ctrl|Data Reader, Color Buffer|TBD: Control signal|
 
 |NTSC|PAL|
 |---|---|
@@ -91,7 +94,7 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|PAL0-4| | | |
+|PAL0-4|MUX|Palette|Palette RAM Address|
 
 ## Right Side
 
@@ -104,8 +107,8 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|/OAM0-2| | | |
-|OAM8| | | |
+|/OAM0-2|OAM Counters|OAM|OAM Address. :warning: The NTSC version of the PPU uses values in inverse logic (/OAM0-7). The PAL version of the PPU uses values in forward logic (OAM0-7)|
+|OAM8|OAM2 Counter|OAM|Selects an additional (temp) OAM for addressing|
 
 |NTSC|PAL|
 |---|---|
@@ -113,10 +116,12 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|/OAM0-7| | | |
-|OAM8| | | |
-|OAMCTR2| | | |
-|OB0-7'| | | |
+|/OAM0-7|OAM Counters|OAM|OAM Address. :warning: The NTSC version of the PPU uses values in inverse logic (/OAM0-7). The PAL version of the PPU uses values in forward logic (OAM0-7)|
+|OAM8|OAM2 Counter|OAM|Selects an additional (temp) OAM for addressing|
+|OAMCTR2|OAM Counters Ctrl|OAM Buffer Ctrl|OAM Buffer Control|
+|OB0-7'|OAM Buffer|Sprite Compare|OB output values passed through the PCLK tristates.|
+
+Note: The different inversion of OAM address values of PAL and NTSC PPUs causes the values on the cells in the PAL PPU to be stored in reverse order relative to the NTSC PPU. It does not cause anything else in particular.
 
 |NTSC|PAL|
 |---|---|
@@ -124,13 +129,13 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|OV0-3| | | |
-|OB7| | | |
-|0/FIFO| | | |
-|I1/32|Regs $2000\[2\]| |Increment PPU address 1/32. PAL PPU uses an inverse version of the signal (#I1/32)|
-|OBSEL|Regs $2000\[3\]| | |
-|BGSEL|Regs $2000\[4\]| | |
-|O8/16|Regs $2000\[5\]| |Object lines 8/16 (sprite size). The PAL PPU uses an inverse version of the signal (#O8/16)|
+|OV0-3|Sprite Compare|V Inversion|Bit 0-3 of the V sprite value|
+|OB7|OAM Bufer|OAM Eval|OAM Buffer output value, bit 7. For the OAM Eval circuit, this value is exclusively transmitted directly from the OB, without using the PCLK tristate.|
+|0/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
+|I1/32|Regs $2000\[2\]|PAR Counters Ctrl|Increment PPU address 1/32. :warning: PAL PPU uses an inverse version of the signal (#I1/32)|
+|OBSEL|Regs $2000\[3\]|Pattern Readout|Selecting Pattern Table for sprites|
+|BGSEL|Regs $2000\[4\]|Pattern Readout|Selecting Pattern Table for background|
+|O8/16|Regs $2000\[5\]|OAM Eval, Pattern Readout|Object lines 8/16 (sprite size). :warning: The PAL PPU uses an inverse version of the signal (#O8/16)|
 
 |NTSC|PAL|
 |---|---|
@@ -138,15 +143,15 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|SH2| | | |
-|SH3| | | |
-|SH5| | | |
-|SH7| | | |
-|SPR0HIT| | | |
-|BGC0-3| | | |
-|ZCOL0-3| | | |
-|ZPRIO| | | |
-|THO0-4'| | | |
+|SH2|Near MUX|OAM FIFO, V. Inversion|Sprite H value bits. SH2 also goes into V. Inversion. :warning: The SH2/3/5/7 signals are actually in inverse logic, but you don't want to rename everywhere anymore.|
+|SH3|Near MUX|OAM FIFO|Sprite H value bits|
+|SH5|Near MUX|OAM FIFO|Sprite H value bits|
+|SH7|Near MUX|OAM FIFO|Sprite H value bits|
+|SPR0HIT|OAM Priority|Spr0 Strike|To detect a `Sprite 0 Hit` event|
+|BGC0-3|BG Color|MUX|Background color|
+|ZCOL0-3|OAM FIFO|MUX|Sprite color|
+|ZPRIO|OAM Priority|MUX|Priority of sprite over background|
+|THO0-4'|PAR TH Counter|MUX|THO0-3 value passed through the PCLK tristate. Direct Color value from TH Counter.|
 
 ## Bottom Part
 
@@ -159,12 +164,12 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|OB0-7| | | |
-|CLPO| | | |
-|CLPB| | | |
-|0/FIFO| | | |
-|BGSEL| | | |
-|OV0-3| | | |
+|OB0-7|OAM Buffer|OAM FIFO, Pattern Readout|OAM Buffer output value|
+|CLPO|Regs|OAM FIFO|To enable sprite clipping|
+|CLPB|Regs|BG Color|To enable background clipping|
+|0/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
+|BGSEL|Regs|Pattern Readout|Selecting Pattern Table for background|
+|OV0-3|Sprite Compare|V Inversion|Bit 0-3 of the V sprite value|
 
 |NTSC|PAL|
 |---|---|
@@ -172,12 +177,12 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|/PA0-7| | | |
-|/PA8-13| | | |
-|THO0-4| | | |
-|TSTEP| | | |
-|TVO1| | | |
-|FH0-2| | | |
+|/PA0-7|PAR|PPU Address|VRAM address bus|
+|/PA8-13|PAR|PPU Address, VRAM Ctrl|VRAM address bus|
+|THO0-4|PAR TH Counter|BG Color, MUX|Bit 1 of TH Counter is used in the BG Color circuit. THO0-4 is used in the Multiplexer as Direct Color.|
+|TSTEP|VRAM Ctrl|PAR Counters Ctrl|For PAR Counters control logic|
+|TVO1|PAR TV Counter|BG Color|Bit 1 of TV Counter|
+|FH0-2|Scroll Regs|BG Color|Fine H value|
 
 `/PA0-7` are not shown in the picture, they are on the right side of the [PPU address generator](pargen.md).
 
@@ -187,11 +192,11 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|PD0-7| | | |
-|THO1| | | |
-|TVO1| | | |
-|BGC0-3| | | |
-|FH0-2| | | |
+|PD0-7|All Bottom|All Bottom|VRAM data bus, used at the bottom for data transfer. It is associated with the corresponding PPU pins (`AD0-7`).|
+|THO1|PAR TH Counter|BG Color|Bit 1 of TH Counter|
+|TVO1|PAR TV Counter|BG Color|Bit 1 of TV Counter|
+|BGC0-3|BG Color|MUX|Background color|
+|FH0-2|Scroll Regs|BG Color|Fine H value|
 
 |PPU Version|Image|
 |---|---|
@@ -200,8 +205,8 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|PD/RB| | | |
-|XRB| | | |
-|RD| | | |
-|WR| | | |
-|/ALE| | | |
+|PD/RB|VRAM Ctrl|Read Buffer (RB)|Opens RB input (connect PD and RB).|
+|XRB|VRAM Ctrl|Read Buffer (RB)|Opens RB output (connect RB and DB).|
+|RD|VRAM Ctrl|Pad|Output value for `/RD` pin|
+|WR|VRAM Ctrl|Pad|Output value for `/WR` pin|
+|/ALE|VRAM Ctrl|Pad|Output value for `ALE` pin|

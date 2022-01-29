@@ -144,7 +144,7 @@ Principle of operation:
 
 (The circuit is placed "on its side" for convenience)
 
-The EVEN/ODD logic consists of two FFs closed to each other, controlled by two multiplexers. It is analogous to DFF, but without input.
+The EVEN/ODD logic consists of two FFs closed to each other, controlled by two multiplexers. It turns out to be a miniature Johnson counter.
 
 This circuit implements the so-called NTSC Crawl logic. It is necessary to eliminate 1 pixel output each frame to remove the multiplicity of PCLK and color subcarrier, to avoid artifacts on the B/W TV.
 
