@@ -159,12 +159,12 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|OB0-7| | | |
-|CLPO| | | |
-|CLPB| | | |
-|0/FIFO| | | |
-|BGSEL| | | |
-|OV0-3| | | |
+|OB0-7|OAM Buffer|OAM FIFO, Pattern Readout|OAM Buffer output value|
+|CLPO|Regs|OAM FIFO|To enable sprite clipping|
+|CLPB|Regs|BG Color|To enable background clipping|
+|0/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
+|BGSEL|Regs|Pattern Readout|Selecting Pattern Table|
+|OV0-3|Sprite Compare|V Inversion|Bit 0-3 of the V sprite value|
 
 |NTSC|PAL|
 |---|---|
@@ -172,12 +172,12 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|/PA0-7| | | |
-|/PA8-13| | | |
-|THO0-4| | | |
-|TSTEP| | | |
-|TVO1| | | |
-|FH0-2| | | |
+|/PA0-7|PAR|PPU Address|VRAM address bus|
+|/PA8-13|PAR|PPU Address, VRAM Ctrl|VRAM address bus|
+|THO0-4|PAR TH Counter|BG Color, MUX|Bit 1 of TH Counter is used in the BG Color circuit. THO0-4 is used in the Multiplexer as Direct Color.|
+|TSTEP|VRAM Ctrl|PAR Counters Ctrl|For PAR Counters control logic|
+|TVO1|PAR TV Counter|BG Color|Bit 1 of TV Counter|
+|FH0-2|Scroll Regs|BG Color|Fine H value|
 
 `/PA0-7` are not shown in the picture, they are on the right side of the [PPU address generator](pargen.md).
 
@@ -187,11 +187,11 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|PD0-7| | | |
-|THO1| | | |
-|TVO1| | | |
-|BGC0-3| | | |
-|FH0-2| | | |
+|PD0-7|All Bottom|All Bottom|VRAM data bus, used at the bottom for data transfer. It is associated with the corresponding PPU pins (`AD0-7`).|
+|THO1|PAR TH Counter|BG Color|Bit 1 of TH Counter|
+|TVO1|PAR TV Counter|BG Color|Bit 1 of TV Counter|
+|BGC0-3|BG Color|MUX|Background color|
+|FH0-2|Scroll Regs|BG Color|Fine H value|
 
 |PPU Version|Image|
 |---|---|
@@ -200,8 +200,8 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|PD/RB| | | |
-|XRB| | | |
-|RD| | | |
-|WR| | | |
-|/ALE| | | |
+|PD/RB|VRAM Ctrl|Read Buffer (RB)|Opens RB input (connect PD and RB).|
+|XRB|VRAM Ctrl|Read Buffer (RB)|Opens RB output (connect RB and DB).|
+|RD|VRAM Ctrl|Pad|Output value for `/RD` pin|
+|WR|VRAM Ctrl|Pad|Output value for `/WR` pin|
+|/ALE|VRAM Ctrl|Pad|Output value for `ALE` pin|
