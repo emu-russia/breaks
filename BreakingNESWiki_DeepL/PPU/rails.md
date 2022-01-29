@@ -8,6 +8,8 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 The signals for the PAL version of the PPU are marked in the pictures only where there are differences from NTSC.
 
+The most important control signals of the PPU [FSM](hv_fsm.md) are marked with a special icon (:zap:).
+
 ## Left Side
 
 ![ppu_locator_rails_left](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_left.jpg)
@@ -40,16 +42,16 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 |/W0|Reg Select| |Write $2000|
 |/R4|Reg Select| |Read $2004|
 |V0-7|VCounter|Sprite Compare, Sprite Eval|The V counter bits. Bit V7 additionally goes into the Sprite Eval logic.|
-|:zap: RESCL (VCLR)|FSM|All|"Reset FF Clear" / "VBlank Clear". VBlank period end event. Initially the connection was established with contact /RES, but then it turned out a more global purpose of the signal. Therefore, the signal has two names.|
+|:zap:RESCL (VCLR)|FSM|All|"Reset FF Clear" / "VBlank Clear". VBlank period end event. Initially the connection was established with contact /RES, but then it turned out a more global purpose of the signal. Therefore, the signal has two names.|
 |OMFG|Sprite Eval|OAM Counters Ctrl|TBD: Control signal|
-|:zap: BLNK|FSM|HDecoder, All|Active when PPU rendering is disabled (by `BLACK` signal) or during VBlank|
-|:zap: PAR/O|FSM|All|"PAR for Object". Selecting a tile for an object (sprite)|
+|:zap:BLNK|FSM|HDecoder, All|Active when PPU rendering is disabled (by `BLACK` signal) or during VBlank|
+|:zap:PAR/O|FSM|All|"PAR for Object". Selecting a tile for an object (sprite)|
 |ASAP|OAM Counters Ctrl|OAM Counters Ctrl|TBD: Control signal|
-|:zap: /VIS|FSM|Sprite Logic|"Not Visible". The invisible part of the signal (used in sprite logic)|
-|:zap: I/OAM2|FSM|Sprite Logic|"Init OAM2". Initialize an additional (temp) OAM|
+|:zap:/VIS|FSM|Sprite Logic|"Not Visible". The invisible part of the signal (used in sprite logic)|
+|:zap:I/OAM2|FSM|Sprite Logic|"Init OAM2". Initialize an additional (temp) OAM|
 |/H2'|HCounter|All|H2 signal delayed by one DLatch (in inverse logic)|
 |SPR_OV|OAM Counters Ctrl|Sprite Eval|OAM counter overflow|
-|:zap: EVAL|FSM|Sprite Logic|"Sprite Evaluation in Progress"|
+|:zap:EVAL|FSM|Sprite Logic|"Sprite Evaluation in Progress"|
 |H0'|HCounter|All|H0 signal delayed by one DLatch|
 |EvenOddOut|Even/Odd Circuit|OAM Counters Ctrl|:warning: Only for PAL PPU.|
 
@@ -59,23 +61,23 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|:zap: E/EV|FSM|Sprite Logic|"End Sprite Evaluation"|
-|:zap: S/EV|FSM|Sprite Logic|"Start Sprite Evaluation"|
+|:zap:E/EV|FSM|Sprite Logic|"End Sprite Evaluation"|
+|:zap:S/EV|FSM|Sprite Logic|"Start Sprite Evaluation"|
 |/H1'|HCounter|All|H1 signal delayed by one DLatch (in inverse logic)|
 |/H2'|HCounter|All|H1 signal delayed by one DLatch (in inverse logic)|
-|:zap: /FO|FSM|Data Reader|"Fetch Output Enable"|
-|:zap: F/AT|FSM|Data Reader|"Fetch Attribute Table"|
-|:zap: F/NT|FSM|Data Reader|"Fetch Name Table"|
-|:zap: F/TA|FSM|Data Reader|"Fetch Tile A"|
-|:zap: F/TB|FSM|Data Reader|"Fetch Tile B"|
-|:zap: CLIP_O|FSM|Control Regs|"Clip Objects". Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
-|:zap: CLIP_B|FSM|Control Regs|"Clip Background". Do not show the left 8 points of the screen for the background. Used to get the `CLPB` signal that goes into the Data Reader.|
+|:zap:/FO|FSM|Data Reader|"Fetch Output Enable"|
+|:zap:F/AT|FSM|Data Reader|"Fetch Attribute Table"|
+|:zap:F/NT|FSM|Data Reader|"Fetch Name Table"|
+|:zap:F/TA|FSM|Data Reader|"Fetch Tile A"|
+|:zap:F/TB|FSM|Data Reader|"Fetch Tile B"|
+|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
+|:zap:CLIP_B|FSM|Control Regs|"Clip Background". Do not show the left 8 points of the screen for the background. Used to get the `CLPB` signal that goes into the Data Reader.|
 |VBL|Regs $2000\[7\]|FSM|Used in the VBlank interrupt handling circuitry|
 |/TB|Regs $2001\[7\]|VideoOut|"Tint Blue". Modifying value for Emphasis|
 |/TG|Regs $2001\[6\]|VideoOut|"Tint Green". Modifying value for Emphasis|
 |/TR|Regs $2001\[5\]|VideoOut|"Tint Red". Modifying value for Emphasis|
-|:zap: SC/CNT|FSM|Data Reader|"Scroll Counters Control". Update the scrolling registers.|
-|:zap: 0/HPOS|FSM|OAM FIFO|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
+|:zap:SC/CNT|FSM|Data Reader|"Scroll Counters Control". Update the scrolling registers.|
+|:zap:0/HPOS|FSM|OAM FIFO|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
 |I2SEV|Sprite Eval|Spr0 Stike|To define a `Sprite 0 Hit` event|
 |/OBCLIP|Regs $2001\[2\]|FSM|To generate the `CLIP_O` control signal|
 |/BGCLIP|Regs $2001\[1\]|FSM|To generate the `CLIP_B` control signal|
