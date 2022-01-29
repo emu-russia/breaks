@@ -51,6 +51,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |SPR_OV| | | |
 |EVAL| | | |
 |H0'| | | |
+|EvenOddOut|Even/Odd Circuit|OAM Counters Ctrl|:warning: Только для PAL PPU.|
 
 |NTSC|PAL|
 |---|---|

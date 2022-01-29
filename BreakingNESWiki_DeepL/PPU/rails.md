@@ -51,6 +51,7 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 |SPR_OV| | | |
 |EVAL| | | |
 |H0'| | | |
+|EvenOddOut|Even/Odd Circuit|OAM Counters Ctrl|:warning: Only for PAL PPU.|
 
 |NTSC|PAL|
 |---|---|
