@@ -104,8 +104,8 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|/OAM0-2| | | |
-|OAM8| | | |
+|/OAM0-2|OAM Counters|OAM|OAM Address. :warning: The NTSC version of the PPU uses values in inverse logic (/OAM0-7). The PAL version of the PPU uses values in forward logic (OAM0-7)|
+|OAM8|OAM2 Counter|OAM|Selects an additional (temp) OAM for addressing|
 
 |NTSC|PAL|
 |---|---|
@@ -113,10 +113,12 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|/OAM0-7| | | |
-|OAM8| | | |
-|OAMCTR2| | | |
-|OB0-7'| | | |
+|/OAM0-7|OAM Counters|OAM|OAM Address. :warning: The NTSC version of the PPU uses values in inverse logic (/OAM0-7). The PAL version of the PPU uses values in forward logic (OAM0-7)|
+|OAM8|OAM2 Counter|OAM|Selects an additional (temp) OAM for addressing|
+|OAMCTR2|OAM Counters Ctrl|OAM Buffer Ctrl|OAM Buffer Control|
+|OB0-7'|OAM Buffer|Sprite Compare|OB output values passed through the PCLK tristates.|
+
+Note: The different inversion of OAM address values of PAL and NTSC PPUs causes the values on the cells in the PAL PPU to be stored in reverse order relative to the NTSC PPU. It does not cause anything else in particular.
 
 |NTSC|PAL|
 |---|---|
@@ -124,13 +126,13 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|OV0-3| | | |
-|OB7| | | |
-|0/FIFO| | | |
-|I1/32|Regs $2000\[2\]| |Increment PPU address 1/32. PAL PPU uses an inverse version of the signal (#I1/32)|
-|OBSEL|Regs $2000\[3\]| | |
-|BGSEL|Regs $2000\[4\]| | |
-|O8/16|Regs $2000\[5\]| |Object lines 8/16 (sprite size). The PAL PPU uses an inverse version of the signal (#O8/16)|
+|OV0-3|Sprite Compare|V Inversion|Bit 0-3 of the V sprite value|
+|OB7|OAM Bufer|OAM Eval|OAM Buffer output value, bit 7. For the OAM Eval circuit, this value is exclusively transmitted directly from the OB, without using the PCLK tristate.|
+|0/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
+|I1/32|Regs $2000\[2\]|PAR Counters Ctrl|Increment PPU address 1/32. :warning: PAL PPU uses an inverse version of the signal (#I1/32)|
+|OBSEL|Regs $2000\[3\]|Pattern Readout|Selecting Pattern Table for sprites|
+|BGSEL|Regs $2000\[4\]|Pattern Readout|Selecting Pattern Table for background|
+|O8/16|Regs $2000\[5\]|OAM Eval, Pattern Readout|Object lines 8/16 (sprite size). :warning: The PAL PPU uses an inverse version of the signal (#O8/16)|
 
 |NTSC|PAL|
 |---|---|
@@ -138,15 +140,15 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|SH2| | | |
-|SH3| | | |
-|SH5| | | |
-|SH7| | | |
-|SPR0HIT| | | |
-|BGC0-3| | | |
-|ZCOL0-3| | | |
-|ZPRIO| | | |
-|THO0-4'| | | |
+|SH2|Near MUX|OAM FIFO, V. Inversion|Sprite H value bits. SH2 also goes into V. Inversion. :warning: The SH2/3/5/7 signals are actually in inverse logic, but you don't want to rename everywhere anymore.|
+|SH3|Near MUX|OAM FIFO|Sprite H value bits|
+|SH5|Near MUX|OAM FIFO|Sprite H value bits|
+|SH7|Near MUX|OAM FIFO|Sprite H value bits|
+|SPR0HIT|OAM Priority|Spr0 Strike|To detect a `Sprite 0 Hit` event|
+|BGC0-3|BG Color|MUX|Background color|
+|ZCOL0-3|OAM FIFO|MUX|Sprite color|
+|ZPRIO|OAM Priority|MUX|Priority of sprite over background|
+|THO0-4'|PAR TH Counter|MUX|THO0-3 value passed through the PCLK tristate. Direct Color value from TH Counter.|
 
 ## Bottom Part
 
@@ -163,7 +165,7 @@ The signals for the PAL version of the PPU are marked in the pictures only where
 |CLPO|Regs|OAM FIFO|To enable sprite clipping|
 |CLPB|Regs|BG Color|To enable background clipping|
 |0/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
-|BGSEL|Regs|Pattern Readout|Selecting Pattern Table|
+|BGSEL|Regs|Pattern Readout|Selecting Pattern Table for background|
 |OV0-3|Sprite Compare|V Inversion|Bit 0-3 of the V sprite value|
 
 |NTSC|PAL|

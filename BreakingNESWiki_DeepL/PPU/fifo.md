@@ -95,3 +95,5 @@ It was also decided to include a small circuit for getting SHx values (Sprite H)
 ![sprite_h](/BreakingNESWiki/imgstore/sprite_h.jpg)
 
 ![ppu_logisim_sprite_h](/BreakingNESWiki/imgstore/ppu_logisim_sprite_h.jpg)
+
+:warning: The SH2/3/5/7 signals are actually in inverse logic, but you don't want to rename everywhere anymore.

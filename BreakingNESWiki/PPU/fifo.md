@@ -95,3 +95,5 @@ HINV и HDIR - это два комплементарных сигнала (он
 ![sprite_h](/BreakingNESWiki/imgstore/sprite_h.jpg)
 
 ![ppu_logisim_sprite_h](/BreakingNESWiki/imgstore/ppu_logisim_sprite_h.jpg)
+
+:warning: Сигналы SH2/3/5/7 на самом деле в инверсной логике, но переименовывать везде уже не хочется.
