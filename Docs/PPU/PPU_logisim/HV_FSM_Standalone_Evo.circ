@@ -281,7 +281,7 @@
     <a name="simulationFrequency" val="256.0"/>
     <appear>
       <rect fill="#2cff4e" height="40" stroke="#000000" width="40" x="50" y="50"/>
-      <ellipse cx="85" cy="80" fill="none" rx="5" ry="5" stroke="#000000" stroke-width="2"/>
+      <ellipse cx="90" cy="80" fill="none" rx="5" ry="5" stroke="#000000" stroke-width="2"/>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="42">DL</text>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
       <circ-port height="10" pin="370,130" width="10" x="85" y="55"/>
