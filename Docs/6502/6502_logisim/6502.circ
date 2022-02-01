@@ -15745,9 +15745,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(550,500)" to="(560,500)"/>
     <wire from="(580,330)" to="(590,330)"/>
     <wire from="(580,410)" to="(590,410)"/>
-    <comp lib="6" loc="(838,506)" name="Text">
-      <a name="text" val="8"/>
-    </comp>
     <comp lib="6" loc="(759,753)" name="Text">
       <a name="text" val="#ADH/PCH"/>
     </comp>
