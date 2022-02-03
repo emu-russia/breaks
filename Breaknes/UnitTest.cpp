@@ -219,6 +219,7 @@ namespace M6502CoreUnitTest
 		ResetALUInputs(op);
 		core->cmd.ADD_SB06 = 1;
 		core->cmd.ADD_SB7 = 1;
+		core->SB_Dirty = false;
 		core->alu->sim_StoreADD();
 
 		ResetALUInputs(op);
@@ -298,6 +299,42 @@ namespace M6502CoreUnitTest
 			for (size_t b = 0; b < 0x100; b++)
 			{
 				int res = TestCompute((uint8_t)a, (uint8_t)b, (uint8_t)(a + b + 1), ALU_Operation::SUMS, false, true);
+				if (res != 0)
+				{
+					printf("Failed!\n");
+					return;
+				}
+			}
+		}
+		printf("OK!\n");
+
+		// BCD Add
+
+		printf("SUMS BCD No Carry: ");
+		for (size_t a = 1; a <= 0x99; a++)
+		{
+			// Skip numbers that are not in the BCD
+
+			if ((a & 0xf) > 9 || (a & 0xf0) > 0x90)
+				continue;
+
+			for (size_t b = 1; b <= 0x99; b++)
+			{
+				if ((b & 0xf) > 9 || (b & 0xf0) > 0x90)
+					continue;
+
+				// BCD addition looks something like this. 
+
+				size_t low = (a & 0xf) + (b & 0xf);
+				bool low_carry = low > 9;
+				if (low_carry) low += 6;
+				size_t hi = ((a >> 4) & 0xf) + ((b >> 4) & 0xf);
+				if (low_carry) hi++;
+				bool hi_carry = hi > 9;
+				if (hi_carry) hi += 6;
+				size_t bcd_res = (low & 0xf) | (hi << 4);
+
+				int res = TestCompute((uint8_t)a, (uint8_t)b, (uint8_t)bcd_res, ALU_Operation::SUMS, true, false);
 				if (res != 0)
 				{
 					printf("Failed!\n");
