@@ -5,6 +5,13 @@ namespace M6502Core
 	class M6502;
 }
 
+// An external class that has access to all core internals. Use for unit testing.
+
+namespace M6502CoreUnitTest
+{
+	class UnitTest;
+}
+
 #include "decoder.h"
 #include "ir.h"
 #include "predecode.h"
@@ -210,6 +217,7 @@ namespace M6502Core
 
 	class M6502
 	{
+		friend M6502CoreUnitTest::UnitTest;
 		friend IR;
 		friend PreDecode;
 		friend ExtraCounter;

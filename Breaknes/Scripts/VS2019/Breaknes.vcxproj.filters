@@ -30,13 +30,10 @@
     <ClCompile Include="..\..\Famicom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\PC_UnitTest.cpp">
+    <ClCompile Include="..\..\UnitTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\DecoderDecoder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\ALU_UnitTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,13 +50,10 @@
     <ClInclude Include="..\..\Famicom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\PC_UnitTest.h">
+    <ClInclude Include="..\..\UnitTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\DecoderDecoder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\ALU_UnitTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

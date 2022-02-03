@@ -177,37 +177,39 @@ void DumpDecoderStates()
 
         for (size_t Tx = 0; Tx < 7; Tx++)
         {
-		    TriState inputs[(size_t)M6502Core::DecoderInput::Max];
-		    TriState outputs[(size_t)M6502Core::Decoder::outputs_count];
+            M6502Core::DecoderInput decoder_in;
+		    TriState *outputs;
 
-		    inputs[(size_t)M6502Core::DecoderInput::n_T0] = Tx == 0 ? TriState::Zero : TriState::One;
-		    inputs[(size_t)M6502Core::DecoderInput::n_T1X] = Tx == 1 ? TriState::Zero : TriState::One;
-		    inputs[(size_t)M6502Core::DecoderInput::n_T2] = Tx == 2 ? TriState::Zero : TriState::One;
-		    inputs[(size_t)M6502Core::DecoderInput::n_T3] = Tx == 3 ? TriState::Zero : TriState::One;
-		    inputs[(size_t)M6502Core::DecoderInput::n_T4] = Tx == 4 ? TriState::Zero : TriState::One;
-		    inputs[(size_t)M6502Core::DecoderInput::n_T5] = Tx == 5 ? TriState::Zero : TriState::One;
+            decoder_in.packed_bits = 0;
+
+            decoder_in.n_T0 = Tx == 0 ? 0 : 1;
+            decoder_in.n_T1X = Tx == 1 ? 0 : 1;
+            decoder_in.n_T2 = Tx == 2 ? 0 : 1;
+            decoder_in.n_T3 = Tx == 3 ? 0 : 1;
+            decoder_in.n_T4 = Tx == 4 ? 0 : 1;
+            decoder_in.n_T5 = Tx == 5 ? 0 : 1;
             // Tx = 7: Any
 
 		    TriState IR[8];
 		    Unpack((uint8_t)ir, IR);
 
-		    inputs[(size_t)M6502Core::DecoderInput::n_IR0] = NOT(IR[0]);
-		    inputs[(size_t)M6502Core::DecoderInput::n_IR1] = NOT(IR[1]);
-		    inputs[(size_t)M6502Core::DecoderInput::IR01] = OR(IR[0], IR[1]);
-		    inputs[(size_t)M6502Core::DecoderInput::IR2] = IR[2];
-		    inputs[(size_t)M6502Core::DecoderInput::n_IR2] = NOT(IR[2]);
-		    inputs[(size_t)M6502Core::DecoderInput::IR3] = IR[3];
-		    inputs[(size_t)M6502Core::DecoderInput::n_IR3] = NOT(IR[3]);
-		    inputs[(size_t)M6502Core::DecoderInput::IR4] = IR[4];
-		    inputs[(size_t)M6502Core::DecoderInput::n_IR4] = NOT(IR[4]);
-		    inputs[(size_t)M6502Core::DecoderInput::IR5] = IR[5];
-		    inputs[(size_t)M6502Core::DecoderInput::n_IR5] = NOT(IR[5]);
-		    inputs[(size_t)M6502Core::DecoderInput::IR6] = IR[6];
-		    inputs[(size_t)M6502Core::DecoderInput::n_IR6] = NOT(IR[6]);
-		    inputs[(size_t)M6502Core::DecoderInput::IR7] = IR[7];
-		    inputs[(size_t)M6502Core::DecoderInput::n_IR7] = NOT(IR[7]);
+            decoder_in.n_IR0 = NOT(IR[0]);
+            decoder_in.n_IR1 = NOT(IR[1]);
+            decoder_in.IR01 = OR(IR[0], IR[1]);
+            decoder_in.IR2 = IR[2];
+            decoder_in.n_IR2 = NOT(IR[2]);
+            decoder_in.IR3 = IR[3];
+            decoder_in.n_IR3 = NOT(IR[3]);
+            decoder_in.IR4 = IR[4];
+            decoder_in.n_IR4 = NOT(IR[4]);
+            decoder_in.IR5 = IR[5];
+            decoder_in.n_IR5 = NOT(IR[5]);
+            decoder_in.IR6 = IR[6];
+            decoder_in.n_IR6 = NOT(IR[6]);
+            decoder_in.IR7 = IR[7];
+            decoder_in.n_IR7 = NOT(IR[7]);
 
-		    decoder->sim(inputs, outputs);
+		    decoder->sim(decoder_in.packed_bits, &outputs);
 
             bool comma = false;
 
