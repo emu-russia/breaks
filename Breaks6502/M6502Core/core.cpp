@@ -4,7 +4,7 @@ using namespace BaseLogic;
 
 namespace M6502Core
 {
-	M6502::M6502(bool HLE)
+	M6502::M6502(bool HLE, bool BCD_Hack)
 	{
 		HLE_Mode = HLE;
 
@@ -19,6 +19,7 @@ namespace M6502Core
 		addr_bus = new AddressBus(this);
 		regs = new Regs(this);
 		alu = new ALU(this);
+		alu->SetBCDHack(BCD_Hack);
 		pc = new ProgramCounter(this, HLE_Mode);
 		data_bus = new DataBus(this);
 	}

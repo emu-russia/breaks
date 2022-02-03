@@ -6,7 +6,7 @@ namespace Breaknes
 {
 	Famicom::Famicom()
 	{
-		core = new M6502Core::M6502(false);
+		core = new M6502Core::M6502(false, true);
 	}
 
 	Famicom::~Famicom()

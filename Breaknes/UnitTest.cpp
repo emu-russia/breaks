@@ -8,7 +8,7 @@ namespace M6502CoreUnitTest
 {
 	UnitTest::UnitTest()
 	{
-		core = new M6502(false);
+		core = new M6502(false, false);
 	}
 
 	UnitTest::~UnitTest()
