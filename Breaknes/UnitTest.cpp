@@ -191,7 +191,6 @@ namespace M6502CoreUnitTest
 		ResetALUInputs(op);
 		core->cmd.SB_ADD = 1;
 		core->cmd.DB_ADD = 1;
-
 		core->alu->sim_Load();
 
 		uint8_t ai = core->alu->getAI();
@@ -213,19 +212,26 @@ namespace M6502CoreUnitTest
 
 		ResetALUInputs(op);
 		core->wire.PHI2 = TriState::One;
-		core->cmd.ADD_SB06 = 1;
-		core->cmd.ADD_SB7 = 1;
 		core->cmd.n_ACIN = carry ? 0 : 1;
 		core->cmd.n_DAA = bcd ? 0 : 1;
+		core->alu->sim();
 
+		ResetALUInputs(op);
+		core->cmd.ADD_SB06 = 1;
+		core->cmd.ADD_SB7 = 1;
+		core->alu->sim_StoreADD();
+
+		ResetALUInputs(op);
+		core->wire.PHI2 = TriState::Zero;
+		core->cmd.SB_AC = 1;
+		core->cmd.n_ACIN = carry ? 0 : 1;
+		core->cmd.n_DAA = bcd ? 0 : 1;
 		core->alu->sim();
 
 		// Store
 
 		ResetALUInputs(op);
-		core->cmd.SB_AC = 1;
 		core->cmd.AC_DB = 1;
-
 		core->alu->sim_StoreAC();
 
 		// Check
