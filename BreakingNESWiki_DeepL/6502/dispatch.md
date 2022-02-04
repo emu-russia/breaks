@@ -9,7 +9,7 @@ The execution logic consists of the following circuits:
 - Processor readiness control
 - R/W contact control
 - Short instruction cycle counter (T0-T1)
-- Cycle counter for very long instructions (T5-T6)
+- Cycle counter for very long instructions (RMW T6-T7)
 - Instruction completion circuit
 - ACR latch
 - Program counter (PC) increment circuit
@@ -49,7 +49,7 @@ The `/ready` is the global ready signal of the processor, derived from the `RDY`
 
 ![dispatch_long_cycle_tran](/BreakingNESWiki/imgstore/dispatch_long_cycle_tran.jpg)
 
-- T5, T6: The processor is in cycle T5/T6
+- T5, T6: The processor is in the RMW cycle T6/T7 (the signal names T5/T6 are old, but we will not rename them anymore)
 
 ## Instruction Completion
 
