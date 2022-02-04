@@ -19,6 +19,7 @@ namespace M6502CoreUnitTest
 
 		void ResetALUInputs(ALU_Operation op);
 		int TestCompute(uint8_t a, uint8_t b, uint8_t expected, ALU_Operation op, bool bcd, bool carry);
+		size_t BCD_Add(size_t a, size_t b, bool carry_in);
 
 		M6502Core::M6502 *core;
 

@@ -177,6 +177,23 @@ namespace M6502CoreUnitTest
 		core->cmd.n_DSA = 1;
 	}
 
+	size_t UnitTest::BCD_Add(size_t a, size_t b, bool carry_in)
+	{
+		// BCD addition looks something like this. 
+
+		size_t low = (a & 0xf) + (b & 0xf);
+		if (carry_in) low++;
+		bool low_carry = low > 9;
+		if (low_carry) low += 6;
+		size_t hi = ((a >> 4) & 0xf) + ((b >> 4) & 0xf);
+		if (low_carry) hi++;
+		bool hi_carry = hi > 9;
+		if (hi_carry) hi += 6;
+		size_t bcd_res = (low & 0xf) | (hi << 4);
+
+		return bcd_res;
+	}
+
 	int UnitTest::TestCompute(uint8_t a, uint8_t b, uint8_t expected, ALU_Operation op, bool bcd, bool carry)
 	{
 		// The value a is loaded on the SB bus (SB/ADD) and the value b is loaded on the DB bus (DB/ADD).
@@ -323,18 +340,36 @@ namespace M6502CoreUnitTest
 				if ((b & 0xf) > 9 || (b & 0xf0) > 0x90)
 					continue;
 
-				// BCD addition looks something like this. 
-
-				size_t low = (a & 0xf) + (b & 0xf);
-				bool low_carry = low > 9;
-				if (low_carry) low += 6;
-				size_t hi = ((a >> 4) & 0xf) + ((b >> 4) & 0xf);
-				if (low_carry) hi++;
-				bool hi_carry = hi > 9;
-				if (hi_carry) hi += 6;
-				size_t bcd_res = (low & 0xf) | (hi << 4);
+				size_t bcd_res = BCD_Add(a, b, false);
 
 				int res = TestCompute((uint8_t)a, (uint8_t)b, (uint8_t)bcd_res, ALU_Operation::SUMS, true, false);
+				if (res != 0)
+				{
+					printf("Failed!\n");
+					return;
+				}
+			}
+		}
+		printf("OK!\n");
+
+		// BCD Add + Carry
+
+		printf("SUMS BCD Carry: ");
+		for (size_t a = 1; a <= 0x99; a++)
+		{
+			// Skip numbers that are not in the BCD
+
+			if ((a & 0xf) > 9 || (a & 0xf0) > 0x90)
+				continue;
+
+			for (size_t b = 1; b <= 0x99; b++)
+			{
+				if ((b & 0xf) > 9 || (b & 0xf0) > 0x90)
+					continue;
+
+				size_t bcd_res = BCD_Add(a, b, true);
+
+				int res = TestCompute((uint8_t)a, (uint8_t)b, (uint8_t)bcd_res, ALU_Operation::SUMS, true, true);
 				if (res != 0)
 				{
 					printf("Failed!\n");
