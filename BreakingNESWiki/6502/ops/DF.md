@@ -6,7 +6,7 @@
 
 ## Quick Outline
 
-|T|PHI1|PHI2|Notes|
+|T|PHI1 (Set Address)|PHI2 (Read/Write Data)|Notes|
 |---|---|---|---|
 |T2|![DF_UB_T2_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T2_PHI1.jpg)|![DF_UB_T2_PHI2](/BreakingNESWiki/imgstore/ops/DF_UB_T2_PHI2.jpg)| |
 |T3|![DF_UB_T3_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T3_PHI1.jpg)|![DF_UB_T3_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T3_PHI2.jpg)| |
