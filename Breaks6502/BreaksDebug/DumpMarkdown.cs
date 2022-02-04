@@ -56,9 +56,13 @@ namespace BreaksDebug
             }
             else
             {
-                if (internals.T6 != 0)
+                if (internals.T5 != 0)
                 {
-                    Tx = "T6";
+                    Tx = "T6_RMW";
+                }
+                else if (internals.T6 != 0)
+                {
+                    Tx = "T7_RMW";
                 }
                 else
                 {
