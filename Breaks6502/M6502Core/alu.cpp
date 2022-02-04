@@ -63,6 +63,16 @@ namespace M6502Core
 
 				if (n == 3 && !BCD_Hack)
 				{
+#if 0 // ttlworks
+					TriState Ci1_ = AND( NOT(nors[0]), OR(NOT(n_ACIN), NOT(nands[0])) );
+					t1 = AND3(Ci1_, NOT(nors[2]), NOT(nands[1]));
+					n4[0] = Ci1_;
+					n4[1] = NOT(nands[1]);
+					n4[2] = eors[1];
+					n4[3] = eors[2];
+					t2 = OR(NOT(nands[2]), eors[3]);
+					DC3 = AND( NOT(n_DAA), OR(t1, AND(NOT(NOR4(n4)), t2)) );
+#else
 					n4[0] = AND(NAND(n_ACIN, nands[0]), NOT(nors[0]));
 					n4[1] = NOR(NOT(nands[2]), nors[2]);
 					n4[2] = NOT(nands[1]);
@@ -70,6 +80,7 @@ namespace M6502Core
 					t1 = NOR(NOR(NOT(nands[2]), eors[3]), NOR4(n4));
 					t2 = NOR(nors[2], NAND(NOT(nands[1]), n4[0]));
 					DC3 = AND(OR(t1, t2), NOT(n_DAA));
+#endif
 
 					carry[3] = AND(carry[3], NOT(DC3));
 				}
@@ -78,6 +89,15 @@ namespace M6502Core
 				{
 					if (!BCD_Hack)
 					{
+#if 0 // ttlworks
+						t1 = AND3(carry[4], NOT(nands[5]), eors[6]);
+						n4[0] = carry[4];
+						n4[1] = NOT(nands[5]);
+						n4[2] = eors[6];
+						n4[3] = eors[5];
+						t2 = OR(NOT(nands[6]), eors[7]);
+						DC7 = AND( NOT(n_DAA), OR(t1, AND(NOT(NOR4(n4)), t2)) );
+#else
 						n4[0] = carry[4];
 						n4[1] = NOT(nands[5]);
 						n4[2] = eors[5];
@@ -85,6 +105,7 @@ namespace M6502Core
 						t1 = NOR(NOR(eors[7], NOT(nands[6])), NOR4(n4));
 						t2 = NOR(NOT(eors[6]), NAND(NOT(nands[5]), carry[4]));
 						DC7 = AND(OR(t1, t2), NOT(n_DAA));
+#endif
 					}
 					else
 					{
