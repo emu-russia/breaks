@@ -1,5 +1,8 @@
 # DCP abs, x (0xDF 0x00 0x00)
 
+- Illegal opcode
+- Sequence: T2, T3, T4, T5+T6, T7, T0, T1
+
 ## UB (0xDF), T2 (PHI1)
 
 |Component/Signal|State|
@@ -228,7 +231,7 @@
 
 ![DF_UB_T4_PHI2](/BreakingNESWiki/imgstore/ops/DF_UB_T4_PHI2.jpg)
 
-## UB (0xDF), T5 (PHI1)
+## UB (0xDF), T5+T6_RMW (PHI1)
 
 |Component/Signal|State|
 |---|---|
@@ -266,7 +269,7 @@
 
 ![DF_UB_T5_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T5_PHI1.jpg)
 
-## UB (0xDF), T5 (PHI2)
+## UB (0xDF), T5+T6_RMW (PHI2)
 
 |Component/Signal|State|
 |---|---|
