@@ -1,7 +1,7 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
 
-M6502Core::M6502 cpu(false);
+M6502Core::M6502 cpu(false, false);
 
 using namespace BaseLogic;
 

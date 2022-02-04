@@ -21,7 +21,7 @@ namespace M6502Core
 		BaseLogic::DLatch ACLatch;
 		BaseLogic::DLatch AVRLatch;
 
-		bool BCD_Hack = true;		// BCD correction hack for NES/Famicom.
+		bool BCD_Hack = false;		// BCD correction hack for NES/Famicom.
 
 		M6502* core = nullptr;
 
@@ -49,5 +49,7 @@ namespace M6502Core
 		uint8_t getBI();
 		uint8_t getADD();
 		uint8_t getAC();
+
+		void SetBCDHack(bool enable) { BCD_Hack = enable; }
 	};
 }
