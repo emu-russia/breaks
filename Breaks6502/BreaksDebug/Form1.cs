@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Be.Windows.Forms;
 using System.IO;
-using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace BreaksDebug
 {
@@ -101,7 +101,8 @@ namespace BreaksDebug
                 Console.WriteLine("Running UnitTest from " + TestInputJson);
 
                 string json = File.ReadAllText(TestInputJson);
-                testParam = JsonSerializer.Deserialize<UnitTestParam>(json);
+
+                testParam = JsonConvert.DeserializeObject<UnitTestParam>(json);
 
                 if (InitUnitTest() == 0)
                 {
@@ -231,7 +232,8 @@ namespace BreaksDebug
             res.V = regsBuses.V_OUT;
             res.N = regsBuses.N_OUT;
 
-            string json = JsonSerializer.Serialize<UnitTestResult>(res);
+            string json = JsonConvert.SerializeObject(res);
+
             File.WriteAllText(testParam.JsonResult, json);
 
             Close();
