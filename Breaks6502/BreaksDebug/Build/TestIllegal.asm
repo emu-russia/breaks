@@ -5,12 +5,12 @@ org $200
 Reset:
 
 	nop
-	byte  #$c3
+	byte  #$df 			; dcp  abs, x
 	byte  #$00
-	#byte  #$00
+	byte  #$00
 
 	nop
-	
+
 	brk
 
 org $fffa
