@@ -15,12 +15,14 @@ Each register bit is based on a trigger, loading and unloading of values on the 
 - SB/Y: Load the Y register value from the SB bus
 - X/SB: Place the value of the register X on the SB bus
 - SB/X: Load the X register value from the SB bus
-- S/ADL: Place the value of register S on the ADL bus
-- S/SB: Place the S register value onto the SB bus
-- SB/S: Load the S register value from the SB bus
+- S/ADL: Place the old S register value on the ADL bus
+- S/SB: Place the old S register value on the SB bus
+- SB/S: Load the new S register value from the SB bus
 - S/S: Refresh S register, active when SB/S = 0
 
 So the registers can only connect to two buses: SB and ADL.
+
+:warning: Pay special attention to the design of the S register. It has an input latch (to load a new value) and an output latch (to save the old value). Loading the new value (SB/S) and saving the old value (S/ADL) can happen simultaneously.
 
 ## Logic
 
