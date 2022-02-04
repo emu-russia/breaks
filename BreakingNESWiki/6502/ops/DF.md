@@ -1,7 +1,20 @@
 # DCP abs, x (0xDF 0x00 0x00)
 
-- Illegal opcode
-- Sequence: T2, T3, T4, T5+T6, T7, T0, T1
+- Illegal opcode (behavior is undefined)
+- Size: 3
+- Sequence (7 total): T2, T3, T4, T5+T6, T7, T0, T1
+
+## Quick Outline
+
+|T|PHI1|PHI2|Notes|
+|---|---|---|---|
+|T2|![DF_UB_T2_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T2_PHI1.jpg)|![DF_UB_T2_PHI2](/BreakingNESWiki/imgstore/ops/DF_UB_T2_PHI2.jpg)| |
+|T3|![DF_UB_T3_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T3_PHI1.jpg)|![DF_UB_T3_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T3_PHI2.jpg)| |
+|T4|![DF_UB_T4_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T4_PHI1.jpg)|![DF_UB_T4_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T4_PHI2.jpg)| |
+|T5+T6|![DF_UB_T5_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T5_PHI1.jpg)|![DF_UB_T5_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T5_PHI2.jpg)| |
+|T7|![DF_UB_T7_RMW_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T7_RMW_PHI1.jpg)|![DF_UB_T7_RMW_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T7_RMW_PHI2.jpg)| |
+|T0|![DF_UB_T0_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T0_PHI1.jpg)|![DF_UB_T0_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T0_PHI2.jpg)| |
+|T1|![DF_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T1_PHI1.jpg)|![DF_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T1_PHI2.jpg)| |
 
 ## UB (0xDF), T2 (PHI1)
 
@@ -534,3 +547,39 @@
 |ADH|0x02|
 
 ![DF_UB_T1_PHI2](/BreakingNESWiki/imgstore/ops/DF_UB_T1_PHI2.jpg)
+
+## Next PHI1. NOP (0xEA), T02 (PHI1)
+
+|Component/Signal|State|
+|---|---|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 0, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
+|Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 0, /T3: 1, /T4: 1, /T5: 1|
+|Decoder|28: T2, 34: T0 ANY, 44: INC NOP (TX), 83: ABS/2, 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX), 128: IMPL|
+|Commands|S_S, DB_ADD, SB_ADD, SUMS, ADD_SB7, ADD_SB06, ADH_PCH, PCH_ADH, ADL_PCL, PCL_ADL, ADH_ABH, ADL_ABL, SB_DB, DBZ_Z, DB_N, ACR_C|
+|ALU Carry In|0|
+|DAA|0|
+|DSA|0|
+|Increment PC|0|
+|Regs||
+|IR|0xEA|
+|PD|0xEA|
+|Y|0x00|
+|X|0x00|
+|S|0xFD|
+|AI|0x0A|
+|BI|0x0A|
+|ADD|0x0A|
+|AC|0x0A|
+|PCL|0x05|
+|PCH|0x02|
+|ABL|0x05|
+|ABH|0x02|
+|DL|0xEA|
+|DOR|0x0A|
+|Flags|C: 1, Z: 0, I: 1, D: 0, B: 1, V: 0, N: 0|
+|Buses||
+|SB|0x0A|
+|DB|0x0A|
+|ADL|0x05|
+|ADH|0x02|
