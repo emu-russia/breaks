@@ -31,7 +31,7 @@ So the registers can only connect to two buses: SB and ADL.
 - During PHI1 the X and Y registers output their value to the SB bus / are overloaded with new values from the SB bus.
 - The S register has an input latch and an output latch. During PHI1 the value from the output latch is placed on the SB or ADL buses and the input latch is either loaded with a new value from the SB bus or refreshed from the output latch (S/S).
 - During PHI2 the X and Y registers "store" their old value as the control signals disconnect them from the bus.
-- The S register simply outputs its value to the S or ADL bus during PHI2. The input latch is overridden because the exchange commands are disabled during PHI2.
+- The S register simply outputs its value to the S or ADL bus during PHI2. The input latch is blocked because the exchange commands are disabled during PHI2.
 
 The SB and ADL buses are precharged during PHI2. This is done because it takes longer to "charge" the bus than to "discharge" it. Therefore, when the bus is not needed - it is precharged, so that it does not have "floating" values.
 If the value placed on the bus is 1, then the bus is already prepared ("charged") in advance. If the value placed on the bus is 0, then the bus is "discharged" to ground.
