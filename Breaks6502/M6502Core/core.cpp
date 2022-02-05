@@ -283,11 +283,12 @@ namespace M6502Core
 			ADH_Dirty = false;
 		}
 
-		// To stabilize latches, the top part is simulated twice.
+		// To stabilize latches, both parts are simulated twice.
 
 		sim_Top(inputs, data_bus);
 		sim_Bottom(inputs, outputs, addr_bus, data_bus);
 		sim_Top(inputs, data_bus);
+		sim_Bottom(inputs, outputs, addr_bus, data_bus);
 	}
 
 	void M6502::getDebug(DebugInfo* info)
