@@ -17,7 +17,7 @@ You must use Debug/Release x86/x64 configuration to build. AnyCPU is not suitabl
 
 Just don't forget to switch back to Any CPU when you need to edit forms. Microsoft has a problem with this.
 
-It is also necessary to install all packages using NuGet (see packages.config). In fact, only System.Text.Json is needed, but it drags a whole bunch of junk along with it.
+It is also necessary to install all packages using NuGet (see packages.config).
 
 ## Processor State Dump for Wiki
 
