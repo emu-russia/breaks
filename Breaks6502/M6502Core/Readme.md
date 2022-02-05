@@ -58,4 +58,4 @@ To optimize random logic, you can do the following:
 - Using the hash of the decoder outputs, recompile (by JITC) each part of the random logic (ALU, Bus, Regs, PC, Flags Controls)
 - In the runtime instead of executing the whole circuit, call the recompiled piece of code from the hash of the decoder, which will run faster
 
-Besides, now top part is simulated 2 times every half cycle, to stabilize latches.
+Besides, now both parts are simulated 2 times every half cycle, to stabilize latches.
