@@ -4,6 +4,8 @@ org $200
 
 Reset:
 
+	jmp Test_ATX
+
 ; DCP Tests ripped from nestest.nes
 
 	LDA #$FF
@@ -88,6 +90,16 @@ GoodDCP:
 
 BadDCP:
 	brk
+
+; AND byte with accumulator, then transfer accumulator to X register.
+; Status flags: N,Z
+
+Test_ATX:
+	lda   #$12
+	byte  #$AB
+	byte  #$ab
+	nop
+
 
 org $fffa
 word Reset
