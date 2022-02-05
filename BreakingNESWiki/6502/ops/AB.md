@@ -9,7 +9,7 @@
 |T|PHI1 (Set Address)|PHI2 (Read/Write Data)|Notes|
 |---|---|---|---|
 |T0+T2|![AB_UB_T02_PHI1](/BreakingNESWiki/imgstore/ops/AB_UB_T02_PHI1.jpg)|![AB_UB_T02_PHI2](/BreakingNESWiki/imgstore/ops/AB_UB_T02_PHI2.jpg)|Addr = PC++; MemRead(). Loading an operand in the DL.|
-|T1|![AB_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/AB_UB_T1_PHI1.jpg)|![AB_UB_T1_PHI2](/BreakingNESWiki/imgstore/ops/AB_UB_T1_PHI2.jpg)|Addr = PC++; SB = DL & AC; X = SB; SetFlags(N,Z). See below for details.|
+|T1|![AB_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/AB_UB_T1_PHI1.jpg)|![AB_UB_T1_PHI2](/BreakingNESWiki/imgstore/ops/AB_UB_T1_PHI2.jpg)|Addr = PC++; SB = DL & AC; X = SB; SetFlags(N,Z). MemRead(). See below for details.|
 
 ## UB (0xAB), T02 (PHI1)
 
