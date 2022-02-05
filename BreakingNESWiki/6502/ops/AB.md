@@ -8,8 +8,8 @@
 
 |T|PHI1 (Set Address)|PHI2 (Read/Write Data)|Notes|
 |---|---|---|---|
-|T0+T2|![AB_UB_T02_PHI1](/BreakingNESWiki/imgstore/ops/AB_UB_T02_PHI1.jpg)|![AB_UB_T02_PHI2](/BreakingNESWiki/imgstore/ops/AB_UB_T02_PHI2.jpg)| |
-|T1|![AB_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/AB_UB_T1_PHI1.jpg)|![AB_UB_T1_PHI2](/BreakingNESWiki/imgstore/ops/AB_UB_T1_PHI2.jpg)| |
+|T0+T2|![AB_UB_T02_PHI1](/BreakingNESWiki/imgstore/ops/AB_UB_T02_PHI1.jpg)|![AB_UB_T02_PHI2](/BreakingNESWiki/imgstore/ops/AB_UB_T02_PHI2.jpg)|Addr = PC++; MemRead(). Loading an operand in the DL.|
+|T1|![AB_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/AB_UB_T1_PHI1.jpg)|![AB_UB_T1_PHI2](/BreakingNESWiki/imgstore/ops/AB_UB_T1_PHI2.jpg)|Addr = PC++; SB = DL & AC; X = SB; SetFlags(N,Z). See below for details.|
 
 ## UB (0xAB), T02 (PHI1)
 
@@ -124,6 +124,13 @@
 |ADH|0x02|
 
 ![AB_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/AB_UB_T1_PHI1.jpg)
+
+This is where the special magic happens:
+- The operand value that is stored on the DL is placed on the DB bus
+- The current accumulator value (AC) is put on the SB bus
+- The SB and DB buses are multiplexed (SB_DB command) with a conflict. Both buses take the value `DL & AC` according to the "ground wins" rule.
+- The resulting value from the now common SB-DB bus is loaded into the X register and back to AC
+- The flags Z and N are set according to the value of the common SB-DB bus (DBZ_Z, DB_N commands)
 
 ## UB (0xAB), T1 (PHI2)
 
