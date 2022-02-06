@@ -17,7 +17,7 @@ You must use Debug/Release x86/x64 configuration to build. AnyCPU is not suitabl
 
 Just don't forget to switch back to Any CPU when you need to edit forms. Microsoft has a problem with this.
 
-It is also necessary to install all packages using NuGet (see packages.config). In fact, only System.Text.Json is needed, but it drags a whole bunch of junk along with it.
+It is also necessary to install all packages using NuGet (see packages.config).
 
 ## Processor State Dump for Wiki
 
@@ -81,6 +81,8 @@ To run the debugger in unit test mode, you need to create a JSON like this:
 	"RunUntilBrk": true,
 	"RunCycleAmount": true,
 	"CycleMax": 10000,
+	"RunUntilPC": true,
+	"PC": "0x3469",
 	"DumpMem": true,
 	"JsonResult": "res.json",
 	"MemDumpOutput": "mem2.bin"

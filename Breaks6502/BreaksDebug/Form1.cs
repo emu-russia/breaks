@@ -41,6 +41,8 @@ namespace BreaksDebug
             public bool RunUntilBrk = true;
             public bool RunCycleAmount = true;
             public int CycleMax = 10000;
+            public bool RunUntilPC = false;
+            public string PC = "0x0";
             public bool DumpMem = true;
             public string JsonResult = "res.json";
             public string MemDumpOutput = "mem2.bin";
@@ -190,6 +192,8 @@ namespace BreaksDebug
 
         void StartUnitTest()
         {
+            ushort BreakOnPC = (ushort)Strtol(testParam.PC);
+
             while (true)
             {
                 Step();
@@ -201,6 +205,10 @@ namespace BreaksDebug
 
                 var regsBuses = sys.GetRegsBuses();
                 if (regsBuses.IRForDisasm == 0x00 && testParam.RunUntilBrk)
+                {
+                    break;
+                }
+                if (regsBuses.PCForUnitTest == BreakOnPC && testParam.RunUntilPC)
                 {
                     break;
                 }
