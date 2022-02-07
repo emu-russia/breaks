@@ -383,9 +383,12 @@ namespace BreaksDebug
         public CpuPads cpu_pads = new CpuPads();
         CpuDebugInfoRaw info = new CpuDebugInfoRaw();
 
-        public void Step()
+        public void Step(bool trace)
         {
-            Console.WriteLine("Step");
+            if (trace)
+            {
+                Console.WriteLine("Step");
+            }
 
             cpu_pads.PHI0 = CLK;
 
@@ -397,7 +400,7 @@ namespace BreaksDebug
             if (cpu_pads.PHI1 == 1)
             {
                 // Although all memory operations are performed only during PHI2, a check is made here on PHI1, since the output of PHI2 is not yet set by the simulator.
-                MemRead();
+                MemRead(trace);
             }
 
             CpuPadsRaw pads = SerializePads (cpu_pads);
@@ -408,7 +411,7 @@ namespace BreaksDebug
 
             if (cpu_pads.PHI2 == 1)
             {
-                MemWrite();
+                MemWrite(trace);
             }
 
             // Clockgen
@@ -444,7 +447,7 @@ namespace BreaksDebug
             memMap = map;
         }
 
-        void MemRead()
+        void MemRead(bool trace)
         {
             if (cpu_pads.RnW == 1)
             {
@@ -456,16 +459,22 @@ namespace BreaksDebug
                     (address >= memMap.RomStart && address < (memMap.RomStart + memMap.RomSize)) )
                 {
                     cpu_pads.D = mem.ReadByte(address);
-                    Console.WriteLine("CPU Read " + address.ToString("X4") + " " + cpu_pads.D.ToString("X2"));
+                    if (trace)
+                    {
+                        Console.WriteLine("CPU Read " + address.ToString("X4") + " " + cpu_pads.D.ToString("X2"));
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("CPU Read " + address.ToString("X4") + " ignored");
+                    if (trace)
+                    {
+                        Console.WriteLine("CPU Read " + address.ToString("X4") + " ignored");
+                    }
                 }
             }
         }
 
-        void MemWrite()
+        void MemWrite(bool trace)
         {
             if (cpu_pads.RnW == 0)
             {
@@ -476,11 +485,17 @@ namespace BreaksDebug
                 if (address >= memMap.RamStart && address < (memMap.RamStart + memMap.RamSize))
                 {
                     mem.WriteByte(address, cpu_pads.D);
-                    Console.WriteLine("CPU Write " + address.ToString("X4") + " " + cpu_pads.D.ToString("X2"));
+                    if (trace)
+                    {
+                        Console.WriteLine("CPU Write " + address.ToString("X4") + " " + cpu_pads.D.ToString("X2"));
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("CPU Write " + address.ToString("X4") + " ignored");
+                    if (trace)
+                    {
+                        Console.WriteLine("CPU Write " + address.ToString("X4") + " ignored");
+                    }
                 }
             }
         }
