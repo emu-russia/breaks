@@ -43,6 +43,8 @@ namespace BreaksDebug
             public int CycleMax = 10000;
             public bool RunUntilPC = false;
             public string PC = "0x0";
+            public bool TraceMemOps = true;
+            public bool TraceCLK = true;
             public bool DumpMem = true;
             public string JsonResult = "res.json";
             public string MemDumpOutput = "mem2.bin";
@@ -61,11 +63,14 @@ namespace BreaksDebug
             public int D { get; set; } = 0;
             public int V { get; set; } = 0;
             public int N { get; set; } = 0;
+            public UInt64 CLK { get; set; } = 0;
         }
 
         bool UnitTestMode = false;
         string TestInputJson;
         UnitTestParam testParam;
+        UInt64 UnitTestPhiCounter = 0;
+        UInt64 UnitTestPhiTraceCounter = 0;
 
         public Form1()
         {
@@ -197,6 +202,17 @@ namespace BreaksDebug
             while (true)
             {
                 Step();
+                UnitTestPhiCounter++;
+                UnitTestPhiTraceCounter++;
+                if (UnitTestPhiTraceCounter > 1000000 * 2)
+                {
+                    // Output statistics every million cycles
+                    if (testParam.TraceCLK)
+                    {
+                        Console.WriteLine("CLK: " + (UnitTestPhiCounter / 2).ToString());
+                    }
+                    UnitTestPhiTraceCounter = 0;
+                }
 
                 if (sys.Cycle >= testParam.CycleMax && testParam.RunCycleAmount)
                 {
@@ -239,6 +255,7 @@ namespace BreaksDebug
             res.D = regsBuses.D_OUT;
             res.V = regsBuses.V_OUT;
             res.N = regsBuses.N_OUT;
+            res.CLK = UnitTestPhiCounter / 2;
 
             string json = JsonConvert.SerializeObject(res);
 
@@ -270,7 +287,14 @@ namespace BreaksDebug
 
         void Step()
         {
-            sys.Step();
+            bool trace = true;
+
+            if (UnitTestMode)
+            {
+                trace = testParam.TraceMemOps;
+            }
+
+            sys.Step(trace);
             if (!UnitTestMode)
             {
                 UpdateAll();

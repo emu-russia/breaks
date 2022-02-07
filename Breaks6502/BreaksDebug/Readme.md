@@ -83,6 +83,8 @@ To run the debugger in unit test mode, you need to create a JSON like this:
 	"CycleMax": 10000,
 	"RunUntilPC": true,
 	"PC": "0x3469",
+	"TraceMemOps": false,
+	"TraceCLK": true,
 	"DumpMem": true,
 	"JsonResult": "res.json",
 	"MemDumpOutput": "mem2.bin"
