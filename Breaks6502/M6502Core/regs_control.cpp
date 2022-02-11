@@ -67,13 +67,26 @@ namespace M6502Core
 
 		// Outputs
 
-		core->cmd.Y_SB = NOR(ysb_latch.get(), PHI2);
-		core->cmd.X_SB = NOR(xsb_latch.get(), PHI2);
+		if (PHI2 == TriState::One)
+		{
+			core->cmd.Y_SB = 0;
+			core->cmd.X_SB = 0;
+			core->cmd.SB_X = 0;
+			core->cmd.SB_Y = 0;
+			core->cmd.SB_S = 0;
+			core->cmd.S_S = 0;
+		}
+		else
+		{
+			core->cmd.Y_SB = NOT(ysb_latch.get());
+			core->cmd.X_SB = NOT(xsb_latch.get());
+			core->cmd.SB_X = NOT(sbx_latch.get());
+			core->cmd.SB_Y = NOT(sby_latch.get());
+			core->cmd.SB_S = NOT(sbs_latch.get());
+			core->cmd.S_S = NOT(ss_latch.get());
+		}
+
 		core->cmd.S_SB = ssb_latch.nget();
-		core->cmd.SB_X = NOR(sbx_latch.get(), PHI2);
-		core->cmd.SB_Y = NOR(sby_latch.get(), PHI2);
-		core->cmd.SB_S = NOR(sbs_latch.get(), PHI2);
-		core->cmd.S_S = NOR(ss_latch.get(), PHI2);
 		core->cmd.S_ADL = sadl_latch.nget();
 	}
 
