@@ -92,10 +92,21 @@ namespace M6502Core
 		core->cmd.PCH_DB = pch_db_latch2.nget();
 		core->cmd.PCL_ADL = pcl_adl_latch.nget();
 		core->cmd.PCH_ADH = pch_adh_latch.nget();
-		core->cmd.PCL_PCL = NOR(pcl_pcl_latch.get(), PHI2);
-		core->cmd.ADL_PCL = NOR(adl_pcl_latch.get(), PHI2);
-		core->cmd.ADH_PCH = NOR(adh_pch_latch.get(), PHI2);
-		core->cmd.PCH_PCH = NOR(pch_pch_latch.get(), PHI2);
+
+		if (PHI2 == TriState::One)
+		{
+			core->cmd.PCL_PCL = 0;
+			core->cmd.ADL_PCL = 0;
+			core->cmd.ADH_PCH = 0;
+			core->cmd.PCH_PCH = 0;
+		}
+		else
+		{
+			core->cmd.PCL_PCL = NOT(pcl_pcl_latch.get());
+			core->cmd.ADL_PCL = NOT(adl_pcl_latch.get());
+			core->cmd.ADH_PCH = NOT(adh_pch_latch.get());
+			core->cmd.PCH_PCH = NOT(pch_pch_latch.get());
+		}
 
 		// For dispatcher
 

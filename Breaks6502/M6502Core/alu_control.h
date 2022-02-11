@@ -2,6 +2,19 @@
 
 namespace M6502Core
 {
+	union CarryBCD_TempWire
+	{
+		struct
+		{
+			unsigned n_ADL_ADD : 1;
+			unsigned n_ADL_ADD_Derived : 1;
+			unsigned INC_SB : 1;
+			unsigned BRX : 1;
+			unsigned CSET : 1;
+		};
+		uint8_t bits;
+	};
+
 	class ALUControl
 	{
 		BaseLogic::DLatch acin_latch1;
@@ -48,9 +61,26 @@ namespace M6502Core
 
 		M6502* core = nullptr;
 
+		BaseLogic::TriState STKOP = BaseLogic::TriState::Zero;
+		BaseLogic::TriState n_ADL_ADD = BaseLogic::TriState::Zero;
+		BaseLogic::TriState INC_SB = BaseLogic::TriState::Zero;
+		BaseLogic::TriState BRX = BaseLogic::TriState::Zero;
+		BaseLogic::TriState n_ADD_SB7 = BaseLogic::TriState::Zero;
+
+		CarryBCD_TempWire temp_tab1[1 << 19];
+		CarryBCD_TempWire prev_temp1;
+
+		CarryBCD_TempWire PreCalc1(uint8_t ir, bool n_T0, bool n_T1X, bool n_T2, bool n_T3, bool n_T4, bool n_T5, 
+			bool n_ready, bool T0, bool T5, bool BRFW, bool n_C_OUT);
+
 	public:
 
-		ALUControl(M6502* parent) { core = parent; }
+		ALUControl(M6502* parent);
+
+		void sim_CarryBCD();
+		void sim_ALUInput();
+		void sim_ALUOps();
+		void sim_ADDOut();
 
 		void sim();
 	};
