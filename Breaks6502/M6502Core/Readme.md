@@ -53,9 +53,4 @@ The following approaches are used for optimization:
 
 The bottleneck is random logic, which consumes 50-60% of computing time.
 
-To optimize random logic, you can do the following:
-- Precalculate a hash for each combination of decoder outputs, to use as a key. The packed value of the decoder inputs (TX + IR) can be used as a hash.
-- Using the hash of the decoder outputs, recompile (by JITC) each part of the random logic (ALU, Bus, Regs, PC, Flags Controls)
-- In the runtime instead of executing the whole circuit, call the recompiled piece of code from the hash of the decoder, which will run faster
-
 Besides, now both parts are simulated 2 times every half cycle, to stabilize latches.

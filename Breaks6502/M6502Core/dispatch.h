@@ -2,35 +2,6 @@
 
 namespace M6502Core
 {
-	// Some of the outputs from the earlier stages of the dispatcher are used as inputs for later stages.
-	// Signals are sorted, if possible, in order from earlier use, to later use.
-
-	enum class Dispatcher_Input
-	{
-		PHI1 = 0,
-		PHI2,
-		RDY,
-		DORES,
-		B_OUT,
-		ACR,
-
-		RESP,
-		BRK6E,
-		BRFW,
-		n_BRTAKEN,
-		n_TWOCYCLE,
-		n_IMPLIED,
-		PC_DB,
-		n_ADL_PCL,
-		n_ready,
-		T0,
-		T5,
-		T6,
-		ACRL1,
-		ACRL2,
-		Max,
-	};
-
 	class Dispatcher
 	{
 		BaseLogic::DLatch acr_latch1;
