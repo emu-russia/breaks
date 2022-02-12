@@ -35,7 +35,7 @@
 
 ![RW_DECODE](/BreakingNESWiki/imgstore/apu/RW_DECODE.png)
 
-![REG_SELECT](/BreakingNESWiki/imgstore/apu/REG_SELECT.png)
+![REG_SELECT](/BreakingNESWiki/imgstore/apu/REG_SELECT.jpg)
 
 ## Отладочные регистры
 
