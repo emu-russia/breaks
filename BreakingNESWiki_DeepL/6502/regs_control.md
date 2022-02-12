@@ -22,7 +22,7 @@ Outputs:
 
 |Signal|Description|
 |---|---|
-|SBXY|Intermediate signal for [bus control circuitry](bus_control.md)|
+|SBXY|Intermediate signal for [bus control circuitry](bus_control.md). This signal is actually in inverse logic (`#SBXY`)|
 |STXY|Intermediate signal for bus control circuitry|
 |STKOP|Intermediate signal ("Stack Operation") for the [ALU control circuit](alu_control.md)|
 |#Y/SB|Intermediate signal to latch, to obtain a Y/SB command|
