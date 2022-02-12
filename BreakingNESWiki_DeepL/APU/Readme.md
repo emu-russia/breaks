@@ -2,7 +2,7 @@
 
 **APU** is the unofficial name for the specialized NES CPU.
 
-The official name is MPU (Microprocessor Unit), but we will stick to the unofficial term. Sometimes APU is also found under the abbreviation "pAPU" (Pseudo-APU).
+The official name is MPU (Microprocessor Unit) or just CPU, but we will stick to the unofficial term. Sometimes APU is also found under the abbreviation "pAPU".
 
 The chip was developed by [Ricoh](../Ricoh.md), chip names are RP2A03 for NTSC and RP2A07 for PAL.
 
@@ -18,7 +18,7 @@ The APU includes:
 - I/O ports (which are used to receive data from controllers in NES)
 - Debug registers (not available on Retail consoles)
 
-The DAC makes the APU a semi-analog circuit, but the digital outputs of the tone generators can be used for simulation.
+The DAC makes the APU a semi-analog circuit.
 
 Also to be taken into account is the fact that the 6502 core which is part of the APU is controlled by a DMA controller and therefore is a "common" device sharing the bus with other devices which use DMA.
 
