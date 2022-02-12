@@ -7,7 +7,7 @@ The study of any IC begins with the pinout.
 |Name|Number|Direction|Description|
 |---|---|---|---|
 |SND1|1|APU =>|DAC output of square channels (can be found under the name `AUX A`)|
-|SND2|2|APU =>|DAC output for the remaining channels (triangle, noise, and DAC) (can be found as `AUX B')|
+|SND2|2|APU =>|DAC output for the remaining channels (triangle, noise, and DAC) (can be found as `AUX B`)|
 |/RES|3|APU =>|Reset signal|
 |A0-A15|4-19|APU =>|Address bus|
 |GND|20| |Ground|
@@ -45,7 +45,7 @@ The value from the internal address bus is directly output to pins A0-A15 (witho
 
 ![pad_d](/BreakingNESWiki/imgstore/apu/pad_d.jpg)
 
-- `RD` and WR` are two complementary signals
+- `RD` and `WR` are two complementary signals
 - When `RD` equals 1 pins D0-D7 act as input
 - When `WR` is 1 pins D0-D7 act as output
 
