@@ -27,7 +27,7 @@ The study of any IC begins with the pinout.
 
 ## SND1/2
 
-Considered in the ![DAC](dac.md) section.
+Considered in the [DAC](dac.md) section.
 
 ## /RES
 
@@ -53,7 +53,7 @@ The internal and external data buses are connected directly (without buffering).
 
 ## CLK, DBG, M2
 
-Covered in the ![6502 core](core.md) section.
+Covered in the [6502 core](core.md) section.
 
 ## /IRQ
 
@@ -89,4 +89,4 @@ The pin design is not different from the D0-D7 pin design, except that the analo
 For some reason, the I/O ports of the APU work to the input during reset. TBD: Find out why this is done.
 
 The output value for contacts `/IN0-1` is the internal signals `/R4016` and `/R4017`.
-The output value for the `OUT0-2` pins is obtained from the internal signals `OUT0-2` (with the same name). The schematic of the formation of these signals can be found in ![6502 Core](core.md) section.
+The output value for the `OUT0-2` pins is obtained from the internal signals `OUT0-2` (with the same name). The schematic of the formation of these signals can be found in [6502 Core](core.md) section.
