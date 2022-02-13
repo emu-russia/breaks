@@ -4,15 +4,61 @@
 
 В данном разделе описаны особенности ядра и окружающей его вспомогательной логики, предназначенной для интеграции с остальными компонентами.
 
-## Делитель частоты
+В состав ядра 6502 и окружающей его логики входят следующие сущности:
+- Главный тактовый сигнал и делитель частоты
+- Привязка контактов ядра 6502 к остальной части APU
+- Ядро 6502
+- Декодер регистровых операций
+- Отладочные регистры
+- Внешние порты ввода/вывода
+
+## Главный тактовый сигнал
+
+Делитель частоты:
 
 ![CLK_DIVIDER_trans](/BreakingNESWiki/imgstore/apu/CLK_DIVIDER_trans.png)
 
+## Соединение 6502 и APU
+
+В данном разделе рассматриваются соединения контактов ядра 6502 с APU.
+
+### /NMI
+
+TBD.
+
+### /IRQ
+
+TBD.
+
+### RDY
+
+TBD.
+
+### /RES
+
+TBD.
+
+### PHI0, PHI1, PHI2
+
+TBD.
+
+### SO
+
+TBD.
+
+### R/W
+
+TBD.
+
+### D0-D7
+
+TBD.
+
+### A0-A15
+
+![cpu_a14_tran](/BreakingNESWiki/imgstore/apu/cpu_a14_tran.jpg)
+
 ## Встроенное ядро 6502
-
-### Соединение 6502 и APU
-
-### Различия между ядром 6502 APU и оригиналом
 
 Внешне ядро 6502 выглядит как копи-паста исходного процессора MOS в уменьшенном варианте.
 
@@ -31,9 +77,11 @@
 
 <img src="/BreakingNESWiki/imgstore/apu/2a03_6502_diff_sm.jpg" width="400px">
 
-## Выбор регистра
+## Регистровые операции
 
-![RW_DECODE](/BreakingNESWiki/imgstore/apu/RW_DECODE.png)
+![pdsel_tran](/BreakingNESWiki/imgstore/apu/pdsel_tran.jpg)
+
+![rw_decode](/BreakingNESWiki/imgstore/apu/rw_decode.jpg)
 
 ![reg_select](/BreakingNESWiki/imgstore/apu/reg_select.jpg)
 
@@ -47,4 +95,4 @@
 
 ## Порты ввода/вывода
 
-![io_tran](/BreakingNESWiki/imgstore/apu/io_tran.jpg)
+![out_tran](/BreakingNESWiki/imgstore/apu/out_tran.jpg)
