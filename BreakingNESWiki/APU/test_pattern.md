@@ -1,5 +1,7 @@
 # Тестовый паттерн
 
+![apu_locator_test](/BreakingNESWiki/imgstore/apu/apu_locator_test.jpg)
+
 ## 2A03G
 
 Тестовый паттерн для 2A03G ничем интересным не выделяется:
