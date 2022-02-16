@@ -71,7 +71,7 @@ The /NMI contact design is not different from the /IRQ contact design.
 
 ![pad_rw](/BreakingNESWiki/imgstore/apu/pad_rw.jpg)
 
-The output value of the R/W contact is derived from the internal R/W signal, and during reset R/W is disabled (when /RES contact = 0 and internal RES line = 1), that is, it has a Z (high-impedance) value.
+The output value of the R/W contact is derived from the internal `RW` signal, and during reset R/W is disabled (when /RES contact = 0 and internal RES line = 1), that is, it has a Z (high-impedance) value.
 
 A small tri-state logic controls the disconnection of the R/W pin.
 

@@ -14,51 +14,123 @@
 
 ## Главный тактовый сигнал
 
+Контакт CLK:
+
+![pad_clk](/BreakingNESWiki/imgstore/apu/pad_clk.jpg)
+
 Делитель частоты:
 
-![CLK_DIVIDER_trans](/BreakingNESWiki/imgstore/apu/CLK_DIVIDER_trans.png)
+![div](/BreakingNESWiki/imgstore/apu/div.jpg)
+
+(Для удобства схема положена "на бок").
+
+TBD: Более подробное описание делителя.
+
+Контакт M2:
+
+![pad_m2](/BreakingNESWiki/imgstore/apu/pad_m2.jpg)
+
+Схема для получения сигнала `NotDBG_RES`:
+
+![notdbg_res_tran](/BreakingNESWiki/imgstore/apu/notdbg_res_tran.jpg)
+
+По какой-то причине схема содержит отключенную "гребенку" транзисторов, которая представляет собой цепочку инверторов внутреннего сигнала `RES`.
+
+В режиме отладки (когда DBG=1) - во время сброса внешний сигнал M2 не трогается. В обычном режиме (для Retail консолей) - во время сброса внешний сигнал M2 в состоянии `z` (Open-drain):
+
+```c++
+	if ( RES & ~DBG) M2 = z;
+	else M2 = M2_internal;
+```
 
 ## Соединение 6502 и APU
 
 В данном разделе рассматриваются соединения контактов ядра 6502 с APU.
 
-### /NMI
+### /NMI и /IRQ
 
-TBD.
+Вспомогательная логика для обработки NMI и IRQ:
 
-### /IRQ
+|Схема|Описание|
+|---|---|
+|![apu_core_irqnmi_logic1](/BreakingNESWiki/imgstore/apu/apu_core_irqnmi_logic1.jpg)|Просто промежуточные инвертеры|
+|![apu_core_irqnmi_logic2](/BreakingNESWiki/imgstore/apu/apu_core_irqnmi_logic2.jpg)|/IRQ_INT: Комбинация внешнего или внутреннего прерывания.|
 
-TBD.
+Терминал /NMI:
+
+![apu_core_nmi](/BreakingNESWiki/imgstore/apu/apu_core_nmi.jpg)
+
+Терминал /IRQ:
+
+![apu_core_irq](/BreakingNESWiki/imgstore/apu/apu_core_irq.jpg)
 
 ### RDY
 
-TBD.
+![apu_core_rdy](/BreakingNESWiki/imgstore/apu/apu_core_rdy.jpg)
+
+Рядом со входом RDY есть ещё один транзистор, который в NTSC APU всегда открыт. TBD: Добавить про PAL APU.
 
 ### /RES
 
-TBD.
+![apu_core_res](/BreakingNESWiki/imgstore/apu/apu_core_res.jpg)
+
+На входе терминала /RES находится инвертер, чтобы инвертировать внутренний сигнал `RES`.
 
 ### PHI0, PHI1, PHI2
 
-TBD.
+Генерация внутренних сигналов PHI:
+
+![apu_core_phi_internal](/BreakingNESWiki/imgstore/apu/apu_core_phi_internal.jpg)
+
+Генерация внешних сигналов PHI:
+
+|PHI1|PHI2|
+|---|---|
+|![apu_core_phi1_ext](/BreakingNESWiki/imgstore/apu/apu_core_phi1_ext.jpg)|![apu_core_phi2_ext](/BreakingNESWiki/imgstore/apu/apu_core_phi2_ext.jpg)|
+
+Ничего необычного.
 
 ### SO
 
-TBD.
+![apu_core_so](/BreakingNESWiki/imgstore/apu/apu_core_so.jpg)
+
+Термина SO всегда подсоединен к `1`. Технически это нормально, т.к. на входе SO находится falling edge detector.
 
 ### R/W
 
-TBD.
+![apu_core_rw](/BreakingNESWiki/imgstore/apu/apu_core_rw.jpg)
+
+Ничего необычного.
+
+Сигнал `RW` приходит не напрямую с терминала `R/W` ядра 6502, а получается в схеме буфера для спрайтовой DMA (см. ниже).
 
 ### SYNC
 
-TBD.
+Контакт SYNC ни с чем не соединен (floating):
+
+![apu_core_sync](/BreakingNESWiki/imgstore/apu/apu_core_sync.jpg)
 
 ### D0-D7
 
-TBD.
+Контакты ядра 6502 соединяются напрямую с внутренней шиной данных D0-D7.
+
+Схема сигнала `RD`:
+
+![rd_tran](/BreakingNESWiki/imgstore/apu/rd_tran.jpg)
+
+Буфер для спрайтовой DMA:
+
+![sprbuf_tran](/BreakingNESWiki/imgstore/apu/sprbuf_tran.jpg)
+
+Не очень к месту, но сказать придется именно в этом месте, т.к. кроме хранения данных для спрайтовой DMA данная схема также занимается получением сигнала `WR` для конактов внешней шины данных.
+
+:warning: Так получилось, что сигнал ядра 6502 `R/W` по названию очень похож на сигнал `RW`, который уходит на внешний контакт R/W. Не перепутайте :smiley:
 
 ### A0-A15
+
+Выходы шины адреса ядра 6502 ассоциированы с внутренними сигналами CPU_A0-15.
+
+Для CPU_A14 дополнительно имеется инвертер, который используется в схеме предекодирования адреса регистров APU:
 
 ![cpu_a14_tran](/BreakingNESWiki/imgstore/apu/cpu_a14_tran.jpg)
 
@@ -83,13 +155,32 @@ TBD.
 
 ## Регистровые операции
 
+Предекодера, для выбора адресного пространства регистров APU:
+
 ![pdsel_tran](/BreakingNESWiki/imgstore/apu/pdsel_tran.jpg)
 
-![rw_decode](/BreakingNESWiki/imgstore/apu/rw_decode.jpg)
+- PDSELR: Промежуточный сигнал для формирования сигнала `/REGRD`
+- PDSELW: Промежуточный сигнал для формирования сигнала `/REGWR`
 
-![reg_select](/BreakingNESWiki/imgstore/apu/reg_select.jpg)
+R/W декодер для регистровых операций:
+
+![reg_rw_decode](/BreakingNESWiki/imgstore/apu/reg_rw_decode_tran.jpg)
+
+Выбор регистровой операции:
+
+![reg_select](/BreakingNESWiki/imgstore/apu/reg_select_tran.jpg)
 
 ## Отладочные регистры
+
+Контакт DBG:
+
+![pad_dbg](/BreakingNESWiki/imgstore/apu/pad_dbg.jpg)
+
+Вспомогательные схемы для DBG (усилительные буферы):
+
+![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)
+
+![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
 
 Транзисторные схемы отладочных регистров:
 
