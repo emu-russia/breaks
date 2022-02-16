@@ -12,6 +12,12 @@
 - Отладочные регистры
 - Внешние порты ввода/вывода
 
+Чтобы вы не заблудились, вот более крупный масштаб рассматриваемых далее схем:
+
+![6502_core_clock](/BreakingNESWiki/imgstore/apu/6502_core_clock.jpg)
+
+![6502_core_pads](/BreakingNESWiki/imgstore/apu/6502_core_pads.jpg)
+
 ## Главный тактовый сигнал
 
 Контакт CLK:
