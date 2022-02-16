@@ -153,7 +153,7 @@ else M2 = M2_internal;
 
 ## Регистровые операции
 
-Предекодера, для выбора адресного пространства регистров APU:
+Предекодер, для выбора адресного пространства регистров APU:
 
 ![pdsel_tran](/BreakingNESWiki/imgstore/apu/pdsel_tran.jpg)
 
@@ -162,7 +162,7 @@ else M2 = M2_internal;
 
 R/W декодер для регистровых операций:
 
-![reg_rw_decode](/BreakingNESWiki/imgstore/apu/reg_rw_decode_tran.jpg)
+![reg_rw_decoder_tran](/BreakingNESWiki/imgstore/apu/reg_rw_decoder_tran.jpg)
 
 Выбор регистровой операции:
 
@@ -176,9 +176,8 @@ R/W декодер для регистровых операций:
 
 Вспомогательные схемы для DBG (усилительные буферы):
 
-![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)
-
-![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
+|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
+|---|---|
 
 Транзисторные схемы отладочных регистров:
 
@@ -189,3 +188,5 @@ R/W декодер для регистровых операций:
 ## Порты ввода/вывода
 
 ![out_tran](/BreakingNESWiki/imgstore/apu/out_tran.jpg)
+
+TBD: Рассказать немного.
