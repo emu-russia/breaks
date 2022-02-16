@@ -5,8 +5,8 @@
 This section describes the features of the core and the surrounding auxiliary logic designed to integrate with the rest of the components.
 
 The 6502 core and surrounding logic includes the following entities:
-- Main clock signal and clock divider
-- Binding the pins of the 6502 core to the rest of the APU
+- Master clock signal and clock divider
+- Binding the terminals of the 6502 core to the rest of the APU
 - 6502 core
 - Register operation decoder
 - Debug registers
@@ -40,7 +40,7 @@ Circuit for obtaining the `NotDBG_RES` signal:
 
 ![notdbg_res_tran](/BreakingNESWiki/imgstore/apu/notdbg_res_tran.jpg)
 
-For some reason the circuit contains a disabled "comb" of transistors, which is a chain of inverters of the internal signal `RES`.
+For some reason the circuit contains a disabled "comb" of transistors, which is a chain of inverters of the internal `RES` signal.
 
 In debug mode (when DBG=1) - the external signal M2 is not touched during reset. In regular mode (for Retail consoles) - during reset the external signal M2 is in `z` state (Open-drain):
 
