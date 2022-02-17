@@ -14,7 +14,8 @@
 
 Младшие разряды адреса:
 
-![sprdma_addr_low_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_low_tran.jpg)
+|![sprdma_addr_low_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_low_tran.jpg)|![SPRDMA_AddrLowCounter](/BreakingNESWiki/imgstore/apu/SPRDMA_AddrLowCounter.jpg)|
+|---|---|
 
 Старшие разряды адреса:
 
@@ -22,6 +23,10 @@
 |---|---|
 
 Стрелками отмечены места, где формируется константный адрес регистра PPU $2002.
+
+Схема одного разряда счетчика:
+
+![SPRDMA_CounterBit](/BreakingNESWiki/imgstore/apu/SPRDMA_CounterBit.jpg)
 
 ## SPR DMA Control
 
