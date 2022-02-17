@@ -166,7 +166,7 @@ Pre-decoder, to select the address space of the APU registers:
 - PDSELR: Intermediate signal to generate the `/REGRD` signal
 - PDSELW: Intermediate signal to generate the `/REGWR` signal
 
-Signals are actually identical, but apparently intended to separate the address space registers to read and write. Or they have laid this possibility just in case.
+Signals are actually identical, but apparently intended to separate the address space of registers to read and write domains. Or they have laid this possibility just in case.
 
 R/W decoder for register operations:
 
@@ -176,7 +176,7 @@ Selecting a register operation:
 
 ![reg_select](/BreakingNESWiki/imgstore/apu/reg_select_tran.jpg)
 
-:warning: The APU registers are selected by the value of the CPU address bus (`CPU_Ax`). But the register selection is done by the address value stored on the DMA controller's address latch (signals A0-A5).
+:warning: The APU registers address space is selected by the value of the CPU address bus (`CPU_Ax`). But the register selection is done by the address value stored on the DMA controller's address latch (signals A0-A5).
 
 ## Debug Registers
 
