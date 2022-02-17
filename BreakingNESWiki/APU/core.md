@@ -192,9 +192,9 @@ R/W декодер для регистровых операций:
 
 Транзисторные схемы отладочных регистров:
 
-|Square 1|Square 2|Triangle|Noise|DPCM|
+|Square 0|Square 1|Triangle|Noise|DPCM|
 |---|---|---|---|---|
-|![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|![square2_debug_tran](/BreakingNESWiki/imgstore/apu/square2_debug_tran.jpg)|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|
+|![square0_debug_tran](/BreakingNESWiki/imgstore/apu/square0_debug_tran.jpg)|![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|
 
 Регистровые операции с отладочными регистрами доступны только когда DBG = 1.
 
