@@ -2,7 +2,7 @@
 
 ![apu_locator_lfo](/BreakingNESWiki/imgstore/apu/apu_locator_lfo.jpg)
 
-The Low-frequency counter (LFO) or Frame Counter is a dedicated timer inside the APU which, by definition, operates at a relatively low frequency, close to the PPU frame rate.
+The Low-frequency oscillator (LFO) or Frame Counter is a dedicated timer inside the APU which, by definition, operates at a relatively low frequency, close to the PPU frame rate.
 
 The purpose of this device is to provide the programmer with a tool to add periodic actions to the game program, repeated approximately every frame.
 
