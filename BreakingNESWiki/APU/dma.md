@@ -18,7 +18,7 @@
 
 Старшие разряды адреса:
 
-|![sprdma_addr_hi_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_hi_tran.jpg)|![SPRDMA_Control](/BreakingNESWiki/imgstore/apu/SPRDMA_Control.jpg)|
+|![sprdma_addr_hi_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_hi_tran.jpg)|![SPRDMA_AddrHigh](/BreakingNESWiki/imgstore/apu/SPRDMA_AddrHigh.jpg)|
 |---|---|
 
 Стрелками отмечены места, где формируется константный адрес регистра PPU $2002.
