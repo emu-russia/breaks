@@ -22,7 +22,7 @@ High address bits:
 |![sprdma_addr_hi_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_hi_tran.jpg)|![SPRDMA_AddrHigh](/BreakingNESWiki/imgstore/apu/SPRDMA_AddrHigh.jpg)|
 |---|---|
 
-The arrows mark the places where the constant address of the register PPU $2002 is formed.
+The arrows mark the places where the constant address of the PPU $2002 register is formed.
 
 Schematic of a single counter bit:
 
