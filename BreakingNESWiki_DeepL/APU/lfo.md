@@ -31,7 +31,7 @@ Bit $4015\[6] contains the interrupt status.
 - /R4015 and W4017: come from the register selector when reading $4015 and writing to $4017 registers respectively
 - D6 and D7: bits 6 and 7 of the internal data bus
 - /LFO1 and /LFO2: low frequency output signals
-- DMCINT: DPCM interrupt signal
+- /DMCINT: DPCM interrupt signal
 - INT: Joint LFO or DPCM interrupt signal
 - RES: internal reset signal (derived from /RES pin)
 
