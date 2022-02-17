@@ -176,16 +176,19 @@ R/W декодер для регистровых операций:
 
 ![reg_select](/BreakingNESWiki/imgstore/apu/reg_select_tran.jpg)
 
+:warning: Выбор адресного пространства регистров APU производится по значению адресной шины CPU (`CPU_Ax`). Но выбор регистра производится по значению адреса, который хранится на адресной защелке DMA-контроллера (cигналы A0-A5).
+
 ## Отладочные регистры
 
 Контакт DBG:
 
 ![pad_dbg](/BreakingNESWiki/imgstore/apu/pad_dbg.jpg)
 
-Вспомогательные схемы для DBG (усилительные буферы):
+Вспомогательные схемы для DBG:
 
-|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
+|Усиливающий инвертер|Промежуточный инвертер|
 |---|---|
+|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
 
 Транзисторные схемы отладочных регистров:
 
@@ -193,8 +196,13 @@ R/W декодер для регистровых операций:
 |---|---|---|---|---|
 |![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|![square2_debug_tran](/BreakingNESWiki/imgstore/apu/square2_debug_tran.jpg)|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|
 
+Регистровые операции с отладочными регистрами доступны только когда DBG = 1.
+
 ## Порты ввода/вывода
+
+Схема для формирования сигналов OUTx:
 
 ![out_tran](/BreakingNESWiki/imgstore/apu/out_tran.jpg)
 
-TBD: Рассказать немного.
+- Выходное значение для контактов `OUT0-2` получается из внутренних сигналов `OUT0-2` (с таким же названием).
+- Выходное значение для контактов `/IN0-1` - это внутренние сигналы `/R4016` и `/R4017` с селектора регистров.
