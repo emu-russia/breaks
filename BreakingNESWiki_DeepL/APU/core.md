@@ -176,16 +176,19 @@ Selecting a register operation:
 
 ![reg_select](/BreakingNESWiki/imgstore/apu/reg_select_tran.jpg)
 
+:warning: The APU registers are selected by the value of the CPU address bus (`CPU_Ax`). But the register selection is done by the address value stored on the DMA controller's address latch (signals A0-A5).
+
 ## Debug Registers
 
 DBG pin:
 
 ![pad_dbg](/BreakingNESWiki/imgstore/apu/pad_dbg.jpg)
 
-Auxiliary circuits for DBG (amplifier buffers):
+Auxiliary circuits for DBG:
 
-|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
+|Amplifying inverter|Intermediate inverter|
 |---|---|
+|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
 
 Debug register circuits:
 
@@ -193,8 +196,13 @@ Debug register circuits:
 |---|---|---|---|---|
 |![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|![square2_debug_tran](/BreakingNESWiki/imgstore/apu/square2_debug_tran.jpg)|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|
 
+Register operations with debug registers are available only when DBG = 1.
+
 ## I/O Ports
+
+Circuit for producing OUTx signals:
 
 ![out_tran](/BreakingNESWiki/imgstore/apu/out_tran.jpg)
 
-TBD: To tell a little bit more.
+- The output value for pins `OUT0-2` is derived from the internal signals `OUT0-2` (with the same name).
+- The output value for pins `/IN0-1` is the internal signals `/R4016` and `/R4017` from the register selector.

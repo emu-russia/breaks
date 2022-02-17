@@ -18,7 +18,7 @@
 
 ## SPR DMA Buffer
 
-![sprdma_buffer_tran](/BreakingNESWiki/imgstore/apu/sprdma_buffer_tran.jpg)
+![sprbuf_tran](/BreakingNESWiki/imgstore/apu/sprbuf_tran.jpg)
 
 ## Address Latch
 
