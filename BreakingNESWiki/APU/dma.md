@@ -20,14 +20,14 @@
 
 ![sprbuf_tran](/BreakingNESWiki/imgstore/apu/sprbuf_tran.jpg)
 
-## Address Latch
+## Address MUX
 
-Управление адресной защелкой:
+Управление адресным мультиплексором:
 
-![sprdma_addr_latch_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_latch_control_tran.jpg)
+![sprdma_addr_mux_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_mux_control_tran.jpg)
 
-![sprdma_addr_latch_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_latch_tran.jpg)
+![sprdma_addr_mux_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_mux_tran.jpg)
 
 Схема одного разряда:
 
-![sprdma_addr_latch_bit_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_latch_bit_tran.jpg)
+![sprdma_addr_mux_bit_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_mux_bit_tran.jpg)
