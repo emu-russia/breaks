@@ -301,6 +301,28 @@
     <a name="circuit" val="CounterBit"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(120,120)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Step"/>
+    </comp>
+    <comp lib="0" loc="(120,160)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="CarryIn"/>
+    </comp>
+    <comp lib="0" loc="(120,40)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(120,80)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Clear"/>
+    </comp>
+    <comp lib="0" loc="(520,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="CarryOut"/>
+      <a name="output" val="true"/>
+    </comp>
   </circuit>
   <circuit name="SPRDMA_AddrLowCounter">
     <a name="appearance" val="logisim_evolution"/>
@@ -397,12 +419,6 @@
     <wire from="(620,100)" to="(670,100)"/>
     <wire from="(620,120)" to="(640,120)"/>
     <wire from="(640,120)" to="(640,220)"/>
-  </circuit>
-  <circuit name="SPRDMA_Addr">
-    <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="SPRDMA_Addr"/>
-    <a name="circuitnamedboxfixedsize" val="true"/>
-    <a name="simulationFrequency" val="256.0"/>
   </circuit>
   <circuit name="SPRDMA_Control">
     <a name="appearance" val="logisim_evolution"/>
@@ -522,13 +538,13 @@
       <a name="inputs" val="3"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(570,370)" name="NOR Gate">
-      <a name="size" val="30"/>
-    </comp>
     <comp lib="1" loc="(570,490)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(650,360)" name="NAND Gate">
+    <comp lib="1" loc="(580,350)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(660,360)" name="NAND Gate">
       <a name="size" val="30"/>
     </comp>
     <comp lib="1" loc="(690,360)" name="NOT Gate">
@@ -614,10 +630,6 @@
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="RAM -&gt; DMA Buffer"/>
     </comp>
-    <comp lib="8" loc="(585,345)" name="Text">
-      <a name="font" val="SansSerif bold 11"/>
-      <a name="text" val="DMCRDY"/>
-    </comp>
     <comp lib="8" loc="(594,484)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="DOSPR"/>
@@ -626,7 +638,11 @@
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="NOSPR"/>
     </comp>
-    <comp lib="8" loc="(698,354)" name="Text">
+    <comp lib="8" loc="(664,403)" name="Text">
+      <a name="font" val="SansSerif bold 11"/>
+      <a name="text" val="DMCRDY"/>
+    </comp>
+    <comp lib="8" loc="(694,353)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="RDY"/>
     </comp>
@@ -689,7 +705,7 @@
     <wire from="(240,460)" to="(260,460)"/>
     <wire from="(250,110)" to="(260,110)"/>
     <wire from="(250,330)" to="(250,370)"/>
-    <wire from="(250,330)" to="(510,330)"/>
+    <wire from="(250,330)" to="(500,330)"/>
     <wire from="(250,370)" to="(260,370)"/>
     <wire from="(250,60)" to="(250,110)"/>
     <wire from="(250,60)" to="(540,60)"/>
@@ -710,7 +726,7 @@
     <wire from="(320,410)" to="(320,450)"/>
     <wire from="(320,450)" to="(450,450)"/>
     <wire from="(330,380)" to="(330,420)"/>
-    <wire from="(330,380)" to="(530,380)"/>
+    <wire from="(330,380)" to="(500,380)"/>
     <wire from="(340,30)" to="(340,430)"/>
     <wire from="(340,430)" to="(450,430)"/>
     <wire from="(350,620)" to="(380,620)"/>
@@ -727,7 +743,7 @@
     <wire from="(390,690)" to="(450,690)"/>
     <wire from="(400,220)" to="(400,400)"/>
     <wire from="(400,220)" to="(440,220)"/>
-    <wire from="(400,400)" to="(650,400)"/>
+    <wire from="(400,400)" to="(620,400)"/>
     <wire from="(410,100)" to="(420,100)"/>
     <wire from="(420,100)" to="(420,150)"/>
     <wire from="(420,150)" to="(440,150)"/>
@@ -753,24 +769,26 @@
     <wire from="(490,610)" to="(730,610)"/>
     <wire from="(490,680)" to="(750,680)"/>
     <wire from="(500,190)" to="(500,230)"/>
+    <wire from="(500,330)" to="(500,340)"/>
+    <wire from="(500,340)" to="(540,340)"/>
+    <wire from="(500,360)" to="(500,380)"/>
+    <wire from="(500,360)" to="(540,360)"/>
     <wire from="(510,160)" to="(510,200)"/>
     <wire from="(510,160)" to="(550,160)"/>
-    <wire from="(510,330)" to="(510,360)"/>
-    <wire from="(510,360)" to="(530,360)"/>
     <wire from="(510,430)" to="(510,480)"/>
     <wire from="(510,480)" to="(530,480)"/>
     <wire from="(540,140)" to="(550,140)"/>
     <wire from="(540,60)" to="(540,140)"/>
     <wire from="(540,60)" to="(660,60)"/>
-    <wire from="(570,370)" to="(610,370)"/>
-    <wire from="(570,490)" to="(650,490)"/>
+    <wire from="(570,490)" to="(620,490)"/>
+    <wire from="(580,350)" to="(620,350)"/>
     <wire from="(590,160)" to="(640,160)"/>
-    <wire from="(600,350)" to="(600,390)"/>
-    <wire from="(600,350)" to="(610,350)"/>
-    <wire from="(600,390)" to="(690,390)"/>
+    <wire from="(610,370)" to="(610,390)"/>
+    <wire from="(610,370)" to="(620,370)"/>
+    <wire from="(610,390)" to="(690,390)"/>
+    <wire from="(620,400)" to="(620,490)"/>
     <wire from="(640,160)" to="(640,250)"/>
-    <wire from="(650,360)" to="(670,360)"/>
-    <wire from="(650,400)" to="(650,490)"/>
+    <wire from="(660,360)" to="(670,360)"/>
     <wire from="(680,60)" to="(680,280)"/>
     <wire from="(680,60)" to="(780,60)"/>
     <wire from="(690,360)" to="(710,360)"/>
