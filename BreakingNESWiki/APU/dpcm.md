@@ -2,6 +2,8 @@
 
 ![apu_locator_dpcm](/BreakingNESWiki/imgstore/apu/apu_locator_dpcm.jpg)
 
+![DMC](/BreakingNESWiki/imgstore/apu/DMC.jpg)
+
 ## Другой /ACLK
 
 В самом центре схемы DPCM находится схема, для получения "другого" /ACLK, который используется в DPCM, а также в [спрайтовой DMA](dma.md). Данный сигнал /ACLK отличается от обычного небольшой задержкой.

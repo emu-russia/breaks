@@ -51,6 +51,489 @@
     <tool lib="4" name="D Flip-Flop"/>
     <tool lib="4" name="Register"/>
   </toolbar>
+  <circuit name="DMC">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DMC"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(100,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="PHI1"/>
+    </comp>
+    <comp lib="0" loc="(100,210)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,240)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RnW"/>
+    </comp>
+    <comp lib="0" loc="(100,270)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="LOCK"/>
+    </comp>
+    <comp lib="0" loc="(100,340)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4010"/>
+    </comp>
+    <comp lib="0" loc="(100,370)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4011"/>
+    </comp>
+    <comp lib="0" loc="(100,400)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4012"/>
+    </comp>
+    <comp lib="0" loc="(100,430)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4013"/>
+    </comp>
+    <comp lib="0" loc="(100,460)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4015"/>
+    </comp>
+    <comp lib="0" loc="(100,490)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_R4015"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="ACLK"/>
+    </comp>
+    <comp lib="0" loc="(1000,350)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+    </comp>
+    <comp lib="0" loc="(1010,350)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Dx_Out"/>
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(1170,410)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="W4013"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(120,210)" name="Tunnel">
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(120,240)" name="Tunnel">
+      <a name="label" val="RnW"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(120,270)" name="Tunnel">
+      <a name="label" val="LOCK"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(120,340)" name="Tunnel">
+      <a name="label" val="W4010"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(120,370)" name="Tunnel">
+      <a name="label" val="W4011"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(120,400)" name="Tunnel">
+      <a name="label" val="W4012"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(120,430)" name="Tunnel">
+      <a name="label" val="W4013"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(120,460)" name="Tunnel">
+      <a name="label" val="W4015"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(120,490)" name="Tunnel">
+      <a name="label" val="n_R4015"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(1390,340)" name="Splitter">
+      <a name="appear" val="right"/>
+    </comp>
+    <comp lib="0" loc="(1420,630)" name="Splitter">
+      <a name="appear" val="right"/>
+    </comp>
+    <comp lib="0" loc="(1450,330)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(1460,190)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(1460,500)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(1470,620)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(1500,800)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DMC_Out"/>
+      <a name="output" val="true"/>
+      <a name="width" val="6"/>
+    </comp>
+    <comp lib="0" loc="(1500,860)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DMC_Addr"/>
+      <a name="output" val="true"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(160,670)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Dx_In"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(1770,370)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="bit0" val="2"/>
+      <a name="bit2" val="0"/>
+      <a name="facing" val="west"/>
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="3"/>
+    </comp>
+    <comp lib="0" loc="(260,890)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="W4012"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(400,410)" name="Splitter">
+      <a name="fanout" val="3"/>
+      <a name="incoming" val="3"/>
+    </comp>
+    <comp lib="0" loc="(420,820)" name="Splitter">
+      <a name="appear" val="right"/>
+    </comp>
+    <comp lib="0" loc="(430,590)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(430,610)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="W4011"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(470,220)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(470,240)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RnW"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(470,260)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="LOCK"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(470,280)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="W4015"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(470,300)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="n_R4015"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(480,810)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(750,260)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(780,140)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_DMCAB"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(780,170)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="RUNDMC"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(780,200)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DMCRDY"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(780,230)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_DMCINT"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(780,300)" name="Splitter">
+      <a name="appear" val="right"/>
+      <a name="facing" val="west"/>
+    </comp>
+    <comp lib="0" loc="(950,230)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="W4010"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp loc="(1190,210)" name="DPCM_ControlReg"/>
+    <comp loc="(1440,210)" name="DPCM_Decoder">
+      <a name="label" val="decoder"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1460,390)" name="DPCM_SampleCounterIn">
+      <a name="label" val="scnt_in"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1710,150)" name="DPCM_FreqLFSR">
+      <a name="label" val="lfsr"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1710,310)" name="DPCM_SampleCounter">
+      <a name="label" val="scnt"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1710,480)" name="DPCM_SampleBitCounter">
+      <a name="label" val="sbcnt"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1710,600)" name="DPCM_SampleBuffer">
+      <a name="label" val="sbuf"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(490,870)" name="DPCM_AddressReg">
+      <a name="label" val="addr_reg"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(710,160)" name="DPCM_Control">
+      <a name="label" val="dpcm_ctrl"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(710,570)" name="DPCM_Output">
+      <a name="label" val="dpcm_out"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(710,790)" name="DPCM_Address">
+      <a name="label" val="dpcm_addr"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <wire from="(100,100)" to="(470,100)"/>
+    <wire from="(100,130)" to="(460,130)"/>
+    <wire from="(100,210)" to="(120,210)"/>
+    <wire from="(100,240)" to="(120,240)"/>
+    <wire from="(100,270)" to="(120,270)"/>
+    <wire from="(100,340)" to="(120,340)"/>
+    <wire from="(100,370)" to="(120,370)"/>
+    <wire from="(100,400)" to="(120,400)"/>
+    <wire from="(100,430)" to="(120,430)"/>
+    <wire from="(100,460)" to="(120,460)"/>
+    <wire from="(100,490)" to="(120,490)"/>
+    <wire from="(100,70)" to="(480,70)"/>
+    <wire from="(1000,350)" to="(1010,350)"/>
+    <wire from="(1170,410)" to="(1240,410)"/>
+    <wire from="(1190,210)" to="(1220,210)"/>
+    <wire from="(1190,230)" to="(1200,230)"/>
+    <wire from="(1190,250)" to="(1190,490)"/>
+    <wire from="(1200,230)" to="(1200,500)"/>
+    <wire from="(1210,100)" to="(1210,390)"/>
+    <wire from="(1210,100)" to="(1470,100)"/>
+    <wire from="(1210,390)" to="(1240,390)"/>
+    <wire from="(1230,430)" to="(1230,610)"/>
+    <wire from="(1230,430)" to="(1240,430)"/>
+    <wire from="(1230,610)" to="(1230,700)"/>
+    <wire from="(1230,700)" to="(1490,700)"/>
+    <wire from="(1390,300)" to="(1390,340)"/>
+    <wire from="(1410,350)" to="(1490,350)"/>
+    <wire from="(1410,360)" to="(1460,360)"/>
+    <wire from="(1440,210)" to="(1490,210)"/>
+    <wire from="(1440,640)" to="(1490,640)"/>
+    <wire from="(1440,650)" to="(1460,650)"/>
+    <wire from="(1450,330)" to="(1490,330)"/>
+    <wire from="(1460,190)" to="(1490,190)"/>
+    <wire from="(1460,360)" to="(1460,370)"/>
+    <wire from="(1460,370)" to="(1490,370)"/>
+    <wire from="(1460,390)" to="(1490,390)"/>
+    <wire from="(1460,500)" to="(1490,500)"/>
+    <wire from="(1460,650)" to="(1460,660)"/>
+    <wire from="(1460,660)" to="(1490,660)"/>
+    <wire from="(1470,100)" to="(1470,170)"/>
+    <wire from="(1470,100)" to="(1720,100)"/>
+    <wire from="(1470,170)" to="(1470,310)"/>
+    <wire from="(1470,170)" to="(1490,170)"/>
+    <wire from="(1470,310)" to="(1470,480)"/>
+    <wire from="(1470,310)" to="(1490,310)"/>
+    <wire from="(1470,480)" to="(1470,600)"/>
+    <wire from="(1470,480)" to="(1490,480)"/>
+    <wire from="(1470,600)" to="(1490,600)"/>
+    <wire from="(1470,620)" to="(1490,620)"/>
+    <wire from="(1480,150)" to="(1490,150)"/>
+    <wire from="(1480,70)" to="(1480,150)"/>
+    <wire from="(1480,70)" to="(1720,70)"/>
+    <wire from="(160,670)" to="(190,670)"/>
+    <wire from="(1710,150)" to="(1730,150)"/>
+    <wire from="(1710,310)" to="(1710,350)"/>
+    <wire from="(1710,350)" to="(1750,350)"/>
+    <wire from="(1710,480)" to="(1730,480)"/>
+    <wire from="(1710,600)" to="(1710,750)"/>
+    <wire from="(1730,150)" to="(1730,340)"/>
+    <wire from="(1730,340)" to="(1750,340)"/>
+    <wire from="(1730,360)" to="(1730,480)"/>
+    <wire from="(1730,360)" to="(1750,360)"/>
+    <wire from="(1770,370)" to="(1770,570)"/>
+    <wire from="(190,670)" to="(190,730)"/>
+    <wire from="(190,670)" to="(240,670)"/>
+    <wire from="(190,730)" to="(190,910)"/>
+    <wire from="(190,730)" to="(930,730)"/>
+    <wire from="(190,910)" to="(270,910)"/>
+    <wire from="(240,440)" to="(240,670)"/>
+    <wire from="(240,440)" to="(490,440)"/>
+    <wire from="(240,670)" to="(490,670)"/>
+    <wire from="(250,790)" to="(250,870)"/>
+    <wire from="(250,790)" to="(480,790)"/>
+    <wire from="(250,870)" to="(270,870)"/>
+    <wire from="(260,890)" to="(270,890)"/>
+    <wire from="(360,510)" to="(360,820)"/>
+    <wire from="(360,510)" to="(810,510)"/>
+    <wire from="(360,820)" to="(420,820)"/>
+    <wire from="(400,410)" to="(400,520)"/>
+    <wire from="(400,520)" to="(900,520)"/>
+    <wire from="(420,380)" to="(490,380)"/>
+    <wire from="(420,390)" to="(430,390)"/>
+    <wire from="(420,400)" to="(420,420)"/>
+    <wire from="(420,420)" to="(490,420)"/>
+    <wire from="(430,390)" to="(430,400)"/>
+    <wire from="(430,400)" to="(490,400)"/>
+    <wire from="(430,590)" to="(490,590)"/>
+    <wire from="(430,610)" to="(490,610)"/>
+    <wire from="(440,360)" to="(440,550)"/>
+    <wire from="(440,360)" to="(490,360)"/>
+    <wire from="(440,550)" to="(720,550)"/>
+    <wire from="(440,830)" to="(490,830)"/>
+    <wire from="(440,840)" to="(460,840)"/>
+    <wire from="(450,340)" to="(450,500)"/>
+    <wire from="(450,340)" to="(490,340)"/>
+    <wire from="(450,500)" to="(1200,500)"/>
+    <wire from="(460,130)" to="(460,200)"/>
+    <wire from="(460,200)" to="(490,200)"/>
+    <wire from="(460,320)" to="(460,490)"/>
+    <wire from="(460,320)" to="(490,320)"/>
+    <wire from="(460,490)" to="(1190,490)"/>
+    <wire from="(460,530)" to="(460,650)"/>
+    <wire from="(460,530)" to="(750,530)"/>
+    <wire from="(460,650)" to="(490,650)"/>
+    <wire from="(460,840)" to="(460,850)"/>
+    <wire from="(460,850)" to="(490,850)"/>
+    <wire from="(470,100)" to="(470,180)"/>
+    <wire from="(470,100)" to="(970,100)"/>
+    <wire from="(470,180)" to="(480,180)"/>
+    <wire from="(470,220)" to="(490,220)"/>
+    <wire from="(470,240)" to="(490,240)"/>
+    <wire from="(470,260)" to="(490,260)"/>
+    <wire from="(470,280)" to="(490,280)"/>
+    <wire from="(470,300)" to="(490,300)"/>
+    <wire from="(470,630)" to="(470,750)"/>
+    <wire from="(470,630)" to="(490,630)"/>
+    <wire from="(470,750)" to="(1710,750)"/>
+    <wire from="(480,160)" to="(490,160)"/>
+    <wire from="(480,180)" to="(480,570)"/>
+    <wire from="(480,180)" to="(490,180)"/>
+    <wire from="(480,570)" to="(480,790)"/>
+    <wire from="(480,570)" to="(490,570)"/>
+    <wire from="(480,70)" to="(1480,70)"/>
+    <wire from="(480,70)" to="(480,160)"/>
+    <wire from="(480,790)" to="(490,790)"/>
+    <wire from="(480,810)" to="(490,810)"/>
+    <wire from="(710,160)" to="(730,160)"/>
+    <wire from="(710,180)" to="(740,180)"/>
+    <wire from="(710,200)" to="(780,200)"/>
+    <wire from="(710,220)" to="(770,220)"/>
+    <wire from="(710,240)" to="(730,240)"/>
+    <wire from="(710,260)" to="(720,260)"/>
+    <wire from="(710,280)" to="(760,280)"/>
+    <wire from="(710,300)" to="(720,300)"/>
+    <wire from="(710,320)" to="(910,320)"/>
+    <wire from="(710,340)" to="(750,340)"/>
+    <wire from="(710,360)" to="(920,360)"/>
+    <wire from="(710,380)" to="(960,380)"/>
+    <wire from="(710,400)" to="(950,400)"/>
+    <wire from="(710,570)" to="(820,570)"/>
+    <wire from="(710,590)" to="(720,590)"/>
+    <wire from="(710,790)" to="(780,790)"/>
+    <wire from="(720,250)" to="(720,260)"/>
+    <wire from="(720,250)" to="(730,250)"/>
+    <wire from="(720,290)" to="(720,300)"/>
+    <wire from="(720,290)" to="(760,290)"/>
+    <wire from="(720,550)" to="(720,590)"/>
+    <wire from="(730,140)" to="(730,160)"/>
+    <wire from="(730,140)" to="(780,140)"/>
+    <wire from="(740,170)" to="(740,180)"/>
+    <wire from="(740,170)" to="(780,170)"/>
+    <wire from="(750,260)" to="(810,260)"/>
+    <wire from="(750,340)" to="(750,530)"/>
+    <wire from="(770,220)" to="(770,230)"/>
+    <wire from="(770,230)" to="(780,230)"/>
+    <wire from="(780,300)" to="(890,300)"/>
+    <wire from="(780,790)" to="(780,860)"/>
+    <wire from="(780,860)" to="(1500,860)"/>
+    <wire from="(810,260)" to="(810,510)"/>
+    <wire from="(810,260)" to="(910,260)"/>
+    <wire from="(820,570)" to="(820,800)"/>
+    <wire from="(820,800)" to="(1500,800)"/>
+    <wire from="(890,300)" to="(890,630)"/>
+    <wire from="(890,630)" to="(1420,630)"/>
+    <wire from="(900,520)" to="(900,570)"/>
+    <wire from="(900,570)" to="(1770,570)"/>
+    <wire from="(910,260)" to="(910,300)"/>
+    <wire from="(910,300)" to="(1390,300)"/>
+    <wire from="(910,320)" to="(910,520)"/>
+    <wire from="(910,520)" to="(1490,520)"/>
+    <wire from="(920,360)" to="(920,680)"/>
+    <wire from="(920,680)" to="(1490,680)"/>
+    <wire from="(930,250)" to="(930,610)"/>
+    <wire from="(930,250)" to="(970,250)"/>
+    <wire from="(930,610)" to="(1230,610)"/>
+    <wire from="(930,610)" to="(930,730)"/>
+    <wire from="(950,230)" to="(970,230)"/>
+    <wire from="(950,400)" to="(950,430)"/>
+    <wire from="(950,430)" to="(980,430)"/>
+    <wire from="(960,380)" to="(960,400)"/>
+    <wire from="(960,400)" to="(980,400)"/>
+    <wire from="(970,100)" to="(1210,100)"/>
+    <wire from="(970,100)" to="(970,210)"/>
+  </circuit>
   <circuit name="DMA">
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="DMA"/>
@@ -1341,5 +1824,766 @@
     <wire from="(400,140)" to="(440,140)"/>
     <wire from="(400,60)" to="(400,80)"/>
     <wire from="(400,60)" to="(440,60)"/>
+  </circuit>
+  <circuit name="DPCM_ControlReg">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_ControlReg"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4010"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(160,240)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Dx_In"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(620,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="F_Out"/>
+      <a name="output" val="true"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(620,210)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="IRQEN"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(620,250)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_LOOP"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_IntControl">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_IntControl"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4015"/>
+    </comp>
+    <comp lib="0" loc="(100,150)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_R4015"/>
+    </comp>
+    <comp lib="0" loc="(100,190)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_LOOP"/>
+    </comp>
+    <comp lib="0" loc="(100,230)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="ED1"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(620,120)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_DMCINT"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(620,80)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="D7_Out"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_EnableControl">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_EnableControl"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,150)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4015"/>
+    </comp>
+    <comp lib="0" loc="(100,190)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_R4015"/>
+    </comp>
+    <comp lib="0" loc="(100,230)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="ED2"/>
+    </comp>
+    <comp lib="0" loc="(100,270)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="IRQEN"/>
+    </comp>
+    <comp lib="0" loc="(100,310)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="DMC1"/>
+    </comp>
+    <comp lib="0" loc="(100,350)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="SOUT"/>
+    </comp>
+    <comp lib="0" loc="(100,400)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="D4_In"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(620,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="ED1"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(620,170)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DMC2"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(620,80)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="D4_Out"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_DMAControl">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_DMAControl"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(100,150)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="PHI1"/>
+    </comp>
+    <comp lib="0" loc="(100,190)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RnW"/>
+    </comp>
+    <comp lib="0" loc="(100,230)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,270)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="CTRL1"/>
+    </comp>
+    <comp lib="0" loc="(100,310)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="CTRL2"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="ACLK"/>
+    </comp>
+    <comp lib="0" loc="(540,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="RUNDMC"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(540,150)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_DMCAB"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(540,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DMCRDY"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_SampleCounterControl">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_SampleCounterControl"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(100,170)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="DMC1"/>
+    </comp>
+    <comp lib="0" loc="(100,210)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="DMC2"/>
+    </comp>
+    <comp lib="0" loc="(100,250)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="ED2"/>
+    </comp>
+    <comp lib="0" loc="(100,360)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="FLOAD"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="ACLK"/>
+    </comp>
+    <comp lib="0" loc="(540,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="SSTEP"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(540,180)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="NSTEP"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(540,240)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="CTRL2"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(540,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="SLOAD"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_SampleBufferControl">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_SampleBufferControl"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(100,150)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="PHI1"/>
+    </comp>
+    <comp lib="0" loc="(100,190)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,230)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="LOCK"/>
+    </comp>
+    <comp lib="0" loc="(100,300)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="FLOAD"/>
+    </comp>
+    <comp lib="0" loc="(100,340)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="DOUT"/>
+    </comp>
+    <comp lib="0" loc="(100,380)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="NOUT"/>
+    </comp>
+    <comp lib="0" loc="(100,460)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_DMCAB"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="ACLK"/>
+    </comp>
+    <comp lib="0" loc="(660,120)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="BSTEP"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(660,160)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="PCM"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(660,200)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DSTEP"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(660,270)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DMC1"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(660,310)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="CTRL1"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(660,80)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="BLOAD"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_Control">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_Control"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(100,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="PHI1"/>
+    </comp>
+    <comp lib="0" loc="(100,160)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,190)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RnW"/>
+    </comp>
+    <comp lib="0" loc="(100,220)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="LOCK"/>
+    </comp>
+    <comp lib="0" loc="(100,280)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4015"/>
+    </comp>
+    <comp lib="0" loc="(100,310)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_R4015"/>
+    </comp>
+    <comp lib="0" loc="(100,370)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_LOOP"/>
+    </comp>
+    <comp lib="0" loc="(100,400)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="IRQEN"/>
+    </comp>
+    <comp lib="0" loc="(100,460)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="DOUT"/>
+    </comp>
+    <comp lib="0" loc="(100,490)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="NOUT"/>
+    </comp>
+    <comp lib="0" loc="(100,520)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="SOUT"/>
+    </comp>
+    <comp lib="0" loc="(100,550)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="FLOAD"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="ACLK"/>
+    </comp>
+    <comp lib="0" loc="(1200,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="RUNDMC"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DMCRDY"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,160)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_DMCINT"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,230)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="SLOAD"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,260)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="SSTEP"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,290)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="BLOAD"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,320)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="BSTEP"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,350)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="NSTEP"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,380)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DSTEP"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,410)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="PCM"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,490)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="D4_Out"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,520)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="D7_Out"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(1200,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_DMCAB"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(160,630)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Dx_In"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp loc="(1090,140)" name="DPCM_DMAControl">
+      <a name="label" val="dma_ctrl"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1090,380)" name="DPCM_SampleCounterControl">
+      <a name="label" val="scnt_ctrl"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1090,600)" name="DPCM_SampleBufferControl">
+      <a name="label" val="sbuf_ctrl"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(760,150)" name="DPCM_IntControl">
+      <a name="label" val="int_ctrl"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(760,340)" name="DPCM_EnableControl">
+      <a name="label" val="enable_ctrl"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_SampleCounterIn">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_SampleCounterIn"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4013"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(160,240)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Dx_In"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(620,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Cnt_Out"/>
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_SampleCounter">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_SampleCounter"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(100,140)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,220)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="SLOAD"/>
+    </comp>
+    <comp lib="0" loc="(100,250)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="SSTEP"/>
+    </comp>
+    <comp lib="0" loc="(160,370)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Cnt_In"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(690,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="SOUT"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_SampleBuffer">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_SampleBuffer"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(100,140)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,220)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="BLOAD"/>
+    </comp>
+    <comp lib="0" loc="(100,250)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="BSTEP"/>
+    </comp>
+    <comp lib="0" loc="(100,280)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="PCM"/>
+    </comp>
+    <comp lib="0" loc="(160,360)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Dx_In"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(690,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="BOUT"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_SampleBitCounter">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_SampleBitCounter"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(100,140)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,180)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="NSTEP"/>
+    </comp>
+    <comp lib="0" loc="(690,120)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="NOUT"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_Decoder">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_Decoder"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(170,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Fx"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(590,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="FR_Out"/>
+      <a name="output" val="true"/>
+      <a name="width" val="9"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_FreqLFSR">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_FreqLFSR"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,30)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="ACLK"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(170,300)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="FR_In"/>
+      <a name="width" val="9"/>
+    </comp>
+    <comp lib="0" loc="(930,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="FLOAD"/>
+      <a name="output" val="true"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_AddressReg">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_AddressReg"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4012"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(160,240)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Dx_In"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(620,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Addr_Out"/>
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_Address">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_Address"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,180)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="SLOAD"/>
+    </comp>
+    <comp lib="0" loc="(100,220)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="SSTEP"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(160,300)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Addr_In"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(830,100)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DMC_Addr"/>
+      <a name="output" val="true"/>
+      <a name="width" val="16"/>
+    </comp>
+  </circuit>
+  <circuit name="DPCM_Output">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DPCM_Output"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(100,150)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="W4011"/>
+    </comp>
+    <comp lib="0" loc="(100,210)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="BOUT"/>
+    </comp>
+    <comp lib="0" loc="(100,250)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="DSTEP"/>
+    </comp>
+    <comp lib="0" loc="(100,70)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="n_ACLK"/>
+    </comp>
+    <comp lib="0" loc="(160,320)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="Dx_In"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(930,130)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DOUT"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(930,60)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="DMC_Out"/>
+      <a name="output" val="true"/>
+      <a name="width" val="6"/>
+    </comp>
   </circuit>
 </project>

@@ -1,4 +1,4 @@
-# INC abs
+# INC abs (0xEE)
 
 ```
     NOP
