@@ -44,7 +44,7 @@ Control signals for interaction with DMC:
 - DMCRDY: DMC Ready. If the DMC is not ready - the RDY signal is also forced to 0.
 
 Processor control signals:
-- PHI1 and R/W: Sprite DMA can only start if the processor goes into a read cycle (PHI1 = 0 and R/W = 1). Without this condition the `DOSPR` control signal will not be active. This is done to "postpone" RDY, because its clearing is ignored on the 6502 write cycles.
+- PHI1 and R/W: Sprite DMA can only start if the processor goes into a read cycle (PHI1 = 0 and R/W = 1). Without this condition the `DOSPR` control signal will not be active. This is done to delay the start of the DMA because the RDY clearing is ignored on the 6502 write cycles.
 
 Signals affecting the DMA process:
 - W4014: Writing to register $4014 clears the lower part of the address and puts the value to be written into the higher part. The DMA process then starts.
