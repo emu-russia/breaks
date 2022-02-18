@@ -44,7 +44,13 @@ Control signals for interaction with DMC:
 - DMCRDY: DMC Ready. If the DMC is not ready - the RDY signal is also forced to 0.
 
 Processor control signals:
-- PHI1 and R/W: Sprite DMA can only start if the processor goes into a read cycle (PHI1 = 0 and R/W = 1). Without this condition the `DOSPR` control signal will not be active.
+- PHI1 and R/W: Sprite DMA can only start if the processor goes into a read cycle (PHI1 = 0 and R/W = 1). Without this condition the `DOSPR` control signal will not be active. This is done to delay the start of the DMA because the RDY clearing is ignored on the 6502 write cycles.
+
+![Write_4014_Timing](/BreakingNESWiki/imgstore/apu/Write_4014_Timing.jpg)
+
+|STA T0 PHI1|STA T0 PHI2|STA T1 PHI1|STA T1 PHI2|
+|---|---|---|---|
+|![SPRDMA_Control_T0_Phi1](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T0_Phi1.jpg)|![SPRDMA_Control_T0_Phi2](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T0_Phi2.jpg)|![SPRDMA_Control_T1_Phi1](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T1_Phi1.jpg)|![SPRDMA_Control_T1_Phi2](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T1_Phi2.jpg)|
 
 Signals affecting the DMA process:
 - W4014: Writing to register $4014 clears the lower part of the address and puts the value to be written into the higher part. The DMA process then starts.

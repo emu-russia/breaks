@@ -44,7 +44,13 @@
 - DMCRDY: Готовность DMC. Если DMC не готов - то сигнал RDY также принудительно устанавливается в 0.
 
 Контрольные сигналы от процессора:
-- PHI1 и R/W: Спрайтовая DMA может начаться только если процессор переходит в цикл чтения (PHI1 = 0 и R/W = 1). Без этого условия контрольный сигнал `DOSPR` не будет активен.
+- PHI1 и R/W: Спрайтовая DMA может начаться только если процессор переходит в цикл чтения (PHI1 = 0 и R/W = 1). Без этого условия контрольный сигнал `DOSPR` не будет активен. Сделано это для "оттягивания" начала DMA, т.к. сброс RDY игнорируется на циклах записи 6502.
+
+![Write_4014_Timing](/BreakingNESWiki/imgstore/apu/Write_4014_Timing.jpg)
+
+|STA T0 PHI1|STA T0 PHI2|STA T1 PHI1|STA T1 PHI2|
+|---|---|---|---|
+|![SPRDMA_Control_T0_Phi1](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T0_Phi1.jpg)|![SPRDMA_Control_T0_Phi2](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T0_Phi2.jpg)|![SPRDMA_Control_T1_Phi1](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T1_Phi1.jpg)|![SPRDMA_Control_T1_Phi2](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T1_Phi2.jpg)|
 
 Сигналы, влияющие на процесс DMA:
 - W4014: Записью в регистр $4014 младшая часть адреса очищается, а в старшую попадает записываемое значение. После этого DMA стартует.
