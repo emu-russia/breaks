@@ -77,6 +77,10 @@
 
 ![dpcm_address_high_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_high_tran.jpg)
 
+Вход DMC_A15 в адресном мультиплексоре подключен к Vdd:
+
+![DMC_A15](/BreakingNESWiki/imgstore/apu/DMC_A15.jpg)
+
 ## Output ($4011)
 
 ![dpcm_output_tran](/BreakingNESWiki/imgstore/apu/dpcm_output_tran.jpg)
