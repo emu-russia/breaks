@@ -15,27 +15,27 @@
 
 ![dpcm_control_reg_tran](/BreakingNESWiki/imgstore/apu/dpcm_control_reg_tran.jpg)
 
-## Interrupt Control
+## DPCM Interrupt Control
 
 ![dpcm_int_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_int_control_tran.jpg)
 
-## Enable Control
+## DPCM Enable Control
 
 ![dpcm_enable_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_enable_control_tran.jpg)
 
-## DMA Control
+## DPCM DMA Control
 
 ![dpcm_dma_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_dma_control_tran.jpg)
 
-## Sample Counter In ($4013)
+## DPCM Sample Counter In ($4013)
 
 ![dpcm_sample_counter_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_in_tran.jpg)
 
-## Sample Counter
+## DPCM Sample Counter
 
 ![dpcm_sample_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_tran.jpg)
 
-## Sample Counter Control
+## DPCM Sample Counter Control
 
 ![dpcm_sample_counter_control_tran1](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_control_tran1.jpg)
 
@@ -43,23 +43,23 @@
 
 (Вторая часть схемы также управляет счетчиком разрядов сэмпла)
 
-## Sample Buffer
+## DPCM Sample Buffer
 
 ![dpcm_sample_buffer_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_tran.jpg)
 
-## Sample Buffer Control
+## DPCM Sample Buffer Control
 
 ![dpcm_sample_buffer_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_control_tran.jpg)
 
-## Sample Bit Counter
+## DPCM Sample Bit Counter
 
 ![dpcm_sample_bit_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_bit_counter_tran.jpg)
 
-## Decoder
+## DPCM Decoder
 
 ![dpcm_decoder_tran](/BreakingNESWiki/imgstore/apu/dpcm_decoder_tran.jpg)
 
-## Frequency Counter LFSR
+## DPCM Frequency Counter LFSR
 
 ![dpcm_freq_counter_lfsr_tran](/BreakingNESWiki/imgstore/apu/dpcm_freq_counter_lfsr_tran.jpg)
 
@@ -77,6 +77,10 @@
 
 ![dpcm_address_high_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_high_tran.jpg)
 
-## Output ($4011)
+Вход DMC_A15 в адресном мультиплексоре подключен к Vdd:
+
+![DMC_A15](/BreakingNESWiki/imgstore/apu/DMC_A15.jpg)
+
+## DPCM Output ($4011)
 
 ![dpcm_output_tran](/BreakingNESWiki/imgstore/apu/dpcm_output_tran.jpg)

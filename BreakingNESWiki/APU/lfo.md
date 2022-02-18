@@ -24,6 +24,24 @@ LFO управляется регистром $4017 (write-only):
 
 ![lfo_aclk_gen_tran](/BreakingNESWiki/imgstore/apu/lfo_aclk_gen_tran.jpg)
 
+![ACLK_Gen](/BreakingNESWiki/imgstore/apu/ACLK_Gen.jpg)
+
+|CLK Num|PHI1|PHI2|ACLK|/ACLK|
+|---|---|---|---|---|
+|0	|0	|1	|1	|0|
+|1	|0	|1	|1	|0|
+|2	|1	|0	|0	|0|
+|14	|0	|1	|1	|0|
+|26	|1	|0	|1	|1|
+|38	|0	|1	|1	|0|
+|50	|1	|0	|0	|0|
+|62	|0	|1	|1	|0|
+|74	|1	|0	|1	|1|
+|86	|0	|1	|1	|0|
+|98	|1	|0	|0	|0|
+|110|0	|1	|1	|0|
+|122|1	|0	|1	|1|
+
 ## Управление LFO
 
 ![lfo_control_tran](/BreakingNESWiki/imgstore/apu/lfo_control_tran.jpg)
