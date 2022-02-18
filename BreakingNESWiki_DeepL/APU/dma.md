@@ -8,7 +8,7 @@ This component acts as a small DMA controller, which besides sprite DMA also han
 
 The sprite DMA is very closely tied in with the [DMC DMA](dpcm.md) and is "slave" to it (as long as the RUNDMC signal is `1` the sprite DMA is in standby mode).
 
-Unfortunately, the sprite DMA destination address cannot be configured and is hardwired to PPU register $2002.
+Unfortunately, the sprite DMA destination address cannot be configured and is hardwired to PPU register $2004.
 
 ## SPR DMA Address
 
@@ -22,7 +22,7 @@ High address bits:
 |![sprdma_addr_hi_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_hi_tran.jpg)|![SPRDMA_AddrHigh](/BreakingNESWiki/imgstore/apu/SPRDMA_AddrHigh.jpg)|
 |---|---|
 
-The arrows mark the places where the constant address of the PPU $2002 register is formed.
+The arrows mark the places where the constant address of the PPU $2004 register is formed.
 
 Schematic of a single counter bit:
 
@@ -51,7 +51,7 @@ Signals affecting the DMA process:
 - SPRS: Increment the low-order part of the address ("Step")
 - SPRE: End DMA execution ("End")
 
-Immediately after the start of sprite DMA the SPR/PPU and SPR/CPU control signals alternate their values so that the value is first read from memory into the sprite buffer and then written to the PPU register $2002.
+Immediately after the start of sprite DMA the SPR/PPU and SPR/CPU control signals alternate their values so that the value is first read from memory into the sprite buffer and then written to the PPU register $2004.
 
 ## SPR DMA Buffer
 
@@ -66,7 +66,7 @@ Logic:
 The address multiplexer is used to arbitrate the external address bus. The control signals are used to select who is "using" the address bus now:
 
 - SPR/CPU: Memory address to read during sprite DMA
-- SPR/PPU: A constant address value is set for writing to the PPU register $2002
+- SPR/PPU: A constant address value is set for writing to the PPU register $2004
 - #DMC/AB: The address bus is controlled by the DMC circuitry to perform DMC DMA
 - Default (CPU/AB): The address bus is controlled by the CPU
 
@@ -74,9 +74,7 @@ Address multiplexer control:
 
 ![sprdma_addr_mux_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_mux_control_tran.jpg)
 
-![sprdma_addr_mux_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_mux_tran.jpg)
-
-Single bit circuit:
+The multiplexer itself consists of 16 repeating circuits, for each bit:
 
 ![sprdma_addr_mux_bit_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_mux_bit_tran.jpg)
 

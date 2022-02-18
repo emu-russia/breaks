@@ -1143,7 +1143,7 @@
       <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(190,500)" name="Constant">
-      <a name="value" val="0x2002"/>
+      <a name="value" val="0x2004"/>
       <a name="width" val="16"/>
     </comp>
     <comp lib="0" loc="(420,400)" name="Pin">
