@@ -2,6 +2,15 @@
 
 ![apu_locator_dpcm](/BreakingNESWiki/imgstore/apu/apu_locator_dpcm.jpg)
 
+## Другой /ACLK
+
+В самом центре схемы DPCM находится схема, для получения "другого" /ACLK, который используется в DPCM, а также в [спрайтовой DMA](dma.md). Данный сигнал /ACLK отличается от обычного небольшой задержкой.
+Этот сигнал ещё можно встретить в наших схемах под названием `/ACLK2`.
+
+![Other_nACLK](/BreakingNESWiki/imgstore/apu/Other_nACLK.jpg)
+
+На схемах ниже стрелкой отмечены места, где используется `/ACLK2`.
+
 ## DPCM Control Register ($4010)
 
 ![dpcm_control_reg_tran](/BreakingNESWiki/imgstore/apu/dpcm_control_reg_tran.jpg)
@@ -18,7 +27,7 @@
 
 ![dpcm_dma_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_dma_control_tran.jpg)
 
-## Sample Counter In
+## Sample Counter In ($4013)
 
 ![dpcm_sample_counter_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_in_tran.jpg)
 
@@ -68,6 +77,6 @@
 
 ![dpcm_address_high_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_high_tran.jpg)
 
-## Output
+## Output ($4011)
 
 ![dpcm_output_tran](/BreakingNESWiki/imgstore/apu/dpcm_output_tran.jpg)
