@@ -48,6 +48,10 @@ Processor control signals:
 
 ![Write_4014_Timing](/BreakingNESWiki/imgstore/apu/Write_4014_Timing.jpg)
 
+|STA T0 PHI1|STA T0 PHI2|STA T1 PHI1|STA T1 PHI2|
+|---|---|---|---|
+|![SPRDMA_Control_T0_Phi1](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T0_Phi1.jpg)|![SPRDMA_Control_T0_Phi2](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T0_Phi2.jpg)|![SPRDMA_Control_T1_Phi1](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T1_Phi1.jpg)|![SPRDMA_Control_T1_Phi2](/BreakingNESWiki/imgstore/apu/SPRDMA_Control_T1_Phi2.jpg)|
+
 Signals affecting the DMA process:
 - W4014: Writing to register $4014 clears the lower part of the address and puts the value to be written into the higher part. The DMA process then starts.
 - SPRS: Increment the low-order part of the address ("Step")
