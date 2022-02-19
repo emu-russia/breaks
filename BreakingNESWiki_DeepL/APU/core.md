@@ -198,6 +198,12 @@ Debug register circuits:
 
 Register operations with debug registers are available only when DBG = 1.
 
+LOCK circuit:
+
+![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)
+
+The `LOCK' control signal is used in a number of other circuits.
+
 ## I/O Ports
 
 Circuit for producing OUTx signals:
