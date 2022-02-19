@@ -43,7 +43,7 @@
 |BSTEP|DPCM Control|Sample Buffer|Выполнить сдвиг разряда Sample Buffer|
 |NSTEP|DPCM Control|Sample Bit Counter|Выполнить инкремент Sample Bit Counter|
 |DSTEP|DPCM Control|DPCM Output|Выполнить инкремент/декремент счетчика DPCM Output|
-|PCM|DPCM Control|Sample Buffer|Загрузить новое значение сэмпла в Sample Buffer|
+|PCM|DPCM Control|Sample Buffer|Загрузить новое значение сэмпла в Sample Buffer. Сигнал активен когда PHI1 = 0 и адресная шина захвачена (имитация чтения CPU)|
 |/LOOP|$4010\[7\]|DPCM Control|0: Зацикленное воспроизведение DPCM|
 |IRQEN|$4010\[6\]|DPCM Control|1: Разрешить прерывание от DPCM|
 |DOUT|DPCM Output|DPCM Control|Счетчик DPCM Out закончил пересчет|
@@ -68,6 +68,10 @@
 
 На схемах ниже стрелкой отмечены места, где используется `/ACLK2`.
 
+## DPCM Control Summary
+
+![DPCM_Control](/BreakingNESWiki/imgstore/apu/DPCM_Control.jpg)
+
 ## DPCM Control Register ($4010)
 
 ![dpcm_control_reg_tran](/BreakingNESWiki/imgstore/apu/dpcm_control_reg_tran.jpg)
@@ -76,21 +80,19 @@
 
 ![dpcm_int_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_int_control_tran.jpg)
 
+![DPCM_IntControl](/BreakingNESWiki/imgstore/apu/DPCM_IntControl.jpg)
+
 ## DPCM Enable Control
 
 ![dpcm_enable_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_enable_control_tran.jpg)
+
+![DPCM_EnableControl](/BreakingNESWiki/imgstore/apu/DPCM_EnableControl.jpg)
 
 ## DPCM DMA Control
 
 ![dpcm_dma_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_dma_control_tran.jpg)
 
-## DPCM Sample Counter In ($4013)
-
-![dpcm_sample_counter_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_in_tran.jpg)
-
-## DPCM Sample Counter
-
-![dpcm_sample_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_tran.jpg)
+![DPCM_DMAControl](/BreakingNESWiki/imgstore/apu/DPCM_DMAControl.jpg)
 
 ## DPCM Sample Counter Control
 
@@ -100,13 +102,25 @@
 
 (Вторая часть схемы также управляет счетчиком разрядов сэмпла)
 
-## DPCM Sample Buffer
-
-![dpcm_sample_buffer_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_tran.jpg)
+![DPCM_SampleCounterControl](/BreakingNESWiki/imgstore/apu/DPCM_SampleCounterControl.jpg)
 
 ## DPCM Sample Buffer Control
 
 ![dpcm_sample_buffer_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_control_tran.jpg)
+
+![DPCM_SampleBufferControl](/BreakingNESWiki/imgstore/apu/DPCM_SampleBufferControl.jpg)
+
+## DPCM Sample Counter In ($4013)
+
+![dpcm_sample_counter_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_in_tran.jpg)
+
+## DPCM Sample Counter
+
+![dpcm_sample_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_tran.jpg)
+
+## DPCM Sample Buffer
+
+![dpcm_sample_buffer_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_tran.jpg)
 
 ## DPCM Sample Bit Counter
 
