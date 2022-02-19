@@ -37,20 +37,27 @@
 
 |Сигнал|Откуда|Куда|Описание|
 |---|---|---|---|
-|SLOAD|DPCM Control|Sample Counter, DPCM Address| |
-|SSTEP|DPCM Control|Sample Counter, DPCM Address| |
-|BLOAD|DPCM Control|Sample Buffer| |
-|BSTEP|DPCM Control|Sample Buffer| |
-|NSTEP|DPCM Control|Sample Bit Counter| |
-|DSTEP|DPCM Control|DPCM Output| |
-|PCM|DPCM Control|Sample Buffer| |
-|/LOOP|$4010|DPCM Control| |
-|IRQEN|$4010|DPCM Control| |
-|DOUT|DPCM Output|DPCM Control| |
-|NOUT|Sample Bit Counter|DPCM Control| |
-|SOUT|Sample Counter|DPCM Control| |
-|FLOAD|LFSR|DPCM Control| |
-|BOUT|Sample Buffer|DPCM Output| |
+|SLOAD|DPCM Control|Sample Counter, DPCM Address|Загрузить значение в Sample Counter|
+|SSTEP|DPCM Control|Sample Counter, DPCM Address|Выполнить инкремент Sample Counter|
+|BLOAD|DPCM Control|Sample Buffer|Загрузить значение в Sample Buffer|
+|BSTEP|DPCM Control|Sample Buffer|Выполнить сдвиг разряда Sample Buffer|
+|NSTEP|DPCM Control|Sample Bit Counter|Выполнить инкремент Sample Bit Counter|
+|DSTEP|DPCM Control|DPCM Output|Выполнить инкремент/декремент счетчика DPCM Output|
+|PCM|DPCM Control|Sample Buffer|Загрузить новое значение сэмпла в Sample Buffer|
+|/LOOP|$4010\[7\]|DPCM Control|0: Зацикленное воспроизведение DPCM|
+|IRQEN|$4010\[6\]|DPCM Control|1: Разрешить прерывание от DPCM|
+|DOUT|DPCM Output|DPCM Control|Счетчик DPCM Out закончил пересчет|
+|NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter закончил пересчет|
+|SOUT|Sample Counter|DPCM Control|Sample Counter закончил пересчет|
+|FLOAD|LFSR|DPCM Control|Frequency LFSR закончил пересчет и перезагрузил сам себя|
+|BOUT|Sample Buffer|DPCM Output|Очередное значение бита, вытолкнутое из регистра сдвига Sample Buffer|
+
+Большая часть сигналов управления имеют однотипную природу:
+- xLOAD: Загрузить новое значение
+- xSTEP: Выполнить какое-то действие
+- xOUT: Счетчик закончил пересчет
+
+Исключение составляет команда FLOAD: Frequency LFSR перезагружает сам себя после пересчета, но при этом одновременно сигнализирует в основной блок управления.
 
 ## Другой /ACLK
 
