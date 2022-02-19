@@ -7,6 +7,8 @@
 - Все остальное представляет собой набор счетчиков и управляющей логики, для организации процесса DMA
 - DPCM DMA не использует средства [спрайтового DMA](dma.md), а организует собственный буфер для хранения выбранного PCM сэмпла. Для перехвата управления над спрайтовой DMA используется контрольный сигнал `RUNDMC`.
 
+Отличие DMC DMA от спрайтовой DMA заключается в том, что DMC DMA прерывает процессор (RDY = 0) только на время выбора очередного сэмпла.
+
 ![DMC](/BreakingNESWiki/imgstore/apu/DMC.jpg)
 
 Входные сигналы:
@@ -78,21 +80,18 @@
 
 ## DPCM Interrupt Control
 
-![dpcm_int_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_int_control_tran.jpg)
-
-![DPCM_IntControl](/BreakingNESWiki/imgstore/apu/DPCM_IntControl.jpg)
+|![dpcm_int_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_int_control_tran.jpg)|![DPCM_IntControl](/BreakingNESWiki/imgstore/apu/DPCM_IntControl.jpg)|
+|---|---|
 
 ## DPCM Enable Control
 
-![dpcm_enable_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_enable_control_tran.jpg)
-
-![DPCM_EnableControl](/BreakingNESWiki/imgstore/apu/DPCM_EnableControl.jpg)
+|![dpcm_enable_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_enable_control_tran.jpg)|![DPCM_EnableControl](/BreakingNESWiki/imgstore/apu/DPCM_EnableControl.jpg)|
+|---|---|
 
 ## DPCM DMA Control
 
-![dpcm_dma_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_dma_control_tran.jpg)
-
-![DPCM_DMAControl](/BreakingNESWiki/imgstore/apu/DPCM_DMAControl.jpg)
+|![dpcm_dma_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_dma_control_tran.jpg)|![DPCM_DMAControl](/BreakingNESWiki/imgstore/apu/DPCM_DMAControl.jpg)|
+|---|---|
 
 ## DPCM Sample Counter Control
 
@@ -106,9 +105,8 @@
 
 ## DPCM Sample Buffer Control
 
-![dpcm_sample_buffer_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_control_tran.jpg)
-
-![DPCM_SampleBufferControl](/BreakingNESWiki/imgstore/apu/DPCM_SampleBufferControl.jpg)
+|![dpcm_sample_buffer_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_control_tran.jpg)|![DPCM_SampleBufferControl](/BreakingNESWiki/imgstore/apu/DPCM_SampleBufferControl.jpg)|
+|---|---|
 
 ## DPCM Sample Counter In ($4013)
 
