@@ -2,6 +2,63 @@
 
 ![apu_locator_dpcm](/BreakingNESWiki/imgstore/apu/apu_locator_dpcm.jpg)
 
+Данное устройство используется для генерации PCM звука:
+- Выходной регистр $4011 представляет собой реверсивный счетчик, который считает вверх, если следующий разряд битстрима равен 1 или вниз, если следующий разряд битстрима равен 0
+- Все остальное представляет собой набор счетчиков и управляющей логики, для организации процесса DMA
+- DPCM DMA не использует средства [спрайтового DMA](dma.md), а организует собственный буфер для хранения выбранного PCM сэмпла. Для перехвата управления над спрайтовой DMA используется контрольный сигнал `RUNDMC`.
+
+![DMC](/BreakingNESWiki/imgstore/apu/DMC.jpg)
+
+Входные сигналы:
+
+|Сигнал|Откуда|Описание|
+|---|---|---|
+|ACLK|LFO|APU Clock (верхний уровень)|
+|/ACLK|LFO|APU Clock (нижний уровень)|
+|PHI1|CPU|Первая половина цикла CPU|
+|RES|RES Pad|Внешний сигнал сброса|
+|R/W|CPU|Режим работы шины данных CPU (1: Read, 0: Write)|
+|LOCK|Core|TBD|
+|W401x|Reg Select|1: Операция записи в регистр $401x|
+|/R4015|Reg Select|0: Операция чтения регистра $4015|
+
+Выходные сигналы:
+
+|Сигнал|Куда|Описание|
+|---|---|---|
+|#DMC/AB|Address MUX|0: Захватить управление адресной шиной для чтения DPCM сэмпла|
+|RUNDMC|SPR DMA|1: DMC занята своими делами и перехватывает управление DMA|
+|DMCRDY|SPR DMA|1: DMC готова. Используется для управления готовностью процессора (RDY)|
+|/DMCINT|LFO|0: Прерывание DMC активно|
+|DMC Out|DAC|Выходное значение для ЦАП|
+|DMC Address|Address MUX|Адрес для чтения DPCM сэмпла|
+
+Сигналы управления внутренним состоянием DMC:
+
+|Сигнал|Откуда|Куда|Описание|
+|---|---|---|---|
+|SLOAD|DPCM Control|Sample Counter, DPCM Address|Загрузить значение в Sample Counter|
+|SSTEP|DPCM Control|Sample Counter, DPCM Address|Выполнить инкремент Sample Counter|
+|BLOAD|DPCM Control|Sample Buffer|Загрузить значение в Sample Buffer|
+|BSTEP|DPCM Control|Sample Buffer|Выполнить сдвиг разряда Sample Buffer|
+|NSTEP|DPCM Control|Sample Bit Counter|Выполнить инкремент Sample Bit Counter|
+|DSTEP|DPCM Control|DPCM Output|Выполнить инкремент/декремент счетчика DPCM Output|
+|PCM|DPCM Control|Sample Buffer|Загрузить новое значение сэмпла в Sample Buffer|
+|/LOOP|$4010\[7\]|DPCM Control|0: Зацикленное воспроизведение DPCM|
+|IRQEN|$4010\[6\]|DPCM Control|1: Разрешить прерывание от DPCM|
+|DOUT|DPCM Output|DPCM Control|Счетчик DPCM Out закончил пересчет|
+|NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter закончил пересчет|
+|SOUT|Sample Counter|DPCM Control|Sample Counter закончил пересчет|
+|FLOAD|LFSR|DPCM Control|Frequency LFSR закончил пересчет и перезагрузил сам себя|
+|BOUT|Sample Buffer|DPCM Output|Очередное значение бита, вытолкнутое из регистра сдвига Sample Buffer|
+
+Большая часть сигналов управления имеют однотипную природу:
+- xLOAD: Загрузить новое значение
+- xSTEP: Выполнить какое-то действие
+- xOUT: Счетчик закончил пересчет
+
+Исключение составляет команда FLOAD: Frequency LFSR перезагружает сам себя после пересчета, но при этом одновременно сигнализирует в основной блок управления.
+
 ## Другой /ACLK
 
 В самом центре схемы DPCM находится схема, для получения "другого" /ACLK, который используется в DPCM, а также в [спрайтовой DMA](dma.md). Данный сигнал /ACLK отличается от обычного небольшой задержкой.
