@@ -2,7 +2,55 @@
 
 ![apu_locator_dpcm](/BreakingNESWiki/imgstore/apu/apu_locator_dpcm.jpg)
 
+Данное устройство используется для генерации PCM звука:
+- Выходной регистр $4011 представляет собой реверсивный счетчик, который считает вверх, если следующий разряд битстрима равен 1 или вниз, если следующий разряд битстрима равен 0
+- Все остальное представляет собой набор счетчиков и управляющей логики, для организации процесса DMA
+- DPCM DMA не использует средства [спрайтового DMA](dma.md), а организует собственный буфер для хранения выбранного PCM сэмпла. Для перехвата управления над спрайтовой DMA используется контрольный сигнал `RUNDMC`.
+
 ![DMC](/BreakingNESWiki/imgstore/apu/DMC.jpg)
+
+Входные сигналы:
+
+|Сигнал|Откуда|Описание|
+|---|---|---|
+|ACLK|LFO|APU Clock (верхний уровень)|
+|/ACLK|LFO|APU Clock (нижний уровень)|
+|PHI1|CPU|Первая половина цикла CPU|
+|RES|RES Pad|Внешний сигнал сброса|
+|R/W|CPU|Режим работы шины данных CPU (1: Read, 0: Write)|
+|LOCK|Core|TBD|
+|W401x|Reg Select|1: Операция записи в регистр $401x|
+|/R4015|Reg Select|0: Операция чтения регистра $4015|
+
+Выходные сигналы:
+
+|Сигнал|Куда|Описание|
+|---|---|---|
+|#DMC/AB|Address MUX|0: Захватить управление адресной шиной для чтения DPCM сэмпла|
+|RUNDMC|SPR DMA|1: DMC занята своими делами и перехватывает управление DMA|
+|DMCRDY|SPR DMA|1: DMC готова. Используется для управления готовностью процессора (RDY)|
+|/DMCINT|LFO|0: Прерывание DMC активно|
+|DMC Out|DAC|Выходное значение для ЦАП|
+|DMC Address|Address MUX|Адрес для чтения DPCM сэмпла|
+
+Сигналы управления внутренним состоянием DMC:
+
+|Сигнал|Откуда|Куда|Описание|
+|---|---|---|---|
+|SLOAD|DPCM Control|Sample Counter, DPCM Address| |
+|SSTEP|DPCM Control|Sample Counter, DPCM Address| |
+|BLOAD|DPCM Control|Sample Buffer| |
+|BSTEP|DPCM Control|Sample Buffer| |
+|NSTEP|DPCM Control|Sample Bit Counter| |
+|DSTEP|DPCM Control|DPCM Output| |
+|PCM|DPCM Control|Sample Buffer| |
+|/LOOP|$4010|DPCM Control| |
+|IRQEN|$4010|DPCM Control| |
+|DOUT|DPCM Output|DPCM Control| |
+|NOUT|Sample Bit Counter|DPCM Control| |
+|SOUT|Sample Counter|DPCM Control| |
+|FLOAD|LFSR|DPCM Control| |
+|BOUT|Sample Buffer|DPCM Output| |
 
 ## Другой /ACLK
 
