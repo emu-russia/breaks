@@ -202,7 +202,7 @@ LOCK circuit:
 
 ![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)
 
-The `LOCK' control signal is used in a number of other circuits.
+The `LOCK` signal is used to temporarily suspend the tone generators so that their values can be fixed in the debug registers.
 
 ## I/O Ports
 
