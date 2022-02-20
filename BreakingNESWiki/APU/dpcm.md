@@ -76,7 +76,8 @@
 
 ## DPCM Control Register ($4010)
 
-![dpcm_control_reg_tran](/BreakingNESWiki/imgstore/apu/dpcm_control_reg_tran.jpg)
+|![dpcm_control_reg_tran](/BreakingNESWiki/imgstore/apu/dpcm_control_reg_tran.jpg)|![DPCM_ControlReg](/BreakingNESWiki/imgstore/apu/DPCM_ControlReg.jpg)|
+|---|---|
 
 ## DPCM Interrupt Control
 
@@ -108,13 +109,15 @@
 |![dpcm_sample_buffer_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_control_tran.jpg)|![DPCM_SampleBufferControl](/BreakingNESWiki/imgstore/apu/DPCM_SampleBufferControl.jpg)|
 |---|---|
 
-## DPCM Sample Counter In ($4013)
+## DPCM Sample Counter Register ($4013)
 
-![dpcm_sample_counter_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_in_tran.jpg)
+|![dpcm_sample_counter_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_in_tran.jpg)|![DPCM_SampleCounterReg](/BreakingNESWiki/imgstore/apu/DPCM_SampleCounterReg.jpg)|
+|---|---|
 
 ## DPCM Sample Counter
 
-![dpcm_sample_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_tran.jpg)
+|![dpcm_sample_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_tran.jpg)|![DPCM_SampleCounter](/BreakingNESWiki/imgstore/apu/DPCM_SampleCounter.jpg)|
+|---|---|
 
 ## DPCM Sample Buffer
 
@@ -134,7 +137,8 @@
 
 ## DPCM Address Register ($4012)
 
-![dpcm_addr_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_addr_in_tran.jpg)
+|![dpcm_addr_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_addr_in_tran.jpg)|![DPCM_AddressReg](/BreakingNESWiki/imgstore/apu/DPCM_AddressReg.jpg)|
+|---|---|
 
 ## DPCM Address
 
@@ -149,6 +153,8 @@
 Вход DMC_A15 в адресном мультиплексоре подключен к Vdd:
 
 ![DMC_A15](/BreakingNESWiki/imgstore/apu/DMC_A15.jpg)
+
+![DPCM_Address](/BreakingNESWiki/imgstore/apu/DPCM_Address.jpg)
 
 ## DPCM Output ($4011)
 
