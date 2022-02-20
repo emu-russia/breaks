@@ -5237,6 +5237,7 @@
       <a name="label" val="Fx"/>
       <a name="width" val="4"/>
     </comp>
+    <comp lib="0" loc="(100,320)" name="Constant"/>
     <comp lib="0" loc="(120,100)" name="Splitter">
       <a name="appear" val="right"/>
       <a name="bit0" val="3"/>
@@ -5247,6 +5248,22 @@
       <a name="incoming" val="4"/>
     </comp>
     <comp lib="0" loc="(660,90)" name="Splitter">
+      <a name="bit0" val="15"/>
+      <a name="bit1" val="14"/>
+      <a name="bit10" val="5"/>
+      <a name="bit11" val="4"/>
+      <a name="bit12" val="3"/>
+      <a name="bit13" val="2"/>
+      <a name="bit14" val="1"/>
+      <a name="bit15" val="0"/>
+      <a name="bit2" val="13"/>
+      <a name="bit3" val="12"/>
+      <a name="bit4" val="11"/>
+      <a name="bit5" val="10"/>
+      <a name="bit6" val="9"/>
+      <a name="bit7" val="8"/>
+      <a name="bit8" val="7"/>
+      <a name="bit9" val="6"/>
       <a name="facing" val="west"/>
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
@@ -5318,7 +5335,19 @@
     <comp lib="1" loc="(470,970)" name="NOR Gate">
       <a name="inputs" val="4"/>
     </comp>
-    <wire from="(100,100)" to="(120,100)"/>
+    <comp lib="2" loc="(110,320)" name="Demultiplexer">
+      <a name="select" val="4"/>
+      <a name="selloc" val="tr"/>
+    </comp>
+    <comp lib="8" loc="(426,55)" name="Text">
+      <a name="text" val="DMX 4-to-16"/>
+    </comp>
+    <wire from="(100,100)" to="(110,100)"/>
+    <wire from="(100,320)" to="(110,320)"/>
+    <wire from="(110,100)" to="(110,210)"/>
+    <wire from="(110,100)" to="(120,100)"/>
+    <wire from="(110,210)" to="(130,210)"/>
+    <wire from="(130,210)" to="(130,240)"/>
     <wire from="(140,110)" to="(160,110)"/>
     <wire from="(140,120)" to="(160,120)"/>
     <wire from="(140,130)" to="(150,130)"/>
@@ -5540,6 +5569,22 @@
     </comp>
     <comp lib="0" loc="(160,100)" name="Splitter">
       <a name="appear" val="right"/>
+      <a name="bit0" val="15"/>
+      <a name="bit1" val="14"/>
+      <a name="bit10" val="5"/>
+      <a name="bit11" val="4"/>
+      <a name="bit12" val="3"/>
+      <a name="bit13" val="2"/>
+      <a name="bit14" val="1"/>
+      <a name="bit15" val="0"/>
+      <a name="bit2" val="13"/>
+      <a name="bit3" val="12"/>
+      <a name="bit4" val="11"/>
+      <a name="bit5" val="10"/>
+      <a name="bit6" val="9"/>
+      <a name="bit7" val="8"/>
+      <a name="bit8" val="7"/>
+      <a name="bit9" val="6"/>
       <a name="fanout" val="16"/>
       <a name="incoming" val="16"/>
     </comp>
