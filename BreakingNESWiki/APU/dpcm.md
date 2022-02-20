@@ -135,6 +135,8 @@
 
 ![DPCM_Decoder](/BreakingNESWiki/imgstore/apu/DPCM_Decoder.jpg)
 
+PLA1 является обычным демультиплексором 4-в-16, а PLA2 формирует входное значение для загрузки в LFSR.
+
 |Decoder In|Decoder Out|
 |---|---|
 |0|0x173|
@@ -153,6 +155,10 @@
 |13|0x189|
 |14|0x18E|
 |15|0x156|
+
+|PLA1|PLA2|
+|---|---|
+|![DPCM_PLA1](/BreakingNESWiki/imgstore/apu/DPCM_PLA1.jpg)|![DPCM_PLA2](/BreakingNESWiki/imgstore/apu/DPCM_PLA2.jpg)|
 
 ## DPCM Frequency Counter LFSR
 
