@@ -133,6 +133,27 @@
 
 ![dpcm_decoder_tran](/BreakingNESWiki/imgstore/apu/dpcm_decoder_tran.jpg)
 
+![DPCM_Decoder](/BreakingNESWiki/imgstore/apu/DPCM_Decoder.jpg)
+
+|Decoder In|Decoder Out|
+|---|---|
+|0|0x173|
+|1|0x009|
+|2|0x1EE|
+|3|0x08D|
+|4|0x143|
+|5|0x0F1|
+|6|0x07D|
+|7|0x18E|
+|8|0x08A|
+|9|0x0DC|
+|10|0x03F|
+|11|0x189|
+|12|0x0DB|
+|13|0x0F9|
+|14|0x1D1|
+|15|0x156|
+
 ## DPCM Frequency Counter LFSR
 
 ![dpcm_freq_counter_lfsr_tran](/BreakingNESWiki/imgstore/apu/dpcm_freq_counter_lfsr_tran.jpg)
