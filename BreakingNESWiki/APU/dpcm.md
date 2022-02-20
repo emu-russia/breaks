@@ -31,7 +31,7 @@
 |#DMC/AB|Address MUX|0: Захватить управление адресной шиной для чтения DPCM сэмпла|
 |RUNDMC|SPR DMA|1: DMC занята своими делами и перехватывает управление DMA|
 |DMCRDY|SPR DMA|1: DMC готова. Используется для управления готовностью процессора (RDY)|
-|/DMCINT|LFO|0: Прерывание DMC активно|
+|DMCINT|LFO|1: Прерывание DMC активно|
 |DMC Out|DAC|Выходное значение для ЦАП|
 |DMC Address|Address MUX|Адрес для чтения DPCM сэмпла|
 
@@ -46,8 +46,8 @@
 |NSTEP|DPCM Control|Sample Bit Counter|Выполнить инкремент Sample Bit Counter|
 |DSTEP|DPCM Control|DPCM Output|Выполнить инкремент/декремент счетчика DPCM Output|
 |PCM|DPCM Control|Sample Buffer|Загрузить новое значение сэмпла в Sample Buffer. Сигнал активен когда PHI1 = 0 и адресная шина захвачена (имитация чтения CPU)|
-|/LOOP|$4010\[7\]|DPCM Control|0: Зацикленное воспроизведение DPCM|
-|IRQEN|$4010\[6\]|DPCM Control|1: Разрешить прерывание от DPCM|
+|LOOP|$4010\[7\]|DPCM Control|1: Зацикленное воспроизведение DPCM|
+|/IRQEN|$4010\[6\]|DPCM Control|0: Разрешить прерывание от DPCM|
 |DOUT|DPCM Output|DPCM Control|Счетчик DPCM Out закончил пересчет|
 |NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter закончил пересчет|
 |SOUT|Sample Counter|DPCM Control|Sample Counter закончил пересчет|
