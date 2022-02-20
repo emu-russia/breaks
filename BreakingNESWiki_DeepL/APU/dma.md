@@ -24,10 +24,6 @@ High address bits:
 
 The arrows mark the places where the constant address of the PPU $2004 register is formed.
 
-Schematic of a single counter bit:
-
-![SPRDMA_CounterBit](/BreakingNESWiki/imgstore/apu/SPRDMA_CounterBit.jpg)
-
 ## SPR DMA Control
 
 ![sprdma_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_control_tran.jpg)

@@ -24,10 +24,6 @@
 
 Стрелками отмечены места, где формируется константный адрес регистра PPU $2004.
 
-Схема одного разряда счетчика:
-
-![SPRDMA_CounterBit](/BreakingNESWiki/imgstore/apu/SPRDMA_CounterBit.jpg)
-
 ## SPR DMA Control
 
 ![sprdma_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_control_tran.jpg)
