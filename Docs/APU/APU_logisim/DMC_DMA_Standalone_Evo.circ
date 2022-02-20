@@ -5239,6 +5239,10 @@
     </comp>
     <comp lib="0" loc="(120,100)" name="Splitter">
       <a name="appear" val="right"/>
+      <a name="bit0" val="3"/>
+      <a name="bit1" val="2"/>
+      <a name="bit2" val="1"/>
+      <a name="bit3" val="0"/>
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
     </comp>
