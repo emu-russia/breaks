@@ -52,7 +52,7 @@
 |NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter закончил пересчет|
 |SOUT|Sample Counter|DPCM Control|Sample Counter закончил пересчет|
 |FLOAD|LFSR|DPCM Control|Frequency LFSR закончил пересчет и перезагрузил сам себя|
-|BOUT|Sample Buffer|DPCM Output|Очередное значение бита, вытолкнутое из регистра сдвига Sample Buffer|
+|/BOUT|Sample Buffer|DPCM Output|Очередное значение бита, вытолкнутое из регистра сдвига Sample Buffer (инвертированное значение)|
 
 Большая часть сигналов управления имеют однотипную природу:
 - xLOAD: Загрузить новое значение
