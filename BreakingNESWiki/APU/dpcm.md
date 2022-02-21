@@ -191,13 +191,9 @@ PLA1 является обычным демультиплексором 4-в-16,
 
 ## DPCM Address
 
-Младшая часть:
-
-![dpcm_address_low_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_low_tran.jpg)
-
-Старшая часть:
-
-![dpcm_address_high_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_high_tran.jpg)
+|Младшая часть|Старшая часть|
+|---|---|
+|![dpcm_address_low_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_low_tran.jpg)|![dpcm_address_high_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_high_tran.jpg)|
 
 Вход DMC_A15 в адресном мультиплексоре подключен к Vdd:
 
