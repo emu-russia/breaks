@@ -52,7 +52,7 @@ DMC internal state control signals:
 |NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter has finished counting|
 |SOUT|Sample Counter|DPCM Control|Sample Counter has finished counting|
 |FLOAD|LFSR|DPCM Control|Frequency LFSR finished counting and reloaded itself|
-|BOUT|Sample Buffer|DPCM Output|The next bit value pushed out of the Sample Buffer shift register|
+|n_BOUT|Sample Buffer|DPCM Output|The next bit value pushed out of the Sample Buffer shift register (inverted value)|
 
 The majority of control signals are of the same nature:
 - xLOAD: Load new value
