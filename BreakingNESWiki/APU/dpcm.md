@@ -79,6 +79,10 @@
 |![dpcm_control_reg_tran](/BreakingNESWiki/imgstore/apu/dpcm_control_reg_tran.jpg)|![DPCM_ControlReg](/BreakingNESWiki/imgstore/apu/DPCM_ControlReg.jpg)|
 |---|---|
 
+Разряд регистра, который используется и в других схемах:
+
+![PosedgeDFF](/BreakingNESWiki/imgstore/apu/PosedgeDFF.jpg)
+
 ## DPCM Interrupt Control
 
 |![dpcm_int_control_tran](/BreakingNESWiki/imgstore/apu/dpcm_int_control_tran.jpg)|![DPCM_IntControl](/BreakingNESWiki/imgstore/apu/DPCM_IntControl.jpg)|
@@ -119,10 +123,18 @@
 |![dpcm_sample_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_tran.jpg)|![DPCM_SampleCounter](/BreakingNESWiki/imgstore/apu/DPCM_SampleCounter.jpg)|
 |---|---|
 
+Разряд счетчика, применяемого в этой и других схемах:
+
+![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
+
 ## DPCM Sample Buffer
 
 |![dpcm_sample_buffer_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_tran.jpg)|![DPCM_SampleBuffer](/BreakingNESWiki/imgstore/apu/DPCM_SampleBuffer.jpg)|
 |---|---|
+
+Разряд сдвигового регистра, применяемого в Sample Buffer:
+
+![SRBit](/BreakingNESWiki/imgstore/apu/SRBit.jpg)
 
 ## DPCM Sample Bit Counter
 
@@ -162,7 +174,14 @@ PLA1 является обычным демультиплексором 4-в-16,
 
 ## DPCM Frequency Counter LFSR
 
-![dpcm_freq_counter_lfsr_tran](/BreakingNESWiki/imgstore/apu/dpcm_freq_counter_lfsr_tran.jpg)
+|![dpcm_freq_counter_lfsr_tran](/BreakingNESWiki/imgstore/apu/dpcm_freq_counter_lfsr_tran.jpg)|![DPCM_FreqLFSR](/BreakingNESWiki/imgstore/apu/DPCM_FreqLFSR.jpg)|
+|---|---|
+
+Разряд LFSR:
+
+![LFSRBit](/BreakingNESWiki/imgstore/apu/LFSRBit.jpg)
+
+Применение LFSR вместо обычного счетчика не находит обоснования. В других источниках утверждается что это было сделано ради экономии, но экономия сомнительная: входное значение LFSR (9 бит) требует столько же разрядов, как и обычный 9-разрядный счетчик.
 
 ## DPCM Address Register ($4012)
 
