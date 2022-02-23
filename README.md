@@ -1,6 +1,6 @@
 # Breaks - Nintendo Entertainment System (NES) / Famicom / Dendy chip reversing
 
-<img src="/Docs/NES/Books/bnb_6502.jpg" width="200px"> <img src="/Docs/NES/Books/bnb_apu.jpg" width="200px"> <img src="/Docs/NES/Books/bnb_ppu.jpg" width="200px">
+<img src="https://github.com/emu-russia/breaks/raw/master/Docs/NES/Books/bnb_6502.jpg" width="200px"> <img src="https://github.com/emu-russia/breaks/raw/master/Docs/NES/Books/bnb_apu.jpg" width="200px"> <img src="https://github.com/emu-russia/breaks/raw/master/Docs/NES/Books/bnb_ppu.jpg" width="200px">
 
 This project is aimed to reverse engineer following integrated circuits:
 - MOS 6502
