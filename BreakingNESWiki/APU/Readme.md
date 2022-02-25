@@ -33,3 +33,13 @@
 Пример локатора:
 
 ![apu_locator_dma](/BreakingNESWiki/imgstore/apu/apu_locator_dma.jpg)
+
+## Примечание по логическим схемам
+
+Логические схемы в основном сделаны в программе Logisim. Для обозначения DLatch применяется такой элемент:
+
+|DLatch (транзисторная схема)|DLatch (логический эквивалент)|
+|---|---|
+|![dlatch_tran](/BreakingNESWiki/imgstore/dlatch_tran.jpg)|![dlatch_logic](/BreakingNESWiki/imgstore/dlatch_logic.jpg)|
+
+Для удобства логический вариант DLatch имеет два выхода (`out` и `/out`), так как текущее значение DLatch (out) нередко используется как вход для операции NOR.
