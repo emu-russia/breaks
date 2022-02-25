@@ -18,7 +18,7 @@ The LFO is controlled by register $4017 (write-only):
 - $4017\[6\]: masks the LFO interrupt (1-LFO interrupt disable, 0-enable)
 - $4017\[7\]: Writing to this bit selects NTSC/PAL mode (0/1).
 
-Bit $4015\[6] contains the interrupt status.
+Bit $4015\[6\] contains the interrupt status.
 
 ## ACLK Generator
 
@@ -33,7 +33,7 @@ Bit $4015\[6] contains the interrupt status.
 - /R4015 and W4017: come from the register selector when reading $4015 and writing to $4017 registers respectively
 - D6 and D7: bits 6 and 7 of the internal data bus
 - /LFO1 and /LFO2: low frequency output signals
-- /DMCINT: DPCM interrupt signal
+- DMCINT: DPCM interrupt signal
 - INT: Joint LFO or DPCM interrupt signal
 - RES: internal reset signal (derived from /RES pin)
 
