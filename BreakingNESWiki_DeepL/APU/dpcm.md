@@ -191,7 +191,7 @@ The use of LFSR instead of a regular counter is not reasonable. Other sources cl
 
 ## DPCM Address
 
-|Lower bits|High bits|
+|Low|High|
 |---|---|
 |![dpcm_address_low_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_low_tran.jpg)|![dpcm_address_high_tran](/BreakingNESWiki/imgstore/apu/dpcm_address_high_tran.jpg)|
 
