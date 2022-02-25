@@ -9,7 +9,7 @@ The chip was developed by [Ricoh](../Ricoh.md), chip names are RP2A03 for NTSC a
 The APU includes:
 - MOS 6502 processor core, with disabled decimal correction (BCD) circuit
 - DMA to send sprites (hardwired to external PPU registers)
-- Tone generators: 2 square, 1 triange, 1 noise generator and 1 delta-PCM.
+- Tone generators: 2 square, 1 triangle, 1 noise generator and 1 delta-PCM.
 - DACs to convert digital outputs of synthesized sound to analog levels
 - DMA for sampling DPCM samples
 - Small DMA controller
