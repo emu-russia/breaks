@@ -33,3 +33,13 @@ To keep you from getting lost, each section includes a special "locator" at the 
 An example of a locator:
 
 ![apu_locator_dma](/BreakingNESWiki/imgstore/apu/apu_locator_dma.jpg)
+
+## Note on Logic Circuits
+
+The logic circuits are mostly made in the Logisim program. The following element is used to denote DLatch:
+
+|DLatch (transistor circuit)|DLatch (logic equivalent)|
+|---|---|
+|![dlatch_tran](/BreakingNESWiki/imgstore/dlatch_tran.jpg)|![dlatch_logic](/BreakingNESWiki/imgstore/dlatch_logic.jpg)|
+
+For convenience, the logical variant of DLatch has two outputs (`out` and `/out`), since the current value of DLatch (out) is often used as an input of a NOR operation.
