@@ -7,7 +7,7 @@ The study of any IC begins with the pinout.
 |Name|Number|Direction|Description|
 |---|---|---|---|
 |SND1|1|APU =>|DAC output of square channels (can be found under the name `AUX A`)|
-|SND2|2|APU =>|DAC output for the remaining channels (triangle, noise, and DAC) (can be found as `AUX B`)|
+|SND2|2|APU =>|DAC output for the remaining channels (triangle, noise, and DPCM) (can be found as `AUX B`)|
 |/RES|3|APU =>|Reset signal|
 |A0-A15|4-19|APU =>|Address bus|
 |GND|20| |Ground|
