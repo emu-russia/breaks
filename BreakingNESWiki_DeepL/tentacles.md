@@ -52,6 +52,7 @@ Correction history:
 |OMFG|The purpose of the signal is still unclear|
 |ASAP|The purpose of the signal is still unclear|
 |SH5, SH7|Were mixed up|
+|CLK, /CLK|Were mixed up|
 
 ## APU
 

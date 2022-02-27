@@ -146,9 +146,13 @@
 
 ### CLK
 
-![PPU clk](/BreakingNESWiki/imgstore/clk.jpg)
+Контактная площадка:
 
-(контактная площадка не показана)
+![pad_clk](/BreakingNESWiki/imgstore/ppu/pad_clk.jpg)
+
+Логика распределения CLK:
+
+![PPU clk](/BreakingNESWiki/imgstore/clk.jpg)
 
 Входной CLK разводится на два внутренних комплементарных сигнала: CLK и /CLK.
 
