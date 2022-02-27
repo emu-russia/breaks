@@ -150,6 +150,8 @@ Contact pad:
 
 ![pad_clk](/BreakingNESWiki/imgstore/ppu/pad_clk.jpg)
 
+Resembles the relaxation oscillator: https://en.wikipedia.org/wiki/Schmitt_trigger#Use_as_an_oscillator
+
 CLK distribution logic:
 
 ![PPU clk](/BreakingNESWiki/imgstore/clk.jpg)
