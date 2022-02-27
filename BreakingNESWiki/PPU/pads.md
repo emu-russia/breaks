@@ -146,9 +146,15 @@
 
 ### CLK
 
-![PPU clk](/BreakingNESWiki/imgstore/clk.jpg)
+Контактная площадка:
 
-(контактная площадка не показана)
+![pad_clk](/BreakingNESWiki/imgstore/ppu/pad_clk.jpg)
+
+Напоминает релаксационный генератор: https://en.wikipedia.org/wiki/Schmitt_trigger#Use_as_an_oscillator
+
+Логика распределения CLK:
+
+![PPU clk](/BreakingNESWiki/imgstore/clk.jpg)
 
 Входной CLK разводится на два внутренних комплементарных сигнала: CLK и /CLK.
 

@@ -146,9 +146,15 @@ The synchronization between PPUs is done simply by the sequence of EXT pins outp
 
 ### CLK
 
-![PPU clk](/BreakingNESWiki/imgstore/clk.jpg)
+Contact pad:
 
-(contact pad not shown)
+![pad_clk](/BreakingNESWiki/imgstore/ppu/pad_clk.jpg)
+
+Resembles the relaxation oscillator: https://en.wikipedia.org/wiki/Schmitt_trigger#Use_as_an_oscillator
+
+CLK distribution logic:
+
+![PPU clk](/BreakingNESWiki/imgstore/clk.jpg)
 
 The input CLK is split into two internal complementary signals: CLK and /CLK.
 
