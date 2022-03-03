@@ -41,7 +41,7 @@ Bit $4015\[6\] contains the interrupt status.
 - D6 and D7: bits 6 and 7 of the internal data bus
 - /LFO1 and /LFO2: low frequency output signals
 - DMCINT: DPCM interrupt signal
-- INT: Joint LFO or DPCM interrupt signal
+- INT: Joint SoftCLK or DPCM interrupt signal
 - RES: internal reset signal (derived from /RES pin)
 
 ### Soft CLK Counter
