@@ -13,7 +13,7 @@ The APU includes:
 - DACs to convert digital outputs of synthesized sound to analog levels
 - DMA for sampling DPCM samples
 - Small DMA controller
-- Low-frequency oscillator (commonly known as `Frame counter`)
+- Software Timer (commonly known as `Frame counter`)
 - Input clock frequency divider
 - I/O ports (which are used to receive data from controllers in NES)
 - Debug registers (not available on Retail consoles)
