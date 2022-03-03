@@ -3,7 +3,7 @@
 - [Overview](Readme.md)
 - [Pinout](pads.md)
 - [6502 Core Binding](core.md)
-- [Low Frequency Oscillator (LFO)](lfo.md)
+- [Timing Generator](aclk.md)
 - [Tone Generators](sound.md)
 - [Length Counters](length.md)
 - [Square Channels](square.md)
