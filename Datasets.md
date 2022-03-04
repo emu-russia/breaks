@@ -28,7 +28,7 @@ This section contains links from where you can download datasets - photographs o
 
 - https://forums.nesdev.org/viewtopic.php?t=23682
 
-- UMC6527P: https://drive.google.com/drive/folders/12m-oXzVGk4oJU_lRnez9Gt3Ga5xKlvEZ
+- UMC 6527P: https://drive.google.com/drive/folders/12m-oXzVGk4oJU_lRnez9Gt3Ga5xKlvEZ
 
 ## Mappers
 
