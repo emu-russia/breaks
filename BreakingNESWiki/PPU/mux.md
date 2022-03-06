@@ -16,7 +16,7 @@
 
 ## Транзисторная схема
 
-![ppu_mux](/BreakingNESWiki/imgstore/ppu_mux.jpg)
+![ppu_mux](/BreakingNESWiki/imgstore/ppu/ppu_mux.jpg)
 
 Как видно, схема выглядит весьма запутано на первый взгляд. Это по причине того, что мультиплексоры (как элементы схемы) очень сложно распознать из NMOS транзисторов.
 
@@ -28,7 +28,7 @@
 
 ## Схема Logisim
 
-![ppu_mux_logisim](/BreakingNESWiki/imgstore/ppu_mux_logisim.jpg)
+![ppu_mux_logisim](/BreakingNESWiki/imgstore/ppu/ppu_mux_logisim.jpg)
 
 (Кусок схемы для проверки Sprite 0 Hit не показан и отмечен как "to strike test").
 
@@ -69,7 +69,7 @@ Sprite 0 Hit - это алиенская особенность работы PPU
 
 Схема Sprite 0 Hit:
 
-![spr0hit](/BreakingNESWiki/imgstore/spr0hit.jpg)
+![spr0hit](/BreakingNESWiki/imgstore/ppu/spr0hit.jpg)
 
 Контрольный выход `STRIKE` равен 1 только когда BGC0=1 или BGC1=1, при этом все остальные входы равны 0.
 
