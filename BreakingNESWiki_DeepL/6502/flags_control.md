@@ -1,6 +1,6 @@
 # Flags Control
 
-![6502_locator_flags_control](/BreakingNESWiki/imgstore/6502_locator_flags_control.jpg)
+![6502_locator_flags_control](/BreakingNESWiki/imgstore/6502/6502_locator_flags_control.jpg)
 
 The flag control circuits are divided into two parts for convenience:
 - Intermediate control signals from the decoder (opcode selection)

@@ -1,6 +1,6 @@
 # Interrupt Processing
 
-![6502_locator_intr](/BreakingNESWiki/imgstore/6502_locator_intr.jpg)
+![6502_locator_intr](/BreakingNESWiki/imgstore/6502/6502_locator_intr.jpg)
 
 Interrupt processing includes the following circuits:
 - NMI edge detection

@@ -1,6 +1,6 @@
 # Управление шинами
 
-![6502_locator_bus_control](/BreakingNESWiki/imgstore/6502_locator_bus_control.jpg)
+![6502_locator_bus_control](/BreakingNESWiki/imgstore/6502/6502_locator_bus_control.jpg)
 
 Управление шинами больше всего "раскидано" по поверхности процессора. Проще всего будет вначале дать описание всех [команд управления](context_control.md) шинами, а потом по отдельности рассмотреть соответствующие схемы.
 

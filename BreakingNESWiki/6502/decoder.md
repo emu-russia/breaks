@@ -1,6 +1,6 @@
 # Декодер
 
-![6502_locator_decoder](/BreakingNESWiki/imgstore/6502_locator_decoder.jpg)
+![6502_locator_decoder](/BreakingNESWiki/imgstore/6502/6502_locator_decoder.jpg)
 
 Декодер - это обыкновенный демультиплексор, но очень большой. Формула демультиплексора получается 21-to-130. Иногда декодер инструкций 6502 ещё называют PLA.
 

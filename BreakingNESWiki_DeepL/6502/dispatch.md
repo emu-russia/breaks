@@ -1,6 +1,6 @@
 # Dispatcher
 
-![6502_locator_dispatch](/BreakingNESWiki/imgstore/6502_locator_dispatch.jpg)
+![6502_locator_dispatch](/BreakingNESWiki/imgstore/6502/6502_locator_dispatch.jpg)
 
 The execution logic (dispatcher) is the key mechanism of the processor that "directs" the execution of instructions.
 

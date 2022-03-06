@@ -1,6 +1,6 @@
 # Логика исполнения
 
-![6502_locator_dispatch](/BreakingNESWiki/imgstore/6502_locator_dispatch.jpg)
+![6502_locator_dispatch](/BreakingNESWiki/imgstore/6502/6502_locator_dispatch.jpg)
 
 Логика исполнения (dispatch) - это ключевой механизм процессора, который "дирижирует" выполнением инструкций.
 

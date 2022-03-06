@@ -1,6 +1,6 @@
 # Флаги
 
-![6502_locator_flags](/BreakingNESWiki/imgstore/6502_locator_flags.jpg)
+![6502_locator_flags](/BreakingNESWiki/imgstore/6502/6502_locator_flags.jpg)
 
 Флаги (разряды регистра P) находятся в "размазанном" виде, как несколько схем верхней части процессора.
 

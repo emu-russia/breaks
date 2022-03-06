@@ -1,6 +1,6 @@
 # Decoder
 
-![6502_locator_decoder](/BreakingNESWiki/imgstore/6502_locator_decoder.jpg)
+![6502_locator_decoder](/BreakingNESWiki/imgstore/6502/6502_locator_decoder.jpg)
 
 The decoder is an ordinary demultiplexer, but a very large one. The formula for the demultiplexer is 21-to-130. Sometimes the 6502 instruction decoder is also called a PLA.
 

@@ -1,6 +1,6 @@
 # Логика установки флагов
 
-![6502_locator_flags_control](/BreakingNESWiki/imgstore/6502_locator_flags_control.jpg)
+![6502_locator_flags_control](/BreakingNESWiki/imgstore/6502/6502_locator_flags_control.jpg)
 
 Схемы управления флагами для удобства разделены на две части:
 - Промежуточные контрольные сигналы с декодера (выбор опкодов)

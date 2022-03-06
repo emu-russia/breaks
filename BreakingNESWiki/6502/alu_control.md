@@ -1,6 +1,6 @@
 # Управление АЛУ
 
-![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502_locator_alu_control.jpg)
+![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502/6502_locator_alu_control.jpg)
 
 Управление [АЛУ](alu.md) предназначено для формирования [команд управления](context_control.md) АЛУ.
 

@@ -1,6 +1,6 @@
 # Управление счетчиком инструкций (PC)
 
-![6502_locator_pc_control](/BreakingNESWiki/imgstore/6502_locator_pc_control.jpg)
+![6502_locator_pc_control](/BreakingNESWiki/imgstore/6502/6502_locator_pc_control.jpg)
 
 Схема управления счетчиком инструкций (PC) предназначена для формирования [команд управления](context_control.md) для обмена значением PC и внутренних шин ADL, ADH и DB.
 

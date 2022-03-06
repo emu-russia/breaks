@@ -1,6 +1,6 @@
 # Address Bus
 
-![6502_locator_addr](/BreakingNESWiki/imgstore/6502_locator_addr.jpg)
+![6502_locator_addr](/BreakingNESWiki/imgstore/6502/6502_locator_addr.jpg)
 
 Although the 6502 communicates with the outside world on a 16-bit address bus, but because the processor is 8-bit in nature, the address bus is internally divided into two 8-bit halves: an upper (ADH) and a lower (ADL).
 
