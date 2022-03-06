@@ -4,13 +4,13 @@
 
 "Control Commands" is the conventional name for the large number of control signals that go from the top of the processor to the bottom and control the context (registers, buses) and ALU.
 
-![6502_controls_tran1](/BreakingNESWiki/imgstore/6502_controls_tran1.jpg)
+![6502_controls_tran1](/BreakingNESWiki/imgstore/6502/6502_controls_tran1.jpg)
 
-![6502_controls_tran2](/BreakingNESWiki/imgstore/6502_controls_tran2.jpg)
+![6502_controls_tran2](/BreakingNESWiki/imgstore/6502/6502_controls_tran2.jpg)
 
-![6502_controls_tran3](/BreakingNESWiki/imgstore/6502_controls_tran3.jpg)
+![6502_controls_tran3](/BreakingNESWiki/imgstore/6502/6502_controls_tran3.jpg)
 
-![6502_controls_tran4](/BreakingNESWiki/imgstore/6502_controls_tran4.jpg)
+![6502_controls_tran4](/BreakingNESWiki/imgstore/6502/6502_controls_tran4.jpg)
 
 The control commands for the flag register are discussed in the corresponding section on [flag management](flags_control.md), since they do not go beyond the top of the processor.
 
@@ -83,7 +83,7 @@ Be careful, all output values are inverse latch values, except for `ADD/SB7`.
 
 On the left side is a small circuit to pull up PHI2 (which is used by a lot of cutoff transistors, so it must be quite powerful):
 
-![phi2_pullup_tran](/BreakingNESWiki/imgstore/phi2_pullup_tran.jpg)
+![phi2_pullup_tran](/BreakingNESWiki/imgstore/6502/phi2_pullup_tran.jpg)
 
 It doesn't carry any logical meaning, but it looks cool.
 
