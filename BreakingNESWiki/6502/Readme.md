@@ -173,7 +173,7 @@
 
 Пример локатора:
 
-![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502_locator_alu_control.jpg)
+![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502/6502_locator_alu_control.jpg)
 
 ## Примечание по логическим схемам
 

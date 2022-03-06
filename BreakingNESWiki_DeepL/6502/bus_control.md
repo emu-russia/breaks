@@ -1,6 +1,6 @@
 # Bus Control
 
-![6502_locator_bus_control](/BreakingNESWiki/imgstore/6502_locator_bus_control.jpg)
+![6502_locator_bus_control](/BreakingNESWiki/imgstore/6502/6502_locator_bus_control.jpg)
 
 Bus control is most of all "scattered" around the processor surface. It is easiest to describe all the bus [control commands](context_control.md) first, and then to look at the corresponding circuits individually.
 

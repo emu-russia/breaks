@@ -1,6 +1,6 @@
 # ALU
 
-![6502_locator_alu](/BreakingNESWiki/imgstore/6502_locator_alu.jpg)
+![6502_locator_alu](/BreakingNESWiki/imgstore/6502/6502_locator_alu.jpg)
 
 It is not possible to show the whole ALU circuit, so let's saw it into its component parts and consider each one separately.
 

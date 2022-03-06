@@ -1,6 +1,6 @@
 # Predecode
 
-![6502_locator_predecode](/BreakingNESWiki/imgstore/6502_locator_predecode.jpg)
+![6502_locator_predecode](/BreakingNESWiki/imgstore/6502/6502_locator_predecode.jpg)
 
 The circuit is designed to define the "class" of an instruction: 
 - A short instruction which is executed in 2 clock cycles (`TWOCYCLE`)

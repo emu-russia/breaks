@@ -1,6 +1,6 @@
 # Шина данных
 
-![6502_locator_data](/BreakingNESWiki/imgstore/6502_locator_data.jpg)
+![6502_locator_data](/BreakingNESWiki/imgstore/6502/6502_locator_data.jpg)
 
 Схемы для работы с внешней шиной данных состоят из 8 одинаковых кусков:
 

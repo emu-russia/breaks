@@ -4,7 +4,7 @@ PPU (Picture Processing Unit) - специализированная микро�
 
 Примерная картинка, которую может выдать PPU:
 
-<img src="/BreakingNESWiki/imgstore/battletoads.png" width="400px">
+<img src="/BreakingNESWiki/imgstore/ppu/battletoads.jpg" width="400px">
 
 Существует следующие версии микросхем PPU:
 - 2C02: применялась в Famicom и американской версии NES. Генерирует NTSC сигнал.

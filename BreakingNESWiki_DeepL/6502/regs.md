@@ -1,6 +1,6 @@
 # Registers
 
-![6502_locator_regs](/BreakingNESWiki/imgstore/6502_locator_regs.jpg)
+![6502_locator_regs](/BreakingNESWiki/imgstore/6502/6502_locator_regs.jpg)
 
 The X and Y registers are used for index addressing. Register S is a stack pointer and the stack is located at addresses 0x100 ... 0x1FF (on the first page).
 

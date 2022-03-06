@@ -1,6 +1,6 @@
 # Логика условных переходов
 
-![6502_locator_branch](/BreakingNESWiki/imgstore/6502_locator_branch.jpg)
+![6502_locator_branch](/BreakingNESWiki/imgstore/6502/6502_locator_branch.jpg)
 
 Логика условных переходов определяет:
 - Произошел ли переход вперед или назад

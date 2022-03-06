@@ -1,6 +1,6 @@
 # Предварительное декодирование
 
-![6502_locator_predecode](/BreakingNESWiki/imgstore/6502_locator_predecode.jpg)
+![6502_locator_predecode](/BreakingNESWiki/imgstore/6502/6502_locator_predecode.jpg)
 
 Схема предназначена для определения "класса" инструкции: 
 - Короткая инструкция, которая выполняется за 2 такта (`TWOCYCLE`)

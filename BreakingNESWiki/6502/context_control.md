@@ -1,6 +1,6 @@
 # Управляющие команды
 
-![6502_locator_controls](/BreakingNESWiki/imgstore/6502_locator_controls.jpg)
+![6502_locator_controls](/BreakingNESWiki/imgstore/6502/6502_locator_controls.jpg)
 
 "Управляющие команды" - это условное название большого количества контрольных сигналов, которые идут с верхней части процессора в нижнюю и управляют контекстом (регистрами, шинами) и АЛУ.
 

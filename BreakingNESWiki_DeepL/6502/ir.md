@@ -1,6 +1,6 @@
 # Instruction Register
 
-![6502_locator_ir](/BreakingNESWiki/imgstore/6502_locator_ir.jpg)
+![6502_locator_ir](/BreakingNESWiki/imgstore/6502/6502_locator_ir.jpg)
 
 The Instruction Register (IR) stores the current operation code, for processing on [decoder](decoder.md). The operation code is loaded into the IR from [predecode logic](predecode.md).
 

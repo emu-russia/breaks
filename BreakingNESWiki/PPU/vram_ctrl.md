@@ -6,7 +6,7 @@
 
 ## Транзисторная схема
 
-<img src="/BreakingNESWiki/imgstore/vram_control_tran.jpg" width="1000px">
+<img src="/BreakingNESWiki/imgstore/ppu/vram_control_tran.jpg" width="1000px">
 
 Анатомически схема поделена на 2 большие половинки, левая больше связана с управляющим сигналом `WR`, а правая с `RD`.
 В состав каждой половинки входит RS-триггер и линия задержки, которая автоматически устанавливает триггер.
@@ -23,7 +23,7 @@
 
 ## Логическая схема
 
-<img src="/BreakingNESWiki/imgstore/vram_control_logisim.jpg" width="1000px">
+<img src="/BreakingNESWiki/imgstore/ppu/vram_control_logisim.jpg" width="1000px">
 
 Чтобы сказать что-то более конкретное, нужно вначале разобрать остальные узлы PPU.
 
@@ -33,7 +33,7 @@ TBD.
 
 Отличий в схеме не обнаружено.
 
-<img src="/BreakingNESWiki/imgstore/vram_ctrl_pal.jpg" width="1000px">
+<img src="/BreakingNESWiki/imgstore/ppu/vram_ctrl_pal.jpg" width="1000px">
 
 Поверхность исследуемой микросхемы в этом месте была немного грязновата, но я пометил все ключевые контрольные линии, поэтому нет сомнений, что схема идентична NTSC PPU.
 
@@ -41,6 +41,6 @@ TBD.
 
 Находится правее [OAM FIFO](fifo.md).
 
-![ppu_readbuffer](/BreakingNESWiki/imgstore/ppu_readbuffer.jpg)
+![ppu_readbuffer](/BreakingNESWiki/imgstore/ppu/ppu_readbuffer.jpg)
 
-![ppu_logisim_rb](/BreakingNESWiki/imgstore/ppu_logisim_rb.jpg)
+![ppu_logisim_rb](/BreakingNESWiki/imgstore/ppu/ppu_logisim_rb.jpg)

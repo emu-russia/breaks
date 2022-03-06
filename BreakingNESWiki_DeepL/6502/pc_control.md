@@ -1,6 +1,6 @@
 # Program Counter Control
 
-![6502_locator_pc_control](/BreakingNESWiki/imgstore/6502_locator_pc_control.jpg)
+![6502_locator_pc_control](/BreakingNESWiki/imgstore/6502/6502_locator_pc_control.jpg)
 
 The program counter (PC) control circuitry is designed to generate [control commands](context_control.md) to exchange the PC value and the internal buses ADL, ADH and DB.
 

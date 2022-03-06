@@ -1,6 +1,6 @@
 # Регистры
 
-![6502_locator_regs](/BreakingNESWiki/imgstore/6502_locator_regs.jpg)
+![6502_locator_regs](/BreakingNESWiki/imgstore/6502/6502_locator_regs.jpg)
 
 Регистры X и Y используются для индексной адресации. Регистр S представляет собой указатель стека, при этом стек располагается по адресам 0x100 ... 0x1FF (на первой странице).
 

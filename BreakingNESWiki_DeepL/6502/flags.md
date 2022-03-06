@@ -1,6 +1,6 @@
 # Flags
 
-![6502_locator_flags](/BreakingNESWiki/imgstore/6502_locator_flags.jpg)
+![6502_locator_flags](/BreakingNESWiki/imgstore/6502/6502_locator_flags.jpg)
 
 The flags (bits of the P register) are in "scattered" form, as several circuits of the upper part of the processor.
 

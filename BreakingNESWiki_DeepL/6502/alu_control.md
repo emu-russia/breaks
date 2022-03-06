@@ -1,6 +1,6 @@
 # ALU Control
 
-![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502_locator_alu_control.jpg)
+![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502/6502_locator_alu_control.jpg)
 
 The [ALU](alu.md) control is designed to generate ALU [control commands](context_control.md).
 

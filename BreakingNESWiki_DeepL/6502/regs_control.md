@@ -1,6 +1,6 @@
 # Registers Control
 
-![6502_locator_regs_control](/BreakingNESWiki/imgstore/6502_locator_regs_control.jpg)
+![6502_locator_regs_control](/BreakingNESWiki/imgstore/6502/6502_locator_regs_control.jpg)
 
 Most likely this control circuit will be observed first, so I will write here: be prepared to see a large number of intermediate signals in the control circuits, which can come sometimes from all other parts of the random logic. A summary table of all the intermediate signals can be found in the main section with the [random logic overview](random_logic.md).
 

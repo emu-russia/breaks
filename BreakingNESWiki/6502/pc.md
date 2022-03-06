@@ -1,6 +1,6 @@
 # Счетчик инструкций (PC)
 
-![6502_locator_pc](/BreakingNESWiki/imgstore/6502_locator_pc.jpg)
+![6502_locator_pc](/BreakingNESWiki/imgstore/6502/6502_locator_pc.jpg)
 
 Из-за 8-битной природы процессора его счетчик инструкций разделен на две 8-битные половины: PCL (Program Counter Low) и PCH (Program Counter High).
 

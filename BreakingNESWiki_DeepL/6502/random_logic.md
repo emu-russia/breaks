@@ -1,6 +1,6 @@
 # Random Logic
 
-![6502_locator_random](/BreakingNESWiki/imgstore/6502_locator_random.jpg)
+![6502_locator_random](/BreakingNESWiki/imgstore/6502/6502_locator_random.jpg)
 
 The name has nothing to do with random numbers, it simply reflects the essence of randomly scattered circuits here and there.
 

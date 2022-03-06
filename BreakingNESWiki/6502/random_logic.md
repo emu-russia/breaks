@@ -1,6 +1,6 @@
 # Рандомная логика
 
-![6502_locator_random](/BreakingNESWiki/imgstore/6502_locator_random.jpg)
+![6502_locator_random](/BreakingNESWiki/imgstore/6502/6502_locator_random.jpg)
 
 "Рандомная логика" - это попытка перевести англ. название "random logic". Название не имеет ничего общего со случайными числами, оно просто отражает сущность произвольным образом разбросанных там и сям схем.
 

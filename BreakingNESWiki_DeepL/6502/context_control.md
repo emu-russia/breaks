@@ -1,6 +1,6 @@
 # Control Commands
 
-![6502_locator_controls](/BreakingNESWiki/imgstore/6502_locator_controls.jpg)
+![6502_locator_controls](/BreakingNESWiki/imgstore/6502/6502_locator_controls.jpg)
 
 "Control Commands" is the conventional name for the large number of control signals that go from the top of the processor to the bottom and control the context (registers, buses) and ALU.
 

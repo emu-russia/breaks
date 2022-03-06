@@ -1,6 +1,6 @@
 # Регистр инструкций
 
-![6502_locator_ir](/BreakingNESWiki/imgstore/6502_locator_ir.jpg)
+![6502_locator_ir](/BreakingNESWiki/imgstore/6502/6502_locator_ir.jpg)
 
 Регистр инструкций (IR) хранит текущий код операции, для обработки на [декодере](decoder.md). Код операции загружается в IR с [логики предекодирования](predecode.md).
 

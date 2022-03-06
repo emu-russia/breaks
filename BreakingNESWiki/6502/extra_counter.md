@@ -1,6 +1,6 @@
 # Расширенный счетчик циклов
 
-![6502_locator_extended_counter](/BreakingNESWiki/imgstore/6502_locator_extended_counter.jpg)
+![6502_locator_extended_counter](/BreakingNESWiki/imgstore/6502/6502_locator_extended_counter.jpg)
 
 У 6502 есть 3 счетчика циклов:
 - Базовый счетчик, используется для коротких инструкций (Считает циклы T0-T1)

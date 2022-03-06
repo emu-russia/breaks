@@ -173,7 +173,7 @@ To keep you from getting lost, each section includes a special "locator" at the 
 
 Example locator:
 
-![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502_locator_alu_control.jpg)
+![6502_locator_alu_control](/BreakingNESWiki/imgstore/6502/6502_locator_alu_control.jpg)
 
 ## Note on Logic Circuits
 

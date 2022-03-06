@@ -1,6 +1,6 @@
 # АЛУ
 
-![6502_locator_alu](/BreakingNESWiki/imgstore/6502_locator_alu.jpg)
+![6502_locator_alu](/BreakingNESWiki/imgstore/6502/6502_locator_alu.jpg)
 
 Показать всю схему АЛУ целиком не представляется возможным, поэтому распилим её на составные части и рассмотрим каждую по отдельности.
 

@@ -1,6 +1,6 @@
 # Program Counter (PC)
 
-![6502_locator_pc](/BreakingNESWiki/imgstore/6502_locator_pc.jpg)
+![6502_locator_pc](/BreakingNESWiki/imgstore/6502/6502_locator_pc.jpg)
 
 Because of the 8-bit nature of the processor its instruction counter is divided into two 8-bit halves: PCL (Program Counter Low) and PCH (Program Counter High).
 

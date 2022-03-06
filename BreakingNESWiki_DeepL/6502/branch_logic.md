@@ -1,6 +1,6 @@
 # Branch Logic
 
-![6502_locator_branch](/BreakingNESWiki/imgstore/6502_locator_branch.jpg)
+![6502_locator_branch](/BreakingNESWiki/imgstore/6502/6502_locator_branch.jpg)
 
 The logic of conditional branches determines:
 - Whether the branch went forward or backward

@@ -1,6 +1,6 @@
 # Data Bus
 
-![6502_locator_data](/BreakingNESWiki/imgstore/6502_locator_data.jpg)
+![6502_locator_data](/BreakingNESWiki/imgstore/6502/6502_locator_data.jpg)
 
 The circuits for working with the external data bus consist of 8 identical pieces:
 
