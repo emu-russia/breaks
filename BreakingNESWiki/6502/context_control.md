@@ -4,13 +4,13 @@
 
 "Управляющие команды" - это условное название большого количества контрольных сигналов, которые идут с верхней части процессора в нижнюю и управляют контекстом (регистрами, шинами) и АЛУ.
 
-![6502_controls_tran1](/BreakingNESWiki/imgstore/6502_controls_tran1.jpg)
+![6502_controls_tran1](/BreakingNESWiki/imgstore/6502/6502_controls_tran1.jpg)
 
-![6502_controls_tran2](/BreakingNESWiki/imgstore/6502_controls_tran2.jpg)
+![6502_controls_tran2](/BreakingNESWiki/imgstore/6502/6502_controls_tran2.jpg)
 
-![6502_controls_tran3](/BreakingNESWiki/imgstore/6502_controls_tran3.jpg)
+![6502_controls_tran3](/BreakingNESWiki/imgstore/6502/6502_controls_tran3.jpg)
 
-![6502_controls_tran4](/BreakingNESWiki/imgstore/6502_controls_tran4.jpg)
+![6502_controls_tran4](/BreakingNESWiki/imgstore/6502/6502_controls_tran4.jpg)
 
 Управляющие команды для регистра флагов рассматриваются в соответствующем разделе, посвященном [управлению флагами](flags_control.md), так как они не выходят за пределы верхней части процессора.
 
@@ -83,7 +83,7 @@
 
 В левой части находится небольшая схема для подтяжки PHI2 (который используется большим количеством транзисторов-отсекателей, поэтому должен быть достаточно мощным):
 
-![phi2_pullup_tran](/BreakingNESWiki/imgstore/phi2_pullup_tran.jpg)
+![phi2_pullup_tran](/BreakingNESWiki/imgstore/6502/phi2_pullup_tran.jpg)
 
 Никакой логической нагрузки она не несет, но выглядит круто.
 
