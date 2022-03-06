@@ -10,13 +10,13 @@
 
 Думаю что имеет смысл показать тут соответствующую часть замечательной схемы 6502, которую составил Donald F. Hanson:
 
-![flags_control_hanson](/BreakingNESWiki/imgstore/flags_control_hanson.jpg)
+![flags_control_hanson](/BreakingNESWiki/imgstore/6502/flags_control_hanson.jpg)
 
 (На схеме исправлен пропущенный сигнал `0/V`)
 
 ## Выбор опкодов
 
-|![flags_control_tran1](/BreakingNESWiki/imgstore/flags_control_tran1.jpg)|![flags_control_tran2](/BreakingNESWiki/imgstore/flags_control_tran2.jpg)|![flags_control_tran3](/BreakingNESWiki/imgstore/flags_control_tran3.jpg)|
+|![flags_control_tran1](/BreakingNESWiki/imgstore/6502/flags_control_tran1.jpg)|![flags_control_tran2](/BreakingNESWiki/imgstore/6502/flags_control_tran2.jpg)|![flags_control_tran3](/BreakingNESWiki/imgstore/6502/flags_control_tran3.jpg)|
 |---|---|---|
 
 Входные сигналы:
@@ -44,7 +44,7 @@
 
 ## Управление флагами
 
-|![flags_control_tran1](/BreakingNESWiki/imgstore/flags_control_tran4.jpg)|![flags_control_tran1](/BreakingNESWiki/imgstore/flags_control_tran5.jpg)|
+|![flags_control_tran1](/BreakingNESWiki/imgstore/6502/flags_control_tran4.jpg)|![flags_control_tran1](/BreakingNESWiki/imgstore/6502/flags_control_tran5.jpg)|
 |---|---|
 
 Входные сигналы:

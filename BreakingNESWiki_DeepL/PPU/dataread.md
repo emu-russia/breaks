@@ -13,14 +13,14 @@ Due to the large size, it will be difficult to show the entire diagram, so natur
 
 Below is shown what circuits the Data Reader consists of, in order to understand where to look for the sawn pieces of circuits:
 
-![ppu_dataread_sections](/BreakingNESWiki/imgstore/ppu_dataread_sections.jpg)
+![ppu_dataread_sections](/BreakingNESWiki/imgstore/ppu/ppu_dataread_sections.jpg)
 
 [PAR Address Generator](pargen.md) and [BG COL color generator](bgcol.md) have moved to their own sections.
 
 ## Pattern Readout
 
-![ppu_dataread_pattern_readout](/BreakingNESWiki/imgstore/ppu_dataread_pattern_readout.jpg)
+![ppu_dataread_pattern_readout](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pattern_readout.jpg)
 
 ## V. Inversion
 
-![ppu_dataread_vinv](/BreakingNESWiki/imgstore/ppu_dataread_vinv.jpg)
+![ppu_dataread_vinv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_vinv.jpg)

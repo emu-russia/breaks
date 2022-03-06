@@ -13,14 +13,14 @@
 
 Ниже показано из каких схем состоит Data Reader, чтобы понимать где искать напиленные куски схем:
 
-![ppu_dataread_sections](/BreakingNESWiki/imgstore/ppu_dataread_sections.jpg)
+![ppu_dataread_sections](/BreakingNESWiki/imgstore/ppu/ppu_dataread_sections.jpg)
 
 [Генератор адреса PAR](pargen.md) и [схема получения цвета бэкраунда (BG COL)](bgcol.md) переехали в собственные разделы.
 
 ## Pattern Readout
 
-![ppu_dataread_pattern_readout](/BreakingNESWiki/imgstore/ppu_dataread_pattern_readout.jpg)
+![ppu_dataread_pattern_readout](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pattern_readout.jpg)
 
 ## V. Inversion
 
-![ppu_dataread_vinv](/BreakingNESWiki/imgstore/ppu_dataread_vinv.jpg)
+![ppu_dataread_vinv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_vinv.jpg)
