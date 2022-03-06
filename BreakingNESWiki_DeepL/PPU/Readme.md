@@ -4,7 +4,7 @@ PPU (Picture Processing Unit) - a specialized IC for generating a video signal.
 
 Sample picture that the PPU can produce:
 
-<img src="/BreakingNESWiki/imgstore/battletoads.png" width="400px">
+<img src="/BreakingNESWiki/imgstore/ppu/battletoads.jpg" width="400px">
 
 There are the following versions of the PPU chips:
 - 2C02: used in the Famicom and the American version of the NES. It generates an NTSC signal.
