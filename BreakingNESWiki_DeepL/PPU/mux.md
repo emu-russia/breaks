@@ -16,7 +16,7 @@ Outputs:
 
 ## Transistor Circuit
 
-![ppu_mux](/BreakingNESWiki/imgstore/ppu_mux.jpg)
+![ppu_mux](/BreakingNESWiki/imgstore/ppu/ppu_mux.jpg)
 
 As you can see, the circuit looks very confusing at first glance. This is because the multiplexers (as circuit elements) are very difficult to recognize from the NMOS transistors.
 
@@ -28,7 +28,7 @@ The signals `THOx'` are obtained from the THO latches as follows:
 
 ## Logisim Circuit
 
-![ppu_mux_logisim](/BreakingNESWiki/imgstore/ppu_mux_logisim.jpg)
+![ppu_mux_logisim](/BreakingNESWiki/imgstore/ppu/ppu_mux_logisim.jpg)
 
 (A piece of circuitry for the Sprite 0 Hit test is not shown and is marked as "to strike test").
 
@@ -69,7 +69,7 @@ This is usually used to create "Split Screen" effects.
 
 Sprite 0 Hit circuit:
 
-![spr0hit](/BreakingNESWiki/imgstore/spr0hit.jpg)
+![spr0hit](/BreakingNESWiki/imgstore/ppu/spr0hit.jpg)
 
 The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
