@@ -10,13 +10,13 @@ As you can guess, the purpose of the circuit is to control [processor flags](fla
 
 I think it makes sense to show here the relevant part of the wonderful 6502 circuit made by Donald F. Hanson:
 
-![flags_control_hanson](/BreakingNESWiki/imgstore/flags_control_hanson.jpg)
+![flags_control_hanson](/BreakingNESWiki/imgstore/6502/flags_control_hanson.jpg)
 
 (The missing `0/V` signal has been corrected in the schematic)
 
 ## Opcode Selection
 
-|![flags_control_tran1](/BreakingNESWiki/imgstore/flags_control_tran1.jpg)|![flags_control_tran2](/BreakingNESWiki/imgstore/flags_control_tran2.jpg)|![flags_control_tran3](/BreakingNESWiki/imgstore/flags_control_tran3.jpg)|
+|![flags_control_tran1](/BreakingNESWiki/imgstore/6502/flags_control_tran1.jpg)|![flags_control_tran2](/BreakingNESWiki/imgstore/6502/flags_control_tran2.jpg)|![flags_control_tran3](/BreakingNESWiki/imgstore/6502/flags_control_tran3.jpg)|
 |---|---|---|
 
 Input signals:
@@ -44,7 +44,7 @@ All of these control signals (except `AVR/V`) are intermediate signals and are n
 
 ## Flags Control
 
-|![flags_control_tran1](/BreakingNESWiki/imgstore/flags_control_tran4.jpg)|![flags_control_tran1](/BreakingNESWiki/imgstore/flags_control_tran5.jpg)|
+|![flags_control_tran1](/BreakingNESWiki/imgstore/6502/flags_control_tran4.jpg)|![flags_control_tran1](/BreakingNESWiki/imgstore/6502/flags_control_tran5.jpg)|
 |---|---|
 
 Input signals:
