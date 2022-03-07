@@ -2,7 +2,7 @@
 
 The video signal layout is as follows:
 
-![ntsc](/BreakingNESWiki/imgstore/ntsc.png)
+![ntsc](/BreakingNESWiki/imgstore/ppu/ntsc.png)
 
 - This picture shows a single line layout
 - First there is the horizontal sync pulse (HSYNC), so that the beam is set to the beginning of the line
@@ -16,7 +16,7 @@ First - the NTSC standard was created with compatibility with black and white te
 
 To add a color component, the developers added phase modulation:
 
-<img src="/BreakingNESWiki/imgstore/ntsc_color.gif" width="700px">
+<img src="/BreakingNESWiki/imgstore/ppu/ntsc_color.gif" width="700px">
 
 At the same time, the average amplitude again remained brightness, and the phase shift within the phase "package" and the amplitude began to represent chromaticity. At the same time black and white TV sets did not perceive the phase component and worked only by the averaged amplitude.
 
@@ -32,7 +32,7 @@ We must take into account the fact that the decomposition of a video signal into
 
 The surface of a kinescope of old color TVs looks like this:
 
-<img src="/BreakingNESWiki/imgstore/crt_screen_closeup.jpg" width="500px">
+<img src="/BreakingNESWiki/imgstore/ppu/crt_screen_closeup.jpg" width="500px">
 
 The saturation and hue encoded in the color component of the subcarrier sets the brightness of the three electron beams: red, blue, and green. The rays fall on the grains, which are coated with a phosphor. The phosphor has an afterglow: after the beam has passed over the grain, it continues to glow for some time (usually fading after a few scanlines).
 
