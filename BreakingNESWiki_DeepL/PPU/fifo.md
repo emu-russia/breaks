@@ -2,7 +2,7 @@
 
 Location on a chip:
 
-![OAM_FIFO_preview](/BreakingNESWiki/imgstore/OAM_FIFO_preview.jpg)
+![OAM_FIFO_preview](/BreakingNESWiki/imgstore/ppu/OAM_FIFO_preview.jpg)
 
 The sprite FIFO is used to temporarily store up to 8 sprites that hit the current row.
 
@@ -30,11 +30,11 @@ The transistor circuits show only the sprite #0 pipelines. All other pipelines d
 
 The circuit shown is for sprite #0. For all others (1-7) you must replace the name of the 0/EN signals with x/EN.
 
-![fifo_counter_control](/BreakingNESWiki/imgstore/fifo_counter_control.jpg)
+![fifo_counter_control](/BreakingNESWiki/imgstore/ppu/fifo_counter_control.jpg)
 
-![fifo_counter](/BreakingNESWiki/imgstore/fifo_counter.jpg)
+![fifo_counter](/BreakingNESWiki/imgstore/ppu/fifo_counter.jpg)
 
-![ppu_logisim_fifo_counter](/BreakingNESWiki/imgstore/ppu_logisim_fifo_counter.jpg)
+![ppu_logisim_fifo_counter](/BreakingNESWiki/imgstore/ppu/ppu_logisim_fifo_counter.jpg)
 
 ### Pipeline Control
 
@@ -53,13 +53,13 @@ In addition the control lines H3'', H4'' and H5'' are used as follows for the di
 |6|H3'' /H4'' /H5''|
 |7|/H3'' /H4'' /H5''|
 
-![fifo_attr](/BreakingNESWiki/imgstore/fifo_attr.jpg)
+![fifo_attr](/BreakingNESWiki/imgstore/ppu/fifo_attr.jpg)
 
 ### Paired Shift Register
 
 The circuit shown is for sprite #0. For all others (1-7) you must replace the signal names 0/COL0 and 0/COL1 with x/COL0 and x/COL1.
 
-![fifo_sr](/BreakingNESWiki/imgstore/fifo_sr.jpg)
+![fifo_sr](/BreakingNESWiki/imgstore/ppu/fifo_sr.jpg)
 
 TBD: The unsigned transistors receive the `EN` signal from the Pipeline control circuit.
 
@@ -68,32 +68,32 @@ TBD: The unsigned transistors receive the `EN` signal from the Pipeline control 
 The priority circuit is in "sparse" layout. The individual pieces of this circuit are shown below.
 Presumably the circuit works according to the principle of the majority element.
 
-![fifo_prio0](/BreakingNESWiki/imgstore/fifo_prio0.jpg)
+![fifo_prio0](/BreakingNESWiki/imgstore/ppu/fifo_prio0.jpg)
 
-![fifo_prio1](/BreakingNESWiki/imgstore/fifo_prio1.jpg)
+![fifo_prio1](/BreakingNESWiki/imgstore/ppu/fifo_prio1.jpg)
 
-![fifo_prio2](/BreakingNESWiki/imgstore/fifo_prio2.jpg)
+![fifo_prio2](/BreakingNESWiki/imgstore/ppu/fifo_prio2.jpg)
 
-![fifo_prio3](/BreakingNESWiki/imgstore/fifo_prio3.jpg)
+![fifo_prio3](/BreakingNESWiki/imgstore/ppu/fifo_prio3.jpg)
 
-![fifo_prio4](/BreakingNESWiki/imgstore/fifo_prio4.jpg)
+![fifo_prio4](/BreakingNESWiki/imgstore/ppu/fifo_prio4.jpg)
 
 The result of the circuit operation (output) is the `SPR0HIT` signal, which goes to the corresponding Sprite 0 Hit circuit (see [multiplexer](mux.md))
 
 ### H. Inversion
 
-![ppu_hinv](/BreakingNESWiki/imgstore/ppu_hinv.jpg)
+![ppu_hinv](/BreakingNESWiki/imgstore/ppu/ppu_hinv.jpg)
 
 HINV and HDIR are two complementary signals (they can never take the same value). In essence these two signals are one multiplexer control signal that selects between the two PD bus bits. If HINV = 1, it means that the PD bus is output in inverted to the T0-7 outputs. If HDIR = 1 it means that the PD bus is outputted in direct way to T0-7 outputs.
 
-![ppu_logisim_hinv](/BreakingNESWiki/imgstore/ppu_logisim_hinv.jpg)
+![ppu_logisim_hinv](/BreakingNESWiki/imgstore/ppu/ppu_logisim_hinv.jpg)
 
 ### Sprite H
 
 It was also decided to include a small circuit for getting SHx values (Sprite H) as part of the FIFO. The circuit is above the multiplexer, but most of the SHx outputs are used only in the OAM FIFO (`SH2` is also used in the Data Reader).
 
-![sprite_h](/BreakingNESWiki/imgstore/sprite_h.jpg)
+![sprite_h](/BreakingNESWiki/imgstore/ppu/sprite_h.jpg)
 
-![ppu_logisim_sprite_h](/BreakingNESWiki/imgstore/ppu_logisim_sprite_h.jpg)
+![ppu_logisim_sprite_h](/BreakingNESWiki/imgstore/ppu/ppu_logisim_sprite_h.jpg)
 
 :warning: The SH2/3/5/7 signals are actually in inverse logic, but you don't want to rename everywhere anymore.
