@@ -15,21 +15,21 @@ The circuits for controlling the counters are separated beforehand, maybe it mak
 
 ## OAM Index Counter
 
-![oam_index_counter](/BreakingNESWiki/imgstore/oam_index_counter.jpg)
+![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
 
 ## OAM Index Counter Control
 
-![oam_index_counter_control](/BreakingNESWiki/imgstore/oam_index_counter_control.jpg)
+![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
 
 ## Temp OAM Index Counter
 
-![oam2_index_counter](/BreakingNESWiki/imgstore/oam2_index_counter.jpg)
+![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
 
-![ppu_logisim_oam2_counter](/BreakingNESWiki/imgstore/ppu_logisim_oam2_counter.jpg)
+![ppu_logisim_oam2_counter](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam2_counter.jpg)
 
 ## Counters Control
 
-![oam_counters_control](/BreakingNESWiki/imgstore/oam_counters_control.jpg)
+![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)
 
 ## H0'' Auxiliary Circuit
 
@@ -41,12 +41,12 @@ This special `H0''` signal (but essentially a variation of the regular H0'' sign
 
 ## Comparator
 
-![oam_cmpr](/BreakingNESWiki/imgstore/oam_cmpr.jpg)
+![oam_cmpr](/BreakingNESWiki/imgstore/ppu/oam_cmpr.jpg)
 
 ## Comparison Control
 
-![oam_eval_control](/BreakingNESWiki/imgstore/oam_eval_control.jpg)
+![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
 
 ## Logisim Circuit
 
-![ppu_logisim_oam_eval](/BreakingNESWiki/imgstore/ppu_logisim_oam_eval.jpg)
+![ppu_logisim_oam_eval](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam_eval.jpg)
