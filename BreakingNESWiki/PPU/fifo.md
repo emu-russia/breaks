@@ -2,7 +2,7 @@
 
 Расположение на чипе:
 
-![OAM_FIFO_preview](/BreakingNESWiki/imgstore/OAM_FIFO_preview.jpg)
+![OAM_FIFO_preview](/BreakingNESWiki/imgstore/ppu/OAM_FIFO_preview.jpg)
 
 Спрайтовый FIFO используется для временного хранения до 8 спрайтов, которые попали в текущую строку.
 
@@ -30,11 +30,11 @@ FIFO состоит из 3х частей: обратного счетчика �
 
 Показана схема для спрайта #0. Для всех остальных (1-7) нужно заменить название сигналов 0/EN на x/EN.
 
-![fifo_counter_control](/BreakingNESWiki/imgstore/fifo_counter_control.jpg)
+![fifo_counter_control](/BreakingNESWiki/imgstore/ppu/fifo_counter_control.jpg)
 
-![fifo_counter](/BreakingNESWiki/imgstore/fifo_counter.jpg)
+![fifo_counter](/BreakingNESWiki/imgstore/ppu/fifo_counter.jpg)
 
-![ppu_logisim_fifo_counter](/BreakingNESWiki/imgstore/ppu_logisim_fifo_counter.jpg)
+![ppu_logisim_fifo_counter](/BreakingNESWiki/imgstore/ppu/ppu_logisim_fifo_counter.jpg)
 
 ### Схема контроля пайплайна
 
@@ -53,13 +53,13 @@ FIFO состоит из 3х частей: обратного счетчика �
 |6|H3'' /H4'' /H5''|
 |7|/H3'' /H4'' /H5''|
 
-![fifo_attr](/BreakingNESWiki/imgstore/fifo_attr.jpg)
+![fifo_attr](/BreakingNESWiki/imgstore/ppu/fifo_attr.jpg)
 
 ### Спаренный сдвиговый регистр
 
 Показана схема для спрайта #0. Для всех остальных (1-7) нужно заменить название сигналов 0/COL0 и 0/COL1 на x/COL0 и x/COL1.
 
-![fifo_sr](/BreakingNESWiki/imgstore/fifo_sr.jpg)
+![fifo_sr](/BreakingNESWiki/imgstore/ppu/fifo_sr.jpg)
 
 TBD: На неподписанные транзисторы приходит сигнал `EN` со схемы контроля пайплайна.
 
@@ -68,32 +68,32 @@ TBD: На неподписанные транзисторы приходит с�
 Схема приоритета находится в "размазанном" виде. Ниже представлены отдельные куски этой схемы.
 Предположительно схема работает по принципу мажоритарного элемента.
 
-![fifo_prio0](/BreakingNESWiki/imgstore/fifo_prio0.jpg)
+![fifo_prio0](/BreakingNESWiki/imgstore/ppu/fifo_prio0.jpg)
 
-![fifo_prio1](/BreakingNESWiki/imgstore/fifo_prio1.jpg)
+![fifo_prio1](/BreakingNESWiki/imgstore/ppu/fifo_prio1.jpg)
 
-![fifo_prio2](/BreakingNESWiki/imgstore/fifo_prio2.jpg)
+![fifo_prio2](/BreakingNESWiki/imgstore/ppu/fifo_prio2.jpg)
 
-![fifo_prio3](/BreakingNESWiki/imgstore/fifo_prio3.jpg)
+![fifo_prio3](/BreakingNESWiki/imgstore/ppu/fifo_prio3.jpg)
 
-![fifo_prio4](/BreakingNESWiki/imgstore/fifo_prio4.jpg)
+![fifo_prio4](/BreakingNESWiki/imgstore/ppu/fifo_prio4.jpg)
 
 Результатом работы схемы (выходом) является сигнал `SPR0HIT`, который уходит в соответствующую схему Sprite 0 Hit (см. [мультиплексор](mux.md))
 
 ### H. Inversion
 
-![ppu_hinv](/BreakingNESWiki/imgstore/ppu_hinv.jpg)
+![ppu_hinv](/BreakingNESWiki/imgstore/ppu/ppu_hinv.jpg)
 
 HINV и HDIR - это два комплементарных сигнала (они никогда не могут принимать одинаковых значений). По сути эти два сигнала - это один управляющий сигнал мультиплексора, который выбирает между двумя разрядами шины PD. Если HINV = 1 - это означает что шина PD выдается в перевернутом виде на выходы T0-7. Если HDIR = 1 - это означает что шина PD выдается в прямом виде на выходы T0-7.
 
-![ppu_logisim_hinv](/BreakingNESWiki/imgstore/ppu_logisim_hinv.jpg)
+![ppu_logisim_hinv](/BreakingNESWiki/imgstore/ppu/ppu_logisim_hinv.jpg)
 
 ### Схема Sprite H
 
 Также в состав FIFO было решено включить небольшую схему для получения значений SHx (Sprite H). Схема находится выше мультиплексора, но большинство выходов SHx используются только в OAM FIFO (`SH2` также используется в Data Reader).
 
-![sprite_h](/BreakingNESWiki/imgstore/sprite_h.jpg)
+![sprite_h](/BreakingNESWiki/imgstore/ppu/sprite_h.jpg)
 
-![ppu_logisim_sprite_h](/BreakingNESWiki/imgstore/ppu_logisim_sprite_h.jpg)
+![ppu_logisim_sprite_h](/BreakingNESWiki/imgstore/ppu/ppu_logisim_sprite_h.jpg)
 
 :warning: Сигналы SH2/3/5/7 на самом деле в инверсной логике, но переименовывать везде уже не хочется.

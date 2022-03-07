@@ -2,20 +2,20 @@
 
 ## Phase Shifter
 
-![vout_phase_shifter](/BreakingNESWiki/imgstore/vout_phase_shifter.jpg)
+![vout_phase_shifter](/BreakingNESWiki/imgstore/ppu/vout_phase_shifter.jpg)
 
 ## Color Decoder
 
-![vout_phase_decoder](/BreakingNESWiki/imgstore/vout_phase_decoder.jpg)
+![vout_phase_decoder](/BreakingNESWiki/imgstore/ppu/vout_phase_decoder.jpg)
 
 ## Brightness Level
 
-![vout_level_select](/BreakingNESWiki/imgstore/vout_level_select.jpg)
+![vout_level_select](/BreakingNESWiki/imgstore/ppu/vout_level_select.jpg)
 
 ## Emphasis
 
-![vout_emphasis](/BreakingNESWiki/imgstore/vout_emphasis.jpg)
+![vout_emphasis](/BreakingNESWiki/imgstore/ppu/vout_emphasis.jpg)
 
 ## DAC
 
-![vout_dac](/BreakingNESWiki/imgstore/vout_dac.jpg)
+![vout_dac](/BreakingNESWiki/imgstore/ppu/vout_dac.jpg)

@@ -10,13 +10,13 @@ The `PCLK` is obtained by slowing down (dividing) the input clock signal `CLK` (
 
 For this purpose, a divider on static latches is used:
 
-<img src="/BreakingNESWiki/imgstore/pclk.jpg" width="400px">
+<img src="/BreakingNESWiki/imgstore/ppu/pclk.jpg" width="400px">
 
 Just below the divider is a small circuit. There is the soul of the PPU and we will not examine it.
 
 At the output of the divider there are many push/pull amplifier stages, because the `PCLK` signal must be powerful enough, because it is distributed practically over the whole chip. For this purpose (just to the right of the chip) there is a comb of even more powerful push/pull inverters:
 
-![pclk_amp](/BreakingNESWiki/imgstore/pclk_amp.jpg)
+![pclk_amp](/BreakingNESWiki/imgstore/ppu/pclk_amp.jpg)
 
 The `CLK` input clock signal is used exclusively in the [phase generator](video_out.md) of the PPU video path.
 
