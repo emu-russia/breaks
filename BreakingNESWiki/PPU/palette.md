@@ -3,7 +3,7 @@
 Логика для работы с палитрой включает в состав следующие схемы:
 - Color Buffer (CB)
 - Схема управления Color Buffer
-- Палитровая память
+- Палитровая память (Color RAM)
 - Декодер индекса палитры, поступающего с выхода мультиплексора
 
 ## Color Buffer (CB)
@@ -12,13 +12,13 @@ Color Buffer (CB) используется для хранения текуще�
 
 ### Схема управления Color Buffer
 
-![ppu_cb_control](/BreakingNESWiki/imgstore/ppu_cb_control.jpg)
+![ppu_cb_control](/BreakingNESWiki/imgstore/ppu/ppu_cb_control.jpg)
 
-![ppu_logisim_color_control](/BreakingNESWiki/imgstore/ppu_logisim_color_control.jpg)
+![ppu_logisim_color_control](/BreakingNESWiki/imgstore/ppu/ppu_logisim_color_control.jpg)
 
 ### Схема хранения одного разряда CB
 
-![ppu_color_buffer_bit](/BreakingNESWiki/imgstore/ppu_color_buffer_bit.jpg)
+![ppu_color_buffer_bit](/BreakingNESWiki/imgstore/ppu/ppu_color_buffer_bit.jpg)
 
 ### Схема задержки выходов CB
 
@@ -32,22 +32,22 @@ TBD.
 
 Аналогичный транзистор для 2-х разрядов яркости просто всегда открыт:
 
-![ppu_luma_tran](/BreakingNESWiki/imgstore/ppu_luma_tran.jpg)
+![ppu_luma_tran](/BreakingNESWiki/imgstore/ppu/ppu_luma_tran.jpg)
 
 ## Организация памяти палитры
 
 Выходы COL:
 
-![ppu_palette_col_outputs](/BreakingNESWiki/imgstore/ppu_palette_col_outputs.jpg)
+![ppu_palette_col_outputs](/BreakingNESWiki/imgstore/ppu/ppu_palette_col_outputs.jpg)
 
 Precharge PCLK:
 
-![ppu_palette_precharge](/BreakingNESWiki/imgstore/ppu_palette_precharge.jpg)
+![ppu_palette_precharge](/BreakingNESWiki/imgstore/ppu/ppu_palette_precharge.jpg)
 
 ### Ячейка памяти
 
-![ppu_palette_cell](/BreakingNESWiki/imgstore/ppu_palette_cell.jpg)
+![ppu_palette_cell](/BreakingNESWiki/imgstore/ppu/ppu_palette_cell.jpg)
 
 ### Декодер индекса палитры
 
-![ppu_palette_decoder](/BreakingNESWiki/imgstore/ppu_palette_decoder.jpg)
+![ppu_palette_decoder](/BreakingNESWiki/imgstore/ppu/ppu_palette_decoder.jpg)

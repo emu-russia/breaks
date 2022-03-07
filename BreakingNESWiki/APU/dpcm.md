@@ -15,8 +15,8 @@
 
 |Сигнал|Откуда|Описание|
 |---|---|---|
-|ACLK|LFO|APU Clock (верхний уровень)|
-|/ACLK|LFO|APU Clock (нижний уровень)|
+|ACLK|Soft CLK|APU Clock (верхний уровень)|
+|/ACLK|Soft CLK|APU Clock (нижний уровень)|
 |PHI1|CPU|Первая половина цикла CPU|
 |RES|RES Pad|Внешний сигнал сброса|
 |R/W|CPU|Режим работы шины данных CPU (1: Read, 0: Write)|
@@ -31,7 +31,7 @@
 |#DMC/AB|Address MUX|0: Захватить управление адресной шиной для чтения DPCM сэмпла|
 |RUNDMC|SPR DMA|1: DMC занята своими делами и перехватывает управление DMA|
 |DMCRDY|SPR DMA|1: DMC готова. Используется для управления готовностью процессора (RDY)|
-|DMCINT|LFO|1: Прерывание DMC активно|
+|DMCINT|Soft CLK|1: Прерывание DMC активно|
 |DMC Out|DAC|Выходное значение для ЦАП|
 |DMC Address|Address MUX|Адрес для чтения DPCM сэмпла|
 

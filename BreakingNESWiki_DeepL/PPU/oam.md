@@ -4,7 +4,7 @@ Sprite memory (OAM, Object RAM) takes up almost a quarter of the PPU's surface, 
 
 Sprite memory layout on the chip and a combined image of the memory cell topology:
 
-<img src="/BreakingNESWiki/imgstore/ppu_oam_preview.jpg" width="280px"> <img src="/BreakingNESWiki/imgstore/ppu_oam_closeup.jpg" width="400px">
+<img src="/BreakingNESWiki/imgstore/ppu/ppu_oam_preview.jpg" width="280px"> <img src="/BreakingNESWiki/imgstore/ppu/ppu_oam_closeup.jpg" width="400px">
 
 OAM circuits:
 - Memory Cell Array (2112 cells)
@@ -19,7 +19,7 @@ TBD: This is where you need to write how the cells are stacked and how the memor
 
 ## Memory Cell
 
-![oam_cell](/BreakingNESWiki/imgstore/oam_cell.jpg)
+![oam_cell](/BreakingNESWiki/imgstore/ppu/oam_cell.jpg)
 
 The cell is a typical 4T cell, but with one exception - the transistors of the cell where the value is stored are not connected to Vdd, so the value on the cell is constantly degrading because without a pull-up it is essentially stored on the gate of the transistors.
 
@@ -29,21 +29,21 @@ TBD: Calculate or measure cell degradation timings.
 
 ## Column Decoder
 
-![oam_cas](/BreakingNESWiki/imgstore/oam_cas.jpg)
+![oam_cas](/BreakingNESWiki/imgstore/ppu/oam_cas.jpg)
 
 The circuit is a 1-of-n decoder.
 
 COL outputs for OAM Buffer bits 0, 1, 5-7:
 
-![oam_col_outputs1](/BreakingNESWiki/imgstore/oam_col_outputs1.jpg)
+![oam_col_outputs1](/BreakingNESWiki/imgstore/ppu/oam_col_outputs1.jpg)
 
 COL outputs for OAM Buffer bits 2-4:
 
-![oam_col_outputs2](/BreakingNESWiki/imgstore/oam_col_outputs2.jpg)
+![oam_col_outputs2](/BreakingNESWiki/imgstore/ppu/oam_col_outputs2.jpg)
 
 ## Row Decoder
 
-![oam_ras](/BreakingNESWiki/imgstore/oam_ras.jpg)
+![oam_ras](/BreakingNESWiki/imgstore/ppu/oam_ras.jpg)
 
 The circuit is a 1-of-n decoder.
 
@@ -53,16 +53,16 @@ The OAM Buffer is used as a transfer point to store a byte that needs to be writ
 
 The circuit consists of 8 identical circuits for each bit:
 
-![oam_buffer_bit](/BreakingNESWiki/imgstore/oam_buffer_bit.jpg)
+![oam_buffer_bit](/BreakingNESWiki/imgstore/ppu/oam_buffer_bit.jpg)
 
 (The picture shows the circuit for storing the OB0 bit).
 
 The data from OB goes through a small Readback circuit:
 
-![oam_buffer_readback](/BreakingNESWiki/imgstore/oam_buffer_readback.jpg)
+![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)
 
 ## OAM Buffer Control
 
 The circuit is used to set the operating modes of the OB and to control the transfer of values between it and the OAM.
 
-![oam_buffer_control](/BreakingNESWiki/imgstore/oam_buffer_control.jpg)
+![oam_buffer_control](/BreakingNESWiki/imgstore/ppu/oam_buffer_control.jpg)

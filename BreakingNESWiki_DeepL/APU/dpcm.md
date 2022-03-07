@@ -15,8 +15,8 @@ Inputs:
 
 |Signal|From where|Description|
 |---|---|---|
-|ACLK|LFO|APU Clock (high level)|
-|/ACLK|LFO|APU Clock (low level)|
+|ACLK|Soft CLK|APU Clock (high level)|
+|/ACLK|Soft CLK|APU Clock (low level)|
 |PHI1|CPU|First half of the CPU cycle|
 |RES|RES Pad|External reset signal|
 |R/W|CPU|CPU data bus mode (1: Read, 0: Write)|
@@ -31,7 +31,7 @@ Outputs:
 |#DMC/AB|Address MUX|0: Gain control of the address bus to read the DPCM sample|
 |RUNDMC|SPR DMA|1: DMC is minding its own business and hijacks DMA control|
 |DMCRDY|SPR DMA|1: DMC Ready. Used to control processor readiness (RDY)|
-|DMCINT|LFO|1: DMC interrupt is active|
+|DMCINT|Soft CLK|1: DMC interrupt is active|
 |DMC Out|DAC|Output value for DAC|
 |DMC Address|Address MUX|Address for reading the DPCM sample|
 

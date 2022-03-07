@@ -4,7 +4,7 @@
 
 Расположение спрайтовой памяти на кристалле и комбинированное изображение топологии ячейки памяти:
 
-<img src="/BreakingNESWiki/imgstore/ppu_oam_preview.jpg" width="280px"> <img src="/BreakingNESWiki/imgstore/ppu_oam_closeup.jpg" width="400px">
+<img src="/BreakingNESWiki/imgstore/ppu/ppu_oam_preview.jpg" width="280px"> <img src="/BreakingNESWiki/imgstore/ppu/ppu_oam_closeup.jpg" width="400px">
 
 Схемы OAM:
 - Массив ячеек памяти (2112 ячейка)
@@ -19,7 +19,7 @@ TBD: Тут нужно написать как уложены ячейки и к
 
 ## Ячейка памяти
 
-![oam_cell](/BreakingNESWiki/imgstore/oam_cell.jpg)
+![oam_cell](/BreakingNESWiki/imgstore/ppu/oam_cell.jpg)
 
 Ячейка представляет собой типовую 4T-ячейку, но с одним исключением - транзисторы ячейки, на которых хранится значение, не подключены к Vdd, 
 поэтому значение на ячейке постоянно деградирует, т.к. без подтяжки хранится по сути на затворах транзисторов.
@@ -31,21 +31,21 @@ TBD: Рассчитать или измерить тайминги деград�
 
 ## Декодер колонки
 
-![oam_cas](/BreakingNESWiki/imgstore/oam_cas.jpg)
+![oam_cas](/BreakingNESWiki/imgstore/ppu/oam_cas.jpg)
 
 Схема представляет собой одноединичный декодер (1-из-n).
 
 Выходы COL для разрядов OAM Buffer 0, 1, 5-7:
 
-![oam_col_outputs1](/BreakingNESWiki/imgstore/oam_col_outputs1.jpg)
+![oam_col_outputs1](/BreakingNESWiki/imgstore/ppu/oam_col_outputs1.jpg)
 
 Выходы COL для разрядов OAM Buffer 2-4:
 
-![oam_col_outputs2](/BreakingNESWiki/imgstore/oam_col_outputs2.jpg)
+![oam_col_outputs2](/BreakingNESWiki/imgstore/ppu/oam_col_outputs2.jpg)
 
 ## Декодер ряда
 
-![oam_ras](/BreakingNESWiki/imgstore/oam_ras.jpg)
+![oam_ras](/BreakingNESWiki/imgstore/ppu/oam_ras.jpg)
 
 Схема представляет собой одноединичный декодер (1-из-n).
 
@@ -55,16 +55,16 @@ OAM Buffer используется как перевалочный пункт �
 
 Схема состоит из 8 идентичных схем для каждого разряда:
 
-![oam_buffer_bit](/BreakingNESWiki/imgstore/oam_buffer_bit.jpg)
+![oam_buffer_bit](/BreakingNESWiki/imgstore/ppu/oam_buffer_bit.jpg)
 
 (На картинке представлена схема для хранения разряда OB0).
 
 Данные с OB проходят через небольшую схему Readback:
 
-![oam_buffer_readback](/BreakingNESWiki/imgstore/oam_buffer_readback.jpg)
+![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)
 
 ## Схема управления OAM Buffer
 
 Схема используется для задания режимов работы OB и управлением передачи значений между ним и OAM.
 
-![oam_buffer_control](/BreakingNESWiki/imgstore/oam_buffer_control.jpg)
+![oam_buffer_control](/BreakingNESWiki/imgstore/ppu/oam_buffer_control.jpg)

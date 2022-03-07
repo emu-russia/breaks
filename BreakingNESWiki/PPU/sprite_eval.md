@@ -15,21 +15,21 @@
 
 ## Счетчик индекса OAM
 
-![oam_index_counter](/BreakingNESWiki/imgstore/oam_index_counter.jpg)
+![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
 
 ## Управление счетчиком индекса OAM
 
-![oam_index_counter_control](/BreakingNESWiki/imgstore/oam_index_counter_control.jpg)
+![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
 
 ## Счетчик индекса Temp OAM (OAM2)
 
-![oam2_index_counter](/BreakingNESWiki/imgstore/oam2_index_counter.jpg)
+![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
 
-![ppu_logisim_oam2_counter](/BreakingNESWiki/imgstore/ppu_logisim_oam2_counter.jpg)
+![ppu_logisim_oam2_counter](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam2_counter.jpg)
 
 ## Общее управление счетчиками
 
-![oam_counters_control](/BreakingNESWiki/imgstore/oam_counters_control.jpg)
+![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)
 
 ## Дополнительная схема H0''
 
@@ -41,12 +41,12 @@
 
 ## Компаратор
 
-![oam_cmpr](/BreakingNESWiki/imgstore/oam_cmpr.jpg)
+![oam_cmpr](/BreakingNESWiki/imgstore/ppu/oam_cmpr.jpg)
 
 ## Схема управления сравнением
 
-![oam_eval_control](/BreakingNESWiki/imgstore/oam_eval_control.jpg)
+![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
 
 ## Схема Logisim
 
-![ppu_logisim_oam_eval](/BreakingNESWiki/imgstore/ppu_logisim_oam_eval.jpg)
+![ppu_logisim_oam_eval](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam_eval.jpg)
