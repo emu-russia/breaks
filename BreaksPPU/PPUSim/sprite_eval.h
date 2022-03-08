@@ -1,0 +1,3 @@
+// Sprite Comparison
+
+#pragma once
