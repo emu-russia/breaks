@@ -8,7 +8,7 @@ The sprite FIFO is used to temporarily store up to 8 sprites that hit the curren
 
 It does not actually store the entire sprite, but only one sprite line (8 pixels), the priority bit, and 2 bits of overall color.
 
-Note on the term "FIFO": in fact, this component is not explicitly called that anywhere, but the authors considered it convenient to use this term in the perspective of the order in which sprites are displayed on the screen.
+Note on the term "FIFO": in fact, this component is not explicitly called that anywhere, but the authors considered it convenient to use this term in the perspective of the order in which sprites are displayed on the screen. The PPU patent refers to this circuit as `Motion picture buffer memory`.
 
 ## How it works
 

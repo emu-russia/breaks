@@ -1,5 +1,7 @@
 # Data Reader
 
+The PPU patent refers to this circuit as the `Still Picture Generator`.
+
 The circuitry takes up almost a quarter of the PPU area and is located in the lower right corner of the chip:
 
 ![DATAREAD_preview](/BreakingNESWiki/imgstore/DATAREAD_preview.jpg)
