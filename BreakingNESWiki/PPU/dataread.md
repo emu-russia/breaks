@@ -1,5 +1,7 @@
 # Схема выборки данных
 
+В патенте PPU эта схема упоминается как `Still Picture Generator`.
+
 Схема занимает почти четверть площади PPU и находится в правом нижнем углу микросхемы:
 
 ![DATAREAD_preview](/BreakingNESWiki/imgstore/DATAREAD_preview.jpg)
