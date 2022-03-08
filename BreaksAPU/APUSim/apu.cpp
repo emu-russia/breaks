@@ -1,6 +1,6 @@
 #include "pch.h"
 
-namespace PPUSim
+namespace APUSim
 {
 
 }
