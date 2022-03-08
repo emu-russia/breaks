@@ -1,5 +1,10 @@
 #pragma once
 
+namespace PPUSim
+{
+	class PPU;
+}
+
 #include "bgcol.h"
 #include "cram.h"
 #include "dataread.h"
@@ -56,6 +61,32 @@ namespace PPUSim
 
 	class PPU
 	{
+		friend VideoOutSRBit;
+		friend VideoOut;
+
+		/// <summary>
+		/// Internal auxiliary and intermediate connections.
+		/// </summary>
+		struct InternalWires
+		{
+			BaseLogic::TriState CLK;
+			BaseLogic::TriState n_CLK;
+			BaseLogic::TriState RES;
+			BaseLogic::TriState PCLK;
+			BaseLogic::TriState n_PCLK;
+			BaseLogic::TriState n_TR;
+			BaseLogic::TriState n_TG;
+			BaseLogic::TriState n_TB;
+			BaseLogic::TriState n_CC[4];
+			BaseLogic::TriState n_LL[2];
+			BaseLogic::TriState SYNC;
+			BaseLogic::TriState PICTURE;
+			BaseLogic::TriState BURST;
+
+		} wire;
+
+		Revision rev;
+
 	public:
 		PPU(Revision rev);
 		~PPU();

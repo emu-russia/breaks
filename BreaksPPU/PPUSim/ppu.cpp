@@ -5,9 +5,9 @@ using namespace BaseLogic;
 namespace PPUSim
 {
 
-	PPU::PPU(Revision rev)
+	PPU::PPU(Revision _rev)
 	{
-
+		rev = _rev;
 	}
 
 	PPU::~PPU()
