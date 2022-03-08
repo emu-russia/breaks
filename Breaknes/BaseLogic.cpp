@@ -56,6 +56,11 @@ namespace BaseLogic
 		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4] | in[5] | in[6] | in[7] | in[8])) & 1);
 	}
 
+	TriState NOR13(TriState in[13])
+	{
+		return (TriState)((~(in[0] | in[1] | in[2] | in[3] | in[4] | in[5] | in[6] | in[7] | in[8] | in[9] | in[10] | in[11] | in[12])) & 1);
+	}
+
 	TriState NAND(TriState a, TriState b)
 	{
 		return (TriState)((~(a & b)) & 1);
@@ -128,6 +133,16 @@ namespace BaseLogic
 	TriState MUX(TriState sel, TriState in0, TriState in1)
 	{
 		return ((sel & 1) == 0) ? in0 : in1;
+	}
+
+	void DMX4(TriState in[4], TriState out[16])
+	{
+		size_t fireInput = PackNibble(in);
+
+		for (size_t n = 0; n < 16; n++)
+		{
+			out[n] = n == fireInput ? TriState::One : TriState::Zero;
+		}
 	}
 
 	PLA::PLA(size_t inputs, size_t outputs)
@@ -243,6 +258,17 @@ namespace BaseLogic
 		{
 			val <<= 1;
 			val |= (in[7 - i] == TriState::One) ? 1 : 0;
+		}
+		return val;
+	}
+
+	uint8_t PackNibble(TriState in[4])
+	{
+		uint8_t val = 0;
+		for (size_t i = 0; i < 4; i++)
+		{
+			val <<= 1;
+			val |= (in[4 - i] == TriState::One) ? 1 : 0;
 		}
 		return val;
 	}

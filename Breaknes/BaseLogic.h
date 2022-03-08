@@ -85,6 +85,13 @@ namespace BaseLogic
 	TriState NOR9(TriState in[9]);
 
 	/// <summary>
+	/// 13-nor
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	TriState NOR13(TriState in[13]);
+
+	/// <summary>
 	/// 2-nand
 	/// </summary>
 	/// <param name="a"></param>
@@ -183,6 +190,13 @@ namespace BaseLogic
 	TriState MUX(TriState sel, TriState in0, TriState in1);
 
 	/// <summary>
+	/// DMX 4-to-16
+	/// </summary>
+	/// <param name="in"></param>
+	/// <param name="out"></param>
+	void DMX4(TriState in[4], TriState out[16]);
+
+	/// <summary>
 	/// Generalized PLA matrix emulator.
 	/// Although PLA is a combinatorial element, it is made as a class because of its complexity.
 	/// </summary>
@@ -224,6 +238,13 @@ namespace BaseLogic
 	/// <param name="in"></param>
 	/// <returns></returns>
 	uint8_t Pack(TriState in[8]);
+
+	/// <summary>
+	/// Pack a bit vector into a nipple.
+	/// </summary>
+	/// <param name="in"></param>
+	/// <returns></returns>
+	uint8_t PackNibble(TriState in[4]);
 
 	/// <summary>
 	/// Unpack a byte into a bit vector.
