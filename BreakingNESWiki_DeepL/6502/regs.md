@@ -39,3 +39,7 @@ If the value placed on the bus is 1, then the bus is already prepared ("charged"
 In modern processors the task of precharging the bus is done by dedicated standard cells called Bus Keeper.
 
 In the transistor schematic above you can only see the transistors to charge the SB bus (located in the circuit for the S register bits). The transistors to precharge the ADL bus are scattered next to the program counter (PC).
+
+## Optimized Schematics
+
+![25_regs_logic](/BreakingNESWiki/imgstore/6502/ttlworks/25_regs_logic.png)

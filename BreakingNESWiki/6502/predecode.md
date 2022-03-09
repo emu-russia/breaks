@@ -37,3 +37,7 @@ TWOCYCLE инструкции:
 IMPLIED инструкции:
 
 ![predecode_implied](/BreakingNESWiki/imgstore/predecode_implied.jpg)
+
+## Оптимизированная логическая схема
+
+![24_predecode_logic](/BreakingNESWiki/imgstore/6502/ttlworks/24_predecode_logic.png)

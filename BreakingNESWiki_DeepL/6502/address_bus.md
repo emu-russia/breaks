@@ -48,3 +48,7 @@ On the logic circuits PHI2 is not used, and FF organized on two inverters is rep
 ![abl_logisim](/BreakingNESWiki/imgstore/abl_logisim.jpg)
 
 ![abh_logisim](/BreakingNESWiki/imgstore/abh_logisim.jpg)
+
+## Optimized Schematics
+
+![0_abl02_tran](/BreakingNESWiki/imgstore/6502/ttlworks/0_abl02_tran.png)

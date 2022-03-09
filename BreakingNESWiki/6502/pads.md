@@ -76,3 +76,7 @@
 ## Шина данных
 
 См. [Шина данных](data_bus.md).
+
+## Оптимизированные логические схемы
+
+![19_pads](/BreakingNESWiki/imgstore/6502/ttlworks/19_pads.png)

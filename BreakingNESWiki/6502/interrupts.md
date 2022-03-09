@@ -52,3 +52,7 @@
 Схема для установки адреса обработчика прерывания:
 
 ![int_address_logisim](/BreakingNESWiki/imgstore/logisim/int_address_logisim.jpg)
+
+## Оптимизированная логическая схема
+
+![17_interrupt_logic](/BreakingNESWiki/imgstore/6502/ttlworks/17_interrupt_logic.png)

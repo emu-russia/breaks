@@ -61,3 +61,15 @@ This circuit is used, for example, in PCL1 or PCH0:
 ![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg)
 
 For these circuits to work correctly in the simulator, FF uses a posedge trigger for the PCL/PCH register.
+
+Optimized schematics (Even):
+
+![20_pc_even_bit_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/20_pc_even_bit_logisim.png)
+
+Optimized schematics (Odd):
+
+![21_pc_odd_bit_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/21_pc_odd_bit_logisim.png)
+
+Optimized schematics for the carry chain:
+
+![22_pc_carry_chain](/BreakingNESWiki/imgstore/6502/ttlworks/22_pc_carry_chain.png)

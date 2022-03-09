@@ -45,17 +45,23 @@
 
 ![alu_bit0_tran](/BreakingNESWiki/imgstore/6502/alu_bit0_tran.jpg)
 
+Схемы для разрядов 2, 4, 6:
+
+![alu_bit_even_tran](/BreakingNESWiki/imgstore/6502/alu_bit_even_tran.jpg)
+
+(Показана схема для разряда 2, остальные аналогично)
+
 Схемы для разрядов 1, 3, 5, 7:
 
 ![alu_bit_odd_tran](/BreakingNESWiki/imgstore/6502/alu_bit_odd_tran.jpg)
 
 (Показана схема для разряда 1, остальные аналогично)
 
-Схемы для разрядов 2, 4, 6:
+Оптимизированная логическая схема:
 
-![alu_bit_even_tran](/BreakingNESWiki/imgstore/6502/alu_bit_even_tran.jpg)
-
-(Показана схема для разряда 2, остальные аналогично)
+|Even|Odd|
+|---|---|
+|![1_alu_even_bit_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/1_alu_even_bit_logisim.png)|![2_alu_odd_bit_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/2_alu_odd_bit_logisim.png)|
 
 Анатомически левая часть занимается логическими операциями, в правой части находится сумматор (Full Adder), а по середине - цепочка переноса.
 
@@ -93,6 +99,8 @@
 
 ![alu_avr_tran](/BreakingNESWiki/imgstore/6502/alu_avr_tran.jpg)
 
+![5_carry_plus_overflow_evaluation](/BreakingNESWiki/imgstore/6502/ttlworks/5_carry_plus_overflow_evaluation.png)
+
 ## Быстрый перенос BCD
 
 Именно эта схема фигурирует в патенте US 3991307 (https://patents.google.com/patent/US3991307A).
@@ -114,6 +122,10 @@
 Логическая схема:
 
 ![alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_carry_logisim.jpg)
+
+Оптимизированная логическая схема:
+
+![3_alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/3_alu_bcd_carry_logisim.png)
 
 ## Промежуточный результат (ADD)
 
@@ -163,6 +175,10 @@
 Логическая схема:
 
 ![alu_bcd_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_logisim.jpg)
+
+Оптимизированная логическая схема:
+
+![4_alu_bcd_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/4_alu_bcd_logisim.png)
 
 ## Аккумулятор (AC)
 

@@ -22,3 +22,7 @@ The outputs in the schematic are on the left because the decoder is topologicall
 - During PHI2 the IR is "refreshed" (this is not shown in logic circuit)
 
 It should be noted that an inverted operation code (PD) value is fed to the IR input and is also stored on the latch in an inverted form.
+
+## Optimized Schematics
+
+![18_ir_logic](/BreakingNESWiki/imgstore/6502/ttlworks/18_ir_logic.png)

@@ -135,3 +135,7 @@ DL/ADL, DL/ADH, DL/DB control command output latches:
 ## Logic
 
 ![bus_control_logisim](/BreakingNESWiki/imgstore/logisim/bus_control_logisim.jpg)
+
+## Optimized Schematics
+
+![7_bus_control_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/7_bus_control_logisim.png)

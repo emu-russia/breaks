@@ -51,3 +51,7 @@ Control commands:
 ## Logic
 
 ![pc_control_logisim](/BreakingNESWiki/imgstore/logisim/pc_control_logisim.jpg)
+
+## Optimized Schematics
+
+![23_pc_control_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/23_pc_control_logisim.png)

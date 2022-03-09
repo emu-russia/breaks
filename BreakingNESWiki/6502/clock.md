@@ -61,6 +61,10 @@ http://forum.6502.org/viewtopic.php?f=8&t=2208&start=195
 
 ![clock_timing_datasheet](/BreakingNESWiki/imgstore/clock_timing_datasheet.jpg)
 
+Оптимизированная логическая схема:
+
+![8_clock_internal](/BreakingNESWiki/imgstore/6502/ttlworks/8_clock_internal.png)
+
 ## Схема для разводки тактовых сигналов наружу
 
 ![clock_external](/BreakingNESWiki/imgstore/clock_external.jpg)

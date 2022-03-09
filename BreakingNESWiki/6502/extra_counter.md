@@ -24,3 +24,7 @@
 ## Логическая схема
 
 ![extended_cycle_counter_logic](/BreakingNESWiki/imgstore/extended_cycle_counter_logic.jpg)
+
+## Оптимизированная логическая схема
+
+![14_extended_cycle_counter_logic](/BreakingNESWiki/imgstore/6502/ttlworks/14_extended_cycle_counter_logic.png)

@@ -104,3 +104,7 @@
 ## Логическая схема
 
 ![flags_logisim](/BreakingNESWiki/imgstore/logisim/flags_logisim.jpg)
+
+## Оптимизированная логическая схема
+
+![15_flags_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/15_flags_logisim.png)
