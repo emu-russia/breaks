@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <BaseOutputPath>Build\</BaseOutputPath>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
 </Project>
