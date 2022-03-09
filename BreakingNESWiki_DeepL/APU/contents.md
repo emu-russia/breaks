@@ -3,7 +3,7 @@
 - [Overview](Readme.md)
 - [Pinout](pads.md)
 - [6502 Core Binding](core.md)
-- [Timing Generator](aclk.md)
+- [Timing Generator](clkgen.md)
 - [Tone Generators](sound.md)
 - [Length Counters](length.md)
 - [Square Channels](square.md)
