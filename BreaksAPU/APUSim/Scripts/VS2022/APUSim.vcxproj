@@ -31,7 +31,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\..\softclk.cpp" />
+    <ClCompile Include="..\..\clkgen.cpp" />
     <ClCompile Include="..\..\square.cpp" />
     <ClCompile Include="..\..\triangle.cpp" />
   </ItemGroup>
@@ -43,7 +43,7 @@
     <ClInclude Include="..\..\length.h" />
     <ClInclude Include="..\..\noise.h" />
     <ClInclude Include="..\..\pch.h" />
-    <ClInclude Include="..\..\softclk.h" />
+    <ClInclude Include="..\..\clkgen.h" />
     <ClInclude Include="..\..\square.h" />
     <ClInclude Include="..\..\triangle.h" />
   </ItemGroup>

@@ -36,7 +36,7 @@
     <ClCompile Include="..\..\noise.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\softclk.cpp">
+    <ClCompile Include="..\..\clkgen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\square.cpp">
@@ -68,7 +68,7 @@
     <ClInclude Include="..\..\noise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\softclk.h">
+    <ClInclude Include="..\..\clkgen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\square.h">
