@@ -54,9 +54,9 @@ namespace BreaksDebug
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(96, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(174, 32);
+            this.label1.Size = new System.Drawing.Size(173, 32);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Breaks Debugger, v. 1.8\r\n© 2022, emu-russia";
+            this.label1.Text = "Breaks Debugger, v. 1.9\r\n© 2022, emu-russia";
             // 
             // linkLabel1
             // 

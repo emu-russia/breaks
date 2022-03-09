@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32002.261
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreaksDebug", "BreaksDebug.csproj", "{F609D0B4-2EB2-491C-BE8F-E2B5D65ECDA4}"
 EndProject
@@ -11,7 +11,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BreakasmInterop", "..\Break
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "M6502CoreInterop", "..\M6502CoreInterop\M6502CoreInterop.vcxproj", "{A80034D5-1C4D-4D07-88DA-41F15380A7A4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "M6502Core", "..\M6502Core\Scripts\VS2019\M6502Core.vcxproj", "{75210C0A-A812-4246-A179-B50D8A25A121}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "M6502Core", "..\M6502Core\Scripts\VS2022\M6502Core.vcxproj", "{75210C0A-A812-4246-A179-B50D8A25A121}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BaseLogicLib", "..\..\Breaknes\BaseLogicLib\Scripts\VS2022\BaseLogicLib.vcxproj", "{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,18 @@ Global
 		{75210C0A-A812-4246-A179-B50D8A25A121}.Release|x64.Build.0 = Release|x64
 		{75210C0A-A812-4246-A179-B50D8A25A121}.Release|x86.ActiveCfg = Release|Win32
 		{75210C0A-A812-4246-A179-B50D8A25A121}.Release|x86.Build.0 = Release|Win32
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Debug|Any CPU.Build.0 = Debug|x64
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Debug|x64.ActiveCfg = Debug|x64
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Debug|x64.Build.0 = Debug|x64
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Debug|x86.ActiveCfg = Debug|Win32
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Debug|x86.Build.0 = Debug|Win32
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Release|Any CPU.ActiveCfg = Release|x64
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Release|Any CPU.Build.0 = Release|x64
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Release|x64.ActiveCfg = Release|x64
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Release|x64.Build.0 = Release|x64
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Release|x86.ActiveCfg = Release|Win32
+		{11AAD192-46EB-4D5D-B81F-BCEE11D6AF8E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

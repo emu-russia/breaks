@@ -4,6 +4,6 @@
 #include <cassert>
 #include <string>
 
-#include "../../Breaknes/BaseLogic.h"
+#include "../../Breaknes/BaseLogicLib/BaseLogic.h"
 
 #include "core.h"
