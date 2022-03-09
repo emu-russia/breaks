@@ -6,7 +6,7 @@ Sample picture that the PPU can produce:
 
 <img src="/BreakingNESWiki/imgstore/ppu/battletoads.jpg" width="400px">
 
-Revisions of PPU chips:
+Revisions of PPU chips (preliminary synopsis table, information will be updated):
 
 |Revision|Description|
 |---|---|
