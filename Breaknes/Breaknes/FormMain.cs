@@ -17,5 +17,11 @@ namespace Breaknes
         {
             Close();
         }
+
+        private void breaksDebuggerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormDebug formDebug = new FormDebug();
+            formDebug.Show();
+        }
     }
 }
