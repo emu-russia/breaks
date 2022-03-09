@@ -6,10 +6,20 @@ Sample picture that the PPU can produce:
 
 <img src="/BreakingNESWiki/imgstore/ppu/battletoads.jpg" width="400px">
 
-There are the following versions of the PPU chips:
-- 2C02: used in the Famicom and the American version of the NES. It generates an NTSC signal.
-- 2C03, 2C04, 2C05: RGB-versions for arcade machines based on NES (PlayChoiсe-10, Vs. System)
-- 2C07: PAL version of the PPU for the European NES.
+Revisions of PPU chips:
+
+|Revision|Description|
+|---|---|
+|2C02G|Used in the Famicom and the American version of the NES. It generates an NTSC signal.|
+|2C02H| |
+|2C03|RGB-versions for arcade machines based on NES (PlayChoiсe-10, Vs. System)|
+|2C03B| |
+|2C04-0001| |
+|2C04-0002| |
+|2C04-0003| |
+|2C04-0004| |
+|2C05| |
+|2C07-0|PAL version of the PPU for the European NES.|
 
 Probably exist (but no one has seen them):
 - 2C01: Debug version of NTSC PPU (?)
