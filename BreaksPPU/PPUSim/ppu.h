@@ -33,6 +33,14 @@ namespace PPUSim
 		Unknown = 0,
 
 		RP2C02G,
+		RP2C02H,
+		RP2C03,
+		RP2C03B,
+		RP2C04_0001,
+		RP2C04_0002,
+		RP2C04_0003,
+		RP2C04_0004,
+		RP2C05,
 		RP2C07_0,
 
 		Max,
