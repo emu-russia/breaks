@@ -24,3 +24,7 @@ The circuit includes multiplexers on the `/ready` signal. This is done so that w
 ## Logic
 
 ![extended_cycle_counter_logic](/BreakingNESWiki/imgstore/extended_cycle_counter_logic.jpg)
+
+## Optimized Schematics
+
+![14_extended_cycle_counter_logic](/BreakingNESWiki/imgstore/6502/ttlworks/14_extended_cycle_counter_logic.png)

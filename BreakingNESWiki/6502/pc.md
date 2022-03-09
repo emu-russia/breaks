@@ -61,3 +61,15 @@
 ![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg)
 
 Чтобы данные схемы корректно работали в симуляторе, FF для разряда регистра PCL/PCH использует триггер по заднему фронту (posedge).
+
+Оптимизированная логическая схема (Even):
+
+![20_pc_even_bit_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/20_pc_even_bit_logisim.png)
+
+Оптимизированная логическая схема (Odd):
+
+![21_pc_odd_bit_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/21_pc_odd_bit_logisim.png)
+
+Оптимизированная логическая схема для цепочки переноса:
+
+![22_pc_carry_chain](/BreakingNESWiki/imgstore/6502/ttlworks/22_pc_carry_chain.png)

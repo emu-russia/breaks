@@ -32,3 +32,7 @@
 ## Логическая схема
 
 ![branch_logic_logisim](/BreakingNESWiki/imgstore/logisim/branch_logic_logisim.jpg)
+
+## Оптимизированная логическая схема
+
+![6_branch_logic_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/6_branch_logic_logisim.png)

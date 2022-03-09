@@ -76,3 +76,7 @@ See [Address Bus](address_bus.md).
 ## Data Bus
 
 See [Data Bus](data_bus.md).
+
+## Optimized Schematics
+
+![19_pads](/BreakingNESWiki/imgstore/6502/ttlworks/19_pads.png)

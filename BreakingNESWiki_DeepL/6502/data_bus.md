@@ -19,8 +19,16 @@ Control signals:
 
 The external data bus (pins D0-D7) is also directly connected to the input of the [predecode circuit](predecode.md).
 
+Optimized schematics:
+
+![11_6502_data_bit_tran](/BreakingNESWiki/imgstore/6502/ttlworks/11_6502_data_bit_tran.png)
+
 ## WR Latch
 
 From the R/W control circuit, the latch circuit receives a control signal `WR`. The circuit outputs a control signal `RD` which controls the direction of the external data bus.
 
 ![6502_wr_latch_tran](/BreakingNESWiki/imgstore/6502_wr_latch_tran.jpg)
+
+Optimized schematics:
+
+![12_6502_wr_latch_tran](/BreakingNESWiki/imgstore/6502/ttlworks/12_6502_wr_latch_tran.png)

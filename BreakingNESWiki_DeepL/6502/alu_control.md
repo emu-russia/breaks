@@ -63,6 +63,10 @@ Logic:
 
 ![alu_control_addsb7](/BreakingNESWiki/imgstore/logisim/alu_control_addsb7.jpg)
 
+Optimized schematics:
+
+![27_alu_control_addsb7](/BreakingNESWiki/imgstore/6502/ttlworks/27_alu_control_addsb7.png)
+
 ## ALU Control Commands
 
 ![alu_control_commands_tran](/BreakingNESWiki/imgstore/alu_control_commands_tran.jpg)
@@ -93,3 +97,7 @@ Logic:
 ## Logic
 
 ![alu_control_logisim](/BreakingNESWiki/imgstore/logisim/alu_control_logisim.jpg)
+
+## Optimized Schematics
+
+![28_alu_control_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/28_alu_control_logisim.png)

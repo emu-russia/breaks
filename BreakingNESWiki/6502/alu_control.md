@@ -63,6 +63,10 @@ BCD коррекция производится в следующих случа
 
 ![alu_control_addsb7](/BreakingNESWiki/imgstore/logisim/alu_control_addsb7.jpg)
 
+Оптимизированная логическая схема:
+
+![27_alu_control_addsb7](/BreakingNESWiki/imgstore/6502/ttlworks/27_alu_control_addsb7.png)
+
 ## Управляющие команды АЛУ
 
 ![alu_control_commands_tran](/BreakingNESWiki/imgstore/alu_control_commands_tran.jpg)
@@ -93,3 +97,7 @@ BCD коррекция производится в следующих случа
 ## Логическая схема
 
 ![alu_control_logisim](/BreakingNESWiki/imgstore/logisim/alu_control_logisim.jpg)
+
+## Оптимизированная логическая схема
+
+![28_alu_control_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/28_alu_control_logisim.png)

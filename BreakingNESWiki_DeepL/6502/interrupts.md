@@ -52,3 +52,7 @@ The last small circuit forms the address (or vector) of the interrupts (control 
 Schematic for setting the address of the interrupt handler:
 
 ![int_address_logisim](/BreakingNESWiki/imgstore/logisim/int_address_logisim.jpg)
+
+## Optimized Schematics
+
+![17_interrupt_logic](/BreakingNESWiki/imgstore/6502/ttlworks/17_interrupt_logic.png)

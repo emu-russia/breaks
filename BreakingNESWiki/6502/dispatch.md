@@ -95,3 +95,9 @@
 ## Логическая схема
 
 ![dispatcher_logisim](/BreakingNESWiki/imgstore/logisim/dispatcher_logisim.jpg)
+
+TBD: Распилить схему на составные части, чтобы не выглядела такой страшной.
+
+## Оптимизированная логическая схема
+
+![13_dispatcher_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/13_dispatcher_logisim.png)

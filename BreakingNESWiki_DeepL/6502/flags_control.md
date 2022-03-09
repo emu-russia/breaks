@@ -85,3 +85,7 @@ The control signal `1/V` is obtained by the input contact `SO` and is not shown 
 ## Logic
 
 ![flags_control_logisim](/BreakingNESWiki/imgstore/logisim/flags_control_logisim.jpg)
+
+## Optimized Schematics
+
+![16_flags_control_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/16_flags_control_logisim.png)

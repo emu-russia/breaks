@@ -79,13 +79,15 @@ All commands are discussed in more detail in their respective sections. The summ
 
 Be careful, all output values are inverse latch values, except for `ADD/SB7`.
 
-## PHI2 Pullup
+## "Other" PHI2 (/PHI1)
 
 On the left side is a small circuit to pull up PHI2 (which is used by a lot of cutoff transistors, so it must be quite powerful):
 
 ![phi2_pullup_tran](/BreakingNESWiki/imgstore/6502/phi2_pullup_tran.jpg)
 
-It doesn't carry any logical meaning, but it looks cool.
+Optimized logic diagram with explanations:
+
+![9_context_control_gating](/BreakingNESWiki/imgstore/6502/ttlworks/9_context_control_gating.png)
 
 ## Command Priority
 

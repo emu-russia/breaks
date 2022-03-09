@@ -45,17 +45,23 @@ Schematic for bit 0:
 
 ![alu_bit0_tran](/BreakingNESWiki/imgstore/6502/alu_bit0_tran.jpg)
 
+Schematics for bits 2, 4, 6:
+
+![alu_bit_even_tran](/BreakingNESWiki/imgstore/6502/alu_bit_even_tran.jpg)
+
+(The circuit for bit 2 is shown, the rest are the same)
+
 Schematics for bits 1, 3, 5, 7:
 
 ![alu_bit_odd_tran](/BreakingNESWiki/imgstore/6502/alu_bit_odd_tran.jpg)
 
 (The circuit for bit 1 is shown, the rest are the same)
 
-Schematics for bits 2, 4, 6:
+Optimized schematics:
 
-![alu_bit_even_tran](/BreakingNESWiki/imgstore/6502/alu_bit_even_tran.jpg)
-
-(The circuit for bit 2 is shown, the rest are the same)
+|Even|Odd|
+|---|---|
+|![1_alu_even_bit_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/1_alu_even_bit_logisim.png)|![2_alu_odd_bit_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/2_alu_odd_bit_logisim.png)|
 
 Anatomically, the left side deals with logical operations, the right side is the adder (Full Adder), and in the middle is the carry chain.
 
@@ -93,6 +99,8 @@ Overflow calculation (control signal `AVR`):
 
 ![alu_avr_tran](/BreakingNESWiki/imgstore/6502/alu_avr_tran.jpg)
 
+![5_carry_plus_overflow_evaluation](/BreakingNESWiki/imgstore/6502/ttlworks/5_carry_plus_overflow_evaluation.png)
+
 ## Fast BCD Carry
 
 This is the circuit that appears in patent US 3991307 (https://patents.google.com/patent/US3991307A).
@@ -114,6 +122,10 @@ Besides calculating the carry for BCD the circuit also generates the `ACR` (ALU 
 Logic:
 
 ![alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_carry_logisim.jpg)
+
+Optimized schematics:
+
+![3_alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/3_alu_bcd_carry_logisim.png)
 
 ## Intermediate Result (ADD)
 
@@ -163,6 +175,10 @@ The auxiliary signals /ADDx on the BCD correction circuits are derived from the 
 Logic:
 
 ![alu_bcd_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_logisim.jpg)
+
+Optimized schematics:
+
+![4_alu_bcd_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/4_alu_bcd_logisim.png)
 
 ## Accumulator (AC)
 

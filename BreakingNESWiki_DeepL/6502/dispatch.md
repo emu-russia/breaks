@@ -95,3 +95,9 @@ The circuit also generates the following signals:
 ## Logic
 
 ![dispatcher_logisim](/BreakingNESWiki/imgstore/logisim/dispatcher_logisim.jpg)
+
+TBD: Break down the diagram into its component parts so it doesn't look so scary.
+
+## Optimized Schematics
+
+![13_dispatcher_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/13_dispatcher_logisim.png)

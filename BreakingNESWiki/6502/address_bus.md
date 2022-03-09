@@ -48,3 +48,7 @@
 ![abl_logisim](/BreakingNESWiki/imgstore/abl_logisim.jpg)
 
 ![abh_logisim](/BreakingNESWiki/imgstore/abh_logisim.jpg)
+
+## Оптимизированная логическая схема
+
+![0_abl02_tran](/BreakingNESWiki/imgstore/6502/ttlworks/0_abl02_tran.png)

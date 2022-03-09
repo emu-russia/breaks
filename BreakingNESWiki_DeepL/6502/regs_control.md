@@ -57,3 +57,7 @@ Register control commands:
 ## Logic
 
 ![regs_control_logisim](/BreakingNESWiki/imgstore/logisim/regs_control_logisim.jpg)
+
+## Optimized Schematics
+
+![26_regs_control_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/26_regs_control_logisim.png)

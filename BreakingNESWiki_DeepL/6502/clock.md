@@ -61,6 +61,10 @@ The official documentation gives the following diagram:
 
 ![clock_timing_datasheet](/BreakingNESWiki/imgstore/clock_timing_datasheet.jpg)
 
+Optimized schematics:
+
+![8_clock_internal](/BreakingNESWiki/imgstore/6502/ttlworks/8_clock_internal.png)
+
 ## External Clock
 
 ![clock_external](/BreakingNESWiki/imgstore/clock_external.jpg)

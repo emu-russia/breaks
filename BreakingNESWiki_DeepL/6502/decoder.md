@@ -20,6 +20,10 @@ That is, the decoder outputs are not in inverse logic (as is usual), but in dire
 
 ![decoder_nice2](/BreakingNESWiki/imgstore/decoder_nice2.jpg)
 
+The ttlworks version of the decoder:
+
+![10_decoder](/BreakingNESWiki/imgstore/6502/ttlworks/10_decoder.png)
+
 ## Special Lines
 
 Additional logical operations are applied to some decoder outputs, which although territorially are in the decoder area, are actually part of [random logic](random_logic.md). Most likely this logic got into the decoder simply because it was more convenient to split the connections that way.

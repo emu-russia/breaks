@@ -51,3 +51,7 @@
 ## Логическая схема
 
 ![pc_control_logisim](/BreakingNESWiki/imgstore/logisim/pc_control_logisim.jpg)
+
+## Оптимизированная логическая схема
+
+![23_pc_control_logisim](/BreakingNESWiki/imgstore/6502/ttlworks/23_pc_control_logisim.png)

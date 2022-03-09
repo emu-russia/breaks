@@ -184,3 +184,5 @@
 |![dlatch_tran](/BreakingNESWiki/imgstore/dlatch_tran.jpg)|![dlatch_logic](/BreakingNESWiki/imgstore/dlatch_logic.jpg)|
 
 Для удобства логический вариант DLatch имеет два выхода (`out` и `/out`), так как текущее значение DLatch (out) нередко используется как вход для операции NOR.
+
+Оптимизированные варианты логических схем составлены ttlworks и содержат дополнительный источник информации для анализа.
