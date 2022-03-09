@@ -1,5 +1,4 @@
-#include "BaseLogic.h"
-#include <stdio.h>
+#include "pch.h"
 
 namespace BaseLogic
 {

@@ -1,8 +1,5 @@
 #pragma once
 
-#include <stdint.h>
-#include <string.h>
-
 /// <summary>
 /// Basic logic primitives used in N-MOS chips.
 /// Combinational primitives are implemented using ordinary methods.

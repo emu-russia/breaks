@@ -2,6 +2,6 @@
 
 #include <cstdint>
 
-#include "../../Breaknes/BaseLogic.h"
+#include "../../Breaknes/BaseLogicLib/BaseLogic.h"
 
 #include "ppu.h"
