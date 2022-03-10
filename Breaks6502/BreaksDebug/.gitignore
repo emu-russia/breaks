@@ -1,5 +1,0 @@
-Build/*
-!Build/*.asm
-!Build/*.json
-packages
-Build/res.json
