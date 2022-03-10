@@ -61,3 +61,5 @@ nop
 |D0 |CLD|CMP abs, Y|     |   |          |CMP abs, X|DEC abs, X|   |
 |E0 |INX|SBC #     |NOP  |   |CPX abs   |SBC abs   |INC abs   |   |
 |F0 |SED|SBC abs, Y|     |   |          |SBC abs, X|INC abs, X|   |
+
+(Ссылки на каждый опкод делать не буду, чтобы таблица не стала монструозной. Используйте меню навигации)
