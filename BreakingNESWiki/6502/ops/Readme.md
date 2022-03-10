@@ -43,21 +43,21 @@ nop
 |E0 |CPX #  |SBC X, ind|     |   |CPX zpg   |SBC zpg   |INC zpg   |   |
 |F0 |BEQ rel|SBC ind, Y|     |   |          |SBC zpg, X|INC zpg, X|   |
 
-|   |08 |09        |0A   |0B |0C        |0D|0E|0F|
-|---|---|----------|-----|---|----------|---|---|---|
-|00 |PHP|ORA #     |ASL A|   |          | | | |
-|10 |CLC|ORA abs, Y|     |   |          | | | |
-|20 |PLP|AND #     |ROL A|   |BIT abs   | | | |
-|30 |SEC|AND abs, Y|     |   |          | | | |
-|40 |PHA|EOR #     |LSR A|   |JMP abs   | | | |
-|50 |CLI|EOR abs, Y|     |   |          | | | |
-|60 |PLA|ADC #     |ROR A|   |JMP ind   | | | |
-|70 |SEI|ADC abs, Y|     |   |          | | | |
-|80 |DEY|          |TXA  |   |STY abs   | | | |
-|90 |TYA|STA abs, Y|TXS  |   |          | | | |
-|A0 |TAY|LDA #     |TAX  |   |LDY abs   | | | |
-|B0 |CLV|LDA abs, Y|TSX  |   |LDY abs, X| | | |
-|C0 |INY|CMP #     |DEX  |   |CPY abs   | | | |
-|D0 |CLD|CMP abs, Y|     |   |          | | | |
-|E0 |INX|SBC #     |NOP  |   |CPX abs   | | | |
-|F0 |SED|SBC abs, Y|     |   |          | | | |
+|   |08 |09        |0A   |0B |0C        |0D        |0E|0F|
+|---|---|----------|-----|---|----------|----------|---|---|
+|00 |PHP|ORA #     |ASL A|   |          |ORA abs   | | |
+|10 |CLC|ORA abs, Y|     |   |          |ORA abs, X| | |
+|20 |PLP|AND #     |ROL A|   |BIT abs   |AND abs   | | |
+|30 |SEC|AND abs, Y|     |   |          |AND abs, X| | |
+|40 |PHA|EOR #     |LSR A|   |JMP abs   |EOR abs   | | |
+|50 |CLI|EOR abs, Y|     |   |          |EOR abs, X| | |
+|60 |PLA|ADC #     |ROR A|   |JMP ind   |ADC abs   | | |
+|70 |SEI|ADC abs, Y|     |   |          |ADC abs, X| | |
+|80 |DEY|          |TXA  |   |STY abs   |STA abs   | | |
+|90 |TYA|STA abs, Y|TXS  |   |          |STA abs, X| | |
+|A0 |TAY|LDA #     |TAX  |   |LDY abs   |LDA abs   | | |
+|B0 |CLV|LDA abs, Y|TSX  |   |LDY abs, X|LDA abs, X| | |
+|C0 |INY|CMP #     |DEX  |   |CPY abs   |CMP abs   | | |
+|D0 |CLD|CMP abs, Y|     |   |          |CMP abs, X| | |
+|E0 |INX|SBC #     |NOP  |   |CPX abs   |SBC abs   | | |
+|F0 |SED|SBC abs, Y|     |   |          |SBC abs, X| | |
