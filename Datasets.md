@@ -30,6 +30,8 @@ This section contains links from where you can download datasets - photographs o
 
 - UMC 6527P: https://drive.google.com/drive/folders/12m-oXzVGk4oJU_lRnez9Gt3Ga5xKlvEZ
 
+- UMC 6538: https://zeptobars.com/en/read/UMC-UA6538-Dendy-NES-Nintendo-PPU
+
 ## Mappers
 
 - https://drive.google.com/drive/folders/1OPsf35CCF5uWQVp9imoV0mNcNpwR9icr?usp=sharing
