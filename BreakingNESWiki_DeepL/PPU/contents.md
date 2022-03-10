@@ -1,5 +1,6 @@
 ## Contents
 
+- [Overview](Readme.md)
 - [Pinout](pads.md)
 - [Pixel Clock](pclk.md)
 - [Control Registers](regs.md)
