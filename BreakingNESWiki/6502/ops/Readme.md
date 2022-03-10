@@ -24,21 +24,40 @@ nop
 
 Таблица опкодов:
 
-|   |00     |01        |02   |03 |04        |05        |06        |07 |08 |09|0A|0B|0C|0D|0E|0F|
-|---|-------|----------|-----|---|----------|----------|----------|---|---|---|---|---|---|---|---|---|
-|00 |BRK    |ORA X, ind|     |   |          |ORA zpg   |ASL zpg   |   |PHP| | | | | | | |
-|10 |BPL rel|ORA ind, Y|     |   |          |ORA zpg, X|ASL zpg, X|   |CLC| | | | | | | |
-|20 |JSR abs|AND X, ind|     |   |BIT zpg   |AND zpg   |ROL zpg   |   |PLP| | | | | | | |
-|30 |BMI rel|AND ind, Y|     |   |          |AND zpg, X|ROL zpg, X|   |SEC| | | | | | | |
-|40 |RTI    |EOR X, ind|     |   |          |EOR zpg   |LSR zpg   |   |PHA| | | | | | | |
-|50 |BVC rel|EOR ind, Y|     |   |          |EOR zpg, X|LSR zpg, X|   |CLI| | | | | | | |
-|60 |RTS    |ADC X, ind|     |   |          |ADC zpg   |ROR zpg   |   |PLA| | | | | | | |
-|70 |BVS rel|ADC ind, Y|     |   |          |ADC zpg, X|ROR zpg, X|   |SEI| | | | | | | |
-|80 |       |STA X, ind|     |   |STY zpg   |STA zpg   |STX zpg   |   |DEY| | | | | | | |
-|90 |BCC rel|STA ind, Y|     |   |STY zpg, X|STA zpg, X|STX zpg, Y|   |TYA| | | | | | | |
-|A0 |LDY #  |LDA X, ind|LDX #|   |LDY zpg   |LDA zpg   |LDX zpg   |   |TAY| | | | | | | |
-|B0 |BCS rel|LDA ind, Y|     |   |LDY zpg, X|LDA zpg, X|LDX zpg, Y|   |CLV| | | | | | | |
-|C0 |CPY #  |CMP X, ind|     |   |CPY zpg   |CMP zpg   |DEC zpg   |   |INY| | | | | | | |
-|D0 |BNE rel|CMP ind, Y|     |   |          |CMP zpg, X|DEC zpg, X|   |CLD| | | | | | | |
-|E0 |CPX #  |SBC X, ind|     |   |CPX zpg   |SBC zpg   |INC zpg   |   |INX| | | | | | | |
-|F0 |BEQ rel|SBC ind, Y|     |   |          |SBC zpg, X|INC zpg, X|   |SED| | | | | | | |
+|   |00     |01        |02   |03 |04        |05        |06        |07 |
+|---|-------|----------|-----|---|----------|----------|----------|---|
+|00 |BRK    |ORA X, ind|     |   |          |ORA zpg   |ASL zpg   |   |
+|10 |BPL rel|ORA ind, Y|     |   |          |ORA zpg, X|ASL zpg, X|   |
+|20 |JSR abs|AND X, ind|     |   |BIT zpg   |AND zpg   |ROL zpg   |   |
+|30 |BMI rel|AND ind, Y|     |   |          |AND zpg, X|ROL zpg, X|   |
+|40 |RTI    |EOR X, ind|     |   |          |EOR zpg   |LSR zpg   |   |
+|50 |BVC rel|EOR ind, Y|     |   |          |EOR zpg, X|LSR zpg, X|   |
+|60 |RTS    |ADC X, ind|     |   |          |ADC zpg   |ROR zpg   |   |
+|70 |BVS rel|ADC ind, Y|     |   |          |ADC zpg, X|ROR zpg, X|   |
+|80 |       |STA X, ind|     |   |STY zpg   |STA zpg   |STX zpg   |   |
+|90 |BCC rel|STA ind, Y|     |   |STY zpg, X|STA zpg, X|STX zpg, Y|   |
+|A0 |LDY #  |LDA X, ind|LDX #|   |LDY zpg   |LDA zpg   |LDX zpg   |   |
+|B0 |BCS rel|LDA ind, Y|     |   |LDY zpg, X|LDA zpg, X|LDX zpg, Y|   |
+|C0 |CPY #  |CMP X, ind|     |   |CPY zpg   |CMP zpg   |DEC zpg   |   |
+|D0 |BNE rel|CMP ind, Y|     |   |          |CMP zpg, X|DEC zpg, X|   |
+|E0 |CPX #  |SBC X, ind|     |   |CPX zpg   |SBC zpg   |INC zpg   |   |
+|F0 |BEQ rel|SBC ind, Y|     |   |          |SBC zpg, X|INC zpg, X|   |
+
+|   |08 |09|0A|0B|0C|0D|0E|0F|
+|---|---|---|---|---|---|---|---|---|
+|00 |PHP| | | | | | | |
+|10 |CLC| | | | | | | |
+|20 |PLP| | | | | | | |
+|30 |SEC| | | | | | | |
+|40 |PHA| | | | | | | |
+|50 |CLI| | | | | | | |
+|60 |PLA| | | | | | | |
+|70 |SEI| | | | | | | |
+|80 |DEY| | | | | | | |
+|90 |TYA| | | | | | | |
+|A0 |TAY| | | | | | | |
+|B0 |CLV| | | | | | | |
+|C0 |INY| | | | | | | |
+|D0 |CLD| | | | | | | |
+|E0 |INX| | | | | | | |
+|F0 |SED| | | | | | | |
