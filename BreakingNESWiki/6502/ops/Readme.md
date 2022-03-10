@@ -43,21 +43,21 @@ nop
 |E0 |CPX #  |SBC X, ind|     |   |CPX zpg   |SBC zpg   |INC zpg   |   |
 |F0 |BEQ rel|SBC ind, Y|     |   |          |SBC zpg, X|INC zpg, X|   |
 
-|   |08 |09        |0A   |0B|0C|0D|0E|0F|
-|---|---|----------|-----|---|---|---|---|---|
-|00 |PHP|ORA #     |ASL A| | | | | |
-|10 |CLC|ORA abs, Y|     | | | | | |
-|20 |PLP|AND #     |ROL A| | | | | |
-|30 |SEC|AND abs, Y|     | | | | | |
-|40 |PHA|EOR #     |LSR A| | | | | |
-|50 |CLI|EOR abs, Y|     | | | | | |
-|60 |PLA|ADC #     |ROR A| | | | | |
-|70 |SEI|ADC abs, Y|     | | | | | |
-|80 |DEY|          |TXA  | | | | | |
-|90 |TYA|STA abs, Y|TXS  | | | | | |
-|A0 |TAY|LDA #     |TAX  | | | | | |
-|B0 |CLV|LDA abs, Y|TSX  | | | | | |
-|C0 |INY|CMP #     |DEX  | | | | | |
-|D0 |CLD|CMP abs, Y|     | | | | | |
-|E0 |INX|SBC #     |NOP  | | | | | |
-|F0 |SED|SBC abs, Y|     | | | | | |
+|   |08 |09        |0A   |0B |0C        |0D|0E|0F|
+|---|---|----------|-----|---|----------|---|---|---|
+|00 |PHP|ORA #     |ASL A|   |          | | | |
+|10 |CLC|ORA abs, Y|     |   |          | | | |
+|20 |PLP|AND #     |ROL A|   |BIT abs   | | | |
+|30 |SEC|AND abs, Y|     |   |          | | | |
+|40 |PHA|EOR #     |LSR A|   |JMP abs   | | | |
+|50 |CLI|EOR abs, Y|     |   |          | | | |
+|60 |PLA|ADC #     |ROR A|   |JMP ind   | | | |
+|70 |SEI|ADC abs, Y|     |   |          | | | |
+|80 |DEY|          |TXA  |   |STY abs   | | | |
+|90 |TYA|STA abs, Y|TXS  |   |          | | | |
+|A0 |TAY|LDA #     |TAX  |   |LDY abs   | | | |
+|B0 |CLV|LDA abs, Y|TSX  |   |LDY abs, X| | | |
+|C0 |INY|CMP #     |DEX  |   |CPY abs   | | | |
+|D0 |CLD|CMP abs, Y|     |   |          | | | |
+|E0 |INX|SBC #     |NOP  |   |CPX abs   | | | |
+|F0 |SED|SBC abs, Y|     |   |          | | | |
