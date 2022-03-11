@@ -56,6 +56,12 @@
     <a name="circuit" val="Famicom"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(100,720)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(1050,640)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
     <comp lib="0" loc="(110,30)" name="Clock">
       <a name="label" val="CLK"/>
     </comp>
@@ -107,9 +113,36 @@
       <a name="fanout" val="14"/>
       <a name="incoming" val="14"/>
     </comp>
+    <comp lib="0" loc="(1860,90)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(330,220)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(370,780)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
     <comp lib="0" loc="(380,290)" name="Splitter">
       <a name="fanout" val="6"/>
       <a name="incoming" val="6"/>
+    </comp>
+    <comp lib="0" loc="(380,780)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(390,780)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(40,130)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(410,200)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(410,780)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(420,780)" name="Pull Resistor">
+      <a name="pull" val="1"/>
     </comp>
     <comp lib="0" loc="(440,180)" name="Constant">
       <a name="value" val="0x0"/>
@@ -179,6 +212,10 @@
     <comp lib="8" loc="(1669,795)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="PA0-7 Latched"/>
+    </comp>
+    <comp lib="8" loc="(171,80)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="These pull-up resistors in the original circuit are designated as RM1"/>
     </comp>
     <comp lib="8" loc="(1811,834)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
@@ -273,6 +310,8 @@
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
+    <wire from="(100,720)" to="(670,720)"/>
+    <wire from="(1050,640)" to="(1110,640)"/>
     <wire from="(1090,160)" to="(1320,160)"/>
     <wire from="(1090,180)" to="(1110,180)"/>
     <wire from="(1090,200)" to="(1140,200)"/>
@@ -465,14 +504,19 @@
     <wire from="(360,290)" to="(380,290)"/>
     <wire from="(360,60)" to="(1160,60)"/>
     <wire from="(360,60)" to="(360,290)"/>
-    <wire from="(360,650)" to="(360,880)"/>
+    <wire from="(360,650)" to="(360,790)"/>
+    <wire from="(360,790)" to="(360,880)"/>
+    <wire from="(360,790)" to="(370,790)"/>
     <wire from="(360,880)" to="(370,880)"/>
+    <wire from="(370,780)" to="(370,790)"/>
     <wire from="(370,810)" to="(370,860)"/>
     <wire from="(370,810)" to="(420,810)"/>
     <wire from="(370,880)" to="(370,900)"/>
     <wire from="(370,900)" to="(450,900)"/>
+    <wire from="(380,780)" to="(380,840)"/>
     <wire from="(380,840)" to="(380,880)"/>
     <wire from="(380,880)" to="(450,880)"/>
+    <wire from="(390,780)" to="(390,800)"/>
     <wire from="(390,800)" to="(390,860)"/>
     <wire from="(390,860)" to="(450,860)"/>
     <wire from="(40,130)" to="(40,180)"/>
@@ -481,12 +525,16 @@
     <wire from="(40,180)" to="(80,180)"/>
     <wire from="(40,840)" to="(100,840)"/>
     <wire from="(400,160)" to="(400,200)"/>
-    <wire from="(400,200)" to="(440,200)"/>
+    <wire from="(400,200)" to="(410,200)"/>
     <wire from="(400,280)" to="(440,280)"/>
     <wire from="(400,820)" to="(400,840)"/>
-    <wire from="(400,840)" to="(450,840)"/>
+    <wire from="(400,840)" to="(410,840)"/>
+    <wire from="(410,200)" to="(440,200)"/>
+    <wire from="(410,780)" to="(410,840)"/>
+    <wire from="(410,840)" to="(450,840)"/>
     <wire from="(420,260)" to="(420,310)"/>
     <wire from="(420,260)" to="(440,260)"/>
+    <wire from="(420,780)" to="(420,810)"/>
     <wire from="(420,810)" to="(420,820)"/>
     <wire from="(420,820)" to="(450,820)"/>
     <wire from="(430,240)" to="(430,440)"/>
@@ -522,8 +570,8 @@
     <wire from="(580,640)" to="(590,640)"/>
     <wire from="(60,310)" to="(60,720)"/>
     <wire from="(60,310)" to="(80,310)"/>
+    <wire from="(60,720)" to="(100,720)"/>
     <wire from="(60,720)" to="(60,760)"/>
-    <wire from="(60,720)" to="(670,720)"/>
     <wire from="(60,760)" to="(100,760)"/>
     <wire from="(610,1180)" to="(610,1230)"/>
     <wire from="(610,1230)" to="(1160,1230)"/>
@@ -629,7 +677,7 @@
     <wire from="(840,1050)" to="(880,1050)"/>
     <wire from="(840,200)" to="(840,640)"/>
     <wire from="(840,200)" to="(870,200)"/>
-    <wire from="(840,640)" to="(1110,640)"/>
+    <wire from="(840,640)" to="(1050,640)"/>
     <wire from="(840,890)" to="(840,960)"/>
     <wire from="(840,890)" to="(870,890)"/>
     <wire from="(840,960)" to="(1110,960)"/>
