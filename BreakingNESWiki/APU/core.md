@@ -46,7 +46,7 @@ TBD: Более подробное описание делителя.
 
 ```c++
 if ( RES & ~DBG) M2 = z;
-else M2 = M2_internal;
+else M2 = NOT(n_M2);
 ```
 
 ## Соединение 6502 и APU

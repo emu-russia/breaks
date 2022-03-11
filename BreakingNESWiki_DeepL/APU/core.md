@@ -46,7 +46,7 @@ In debug mode (when DBG=1) - the external signal M2 is not touched during reset.
 
 ```c++
 if ( RES & ~DBG) M2 = z;
-else M2 = M2_internal;
+else M2 = NOT(n_M2);
 ```
 
 ## Connecting the 6502 and APU
