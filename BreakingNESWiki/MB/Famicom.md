@@ -55,3 +55,7 @@ TBD: 32-пин чип, в котором находится вся "рассып
 ## Sound
 
 ![fami_sound](/BreakingNESWiki/MB/imgstore/fami_sound.png)
+
+## Игры с микрофоном
+
+https://www.youtube.com/watch?v=Mv7-5z1Itqg
