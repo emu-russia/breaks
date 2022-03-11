@@ -10,23 +10,23 @@
 
 TBD: выяснить что за ревизия платы представлена на известной мунспик схеме.
 
-![fami_logisim](/MB/imgstore/fami_logisim.jpg)
+![fami_logisim](/BreakingNESWiki/MB/imgstore/fami_logisim.jpg)
 
 ## 40H368
 
-![40H368](/MB/imgstore/40H368.jpg)
+![40H368](/BreakingNESWiki/MB/imgstore/40H368.jpg)
 
 ## LS139
 
-![LS139](/MB/imgstore/LS139.jpg)
+![LS139](/BreakingNESWiki/MB/imgstore/LS139.jpg)
 
 ## LS373
 
-![LS373](/MB/imgstore/LS373.jpg)
+![LS373](/BreakingNESWiki/MB/imgstore/LS373.jpg)
 
 Схема защелки:
 
-![LS373_Transparent_Latch](/MB/imgstore/LS373_Transparent_Latch.jpg)
+![LS373_Transparent_Latch](/BreakingNESWiki/MB/imgstore/LS373_Transparent_Latch.jpg)
 
 ## JIO
 
