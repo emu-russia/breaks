@@ -34,4 +34,4 @@ TBD: 32-пин чип, в котором находится вся "рассып
 
 ## Sound
 
-![fami_sound](/BreakingNESWiki/MB/imgstore/fami_sound.jpg)
+![fami_sound](/BreakingNESWiki/MB/imgstore/fami_sound.png)
