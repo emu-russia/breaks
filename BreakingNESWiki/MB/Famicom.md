@@ -24,11 +24,13 @@
 |HVC-CPU-GPM-02j| |
 |HVC-CPU-GPM-02k (?)| |
 
+TBD: По возможности указать значимые отличия между ревизиями. В плане логики особых изменений быть не должно.
+
 Источник: http://jpx72web.blogspot.com/2016/11/famicom-av-mod-new.html
 
-## Famicom XXX 
+## Famicom Generic
 
-TBD: выяснить что за ревизия платы представлена на известной мунспик схеме.
+Представлена "общая" схема для всех ревизий, где не используется JIO чип.
 
 ![fami_logisim](/BreakingNESWiki/MB/imgstore/fami_logisim.jpg)
 
@@ -52,6 +54,16 @@ TBD: выяснить что за ревизия платы представле
 
 TBD: 32-пин чип, в котором находится вся "рассыпуха".
 
+TBD: Схема с JIO чипом.
+
+Источник: https://forums.nesdev.org/viewtopic.php?t=16764
+
 ## Sound
 
 ![fami_sound](/BreakingNESWiki/MB/imgstore/fami_sound.png)
+
+Инвертор из U7 используется в качестве усилителя с резистором для отрицательной обратной связи.
+
+## Игры с микрофоном
+
+https://www.youtube.com/watch?v=Mv7-5z1Itqg
