@@ -4,7 +4,27 @@
 
 |Плата|Описание|
 |---|---|
-|TBD|TBD|
+|HVC-CPU-01| |
+|HVC-CPU-02| |
+|HVC-CPU-03| |
+|HVC-CPU-04| |
+|HVC-CPU-05| |
+|HVC-CPU-06| |
+|HVC-CPU-07| |
+|HVC-CPU-08| |
+|HVC-CPU-GPM-02a| |
+|HVC-CPU-GPM-02b| |
+|HVC-CPU-GPM-02c| |
+|HVC-CPU-GPM-02d| |
+|HVC-CPU-GPM-02e| |
+|HVC-CPU-GPM-02f| |
+|HVC-CPU-GPM-02g| |
+|HVC-CPU-GPM-02h| |
+|HVC-CPU-GPM-02i| |
+|HVC-CPU-GPM-02j| |
+|HVC-CPU-GPM-02k (?)| |
+
+Источник: http://jpx72web.blogspot.com/2016/11/famicom-av-mod-new.html
 
 ## Famicom XXX 
 
