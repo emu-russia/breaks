@@ -296,7 +296,7 @@
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(320,760)" name="P2">
-      <a name="label" val="fds_port"/>
+      <a name="label" val="ext_port"/>
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
