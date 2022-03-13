@@ -16,7 +16,7 @@ So you don't get lost, here's a larger scale of the schematics discussed below:
 
 ![6502_core_clock](/BreakingNESWiki/imgstore/apu/6502_core_clock.jpg)
 
-![6502_core_pads](/BreakingNESWiki/imgstore/apu/6502_core_pads.jpg)
+![6502_core_pads_tran](/BreakingNESWiki/imgstore/apu/6502_core_pads_tran.jpg)
 
 ## Master Clock
 

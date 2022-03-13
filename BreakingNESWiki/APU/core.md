@@ -16,7 +16,7 @@
 
 ![6502_core_clock](/BreakingNESWiki/imgstore/apu/6502_core_clock.jpg)
 
-![6502_core_pads](/BreakingNESWiki/imgstore/apu/6502_core_pads.jpg)
+![6502_core_pads_tran](/BreakingNESWiki/imgstore/apu/6502_core_pads_tran.jpg)
 
 ## Главный тактовый сигнал
 
