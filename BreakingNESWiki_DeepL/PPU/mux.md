@@ -1,5 +1,7 @@
 # Multiplexer
 
+![ppu_locator_mux](/BreakingNESWiki/imgstore/ppu/ppu_locator_mux.jpg)
+
 The PPU multiplexer is the little wicked circuit that deals with the selection of the pixel color, which is then fed to the palette memory input as an index, to select the final color for the [phase generator](video_out.md).
 
 As usual, "color" and "pixel" are understood as abstract concepts: color is the color/brightness combination for the phase generator, and pixel is part of the visible video signal.

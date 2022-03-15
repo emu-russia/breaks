@@ -1,5 +1,7 @@
 # Palette
 
+![ppu_locator_cram](/BreakingNESWiki/imgstore/ppu/ppu_locator_cram.jpg)
+
 The logic for working with the palette includes the following circuits:
 - Color Buffer (CB)
 - Color Buffer control circuitry

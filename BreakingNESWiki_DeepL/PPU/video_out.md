@@ -1,5 +1,7 @@
 # Video Signal Generator
 
+![ppu_locator_vid_out](/BreakingNESWiki/imgstore/ppu/ppu_locator_vid_out.jpg)
+
 ## Phase Shifter
 
 ![vout_phase_shifter](/BreakingNESWiki/imgstore/ppu/vout_phase_shifter.jpg)

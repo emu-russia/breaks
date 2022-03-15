@@ -1,5 +1,7 @@
 # PPU Registers
 
+![ppu_locator_regs](/BreakingNESWiki/imgstore/ppu/ppu_locator_regs.jpg)
+
 This section describes only the control registers of the PPU ($2000/$2001) and the auxiliary logic that belongs to the CPU interface.
 
 The other registers are evenly "spread out" over all parts of the PPU and are part of the control logic of the corresponding units and are treated separately.

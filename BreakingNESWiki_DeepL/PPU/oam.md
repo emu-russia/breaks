@@ -1,5 +1,7 @@
 # OAM
 
+![ppu_locator_oam](/BreakingNESWiki/imgstore/ppu/ppu_locator_oam.jpg)
+
 Sprite memory (OAM, Object RAM) takes up almost a quarter of the PPU's surface, which was a luxury in those days. The size of the OAM is 2112 bits, of which 1856 are used to store 64 sprites (29 bits per sprite) and the remaining 32 bytes are used in a special way to sample the 8 current sprites to be shown on the current line. This area of the OAM is usually called "temporary OAM" or OAM2.
 
 Sprite memory layout on the chip and a combined image of the memory cell topology:

@@ -1,5 +1,7 @@
 # Генератор видеосигнала
 
+![ppu_locator_vid_out](/BreakingNESWiki/imgstore/ppu/ppu_locator_vid_out.jpg)
+
 ## Фазовращатель
 
 ![vout_phase_shifter](/BreakingNESWiki/imgstore/ppu/vout_phase_shifter.jpg)
