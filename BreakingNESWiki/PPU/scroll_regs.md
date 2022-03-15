@@ -1,5 +1,7 @@
 # Регистры скроллинга
 
+![ppu_locator_scroll_regs](/BreakingNESWiki/imgstore/ppu/ppu_locator_scroll_regs.jpg)
+
 ## Спаренные регистры $2005/$2006
 
 ### Fine HScroll

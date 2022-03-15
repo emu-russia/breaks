@@ -1,8 +1,6 @@
 # OAM FIFO
 
-Расположение на чипе:
-
-![OAM_FIFO_preview](/BreakingNESWiki/imgstore/ppu/OAM_FIFO_preview.jpg)
+![ppu_locator_fifo](/BreakingNESWiki/imgstore/ppu/ppu_locator_fifo.jpg)
 
 Спрайтовый FIFO используется для временного хранения до 8 спрайтов, которые попали в текущую строку.
 

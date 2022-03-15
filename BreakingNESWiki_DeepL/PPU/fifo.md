@@ -1,8 +1,6 @@
 # OAM FIFO
 
-Location on a chip:
-
-![OAM_FIFO_preview](/BreakingNESWiki/imgstore/ppu/OAM_FIFO_preview.jpg)
+![ppu_locator_fifo](/BreakingNESWiki/imgstore/ppu/ppu_locator_fifo.jpg)
 
 The sprite FIFO is used to temporarily store up to 8 sprites that hit the current row.
 

@@ -1,5 +1,7 @@
 ## Background Color (BG COL)
 
+![ppu_locator_bgcol](/BreakingNESWiki/imgstore/ppu/ppu_locator_bgcol.jpg)
+
 ### BG COL Circuit Control
 
 ![ppu_dataread_bgcol_control_left](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgcol_control_left.jpg)
