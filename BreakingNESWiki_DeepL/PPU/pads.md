@@ -2,24 +2,24 @@
 
 The study of any IC begins with the pinout.
 
-![ppu_pads](/BreakingNESWiki/imgstore/ppu_pads.jpg)
+![ppu_pads](/BreakingNESWiki/imgstore/ppu/ppu_pads.jpg)
 
-|Name|Direction|Description|
-|---|---|---|
-|R/W	|in PPU	|Read-notWrite. Used to read/write PPU registers. If R/W = 1 it reads, otherwise it writes. It is easy to remember: "Read(1), do not write".|
-|D0-D7	|bidirectional	|The data bus for transferring register values. When /DBE = 1 the bus is disconnected (Z)|
-|RS0-RS2	|in PPU	|Register Select. Sets the PPU register number (0-7)|
-|/DBE	|in PPU	|Data Bus Enable. If /DBE = 0, then the D0-D7 bus is used to exchange values with the PPU registers, otherwise the bus is disconnected.|
-|EXT0-EXT3	|bidirectional	|The bus is used to mix the color of the current pixel from another PPU (slave mode), or to output the current color to the outside (master mode). The direction of the bus is determined by the register bit $2000\[6\] (0: PPU slave mode, 1: PPU master mode) (_I apologize for using the old master/slave terms_)|
-|CLK	|in PPU	|Main Clock|
-|/INT	|from PPU	|PPU interrupt signal (VBlank)|
-|ALE	|from PPU	|Address Latch Enable. If ALE=1, then the bus AD0-AD7 operates as an address bus (A0-A7), otherwise it operates as a data bus (D0-D7)|
-|AD0-AD7	|ALE=1: from PPU (address), ALE=0: bidirectional (data)	|Multiplexed address/data bus. When ALE=1 the bus operates as an address bus, when ALE=0 the bus sends data to the PPU (patterns, attributes), or out from the PPU port (register $2007)|
-|A8-A13	|from PPU (address)	|This bus carries the rest of the address lines.|
-|/RD	|from PPU	|/RD=0: the PPU data bus (AD0-AD7) is used for reading (VRAM -> PPU)|
-|/WR	|from PPU	|/WR=0: the PPU data bus (AD0-AD7) is used for writing (PPU -> VRAM)|
-|/RES	|in PPU	|/RES=0: reset the PPU|
-|VOUT	|from PPU	|Composite video signal|
+|Name|Number|Direction|Description|
+|---|---|---|---|
+|R/W	|1|=> PPU	|Read-notWrite. Used to read/write PPU registers. If R/W = 1 it reads, otherwise it writes. It is easy to remember: "Read(1), do not write".|
+|D0-D7	|2-9|PPU <=>	|The data bus for transferring register values. When /DBE = 1 the bus is disconnected (Z)|
+|RS0-RS2|10-12|=> PPU	|Register Select. Sets the PPU register number (0-7)|
+|/DBE	|13|=> PPU	|Data Bus Enable. If /DBE = 0, then the D0-D7 bus is used to exchange values with the PPU registers, otherwise the bus is disconnected.|
+|EXT0-EXT3|14-17|PPU <=>	|The bus is used to mix the color of the current pixel from another PPU (slave mode), or to output the current color to the outside (master mode). The direction of the bus is determined by the register bit $2000\[6\] (0: PPU slave mode, 1: PPU master mode) (_I apologize for using the old master/slave terms_)|
+|CLK	|18|=> PPU	|Main Clock|
+|/INT	|19|PPU =>	|PPU interrupt signal (VBlank)|
+|ALE	|39|PPU =>	|Address Latch Enable. If ALE=1, then the bus AD0-AD7 operates as an address bus (A0-A7), otherwise it operates as a data bus (D0-D7)|
+|AD0-AD7	|38-31|ALE=1: from PPU (address), ALE=0: bidirectional (data)	|Multiplexed address/data bus. When ALE=1 the bus operates as an address bus, when ALE=0 the bus sends data to the PPU (patterns, attributes), or out from the PPU port (register $2007)|
+|A8-A13	|30-25|PPU => (address)	|This bus carries the rest of the address lines.|
+|/RD	|24|PPU =>	|/RD=0: the PPU data bus (AD0-AD7) is used for reading (VRAM -> PPU)|
+|/WR	|23|PPU =>	|/WR=0: the PPU data bus (AD0-AD7) is used for writing (PPU -> VRAM)|
+|/RES	|22|=> PPU	|/RES=0: reset the PPU|
+|VOUT	|21|PPU =>	|Composite video signal|
 
 The contacts can be conditionally divided into the following groups:
 - Interface with CPU
@@ -187,4 +187,4 @@ In Famicom/NES the /INT signal is wired to the /NMI signal of the 6502 processor
 
 ## VOUT
 
-Output analog video signal.
+Output analog [video signal](tv.md).
