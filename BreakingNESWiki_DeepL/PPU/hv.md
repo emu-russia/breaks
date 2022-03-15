@@ -41,7 +41,9 @@ Maybe there is actually some JK trigger hiding here, but I don't know about thes
 
 I didn't want to spam big pictures, but I guess I have to.
 
-![H_trans](/BreakingNESWiki/imgstore/H_trans.jpg) ![V_trans](/BreakingNESWiki/imgstore/V_trans.jpg)
+|H|V|
+|---|---|
+|![H_trans](/BreakingNESWiki/imgstore/H_trans.jpg)|![V_trans](/BreakingNESWiki/imgstore/V_trans.jpg)|
 
 - HCounter always counts because the carry_in of bit 0 is always 1 (connected to Vdd)
 - VCounter increments by 1 only when input `V_IN` is active
