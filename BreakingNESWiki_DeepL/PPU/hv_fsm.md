@@ -1,5 +1,7 @@
 # H/V Control Logic
 
+![ppu_locator_hv_fsm](/BreakingNESWiki/imgstore/ppu/ppu_locator_hv_fsm.jpg)
+
 The H/V logic is a finite state machine (FSM) that controls all other PPU parts. Schematically it is just a set of latches, like "this latch is active from 64th to 128th pixel", so the corresponding control line coming from this latch is also active.
 
 The H/V FSM includes the following components:

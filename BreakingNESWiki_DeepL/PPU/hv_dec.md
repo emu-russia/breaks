@@ -1,5 +1,7 @@
 # H/V Decoder
 
+![ppu_locator_hv_dec](/BreakingNESWiki/imgstore/ppu/ppu_locator_hv_dec.jpg)
+
 The H/V decoder selects the necessary pixels and lines for the rest of H/V logic.
 
 A "pixel" refers to a time interval that is based on PCLK. Not all "pixels" are displayed as an image, some are defined by different control portions of the signal, such as HSync, Color Burst, etc.
