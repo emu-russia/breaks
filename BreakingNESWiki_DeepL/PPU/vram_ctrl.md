@@ -1,5 +1,7 @@
 # VRAM Controller
 
+![ppu_locator_vram_ctrl](/BreakingNESWiki/imgstore/ppu/ppu_locator_vram_ctrl.jpg)
+
 The circuitry is the "auxiliary brain" of the bottom of the PPU to control the VRAM interface.
 
 In addition, the controller also includes a READ BUFFER (RB), an intermediate data storage for exchange with VRAM.
@@ -28,14 +30,6 @@ The circuit outputs a number of control lines to the outside:
 To say something more specific, you need to first examine the rest of the PPU parts.
 
 TBD.
-
-## PAL PPU Difference
-
-No differences in the circuit were found.
-
-<img src="/BreakingNESWiki/imgstore/ppu/vram_ctrl_pal.jpg" width="1000px">
-
-The surface of the chip in this area was a little dirty, but I marked all the key control lines, so there is no doubt that the circuit is identical to the NTSC PPU.
 
 ## Read Buffer (RB)
 

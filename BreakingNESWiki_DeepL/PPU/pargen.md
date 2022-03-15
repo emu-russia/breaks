@@ -1,5 +1,7 @@
 # Picture Address Generator
 
+![ppu_locator_pargen](/BreakingNESWiki/imgstore/ppu/ppu_locator_pargen.jpg)
+
 ## PAR Counters
 
 ### PAR Counters Control

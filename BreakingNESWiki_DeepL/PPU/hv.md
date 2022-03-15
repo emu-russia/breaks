@@ -1,5 +1,7 @@
 # H/V Counters
 
+![ppu_locator_hv](/BreakingNESWiki/imgstore/ppu/ppu_locator_hv.jpg)
+
 H/V counters count the number of pixels per line and the number of lines, respectively. H ticks from 0 to 340 (including), V ticks from 0 to 261 (including). The total visible and invisible part of the screen is 262 lines of 341 pixels each.
 
 Technically the counters consist of 9 bits, so they can count from 0 to 0x1FF, but they never count completely and are limited to the maximum H and V values. To do this, the H/V FSM circuit periodically resets them.

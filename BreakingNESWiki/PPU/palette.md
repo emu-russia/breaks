@@ -1,5 +1,7 @@
 # Палитра
 
+![ppu_locator_cram](/BreakingNESWiki/imgstore/ppu/ppu_locator_cram.jpg)
+
 Логика для работы с палитрой включает в состав следующие схемы:
 - Color Buffer (CB)
 - Схема управления Color Buffer

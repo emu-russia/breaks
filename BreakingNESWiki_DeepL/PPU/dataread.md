@@ -4,7 +4,7 @@ The PPU patent refers to this circuit as the `Still Picture Generator`.
 
 The circuitry takes up almost a quarter of the PPU area and is located in the lower right corner of the chip:
 
-![DATAREAD_preview](/BreakingNESWiki/imgstore/DATAREAD_preview.jpg)
+![ppu_locator_dataread](/BreakingNESWiki/imgstore/ppu/ppu_locator_dataread.jpg)
 
 This circuit deals with sampling a row of 8 pixels, based on the scroll registers which set the position of the tile in the name table and the fine offset of the starting point within the tile.
 The results (the current pixel of the tile) are sent to the multiplexer, to mix with the current pixel of the sprite.

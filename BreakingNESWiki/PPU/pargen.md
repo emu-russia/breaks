@@ -1,5 +1,7 @@
 # Генератор адреса PAR
 
+![ppu_locator_pargen](/BreakingNESWiki/imgstore/ppu/ppu_locator_pargen.jpg)
+
 ## Счетчики PAR
 
 ### Схема управления счетчиками PAR

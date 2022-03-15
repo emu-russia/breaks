@@ -1,5 +1,7 @@
 ## Схема получения цвета бэкграунда (BG COL)
 
+![ppu_locator_bgcol](/BreakingNESWiki/imgstore/ppu/ppu_locator_bgcol.jpg)
+
 ### Управление схемой BG COL
 
 ![ppu_dataread_bgcol_control_left](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgcol_control_left.jpg)
