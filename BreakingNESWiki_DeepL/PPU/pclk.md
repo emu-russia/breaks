@@ -6,6 +6,8 @@ Both low level (`/PCLK`) and high level (`PCLK`) are used symmetrically. This ap
 
 Conventionally, `/PCLK` may be called "preparation" and `PCLK` may be called "pixel output".
 
+Sometimes intuitively, /PCLK is also called the "left half of the pixel" and PCLK the "right half of the pixel".
+
 The `PCLK` is obtained by slowing down (dividing) the input clock signal `CLK` (21.48 MHz) by a factor of 4.
 
 For this purpose, a divider on static latches is used:
@@ -34,3 +36,11 @@ It is hard to say what values are on the latches (gates). If we assume that afte
 (The first latch is next to the `RES` signal.)
 
 But in general it is more correct to assume that the value of the latches is undefined (`x`)
+
+## Logic Circuit
+
+|PPU revision|Schematic|
+|---|---|
+|2C02G|![pclk_2C02G](/BreakingNESWiki/imgstore/ppu/pclk_2C02G.jpg)|
+|2C02H|TBD|
+|2C07-0|TBD|

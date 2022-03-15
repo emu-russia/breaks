@@ -2804,4 +2804,118 @@
     <wire from="(780,140)" to="(780,150)"/>
     <wire from="(790,160)" to="(800,160)"/>
   </circuit>
+  <circuit name="PCLK_Ntsc">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="PCLK_Ntsc"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(120,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="n_CLK"/>
+    </comp>
+    <comp lib="0" loc="(120,170)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(120,90)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="CLK"/>
+    </comp>
+    <comp lib="0" loc="(570,180)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="PCLK"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(570,210)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_PCLK"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="1" loc="(200,180)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(550,210)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp loc="(230,160)" name="DLatch">
+      <a name="label" val="pclk_1"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(300,160)" name="DLatch">
+      <a name="label" val="pclk_2"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(370,160)" name="DLatch">
+      <a name="label" val="pclk_3"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(440,160)" name="DLatch">
+      <a name="label" val="pclk_4"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <wire from="(120,120)" to="(220,120)"/>
+    <wire from="(120,170)" to="(160,170)"/>
+    <wire from="(120,90)" to="(290,90)"/>
+    <wire from="(140,190)" to="(140,220)"/>
+    <wire from="(140,190)" to="(160,190)"/>
+    <wire from="(140,220)" to="(500,220)"/>
+    <wire from="(200,180)" to="(230,180)"/>
+    <wire from="(220,120)" to="(220,160)"/>
+    <wire from="(220,120)" to="(360,120)"/>
+    <wire from="(220,160)" to="(230,160)"/>
+    <wire from="(270,180)" to="(300,180)"/>
+    <wire from="(290,160)" to="(300,160)"/>
+    <wire from="(290,90)" to="(290,160)"/>
+    <wire from="(290,90)" to="(430,90)"/>
+    <wire from="(340,180)" to="(370,180)"/>
+    <wire from="(360,120)" to="(360,160)"/>
+    <wire from="(360,120)" to="(490,120)"/>
+    <wire from="(360,160)" to="(370,160)"/>
+    <wire from="(410,180)" to="(440,180)"/>
+    <wire from="(430,160)" to="(440,160)"/>
+    <wire from="(430,90)" to="(430,160)"/>
+    <wire from="(430,90)" to="(490,90)"/>
+    <wire from="(480,180)" to="(500,180)"/>
+    <wire from="(500,180)" to="(500,220)"/>
+    <wire from="(500,180)" to="(520,180)"/>
+    <wire from="(520,180)" to="(520,210)"/>
+    <wire from="(520,180)" to="(570,180)"/>
+    <wire from="(520,210)" to="(530,210)"/>
+    <wire from="(550,210)" to="(570,210)"/>
+  </circuit>
+  <circuit name="PCLK_Test">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="PCLK_Test"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(180,160)" name="Clock">
+      <a name="label" val="CLK"/>
+    </comp>
+    <comp lib="0" loc="(200,230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="1" loc="(240,210)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="5" loc="(500,190)" name="LED"/>
+    <comp lib="5" loc="(500,210)" name="LED"/>
+    <comp loc="(480,190)" name="PCLK_Ntsc"/>
+    <wire from="(180,160)" to="(210,160)"/>
+    <wire from="(200,230)" to="(260,230)"/>
+    <wire from="(210,160)" to="(210,210)"/>
+    <wire from="(210,160)" to="(250,160)"/>
+    <wire from="(210,210)" to="(220,210)"/>
+    <wire from="(240,210)" to="(260,210)"/>
+    <wire from="(250,160)" to="(250,190)"/>
+    <wire from="(250,190)" to="(260,190)"/>
+    <wire from="(480,190)" to="(500,190)"/>
+    <wire from="(480,210)" to="(500,210)"/>
+  </circuit>
 </project>
