@@ -37,7 +37,27 @@ Main components of PPU:
 - Multiplexer (MUX). Selects what will be displayed: a background pixel or a sprite pixel, based on their priority. It is also possible to mix in a color from the external EXT pins.
 - Registers. The total address space of the PPU allows to address 8 internal registers. The developers are very clever how registers are organized and writing to the same address can do two different things.
 - Sprite memory (OAM). Contains 64 sprite data as well as extra space to store the 8 current sprites selected.
-- Sprite Logic. Based on the H-counter, selects the 8 current sprites which are placed in additional OAM memory during the comparison process.
+- Sprite Logic. Based on the V-counter, it selects 8 sprites of the current row, which are placed in additional OAM memory during the comparison process.
 - Sprite FIFO (OAM FIFO). Contains a circuit that activates the output of the 8 selected sprites at the right time, as well as a circuit to control their priority.
 - Address bus control circuitry. Controls the VRAM addressing.
 - Data fetcher circuit (DATA READER). Circuit for fetching source data from VRAM: tiles and attributes. Includes a PAR address generator and a circuit for producing a background color.
+
+## Note on Transistor Circuits
+
+The transistor circuits for each component are chopped up into component parts so that they don't take up too much space.
+
+To keep you from getting lost, each section includes a special "locator" at the beginning that marks the approximate location of the component being studied.
+
+An example of a locator:
+
+![ppu_locator_rails_left](/BreakingNESWiki/imgstore/ppu/ppu_locator_rails_left.jpg)
+
+## Note on Logic Circuits
+
+The logic circuits are mostly made in the Logisim program. The following element is used to denote DLatch:
+
+|DLatch (transistor circuit)|DLatch (logic equivalent)|
+|---|---|
+|![dlatch_tran](/BreakingNESWiki/imgstore/dlatch_tran.jpg)|![dlatch_logic](/BreakingNESWiki/imgstore/dlatch_logic.jpg)|
+
+For convenience, the logical variant of DLatch has two outputs (`out` and `/out`), since the current value of DLatch (out) is often used as an input of a NOR operation.

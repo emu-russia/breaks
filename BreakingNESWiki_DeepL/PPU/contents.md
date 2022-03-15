@@ -19,4 +19,4 @@
   - [Picture Address Generator](pargen.md)
   - [Background Color](bgcol.md)
 - [VRAM Controller](vram_ctrl.md)
-- [Wiring](rails.md)
+- [Interconnections](rails.md)
