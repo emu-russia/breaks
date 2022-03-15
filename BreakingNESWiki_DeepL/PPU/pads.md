@@ -164,7 +164,7 @@ All other circuits are clocked by [Pixel Clock](pclk.md)
 
 ### /RES
 
-![PPU resetpad](/BreakingNESWiki/imgstore/resetpad.jpg)
+![pad_res](/BreakingNESWiki/imgstore/ppu/pad_res.jpg)
 
 (contact pad not shown)
 
@@ -188,3 +188,9 @@ In Famicom/NES the /INT signal is wired to the /NMI signal of the 6502 processor
 ## VOUT
 
 Output analog [video signal](tv.md).
+
+## Logic
+
+Logic of all terminals in single picture:
+
+![pads_all](/BreakingNESWiki/imgstore/ppu/pads_all.jpg)
