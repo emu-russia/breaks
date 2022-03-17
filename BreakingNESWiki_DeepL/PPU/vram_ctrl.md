@@ -11,7 +11,7 @@ In addition, the controller also includes a READ BUFFER (RB), an intermediate da
 <img src="/BreakingNESWiki/imgstore/ppu/vram_control_tran.jpg" width="1000px">
 
 Anatomically the circuit is divided into 2 large halves, the left one is more connected to the `WR` control signal and the right one to the `RD`.
-Each half includes an RS trigger and a delay line that automatically sets the trigger.
+Each half includes an RS trigger and a delay line that automatically resets the trigger.
 
 The circuit outputs a number of control lines to the outside:
 - RD: to /RD output
@@ -25,15 +25,11 @@ The circuit outputs a number of control lines to the outside:
 
 ## Logic
 
-<img src="/BreakingNESWiki/imgstore/ppu/vram_control_logisim.jpg" width="1000px">
-
-To say something more specific, you need to first examine the rest of the PPU parts.
-
-TBD.
+![vram_control_logisim](/BreakingNESWiki/imgstore/ppu/vram_control_logisim.jpg)
 
 ## Read Buffer (RB)
 
-Located to the right of [OAM FIFO](fifo.md).
+Located to the right of [OAM FIFO](fifo.md). Read Buffer is associated with register $2007.
 
 |Transistor circuit|Logic circuit|
 |---|---|
