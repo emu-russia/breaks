@@ -2694,6 +2694,14 @@
     <comp lib="1" loc="(790,160)" name="Controlled Buffer">
       <a name="control" val="left"/>
     </comp>
+    <comp lib="8" loc="(150,646)" name="Text">
+      <a name="font" val="SansSerif bold 11"/>
+      <a name="text" val="WR"/>
+    </comp>
+    <comp lib="8" loc="(151,605)" name="Text">
+      <a name="font" val="SansSerif bold 11"/>
+      <a name="text" val="RD"/>
+    </comp>
     <comp lib="8" loc="(664,401)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="Reset_FF"/>
