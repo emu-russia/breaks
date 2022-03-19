@@ -10,11 +10,11 @@ H/V-счетчики считают количество пикселей в с�
 
 Рассмотрим работу одной стадии (разряда) счетчика на примере V-Counter.
 
-![HV_stage](/BreakingNESWiki/imgstore/HV_stage.jpg)
+![HV_stage](/BreakingNESWiki/imgstore/ppu/HV_stage.jpg)
 
-![hv_stage2](/BreakingNESWiki/imgstore/hv_stage2.jpg)
+![hv_stage2](/BreakingNESWiki/imgstore/ppu/hv_stage2.jpg)
 
-![hv_stage2_annotated](/BreakingNESWiki/imgstore/hv_stage2_annotated.jpg)
+![hv_stage2_annotated](/BreakingNESWiki/imgstore/ppu/hv_stage2_annotated.jpg)
 
 - `carry_in`: входной перенос
 - `carry_out`: выходной перенос
@@ -29,7 +29,7 @@ H/V-счетчики считают количество пикселей в с�
 
 Красивая схема из Logisim:
 
-![hv_stage_logisim](/BreakingNESWiki/imgstore/hv_stage_logisim.jpg)
+![hv_stage_logisim](/BreakingNESWiki/imgstore/ppu/hv_stage_logisim.jpg)
 
 Смысл заключается в следующем:
 - Виртуально текущее значение FF можно представить как выход мультиплексора, управляемого PCLK
@@ -44,7 +44,7 @@ H/V-счетчики считают количество пикселей в с�
 
 |H|V|
 |---|---|
-|![H_trans](/BreakingNESWiki/imgstore/H_trans.jpg)|![V_trans](/BreakingNESWiki/imgstore/V_trans.jpg)|
+|![H_trans](/BreakingNESWiki/imgstore/ppu/H_trans.jpg)|![V_trans](/BreakingNESWiki/imgstore/ppu/V_trans.jpg)|
 
 - HCounter всегда считает, т.к. carry_in 0-го разряда всегда равен 1 (соединен с Vdd)
 - VCounter увеличивает значение на 1 только когда активен вход `V_IN`
@@ -55,7 +55,7 @@ H/V-счетчики считают количество пикселей в с�
 
 Счетчики включают в свой состав такой небольшой кусочек:
 
-![CARRYH](/BreakingNESWiki/imgstore/CARRYH.jpg) ![CARRYV](/BreakingNESWiki/imgstore/CARRYV.jpg)
+![CARRYH](/BreakingNESWiki/imgstore/ppu/CARRYH.jpg) ![CARRYV](/BreakingNESWiki/imgstore/ppu/CARRYV.jpg)
 
 Схема для HCounter не включает аналога V_IN, так как входной перенос для H всегда равен 1 и не требуется для операции NOR, которую представляет эта дополнительная логика.
 
