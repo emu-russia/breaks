@@ -19,6 +19,7 @@ Examine the operation of a single counter stage (single bit) using the V-Counter
 - `carry_in`: input carry
 - `carry_out`: output carry
 - `out`: output of single counter bit
+- `/out`: output of single counter bit (inverted value). Used in carry optimization circuits.
 - `VC` (or `HC` at H-Counter): the clear signal of the entire counter. This clearing method is used to control counter clearing from the H/V FSM circuit side.
 - `RES`: general reset signal. This is the global reset signal of all sequential PPU circuits.
 - `PCLK`: Pixel Clock
@@ -26,7 +27,7 @@ Examine the operation of a single counter stage (single bit) using the V-Counter
 In the image the transistors that form the logic elements are highlighted.
 The circuit is not very complicated, except for the unusual FF organization based on two 2-nor and two multiplexers that form the FF loop.
 
-Nice scheme from Logisim:
+Logic:
 
 ![hv_stage_logisim](/BreakingNESWiki/imgstore/ppu/hv_stage_logisim.jpg)
 
