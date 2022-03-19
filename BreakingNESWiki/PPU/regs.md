@@ -31,7 +31,7 @@
 
 Пример такой схемы, R4 Enabler (находится левее RW декодера):
 
-![r4_enabler_tran](/BreakingNESWiki/imgstore/r4_enabler_tran.jpg)
+![r4_enabler_tran](/BreakingNESWiki/imgstore/ppu/r4_enabler_tran.jpg)
 
 ## Выбор регистра
 

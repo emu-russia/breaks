@@ -29,7 +29,7 @@ Next to the circuits that use registers there are small circuits that we call Re
 
 An example of such a circuit, the R4 Enabler (located to the left of the RW decoder):
 
-![r4_enabler_tran](/BreakingNESWiki/imgstore/r4_enabler_tran.jpg)
+![r4_enabler_tran](/BreakingNESWiki/imgstore/ppu/r4_enabler_tran.jpg)
 
 ## Register Select
 
