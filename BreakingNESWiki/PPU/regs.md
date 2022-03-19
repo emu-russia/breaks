@@ -46,7 +46,8 @@
 
 На выходе схемы получаются много контрольных линий, которые активируют операцию чтения или записи для соответствующего регистра (напр. `/R7` - означает "Прочитать регистр $2007")
 
-![reg_select](/BreakingNESWiki/imgstore/ppu/reg_select.jpg)
+|![reg_select](/BreakingNESWiki/imgstore/ppu/reg_select.jpg)|![reg_select_logic](/BreakingNESWiki/imgstore/ppu/reg_select_logic.jpg)|
+|---|---|
 
 ## Специальная обработка для регистров $2005/$2006
 

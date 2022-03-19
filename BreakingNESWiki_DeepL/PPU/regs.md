@@ -44,7 +44,8 @@ The circuit is engaged in selecting a register operation. The input is:
 
 The output of the circuit produces many control lines which activate a read or write operation for the corresponding register (e.g. `/R7` - means "Read register $2007")
 
-![reg_select](/BreakingNESWiki/imgstore/ppu/reg_select.jpg)
+|![reg_select](/BreakingNESWiki/imgstore/ppu/reg_select.jpg)|![reg_select_logic](/BreakingNESWiki/imgstore/ppu/reg_select_logic.jpg)|
+|---|---|
 
 ## $2005/$2006 Special Processing
 
