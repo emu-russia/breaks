@@ -13,6 +13,8 @@ The principle of operation is as follows:
 - H Decoder has 2 additional inputs: VB and BLNK, which cut off the corresponding outputs when VB=1 or BLNK=1
 - Technically, each decoder line is a multi-input NOR gate
 
+Another topological feature of the H/V decoder is the lower left corner, the outputs from which go to the left, not down, into the Front Porch circuit.
+
 ## H Decoder (NTSC PPU)
 
 ![ntsc_h](/BreakingNESWiki/imgstore/ntsc_h.png)
