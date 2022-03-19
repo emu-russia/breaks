@@ -6,6 +6,8 @@ This section describes only the control registers of the PPU ($2000/$2001) and t
 
 The other registers are evenly "spread out" over all parts of the PPU and are part of the control logic of the corresponding units and are treated separately.
 
+Note: Here and below we give the usual NES/Famicom register notation starting at address $2000. But this mapping is done outside the PPU. Inside the PPU the registers are indexed as $0-$7.
+
 CPU Interface:
 
 |Name|Direction (in relation to PPU)|Description|
