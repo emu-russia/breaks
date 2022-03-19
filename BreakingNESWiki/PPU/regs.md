@@ -23,7 +23,8 @@
 
 Декодер предназначен для получения двух комплементарных управляющих линий `/RD` и `/WR` из входного контакта интерфейса CPU R/W, которые используются для контактов внешней шины D0-D7. Сигналы /RD и /WR комплементарны когда /DBE = 0. Если /DBE = 1 (CPU интерфейс отключен) оба сигнала равны `1` (ни чтение, ни запись).
 
-![rw_decoder](/BreakingNESWiki/imgstore/ppu/rw_decoder.jpg)
+|![rw_decoder](/BreakingNESWiki/imgstore/ppu/rw_decoder.jpg)|![rw_decoder_logic](/BreakingNESWiki/imgstore/ppu/rw_decoder_logic.jpg)|
+|---|---|
 
 ## Read/Write Enablers
 

@@ -21,7 +21,8 @@ The circuit is located above the sprite logic.
 
 The decoder is designed to obtain two complementary control lines `/RD` and `/WR` from the input pad of the CPU R/W interface, which are used for the external data bus D0-D7. The /RD and /WR signals are complementary when /DBE = 0. If /DBE = 1 (CPU interface disabled) both signals are `1` (neither read nor write).
 
-![rw_decoder](/BreakingNESWiki/imgstore/ppu/rw_decoder.jpg)
+|![rw_decoder](/BreakingNESWiki/imgstore/ppu/rw_decoder.jpg)|![rw_decoder_logic](/BreakingNESWiki/imgstore/ppu/rw_decoder_logic.jpg)|
+|---|---|
 
 ## Read/Write Enablers
 

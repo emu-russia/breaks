@@ -3645,4 +3645,59 @@
     <wire from="(270,310)" to="(310,310)"/>
     <wire from="(300,190)" to="(310,190)"/>
   </circuit>
+  <circuit name="Reg_RW_Decoder">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="Reg_RW_Decoder"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(110,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="n_DBE"/>
+    </comp>
+    <comp lib="0" loc="(110,80)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RnW"/>
+    </comp>
+    <comp lib="0" loc="(290,150)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_WR"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(290,90)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_RD"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="1" loc="(170,80)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(230,150)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(230,90)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(270,150)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(270,90)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <wire from="(110,120)" to="(160,120)"/>
+    <wire from="(110,80)" to="(140,80)"/>
+    <wire from="(140,140)" to="(190,140)"/>
+    <wire from="(140,80)" to="(140,140)"/>
+    <wire from="(140,80)" to="(150,80)"/>
+    <wire from="(160,100)" to="(160,120)"/>
+    <wire from="(160,100)" to="(190,100)"/>
+    <wire from="(160,120)" to="(160,160)"/>
+    <wire from="(160,160)" to="(190,160)"/>
+    <wire from="(170,80)" to="(190,80)"/>
+    <wire from="(230,150)" to="(250,150)"/>
+    <wire from="(230,90)" to="(250,90)"/>
+    <wire from="(270,150)" to="(290,150)"/>
+    <wire from="(270,90)" to="(290,90)"/>
+  </circuit>
 </project>
