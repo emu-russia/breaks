@@ -56,6 +56,8 @@ The latch only remembers the order of access (1 or 2), but not the register numb
 
 The latch is reset by the `RC` signal or by reading register $2002.
 
+![scc_first_second_logic](/BreakingNESWiki/imgstore/ppu/scc_first_second_logic.jpg)
+
 ## Control Registers
 
 The circuitry is below the sprite logic above the multiplexer (MUX).

@@ -58,6 +58,8 @@
 
 Сбрасывается защелка сигналом `RC` или чтением регистра $2002.
 
+![scc_first_second_logic](/BreakingNESWiki/imgstore/ppu/scc_first_second_logic.jpg)
+
 ## Управляющие регистры
 
 Схема находятся ниже спрайтовой логики над мультиплексором (MUX).
