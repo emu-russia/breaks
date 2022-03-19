@@ -67,6 +67,10 @@
 
 <img src="/BreakingNESWiki/imgstore/ppu/control_regs.jpg" width="1000px">
 
+Схема одного разряда:
+
+![reg_ff_logic](/BreakingNESWiki/imgstore/ppu/reg_ff_logic.jpg)
+
 Логическая схема:
 
 ![control_regs_logic](/BreakingNESWiki/imgstore/ppu/control_regs_logic.jpg)

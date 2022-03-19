@@ -65,6 +65,10 @@ The circuitry is below the sprite logic above the multiplexer (MUX).
 
 <img src="/BreakingNESWiki/imgstore/ppu/control_regs.jpg" width="1000px">
 
+Single bit circuit:
+
+![reg_ff_logic](/BreakingNESWiki/imgstore/ppu/reg_ff_logic.jpg)
+
 Control Regs Logic:
 
 ![control_regs_logic](/BreakingNESWiki/imgstore/ppu/control_regs_logic.jpg)

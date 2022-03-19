@@ -4256,4 +4256,53 @@
     <wire from="(90,40)" to="(100,40)"/>
     <wire from="(90,40)" to="(90,80)"/>
   </circuit>
+  <circuit name="RegFF">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="RegFF"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(140,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="Enable"/>
+    </comp>
+    <comp lib="0" loc="(140,160)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="Val_in"/>
+    </comp>
+    <comp lib="0" loc="(140,80)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="Res"/>
+    </comp>
+    <comp lib="0" loc="(290,90)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Val_out"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="1" loc="(240,150)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(260,90)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="2" loc="(190,150)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+    </comp>
+    <wire from="(140,120)" to="(170,120)"/>
+    <wire from="(140,160)" to="(160,160)"/>
+    <wire from="(140,80)" to="(220,80)"/>
+    <wire from="(150,140)" to="(160,140)"/>
+    <wire from="(150,60)" to="(150,140)"/>
+    <wire from="(150,60)" to="(270,60)"/>
+    <wire from="(170,120)" to="(170,130)"/>
+    <wire from="(190,150)" to="(220,150)"/>
+    <wire from="(210,100)" to="(210,120)"/>
+    <wire from="(210,100)" to="(220,100)"/>
+    <wire from="(210,120)" to="(260,120)"/>
+    <wire from="(240,150)" to="(260,150)"/>
+    <wire from="(260,120)" to="(260,150)"/>
+    <wire from="(260,90)" to="(270,90)"/>
+    <wire from="(270,60)" to="(270,90)"/>
+    <wire from="(270,90)" to="(290,90)"/>
+  </circuit>
 </project>
