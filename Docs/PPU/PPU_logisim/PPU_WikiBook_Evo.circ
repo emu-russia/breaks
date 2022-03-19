@@ -3700,4 +3700,34 @@
     <wire from="(270,150)" to="(290,150)"/>
     <wire from="(270,90)" to="(290,90)"/>
   </circuit>
+  <circuit name="RW_Enabler">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="RW_Enabler"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(130,110)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="n_DBE"/>
+    </comp>
+    <comp lib="0" loc="(130,70)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="n_RegOp"/>
+    </comp>
+    <comp lib="0" loc="(250,90)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="RegOp_Enable"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="1" loc="(220,90)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <wire from="(130,110)" to="(160,110)"/>
+    <wire from="(130,70)" to="(160,70)"/>
+    <wire from="(160,100)" to="(160,110)"/>
+    <wire from="(160,100)" to="(180,100)"/>
+    <wire from="(160,70)" to="(160,80)"/>
+    <wire from="(160,80)" to="(180,80)"/>
+    <wire from="(220,90)" to="(250,90)"/>
+  </circuit>
 </project>

@@ -32,6 +32,8 @@ An example of such a circuit, the R4 Enabler (located to the left of the RW deco
 
 ![r4_enabler_tran](/BreakingNESWiki/imgstore/ppu/r4_enabler_tran.jpg)
 
+![rw_enabler_logic](/BreakingNESWiki/imgstore/ppu/rw_enabler_logic.jpg)
+
 ## Register Select
 
 The circuit is on the right side of the H/V counters.
