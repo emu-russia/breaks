@@ -55,9 +55,12 @@ I didn't want to spam big pictures, but I guess I have to.
 
 Counters include a little piece like this:
 
-![CARRYH](/BreakingNESWiki/imgstore/ppu/CARRYH.jpg) ![CARRYV](/BreakingNESWiki/imgstore/ppu/CARRYV.jpg)
+|HCounter|VCounter|
+|---|---|
+|![CARRYH](/BreakingNESWiki/imgstore/ppu/CARRYH.jpg)|![CARRYV](/BreakingNESWiki/imgstore/ppu/CARRYV.jpg)|
+|![CarryH_Logic](/BreakingNESWiki/imgstore/ppu/CarryH_Logic.jpg)|![CarryV_Logic](/BreakingNESWiki/imgstore/ppu/CarryV_Logic.jpg)|
 
-The scheme for HCounter does not include an analog to V_IN because the input carry for H is always 1 and is not required for the NOR operation that this extra logic represents.
+The circuit for HCounter does not include an analog to V_IN because the input carry for H is always 1 and is not required for the NOR operation that this extra logic represents.
 
 What's it for? Probably to reduce the propagation delay of the carry chain.
 
