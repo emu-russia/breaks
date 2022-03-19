@@ -86,6 +86,8 @@ But on the other hand it can be used (and is used in games in fact) to get inter
 
 Below the control registers is a small circuit, for getting the control signals `CLPB` and `CLPO`:
 
-![clp_tran](/BreakingNESWiki/imgstore/ppu/clp_tran.jpg)
+|![clp_tran](/BreakingNESWiki/imgstore/ppu/clp_tran.jpg)|
+|---|
+|![clp_logic](/BreakingNESWiki/imgstore/ppu/clp_logic.jpg)|
 
 It's supposed to belong more to control logic, but topologically it's in a completely different place, so it's discussed in this section.

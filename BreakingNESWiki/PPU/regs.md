@@ -88,6 +88,8 @@
 
 Ниже контрольных регистров находится небольшая схема, для получения контрольных сигналов `CLPB` и `CLPO`:
 
-![clp_tran](/BreakingNESWiki/imgstore/ppu/clp_tran.jpg)
+|![clp_tran](/BreakingNESWiki/imgstore/ppu/clp_tran.jpg)|
+|---|
+|![clp_logic](/BreakingNESWiki/imgstore/ppu/clp_logic.jpg)|
 
 Она по идее относится больше к управляющей логике, но топологически находится совсем в другом месте, поэтому рассматривается в этом разделе.
