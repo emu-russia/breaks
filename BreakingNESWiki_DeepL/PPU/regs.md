@@ -71,7 +71,9 @@ Single bit circuit:
 
 Control Regs Logic:
 
-![control_regs_logic](/BreakingNESWiki/imgstore/ppu/control_regs_logic.jpg)
+|PPU CTRL0 ($2000)|PPU CTRL1 ($2001)|
+|---|---|
+|![ctrl0](/BreakingNESWiki/imgstore/ppu/ctrl0.jpg)|![ctrl1](/BreakingNESWiki/imgstore/ppu/ctrl1.jpg)|
 
 ### Special Note
 
