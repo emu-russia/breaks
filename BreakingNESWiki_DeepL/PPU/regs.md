@@ -19,9 +19,17 @@ CPU Interface:
 
 The circuit is located above the sprite logic.
 
-The decoder is designed to obtain two complementary control lines `/RD` and `/WR` from the input pad of the CPU R/W interface, which are used for the external data bus D0-D7.
+The decoder is designed to obtain two complementary control lines `/RD` and `/WR` from the input pad of the CPU R/W interface, which are used for the external data bus D0-D7. The /RD and /WR signals are complementary when /DBE = 0. If /DBE = 1 (CPU interface disabled) both signals are `1` (neither read nor write).
 
-![ppu_rw_decoder](/BreakingNESWiki/imgstore/ppu_rw_decoder.jpg)
+![rw_decoder](/BreakingNESWiki/imgstore/ppu/rw_decoder.jpg)
+
+## Read/Write Enablers
+
+Next to the circuits that use registers there are small circuits that we call Read/Write Enablers.
+
+An example of such a circuit, the R4 Enabler (located to the left of the RW decoder):
+
+![r4_enabler_tran](/BreakingNESWiki/imgstore/r4_enabler_tran.jpg)
 
 ## Register Select
 
@@ -33,11 +41,11 @@ The circuit is engaged in selecting a register operation. The input is:
 
 The output of the circuit produces many control lines which activate a read or write operation for the corresponding register (e.g. `/R7` - means "Read register $2007")
 
-![ppu_reg_select](/BreakingNESWiki/imgstore/ppu_reg_select.jpg)
+![reg_select](/BreakingNESWiki/imgstore/ppu/reg_select.jpg)
 
 ## $2005/$2006 Special Processing
 
-As you know, 2 consecutive writes to registers $2005 or $2006 actually write a value to the dual registers $2005/$2006 (FV/FH/TV/TH).
+As you know, 2 consecutive writes to registers $2005 or $2006 actually write a value to the [dual registers $2005/$2006](scroll_regs.md) (FV/FH/TV/TH).
 
 A latch circuit is used to keep track of the write history in $2005/$2006.
 
@@ -49,7 +57,11 @@ The latch is reset by the `RC` signal or by reading register $2002.
 
 The circuitry is below the sprite logic above the multiplexer (MUX).
 
-<img src="/BreakingNESWiki/imgstore/ppu_control_regs.jpg" width="1000px">
+<img src="/BreakingNESWiki/imgstore/ppu/control_regs.jpg" width="1000px">
+
+Control Regs Logic:
+
+![control_regs_logic](/BreakingNESWiki/imgstore/ppu/control_regs_logic.jpg)
 
 ### Special Note
 
@@ -58,14 +70,10 @@ Technically it can be done, but it is not recommended because it can lead to dif
 
 But on the other hand it can be used (and is used in games in fact) to get interesting visual effects.
 
-### CLPB/CLPO
+## CLPB/CLPO
 
 Below the control registers is a small circuit, for getting the control signals `CLPB` and `CLPO`:
 
 ![clp_tran](/BreakingNESWiki/imgstore/ppu/clp_tran.jpg)
 
 It's supposed to belong more to control logic, but topologically it's in a completely different place, so it's discussed in this section.
-
-### Control Regs Logic
-
-![control_regs_logic](/BreakingNESWiki/imgstore/ppu/control_regs_logic.jpg)
