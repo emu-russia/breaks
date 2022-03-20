@@ -38,6 +38,13 @@ TBD.
 
 ## Организация Color RAM
 
+По соглашению группы ячеек, которые адресуются младшими разрядами адреса будем считать "рядами", а группы ячеек, адресуемые старшими разрядами будем считать "колонками".
+
+Касательно Color RAM:
+- PAL2, PAL3: Определяет колонку (PAL2 - msb)
+- PAL4, PAL1, PAL0: Определяет ряд (PAL4 - msb)
+- Ряды 0 и 4 совмещены
+
 Выходы COL:
 
 ![palette_col_outputs](/BreakingNESWiki/imgstore/ppu/palette_col_outputs.jpg)
@@ -48,12 +55,14 @@ Precharge PCLK:
 
 ### Ячейка памяти
 
+Ячейка памяти представляет собой типовую 4T SRAM Cell:
+
 |![cram_cell_topo](/BreakingNESWiki/imgstore/ppu/cram_cell_topo.jpg)|![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)|
 |---|---|
 
 ### Декодер индекса палитры
 
-|![ppu_palette_decoder](/BreakingNESWiki/imgstore/ppu/ppu_palette_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
+|![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
 |---|---|
 
 |COL0 \| COL1 \| COL2 \| COL3|

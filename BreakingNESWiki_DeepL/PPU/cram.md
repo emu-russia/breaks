@@ -40,6 +40,13 @@ A similar transistor for the 2 luminance bits is simply always open:
 
 ## Color RAM Layout
 
+By convention, groups of cells that are addressed by the lowest bits of the address will be considered "rows", and groups of cells that are addressed by the highest bits will be considered "columns".
+
+Color RAM:
+- PAL2, PAL3: Defines column (PAL2 - msb)
+- PAL4, PAL1, PAL0: Defines a row (PAL4 - msb)
+- Rows 0 and 4 combined
+
 COL outputs:
 
 ![palette_col_outputs](/BreakingNESWiki/imgstore/ppu/palette_col_outputs.jpg)
@@ -50,12 +57,14 @@ Precharge PCLK:
 
 ### Memory Cell
 
+The memory cell is a typical 4T SRAM Cell:
+
 |![cram_cell_topo](/BreakingNESWiki/imgstore/ppu/cram_cell_topo.jpg)|![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)|
 |---|---|
 
 ### CRAM Index Decoder
 
-|![ppu_palette_decoder](/BreakingNESWiki/imgstore/ppu/ppu_palette_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
+|![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
 |---|---|
 
 |COL0 \| COL1 \| COL2 \| COL3|
