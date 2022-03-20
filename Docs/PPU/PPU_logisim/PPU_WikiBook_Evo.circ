@@ -5238,7 +5238,7 @@
     <comp lib="0" loc="(370,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="n_CD_DB"/>
+      <a name="label" val="n_CB_DB"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(410,250)" name="Pin">
