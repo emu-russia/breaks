@@ -1,4 +1,4 @@
-# Palette
+# Color RAM
 
 ![ppu_locator_cram](/BreakingNESWiki/imgstore/ppu/ppu_locator_cram.jpg)
 
@@ -38,7 +38,7 @@ A similar transistor for the 2 luminance bits is simply always open:
 
 ![ppu_luma_tran](/BreakingNESWiki/imgstore/ppu/ppu_luma_tran.jpg)
 
-## Palette RAM Layout
+## Color RAM Layout
 
 COL outputs:
 
@@ -50,8 +50,8 @@ Precharge PCLK:
 
 ### Memory Cell
 
-![ppu_palette_cell](/BreakingNESWiki/imgstore/ppu/ppu_palette_cell.jpg)
+![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)
 
-### Palette Index Decoder
+### CRAM Index Decoder
 
 ![ppu_palette_decoder](/BreakingNESWiki/imgstore/ppu/ppu_palette_decoder.jpg)

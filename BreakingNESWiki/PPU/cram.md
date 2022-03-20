@@ -1,4 +1,4 @@
-# Палитра
+# Color RAM
 
 ![ppu_locator_cram](/BreakingNESWiki/imgstore/ppu/ppu_locator_cram.jpg)
 
@@ -36,7 +36,7 @@ TBD.
 
 ![ppu_luma_tran](/BreakingNESWiki/imgstore/ppu/ppu_luma_tran.jpg)
 
-## Организация памяти палитры
+## Организация Color RAM
 
 Выходы COL:
 
@@ -48,7 +48,7 @@ Precharge PCLK:
 
 ### Ячейка памяти
 
-![ppu_palette_cell](/BreakingNESWiki/imgstore/ppu/ppu_palette_cell.jpg)
+![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)
 
 ### Декодер индекса палитры
 
