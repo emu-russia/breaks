@@ -60,7 +60,7 @@ Precharge PCLK:
 
 |COL0|COL1|COL2|COL3|
 |---|---|---|---|
-||||ROW0+4|
+|| ROW0+4 |||
 ||||ROW6|
 ||||ROW2|
 ||||ROW5|
