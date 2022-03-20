@@ -8,6 +8,21 @@ The logic for working with the palette includes the following circuits:
 - Palette memory (Color RAM)
 - Decoder of the palette index, coming from the output of the multiplexer
 
+Signals:
+
+|Signal|From|Purpose|
+|---|---|---|
+|/R7|Reg Select|Read $2007|
+|/DBE|/DBE Pad|"Data Bus Enable", enable CPU interface|
+|TH/MUX|VRAM Ctrl|Send the TH Counter value to the MUX input, which will cause the value to go into the palette as Direct Color.|
+|PICTURE|FSM|The visible part of the video signal with the picture is generated|
+|B/W|Regs $2001\[0\]|Disable Color Burst, to generate a monochrome picture|
+|DB/PAR|VRAM Ctrl|Control signal|
+
+Color Buffer control signals:
+- #DB/CB = 0: DB -> CB
+- #CB/DB = 0: CB -> DB
+
 ## Color Buffer (CB)
 
 The Color Buffer (CB) is used to store the current "pixel" for the phase generator and to read/write the palette memory (using the CPU interface).
@@ -62,6 +77,10 @@ The memory cell is a typical 4T SRAM Cell:
 
 |![cram_cell_topo](/BreakingNESWiki/imgstore/ppu/cram_cell_topo.jpg)|![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)|
 |---|---|
+
+The value is written or read with two complementary inOut: /val and val. The principle of cell operation:
+- In cell read mode: /val = val = `z`. Therefore, the current value is output to the outside.
+- In cell write mode: /val and val take the complementary value of the bit to be written
 
 ### CRAM Index Decoder
 
