@@ -86,6 +86,8 @@ Precharge PCLK:
 
 ### Декодер индекса палитры
 
+:warning: Обратите внимание, что сигнал PAL4 следует не в обычном порядке. Данный бит выбирает тип палитры: палитра для бэкраунда или для спрайтов.
+
 |![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
 |---|---|
 

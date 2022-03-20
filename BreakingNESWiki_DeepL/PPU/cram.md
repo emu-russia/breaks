@@ -86,6 +86,8 @@ The value is written or read with two complementary inOut: /val and val. The pri
 
 ### CRAM Index Decoder
 
+:warning: Note that the PAL4 signal does not follow the usual order. This bit selects the type of palette: palette for the background or for the sprites.
+
 |![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
 |---|---|
 
