@@ -53,4 +53,5 @@ Precharge PCLK:
 
 ### Декодер индекса палитры
 
-![ppu_palette_decoder](/BreakingNESWiki/imgstore/ppu/ppu_palette_decoder.jpg)
+|![ppu_palette_decoder](/BreakingNESWiki/imgstore/ppu/ppu_palette_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
+|---|---|
