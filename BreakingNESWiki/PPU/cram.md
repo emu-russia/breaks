@@ -1,4 +1,4 @@
-# Палитра
+# Color RAM
 
 ![ppu_locator_cram](/BreakingNESWiki/imgstore/ppu/ppu_locator_cram.jpg)
 
@@ -36,20 +36,45 @@ TBD.
 
 ![ppu_luma_tran](/BreakingNESWiki/imgstore/ppu/ppu_luma_tran.jpg)
 
-## Организация памяти палитры
+## Организация Color RAM
+
+По соглашению группы ячеек, которые адресуются младшими разрядами адреса будем считать "рядами", а группы ячеек, адресуемые старшими разрядами будем считать "колонками".
+
+Касательно Color RAM:
+- PAL2, PAL3: Определяет колонку (PAL2 - msb)
+- PAL4, PAL1, PAL0: Определяет ряд (PAL4 - msb)
+- Ряды 0 и 4 совмещены
+
+Выглядит немного хаотично, но что есть - то есть. Реверсинг памяти по какой-то причине всегда проходит с подобными мучениями в понимании, но не забывайте такой факт, что порядок соединения адресных линий для индексации памяти в общем случае не имеет значения.
 
 Выходы COL:
 
-![ppu_palette_col_outputs](/BreakingNESWiki/imgstore/ppu/ppu_palette_col_outputs.jpg)
+![palette_col_outputs](/BreakingNESWiki/imgstore/ppu/palette_col_outputs.jpg)
 
 Precharge PCLK:
 
-![ppu_palette_precharge](/BreakingNESWiki/imgstore/ppu/ppu_palette_precharge.jpg)
+![cram_precharge](/BreakingNESWiki/imgstore/ppu/cram_precharge.jpg)
 
 ### Ячейка памяти
 
-![ppu_palette_cell](/BreakingNESWiki/imgstore/ppu/ppu_palette_cell.jpg)
+Ячейка памяти представляет собой типовую 4T SRAM Cell:
+
+|![cram_cell_topo](/BreakingNESWiki/imgstore/ppu/cram_cell_topo.jpg)|![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)|
+|---|---|
 
 ### Декодер индекса палитры
 
-![ppu_palette_decoder](/BreakingNESWiki/imgstore/ppu/ppu_palette_decoder.jpg)
+|![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
+|---|---|
+
+|COL0 \| COL1 \| COL2 \| COL3|
+|---|
+|ROW0+4|
+|ROW6|
+|ROW2|
+|ROW5|
+|ROW1|
+|ROW7|
+|ROW3|
+
+Подобный паттерн организации памяти повторяется 6 раз для каждого разряда Color Buffer.

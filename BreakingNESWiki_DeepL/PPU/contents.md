@@ -7,7 +7,7 @@
 - [H/V Counters](hv.md)
 - [H/V Decoder](hv_dec.md)
 - [H/V FSM Control Logic](hv_fsm.md)
-- [Palette](palette.md)
+- [Color RAM](cram.md)
 - [NTSC Video Signal](tv.md)
 - [Video Signal Generator](video_out.md)
 - [Sprite Comparison](sprite_eval.md)

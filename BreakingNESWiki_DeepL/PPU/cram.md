@@ -1,4 +1,4 @@
-# Palette
+# Color RAM
 
 ![ppu_locator_cram](/BreakingNESWiki/imgstore/ppu/ppu_locator_cram.jpg)
 
@@ -38,20 +38,45 @@ A similar transistor for the 2 luminance bits is simply always open:
 
 ![ppu_luma_tran](/BreakingNESWiki/imgstore/ppu/ppu_luma_tran.jpg)
 
-## Palette RAM Layout
+## Color RAM Layout
+
+By convention, groups of cells that are addressed by the lowest bits of the address will be considered "rows", and groups of cells that are addressed by the highest bits will be considered "columns".
+
+Color RAM:
+- PAL2, PAL3: Defines column (PAL2 - msb)
+- PAL4, PAL1, PAL0: Defines a row (PAL4 - msb)
+- Rows 0 and 4 combined
+
+It looks a bit chaotic, but it is what it is. Reverse engineering of memory for some reason always goes with this kind of agony of understanding, but don't forget the fact that the order in which the address lines are connected for memory indexing is generally irrelevant.
 
 COL outputs:
 
-![ppu_palette_col_outputs](/BreakingNESWiki/imgstore/ppu/ppu_palette_col_outputs.jpg)
+![palette_col_outputs](/BreakingNESWiki/imgstore/ppu/palette_col_outputs.jpg)
 
 Precharge PCLK:
 
-![ppu_palette_precharge](/BreakingNESWiki/imgstore/ppu/ppu_palette_precharge.jpg)
+![cram_precharge](/BreakingNESWiki/imgstore/ppu/cram_precharge.jpg)
 
 ### Memory Cell
 
-![ppu_palette_cell](/BreakingNESWiki/imgstore/ppu/ppu_palette_cell.jpg)
+The memory cell is a typical 4T SRAM Cell:
 
-### Palette Index Decoder
+|![cram_cell_topo](/BreakingNESWiki/imgstore/ppu/cram_cell_topo.jpg)|![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)|
+|---|---|
 
-![ppu_palette_decoder](/BreakingNESWiki/imgstore/ppu/ppu_palette_decoder.jpg)
+### CRAM Index Decoder
+
+|![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
+|---|---|
+
+|COL0 \| COL1 \| COL2 \| COL3|
+|---|
+|ROW0+4|
+|ROW6|
+|ROW2|
+|ROW5|
+|ROW1|
+|ROW7|
+|ROW3|
+
+A similar memory organization pattern is repeated 6 times for each Color Buffer bit.
