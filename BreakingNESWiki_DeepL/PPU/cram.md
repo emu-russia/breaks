@@ -44,7 +44,15 @@ The Logisim schematic is a very approximation of the original one, because Logis
 
 The outputs from the CB bits do not go directly to the phase generator, but go through a D-Latch chain. The D-Latch chains are unequally spaced for each CB bit.
 
-TBD.
+For CB bits 4-5 (luminance, LL0# and LL1# signals):
+
+![cbout_ll](/BreakingNESWiki/imgstore/ppu/cbout_ll.jpg)
+
+For CB bits 0-3 (chrominance, CC0-3# signals), only part of the chain is next to the CB. The rest of the latches are scattered like breadcrumbs along the way to [phase generator](video_out.md).
+
+![cbout_cc](/BreakingNESWiki/imgstore/ppu/cbout_cc.jpg)
+
+P.S. If you are a chip designer, please don't spread your topology out like this. Such circuits are very inconvenient to saw into pieces for study and post on the wiki.
 
 ### Black/White Mode
 

@@ -5378,6 +5378,12 @@
       <a name="label" val="DB_Out"/>
       <a name="output" val="true"/>
     </comp>
+    <comp lib="0" loc="(690,420)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="CB_Out"/>
+      <a name="output" val="true"/>
+    </comp>
     <comp lib="1" loc="(210,170)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
@@ -5489,8 +5495,11 @@
     <wire from="(420,40)" to="(420,190)"/>
     <wire from="(420,40)" to="(530,40)"/>
     <wire from="(430,210)" to="(440,210)"/>
-    <wire from="(450,360)" to="(470,360)"/>
+    <wire from="(450,360)" to="(460,360)"/>
     <wire from="(460,340)" to="(470,340)"/>
+    <wire from="(460,360)" to="(460,420)"/>
+    <wire from="(460,360)" to="(470,360)"/>
+    <wire from="(460,420)" to="(690,420)"/>
     <wire from="(460,70)" to="(460,340)"/>
     <wire from="(510,360)" to="(540,360)"/>
     <wire from="(530,340)" to="(540,340)"/>
