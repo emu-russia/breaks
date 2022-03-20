@@ -20,9 +20,9 @@ The Color Buffer (CB) is used to store the current "pixel" for the phase generat
 
 ### CB Bit
 
-![ppu_color_buffer_bit](/BreakingNESWiki/imgstore/ppu/ppu_color_buffer_bit.jpg)
+![color_buffer_bit](/BreakingNESWiki/imgstore/ppu/color_buffer_bit.jpg)
 
-![ppu_logisim_cb_bit](/BreakingNESWiki/imgstore/ppu/ppu_logisim_cb_bit.jpg)
+![cb_bit_logisim](/BreakingNESWiki/imgstore/ppu/cb_bit_logisim.jpg)
 
 ### CB Output Delay
 
