@@ -40,11 +40,11 @@ TBD.
 
 Выходы COL:
 
-![ppu_palette_col_outputs](/BreakingNESWiki/imgstore/ppu/ppu_palette_col_outputs.jpg)
+![palette_col_outputs](/BreakingNESWiki/imgstore/ppu/palette_col_outputs.jpg)
 
 Precharge PCLK:
 
-![ppu_palette_precharge](/BreakingNESWiki/imgstore/ppu/ppu_palette_precharge.jpg)
+![palette_precharge](/BreakingNESWiki/imgstore/ppu/palette_precharge.jpg)
 
 ### Ячейка памяти
 
