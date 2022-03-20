@@ -48,7 +48,8 @@ Precharge PCLK:
 
 ### Ячейка памяти
 
-![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)
+|![cram_cell_topo](/BreakingNESWiki/imgstore/ppu/cram_cell_topo.jpg)|![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)|
+|---|---|
 
 ### Декодер индекса палитры
 

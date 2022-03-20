@@ -50,7 +50,8 @@ Precharge PCLK:
 
 ### Memory Cell
 
-![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)
+|![cram_cell_topo](/BreakingNESWiki/imgstore/ppu/cram_cell_topo.jpg)|![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)|
+|---|---|
 
 ### CRAM Index Decoder
 
