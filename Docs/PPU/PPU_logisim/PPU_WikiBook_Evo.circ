@@ -5115,7 +5115,7 @@
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="This `or` gate is not really there"/>
     </comp>
-    <comp lib="8" loc="(504,181)" name="Text">
+    <comp lib="8" loc="(506,181)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="It is used for the convenience of combining 0 and 4 outputs from DMX."/>
     </comp>
