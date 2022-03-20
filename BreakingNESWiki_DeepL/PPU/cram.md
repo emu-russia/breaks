@@ -47,6 +47,8 @@ Color RAM:
 - PAL4, PAL1, PAL0: Defines a row (PAL4 - msb)
 - Rows 0 and 4 combined
 
+It looks a bit chaotic, but it is what it is. Reverse engineering of memory for some reason always goes with this kind of agony of understanding, but don't forget the fact that the order in which the address lines are connected for memory indexing is generally irrelevant.
+
 COL outputs:
 
 ![palette_col_outputs](/BreakingNESWiki/imgstore/ppu/palette_col_outputs.jpg)
