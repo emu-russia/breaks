@@ -55,7 +55,7 @@ COL outputs:
 
 Precharge PCLK:
 
-![palette_precharge](/BreakingNESWiki/imgstore/ppu/palette_precharge.jpg)
+![cram_precharge](/BreakingNESWiki/imgstore/ppu/cram_precharge.jpg)
 
 ### Memory Cell
 
@@ -78,3 +78,5 @@ The memory cell is a typical 4T SRAM Cell:
 |ROW1|
 |ROW7|
 |ROW3|
+
+A similar memory organization pattern is repeated 6 times for each Color Buffer bit.

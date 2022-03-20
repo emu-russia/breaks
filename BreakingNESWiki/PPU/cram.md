@@ -53,7 +53,7 @@ TBD.
 
 Precharge PCLK:
 
-![palette_precharge](/BreakingNESWiki/imgstore/ppu/palette_precharge.jpg)
+![cram_precharge](/BreakingNESWiki/imgstore/ppu/cram_precharge.jpg)
 
 ### Ячейка памяти
 
@@ -76,3 +76,5 @@ Precharge PCLK:
 |ROW1|
 |ROW7|
 |ROW3|
+
+Подобный паттерн организации памяти повторяется 6 раз для каждого разряда Color Buffer.
