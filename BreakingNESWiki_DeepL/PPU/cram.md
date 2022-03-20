@@ -16,7 +16,7 @@ The Color Buffer (CB) is used to store the current "pixel" for the phase generat
 
 ![ppu_cb_control](/BreakingNESWiki/imgstore/ppu/ppu_cb_control.jpg)
 
-![ppu_logisim_color_control](/BreakingNESWiki/imgstore/ppu/ppu_logisim_color_control.jpg)
+![CB_Control](/BreakingNESWiki/imgstore/ppu/CB_Control.jpg)
 
 ### CB Bit
 
@@ -32,7 +32,7 @@ TBD.
 
 ### Black/White Mode
 
-The outputs of the 4 bit CB responsible for the chrominance are controlled by the /BW control signal.
+The outputs of the 4 bit CB responsible for the chrominance are controlled by the `/BW` control signal.
 
 A similar transistor for the 2 luminance bits is simply always open:
 
