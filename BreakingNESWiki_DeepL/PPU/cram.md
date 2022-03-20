@@ -38,6 +38,8 @@ The Color Buffer (CB) is used to store the current "pixel" for the phase generat
 |![color_buffer_bit](/BreakingNESWiki/imgstore/ppu/color_buffer_bit.jpg)|![cb_bit_logisim](/BreakingNESWiki/imgstore/ppu/cb_bit_logisim.jpg)|
 |---|---|
 
+The Logisim schematic is a very approximation of the original one, because Logisim does not support inOut entities.
+
 ### CB Output Delay
 
 The outputs from the CB bits do not go directly to the phase generator, but go through a D-Latch chain. The D-Latch chains are unequally spaced for each CB bit.
