@@ -51,3 +51,5 @@
 ## ЦАП
 
 ![vout_dac](/BreakingNESWiki/imgstore/ppu/vout_dac.jpg)
+
+![vidout_dac_logic](/BreakingNESWiki/imgstore/ppu/vidout_dac_logic.jpg)
