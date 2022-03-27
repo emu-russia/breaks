@@ -40,15 +40,13 @@
 
 ## Декодер яркости
 
-![vout_level_select](/BreakingNESWiki/imgstore/ppu/vout_level_select.jpg)
-
-![vidout_luma_decoder_logic](/BreakingNESWiki/imgstore/ppu/vidout_luma_decoder_logic.jpg)
+|![vout_level_select](/BreakingNESWiki/imgstore/ppu/vout_level_select.jpg)|![vidout_luma_decoder_logic](/BreakingNESWiki/imgstore/ppu/vidout_luma_decoder_logic.jpg)|
+|---|---|
 
 ## Подстройка фазы
 
-![vout_emphasis](/BreakingNESWiki/imgstore/ppu/vout_emphasis.jpg)
-
-![vidout_emphasis_logic](/BreakingNESWiki/imgstore/ppu/vidout_emphasis_logic.jpg)
+|![vout_emphasis](/BreakingNESWiki/imgstore/ppu/vout_emphasis.jpg)|![vidout_emphasis_logic](/BreakingNESWiki/imgstore/ppu/vidout_emphasis_logic.jpg)|
+|---|---|
 
 ## ЦАП
 
