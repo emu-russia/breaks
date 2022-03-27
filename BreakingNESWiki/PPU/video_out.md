@@ -36,6 +36,8 @@
 
 ![vout_phase_decoder](/BreakingNESWiki/imgstore/ppu/vout_phase_decoder.jpg)
 
+![vidout_chroma_decoder_logic](/BreakingNESWiki/imgstore/ppu/vidout_chroma_decoder_logic.jpg)
+
 ## Декодер яркости
 
 ![vout_level_select](/BreakingNESWiki/imgstore/ppu/vout_level_select.jpg)
