@@ -52,7 +52,13 @@ Correction history:
 |OMFG|The purpose of the signal is still unclear|
 |ASAP|The purpose of the signal is still unclear|
 |SH5, SH7|Were mixed up|
+|EXT0-3 OUT|/EXT0-3 OUT|
+|SH2, SH3, SH5, SH7|/SH2, /SH3, /SH5, /SH7|
 |CLK, /CLK|Were mixed up|
+|ZCOL0, ZCOL1|/ZCOL0, /ZCOL1|
+|ZPRIO|/ZPRIO|
+|SPR0HIT|/SPR0HIT|
+|FVO0-2|/FVO0-2|
 
 ## APU
 
