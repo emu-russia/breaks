@@ -52,7 +52,13 @@
 |OMFG|Пока не понятно назначение сигнала|
 |ASAP|Пока не понятно назначение сигнала|
 |SH5, SH7|Были перепутаны|
+|EXT0-3 OUT|/EXT0-3 OUT|
+|SH2, SH3, SH5, SH7|/SH2, /SH3, /SH5, /SH7|
 |CLK, /CLK|Были перепутаны|
+|ZCOL0, ZCOL1|/ZCOL0, /ZCOL1|
+|ZPRIO|/ZPRIO|
+|SPR0HIT|/SPR0HIT|
+|FVO0-2|/FVO0-2|
 
 ## APU
 

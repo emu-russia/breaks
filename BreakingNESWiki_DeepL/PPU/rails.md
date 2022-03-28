@@ -24,7 +24,7 @@ The most important control signals of the PPU [FSM](hv_fsm.md) are marked with a
 |/PCLK|PCLK Gen|All|The PPU is in the PCLK=0 state|
 |RC|/RES Pad|Regs|"Registers Clear"|
 |EXT0-3 IN|EXT Pads|MUX|Input subcolor from Master PPU|
-|EXT0-3 OUT|EXT Pads|MUX|Output color for Slave PPU|
+|/EXT0-3 OUT|EXT Pads|MUX|Output color for Slave PPU|
 |/SLAVE|Regs $2000\[6\]|EXT Pads|PPU operating mode (Master/Slave)|
 |R/W|R/W Pad|RW Decoder, Reg Select|CPU interface operating mode (read/write)|
 |/DBE|/DBE Pad|Regs|"Data Bus Enable", enable CPU interface|
@@ -143,14 +143,14 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|SH2|Near MUX|OAM FIFO, V. Inversion|Sprite H value bits. SH2 also goes into V. Inversion. :warning: The SH2/3/5/7 signals are actually in inverse logic, but you don't want to rename everywhere anymore.|
-|SH3|Near MUX|OAM FIFO|Sprite H value bits|
-|SH5|Near MUX|OAM FIFO|Sprite H value bits|
-|SH7|Near MUX|OAM FIFO|Sprite H value bits|
-|SPR0HIT|OAM Priority|Spr0 Strike|To detect a `Sprite 0 Hit` event|
+|/SH2|Near MUX|OAM FIFO, V. Inversion|Sprite H value bits. /SH2 also goes into V. Inversion.|
+|/SH3|Near MUX|OAM FIFO|Sprite H value bits|
+|/SH5|Near MUX|OAM FIFO|Sprite H value bits|
+|/SH7|Near MUX|OAM FIFO|Sprite H value bits|
+|/SPR0HIT|OAM Priority|Spr0 Strike|To detect a `Sprite 0 Hit` event|
 |BGC0-3|BG Color|MUX|Background color|
-|ZCOL0-3|OAM FIFO|MUX|Sprite color|
-|ZPRIO|OAM Priority|MUX|Priority of sprite over background|
+|/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|OAM FIFO|MUX|Sprite color. :warning: The lower 2 bits are in inverse logic, the higher 2 bits are in direct logic.|
+|/ZPRIO|OAM Priority|MUX|0: Priority of sprite over background|
 |THO0-4'|PAR TH Counter|MUX|THO0-3 value passed through the PCLK tristate. Direct Color value from TH Counter.|
 
 ## Bottom Part
