@@ -80,11 +80,11 @@ The result of the circuit operation (output) is the `SPR0HIT` signal, which goes
 
 ### H. Inversion
 
-![ppu_hinv](/BreakingNESWiki/imgstore/ppu/ppu_hinv.jpg)
+![hinv](/BreakingNESWiki/imgstore/ppu/hinv.jpg)
 
 HINV and HDIR are two complementary signals (they can never take the same value). In essence these two signals are one multiplexer control signal that selects between the two PD bus bits. If HINV = 1, it means that the PD bus is output in inverted to the T0-7 outputs. If HDIR = 1 it means that the PD bus is outputted in direct way to T0-7 outputs.
 
-![ppu_logisim_hinv](/BreakingNESWiki/imgstore/ppu/ppu_logisim_hinv.jpg)
+![hinv_logisim](/BreakingNESWiki/imgstore/ppu/hinv_logisim.jpg)
 
 ### Sprite H
 
