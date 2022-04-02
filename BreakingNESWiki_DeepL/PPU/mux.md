@@ -14,7 +14,7 @@ Inputs:
 
 Outputs:
 - Color Index for Palette (5 bits)
-- Color for external contacts (`/EXT Out`) (4 bits)
+- Color for external terminals (`/EXT Out`) (4 bits)
 
 ## Transistor Circuit
 
