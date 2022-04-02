@@ -9,16 +9,16 @@ As usual, "color" and "pixel" are understood as abstract concepts: color is the 
 Inputs:
 - Background color (4 bits)
 - Sprite color (4 bits)
-- Color from external contacts (EXT In) (4 bits)
+- Color from external contacts (`EXT In`) (4 bits)
 - Direct color from PAR TH Counter (5 bits)
 
 Outputs:
 - Color Index for Palette (5 bits)
-- Color for external contacts (EXT Out) (4 bits)
+- Color for external contacts (`/EXT Out`) (4 bits)
 
 ## Transistor Circuit
 
-![ppu_mux](/BreakingNESWiki/imgstore/ppu/ppu_mux.jpg)
+![mux](/BreakingNESWiki/imgstore/ppu/mux.jpg)
 
 As you can see, the circuit looks very confusing at first glance. This is because the multiplexers (as circuit elements) are very difficult to recognize from the NMOS transistors.
 
@@ -28,18 +28,20 @@ The signals `THOx'` are obtained from the THO latches as follows:
 
 (Located in the bottom right corner of the MUX).
 
-## Logisim Circuit
+## Logic
 
-![ppu_mux_logisim](/BreakingNESWiki/imgstore/ppu/ppu_mux_logisim.jpg)
+![mux_logic](/BreakingNESWiki/imgstore/ppu/mux_logic.jpg)
 
-(A piece of circuitry for the Sprite 0 Hit test is not shown and is marked as "to strike test").
+Control circuit:
+
+![mux_control_logic](/BreakingNESWiki/imgstore/ppu/mux_control_logic.jpg)
 
 Signals:
 
 |Signal|Purpose|
 |---|---|
 |BGC0-3|The color of the background|
-|ZCOL0-3|Sprite color|
+|/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|Sprite color|
 |EXT0-3 IN|Input color from EXT pins|
 |THO0-4|Input color from TH counter|
 |TH/MUX|Prioritizes the direct color from TH over all other colors|
@@ -48,7 +50,7 @@ Signals:
 |PAL0-4|Output color for palette indexing|
 
 As you can see the circuit is a cascade of multiplexers, between which are D-Latch:
-- The first state selects the color of the background/sprite. Which color is selected is determined by the circuit by the bits BGC0-1, ZCOL0-1 and the priority of the sprites (ZPRIO). The result of this circuitry is an internal `OCOL` control signal that is applied to the bit multiplexers;
+- The first state selects the color of the background/sprite. Which color is selected is determined by the circuit by the bits BGC0-1, /ZCOL0-1 and the priority of the sprites (/ZPRIO). The result of this circuitry is an internal `OCOL` control signal that is applied to the bit multiplexers;
 - In the second state a choice is made between the previous result and the external color from the EXT pins;
 - In the third state a choice is made between the result of the second state and the direct color from the TH (Tile Horizontal) counter. The priority of the direct color is set by the control signal `TH/MUX`.
 
@@ -64,18 +66,20 @@ This event is stored as a bit of register $2002\[6\].
 
 This feature can be used by the programmer to determine when a certain point on the screen is rendered:
 - Sprite #0 is set to a certain position
-- Polling of register $2002\[6\] is done.
+- Polling of the register bit is performed ($2002\[6\])
 - The program performs additional actions when Sprite 0 Hit is detected.
 
 This is usually used to create "Split Screen" effects.
 
 Sprite 0 Hit circuit:
 
-![spr0hit](/BreakingNESWiki/imgstore/ppu/spr0hit.jpg)
+![spr0_hit_logic](/BreakingNESWiki/imgstore/ppu/spr0_hit_logic.jpg)
 
 The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
-The control signal `SPR0HIT` comes from the sprite priority control circuit (see [OAM FIFO](fifo.md)) and the control signal `I2SEV` from [sprite comparison circuit](sprite_eval.md).
+The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [OAM FIFO](fifo.md)) and the control signal `I2SEV` from [sprite comparison circuit](sprite_eval.md).
+
+:warning: By "sprite #0" you don't mean the zero index of the sprite in the OAM, but the zero lane in the OAM FIFO. Technically it is not necessary to have a sprite with index 0 in Lane 0 of the OAM FIFO, but usually the developers put a special sprite in OAM\[0\] to process Sprite0 Hit, so you do not have to pay much attention to this.
 
 ## Multiplexer Tricks
 
