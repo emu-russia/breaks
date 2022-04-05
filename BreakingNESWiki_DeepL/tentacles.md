@@ -49,7 +49,7 @@ Correction history:
 |MILF|OAMCTR2|
 |WTF|SPR_OV|
 |LOL|I2SEV|
-|OMFG|The purpose of the signal is still unclear|
+|OMFG|To avoid renaming the signal for the abbreviation OMFG was invented decoding - "OAM Mode Four". Defines the mode of the OAM counter (+1 / +4)|
 |ASAP|The purpose of the signal is still unclear|
 |SH5, SH7|Were mixed up|
 |EXT0-3 OUT|/EXT0-3 OUT|
@@ -59,6 +59,8 @@ Correction history:
 |ZPRIO|/ZPRIO|
 |SPR0HIT|/SPR0HIT|
 |FVO0-2|/FVO0-2|
+|CB/DB|#CB/DB (inverse polarity)|
+|DB/CB|#DB/CB (inverse polarity)|
 
 ## APU
 
