@@ -50,7 +50,7 @@ There are only two external buses: a 16-bit address bus (ADDR) and an 8-bit data
 ## Internal Buses
 
 - ADH/ADL: address bus
-- SB: side(?) bus, register exchange bus
+- SB: Special bus, register exchange bus
 - DB: Internal data bus
 
 During the second half-step (PHI2) all internal buses are precharged and have a value of 0xff. This is done because it is faster to "discharge" the transistor at the right moment than to "charge" it (the change of 1=>0 is faster than the change of 0=>1).
