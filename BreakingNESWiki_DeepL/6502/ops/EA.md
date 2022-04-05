@@ -113,8 +113,6 @@
 
 ## Next NOP T0+2 PHI1
 
-## NOP (0xEA), T02 (PHI1)
-
 |Component/Signal|State|
 |---|---|
 |Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 0, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
