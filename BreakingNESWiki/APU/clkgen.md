@@ -44,10 +44,10 @@ Soft CLK управляется регистром $4017 (write-only):
 - INT: общий сигнал прерывания от Soft CLK или DPCM
 - RES: внутренний сигнал сброса (получается из контакта /RES)
 
-### Счетчик Soft CLK
+### Счётчик Soft CLK
 
 ![softclk_counter_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_tran.jpg)
 
-### Управление счетчиком Soft CLK
+### Управление счётчиком Soft CLK
 
 ![softclk_counter_control_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_control_tran.jpg)

@@ -2,27 +2,27 @@
 
 ![ppu_locator_pargen](/BreakingNESWiki/imgstore/ppu/ppu_locator_pargen.jpg)
 
-## Счетчики PAR
+## Счётчики PAR
 
-### Схема управления счетчиками PAR
+### Схема управления счётчиками PAR
 
 ![ppu_dataread_par_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_control_top.jpg)
 
 ![ppu_dataread_par_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_control_bot.jpg)
 
-### Счетчик FV
+### Счётчик FV
 
 ![ppu_dataread_par_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_fv.jpg)
 
-### Счетчики NT
+### Счётчики NT
 
 ![ppu_dataread_par_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_nt.jpg)
 
-### Счетчик TV
+### Счётчик TV
 
 ![ppu_dataread_par_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_tv.jpg)
 
-### Счетчик TH
+### Счётчик TH
 
 ![ppu_dataread_par_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_th.jpg)
 

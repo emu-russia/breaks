@@ -41,7 +41,7 @@ During the second half-cycle (PHI2) the processor is in "Read/Write Data" mode, 
 - DOR: data output register, holds the value which will be written to the data bus
 - P: flag register, actually consists of a set of latches scattered around the circuit
 
-The following registers are directly available to the programmer: A (accumulator), X, Y, S, P, PC.
+The following registers are directly available to the programmer: A (Accumulator), X, Y, S, P, PC (Program Counter).
 
 ## External Buses
 
@@ -53,7 +53,7 @@ There are only two external buses: a 16-bit address bus (ADDR) and an 8-bit data
 - SB: Special bus, register exchange bus
 - DB: Internal data bus
 
-During the second half-step (PHI2) all internal buses are precharged and have a value of 0xff. This is done because it is faster to "discharge" the transistor at the right moment than to "charge" it (the change of 1=>0 is faster than the change of 0=>1).
+During the second half-step (PHI2) all internal buses are precharged and have a value of 0xFF. This is done because it is faster to "discharge" the transistor at the right moment than to "charge" it (the change of 1=>0 is faster than the change of 0=>1).
 
 ## Register-Bus Connections
 
