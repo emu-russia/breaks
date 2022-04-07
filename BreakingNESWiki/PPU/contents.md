@@ -4,7 +4,7 @@
 - [Контакты](pads.md)
 - [Pixel Clock](pclk.md)
 - [Регистры](regs.md)
-- [H/V Счетчики](hv.md)
+- [H/V Счётчики](hv.md)
 - [H/V Декодер](hv_dec.md)
 - [Управляющая логика](hv_fsm.md)
 - [Палитра](cram.md)

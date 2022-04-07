@@ -188,8 +188,7 @@ For example, the picture shows the 5th line of the decoder. The bit counting sta
 
 ## Online Decoder
 
-You can use an online decoder to highlight opcodes: http://breaknes.com/files/6502/decoder.htm
-(You can also find it here: https://github.com/emu-russia/breaks/blob/master/Docs/6502/decoder.htm)
+You can use an online decoder to highlight opcodes: https://github.com/emu-russia/breaks/blob/master/Docs/6502/decoder.htm
 
 In the `Raw bits` field you can insert the mask value from the table above and when you press the `Make IR Mask` button you will get the decoded mask value (e.g. `11X00X00`). 
 The decoded mask value can be inserted into the `IR` field and when the `Decode` button is pressed, the opcodes that correspond to the specified IR mask will be highlighted in the table.
