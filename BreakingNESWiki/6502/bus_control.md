@@ -28,7 +28,7 @@
 Мотив всех схем примерно следующий:
 - На вход схем управления поступает много выходов с декодера и других вспомогательных сигналов
 - Все схемы по большей части комбинаторные (не содержат триггеров, просто месиво вентилей)
-- Выходы со схем управления поступают на выходные защелки команд управления нижней частью процессора.
+- Выходы со схем управления поступают на выходные защёлки команд управления нижней частью процессора.
 
 ## Вспомогательные сигналы
 
@@ -88,7 +88,7 @@
 
 Первый кусок схемы #ADH/ABH находится правее флага B, второй кусок находится в схеме формирования адреса прерывания. Сигнал #ADH/ABH соединяется напрямую между этими двумя частями.
 
-Выходные защелки команд управления ADL/ABL и ADH/ABH:
+Выходные защёлки команд управления ADL/ABL и ADH/ABH:
 
 ![bus_addr_bus_commands_tran](/BreakingNESWiki/imgstore/bus_addr_bus_commands_tran.jpg)
 
@@ -100,7 +100,7 @@
 |---|---|
 |![bus_acdb_tran](/BreakingNESWiki/imgstore/bus_acdb_tran.jpg)|![bus_acsb_tran](/BreakingNESWiki/imgstore/bus_acsb_tran.jpg)|
 
-Выходные защелки команд управления AC/DB, SB/AC, AC/SB:
+Выходные защёлки команд управления AC/DB, SB/AC, AC/SB:
 
 ![bus_alu_commands_tran](/BreakingNESWiki/imgstore/bus_alu_commands_tran.jpg)
 
@@ -112,11 +112,11 @@
 |---|---|---|
 |![bus_control_tran1](/BreakingNESWiki/imgstore/bus_control_tran1.jpg)|![bus_0adh0_tran](/BreakingNESWiki/imgstore/bus_0adh0_tran.jpg)|![bus_sbadh_tran](/BreakingNESWiki/imgstore/bus_sbadh_tran.jpg)|
 
-Выходные защелки команд управления SB/DB, SB/ADH, 0/ADH17:
+Выходные защёлки команд управления SB/DB, SB/ADH, 0/ADH17:
 
 ![bus_sb_commands_tran](/BreakingNESWiki/imgstore/bus_sb_commands_tran.jpg)
 
-(Схема получения команды и защелка 0/ADH0 выше)
+(Схема получения команды и защёлка 0/ADH0 выше)
 
 ## Управление внешней шиной данных
 
@@ -128,7 +128,7 @@
 
 Первый кусок схемы #DL/DB находится рядом с ACR Latch, второй кусок прямо внутри схемы управления АЛУ. Сигнал #DL/DB соединяется напрямую между этими двумя частями.
 
-Выходные защелки команд управления DL/ADL, DL/ADH, DL/DB:
+Выходные защёлки команд управления DL/ADL, DL/ADH, DL/DB:
 
 ![bus_data_latch_commands_tran](/BreakingNESWiki/imgstore/bus_data_latch_commands_tran.jpg)
 

@@ -10,7 +10,7 @@
 
 ![pc_control_trans](/BreakingNESWiki/imgstore/pc_control_trans.jpg)
 
-Выходные защелки и команды управления:
+Выходные защёлки и команды управления:
 
 ![pc_control_commands_tran](/BreakingNESWiki/imgstore/pc_control_commands_tran.jpg)
 
@@ -39,11 +39,11 @@
 
 |Команда|Описание|
 |---|---|
-|ADH/PCH|Загрузить в защелку PCHS значение шины ADH|
+|ADH/PCH|Загрузить в защёлку PCHS значение шины ADH|
 |PCH/PCH|Если не выполняется ADH/PCH, то выполняется эта команда (рефрешить PCH)|
 |PCH/ADH|Записать значение регистра PCH на шину ADH|
 |PCH/DB|Записать значение регистра PCH на шину DB|
-|ADL/PCL|Загрузить в защелку PCLS значение шины ADL|
+|ADL/PCL|Загрузить в защёлку PCLS значение шины ADL|
 |PCL/PCL|Если не выполняется ADL/PCL, то выполняется эта команда (рефрешить PCL)|
 |PCL/ADL|Записать значение регистра PCL на шину ADL|
 |PCL/DB|Записать значение регистра PCL на шину DB|
