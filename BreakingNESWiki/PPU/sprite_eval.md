@@ -2,7 +2,7 @@
 
 ![ppu_locator_sprite_eval](/BreakingNESWiki/imgstore/ppu/ppu_locator_sprite_eval.jpg)
 
-Схема сравнения спрайтов занимается сравнением всех 64 спрайтов и выборкой первых 8 спрайтов, которые встречаются раньше всех на текущей строке (H). То что PPU умеет рисовать только первые 8 спрайтов строки - широко известный факт, который приходится учитывать при программировании NES. Обычно программисты применяют перемешивание спрайтов, но даже при этом возникает эффект "мерцания" спрайтов.
+Схема сравнения спрайтов занимается сравнением всех 64 спрайтов и выборкой первых 8 спрайтов, которые встречаются раньше всех на текущей строке (V). То что PPU умеет рисовать только первые 8 спрайтов строки - широко известный факт, который приходится учитывать при программировании NES. Обычно программисты применяют перемешивание спрайтов, но даже при этом возникает эффект "мерцания" спрайтов.
 
 Выбранные спрайты помещаются в дополнительную память OAM2, откуда потом попадают для дальнейшей обработки в [OAM FIFO](fifo.md).
 
@@ -10,28 +10,10 @@
 - Счётчик индекса OAM, для выборки следующего спрайта для сравнения
 - Счётчик индекса OAM2, для сохранения результатов сравнения
 - Схемы контроля счётчиками
-- Компаратор, который по сути является маленьким АЛУ и выполняет операцию знакового вычитания (A - B)
+- Компаратор, который выполняет операцию знакового вычитания (A - B)
 - Схему управления сравнением, которая и реализует всю логику работы сравнения спрайтов
 
-Схемы для управления счётчиками разделены предварительно, возможно есть смысл их объединить в одну схему.
-
-## Счётчик индекса OAM
-
-![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
-
-## Управление счётчиком индекса OAM
-
-![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
-
-## Счётчик индекса Temp OAM (OAM2)
-
-![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
-
-![ppu_logisim_oam2_counter](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam2_counter.jpg)
-
-## Общее управление счётчиками
-
-![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)
+![OAM_Eval](/BreakingNESWiki/imgstore/ppu/OAM_Eval.png)
 
 ## Дополнительная схема H0''
 
@@ -41,14 +23,50 @@
 
 ![h0_dash_dash_tran](/BreakingNESWiki/imgstore/ppu/h0_dash_dash_tran.jpg)
 
+## Разряд счётчиков
+
+![OAM_CounterBit](/BreakingNESWiki/imgstore/ppu/OAM_CounterBit.png)
+
+## Счётчик индекса основной OAM
+
+![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
+
+![OAM_MainCounter](/BreakingNESWiki/imgstore/ppu/OAM_MainCounter.png)
+
+## Счётчик индекса Temp OAM (OAM2)
+
+![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
+
+![OAM_TempCounter](/BreakingNESWiki/imgstore/ppu/OAM_TempCounter.png)
+
+## Управление счётчиками
+
+|Управление основным счётчиком|Управление счётчиком Temp OAM и схема переполнения спрайтов|
+|---|---|
+|![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)|![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)|
+
+![OAM_CountersControl](/BreakingNESWiki/imgstore/ppu/OAM_CountersControl.png)
+
+![OAM_SprOV_Flag](/BreakingNESWiki/imgstore/ppu/OAM_SprOV_Flag.png)
+
+## Адрес OAM
+
+![oam_address_tran](/BreakingNESWiki/imgstore/ppu/oam_address_tran.jpg)
+
+![OAM_Address](/BreakingNESWiki/imgstore/ppu/OAM_Address.png)
+
 ## Компаратор
 
 ![oam_cmpr](/BreakingNESWiki/imgstore/ppu/oam_cmpr.jpg)
+
+![OAM_CmpBitPair](/BreakingNESWiki/imgstore/ppu/OAM_CmpBitPair.png)
+
+![OAM_Cmp](/BreakingNESWiki/imgstore/ppu/OAM_Cmp.png)
 
 ## Схема управления сравнением
 
 ![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
 
-## Схема Logisim
+![OAM_EvalFSM](/BreakingNESWiki/imgstore/ppu/OAM_EvalFSM.png)
 
-![ppu_logisim_oam_eval](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam_eval.jpg)
+![PosedgeDFFE](/BreakingNESWiki/imgstore/ppu/PosedgeDFFE.png)
