@@ -41,9 +41,8 @@ This special `H0''` signal (but essentially a variation of the regular H0'' sign
 
 ## Counters Control
 
-![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
-
-![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)
+|![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)|![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)|
+|---|---|
 
 ![OAM_CountersControl](/BreakingNESWiki/imgstore/ppu/OAM_CountersControl.png)
 
