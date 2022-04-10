@@ -10,7 +10,7 @@ The circuit includes:
 - OAM index counter, to sample the next sprite for comparison
 - OAM2 index counter, to save the comparison results
 - Schematics for controlling the counters
-- A comparator, which is essentially a small ALU and performs a signed subtraction operation (A - B)
+- A comparator, which performs a signed subtraction operation (A - B)
 - The comparison control circuit which implements the whole logic of sprite comparison operation
 
 ![OAM_Eval](/BreakingNESWiki/imgstore/ppu/OAM_Eval.png)
