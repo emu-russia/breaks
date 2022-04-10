@@ -13,19 +13,37 @@
 - Компаратор, который по сути является маленьким АЛУ и выполняет операцию знакового вычитания (A - B)
 - Схему управления сравнением, которая и реализует всю логику работы сравнения спрайтов
 
+![OAM_Eval](/BreakingNESWiki/imgstore/ppu/OAM_Eval.png)
+
+## Разряд счётчиков
+
+![OAM_CounterBit](/BreakingNESWiki/imgstore/ppu/OAM_CounterBit.png)
+
 ## Счётчик индекса OAM
 
 ![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
 
+![OAM_MainCounter](/BreakingNESWiki/imgstore/ppu/OAM_MainCounter.png)
+
 ## Счётчик индекса Temp OAM (OAM2)
 
 ![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
+
+![OAM_TempCounter](/BreakingNESWiki/imgstore/ppu/OAM_TempCounter.png)
 
 ## Управление счётчиками
 
 ![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
 
 ![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)
+
+![OAM_CountersControl](/BreakingNESWiki/imgstore/ppu/OAM_CountersControl.png)
+
+![OAM_SprOV_Flag](/BreakingNESWiki/imgstore/ppu/OAM_SprOV_Flag.png)
+
+## Адрес OAM
+
+![OAM_Address](/BreakingNESWiki/imgstore/ppu/OAM_Address.png)
 
 ## Дополнительная схема H0''
 
@@ -39,6 +57,12 @@
 
 ![oam_cmpr](/BreakingNESWiki/imgstore/ppu/oam_cmpr.jpg)
 
+![OAM_CmpBitPair](/BreakingNESWiki/imgstore/ppu/OAM_CmpBitPair.png)
+
+![OAM_Cmp](/BreakingNESWiki/imgstore/ppu/OAM_Cmp.png)
+
 ## Схема управления сравнением
 
 ![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
+
+![OAM_EvalFSM](/BreakingNESWiki/imgstore/ppu/OAM_EvalFSM.png)

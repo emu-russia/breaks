@@ -13,19 +13,37 @@ The circuit includes:
 - A comparator, which is essentially a small ALU and performs a signed subtraction operation (A - B)
 - The comparison control circuit which implements the whole logic of sprite comparison operation
 
+![OAM_Eval](/BreakingNESWiki/imgstore/ppu/OAM_Eval.png)
+
+## Counters Bit
+
+![OAM_CounterBit](/BreakingNESWiki/imgstore/ppu/OAM_CounterBit.png)
+
 ## OAM Index Counter
 
 ![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
 
+![OAM_MainCounter](/BreakingNESWiki/imgstore/ppu/OAM_MainCounter.png)
+
 ## Temp OAM Index Counter
 
 ![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
+
+![OAM_TempCounter](/BreakingNESWiki/imgstore/ppu/OAM_TempCounter.png)
 
 ## Counters Control
 
 ![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
 
 ![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)
+
+![OAM_CountersControl](/BreakingNESWiki/imgstore/ppu/OAM_CountersControl.png)
+
+![OAM_SprOV_Flag](/BreakingNESWiki/imgstore/ppu/OAM_SprOV_Flag.png)
+
+## OAM Address
+
+![OAM_Address](/BreakingNESWiki/imgstore/ppu/OAM_Address.png)
 
 ## H0'' Auxiliary Circuit
 
@@ -39,6 +57,12 @@ This special `H0''` signal (but essentially a variation of the regular H0'' sign
 
 ![oam_cmpr](/BreakingNESWiki/imgstore/ppu/oam_cmpr.jpg)
 
+![OAM_CmpBitPair](/BreakingNESWiki/imgstore/ppu/OAM_CmpBitPair.png)
+
+![OAM_Cmp](/BreakingNESWiki/imgstore/ppu/OAM_Cmp.png)
+
 ## Comparison Control
 
 ![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
+
+![OAM_EvalFSM](/BreakingNESWiki/imgstore/ppu/OAM_EvalFSM.png)
