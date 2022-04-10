@@ -43,6 +43,8 @@
 
 ## Адрес OAM
 
+![oam_address_tran](/BreakingNESWiki/imgstore/ppu/oam_address_tran.jpg)
+
 ![OAM_Address](/BreakingNESWiki/imgstore/ppu/OAM_Address.png)
 
 ## Дополнительная схема H0''

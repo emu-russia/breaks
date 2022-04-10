@@ -43,6 +43,8 @@ The circuit includes:
 
 ## OAM Address
 
+![oam_address_tran](/BreakingNESWiki/imgstore/ppu/oam_address_tran.jpg)
+
 ![OAM_Address](/BreakingNESWiki/imgstore/ppu/OAM_Address.png)
 
 ## H0'' Auxiliary Circuit
