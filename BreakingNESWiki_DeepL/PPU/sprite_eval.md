@@ -27,7 +27,7 @@ This special `H0''` signal (but essentially a variation of the regular H0'' sign
 
 ![OAM_CounterBit](/BreakingNESWiki/imgstore/ppu/OAM_CounterBit.png)
 
-## OAM Index Counter
+## Main OAM Index Counter
 
 ![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
 
@@ -41,8 +41,9 @@ This special `H0''` signal (but essentially a variation of the regular H0'' sign
 
 ## Counters Control
 
-|![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)|![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)|
+|Main counter control|Temp OAM counter control and sprite overflow|
 |---|---|
+|![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)|![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)|
 
 ![OAM_CountersControl](/BreakingNESWiki/imgstore/ppu/OAM_CountersControl.png)
 

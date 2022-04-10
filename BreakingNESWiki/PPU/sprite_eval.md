@@ -27,7 +27,7 @@
 
 ![OAM_CounterBit](/BreakingNESWiki/imgstore/ppu/OAM_CounterBit.png)
 
-## Счётчик индекса OAM
+## Счётчик индекса основной OAM
 
 ![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
 
@@ -41,8 +41,9 @@
 
 ## Управление счётчиками
 
-|![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)|![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)|
+|Управление основным счётчиком|Управление счётчиком Temp OAM и схема переполнения спрайтов|
 |---|---|
+|![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)|![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)|
 
 ![OAM_CountersControl](/BreakingNESWiki/imgstore/ppu/OAM_CountersControl.png)
 
