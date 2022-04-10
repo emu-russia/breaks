@@ -15,6 +15,14 @@
 
 ![OAM_Eval](/BreakingNESWiki/imgstore/ppu/OAM_Eval.png)
 
+## Дополнительная схема H0''
+
+Сигнал `H0''`, который используется в схемах управления счётчиками приходит не с выходов H-Output, которые находятся в схеме [H/V FSM](hv_fsm.md), а получается схемой, которая находится в промежутке между соединениями левее спрайтовой логики.
+
+Этот особенный сигнал `H0''` (но по сути - вариация обычного сигнала H0'') отмечен стрелочкой на транзисторных схемах.
+
+![h0_dash_dash_tran](/BreakingNESWiki/imgstore/ppu/h0_dash_dash_tran.jpg)
+
 ## Разряд счётчиков
 
 ![OAM_CounterBit](/BreakingNESWiki/imgstore/ppu/OAM_CounterBit.png)
@@ -46,14 +54,6 @@
 ![oam_address_tran](/BreakingNESWiki/imgstore/ppu/oam_address_tran.jpg)
 
 ![OAM_Address](/BreakingNESWiki/imgstore/ppu/OAM_Address.png)
-
-## Дополнительная схема H0''
-
-Сигнал `H0''`, который используется в схемах управления счётчиками приходит не с выходов H-Output, которые находятся в схеме [H/V FSM](hv_fsm.md), а получается схемой, которая находится в промежутке между соединениями левее спрайтовой логики.
-
-Этот особенный сигнал `H0''` (но по сути - вариация обычного сигнала H0'') отмечен стрелочкой на транзисторных схемах.
-
-![h0_dash_dash_tran](/BreakingNESWiki/imgstore/ppu/h0_dash_dash_tran.jpg)
 
 ## Компаратор
 
