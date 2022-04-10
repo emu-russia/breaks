@@ -2,7 +2,7 @@
 
 ![ppu_locator_sprite_eval](/BreakingNESWiki/imgstore/ppu/ppu_locator_sprite_eval.jpg)
 
-The sprite comparison circuit compares all 64 sprites and selects the first 8 sprites that occur first on the current line (H). The fact that the PPU can only draw the first 8 sprites of a line is a well-known fact that has to be taken into account when programming NES. Usually programmers use sprite shuffling, but even this has the effect of "flickering" sprites.
+The sprite comparison circuit compares all 64 sprites and selects the first 8 sprites that occur first on the current line (V). The fact that the PPU can only draw the first 8 sprites of a line is a well-known fact that has to be taken into account when programming NES. Usually programmers use sprite shuffling, but even this has the effect of "flickering" sprites.
 
 The selected sprites are placed in additional memory OAM2, from where they then go to [OAM FIFO](fifo.md) for further processing.
 
@@ -13,23 +13,17 @@ The circuit includes:
 - A comparator, which is essentially a small ALU and performs a signed subtraction operation (A - B)
 - The comparison control circuit which implements the whole logic of sprite comparison operation
 
-The circuits for controlling the counters are separated beforehand, maybe it makes sense to combine them into one circuit.
-
 ## OAM Index Counter
 
 ![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
-
-## OAM Index Counter Control
-
-![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
 
 ## Temp OAM Index Counter
 
 ![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
 
-![ppu_logisim_oam2_counter](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam2_counter.jpg)
-
 ## Counters Control
+
+![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
 
 ![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)
 
@@ -48,7 +42,3 @@ This special `H0''` signal (but essentially a variation of the regular H0'' sign
 ## Comparison Control
 
 ![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
-
-## Logisim Circuit
-
-![ppu_logisim_oam_eval](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam_eval.jpg)

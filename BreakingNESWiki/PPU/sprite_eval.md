@@ -2,7 +2,7 @@
 
 ![ppu_locator_sprite_eval](/BreakingNESWiki/imgstore/ppu/ppu_locator_sprite_eval.jpg)
 
-Схема сравнения спрайтов занимается сравнением всех 64 спрайтов и выборкой первых 8 спрайтов, которые встречаются раньше всех на текущей строке (H). То что PPU умеет рисовать только первые 8 спрайтов строки - широко известный факт, который приходится учитывать при программировании NES. Обычно программисты применяют перемешивание спрайтов, но даже при этом возникает эффект "мерцания" спрайтов.
+Схема сравнения спрайтов занимается сравнением всех 64 спрайтов и выборкой первых 8 спрайтов, которые встречаются раньше всех на текущей строке (V). То что PPU умеет рисовать только первые 8 спрайтов строки - широко известный факт, который приходится учитывать при программировании NES. Обычно программисты применяют перемешивание спрайтов, но даже при этом возникает эффект "мерцания" спрайтов.
 
 Выбранные спрайты помещаются в дополнительную память OAM2, откуда потом попадают для дальнейшей обработки в [OAM FIFO](fifo.md).
 
@@ -13,23 +13,17 @@
 - Компаратор, который по сути является маленьким АЛУ и выполняет операцию знакового вычитания (A - B)
 - Схему управления сравнением, которая и реализует всю логику работы сравнения спрайтов
 
-Схемы для управления счётчиками разделены предварительно, возможно есть смысл их объединить в одну схему.
-
 ## Счётчик индекса OAM
 
 ![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
-
-## Управление счётчиком индекса OAM
-
-![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
 
 ## Счётчик индекса Temp OAM (OAM2)
 
 ![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
 
-![ppu_logisim_oam2_counter](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam2_counter.jpg)
+## Управление счётчиками
 
-## Общее управление счётчиками
+![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)
 
 ![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)
 
@@ -48,7 +42,3 @@
 ## Схема управления сравнением
 
 ![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
-
-## Схема Logisim
-
-![ppu_logisim_oam_eval](/BreakingNESWiki/imgstore/ppu/ppu_logisim_oam_eval.jpg)
