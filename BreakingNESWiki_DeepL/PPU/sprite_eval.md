@@ -66,3 +66,5 @@ This special `H0''` signal (but essentially a variation of the regular H0'' sign
 ![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
 
 ![OAM_EvalFSM](/BreakingNESWiki/imgstore/ppu/OAM_EvalFSM.png)
+
+![PosedgeDFFE](/BreakingNESWiki/imgstore/ppu/PosedgeDFFE.png)
