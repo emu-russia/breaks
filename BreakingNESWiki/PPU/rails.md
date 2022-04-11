@@ -64,7 +64,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |:zap:E/EV|FSM|Sprite Logic|"End Sprite Evaluation"|
 |:zap:S/EV|FSM|Sprite Logic|"Start Sprite Evaluation"|
 |/H1'|HCounter|All|Сигнал H1 задержанный одним DLatch (в инверсной логике)|
-|/H2'|HCounter|All|Сигнал H1 задержанный одним DLatch (в инверсной логике)|
+|/H2'|HCounter|All|Сигнал H2 задержанный одним DLatch (в инверсной логике)|
 |:zap:/FO|FSM|Data Reader|"Fetch Output Enable"|
 |:zap:F/AT|FSM|Data Reader|"Fetch Attribute Table"|
 |:zap:F/NT|FSM|Data Reader|"Fetch Name Table"|

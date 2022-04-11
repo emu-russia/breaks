@@ -64,7 +64,7 @@ The most important control signals of the PPU [FSM](hv_fsm.md) are marked with a
 |:zap:E/EV|FSM|Sprite Logic|"End Sprite Evaluation"|
 |:zap:S/EV|FSM|Sprite Logic|"Start Sprite Evaluation"|
 |/H1'|HCounter|All|H1 signal delayed by one DLatch (in inverse logic)|
-|/H2'|HCounter|All|H1 signal delayed by one DLatch (in inverse logic)|
+|/H2'|HCounter|All|H2 signal delayed by one DLatch (in inverse logic)|
 |:zap:/FO|FSM|Data Reader|"Fetch Output Enable"|
 |:zap:F/AT|FSM|Data Reader|"Fetch Attribute Table"|
 |:zap:F/NT|FSM|Data Reader|"Fetch Name Table"|
