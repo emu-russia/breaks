@@ -4,6 +4,8 @@ This section contains links from where you can download datasets - photographs o
 
 ## NES/Famicom
 
+- 6502: https://drive.google.com/drive/folders/17EJCpvw_i7w55upLx1uWYqEYnycqkMSk?usp=sharing
+
 - RP2A03G: http://www.visual6502.org/images/pages/Nintendo_RP2A_die_shots.html
 
 - RP2A03G (mirror): https://drive.google.com/drive/folders/10FeSOP4EUiLFMSUXYdi00ia0c3cAPzQL?usp=sharing
