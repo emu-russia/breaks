@@ -6,7 +6,7 @@ This section contains links from where you can download datasets - photographs o
 
 - RP2A03G: http://www.visual6502.org/images/pages/Nintendo_RP2A_die_shots.html
 
-- RP2A03G (mirror): https://drive.google.com/drive/folders/1BIeOeVp-6DIhTpSi0MYKpEoBFwMdq7o1?usp=sharing
+- RP2A03G (mirror): https://drive.google.com/drive/folders/10FeSOP4EUiLFMSUXYdi00ia0c3cAPzQL?usp=sharing
 
 - RP2C02G-0: http://www.visual6502.org/images/pages/Nintendo_RP2C02_die_shots.html
 
@@ -14,7 +14,7 @@ This section contains links from where you can download datasets - photographs o
 
 - RP2C04-0003: https://siliconpr0n.org/map/nintendo/rp2c04-0003/
 
-- RP2C02G (another rev): https://drive.google.com/drive/folders/1yw8GKNgdgi2uqfpIDrakjfIUKkS-9818?usp=sharing
+- RP2C02G (another rev): https://drive.google.com/drive/folders/1aaNk9dVwvTbCpsACfet-5hX65iNZr6AO?usp=sharing
 
 - RP2A07A: https://drive.google.com/drive/folders/17tl0-CY6gGMZEBJe4ZxIZ_b5cpO6CX0H?usp=sharing
 
