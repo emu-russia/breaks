@@ -48,18 +48,18 @@
 |PCM|DPCM Control|Sample Buffer|Загрузить новое значение сэмпла в Sample Buffer. Сигнал активен когда PHI1 = 0 и адресная шина захвачена (имитация чтения CPU)|
 |LOOP|$4010\[7\]|DPCM Control|1: Зацикленное воспроизведение DPCM|
 |/IRQEN|$4010\[6\]|DPCM Control|0: Разрешить прерывание от DPCM|
-|DOUT|DPCM Output|DPCM Control|Счётчик DPCM Out закончил пересчет|
-|NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter закончил пересчет|
-|SOUT|Sample Counter|DPCM Control|Sample Counter закончил пересчет|
-|FLOAD|LFSR|DPCM Control|Frequency LFSR закончил пересчет и перезагрузил сам себя|
+|DOUT|DPCM Output|DPCM Control|Счётчик DPCM Out закончил пересчёт|
+|NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter закончил пересчёт|
+|SOUT|Sample Counter|DPCM Control|Sample Counter закончил пересчёт|
+|FLOAD|LFSR|DPCM Control|Frequency LFSR закончил пересчёт и перезагрузил сам себя|
 |/BOUT|Sample Buffer|DPCM Output|Очередное значение бита, вытолкнутое из регистра сдвига Sample Buffer (инвертированное значение)|
 
 Большая часть сигналов управления имеют однотипную природу:
 - xLOAD: Загрузить новое значение
 - xSTEP: Выполнить какое-то действие
-- xOUT: Счётчик закончил пересчет
+- xOUT: Счётчик закончил пересчёт
 
-Исключение составляет команда FLOAD: Frequency LFSR перезагружает сам себя после пересчета, но при этом одновременно сигнализирует в основной блок управления.
+Исключение составляет команда FLOAD: Frequency LFSR перезагружает сам себя после пересчёта, но при этом одновременно сигнализирует в основной блок управления.
 
 ## Другой /ACLK
 

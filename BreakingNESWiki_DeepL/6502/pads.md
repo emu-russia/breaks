@@ -24,9 +24,9 @@ The study of any integrated circuit begins with the pinout.
 |D0-D7| 6502 <=> |Data bus (bidirectional)|
 |N.C.| -- |Not connected|
 
-## Vcc/Vss
+## VDD/VSS
 
-From the official datasheet we know that the operating range of Vcc = +5.0 volts +/- 5%.
+From the official datasheet we know that the operating range of VDD = +5.0 volts +/- 5%.
 
 ## Clock Generator
 
