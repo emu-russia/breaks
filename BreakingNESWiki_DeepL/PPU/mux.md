@@ -45,7 +45,7 @@ Signals:
 |EXT0-3 IN|Input color from EXT pins|
 |THO0-4|Input color from TH counter|
 |TH/MUX|Prioritizes the direct color from TH over all other colors|
-|/ZPRIO|Prioritizes the sprite color over the background color|
+|/ZPRIO|Prioritizes the sprite color over the background color (0: sprites on top)|
 |/EXT0-3 OUT|The output color for EXT contacts|
 |PAL0-4|Output color for palette indexing|
 
