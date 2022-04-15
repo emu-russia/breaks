@@ -49,6 +49,12 @@ ROW outputs for OAM Buffer bits 2-4:
 
 The circuit is a 1-of-n decoder.
 
+## OAM Buffer Control
+
+The circuit is used to set the operating modes of the OB and to control the transfer of values between it and the OAM.
+
+![oam_buffer_control](/BreakingNESWiki/imgstore/ppu/oam_buffer_control.jpg)
+
 ## OAM Buffer (OB)
 
 The OAM Buffer is used as a transfer point to store a byte that needs to be written to the OAM or a byte that has been read from the OAM for consumers.
@@ -62,9 +68,3 @@ The circuit consists of 8 identical circuits for each bit:
 The data from OB goes through a small Readback circuit:
 
 ![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)
-
-## OAM Buffer Control
-
-The circuit is used to set the operating modes of the OB and to control the transfer of values between it and the OAM.
-
-![oam_buffer_control](/BreakingNESWiki/imgstore/ppu/oam_buffer_control.jpg)
