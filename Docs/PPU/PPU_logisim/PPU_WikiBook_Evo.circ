@@ -11352,6 +11352,14 @@
       <a name="select" val="5"/>
       <a name="selloc" val="tr"/>
     </comp>
+    <comp lib="8" loc="(670,306)" name="Text">
+      <a name="font" val="SansSerif bold 11"/>
+      <a name="text" val="Unused for OB[2-4]"/>
+    </comp>
+    <comp lib="8" loc="(670,546)" name="Text">
+      <a name="font" val="SansSerif bold 11"/>
+      <a name="text" val="Unused for OB[2-4]"/>
+    </comp>
     <wire from="(100,490)" to="(110,490)"/>
     <wire from="(130,300)" to="(130,330)"/>
     <wire from="(130,300)" to="(240,300)"/>
