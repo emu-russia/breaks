@@ -10,8 +10,8 @@ Sprite memory (OAM, Object RAM) takes up almost a quarter of the PPU's surface, 
 
 OAM circuits:
 - Memory Cell Array (2112 cells)
-- Column Decoder
 - Row Decoder
+- Column Decoder
 - OAM Buffer (OB)
 - OAM Buffer control circuit
 
@@ -29,23 +29,23 @@ The OAM memory degradation effect is called "OAM Corruption" and it is widely kn
 
 TBD: Calculate or measure cell degradation timings.
 
-## Column Decoder
+## Row Decoder
 
-![oam_cas](/BreakingNESWiki/imgstore/ppu/oam_cas.jpg)
+![oam_row_decoder](/BreakingNESWiki/imgstore/ppu/oam_row_decoder.png)
 
 The circuit is a 1-of-n decoder.
 
-COL outputs for OAM Buffer bits 0, 1, 5-7:
+ROW outputs for OAM Buffer bits 0, 1, 5-7:
 
-![oam_col_outputs1](/BreakingNESWiki/imgstore/ppu/oam_col_outputs1.jpg)
+![oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/oam_row_outputs1.png)
 
-COL outputs for OAM Buffer bits 2-4:
+ROW outputs for OAM Buffer bits 2-4:
 
-![oam_col_outputs2](/BreakingNESWiki/imgstore/ppu/oam_col_outputs2.jpg)
+![oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/oam_row_outputs2.png)
 
-## Row Decoder
+## Column Decoder
 
-![oam_ras](/BreakingNESWiki/imgstore/ppu/oam_ras.jpg)
+![oam_col_decoder](/BreakingNESWiki/imgstore/ppu/oam_col_decoder.png)
 
 The circuit is a 1-of-n decoder.
 

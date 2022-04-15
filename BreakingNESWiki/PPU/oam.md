@@ -9,9 +9,9 @@
 <img src="/BreakingNESWiki/imgstore/ppu/ppu_oam_closeup.jpg" width="400px">
 
 Схемы OAM:
-- Массив ячеек памяти (2112 ячейка)
-- Декодер колонки
+- Массив ячеек памяти (2112 ячеек)
 - Декодер ряда
+- Декодер колонки
 - OAM Buffer (OB)
 - Схема контроля OAM Buffer
 
@@ -31,23 +31,23 @@ TBD: Тут нужно написать как уложены ячейки и к
 
 TBD: Рассчитать или измерить тайминги деградации ячеек.
 
-## Декодер колонки
+## Декодер ряда
 
-![oam_cas](/BreakingNESWiki/imgstore/ppu/oam_cas.jpg)
+![oam_row_decoder](/BreakingNESWiki/imgstore/ppu/oam_row_decoder.png)
 
 Схема представляет собой одноединичный декодер (1-из-n).
 
-Выходы COL для разрядов OAM Buffer 0, 1, 5-7:
+Выходы ROW для разрядов OAM Buffer 0, 1, 5-7:
 
-![oam_col_outputs1](/BreakingNESWiki/imgstore/ppu/oam_col_outputs1.jpg)
+![oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/oam_row_outputs1.png)
 
-Выходы COL для разрядов OAM Buffer 2-4:
+Выходы ROW для разрядов OAM Buffer 2-4:
 
-![oam_col_outputs2](/BreakingNESWiki/imgstore/ppu/oam_col_outputs2.jpg)
+![oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/oam_row_outputs2.png)
 
-## Декодер ряда
+## Декодер колонки
 
-![oam_ras](/BreakingNESWiki/imgstore/ppu/oam_ras.jpg)
+![oam_col_decoder](/BreakingNESWiki/imgstore/ppu/oam_col_decoder.png)
 
 Схема представляет собой одноединичный декодер (1-из-n).
 
