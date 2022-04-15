@@ -9,9 +9,9 @@
 <img src="/BreakingNESWiki/imgstore/ppu/ppu_oam_closeup.jpg" width="400px">
 
 Схемы OAM:
-- Массив ячеек памяти (2112 ячейка)
-- Декодер колонки
+- Массив ячеек памяти (2112 ячеек)
 - Декодер ряда
+- Декодер колонки
 - OAM Buffer (OB)
 - Схема контроля OAM Buffer
 
@@ -31,25 +31,31 @@ TBD: Тут нужно написать как уложены ячейки и к
 
 TBD: Рассчитать или измерить тайминги деградации ячеек.
 
-## Декодер колонки
-
-![oam_cas](/BreakingNESWiki/imgstore/ppu/oam_cas.jpg)
-
-Схема представляет собой одноединичный декодер (1-из-n).
-
-Выходы COL для разрядов OAM Buffer 0, 1, 5-7:
-
-![oam_col_outputs1](/BreakingNESWiki/imgstore/ppu/oam_col_outputs1.jpg)
-
-Выходы COL для разрядов OAM Buffer 2-4:
-
-![oam_col_outputs2](/BreakingNESWiki/imgstore/ppu/oam_col_outputs2.jpg)
-
 ## Декодер ряда
 
-![oam_ras](/BreakingNESWiki/imgstore/ppu/oam_ras.jpg)
+![oam_row_decoder](/BreakingNESWiki/imgstore/ppu/oam_row_decoder.png)
 
 Схема представляет собой одноединичный декодер (1-из-n).
+
+Выходы ROW для разрядов OAM Buffer 0, 1, 5-7:
+
+![oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/oam_row_outputs1.png)
+
+Выходы ROW для разрядов OAM Buffer 2-4:
+
+![oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/oam_row_outputs2.png)
+
+## Декодер колонки
+
+![oam_col_decoder](/BreakingNESWiki/imgstore/ppu/oam_col_decoder.png)
+
+Схема представляет собой одноединичный декодер (1-из-n).
+
+## Схема управления OAM Buffer
+
+Схема используется для задания режимов работы OB и управлением передачи значений между ним и OAM.
+
+![oam_buffer_control](/BreakingNESWiki/imgstore/ppu/oam_buffer_control.jpg)
 
 ## OAM Buffer (OB)
 
@@ -64,9 +70,3 @@ OAM Buffer используется как перевалочный пункт �
 Данные с OB проходят через небольшую схему Readback:
 
 ![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)
-
-## Схема управления OAM Buffer
-
-Схема используется для задания режимов работы OB и управлением передачи значений между ним и OAM.
-
-![oam_buffer_control](/BreakingNESWiki/imgstore/ppu/oam_buffer_control.jpg)

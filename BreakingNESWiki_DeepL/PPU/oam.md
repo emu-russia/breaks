@@ -10,8 +10,8 @@ Sprite memory (OAM, Object RAM) takes up almost a quarter of the PPU's surface, 
 
 OAM circuits:
 - Memory Cell Array (2112 cells)
-- Column Decoder
 - Row Decoder
+- Column Decoder
 - OAM Buffer (OB)
 - OAM Buffer control circuit
 
@@ -29,25 +29,31 @@ The OAM memory degradation effect is called "OAM Corruption" and it is widely kn
 
 TBD: Calculate or measure cell degradation timings.
 
-## Column Decoder
-
-![oam_cas](/BreakingNESWiki/imgstore/ppu/oam_cas.jpg)
-
-The circuit is a 1-of-n decoder.
-
-COL outputs for OAM Buffer bits 0, 1, 5-7:
-
-![oam_col_outputs1](/BreakingNESWiki/imgstore/ppu/oam_col_outputs1.jpg)
-
-COL outputs for OAM Buffer bits 2-4:
-
-![oam_col_outputs2](/BreakingNESWiki/imgstore/ppu/oam_col_outputs2.jpg)
-
 ## Row Decoder
 
-![oam_ras](/BreakingNESWiki/imgstore/ppu/oam_ras.jpg)
+![oam_row_decoder](/BreakingNESWiki/imgstore/ppu/oam_row_decoder.png)
 
 The circuit is a 1-of-n decoder.
+
+ROW outputs for OAM Buffer bits 0, 1, 5-7:
+
+![oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/oam_row_outputs1.png)
+
+ROW outputs for OAM Buffer bits 2-4:
+
+![oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/oam_row_outputs2.png)
+
+## Column Decoder
+
+![oam_col_decoder](/BreakingNESWiki/imgstore/ppu/oam_col_decoder.png)
+
+The circuit is a 1-of-n decoder.
+
+## OAM Buffer Control
+
+The circuit is used to set the operating modes of the OB and to control the transfer of values between it and the OAM.
+
+![oam_buffer_control](/BreakingNESWiki/imgstore/ppu/oam_buffer_control.jpg)
 
 ## OAM Buffer (OB)
 
@@ -62,9 +68,3 @@ The circuit consists of 8 identical circuits for each bit:
 The data from OB goes through a small Readback circuit:
 
 ![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)
-
-## OAM Buffer Control
-
-The circuit is used to set the operating modes of the OB and to control the transfer of values between it and the OAM.
-
-![oam_buffer_control](/BreakingNESWiki/imgstore/ppu/oam_buffer_control.jpg)
