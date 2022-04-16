@@ -17,7 +17,10 @@ OAM circuits:
 
 ## OAM Layout
 
-TBD: This is where you need to write how the cells are stacked and how the memory is addressed.
+By convention, groups of cells that are addressed by the lowest bits of the address will be considered "rows", and groups of cells that are addressed by the highest bits will be considered "columns".
+
+- /OAM0-2: Define a row (with a small feature, see below)
+- /OAM3-7: Define the column
 
 ## Memory Cell
 
@@ -26,6 +29,8 @@ TBD: This is where you need to write how the cells are stacked and how the memor
 The cell is a typical 4T cell, but with one exception - the transistors of the cell where the value is stored are not connected to Vdd, so the value on the cell is constantly degrading because without a pull-up it is essentially stored on the gate of the transistors.
 
 The OAM memory degradation effect is called "OAM Corruption" and it is widely known. To combat this effect, programs for the NES contain an OAM cache in regular CPU memory and every VBlank copies this cache to OAM using the APU's sprite DMA.
+
+During PCLK a "precharge" is made.
 
 TBD: Calculate or measure cell degradation timings.
 
