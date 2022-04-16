@@ -6,14 +6,14 @@
 
 Комбинированное изображение топологии ячейки памяти:
 
-<img src="/BreakingNESWiki/imgstore/ppu/ppu_oam_closeup.jpg" width="400px">
+![ppu_oam_closeup](/BreakingNESWiki/imgstore/ppu/ppu_oam_closeup.jpg)
 
 Схемы OAM:
 - Массив ячеек памяти (2112 ячеек)
 - Декодер ряда
 - Декодер колонки
-- OAM Buffer (OB)
 - Схема контроля OAM Buffer
+- OAM Buffer (OB)
 
 ## Организация OAM
 
