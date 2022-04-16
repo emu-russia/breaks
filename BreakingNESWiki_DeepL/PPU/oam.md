@@ -6,14 +6,14 @@ Sprite memory (OAM, Object Attribute Memory) takes up almost a quarter of the PP
 
 Сombined image of the memory cell topology:
 
-<img src="/BreakingNESWiki/imgstore/ppu/ppu_oam_closeup.jpg" width="400px">
+![ppu_oam_closeup](/BreakingNESWiki/imgstore/ppu/ppu_oam_closeup.jpg)
 
 OAM circuits:
 - Memory Cell Array (2112 cells)
 - Row Decoder
 - Column Decoder
-- OAM Buffer (OB)
 - OAM Buffer control circuit
+- OAM Buffer (OB)
 
 ## OAM Layout
 
