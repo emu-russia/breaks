@@ -27,6 +27,8 @@ The cell is a typical 4T cell, but with one exception - the transistors of the c
 
 The OAM memory degradation effect is called "OAM Corruption" and it is widely known. To combat this effect, programs for the NES contain an OAM cache in regular CPU memory and every VBlank copies this cache to OAM using the APU's sprite DMA.
 
+During PCLK a "precharge" is made.
+
 TBD: Calculate or measure cell degradation timings.
 
 ## Row Decoder
