@@ -17,7 +17,10 @@ OAM circuits:
 
 ## OAM Layout
 
-TBD: This is where you need to write how the cells are stacked and how the memory is addressed.
+By convention, groups of cells that are addressed by the lowest bits of the address will be considered "rows", and groups of cells that are addressed by the highest bits will be considered "columns".
+
+- /OAM0-2: Define a row (with a small feature, see below)
+- /OAM3-7: Define the column
 
 ## Memory Cell
 
