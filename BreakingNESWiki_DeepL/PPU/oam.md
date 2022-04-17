@@ -93,7 +93,3 @@ The circuit consists of 8 identical circuits for each bit:
 ![oam_buffer_bit](/BreakingNESWiki/imgstore/ppu/oam_buffer_bit.jpg)
 
 (The picture shows the circuit for storing the OB0 bit).
-
-The data from OB goes through a small Readback circuit:
-
-![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)

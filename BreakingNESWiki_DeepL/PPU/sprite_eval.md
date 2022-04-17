@@ -126,6 +126,10 @@ The even and odd bits of the comparator are combined into a single circuit, to c
 
 ![OAM_Cmp](/BreakingNESWiki/imgstore/ppu/OAM_Cmp.png)
 
+The opening transistors for the input latches are next to the OAM Buffer:
+
+![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)
+
 ## Comparison Control
 
 ![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)

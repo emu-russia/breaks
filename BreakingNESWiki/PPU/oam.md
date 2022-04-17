@@ -95,7 +95,3 @@ OAM Buffer используется как перевалочный пункт �
 ![oam_buffer_bit](/BreakingNESWiki/imgstore/ppu/oam_buffer_bit.jpg)
 
 (На картинке представлена схема для хранения разряда OB0).
-
-Данные с OB проходят через небольшую схему Readback:
-
-![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)
