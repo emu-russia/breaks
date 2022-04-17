@@ -15,6 +15,8 @@ OAM circuits:
 - OAM Buffer control circuit
 - OAM Buffer (OB)
 
+![OAM_All](/BreakingNESWiki/imgstore/ppu/OAM_All.png)
+
 ## OAM Layout
 
 By convention, groups of cells that are addressed by the lowest bits of the address will be considered "rows", and groups of cells that are addressed by the highest bits will be considered "columns".
@@ -33,6 +35,10 @@ The OAM memory degradation effect is called "OAM Corruption" and it is widely kn
 During PCLK a "precharge" is made.
 
 TBD: Calculate or measure cell degradation timings.
+
+![OAM](/BreakingNESWiki/imgstore/ppu/OAM.png)
+
+![OAM_Lane](/BreakingNESWiki/imgstore/ppu/OAM_Lane.png)
 
 ## Row Decoder
 
@@ -78,11 +84,19 @@ As you can see ROW2 and ROW6 fall just on the attribute byte of the sprite, whic
 
 The circuit is a 1-of-n decoder.
 
+## Address Decoder
+
+General schematic of the row/column decoder:
+
+![OAM_AddressDecoder](/BreakingNESWiki/imgstore/ppu/OAM_AddressDecoder.png)
+
 ## OAM Buffer Control
 
 The circuit is used to set the operating modes of the OB and to control the transfer of values between it and the OAM.
 
 ![oam_buffer_control](/BreakingNESWiki/imgstore/ppu/oam_buffer_control.jpg)
+
+![OAM_Control](/BreakingNESWiki/imgstore/ppu/OAM_Control.png)
 
 ## OAM Buffer (OB)
 
@@ -94,6 +108,6 @@ The circuit consists of 8 identical circuits for each bit:
 
 (The picture shows the circuit for storing the OB0 bit).
 
-The data from OB goes through a small Readback circuit:
+![OAM_Buffer](/BreakingNESWiki/imgstore/ppu/OAM_Buffer.png)
 
-![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)
+![OAM_BufferBit](/BreakingNESWiki/imgstore/ppu/OAM_BufferBit.png)
