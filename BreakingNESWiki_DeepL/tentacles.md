@@ -61,6 +61,7 @@ Correction history:
 |FVO0-2|/FVO0-2|
 |CB/DB|#CB/DB (inverse polarity)|
 |DB/CB|#DB/CB (inverse polarity)|
+|DB/OB|OB/OAM|
 
 ## APU
 
