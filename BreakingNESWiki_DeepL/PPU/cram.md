@@ -44,6 +44,8 @@ The Logisim schematic is a very approximation of the original one, because Logis
 
 The outputs from the CB bits do not go directly to the phase generator, but go through a D-Latch chain. The D-Latch chains are unequally spaced for each CB bit.
 
+Delays are necessary due to the fact that logically it is not possible to process the current pixel and simultaneously display it as a signal. Therefore, the video generator essentially outputs pixels "from the past".
+
 For CB bits 4-5 (luminance, LL0# and LL1# signals):
 
 ![cbout_ll](/BreakingNESWiki/imgstore/ppu/cbout_ll.jpg)

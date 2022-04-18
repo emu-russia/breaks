@@ -89,7 +89,7 @@ The H0-H5 counter bits are used in other PPU components.
 
 A signal name with one dash (e.g. `/H2'`) means that the value is delayed by one DLatch. A signal name with two dashes (e.g. `H0''`) means that the value is delayed by two DLatch.
 
-Delayed value output is used in PPU in many places (e.g. Color Buffer outputs). This phenomenon has not yet found an explanation. Perhaps it is related to the latency of the rest of the PPU parts.
+The reason the H-counter values are delayed is because the counter is clocked by the same signal (PCLK) as the other circuits. If the current H values were not latched, the whole PPU circuit would go into autogeneration.
 
 |Transistor Circuit|Logic|
 |---|---|
