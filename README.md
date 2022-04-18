@@ -12,6 +12,6 @@ Project goals:
 - Convert transistor circuits to more high-level logic gates
 - Simulate circuits and write logic gate-level emulator
 
-## Why Breaks?
+## Why Breaks? 
 
 We're breaking chips here :)
