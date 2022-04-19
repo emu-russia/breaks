@@ -17,6 +17,34 @@ OAM circuits:
 
 ![OAM_All](/BreakingNESWiki/imgstore/ppu/OAM_All.png)
 
+Signals table:
+
+|Signal/group|Description|
+|---|---|
+|OAM Address||
+|/OAM0-7|Address of the main OAM (in inverse logic)|
+|OAM8|1: Use Temp OAM|
+|FSM||
+|BLNK|Active when PPU rendering is disabled (by `BLACK` signal) or during VBlank|
+|I/OAM2|"Init OAM2". Initialize an additional (temp) OAM|
+|/VIS|"Not Visible". The invisible part of the signal (used in sprite logic)|
+|From the sprite comparison||
+|SPR_OV|Sprite Overflow|
+|OAMCTR2|OAM Buffer Control|
+|CPU I/F||
+|/R4|0: Read $2004|
+|/W4|0: Write $2004|
+|/DBE|0: "Data Bus Enable", enable CPU interface|
+|Internal signals||
+|ROW0-7|Defines the row to access the main OAM|
+|ROWZ|Defines the row to access the Temp OAM|
+|COL0-31|Determines the column number. During PCLK all COL outputs are 0.|
+|OB/OAM|1: Write the current value of OB to the output latch|
+|/WE|0: write to the selected OAM cell the value from the output latch|
+|Output signals||
+|OFETCH|"OAM Fetch"|
+|OB0-7|Current OAM Buffer value (from OB_FF)|
+
 ## OAM Layout
 
 By convention, groups of cells that are addressed by the lowest bits of the address will be considered "rows", and groups of cells that are addressed by the highest bits will be considered "columns".
@@ -79,6 +107,8 @@ As you can see ROW2 and ROW6 fall just on the attribute byte of the sprite, whic
 ![oam_col_decoder](/BreakingNESWiki/imgstore/ppu/oam_col_decoder.png)
 
 The circuit is a 1-of-n decoder.
+
+During PCLK = 1 all COL outputs are 0, i.e. access to all OAM cells is closed.
 
 ## Address Decoder
 
