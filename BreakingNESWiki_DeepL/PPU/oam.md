@@ -137,3 +137,13 @@ The circuit consists of 8 identical circuits for each bit:
 ![OAM_Buffer](/BreakingNESWiki/imgstore/ppu/OAM_Buffer.png)
 
 ![OAM_BufferBit](/BreakingNESWiki/imgstore/ppu/OAM_BufferBit.png)
+
+The OB bit circuit is very difficult to understand even for experienced circuit designers, because it is very confusing, besides it deals with Tri-State logic (in Verilog terms - `inout`), which is related to the access to OAM Cells.
+
+Here are the distinctive features of the OB:
+- The circuit contains 2 FFs and 2 latches
+- `Input_FF` is used to load a value from the OAM Cell and is needed to "secure" the rest of the circuit from `z` values that may be on the cell. During PCLK = 1 this FF is cleared (simultaneously with OAM Precharge)
+- `OB_FF` stores the last current value of the OAM Buffer. From these FFs, the OB0-7 signal values are output to the outside. FF is opened during PCLK = 0.
+- The `R4 latch` is used for CPU I/F. It stores the value to read register $2004. The latch opens during PCLK = 1.
+- The output latch (`out_latch`) is used to write a new value to the OAM Cell. The new value can come from OB_FF (`OB/OAM` = 1) or from the data bus (`BLNK` = 1). The `OB/OAM` and `BLNK` signals never take the value `1` at the same time, but can take the value `0` at the same time (that is, when the output latch is closed).
+- The value from the output latch is stored in the selected OAM Cell only when allowed by the `/WE` = 0 signal.
