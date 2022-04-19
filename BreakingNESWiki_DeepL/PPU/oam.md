@@ -108,6 +108,22 @@ As you can see ROW2 and ROW6 fall just on the attribute byte of the sprite, whic
 
 The circuit is a 1-of-n decoder.
 
+The decoder is designed so that the columns are numbered from right to left (0-31). But due to the fact that in NTSC PPU the OAM address is given in inverted form (/OAM0-7) - logical numbering of columns is mixed up. The result is as follows:
+
+|Column number (topological)|NTSC PPU column number (logical)|
+|---|---|
+|31|111 11|
+|30|011 11|
+|29|101 11|
+|28|001 11|
+|27|110 11|
+|26|010 11|
+|25|100 11|
+|24|000 11|
+|23-16|XXX 01|
+|15-8|XXX 10|
+|7-0|XXX 00|
+
 During PCLK = 1 all COL outputs are 0, i.e. access to all OAM cells is closed.
 
 ## Address Decoder
