@@ -126,6 +126,10 @@
 
 ![OAM_Cmp](/BreakingNESWiki/imgstore/ppu/OAM_Cmp.png)
 
+Открывающие транзисторы для входных защёлок находятся рядом с OAM Buffer:
+
+![oam_buffer_readback](/BreakingNESWiki/imgstore/ppu/oam_buffer_readback.jpg)
+
 ## Схема управления сравнением
 
 ![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
