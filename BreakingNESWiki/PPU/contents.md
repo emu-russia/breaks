@@ -20,3 +20,5 @@
   - [Схема получения цвета бэкграунда](bgcol.md)
 - [Контроллер VRAM](vram_ctrl.md)
 - [Межсоединения](rails.md)
+- [Отличия PAL PPU](pal.md)
+- [Отличия RGB PPU](rgb.md)

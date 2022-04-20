@@ -20,3 +20,5 @@
   - [Background Color](bgcol.md)
 - [VRAM Controller](vram_ctrl.md)
 - [Interconnections](rails.md)
+- [PAL PPU Differences](pal.md)
+- [RGB PPU Differences](rgb.md)
