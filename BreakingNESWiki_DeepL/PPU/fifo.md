@@ -10,6 +10,8 @@ Note on the term "FIFO": in fact, this component is not explicitly called that a
 
 ![FIFO_All](/BreakingNESWiki/imgstore/ppu/FIFO_All.png)
 
+(open the picture in a new tab for a full view)
+
 ## How it works
 
 FIFO consists of 8 "lanes". Each lane consists of 3 parts: the pixel down-counter, the sprite attributes and the paired shift register.
@@ -73,6 +75,8 @@ The circuit shown is for sprite #0. For all others (1-7) you must replace the si
 
 ![FIFO_PairedSR](/BreakingNESWiki/imgstore/ppu/FIFO_PairedSR.png)
 
+(open the picture in a new tab for a full view)
+
 ## Sprite Priority
 
 The priority circuit is in "sparse" layout. The individual pieces of this circuit are shown below.
@@ -91,6 +95,8 @@ The circuit is a priority encoder.
 The result of the circuit operation (output) is the `/SPR0HIT` signal, which goes to the corresponding Sprite 0 Hit circuit (see [multiplexer](mux.md))
 
 ![FIFO_Priority](/BreakingNESWiki/imgstore/ppu/FIFO_Priority.png)
+
+(open the picture in a new tab for a full view)
 
 ## H. Inversion
 
