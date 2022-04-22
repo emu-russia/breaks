@@ -1,6 +1,6 @@
-# Генератор адреса PAR
+# Регистр адреса PAR
 
-![ppu_locator_pargen](/BreakingNESWiki/imgstore/ppu/ppu_locator_pargen.jpg)
+![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
 
 ## Счётчики PAR
 
