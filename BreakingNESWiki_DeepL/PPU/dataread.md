@@ -29,8 +29,12 @@ The circuit takes up the whole upper part and forms the tile (`Pattern`) address
 
 ![PatGen](/BreakingNESWiki/imgstore/ppu/PatGen.png)
 
+Small circuits to control the loading of values into the output latches. The main emphasis is on selecting the mode of operation for sprites/backgrounds (signal `PAR/O` - "PAR for Objects").
+
 |![PatControl](/BreakingNESWiki/imgstore/ppu/PatControl.png)|![PatV_Inversion](/BreakingNESWiki/imgstore/ppu/PatV_Inversion.png)|
 |---|---|
+
+Bit circuits to form the output value `/PAD0-12` in slight variations:
 
 |![PatBit](/BreakingNESWiki/imgstore/ppu/PatBit.png)|![PatBit4](/BreakingNESWiki/imgstore/ppu/PatBit4.png)|![PatBitInv](/BreakingNESWiki/imgstore/ppu/PatBitInv.png)|
 |---|---|---|

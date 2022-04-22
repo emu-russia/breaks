@@ -29,8 +29,12 @@
 
 ![PatGen](/BreakingNESWiki/imgstore/ppu/PatGen.png)
 
+Небольшие схемы для контроля загрузки значений в выходные защёлки. Основной акцент делается на выбор режима работы для спрайтов/бэкграунда (сигнал `PAR/O` - "PAR for Objects").
+
 |![PatControl](/BreakingNESWiki/imgstore/ppu/PatControl.png)|![PatV_Inversion](/BreakingNESWiki/imgstore/ppu/PatV_Inversion.png)|
 |---|---|
+
+Схемы разрядов для формирования выходного значения `/PAD0-12` в незначительных вариациях:
 
 |![PatBit](/BreakingNESWiki/imgstore/ppu/PatBit.png)|![PatBit4](/BreakingNESWiki/imgstore/ppu/PatBit4.png)|![PatBitInv](/BreakingNESWiki/imgstore/ppu/PatBitInv.png)|
 |---|---|---|
