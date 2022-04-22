@@ -16,7 +16,7 @@
 - [OAM FIFO](fifo.md)
 - [Data Fetcher](dataread.md)
   - [Scrolling Registers](scroll_regs.md)
-  - [Picture Address Generator](pargen.md)
+  - [Picture Address Register](par.md)
   - [Background Color](bgcol.md)
 - [VRAM Controller](vram_ctrl.md)
 - [Interconnections](rails.md)

@@ -47,5 +47,5 @@ Bit circuits to form the output value `/PAD0-12` in slight variations:
 The other parts of the schematic can be found in the corresponding sections:
 
 - [Scrolling Registers](scroll_regs.md)
-- [Picture Address Generator](pargen.md)
+- [Picture Address Register](par.md)
 - [Background Color](bgcol.md)
