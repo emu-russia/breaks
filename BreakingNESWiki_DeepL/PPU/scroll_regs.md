@@ -35,11 +35,13 @@ FF circuit used to store values:
 
 ![SCC_FineV](/BreakingNESWiki/imgstore/ppu/SCC_FineV.png)
 
-|W5/2|W6/1|FH|
+|W5/2|W6/1|FV|
 |---|---|---|
 |DB0|DB4|0|
 |DB1|DB5|1|
 |DB2|`0`|2|
+
+Writing `0` to FV2 instead of $2006\[6\] is because the value for the FV counter is forcibly limited to the range 0-3, because otherwise its value would be outside the PPU address space.
 
 ## Name Table Select
 
