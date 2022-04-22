@@ -16384,7 +16384,8 @@
     <a name="circuit" val="StillPictureGen"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
-    <comp loc="(630,220)" name="PatternAddressGen"/>
+    <comp loc="(360,80)" name="PatternAddressGen"/>
+    <comp loc="(710,140)" name="ScrollRegs"/>
   </circuit>
   <circuit name="PatternControl">
     <a name="appearance" val="evolution"/>
@@ -18400,6 +18401,20 @@
     <a name="circuit" val="ScrollRegs"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(1000,630)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="TVx"/>
+      <a name="output" val="true"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="0" loc="(1000,680)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="THx"/>
+      <a name="output" val="true"/>
+      <a name="width" val="5"/>
+    </comp>
     <comp lib="0" loc="(140,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="n_W6_1"/>
@@ -18608,20 +18623,6 @@
       <a name="label" val="RC"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(960,270)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="TVx"/>
-      <a name="output" val="true"/>
-      <a name="width" val="5"/>
-    </comp>
-    <comp lib="0" loc="(960,470)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="THx"/>
-      <a name="output" val="true"/>
-      <a name="width" val="5"/>
-    </comp>
     <comp lib="1" loc="(290,90)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
@@ -18701,7 +18702,11 @@
     <wire from="(700,490)" to="(730,490)"/>
     <wire from="(700,510)" to="(730,510)"/>
     <wire from="(700,530)" to="(730,530)"/>
-    <wire from="(950,270)" to="(960,270)"/>
-    <wire from="(950,470)" to="(960,470)"/>
+    <wire from="(950,270)" to="(990,270)"/>
+    <wire from="(950,470)" to="(970,470)"/>
+    <wire from="(970,470)" to="(970,680)"/>
+    <wire from="(970,680)" to="(1000,680)"/>
+    <wire from="(990,270)" to="(990,630)"/>
+    <wire from="(990,630)" to="(1000,630)"/>
   </circuit>
 </project>
