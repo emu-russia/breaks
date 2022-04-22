@@ -36,11 +36,11 @@
 
 Схемы разрядов для формирования выходного значения `/PAD0-12` в незначительных вариациях:
 
-||
-|---|
-|![PatBit](/BreakingNESWiki/imgstore/ppu/PatBit.png)|
-|![PatBit4](/BreakingNESWiki/imgstore/ppu/PatBit4.png)|
-|![PatBitInv](/BreakingNESWiki/imgstore/ppu/PatBitInv.png)|
+![PatBit](/BreakingNESWiki/imgstore/ppu/PatBit.png)
+
+![PatBit4](/BreakingNESWiki/imgstore/ppu/PatBit4.png)
+
+![PatBitInv](/BreakingNESWiki/imgstore/ppu/PatBitInv.png)
 
 ## Остальное
 
