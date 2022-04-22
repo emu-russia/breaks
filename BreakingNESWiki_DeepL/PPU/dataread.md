@@ -17,12 +17,28 @@ Below is shown what circuits the Data Reader consists of, in order to understand
 
 ![ppu_dataread_sections](/BreakingNESWiki/imgstore/ppu/ppu_dataread_sections.jpg)
 
-[PAR Address Generator](pargen.md) and [BG COL color generator](bgcol.md) have moved to their own sections.
+There was something in this section historically, but then it was split up into sections. The only thing left is the circuit for the generation of the tile address.
 
-## Pattern Readout
+## Pattern Address Generator
+
+The circuit takes up the whole upper part and forms the tile (`Pattern`) address, which is set by `/PAD0-12` (13 bits).
 
 ![ppu_dataread_pattern_readout](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pattern_readout.jpg)
 
-## V. Inversion
-
 ![ppu_dataread_vinv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_vinv.jpg)
+
+![PatGen](/BreakingNESWiki/imgstore/ppu/PatGen.png)
+
+|![PatControl](/BreakingNESWiki/imgstore/ppu/PatControl.png)|![PatV_Inversion](/BreakingNESWiki/imgstore/ppu/PatV_Inversion.png)|
+|---|---|
+
+|![PatBit](/BreakingNESWiki/imgstore/ppu/PatBit.png)|![PatBit4](/BreakingNESWiki/imgstore/ppu/PatBit4.png)|![PatBitInv](/BreakingNESWiki/imgstore/ppu/PatBitInv.png)|
+|---|---|---|
+
+## The Rest
+
+The other parts of the schematic can be found in the corresponding sections:
+
+- [Scrolling Registers](scroll_regs.md)
+- [Picture Address Generator](pargen.md)
+- [Background Color](bgcol.md)
