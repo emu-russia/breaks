@@ -36,8 +36,11 @@ Small circuits to control the loading of values into the output latches. The mai
 
 Bit circuits to form the output value `/PAD0-12` in slight variations:
 
-|![PatBit](/BreakingNESWiki/imgstore/ppu/PatBit.png)|![PatBit4](/BreakingNESWiki/imgstore/ppu/PatBit4.png)|![PatBitInv](/BreakingNESWiki/imgstore/ppu/PatBitInv.png)|
-|---|---|---|
+||
+|---|
+|![PatBit](/BreakingNESWiki/imgstore/ppu/PatBit.png)|
+|![PatBit4](/BreakingNESWiki/imgstore/ppu/PatBit4.png)|
+|![PatBitInv](/BreakingNESWiki/imgstore/ppu/PatBitInv.png)|
 
 ## The Rest
 
