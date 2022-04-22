@@ -13789,13 +13789,13 @@
     <comp lib="0" loc="(630,600)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="T_SR1"/>
+      <a name="label" val="T_SR0"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(630,650)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="T_SR0"/>
+      <a name="label" val="T_SR1"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="1" loc="(620,420)" name="NOR Gate">
@@ -15401,8 +15401,8 @@
     <wire from="(610,300)" to="(690,300)"/>
     <wire from="(610,320)" to="(620,320)"/>
     <wire from="(610,340)" to="(620,340)"/>
-    <wire from="(610,360)" to="(630,360)"/>
-    <wire from="(610,380)" to="(640,380)"/>
+    <wire from="(610,360)" to="(640,360)"/>
+    <wire from="(610,380)" to="(630,380)"/>
     <wire from="(610,480)" to="(630,480)"/>
     <wire from="(610,50)" to="(690,50)"/>
     <wire from="(610,500)" to="(620,500)"/>
@@ -15412,9 +15412,9 @@
     <wire from="(620,230)" to="(620,320)"/>
     <wire from="(620,340)" to="(620,460)"/>
     <wire from="(620,500)" to="(620,650)"/>
-    <wire from="(630,220)" to="(630,360)"/>
+    <wire from="(630,220)" to="(630,380)"/>
     <wire from="(630,480)" to="(630,660)"/>
-    <wire from="(640,210)" to="(640,380)"/>
+    <wire from="(640,210)" to="(640,360)"/>
     <wire from="(640,630)" to="(640,680)"/>
     <wire from="(650,440)" to="(650,520)"/>
     <wire from="(650,520)" to="(690,520)"/>
