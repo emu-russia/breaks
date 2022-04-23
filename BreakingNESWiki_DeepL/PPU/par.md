@@ -37,6 +37,10 @@ Counter operating modes:
 
 ![PAR_CounterBit](/BreakingNESWiki/imgstore/ppu/PAR_CounterBit.png)
 
+A reset variation is used for the TV counter:
+
+![PAR_CounterBitReset](/BreakingNESWiki/imgstore/ppu/PAR_CounterBitReset.png)
+
 ### FV Counter
 
 ![ppu_dataread_par_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_fv.jpg)
