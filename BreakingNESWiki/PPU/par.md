@@ -37,6 +37,10 @@
 
 ![PAR_CounterBit](/BreakingNESWiki/imgstore/ppu/PAR_CounterBit.png)
 
+Для счётчика TV используется вариация со сбросом:
+
+![PAR_CounterBitReset](/BreakingNESWiki/imgstore/ppu/PAR_CounterBitReset.png)
+
 ### Счётчик FV
 
 ![ppu_dataread_par_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_fv.jpg)
