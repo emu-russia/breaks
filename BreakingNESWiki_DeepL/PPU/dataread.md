@@ -42,6 +42,16 @@ Bit circuits to form the output value `/PAD0-12` in slight variations:
 
 ![PatBitInv](/BreakingNESWiki/imgstore/ppu/PatBitInv.png)
 
+Table of bits usage in addressing:
+
+|Bit number|Source for BG|Source for OB (sprites 8x8)|Source for OB (sprites 8x16)|Role in addressing|
+|---|---|---|---|---|
+|0-2|Counter FV0-2|Sprite comparison OV0-2|Sprite comparison OV0-2|Pattern line number|
+|3|/H1` Signal|/H1` Signal|/H1` Signal|A/B byte of the pattern line|
+|4|Name Table, bit 0|OAM2, Tile Index Byte, bit 0|Sprite comparison OV3|Index in Pattern Table|
+|5-11|Name Table, bits 1-7|OAM2, Tile Index Byte, bits 1-7|OAM2, Tile Index Byte, bits 1-7|Index in Pattern Table|
+|12|BGSEL ($2000)|OBSEL ($2000)|OAM2, Tile Index Byte, bit 0|Selecting Pattern Table|
+
 ## The Rest
 
 The other parts of the schematic can be found in the corresponding sections:
