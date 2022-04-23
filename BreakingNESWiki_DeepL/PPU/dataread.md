@@ -19,6 +19,8 @@ Below is shown what circuits the Data Reader consists of, in order to understand
 
 There was something in this section historically, but then it was split up into sections. The only thing left is the circuit for the generation of the tile address.
 
+![DataReader_All](/BreakingNESWiki/imgstore/ppu/DataReader_All.png)
+
 ## Pattern Address Generator
 
 The circuit takes up the whole upper part and forms the tile (`Pattern`) address, which is set by `/PAD0-12` (13 bits).
