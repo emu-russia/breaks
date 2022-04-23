@@ -2,6 +2,15 @@
 
 ![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
 
+![PAR_All](/BreakingNESWiki/imgstore/ppu/PAR_All.png)
+
+Регистр адреса PAR хранит значение для внешней шины адреса (`PA0-13`).
+
+Источники для записи в PAR:
+- Адрес паттерна (`PAD0-12`)
+- Значение с шины данных (`DB0-7`)
+- Значение со счётчиков PAR, которые также являются частью данной схемы. Счётчики PAR загружаются с регистров скроллинга.
+
 ## Счётчики PAR
 
 Режимы работы счётчиков:
@@ -20,27 +29,51 @@
 
 ![ppu_dataread_par_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_control_bot.jpg)
 
+![PAR_CountersControl](/BreakingNESWiki/imgstore/ppu/PAR_CountersControl.png)
+
+![PAR_CountersControl2](/BreakingNESWiki/imgstore/ppu/PAR_CountersControl2.png)
+
+### Разряд счётчиков
+
+![PAR_CounterBit](/BreakingNESWiki/imgstore/ppu/PAR_CounterBit.png)
+
 ### Счётчик FV
 
 ![ppu_dataread_par_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_fv.jpg)
+
+![PAR_FVCounter](/BreakingNESWiki/imgstore/ppu/PAR_FVCounter.png)
 
 ### Счётчики NT
 
 ![ppu_dataread_par_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_nt.jpg)
 
+![PAR_NTCounters](/BreakingNESWiki/imgstore/ppu/PAR_NTCounters.png)
+
 ### Счётчик TV
 
 ![ppu_dataread_par_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_tv.jpg)
+
+![PAR_TVCounter](/BreakingNESWiki/imgstore/ppu/PAR_TVCounter.png)
 
 ### Счётчик TH
 
 ![ppu_dataread_par_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_th.jpg)
 
+![PAR_THCounter](/BreakingNESWiki/imgstore/ppu/PAR_THCounter.png)
+
 ## PAR
+
+![PAR](/BreakingNESWiki/imgstore/ppu/PAR.png)
+
+Схема выглядит страшновато, это из-за большого количества входных источников для загрузки в разряды регистра PAR.
 
 ### Схема контроля PAR
 
+Схема контроля предназначена для выбора одного из источников для записи в PAR.
+
 ![ppu_dataread_par_control](/BreakingNESWiki/imgstore/ppu/ppu_par_control.jpg)
+
+![PAR_Control](/BreakingNESWiki/imgstore/ppu/PAR_Control.png)
 
 ### Разряды PAR
 
@@ -48,8 +81,6 @@
 
 ![ppu_dataread_par_high](/BreakingNESWiki/imgstore/ppu/ppu_par_high.jpg)
 
-## Схема Logisim
+![PAR_LowBit](/BreakingNESWiki/imgstore/ppu/PAR_LowBit.png)
 
-Пока в таком варианте, потом распилим на кусочки, для удобства восприятия:
-
-<img src="/BreakingNESWiki/imgstore/ppu_logisim_pargen.jpg" width="1000px">
+![PAR_HighBit](/BreakingNESWiki/imgstore/ppu/PAR_HighBit.png)

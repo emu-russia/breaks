@@ -2,6 +2,15 @@
 
 ![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
 
+![PAR_All](/BreakingNESWiki/imgstore/ppu/PAR_All.png)
+
+The PAR address register stores the value for the external address bus (`PA0-13`).
+
+Sources for writing to the PAR:
+- A pattern address (`PAD0-12`)
+- The value from the data bus (`DB0-7`)
+- The value from the PAR counters which are also part of this circuit. The PAR counters are loaded from the scrolling registers.
+
 ## PAR Counters
 
 Counter operating modes:
@@ -20,27 +29,51 @@ Counter operating modes:
 
 ![ppu_dataread_par_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_control_bot.jpg)
 
+![PAR_CountersControl](/BreakingNESWiki/imgstore/ppu/PAR_CountersControl.png)
+
+![PAR_CountersControl2](/BreakingNESWiki/imgstore/ppu/PAR_CountersControl2.png)
+
+### Counter Bit
+
+![PAR_CounterBit](/BreakingNESWiki/imgstore/ppu/PAR_CounterBit.png)
+
 ### FV Counter
 
 ![ppu_dataread_par_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_fv.jpg)
+
+![PAR_FVCounter](/BreakingNESWiki/imgstore/ppu/PAR_FVCounter.png)
 
 ### NT Counters
 
 ![ppu_dataread_par_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_nt.jpg)
 
+![PAR_NTCounters](/BreakingNESWiki/imgstore/ppu/PAR_NTCounters.png)
+
 ### TV Counter
 
 ![ppu_dataread_par_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_tv.jpg)
+
+![PAR_TVCounter](/BreakingNESWiki/imgstore/ppu/PAR_TVCounter.png)
 
 ### TH Counter
 
 ![ppu_dataread_par_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_th.jpg)
 
+![PAR_THCounter](/BreakingNESWiki/imgstore/ppu/PAR_THCounter.png)
+
 ## PAR
+
+![PAR](/BreakingNESWiki/imgstore/ppu/PAR.png)
+
+The circuit looks a bit scary, this is because of the large number of input sources to load into the PAR register bits.
 
 ### PAR Control
 
+The control circuit is designed to select one of the sources for writing to PAR.
+
 ![ppu_dataread_par_control](/BreakingNESWiki/imgstore/ppu/ppu_par_control.jpg)
+
+![PAR_Control](/BreakingNESWiki/imgstore/ppu/PAR_Control.png)
 
 ### PAR Outputs
 
@@ -48,8 +81,6 @@ Counter operating modes:
 
 ![ppu_dataread_par_high](/BreakingNESWiki/imgstore/ppu/ppu_par_high.jpg)
 
-## Logisim Circuit
+![PAR_LowBit](/BreakingNESWiki/imgstore/ppu/PAR_LowBit.png)
 
-For now in this version, then we will saw into pieces, for easy perception:
-
-<img src="/BreakingNESWiki/imgstore/ppu_logisim_pargen.jpg" width="1000px">
+![PAR_HighBit](/BreakingNESWiki/imgstore/ppu/PAR_HighBit.png)
