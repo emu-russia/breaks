@@ -184,7 +184,7 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 |TVO1|PAR TV Counter|BG Color|Bit 1 of TV Counter|
 |FH0-2|Scroll Regs|BG Color|Fine H value|
 
-`/PA0-7` are not shown in the picture, they are on the right side of the [PPU address generator](pargen.md).
+`/PA0-7` are not shown in the picture, they are on the right side of the [PPU address register](par.md).
 
 |NTSC|PAL|
 |---|---|
