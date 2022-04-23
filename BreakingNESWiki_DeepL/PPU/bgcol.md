@@ -1,35 +1,49 @@
-## Background Color (BG COL)
+# Background Color (BG COL)
 
 ![ppu_locator_bgcol](/BreakingNESWiki/imgstore/ppu/ppu_locator_bgcol.jpg)
 
-### BG COL Circuit Control
+![BGC_All](/BreakingNESWiki/imgstore/ppu/BGC_All.png)
+
+## BG COL Circuit Control
 
 ![ppu_dataread_bgcol_control_left](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgcol_control_left.jpg)
 
 ![ppu_dataread_bgcol_control_right](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgcol_control_right.jpg)
 
-### Obtaining BGC0
+![BGC_Control](/BreakingNESWiki/imgstore/ppu/BGC_Control.png)
+
+## Shift Register (SR8)
+
+![BGC_SRBit](/BreakingNESWiki/imgstore/ppu/BGC_SRBit.png)
+
+![BGC_SR8](/BreakingNESWiki/imgstore/ppu/BGC_SR8.png)
+
+## Obtaining BGC0
 
 ![ppu_dataread_bgc0](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgc0.jpg)
 
-### Obtaining BGC1
+![BGC_0](/BreakingNESWiki/imgstore/ppu/BGC_0.png)
+
+## Obtaining BGC1
 
 ![ppu_dataread_bgc1](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgc1.jpg)
 
-### Obtaining BGC2
+![BGC_1](/BreakingNESWiki/imgstore/ppu/BGC_1.png)
+
+## Obtaining BGC2
 
 ![ppu_dataread_bgc2](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgc2.jpg)
 
-### Obtaining BGC3
+![BGC_2](/BreakingNESWiki/imgstore/ppu/BGC_2.png)
+
+## Obtaining BGC3
 
 ![ppu_dataread_bgc3](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgc3.jpg)
 
-### BG COL Outputs
+![BGC_3](/BreakingNESWiki/imgstore/ppu/BGC_3.png)
+
+## BG COL Outputs
 
 ![ppu_dataread_bgcol_out](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgcol_out.jpg)
 
-## Logisim Circuit
-
-For now in this version, then we will saw into pieces, for easy perception:
-
-<img src="/BreakingNESWiki/imgstore/ppu_logisim_bgcol.jpg" width="1000px">
+![BGC_Out](/BreakingNESWiki/imgstore/ppu/BGC_Out.png)
