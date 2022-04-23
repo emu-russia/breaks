@@ -6,9 +6,8 @@
 
 ## BG COL Circuit Control
 
-![ppu_dataread_bgcol_control_left](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgcol_control_left.jpg)
-
-![ppu_dataread_bgcol_control_right](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgcol_control_right.jpg)
+|![ppu_dataread_bgcol_control_left](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgcol_control_left.jpg)|![ppu_dataread_bgcol_control_right](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgcol_control_right.jpg)|
+|---|---|
 
 ![BGC_Control](/BreakingNESWiki/imgstore/ppu/BGC_Control.png)
 
