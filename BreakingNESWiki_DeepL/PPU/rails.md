@@ -67,7 +67,7 @@ The most important control signals of the PPU [FSM](hv_fsm.md) are marked with a
 |/H2'|HCounter|All|H2 signal delayed by one DLatch (in inverse logic)|
 |:zap:/FO|FSM|Data Reader|"Fetch Output Enable"|
 |:zap:F/AT|FSM|Data Reader|"Fetch Attribute Table"|
-|:zap:F/NT|FSM|Data Reader|"Fetch Name Table"|
+|:zap:#F/NT|FSM|Data Reader, OAM Eval|0: "Fetch Name Table"|
 |:zap:F/TA|FSM|Data Reader|"Fetch Tile A"|
 |:zap:F/TB|FSM|Data Reader|"Fetch Tile B"|
 |:zap:CLIP_O|FSM|Control Regs|"Clip Objects". Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
