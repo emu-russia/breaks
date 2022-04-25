@@ -79,7 +79,7 @@ COL outputs:
 
 ![palette_col_outputs](/BreakingNESWiki/imgstore/ppu/palette_col_outputs.jpg)
 
-Precharge PCLK:
+PCLK Precharge:
 
 ![cram_precharge](/BreakingNESWiki/imgstore/ppu/cram_precharge.jpg)
 
