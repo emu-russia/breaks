@@ -17537,10 +17537,13 @@
       <a name="fanout" val="3"/>
       <a name="incoming" val="3"/>
     </comp>
-    <comp lib="0" loc="(940,700)" name="Tunnel">
+    <comp lib="0" loc="(890,700)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="n_H1_D"/>
       <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="1" loc="(930,700)" name="NOT Gate">
+      <a name="size" val="20"/>
     </comp>
     <comp lib="2" loc="(650,870)" name="Multiplexer">
       <a name="selloc" val="tr"/>
@@ -17602,7 +17605,7 @@
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="bit6"/>
     </comp>
-    <comp lib="8" loc="(918,724)" name="Text">
+    <comp lib="8" loc="(868,724)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="actual bit3"/>
     </comp>
@@ -17906,7 +17909,8 @@
     <wire from="(820,70)" to="(820,540)"/>
     <wire from="(860,20)" to="(860,530)"/>
     <wire from="(860,530)" to="(990,530)"/>
-    <wire from="(940,700)" to="(950,700)"/>
+    <wire from="(890,700)" to="(910,700)"/>
+    <wire from="(930,700)" to="(950,700)"/>
     <wire from="(950,620)" to="(950,700)"/>
     <wire from="(950,620)" to="(990,620)"/>
     <wire from="(960,630)" to="(960,840)"/>
