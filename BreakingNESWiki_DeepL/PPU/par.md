@@ -4,7 +4,7 @@
 
 ![PAR_All](/BreakingNESWiki/imgstore/ppu/PAR_All.png)
 
-The PAR address register stores the value for the external address bus (`PA0-13`).
+The PAR address register stores the value for the external address bus (`/PA0-13`).
 
 Sources for writing to the PAR:
 - A pattern address (`PAD0-12`)

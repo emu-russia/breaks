@@ -16457,7 +16457,7 @@
     </comp>
     <comp lib="0" loc="(120,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="H2_D"/>
+      <a name="label" val="n_H2_D"/>
     </comp>
     <comp lib="0" loc="(120,260)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16561,7 +16561,7 @@
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(130,240)" name="Tunnel">
-      <a name="label" val="H2_D"/>
+      <a name="label" val="n_H2_D"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(130,260)" name="Tunnel">
@@ -16725,7 +16725,7 @@
     </comp>
     <comp lib="0" loc="(750,290)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="H2_D"/>
+      <a name="label" val="n_H2_D"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(750,310)" name="Tunnel">
@@ -19619,7 +19619,7 @@
     </comp>
     <comp lib="0" loc="(150,700)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="TVZB"/>
+      <a name="label" val="TVZ"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(160,680)" name="Tunnel">
@@ -19676,30 +19676,30 @@
     </comp>
     <comp lib="0" loc="(350,330)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="TVZ"/>
+      <a name="label" val="TVZB"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(350,350)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="THZB"/>
+      <a name="label" val="THZ"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(350,400)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="TVZB"/>
+      <a name="label" val="TVZ"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(390,550)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="THZ"/>
+      <a name="label" val="THZB"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(400,100)" name="Tunnel">
-      <a name="label" val="THZ"/>
+      <a name="label" val="THZB"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(400,220)" name="Tunnel">
-      <a name="label" val="THZB"/>
+      <a name="label" val="THZ"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(490,610)" name="Tunnel">
@@ -19762,11 +19762,11 @@
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(660,100)" name="Tunnel">
-      <a name="label" val="TVZ"/>
+      <a name="label" val="TVZB"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(660,210)" name="Tunnel">
-      <a name="label" val="TVZB"/>
+      <a name="label" val="TVZ"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="1" loc="(150,780)" name="NOT Gate">
@@ -20974,7 +20974,7 @@
     </comp>
     <comp lib="0" loc="(120,60)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="H2_D"/>
+      <a name="label" val="n_H2_D"/>
     </comp>
     <comp lib="0" loc="(400,120)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -21976,7 +21976,7 @@
     </comp>
     <comp lib="0" loc="(110,670)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="H2_D"/>
+      <a name="label" val="n_H2_D"/>
     </comp>
     <comp lib="0" loc="(110,710)" name="Pin">
       <a name="appearance" val="NewPins"/>

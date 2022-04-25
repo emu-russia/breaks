@@ -62,6 +62,8 @@ Correction history:
 |CB/DB|#CB/DB (inverse polarity)|
 |DB/CB|#DB/CB (inverse polarity)|
 |DB/OB|OB/OAM|
+|THZ,THZB|Pairwise renamed (THZ -> THZB, THZB -> THZ)|
+|TVZ,TVZB|Pairwise renamed (TVZ -> TVZB, TVZB -> TVZ)|
 
 ## APU
 
