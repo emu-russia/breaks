@@ -19148,7 +19148,7 @@
     </comp>
     <comp lib="0" loc="(990,720)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="W5_2"/>
+      <a name="label" val="W6_2"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="1" loc="(270,60)" name="NOR Gate">
