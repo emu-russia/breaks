@@ -62,6 +62,8 @@
 |CB/DB|#CB/DB (инверсная полярность)|
 |DB/CB|#DB/CB (инверсная полярность)|
 |DB/OB|OB/OAM|
+|THZ,THZB|Попарно переименованы (THZ -> THZB, THZB -> THZ)|
+|TVZ,TVZB|Попарно переименованы (TVZ -> TVZB, TVZB -> TVZ)|
 
 ## APU
 

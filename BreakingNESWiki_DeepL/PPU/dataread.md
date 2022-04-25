@@ -25,9 +25,9 @@ There was something in this section historically, but then it was split up into 
 
 The circuit takes up the whole upper part and forms the tile (`Pattern`) address, which is set by `/PAD0-12` (13 bits).
 
-![ppu_dataread_pattern_readout](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pattern_readout.jpg)
+![patgen_high](/BreakingNESWiki/imgstore/ppu/patgen_high.png)
 
-![ppu_dataread_vinv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_vinv.jpg)
+![patgen_vinv](/BreakingNESWiki/imgstore/ppu/patgen_vinv.png)
 
 ![PatGen](/BreakingNESWiki/imgstore/ppu/PatGen.png)
 
@@ -49,7 +49,7 @@ Table of bits usage in addressing:
 |Bit number|Source for BG|Source for OB (sprites 8x8)|Source for OB (sprites 8x16)|Role in addressing|
 |---|---|---|---|---|
 |0-2|Counter FV0-2|Sprite comparison OV0-2|Sprite comparison OV0-2|Pattern line number|
-|3|/H1` Signal|/H1` Signal|/H1` Signal|A/B byte of the pattern line|
+|3|/H1' Signal|/H1' Signal|/H1' Signal|A/B byte of the pattern line|
 |4|Name Table, bit 0|OAM2, Tile Index Byte, bit 0|Sprite comparison OV3|Index in Pattern Table|
 |5-11|Name Table, bits 1-7|OAM2, Tile Index Byte, bits 1-7|OAM2, Tile Index Byte, bits 1-7|Index in Pattern Table|
 |12|BGSEL ($2000)|OBSEL ($2000)|OAM2, Tile Index Byte, bit 0|Selecting Pattern Table|
