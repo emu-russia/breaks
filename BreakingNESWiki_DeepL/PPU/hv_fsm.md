@@ -53,7 +53,7 @@ Outputs:
 |I/OAM2|Sprite Logic|"Init OAM2". Initialize an extra [OAM](oam.md)|
 |PAR/O|All|"PAR for Object". Selecting a tile for an object (sprite)|
 |/VIS|Sprite Logic|"Not Visible". The invisible part of the signal (used by [sprite logic](sprite_eval.md))|
-|F/NT|Data Reader|"Fetch Name Table"|
+|#F/NT|Data Reader, OAM Eval|"Fetch Name Table"|
 |F/TB|Data Reader|"Fetch Tile B"|
 |F/TA|Data Reader|"Fetch Tile A"|
 |/FO|Data Reader|"Fetch Output Enable"|

@@ -67,7 +67,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |/H2'|HCounter|All|Сигнал H2 задержанный одним DLatch (в инверсной логике)|
 |:zap:/FO|FSM|Data Reader|"Fetch Output Enable"|
 |:zap:F/AT|FSM|Data Reader|"Fetch Attribute Table"|
-|:zap:F/NT|FSM|Data Reader|"Fetch Name Table"|
+|:zap:#F/NT|FSM|Data Reader, OAM Eval|0: "Fetch Name Table"|
 |:zap:F/TA|FSM|Data Reader|"Fetch Tile A"|
 |:zap:F/TB|FSM|Data Reader|"Fetch Tile B"|
 |:zap:CLIP_O|FSM|Control Regs|"Clip Objects". Не показывать левые 8 точек экрана для спрайтов. Используется для получения сигнала `CLPO`, который уходит в OAM FIFO.|
