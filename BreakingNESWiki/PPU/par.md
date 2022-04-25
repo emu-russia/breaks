@@ -4,11 +4,11 @@
 
 ![PAR_All](/BreakingNESWiki/imgstore/ppu/PAR_All.png)
 
-Регистр адреса PAR хранит значение для внешней шины адреса (`/PA0-13`).
+Регистр адреса PAR хранит значение для внешней шины адреса (`/PA0-13`) (14 бит).
 
 Источники для записи в PAR:
-- Адрес паттерна (`PAD0-12`)
-- Значение с шины данных (`DB0-7`)
+- Адрес паттерна (`PAD0-12`) (13 бит)
+- Значение с шины данных (`DB0-7`) (8 бит)
 - Значение со счётчиков PAR, которые также являются частью данной схемы. Счётчики PAR загружаются с регистров скроллинга.
 
 ## Счётчики PAR
@@ -18,7 +18,7 @@
 |Счётчик|Разрядность|Предел счёта|Предел счёта (Blank)|Источник входного переноса|Источник входного переноса (Blank)|Источник сброса счётчика|Выход переноса|Выход переноса (Blank)|
 |---|---|---|---|---|---|---|---|---|
 |Tile Horizontal|5	|32	|32	|!(BLNK & I1/32)		|!(BLNK & I1/32)		|нет					|разрешен	|разрешен|
-|Tile Vertical	|5	|30	|32	|Fine Vertical CNT		|Tile Horizontal CNT	|carry TVZB + 1 TVSTEP	|разрешен	|разрешен|
+|Tile Vertical	|5	|30	|32	|Fine Vertical CNT		|Tile Horizontal CNT	|carry TVZ + 1 TVSTEP	|разрешен	|разрешен|
 |Name Table H	|1	|2	|2	|Tile Horizontal CNT	|Tile Vertical CNT		|нет					|запрещен	|разрешен|
 |Name Table V	|1	|2	|2	|Tile Vertical CNT		|Name Table H  CNT		|нет					|запрещен	|разрешен|
 |Fine Vertical	|3	|8	|8	|Tile Horizontal CNT	|Name Table V  CNT		|нет					|разрешен	|запрещен|

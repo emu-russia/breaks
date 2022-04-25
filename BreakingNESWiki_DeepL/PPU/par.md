@@ -4,11 +4,11 @@
 
 ![PAR_All](/BreakingNESWiki/imgstore/ppu/PAR_All.png)
 
-The PAR address register stores the value for the external address bus (`/PA0-13`).
+The PAR address register stores the value for the external address bus (`/PA0-13`) (14 bit).
 
 Sources for writing to the PAR:
-- A pattern address (`PAD0-12`)
-- The value from the data bus (`DB0-7`)
+- A pattern address (`PAD0-12`) (13 bit)
+- The value from the data bus (`DB0-7`) (8 bit)
 - The value from the PAR counters which are also part of this circuit. The PAR counters are loaded from the scrolling registers.
 
 ## PAR Counters
@@ -18,7 +18,7 @@ Counter operating modes:
 |Counter|Bits|Max value|Max value (Blank)|Input carry source|Input carry source (Blank)|Counter reset source|Carry output|Carry output (Blank)|
 |---|---|---|---|---|---|---|---|---|
 |Tile Horizontal|5	|32	|32	|!(BLNK & I1/32)		|!(BLNK & I1/32)		|none					|yes	|yes|
-|Tile Vertical	|5	|30	|32	|Fine Vertical CNT		|Tile Horizontal CNT	|carry TVZB + 1 TVSTEP	|yes	|yes|
+|Tile Vertical	|5	|30	|32	|Fine Vertical CNT		|Tile Horizontal CNT	|carry TVZ + 1 TVSTEP	|yes	|yes|
 |Name Table H	|1	|2	|2	|Tile Horizontal CNT	|Tile Vertical CNT		|none					|no		|yes|
 |Name Table V	|1	|2	|2	|Tile Vertical CNT		|Name Table H  CNT		|none					|no		|yes|
 |Fine Vertical	|3	|8	|8	|Tile Horizontal CNT	|Name Table V  CNT		|none					|yes	|no|
