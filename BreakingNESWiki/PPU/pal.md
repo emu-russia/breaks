@@ -48,6 +48,14 @@ Of the notable differences:
 
 Ну и основное отличие: вместо обычного W3 Enabler, который используется в NTSC PPU используется целая большая схема, которая находится в самом верху, левее RW Decoder. Она формирует сигнал `W3'` аналогичный NTSC PPU, но в PAL PPU он проходит через линию задержки из DLatch.
 
+## OAM
+
+![pal_oam_row_decoder_tran](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_decoder_tran.png)
+
+![pal_oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs1.png)
+
+![pal_oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs2.png)
+
 ## Data Reader
 
 Для инверсных сигналов `#O8/16` и `#I1/32` добавлены 2 инвертора, в местах где эти сигналы заходят в схему.
