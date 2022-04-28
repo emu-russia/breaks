@@ -124,6 +124,16 @@ The decoder is designed so that the columns are numbered from right to left (0-3
 |15-8|XXX 10|
 |7-0|XXX 00|
 
+Or if in order from right to left, grouped into 4 groups:
+```
+0 16 8 24 4 20 12 28
+1 17 9 25 5 21 13 29
+2 18 10 26 6 22 14 30
+3 19 11 27 7 23 15 31
+```
+
+In PAL PPU the numbering corresponds to the sequence 0-31 as designed by the decoder, from right to left, due to the fact that the OAM address is fed in forward logic (`OAM0-7`).
+
 During PCLK = 1 all COL outputs are 0, i.e. access to all OAM cells is closed.
 
 ## Address Decoder
