@@ -54,7 +54,8 @@ By convention, groups of cells that are addressed by the lowest bits of the addr
 
 ## Memory Cell
 
-![oam_cell](/BreakingNESWiki/imgstore/ppu/oam_cell.jpg)
+|![oam_cell_topo](/BreakingNESWiki/imgstore/ppu/oam_cell_topo.png)|![oam_cell_tran2](/BreakingNESWiki/imgstore/ppu/oam_cell_tran2.png)|![oam_cell](/BreakingNESWiki/imgstore/ppu/oam_cell.jpg)|
+|---|---|---|
 
 The cell is a typical 4T cell, but with one exception - the transistors of the cell where the value is stored are not connected to Vdd, so the value on the cell is constantly degrading because without a pull-up it is essentially stored on the gate of the transistors.
 

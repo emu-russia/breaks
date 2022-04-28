@@ -54,7 +54,8 @@
 
 ## Ячейка памяти
 
-![oam_cell](/BreakingNESWiki/imgstore/ppu/oam_cell.jpg)
+|![oam_cell_topo](/BreakingNESWiki/imgstore/ppu/oam_cell_topo.png)|![oam_cell_tran2](/BreakingNESWiki/imgstore/ppu/oam_cell_tran2.png)|![oam_cell](/BreakingNESWiki/imgstore/ppu/oam_cell.jpg)|
+|---|---|---|
 
 Ячейка представляет собой типовую 4T-ячейку, но с одним исключением - транзисторы ячейки, на которых хранится значение, не подключены к Vdd, 
 поэтому значение на ячейке постоянно деградирует, т.к. без подтяжки хранится по сути на затворах транзисторов.
