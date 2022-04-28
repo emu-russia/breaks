@@ -139,3 +139,7 @@ The opening transistors for the input latches are next to the OAM Buffer:
 The nor+mux+FF arrangement is actually a Posedge DFFE. And the `#EN` (enable) input is in inverse logic.
 
 ![PosedgeDFFE](/BreakingNESWiki/imgstore/ppu/PosedgeDFFE.png)
+
+:warning: Note that this circuit uses "Other /PCLK" (`/PCLK2`) instead of the usual `/PCLK`, which is obtained locally.
+Practice and simulations have shown that such "Other CLKs" are important for the correct operation of the circuit.
+In this case, this signal means that places where `/PCLK2` is applied are triggered slightly earlier than other places where normal `/PCLK` is applied.
