@@ -89,8 +89,8 @@ Knowing the features of the multiplexer, you can exploit them to obtain various 
 
 This trick is only applicable with PPU rendering turned off (OAM/Background = OFF).
 
-In this mode, the PPU gets the palette index from the TH register as described above, so by writing to the PPU address space at addresses $3Fxx (where xx = 0x00 ... 0x1F) you can trick the PPU into showing the palette color with the specified index.
-(In fact, you don't even have to do a read/write of the palette memory byte, just set the PPU address with register $2005 so that its low-order part is stored in the TH register).
+In this mode, the PPU gets the palette index from the TH counter as described above, so by writing to the PPU address space at addresses $3Fxx (where xx = 0x00 ... 0x1F) you can trick the PPU into showing the palette color with the specified index.
+(In fact, you don't even have to do a read/write of the palette memory byte, just set the PPU address with register $2006 so that its low-order part is stored in the TH counter).
 
 This technique is demonstrated in the `Full palette demo` (by Blargg): https://wiki.nesdev.org/w/index.php/Full_palette_demo
 
