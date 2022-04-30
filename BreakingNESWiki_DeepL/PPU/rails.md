@@ -70,8 +70,8 @@ The most important control signals of the PPU [FSM](hv_fsm.md) are marked with a
 |:zap:#F/NT|FSM|Data Reader, OAM Eval|0: "Fetch Name Table"|
 |:zap:F/TA|FSM|Data Reader|"Fetch Tile A"|
 |:zap:F/TB|FSM|Data Reader|"Fetch Tile B"|
-|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
-|:zap:CLIP_B|FSM|Control Regs|"Clip Background". Do not show the left 8 points of the screen for the background. Used to get the `CLPB` signal that goes into the Data Reader.|
+|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". 1: Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
+|:zap:CLIP_B|FSM|Control Regs|"Clip Background". 1: Do not show the left 8 points of the screen for the background. Used to get the `CLPB` signal that goes into the Data Reader.|
 |VBL|Regs $2000\[7\]|FSM|Used in the VBlank interrupt handling circuitry|
 |/TB|Regs $2001\[7\]|VideoOut|"Tint Blue". Modifying value for Emphasis|
 |/TG|Regs $2001\[6\]|VideoOut|"Tint Green". Modifying value for Emphasis|
