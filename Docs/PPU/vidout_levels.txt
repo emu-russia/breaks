@@ -2,12 +2,32 @@
 Type	 	Absolute Relative Normalized   L
 Synch	 	0.781	 0.000	 -0.359        0
 Colorburst L	 1.000	 0.218	 -0.208        1
-Colorburst H	 1.712	 0.931	 0.286         4
 Color 0D	 1.131	 0.350	 -0.117        2
 Color 1D (black) 1.300	 0.518	 0.000         3
+Colorburst H	 1.712	 0.931	 0.286         4
 Color 2D	 1.743	 0.962	 0.308         5
-Color 3D	 2.331	 1.550	 0.715         8
 Color 00	 1.875	 1.090	 0.397         6
 Color 10	 2.287	 1.500	 0.681         7
+Color 3D	 2.331	 1.550	 0.715         8
 Color 20	 2.743	 1.960	 1.000         9
-Color 30	 2.743	 1.960	 1.000
+
+Signal	Potential	IRE
+SYNC	48 mV	-37 IRE
+CBL	148 mV	-23 IRE
+0D	228 mV	-12 IRE
+1D	312 mV	≡ 0 IRE
+CBH	524 mV	30 IRE
+2D	552 mV	34 IRE
+00	616 mV	43 IRE
+10	840 mV	74 IRE
+3D	880 mV	80 IRE
+20	1100 mV	110 IRE
+0Dem	192 mV	-17 IRE
+1Dem	256 mV	-8 IRE
+2Dem	448 mV	19 IRE
+00em	500 mV	26 IRE
+10em	676 mV	51 IRE
+3Dem	712 mV	56 IRE
+20em	896 mV	82 IRE
+
+Source: https://www.nesdev.org/wiki/NTSC_video
