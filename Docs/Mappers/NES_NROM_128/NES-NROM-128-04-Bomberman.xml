@@ -6018,14 +6018,14 @@
     <TraverseBlackList />
   </Entity>
   <Entity>
-    <Label>VDD</Label>
+    <Label>CHR_A10</Label>
     <LambdaWidth>1</LambdaWidth>
     <LambdaHeight>1</LambdaHeight>
     <LambdaX>63.9178162</LambdaX>
     <LambdaY>36.0862465</LambdaY>
     <LambdaEndX>0</LambdaEndX>
     <LambdaEndY>0</LambdaEndY>
-    <Type>ViasPower</Type>
+    <Type>ViasConnect</Type>
     <ColorOverride>Black</ColorOverride>
     <FontOverride>Microsoft Sans Serif; 6pt</FontOverride>
     <LabelAlignment>GlobalSettings</LabelAlignment>
