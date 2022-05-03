@@ -1,2 +1,19 @@
 # NMOS
-![D Flip-Flop](https://user-images.githubusercontent.com/93550076/165581057-183f3db4-e5f4-4cd8-a83b-cab5d48ef1d7.png)
+
+## DFF
+
+![D Flip-Flop](/BreakingNESWiki/imgstore/nmos/DFF.png)
+
+## Multiplexed Transparent Latch
+
+![PlexedTranspLatch](/BreakingNESWiki/imgstore/nmos/PlexedTranspLatch.png)
+
+Данный элемент выполняет роль конструкции switch-case, если говорить терминами C++.
+
+Группа Pass-gate транзисторов с общим выходом формируют chained мультиплексор, выход которого представляет собой Transparent D-Latch.
+
+Обычно схема строится таким образом, что селектирующие входы являются одноединичными (только один из них может принимать значение `1`).
+
+Если все селектирующие входы закрыты - последнее значение с цепочки мультиплексоров хранится на защёлке.
+
+Конструкции подобного рода широкого используются в счётчиках.
