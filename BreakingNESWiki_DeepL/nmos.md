@@ -17,3 +17,7 @@ Normally the circuit is built in such a way that the selecting inputs are single
 If all selective inputs are closed - the last value from the multiplexer chain is stored on the latch.
 
 Designs of this kind are widely used in counters.
+
+## NXOR
+
+![NXOR](/BreakingNESWiki/imgstore/nmos/NXOR.png)
