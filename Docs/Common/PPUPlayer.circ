@@ -29657,6 +29657,7 @@ d8040006 f8040006 40006 40006 40006 f8040006 40006 40006
       <circ-port height="8" pin="160,480" width="8" x="46" y="136"/>
       <circ-anchor facing="east" height="6" width="6" x="47" y="67"/>
     </appear>
+    <wire from="(250,390)" to="(310,390)"/>
     <wire from="(220,90)" to="(220,220)"/>
     <wire from="(270,160)" to="(270,230)"/>
     <wire from="(530,90)" to="(530,420)"/>
@@ -29665,20 +29666,22 @@ d8040006 f8040006 40006 40006 40006 f8040006 40006 40006
     <wire from="(270,160)" to="(320,160)"/>
     <wire from="(160,420)" to="(530,420)"/>
     <wire from="(490,50)" to="(610,50)"/>
-    <wire from="(220,220)" to="(330,220)"/>
-    <wire from="(370,200)" to="(370,220)"/>
     <wire from="(580,130)" to="(580,480)"/>
     <wire from="(250,370)" to="(250,390)"/>
     <wire from="(160,480)" to="(580,480)"/>
+    <wire from="(310,300)" to="(310,390)"/>
+    <wire from="(370,200)" to="(370,290)"/>
     <wire from="(460,160)" to="(490,160)"/>
-    <wire from="(350,220)" to="(370,220)"/>
+    <wire from="(220,220)" to="(310,220)"/>
     <wire from="(490,50)" to="(490,160)"/>
     <wire from="(580,130)" to="(610,130)"/>
     <wire from="(160,120)" to="(180,120)"/>
     <wire from="(160,50)" to="(180,50)"/>
+    <wire from="(310,300)" to="(320,300)"/>
+    <wire from="(310,280)" to="(320,280)"/>
+    <wire from="(360,290)" to="(370,290)"/>
     <wire from="(240,270)" to="(250,270)"/>
     <wire from="(240,370)" to="(250,370)"/>
-    <wire from="(250,390)" to="(260,390)"/>
     <wire from="(240,240)" to="(250,240)"/>
     <wire from="(240,250)" to="(250,250)"/>
     <wire from="(240,260)" to="(250,260)"/>
@@ -29692,6 +29695,7 @@ d8040006 f8040006 40006 40006 40006 f8040006 40006 40006
     <wire from="(240,350)" to="(250,350)"/>
     <wire from="(240,360)" to="(250,360)"/>
     <wire from="(530,90)" to="(610,90)"/>
+    <wire from="(310,220)" to="(310,280)"/>
     <comp lib="0" loc="(160,380)" name="Pin">
       <a name="width" val="14"/>
       <a name="tristate" val="false"/>
@@ -29719,9 +29723,6 @@ d8040006 f8040006 40006 40006 40006 f8040006 40006 40006
       <a name="fanout" val="14"/>
       <a name="incoming" val="14"/>
     </comp>
-    <comp lib="1" loc="(350,220)" name="NOT Gate">
-      <a name="size" val="20"/>
-    </comp>
     <comp lib="0" loc="(160,50)" name="Pin">
       <a name="width" val="8"/>
       <a name="tristate" val="false"/>
@@ -29742,6 +29743,10 @@ d8040006 f8040006 40006 40006 40006 f8040006 40006 40006
     <comp lib="6" loc="(377,73)" name="Text">
       <a name="text" val="Simple NROM cartridge (without PRG)"/>
     </comp>
+    <comp lib="1" loc="(360,290)" name="NOR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </comp>
     <comp lib="6" loc="(253,472)" name="Text">
       <a name="text" val="1: V-Mirroring, 0: H-Mirroring"/>
     </comp>
@@ -29751,9 +29756,6 @@ d8040006 f8040006 40006 40006 40006 f8040006 40006 40006
     <comp lib="0" loc="(160,480)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="V_Mirroring"/>
-    </comp>
-    <comp lib="6" loc="(276,395)" name="Text">
-      <a name="text" val="N.C."/>
     </comp>
     <comp lib="6" loc="(195,124)" name="Text">
       <a name="text" val="N.C."/>
