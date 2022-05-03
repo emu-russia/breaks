@@ -826,7 +826,7 @@
     <TraverseBlackList />
   </Entity>
   <Entity>
-    <Label>A13</Label>
+    <Label>#CE</Label>
     <LambdaWidth>1</LambdaWidth>
     <LambdaHeight>1</LambdaHeight>
     <LambdaX>45.7717667</LambdaX>
@@ -868,7 +868,7 @@
     <TraverseBlackList />
   </Entity>
   <Entity>
-    <Label>/RD</Label>
+    <Label>#OE</Label>
     <LambdaWidth>1</LambdaWidth>
     <LambdaHeight>1</LambdaHeight>
     <LambdaX>52.7717667</LambdaX>
@@ -1397,7 +1397,7 @@
     <TraverseBlackList />
   </Entity>
   <Entity>
-    <Label>A11?</Label>
+    <Label>#CE</Label>
     <LambdaWidth>1</LambdaWidth>
     <LambdaHeight>1</LambdaHeight>
     <LambdaX>102.0047</LambdaX>
@@ -1439,7 +1439,7 @@
     <TraverseBlackList />
   </Entity>
   <Entity>
-    <Label>#CE</Label>
+    <Label>#OE</Label>
     <LambdaWidth>1</LambdaWidth>
     <LambdaHeight>1</LambdaHeight>
     <LambdaX>108.828232</LambdaX>
@@ -6018,14 +6018,14 @@
     <TraverseBlackList />
   </Entity>
   <Entity>
-    <Label>CHR_A10</Label>
+    <Label>VDD</Label>
     <LambdaWidth>1</LambdaWidth>
     <LambdaHeight>1</LambdaHeight>
     <LambdaX>63.9178162</LambdaX>
     <LambdaY>36.0862465</LambdaY>
     <LambdaEndX>0</LambdaEndX>
     <LambdaEndY>0</LambdaEndY>
-    <Type>ViasConnect</Type>
+    <Type>ViasPower</Type>
     <ColorOverride>Black</ColorOverride>
     <FontOverride>Microsoft Sans Serif; 6pt</FontOverride>
     <LabelAlignment>GlobalSettings</LabelAlignment>
