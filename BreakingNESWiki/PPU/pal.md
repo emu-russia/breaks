@@ -114,7 +114,11 @@ Of the notable differences from the NTSC version of the PPU:
 
 ![pal_oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs1.png)
 
+(NTSC PPU слева, PAL PPU справа)
+
 ![pal_oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs2.png)
+
+(NTSC PPU слева, PAL PPU справа)
 
 ## Data Reader
 

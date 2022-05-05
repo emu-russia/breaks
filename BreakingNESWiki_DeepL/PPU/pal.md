@@ -114,7 +114,11 @@ Since the OAM address (`OAM0-7`) is issued in direct logic, the outputs of rows 
 
 ![pal_oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs1.png)
 
+(NTSC PPU left, PAL PPU right)
+
 ![pal_oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs2.png)
+
+(NTSC PPU left, PAL PPU right)
 
 ## Data Reader
 
