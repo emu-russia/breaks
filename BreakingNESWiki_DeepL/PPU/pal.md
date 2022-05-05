@@ -78,10 +78,23 @@ All other parts (Horizontal and vertical FSM logic, register selection circuit, 
 
 ## Video Out
 
-- The color decoder is twice as big (due to the peculiarity of the PAL phase alteration)
-- The V0 bit from the VCounter comes on the decoder to determine the parity of the current line (for phase alteration)
-- The phase shifter is matched to a doubled decoder
-- The /PICTURE signal undergoes additional processing (DLATCH delay)
+CLK:
+
+![vidout_clk](/BreakingNESWiki/imgstore/ppu/pal/vidout_clk.png)
+
+PCLK:
+
+![vidout_pclk](/BreakingNESWiki/imgstore/ppu/pal/vidout_pclk.png)
+
+The color decoder is twice as big (due to the peculiarity of the PAL phase alteration). The V0 bit from the VCounter comes on the decoder to determine the parity of the current line (for phase alteration). The phase shifter is matched to a doubled decoder:
+
+![vidout_phase_chroma](/BreakingNESWiki/imgstore/ppu/pal/vidout_phase_chroma.png)
+
+![vidout_chroma_decoder](/BreakingNESWiki/imgstore/ppu/pal/vidout_chroma_decoder.png)
+
+The /PICTURE signal undergoes additional processing (DLATCH delay):
+
+![vidout_npicture](/BreakingNESWiki/imgstore/ppu/pal/vidout_npicture.png)
 
 DAC, Emphasis and Luma Decoder circuits are the same as NTSC.
 

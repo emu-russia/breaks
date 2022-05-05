@@ -78,10 +78,23 @@
 
 ## Video Out
 
-- Декодер цвета в два раза больше (из-за особенностей альтерации фаз PAL)
-- Бит V0 из VCounter поступает на декодер для определения четности текущей линии (для чередования фаз)
-- Фазовый сдвигатель согласован с удвоенным декодером
-- Сигнал /PICTURE подвергается дополнительной обработке (задержка DLATCH)
+CLK:
+
+![vidout_clk](/BreakingNESWiki/imgstore/ppu/pal/vidout_clk.png)
+
+PCLK:
+
+![vidout_pclk](/BreakingNESWiki/imgstore/ppu/pal/vidout_pclk.png)
+
+Декодер цвета в два раза больше (из-за особенностей альтерации фаз PAL). Бит V0 из VCounter поступает на декодер для определения четности текущей линии (для чередования фаз). Фазовый сдвигатель согласован с удвоенным декодером:
+
+![vidout_phase_chroma](/BreakingNESWiki/imgstore/ppu/pal/vidout_phase_chroma.png)
+
+![vidout_chroma_decoder](/BreakingNESWiki/imgstore/ppu/pal/vidout_chroma_decoder.png)
+
+Сигнал /PICTURE подвергается дополнительной обработке (задержка DLATCH):
+
+![vidout_npicture](/BreakingNESWiki/imgstore/ppu/pal/vidout_npicture.png)
 
 Схемы ЦАП, подстройки фазы (Emphasis) и декодера цветности не отличаются от NTSC PPU.
 
