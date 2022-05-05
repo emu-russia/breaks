@@ -28,7 +28,7 @@ Inputs:
 |PAR/O|"PAR for Object". Selecting a tile for an object (sprite)|
 |EVAL|"Sprite Evaluation in Progress"|
 |RESCL|"Reset FF Clear" / "VBlank Clear". VBlank period end event.|
-|F/NT|"Fetch Name Table"|
+|#F/NT|0: "Fetch Name Table"|
 |S/EV|"Start Sprite Evaluation"|
 |Delayed H||
 |H0'|H0 signal delayed by one DLatch|

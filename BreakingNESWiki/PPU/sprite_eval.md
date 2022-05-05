@@ -28,7 +28,7 @@
 |PAR/O|"PAR for Object". Выборка тайла для объекта (спрайта).|
 |EVAL|"Sprite Evaluation in Progress"|
 |RESCL|Событие окончания периода VBlank|
-|F/NT|"Fetch Name Table"|
+|#F/NT|0: "Fetch Name Table"|
 |S/EV|"Start Sprite Evaluation"|
 |Разряды счётчика H с задержкой||
 |H0'|Сигнал H0 задержанный одним DLatch|

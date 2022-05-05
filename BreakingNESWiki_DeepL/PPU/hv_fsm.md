@@ -63,7 +63,7 @@ Outputs:
 |SYNC|Video Out|Horizontal sync pulse|
 |**Vertical control signals**|||
 |VSYNC|Video Out|Vertical sync pulse|
-|PICTURE|Video Out|Visible part of the scan-lines|
+|/PICTURE|Video Out|Visible part of the scan-lines|
 |VB|HDecoder|Active when the invisible part of the video signal is output (used only in H Decoder)|
 |BLNK|HDecoder, All|Active when PPU rendering is disabled (by `BLACK` signal) or during VBlank|
 |RESCL (VCLR)|All|"Reset FF Clear" / "VBlank Clear". VBlank period end event. Initially the connection was established with contact /RES, but then it turned out a more global purpose of the signal. Therefore, the signal has two names.|
@@ -78,7 +78,7 @@ Auxiliary signals:
 |Signal|From|Where|Description|
 |---|---|---|---|
 |/FPORCH|Horizontal logic (FPORCH FF)|Obtaining the `SYNC` control signal|"Front Porch"|
-|BPORCH|Horizontal logic (BPORCH FF)|Obtaining the `PICTURE` control signal|"Back Porch"|
+|BPORCH|Horizontal logic (BPORCH FF)|Obtaining the `/PICTURE` control signal|"Back Porch"|
 |/HB|Horizontal logic (HBLANK FF)|Obtaining the `VSYNC` control signal|"HBlank"|
 |/VSET|Vertical logic|VBlank interrupt handling circuit|"VBlank Set". VBlank period start event.|
 |EvenOddOut|EVEN/ODD circuit|H/V counter control|Intermediate signal for the HCounter control circuit.|

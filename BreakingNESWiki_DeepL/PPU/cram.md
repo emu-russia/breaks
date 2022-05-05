@@ -15,13 +15,11 @@ Signals:
 |/R7|Reg Select|Read $2007|
 |/DBE|/DBE Pad|"Data Bus Enable", enable CPU interface|
 |TH/MUX|VRAM Ctrl|Send the TH Counter value to the MUX input, which will cause the value to go into the palette as Direct Color.|
-|PICTURE|FSM|The visible part of the video signal with the picture is generated|
+|/PICTURE|FSM|The visible part of the video signal with the picture is generated|
 |B/W|Regs $2001\[0\]|Disable Color Burst, to generate a monochrome picture|
 |DB/PAR|VRAM Ctrl|Control signal|
-
-Color Buffer control signals:
-- #DB/CB = 0: DB -> CB
-- #CB/DB = 0: CB -> DB
+|#DB/CB|Color Buffer Control|0: DB -> CB|
+|#CB/DB|Color Buffer Control|0: CB -> DB|
 
 ## Color Buffer (CB)
 

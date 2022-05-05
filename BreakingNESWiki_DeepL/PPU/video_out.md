@@ -17,7 +17,7 @@ Input signals:
 |#LL0-1|Color Buffer|2 bits of the luminance of the current "pixel"|
 |BURST|FSM|Color Burst|
 |HSYNC|FSM|Horizontal sync pulse|
-|PICTURE|FSM|Visible part of the scan-lines|
+|/PICTURE|FSM|Visible part of the scan-lines|
 |/TR|Regs $2001\[5\]|"Tint Red". Modifying value for Emphasis|
 |/TG|Regs $2001\[6\]|"Tint Green". Modifying value for Emphasis|
 |/TB|Regs $2001\[7\]|"Tint Blue". Modifying value for Emphasis|
