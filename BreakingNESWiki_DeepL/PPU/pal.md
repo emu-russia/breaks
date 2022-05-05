@@ -89,6 +89,10 @@ The `BLACK` signal processing logic is screwed on:
 
 ![regs_black](/BreakingNESWiki/imgstore/ppu/pal/regs_black.png)
 
+The /BLACK signal comes out of the register block. The FET that acts as a DLatch is in the FSM block. It produces the original BLACK signal.
+
+![BLACK_Pal](/BreakingNESWiki/imgstore/ppu/pal/BLACK_Pal.png)
+
 The output of the VBL control signal is slightly different (an additional cutoff transistor is used which is not present in the NTSC PPU):
 
 ![regs_vbl](/BreakingNESWiki/imgstore/ppu/pal/regs_vbl.png)

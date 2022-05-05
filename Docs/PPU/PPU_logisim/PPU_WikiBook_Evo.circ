@@ -4751,6 +4751,109 @@
     <wire from="(670,230)" to="(690,230)"/>
     <wire from="(670,330)" to="(690,330)"/>
   </circuit>
+  <circuit name="PPU_CTRL1_BLACK_PAL">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="PPU_CTRL1_BLACK_PAL"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(150,140)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="BLACK_Regs"/>
+    </comp>
+    <comp lib="0" loc="(150,50)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="PCLK"/>
+    </comp>
+    <comp lib="0" loc="(150,80)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="n_PCLK"/>
+    </comp>
+    <comp lib="0" loc="(730,160)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="BLACK"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="1" loc="(310,180)" name="NOT Gate">
+      <a name="facing" val="west"/>
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(330,130)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(470,180)" name="NOT Gate">
+      <a name="facing" val="west"/>
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(490,130)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="2" loc="(280,130)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+    </comp>
+    <comp lib="2" loc="(440,130)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+    </comp>
+    <comp lib="8" loc="(289,163)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="BLACK_FF1"/>
+    </comp>
+    <comp lib="8" loc="(451,162)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="BLACK_FF2"/>
+    </comp>
+    <comp lib="8" loc="(624,155)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="/BLACK"/>
+    </comp>
+    <comp loc="(550,140)" name="DLatch">
+      <a name="label" val="black_latch1"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(670,140)" name="DLatch">
+      <a name="label" val="black_latch2"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <wire from="(150,140)" to="(250,140)"/>
+    <wire from="(150,50)" to="(260,50)"/>
+    <wire from="(150,80)" to="(420,80)"/>
+    <wire from="(230,120)" to="(230,180)"/>
+    <wire from="(230,120)" to="(250,120)"/>
+    <wire from="(230,180)" to="(260,180)"/>
+    <wire from="(260,180)" to="(260,200)"/>
+    <wire from="(260,180)" to="(310,180)"/>
+    <wire from="(260,200)" to="(380,200)"/>
+    <wire from="(260,50)" to="(260,110)"/>
+    <wire from="(260,50)" to="(530,50)"/>
+    <wire from="(280,130)" to="(310,130)"/>
+    <wire from="(330,130)" to="(350,130)"/>
+    <wire from="(330,180)" to="(350,180)"/>
+    <wire from="(350,130)" to="(350,180)"/>
+    <wire from="(380,140)" to="(380,200)"/>
+    <wire from="(380,140)" to="(410,140)"/>
+    <wire from="(390,120)" to="(390,180)"/>
+    <wire from="(390,120)" to="(410,120)"/>
+    <wire from="(390,180)" to="(430,180)"/>
+    <wire from="(420,80)" to="(420,110)"/>
+    <wire from="(420,80)" to="(650,80)"/>
+    <wire from="(430,180)" to="(430,200)"/>
+    <wire from="(430,180)" to="(470,180)"/>
+    <wire from="(430,200)" to="(530,200)"/>
+    <wire from="(440,130)" to="(470,130)"/>
+    <wire from="(490,130)" to="(510,130)"/>
+    <wire from="(490,180)" to="(510,180)"/>
+    <wire from="(510,130)" to="(510,180)"/>
+    <wire from="(530,140)" to="(550,140)"/>
+    <wire from="(530,160)" to="(530,200)"/>
+    <wire from="(530,160)" to="(550,160)"/>
+    <wire from="(530,50)" to="(530,140)"/>
+    <wire from="(590,160)" to="(670,160)"/>
+    <wire from="(650,140)" to="(670,140)"/>
+    <wire from="(650,80)" to="(650,140)"/>
+    <wire from="(710,160)" to="(730,160)"/>
+  </circuit>
   <circuit name="Clip">
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="Clip"/>
