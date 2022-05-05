@@ -125,6 +125,8 @@ Of the notable differences from the NTSC version of the PPU:
 |![o816_inv](/BreakingNESWiki/imgstore/ppu/pal/o816_inv.jpg)|![o816_orig](/BreakingNESWiki/imgstore/ppu/pal/o816_orig.jpg)|
 |![ppu_locator_dataread](/BreakingNESWiki/imgstore/ppu/pal/i132_inv.jpg)|![ppu_locator_dataread](/BreakingNESWiki/imgstore/ppu/pal/i132_orig.jpg)|
 
+Таким образом инверсное распространение этих сигналов из блока регистров не вносит какого-то существенного импакта, по сравнению с NTSC PPU.
+
 ## Interconnects
 
 Смотри [Межсоединения](rails.md)

@@ -125,6 +125,8 @@ For the inverse signals `#O8/16` and `#I1/32`, 2 inverters have been added where
 |![o816_inv](/BreakingNESWiki/imgstore/ppu/pal/o816_inv.jpg)|![o816_orig](/BreakingNESWiki/imgstore/ppu/pal/o816_orig.jpg)|
 |![ppu_locator_dataread](/BreakingNESWiki/imgstore/ppu/pal/i132_inv.jpg)|![ppu_locator_dataread](/BreakingNESWiki/imgstore/ppu/pal/i132_orig.jpg)|
 
+Thus the inverse propagation of these signals from the register block does not introduce any significant impact compared to the NTSC PPU.
+
 ## Interconnects
 
 See [Interconnections](rails.md)
