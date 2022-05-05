@@ -81,6 +81,8 @@ Precharge PCLK:
 
 ![cram_precharge](/BreakingNESWiki/imgstore/ppu/cram_precharge.jpg)
 
+Дополнительно можно посмотреть карту распределения ячеек CRAM тут: https://github.com/ogamespec/CRAMMap
+
 ### Ячейка памяти
 
 Ячейка памяти представляет собой типовую 4T SRAM Cell:

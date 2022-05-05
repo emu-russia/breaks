@@ -52,6 +52,8 @@
 - /OAM0-2: Определяют ряд (с небольшой особенностью, см. далее)
 - /OAM3-7: Определяют колонку
 
+Дополнительно можно посмотреть карту распределения ячеек OAM тут: https://github.com/ogamespec/OAMMap
+
 ## Ячейка памяти
 
 |![oam_cell_topo](/BreakingNESWiki/imgstore/ppu/oam_cell_topo.png)|![oam_cell_tran2](/BreakingNESWiki/imgstore/ppu/oam_cell_tran2.png)|![oam_cell](/BreakingNESWiki/imgstore/ppu/oam_cell.jpg)|
