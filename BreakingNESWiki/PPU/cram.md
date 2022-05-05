@@ -15,13 +15,11 @@
 |/R7|Reg Select|Чтение регистра $2007|
 |/DBE|/DBE Pad|"Data Bus Enable", включение CPU интерфейса|
 |TH/MUX|VRAM Ctrl|Направить значение TH Counter на вход MUX, в результате чего это значение уйдет в палитру в качестве Direct Color.|
-|PICTURE|FSM|Генерируется видимая часть видеосигнала с картинкой|
+|/PICTURE|FSM|Генерируется видимая часть видеосигнала с картинкой|
 |B/W|Regs $2001\[0\]|Отключить Color Burst, для генерации монохромного изображения|
 |DB/PAR|VRAM Ctrl|Контрольный сигнал|
-
-Сигналы управления Color Buffer:
-- #DB/CB = 0: DB -> CB
-- #CB/DB = 0: CB -> DB
+|#DB/CB|Color Buffer Control|0: DB -> CB|
+|#CB/DB|Color Buffer Control|0: CB -> DB|
 
 ## Color Buffer (CB)
 
@@ -82,6 +80,8 @@ P.S. Если вы разработчик микросхем, пожалуйст
 Precharge PCLK:
 
 ![cram_precharge](/BreakingNESWiki/imgstore/ppu/cram_precharge.jpg)
+
+Дополнительно можно посмотреть карту распределения ячеек CRAM тут: https://github.com/ogamespec/CRAMMap
 
 ### Ячейка памяти
 
