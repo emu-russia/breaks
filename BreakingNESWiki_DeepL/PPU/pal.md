@@ -89,6 +89,10 @@ The `BLACK` signal processing logic is screwed on:
 
 ![regs_black](/BreakingNESWiki/imgstore/ppu/pal/regs_black.png)
 
+The /BLACK signal comes out of the register block. The FET that acts as a DLatch is in the FSM block. It produces the original BLACK signal.
+
+![BLACK_Pal](/BreakingNESWiki/imgstore/ppu/pal/BLACK_Pal.png)
+
 The output of the VBL control signal is slightly different (an additional cutoff transistor is used which is not present in the NTSC PPU):
 
 ![regs_vbl](/BreakingNESWiki/imgstore/ppu/pal/regs_vbl.png)
@@ -113,11 +117,11 @@ Since the OAM address (`OAM0-7`) is issued in direct logic, the outputs of rows 
 
 ![pal_oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs1.png)
 
-(NTSC PPU left, PAL PPU right)
+(NTSC PPU to the left)
 
 ![pal_oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs2.png)
 
-(NTSC PPU left, PAL PPU right)
+(NTSC PPU to the left)
 
 ## Data Reader
 

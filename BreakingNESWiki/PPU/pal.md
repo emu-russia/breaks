@@ -89,6 +89,10 @@
 
 ![regs_black](/BreakingNESWiki/imgstore/ppu/pal/regs_black.png)
 
+Сигнал /BLACK выходит с блока регистров. FET, выполняющий роль DLatch находится в блоке FSM. Из него получается оригинальный сигнал BLACK.
+
+![BLACK_Pal](/BreakingNESWiki/imgstore/ppu/pal/BLACK_Pal.png)
+
 Выход управляющего сигнала VBL немного отличается (используется дополнительный отсекающий транзистор, которого нет в NTSC PPU):
 
 ![regs_vbl](/BreakingNESWiki/imgstore/ppu/pal/regs_vbl.png)
