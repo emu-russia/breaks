@@ -65,6 +65,7 @@ Correction history:
 |THZ,THZB|Pairwise renamed (THZ -> THZB, THZB -> THZ)|
 |TVZ,TVZB|Pairwise renamed (TVZ -> TVZB, TVZB -> TVZ)|
 |F/NT|#F/NT (inverse polarity)|
+|PICTURE|/PICTURE (inverse polarity)|
 
 ## APU
 
