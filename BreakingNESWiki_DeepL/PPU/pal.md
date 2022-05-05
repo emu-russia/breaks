@@ -128,13 +128,27 @@ The output of the VBL control signal is slightly different (an additional cutoff
 
 In general, the differences are minimal, but there are nuances. All differences are marked with an exclamation mark.
 
-- No changes were found in the comparator logic.
-- There is only one small change in the comparison control circuit (the lowest one), related to the fact that the signal O8/16 in PAL PPU is already in inverse logic, so an inverter is not required for it
-- The counter digit circuits (OAM Counter and OAM2 Counter) are modified so that there is no inverter on the output. Therefore, the outputs (index to access the OAM memory) are in forward logic (`OAM0-7`) and not in inverse logic as in the NTSC PPU (`/OAM0-7`)
-- The BLNK signal processing circuit (located just above the OAM2 Counter) is different
-- The control circuit of OAM Counter for the control signal `OMSTEP` is additionally modified by the signal `EvenOddOut`, which comes from the EVEN/ODD circuit (this circuit is to the right of V PLA).
+No changes were found in the comparator logic.
+
+There is only one small change in the comparison control circuit (the lowest one), related to the fact that the signal O8/16 in PAL PPU is already in inverse logic, so an inverter is not required for it:
+
+![eval_o816](/BreakingNESWiki/imgstore/ppu/pal/eval_o816.png)
+
+The counter digit circuits (OAM Counter and OAM2 Counter) are modified so that there is no inverter on the output. Therefore, the outputs (index to access the OAM memory) are in forward logic (`OAM0-7`) and not in inverse logic as in the NTSC PPU (`/OAM0-7`):
+
+![eval_counters](/BreakingNESWiki/imgstore/ppu/pal/eval_counters.png)
+
+The BLNK signal processing circuit (located just above the OAM2 Counter) is different:
+
+![eval_blnk](/BreakingNESWiki/imgstore/ppu/pal/eval_blnk.png)
+
+The control circuit of OAM Counter for the control signal `OMSTEP` is additionally modified by the signal `EvenOddOut`, which comes from the EVEN/ODD circuit (this circuit is to the right of V PLA):
+
+![eval_even_odd](/BreakingNESWiki/imgstore/ppu/pal/eval_even_odd.png)
 
 And the main difference: instead of the usual W3 Enabler, which is used in the NTSC PPU, a whole big circuit is used, which is at the very top, to the left of the RW Decoder. It generates the `W3'` signal similar to the NTSC PPU, but in the PAL PPU it goes through the delay line from the DLatch.
+
+![eval_w3_enable](/BreakingNESWiki/imgstore/ppu/pal/eval_w3_enable.png)
 
 ## OAM
 
