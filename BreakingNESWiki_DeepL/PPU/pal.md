@@ -6,10 +6,10 @@ This section describes the differences in schematics between the PAL PPU version
 
 Found differences from NTSC PPU:
 
-- Significantly different EVEN/ODD circuitry (located to the right of the V PLA). The signal to the sprite logic (`EvenOddOut`) is not yet clear from this circuit
+- Significantly different EVEN/ODD circuitry (located to the right of the V PLA). The `EvenOddOut` signal goes into sprite logic instead of controlling the H/V counters.
 - Slightly different logic for clearing H/V counters
 - Bit V0 for the phase generator comes out of the VCounter (see VideoOut schematic)
-- BLACK and PICTURE signals are processed in a special way for PAL (with slight differences)
+- BLACK and /PICTURE signals are processed in a special way for PAL (with slight differences)
 - H/V Decoders are also different
 
 All other parts (Horizontal and vertical FSM logic, register selection circuit, H/V counters) are the same as NTSC PPU.
@@ -64,13 +64,12 @@ All other parts (Horizontal and vertical FSM logic, register selection circuit, 
 
 ## Video Out
 
-Of the notable differences from the NTSC version of the PPU:
-
 - The color decoder is twice as big (due to the peculiarity of the PAL phase alteration)
-- In addition, the V0 bit from the VCounter comes on the decoder to determine the parity of the current line (for phase alteration)
+- The V0 bit from the VCounter comes on the decoder to determine the parity of the current line (for phase alteration)
 - The phase shifter is matched to a doubled decoder
-- The PICTURE signal undergoes additional processing (DLATCH delay)
-- DAC, Emphasis and Luma Decoder circuits are the same as NTSC
+- The /PICTURE signal undergoes additional processing (DLATCH delay)
+
+DAC, Emphasis and Luma Decoder circuits are the same as NTSC.
 
 ## Regs
 
