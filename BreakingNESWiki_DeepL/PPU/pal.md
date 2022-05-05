@@ -178,3 +178,19 @@ Thus the inverse propagation of these signals from the register block does not i
 ## Interconnects
 
 See [Interconnections](rails.md)
+
+## Impact for emulation/simulation
+
+This section is especially for authors of NES emulators.
+
+It is hard to tell how to transfer these changes to your emulator sources, but here are some thoughts:
+
+- You need to tweak the PPU rendering logic in terms of H/V timings, according to the H/V decoder of the PPU. Its output values are in the table, you just need to relate them to what you have for the NTSC PPU
+- The PAL PPU has no NTSC Crawl logic and the Even/Odd circuit does completely different things. Its EvenOddOut signal goes into the control logic of the OAM Counter ($2003) and affects its recalculation (OMSTEP signal). You have to figure out by yourself how OMSTEP logic in NTSC PPU differs from PAL PPU, taking into account EvenOddOut signal.
+- You also need to consider the write delay in register $2003, which is implemented by the W3 Enabler circuit.
+
+Everything else is probably irrelevant to software emulation.
+
+As for the video output, based on the Phase Shifter circuit and Chroma decoder values, it is now possible to make a filter/shader like the NTSC Filter by blargg. An experienced NES hacker can easily do it here.
+
+Another mystery, we couldn't find where the Emphasis bits are mixed up. The values from the register block do NOT come out mixed up, which means they are mixed up somewhere in the Phase Shifter.
