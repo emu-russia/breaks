@@ -4,13 +4,27 @@
 
 ## FSM
 
-Найденные отличия от NTSC PPU:
+Найденные отличия от NTSC PPU.
 
-- Значительно отличается схема EVEN/ODD (расположена справа от V PLA). Сигнал `EvenOddOut` вместо управления счётчиками H/V уходит в спрайтовую логику.
-- Немного другая логика для очистки счетчиков H/V
-- Бит V0 выходит из VCounter для фазового генератора (см. схему VideoOut)
-- Сигналы BLACK и /PICTURE обрабатываются специальным образом для PAL (с небольшими различиями)
-- Декодеры H/V также отличаются
+Значительно отличается схема EVEN/ODD (расположена справа от V PLA). Сигнал `EvenOddOut` вместо управления счётчиками H/V уходит в спрайтовую логику:
+
+![fsm_even_odd](/BreakingNESWiki/imgstore/ppu/pal/fsm_even_odd.png)
+
+Немного другая логика для очистки счетчиков H/V:
+
+![fsm_clear_counters](/BreakingNESWiki/imgstore/ppu/pal/fsm_clear_counters.png)
+
+Бит V0 выходит из VCounter для фазового генератора (см. схему VideoOut):
+
+![fsm_v0](/BreakingNESWiki/imgstore/ppu/pal/fsm_v0.png)
+
+Сигналы BLACK и /PICTURE обрабатываются специальным образом для PAL (с небольшими различиями):
+
+![fsm_npicture](/BreakingNESWiki/imgstore/ppu/pal/fsm_npicture.png)
+
+По поводу BLACK см. далее.
+
+Декодеры H/V также отличаются.
 
 Все остальные части (горизонтальная и вертикальная логика FSM, схема выбора регистров, счетчики H/V) такие же, как и у NTSC PPU.
 

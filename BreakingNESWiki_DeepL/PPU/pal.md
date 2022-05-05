@@ -4,13 +4,27 @@ This section describes the differences in schematics between the PAL PPU version
 
 ## FSM
 
-Found differences from NTSC PPU:
+Found differences from NTSC PPU.
 
-- Significantly different EVEN/ODD circuitry (located to the right of the V PLA). The `EvenOddOut` signal goes into sprite logic instead of controlling the H/V counters.
-- Slightly different logic for clearing H/V counters
-- Bit V0 for the phase generator comes out of the VCounter (see VideoOut schematic)
-- BLACK and /PICTURE signals are processed in a special way for PAL (with slight differences)
-- H/V Decoders are also different
+Significantly different EVEN/ODD circuitry (located to the right of the V PLA). The `EvenOddOut` signal goes into sprite logic instead of controlling the H/V counters:
+
+![fsm_even_odd](/BreakingNESWiki/imgstore/ppu/pal/fsm_even_odd.png)
+
+Slightly different logic for clearing H/V counters:
+
+![fsm_clear_counters](/BreakingNESWiki/imgstore/ppu/pal/fsm_clear_counters.png)
+
+Bit V0 for the phase generator comes out of the VCounter (see VideoOut schematic):
+
+![fsm_v0](/BreakingNESWiki/imgstore/ppu/pal/fsm_v0.png)
+
+BLACK and /PICTURE signals are processed in a special way for PAL (with slight differences):
+
+![fsm_npicture](/BreakingNESWiki/imgstore/ppu/pal/fsm_npicture.png)
+
+Regarding BLACK, see below.
+
+H/V Decoders are also different.
 
 All other parts (Horizontal and vertical FSM logic, register selection circuit, H/V counters) are the same as NTSC PPU.
 
