@@ -64,6 +64,7 @@
 |DB/OB|OB/OAM|
 |THZ,THZB|Попарно переименованы (THZ -> THZB, THZB -> THZ)|
 |TVZ,TVZB|Попарно переименованы (TVZ -> TVZB, TVZB -> TVZ)|
+|/OE|/WE (OAM Buffer Control)|
 |F/NT|#F/NT (инверсная полярность)|
 |PICTURE|/PICTURE (инверсная полярность)|
 
