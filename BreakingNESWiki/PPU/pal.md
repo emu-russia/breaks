@@ -91,7 +91,7 @@
 
 ![regs_nslave](/BreakingNESWiki/imgstore/ppu/pal/regs_nslave.png)
 
-Сигнал `B/W` проходит через мультиплексор окольными путями:
+Сигнал `B/W` проходит через мультиплексор окольными путями, для этого он усилен двумя инверторами (не меняющими полярность сигнала):
 
 ![regs_bw](/BreakingNESWiki/imgstore/ppu/pal/regs_bw.png)
 

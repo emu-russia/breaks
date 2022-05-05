@@ -91,7 +91,7 @@ The `/SLAVE` signal goes through 2 additional inverters for amplification:
 
 ![regs_nslave](/BreakingNESWiki/imgstore/ppu/pal/regs_nslave.png)
 
-The B/W signal goes by roundabout ways through the multiplexer:
+The B/W signal goes by roundabout ways through the multiplexer, for this purpose it is amplified by two inverters (which do not reverse the polarity of the signal):
 
 ![regs_bw](/BreakingNESWiki/imgstore/ppu/pal/regs_bw.png)
 
