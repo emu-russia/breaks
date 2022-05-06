@@ -96,6 +96,8 @@ PCLK:
 
 ![vidout_npicture](/BreakingNESWiki/imgstore/ppu/pal/vidout_npicture.png)
 
+![nPICTURE_Pal](/BreakingNESWiki/imgstore/ppu/pal/nPICTURE_Pal.png)
+
 При этом в схему Color Buffer Control сигнал /PICTURE приходит в немодифицированном виде (как в NTSC PPU).
 
 Схемы ЦАП, подстройки фазы (Emphasis) и декодера цветности не отличаются от NTSC PPU.

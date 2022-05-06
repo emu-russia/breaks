@@ -96,6 +96,8 @@ The /PICTURE signal undergoes additional processing (DLATCH delay):
 
 ![vidout_npicture](/BreakingNESWiki/imgstore/ppu/pal/vidout_npicture.png)
 
+![nPICTURE_Pal](/BreakingNESWiki/imgstore/ppu/pal/nPICTURE_Pal.png)
+
 The /PICTURE signal comes to the Color Buffer Control circuit in unmodified form (as in NTSC PPU).
 
 DAC, Emphasis and Luma Decoder circuits are the same as NTSC.
