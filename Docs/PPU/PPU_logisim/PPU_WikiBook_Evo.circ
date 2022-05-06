@@ -7029,6 +7029,9 @@
       <a name="label" val="n_PICTURE"/>
       <a name="output" val="true"/>
     </comp>
+    <comp lib="1" loc="(200,110)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
     <comp lib="8" loc="(134,92)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="From FSM"/>
@@ -7047,9 +7050,10 @@
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <wire from="(160,110)" to="(230,110)"/>
+    <wire from="(160,110)" to="(180,110)"/>
     <wire from="(160,20)" to="(330,20)"/>
     <wire from="(160,50)" to="(210,50)"/>
+    <wire from="(200,110)" to="(230,110)"/>
     <wire from="(210,50)" to="(210,90)"/>
     <wire from="(210,90)" to="(230,90)"/>
     <wire from="(270,110)" to="(350,110)"/>
