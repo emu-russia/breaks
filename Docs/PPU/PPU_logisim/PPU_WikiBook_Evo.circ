@@ -7006,6 +7006,57 @@
     <wire from="(770,200)" to="(770,290)"/>
     <wire from="(770,200)" to="(780,200)"/>
   </circuit>
+  <circuit name="PICTURE_PAL">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="PICTURE_PAL"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(160,110)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="n_PICTURE_In"/>
+    </comp>
+    <comp lib="0" loc="(160,20)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="PCLK"/>
+    </comp>
+    <comp lib="0" loc="(160,50)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="n_PCLK"/>
+    </comp>
+    <comp lib="0" loc="(450,90)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_PICTURE"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="8" loc="(134,92)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="From FSM"/>
+    </comp>
+    <comp lib="8" loc="(477,70)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="To VideoGen"/>
+    </comp>
+    <comp loc="(230,90)" name="DLatch">
+      <a name="label" val="npicture_latch1"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(350,90)" name="DLatch">
+      <a name="label" val="npicture_latch2"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <wire from="(160,110)" to="(230,110)"/>
+    <wire from="(160,20)" to="(330,20)"/>
+    <wire from="(160,50)" to="(210,50)"/>
+    <wire from="(210,50)" to="(210,90)"/>
+    <wire from="(210,90)" to="(230,90)"/>
+    <wire from="(270,110)" to="(350,110)"/>
+    <wire from="(330,20)" to="(330,90)"/>
+    <wire from="(330,90)" to="(350,90)"/>
+    <wire from="(390,90)" to="(450,90)"/>
+  </circuit>
   <circuit name="DLatch_x4">
     <a name="appearance" val="evolution"/>
     <a name="circuit" val="DLatch_x4"/>
