@@ -67,6 +67,10 @@
 |/OE|/WE (OAM Buffer Control)|
 |F/NT|#F/NT (инверсная полярность)|
 |PICTURE|/PICTURE (инверсная полярность)|
+|x/EN|#x/EN (инверсная полярность), OAM FIFO|
+|x/COL0, x/COL1|#x/COL0, #x/COL1 (инверсная полярность), OAM FIFO|
+|Tx|/Tx (инверсная полярность), OAM FIFO|
+|0/H|#0/H (инверсная полярность), OAM FIFO|
 
 ## APU
 

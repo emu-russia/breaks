@@ -67,6 +67,10 @@ Correction history:
 |/OE|/WE (OAM Buffer Control)|
 |F/NT|#F/NT (inverse polarity)|
 |PICTURE|/PICTURE (inverse polarity)|
+|x/EN|#x/EN (inverse polarity), OAM FIFO|
+|x/COL0, x/COL1|#x/COL0, #x/COL1 (inverse polarity), OAM FIFO|
+|Tx|/Tx (inverse polarity), OAM FIFO|
+|0/H|#0/H (inverse polarity), OAM FIFO|
 
 ## APU
 
