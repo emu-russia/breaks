@@ -143,3 +143,9 @@ The nor+mux+FF arrangement is actually a Posedge DFFE. And the `#EN` (enable) in
 :warning: Note that this circuit uses "Other /PCLK" (`/PCLK2`) instead of the usual `/PCLK`, which is obtained locally.
 Practice and simulations have shown that such "Other CLKs" are important for the correct operation of the circuit.
 In this case, this signal means that places where `/PCLK2` applies are triggered slightly later than other places where regular `/PCLK` applies.
+
+## 0/FIFO
+
+This signal is needed when PAR/O is active. At other times it does not have any effect. The meaning of this signal is to prohibit loading sprite comparison artifact into FIFO, provided that the sprites are less than 8, or sprites for the current line were not found. This artifact appears because of the simplified circuit of copying sprites from OAM to OAM2, because the write signal is active even if the copying has not begun. This cell gets the last value from memory when comparing sprites. 
+
+In other words, if 0/FIFO = 1, then loading the pattern from PD (H. INV) is allowed, 0 is not allowed.
