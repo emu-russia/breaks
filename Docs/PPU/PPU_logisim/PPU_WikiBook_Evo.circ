@@ -22937,6 +22937,14 @@
       <a name="label" val="Step"/>
     </comp>
     <comp lib="0" loc="(150,230)" name="Splitter">
+      <a name="bit0" val="7"/>
+      <a name="bit1" val="6"/>
+      <a name="bit2" val="5"/>
+      <a name="bit3" val="4"/>
+      <a name="bit4" val="3"/>
+      <a name="bit5" val="2"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="0"/>
       <a name="fanout" val="8"/>
       <a name="incoming" val="8"/>
     </comp>
@@ -22978,6 +22986,14 @@
       <a name="incoming" val="3"/>
     </comp>
     <comp lib="0" loc="(890,160)" name="Splitter">
+      <a name="bit0" val="7"/>
+      <a name="bit1" val="6"/>
+      <a name="bit2" val="5"/>
+      <a name="bit3" val="4"/>
+      <a name="bit4" val="3"/>
+      <a name="bit5" val="2"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="0"/>
       <a name="facing" val="west"/>
       <a name="fanout" val="8"/>
       <a name="incoming" val="8"/>
@@ -22989,14 +23005,46 @@
       <a name="output" val="true"/>
       <a name="width" val="8"/>
     </comp>
-    <comp loc="(340,280)" name="BGC_SRBit"/>
-    <comp loc="(340,80)" name="BGC_SRBit"/>
-    <comp loc="(500,280)" name="BGC_SRBit"/>
-    <comp loc="(500,80)" name="BGC_SRBit"/>
-    <comp loc="(660,280)" name="BGC_SRBit"/>
-    <comp loc="(660,80)" name="BGC_SRBit"/>
-    <comp loc="(820,280)" name="BGC_SRBit"/>
-    <comp loc="(820,80)" name="BGC_SRBit"/>
+    <comp loc="(340,280)" name="BGC_SRBit">
+      <a name="label" val="bit_3"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(340,80)" name="BGC_SRBit">
+      <a name="label" val="bit_7"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(500,280)" name="BGC_SRBit">
+      <a name="label" val="bit_2"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(500,80)" name="BGC_SRBit">
+      <a name="label" val="bit_6"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(660,280)" name="BGC_SRBit">
+      <a name="label" val="bit_1"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(660,80)" name="BGC_SRBit">
+      <a name="label" val="bit_5"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(820,280)" name="BGC_SRBit">
+      <a name="label" val="bit_0"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(820,80)" name="BGC_SRBit">
+      <a name="label" val="bit_4"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="labelloc" val="south"/>
+    </comp>
     <wire from="(140,100)" to="(150,100)"/>
     <wire from="(140,230)" to="(150,230)"/>
     <wire from="(140,30)" to="(190,30)"/>
