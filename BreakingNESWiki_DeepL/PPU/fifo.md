@@ -77,6 +77,8 @@ The circuit shown is for sprite #0. For all others (1-7) you must replace the si
 
 (open the picture in a new tab for a full view)
 
+:warning: The value is fed to SR8 in reversed form, because the pixels are output backwards.
+
 ## Sprite Priority
 
 The priority circuit is in "sparse" layout. The individual pieces of this circuit are shown below.
