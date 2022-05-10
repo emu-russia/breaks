@@ -15477,6 +15477,23 @@
       <a name="label" val="OB"/>
       <a name="width" val="8"/>
     </comp>
+    <comp lib="0" loc="(260,220)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+    </comp>
+    <comp lib="0" loc="(300,130)" name="Splitter">
+      <a name="bit0" val="7"/>
+      <a name="bit1" val="6"/>
+      <a name="bit2" val="5"/>
+      <a name="bit3" val="4"/>
+      <a name="bit4" val="3"/>
+      <a name="bit5" val="2"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="0"/>
+      <a name="facing" val="west"/>
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+    </comp>
     <comp lib="0" loc="(690,260)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
@@ -15521,6 +15538,10 @@
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="Attr (Byte 2)"/>
     </comp>
+    <comp lib="8" loc="(599,183)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="The value is fed to SR8 in reversed form, because the pixels are output backwards."/>
+    </comp>
     <comp loc="(610,260)" name="FIFO_LaneControl"/>
     <comp loc="(610,480)" name="FIFO_CounterControl"/>
     <comp loc="(610,50)" name="FIFO_PairedSR"/>
@@ -15534,11 +15555,14 @@
     <wire from="(170,520)" to="(390,520)"/>
     <wire from="(170,540)" to="(390,540)"/>
     <wire from="(170,80)" to="(340,80)"/>
-    <wire from="(240,130)" to="(390,130)"/>
+    <wire from="(240,130)" to="(250,130)"/>
     <wire from="(240,280)" to="(260,280)"/>
+    <wire from="(250,130)" to="(250,220)"/>
+    <wire from="(250,220)" to="(260,220)"/>
     <wire from="(260,280)" to="(260,740)"/>
     <wire from="(260,280)" to="(390,280)"/>
     <wire from="(260,740)" to="(390,740)"/>
+    <wire from="(300,130)" to="(390,130)"/>
     <wire from="(330,480)" to="(390,480)"/>
     <wire from="(330,50)" to="(330,480)"/>
     <wire from="(340,260)" to="(340,500)"/>

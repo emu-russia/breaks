@@ -23,11 +23,15 @@
 
 ![BGC_0](/BreakingNESWiki/imgstore/ppu/BGC_0.png)
 
+:warning: Значение подается на SR8 в реверснутом виде, т.к. пиксели выводятся задом наперёд.
+
 ## Получение BGC1
 
 ![ppu_dataread_bgc1](/BreakingNESWiki/imgstore/ppu/ppu_dataread_bgc1.jpg)
 
 ![BGC_1](/BreakingNESWiki/imgstore/ppu/BGC_1.png)
+
+:warning: Значение подается на SR8 в реверснутом виде, т.к. пиксели выводятся задом наперёд.
 
 ## Получение BGC2
 
