@@ -23,3 +23,7 @@
 ## NXOR
 
 ![NXOR](/BreakingNESWiki/imgstore/nmos/NXOR.png)
+
+## Разряд счётчика
+
+![NMOS_CounterBit](/BreakingNESWiki/imgstore/nmos/NMOS_CounterBit.png)
