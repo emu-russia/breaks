@@ -21,3 +21,7 @@ Designs of this kind are widely used in counters.
 ## NXOR
 
 ![NXOR](/BreakingNESWiki/imgstore/nmos/NXOR.png)
+
+## Counter Bit
+
+![NMOS_CounterBit](/BreakingNESWiki/imgstore/nmos/NMOS_CounterBit.png)
