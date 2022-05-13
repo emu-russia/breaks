@@ -10498,7 +10498,7 @@
     <comp lib="0" loc="(880,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="Z_FIFO"/>
+      <a name="label" val="PD_FIFO"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(880,70)" name="Pin">
@@ -10967,7 +10967,7 @@
     <comp lib="0" loc="(1110,480)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="Z_FIFO"/>
+      <a name="label" val="PD_FIFO"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(1110,500)" name="Pin">
@@ -15631,7 +15631,7 @@
     </comp>
     <comp lib="0" loc="(140,190)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="Z_FIFO"/>
+      <a name="label" val="PD_FIFO"/>
     </comp>
     <comp lib="0" loc="(140,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -15979,7 +15979,7 @@
     </comp>
     <comp lib="0" loc="(170,680)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="Z_FIFO"/>
+      <a name="label" val="PD_FIFO"/>
     </comp>
     <comp lib="0" loc="(170,710)" name="Pin">
       <a name="appearance" val="NewPins"/>

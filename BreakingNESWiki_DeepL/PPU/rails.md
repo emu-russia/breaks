@@ -131,7 +131,7 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 |---|---|---|---|
 |OV0-3|Sprite Compare|V Inversion|Bit 0-3 of the V sprite value|
 |OB7|OAM Bufer|OAM Eval|OAM Buffer output value, bit 7. For the OAM Eval circuit, this value is exclusively transmitted directly from the OB, without using the PCLK tristate.|
-|0/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
+|PD/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
 |I1/32|Regs $2000\[2\]|PAR Counters Ctrl|Increment PPU address 1/32. :warning: PAL PPU uses an inverse version of the signal (#I1/32)|
 |OBSEL|Regs $2000\[3\]|Pattern Readout|Selecting Pattern Table for sprites|
 |BGSEL|Regs $2000\[4\]|Pattern Readout|Selecting Pattern Table for background|
@@ -167,7 +167,7 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 |OB0-7|OAM Buffer|OAM FIFO, Pattern Readout|OAM Buffer output value|
 |CLPO|Regs|OAM FIFO|To enable sprite clipping|
 |CLPB|Regs|BG Color|To enable background clipping|
-|0/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
+|PD/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
 |BGSEL|Regs|Pattern Readout|Selecting Pattern Table for background|
 |OV0-3|Sprite Compare|V Inversion|Bit 0-3 of the V sprite value|
 

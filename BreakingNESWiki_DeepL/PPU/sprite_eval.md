@@ -51,7 +51,7 @@ Outputs:
 |OAMCTR2|OAM Buffer Control|
 |SPR_OV|TBD.|
 |OV0-3|Bit 0-3 of the V sprite value|
-|0/FIFO|To zero the output of the H. Inv circuit|
+|PD/FIFO|To zero the output of the H. Inv circuit|
 |I2SEV|TBD.|
 
 Intermediate signals:
@@ -144,8 +144,8 @@ The nor+mux+FF arrangement is actually a Posedge DFFE. And the `#EN` (enable) in
 Practice and simulations have shown that such "Other CLKs" are important for the correct operation of the circuit.
 In this case, this signal means that places where `/PCLK2` applies are triggered slightly later than other places where regular `/PCLK` applies.
 
-## 0/FIFO
+## PD/FIFO
 
 This signal is needed when PAR/O is active. At other times it does not have any effect. The meaning of this signal is to prohibit loading sprite comparison artifact into FIFO, provided that the sprites are less than 8, or sprites for the current line were not found. This artifact appears because of the simplified circuit of copying sprites from OAM to OAM2, because the write signal is active even if the copying has not begun. This cell gets the last value from memory when comparing sprites. 
 
-In other words, if 0/FIFO = 1, then loading the pattern from PD (H. INV) is allowed, 0 is not allowed.
+In other words, if PD/FIFO = 1, then loading the pattern from PD (H. INV) is allowed, 0 is not allowed.
