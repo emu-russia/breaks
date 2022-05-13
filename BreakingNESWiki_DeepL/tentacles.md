@@ -71,6 +71,7 @@ Correction history:
 |x/COL0, x/COL1|#x/COL0, #x/COL1 (inverse polarity), OAM FIFO|
 |Tx|/Tx (inverse polarity), OAM FIFO|
 |0/H|#0/H (inverse polarity), OAM FIFO|
+|0/FIFO|PD/FIFO|
 
 ## APU
 
