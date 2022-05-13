@@ -49,10 +49,10 @@ Outputs:
 |/OAM0-7|OAM Address|
 |OAM8|Selects an additional (temp) OAM for addressing|
 |OAMCTR2|OAM Buffer Control|
-|SPR_OV|TBD.|
+|SPR_OV|Sprites on the current line are more than 8 or the main OAM counter is full, copying is stopped|
 |OV0-3|Bit 0-3 of the V sprite value|
-|PD/FIFO|To zero the output of the H. Inv circuit|
-|I2SEV|TBD.|
+|PD/FIFO|Used to fill in the FIFO with safe values if the comparison results in a number of sprites less than 8|
+|I2SEV|Sprite "0" is not found on the current line|
 
 Intermediate signals:
 
@@ -69,7 +69,7 @@ Intermediate signals:
 |OAMTemp0-4|Temp OAM counter outputs|
 |SPR_OV_Reg|$2002\[5\] FF value|
 |M4_OVZ|Intermediate signal for the OVZ signal derivation|
-|OVZ|TBD.|
+|OVZ|The sprite being checked is on the current line|
 |OMFG|"OAM Counter Mode4"|
 
 ## H0'' Auxiliary Circuit
