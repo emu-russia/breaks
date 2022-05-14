@@ -77,9 +77,7 @@ Sprite 0 Hit circuit:
 
 The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
-The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [OAM FIFO](fifo.md)) and the control signal `I2SEV` from [sprite comparison circuit](sprite_eval.md).
-
-:warning: By "sprite #0" you don't mean the zero index of the sprite in the OAM, but the zero lane in the OAM FIFO. Technically it is not necessary to have a sprite with index 0 in Lane 0 of the OAM FIFO, but usually the developers put a special sprite in OAM\[0\] to process Sprite0 Hit, so you do not have to pay much attention to this.
+The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [OAM FIFO](fifo.md)) and the control signal `/SPR0_EV` from [sprite comparison circuit](sprite_eval.md).
 
 ## Multiplexer Tricks
 

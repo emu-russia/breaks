@@ -7586,7 +7586,7 @@
     </comp>
     <comp lib="0" loc="(150,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="I2SEV"/>
+      <a name="label" val="n_SPR0_EV"/>
     </comp>
     <comp lib="0" loc="(150,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -10193,10 +10193,6 @@
       <a name="appearance" val="NewPins"/>
       <a name="label" val="O8_16"/>
     </comp>
-    <comp lib="0" loc="(120,800)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="M4_OVZ"/>
-    </comp>
     <comp lib="0" loc="(130,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="PCLK"/>
@@ -10210,6 +10206,10 @@
       <a name="appearance" val="NewPins"/>
       <a name="label" val="V"/>
       <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(140,800)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="COPY_OVF"/>
     </comp>
     <comp lib="0" loc="(150,180)" name="Splitter">
       <a name="fanout" val="8"/>
@@ -10275,10 +10275,10 @@
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <wire from="(120,730)" to="(140,730)"/>
-    <wire from="(120,800)" to="(580,800)"/>
     <wire from="(130,50)" to="(290,50)"/>
     <wire from="(140,180)" to="(150,180)"/>
     <wire from="(140,370)" to="(150,370)"/>
+    <wire from="(140,800)" to="(580,800)"/>
     <wire from="(160,730)" to="(460,730)"/>
     <wire from="(170,100)" to="(200,100)"/>
     <wire from="(170,110)" to="(280,110)"/>
@@ -10486,7 +10486,7 @@
     <comp lib="0" loc="(880,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="M4_OVZ"/>
+      <a name="label" val="COPY_OVF"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(880,130)" name="Pin">
@@ -10504,7 +10504,7 @@
     <comp lib="0" loc="(880,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="I2SEV"/>
+      <a name="label" val="n_SPR0_EV"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="1" loc="(130,270)" name="NOT Gate">
@@ -10544,13 +10544,13 @@
     <comp lib="1" loc="(820,350)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(245,306)" name="Text">
+    <comp lib="8" loc="(262,304)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="/I2"/>
+      <a name="text" val="DO_COPY"/>
     </comp>
-    <comp lib="8" loc="(530,247)" name="Text">
+    <comp lib="8" loc="(526,244)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="DDD"/>
+      <a name="text" val="COPY_STEP"/>
     </comp>
     <comp loc="(320,290)" name="DLatch">
       <a name="label" val="latch1"/>
@@ -10973,7 +10973,7 @@
     <comp lib="0" loc="(1110,500)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="I2SEV"/>
+      <a name="label" val="n_SPR0_EV"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(1110,90)" name="Pin">

@@ -78,7 +78,7 @@ The most important control signals of the PPU [FSM](hv_fsm.md) are marked with a
 |/TR|Regs $2001\[5\]|VideoOut|"Tint Red". Modifying value for Emphasis|
 |:zap:SC/CNT|FSM|Data Reader|"Scroll Counters Control". Update the scrolling registers.|
 |:zap:0/HPOS|FSM|OAM FIFO|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
-|I2SEV|Sprite Eval|Spr0 Strike|Sprite "0" is not found on the current line. To define a `Sprite 0 Hit` event|
+|/SPR0_EV|Sprite Eval|Spr0 Strike|0: Sprite "0" is found on the current line. To define a `Sprite 0 Hit` event|
 |/OBCLIP|Regs $2001\[2\]|FSM|To generate the `CLIP_O` control signal|
 |/BGCLIP|Regs $2001\[1\]|FSM|To generate the `CLIP_B` control signal|
 |H0'' - H5''|HCounter|All|H0-H5 signals delayed by two DLatch|
