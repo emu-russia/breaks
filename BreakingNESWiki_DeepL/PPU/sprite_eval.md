@@ -52,7 +52,7 @@ Outputs:
 |SPR_OV|Sprites on the current line are more than 8 or the main OAM counter is full, copying is stopped|
 |OV0-3|Bit 0-3 of the V sprite value|
 |PD/FIFO|Used to fill in the FIFO with safe values if the comparison results in a number of sprites less than 8|
-|I2SEV|Sprite "0" is not found on the current line|
+|/SPR0_EV|0: Sprite "0" IS found on the current line|
 
 Intermediate signals:
 
@@ -68,9 +68,11 @@ Intermediate signals:
 |TMV|Temp OAM counter overflow|
 |OAMTemp0-4|Temp OAM counter outputs|
 |SPR_OV_Reg|$2002\[5\] FF value|
-|M4_OVZ|Intermediate signal for the OVZ signal derivation|
+|COPY_OVF|The Johnson counter used to copy sprites is overflowed (all bits are 0)|
 |OVZ|The sprite being checked is on the current line|
 |OMFG|"OAM Counter Mode4"|
+|COPY_STEP|Perform Johnson counter step|
+|DO_COPY|Start the sprite copying process|
 
 ## H0'' Auxiliary Circuit
 
