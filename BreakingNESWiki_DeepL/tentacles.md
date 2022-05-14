@@ -72,6 +72,10 @@ Correction history:
 |Tx|/Tx (inverse polarity), OAM FIFO|
 |0/H|#0/H (inverse polarity), OAM FIFO|
 |0/FIFO|PD/FIFO|
+|M4_OVZ|COPY_OVF|
+|DDD|COPY_STEP|
+|/I2|DO_COPY|
+|I2SEV|/SPR0_EV|
 
 ## APU
 
