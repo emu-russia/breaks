@@ -14967,7 +14967,46 @@
       <a name="fanout" val="5"/>
       <a name="incoming" val="5"/>
     </comp>
-    <comp lib="0" loc="(720,290)" name="Constant"/>
+    <comp lib="0" loc="(730,630)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Z1"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(730,650)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Z3"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(730,680)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Z5"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(730,700)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Z7"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(750,620)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Z0"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(750,640)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Z2"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(750,670)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Z4"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(750,690)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Z6"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
     <comp lib="0" loc="(790,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
@@ -14975,7 +15014,7 @@
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(830,300)" name="Constant"/>
-    <comp lib="0" loc="(830,310)" name="Constant"/>
+    <comp lib="0" loc="(830,320)" name="Constant"/>
     <comp lib="0" loc="(850,470)" name="Splitter">
       <a name="fanout" val="6"/>
       <a name="incoming" val="6"/>
@@ -15085,6 +15124,13 @@
     <comp lib="1" loc="(580,830)" name="NOR Gate">
       <a name="inputs" val="10"/>
       <a name="size" val="70"/>
+    </comp>
+    <comp lib="1" loc="(840,660)" name="NOR Gate">
+      <a name="inputs" val="8"/>
+      <a name="size" val="70"/>
+    </comp>
+    <comp lib="1" loc="(870,660)" name="NOT Gate">
+      <a name="size" val="20"/>
     </comp>
     <comp lib="2" loc="(1000,430)" name="Multiplexer">
       <a name="selloc" val="tr"/>
@@ -15362,13 +15408,21 @@
     <wire from="(710,330)" to="(740,330)"/>
     <wire from="(710,370)" to="(710,400)"/>
     <wire from="(710,400)" to="(740,400)"/>
-    <wire from="(720,290)" to="(730,290)"/>
-    <wire from="(730,290)" to="(730,310)"/>
     <wire from="(730,310)" to="(730,380)"/>
     <wire from="(730,310)" to="(740,310)"/>
     <wire from="(730,380)" to="(730,450)"/>
     <wire from="(730,380)" to="(740,380)"/>
+    <wire from="(730,450)" to="(730,580)"/>
     <wire from="(730,450)" to="(740,450)"/>
+    <wire from="(730,580)" to="(880,580)"/>
+    <wire from="(730,630)" to="(760,630)"/>
+    <wire from="(730,650)" to="(760,650)"/>
+    <wire from="(730,680)" to="(760,680)"/>
+    <wire from="(730,700)" to="(760,700)"/>
+    <wire from="(750,620)" to="(760,620)"/>
+    <wire from="(750,640)" to="(760,640)"/>
+    <wire from="(750,670)" to="(760,670)"/>
+    <wire from="(750,690)" to="(760,690)"/>
     <wire from="(780,310)" to="(800,310)"/>
     <wire from="(780,380)" to="(800,380)"/>
     <wire from="(780,450)" to="(810,450)"/>
@@ -15379,11 +15433,14 @@
     <wire from="(810,370)" to="(810,450)"/>
     <wire from="(810,370)" to="(850,370)"/>
     <wire from="(830,300)" to="(850,300)"/>
-    <wire from="(830,310)" to="(840,310)"/>
-    <wire from="(840,310)" to="(840,340)"/>
+    <wire from="(830,320)" to="(840,320)"/>
+    <wire from="(840,320)" to="(840,340)"/>
     <wire from="(840,340)" to="(850,340)"/>
+    <wire from="(840,660)" to="(850,660)"/>
     <wire from="(850,300)" to="(850,330)"/>
     <wire from="(870,380)" to="(910,380)"/>
+    <wire from="(870,660)" to="(880,660)"/>
+    <wire from="(880,580)" to="(880,660)"/>
     <wire from="(890,400)" to="(910,400)"/>
     <wire from="(910,340)" to="(920,340)"/>
     <wire from="(920,340)" to="(920,370)"/>
