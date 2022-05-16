@@ -1,4 +1,4 @@
-# Управляющая логика H/V
+# PPU FSM
 
 ![ppu_locator_hv_fsm](/BreakingNESWiki/imgstore/ppu/ppu_locator_hv_fsm.jpg)
 

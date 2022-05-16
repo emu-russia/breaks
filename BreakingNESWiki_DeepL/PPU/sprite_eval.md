@@ -76,7 +76,7 @@ Intermediate signals:
 
 ## H0'' Auxiliary Circuit
 
-The `H0''` signal which is used in the counter control circuits does not come from the H-Outputs which are in the [H/V FSM](hv_fsm.md) circuit, but is derived by the circuit which is in between the connections to the left of the sprite logic.
+The `H0''` signal which is used in the counter control circuits does not come from the H-Outputs which are in the [PPU FSM](fsm.md) circuit, but is derived by the circuit which is in between the connections to the left of the sprite logic.
 
 This special `H0''` signal (but essentially a variation of the regular H0'' signal) is marked with an arrow on the transistor circuits.
 
