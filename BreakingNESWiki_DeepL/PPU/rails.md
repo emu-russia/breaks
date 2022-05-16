@@ -8,7 +8,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 The signals for the PAL version of the PPU are marked in the pictures only where there are differences from NTSC.
 
-The most important control signals of the PPU [FSM](hv_fsm.md) are marked with a special icon (:zap:).
+The most important control signals of the [PPU FSM](fsm.md) are marked with a special icon (:zap:).
 
 ## Left Side
 
