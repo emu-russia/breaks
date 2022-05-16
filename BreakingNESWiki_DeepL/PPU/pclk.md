@@ -44,3 +44,26 @@ But in general it is more correct to assume that the value of the latches is und
 |2C02G|![pclk_2C02G](/BreakingNESWiki/imgstore/ppu/pclk_2C02G.jpg)|
 |2C02H|TBD|
 |2C07-0|TBD|
+
+## PCLK Distribution
+
+The following are the distinguishing features of PCLK distribution.
+
+![2C02G_PCLK_Distrib_sm](/BreakingNESWiki/imgstore/ppu/2C02G_PCLK_Distrib_sm.png)
+
+|Feature|Description|
+|---|---|
+|1|CLK Distribution|
+|2|PCLK Divider|
+|3|Single phase splitter. Outputs two symmetrical phases: /PCLK and PCLK|
+|4|Inverting super buffer for /PCLK and PCLK|
+|5|Local PCLK pullups|
+|6|"Other" /PCLK (`/PCLK2`) used in sprite comparison logic|
+|7|OB Pass. Transistors to form the input latches of the sprite comparator|
+|8|THO Pass. Transistors to form THOx input latches for multiplexer inputs|
+|9|OAM PCLK Precharge|
+|10|CRAM PCLK Precharge|
+|11|PCLK Anti-jitter. Transistors are used to accelerate the "dissipation" of the signal|
+|12|/PCLK output for EXT terminals|
+
+Full-size image: https://github.com/emu-russia/breaks/blob/master/Docs/PPU/2C02G_PCLK_Distrib.jpg

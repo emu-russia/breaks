@@ -44,3 +44,26 @@ Pixel clock (сокращенно PCLK) используется всеми уз
 |2C02G|![pclk_2C02G](/BreakingNESWiki/imgstore/ppu/pclk_2C02G.jpg)|
 |2C02H|TBD|
 |2C07-0|TBD|
+
+## PCLK Distribution
+
+Ниже приведены отличительные особенности разводки PCLK.
+
+![2C02G_PCLK_Distrib_sm](/BreakingNESWiki/imgstore/ppu/2C02G_PCLK_Distrib_sm.png)
+
+|Особенность|Описание|
+|---|---|
+|1|CLK Distribution|
+|2|Делитель PCLK|
+|3|Расщепитель одиночной фазы. Выдает две симметричные фазы: /PCLK и PCLK|
+|4|Инвертирующий супербуфер для /PCLK и PCLK|
+|5|Местные подтяжки PCLK|
+|6|"Другой" /PCLK (`/PCLK2`), используемый в логике сравнения спрайтов|
+|7|OB Pass. Транзисторы для формирования входных защёлок компаратора спрайтов|
+|8|THO Pass. Транзисторы для формирования входных защёлок входов THOx для мультиплексора|
+|9|OAM PCLK Precharge|
+|10|CRAM PCLK Precharge|
+|11|PCLK Anti-jitter. Транзисторы используются для ускорения "рассасывания" сигнала|
+|12|Выход /PCLK для терминалов EXT|
+
+Изображение в полном размере: https://github.com/emu-russia/breaks/blob/master/Docs/PPU/2C02G_PCLK_Distrib.jpg
