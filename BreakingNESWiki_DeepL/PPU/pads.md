@@ -108,7 +108,7 @@ Works only for output.
 
 <img src="/BreakingNESWiki/imgstore/ppu/pad_rd.png" width="600px">
 
-The /RD signal is complementary to the /WR signal (they cannot take the same values).
+The /RD signal is complementary to the /WR signal (they cannot both be 0, but they can both be 1 when the VRAM interface is not in use).
 
 When /RD=0 the AD0-AD7 data bus is used to read VRAM data (input).
 
@@ -118,7 +118,7 @@ The value of the /RD pin comes from the internal `RD` signal that comes out of [
 
 <img src="/BreakingNESWiki/imgstore/ppu/pad_wr.png" width="600px">
 
-The /WR signal is complementary to the /RD signal (they cannot take the same values).
+The /WR signal is complementary to the /RD signal (they cannot both be 0, but they can both be 1 when the VRAM interface is not in use).
 
 When /WR=0 the AD0-AD7 data bus is used to write VRAM data (output).
 
