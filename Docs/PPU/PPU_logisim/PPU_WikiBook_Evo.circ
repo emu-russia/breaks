@@ -6339,6 +6339,10 @@
       <a name="label" val="n_LL1"/>
     </comp>
     <comp lib="0" loc="(400,80)" name="Splitter">
+      <a name="bit0" val="3"/>
+      <a name="bit1" val="2"/>
+      <a name="bit2" val="1"/>
+      <a name="bit3" val="0"/>
       <a name="facing" val="west"/>
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
@@ -6573,6 +6577,10 @@
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(260,440)" name="Splitter">
+      <a name="bit0" val="3"/>
+      <a name="bit1" val="2"/>
+      <a name="bit2" val="1"/>
+      <a name="bit3" val="0"/>
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
     </comp>
@@ -6638,37 +6646,37 @@
     <comp lib="1" loc="(430,320)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(570,140)" name="AND Gate">
+    <comp lib="1" loc="(570,140)" name="OR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(600,280)" name="AND Gate">
+    <comp lib="1" loc="(600,280)" name="OR Gate">
       <a name="size" val="30"/>
     </comp>
     <comp lib="8" loc="(547,67)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="Instead of AND actually a direct connection of wires (mounting AND)"/>
+      <a name="text" val="Instead of OR actually a direct connection of wires"/>
     </comp>
     <comp lib="8" loc="(693,320)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="L0 is the closest to Vdd. L10 is closest to GND."/>
+      <a name="text" val="L0 is the closest to GND. L10 is closest to Vdd."/>
     </comp>
     <comp loc="(300,150)" name="DLatch">
-      <a name="label" val="dac_latch2"/>
+      <a name="label" val="pic_out_latch"/>
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(300,220)" name="DLatch">
-      <a name="label" val="dac_latch3"/>
+      <a name="label" val="black_latch"/>
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(300,290)" name="DLatch">
-      <a name="label" val="dac_latch4"/>
+      <a name="label" val="cb_latch"/>
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(300,80)" name="DLatch">
-      <a name="label" val="dac_latch1"/>
+      <a name="label" val="sync_latch"/>
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
