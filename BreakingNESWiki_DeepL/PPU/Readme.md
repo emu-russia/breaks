@@ -14,11 +14,16 @@ Revisions of PPU chips (preliminary synopsis table, information will be updated)
 |2C02H| |
 |2C03|RGB-versions for arcade machines based on NES (PlayChoiсe-10, Vs. System)|
 |2C03B| |
+|2C03C| |
 |2C04-0001| |
 |2C04-0002| |
 |2C04-0003| |
 |2C04-0004| |
-|2C05| |
+|2C05-01| |
+|2C05-02| |
+|2C05-03| |
+|2C05-04| |
+|2C05-99|Famicom Titler|
 |2C07-0|PAL version of the PPU for the European NES.|
 
 Probably exist (but no one has seen them):
