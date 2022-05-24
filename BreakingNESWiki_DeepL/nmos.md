@@ -25,3 +25,15 @@ Designs of this kind are widely used in counters.
 ## Counter Bit
 
 ![NMOS_CounterBit](/BreakingNESWiki/imgstore/nmos/NMOS_CounterBit.png)
+
+## AOI
+
+And-Or-Inverted:
+
+![AOI](/BreakingNESWiki/imgstore/nmos/AOI.png)
+
+## OAI
+
+Or-And-Inverted:
+
+![OAI](/BreakingNESWiki/imgstore/nmos/OAI.png)

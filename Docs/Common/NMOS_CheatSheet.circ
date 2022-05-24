@@ -270,4 +270,236 @@
     <wire from="(550,440)" to="(560,440)"/>
     <wire from="(550,480)" to="(560,480)"/>
   </circuit>
+  <circuit name="AOI">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="AOI"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(210,110)" name="Ground"/>
+    <comp lib="0" loc="(220,80)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="a"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(240,200)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="a"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(240,220)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="b"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(240,250)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="c"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(250,110)" name="Transistor">
+      <a name="type" val="n"/>
+    </comp>
+    <comp lib="0" loc="(260,80)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="b"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(290,110)" name="Transistor">
+      <a name="type" val="n"/>
+    </comp>
+    <comp lib="0" loc="(300,80)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(330,110)" name="Transistor">
+      <a name="facing" val="west"/>
+      <a name="type" val="n"/>
+    </comp>
+    <comp lib="0" loc="(330,160)" name="Tunnel">
+      <a name="label" val="x"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(340,80)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="c"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(360,230)" name="Tunnel">
+      <a name="label" val="x"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(370,110)" name="Ground"/>
+    <comp lib="0" loc="(500,50)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(500,50)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="x"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(90,110)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(90,110)" name="Tunnel">
+      <a name="label" val="c"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(90,50)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(90,50)" name="Tunnel">
+      <a name="label" val="a"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(90,80)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(90,80)" name="Tunnel">
+      <a name="label" val="b"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="1" loc="(280,210)" name="AND Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(350,230)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <wire from="(220,80)" to="(230,80)"/>
+    <wire from="(230,80)" to="(230,90)"/>
+    <wire from="(240,200)" to="(250,200)"/>
+    <wire from="(240,220)" to="(250,220)"/>
+    <wire from="(240,250)" to="(290,250)"/>
+    <wire from="(260,80)" to="(270,80)"/>
+    <wire from="(270,80)" to="(270,90)"/>
+    <wire from="(280,210)" to="(290,210)"/>
+    <wire from="(290,110)" to="(300,110)"/>
+    <wire from="(290,210)" to="(290,220)"/>
+    <wire from="(290,220)" to="(310,220)"/>
+    <wire from="(290,240)" to="(290,250)"/>
+    <wire from="(290,240)" to="(310,240)"/>
+    <wire from="(300,110)" to="(300,160)"/>
+    <wire from="(300,110)" to="(330,110)"/>
+    <wire from="(300,160)" to="(330,160)"/>
+    <wire from="(300,80)" to="(300,110)"/>
+    <wire from="(340,80)" to="(350,80)"/>
+    <wire from="(350,230)" to="(360,230)"/>
+    <wire from="(350,80)" to="(350,90)"/>
+  </circuit>
+  <circuit name="OAI">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="OAI"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(220,150)" name="Ground"/>
+    <comp lib="0" loc="(220,80)" name="Ground"/>
+    <comp lib="0" loc="(230,120)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="b"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(230,220)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="a"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(230,240)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="b"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(230,270)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="c"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(230,50)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="a"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(260,150)" name="Transistor">
+      <a name="type" val="n"/>
+    </comp>
+    <comp lib="0" loc="(260,80)" name="Transistor">
+      <a name="type" val="n"/>
+    </comp>
+    <comp lib="0" loc="(310,120)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="c"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(340,150)" name="Transistor">
+      <a name="type" val="n"/>
+    </comp>
+    <comp lib="0" loc="(360,150)" name="Pull Resistor">
+      <a name="pull" val="1"/>
+    </comp>
+    <comp lib="0" loc="(360,250)" name="Tunnel">
+      <a name="label" val="x"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(380,150)" name="Tunnel">
+      <a name="label" val="x"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(500,50)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(500,50)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="x"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(90,110)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(90,110)" name="Tunnel">
+      <a name="label" val="c"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(90,50)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(90,50)" name="Tunnel">
+      <a name="label" val="a"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(90,80)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+    </comp>
+    <comp lib="0" loc="(90,80)" name="Tunnel">
+      <a name="label" val="b"/>
+      <a name="labelfont" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="1" loc="(270,230)" name="OR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(350,250)" name="NAND Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <wire from="(230,120)" to="(240,120)"/>
+    <wire from="(230,220)" to="(240,220)"/>
+    <wire from="(230,240)" to="(240,240)"/>
+    <wire from="(230,270)" to="(290,270)"/>
+    <wire from="(230,50)" to="(240,50)"/>
+    <wire from="(240,120)" to="(240,130)"/>
+    <wire from="(240,50)" to="(240,60)"/>
+    <wire from="(260,150)" to="(280,150)"/>
+    <wire from="(260,80)" to="(280,80)"/>
+    <wire from="(270,230)" to="(290,230)"/>
+    <wire from="(280,150)" to="(300,150)"/>
+    <wire from="(280,80)" to="(280,150)"/>
+    <wire from="(290,230)" to="(290,240)"/>
+    <wire from="(290,240)" to="(310,240)"/>
+    <wire from="(290,260)" to="(290,270)"/>
+    <wire from="(290,260)" to="(310,260)"/>
+    <wire from="(310,120)" to="(320,120)"/>
+    <wire from="(320,120)" to="(320,130)"/>
+    <wire from="(340,150)" to="(360,150)"/>
+    <wire from="(350,250)" to="(360,250)"/>
+    <wire from="(360,150)" to="(380,150)"/>
+  </circuit>
 </project>
