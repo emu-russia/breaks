@@ -76,6 +76,7 @@ Correction history:
 |DDD|COPY_STEP|
 |/I2|DO_COPY|
 |I2SEV|/SPR0_EV|
+|CLPB|/CLPB (inverse polarity)|
 
 ## APU
 
