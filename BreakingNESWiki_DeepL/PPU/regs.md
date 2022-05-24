@@ -84,7 +84,7 @@ Technically it can be done, but it is not recommended because it can lead to dif
 
 But on the other hand it can be used (and is used in games in fact) to get interesting visual effects.
 
-## CLPB/CLPO
+## Clipping
 
 Below the control registers is a small circuit, for getting the control signals `/CLPB` and `CLPO`:
 
@@ -93,3 +93,14 @@ Below the control registers is a small circuit, for getting the control signals 
 |![clp_logic](/BreakingNESWiki/imgstore/ppu/clp_logic.jpg)|
 
 It's supposed to belong more to control logic, but topologically it's in a completely different place, so it's discussed in this section.
+
+This is the place to talk about the zoo of signals associated with Clipping.
+
+|Signal|From|Where To|Description|
+|---|---|---|---|
+|/BGCLIP|Regs $2001\[1\]|FSM|0: Clip the left 8 pixels in the line for the background|
+|/OBCLIP|Regs $2001\[2\]|FSM|0: Clip the left 8 pixels in the line for the sprites|
+|CLIP_B|FSM|Regs|1: Enabled if left 8 background pixels clipping is on and it is time (H counter is set to the right value)|
+|CLIP_O|FSM|Regs|1: Enabled if left 8 sprite pixels clipping is on and it is time (H counter is set to the right value)|
+|/CLPB|Regs|BGCOL|0: Clip background. Final signal for BGCOL circuit|
+|CLPO|Regs|FIFO|1: Clip sprites. Final signal for OAM FIFO circuit|
