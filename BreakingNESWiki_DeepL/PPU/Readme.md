@@ -47,6 +47,16 @@ Main components of PPU:
 - Address bus control circuitry. Controls the VRAM addressing.
 - Data fetcher circuit (DATA READER). Circuit for fetching source data from VRAM: tiles and attributes. Includes a PAR address generator and a circuit for producing a background color.
 
+## PPU Buses
+
+The PPU contains two internal data buses:
+- DB (CPU Data Bus): A bus for exchanging data over the CPU interface (register values)
+- PD (PPU Data Bus): The bus for exchanging data on the VRAM interface
+
+:warning: For correct simulation and implementation of the PPU on Verilog the DB bus capacity is important. A value placed on the bus at the CPU end while writing to the PPU registers can be used by the internal PPU circuits for which it is intended even after the CPU interface has finished its work (/DBE = 1). So the value on the DB bus still "hangs around" for a while and then is used by the PPU circuits. This is especially true for registers $2003 and $2007. It is recommended to use Transparent Latch or Bus Keeper if you are going to implement PPU circuits on HDL.
+
+The PD (PPU Data) bus is less prone to floating problems because it is combined (multiplexed) with the PA (PPU Address) bus.
+
 ## Note on Transistor Circuits
 
 The transistor circuits for each component are chopped up into component parts so that they don't take up too much space.
