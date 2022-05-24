@@ -26,6 +26,10 @@ Designs of this kind are widely used in counters.
 
 ![NMOS_CounterBit](/BreakingNESWiki/imgstore/nmos/NMOS_CounterBit.png)
 
+## Down Counter Bit
+
+![NMOS_DOWN_CounterBit](/BreakingNESWiki/imgstore/nmos/NMOS_DOWN_CounterBit.png)
+
 ## AOI
 
 And-Or-Inverted:
