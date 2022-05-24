@@ -28,6 +28,10 @@
 
 ![NMOS_CounterBit](/BreakingNESWiki/imgstore/nmos/NMOS_CounterBit.png)
 
+## Разряд обратного счётчика
+
+![NMOS_DOWN_CounterBit](/BreakingNESWiki/imgstore/nmos/NMOS_DOWN_CounterBit.png)
+
 ## AOI
 
 And-Or-Inverted:
