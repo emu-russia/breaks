@@ -71,7 +71,7 @@ The most important control signals of the [PPU FSM](fsm.md) are marked with a sp
 |:zap:F/TA|FSM|Data Reader|"Fetch Tile A"|
 |:zap:F/TB|FSM|Data Reader|"Fetch Tile B"|
 |:zap:CLIP_O|FSM|Control Regs|"Clip Objects". 1: Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
-|:zap:CLIP_B|FSM|Control Regs|"Clip Background". 1: Do not show the left 8 points of the screen for the background. Used to get the `CLPB` signal that goes into the Data Reader.|
+|:zap:CLIP_B|FSM|Control Regs|"Clip Background". 1: Do not show the left 8 points of the screen for the background. Used to get the `/CLPB` signal that goes into the Data Reader.|
 |VBL|Regs $2000\[7\]|FSM|Used in the VBlank interrupt handling circuitry|
 |/TB|Regs $2001\[7\]|VideoOut|"Tint Blue". Modifying value for Emphasis|
 |/TG|Regs $2001\[6\]|VideoOut|"Tint Green". Modifying value for Emphasis|
@@ -166,7 +166,7 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 |---|---|---|---|
 |OB0-7|OAM Buffer|OAM FIFO, Pattern Readout|OAM Buffer output value|
 |CLPO|Regs|OAM FIFO|To enable sprite clipping|
-|CLPB|Regs|BG Color|To enable background clipping|
+|/CLPB|Regs|BG Color|To enable background clipping|
 |PD/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
 |BGSEL|Regs|Pattern Readout|Selecting Pattern Table for background|
 |OV0-3|Sprite Compare|V Inversion|Bit 0-3 of the V sprite value|

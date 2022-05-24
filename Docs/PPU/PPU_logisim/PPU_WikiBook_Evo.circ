@@ -4888,7 +4888,7 @@
     <comp lib="0" loc="(510,120)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="CLPB"/>
+      <a name="label" val="n_CLPB"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(510,200)" name="Pin">
@@ -16670,7 +16670,7 @@
     </comp>
     <comp lib="0" loc="(110,800)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="CLPB"/>
+      <a name="label" val="n_CLPB"/>
     </comp>
     <comp lib="0" loc="(110,820)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16805,7 +16805,7 @@
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(120,800)" name="Tunnel">
-      <a name="label" val="CLPB"/>
+      <a name="label" val="n_CLPB"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(120,820)" name="Tunnel">
@@ -17041,7 +17041,7 @@
     </comp>
     <comp lib="0" loc="(840,790)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="CLPB"/>
+      <a name="label" val="n_CLPB"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp loc="(1060,570)" name="BGC_All"/>
@@ -23879,7 +23879,7 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(150,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="CLPB"/>
+      <a name="label" val="n_CLPB"/>
     </comp>
     <comp lib="0" loc="(150,180)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -24093,7 +24093,7 @@
     </comp>
     <comp lib="0" loc="(120,500)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="CLPB"/>
+      <a name="label" val="n_CLPB"/>
     </comp>
     <comp lib="0" loc="(120,60)" name="Pin">
       <a name="appearance" val="NewPins"/>
