@@ -745,7 +745,7 @@
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="161" y="220">SC/CNT</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="166" y="229">/HB</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="161" y="239">BURST</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="161" y="249">HSYNC</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="161" y="249">SYNC</text>
       <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
       <circ-port height="10" pin="1140,1110" width="10" x="175" y="175"/>
       <circ-port height="10" pin="1140,120" width="10" x="175" y="55"/>
@@ -6545,7 +6545,7 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(140,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="HSYNC"/>
+      <a name="label" val="SYNC"/>
     </comp>
     <comp lib="0" loc="(140,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -6865,7 +6865,7 @@
     </comp>
     <comp lib="0" loc="(130,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="HSYNC"/>
+      <a name="label" val="SYNC"/>
     </comp>
     <comp lib="0" loc="(130,370)" name="Pin">
       <a name="appearance" val="NewPins"/>
