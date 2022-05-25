@@ -13,8 +13,8 @@ Input signals:
 |/PCLK|PCLK Distribution|First half of the Pixel Clock cycle|
 |PCLK|PCLK Distribution|Second half of the Pixel Clock cycle|
 |RES|/RES Pad|Global reset|
-|#CC0-3|Color Buffer|4 bits of the chrominance of the current "pixel"|
-|#LL0-1|Color Buffer|2 bits of the luminance of the current "pixel"|
+|#CC0-3|Color Buffer|4 bits of the chrominance of the current "pixel" (inverted value)|
+|#LL0-1|Color Buffer|2 bits of the luminance of the current "pixel" (inverted value)|
 |BURST|FSM|Color Burst|
 |SYNC|FSM|Sync pulse|
 |/PICTURE|FSM|Visible part of the scan-lines|
