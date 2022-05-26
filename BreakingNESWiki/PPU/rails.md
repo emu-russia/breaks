@@ -51,7 +51,7 @@ TBD: Инверсность некоторых сигналов может бы�
 |:zap:I/OAM2|FSM|Sprite Logic|"Init OAM2". Инициализировать дополнительную OAM|
 |/H2'|HCounter|All|Сигнал H2 задержанный одним DLatch (в инверсной логике)|
 |SPR_OV|OAM Counters Ctrl|Sprite Eval|Cпрайтов на текущей строке больше 8 или главный счётчик OAM переполнен, копирование прекращено|
-|:zap:EVAL|FSM|Sprite Logic|"Sprite Evaluation in Progress"|
+|:zap:/EVAL|FSM|Sprite Logic|0: "Sprite Evaluation in Progress"|
 |H0'|HCounter|All|Сигнал H0 задержанный одним DLatch|
 |EvenOddOut|Even/Odd Circuit|OAM Counters Ctrl|:warning: Только для PAL PPU.|
 

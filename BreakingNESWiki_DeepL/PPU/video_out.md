@@ -36,7 +36,7 @@ Input signals:
 
 The color decoder selects one of the 12 phases. 12 because:
 - No phase is required for black.
-- There is no phase for colors 13-15. However, for color 13 there is an option to use brightness, and colors 14-15 are forced to be "Black" using the `P123` signal
+- There is no phase for colors 13-15. However, for color 13 there is an option to use brightness, and colors 14-15 are forced to be "Black" using the `PBLACK` signal
 
 The phase for Color Burst is the same as for Color 8 (CC = `1000`).
 

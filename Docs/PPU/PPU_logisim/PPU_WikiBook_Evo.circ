@@ -731,7 +731,7 @@
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="70">CLIP_O</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="80">CLIP_B</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="159" y="90">0/HPOS</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="162" y="99">EVAL</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="162" y="99">/EVAL</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="163" y="109">E/EV</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="119">I/OAM2</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="129">PAR/O</text>
@@ -801,7 +801,7 @@
     <comp lib="0" loc="(1140,440)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="EVAL"/>
+      <a name="label" val="n_EVAL"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(1140,520)" name="Pin">
@@ -6119,7 +6119,7 @@
     <comp lib="0" loc="(510,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="P123"/>
+      <a name="label" val="PBLACK"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(550,110)" name="Splitter">
@@ -6549,7 +6549,7 @@
     </comp>
     <comp lib="0" loc="(140,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="P123"/>
+      <a name="label" val="PBLACK"/>
     </comp>
     <comp lib="0" loc="(140,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -9189,7 +9189,7 @@
     </comp>
     <comp lib="0" loc="(120,210)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="EVAL"/>
+      <a name="label" val="n_EVAL"/>
     </comp>
     <comp lib="0" loc="(120,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -9240,7 +9240,7 @@
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(130,210)" name="Tunnel">
-      <a name="label" val="EVAL"/>
+      <a name="label" val="n_EVAL"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(130,240)" name="Tunnel">
@@ -9310,7 +9310,7 @@
     </comp>
     <comp lib="0" loc="(280,360)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="EVAL"/>
+      <a name="label" val="n_EVAL"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(280,420)" name="Tunnel">
@@ -9425,7 +9425,7 @@
     </comp>
     <comp lib="0" loc="(540,490)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="EVAL"/>
+      <a name="label" val="n_EVAL"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp lib="0" loc="(550,830)" name="Tunnel">
@@ -11009,7 +11009,7 @@
     </comp>
     <comp lib="0" loc="(130,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="EVAL"/>
+      <a name="label" val="n_EVAL"/>
     </comp>
     <comp lib="0" loc="(130,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
