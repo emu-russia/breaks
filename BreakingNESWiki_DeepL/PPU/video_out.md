@@ -28,6 +28,71 @@ Input signals:
 
 ![vidout_phase_shifter_logic](/BreakingNESWiki/imgstore/ppu/vidout_phase_shifter_logic.jpg)
 
+Schematic of a single bit shift register used in the phase shifter circuit:
+
+![vidout_sr_bit_logic](/BreakingNESWiki/imgstore/ppu/vidout_sr_bit_logic.jpg)
+
+If you dump each half-cycle phase shifter outputs and match them to the PPU color number with which it is associated, you get this:
+
+```
+123456......
+12345......C
+1234......BC
+123......ABC
+12......9ABC
+1......89ABC
+......789ABC
+.....6789AB.
+....56789A..
+...456789...
+..345678....
+.234567.....
+```
+
+If you split the dump from the beginning of the PPU into pixels (8 half-cycles per pixel, according to the PCLK divider), you get the following:
+
+```
+.2.4.6.8.A.C
+.2.4.6.8.A..
+.2.456.8.A..
+.2.456.8....
+.23456.8....
+.23456......
+123456......
+12345......C
+
+1234......BC
+123......ABC
+12......9ABC
+1......89ABC
+......789ABC
+.....6789AB.
+....56789A..
+...456789...
+
+..345678....
+.234567.....
+123456......
+12345......C
+1234......BC
+123......ABC
+12......9ABC
+1......89ABC
+
+......789ABC
+.....6789AB.
+....56789A..
+...456789...
+..345678....
+.234567.....
+123456......
+12345......C
+```
+
+That is, the first pixel phase shifter first "comes to its senses", and then begins to output 12 phases. Note that the phases do not correspond to the "boundaries" of the pixels, so the phase will "float". But since all phases "float" simultaneously with the phase that is used for Color Burst - the overall phase pattern will not be disturbed.
+
+![cb_drift](/BreakingNESWiki/imgstore/ppu/cb_drift.png)
+
 ## Chrominance Decoder
 
 ![vout_phase_decoder](/BreakingNESWiki/imgstore/ppu/vout_phase_decoder.jpg)
