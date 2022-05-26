@@ -77,6 +77,8 @@
 |/I2|DO_COPY|
 |I2SEV|/SPR0_EV|
 |CLPB|/CLPB (инверсная полярность)|
+|EVAL|/EVAL (инверсная полярность)|
+|P123|PBLACK (Phase Shifter)|
 
 ## APU
 
