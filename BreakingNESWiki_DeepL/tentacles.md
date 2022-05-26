@@ -77,6 +77,8 @@ Correction history:
 |/I2|DO_COPY|
 |I2SEV|/SPR0_EV|
 |CLPB|/CLPB (inverse polarity)|
+|EVAL|/EVAL (inverse polarity)|
+|P123|PBLACK (Phase Shifter)|
 
 ## APU
 
