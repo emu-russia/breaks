@@ -35,7 +35,7 @@ Input signals:
 ![vidout_chroma_decoder_logic](/BreakingNESWiki/imgstore/ppu/vidout_chroma_decoder_logic.jpg)
 
 The color decoder selects one of the 12 phases. 12 because:
-- No phase is required for black.
+- Gray halftones do not need a phase.
 - There is no phase for colors 13-15. However, for color 13 there is an option to use brightness, and colors 14-15 are forced to be "Black" using the `PBLACK` signal
 
 Table of matching decoder outputs and PPU colors:
