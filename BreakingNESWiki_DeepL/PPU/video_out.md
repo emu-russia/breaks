@@ -38,7 +38,25 @@ The color decoder selects one of the 12 phases. 12 because:
 - No phase is required for black.
 - There is no phase for colors 13-15. However, for color 13 there is an option to use brightness, and colors 14-15 are forced to be "Black" using the `PBLACK` signal
 
-The phase for Color Burst is the same as for Color 8 (CC = `1000`).
+Table of matching decoder outputs and PPU colors:
+
+|Color decoder output|Corresponding PPU color|
+|---|---|
+|0|12|
+|1|5|
+|2|10|
+|3|3|
+|4|0. Not connected to the phase shifter because gray halftones do not need a phase.|
+|5|8. Also used for the Color Burst phase|
+|6|1|
+|7|6|
+|8|11|
+|9|4|
+|10|9|
+|11|2|
+|12|7|
+
+(The numbering of the decoder outputs is topological, from left to right, starting from 0).
 
 ## Luminance Level
 
