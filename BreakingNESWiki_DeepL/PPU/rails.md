@@ -51,7 +51,7 @@ The most important control signals of the [PPU FSM](fsm.md) are marked with a sp
 |:zap:I/OAM2|FSM|Sprite Logic|"Init OAM2". Initialize an additional (temp) OAM|
 |/H2'|HCounter|All|H2 signal delayed by one DLatch (in inverse logic)|
 |SPR_OV|OAM Counters Ctrl|Sprite Eval|Sprites on the current line are more than 8 or the main OAM counter is full, copying is stopped|
-|:zap:EVAL|FSM|Sprite Logic|"Sprite Evaluation in Progress"|
+|:zap:/EVAL|FSM|Sprite Logic|0: "Sprite Evaluation in Progress"|
 |H0'|HCounter|All|H0 signal delayed by one DLatch|
 |EvenOddOut|Even/Odd Circuit|OAM Counters Ctrl|:warning: Only for PAL PPU.|
 

@@ -48,7 +48,7 @@
 |CLIP_O|Control Regs|"Clip Objects". 1: Не показывать левые 8 точек экрана для спрайтов. Используется для получения сигнала `CLPO`, который уходит в OAM FIFO.|
 |CLIP_B|Control Regs|"Clip Background". 1: Не показывать левые 8 точек экрана для бэкграунда. Используется для получения сигнала `/CLPB`, который уходит в Data Reader.|
 |0/HPOS|OAM FIFO|"Clear HPos". Очистить счётчики H в [спрайтовой FIFO](fifo.md) и начать работу FIFO|
-|EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
+|/EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
 |I/OAM2|Sprite Logic|"Init OAM2". Инициализировать дополнительную [OAM](oam.md)|
 |PAR/O|All|"PAR for Object". Выборка тайла для объекта (спрайта).|

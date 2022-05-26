@@ -26,7 +26,7 @@
 |I/OAM2|"Init OAM2". Инициализировать дополнительную OAM|
 |/VIS|"Not Visible". Невидимая часть сигнала (использует спрайтовая логика)|
 |PAR/O|"PAR for Object". Выборка тайла для объекта (спрайта).|
-|EVAL|"Sprite Evaluation in Progress"|
+|/EVAL|0: "Sprite Evaluation in Progress"|
 |RESCL|Событие окончания периода VBlank|
 |#F/NT|0: "Fetch Name Table"|
 |S/EV|"Start Sprite Evaluation"|

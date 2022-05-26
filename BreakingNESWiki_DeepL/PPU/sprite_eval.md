@@ -26,7 +26,7 @@ Inputs:
 |I/OAM2|"Init OAM2". Initialize an additional (temp) OAM|
 |/VIS|"Not Visible". The invisible part of the signal (used in sprite logic)|
 |PAR/O|"PAR for Object". Selecting a tile for an object (sprite)|
-|EVAL|"Sprite Evaluation in Progress"|
+|/EVAL|"Sprite Evaluation in Progress"|
 |RESCL|"Reset FF Clear" / "VBlank Clear". VBlank period end event.|
 |#F/NT|0: "Fetch Name Table"|
 |S/EV|"Start Sprite Evaluation"|
