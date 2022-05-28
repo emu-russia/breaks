@@ -37,6 +37,14 @@ It is hard to say what values are on the latches (gates). If we assume that afte
 
 But in general it is more correct to assume that the value of the latches is undefined (`x`)
 
+## Reset Status
+
+The circular counter feature causes the first half-cycle of PCLK (/PCLK = 1) to be equal to three cycles of CLK when the reset signal is set (RES = 1):
+
+![pclk_reset](/BreakingNESWiki/imgstore/ppu/pclk_reset.png)
+
+After that the circular counter comes to its senses and starts working as usual (1 PCLK = 4 CLK).
+
 ## Logic Circuit
 
 |PPU revision|Schematic|
