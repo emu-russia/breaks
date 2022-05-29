@@ -23315,15 +23315,14 @@
     </comp>
     <comp lib="0" loc="(380,130)" name="Constant"/>
     <comp lib="0" loc="(500,130)" name="Splitter">
-      <a name="bit0" val="7"/>
-      <a name="bit1" val="6"/>
-      <a name="bit2" val="5"/>
-      <a name="bit3" val="4"/>
-      <a name="bit4" val="3"/>
-      <a name="bit5" val="2"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="0"/>
-      <a name="fanout" val="8"/>
+      <a name="bit1" val="none"/>
+      <a name="bit2" val="none"/>
+      <a name="bit3" val="none"/>
+      <a name="bit4" val="none"/>
+      <a name="bit5" val="none"/>
+      <a name="bit6" val="none"/>
+      <a name="bit7" val="none"/>
+      <a name="fanout" val="1"/>
       <a name="incoming" val="8"/>
     </comp>
     <comp lib="0" loc="(530,140)" name="Constant">
@@ -23447,15 +23446,14 @@
     </comp>
     <comp lib="0" loc="(380,130)" name="Constant"/>
     <comp lib="0" loc="(500,130)" name="Splitter">
-      <a name="bit0" val="7"/>
-      <a name="bit1" val="6"/>
-      <a name="bit2" val="5"/>
-      <a name="bit3" val="4"/>
-      <a name="bit4" val="3"/>
-      <a name="bit5" val="2"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="0"/>
-      <a name="fanout" val="8"/>
+      <a name="bit1" val="none"/>
+      <a name="bit2" val="none"/>
+      <a name="bit3" val="none"/>
+      <a name="bit4" val="none"/>
+      <a name="bit5" val="none"/>
+      <a name="bit6" val="none"/>
+      <a name="bit7" val="none"/>
+      <a name="fanout" val="1"/>
       <a name="incoming" val="8"/>
     </comp>
     <comp lib="0" loc="(530,140)" name="Constant">
@@ -23555,7 +23553,12 @@
       <a name="width" val="3"/>
     </comp>
     <comp lib="0" loc="(130,60)" name="Splitter">
-      <a name="fanout" val="5"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="none"/>
+      <a name="bit3" val="none"/>
+      <a name="bit4" val="none"/>
+      <a name="fanout" val="1"/>
       <a name="incoming" val="5"/>
     </comp>
     <comp lib="0" loc="(140,290)" name="Pin">
@@ -23582,14 +23585,6 @@
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(670,180)" name="Splitter">
-      <a name="bit0" val="7"/>
-      <a name="bit1" val="6"/>
-      <a name="bit2" val="5"/>
-      <a name="bit3" val="4"/>
-      <a name="bit4" val="3"/>
-      <a name="bit5" val="2"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="0"/>
       <a name="fanout" val="8"/>
       <a name="incoming" val="8"/>
     </comp>
@@ -23605,10 +23600,6 @@
     </comp>
     <comp lib="2" loc="(730,140)" name="Multiplexer">
       <a name="select" val="3"/>
-    </comp>
-    <comp lib="8" loc="(685,77)" name="Text">
-      <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="Reverse bit ordering."/>
     </comp>
     <comp loc="(200,120)" name="DLatch">
       <a name="label" val="pd0_latch"/>
@@ -23639,7 +23630,7 @@
     <wire from="(130,390)" to="(510,390)"/>
     <wire from="(130,410)" to="(370,410)"/>
     <wire from="(130,440)" to="(710,440)"/>
-    <wire from="(150,20)" to="(170,20)"/>
+    <wire from="(150,50)" to="(170,50)"/>
     <wire from="(150,70)" to="(150,80)"/>
     <wire from="(150,70)" to="(180,70)"/>
     <wire from="(160,140)" to="(160,210)"/>
@@ -23647,13 +23638,13 @@
     <wire from="(160,230)" to="(170,230)"/>
     <wire from="(160,250)" to="(170,250)"/>
     <wire from="(160,270)" to="(170,270)"/>
-    <wire from="(170,20)" to="(170,80)"/>
     <wire from="(170,200)" to="(170,230)"/>
     <wire from="(170,200)" to="(200,200)"/>
     <wire from="(170,250)" to="(170,260)"/>
     <wire from="(170,260)" to="(200,260)"/>
     <wire from="(170,270)" to="(170,320)"/>
     <wire from="(170,320)" to="(200,320)"/>
+    <wire from="(170,50)" to="(170,80)"/>
     <wire from="(170,80)" to="(180,80)"/>
     <wire from="(190,120)" to="(190,180)"/>
     <wire from="(190,120)" to="(200,120)"/>
@@ -23733,7 +23724,12 @@
       <a name="width" val="3"/>
     </comp>
     <comp lib="0" loc="(130,60)" name="Splitter">
-      <a name="fanout" val="5"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="none"/>
+      <a name="bit3" val="none"/>
+      <a name="bit4" val="none"/>
+      <a name="fanout" val="1"/>
       <a name="incoming" val="5"/>
     </comp>
     <comp lib="0" loc="(140,290)" name="Pin">
@@ -23760,14 +23756,6 @@
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(670,180)" name="Splitter">
-      <a name="bit0" val="7"/>
-      <a name="bit1" val="6"/>
-      <a name="bit2" val="5"/>
-      <a name="bit3" val="4"/>
-      <a name="bit4" val="3"/>
-      <a name="bit5" val="2"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="0"/>
       <a name="fanout" val="8"/>
       <a name="incoming" val="8"/>
     </comp>
@@ -23787,10 +23775,6 @@
     <comp lib="8" loc="(366,38)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="Repeats the BGC2 circuit, but uses odd bits instead of even PD bits."/>
-    </comp>
-    <comp lib="8" loc="(685,77)" name="Text">
-      <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="Reverse bit ordering."/>
     </comp>
     <comp loc="(200,120)" name="DLatch">
       <a name="label" val="pd1_latch"/>
@@ -23821,7 +23805,7 @@
     <wire from="(130,390)" to="(510,390)"/>
     <wire from="(130,410)" to="(370,410)"/>
     <wire from="(130,440)" to="(710,440)"/>
-    <wire from="(150,20)" to="(170,20)"/>
+    <wire from="(150,50)" to="(170,50)"/>
     <wire from="(150,70)" to="(150,80)"/>
     <wire from="(150,70)" to="(180,70)"/>
     <wire from="(160,220)" to="(170,220)"/>
@@ -23830,7 +23814,7 @@
     <wire from="(160,280)" to="(180,280)"/>
     <wire from="(170,140)" to="(170,220)"/>
     <wire from="(170,140)" to="(200,140)"/>
-    <wire from="(170,20)" to="(170,80)"/>
+    <wire from="(170,50)" to="(170,80)"/>
     <wire from="(170,80)" to="(180,80)"/>
     <wire from="(180,200)" to="(180,240)"/>
     <wire from="(180,200)" to="(200,200)"/>
