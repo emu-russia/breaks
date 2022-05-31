@@ -42,7 +42,7 @@ All commands are discussed in more detail in their respective sections. The summ
 |/ACIN|√|√|ALU input carry. The ALU also returns the result of carry (`ACR`) and overflow (`AVR`)|
 |ANDS|√|√|AI & BI|
 |EORS|√|√|AI ^ BI|
-|ORS|√|√|AI | BI|
+|ORS|√|√|AI \| BI|
 |SRS|√|√|>>= 1|
 |SUMS|√|√|AI + BI|
 |/DAA|√|√|0: Perform BCD correction after addition|
