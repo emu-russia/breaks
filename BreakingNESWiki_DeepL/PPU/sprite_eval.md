@@ -112,6 +112,13 @@ This feature is used only for bits 0 and 1 of the main counter in order to imple
 
 ![OAM_SprOV_Flag](/BreakingNESWiki/imgstore/ppu/OAM_SprOV_Flag.png)
 
+Operating modes of OAM counters:
+
+|OAM Counter|Size (bits)|Modulo|Initialization|Comparison (search)|Comparison (copy)|Fetching sprites from Temp OAM to FIFO|
+|---|---|---|---|---|---|---|
+|OAM|8|+1 / +4|not working|working, modulo +4|working, modulo +1|not working|
+|Temp OAM|5|+1|working|not working|working|working|
+
 ## OAM Address
 
 ![oam_address_tran](/BreakingNESWiki/imgstore/ppu/oam_address_tran.jpg)
