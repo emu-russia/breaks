@@ -1,4 +1,4 @@
-# Color RAM
+# Палитра (Color RAM)
 
 ![ppu_locator_cram](/BreakingNESWiki/imgstore/ppu/ppu_locator_cram.jpg)
 
