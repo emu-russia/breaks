@@ -7,7 +7,7 @@ The scrolling registers are tricky:
 - The best way to see when and where they are written is in the tables below
 - The Name Table also uses a similar duality when writing to the $2000 register
 
-Anyone who has been programming NES for a long time is familiar with these features. They are usually referred to in the context of `Loopy`, by the nickname of the person who reviewed their features for emulation purposes.
+Anyone who has been programming NES for a long time is familiar with these features. They are usually referred to in the context of `loopy`, by the nickname of the person who reviewed their features for emulation purposes.
 
 Who is just starting to get familiar with the NES, it's ... arrgh...
 
