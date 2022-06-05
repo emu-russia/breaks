@@ -21,20 +21,19 @@
 
 Схема находится выше спрайтовой логики.
 
-Декодер предназначен для получения двух комплементарных управляющих линий `/RD` и `/WR` из входного контакта интерфейса CPU R/W, которые используются для контактов внешней шины D0-D7. Сигналы /RD и /WR комплементарны когда /DBE = 0. Если /DBE = 1 (CPU интерфейс отключен) оба сигнала равны `1` (ни чтение, ни запись).
+Декодер предназначен для получения двух комплементарных управляющих сигналов `/RD` и `/WR` из входного контакта интерфейса CPU R/W, которые используются для контактов внешней шины D0-D7. Сигналы /RD и /WR комплементарны когда /DBE = 0. Если /DBE = 1 (CPU интерфейс отключен) оба сигнала равны `1` (ни чтение, ни запись).
 
 |![rw_decoder](/BreakingNESWiki/imgstore/ppu/rw_decoder.jpg)|![rw_decoder_logic](/BreakingNESWiki/imgstore/ppu/rw_decoder_logic.jpg)|
 |---|---|
 
 ## Read/Write Enablers
 
-Рядом со схемами, где используются регистры пристутвуют небольшие схемы, которые мы называем Read/Write Enablers.
+Рядом со схемами, где используются регистры присутствуют небольшие схемы, которые мы называем Read/Write Enablers.
 
 Пример такой схемы, R4 Enabler (находится левее RW декодера):
 
-![r4_enabler_tran](/BreakingNESWiki/imgstore/ppu/r4_enabler_tran.jpg)
-
-![rw_enabler_logic](/BreakingNESWiki/imgstore/ppu/rw_enabler_logic.jpg)
+|![r4_enabler_tran](/BreakingNESWiki/imgstore/ppu/r4_enabler_tran.jpg)|![rw_enabler_logic](/BreakingNESWiki/imgstore/ppu/rw_enabler_logic.jpg)|
+|---|---|
 
 ## Выбор регистра
 
