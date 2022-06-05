@@ -40,8 +40,6 @@ Maybe there is actually some JK trigger hiding here, but I don't know about thes
 
 ## H/V Counters Design
 
-I didn't want to spam big pictures, but I guess I have to.
-
 |H|V|
 |---|---|
 |![H_trans](/BreakingNESWiki/imgstore/ppu/H_trans.jpg)|![V_trans](/BreakingNESWiki/imgstore/ppu/V_trans.jpg)|
