@@ -8,7 +8,7 @@ Sprite memory (OAM, Object Attribute Memory) takes up almost a quarter of the PP
 
 ![ppu_oam_closeup](/BreakingNESWiki/imgstore/ppu/ppu_oam_closeup.jpg)
 
-OAM circuits:
+OAM components:
 - Memory Cell Array (2112 cells)
 - Row Decoder
 - Column Decoder
@@ -21,27 +21,27 @@ Signals table:
 
 |Signal/group|Description|
 |---|---|
-|OAM Address||
+|**OAM Address**||
 |/OAM0-7|Address of the main OAM (in inverse logic)|
 |OAM8|1: Use Temp OAM|
-|FSM||
+|**FSM**||
 |BLNK|Active when PPU rendering is disabled (by `BLACK` signal) or during VBlank|
 |I/OAM2|"Init OAM2". Initialize an additional (temp) OAM|
 |/VIS|"Not Visible". The invisible part of the signal (used in sprite logic)|
-|From the sprite comparison||
+|**From the sprite comparison**||
 |SPR_OV|Sprite Overflow|
 |OAMCTR2|OAM Buffer Control|
-|CPU I/F||
+|**CPU I/F**||
 |/R4|0: Read $2004|
 |/W4|0: Write $2004|
 |/DBE|0: "Data Bus Enable", enable CPU interface|
-|Internal signals||
+|**Internal signals**||
 |ROW0-7|Defines the row to access the main OAM|
 |ROWZ|Defines the row to access the Temp OAM|
 |COL0-31|Determines the column number. During PCLK all COL outputs are 0.|
 |OB/OAM|1: Write the current value of OB to the output latch|
 |/WE|0: write to the selected OAM cell the value from the output latch|
-|Output signals||
+|**Output signals**||
 |OFETCH|"OAM Fetch"|
 |OB0-7|Current OAM Buffer value (from OB_FF)|
 
