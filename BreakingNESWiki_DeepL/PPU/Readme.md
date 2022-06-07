@@ -49,9 +49,13 @@ Main components of PPU:
 
 ## PPU Buses
 
-The PPU contains two internal data buses:
-- DB (CPU Data Bus): A bus for exchanging data over the CPU interface (register values)
-- PD (PPU Data Bus): The bus for exchanging data on the VRAM interface
+The PPU contains the following internal data buses:
+
+|Bus name|Abbreviation|Bus master|Users|
+|---|---|---|---|
+|CPU Data Bus|DB|PPU Regs|PatGen, OAM Ctr, OAM Buffer, Ctr Regs, Color Buffer, Read Buffer, Strike Test, Interrupt Ctr|
+|PPU Data Bus|PD|NT RAM, CHR ROM, $2007|PatGen, BGCOL, H. INV|
+|Object Bus|OB|OAM Buffer|PatGen, Obj FIFO, OAM Eval|
 
 :warning: For correct simulation and implementation of the PPU on Verilog the DB bus capacity is important. A value placed on the bus at the CPU end while writing to the PPU registers can be used by the internal PPU circuits for which it is intended even after the CPU interface has finished its work (/DBE = 1). So the value on the DB bus still "hangs around" for a while and then is used by the PPU circuits. This is especially true for registers $2003 and $2007. It is recommended to use Transparent Latch or Bus Keeper if you are going to implement PPU circuits on HDL.
 
