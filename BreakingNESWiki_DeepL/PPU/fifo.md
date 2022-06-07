@@ -37,7 +37,7 @@ Signal table:
 |**Output signals**||
 |/SH2|Also used in Data Reader|
 |/SPR0HIT|To detect a `Sprite 0 Hit` event|
-|#Z/COL0, #Z/COL1, Z/COL2, Z/COL3, #Z/PRIO|FIFO results for the multiplexer (MUX)|
+|#ZCOL0, #ZCOL1, ZCOL2, ZCOL3, #ZPRIO|FIFO results for the multiplexer (MUX)|
 
 ## Principle of Operation
 
