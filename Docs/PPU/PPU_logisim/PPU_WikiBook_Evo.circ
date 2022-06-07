@@ -2831,23 +2831,44 @@
       <a name="appearance" val="NewPins"/>
       <a name="label" val="CLK"/>
     </comp>
-    <comp lib="0" loc="(570,180)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="PCLK"/>
-      <a name="output" val="true"/>
-    </comp>
-    <comp lib="0" loc="(570,210)" name="Pin">
+    <comp lib="0" loc="(760,190)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PCLK"/>
       <a name="output" val="true"/>
     </comp>
+    <comp lib="0" loc="(760,250)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="PCLK"/>
+      <a name="output" val="true"/>
+    </comp>
     <comp lib="1" loc="(200,180)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(550,210)" name="NOT Gate">
+    <comp lib="1" loc="(600,180)" name="NOT Gate">
       <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(660,190)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(660,250)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(720,190)" name="Buffer"/>
+    <comp lib="1" loc="(720,250)" name="Buffer"/>
+    <comp lib="1" loc="(750,190)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(750,250)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="8" loc="(528,172)" name="Text">
+      <a name="text" val="PCLK"/>
+    </comp>
+    <comp lib="8" loc="(637,288)" name="Text">
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="PCLK_FF"/>
     </comp>
     <comp loc="(230,160)" name="DLatch">
       <a name="label" val="pclk_1"/>
@@ -2893,11 +2914,27 @@
     <wire from="(430,90)" to="(490,90)"/>
     <wire from="(480,180)" to="(500,180)"/>
     <wire from="(500,180)" to="(500,220)"/>
-    <wire from="(500,180)" to="(520,180)"/>
-    <wire from="(520,180)" to="(520,210)"/>
-    <wire from="(520,180)" to="(570,180)"/>
-    <wire from="(520,210)" to="(530,210)"/>
-    <wire from="(550,210)" to="(570,210)"/>
+    <wire from="(500,180)" to="(560,180)"/>
+    <wire from="(560,180)" to="(560,260)"/>
+    <wire from="(560,180)" to="(580,180)"/>
+    <wire from="(560,260)" to="(620,260)"/>
+    <wire from="(600,180)" to="(620,180)"/>
+    <wire from="(600,220)" to="(600,240)"/>
+    <wire from="(600,220)" to="(670,220)"/>
+    <wire from="(600,240)" to="(620,240)"/>
+    <wire from="(610,200)" to="(610,230)"/>
+    <wire from="(610,200)" to="(620,200)"/>
+    <wire from="(610,230)" to="(670,230)"/>
+    <wire from="(660,190)" to="(670,190)"/>
+    <wire from="(660,250)" to="(670,250)"/>
+    <wire from="(670,190)" to="(670,220)"/>
+    <wire from="(670,190)" to="(700,190)"/>
+    <wire from="(670,230)" to="(670,250)"/>
+    <wire from="(670,250)" to="(700,250)"/>
+    <wire from="(720,190)" to="(730,190)"/>
+    <wire from="(720,250)" to="(730,250)"/>
+    <wire from="(750,190)" to="(760,190)"/>
+    <wire from="(750,250)" to="(760,250)"/>
   </circuit>
   <circuit name="PCLK_Test">
     <a name="appearance" val="logisim_evolution"/>

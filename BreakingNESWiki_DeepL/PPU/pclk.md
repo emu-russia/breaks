@@ -14,7 +14,7 @@ For this purpose, a divider on static latches is used:
 
 <img src="/BreakingNESWiki/imgstore/ppu/pclk.jpg" width="400px">
 
-Just below the divider is a small circuit. There is the soul of the PPU and we will not examine it.
+Just below the divider is the single phase splitter. This is a canonical circuit based on a single FF that makes two phases (/PCLK + PCLK) from a single phase (PCLK).
 
 At the output of the divider there are many push/pull amplifier stages, because the `PCLK` signal must be powerful enough, because it is distributed practically over the whole chip. For this purpose (just to the right of the chip) there is a comb of even more powerful push/pull inverters:
 
@@ -43,11 +43,7 @@ But in general it is more correct to assume that the value of the latches is und
 
 ## Logic Circuit
 
-|PPU revision|Schematic|
-|---|---|
-|2C02G|![pclk_2C02G](/BreakingNESWiki/imgstore/ppu/pclk_2C02G.jpg)|
-|2C02H|TBD|
-|2C07-0|TBD|
+![pclk_2C02G](/BreakingNESWiki/imgstore/ppu/pclk_2C02G.jpg)
 
 ## PCLK Distribution
 

@@ -12,7 +12,34 @@ Note on the term "FIFO": in fact, this component is not explicitly called that a
 
 (open the picture in a new tab for a full view)
 
-## How it works
+Signal table:
+
+|Signal/group of signals|Description|
+|---|---|
+|**Delayed values of H**||
+|H0'' - H2''|Used to obtain /SHx signals|
+|H3'' - H5''|Used to select the lane|
+|**FSM**||
+|PAR/O|"PAR for Object". Selecting a tile for an object (sprite)|
+|0/HPOS|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
+|/VIS|"Not Visible". The invisible part of the signal (used in sprite logic)|
+|CLPO|1: Clip sprites|
+|**From the sprite comparison**||
+|PD/FIFO|To zero the output of the H. Inv circuit|
+|**Internal signals**||
+|/SH2|0: Load sprite attribute|
+|/SH3|0: Load sprite X position into the reverse counter|
+|/SH5|0: Load `A` byte of the sprite into the paired shift register|
+|/SH7|0: Load `B` byte of the sprite into the paired shift register|
+|/Tx|The result of the H.INV circuit, the input value to load into the paired shift register (in inverse logic)|
+|#0/H|Derived signal from 0/HPOS|
+|#x/EN|0: The lane is active. Each lane can be activated individually with its own #EN signal.|
+|**Output signals**||
+|/SH2|Also used in Data Reader|
+|/SPR0HIT|To detect a `Sprite 0 Hit` event|
+|#ZCOL0, #ZCOL1, ZCOL2, ZCOL3, #ZPRIO|FIFO results for the multiplexer (MUX)|
+
+## Principle of Operation
 
 FIFO consists of 8 "lanes". Each lane consists of 3 parts: the pixel down-counter, the sprite attributes and the paired shift register.
 
@@ -48,7 +75,7 @@ The circuit shown is for sprite #0. For all others (1-7) you must replace the na
 
 The circuit for sprite #0 is shown. For all others (1-7) the signal names #0/EN, 0/COL2, 0/COL3 and 0/PRIO must be changed to #x/EN, x/COL2, x/COL3 and x/PRIO.
 
-In addition, the H3'', H4'' and H5'' signals are used as decoder inputs to select the appropriate lanes:
+In addition, the H3'', H4'' and H5'' signals are used as 3-on-8 decoder inputs, "spread out" over all the lanes, to select the appropriate lanes:
 
 |Sprite number (lane)|Signal logic H3'', H4'' and H5''|
 |---|---|
