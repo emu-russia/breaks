@@ -27,7 +27,7 @@ The following will simply be restored schematics. The original RGB PPU images ca
 
 ## FSM
 
-It is based on the 2C02G FSM.
+It is based on the 2C02 FSM.
 
 ![HV_FSM](/BreakingNESWiki/imgstore/ppu/rgb/HV_FSM.png)
 
