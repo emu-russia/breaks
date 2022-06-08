@@ -100,3 +100,7 @@ Reduced write delay. The number of latches is 2 less compared to the composite P
 ## RGB_DAC
 
 ![RGB_DACs](/BreakingNESWiki/imgstore/ppu/rgb/RGB_DACs.png)
+
+## /SYNC
+
+![nSYNC_PAD](/BreakingNESWiki/imgstore/ppu/rgb/nSYNC_PAD.png)
