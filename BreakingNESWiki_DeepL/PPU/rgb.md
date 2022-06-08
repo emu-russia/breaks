@@ -103,4 +103,6 @@ Reduced write delay. The number of latches is 2 less compared to the composite P
 
 ## /SYNC
 
+![RGB_SYNC](/BreakingNESWiki/imgstore/ppu/rgb/RGB_SYNC.png)
+
 ![nSYNC_PAD](/BreakingNESWiki/imgstore/ppu/rgb/nSYNC_PAD.png)
