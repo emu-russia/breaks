@@ -67,7 +67,7 @@ A similar transistor for the 2 luminance bits is simply always open:
 By convention, groups of cells that are addressed by the lowest bits of the address will be considered "rows", and groups of cells that are addressed by the highest bits will be considered "columns".
 
 Color RAM:
-- PAL3, PAL2: Defines column (PAL2 - msb)
+- PAL3, PAL2: Defines column (PAL3 - msb)
 - PAL4, PAL1, PAL0: Defines a row (PAL4 - msb)
 - Rows 0 and 4 combined
 
