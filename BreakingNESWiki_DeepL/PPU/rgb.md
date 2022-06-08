@@ -5,7 +5,7 @@ This section discusses the differences between the RGB PPU RP2C04-0003, and the 
 At the moment, these are the only images of RGB PPU that we have. However, there are pictures of only the top layer, so it is not always good to see what is underneath. Something was partly visible, partly guessed, so here it looks more like a Japanese puzzle.
 
 List of major differences:
-- VOUT and EXT0-3 pins are replaced by RED, GREEN, BLUE, /SYNC pins, for component video signal output.
+- EXT0-3 and VOUT pins are replaced by RED, GREEN, BLUE, /SYNC pins, for component video signal output.
 - An RGB encoding circuit is used instead of a composite video generator. DAC with weighted current summation.
 - Emphasis applies the corresponding channel output to all one's
 - There is no possibility to read OAM (no `/R4` register operation), for this reason the OAM Buffer is arranged simpler
