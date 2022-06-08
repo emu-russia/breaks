@@ -151,7 +151,7 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 |BGC0-3|BG Color|MUX|Background color|
 |/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|OAM FIFO|MUX|Sprite color. :warning: The lower 2 bits are in inverse logic, the higher 2 bits are in direct logic.|
 |/ZPRIO|OAM Priority|MUX|0: Priority of sprite over background|
-|THO0-4'|PAR TH Counter|MUX|THO0-3 value passed through the PCLK tristate. Direct Color value from TH Counter.|
+|THO0-4'|PAR TH Counter|MUX|THO0-4 value passed through the PCLK tristate. Direct Color value from TH Counter.|
 
 ## Bottom Part
 
