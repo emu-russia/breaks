@@ -31,7 +31,7 @@ It is based on the 2C02 FSM.
 
 ![HV_FSM](/BreakingNESWiki/imgstore/ppu/rgb/HV_FSM.png)
 
-The `BURST` signal circuit is present, but not the signal itself is not used.
+The `BURST` signal circuit is present, but the signal itself is not used.
 
 ![FSM_BURST](/BreakingNESWiki/imgstore/ppu/rgb/FSM_BURST.jpg)
 
