@@ -27,7 +27,13 @@
 
 ## FSM
 
+За основу взят FSM 2С02G.
+
 ![HV_FSM](/BreakingNESWiki/imgstore/ppu/rgb/HV_FSM.png)
+
+Схема получения сигнала `BURST` присутствует, но не сам сигнал не используется.
+
+![FSM_BURST](/BreakingNESWiki/imgstore/ppu/rgb/FSM_BURST.jpg)
 
 ## EVEN/ODD
 
