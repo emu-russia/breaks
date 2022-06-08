@@ -27,7 +27,7 @@
 
 ## FSM
 
-За основу взят FSM 2С02G.
+За основу взят FSM 2С02.
 
 ![HV_FSM](/BreakingNESWiki/imgstore/ppu/rgb/HV_FSM.png)
 
