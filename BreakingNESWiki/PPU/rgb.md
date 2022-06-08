@@ -1,12 +1,37 @@
 # RGB PPU
 
+В данном разделе рассматриваются отличия RGB PPU RP2C04-0003, от референсного PPU 2C02G.
+
+На данный момент это единственные изображения RGB PPU, которыми мы распологаем. При этом есть фотографии только верхнего слоя, поэтому не всегда хорошо видно что находится под ним. Что-то частично удалось разглядеть, частично угадать, поэтому тут больше похоже на японский сканворд.
+
+Список основных отличий:
+- Контакты VOUT и EXT0-3 заменены на контакты RED, GREEN, BLUE, /SYNC, для для вывода компонентного видеосигнала.
+- Вместо генератора композитного видео используется схема RGB-кодирования. ЦАП с суммированием весовых токов.
+- Эмфазис включает соответсвующий выход канала на все единицы
+- Отсутствует возможность чтения OAM (нет регистровой операции `/R4`), по этой причине OAM Buffer устроен проще
+- Отсутствует возможность чтения CRAM, по этой причине Color Buffer устроен проще
+
+Есть предположение, что остальные RGB PPU не сильно отличаются от рассматриваемой 2C04-0003, поэтому этот раздел будет дополняться по мере получения фотографий других ревизий RGB PPU.
+
+|Номер|Контакт 2C02G|Контакт RGB PPU|
+|---|---|---|
+|14|EXT0|RED|
+|15|EXT1|GREEN|
+|16|EXT2|BLUE|
+|17|EXT3|AGND|
+|21|VOUT|/SYNC|
+
+Далее будут просто восстановленные схемы. Оригинальные изображения RGB PPU можно найти тут: https://siliconpr0n.org/map/nintendo/rp2c04-0003/
+
 ![2C04-0003_RGB_PPU](/BreakingNESWiki/imgstore/ppu/rgb/2C04-0003_RGB_PPU.png)
 
 ## FSM
 
 ![HV_FSM](/BreakingNESWiki/imgstore/ppu/rgb/HV_FSM.png)
 
-## ODD/EVEN
+## EVEN/ODD
+
+Схема Even/Odd присутствует но отключена, вход NOR, куда приходил сигнал `EvenOddOut` заземлен на корпус.
 
 ![evenodd_rgb](/BreakingNESWiki/imgstore/ppu/rgb/evenodd_rgb.png)
 
@@ -26,13 +51,19 @@
 
 ## CONTROL_REGS
 
+Сигнал `/SLAVE` не используется.
+
 ![Control_REGs](/BreakingNESWiki/imgstore/ppu/rgb/Control_REGs.png)
 
 ## MUX
 
+Входные сигналы `EXT_IN` равны `0`, а выходные сигналы `/EXT_OUT` не используются.
+
 ![MUX](/BreakingNESWiki/imgstore/ppu/rgb/MUX.png)
 
 ## OAM_BUF_CONTROL
+
+Уменьшена задержка при записи. Количество защёлок на 2 меньше, по сравнению с композитными ревизиями PPU.
 
 ![OAM_BUF_CONTROL](/BreakingNESWiki/imgstore/ppu/rgb/OAM_BUF_CONTROL.png)
 
@@ -43,10 +74,6 @@
 ## Video Out
 
 ![RGB_VIDEO_OUT](/BreakingNESWiki/imgstore/ppu/rgb/RGB_VIDEO_OUT.png)
-
-## RGB_DAC
-
-![RGB_DACs](/BreakingNESWiki/imgstore/ppu/rgb/RGB_DACs.png)
 
 ## SEL_12x3
 
@@ -64,4 +91,6 @@
 
 ![SEL16x12_RED](/BreakingNESWiki/imgstore/ppu/rgb/SEL16x12_RED.png)
 
+## RGB_DAC
 
+![RGB_DACs](/BreakingNESWiki/imgstore/ppu/rgb/RGB_DACs.png)
