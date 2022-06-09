@@ -20,9 +20,10 @@ PPU RegDump entries format:
 #pragma pack(push, 1)
 struct PPULogEntry
 {
-	uint64_t	pclk;		// PCLK counter value at the time of writing to the register
-	uint8_t 	reg; 		// PPU register index (0-7)
-	uint8_t 	value;		// Written value
+	uint32_t	pclkDelta;	// Delta of previous PCLK counter value at the time of accessing to the register
+	uint8_t 	reg; 		// PPU register index (0-7) + Flag (msb - 0: write, 1: read)
+	uint8_t 	value;		// Written value. Not used for reading.
+	uint16_t	padding;	// Not used (yet?)
 };
 #pragma pack(pop)
 ```

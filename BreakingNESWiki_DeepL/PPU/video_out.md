@@ -105,21 +105,21 @@ The color decoder selects one of the 12 phases. 12 because:
 
 Table of matching decoder outputs and PPU colors:
 
-|Color decoder output|Corresponding PPU color|
-|---|---|
-|0|12|
-|1|5|
-|2|10|
-|3|3|
-|4|0. Not connected to the phase shifter because gray halftones do not need a phase.|
-|5|8. Also used for the Color Burst phase|
-|6|1|
-|7|6|
-|8|11|
-|9|4|
-|10|9|
-|11|2|
-|12|7|
+|Color decoder output|Corresponding PPU color|Phase shift|
+|---|---|---|
+|0|12|120°|
+|1|5|270°|
+|2|10|60°|
+|3|3|210°|
+|4|0. Not connected to the phase shifter because gray halftones do not need a phase.| |
+|5|8. Also used for the Color Burst phase|0°|
+|6|1|150°|
+|7|6|300°|
+|8|11|90°|
+|9|4|240°|
+|10|9|30°|
+|11|2|180°|
+|12|7|330°|
 
 (The numbering of the decoder outputs is topological, from left to right, starting from 0).
 

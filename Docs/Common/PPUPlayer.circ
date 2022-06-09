@@ -41,7 +41,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="valign" val="base"/>
     </tool>
   </lib>
-  <lib desc="file#..\PPU\PPU_logisim\2C0x_PPU.circ" name="7"/>
+  <lib desc="file#..\PPU\PPU_logisim\2C0x_PPU_Debug.circ" name="7"/>
   <main name="PPUPlayer_All"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
