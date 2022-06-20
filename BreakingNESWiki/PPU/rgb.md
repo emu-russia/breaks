@@ -85,6 +85,10 @@
 
 ![SEL12x3](/BreakingNESWiki/imgstore/ppu/rgb/SEL12x3.png)
 
+FF:
+
+![SEL12x3_FF](/BreakingNESWiki/imgstore/ppu/rgb/SEL12x3_FF.png)
+
 ## COLOR_DECODER_BLUE
 
 ![SEL16x12_BLUE](/BreakingNESWiki/imgstore/ppu/rgb/SEL16x12_BLUE.png)
