@@ -10,6 +10,8 @@
 
 ![fsm_even_odd](/BreakingNESWiki/imgstore/ppu/pal/fsm_even_odd.png)
 
+![EvenOdd_PAL](/BreakingNESWiki/imgstore/ppu/pal/EvenOdd_PAL.png)
+
 Немного другая логика для очистки счетчиков H/V:
 
 ![fsm_clear_counters](/BreakingNESWiki/imgstore/ppu/pal/fsm_clear_counters.png)
