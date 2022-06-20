@@ -28,7 +28,7 @@ H/V Decoders are also different.
 
 All other parts (Horizontal and vertical FSM logic, register selection circuit, H/V counters) are the same as NTSC PPU.
 
-## H Decoder (PAL PPU)
+## H Decoder
 
 ![pal_h](/BreakingNESWiki/imgstore/ppu/pal/pal_h.png)
 
@@ -59,7 +59,7 @@ All other parts (Horizontal and vertical FSM logic, register selection circuit, 
 |22|306|01101001011010011000| | |BURST FF|
 |23|340|01100110011001101000| | |HCounter clear / VCounter step|
 
-## V Decoder (PAL PPU)
+## V Decoder
 
 ![pal_v](/BreakingNESWiki/imgstore/ppu/pal/pal_v.png)
 

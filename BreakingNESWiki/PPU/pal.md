@@ -28,7 +28,7 @@
 
 Все остальные части (горизонтальная и вертикальная логика FSM, схема выбора регистров, счетчики H/V) такие же, как и у NTSC PPU.
 
-## Декодер H (PAL PPU)
+## Декодер H
 
 ![pal_h](/BreakingNESWiki/imgstore/ppu/pal/pal_h.png)
 
@@ -59,7 +59,7 @@
 |22|306|01101001011010011000| | |BURST FF|
 |23|340|01100110011001101000| | |HCounter clear / VCounter step|
 
-## Декодер V (PAL PPU)
+## Декодер V
 
 ![pal_v](/BreakingNESWiki/imgstore/ppu/pal/pal_v.png)
 
