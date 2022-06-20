@@ -10,6 +10,8 @@ Significantly different EVEN/ODD circuitry (located to the right of the V PLA). 
 
 ![fsm_even_odd](/BreakingNESWiki/imgstore/ppu/pal/fsm_even_odd.png)
 
+![EvenOdd_PAL](/BreakingNESWiki/imgstore/ppu/pal/EvenOdd_PAL.png)
+
 Slightly different logic for clearing H/V counters:
 
 ![fsm_clear_counters](/BreakingNESWiki/imgstore/ppu/pal/fsm_clear_counters.png)
