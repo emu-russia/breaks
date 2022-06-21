@@ -55,6 +55,8 @@ The Even/Odd circuit is present but disconnected, the NOR input where the `EvenO
 
 ![COLOR_RAM](/BreakingNESWiki/imgstore/ppu/rgb/COLOR_RAM.png)
 
+![COLOR_IO_RGB](/BreakingNESWiki/imgstore/ppu/rgb/COLOR_IO_RGB.png)
+
 ## REG_SELECT
 
 ![REG_SELECT](/BreakingNESWiki/imgstore/ppu/rgb/REG_SELECT.png)
