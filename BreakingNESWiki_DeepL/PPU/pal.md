@@ -94,6 +94,36 @@ The color decoder is twice as big (due to the peculiarity of the PAL phase alter
 
 ![vidout_chroma_decoder](/BreakingNESWiki/imgstore/ppu/pal/vidout_chroma_decoder.png)
 
+|Output|Bitmask|
+|---|---|
+|0|1001100110|
+|1|0110100101|
+|2|1010100101|
+|3|0101100110|
+|4|1001010110|
+|5|0110011001|
+|6|1010011010|
+|7|0101011010|
+|8|1001101001|
+|9|0110101001|
+|10|0010101010|
+|11|1010100110|
+|12|0101101010|
+|13|1001011001|
+|14|0110010110|
+|15|1010010110|
+|16|0101011001|
+|17|1001101010|
+|18|0110100110|
+|19|1010101001|
+|20|0101101001|
+|21|1001011010|
+|22|0110011010|
+|23|1010011001|
+|24|0101010110|
+
+(The numbering of the outputs is topological from left to right. The bit order is top-down. 1 means there is a transistor. 0 means no transistor)
+
 The /PICTURE signal undergoes additional processing (DLATCH delay):
 
 ![vidout_npicture](/BreakingNESWiki/imgstore/ppu/pal/vidout_npicture.png)
