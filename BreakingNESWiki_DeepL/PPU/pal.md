@@ -132,6 +132,10 @@ The /PICTURE signal undergoes additional processing (DLATCH delay):
 
 The /PICTURE signal comes to the Color Buffer Control circuit in unmodified form (as in NTSC PPU).
 
+Also, the connection in the signal circuitry of /PR and /PG is mixed up, as a result of which the phase adjustment for the red and green channel works vice versa:
+
+![Mixed_RG_Emphasis](/BreakingNESWiki/imgstore/ppu/pal/Mixed_RG_Emphasis.png)
+
 DAC, Emphasis and Luma Decoder circuits are the same as NTSC.
 
 ## Regs
