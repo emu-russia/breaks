@@ -228,5 +228,3 @@ It is hard to tell how to transfer these changes to your emulator sources, but h
 Everything else is probably irrelevant to software emulation.
 
 As for the video output, based on the Phase Shifter circuit and Chroma decoder values, it is now possible to make a filter/shader like the NTSC Filter by blargg. An experienced NES hacker can easily do it here.
-
-Another mystery, we couldn't find where the Emphasis bits are mixed up. The values from the register block do NOT come out mixed up, which means they are mixed up somewhere in the Phase Shifter.
