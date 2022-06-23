@@ -1,4 +1,4 @@
-# Brechen NES Wiki
+# Das NES auseinanderbrechen Wiki
 
 Diese Ressource enthält umfassende Informationen zu drei Chips:
 - [MOS](MOS.md) [6502](6502/Readme.md)
