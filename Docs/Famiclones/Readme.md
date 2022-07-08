@@ -48,8 +48,8 @@
 |CLK| | | | | | |
 |2C02 PLA| | | | | | |
 |2C07 PLA| | | | | | |
-|Mixed Emphasis| | | | | | |
 |UMC PLA| | | | | | |
+|Mixed Emphasis| | | | | | |
 |2A03 Div| | | | | | |
 |2A07 Div| | | | | | |
 |Bad DPCM| | | | | | |
@@ -65,8 +65,8 @@
 |CLK| | | | | | | | | | | |
 |2C02 PLA| | | | | | | | | | | |
 |2C07 PLA| | | | | | | | | | | |
-|Mixed Emphasis| | | | | | | | | | | |
 |UMC PLA| | | | | | | | | | | |
+|Mixed Emphasis| | | | | | | | | | | |
 |2A03 Div| | | | | | | | | | | |
 |2A07 Div| | | | | | | | | | | |
 |Bad DPCM| | | | | | | | | | | |
@@ -82,8 +82,8 @@
 |CLK| | | | | | | | | | | | |
 |2C02 PLA| | | | | | | | | | | | |
 |2C07 PLA| | | | | | | | | | | | |
-|Mixed Emphasis| | | | | | | | | | | | |
 |UMC PLA| | | | | | | | | | | | |
+|Mixed Emphasis| | | | | | | | | | | | |
 |2A03 Div| | | | | | | | | | | | |
 |2A07 Div| | | | | | | | | | | | |
 |Bad DPCM| | | | | | | | | | | | |
