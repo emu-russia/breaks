@@ -49,11 +49,11 @@
 |2C02 PLA| | | | | | |
 |2C07 PLA| | | | | | |
 |UMC PLA| | | | | | |
-|Mixed Emphasis| | | | | | |
+|Mixed-up Emphasis| | | | | | |
 |2A03 Div| | | | | | |
 |2A07 Div| | | | | | |
 |Bad DPCM| | | | | | |
-|Mixed Square Duty| | | | | | |
+|Mixed-up Square Duty| | | | | | |
 |Clicking triangle| | | | | | |
 |2C02 DAC| | | | | | |
 |2C07 DAC| | | | | | |
@@ -68,11 +68,11 @@
 |2C02 PLA| | | | | | | | | | | |
 |2C07 PLA| | | | | | | | | | | |
 |UMC PLA| | | | | | | | | | | |
-|Mixed Emphasis| | | | | | | | | | | |
+|Mixed-up Emphasis| | | | | | | | | | | |
 |2A03 Div| | | | | | | | | | | |
 |2A07 Div| | | | | | | | | | | |
 |Bad DPCM| | | | | | | | | | | |
-|Mixed Square Duty| | | | | | | | | | | |
+|Mixed-up Square Duty| | | | | | | | | | | |
 |Clicking triangle| | | | | | | | | | | |
 |2C02 DAC| | | | | | | | | | | |
 |2C07 DAC| | | | | | | | | | | |
@@ -87,11 +87,11 @@
 |2C02 PLA| | | | | | | | | | | | |
 |2C07 PLA| | | | | | | | | | | | |
 |UMC PLA| | | | | | | | | | | | |
-|Mixed Emphasis| | | | | | | | | | | | |
+|Mixed-up Emphasis| | | | | | | | | | | | |
 |2A03 Div| | | | | | | | | | | | |
 |2A07 Div| | | | | | | | | | | | |
 |Bad DPCM| | | | | | | | | | | | |
-|Mixed Square Duty| | | | | | | | | | | | |
+|Mixed-up Square Duty| | | | | | | | | | | | |
 |Clicking triangle| | | | | | | | | | | | |
 |2C02 DAC| | | | | | | | | | | | |
 |2C07 DAC| | | | | | | | | | | | |
