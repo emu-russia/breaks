@@ -2,4 +2,4 @@
 
 PPU implementation on Verilog.
 
-![ppu_schematic](ppu_schematic.png)
+![ppu_schematic](/HDL/Design/ppu_schematic.png)

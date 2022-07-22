@@ -7,11 +7,11 @@ module rsff(r, s, q, nq);
 	output q; 		// Current value
 	output nq;		// Current value (inverted)
 
-    wire nor1_out;
-    wire nor2_out;
-    
-    nor (nor1_out, r, nor2_out);
-    nor (nor2_out, s, nor1_out);  
+	wire nor1_out;
+	wire nor2_out;
+	
+	nor (nor1_out, r, nor2_out);
+	nor (nor2_out, s, nor1_out);  
 
 	assign q = nor1_out;
 	assign nq = nor2_out;
