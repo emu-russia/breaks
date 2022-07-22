@@ -3,7 +3,7 @@ module Dispatch (
 	PHI1, PHI2,
 	BRK6E, BR2, RESP, ACR, DORES, PC_DB, RDY, B_OUT, BRFW, n_BRTAKEN, n_TWOCYCLE, n_IMPLIED, n_ADL_PCL, 
 	X, 
-	ACRL2, T5, T6, TRES2, TRESX, STOR, Z_IR, FETCH, n_ready, WR, T1, TRES1, n_T0, T0, n_T1X, n_IPC);
+	ACRL2, T5, T6, TRES2, STOR, Z_IR, FETCH, n_ready, WR, T1, n_T0, T0, n_T1X, n_IPC);
 
 	input PHI1;
 	input PHI2;
@@ -28,14 +28,12 @@ module Dispatch (
 	output T5;
 	output T6;
 	output TRES2;
-	output TRESX;
 	output STOR;
 	output Z_IR;
 	output FETCH;
 	output n_ready;
 	output WR;
 	output T1;
-	output TRES1;
 	output n_T0;
 	output T0;
 	output n_T1X;

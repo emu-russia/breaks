@@ -37,10 +37,10 @@ module ALU(
 	input n_DAA;
 	input n_DSA;
 
-	inout SB;
-	inout DB;
-	inout ADL;
-	inout ADH;
+	inout [7:0] SB;
+	inout [7:0] DB;
+	inout [7:0] ADL;
+	inout [7:0] ADH;
 
 	output ACR;
 	output AVR;

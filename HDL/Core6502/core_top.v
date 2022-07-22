@@ -22,7 +22,6 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	wire RESP;
 	wire RDY_frompad;
 	wire n_PRDY;
-	wire T1_topad;
 	wire SO_frompad;
 	wire WR_topad;
 
@@ -41,9 +40,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	wire [7:0] IR;
 	wire [7:0] n_IR;
 
-	wire TRES1;
 	wire TRES2;
-	wire TRESX;
 	wire n_ready;
 	wire T0;
 	wire T1;
@@ -179,7 +176,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.RDY(RDY), 
 		.RDY_frompad(RDY_frompad), 
 		.n_PRDY(n_PRDY), 
-		.T1_topad(T1_topad), 
+		.T1_topad(T1), 
 		.SYNC(SYNC), 
 		.SO(SO), 
 		.SO_frompad(SO_frompad),
@@ -409,14 +406,12 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.T5(T5),
 		.T6(T6),
 		.TRES2(TRES2),
-		.TRESX(TRESX),
 		.STOR(STOR),
 		.Z_IR(Z_IR),
 		.FETCH(FETCH),
 		.n_ready(n_ready),
 		.WR(WR_topad),
 		.T1(T1),
-		.TRES1(TRES1),
 		.n_T0(n_T0),
 		.T0(T0),
 		.n_T1X(n_T1X),
@@ -528,7 +523,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 
 // --------
 
-	AddrBusBitLow [2:0] abl03(
+	AddrBusBitLow abl03 [2:0](
 		.PHI1(phi1),
 		.PHI2(phi2),
 		.ADX(ADL[2:0]),
@@ -536,14 +531,14 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.ADX_ABX(ADL_ABL),
 		.ABus_out(A[2:0]) );
 
-	AddrBusBit [7:3] abl(
+	AddrBusBit abl [7:3](
 		.PHI1(phi1),
 		.PHI2(phi2),
 		.ADX(ADL[7:3]),
 		.ADX_ABX(ADL_ABL),
 		.ABus_out(A[7:3]) );
 
-	AddrBusBit [7:0] abh(
+	AddrBusBit abh [7:0](
 		.PHI1(phi1),
 		.PHI2(phi2),
 		.ADX(ADH),
@@ -556,7 +551,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.WR(WR_topad),
 		.RD(RD_to_db) );
 
-	DataBusBit [7:0] db(
+	DataBusBit db [7:0](
 		.PHI1(phi1),
 		.PHI2(phi2),
 		.ADL(ADL),
