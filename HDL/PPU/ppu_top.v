@@ -383,7 +383,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.n_FNT(n_FNT),
 		.BGSEL(BGSEL),
 		.OBSEL(OBSEL),
-		.O8_16(O8_16),
+		.O8_16(O_8_16),
 		.PAR_O(PAR_O),
 		.n_SH2(n_SH2),
 		.n_H1D(nH1_D),
