@@ -10,7 +10,7 @@ We take a chip-perfect approach. This means that all the circuit elements of the
 
 Example:
 
-![chip-perfect-approach.png](Design/chip-perfect-approach.png)
+![chip-perfect-approach.png](/HDL/Design/chip-perfect-approach.png)
 
 We are aware of the fact that this approach is not modern because for the most part all circuits remain asynchronous and this can lead to various problems with jitter and timing.
 
