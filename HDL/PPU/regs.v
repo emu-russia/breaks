@@ -93,7 +93,7 @@ module SCCXFirstSecond(RC, n_DBE, n_R2, n_W56, Frst, Scnd);
 	output Frst;
 	output Scnd;
 
-module // SCCXFirstSecond
+endmodule // SCCXFirstSecond
 
 module RegCTRL0(RC, n_W0, n_DBE, D_in, I_1_32, OBSEL, BGSEL, O_8_16, n_SLAVE, VBL);
 

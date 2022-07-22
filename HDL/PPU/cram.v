@@ -25,7 +25,7 @@ module CRAM_Block(
 
 	wire n_CB_DB;
 	wire color_mode;
-	wire n_DB_CB
+	wire n_DB_CB;
 
 	wire [5:0] cram_val;
 	wire [5:0] CB_Out;
