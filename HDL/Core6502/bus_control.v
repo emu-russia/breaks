@@ -47,4 +47,4 @@ module Bus_Control(
 	output ADH_ABH;
 	output DL_DB;
 
-endmodule;
+endmodule // Bus_Control

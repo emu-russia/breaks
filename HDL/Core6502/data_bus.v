@@ -19,3 +19,12 @@ module DataBusBit(
 	input RD;
 
 endmodule // DataBusBit
+
+module WRLatch(PHI1, PHI2, WR, RD);
+
+	input PHI1;
+	input PHI2;
+	input WR;
+	output RD;
+
+endmodule // WRLatch

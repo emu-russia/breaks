@@ -12,7 +12,7 @@ module dlatch (d, en, q, nq);
 
 	if (en)
 		begin
-		v = d;
+		assign v = d;
 		end
 
 	assign q = v;
