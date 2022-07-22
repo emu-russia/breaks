@@ -16,7 +16,7 @@ module PadsLogic(
 	input n_ALE_topad;
 	output ALE;
 
-	output [7:0] PD;
+	output [7:0] PD_out;
 	input [13:0] n_PA;
 	output [5:0] PAPads;
 	inout [7:0] ADPads;

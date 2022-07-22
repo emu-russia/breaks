@@ -449,7 +449,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.TVO(TVO),
 		.FH(FH),
 		.PD(PD),
-		.n_CPLB(n_CPLB),
+		.n_CLPB(n_CLPB),
 		.BGC(BGC) );
 
 	VRAM_Control vrctl(
@@ -491,6 +491,17 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.TH_MUX(TH_MUX),
 		.PAL_out(CRAM_Addr),
 		.n_EXT_out(n_EXT_out) );
+
+	Spr0Hit spr0hit(
+		.PCLK(PCLK),
+		.BGC(BGC),
+		.n_SPR0HIT(n_SPR0HIT),
+		.n_SPR0_EV(n_SPR0_EV),
+		.n_VIS(n_VIS),
+		.n_R2(n_R2),
+		.n_DBE(n_DBE),
+		.RESCL(RESCL),
+		.DB6(CPU_DB[6]) );
 
 	CRAM_Block cram(
 		.n_PCLK(n_PCLK),

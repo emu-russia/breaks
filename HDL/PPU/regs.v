@@ -8,7 +8,7 @@ module Regs(
 
 	input RC;
 	input n_DBE;
-	input RS;
+	input [2:0] RS;
 	input RnW;
 	inout [7:0] CPU_DB;
 
