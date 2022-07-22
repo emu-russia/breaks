@@ -1,7 +1,7 @@
 
 module BGCol(
 	n_PCLK, PCLK,
-	H0_DD, F_TA, F_TB, n_FO, F_AT, THO, TVO, FH, PD, n_CPLB,
+	H0_DD, F_TA, F_TB, n_FO, F_AT, THO, TVO, FH, PD, n_CLPB,
 	BGC);
 
 	input n_PCLK;
@@ -16,7 +16,7 @@ module BGCol(
 	input [4:0] TVO;
 	input [2:0] FH;
 	input [7:0] PD;
-	input n_CPLB;
+	input n_CLPB;
 
 	output [3:0] BGC;
 
