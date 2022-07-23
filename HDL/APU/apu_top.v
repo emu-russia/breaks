@@ -91,6 +91,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 
 	wire [7:0] DB;
 	wire [15:0] Addr_fromcore;
+	wire [15:0] Addr_topad;
 
 	wire n_DBGRD;
 	wire DebugLock;
@@ -120,7 +121,9 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.DB(DB),
 		.DPads(D),
 		.RW_topad(RW),
-		.RWPad(RnW) );
+		.RWPad(RnW),
+		.Addr_topad(Addr_topad),
+		.APads(A) );
 
 	Core core(
 		.core_PHI0(PHI0),
@@ -175,7 +178,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 	ApuRegsBlock regs(
 		.PHI1(PHI1), 
 		.Addr_fromcore(Addr_fromcore),
-		.Addr_frommux(A),
+		.Addr_frommux(Addr_topad),
 		.RnW_fromcore(RW_fromcore),
 		.DBG_frompad(DBG_frompad), 
 		.n_R4018(n_R4018),
@@ -235,7 +238,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.DMCRDY(DMCRDY),
 		.DMC_Addr(DMC_Addr),
 		.CPU_Addr(Addr_fromcore),
-		.Addr(A),
+		.Addr(Addr_topad),
 		.RDY_tocore(RDY_tocore),
 		.SPR_PPU(SPR_PPU) );
 
