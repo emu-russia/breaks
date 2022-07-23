@@ -48,4 +48,13 @@ module ApuRegsBlock(
 
 	output n_DBGRD;
 
+	wire [15:0] CpuA;
+	assign CpuA = Addr_fromcore;
+
+	wire nREGWR;
+	nor (nREGWR, CpuA[5], CpuA[6], CpuA[7], CpuA[8], CpuA[9], CpuA[10], CpuA[11], CpuA[12], CpuA[13], ~CpuA[14], CpuA[15], RnW_fromcore);
+
+	wire nREGRD;
+	nor (nREGRD, CpuA[5], CpuA[6], CpuA[7], CpuA[8], CpuA[9], CpuA[10], CpuA[11], CpuA[12], CpuA[13], ~CpuA[14], CpuA[15], ~RnW_fromcore);
+
 endmodule // RegsBlock
