@@ -8,14 +8,10 @@ module dlatch (d, en, q, nq);
 	output q;		// Current value
 	output nq; 		// Current value (inverted)
 
-	reg v;
+	(* keep = "true" *) wire floater;
+	bufif1(floater, d, en);
 
-	if (en)
-		begin
-		assign v = d;
-		end
-
-	assign q = v;
-	assign nq = ~v;
+	buf (q, floater);
+	not (nq, floater);
 
 endmodule // dlatch

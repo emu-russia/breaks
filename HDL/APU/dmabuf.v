@@ -11,4 +11,7 @@ module DMABuffer(PHI2, SPR_PPU, DB, RnW_fromcore, RW_topad, n_R4015, n_DBGRD, WR
 	output WR_topad;
 	output RD_topad;
 
+	wire PPU_SPR;
+	assign PPU_SPR = ~SPR_PPU;
+
 endmodule // DMABuffer
