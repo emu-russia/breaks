@@ -114,7 +114,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire PD_FIFO;				// To zero the output of the H. Inv circuit
 	wire n_SPR0_EV;				// 0: Sprite "0" is found on the current line. To define a Sprite 0 Hit event
 	wire n_SPR0HIT;				// To detect a Sprite 0 Hit event (from FIFO side)
-	wire n_ZCOL0;				// Sprite color. [!] The lower 2 bits are in inverse logic, the higher 2 bits are in direct logic.
+	wire n_ZCOL0;				// Sprite color. ⚠️ The lower 2 bits are in inverse logic, the higher 2 bits are in direct logic.
 	wire n_ZCOL1;
 	wire ZCOL2;
 	wire ZCOL3;
