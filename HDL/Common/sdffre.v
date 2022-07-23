@@ -1,9 +1,10 @@
-// Flop with a single CLK phase used to keep and load at the same time.
+// Flop with a single CLK phase used to keep and load at the same time.  (+RESET)
 
-module sdffe(d, en, phi_keep, q, nq);
+module sdffre(d, en, res, phi_keep, q, nq);
 
 	input d;				// Input value for write
 	input en;				// 1: Enables Write
+	input res;				// 1: Reset
 	input phi_keep; 		// 1: Keep the current value, 0: You can write, the old value is "cut off"
 	output q;				// Current value
 	output nq;				// Current value (inverse logic)
@@ -18,9 +19,9 @@ module sdffe(d, en, phi_keep, q, nq);
 	assign n_oldval = ~muxout;
 
 	(* keep = "true" *) wire oldval;
-	assign oldval = ~n_oldval;
+	nor (oldval, n_oldval, res);
 
 	assign q = oldval;
 	assign nq = n_oldval;
 
-endmodule // sdffe
+endmodule // sdffre

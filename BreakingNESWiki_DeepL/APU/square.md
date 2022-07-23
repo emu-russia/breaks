@@ -8,6 +8,8 @@ The difference between SQUARE0 and SQUARE1 is the input carry design for the add
 - For SQUARE0, the input carry is connected to Vdd.
 - For SQUARE1 the input carry is connected to the `INC` signal
 
+Sometimes instead of Square0/Square1 we have the designation SquareA/SquareB.
+
 ## Frequency In
 
 ![square_freq_in_tran](/BreakingNESWiki/imgstore/apu/square_freq_in_tran.jpg)

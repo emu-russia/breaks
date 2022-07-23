@@ -18,8 +18,40 @@ module Test(
 	input [3:0] SQB_in;
 	input [3:0] TRI_in;
 	input [3:0] RND_in;
-	input [5:0] DMC_in;
+	input [6:0] DMC_in;
 
 	output LOCK;
+
+	sdffre LOCK_FF(
+		.d(DB[7]),
+		.en(W401A),
+		.res(RES),
+		.phi_keep(n_ACLK),
+		.q(LOCK) );
+
+	bustris sqa_tris [3:0] (
+		.a(~SQA_in),
+		.n_x(DB[3:0]),
+		.n_en(n_R4018) );
+
+	bustris sqb_tris [3:0] (
+		.a(~SQB_in),
+		.n_x(DB[7:4]),
+		.n_en(n_R4018) );
+
+	bustris tria_tris [3:0] (
+		.a(~TRI_in),
+		.n_x(DB[3:0]),
+		.n_en(n_R4019) );
+
+	bustris rnd_tris [3:0] (
+		.a(~RND_in),
+		.n_x(DB[7:4]),
+		.n_en(n_R4019) );
+
+	bustris dmc_tris [6:0] (
+		.a(~DMC_in),
+		.n_x(DB[6:0]),
+		.n_en(n_R401A) );
 
 endmodule // Test

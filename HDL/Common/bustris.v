@@ -1,11 +1,11 @@
 // Inverting tristate with inverting permission.
 
-module bustris(a, x, n_en);
+module bustris(a, n_x, n_en);
 
 	input a;
-	output x;
+	output n_x;
 	input n_en;
 
-	notif0 (x, a, n_en);
+	notif0 (n_x, a, n_en);
 
 endmodule // bustris
