@@ -219,6 +219,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.n_R4016(n_R4016),
 		.n_R4017(n_R4017),
 		.DB(DB),
+		.RES(RES),
 		.OUT0_Pad(OUT0),
 		.OUT1_Pad(OUT1),
 		.OUT2_Pad(OUT2),
