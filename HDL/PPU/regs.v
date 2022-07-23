@@ -1,5 +1,5 @@
 
-module Regs(
+module PpuRegs(
 	RC, n_DBE, RS, RnW, CPU_DB, 
 	n_W5_1, n_W5_2, n_W6_1, n_W6_2,
 	n_R7, n_W7, n_W4, n_W3, n_R2, n_W1, n_W0, n_R4, 

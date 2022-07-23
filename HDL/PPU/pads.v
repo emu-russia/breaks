@@ -1,5 +1,5 @@
 
-module PadsLogic(
+module PpuPadsLogic(
 	n_CpuRD, n_CpuWR, CPU_DB, DPads,
 	n_ALE_topad, ALE, 	
 	PD_out, n_PA, PAPads, ADPads, RD_topad, WR_topad, n_RDPad, n_WRPad, 
