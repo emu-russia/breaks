@@ -183,8 +183,6 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.WR_topad(WR_topad), 
 		.RnW(RnW) );
 
-// --------
-
 	PreDecode pd(
 		.PHI2(phi2),
 		.Z_IR(Z_IR),
@@ -225,8 +223,6 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_IR(n_IR),
 		.X(Decoder_out) );
 
-// --------
-
 	BRKProcessing brk(
 		.PHI1(phi1),
 		.PHI2(phi2),
@@ -254,8 +250,6 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.Z_ADL0(Z_ADLX[0]),
 		.Z_ADL1(Z_ADLX[1]),
 		.Z_ADL2(Z_ADLX[2]) );
-
-// --------	
 
 	Regs_Control regctl(
 		.PHI1(phi1),
@@ -459,8 +453,6 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_IOUT(n_IOUT),
 		.n_VOUT(n_VOUT) );
 
-// --------
-
 	Regs regs(
 		.PHI2(phi2),
 		.Y_SB(Y_SB),
@@ -520,8 +512,6 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.ADL(ADL),
 		.ADH(ADH),
 		.DB(DB) );
-
-// --------
 
 	AddrBusBitLow abl03 [2:0](
 		.PHI1(phi1),
