@@ -103,7 +103,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 
 // Module instantiation
 
-	PadsLogic pads(
+	ApuPadsLogic pads(
 		.CLKPad(CLK),
 		.n_CLK_frompad(n_CLK),
 		.n_RESPad(n_RES),
@@ -172,7 +172,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.WR_topad(WR),
 		.RD_topad(RD) );
 
-	RegsBlock regs(
+	ApuRegsBlock regs(
 		.PHI1(PHI1), 
 		.Addr_fromcore(Addr_fromcore),
 		.Addr_frommux(A),
@@ -300,7 +300,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.W400F(W400F),
 		.RND_out(RND) );
 
-	TriangleChan tri(
+	TriangleChan triangle (
 		.PHI1(PHI1),
 		.n_ACLK(n_ACLK),
 		.RES(RES),

@@ -1,5 +1,5 @@
 
-module PadsLogic(
+module ApuPadsLogic(
 	CLKPad, n_CLK_frompad,
 	n_RESPad, RES_frompad,
 	n_IRQPad, Timer_Int, n_IRQ_tocore,

@@ -156,7 +156,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 
 // Module instantiation
 
-	PadsLogic pads(
+	PpuPadsLogic pads(
 		.n_CpuRD(n_CpuRD),
 		.n_CpuWR(n_CpuWR),
 		.CPU_DB(CPU_DB),
@@ -198,7 +198,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.n_RD(n_CpuRD),
 		.n_WR(n_CpuWR) );
 
-	Regs regs(
+	PpuRegs regs(
 		.RC(RegClear),
 		.n_DBE(),
 		.RS(RS),

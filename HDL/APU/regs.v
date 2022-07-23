@@ -1,5 +1,5 @@
 
-module RegsBlock(
+module ApuRegsBlock(
 	PHI1, 
 	Addr_fromcore, Addr_frommux, RnW_fromcore, DBG_frompad, 
 	n_R4018, n_R401A, n_R4015, W4002, W4001, W4005, W4006, W4008, W400A, W400B, W400E, W4013, W4012, W4010, W4014,
