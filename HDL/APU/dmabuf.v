@@ -27,7 +27,7 @@ module DMABuffer(PHI2, SPR_PPU, DB, RnW_fromcore, RW_topad, n_R4015, n_DBGRD, WR
 
 	bustris spr_tris [7:0] (
 		.a(spr_buf_out),
-		.x(DB),
+		.n_x(DB),
 		.n_en(PPU_SPR) );
 
 endmodule // DMABuffer

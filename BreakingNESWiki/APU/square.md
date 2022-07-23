@@ -8,6 +8,8 @@ APU содержит два тональных генератора прямоу
 - Для SQUARE0 входной перенос подключен к Vdd
 - Для SQUARE1 на входной перенос подается сигнал `INC`
 
+Иногда вместо Square0/Square1 у нас встречается обозначение SquareA/SquareB.
+
 ## Frequency In
 
 ![square_freq_in_tran](/BreakingNESWiki/imgstore/apu/square_freq_in_tran.jpg)

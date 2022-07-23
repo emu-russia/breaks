@@ -51,10 +51,14 @@ module ApuRegsBlock(
 	wire [15:0] CpuA;
 	assign CpuA = Addr_fromcore;
 
+	wire REGWR;
 	wire nREGWR;
-	nor (nREGWR, CpuA[5], CpuA[6], CpuA[7], CpuA[8], CpuA[9], CpuA[10], CpuA[11], CpuA[12], CpuA[13], ~CpuA[14], CpuA[15], RnW_fromcore);
+	nor (REGWR, CpuA[5], CpuA[6], CpuA[7], CpuA[8], CpuA[9], CpuA[10], CpuA[11], CpuA[12], CpuA[13], ~CpuA[14], CpuA[15], RnW_fromcore);
+	assign nREGWR = REGWR;
 
+	wire REGRD;
 	wire nREGRD;
-	nor (nREGRD, CpuA[5], CpuA[6], CpuA[7], CpuA[8], CpuA[9], CpuA[10], CpuA[11], CpuA[12], CpuA[13], ~CpuA[14], CpuA[15], ~RnW_fromcore);
+	nor (REGRD, CpuA[5], CpuA[6], CpuA[7], CpuA[8], CpuA[9], CpuA[10], CpuA[11], CpuA[12], CpuA[13], ~CpuA[14], CpuA[15], ~RnW_fromcore);
+	assign nREGRD = ~REGRD;
 
 endmodule // RegsBlock

@@ -86,7 +86,7 @@ This same delay line also slows down the internal R/W signal a bit.
 
 The pin design is not different from the D0-D7 pin design, except that the analog of the `RD` signal is the internal reset signal (`RES`) and the analog of the `WR` signal is always connected to VCC (equal to 1, i.e. the pin always works as output).
 
-For some reason, the I/O ports of the APU work to the input during reset. TBD: Find out why this is done.
+During reset (RES = 1) the In/Out terminals are disconnected. During reset the terminal circuit operates similarly to the D0-D7 terminal circuit, with RD = WR = 1, and this signal value disconnects the terminal (`z`).
 
 The output value for contacts `/IN0-1` is the internal signals `/R4016` and `/R4017`.
 The output value for the `OUT0-2` pins is obtained from the internal signals `OUT0-2` (with the same name). The schematic of the formation of these signals can be found in [6502 Core](core.md) section.

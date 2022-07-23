@@ -44,12 +44,12 @@ module ApuPadsLogic(
 	end
 	bustris ax_tris [15:0] (
 		.a(ax),
-		.x(APads),
+		.n_x(APads),
 		.n_en(RES_frompad) );
 
 	bustris dx_in [7:0] (
 		.a(~DPads),
-		.x(DB),
+		.n_x(DB),
 		.n_en(WR) );
 	wire [7:0] dx;
 	for (i =0; i<8; i=i+1) begin
@@ -57,14 +57,14 @@ module ApuPadsLogic(
 	end
 	bustris dx_out [7:0] (
 		.a(dx),
-		.x(DPads),
+		.n_x(DPads),
 		.n_en(RD) );
 
 	wire rw;
 	nor (rw, RW_topad, RES_frompad);
 	bustris rw_tris (
 		.a(rw),
-		.x(RWPad),
+		.n_x(RWPad),
 		.n_en(RES_frompad) );
 
 	not (n_CLK_frompad, CLKPad);
@@ -80,7 +80,7 @@ module ApuPadsLogic(
 	nor (m2, n_M2_topad, NotDBG_RES);
 	bustris m2_tris (
 		.a(m2),
-		.x(M2Pad),
+		.n_x(M2Pad),
 		.n_en(NotDBG_RES) );
 
 	nor (n_IRQ_tocore, ~n_IRQPad, Timer_Int);
