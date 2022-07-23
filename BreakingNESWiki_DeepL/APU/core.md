@@ -163,10 +163,8 @@ Pre-decoder, to select the address space of the APU registers:
 
 ![pdsel_tran](/BreakingNESWiki/imgstore/apu/pdsel_tran.jpg)
 
-- PDSELR: Intermediate signal to generate the `/REGRD` signal
-- PDSELW: Intermediate signal to generate the `/REGWR` signal
-
-Signals are actually identical, but apparently intended to separate the address space of registers to read and write domains. Or they have laid this possibility just in case.
+- PDSELR: Intermediate signal to form the 12-nor element to produce the `/REGRD` signal
+- PDSELW: Intermediate signal to form the 12-nor element to produce the `/REGWR` signal
 
 R/W decoder for register operations:
 
