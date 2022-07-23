@@ -3,7 +3,7 @@
 module TestNmosDesign(
 	compdffe_phi_load, compdffe_phi_keep, compdffe_en, compdffe_val, compdffe_q, compdffe_nq,
 	dlatch_d, dlatch_en, dlatch_q, dlatch_nq,
-	sddfe_d, sddfe_en, sddfe_phi_keep, sddfe_q, sddfe_nq
+	sdffe_d, sdffe_en, sdffe_phi_keep, sdffe_q, sdffe_nq
 	);
 
 	input compdffe_phi_load;
@@ -18,11 +18,11 @@ module TestNmosDesign(
 	output dlatch_q;
 	output dlatch_nq;
 
-	input sddfe_d;
-	input sddfe_en;
-	input sddfe_phi_keep;
-	output sddfe_q;
-	output sddfe_nq;
+	input sdffe_d;
+	input sdffe_en;
+	input sdffe_phi_keep;
+	output sdffe_q;
+	output sdffe_nq;
 
 	comp_dffe_inv (
 		.phi_load(compdffe_phi_load),
@@ -38,11 +38,11 @@ module TestNmosDesign(
 		.q(dlatch_q),
 		.nq(dlatch_nq) );
 
-	sddfe(
-		.d(sddfe_d),
-		.en(sddfe_en),
-		.phi_keep(sddfe_phi_keep),
-		.q(sddfe_q),
-		.nq(sddfe_nq) );
+	sdffe(
+		.d(sdffe_d),
+		.en(sdffe_en),
+		.phi_keep(sdffe_phi_keep),
+		.q(sdffe_q),
+		.nq(sdffe_nq) );
 
 endmodule 	// TestNmosDesign

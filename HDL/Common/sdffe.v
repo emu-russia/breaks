@@ -1,6 +1,6 @@
 // Flop with a single CLK phase used to keep and load at the same time.
 
-module sddfe(d, en, phi_keep, q, nq);
+module sdffe(d, en, phi_keep, q, nq);
 
 	input d;				// Input value for write
 	input en;				// 1: Enables Write
@@ -23,4 +23,4 @@ module sddfe(d, en, phi_keep, q, nq);
 	assign q = oldval;
 	assign nq = n_oldval;
 
-endmodule // sddfe
+endmodule // sdffe
