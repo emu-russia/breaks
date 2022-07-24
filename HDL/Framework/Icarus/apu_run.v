@@ -45,7 +45,7 @@ module APU_Run();
 		$dumpfile("apu_waves.vcd");
 		$dumpvars(0, apu);
 
-		repeat (100000) @ (posedge CLK);
+		repeat (1000) @ (posedge CLK);
 		$finish;
 	end
 
