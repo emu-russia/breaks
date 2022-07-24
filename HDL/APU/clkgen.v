@@ -20,12 +20,12 @@ module CLK_Divider(n_CLK_frompad, PHI0_tocore, PHI2_fromcore, n_M2_topad);
 	assign PHI0_tocore = ~sout[5];
 	nor (rst, PHI0_tocore, sout[4]);
 
-	DivSRBit (.q(q), .nq(nq), .rst(rst), .sin(PHI0_tocore), .sout(sout[0]));
-	DivSRBit (.q(q), .nq(nq), .rst(rst), .sin(sout[0]), .sout(sout[1]));
-	DivSRBit (.q(q), .nq(nq), .rst(rst), .sin(sout[1]), .sout(sout[2]));
-	DivSRBit (.q(q), .nq(nq), .rst(rst), .sin(sout[2]), .sout(sout[3]));
-	DivSRBit (.q(q), .nq(nq), .rst(0), .sin(sout[3]), .sout(sout[4]), .n_val(nval_4));
-	DivSRBit (.q(q), .nq(nq), .rst(0), .sin(sout[4]), .sout(sout[5]));
+	DivSRBit sr0 (.q(q), .nq(nq), .rst(rst), .sin(PHI0_tocore), .sout(sout[0]));
+	DivSRBit sr1 (.q(q), .nq(nq), .rst(rst), .sin(sout[0]), .sout(sout[1]));
+	DivSRBit sr2 (.q(q), .nq(nq), .rst(rst), .sin(sout[1]), .sout(sout[2]));
+	DivSRBit sr3 (.q(q), .nq(nq), .rst(rst), .sin(sout[2]), .sout(sout[3]));
+	DivSRBit sr4 (.q(q), .nq(nq), .rst(1'b0), .sin(sout[3]), .sout(sout[4]), .n_val(nval_4));
+	DivSRBit sr5 (.q(q), .nq(nq), .rst(1'b0), .sin(sout[4]), .sout(sout[5]));
 
 	nor (n_M2_topad, nval_4, PHI2_fromcore);
 

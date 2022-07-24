@@ -39,23 +39,25 @@ module ApuPadsLogic(
 	not (RES_frompad, n_RESPad);
 
 	wire [15:0] ax;
-	for (i=0; i<16; i=i+1) begin
-	   nor (ax[i], Addr_topad[i], RES_frompad);
-	end
-	bustris ax_tris [15:0] (
+	ParallelNor addr_out [15:0] (
+		.a0(Addr_topad),
+		.a1({16{RES_frompad}}),
+		.x(ax) );
+	bustris addr_tris [15:0] (
 		.a(ax),
 		.n_x(APads),
 		.n_en(RES_frompad) );
 
-	bustris dx_in [7:0] (
+	bustris data_tris_in [7:0] (
 		.a(~DPads),
 		.n_x(DB),
 		.n_en(WR) );
 	wire [7:0] dx;
-	for (i =0; i<8; i=i+1) begin
-	   nor (dx[i], DB[i], RD);
-	end
-	bustris dx_out [7:0] (
+	ParallelNor data_out [7:0] (
+		.a0(DB),
+		.a1({8{RD}}),
+		.x(dx) );    
+	bustris data_tris_out [7:0] (
 		.a(dx),
 		.n_x(DPads),
 		.n_en(RD) );
@@ -86,3 +88,11 @@ module ApuPadsLogic(
 	nor (n_IRQ_tocore, ~n_IRQPad, Timer_Int);
 
 endmodule // PadsLogic
+
+module ParallelNor(a0, a1, x);
+	input a0;
+	input a1;
+	output x;
+
+	nor (x, a0, a1);
+endmodule // ParallelNor
