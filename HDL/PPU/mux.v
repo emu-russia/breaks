@@ -36,6 +36,7 @@ module Spr0Hit(
 	input n_R2;
 	input n_DBE;
 	input RESCL;
+	inout DB6;
 
     wire bg;
     nor (bg, BGC[0], BGC[1]);  

@@ -389,7 +389,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.n_H1D(nH1_D),
 		.OB(OB),
 		.PD(PD),
-		.OV(OV),
+		.OV(OV[3:0]),
 		.n_FVO(n_FVO),
 		.PAddr_out(PAD) );
 
