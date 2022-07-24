@@ -42,7 +42,7 @@ module TestNmosDesign(
 	output rsff_q;
 	output rsff_nq;
 
-	comp_dffe_inv (
+	comp_dffe_inv c1 (
 		.phi_load(compdffe_phi_load),
 		.phi_keep(compdffe_phi_keep),
 		.en(compdffe_en),
@@ -50,20 +50,20 @@ module TestNmosDesign(
 		.q(compdffe_q),
 		.nq(compdffe_nq) );
 
-	dlatch (
+	dlatch c2 (
 		.d(dlatch_d),
 		.en(dlatch_en),
 		.q(dlatch_q),
 		.nq(dlatch_nq) );
 
-	sdffe(
+	sdffe c3 (
 		.d(sdffe_d),
 		.en(sdffe_en),
 		.phi_keep(sdffe_phi_keep),
 		.q(sdffe_q),
 		.nq(sdffe_nq) );
 
-	sdffre(
+	sdffre c4 (
 		.d(sdffre_d),
 		.en(sdffre_en),
 		.res(sdffre_res),
@@ -71,12 +71,12 @@ module TestNmosDesign(
 		.q(sdffre_q),
 		.nq(sdffre_nq) );
 
-	bustris(
+	bustris c5 (
 		.a(bustris_a),
 		.n_x(bustris_n_x),
 		.n_en(bustris_n_en) );
 
-	rsff(
+	rsff c6 (
 		.r(rsff_r),
 		.s(rsff_s),
 		.q(rsff_q),

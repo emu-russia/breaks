@@ -133,9 +133,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.core_nIRQ(n_IRQINT),
 		.core_nRES(~RES),
 		.core_RDY(RDY_tocore), 
-		.core_SO(1),
+		.core_SO(1'b1),
 		.core_RnW(RW_fromcore),
-		.core_SYNC(z),
 		.core_DPads(DB),
 		.core_APads(Addr_fromcore) );
 

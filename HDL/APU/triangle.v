@@ -8,7 +8,7 @@ module TriangleChan(
 	input n_ACLK;
 
 	input RES;
-	input DB;
+	inout [7:0] DB;
 	input W4008;
 	input W400B;
 	input W401A;
