@@ -168,7 +168,7 @@ module SoftTimer(
 		.sout(sout),
 		.n_sout(n_sout) );
 
-	FramCnt_PLA pla (
+	FrameCnt_PLA pla (
 		.s(sout),
 		.ns(n_sout),
 		.md(mode),
@@ -324,7 +324,7 @@ module FrameCnt_LFSR(
 
 endmodule // FrameCnt_LFSR
 
-module FramCnt_PLA(s, ns, md, PLA_out);
+module FrameCnt_PLA(s, ns, md, PLA_out);
 
 	input [14:0] s;
 	input [14:0] ns;
@@ -338,4 +338,4 @@ module FramCnt_PLA(s, ns, md, PLA_out);
 	nor (PLA_out[4], ns[0], s[1], ns[2], s[3], s[4], s[5], s[6], ns[7], ns[8], s[9], s[10], s[11], ns[12], ns[13], ns[14]);
 	nor (PLA_out[5], s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], s[9], s[10], s[11], s[12], s[13], s[14]);
 
-endmodule // FramCnt_PLA
+endmodule // FrameCnt_PLA
