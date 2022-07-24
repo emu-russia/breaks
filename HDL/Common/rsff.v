@@ -7,6 +7,24 @@ module rsff(r, s, q, nq);
 	output q; 		// Current value
 	output nq;		// Current value (inverted)
 
+`ifdef ICARUS
+
+	reg val;
+
+	always @(r or s) begin
+		if (r)
+			val <= 1'b0;
+		if (s)
+			val <= 1'b1;
+	end
+
+	assign q = val;
+	assign nq = ~val;
+
+	initial val <= 1'b0;
+
+`else
+
 	wire nor1_out;
 	wire nor2_out;
 	
@@ -15,5 +33,7 @@ module rsff(r, s, q, nq);
 
 	assign q = nor1_out;
 	assign nq = nor2_out;
+
+`endif
 
 endmodule // rsff

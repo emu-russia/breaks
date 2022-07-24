@@ -8,10 +8,31 @@ module dlatch (d, en, q, nq);
 	output q;		// Current value
 	output nq; 		// Current value (inverted)
 
+`ifdef ICARUS
+
+	reg dout; 
+	always @(d or en) begin
+		if (en == 1'b1) 
+			dout <= d;   // Use non-blocking
+	end
+
+	assign q = dout;
+	assign nq = ~dout;
+
+	initial dout <= 1'b0;
+
+`elsif QUARTUS
+
+	LATCH MyLatch (.d(d), .ena(en), .q(q), .nq(nq));
+
+`else
+
 	(* keep = "true" *) wire floater;
 	bufif1(floater, d, en);
 
 	buf (q, floater);
 	not (nq, floater);
+
+`endif
 
 endmodule // dlatch
