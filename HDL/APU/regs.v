@@ -65,51 +65,16 @@ module ApuRegsBlock(
 
 	nand (n_DBGRD, DBG_frompad, ~nREGRD);
 
-	// Register select
+	// PLA
 
 	wire [28:0] pla;
 
-	wire [4:0] A;
-	wire [4:0] nA;
-	assign A = Addr_frommux[4:0];
-	assign nA = ~A;
-
-	// PLA
-
-	nor (pla[0], nREGRD, A[0], A[1], A[2], nA[3], nA[4]);
-	nor (pla[1], nREGRD, nA[0], A[1], A[2], nA[3], nA[4]);
-	nor (pla[2], nREGRD, A[0], nA[1], A[2], nA[3], nA[4]);
-	nor (pla[3], nREGWR, A[0], nA[1], A[2], nA[3], nA[4]);
-
-	nor (pla[4], nREGRD, nA[0], A[1], nA[2], A[3], nA[4]);
-	nor (pla[5], nREGWR, nA[0], nA[1], A[2], A[3], A[4]);
-	nor (pla[6], nREGWR, A[0], nA[1], A[2], A[3], A[4]);
-	nor (pla[7], nREGWR, nA[0], nA[1], nA[2], A[3], A[4]);
-	nor (pla[8], nREGWR, nA[0], A[1], A[2], A[3], A[4]);
-
-	nor (pla[9],  nREGWR, A[0], A[1], nA[2], A[3], A[4]);
-	nor (pla[10], nREGWR, nA[0], A[1], nA[2], A[3], A[4]);
-	nor (pla[11], nREGWR, A[0], A[1], nA[2], nA[3], A[4]);
-	nor (pla[12], nREGWR, A[0], nA[1], nA[2], A[3], A[4]);
-	nor (pla[13], nREGWR, A[0], A[1], A[2], A[3], A[4]);
-
-	nor (pla[14], nREGWR, A[0], A[1], A[2], nA[3], A[4]);
-	nor (pla[15], nREGWR, nA[0], A[1], nA[2], A[3], nA[4]);
-	nor (pla[16], nREGWR, A[0], nA[1], A[2], nA[3], A[4]);
-	nor (pla[17], nREGWR, nA[0], A[1], A[2], A[3], nA[4]);
-	nor (pla[18], nREGWR, nA[0], nA[1], A[2], nA[3], A[4]);
-
-	nor (pla[19], nREGWR, nA[0], nA[1], nA[2], nA[3], A[4]);
-	nor (pla[20], nREGWR, A[0], nA[1], nA[2], nA[3], A[4]);
-	nor (pla[21], nREGRD, nA[0], nA[1], nA[2], A[3], nA[4]);
-	nor (pla[22], nREGWR, nA[0], nA[1], A[2], A[3], nA[4]);
-	nor (pla[23], nREGRD, A[0], nA[1], nA[2], A[3], nA[4]);
-
-	nor (pla[24], nREGWR, A[0], nA[1], A[2], A[3], nA[4]);
-	nor (pla[25], nREGWR, A[0], nA[1], nA[2], A[3], nA[4]);
-	nor (pla[26], nREGWR, A[0], A[1], A[2], A[3], nA[4]);
-	nor (pla[27], nREGWR, nA[0], nA[1], nA[2], A[3], nA[4]);
-	nor (pla[28], nREGWR, A[0], A[1], nA[2], A[3], nA[4]);
+	ApuRegs_PLA regs_pla (
+		.nREGRD(nREGRD),
+		.nREGWR(nREGWR),
+		.A(Addr_frommux[4:0]),
+		.nA(~Addr_frommux[4:0]),
+		.pla(pla) );
 
 	// Select a register index.
 	// Note that during PHI1 all write operations are disabled.
@@ -148,3 +113,48 @@ module ApuRegsBlock(
 	nor(W4017, PHI1, ~pla[27]);
 
 endmodule // RegsBlock
+
+module ApuRegs_PLA(nREGRD, nREGWR, A, nA, pla);
+
+	input nREGRD;
+	input nREGWR;
+	input [4:0] A;
+	input [4:0] nA;
+	output [28:0] pla;
+
+	nor (pla[0], nREGRD, A[0], A[1], A[2], nA[3], nA[4]);
+	nor (pla[1], nREGRD, nA[0], A[1], A[2], nA[3], nA[4]);
+	nor (pla[2], nREGRD, A[0], nA[1], A[2], nA[3], nA[4]);
+	nor (pla[3], nREGWR, A[0], nA[1], A[2], nA[3], nA[4]);
+
+	nor (pla[4], nREGRD, nA[0], A[1], nA[2], A[3], nA[4]);
+	nor (pla[5], nREGWR, nA[0], nA[1], A[2], A[3], A[4]);
+	nor (pla[6], nREGWR, A[0], nA[1], A[2], A[3], A[4]);
+	nor (pla[7], nREGWR, nA[0], nA[1], nA[2], A[3], A[4]);
+	nor (pla[8], nREGWR, nA[0], A[1], A[2], A[3], A[4]);
+
+	nor (pla[9],  nREGWR, A[0], A[1], nA[2], A[3], A[4]);
+	nor (pla[10], nREGWR, nA[0], A[1], nA[2], A[3], A[4]);
+	nor (pla[11], nREGWR, A[0], A[1], nA[2], nA[3], A[4]);
+	nor (pla[12], nREGWR, A[0], nA[1], nA[2], A[3], A[4]);
+	nor (pla[13], nREGWR, A[0], A[1], A[2], A[3], A[4]);
+
+	nor (pla[14], nREGWR, A[0], A[1], A[2], nA[3], A[4]);
+	nor (pla[15], nREGWR, nA[0], A[1], nA[2], A[3], nA[4]);
+	nor (pla[16], nREGWR, A[0], nA[1], A[2], nA[3], A[4]);
+	nor (pla[17], nREGWR, nA[0], A[1], A[2], A[3], nA[4]);
+	nor (pla[18], nREGWR, nA[0], nA[1], A[2], nA[3], A[4]);
+
+	nor (pla[19], nREGWR, nA[0], nA[1], nA[2], nA[3], A[4]);
+	nor (pla[20], nREGWR, A[0], nA[1], nA[2], nA[3], A[4]);
+	nor (pla[21], nREGRD, nA[0], nA[1], nA[2], A[3], nA[4]);
+	nor (pla[22], nREGWR, nA[0], nA[1], A[2], A[3], nA[4]);
+	nor (pla[23], nREGRD, A[0], nA[1], nA[2], A[3], nA[4]);
+
+	nor (pla[24], nREGWR, A[0], nA[1], A[2], A[3], nA[4]);
+	nor (pla[25], nREGWR, A[0], nA[1], nA[2], A[3], nA[4]);
+	nor (pla[26], nREGWR, A[0], A[1], A[2], A[3], nA[4]);
+	nor (pla[27], nREGWR, nA[0], nA[1], nA[2], A[3], nA[4]);
+	nor (pla[28], nREGWR, A[0], A[1], nA[2], A[3], nA[4]);
+
+endmodule // ApuRegs_PLA
