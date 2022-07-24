@@ -1,4 +1,4 @@
-// Inverting tristate with inverting permission.
+// Inverting tristate with inverted permission.
 
 module bustris(a, n_x, n_en);
 
