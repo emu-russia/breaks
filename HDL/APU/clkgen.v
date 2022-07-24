@@ -205,7 +205,7 @@ module FrameCnt_Control(
 	input W4017;
 	input [5:0] PLA_in;
 
-	output n_mdout;
+	inout n_mdout;
 	output mdout;
 	output Timer_Int;
 
@@ -240,7 +240,7 @@ module FrameCnt_LFSR_Control(
 
 	input RES;
 	input W4017;
-	input n_mode;
+	inout n_mode;
 	input mode;
 	input [5:0] PLA_in;
 	input C13;

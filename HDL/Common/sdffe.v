@@ -8,6 +8,22 @@ module sdffe(d, en, phi_keep, q, nq);
 	output q;				// Current value
 	output nq;				// Current value (inverse logic)
 
+`ifdef ICARUS
+
+	reg val;
+
+	always @(*) begin
+		if (en & !phi_keep)
+			val <= d;
+	end
+
+	assign q = val;
+	assign nq = ~val;
+
+	initial val <= 1'b0;
+
+`else
+
 	(* keep = "true" *) wire dval;
 	bufif1 (dval, d, en);
 
@@ -22,5 +38,7 @@ module sdffe(d, en, phi_keep, q, nq);
 
 	assign q = oldval;
 	assign nq = n_oldval;
+
+`endif
 
 endmodule // sdffe

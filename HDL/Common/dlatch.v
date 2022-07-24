@@ -19,6 +19,8 @@ module dlatch (d, en, q, nq);
 	assign q = dout;
 	assign nq = ~dout;
 
+	initial dout <= 1'b0;
+
 `elsif QUARTUS
 
 	LATCH MyLatch (.d(d), .ena(en), .q(q), .nq(nq));
