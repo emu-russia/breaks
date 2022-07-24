@@ -39,7 +39,7 @@ module ApuPadsLogic(
 	not (RES_frompad, n_RESPad);
 
 	wire [15:0] ax;
-	ParallelNor addr_out [15:0] (
+	pnor addr_out [15:0] (
 		.a0(Addr_topad),
 		.a1({16{RES_frompad}}),
 		.x(ax) );
@@ -53,7 +53,7 @@ module ApuPadsLogic(
 		.n_x(DB),
 		.n_en(WR) );
 	wire [7:0] dx;
-	ParallelNor data_out [7:0] (
+	pnor data_out [7:0] (
 		.a0(DB),
 		.a1({8{RD}}),
 		.x(dx) );    
@@ -88,11 +88,3 @@ module ApuPadsLogic(
 	nor (n_IRQ_tocore, ~n_IRQPad, Timer_Int);
 
 endmodule // PadsLogic
-
-module ParallelNor(a0, a1, x);
-	input a0;
-	input a1;
-	output x;
-
-	nor (x, a0, a1);
-endmodule // ParallelNor
