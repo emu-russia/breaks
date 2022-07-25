@@ -38,11 +38,11 @@ module Spr0Hit(
 	input RESCL;
 	inout DB6;
 
-    wire bg;
-    nor (bg, BGC[0], BGC[1]);  
+	wire bg;
+	nor (bg, BGC[0], BGC[1]);  
 
 	wire Strike;
-    nor (Strike, PCLK, bg, n_SPR0HIT, n_SPR0_EV, n_VIS);	
+	nor (Strike, PCLK, bg, n_SPR0HIT, n_SPR0_EV, n_VIS);	
 
 	wire Strike_out;
 	rsff STRIKE_FF (
