@@ -51,3 +51,40 @@ Bit $4015\[6\] contains the interrupt status.
 ### Soft CLK Counter Control
 
 ![softclk_counter_control_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_control_tran.jpg)
+
+### PLA
+
+|Row|
+|---|
+|111110|
+|000001|
+|011100|
+|100011|
+|000110|
+|111001|
+|000100|
+|111011|
+|001100|
+|110011|
+|100000|
+|011111|
+|101000|
+|010111|
+|001010|
+|110101|
+|000010|
+|111101|
+|010100|
+|101011|
+|011000|
+|100111|
+|001100|
+|110011|
+|110010|
+|001101|
+|011010|
+|100101|
+|000010|
+|111101|
+
+The placement is topological. 1 means there is a transistor, 0 means there is no transistor.
