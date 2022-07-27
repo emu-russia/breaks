@@ -169,11 +169,11 @@ module APU_Run();
 		// ACLK Low->High
 
 		if (clk_cnt == 24 && apu.ACLK != 0) begin
-			$display("n_ACLK failed!");
+			$display("ACLK failed!");
 			$finish(1);
 		end
 		if (clk_cnt == 25 && apu.ACLK != 1) begin
-			$display("n_ACLK failed!");
+			$display("ACLK failed!");
 			$finish(1);
 		end
 
