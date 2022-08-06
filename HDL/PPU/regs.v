@@ -93,6 +93,22 @@ module SCCXFirstSecond(RC, n_DBE, n_R2, n_W56, Frst, Scnd);
 	output Frst;
 	output Scnd;
 
+	wire q1;
+	wire nq1;
+	wire q2;
+	wire nq2;
+	wire W56;
+	wire R2;
+
+	nor (R2, n_R2, n_DBE);
+	nor (W56, n_W56, n_DBE);
+
+	sdffr2e FF_1 (.d(q2), .en(~W56), .res1(RC), .res2(R2), .phi_keep(W56), .q(q1), .nq(nq1) );
+	sdffr2e FF_2 (.d(nq1), .en(W56), .res1(RC), .res2(R2), .phi_keep(~W56), .q(q2), .nq(nq2) );
+
+	assign Frst = q1;
+	assign Scnd = nq1;
+
 endmodule // SCCXFirstSecond
 
 module RegCTRL0(RC, n_W0, n_DBE, D_in, I_1_32, OBSEL, BGSEL, O_8_16, n_SLAVE, VBL);

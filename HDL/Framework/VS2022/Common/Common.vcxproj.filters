@@ -46,5 +46,8 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="..\..\..\Common\Readme.md" />
+    <None Include="..\..\..\Common\sdffr2e.v">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
