@@ -45,4 +45,33 @@ module PpuPadsLogic(
 	input Int_topad;
 	output n_INTPad;
 
+// Logic
+
+	wire [7:0] DB_temp;
+	pnor DB_out [7:0] (CPU_DB, {8{n_CpuRD}}, DB_temp);
+	bustris DB_out_tris [7:0] (.a(DB_temp), .n_x(DPads), .n_en(n_CpuRD) );
+	bustris DB_in_tris [7:0] (.a(~DPads), .n_x(CPU_DB), .n_en(n_CpuWR) );
+
+	assign ALE = ~n_ALE_topad;
+	assign PD_out = ADPads;
+	bustris AD_out_tris [7:0] (.a(n_PA[7:0] | {8{RD_topad}}), .n_x(ADPads), .n_en(RD_topad) );
+	assign PAPads = ~n_PA[13:8];
+	assign n_RDPad = ~RD_topad;
+	assign n_WRPad = ~WR_topad;
+
+	wire [3:0] ext_latch_out;
+	pnor EXT_in_nors [3:0] (~EXTPads, {4{n_SLAVE}}, EXT_in);
+	dlatch EXT_out_latch [3:0] (.d(n_EXT_out), .en(n_PCLK), .q(ext_latch_out) );
+	bustris EXT_out_tris [3:0] (.a(ext_latch_out | {4{~n_SLAVE}}), .n_x(EXTPads), .n_en(~n_SLAVE) );
+
+	assign n_CLK_frompad = ~CLKPad;
+	assign CLK_frompad = CLKPad;
+
+	assign RES = ~n_RESPad;
+	wire Reset_FF_out;
+	rsff Reset_FF (.r(RESCL), .s(RES), .q(Reset_FF_out) );
+	assign RC = ~Reset_FF_out;
+
+	notif1 (n_INTPad, Int_topad, Int_topad);
+
 endmodule // PadsLogic
