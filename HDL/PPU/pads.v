@@ -1,5 +1,6 @@
 
 module PpuPadsLogic(
+	n_PCLK,
 	n_CpuRD, n_CpuWR, CPU_DB, DPads,
 	n_ALE_topad, ALE, 	
 	PD_out, n_PA, PAPads, ADPads, RD_topad, WR_topad, n_RDPad, n_WRPad, 
@@ -7,6 +8,8 @@ module PpuPadsLogic(
 	CLKPad, n_CLK_frompad, CLK_frompad,
 	n_RESPad, RES, RESCL, RC,
 	Int_topad, n_INTPad);
+
+	input n_PCLK;
 
 	input n_CpuRD;
 	input n_CpuWR;

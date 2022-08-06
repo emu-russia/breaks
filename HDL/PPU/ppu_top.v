@@ -157,6 +157,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 // Module instantiation
 
 	PpuPadsLogic pads(
+		.n_PCLK(n_PCLK),
 		.n_CpuRD(n_CpuRD),
 		.n_CpuWR(n_CpuWR),
 		.CPU_DB(CPU_DB),

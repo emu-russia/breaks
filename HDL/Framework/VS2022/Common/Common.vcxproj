@@ -86,6 +86,7 @@
     <None Include="..\..\..\Common\rsff_2_3.v" />
     <None Include="..\..\..\Common\rsff_2_4.v" />
     <None Include="..\..\..\Common\sdffe.v" />
+    <None Include="..\..\..\Common\sdffr2e.v" />
     <None Include="..\..\..\Common\sdffre.v" />
     <None Include="..\..\..\Common\test_design.v" />
   </ItemGroup>
