@@ -100,8 +100,8 @@ module SCCXFirstSecond(RC, n_DBE, n_R2, n_W56, Frst, Scnd);
 	wire W56;
 	wire R2;
 
-	nor (R2, n_R2, n_DBE);
-	nor (W56, n_W56, n_DBE);
+	assign R2 = n_R2 ~| n_DBE;
+	assign W56 = n_W56 ~| n_DBE;
 
 	sdffr2e FF_1 (.d(q2), .en(~W56), .res1(RC), .res2(R2), .phi_keep(W56), .q(q1), .nq(nq1) );
 	sdffr2e FF_2 (.d(nq1), .en(W56), .res1(RC), .res2(R2), .phi_keep(~W56), .q(q2), .nq(nq2) );
@@ -166,5 +166,8 @@ module RWDecoder(RnW, n_DBE, n_RD, n_WR);
 	input n_DBE;
 	output n_RD;
 	output n_WR;
+
+	assign n_RD = ~( ~RnW ~| n_DBE );
+	assign n_WR = ~( RnW ~| n_DBE );
 
 endmodule // RWDecoder
