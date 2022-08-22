@@ -130,6 +130,12 @@ Table of matching decoder outputs and PPU colors:
 
 The brightness decoder selects one of 4 brightness levels.
 
+Waveform of the visible part of the video signal at different luminance values (`LU`):
+
+![vid_levels](/BreakingNESWiki/imgstore/ppu/vid_levels.jpg)
+
+(Emphasis is not shown, see below)
+
 ## Emphasis
 
 |![vout_emphasis](/BreakingNESWiki/imgstore/ppu/vout_emphasis.jpg)|![vidout_emphasis_logic](/BreakingNESWiki/imgstore/ppu/vidout_emphasis_logic.jpg)|
@@ -137,8 +143,27 @@ The brightness decoder selects one of 4 brightness levels.
 
 If a dimming color is selected in the phase shifter and dimming for that color is enabled in the control register $2001, it activates the `TINT` signal, which slightly lowers the voltage levels, thereby dimming the color.
 
+The `TINT` signal can only be applied to the visible part of the video signal (see /POUT signal).
+
 ## DAC
 
 ![vout_dac](/BreakingNESWiki/imgstore/ppu/vout_dac.jpg)
 
 ![vidout_dac_logic](/BreakingNESWiki/imgstore/ppu/vidout_dac_logic.jpg)
+
+Level values of the unloaded video signal:
+
+|L|Absolute V|Description|
+|---|---|---|
+|0|0.781|Synch|
+|1|1.000|Colorburst L|
+|2|1.131|Color 0D|
+|3|1.300|Color 1D (black)|
+|4|1.712|Colorburst H|
+|5|1.743|Color 2D|
+|6|1.875|Color 00|
+|7|2.287|Color 10|
+|8|2.331|Color 3D|
+|9|2.743|Color 20 / 30|
+
+If the `TINT` signal value is 1, the voltage is multiplied by approx. 0.746f.
