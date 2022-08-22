@@ -132,7 +132,7 @@ The brightness decoder selects one of 4 brightness levels.
 
 Waveform of the visible part of the video signal at different luminance values (`LU`):
 
-![vid_levels](/BreakingNESWiki/imgstore/ppu/vid_levels.jpg)
+![vid_levels](/BreakingNESWiki/imgstore/ppu/vid_levels.png)
 
 (Emphasis is not shown, see below)
 
