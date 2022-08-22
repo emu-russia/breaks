@@ -130,6 +130,12 @@
 
 Декодер яркости выбирает один из 4-х уровней яркости.
 
+Форма видимой части видеосигнала при разных значениях яркости (`LU`):
+
+![vid_levels](/BreakingNESWiki/imgstore/ppu/vid_levels.jpg)
+
+(Подстройка фазы не показана, см. далее)
+
 ## Подстройка фазы
 
 |![vout_emphasis](/BreakingNESWiki/imgstore/ppu/vout_emphasis.jpg)|![vidout_emphasis_logic](/BreakingNESWiki/imgstore/ppu/vidout_emphasis_logic.jpg)|
@@ -137,8 +143,27 @@
 
 Если в фазовращателе выбран приглушаемый цвет и приглушение для этого цвета включено в контрольном регистре $2001, то активирует сигнал `TINT`, который немного понижает уровни напряжения, тем самым приглушая цвет.
 
+Сигнал `TINT` может быть применён только к видимой части видеосигнала (см. сигнал /POUT).
+
 ## ЦАП
 
 ![vout_dac](/BreakingNESWiki/imgstore/ppu/vout_dac.jpg)
 
 ![vidout_dac_logic](/BreakingNESWiki/imgstore/ppu/vidout_dac_logic.jpg)
+
+Значения уровней ненагруженного видеосигнала:
+
+|L|Абсолютное значение V|Описание|
+|---|---|---|
+|0|0.781|Synch|
+|1|1.000|Colorburst L|
+|2|1.131|Color 0D|
+|3|1.300|Color 1D (black)|
+|4|1.712|Colorburst H|
+|5|1.743|Color 2D|
+|6|1.875|Color 00|
+|7|2.287|Color 10|
+|8|2.331|Color 3D|
+|9|2.743|Color 20 / 30|
+
+Если значение сигнала `TINT` равно 1, то напряжение умножается примерно на 0.746f.
