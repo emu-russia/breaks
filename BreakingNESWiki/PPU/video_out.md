@@ -132,7 +132,7 @@
 
 Форма видимой части видеосигнала при разных значениях яркости (`LU`):
 
-![vid_levels](/BreakingNESWiki/imgstore/ppu/vid_levels.jpg)
+![vid_levels](/BreakingNESWiki/imgstore/ppu/vid_levels.png)
 
 (Подстройка фазы не показана, см. далее)
 
