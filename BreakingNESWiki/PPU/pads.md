@@ -2,7 +2,9 @@
 
 Изучение любой микросхемы начинается с контактов.
 
-![ppu_pads](/BreakingNESWiki/imgstore/ppu/ppu_pads.jpg)
+|Наша вики|Официальные обозначения|
+|---|---|
+|![ppu_pads](/BreakingNESWiki/imgstore/ppu/ppu_pads.jpg)|![ppu_pinout_orig](/BreakingNESWiki/imgstore/ppu/ppu_pinout_orig.png)|
 
 |Название|Номер|Направление|Описание|
 |---|---|---|---|

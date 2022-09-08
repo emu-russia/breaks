@@ -149,13 +149,19 @@ After detailed study of 2A03 circuit following results were obtained:
 
 The difference lies in the fact that the control lines DAA and DSA, which enable decimal correction, are disconnected from the circuit, by cutting 5 pieces of polysilicon (see picture). Polysilicon marked as purple, missing pieces marked as cyan.
 
+|Original circuit of the 6502|Missing poly in the APU|
+|---|---|
+|![bcd_tran_orig](/BreakingNESWiki/imgstore/apu/bcd_tran_orig.png)|![bcd_tran_apu_missing](/BreakingNESWiki/imgstore/apu/bcd_tran_apu_missing.png)|
+
 As result decimal carry circuit and decimal-correction adders do not work. Therefore, the embedded processor of APU always considers add/sub operands as binary numbers, even if the D flag is set.
 
 The research process: http://youtu.be/Gmi1DgysGR0
 
 The key parts of the analysis (decoder, random logic, flags and ALU) are shown in the following image:
 
-<img src="/BreakingNESWiki/imgstore/apu/2a03_6502_diff_sm.jpg" width="400px">
+![2a03_6502_diff_sm](/BreakingNESWiki/imgstore/apu/2a03_6502_diff_sm.jpg)
+
+To understand more about the differences in the operation of the BCD circuit, it is recommended to study the design of the 6502 ALU.
 
 ## Register Operations
 
@@ -184,9 +190,9 @@ DBG pin:
 
 Auxiliary circuits for DBG:
 
-|Amplifying inverter|Intermediate inverter|
-|---|---|
-|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
+|Amplifying inverter|Intermediate inverter|/DBGRD Signal|
+|---|---|---|
+|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)|![nDBGRD](/BreakingNESWiki/imgstore/apu/nDBGRD.png)|
 
 Debug register circuits:
 
