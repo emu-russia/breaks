@@ -2,7 +2,9 @@
 
 Изучение любой микросхемы начинается с контактов.
 
-![apu_pads](/BreakingNESWiki/imgstore/apu/apu_pads.jpg)
+|Наша вики|Официальные обозначения|
+|---|---|
+|![apu_pads](/BreakingNESWiki/imgstore/apu/apu_pads.jpg)|![apu_pinout_orig](/BreakingNESWiki/imgstore/apu/apu_pinout_orig.png)|
 
 |Название|Номер|Направление|Описание|
 |---|---|---|---|

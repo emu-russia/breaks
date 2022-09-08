@@ -190,9 +190,9 @@ DBG pin:
 
 Auxiliary circuits for DBG:
 
-|Amplifying inverter|Intermediate inverter|
-|---|---|
-|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
+|Amplifying inverter|Intermediate inverter|/DBGRD Signal|
+|---|---|---|
+|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)|![nDBGRD](/BreakingNESWiki/imgstore/apu/nDBGRD.png)|
 
 Debug register circuits:
 

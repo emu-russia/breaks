@@ -2,7 +2,9 @@
 
 The study of any IC begins with the pinout.
 
-![apu_pads](/BreakingNESWiki/imgstore/apu/apu_pads.jpg)
+|Our wiki|Official designations|
+|---|---|
+|![apu_pads](/BreakingNESWiki/imgstore/apu/apu_pads.jpg)|![apu_pinout_orig](/BreakingNESWiki/imgstore/apu/apu_pinout_orig.png)|
 
 |Name|Number|Direction|Description|
 |---|---|---|---|

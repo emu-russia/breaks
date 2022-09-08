@@ -190,9 +190,9 @@ R/W декодер для регистровых операций:
 
 Вспомогательные схемы для DBG:
 
-|Усиливающий инвертер|Промежуточный инвертер|
-|---|---|
-|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)
+|Усиливающий инвертер|Промежуточный инвертер|Сигнал /DBGRD|
+|---|---|---|
+|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)|![nDBGRD](/BreakingNESWiki/imgstore/apu/nDBGRD.png)|
 
 Транзисторные схемы отладочных регистров:
 
