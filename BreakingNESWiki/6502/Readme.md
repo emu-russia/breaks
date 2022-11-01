@@ -4,7 +4,7 @@
 
 |6502|6800|
 |---|---|
-|<img src="/BreakingNESWiki/imgstore/6502_die_shot.jpg" width="200px">|<img src="/BreakingNESWiki/imgstore/6800.jpg" width="220px">|
+|<img src="/BreakingNESWiki/imgstore/6502/6502_die_shot.jpg" width="200px">|<img src="/BreakingNESWiki/imgstore/6502/6800.jpg" width="220px">|
 
 В обоих случаях верхнюю часть занимает декодер и рандомная логика, а всю нижнюю часть процессора занимает контекст и АЛУ.
 
@@ -23,7 +23,7 @@
 
 Обзорная схема 6502:
 
-![6502_logisim_big](/BreakingNESWiki/imgstore/6502_logisim_big.png)
+![6502_logisim_big](/BreakingNESWiki/imgstore/6502/6502_logisim_big.png)
 
 ## Регистры
 
@@ -57,7 +57,7 @@
 
 ## Соединения регистров с шинами
 
-![6502_context](/BreakingNESWiki/imgstore/6502_context.jpg)
+![6502_context](/BreakingNESWiki/imgstore/6502/6502_context.jpg)
 
 Последовательно соединяя шины и регистры процессор выполняет разнообразные инструкции. Многообразие соединений обеспечивает разнообразие команд процессора, а разделение команд на такты позволяет выполнять сложные действия. Дополнительно производится управление АЛУ (сложение, логическое-И и пр.)
 
@@ -153,7 +153,7 @@
 
 Таблица опкодов 6502 (для справки):
 
-![6502_opcode_table](/BreakingNESWiki/imgstore/6502_opcode_table.jpg)
+![6502_opcode_table](/BreakingNESWiki/imgstore/6502/6502_opcode_table.jpg)
 
 Описание инструкций можно найти в любом Reference Manual по 6502.
 
@@ -185,4 +185,4 @@
 
 Для удобства логический вариант DLatch имеет два выхода (`out` и `/out`), так как текущее значение DLatch (out) нередко используется как вход для операции NOR.
 
-Оптимизированные варианты логических схем составлены ttlworks и содержат дополнительный источник информации для анализа.
+Оптимизированные варианты логических схем составлены @ttlworks и содержат дополнительный источник информации для анализа.

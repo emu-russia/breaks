@@ -6,7 +6,7 @@
 
 ## Транзисторная схема
 
-![ir_tran](/BreakingNESWiki/imgstore/ir_tran.jpg)
+![ir_tran](/BreakingNESWiki/imgstore/6502/ir_tran.jpg)
 
 Выходы на схеме слева, потому что с левой стороны топологически расположен декодер.
 
@@ -16,7 +16,7 @@
 
 ## Логическая схема
 
-![ir_logic](/BreakingNESWiki/imgstore/ir_logic.jpg)
+![ir_logic](/BreakingNESWiki/imgstore/6502/ir_logic.jpg)
 
 - Во время PHI1 значение IR перегружается с защёлки [Predecode (PD)](predecode.md), но только если активна команда `FETCH`
 - Во время PHI2 IR "рефрешится"  (это не отображается на логической схеме)

@@ -6,21 +6,23 @@ The decoder is an ordinary demultiplexer, but a very large one. The formula for 
 
 Topologically, the decoder is divided by ground lines into several groups, so we'll stick to the same division, for convenience.
 
+## Decoder Inputs
+
 The input signals are:
 - /T0, /T1X: current cycle for short (2 clock) instructions. These signals are output from [dispatch logic](dispatch.md).
 - /T2, /T3, /T4, /T5: current cycle for long instructions. Signals are output from [extended cycle counter](extra_counter.md).
 - /IR0, /IR1, IR01: the lower bits of the operation code from [instruction register](ir.md). To reduce the number of lines 0 and 1 bits are combined into one control line `IR01`.
 - IR2-IR7, /IR2-/IR7: direct and inverse values of the remaining bits. The direct and inverse forms are needed to check the bit for 0 and 1.
 
-The decoder logic is based on the exclusion principle. Schematically, each output is a multi-input NOR element, which means that if at least one of the inputs has a 1, the whole line will NOT work.
+## Principle
 
-That is, the decoder outputs are not in inverse logic (as is usual), but in direct logic.
+Schematically, each output is a multi-input NOR element.
 
-![decoder_nice1](/BreakingNESWiki/imgstore/decoder_nice1.jpg)
+![decoder_nice1](/BreakingNESWiki/imgstore/6502/decoder_nice1.jpg)
 
-![decoder_nice2](/BreakingNESWiki/imgstore/decoder_nice2.jpg)
+![decoder_nice2](/BreakingNESWiki/imgstore/6502/decoder_nice2.jpg)
 
-The ttlworks version of the decoder:
+The @ttlworks version of the decoder:
 
 ![10_decoder](/BreakingNESWiki/imgstore/6502/ttlworks/10_decoder.png)
 
@@ -116,7 +118,7 @@ List:
 |E18  |71 |000000001010000000010   |XXX11XXX |T4     |OP abs,XY|Bus Control (ADL/ABL)|
 |E19  |72 |000000010110001000001   |XXX100X1 |T5     |OP ind,Y|Bus Control (ADL/ABL)|
 |F|||||||
-|F01  |73 |010000010110000100000   |XXX10000 |T0 |<-  Branch, additionally affected by the /PRDY line (from the RDY contact), immediately on the spot|Auxiliary signal BR0|
+|F01  |73 |010000010110000100000   |XXX10000 |T0 |<-  Branch. :warning: Additionally affected by the /PRDY line (from the RDY contact), immediately on the spot|Auxiliary signal BR0|
 |F02  |74 |000110011001010101000   |01001000 |T2     |PHA|Bus Control (AC/DB)|
 |F03  |75 |010010011001010010000   |01X0101X |T0     |LSR ROR|ALU Control (SR)|
 |F04  |76 |000010000000010010000   |01XXXX1X |TX     |LSR ROR|ALU Control (SR)|
@@ -176,15 +178,15 @@ List:
 |K06 |125 |000000001010000000010   |XXX11XXX |T4     |Memory absolute X/Y|MemOP|
 |K07 |126 |000000000000010000000   |0XXXXXXX |TX     |/IR7|Branch Logic|
 |K08 |127 |001001011010100100000   |10111000 |TX     |CLV|flags control|
-|K09 |128 |000000011000000000000   |XXXX10X0 |TX     |IMPL. The Push/Pull opcode exclusion operation is additionally applied to this line, right on the spot. Also, the mask for this line does not take into account the `& ~IR0` operation|Bus Control (DL/DB)|
+|K09 |128 |000000011000000000000   |XXXX10X0 |TX     |IMPL. :warning: The Push/Pull opcode exclusion operation is additionally applied to this line, right on the spot. Also, the mask for this line does not take into account the `& ~IR0` operation|Bus Control (DL/DB)|
 
 ## What Raw bits mean
 
 If you think of a decoder as a 21x130 ROM, where each bit represents a transistor, then the `Raw bits` value will represent one line of the decoder. This is why it is called the mask value.
 
-For example, the picture shows the 5th line of the decoder. The bit counting starts from bottom to top. 0 means no transistor, 1 means present.
+For example, the picture shows the 5th line of the decoder. The bit order in the picture is bottom-up from the most significant bits to the least significant bits (msb -> lsb). 0 means no transistor, 1 means present.
 
-![decoder_line](/BreakingNESWiki/imgstore/decoder_line.jpg)
+![decoder_line](/BreakingNESWiki/imgstore/6502/decoder_line.jpg)
 
 ## Online Decoder
 

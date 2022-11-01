@@ -4,7 +4,7 @@
 
 The circuits for working with the external data bus consist of 8 identical pieces:
 
-![6502_data_bit_tran](/BreakingNESWiki/imgstore/6502_data_bit_tran.jpg)
+![6502_data_bit_tran](/BreakingNESWiki/imgstore/6502/data_bit_tran.jpg)
 
 (The circuit is shown for bit 0, the rest are the same)
 
@@ -27,7 +27,7 @@ Optimized schematics:
 
 From the R/W control circuit, the latch circuit receives a control signal `WR`. The circuit outputs a control signal `RD` which controls the direction of the external data bus.
 
-![6502_wr_latch_tran](/BreakingNESWiki/imgstore/6502_wr_latch_tran.jpg)
+![6502_wr_latch_tran](/BreakingNESWiki/imgstore/6502/wr_latch_tran.jpg)
 
 Optimized schematics:
 

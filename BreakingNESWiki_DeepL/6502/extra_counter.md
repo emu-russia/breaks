@@ -11,7 +11,7 @@ One cycle (T) refers to two consecutive half-cycles (PHI1 + PHI2) of the process
 
 ## Transistor Circuit
 
-![extended_cycle_counter_trans](/BreakingNESWiki/imgstore/extended_cycle_counter_trans.jpg)
+![extended_cycle_counter_trans](/BreakingNESWiki/imgstore/6502/extended_cycle_counter_trans.jpg)
 
 The whole circuit is a shift register, with a control signal `T1` as its input. While the shift register is running, the value of T1 is shifted and goes to the output of `/T2`, then to `/T3` and so on. The /T2-/T5 outputs are in inverse logic.
 
@@ -23,7 +23,7 @@ The circuit includes multiplexers on the `/ready` signal. This is done so that w
 
 ## Logic
 
-![extended_cycle_counter_logic](/BreakingNESWiki/imgstore/extended_cycle_counter_logic.jpg)
+![extended_cycle_counter_logic](/BreakingNESWiki/imgstore/6502/extended_cycle_counter_logic.jpg)
 
 ## Optimized Schematics
 

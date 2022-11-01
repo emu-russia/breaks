@@ -156,7 +156,7 @@
 
 Логика распределения CLK:
 
-![PPU clk](/BreakingNESWiki/imgstore/clk.jpg)
+![PPU clk](/BreakingNESWiki/imgstore/ppu/clk.jpg)
 
 Входной CLK разводится на два внутренних комплементарных сигнала: CLK и /CLK.
 

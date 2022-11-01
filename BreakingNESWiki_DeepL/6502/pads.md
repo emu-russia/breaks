@@ -2,9 +2,9 @@
 
 The study of any integrated circuit begins with the pinout.
 
-![6502_pads_map](/BreakingNESWiki/imgstore/6502_pads_map.jpg)
+![6502_pads_map](/BreakingNESWiki/imgstore/6502/6502_pads_map.jpg)
 
-![6502_pinout](/BreakingNESWiki/imgstore/6502_pinout.png)
+![6502_pinout](/BreakingNESWiki/imgstore/6502/6502_pinout.png)
 
 |Name|Direction|Description|
 |---|---|---|
@@ -34,7 +34,7 @@ The clock signals are described in a separate section (see [clock generator](clo
 
 ## /NMI, /IRQ, /RES
 
-![intpads_trans](/BreakingNESWiki/imgstore/intpads_trans.jpg)
+![intpads_trans](/BreakingNESWiki/imgstore/6502/intpads_trans.jpg)
 
 Each contact contains a FF where the interrupt arrival event is stored. The FF value corresponds to the control signals `/NMIP`, `/IRQP` and `RESP` (the value from FF for contact /RES is output as direct value).
 
@@ -42,7 +42,7 @@ The "P" in the name of the control signals stands for "Pad" (contact).
 
 ## RDY
 
-|![rdy_tran](/BreakingNESWiki/imgstore/rdy_tran.jpg)|![rdy_nice](/BreakingNESWiki/imgstore/rdy_nice.jpg)|
+|![rdy_tran](/BreakingNESWiki/imgstore/6502/rdy_tran.jpg)|![rdy_nice](/BreakingNESWiki/imgstore/6502/rdy_nice.jpg)|
 |---|---|
 
 The RDY pin goes to the internal `RDY` signal and also through the DLATCH delay chain as the `/PRDY` ("Previous Ready") signal.
@@ -52,20 +52,20 @@ The RDY pin can be used to temporarily suspend the processor, e.g. while an exte
 
 ## SYNC
 
-|![sync_tran](/BreakingNESWiki/imgstore/sync_tran.jpg)|![sync_nice](/BreakingNESWiki/imgstore/sync_nice.jpg)|
+|![sync_tran](/BreakingNESWiki/imgstore/6502/sync_tran.jpg)|![sync_nice](/BreakingNESWiki/imgstore/6502/sync_nice.jpg)|
 |---|---|
 
 The SYNC signal comes from the internal T1 signal (opcode fetch).
 
 ## SO
 
-![so_tran](/BreakingNESWiki/imgstore/so_tran.jpg)
+![so_tran](/BreakingNESWiki/imgstore/6502/so_tran.jpg)
 
 The internal signal `SO` is fed to the [flag V](flags.md) input to process the control signal `1/V`.
 
 ## R/W
 
-![rw_tran](/BreakingNESWiki/imgstore/rw_tran.jpg)
+![rw_tran](/BreakingNESWiki/imgstore/6502/rw_tran.jpg)
 
 The `WR` signal comes from [dispatcher](dispatch.md) and defines the operating mode of the processor (WR:1 - processor writes data, WR:0 - processor reads data).
 

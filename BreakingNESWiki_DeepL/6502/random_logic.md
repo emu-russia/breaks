@@ -22,7 +22,7 @@ Below you can see all the function blocks of the random logic:
 
 Overview schematic:
 
-![random_logic_logisim](/BreakingNESWiki/imgstore/random_logic_logisim.jpg)
+![random_logic_logisim](/BreakingNESWiki/imgstore/6502/random_logic_logisim.jpg)
 
 ## Principle of Operation
 

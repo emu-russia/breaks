@@ -8,7 +8,7 @@
 
 |/ROR|SR|AND|CSET|
 |---|---|---|---|
-|![alu_setup_ror_tran](/BreakingNESWiki/imgstore/alu_setup_ror_tran.jpg)|![alu_setup_sr_tran](/BreakingNESWiki/imgstore/alu_setup_sr_tran.jpg)|![alu_setup_and_tran](/BreakingNESWiki/imgstore/alu_setup_and_tran.jpg)|![alu_setup_cset_tran](/BreakingNESWiki/imgstore/alu_setup_cset_tran.jpg)|
+|![alu_setup_ror_tran](/BreakingNESWiki/imgstore/6502/alu_setup_ror_tran.jpg)|![alu_setup_sr_tran](/BreakingNESWiki/imgstore/6502/alu_setup_sr_tran.jpg)|![alu_setup_and_tran](/BreakingNESWiki/imgstore/6502/alu_setup_and_tran.jpg)|![alu_setup_cset_tran](/BreakingNESWiki/imgstore/6502/alu_setup_cset_tran.jpg)|
 
 Таблица вспомогательных и промежуточных сигналов, которые встречаются далее на схемах:
 
@@ -43,7 +43,7 @@
 
 Схема представляет собой месиво вентилей и 4 защёлки для формирования входного переноса для АЛУ (контрольный сигнал `/ACIN`).
 
-![alu_setup_main_tran](/BreakingNESWiki/imgstore/alu_setup_main_tran.jpg)
+![alu_setup_main_tran](/BreakingNESWiki/imgstore/6502/alu_setup_main_tran.jpg)
 
 ## Управление BCD коррекцией
 
@@ -51,13 +51,13 @@ BCD коррекция производится в следующих случа
 - Если BCD режим включен флагом D и текущая инструкция `SBC` (контрольный сигнал DSATemp)
 - Если BCD режим включен флагом D и текущая инструкция `ADC` (контрольный сигнал DAATemp)
 
-![alu_setup_bcd_tran](/BreakingNESWiki/imgstore/alu_setup_bcd_tran.jpg)
+![alu_setup_bcd_tran](/BreakingNESWiki/imgstore/6502/alu_setup_bcd_tran.jpg)
 
 ## ADD/SB7
 
 Внимательный читатель заметит, что процессор имеет поддержку инструкций вращения бит (ROL/ROR). Дополнительной обработкой связанной с этими инструкциями как раз занимается указанная схема.
 
-![alu_setup_addsb7_tran](/BreakingNESWiki/imgstore/alu_setup_addsb7_tran.jpg)
+![alu_setup_addsb7_tran](/BreakingNESWiki/imgstore/6502/alu_setup_addsb7_tran.jpg)
 
 Логическая схема:
 
@@ -69,7 +69,7 @@ BCD коррекция производится в следующих случа
 
 ## Управляющие команды АЛУ
 
-![alu_control_commands_tran](/BreakingNESWiki/imgstore/alu_control_commands_tran.jpg)
+![alu_control_commands_tran](/BreakingNESWiki/imgstore/6502/alu_control_commands_tran.jpg)
 
 |Команда|Описание|
 |---|---|

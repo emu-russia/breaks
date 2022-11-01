@@ -6,7 +6,7 @@ Most likely this control circuit will be observed first, so I will write here: b
 
 The register control circuit is responsible for generating [control commands](context_control.md) to exchange registers with the internal buses.
 
-![regs_control](/BreakingNESWiki/imgstore/regs_control.jpg)
+![regs_control](/BreakingNESWiki/imgstore/6502/regs_control.jpg)
 
 Inputs:
 
@@ -39,7 +39,7 @@ The `TXS` (X13) signal is used within this circuit and does not go outside.
 
 The intermediate signals from the register control circuitry go to the input of the control command latches:
 
-![regs_control_commands_tran](/BreakingNESWiki/imgstore/regs_control_commands_tran.jpg)
+![regs_control_commands_tran](/BreakingNESWiki/imgstore/6502/regs_control_commands_tran.jpg)
 
 Register control commands:
 

@@ -4,7 +4,7 @@ The 6502 processor was developed by [MOS](../MOS.md). It was based on the archit
 
 |6502|6800|
 |---|---|
-|<img src="/BreakingNESWiki/imgstore/6502_die_shot.jpg" width="200px">|<img src="/BreakingNESWiki/imgstore/6800.jpg" width="220px">|
+|<img src="/BreakingNESWiki/imgstore/6502/6502_die_shot.jpg" width="200px">|<img src="/BreakingNESWiki/imgstore/6502/6800.jpg" width="220px">|
 
 In both cases the top part is occupied by the decoder and random logic, and the whole bottom part of the processor is occupied by the context and the ALU.
 
@@ -23,7 +23,7 @@ During the second half-cycle (PHI2) the processor is in "Read/Write Data" mode, 
 
 6502 overview chart:
 
-![6502_logisim_big](/BreakingNESWiki/imgstore/6502_logisim_big.png)
+![6502_logisim_big](/BreakingNESWiki/imgstore/6502/6502_logisim_big.png)
 
 ## Registers
 
@@ -57,7 +57,7 @@ During the second half-step (PHI2) all internal buses are precharged and have a 
 
 ## Register-Bus Connections
 
-![6502_context](/BreakingNESWiki/imgstore/6502_context.jpg)
+![6502_context](/BreakingNESWiki/imgstore/6502/6502_context.jpg)
 
 By connecting buses and registers in series, the processor executes a variety of instructions. The variety of connections provides a variety of processor instructions, and the division of instructions into clock cycles allows complex actions to be performed. In addition, the ALU is controlled (addition, logical operations, etc.).
 
@@ -153,7 +153,7 @@ The developers chose the encoding so that it would be easier to process by [deco
 
 Table of 6502 opcodes (for reference):
 
-![6502_opcode_table](/BreakingNESWiki/imgstore/6502_opcode_table.jpg)
+![6502_opcode_table](/BreakingNESWiki/imgstore/6502/6502_opcode_table.jpg)
 
 You can find a description of the instructions in any Reference Manual for 6502.
 
@@ -185,4 +185,4 @@ The logic circuits are mostly made in the Logisim program. The following element
 
 For convenience, the logical variant of DLatch has two outputs (`out` and `/out`), since the current value of DLatch (out) is often used as an input of a NOR operation.
 
-The optimized versions of the logic diagrams are compiled by ttlworks and contain an additional source of information for analysis.
+The optimized versions of the logic diagrams are compiled by @ttlworks and contain an additional source of information for analysis.

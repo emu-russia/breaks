@@ -6,7 +6,7 @@
 
 Схематически регистры X, Y и S состоят из 8 одинаковых кусков-разрядов:
 
-![regs_tran](/BreakingNESWiki/imgstore/regs_tran.jpg)
+![regs_tran](/BreakingNESWiki/imgstore/6502/regs_tran.jpg)
 
 (На схеме выше нужно заменить SB0 и ADL0 на SBx и ADLx для остальных разрядов регистров)
 
@@ -26,7 +26,7 @@
 
 ## Логическая схема
 
-![regs_logic](/BreakingNESWiki/imgstore/regs_logic.jpg)
+![regs_logic](/BreakingNESWiki/imgstore/6502/regs_logic.jpg)
 
 - Во время PHI1 регистры X и Y выдают на шину SB своё значение / перегружаются новыми значениями с шины SB.
 - У регистра S есть входная защёлка и выходная. Во время PHI1 значение с выходной защёлки помещаются на шины SB или ADL, а входная защёлка либо загружается новым значением с шины SB, либо рефрешится с выходной защёлки (S/S).

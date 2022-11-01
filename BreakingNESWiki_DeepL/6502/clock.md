@@ -21,37 +21,37 @@ The signals `PHI1` and `PHI2` are called half-cycles and are derived from the or
 
 ## Internal Clock
 
-![clock_internal](/BreakingNESWiki/imgstore/clock_internal.jpg)
+![clock_internal](/BreakingNESWiki/imgstore/6502/clock_internal.jpg)
 
 The circuit is quite complicated, because it is not quite "digital". The numerous transistors that act as inverters slightly delay the PHI0 signal, so the PHI1 and PHI2 signals going inside the processor are a bit "laggy". Here is the logical representation of the circuit:
 
-![clock_internal_logic](/BreakingNESWiki/imgstore/clock_internal_logic.jpg)
+![clock_internal_logic](/BreakingNESWiki/imgstore/6502/clock_internal_logic.jpg)
 
 Logical analysis:
 
-![clock_internal_logic_zero](/BreakingNESWiki/imgstore/clock_internal_logic_zero.jpg)
+![clock_internal_logic_zero](/BreakingNESWiki/imgstore/6502/clock_internal_logic_zero.jpg)
 
-![clock_internal_logic_one](/BreakingNESWiki/imgstore/clock_internal_logic_one.jpg)
+![clock_internal_logic_one](/BreakingNESWiki/imgstore/6502/clock_internal_logic_one.jpg)
 
 The layout of the clock signals should be about the following:
 - PHI1/PHI2 are slightly lagging relative to PHI0
 - The lower level of PHI1/PHI2 is slightly longer than the upper level, so that both signals are guaranteed not to have a high level
 
-![4672299](/BreakingNESWiki/imgstore/4672299.png)
+![4672299](/BreakingNESWiki/imgstore/6502/4672299.png)
 
 The simulation in Altera Quartus shows "lag", but does not show the elongated lower level (it is hand-drawn in the picture above).
 
 BigEd from the 6502.org forum suggested that he ran a simulation on the 6502 FPGA netlist and got the following sweeps:
 
-![cclk-rising](/BreakingNESWiki/imgstore/cclk-rising.png)
+![cclk-rising](/BreakingNESWiki/imgstore/6502/cclk-rising.png)
 
-![cclk-falling](/BreakingNESWiki/imgstore/cclk-falling.png)
+![cclk-falling](/BreakingNESWiki/imgstore/6502/cclk-falling.png)
 
 The signal designations are as follows: clk0 = PHI0, cp1 = PHI1, cclk = PHI2 (according to the netlist with Visual6502)
 
 The schematic on which his simulation was based corresponds to the one in Balasz's documentation:
 
-![clock_balazs](/BreakingNESWiki/imgstore/clock_balazs.png)
+![clock_balazs](/BreakingNESWiki/imgstore/6502/clock_balazs.png)
 
 http://forum.6502.org/viewtopic.php?f=8&t=2208&start=195
 
@@ -59,7 +59,7 @@ It turns out that because of the asymmetrical inverter stage the rising edge is 
 
 The official documentation gives the following diagram:
 
-![clock_timing_datasheet](/BreakingNESWiki/imgstore/clock_timing_datasheet.jpg)
+![clock_timing_datasheet](/BreakingNESWiki/imgstore/6502/clock_timing_datasheet.jpg)
 
 Optimized schematics:
 
@@ -67,7 +67,7 @@ Optimized schematics:
 
 ## External Clock
 
-![clock_external](/BreakingNESWiki/imgstore/clock_external.jpg)
+![clock_external](/BreakingNESWiki/imgstore/6502/clock_external.jpg)
 
 The PHI1/PHI2 reference signals are also output to the outside for consumers.
 

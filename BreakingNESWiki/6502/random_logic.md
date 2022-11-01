@@ -22,7 +22,7 @@
 
 Обзорная схема:
 
-![random_logic_logisim](/BreakingNESWiki/imgstore/random_logic_logisim.jpg)
+![random_logic_logisim](/BreakingNESWiki/imgstore/6502/random_logic_logisim.jpg)
 
 ## Принцип работы
 

@@ -6,7 +6,7 @@
 
 Схема управления регистрами отвечает за формирование [команд управления](context_control.md) обмена регистров с внутренними шинами.
 
-![regs_control](/BreakingNESWiki/imgstore/regs_control.jpg)
+![regs_control](/BreakingNESWiki/imgstore/6502/regs_control.jpg)
 
 Входные сигналы:
 
@@ -39,7 +39,7 @@
 
 Промежуточные сигналы со схемы управления регистрами поступают на вход защелок команд управления:
 
-![regs_control_commands_tran](/BreakingNESWiki/imgstore/regs_control_commands_tran.jpg)
+![regs_control_commands_tran](/BreakingNESWiki/imgstore/6502/regs_control_commands_tran.jpg)
 
 Команды управления регистрами:
 

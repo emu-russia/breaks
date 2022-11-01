@@ -34,7 +34,7 @@ Probably exist (but no one has seen them):
 
 Main components of PPU:
 
-![PPU_preview](/BreakingNESWiki/imgstore/PPU_preview.jpg)
+![PPU_preview](/BreakingNESWiki/imgstore/ppu/PPU_preview.jpg)
 
 - VIDEO OUT: contains NTSC signal generation circuitry and a DAC to convert it to analog form. That is, the PPU is essentially a semi-analog chip, since the VOUT pin outputs a ready-to-use analog signal (composite video).
 - Next to the VOUT circuit is the control unit, which, based on the two counters H and V, generates a bunch of control signals, for the other components.

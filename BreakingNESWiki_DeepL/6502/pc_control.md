@@ -8,11 +8,11 @@ Nearby is the PC increment circuit, which is discussed in another section on [di
 
 Transistor circuit for obtaining intermediate signals:
 
-![pc_control_trans](/BreakingNESWiki/imgstore/pc_control_trans.jpg)
+![pc_control_trans](/BreakingNESWiki/imgstore/6502/pc_control_trans.jpg)
 
 Output latches and control commands:
 
-![pc_control_commands_tran](/BreakingNESWiki/imgstore/pc_control_commands_tran.jpg)
+![pc_control_commands_tran](/BreakingNESWiki/imgstore/6502/pc_control_commands_tran.jpg)
 
 Inputs:
 

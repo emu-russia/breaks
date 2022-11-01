@@ -11,7 +11,7 @@
 
 ## Транзисторная схема
 
-![extended_cycle_counter_trans](/BreakingNESWiki/imgstore/extended_cycle_counter_trans.jpg)
+![extended_cycle_counter_trans](/BreakingNESWiki/imgstore/6502/extended_cycle_counter_trans.jpg)
 
 Вся схема представляет собой сдвиговый регистр, на вход которого подается контрольный сигнал `T1`. Во время работы сдвигового регистра значение T1 сдвигается и выходит на выход `/T2`, потом на `/T3` и так далее. Выходы /T2-/T5 в инверсной логике.
 
@@ -23,7 +23,7 @@
 
 ## Логическая схема
 
-![extended_cycle_counter_logic](/BreakingNESWiki/imgstore/extended_cycle_counter_logic.jpg)
+![extended_cycle_counter_logic](/BreakingNESWiki/imgstore/6502/extended_cycle_counter_logic.jpg)
 
 ## Оптимизированная логическая схема
 

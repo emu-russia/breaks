@@ -19,7 +19,7 @@ The chips under the microscope look like this:
 
 |6502|APU|PPU|
 |---|---|---|
-|<img src="/BreakingNESWiki/imgstore/6502_die_shot.jpg" width="180px">|<img src="/BreakingNESWiki/imgstore/apu_die_shot.jpg" width="200px">|<img src="/BreakingNESWiki/imgstore/ppu_die_shot.jpg" width="210px">|
+|<img src="/BreakingNESWiki/imgstore/6502/6502_die_shot.jpg" width="180px">|<img src="/BreakingNESWiki/imgstore/apu/apu_die_shot.jpg" width="200px">|<img src="/BreakingNESWiki/imgstore/ppu/ppu_die_shot.jpg" width="210px">|
 
 After the vector masks are obtained, they are used to search for transistors, which eventually form a logic circuit.
 

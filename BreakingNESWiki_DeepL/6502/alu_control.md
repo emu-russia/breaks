@@ -8,7 +8,7 @@ The [ALU](alu.md) control is designed to generate ALU [control commands](context
 
 |/ROR|SR|AND|CSET|
 |---|---|---|---|
-|![alu_setup_ror_tran](/BreakingNESWiki/imgstore/alu_setup_ror_tran.jpg)|![alu_setup_sr_tran](/BreakingNESWiki/imgstore/alu_setup_sr_tran.jpg)|![alu_setup_and_tran](/BreakingNESWiki/imgstore/alu_setup_and_tran.jpg)|![alu_setup_cset_tran](/BreakingNESWiki/imgstore/alu_setup_cset_tran.jpg)|
+|![alu_setup_ror_tran](/BreakingNESWiki/imgstore/6502/alu_setup_ror_tran.jpg)|![alu_setup_sr_tran](/BreakingNESWiki/imgstore/6502/alu_setup_sr_tran.jpg)|![alu_setup_and_tran](/BreakingNESWiki/imgstore/6502/alu_setup_and_tran.jpg)|![alu_setup_cset_tran](/BreakingNESWiki/imgstore/6502/alu_setup_cset_tran.jpg)|
 
 Table of auxiliary and intermediate signals, which are found further in the schematics:
 
@@ -43,7 +43,7 @@ Table of auxiliary and intermediate signals, which are found further in the sche
 
 The circuit is a mess of gates and 4 latches to generate the input carry for the ALU (control signal `/ACIN`).
 
-![alu_setup_main_tran](/BreakingNESWiki/imgstore/alu_setup_main_tran.jpg)
+![alu_setup_main_tran](/BreakingNESWiki/imgstore/6502/alu_setup_main_tran.jpg)
 
 ## BCD Correction Control
 
@@ -51,13 +51,13 @@ BCD correction is applied in the following cases:
 - If the BCD mode is enabled with flag D and the current instruction `SBC` (control signal DSATemp)
 - If the BCD mode is enabled with flag D and the current instruction `ADC` (control signal DAATemp)
 
-![alu_setup_bcd_tran](/BreakingNESWiki/imgstore/alu_setup_bcd_tran.jpg)
+![alu_setup_bcd_tran](/BreakingNESWiki/imgstore/6502/alu_setup_bcd_tran.jpg)
 
 ## ADD/SB7
 
 The attentive reader will notice that the processor has support for bit rotation instructions (ROL/ROR). The additional processing associated with these instructions is just handled by this circuit.
 
-![alu_setup_addsb7_tran](/BreakingNESWiki/imgstore/alu_setup_addsb7_tran.jpg)
+![alu_setup_addsb7_tran](/BreakingNESWiki/imgstore/6502/alu_setup_addsb7_tran.jpg)
 
 Logic:
 
@@ -69,7 +69,7 @@ Optimized schematics:
 
 ## ALU Control Commands
 
-![alu_control_commands_tran](/BreakingNESWiki/imgstore/alu_control_commands_tran.jpg)
+![alu_control_commands_tran](/BreakingNESWiki/imgstore/6502/alu_control_commands_tran.jpg)
 
 |Command|Description|
 |---|---|
