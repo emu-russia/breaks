@@ -185,4 +185,4 @@ The logic circuits are mostly made in the Logisim program. The following element
 
 For convenience, the logical variant of DLatch has two outputs (`out` and `/out`), since the current value of DLatch (out) is often used as an input of a NOR operation.
 
-The optimized versions of the logic diagrams are compiled by ttlworks and contain an additional source of information for analysis.
+The optimized versions of the logic diagrams are compiled by @ttlworks and contain an additional source of information for analysis.
