@@ -12,7 +12,7 @@
 
 |PCL 0-3|PCL 4-7|
 |---|---|
-|![pcl03_tran](/BreakingNESWiki/imgstore/pcl03_tran.jpg)|![pcl47_tran](/BreakingNESWiki/imgstore/pcl47_tran.jpg)|
+|![pcl03_tran](/BreakingNESWiki/imgstore/6502/pcl03_tran.jpg)|![pcl47_tran](/BreakingNESWiki/imgstore/6502/pcl47_tran.jpg)|
 
 - Схемы чередуются для четных и нечетных разрядов, так как используется оптимизация, известная как инвертированная цепочка переносов
 - На разряд PCL0 приходит управляющий сигнал `#1/PC` (0: выполнить инкремент PC)
@@ -31,7 +31,7 @@
 
 |PCH 0-3|PCH 4-7|
 |---|---|
-|![pch03_tran](/BreakingNESWiki/imgstore/pch03_tran.jpg)|![pch47_tran](/BreakingNESWiki/imgstore/pch47_tran.jpg)|
+|![pch03_tran](/BreakingNESWiki/imgstore/6502/pch03_tran.jpg)|![pch47_tran](/BreakingNESWiki/imgstore/6502/pch47_tran.jpg)|
 
 Схема отмеченная как "patch" для формирования `PCHC` на самом деле находится между контрольными выходами `ADL/PCL` и `#1/PC`.
 
@@ -44,7 +44,7 @@
 
 В промежутках между разрядами PC можно встретить транзисторы для подзарядки шин ADL и ADH:
 
-![adl_adh_precharge_tran](/BreakingNESWiki/imgstore/adl_adh_precharge_tran.jpg)
+![adl_adh_precharge_tran](/BreakingNESWiki/imgstore/6502/adl_adh_precharge_tran.jpg)
 
 (На изображении показаны precharge транзисторы для ADH4 и ADL5. Остальные аналогично)
 
@@ -54,11 +54,11 @@
 
 Данная схема используется, например, в PCL0 или PCH1:
 
-![pc_even_bit_logisim](/BreakingNESWiki/imgstore/pc_even_bit_logisim.jpg)
+![pc_even_bit_logisim](/BreakingNESWiki/imgstore/6502/pc_even_bit_logisim.jpg)
 
 Данная схема используется, например, в PCL1 или PCH0:
 
-![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg)
+![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/6502/pc_odd_bit_logisim.jpg)
 
 Чтобы данные схемы корректно работали в симуляторе, FF для разряда регистра PCL/PCH использует триггер по заднему фронту (posedge).
 

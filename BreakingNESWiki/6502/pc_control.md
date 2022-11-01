@@ -8,11 +8,11 @@
 
 Транзисторная схема для получения промежуточных сигналов:
 
-![pc_control_trans](/BreakingNESWiki/imgstore/pc_control_trans.jpg)
+![pc_control_trans](/BreakingNESWiki/imgstore/6502/pc_control_trans.jpg)
 
 Выходные защёлки и команды управления:
 
-![pc_control_commands_tran](/BreakingNESWiki/imgstore/pc_control_commands_tran.jpg)
+![pc_control_commands_tran](/BreakingNESWiki/imgstore/6502/pc_control_commands_tran.jpg)
 
 Входные сигналы:
 

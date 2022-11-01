@@ -36,7 +36,7 @@
 
 |NOADL и IND|JSXY|
 |---|---|
-|![bus_noadl_ind_tran](/BreakingNESWiki/imgstore/bus_noadl_ind_tran.jpg)|![bus_jsxy_tran](/BreakingNESWiki/imgstore/bus_jsxy_tran.jpg)|
+|![bus_noadl_ind_tran](/BreakingNESWiki/imgstore/6502/bus_noadl_ind_tran.jpg)|![bus_jsxy_tran](/BreakingNESWiki/imgstore/6502/bus_jsxy_tran.jpg)|
 
 В схеме `IND` выход декодера X90 дополнительно модифицирован сигналом Push/Pull (X129).
 
@@ -84,13 +84,13 @@
 
 |#ADL/ABL|#ADH/ABH (1)|#ADH/ABH (2)|
 |---|---|---|
-|![bus_adlabl_tran](/BreakingNESWiki/imgstore/bus_adlabl_tran.jpg)|![bus_adhabh_tran1](/BreakingNESWiki/imgstore/bus_adhabh_tran1.jpg)|![bus_adhabh_tran2](/BreakingNESWiki/imgstore/bus_adhabh_tran2.jpg)|
+|![bus_adlabl_tran](/BreakingNESWiki/imgstore/6502/bus_adlabl_tran.jpg)|![bus_adhabh_tran1](/BreakingNESWiki/imgstore/6502/bus_adhabh_tran1.jpg)|![bus_adhabh_tran2](/BreakingNESWiki/imgstore/6502/bus_adhabh_tran2.jpg)|
 
 Первый кусок схемы #ADH/ABH находится правее флага B, второй кусок находится в схеме формирования адреса прерывания. Сигнал #ADH/ABH соединяется напрямую между этими двумя частями.
 
 Выходные защёлки команд управления ADL/ABL и ADH/ABH:
 
-![bus_addr_bus_commands_tran](/BreakingNESWiki/imgstore/bus_addr_bus_commands_tran.jpg)
+![bus_addr_bus_commands_tran](/BreakingNESWiki/imgstore/6502/bus_addr_bus_commands_tran.jpg)
 
 ## Соединение АЛУ с шинами SB, DB
 
@@ -98,11 +98,11 @@
 
 |#AC/DB|#SB/AC, #AC/SB|
 |---|---|
-|![bus_acdb_tran](/BreakingNESWiki/imgstore/bus_acdb_tran.jpg)|![bus_acsb_tran](/BreakingNESWiki/imgstore/bus_acsb_tran.jpg)|
+|![bus_acdb_tran](/BreakingNESWiki/imgstore/6502/bus_acdb_tran.jpg)|![bus_acsb_tran](/BreakingNESWiki/imgstore/6502/bus_acsb_tran.jpg)|
 
 Выходные защёлки команд управления AC/DB, SB/AC, AC/SB:
 
-![bus_alu_commands_tran](/BreakingNESWiki/imgstore/bus_alu_commands_tran.jpg)
+![bus_alu_commands_tran](/BreakingNESWiki/imgstore/6502/bus_alu_commands_tran.jpg)
 
 ## Управление внутренними шинами SB, DB и ADH
 
@@ -110,11 +110,11 @@
 
 |#SB/DB (также #0/ADH17)|0/ADH0|#SB/ADH|
 |---|---|---|
-|![bus_control_tran1](/BreakingNESWiki/imgstore/bus_control_tran1.jpg)|![bus_0adh0_tran](/BreakingNESWiki/imgstore/bus_0adh0_tran.jpg)|![bus_sbadh_tran](/BreakingNESWiki/imgstore/bus_sbadh_tran.jpg)|
+|![bus_control_tran1](/BreakingNESWiki/imgstore/6502/bus_control_tran1.jpg)|![bus_0adh0_tran](/BreakingNESWiki/imgstore/6502/bus_0adh0_tran.jpg)|![bus_sbadh_tran](/BreakingNESWiki/imgstore/6502/bus_sbadh_tran.jpg)|
 
 Выходные защёлки команд управления SB/DB, SB/ADH, 0/ADH17:
 
-![bus_sb_commands_tran](/BreakingNESWiki/imgstore/bus_sb_commands_tran.jpg)
+![bus_sb_commands_tran](/BreakingNESWiki/imgstore/6502/bus_sb_commands_tran.jpg)
 
 (Схема получения команды и защёлка 0/ADH0 выше)
 
@@ -124,13 +124,13 @@
 
 |#DL/ADL|#DL/DB (1)|#DL/DB (2)|
 |---|---|---|
-|![bus_dladl_tran](/BreakingNESWiki/imgstore/bus_dladl_tran.jpg)|![bus_dldb_tran](/BreakingNESWiki/imgstore/bus_dldb_tran.jpg)|![bus_dldb_tran2](/BreakingNESWiki/imgstore/bus_dldb_tran2.jpg)|
+|![bus_dladl_tran](/BreakingNESWiki/imgstore/6502/bus_dladl_tran.jpg)|![bus_dldb_tran](/BreakingNESWiki/imgstore/6502/bus_dldb_tran.jpg)|![bus_dldb_tran2](/BreakingNESWiki/imgstore/6502/bus_dldb_tran2.jpg)|
 
 Первый кусок схемы #DL/DB находится рядом с ACR Latch, второй кусок прямо внутри схемы управления АЛУ. Сигнал #DL/DB соединяется напрямую между этими двумя частями.
 
 Выходные защёлки команд управления DL/ADL, DL/ADH, DL/DB:
 
-![bus_data_latch_commands_tran](/BreakingNESWiki/imgstore/bus_data_latch_commands_tran.jpg)
+![bus_data_latch_commands_tran](/BreakingNESWiki/imgstore/6502/bus_data_latch_commands_tran.jpg)
 
 ## Логическая схема
 

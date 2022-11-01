@@ -2,9 +2,9 @@
 
 Изучение любой микросхемы начинается с контактов.
 
-![6502_pads_map](/BreakingNESWiki/imgstore/6502_pads_map.jpg)
+![6502_pads_map](/BreakingNESWiki/imgstore/6502/6502_pads_map.jpg)
 
-![6502_pinout](/BreakingNESWiki/imgstore/6502_pinout.png)
+![6502_pinout](/BreakingNESWiki/imgstore/6502/6502_pinout.png)
 
 |Название|Направление|Описание|
 |---|---|---|
@@ -34,7 +34,7 @@
 
 ## /NMI, /IRQ, /RES
 
-![intpads_trans](/BreakingNESWiki/imgstore/intpads_trans.jpg)
+![intpads_trans](/BreakingNESWiki/imgstore/6502/intpads_trans.jpg)
 
 Каждый контакт содержит FF, на котором хранится событие прихода прерывания. Значение FF соответствует контрольным сигналам `/NMIP`, `/IRQP` и `RESP` (значение с FF для контакта /RES выдается в прямом виде).
 
@@ -42,7 +42,7 @@
 
 ## RDY
 
-|![rdy_tran](/BreakingNESWiki/imgstore/rdy_tran.jpg)|![rdy_nice](/BreakingNESWiki/imgstore/rdy_nice.jpg)|
+|![rdy_tran](/BreakingNESWiki/imgstore/6502/rdy_tran.jpg)|![rdy_nice](/BreakingNESWiki/imgstore/6502/rdy_nice.jpg)|
 |---|---|
 
 Контакт RDY идёт на внутренний сигнал  `RDY`, а также через цепочку задержки из DLATCH как сигнал `/PRDY` ("Previous Ready").
@@ -52,20 +52,20 @@
 
 ## SYNC
 
-|![sync_tran](/BreakingNESWiki/imgstore/sync_tran.jpg)|![sync_nice](/BreakingNESWiki/imgstore/sync_nice.jpg)|
+|![sync_tran](/BreakingNESWiki/imgstore/6502/sync_tran.jpg)|![sync_nice](/BreakingNESWiki/imgstore/6502/sync_nice.jpg)|
 |---|---|
 
 Сигнал SYNC выходит с внутреннего сигнала T1 (выборка кода операции).
 
 ## SO
 
-![so_tran](/BreakingNESWiki/imgstore/so_tran.jpg)
+![so_tran](/BreakingNESWiki/imgstore/6502/so_tran.jpg)
 
 Внутренний сигнал `SO` подается на вход [флага V](flags.md) для обработки управляющего сигнала `1/V`.
 
 ## R/W
 
-![rw_tran](/BreakingNESWiki/imgstore/rw_tran.jpg)
+![rw_tran](/BreakingNESWiki/imgstore/6502/rw_tran.jpg)
 
 Сигнал `WR` приходит из [диспатчера](dispatch.md) и определяет режим работы процессора (WR:1 - процессор записывает данные, WR:0 - процессор читает данные).
 

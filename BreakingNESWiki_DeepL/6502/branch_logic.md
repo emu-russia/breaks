@@ -12,7 +12,7 @@ The branch is checked according to the branch instruction (which differs by 6 an
 
 ## Branch Forward
 
-![branch_forward_tran](/BreakingNESWiki/imgstore/branch_forward_tran.jpg)
+![branch_forward_tran](/BreakingNESWiki/imgstore/6502/branch_forward_tran.jpg)
 
 The BRFW trigger is updated with the value D7 during BR3.PHI1. The rest of the time the trigger stores its current value. The value of the trigger is output as a `BRFW` control signal to the [Program Counter (PC) control circuit](pc_control.md).
 
@@ -20,7 +20,7 @@ The `BR2` is the X80 output of the decoder.
 
 ## Branch Taken
 
-![branch_taken_tran](/BreakingNESWiki/imgstore/branch_taken_tran.jpg)
+![branch_taken_tran](/BreakingNESWiki/imgstore/6502/branch_taken_tran.jpg)
 
 The combinatorial logic first selects by IR6/IR7 which group the branch instruction belongs to (i.e. which flag it checks) and the subsequent XOR selects how the branch instruction is triggered (flag set/reset). 
 The output of `/BRTAKEN` is in inverse logic, that is, if branch is triggered, then /BRTAKEN = 0. The consumer of the /BRTAKEN signal is also the PC control circuit.

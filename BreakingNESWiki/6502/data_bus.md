@@ -4,7 +4,7 @@
 
 Схемы для работы с внешней шиной данных состоят из 8 одинаковых кусков:
 
-![6502_data_bit_tran](/BreakingNESWiki/imgstore/6502_data_bit_tran.jpg)
+![6502_data_bit_tran](/BreakingNESWiki/imgstore/6502/data_bit_tran.jpg)
 
 (Показана схема для разряда 0, остальные аналогично)
 
@@ -27,7 +27,7 @@
 
 Со схемы управления контактом R/W на схему защёлки приходит контрольный сигнал `WR`. На выходе схемы контрольный сигнал `RD`, который управляет направлением внешней шины данных.
 
-![6502_wr_latch_tran](/BreakingNESWiki/imgstore/6502_wr_latch_tran.jpg)
+![6502_wr_latch_tran](/BreakingNESWiki/imgstore/6502/wr_latch_tran.jpg)
 
 Оптимизированная логическая схема:
 

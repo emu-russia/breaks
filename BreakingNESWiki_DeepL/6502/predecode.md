@@ -6,7 +6,7 @@ The circuit is designed to define the "class" of an instruction:
 - A short instruction which is executed in 2 clock cycles (`TWOCYCLE`)
 - An instruction of type `IMPLIED` which has no operands (takes 1 byte in memory)
 
-![predecode_tran](/BreakingNESWiki/imgstore/predecode_tran.jpg)
+![predecode_tran](/BreakingNESWiki/imgstore/6502/predecode_tran.jpg)
 
 The operation code received from the external data bus (D0...D7) is stored on the PREDECODE latch (PD) during PHI2 (in inverted form), after which the precoding logic immediately determines the instruction class (the circuit is combinatorial).
 
@@ -22,9 +22,9 @@ The pre-decode circuit works closely with the [dispatcher](dispatch.md), all con
 
 The corresponding gates are marked on the transistor schematic:
 
-![predecode_tran_gates](/BreakingNESWiki/imgstore/predecode_tran_gates.jpg)
+![predecode_tran_gates](/BreakingNESWiki/imgstore/6502/predecode_tran_gates.jpg)
 
-![predecode_logic](/BreakingNESWiki/imgstore/predecode_logic.jpg)
+![predecode_logic](/BreakingNESWiki/imgstore/6502/predecode_logic.jpg)
 
 The predecoding logic is self-descriptive:
 - 2-cycle instructions are: Direct operand instructions OR all single-byte instructions EXCEPT push/pull instructions (specified by mask XXX010X1 + 1XX000X0 + XXXX10X0 - 0XX0XX0X)
@@ -32,11 +32,11 @@ The predecoding logic is self-descriptive:
 
 TWOCYCLE instructions:
 
-![predecode_twocycle](/BreakingNESWiki/imgstore/predecode_twocycle.jpg)
+![predecode_twocycle](/BreakingNESWiki/imgstore/6502/predecode_twocycle.jpg)
 
 IMPLIED instructions:
 
-![predecode_implied](/BreakingNESWiki/imgstore/predecode_implied.jpg)
+![predecode_implied](/BreakingNESWiki/imgstore/6502/predecode_implied.jpg)
 
 ## Optimized Schematics
 

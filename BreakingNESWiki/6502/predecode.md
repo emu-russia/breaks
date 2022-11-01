@@ -6,7 +6,7 @@
 - Короткая инструкция, которая выполняется за 2 такта (`TWOCYCLE`)
 - Инструкция типа `IMPLIED`, у которой нет операндов (занимает 1 байт в памяти)
 
-![predecode_tran](/BreakingNESWiki/imgstore/predecode_tran.jpg)
+![predecode_tran](/BreakingNESWiki/imgstore/6502/predecode_tran.jpg)
 
 Код операции полученный с внешней шины данных (D0...D7) сохраняется на защёлке PREDECODE (PD) во время PHI2 (в инвертированном виде), после чего логика предекодирования сразу определяет класс инструкции (схема является комбинаторной).
 
@@ -22,9 +22,9 @@
 
 На транзисторной схеме отмечены соответствующие вентили:
 
-![predecode_tran_gates](/BreakingNESWiki/imgstore/predecode_tran_gates.jpg)
+![predecode_tran_gates](/BreakingNESWiki/imgstore/6502/predecode_tran_gates.jpg)
 
-![predecode_logic](/BreakingNESWiki/imgstore/predecode_logic.jpg)
+![predecode_logic](/BreakingNESWiki/imgstore/6502/predecode_logic.jpg)
 
 Логика предекодирования самоописательная:
 - Двухтактовые инструкции это: Инструкции с непосредственным операндом ИЛИ все однобайтовые инструкции КРОМЕ инструкций push/pull (задаются маской XXX010X1 + 1XX000X0 + XXXX10X0 - 0XX0XX0X)
@@ -32,11 +32,11 @@
 
 TWOCYCLE инструкции:
 
-![predecode_twocycle](/BreakingNESWiki/imgstore/predecode_twocycle.jpg)
+![predecode_twocycle](/BreakingNESWiki/imgstore/6502/predecode_twocycle.jpg)
 
 IMPLIED инструкции:
 
-![predecode_implied](/BreakingNESWiki/imgstore/predecode_implied.jpg)
+![predecode_implied](/BreakingNESWiki/imgstore/6502/predecode_implied.jpg)
 
 ## Оптимизированная логическая схема
 

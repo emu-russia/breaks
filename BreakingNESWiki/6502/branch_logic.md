@@ -12,7 +12,7 @@
 
 ## Схема Branch Forward
 
-![branch_forward_tran](/BreakingNESWiki/imgstore/branch_forward_tran.jpg)
+![branch_forward_tran](/BreakingNESWiki/imgstore/6502/branch_forward_tran.jpg)
 
 Триггер BRFW обновляется значением D7 во время BR3.PHI1. В остальное время триггер хранит своё текущее значение. Значение триггера выдается как контрольный сигнал `BRFW` на схему [управления счётчиком инструкций (PC)](pc_control.md).
 
@@ -20,7 +20,7 @@
 
 ## Схема Branch Taken
 
-![branch_taken_tran](/BreakingNESWiki/imgstore/branch_taken_tran.jpg)
+![branch_taken_tran](/BreakingNESWiki/imgstore/6502/branch_taken_tran.jpg)
 
 Комбинаторная логика выбирает вначале по IR6/IR7 к какой группе принадлежит инструкция перехода (то есть какой флаг она проверяет), а последующий XOR выбирает каким образом инструкция перехода срабатывает (флаг установлен/сброшен). 
 Выход `/BRTAKEN` в инверсной логике, то есть если переход сработал, то /BRTAKEN = 0. Потребителем сигнала /BRTAKEN также является схема управления PC.

@@ -10,17 +10,17 @@ The address bus is unidirectional. It can only be controlled by the 6502.
 
 Transistor circuit of the lower bits of the ABL (0-2):
 
-![abl02_tran](/BreakingNESWiki/imgstore/abl02_tran.jpg)
+![abl02_tran](/BreakingNESWiki/imgstore/6502/abl02_tran.jpg)
 
 (The schematic is the same for ABL1 and ABL2 bits)
 
 The remaining ABL bits (3-7):
 
-![abl37_tran](/BreakingNESWiki/imgstore/abl37_tran.jpg)
+![abl37_tran](/BreakingNESWiki/imgstore/6502/abl37_tran.jpg)
 
 ABH bits:
 
-![abh_tran](/BreakingNESWiki/imgstore/abh_tran.jpg)
+![abh_tran](/BreakingNESWiki/imgstore/6502/abh_tran.jpg)
 
 Control commands:
 
@@ -32,7 +32,7 @@ Control commands:
 
 Consider the behavior of the circuit when ADL = 0:
 
-![abl_flow_tran](/BreakingNESWiki/imgstore/abl_flow_tran.jpg)
+![abl_flow_tran](/BreakingNESWiki/imgstore/6502/abl_flow_tran.jpg)
 
 - The flip/flop of the ABL bit is organized on two inverters (not2 and not3) with not2 acting simultaneously as a DLatch (whose input Enable is connected to PHI2)
 - PHI2: FF is "refreshed" in this half-step.
@@ -43,11 +43,11 @@ Consider the behavior of the circuit when ADL = 0:
 
 On the logic circuits PHI2 is not used, and FF organized on two inverters is replaced by a regular trigger.
 
-![abl02_logisim](/BreakingNESWiki/imgstore/abl02_logisim.jpg)
+![abl02_logisim](/BreakingNESWiki/imgstore/logisim/abl02_logisim.jpg)
 
-![abl_logisim](/BreakingNESWiki/imgstore/abl_logisim.jpg)
+![abl_logisim](/BreakingNESWiki/imgstore/logisim/abl_logisim.jpg)
 
-![abh_logisim](/BreakingNESWiki/imgstore/abh_logisim.jpg)
+![abh_logisim](/BreakingNESWiki/imgstore/logisim/abh_logisim.jpg)
 
 ## Optimized Schematics
 

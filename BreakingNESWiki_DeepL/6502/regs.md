@@ -6,7 +6,7 @@ The X and Y registers are used for index addressing. Register S is a stack point
 
 Schematically the X, Y and S registers consist of 8 identical chunks (bits):
 
-![regs_tran](/BreakingNESWiki/imgstore/regs_tran.jpg)
+![regs_tran](/BreakingNESWiki/imgstore/6502/regs_tran.jpg)
 
 (In the schematic above, replace SB0 and ADL0 with SBx and ADLx for the remaining register bits)
 
@@ -26,7 +26,7 @@ So the registers can only connect to two buses: SB and ADL.
 
 ## Logic
 
-![regs_logic](/BreakingNESWiki/imgstore/regs_logic.jpg)
+![regs_logic](/BreakingNESWiki/imgstore/6502/regs_logic.jpg)
 
 - During PHI1 the X and Y registers output their value to the SB bus / are overloaded with new values from the SB bus.
 - The S register has an input latch and an output latch. During PHI1 the value from the output latch is placed on the SB or ADL buses and the input latch is either loaded with a new value from the SB bus or refreshed from the output latch (S/S).

@@ -10,17 +10,17 @@
 
 Транзисторная схема младших разрядов ABL (0-2):
 
-![abl02_tran](/BreakingNESWiki/imgstore/abl02_tran.jpg)
+![abl02_tran](/BreakingNESWiki/imgstore/6502/abl02_tran.jpg)
 
 (Для разрядов ABL1 и ABL2 схема аналогична)
 
 Остальные разряды ABL (3-7):
 
-![abl37_tran](/BreakingNESWiki/imgstore/abl37_tran.jpg)
+![abl37_tran](/BreakingNESWiki/imgstore/6502/abl37_tran.jpg)
 
 Разряды ABH:
 
-![abh_tran](/BreakingNESWiki/imgstore/abh_tran.jpg)
+![abh_tran](/BreakingNESWiki/imgstore/6502/abh_tran.jpg)
 
 Команды управления:
 
@@ -32,7 +32,7 @@
 
 Рассмотрим поведение схемы, когда разряд ADL = 0:
 
-![abl_flow_tran](/BreakingNESWiki/imgstore/abl_flow_tran.jpg)
+![abl_flow_tran](/BreakingNESWiki/imgstore/6502/abl_flow_tran.jpg)
 
 - Flip/Flop разряда ABL организован на двух инверторах (not2 и not3), причем not2 выполняет одновременно роль DLatch (вход Enable которого соединен с PHI2)
 - PHI2: В этом полутакте FF "рефрешится"
@@ -43,11 +43,11 @@
 
 На логических схемах PHI2 не используется, а FF организованный на двух инверторах заменен обычным триггером.
 
-![abl02_logisim](/BreakingNESWiki/imgstore/abl02_logisim.jpg)
+![abl02_logisim](/BreakingNESWiki/imgstore/logisim/abl02_logisim.jpg)
 
-![abl_logisim](/BreakingNESWiki/imgstore/abl_logisim.jpg)
+![abl_logisim](/BreakingNESWiki/imgstore/logisim/abl_logisim.jpg)
 
-![abh_logisim](/BreakingNESWiki/imgstore/abh_logisim.jpg)
+![abh_logisim](/BreakingNESWiki/imgstore/logisim/abh_logisim.jpg)
 
 ## Оптимизированная логическая схема
 

@@ -19,7 +19,7 @@ Unter dem Mikroskop sehen die Chips so aus:
 
 |6502|APU|PPU|
 |---|---|---|
-|<img src="/BreakingNESWiki/imgstore/6502_die_shot.jpg" width="180px">|<img src="/BreakingNESWiki/imgstore/apu_die_shot.jpg" width="200px">|<img src="/BreakingNESWiki/imgstore/ppu_die_shot.jpg" width="210px">|
+|<img src="/BreakingNESWiki/imgstore/6502/6502_die_shot.jpg" width="180px">|<img src="/BreakingNESWiki/imgstore/apu/apu_die_shot.jpg" width="200px">|<img src="/BreakingNESWiki/imgstore/ppu/ppu_die_shot.jpg" width="210px">|
 
 Nachdem die Vektormasken erhalten wurden, werden sie für die Suche nach Transistoren verwendet, die schließlich eine logische Schaltung bilden.
 

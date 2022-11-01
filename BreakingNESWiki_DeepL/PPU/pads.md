@@ -156,7 +156,7 @@ Resembles the relaxation oscillator: https://en.wikipedia.org/wiki/Schmitt_trigg
 
 CLK distribution logic:
 
-![PPU clk](/BreakingNESWiki/imgstore/clk.jpg)
+![PPU clk](/BreakingNESWiki/imgstore/ppu/clk.jpg)
 
 The input CLK is split into two internal complementary signals: CLK and /CLK.
 

@@ -17,13 +17,13 @@
 
 Транзисторная схема (включает счётчик циклов 6-7 и детектор фронта NMI):
 
-![intr_cycles_nmip_tran](/BreakingNESWiki/imgstore/intr_cycles_nmip_tran.jpg)
+![intr_cycles_nmip_tran](/BreakingNESWiki/imgstore/6502/intr_cycles_nmip_tran.jpg)
 
 ## Установка вектора прерывания и Reset FF
 
 Транзисторная схема:
 
-![intr_resp_address_tran](/BreakingNESWiki/imgstore/intr_resp_address_tran.jpg)
+![intr_resp_address_tran](/BreakingNESWiki/imgstore/6502/intr_resp_address_tran.jpg)
 
 Схема получения контрольного сигнала `DORES` ("Do Reset") (который разводится на все остальные внутренности) скомбинирована тут со схемой установки вектора прерывания для экономии места.
 
@@ -31,7 +31,7 @@
 
 Транзисторная схема:
 
-![intr_b_flag_tran](/BreakingNESWiki/imgstore/intr_b_flag_tran.jpg)
+![intr_b_flag_tran](/BreakingNESWiki/imgstore/6502/intr_b_flag_tran.jpg)
 
 ## Логическая схема
 

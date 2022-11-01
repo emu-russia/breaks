@@ -12,7 +12,7 @@ Represents the low 8 least significant bits of PC.
 
 |PCL 0-3|PCL 4-7|
 |---|---|
-|![pcl03_tran](/BreakingNESWiki/imgstore/pcl03_tran.jpg)|![pcl47_tran](/BreakingNESWiki/imgstore/pcl47_tran.jpg)|
+|![pcl03_tran](/BreakingNESWiki/imgstore/6502/pcl03_tran.jpg)|![pcl47_tran](/BreakingNESWiki/imgstore/6502/pcl47_tran.jpg)|
 
 - The circuits alternate for even and odd bits because an optimization known as an inverted carry chain is used
 - The control signal `#1/PC` (0: perform PC increment) comes to the PCL0 bit
@@ -31,7 +31,7 @@ Similarly, circuits for odd bits (1, 3, ...) of PCH repeat circuits for even bit
 
 |PCH 0-3|PCH 4-7|
 |---|---|
-|![pch03_tran](/BreakingNESWiki/imgstore/pch03_tran.jpg)|![pch47_tran](/BreakingNESWiki/imgstore/pch47_tran.jpg)|
+|![pch03_tran](/BreakingNESWiki/imgstore/6502/pch03_tran.jpg)|![pch47_tran](/BreakingNESWiki/imgstore/6502/pch47_tran.jpg)|
 
 The circuit marked as "patch" to form the `PCHC` is actually between the `ADL/PCL` and `#1/PC` control outputs.
 
@@ -44,7 +44,7 @@ The circuit marked as "patch" to form the `PCHC` is actually between the `ADL/PC
 
 In between the PC bits you can find transistors for precharge of the ADL and ADH buses:
 
-![adl_adh_precharge_tran](/BreakingNESWiki/imgstore/adl_adh_precharge_tran.jpg)
+![adl_adh_precharge_tran](/BreakingNESWiki/imgstore/6502/adl_adh_precharge_tran.jpg)
 
 (The image shows the precharge transistors for ADH4 and ADL5. The others are similar)
 
@@ -54,11 +54,11 @@ It makes sense to show only the bit schematics (the circuitry alternates between
 
 This circuit is used, for example, in PCL0 or PCH1:
 
-![pc_even_bit_logisim](/BreakingNESWiki/imgstore/pc_even_bit_logisim.jpg)
+![pc_even_bit_logisim](/BreakingNESWiki/imgstore/6502/pc_even_bit_logisim.jpg)
 
 This circuit is used, for example, in PCL1 or PCH0:
 
-![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/pc_odd_bit_logisim.jpg)
+![pc_odd_bit_logisim](/BreakingNESWiki/imgstore/6502/pc_odd_bit_logisim.jpg)
 
 For these circuits to work correctly in the simulator, FF uses a posedge trigger for the PCL/PCH register.
 

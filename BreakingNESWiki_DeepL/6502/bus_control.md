@@ -36,7 +36,7 @@ Circuits for obtaining auxiliary signals:
 
 |NOADL, IND|JSXY|
 |---|---|
-|![bus_noadl_ind_tran](/BreakingNESWiki/imgstore/bus_noadl_ind_tran.jpg)|![bus_jsxy_tran](/BreakingNESWiki/imgstore/bus_jsxy_tran.jpg)|
+|![bus_noadl_ind_tran](/BreakingNESWiki/imgstore/6502/bus_noadl_ind_tran.jpg)|![bus_jsxy_tran](/BreakingNESWiki/imgstore/6502/bus_jsxy_tran.jpg)|
 
 In the `IND` circuit the decoder output X90 is additionally modified by the Push/Pull signal (X129).
 
@@ -84,13 +84,13 @@ Circuits for the generation of intermediate signals:
 
 |#ADL/ABL|#ADH/ABH (1)|#ADH/ABH (2)|
 |---|---|---|
-|![bus_adlabl_tran](/BreakingNESWiki/imgstore/bus_adlabl_tran.jpg)|![bus_adhabh_tran1](/BreakingNESWiki/imgstore/bus_adhabh_tran1.jpg)|![bus_adhabh_tran2](/BreakingNESWiki/imgstore/bus_adhabh_tran2.jpg)|
+|![bus_adlabl_tran](/BreakingNESWiki/imgstore/6502/bus_adlabl_tran.jpg)|![bus_adhabh_tran1](/BreakingNESWiki/imgstore/6502/bus_adhabh_tran1.jpg)|![bus_adhabh_tran2](/BreakingNESWiki/imgstore/6502/bus_adhabh_tran2.jpg)|
 
 The first piece of the #ADH/ABH circuit is to the right of flag B, the second piece is in the interrupt address generation circuitry. The #ADH/ABH signal connects directly between these two pieces.
 
 The output latches of the ADL/ABL and ADH/ABH control commands:
 
-![bus_addr_bus_commands_tran](/BreakingNESWiki/imgstore/bus_addr_bus_commands_tran.jpg)
+![bus_addr_bus_commands_tran](/BreakingNESWiki/imgstore/6502/bus_addr_bus_commands_tran.jpg)
 
 ## ALU Connection to SB, DB
 
@@ -98,11 +98,11 @@ Circuits for the generation of intermediate signals:
 
 |#AC/DB|#SB/AC, #AC/SB|
 |---|---|
-|![bus_acdb_tran](/BreakingNESWiki/imgstore/bus_acdb_tran.jpg)|![bus_acsb_tran](/BreakingNESWiki/imgstore/bus_acsb_tran.jpg)|
+|![bus_acdb_tran](/BreakingNESWiki/imgstore/6502/bus_acdb_tran.jpg)|![bus_acsb_tran](/BreakingNESWiki/imgstore/6502/bus_acsb_tran.jpg)|
 
 AC/DB, SB/AC, AC/SB control command output latches:
 
-![bus_alu_commands_tran](/BreakingNESWiki/imgstore/bus_alu_commands_tran.jpg)
+![bus_alu_commands_tran](/BreakingNESWiki/imgstore/6502/bus_alu_commands_tran.jpg)
 
 ## SB, DB, ADH Control
 
@@ -110,11 +110,11 @@ Circuits for generating intermediate signals (for 0/ADH0 you get the control com
 
 |#SB/DB (also #0/ADH17)|0/ADH0|#SB/ADH|
 |---|---|---|
-|![bus_control_tran1](/BreakingNESWiki/imgstore/bus_control_tran1.jpg)|![bus_0adh0_tran](/BreakingNESWiki/imgstore/bus_0adh0_tran.jpg)|![bus_sbadh_tran](/BreakingNESWiki/imgstore/bus_sbadh_tran.jpg)|
+|![bus_control_tran1](/BreakingNESWiki/imgstore/6502/bus_control_tran1.jpg)|![bus_0adh0_tran](/BreakingNESWiki/imgstore/6502/bus_0adh0_tran.jpg)|![bus_sbadh_tran](/BreakingNESWiki/imgstore/6502/bus_sbadh_tran.jpg)|
 
 SB/DB, SB/ADH, 0/ADH17 control command output latches:
 
-![bus_sb_commands_tran](/BreakingNESWiki/imgstore/bus_sb_commands_tran.jpg)
+![bus_sb_commands_tran](/BreakingNESWiki/imgstore/6502/bus_sb_commands_tran.jpg)
 
 (0/ADH0 above)
 
@@ -124,13 +124,13 @@ Circuits for the generation of intermediate signals:
 
 |#DL/ADL|#DL/DB (1)|#DL/DB (2)|
 |---|---|---|
-|![bus_dladl_tran](/BreakingNESWiki/imgstore/bus_dladl_tran.jpg)|![bus_dldb_tran](/BreakingNESWiki/imgstore/bus_dldb_tran.jpg)|![bus_dldb_tran2](/BreakingNESWiki/imgstore/bus_dldb_tran2.jpg)|
+|![bus_dladl_tran](/BreakingNESWiki/imgstore/6502/bus_dladl_tran.jpg)|![bus_dldb_tran](/BreakingNESWiki/imgstore/6502/bus_dldb_tran.jpg)|![bus_dldb_tran2](/BreakingNESWiki/imgstore/6502/bus_dldb_tran2.jpg)|
 
 The first piece of #DL/DB circuitry is next to the ACR Latch, the second piece is right inside the ALU control circuitry. The #DL/DB signal connects directly between these two pieces.
 
 DL/ADL, DL/ADH, DL/DB control command output latches:
 
-![bus_data_latch_commands_tran](/BreakingNESWiki/imgstore/bus_data_latch_commands_tran.jpg)
+![bus_data_latch_commands_tran](/BreakingNESWiki/imgstore/6502/bus_data_latch_commands_tran.jpg)
 
 ## Logic
 

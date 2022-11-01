@@ -21,37 +21,37 @@
 
 ## Схема для разводки тактовых сигналов внутрь
 
-![clock_internal](/BreakingNESWiki/imgstore/clock_internal.jpg)
+![clock_internal](/BreakingNESWiki/imgstore/6502/clock_internal.jpg)
 
 Схема достаточно сложная, поскольку она не совсем "цифровая". Многочисленные транзисторы, выполняющие роль инверторов немного задерживают прохождение сигнала PHI0, поэтому сигналы PHI1 и PHI2, идущие внутрь процессора, немного "лагают". Вот логическое представление схемы:
 
-![clock_internal_logic](/BreakingNESWiki/imgstore/clock_internal_logic.jpg)
+![clock_internal_logic](/BreakingNESWiki/imgstore/6502/clock_internal_logic.jpg)
 
 Логический анализ:
 
-![clock_internal_logic_zero](/BreakingNESWiki/imgstore/clock_internal_logic_zero.jpg)
+![clock_internal_logic_zero](/BreakingNESWiki/imgstore/6502/clock_internal_logic_zero.jpg)
 
-![clock_internal_logic_one](/BreakingNESWiki/imgstore/clock_internal_logic_one.jpg)
+![clock_internal_logic_one](/BreakingNESWiki/imgstore/6502/clock_internal_logic_one.jpg)
 
 Развертка тактовых сигналов должна получиться примерно следующая:
 - PHI1/PHI2 немного лагают относительно PHI0
 - Нижний уровень PHI1/PHI2 немного длиннее верхнего, для того чтобы оба сигнала гарантированно не имели высокого уровня
 
-![4672299](/BreakingNESWiki/imgstore/4672299.png)
+![4672299](/BreakingNESWiki/imgstore/6502/4672299.png)
 
 Симуляция в Altera Quartus показывает "лаг", но не показывает удлиненный нижний уровень (он дорисован руками на картинке выше).
 
 BigEd с форума 6502.org подсказал, что он проводил симуляцию на базе FPGA-нетлиста 6502 и получил следующие развертки:
 
-![cclk-rising](/BreakingNESWiki/imgstore/cclk-rising.png)
+![cclk-rising](/BreakingNESWiki/imgstore/6502/cclk-rising.png)
 
-![cclk-falling](/BreakingNESWiki/imgstore/cclk-falling.png)
+![cclk-falling](/BreakingNESWiki/imgstore/6502/cclk-falling.png)
 
 Обозначение сигналов следующие: clk0 = PHI0, cp1 = PHI1, cclk = PHI2 (согласно нетлисту с Visual6502)
 
 Схема, на которой базировалась его симуляция соответствует схеме из документации Балазца:
 
-![clock_balazs](/BreakingNESWiki/imgstore/clock_balazs.png)
+![clock_balazs](/BreakingNESWiki/imgstore/6502/clock_balazs.png)
 
 http://forum.6502.org/viewtopic.php?f=8&t=2208&start=195
 
@@ -59,7 +59,7 @@ http://forum.6502.org/viewtopic.php?f=8&t=2208&start=195
 
 Официальная документация приводит следующую диаграмму:
 
-![clock_timing_datasheet](/BreakingNESWiki/imgstore/clock_timing_datasheet.jpg)
+![clock_timing_datasheet](/BreakingNESWiki/imgstore/6502/clock_timing_datasheet.jpg)
 
 Оптимизированная логическая схема:
 
@@ -67,7 +67,7 @@ http://forum.6502.org/viewtopic.php?f=8&t=2208&start=195
 
 ## Схема для разводки тактовых сигналов наружу
 
-![clock_external](/BreakingNESWiki/imgstore/clock_external.jpg)
+![clock_external](/BreakingNESWiki/imgstore/6502/clock_external.jpg)
 
 Референсные сигналы PHI1/PHI2 также выдаются наружу для потребителей.
 
