@@ -1,5 +1,7 @@
 # Манифест по сигналам
 
+:warning: Исправления по названиям сигналов больше не принимаются.
+
 Соединения внутри чипов производятся металлическими проводами, а иногда полисиликоновыми дорожками. Между собой соединения мы называем "сигналы", "шнурки", "шланги" или "тентакли".
 
 В данном разделе находится разная информация по данной предметной области.
@@ -82,4 +84,20 @@
 
 ## APU
 
-TBD.
+|Было|Стало|
+|---|---|
+|FLOAD,FSTEP,SLOAD,SSTEP|DFLOAD,DFSTEP,DSLOAD,DSSTEP (DPCM)|
+|FLOAD,FSTEP,LOAD,STEP,ERES,ESTEP|NFLOAD,NFSTEP,NLOAD,NSTEP,NERES,NESTEP (noise)|
+|ENV0..3,VOL0..3,V0..3,ENVEN,ENVDIS|NENV0..3,NVOL0..3,NV0..3,NENVEN,NENVDIS (noise)|
+|F0..3,NF0..10,RELOAD,ECO|NF0..3,NNF0..10,NRELOAD,NECO (noise)|
+|FLOAD,FSTEP,LOAD,STEP,TSTEP|TFLOAD,TFSTEP,TLOAD,TSTEP,TTSTEP (triangle)|
+|SWRELOAD,INC,DEC,COUT,SWCTRL|ASWRELOAD,AINC,ADEC,ACOUT,ASWCTRL (SQ0)|
+|SR0,SR1,SR2,SLOAD,SSTEP,/SCO1, SCO|ASR0,ASR1,ASLOAD,ASSTEP,/ASCO1,ASCO (SQ0)|
+|RELOAD,ECO,VCO,ENVDIS,ENVEN|ARELOAD,AECO,AVCO,AENVDIS,AENVEN (SQ0)|
+|EPOL,ERES,ESTEP,LOAD,RSTEP|AEPOL,AERES,ALOAD,ARSTEP (SQ0)|
+|ENV0..3,VOL0..3,V0..3,SWEEP,DUTY|AENV0..3,AVOL0..3,AV0..3,ASWEEP,ADUTY (SQ0)|
+|FLOAD,FSTEP,FCO,SD0..2,DT0..1|AFLOAD,AFSTEP,AFCO,ASD0..2,ADT0..1 (SQ0)|
+|SRZ,ADDOUT,SWDIS,/C0|ASRZ,AADDOUT,ASWDIS,/AC0 (SQ0)|
+|F0..10,G0..10,S0..10,Q0..10|AF0..10,AG0..10,AS0..10,AQ0..10 (SA0)|
+|/ACLK2|/ACLK3A (square0)|
+|/ACLK2|/ACLK3B (square1)|
