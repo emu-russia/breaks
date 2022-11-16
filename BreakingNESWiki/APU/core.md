@@ -192,7 +192,7 @@ R/W декодер для регистровых операций:
 
 |Усиливающий инвертер|Промежуточный инвертер|Сигнал /DBGRD|
 |---|---|---|
-|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)|![nDBGRD](/BreakingNESWiki/imgstore/apu/nDBGRD.png)|
+|![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)|![nDBGRD](/BreakingNESWiki/imgstore/apu/nDBGRD.jpg)|
 
 Транзисторные схемы отладочных регистров:
 
