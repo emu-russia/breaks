@@ -22,13 +22,13 @@ High address bits:
 |![sprdma_addr_hi_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_hi_tran.jpg)|![SPRDMA_AddrHigh](/BreakingNESWiki/imgstore/apu/SPRDMA_AddrHigh.jpg)|
 |---|---|
 
-The arrows mark the places where the constant address of the PPU $2004 register is formed.
+The :warning: sign mark the places where the constant address of the PPU $2004 register is formed.
 
 ## SPR DMA Control
 
 ![sprdma_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_control_tran.jpg)
 
-Arrows indicate "other" /ACLKs, which differ from normal /ACLKs by a slight delay.
+The :warning: sign indicate "other" /ACLKs, which differ from normal /ACLKs by a slight delay.
 
 Logic:
 
