@@ -68,7 +68,7 @@ This signal can also be found in our circuits as `/ACLK2`.
 
 ![Other_nACLK](/BreakingNESWiki/imgstore/apu/Other_nACLK.jpg)
 
-In the diagrams below, an arrow marks the places where `/ACLK2` is used.
+In the diagrams below :warning: sign marks the places where `/ACLK2` is used.
 
 ## DPCM Control Summary
 

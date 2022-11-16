@@ -68,7 +68,7 @@
 
 ![Other_nACLK](/BreakingNESWiki/imgstore/apu/Other_nACLK.jpg)
 
-На схемах ниже стрелкой отмечены места, где используется `/ACLK2`.
+На схемах ниже знаком :warning: отмечены места, где используется `/ACLK2`.
 
 ## DPCM Control Summary
 

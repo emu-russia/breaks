@@ -22,13 +22,13 @@
 |![sprdma_addr_hi_tran](/BreakingNESWiki/imgstore/apu/sprdma_addr_hi_tran.jpg)|![SPRDMA_AddrHigh](/BreakingNESWiki/imgstore/apu/SPRDMA_AddrHigh.jpg)|
 |---|---|
 
-Стрелками отмечены места, где формируется константный адрес регистра PPU $2004.
+Знаком :warning: отмечены места, где формируется константный адрес регистра PPU $2004.
 
 ## SPR DMA Control
 
 ![sprdma_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_control_tran.jpg)
 
-Стрелками отмечены "другие" /ACLK, которые отличаются от обычного /ACLK небольшой задержкой.
+Знаком :warning: отмечены "другие" /ACLK, которые отличаются от обычного /ACLK небольшой задержкой.
 
 Логическая схема:
 
