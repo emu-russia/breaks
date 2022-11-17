@@ -12,6 +12,6 @@ Anyway, using extra effort or neural networks, you can do with these masks what 
 
 
 PSD Sources:
-- 2A03: https://drive.google.com/drive/folders/10FeSOP4EUiLFMSUXYdi00ia0c3cAPzQL?usp=sharing
+- 2A03G: https://drive.google.com/drive/folders/10FeSOP4EUiLFMSUXYdi00ia0c3cAPzQL?usp=sharing
 - 2C02G: https://drive.google.com/drive/folders/1aaNk9dVwvTbCpsACfet-5hX65iNZr6AO?usp=sharing
 - 6502: https://drive.google.com/drive/u/1/folders/17EJCpvw_i7w55upLx1uWYqEYnycqkMSk
