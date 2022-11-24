@@ -4,14 +4,15 @@
 
 **APU** is the unofficial name for the specialized NES CPU.
 
-The official name is MPU (Microprocessor Unit) or just CPU, but we will stick to the unofficial term. Sometimes APU is also found under the abbreviation "pAPU".
+The official name is just CPU, but we will stick to the unofficial term.
 
 The chip was developed by [Ricoh](../Ricoh.md), chip names are RP2A03 for NTSC and RP2A07 for PAL.
 
 The APU includes:
 - MOS 6502 processor core, with disabled decimal correction (BCD) circuit
-- DMA to send sprites (hardwired to external PPU registers)
-- Tone generators: 2 square, 1 triangle, 1 noise generator and 1 delta-PCM.
+- DMA to send sprites (hardwired to external PPU register)
+- Tone generators: 2 square, 1 triangle, 1 noise generator
+- Delta PCM
 - DACs to convert digital outputs of synthesized sound to analog levels
 - DMA for sampling DPCM samples
 - Small DMA controller
@@ -24,7 +25,7 @@ The DAC makes the APU a semi-analog circuit.
 
 Also to be taken into account is the fact that the 6502 core which is part of the APU is controlled by a DMA controller and therefore is a "common" device sharing the bus with other devices which use DMA.
 
-<img src="/BreakingNESWiki/imgstore/apu/apu_blocks.jpg" width="900px">
+![apu_blocks](/BreakingNESWiki/imgstore/apu/apu_blocks.jpg)
 
 ## Note on Transistor Circuits
 
