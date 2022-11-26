@@ -134,8 +134,8 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "tri_linear_counter_tran", [2285, 5200, 747, 1135] )
 	CropImage (FusedTopo, imgstore + "tri_output_tran", [1646, 6454, 813, 818] )
 	# DACs
-	CropImage (FusedTopo, imgstore + "dac_other_tran", [484, 6120, 568, 1282] )
-	CropImage (FusedTopo, imgstore + "dac_square_tran", [6062, 1017, 707, 359] )
+	CropImage (FusedTopo, imgstore + "dac_other_tran", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "dac_square_tran", [6050, 1019, 726, 203] )
 
 if __name__ == '__main__':
 	print ("TopoShredder Start")
