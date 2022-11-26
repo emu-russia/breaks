@@ -41,6 +41,7 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_control_tran2", [4200, 8013, 373, 347] )
 	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_in_tran", [4402, 5533, 203, 1296] )
 	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_tran", [3863, 5516, 543, 1952] )
+	CropImage (FusedTopo, imgstore + "DMC_A15", [5756, 11015, 366, 170] )
 	# Length counters
 	CropImage (FusedTopo, imgstore + "length_counter_control_tran", [3450, 9533, 554, 327] )
 	CropImage (FusedTopo, imgstore + "length_counter_tran", [3469, 9887, 584, 1301] )

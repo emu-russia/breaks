@@ -2,7 +2,7 @@
 
 ![apu_locator_dac](/BreakingNESWiki/imgstore/apu/apu_locator_dac.jpg)
 
-The DAC does not use separate pins for "analog" VDD/GND, but uses common VDD/GND.
+The DAC does not use separate pins for "analog" VDD/GND, but uses common VDD/GND. The DAC power supply is wired in a star topology.
 
 ## Square 0/1
 
