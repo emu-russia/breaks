@@ -75,7 +75,7 @@ It looks a bit chaotic, but it is what it is. Reverse engineering of memory for 
 
 COL outputs:
 
-![palette_col_outputs](/BreakingNESWiki/imgstore/ppu/palette_col_outputs.jpg)
+![cram_col_outputs](/BreakingNESWiki/imgstore/ppu/cram_col_outputs.jpg)
 
 PCLK Precharge:
 

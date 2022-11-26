@@ -73,13 +73,13 @@ TBD: Calculate or measure cell degradation timings.
 
 ## Row Decoder
 
-![oam_row_decoder](/BreakingNESWiki/imgstore/ppu/oam_row_decoder.png)
+![oam_row_decoder](/BreakingNESWiki/imgstore/ppu/oam_row_decoder.jpg)
 
 The circuit is a 1-of-n decoder.
 
 |ROW outputs for OAM Buffer bits 0, 1, 5-7|ROW outputs for OAM Buffer bits 2-4|
 |---|---|
-|![oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/oam_row_outputs1.png)|![oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/oam_row_outputs2.png)|
+|![oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/oam_row_outputs1.jpg)|![oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/oam_row_outputs2.jpg)|
 
 The skipping of rows at bits 2-4 is done to save memory. If we match the OAM address with the ROW values, which are obtained from the lowest bits, we get the following:
 

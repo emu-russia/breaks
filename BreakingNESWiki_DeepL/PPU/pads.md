@@ -40,7 +40,7 @@ The interface with the CPU is used to access the registers of the PPU. This grou
 
 ### R/W
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_rw.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_rw.jpg" width="600px">
 
 The R/W signal determines the direction of data exchange on the D0-D7 bus:
 - R/W=0: Write. The data bus becomes input
@@ -48,7 +48,7 @@ The R/W signal determines the direction of data exchange on the D0-D7 bus:
 
 ### D0-D7
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_d.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_d.jpg" width="600px">
 
 The D0-D7 data bus is used to exchange data between the CPU and the PPU registers.
 
@@ -58,13 +58,13 @@ The internal signals `/RD` and `/WR`, which are used in pins D0-D7, are obtained
 
 ### RS0-RS2
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_rs.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_rs.jpg" width="600px">
 
 RS0-RS2 signals select the PPU register index (0-7) to exchange data with the CPU.
 
 ### /DBE
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_dbe.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_dbe.jpg" width="600px">
 
 The contact prohibits exchange on the D0-D7 bus, i.e. completely disables the interface with the CPU.
 
@@ -82,7 +82,7 @@ More than half of the PPU logic is dedicated to sampling, storing and outputting
 
 ### ALE
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_ale.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_ale.jpg" width="600px">
 
 The ALE (Address Latch Enable) signal is used to multiplex the AD0-AD7 bus:
 - When ALE=1 the AD0-AD7 bus operates as the VRAM address bus (A0-A7)
@@ -94,13 +94,13 @@ In modern chips, bus multiplexing is used less often because it requires additio
 
 ### AD0-AD7
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_ad.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_ad.jpg" width="600px">
 
 Bidirectional multiplexed data/address bus for data exchange with VRAM.
 
 ### A8-A13
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_a.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_a.jpg" width="600px">
 
 VRAM address bus.
 
@@ -108,7 +108,7 @@ Works only for output.
 
 ### /RD
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_rd.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_rd.jpg" width="600px">
 
 The /RD signal is complementary to the /WR signal (they cannot both be 0, but they can both be 1 when the VRAM interface is not in use).
 
@@ -118,7 +118,7 @@ The value of the /RD pin comes from the internal `RD` signal that comes out of [
 
 ### /WR
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_wr.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_wr.jpg" width="600px">
 
 The /WR signal is complementary to the /RD signal (they cannot both be 0, but they can both be 1 when the VRAM interface is not in use).
 
@@ -130,7 +130,7 @@ The value of the /WR pin comes from the internal `WR` signal that comes out of [
 
 This interface is implemented by the EXT0-EXT3 inout pins.
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_ext.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_ext.jpg" width="600px">
 
 Developers have made provisions for the interaction of several PPUs. The scheme of interaction is simple and looks as follows:
 - Inside the PPU is a [multiplexer](mux.md) that can optionally send a "picture" to both the screen or the external EXT pins
@@ -181,7 +181,7 @@ The circuit is fully asynchronous and independent of CLK.
 
 ### /INT
 
-<img src="/BreakingNESWiki/imgstore/ppu/pad_int.png" width="600px">
+<img src="/BreakingNESWiki/imgstore/ppu/pad_int.jpg" width="600px">
 
 The /INT output signal is used to signal the CPU about a VBlank interrupt.
 

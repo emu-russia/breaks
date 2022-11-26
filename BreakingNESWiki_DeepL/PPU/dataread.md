@@ -25,9 +25,9 @@ There was something in this section historically, but then it was split up into 
 
 The circuit takes up the whole upper part and forms the tile (`Pattern`) address, which is set by `/PAD0-12` (13 bits).
 
-![patgen_high](/BreakingNESWiki/imgstore/ppu/patgen_high.png)
+![patgen_high](/BreakingNESWiki/imgstore/ppu/patgen_high.jpg)
 
-![patgen_vinv](/BreakingNESWiki/imgstore/ppu/patgen_vinv.png)
+![patgen_vinv](/BreakingNESWiki/imgstore/ppu/patgen_vinv.jpg)
 
 ![PatGen](/BreakingNESWiki/imgstore/ppu/PatGen.png)
 
