@@ -25,9 +25,9 @@
 
 Схема занимает всю верхнюю часть и занимается формированием адреса тайла (Pattern), который задаётся `/PAD0-12` (13 бит).
 
-![patgen_high](/BreakingNESWiki/imgstore/ppu/patgen_high.png)
+![patgen_high](/BreakingNESWiki/imgstore/ppu/patgen_high.jpg)
 
-![patgen_vinv](/BreakingNESWiki/imgstore/ppu/patgen_vinv.png)
+![patgen_vinv](/BreakingNESWiki/imgstore/ppu/patgen_vinv.jpg)
 
 ![PatGen](/BreakingNESWiki/imgstore/ppu/PatGen.png)
 

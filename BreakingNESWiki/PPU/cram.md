@@ -75,7 +75,7 @@ P.S. Если вы разработчик микросхем, пожалуйст
 
 Выходы COL:
 
-![palette_col_outputs](/BreakingNESWiki/imgstore/ppu/palette_col_outputs.jpg)
+![cram_col_outputs](/BreakingNESWiki/imgstore/ppu/cram_col_outputs.jpg)
 
 Precharge PCLK:
 

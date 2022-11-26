@@ -20,6 +20,9 @@ def CropImage (src, dest, rect):
 	a = im.crop([rect[0], rect[1], rect[0]+rect[2], rect[1]+rect[3]])
 	a.save("%s.jpg" % dest, quality=85)
 
+def PrintHelp ():
+	print ("Use: python3 TopoShredder <-apu|-ppu|-6502|-all>")
+
 def ApuShredder (FusedTopo):
 	imgstore = "../BreakingNESWiki/imgstore/apu/"
 	# DPCM chan
@@ -138,8 +141,154 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "dac_other_tran", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "dac_square_tran", [6050, 1019, 726, 203] )
 
+"""
+def PpuShredder (FusedTopo):
+	# H/V
+	CropImage (FusedTopo, imgstore + "h_counter_output", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "H_trans", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "CARRYH", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "CARRYV", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "even_odd_tran", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "h0_dash_dash_tran", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "hv_counters_control", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "hv_fporch", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "hv_fsm_horz", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "hv_fsm_int", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "hv_fsm_vert", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "HV_stage", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "V_trans", [116, 5237, 903, 2106] )
+	# CRAM
+	CropImage (FusedTopo, imgstore + "color_buffer_bit", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "cb_control", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "cbout_cc", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "cbout_ll", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "cram_decoder", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "cram_precharge", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "cram_col_outputs", [116, 5237, 903, 2106] )
+	# Regs
+	CropImage (FusedTopo, imgstore + "clp_tran", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "control_regs", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "r4_enabler_tran", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "reg_select", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "rw_decoder", [116, 5237, 903, 2106] )
+	# OAM
+	CropImage (FusedTopo, imgstore + "oam_address_tran", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_buffer_bit", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_buffer_control", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_buffer_readback", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_col_decoder", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_row_decoder", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_row_outputs1", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_row_outputs2", [116, 5237, 903, 2106] )
+	# OAM Eval
+	CropImage (FusedTopo, imgstore + "oam_cmpr", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_counters_control", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_eval_control", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_index_counter", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam_index_counter_control", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "oam2_index_counter", [116, 5237, 903, 2106] )
+	# FIFO
+	CropImage (FusedTopo, imgstore + "fifo_attr", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "fifo_counter", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "fifo_counter_control", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "fifo_prio0", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "fifo_prio1", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "fifo_prio2", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "fifo_prio3", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "fifo_prio4", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "fifo_sr", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "hinv", [116, 5237, 903, 2106] )
+	# Data Reader
+	CropImage (FusedTopo, imgstore + "patgen_high", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "patgen_vinv", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dataread_bgc0", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dataread_bgc1", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dataread_bgc2", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dataread_bgc3", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dataread_bgcol_control_left", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dataread_bgcol_control_right", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dataread_bgcol_out", [116, 5237, 903, 2106] )
+	# SCCX
+	CropImage (FusedTopo, imgstore + "ppu_dualregs_fh", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dualregs_fv", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dualregs_nt", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dualregs_th", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_dualregs_tv", [116, 5237, 903, 2106] )
+	# PAR
+	CropImage (FusedTopo, imgstore + "ppu_par_control", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_par_counters_control_bot", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_par_counters_control_top", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_par_counters_fv", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_par_counters_nt", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_par_counters_th", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_par_counters_tv", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_par_high", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_par_low", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "tho_latches_tran", [116, 5237, 903, 2106] )
+	# Misc
+	CropImage (FusedTopo, imgstore + "pclk", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "mux", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "ppu_readbuffer", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "vram_control_tran", [116, 5237, 903, 2106] )
+	# VideOut
+	CropImage (FusedTopo, imgstore + "vout_dac", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "vout_emphasis", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "vout_level_select", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "vout_phase_decoder", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "vout_phase_shifter", [116, 5237, 903, 2106] )
+	# Pads etc.
+	CropImage (FusedTopo, imgstore + "clk", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_a", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_ad", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_ale", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_clk", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_d", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_dbe", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_ext", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_int", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_rd", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_res", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_rs", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_rw", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pad_wr", [116, 5237, 903, 2106] )
+"""
+
+def PpuShredder (FusedTopo):
+	# TBD.
+	return
+
+def CoreShredder (FusedTopo):
+	# TBD.
+	return
+
 if __name__ == '__main__':
-	print ("TopoShredder Start")
-	print ("APU:")
-	ApuShredder ("../Docs/APU/2A03_Topo_Fused_2x")
-	print ("TopoShredder End")
+	if len( sys.argv ) <= 1:
+		PrintHelp ()
+	else:
+		mode = sys.argv[1]
+		if mode == "-apu":
+			print ("TopoShredder Start")
+			print ("APU:")
+			ApuShredder ("../Docs/APU/2A03_Topo_Fused_2x")
+			print ("TopoShredder End")
+		elif mode == "-ppu":
+			print ("TopoShredder Start")
+			print ("PPU:")
+			PpuShredder ("../Docs/PPU/2C02_Topo_Fused_2x")
+			print ("TopoShredder End")
+		elif mode == "-6502":
+			print ("TopoShredder Start")
+			print ("6502:")
+			CoreShredder ("../Docs/6502/6502")
+			print ("TopoShredder End")
+		elif mode == "-all":
+			print ("TopoShredder Start")
+			print ("APU:")
+			ApuShredder ("../Docs/APU/2A03_Topo_Fused_2x")
+			print ("PPU:")
+			PpuShredder ("../Docs/PPU/2C02_Topo_Fused_2x")
+			print ("6502:")
+			CoreShredder ("../Docs/6502/6502")
+			print ("TopoShredder End")
+		else:
+			PrintHelp ()

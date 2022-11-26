@@ -75,13 +75,13 @@ TBD: Рассчитать или измерить тайминги деград�
 
 ## Декодер ряда
 
-![oam_row_decoder](/BreakingNESWiki/imgstore/ppu/oam_row_decoder.png)
+![oam_row_decoder](/BreakingNESWiki/imgstore/ppu/oam_row_decoder.jpg)
 
 Схема представляет собой одноединичный декодер (1-из-n).
 
 |Выходы ROW для разрядов OAM Buffer 0, 1, 5-7|Выходы ROW для разрядов OAM Buffer 2-4|
 |---|---|
-|![oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/oam_row_outputs1.png)|![oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/oam_row_outputs2.png)|
+|![oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/oam_row_outputs1.jpg)|![oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/oam_row_outputs2.jpg)|
 
 Пропуск рядов у разрядов 2-4 сделан для экономии памяти. Если вывести соответствие адреса OAM и значений ROW, которое получается из младших разрядов, то получится такое:
 
