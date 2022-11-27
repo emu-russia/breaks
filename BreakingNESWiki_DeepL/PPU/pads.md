@@ -98,6 +98,8 @@ In modern chips, bus multiplexing is used less often because it requires additio
 
 Bidirectional multiplexed data/address bus for data exchange with VRAM.
 
+The last bus value is stored on the input DLatch. If no one has updated the bus value during the read cycle from outside, or if it has remained disconnected, the `PD` will take the last set value of the low-order part of the address. Because of the dynamic nature of the latch (the value is stored on the FET gate) - this behavior can have unpredictable effects.
+
 ### A8-A13
 
 <img src="/BreakingNESWiki/imgstore/ppu/pad_a.jpg" width="600px">
