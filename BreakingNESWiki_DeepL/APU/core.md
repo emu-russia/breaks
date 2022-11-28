@@ -18,6 +18,72 @@ So you don't get lost, here's a larger scale of the schematics discussed below:
 
 ![6502_core_pads_tran](/BreakingNESWiki/imgstore/apu/6502_core_pads_tran.jpg)
 
+## Signals
+
+|Signal|From|Where to|Description|
+|---|---|---|---|
+|CLK| | | |
+|/M2| | | |
+|DBG| | | |
+|NotDBG_RES| | | |
+|RES| | | |
+|R/W| | | |
+|/NMI| | | |
+|INT| | | |
+|/IRQ| | | |
+|/IRQ_INT| | | |
+|PHI0| | | |
+|PHI1| | | |
+|PHI2| | | |
+|RW| | | |
+|WR| | | |
+|RD| | | |
+|RDY| | | |
+|SPR/PPU| | | |
+|/DBGRD| | | |
+|CPU_A\[15:0\]| | | |
+|A\[15:0\]| | | |
+|D\[7:0\]| | | |
+|/REGRD| | | |
+|/REGWR| | | |
+|/R4015| | | |
+|/R4016| | | |
+|/R4017| | | |
+|/R4018| | | |
+|/R4019| | | |
+|/R401A| | | |
+|W4000| | | |
+|W4001| | | |
+|W4002| | | |
+|W4003| | | |
+|W4004| | | |
+|W4005| | | |
+|W4006| | | |
+|W4007| | | |
+|W4008| | | |
+|W400A| | | |
+|W400B| | | |
+|W400C| | | |
+|W400E| | | |
+|W400F| | | |
+|W4010| | | |
+|W4011| | | |
+|W4012| | | |
+|W4013| | | |
+|W4014| | | |
+|W4015| | | |
+|W4016| | | |
+|W4017| | | |
+|W401A| | | |
+|SQA\[3:0\]| | | |
+|SQB\[3:0\]| | | |
+|TRI\[3:0\]| | | |
+|RND\[3:0\]| | | |
+|DMC\[6:0\]| | | |
+|LOCK| | | |
+|OUT\[2:0\]| | | |
+|/ACLK| | | |
+
 ## Master Clock
 
 CLK pin:
