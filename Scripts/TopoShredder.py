@@ -21,7 +21,7 @@ def CropImage (src, dest, rect):
 	a.save("%s.jpg" % dest, quality=85)
 
 def PrintHelp ():
-	print ("Use: python3 TopoShredder <-apu|-ppu|-6502|-all>")
+	print ("Use: python3 TopoShredder.py <-apu|-ppu|-6502|-all>")
 
 def ApuShredder (FusedTopo):
 	imgstore = "../BreakingNESWiki/imgstore/apu/"
@@ -63,17 +63,17 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "noise_random_lfsr_tran", [2394, 7634, 631, 1715] )
 	# Pads
 	CropImage (FusedTopo, imgstore + "out_tran", [7882, 1426, 334, 568] )
-	#CropImage (FusedTopo, imgstore + "pad_a", [11240, 4100, 1658, 5412] )
+	CropImage (FusedTopo, imgstore + "pad_a", [2094, 125, 939, 1052] )
 	CropImage (FusedTopo, imgstore + "pad_clk", [11890, 8649, 987, 849] )
-	#CropImage (FusedTopo, imgstore + "pad_d", [11240, 4100, 1658, 5412] )
+	CropImage (FusedTopo, imgstore + "pad_d", [11852, 9579, 1017, 934] )
 	CropImage (FusedTopo, imgstore + "pad_dbg", [12027, 7710, 851, 868] )
 	CropImage (FusedTopo, imgstore + "pad_in", [10898, 111, 952, 1099] )
 	CropImage (FusedTopo, imgstore + "pad_irq", [11811, 3162, 1068, 947] )
 	CropImage (FusedTopo, imgstore + "pad_m2", [11809, 4102, 1076, 1018] )
 	CropImage (FusedTopo, imgstore + "pad_nmi", [11819, 2236, 1052, 948] )
 	CropImage (FusedTopo, imgstore + "pad_out", [8120, 120, 943, 1102] )
-	#CropImage (FusedTopo, imgstore + "pad_res", [11240, 4100, 1658, 5412] )
-	#CropImage (FusedTopo, imgstore + "pad_rw", [11240, 4100, 1658, 5412] )
+	CropImage (FusedTopo, imgstore + "pad_res", [3023, 120, 985, 1040] )
+	CropImage (FusedTopo, imgstore + "pad_rw", [11837, 1325, 1034, 935] )
 	# Core integration + SoftCLK
 	CropImage (FusedTopo, imgstore + "6502_core_clock", [11240, 4100, 1658, 5412] )
 	CropImage (FusedTopo, imgstore + "6502_core_pads_tran", [6859, 5636, 4446, 949] )
