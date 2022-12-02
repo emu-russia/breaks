@@ -4,6 +4,7 @@
 - [Pinout](pads.md)
 - [6502 Core Binding](core.md)
 - [Timing Generator](clkgen.md)
+- [Register Operations](regs.md)
 - [Tone Generators](sound.md)
 - [Length Counters](length.md)
 - [Square Channels](square.md)
