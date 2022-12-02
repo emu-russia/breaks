@@ -1,5 +1,7 @@
 # Register Operations
 
+![apu_locator_regs](/BreakingNESWiki/imgstore/apu/apu_locator_regs.jpg)
+
 |Signal|From|Where to|Description|
 |---|---|---|---|
 |R/W| | | |
