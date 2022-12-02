@@ -1,5 +1,5 @@
 
-module ApuRegsBlock(
+module ApuRegsDecoder (
 	PHI1, 
 	Addr_fromcore, Addr_frommux, RnW_fromcore, DBG_frompad, 
 	n_R4018, n_R401A, n_R4015, W4002, W4001, W4005, W4006, W4008, W400A, W400B, W400E, W4013, W4012, W4010, W4014,
@@ -112,7 +112,7 @@ module ApuRegsBlock(
 	nor(W4016, PHI1, ~pla[25]);
 	nor(W4017, PHI1, ~pla[27]);
 
-endmodule // RegsBlock
+endmodule // ApuRegsDecoder
 
 module ApuRegs_PLA(nREGRD, nREGWR, A, nA, pla);
 
