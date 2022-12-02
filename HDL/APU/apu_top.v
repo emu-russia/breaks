@@ -18,7 +18,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 	output OUT1;
 	output OUT2;	
 
-// Wires
+	// Wires
 
 	wire n_CLK;
 	wire PHI0;
@@ -102,7 +102,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 	wire [3:0] TRI;
 	wire [6:0] DMC;
 
-// Module instantiation
+	// Module instantiation
 
 	ApuPadsLogic pads(
 		.CLKPad(CLK),
@@ -175,7 +175,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.WR_topad(WR),
 		.RD_topad(RD) );
 
-	ApuRegsBlock regs(
+	ApuRegsDecoder regs(
 		.PHI1(PHI1), 
 		.Addr_fromcore(Addr_fromcore),
 		.Addr_frommux(Addr_topad),

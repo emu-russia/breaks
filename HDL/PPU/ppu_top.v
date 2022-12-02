@@ -17,7 +17,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	input n_RES;				// /RES=0: reset the PPU
 	output VOut_Where;			// Composite video signal (wha?)
 
-// Wires
+	// Wires
 
 	wire n_CLK_frompad;			// First half of the PPU cycle
 	wire CLK_frompad;			// Second half of the PPU cycle
@@ -154,7 +154,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire [3:0] n_CC;			// 4 bits of the chrominance of the current "pixel" (inverted value)
 	wire [1:0] n_LL;			// 2 bits of the luminance of the current "pixel" (inverted value)
 
-// Module instantiation
+	// Module instantiation
 
 	PpuPadsLogic pads(
 		.n_PCLK(n_PCLK),

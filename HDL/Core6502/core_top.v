@@ -15,7 +15,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	output [15:0] A;	// Address bus
 	inout [7:0] D; 		// Data bus (bidirectional)
 
-// Wires
+	// Wires
 
 	wire n_NMIP;
 	wire n_IRQP;
@@ -96,7 +96,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 
 	wire RD_to_db;
 
-// Control Commands
+	// Control "Commands"
 
 	wire Y_SB;		// Y => SB
 	wire SB_Y;		// SB => Y
@@ -157,7 +157,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	wire P_DB;		// Place the value of the flags register P on the DB bus
 	wire DB_P;		// Place the DB bus value on the flag register P
 
-// Module instantiation
+	// Module instantiation
 
 	ClkGen clk(
 		.PHI0(PHI0), 
