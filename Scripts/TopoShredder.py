@@ -48,10 +48,10 @@ def ApuShredder (FusedTopo):
 	# Length counters
 	CropImage (FusedTopo, imgstore + "length_counter_control_tran", [3450, 9533, 554, 327] )
 	CropImage (FusedTopo, imgstore + "length_counter_tran", [3469, 9887, 584, 1301] )
-	CropImage (FusedTopo, imgstore + "length_decoder_tran", [4174, 10011, 810, 1339] )
+	CropImage (FusedTopo, imgstore + "length_decoder_tran", [4156, 10056, 813, 1283] )
 	# Noise chan
 	CropImage (FusedTopo, imgstore + "noise_debug_tran", [1173, 8757, 274, 697] )
-	CropImage (FusedTopo, imgstore + "noise_decoder_tran", [3459, 8618, 768, 798] )
+	CropImage (FusedTopo, imgstore + "noise_decoder_tran", [3448, 8619, 779, 782] )
 	CropImage (FusedTopo, imgstore + "noise_envelope_control_tran", [1681, 8050, 788, 605] )
 	CropImage (FusedTopo, imgstore + "noise_envelope_counter_tran", [1871, 8665, 591, 652] )
 	CropImage (FusedTopo, imgstore + "noise_envelope_rate_counter_tran", [1679, 7372, 751, 682] )
