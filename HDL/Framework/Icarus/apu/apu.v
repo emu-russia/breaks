@@ -42,7 +42,7 @@ module APU_Run();
 		n_IRQ <= 1'b1;
 		n_NMI <= 1'b1;
 
-		$dumpfile("apu_waves.vcd");
+		$dumpfile("apu.vcd");
 		$dumpvars(0, apu);
 
 		repeat (1000) @ (posedge CLK);

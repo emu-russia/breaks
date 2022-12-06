@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module DivSRBit_Test();
+module DivSRBit_Run();
 
 	reg CLK;
 
@@ -26,11 +26,11 @@ module DivSRBit_Test();
 
 		CLK <= 1'b0;
 
-		$dumpfile("DivSRBit_Test_waves.vcd");
+		$dumpfile("DivSRBit.vcd");
 		$dumpvars(0, sr_bit);
 
 		repeat (20) @ (posedge CLK);
 		$finish;
 	end
 
-endmodule // APU_Run
+endmodule // DivSRBit_Run
