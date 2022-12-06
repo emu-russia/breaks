@@ -1,3 +1,4 @@
+// It looks a little sloppy, but if you'd seen the silicone, you'd understand why.
 
 module ApuPadsLogic(
 	CLKPad, n_CLK_frompad,
@@ -9,32 +10,27 @@ module ApuPadsLogic(
 	RW_topad, RWPad,
 	Addr_topad, APads);
 
-	input CLKPad;
-	output n_CLK_frompad;
-	
-	input n_RESPad;
-	output RES_frompad;
+	input CLKPad;				// CLK Input Pad
+	output n_CLK_frompad; 		// Output intermediate signal /CLK for divider
+	input n_RESPad;				// Input Pad /RES
+	output RES_frompad;			// Value from /RES pad (inverted for convenience)
+	input n_IRQPad; 			// Input Pad /RES
+	input Timer_Int; 			// Timer interrupt (combined with DMC interrupt)
+	output n_IRQ_tocore; 		// Signal /IRQ for 6502 core
+	input n_M2_topad;			// Output signal #M2 from the divider for pad M2
+	output M2Pad;				// Input Pad /RES
+	input DBGPad; 				// DBG Input Pad (2A03 Test Mode)
+	output DBG_frompad; 		// Value from the DBG pad to the APU internals
+	input RD; 					// Internal signal for data bus mode (read/write)
+	input WR; 					// Internal signal for data bus mode (read/write)
+	inout [7:0] DB;				// Internal data bus
+	inout [7:0] DPads; 			// External data bus pads
+	input RW_topad; 			// The value for the R/W pad (obtained in the ...mm...sprite DMA buffer)
+	output RWPad; 				// Output Pad R/W
+	input [15:0] Addr_topad; 	// Value for address bus pads
+	output [15:0] APads;		// External address bus pads
 
-	input n_IRQPad;
-	input Timer_Int;
-	output n_IRQ_tocore;
-
-	input n_M2_topad;
-	output M2Pad;
-
-	input DBGPad;
-	output DBG_frompad;
-
-	input RD;
-	input WR;
-	inout [7:0] DB;
-	inout [7:0] DPads;
-
-	input RW_topad;
-	output RWPad;
-
-	input [15:0] Addr_topad;
-	output [15:0] APads;
+	// Connect all
 
 	not (RES_frompad, n_RESPad);
 
