@@ -88,3 +88,18 @@ Bit $4015\[6\] contains the interrupt status.
 |111101|
 
 The placement is topological. 1 means there is a transistor, 0 means there is no transistor.
+
+## Other /ACLKs
+
+There are "other" /ACLKs in different parts of the APU.
+
+At first a "other" /ACLK was found in the DPCM/DMA circuit, but then it turned out that they are also found in other parts of the APU. Therefore, these signals are called in order of 2, 3, 4, etc.
+
+In the diagrams :warning: sign marks the places where other `/ACLK` is used.
+
+## /ACLK2
+
+In the very center of the DPCM circuitry is a circuit to produce the "other" /ACLK that is used in [DPCM](dpcm.md) as well as in [sprite DMA](dma.md). This /ACLK signal differs from the regular /ACLK signal by a slight delay.
+This signal can also be found in our circuits as `/ACLK2`.
+
+![nACLK2](/BreakingNESWiki/imgstore/apu/nACLK2.jpg)

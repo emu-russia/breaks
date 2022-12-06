@@ -8,7 +8,7 @@ module sdffr2e(d, en, res1, res2, phi_keep, q, nq);
 	input res2;				// 1: Reset 2
 	input phi_keep; 		// 1: Keep the current value, 0: You can write, the old value is "cut off"
 	output q;				// Current value
-	output nq;				// Current value (inverse logic)
+	output nq;				// Current value (complement)
 
 `ifdef ICARUS
 

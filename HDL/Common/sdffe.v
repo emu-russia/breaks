@@ -6,7 +6,7 @@ module sdffe(d, en, phi_keep, q, nq);
 	input en;				// 1: Enables Write
 	input phi_keep; 		// 1: Keep the current value, 0: You can write, the old value is "cut off"
 	output q;				// Current value
-	output nq;				// Current value (inverse logic)
+	output nq;				// Current value (complement)
 
 `ifdef ICARUS
 

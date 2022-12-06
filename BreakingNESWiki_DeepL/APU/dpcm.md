@@ -61,15 +61,6 @@ The majority of control signals are of the same nature:
 
 An exception is the FLOAD command: Frequency LFSR reloads itself after counting, but at the same time signals to the main control unit.
 
-## Other /ACLK
-
-In the very center of the DPCM circuitry is a circuit to produce the "other" /ACLK that is used in DPCM as well as in [sprite DMA](dma.md). This /ACLK signal differs from the regular /ACLK signal by a slight delay.
-This signal can also be found in our circuits as `/ACLK2`.
-
-![Other_nACLK](/BreakingNESWiki/imgstore/apu/Other_nACLK.jpg)
-
-In the diagrams below :warning: sign marks the places where `/ACLK2` is used.
-
 ## DPCM Control Summary
 
 ![DPCM_Control](/BreakingNESWiki/imgstore/apu/DPCM_Control.jpg)
