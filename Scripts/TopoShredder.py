@@ -20,6 +20,12 @@ def CropImage (src, dest, rect):
 	a = im.crop([rect[0], rect[1], rect[0]+rect[2], rect[1]+rect[3]])
 	a.save("%s.jpg" % dest, quality=85)
 
+def CropRotImage (src, dest, rect, angle):
+	im = Image.open(src + ".jpg")
+	a = im.crop([rect[0], rect[1], rect[0]+rect[2], rect[1]+rect[3]])
+	a = a.rotate(angle, expand=True)
+	a.save("%s.jpg" % dest, quality=85)
+
 def PrintHelp ():
 	print ("Use: python3 TopoShredder.py <-apu|-ppu|-6502|-all>")
 
@@ -58,7 +64,7 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "noise_feedback_tran", [2700, 7132, 346, 507] )
 	CropImage (FusedTopo, imgstore + "noise_freq_control_tran", [3063, 9173, 512, 259] )
 	CropImage (FusedTopo, imgstore + "noise_freq_in_tran", [4232, 8649, 208, 663] )
-	CropImage (FusedTopo, imgstore + "noise_freq_lfsr_tran", [3023, 7705, 456, 1467] )
+	CropImage (FusedTopo, imgstore + "noise_freq_lfsr_tran", [3024, 7707, 489, 1467] )
 	CropImage (FusedTopo, imgstore + "noise_output_tran", [1629, 8514, 295, 783] )
 	CropImage (FusedTopo, imgstore + "noise_random_lfsr_tran", [2394, 7634, 631, 1715] )
 	# Pads
@@ -77,6 +83,7 @@ def ApuShredder (FusedTopo):
 	# Core integration + SoftCLK
 	CropImage (FusedTopo, imgstore + "6502_core_clock", [11240, 4100, 1658, 5412] )
 	CropImage (FusedTopo, imgstore + "6502_core_pads_tran", [6859, 5636, 4446, 949] )
+	CropRotImage (FusedTopo, imgstore + "div", [11765, 5887, 613, 1718], -90 )
 	CropImage (FusedTopo, imgstore + "aclk_gen_tran", [7866, 2012, 540, 1536] )
 	CropImage (FusedTopo, imgstore + "apu_core_irq", [7279, 6244, 409, 343] )
 	CropImage (FusedTopo, imgstore + "apu_core_irqnmi_logic1", [8549, 5691, 182, 291] )
@@ -140,6 +147,10 @@ def ApuShredder (FusedTopo):
 	# DACs
 	CropImage (FusedTopo, imgstore + "dac_other_tran", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "dac_square_tran", [6050, 1019, 726, 203] )
+	# Other /ACLKs
+	CropImage (FusedTopo, imgstore + "nACLK2", [4451, 7154, 233, 184] )
+	CropImage (FusedTopo, imgstore + "nACLK3", [4799, 3233, 200, 181] )
+	CropImage (FusedTopo, imgstore + "nACLK4", [3050, 7710, 261, 187] )
 
 """
 def PpuShredder (FusedTopo):
