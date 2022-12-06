@@ -7,7 +7,7 @@ module comp_dffe_inv (phi_load, phi_keep, en, val, q, nq);
 	input en;			// 1: Writing a value is enabled
 	input val;			// New value
 	output q;			// Current value
-	output nq;			// Current value (inverted)
+	output nq;			// Current value (complement)
 
 	(* keep = "true" *) wire inp;
 	not (inp, val);

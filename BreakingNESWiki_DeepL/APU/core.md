@@ -8,9 +8,6 @@ The 6502 core and surrounding logic includes the following entities:
 - Master clock signal and clock divider
 - Binding the terminals of the 6502 core to the rest of the APU
 - 6502 core
-- Register operation decoder
-- Debug registers
-- External I/O ports
 
 So you don't get lost, here's a larger scale of the schematics discussed below:
 

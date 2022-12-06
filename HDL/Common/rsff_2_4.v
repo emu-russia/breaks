@@ -7,7 +7,7 @@ module rsff_2_4(res1, res2, res3, s, q, nq);
 	input res3; 	// 1: Reset3 value (0)
 	input s;		// 1: Set value (1)
 	output q; 		// Current value
-	output nq;		// Current value (inverted)
+	output nq;		// Current value (complement)
 
 `ifdef ICARUS
 

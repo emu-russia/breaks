@@ -30,12 +30,9 @@ Also names with `/` and `#` are not suitable for Verilog, so Verilog uses the pr
 
 It is necessary to change, if possible, all the places where the signal to be renamed is mentioned:
 
-- Vector masks from Photoshop (not very actual anymore, because it's a pain to edit them in Photoshop every time)
-- Pictures from the `Docs` folder - essentially now this is the "basic" set of schematics from which all the others are made
+- Vector masks from Photoshop
 - Diagrams for Logisim: folders `Docs\6502\6502_logisim`, `Docs\PPU\PPU_logisim`, `Docs\APU\APU_logisim`.
 - BreakingNES Wiki pages (including translations in various languages)
-
-The http://breaknes.com site has moved to the stage of closure, so it is no longer updated. Now everything is in one place, on GitHub.
 
 ## 6502
 
