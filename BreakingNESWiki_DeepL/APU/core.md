@@ -45,7 +45,7 @@ So you don't get lost, here's a larger scale of the schematics discussed below:
 
 ## Master Clock
 
-CLK pin:
+CLK pad:
 
 ![pad_clk](/BreakingNESWiki/imgstore/apu/pad_clk.jpg)
 
@@ -55,9 +55,9 @@ CLK divider:
 
 (The diagram is placed "on its side" for convenience).
 
-TBD: A more detailed description of the divider.
+![div_logisim](/BreakingNESWiki/imgstore/apu/div_logisim.jpg)
 
-M2 pin:
+M2 pad:
 
 ![pad_m2](/BreakingNESWiki/imgstore/apu/pad_m2.jpg)
 
@@ -67,12 +67,7 @@ Circuit for obtaining the `NotDBG_RES` signal:
 
 For some reason the circuit contains a disabled "comb" of transistors, which is a chain of inverters of the internal `RES` signal.
 
-In debug mode (when DBG=1) - the external signal M2 is not touched during reset. In regular mode (for Retail consoles) - during reset the external signal M2 is in `z` state (Open-drain):
-
-```c++
-if ( RES & ~DBG) M2 = z;
-else M2 = NOT(n_M2);
-```
+In debug mode (when DBG=1) - the external signal M2 is not touched during reset. In regular mode (for Retail consoles) - during reset the external signal M2 is in `z` state (Open-drain).
 
 ## Connecting the 6502 and APU
 
@@ -153,9 +148,9 @@ Buffer for sprite DMA:
 
 ![sprbuf_tran](/BreakingNESWiki/imgstore/apu/sprbuf_tran.jpg)
 
-Not very appropriate, but I have to say it here, because in addition to storing data for the sprite DMA this circuit also produces the `WR` signal for the external data bus pins, as well as the `RW` signal.
+Not very appropriate, but I have to say it here, because in addition to storing data for the sprite DMA this circuit also produces the `WR` signal for the external data bus pads, as well as the `RW` signal.
 
-:warning: It just so happens that the 6502 core signal `R/W` is very similar in name to the `RW` signal which goes to the external R/W pin. Don't get confused :smiley:
+:warning: It just so happens that the 6502 core signal `R/W` is very similar in name to the `RW` signal which goes to the external R/W pad. Don't get confused :smiley:
 
 ### A0-A15
 
