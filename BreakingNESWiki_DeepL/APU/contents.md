@@ -14,3 +14,4 @@
 - [Sprite DMA](dma.md)
 - [DAC](dac.md)
 - [Test Pattern](test_pattern.md)
+- [Waves](waves.md)
