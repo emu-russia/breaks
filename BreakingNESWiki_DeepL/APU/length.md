@@ -90,10 +90,10 @@ The second stage of the decoder:
 
 The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
 
-## Length Counter
-
-![length_counter_tran](/BreakingNESWiki/imgstore/apu/length_counter_tran.jpg)
-
 ## Length Counter Control
 
 ![length_counter_control_tran](/BreakingNESWiki/imgstore/apu/length_counter_control_tran.jpg)
+
+## Length Counter
+
+![length_counter_tran](/BreakingNESWiki/imgstore/apu/length_counter_tran.jpg)
