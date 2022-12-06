@@ -90,10 +90,10 @@
 
 Битовая маска топологическая. 1 означает есть транзистор, 0 означает нет транзистора.
 
-## Length Counter
-
-![length_counter_tran](/BreakingNESWiki/imgstore/apu/length_counter_tran.jpg)
-
 ## Length Counter Control
 
 ![length_counter_control_tran](/BreakingNESWiki/imgstore/apu/length_counter_control_tran.jpg)
+
+## Length Counter
+
+![length_counter_tran](/BreakingNESWiki/imgstore/apu/length_counter_tran.jpg)
