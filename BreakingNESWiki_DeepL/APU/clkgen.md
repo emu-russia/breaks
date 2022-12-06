@@ -103,3 +103,21 @@ In the very center of the DPCM circuitry is a circuit to produce the "other" /AC
 This signal can also be found in our circuits as `/ACLK2`.
 
 ![nACLK2](/BreakingNESWiki/imgstore/apu/nACLK2.jpg)
+
+### /ACLK3
+
+Used for [square wave sound generators](square.md), and more specifically for the $4002/$4003 registers.
+
+![nACLK3](/BreakingNESWiki/imgstore/apu/nACLK3.jpg)
+
+For the first square channel (Square 0 = A), the signal is called `/ACLK3A`.
+
+For the second square channel (Square 1 = B) the signal is called `/ACLK3B`.
+
+But in the general schematic for the two channels, the signal is simply marked as `/ACLK3`.
+
+### /ACLK4
+
+Used in the [noise generator](noise.md) and [length counter](length.md) control circuitry.
+
+![nACLK4](/BreakingNESWiki/imgstore/apu/nACLK4.jpg)
