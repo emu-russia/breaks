@@ -4,7 +4,7 @@
 
 `timescale 1ns/1ns
 
-module APU_Run();
+module APU_ClkGen_Run();
 
 	reg CLK;
 	reg n_RES;
@@ -48,7 +48,7 @@ module APU_Run();
 
 		clk_cnt <= 0;
 
-		$dumpfile("clkgen_waves.vcd");
+		$dumpfile("clkgen.vcd");
 		$dumpvars(0, apu);
 
 		repeat (32) @ (posedge CLK);
@@ -183,4 +183,4 @@ module APU_Run();
 	//	$display("CLK=%b, clkcnt=%d, PHI0=%b, PHI1=%b, PHI2=%b, /ACLK=%b, ACLK=%b",
 	//		CLK, clk_cnt, apu.PHI0, apu.PHI0, apu.PHI1, apu.n_ACLK, apu.ACLK);	
 
-endmodule // APU_Run
+endmodule // APU_ClkGen_Run

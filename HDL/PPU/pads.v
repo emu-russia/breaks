@@ -45,7 +45,7 @@ module PpuPadsLogic(
 	input Int_topad;
 	output n_INTPad;
 
-// Logic
+	// Logic
 
 	wire [7:0] DB_temp;
 	pnor DB_out [7:0] (CPU_DB, {8{n_CpuRD}}, DB_temp);
