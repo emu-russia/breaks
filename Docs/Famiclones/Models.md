@@ -12,14 +12,16 @@
 
 |Модель|Год появления (примерно)|Внешний вид|Материнская плата|Чипсет|
 |---|---|---|---|---|
-|Dendy Classic|1992|![dendy_classic](imgstore/dendy_classic.jpg)| | |
+|Dendy Classic|1992|![dendy_classic](imgstore/dendy_classic.jpg)|![dendy_classic_mb](imgstore/dendy_classic_mb.jpg)|T1818P, UM6561F-2|
 |Dendy Junior|1994|![dendy_junior](imgstore/dendy_junior.jpg)| | |
 |Dendy Junior II|Apr 1994|![dendy_junior_2](imgstore/dendy_junior_2.jpg)| | |
 |Dendy Classic II|1995|![dendy_classic_2](imgstore/dendy_classic_2.jpg)| | |
 |Dendy Junior IIP|???|![dendy_junior_2p](imgstore/dendy_junior_2p.jpg)| | |
 |Dendy Junior IVP|Dec 1995|![dendy_junior_4p](imgstore/dendy_junior_4p.jpg)| | |
 
-Source: https://pikabu.ru/story/vse_modeli_dendy_8002424
+Sources:
+- https://pikabu.ru/story/vse_modeli_dendy_8002424
+- https://vk.com/wall-53076_294263
 
 ## Lifa SM-888
 
