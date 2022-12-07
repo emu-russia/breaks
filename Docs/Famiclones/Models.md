@@ -12,11 +12,12 @@
 
 |Модель|Год появления (примерно)|Внешний вид|Материнская плата|Чипсет|
 |---|---|---|---|---|
-|Dendy Classic|1992|![dendy_classic](imgstore/dendy_classic.jpg)|![dendy_classic_mb](imgstore/dendy_classic_mb.jpg)|T1818P, UM6561F-2|
+|Dendy Classic|1992|![dendy_classic](imgstore/dendy_classic.jpg)|![dendy_classic_mb](imgstore/dendy_classic_mb.jpg)|Сначала на 6527+6538, T1818P, UM6561F-2, также был SECAM (6557+6558+6559)|
 |Dendy Junior|1994|![dendy_junior](imgstore/dendy_junior.jpg)|![dendy_junior_mb](imgstore/dendy_junior_mb.jpg)|UM6561AF-2|
 |Dendy Junior II|Apr 1994|![dendy_junior_2](imgstore/dendy_junior_2.jpg)|![dendy_junior_2_mb](imgstore/dendy_junior_2_mb.jpg)|6561A, 6561T|
 |Dendy Classic II|1995|![dendy_classic_2](imgstore/dendy_classic_2.jpg)|![dendy_classic_2_mb](imgstore/dendy_classic_2_mb.jpg)|UM6561AF-2|
 |Dendy Junior IIP|???|![dendy_junior_2p](imgstore/dendy_junior_2p.jpg)|![dendy_junior_2p_mb](imgstore/dendy_junior_2p_mb.jpg)|6561-A-4|
+|Dendy Junior III| | | |Фирмой STEEPLER не выпускался, т.к. модель была выпущена другими пиратами|
 |Dendy Junior IVP|Dec 1995|![dendy_junior_4p](imgstore/dendy_junior_4p.jpg)|![dendy_junior_4p_mb](imgstore/dendy_junior_4p_mb.jpg)|??? Кастомный|
 
 Как видно в модельном ряду наблюдается большой зоопарк чипсетов, поэтому при изучении чипов можно не привязываться к модели приставки.
