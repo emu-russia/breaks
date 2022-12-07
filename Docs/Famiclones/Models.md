@@ -8,6 +8,8 @@
 
 ## Dendy
 
+Для одинаковых моделей Dendy могли применяться разные чипсеты в разное время, поэтому выберем из них наиболее значимые варианты, а остальные будем игнорировать.
+
 |Модель|Год появления (примерно)|Внешний вид|Материнская плата|Чипсет|
 |---|---|---|---|---|
 |Dendy Classic|1992|![dendy_classic](imgstore/dendy_classic.jpg)| | |
@@ -23,13 +25,19 @@ Source: https://pikabu.ru/story/vse_modeli_dendy_8002424
 
 ![lifa_sm888](imgstore/lifa_sm888.jpg)
 
-Чипсет: ??? Предположительно такой же как у Haili LM-888, т.к. сами платы и маркировки совпадают. Возможно тут мы имеем случай фамиклона-клона (но кто из них клон другого - не известно).
+Чипсет:
+- CPU+PPU: ??? Кастомный. Предположительно такой же как у Haili LM-888, т.к. сами платы и маркировки совпадают. Возможно тут мы имеем случай фамиклона-клона (но кто из них клон другого - не известно).
 
-## Subor 225
+## Subor SB-225
 
 ![subor_225](imgstore/subor_225.jpg)
 
-Чипсет: ???
+Чипсет:
+- CPU+PPU: ??? Кастомный
+
+:warning: Wanted dead or alive.
+
+[Source](https://dendygames.wordpress.com/2012/02/07/subor-%D1%81%D0%B0%D0%BC%D1%8B%D0%B9-%D0%BF%D0%BE%D0%BF%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9-%D1%84%D0%B0%D0%BC%D0%B8%D0%BA%D0%BB%D0%BE%D0%BD-part-1/)
 
 ## UFO A-5000 Space Hunter
 
@@ -60,3 +68,5 @@ https://drive.google.com/drive/u/0/folders/1U5OmcoPNSyg7ktS1RvQhBF6N_6K6oCgV
 - CPU+PPU: UMC A35212A
 
 https://drive.google.com/drive/u/0/folders/1r0mNSYbnbs2wCgJb9s10NbC5BvO9k7-z
+
+:warning: Wanted dead or alive.
