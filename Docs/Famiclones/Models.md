@@ -12,15 +12,15 @@
 
 |Модель|Год появления (примерно)|Внешний вид|Материнская плата|Чипсет|
 |---|---|---|---|---|
-|Dendy Classic|1992|![dendy_classic](imgstore/dendy_classic.jpg)|![dendy_classic_mb](imgstore/dendy_classic_mb.jpg)|Сначала на 6527+6538, T1818P, UM6561F-2, также был SECAM (6557+6558+6559)|
-|Dendy Junior|1994|![dendy_junior](imgstore/dendy_junior.jpg)|![dendy_junior_mb](imgstore/dendy_junior_mb.jpg)|UM6561AF-2|
+|Dendy Classic|1992|![dendy_classic](imgstore/dendy_classic.jpg)|![dendy_classic_mb](imgstore/dendy_classic_mb.jpg)|6527P+6538 (изначально), T1818P, UM6561F-2, также был SECAM (6557+6558+6559)|
+|Dendy Junior|1994|![dendy_junior](imgstore/dendy_junior.jpg)|![dendy_junior_mb](imgstore/dendy_junior_mb.jpg)|UM6561F-2, UM6561AF-2|
 |Dendy Junior II|Apr 1994|![dendy_junior_2](imgstore/dendy_junior_2.jpg)|![dendy_junior_2_mb](imgstore/dendy_junior_2_mb.jpg)|6561A, 6561T|
 |Dendy Classic II|1995|![dendy_classic_2](imgstore/dendy_classic_2.jpg)|![dendy_classic_2_mb](imgstore/dendy_classic_2_mb.jpg)|UM6561AF-2|
 |Dendy Junior IIP|???|![dendy_junior_2p](imgstore/dendy_junior_2p.jpg)|![dendy_junior_2p_mb](imgstore/dendy_junior_2p_mb.jpg)|6561-A-4|
 |Dendy Junior III| | | |Фирмой STEEPLER не выпускался, т.к. модель была выпущена другими пиратами|
-|Dendy Junior IVP|Dec 1995|![dendy_junior_4p](imgstore/dendy_junior_4p.jpg)|![dendy_junior_4p_mb](imgstore/dendy_junior_4p_mb.jpg)|??? Кастомный|
+|Dendy Junior IVP|Dec 1995|![dendy_junior_4p](imgstore/dendy_junior_4p.jpg)|![dendy_junior_4p_mb](imgstore/dendy_junior_4p_mb.jpg)|??? Неидентифицированный блоб|
 
-Как видно в модельном ряду наблюдается большой зоопарк чипсетов, поэтому при изучении чипов можно не привязываться к модели приставки.
+Как видно в модельном ряду наблюдается большой зоопарк чипсетов, поэтому при изучении чипов можно не привязываться к модели приставки. Скорее всего в разные модели ставили то что было "в тренде" (наличии) на текущий момент.
 
 Sources:
 - https://pikabu.ru/story/vse_modeli_dendy_8002424
@@ -28,21 +28,21 @@ Sources:
 - https://www.emu-land.net/forum/
 - https://dendygames.wordpress.com/
 
-:warning: Dendy Junior IVP wanted dead or alive.
+:warning: Dendy Classic SECAM, Dendy Junior IVP wanted dead or alive.
 
 ## Lifa SM-888
 
 ![lifa_sm888](imgstore/lifa_sm888.jpg)
 
 Чипсет:
-- CPU+PPU: ??? Кастомный. Предположительно такой же как у Haili LM-888, т.к. сами платы и маркировки совпадают. Возможно тут мы имеем случай фамиклона-клона (но кто из них клон другого - не известно).
+- CPU+PPU: ??? Неизвестно. Предположительно такой же как у Haili LM-888, т.к. сами платы и маркировки совпадают. Возможно тут мы имеем случай фамиклона-клона (но кто из них клон другого - не известно).
 
 ## Subor SB-225
 
 ![subor_225](imgstore/subor_225.jpg)
 
 Чипсет:
-- CPU+PPU: ??? Кастомный
+- CPU+PPU: ??? Неизвестно
 
 :warning: Wanted dead or alive.
 
@@ -65,7 +65,7 @@ https://drive.google.com/drive/u/0/folders/16vMTR6knk4e8tFodKEkxRLXA1pBfESEs
 ![imgstore/141685601-ac720a3c-65e1-419d-b1ba-c640cd6efb7e.png](imgstore/141685601-ac720a3c-65e1-419d-b1ba-c640cd6efb7e.png)
 
 Чипсет:
-- CPU+PPU: Кастомный (Unknown 5524)
+- CPU+PPU: 5524 (кроме цифр "5524" на чипе больше нет других пометок, подозрение что это даже не UMC).
 
 https://drive.google.com/drive/u/0/folders/1U5OmcoPNSyg7ktS1RvQhBF6N_6K6oCgV
 
