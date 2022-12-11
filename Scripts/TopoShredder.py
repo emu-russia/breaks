@@ -152,22 +152,24 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "nACLK3", [4799, 3233, 200, 181] )
 	CropImage (FusedTopo, imgstore + "nACLK4", [3050, 7710, 261, 187] )
 
-"""
 def PpuShredder (FusedTopo):
+	# TBD: Add missing labels in psd
+	imgstore = "../BreakingNESWiki/imgstore/ppu/"
 	# H/V
-	CropImage (FusedTopo, imgstore + "h_counter_output", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "H_trans", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "CARRYH", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "CARRYV", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "even_odd_tran", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "h0_dash_dash_tran", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "hv_counters_control", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "hv_fporch", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "hv_fsm_horz", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "hv_fsm_int", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "hv_fsm_vert", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "HV_stage", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "V_trans", [116, 5237, 903, 2106] )
+	#CropImage (FusedTopo, imgstore + "h_counter_output", [2273, 4208, 311, 718] )
+	CropImage (FusedTopo, imgstore + "H_trans", [2513, 1585, 560, 1582] )
+	CropImage (FusedTopo, imgstore + "CARRYH", [2507, 1580, 512, 305] )
+	CropImage (FusedTopo, imgstore + "CARRYV", [3357, 1534, 322, 340] )
+	#CropRotImage (FusedTopo, imgstore + "even_odd_tran", [4235, 3550, 174, 664], -90 )
+	CropImage (FusedTopo, imgstore + "h0_dash_dash_tran", [4623, 3741, 441, 183] )
+	#CropImage (FusedTopo, imgstore + "hv_counters_control", [2954, 3199, 1063, 457] )
+	#CropImage (FusedTopo, imgstore + "hv_fporch", [2251, 3968, 374, 421] )
+	CropImage (FusedTopo, imgstore + "hv_fsm_horz", [2528, 4144, 929, 959] )
+	CropImage (FusedTopo, imgstore + "hv_fsm_int", [3422, 4291, 353, 752] )
+	CropImage (FusedTopo, imgstore + "hv_fsm_vert", [3743, 4214, 733, 815] )
+	#CropImage (FusedTopo, imgstore + "HV_stage", [3108, 2729, 560, 151] )
+	CropImage (FusedTopo, imgstore + "V_trans", [3133, 1538, 547, 1632] )
+"""
 	# CRAM
 	CropImage (FusedTopo, imgstore + "color_buffer_bit", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "cb_control", [116, 5237, 903, 2106] )
@@ -241,7 +243,7 @@ def PpuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "mux", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "ppu_readbuffer", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "vram_control_tran", [116, 5237, 903, 2106] )
-	# VideOut
+	# Video Out
 	CropImage (FusedTopo, imgstore + "vout_dac", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "vout_emphasis", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "vout_level_select", [116, 5237, 903, 2106] )
@@ -263,10 +265,6 @@ def PpuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "pad_rw", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "pad_wr", [116, 5237, 903, 2106] )
 """
-
-def PpuShredder (FusedTopo):
-	# TBD.
-	return
 
 def CoreShredder (FusedTopo):
 	# TBD.
