@@ -107,7 +107,7 @@ As you can see ROW2 and ROW6 fall just on the attribute byte of the sprite, whic
 
 ## Column Decoder
 
-![oam_col_decoder](/BreakingNESWiki/imgstore/ppu/oam_col_decoder.png)
+![oam_col_decoder](/BreakingNESWiki/imgstore/ppu/oam_col_decoder.jpg)
 
 The circuit is a 1-of-n decoder.
 

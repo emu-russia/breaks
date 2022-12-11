@@ -109,7 +109,7 @@ OamAddr: 15, row: 7
 
 ## Декодер колонки
 
-![oam_col_decoder](/BreakingNESWiki/imgstore/ppu/oam_col_decoder.png)
+![oam_col_decoder](/BreakingNESWiki/imgstore/ppu/oam_col_decoder.jpg)
 
 Схема представляет собой одноединичный декодер (1-из-n).
 
