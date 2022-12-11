@@ -210,17 +210,17 @@ def PpuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "fifo_prio4", [1546, 7008, 771, 546] )
 	CropImage (FusedTopo, imgstore + "fifo_sr", [5516, 7466, 519, 977] )
 	CropImage (FusedTopo, imgstore + "hinv", [6055, 7541, 470, 1077] )
-"""
 	# Data Reader
-	CropImage (FusedTopo, imgstore + "patgen_high", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "patgen_vinv", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "ppu_dataread_bgc0", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "ppu_dataread_bgc1", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "ppu_dataread_bgc2", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "ppu_dataread_bgc3", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "ppu_dataread_bgcol_control_left", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "ppu_dataread_bgcol_control_right", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "ppu_dataread_bgcol_out", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "patgen_high", [8551, 7163, 1889, 710] )
+	CropImage (FusedTopo, imgstore + "patgen_vinv", [10345, 7167, 673, 689] )
+	#CropImage (FusedTopo, imgstore + "ppu_dataread_bgc0", [10384, 9613, 641, 955] )
+	#CropImage (FusedTopo, imgstore + "ppu_dataread_bgc1", [9737, 9836, 637, 728] )
+	#CropImage (FusedTopo, imgstore + "ppu_dataread_bgc2", [9103, 9625, 637, 941] )
+	#CropImage (FusedTopo, imgstore + "ppu_dataread_bgc3", [8476, 9622, 852, 939] )
+	CropImage (FusedTopo, imgstore + "ppu_dataread_bgcol_control_left", [8266, 9617, 675, 929] )
+	CropImage (FusedTopo, imgstore + "ppu_dataread_bgcol_control_right", [11022, 9970, 146, 394] )
+	#CropImage (FusedTopo, imgstore + "ppu_dataread_bgcol_out", [7833, 9729, 566, 650] )
+"""
 	# SCCX
 	CropImage (FusedTopo, imgstore + "ppu_dualregs_fh", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "ppu_dualregs_fv", [116, 5237, 903, 2106] )
