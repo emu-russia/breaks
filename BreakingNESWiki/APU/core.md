@@ -9,12 +9,6 @@
 - Привязка контактов ядра 6502 к остальной части APU
 - Ядро 6502
 
-Чтобы вы не заблудились, вот более крупный масштаб рассматриваемых далее схем:
-
-![6502_core_clock](/BreakingNESWiki/imgstore/apu/6502_core_clock.jpg)
-
-![6502_core_pads_tran](/BreakingNESWiki/imgstore/apu/6502_core_pads_tran.jpg)
-
 ## Сигналы
 
 |Сигнал|Откуда|Куда|Описание|

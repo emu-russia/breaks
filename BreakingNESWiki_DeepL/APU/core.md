@@ -9,12 +9,6 @@ The 6502 core and surrounding logic includes the following entities:
 - Binding the terminals of the 6502 core to the rest of the APU
 - 6502 core
 
-So you don't get lost, here's a larger scale of the schematics discussed below:
-
-![6502_core_clock](/BreakingNESWiki/imgstore/apu/6502_core_clock.jpg)
-
-![6502_core_pads_tran](/BreakingNESWiki/imgstore/apu/6502_core_pads_tran.jpg)
-
 ## Signals
 
 |Signal|From|Where to|Description|

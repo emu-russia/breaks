@@ -81,8 +81,6 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "pad_res", [3023, 120, 985, 1040] )
 	CropImage (FusedTopo, imgstore + "pad_rw", [11837, 1325, 1034, 935] )
 	# Core integration + SoftCLK
-	CropImage (FusedTopo, imgstore + "6502_core_clock", [11240, 4100, 1658, 5412] )
-	CropImage (FusedTopo, imgstore + "6502_core_pads_tran", [6859, 5636, 4446, 949] )
 	CropRotImage (FusedTopo, imgstore + "div", [11765, 5887, 613, 1718], -90 )
 	CropImage (FusedTopo, imgstore + "aclk_gen_tran", [7866, 2012, 540, 1536] )
 	CropImage (FusedTopo, imgstore + "apu_core_irq", [7279, 6244, 409, 343] )
