@@ -237,18 +237,18 @@ def PpuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "ppu_par_high", [8705, 7807, 580, 649] )
 	CropImage (FusedTopo, imgstore + "ppu_par_low", [9323, 7795, 1671, 679] )
 	CropImage (FusedTopo, imgstore + "tho_latches_tran", [6168, 6631, 872, 290] )
-"""
 	# Misc
-	CropImage (FusedTopo, imgstore + "pclk", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "mux", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "ppu_readbuffer", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "vram_control_tran", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "pclk", [1927, 2910, 609, 647] )
+	CropImage (FusedTopo, imgstore + "mux", [4973, 5416, 1567, 1523] )
+	CropImage (FusedTopo, imgstore + "ppu_readbuffer", [6062, 8987, 722, 1413] )
+	CropImage (FusedTopo, imgstore + "vram_control_tran", [5453, 10513, 1944, 920] )
 	# Video Out
-	CropImage (FusedTopo, imgstore + "vout_dac", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "vout_emphasis", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "vout_level_select", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "vout_phase_decoder", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "vout_phase_shifter", [116, 5237, 903, 2106] )
+	CropImage (FusedTopo, imgstore + "vout_dac", [1419, 3230, 799, 1844] )
+	CropImage (FusedTopo, imgstore + "vout_emphasis", [1678, 4974, 313, 399] )
+	CropImage (FusedTopo, imgstore + "vout_level_select", [1986, 4891, 230, 478] )
+	CropImage (FusedTopo, imgstore + "vout_phase_decoder", [1346, 2339, 1070, 572] )
+	CropImage (FusedTopo, imgstore + "vout_phase_shifter", [1505, 1873, 1001, 594] )
+"""
 	# Pads etc.
 	CropImage (FusedTopo, imgstore + "clk", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "pad_a", [116, 5237, 903, 2106] )
