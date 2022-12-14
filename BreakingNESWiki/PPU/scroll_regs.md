@@ -19,7 +19,7 @@
 
 ## Fine HScroll
 
-![ppu_dataread_dualregs_fh](/BreakingNESWiki/imgstore/ppu/ppu_dualregs_fh.jpg)
+![dualregs_fh](/BreakingNESWiki/imgstore/ppu/dualregs_fh.jpg)
 
 ![SCC_FineH](/BreakingNESWiki/imgstore/ppu/SCC_FineH.png)
 
@@ -31,7 +31,7 @@
 
 ## Fine VScroll
 
-![ppu_dataread_dualregs_fv](/BreakingNESWiki/imgstore/ppu/ppu_dualregs_fv.jpg)
+![dualregs_fv](/BreakingNESWiki/imgstore/ppu/dualregs_fv.jpg)
 
 ![SCC_FineV](/BreakingNESWiki/imgstore/ppu/SCC_FineV.png)
 
@@ -45,7 +45,7 @@
 
 ## Выбор Name Table
 
-![ppu_dataread_dualregs_nt](/BreakingNESWiki/imgstore/ppu/ppu_dualregs_nt.jpg)
+![dualregs_nt](/BreakingNESWiki/imgstore/ppu/dualregs_nt.jpg)
 
 ![SCC_NTSelect](/BreakingNESWiki/imgstore/ppu/SCC_NTSelect.png)
 
@@ -56,7 +56,7 @@
 
 ## Tile V
 
-![ppu_dataread_dualregs_tv](/BreakingNESWiki/imgstore/ppu/ppu_dualregs_tv.jpg)
+![dualregs_tv](/BreakingNESWiki/imgstore/ppu/dualregs_tv.jpg)
 
 ![SCC_TileV](/BreakingNESWiki/imgstore/ppu/SCC_TileV.png)
 
@@ -70,7 +70,7 @@
 
 ## Tile H
 
-![ppu_dataread_dualregs_th](/BreakingNESWiki/imgstore/ppu/ppu_dualregs_th.jpg)
+![dualregs_th](/BreakingNESWiki/imgstore/ppu/dualregs_th.jpg)
 
 ![SCC_TileH](/BreakingNESWiki/imgstore/ppu/SCC_TileH.png)
 
