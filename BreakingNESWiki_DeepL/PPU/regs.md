@@ -77,6 +77,8 @@ Control Regs Logic:
 |---|---|
 |![ctrl0](/BreakingNESWiki/imgstore/ppu/ctrl0.jpg)|![ctrl1](/BreakingNESWiki/imgstore/ppu/ctrl1.jpg)|
 
+The official name of the registers (as strange as it may seem now): CTLR0 and CTLR1 (not a typo).
+
 ### Special Note
 
 It should be understood that the access to the PPU registers is not related to PCLK in any way. Therefore, programmer can interfere with PPU rendering process at any time.
