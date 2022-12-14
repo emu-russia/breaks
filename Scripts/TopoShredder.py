@@ -248,23 +248,21 @@ def PpuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "vout_level_select", [1986, 4891, 230, 478] )
 	CropImage (FusedTopo, imgstore + "vout_phase_decoder", [1346, 2339, 1070, 572] )
 	CropImage (FusedTopo, imgstore + "vout_phase_shifter", [1505, 1873, 1001, 594] )
-"""
 	# Pads etc.
-	CropImage (FusedTopo, imgstore + "clk", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_a", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_ad", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_ale", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_clk", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_d", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_dbe", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_ext", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_int", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_rd", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_res", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_rs", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_rw", [116, 5237, 903, 2106] )
-	CropImage (FusedTopo, imgstore + "pad_wr", [116, 5237, 903, 2106] )
-"""
+	CropImage (FusedTopo, imgstore + "clk", [1553, 2919, 463, 165] )
+	CropImage (FusedTopo, imgstore + "pad_a", [4406, 10804, 797, 794] )
+	CropImage (FusedTopo, imgstore + "pad_ad", [11729, 7888, 1006, 955] )
+	CropImage (FusedTopo, imgstore + "pad_ale", [11700, 7076, 838, 804] )
+	CropImage (FusedTopo, imgstore + "pad_clk", [246, 3410, 1071, 726] )
+	CropImage (FusedTopo, imgstore + "pad_d", [11730, 4371, 1013, 958] )
+	CropImage (FusedTopo, imgstore + "pad_dbe", [3052, 408, 767, 911] )
+	CropImage (FusedTopo, imgstore + "pad_ext", [1707, 405, 969, 1019] )
+	CropImage (FusedTopo, imgstore + "pad_int", [437, 4398, 825, 680] )
+	CropImage (FusedTopo, imgstore + "pad_rd", [442, 9163, 824, 807] )
+	CropImage (FusedTopo, imgstore + "pad_res", [258, 7384, 1042, 881] )
+	CropImage (FusedTopo, imgstore + "pad_rs", [3886, 405, 741, 916] )
+	CropImage (FusedTopo, imgstore + "pad_rw", [11732, 5328, 1004, 732] )
+	CropImage (FusedTopo, imgstore + "pad_wr", [446, 8348, 815, 812] )
 
 def CoreShredder (FusedTopo):
 	# TBD.

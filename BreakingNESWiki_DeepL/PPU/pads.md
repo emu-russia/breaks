@@ -170,8 +170,6 @@ All other circuits are clocked by [Pixel Clock](pclk.md)
 
 ![pad_res](/BreakingNESWiki/imgstore/ppu/pad_res.jpg)
 
-(contact pad not shown)
-
 After the external /RES = 0 signal arrives, the `Reset FF` is set so that the reset signal is not "lost".
 The `Reset FF` remains set until cleared by `RESCL` = 1.
 
