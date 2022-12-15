@@ -84,6 +84,6 @@ LOCK circuit:
 
 ![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)
 
-The `LOCK` signal is used to temporarily suspend the sound generators so that their values can be locked and can be read using the registers.
+The `LOCK` signal is used to suspend the sound generators so that their values can be locked and can be read using the registers. The lock can only be cleared by a reset.
 
 :warning: The debug hookup is only available in 2A03. The PAL version of the APU (2A07) does not contain any debugging mechanisms.
