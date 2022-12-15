@@ -7542,6 +7542,12 @@
       <a name="output" val="true"/>
     </comp>
   </circuit>
+  <circuit name="DIV_SRBit">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DIV_SRBit"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+  </circuit>
   <circuit name="SoftCLK">
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="SoftCLK"/>
@@ -7613,6 +7619,125 @@
       <a name="label" val="ACLK"/>
       <a name="output" val="true"/>
     </comp>
+    <comp loc="(350,110)" name="ACLKGen">
+      <a name="label" val="aclk_gen"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+  </circuit>
+  <circuit name="ACLKGen">
+    <a name="appearance" val="evolution"/>
+    <a name="circuit" val="ACLKGen"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(180,50)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="PHI1"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(260,130)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="PHI1"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(300,50)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="PHI2"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(400,50)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(480,140)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="ACLK"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(480,190)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_ACLK"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(90,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="PHI2"/>
+    </comp>
+    <comp lib="0" loc="(90,120)" name="Tunnel">
+      <a name="label" val="PHI2"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(90,150)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(90,150)" name="Tunnel">
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(90,90)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="PHI1"/>
+    </comp>
+    <comp lib="0" loc="(90,90)" name="Tunnel">
+      <a name="label" val="PHI1"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="1" loc="(290,130)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(360,140)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(360,190)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(410,140)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(410,190)" name="Buffer"/>
+    <comp lib="1" loc="(450,60)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp loc="(190,50)" name="DLatch">
+      <a name="label" val="phi1_latch"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(310,50)" name="DLatch">
+      <a name="label" val="phi2_latch"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <wire from="(170,110)" to="(170,150)"/>
+    <wire from="(170,110)" to="(470,110)"/>
+    <wire from="(170,150)" to="(320,150)"/>
+    <wire from="(170,70)" to="(170,110)"/>
+    <wire from="(170,70)" to="(190,70)"/>
+    <wire from="(180,50)" to="(190,50)"/>
+    <wire from="(220,100)" to="(220,200)"/>
+    <wire from="(220,100)" to="(390,100)"/>
+    <wire from="(220,200)" to="(320,200)"/>
+    <wire from="(230,70)" to="(310,70)"/>
+    <wire from="(260,130)" to="(270,130)"/>
+    <wire from="(290,130)" to="(300,130)"/>
+    <wire from="(300,130)" to="(300,180)"/>
+    <wire from="(300,130)" to="(320,130)"/>
+    <wire from="(300,180)" to="(320,180)"/>
+    <wire from="(300,50)" to="(310,50)"/>
+    <wire from="(350,70)" to="(390,70)"/>
+    <wire from="(360,140)" to="(390,140)"/>
+    <wire from="(360,190)" to="(390,190)"/>
+    <wire from="(390,70)" to="(390,100)"/>
+    <wire from="(390,70)" to="(410,70)"/>
+    <wire from="(400,50)" to="(410,50)"/>
+    <wire from="(410,140)" to="(480,140)"/>
+    <wire from="(410,190)" to="(480,190)"/>
+    <wire from="(450,60)" to="(470,60)"/>
+    <wire from="(470,60)" to="(470,110)"/>
   </circuit>
   <circuit name="RWDecode">
     <a name="appearance" val="logisim_evolution"/>

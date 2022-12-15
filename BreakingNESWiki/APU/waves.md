@@ -8,13 +8,19 @@
 
 ## Делитель CLK
 
-![div_waves](/BreakingNESWiki/imgstore/apu/waves/div_waves.png)
+![div](/BreakingNESWiki/imgstore/apu/waves/div.png)
 
 Показаны значения внешнего пада `CLK`, сигнал `PHI0` для ядра и сигнал c внешнего пада `M2`.
 
 ## Генератор ACLK
 
-TBD.
+В условиях сброса:
+
+![aclk_with_reset](/BreakingNESWiki/imgstore/apu/waves/aclk_with_reset.png)
+
+Без сброса:
+
+![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
 
 ## Низкочастотные сигналы (LFO)
 

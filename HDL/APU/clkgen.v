@@ -85,12 +85,12 @@ module ACLKGen(PHI1, PHI2, ACLK, n_ACLK, RES);
 	wire n_latch2_out;
 	wire latch1_in;
 
-	dlatch latch1 (
+	dlatch phi1_latch (
 		.d(latch1_in),
 		.en(PHI1),
 		.nq(n_latch1_out) );
 
-	dlatch latch2 (
+	dlatch phi2_latch (
 		.d(n_latch1_out),
 		.en(PHI2),
 		.nq(n_latch2_out) );

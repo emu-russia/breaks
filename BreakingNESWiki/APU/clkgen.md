@@ -14,6 +14,10 @@
 
 ![ACLK_Gen](/BreakingNESWiki/imgstore/apu/ACLK_Gen.jpg)
 
+Сигналы `ACLK` и `/ACLK` не комплементарны и имеют перекрывание:
+
+![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
+
 ## Программный таймер
 
 Из официальной документации известно что этот компонент называется `Soft CLK`.

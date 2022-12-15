@@ -4,6 +4,16 @@ This section contains signal timings for different APU units. Circuit engineers 
 
 ## CLK Divider
 
-![div_waves](/BreakingNESWiki/imgstore/apu/waves/div_waves.png)
+![div](/BreakingNESWiki/imgstore/apu/waves/div.png)
 
 The external `CLK` pad, the `PHI0` signal for the core, and the signal of the external `M2` pad are shown.
+
+## ACLK Generator
+
+Under reset conditions:
+
+![aclk_with_reset](/BreakingNESWiki/imgstore/apu/waves/aclk_with_reset.png)
+
+Without reset:
+
+![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)

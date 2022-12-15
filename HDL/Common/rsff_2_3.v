@@ -15,7 +15,7 @@ module rsff_2_3(res1, res2, s, q, nq);
 	always @(*) begin
 		if (res1 | res2)
 			val <= 1'b0;
-		if (s)
+		else if (s)
 			val <= 1'b1;
 	end
 
