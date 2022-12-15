@@ -74,9 +74,13 @@ Auxiliary circuits for internal `DBG` signal:
 
 Transistor circuits for reading debugging values of sound generators:
 
-|Square 0|Square 1|Triangle|Noise|DPCM|
+|Channel|Circuit|Register operation|Value|Where|
 |---|---|---|---|---|
-|![square0_debug_tran](/BreakingNESWiki/imgstore/apu/square0_debug_tran.jpg)|![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|
+|Square 0|![square0_debug_tran](/BreakingNESWiki/imgstore/apu/square0_debug_tran.jpg)|/R4018|SQA\[3:0\]|D\[3:0\]|
+|Square 1|![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|/R4018|SQB\[3:0\]|D\[7:4\]|
+|Triangle|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|/R4019|TRI\[3:0\]|D\[3:0\]|
+|Noise|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|/R4019|RND\[3:0\]|D\[7:4\]|
+|DPCM|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|/R401A|DMC\[6:0\]|D\[6:0\]|
 
 Register operations with debug values are available only when DBG = 1.
 
@@ -84,6 +88,6 @@ LOCK circuit:
 
 ![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)
 
-The `LOCK` signal is used to suspend the sound generators so that their values can be locked and can be read using the registers. The lock can only be cleared by a reset.
+The `LOCK` signal is used to suspend the sound generators so that their values can be locked and can be read using the registers.
 
 :warning: The debug hookup is only available in 2A03. The PAL version of the APU (2A07) does not contain any debugging mechanisms.
