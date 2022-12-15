@@ -14,7 +14,7 @@ module rsff(r, s, q, nq);
 	always @(r or s) begin
 		if (r)
 			val <= 1'b0;
-		if (s)
+		else if (s)
 			val <= 1'b1;
 	end
 

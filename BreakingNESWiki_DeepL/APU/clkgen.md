@@ -14,6 +14,10 @@ The ACLK generator is used to generate an internal ACLK clock signal (APU CLK), 
 
 ![ACLK_Gen](/BreakingNESWiki/imgstore/apu/ACLK_Gen.jpg)
 
+The `ACLK` and `ACLK` signals are not complementary and have an overlap:
+
+![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
+
 ## Software Timer
 
 From the official documentation we know that this component is called `Soft CLK`.
