@@ -39,11 +39,23 @@ The 6502 core and surrounding logic includes the following entities:
 
 ## Divider
 
+The divider is a Johnson counter.
+
 ![div](/BreakingNESWiki/imgstore/apu/div.jpg)
 
 (The diagram is placed "on its side" for convenience).
 
+General purpose schematic:
+
 ![div_logisim](/BreakingNESWiki/imgstore/apu/div_logisim.jpg)
+
+Schematic for 2A03:
+
+![DIV_2A03](/BreakingNESWiki/imgstore/apu/DIV_2A03.jpg)
+
+The shift register bit of the divider:
+
+![DIV_SRBit](/BreakingNESWiki/imgstore/apu/DIV_SRBit.jpg)
 
 ## Connecting the 6502 and APU
 

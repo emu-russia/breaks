@@ -39,11 +39,23 @@
 
 ## Делитель частоты
 
+Делитель представляет собой счётчик Джонсона.
+
 ![div](/BreakingNESWiki/imgstore/apu/div.jpg)
 
 (Для удобства схема положена "на бок").
 
+Схема общего плана:
+
 ![div_logisim](/BreakingNESWiki/imgstore/apu/div_logisim.jpg)
+
+Схема для 2A03:
+
+![DIV_2A03](/BreakingNESWiki/imgstore/apu/DIV_2A03.jpg)
+
+Разряд регистра сдвига делителя:
+
+![DIV_SRBit](/BreakingNESWiki/imgstore/apu/DIV_SRBit.jpg)
 
 ## Соединение 6502 и APU
 
