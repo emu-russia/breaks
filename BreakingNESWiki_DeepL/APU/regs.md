@@ -46,7 +46,6 @@
 |RND\[3:0\]| | | |
 |DMC\[6:0\]| | | |
 |LOCK| | | |
-|OUT\[2:0\]| | | |
 
 Pre-decoder, to select the address space of the APU registers:
 
@@ -65,37 +64,26 @@ Selecting a register operation:
 
 :warning: The APU registers address space is selected by the value of the CPU address bus (`CPU_Ax`). But the choice of register is made by the value of the address, which is formed at the address multiplexer of DMA-controller (signals A0-A4).
 
-## Debug Registers
+## Debug Interface
 
-DBG pin:
-
-![pad_dbg](/BreakingNESWiki/imgstore/apu/pad_dbg.jpg)
-
-Auxiliary circuits for DBG:
+Auxiliary circuits for internal `DBG` signal:
 
 |Amplifying inverter|Intermediate inverter|/DBGRD Signal|
 |---|---|---|
 |![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)|![nDBGRD](/BreakingNESWiki/imgstore/apu/nDBGRD.jpg)|
 
-Debug register circuits:
+Transistor circuits for reading debugging values of sound generators:
 
 |Square 0|Square 1|Triangle|Noise|DPCM|
 |---|---|---|---|---|
 |![square0_debug_tran](/BreakingNESWiki/imgstore/apu/square0_debug_tran.jpg)|![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|
 
-Register operations with debug registers are available only when DBG = 1.
+Register operations with debug values are available only when DBG = 1.
 
 LOCK circuit:
 
 ![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)
 
-The `LOCK` signal is used to temporarily suspend the tone generators so that their values can be fixed in the debug registers.
+The `LOCK` signal is used to temporarily suspend the sound generators so that their values can be locked and can be read using the registers.
 
-## I/O Ports
-
-Circuit for producing OUTx signals:
-
-![out_tran](/BreakingNESWiki/imgstore/apu/out_tran.jpg)
-
-- The output value for pins `OUT0-2` is derived from the internal signals `OUT0-2` (with the same name).
-- The output value for pins `/IN0-1` is the internal signals `/R4016` and `/R4017` from the register selector.
+:warning: The debug hookup is only available in 2A03. The PAL version of the APU (2A07) does not contain any debugging mechanisms.

@@ -37,31 +37,13 @@
 |D\[7:0\]| | | |
 |/ACLK| | | |
 
-## Главный тактовый сигнал
-
-Контакт CLK:
-
-![pad_clk](/BreakingNESWiki/imgstore/apu/pad_clk.jpg)
-
-Делитель частоты:
+## Делитель частоты
 
 ![div](/BreakingNESWiki/imgstore/apu/div.jpg)
 
 (Для удобства схема положена "на бок").
 
 ![div_logisim](/BreakingNESWiki/imgstore/apu/div_logisim.jpg)
-
-Контакт M2:
-
-![pad_m2](/BreakingNESWiki/imgstore/apu/pad_m2.jpg)
-
-Схема для получения сигнала `NotDBG_RES`:
-
-![notdbg_res_tran](/BreakingNESWiki/imgstore/apu/notdbg_res_tran.jpg)
-
-По какой-то причине схема содержит отключенную "гребенку" транзисторов, которая представляет собой цепочку инверторов внутреннего сигнала `RES`.
-
-В режиме отладки (когда DBG=1) - во время сброса внешний сигнал M2 не трогается. В обычном режиме (для Retail консолей) - во время сброса внешний сигнал M2 в состоянии `z` (Open-drain).
 
 ## Соединение 6502 и APU
 
