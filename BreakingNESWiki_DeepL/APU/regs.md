@@ -86,7 +86,8 @@ Register operations with debug values are available only when DBG = 1.
 
 LOCK circuit:
 
-![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)
+|![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)|![lock](/BreakingNESWiki/imgstore/apu/lock.jpg)|
+|---|---|
 
 The `LOCK` signal is used to suspend the sound generators so that their values can be locked and can be read using the registers.
 

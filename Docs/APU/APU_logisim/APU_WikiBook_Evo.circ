@@ -2162,6 +2162,7 @@
     <comp lib="0" loc="(120,210)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="label" val="Value"/>
+      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(370,130)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -8008,29 +8009,93 @@
     <a name="circuit" val="DebugLock"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
-    <comp lib="0" loc="(130,130)" name="Pin">
+    <comp lib="0" loc="(130,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="RES"/>
+    </comp>
+    <comp lib="0" loc="(130,110)" name="Tunnel">
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(130,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="W401A"/>
     </comp>
-    <comp lib="0" loc="(130,90)" name="Pin">
+    <comp lib="0" loc="(130,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="n_ACLK"/>
     </comp>
-    <comp lib="0" loc="(200,180)" name="Pin">
+    <comp lib="0" loc="(150,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="D_In"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="0" loc="(420,50)" name="Pin">
+    <comp lib="0" loc="(160,220)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+    </comp>
+    <comp lib="0" loc="(190,210)" name="Tunnel">
+      <a name="label" val="D7"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(220,60)" name="NoConnect"/>
+    <comp lib="0" loc="(220,80)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="D7"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(300,210)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="RES"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(390,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="APU_LOCK"/>
       <a name="output" val="true"/>
     </comp>
+    <comp lib="1" loc="(350,200)" name="NOR Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="2" loc="(260,70)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+    </comp>
+    <comp lib="2" loc="(310,100)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+    </comp>
+    <comp loc="(420,100)" name="TranspDLatch">
+      <a name="label" val="lock_latch"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <wire from="(130,20)" to="(130,50)"/>
+    <wire from="(130,20)" to="(240,20)"/>
+    <wire from="(130,80)" to="(160,80)"/>
+    <wire from="(150,220)" to="(160,220)"/>
+    <wire from="(160,30)" to="(160,80)"/>
+    <wire from="(160,30)" to="(290,30)"/>
+    <wire from="(180,210)" to="(190,210)"/>
+    <wire from="(220,60)" to="(230,60)"/>
+    <wire from="(220,80)" to="(230,80)"/>
+    <wire from="(240,20)" to="(240,50)"/>
+    <wire from="(260,70)" to="(270,70)"/>
+    <wire from="(270,110)" to="(270,160)"/>
+    <wire from="(270,110)" to="(280,110)"/>
+    <wire from="(270,160)" to="(360,160)"/>
+    <wire from="(270,170)" to="(270,190)"/>
+    <wire from="(270,170)" to="(450,170)"/>
+    <wire from="(270,190)" to="(310,190)"/>
+    <wire from="(270,70)" to="(270,90)"/>
+    <wire from="(270,90)" to="(280,90)"/>
+    <wire from="(290,30)" to="(290,80)"/>
+    <wire from="(300,210)" to="(310,210)"/>
+    <wire from="(310,100)" to="(320,100)"/>
+    <wire from="(350,200)" to="(360,200)"/>
+    <wire from="(360,160)" to="(360,200)"/>
+    <wire from="(360,200)" to="(390,200)"/>
+    <wire from="(420,110)" to="(450,110)"/>
+    <wire from="(450,110)" to="(450,170)"/>
   </circuit>
   <circuit name="OUT_Ports">
     <a name="appearance" val="logisim_evolution"/>
@@ -8072,5 +8137,41 @@
       <a name="label" val="OUT_0"/>
       <a name="output" val="true"/>
     </comp>
+  </circuit>
+  <circuit name="TranspDLatch">
+    <a name="appearance" val="evolution"/>
+    <a name="circuit" val="TranspDLatch"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,80)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="label" val="d"/>
+      <a name="tristate" val="true"/>
+    </comp>
+    <comp lib="0" loc="(160,120)" name="Constant"/>
+    <comp lib="0" loc="(320,140)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="nq"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(320,60)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="q"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="4" loc="(180,70)" name="D Flip-Flop">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="trigger" val="high"/>
+    </comp>
+    <wire from="(100,80)" to="(170,80)"/>
+    <wire from="(160,120)" to="(170,120)"/>
+    <wire from="(230,120)" to="(280,120)"/>
+    <wire from="(230,80)" to="(280,80)"/>
+    <wire from="(280,120)" to="(280,140)"/>
+    <wire from="(280,140)" to="(320,140)"/>
+    <wire from="(280,60)" to="(280,80)"/>
+    <wire from="(280,60)" to="(320,60)"/>
   </circuit>
 </project>
