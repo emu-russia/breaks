@@ -37,31 +37,13 @@ The 6502 core and surrounding logic includes the following entities:
 |D\[7:0\]| | | |
 |/ACLK| | | |
 
-## Master Clock
-
-CLK pad:
-
-![pad_clk](/BreakingNESWiki/imgstore/apu/pad_clk.jpg)
-
-CLK divider:
+## Divider
 
 ![div](/BreakingNESWiki/imgstore/apu/div.jpg)
 
 (The diagram is placed "on its side" for convenience).
 
 ![div_logisim](/BreakingNESWiki/imgstore/apu/div_logisim.jpg)
-
-M2 pad:
-
-![pad_m2](/BreakingNESWiki/imgstore/apu/pad_m2.jpg)
-
-Circuit for obtaining the `NotDBG_RES` signal:
-
-![notdbg_res_tran](/BreakingNESWiki/imgstore/apu/notdbg_res_tran.jpg)
-
-For some reason the circuit contains a disabled "comb" of transistors, which is a chain of inverters of the internal `RES` signal.
-
-In debug mode (when DBG=1) - the external signal M2 is not touched during reset. In regular mode (for Retail consoles) - during reset the external signal M2 is in `z` state (Open-drain).
 
 ## Connecting the 6502 and APU
 

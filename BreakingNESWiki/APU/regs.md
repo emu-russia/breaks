@@ -45,7 +45,6 @@
 |RND\[3:0\]| | | |
 |DMC\[6:0\]| | | |
 |LOCK| | | |
-|OUT\[2:0\]| | | |
 
 Предекодер, для выбора адресного пространства регистров APU:
 
@@ -64,37 +63,26 @@ R/W декодер для регистровых операций:
 
 :warning: Выбор адресного пространства регистров APU производится по значению адресной шины CPU (`CPU_Ax`). Но выбор регистра производится по значению адреса, который формируется на адресном мультиплексоре DMA-контроллера (cигналы A0-A4).
 
-## Отладочные регистры
+## Отладочный интерфейс
 
-Контакт DBG:
-
-![pad_dbg](/BreakingNESWiki/imgstore/apu/pad_dbg.jpg)
-
-Вспомогательные схемы для DBG:
+Вспомогательные схемы для внутреннего сигнала `DBG`:
 
 |Усиливающий инвертер|Промежуточный инвертер|Сигнал /DBGRD|
 |---|---|---|
 |![dbg_buf1](/BreakingNESWiki/imgstore/apu/dbg_buf1.jpg)|![dbg_not1](/BreakingNESWiki/imgstore/apu/dbg_not1.jpg)|![nDBGRD](/BreakingNESWiki/imgstore/apu/nDBGRD.jpg)|
 
-Транзисторные схемы отладочных регистров:
+Транзисторные схемы считывания отладочных значений генераторов звука:
 
 |Square 0|Square 1|Triangle|Noise|DPCM|
 |---|---|---|---|---|
 |![square0_debug_tran](/BreakingNESWiki/imgstore/apu/square0_debug_tran.jpg)|![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|
 
-Регистровые операции с отладочными регистрами доступны только когда DBG = 1.
+Регистровые операции с отладочными значениями доступны только когда DBG = 1.
 
 Схема LOCK:
 
 ![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)
 
-Сигнал `LOCK` используется для временной приостановки тональных генераторов, чтобы их значения были зафиксированы в отладочных регистрах.
+Сигнал `LOCK` используется для временной приостановки звуковых генераторов, чтобы их значения были зафиксированы и могли быть прочитаны используя регистры.
 
-## Порты ввода/вывода
-
-Схема для формирования сигналов OUTx:
-
-![out_tran](/BreakingNESWiki/imgstore/apu/out_tran.jpg)
-
-- Выходное значение для контактов `OUT0-2` получается из внутренних сигналов `OUT0-2` (с таким же названием).
-- Выходное значение для контактов `/IN0-1` - это внутренние сигналы `/R4016` и `/R4017` с селектора регистров.
+:warning: Отладочная обвязка доступна только в 2A03. PAL-версия APU (2A07) не содержит отладочных механизмов.

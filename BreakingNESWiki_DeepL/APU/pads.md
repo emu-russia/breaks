@@ -53,9 +53,25 @@ The value from the internal address bus is directly output to pins A0-A15 (witho
 
 The internal and external data buses are connected directly (without buffering).
 
-## CLK, DBG, M2
+## CLK
 
-Covered in the [6502 core](core.md) section.
+![pad_clk](/BreakingNESWiki/imgstore/apu/pad_clk.jpg)
+
+## M2
+
+![pad_m2](/BreakingNESWiki/imgstore/apu/pad_m2.jpg)
+
+Circuit for obtaining the `NotDBG_RES` signal:
+
+![notdbg_res_tran](/BreakingNESWiki/imgstore/apu/notdbg_res_tran.jpg)
+
+For some reason the circuit contains a disabled "comb" of transistors, which is a chain of inverters of the internal `RES` signal.
+
+In debug mode (when DBG=1) - the external signal M2 is not touched during reset. In regular mode (for Retail consoles) - during reset the external signal M2 is in `z` state (Open-drain).
+
+## DBG
+
+![pad_dbg](/BreakingNESWiki/imgstore/apu/pad_dbg.jpg)
 
 ## /IRQ
 
@@ -90,5 +106,9 @@ The pin design is not different from the D0-D7 pin design, except that the analo
 
 During reset (RES = 1) the In/Out terminals are disconnected. During reset the terminal circuit operates similarly to the D0-D7 terminal circuit, with RD = WR = 1, and this signal value disconnects the terminal (`z`).
 
-The output value for contacts `/IN0-1` is the internal signals `/R4016` and `/R4017`.
-The output value for the `OUT0-2` pins is obtained from the internal signals `OUT0-2` (with the same name). The schematic of the formation of these signals can be found in [6502 Core](core.md) section.
+- The output value for pins `OUT0-2` is derived from the internal signals `OUT0-2` (with the same name).
+- The output value for pins `/IN0-1` is the internal signals `/R4016` and `/R4017` from the register selector.
+
+Circuit for producing OUTx signals:
+
+![out_tran](/BreakingNESWiki/imgstore/apu/out_tran.jpg)
