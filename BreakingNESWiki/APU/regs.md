@@ -73,9 +73,13 @@ R/W декодер для регистровых операций:
 
 Транзисторные схемы считывания отладочных значений генераторов звука:
 
-|Square 0|Square 1|Triangle|Noise|DPCM|
+|Канал|Схема|Регистровая операция|Значение|Куда|
 |---|---|---|---|---|
-|![square0_debug_tran](/BreakingNESWiki/imgstore/apu/square0_debug_tran.jpg)|![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|
+|Square 0|![square0_debug_tran](/BreakingNESWiki/imgstore/apu/square0_debug_tran.jpg)|/R4018|SQA\[3:0\]|D\[3:0\]|
+|Square 1|![square1_debug_tran](/BreakingNESWiki/imgstore/apu/square1_debug_tran.jpg)|/R4018|SQB\[3:0\]|D\[7:4\]|
+|Triangle|![tri_debug_tran](/BreakingNESWiki/imgstore/apu/tri_debug_tran.jpg)|/R4019|TRI\[3:0\]|D\[3:0\]|
+|Noise|![noise_debug_tran](/BreakingNESWiki/imgstore/apu/noise_debug_tran.jpg)|/R4019|RND\[3:0\]|D\[7:4\]|
+|DPCM|![dpcm_debug_tran](/BreakingNESWiki/imgstore/apu/dpcm_debug_tran.jpg)|/R401A|DMC\[6:0\]|D\[6:0\]|
 
 Регистровые операции с отладочными значениями доступны только когда DBG = 1.
 
@@ -83,6 +87,6 @@ R/W декодер для регистровых операций:
 
 ![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)
 
-Сигнал `LOCK` используется для приостановки звуковых генераторов, чтобы их значения были зафиксированы и могли быть прочитаны используя регистры. Блокировка очищается только сбросом.
+Сигнал `LOCK` используется для приостановки звуковых генераторов, чтобы их значения были зафиксированы и могли быть прочитаны используя регистры.
 
 :warning: Отладочная обвязка доступна только в 2A03. PAL-версия APU (2A07) не содержит отладочных механизмов.
