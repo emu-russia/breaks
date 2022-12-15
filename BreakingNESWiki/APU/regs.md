@@ -85,7 +85,8 @@ R/W декодер для регистровых операций:
 
 Схема LOCK:
 
-![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)
+|![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)|![lock](/BreakingNESWiki/imgstore/apu/lock.jpg)|
+|---|---|
 
 Сигнал `LOCK` используется для приостановки звуковых генераторов, чтобы их значения были зафиксированы и могли быть прочитаны используя регистры.
 
