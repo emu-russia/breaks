@@ -61,6 +61,20 @@
 
 Исключение составляет команда FLOAD: Frequency LFSR перезагружает сам себя после пересчёта, но при этом одновременно сигнализирует в основной блок управления.
 
+## Счётчики DPCM
+
+Разряд прямого счётчика, применяемого в Sample Bit Counter и Address Counter:
+
+![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
+
+Разряд обратного счётчика, применяемого в Sample Counter:
+
+![DownCounterBit](/BreakingNESWiki/imgstore/apu/DownCounterBit.jpg)
+
+Разряд реверсивного счётчика, применяемого для выходного значения:
+
+![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
+
 ## DPCM Control Summary
 
 ![DPCM_Control](/BreakingNESWiki/imgstore/apu/DPCM_Control.jpg)
@@ -112,12 +126,10 @@
 
 ## DPCM Sample Counter
 
+Применяется обратный счётчик.
+
 |![dpcm_sample_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_tran.jpg)|![DPCM_SampleCounter](/BreakingNESWiki/imgstore/apu/DPCM_SampleCounter.jpg)|
 |---|---|
-
-Разряд счётчика, применяемого в этой и других схемах:
-
-![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
 
 ## DPCM Sample Buffer
 
@@ -129,6 +141,8 @@
 ![SRBit](/BreakingNESWiki/imgstore/apu/SRBit.jpg)
 
 ## DPCM Sample Bit Counter
+
+Применяется прямой счётчик.
 
 |![dpcm_sample_bit_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_bit_counter_tran.jpg)|![DPCM_SampleBitCounter](/BreakingNESWiki/imgstore/apu/DPCM_SampleBitCounter.jpg)|
 |---|---|
@@ -180,7 +194,9 @@ PLA1 является обычным демультиплексором 4-в-16,
 |![dpcm_addr_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_addr_in_tran.jpg)|![DPCM_AddressReg](/BreakingNESWiki/imgstore/apu/DPCM_AddressReg.jpg)|
 |---|---|
 
-## DPCM Address
+## DPCM Address Counter
+
+Применяется прямой счётчик.
 
 |Младшая часть|Старшая часть|
 |---|---|
@@ -190,14 +206,12 @@ PLA1 является обычным демультиплексором 4-в-16,
 
 ![DMC_A15](/BreakingNESWiki/imgstore/apu/DMC_A15.jpg)
 
-![DPCM_Address](/BreakingNESWiki/imgstore/apu/DPCM_Address.jpg)
+![DPCM_AddressCounter](/BreakingNESWiki/imgstore/apu/DPCM_AddressCounter.jpg)
 
 ## DPCM Output ($4011)
+
+Применяется реверсивный счётчик.
 
 ![dpcm_output_tran](/BreakingNESWiki/imgstore/apu/dpcm_output_tran.jpg)
 
 ![DPCM_Output](/BreakingNESWiki/imgstore/apu/DPCM_Output.jpg)
-
-Разряд реверсивного счётчика:
-
-![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
