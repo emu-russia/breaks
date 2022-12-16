@@ -61,6 +61,20 @@ The majority of control signals are of the same nature:
 
 An exception is the FLOAD command: Frequency LFSR reloads itself after counting, but at the same time signals to the main control unit.
 
+## DPCM Counters
+
+The bit of the `up` counter used in Sample Bit Counter and Address Counter:
+
+![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
+
+The bit of the `down` counter used in Sample Counter:
+
+![DownCounterBit](/BreakingNESWiki/imgstore/apu/DownCounterBit.jpg)
+
+The bit of the `reversible` counter used in DPCM Output:
+
+![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
+
 ## DPCM Control Summary
 
 ![DPCM_Control](/BreakingNESWiki/imgstore/apu/DPCM_Control.jpg)
@@ -112,6 +126,8 @@ A register bit that is used in other circuits as well:
 
 ## DPCM Sample Counter
 
+Down counter is used.
+
 |![dpcm_sample_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_tran.jpg)|![DPCM_SampleCounter](/BreakingNESWiki/imgstore/apu/DPCM_SampleCounter.jpg)|
 |---|---|
 
@@ -129,6 +145,8 @@ The bit of the shift register used in the Sample Buffer:
 ![SRBit](/BreakingNESWiki/imgstore/apu/SRBit.jpg)
 
 ## DPCM Sample Bit Counter
+
+Up counter is used.
 
 |![dpcm_sample_bit_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_bit_counter_tran.jpg)|![DPCM_SampleBitCounter](/BreakingNESWiki/imgstore/apu/DPCM_SampleBitCounter.jpg)|
 |---|---|
@@ -180,7 +198,9 @@ The use of LFSR instead of a regular counter is not reasonable. Other sources cl
 |![dpcm_addr_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_addr_in_tran.jpg)|![DPCM_AddressReg](/BreakingNESWiki/imgstore/apu/DPCM_AddressReg.jpg)|
 |---|---|
 
-## DPCM Address
+## DPCM Address Counter
+
+Up counter is used.
 
 |Low|High|
 |---|---|
@@ -190,14 +210,12 @@ DMC_A15 input is connected to Vdd in the address multiplexer:
 
 ![DMC_A15](/BreakingNESWiki/imgstore/apu/DMC_A15.jpg)
 
-![DPCM_Address](/BreakingNESWiki/imgstore/apu/DPCM_Address.jpg)
+![DPCM_AddressCounter](/BreakingNESWiki/imgstore/apu/DPCM_AddressCounter.jpg)
 
 ## DPCM Output ($4011)
+
+Reversible counter is used.
 
 ![dpcm_output_tran](/BreakingNESWiki/imgstore/apu/dpcm_output_tran.jpg)
 
 ![DPCM_Output](/BreakingNESWiki/imgstore/apu/DPCM_Output.jpg)
-
-Reversible counter bit:
-
-![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
