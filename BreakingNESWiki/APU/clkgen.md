@@ -125,3 +125,9 @@ Soft CLK управляется регистром $4017 (write-only):
 Используется в [генераторе шума](noise.md) и схеме контроля [счётчиками длительности](length.md).
 
 ![nACLK4](/BreakingNESWiki/imgstore/apu/nACLK4.jpg)
+
+### /ACLK5
+
+Используется в I/O защёлках, которые формируют сигналы OUTx для соответствующих выходных терминалов.
+
+![nACLK5](/BreakingNESWiki/imgstore/apu/nACLK5.jpg)
