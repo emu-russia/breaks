@@ -77,13 +77,13 @@ In debug mode (when DBG=1) - the external signal M2 is not touched during reset.
 
 ![pad_irq](/BreakingNESWiki/imgstore/apu/pad_irq.jpg)
 
-The logic design of this contact is a bit redundant. The value of the /IRQ contact generates the value of the internal signal /IRQ (with the same name).
+The logic design of this contact is a bit redundant. The value of the /IRQ input terminal generates the value of the internal signal /IRQ (with the same name).
 
 ## /NMI
 
 ![pad_nmi](/BreakingNESWiki/imgstore/apu/pad_nmi.jpg)
 
-The /NMI contact design is not different from the /IRQ contact design.
+The /NMI contact design is not different from the /IRQ terminal design.
 
 ## R/W
 
@@ -93,7 +93,7 @@ The output value of the R/W contact is derived from the internal `RW` signal, an
 
 A small tri-state logic controls the disconnection of the R/W pin.
 
-Some of the push/pull inverters used to delay the R/W line are disabled. Apparently the designers adjusted the propagation delay to trigger the contact.
+Some of the push/pull inverters used to delay the R/W line are disabled. Apparently the designers adjusted the propagation delay to trigger the signal.
 This same delay line also slows down the internal R/W signal a bit.
 
 ## Input/Output Ports
@@ -102,7 +102,7 @@ This same delay line also slows down the internal R/W signal a bit.
 |---|---|
 |![pad_in](/BreakingNESWiki/imgstore/apu/pad_in.jpg)|![pad_out](/BreakingNESWiki/imgstore/apu/pad_out.jpg)|
 
-The pin design is not different from the D0-D7 pin design, except that the analog of the `RD` signal is the internal reset signal (`RES`) and the analog of the `WR` signal is always connected to VCC (equal to 1, i.e. the pin always works as output).
+The design is not different from the D0-D7 terminals design, except that the analog of the `RD` signal is the internal reset signal (`RES`) and the analog of the `WR` signal is always connected to VCC (equal to 1, i.e. the pin always works as output).
 
 During reset (RES = 1) the In/Out terminals are disconnected. During reset the terminal circuit operates similarly to the D0-D7 terminal circuit, with RD = WR = 1, and this signal value disconnects the terminal (`z`).
 
@@ -112,3 +112,19 @@ During reset (RES = 1) the In/Out terminals are disconnected. During reset the t
 Circuit for producing OUTx signals:
 
 ![out_tran](/BreakingNESWiki/imgstore/apu/out_tran.jpg)
+
+## Pads Schematics
+
+Truly unidirectional terminals:
+
+![Pads1](/BreakingNESWiki/imgstore/apu/Pads1.jpg)
+
+Terminals using BIDIR circuit:
+
+![Pads2](/BreakingNESWiki/imgstore/apu/Pads2.jpg)
+
+As mentioned above, only the data bus uses all the features of the bidirectional terminal. The other pads based on the BIDIR circuit are redundant.
+
+BIDIR pad schematic:
+
+![BIDIR_Pad](/BreakingNESWiki/imgstore/apu/BIDIR_Pad.jpg)
