@@ -125,3 +125,9 @@ But in the general schematic for the two channels, the signal is simply marked a
 Used in the [noise generator](noise.md) and [length counter](length.md) control circuitry.
 
 ![nACLK4](/BreakingNESWiki/imgstore/apu/nACLK4.jpg)
+
+### /ACLK5
+
+Used in I/O latches that generate OUTx signals for the corresponding output terminals.
+
+![nACLK5](/BreakingNESWiki/imgstore/apu/nACLK5.jpg)

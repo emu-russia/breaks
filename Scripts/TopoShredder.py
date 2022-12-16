@@ -149,6 +149,7 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "nACLK2", [4451, 7154, 233, 184] )
 	CropImage (FusedTopo, imgstore + "nACLK3", [4799, 3233, 200, 181] )
 	CropImage (FusedTopo, imgstore + "nACLK4", [3050, 7710, 261, 187] )
+	CropImage (FusedTopo, imgstore + "nACLK5", [7845, 2000, 234, 616] )
 
 def PpuShredder (FusedTopo):
 	# TBD: Add missing labels in psd
