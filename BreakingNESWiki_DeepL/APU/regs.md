@@ -111,6 +111,8 @@ The bit mask is topological. 1 means there is a transistor, 0 means no transisto
 
 ## Debug Interface
 
+:warning: The debug hookup is only available in 2A03. The PAL version of the APU (2A07) does not contain any debugging mechanisms.
+
 Auxiliary circuits for internal `DBG` signal:
 
 |Amplifying inverter|Intermediate inverter|/DBGRD Signal|
@@ -129,11 +131,13 @@ Transistor circuits for reading debugging values of sound generators:
 
 Register operations with debug values are available only when DBG = 1.
 
+Circuit for reading the debug value:
+
+![DbgReadoutBit](/BreakingNESWiki/imgstore/apu/DbgReadoutBit.jpg)
+
 LOCK circuit:
 
 |![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)|![lock](/BreakingNESWiki/imgstore/apu/lock.jpg)|
 |---|---|
 
 The `LOCK` signal is used to suspend the sound generators so that their values can be locked and can be read using the registers.
-
-:warning: The debug hookup is only available in 2A03. The PAL version of the APU (2A07) does not contain any debugging mechanisms.
