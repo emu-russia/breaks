@@ -4,47 +4,47 @@
 
 |Сигнал|Откуда|Куда|Описание|
 |---|---|---|---|
-|R/W| | | |
+|R/W|CPU Core| | |
 |/DBGRD| | | |
-|CPU_A\[15:0\]| | | |
-|A\[15:0\]| | | |
-|/REGRD| | | |
-|/REGWR| | | |
-|/R4015| | | |
-|/R4016| | | |
-|/R4017| | | |
-|/R4018| | | |
-|/R4019| | | |
-|/R401A| | | |
-|W4000| | | |
-|W4001| | | |
-|W4002| | | |
-|W4003| | | |
-|W4004| | | |
-|W4005| | | |
-|W4006| | | |
-|W4007| | | |
-|W4008| | | |
-|W400A| | | |
-|W400B| | | |
-|W400C| | | |
-|W400E| | | |
-|W400F| | | |
-|W4010| | | |
-|W4011| | | |
-|W4012| | | |
-|W4013| | | |
-|W4014| | | |
-|W4015| | | |
-|W4016| | | |
-|W4017| | | |
-|W401A| | | |
+|CPU_A\[15:0\]|CPU Core| | |
+|A\[15:0\]|Address Mux| | |
+|/REGRD|Reg Predecode| | |
+|/REGWR|Reg Predecode| | |
+|/R4015|Reg Select| | |
+|/R4016|Reg Select| | |
+|/R4017|Reg Select| | |
+|/R4018|Reg Select| | |
+|/R4019|Reg Select| | |
+|/R401A|Reg Select| | |
+|W4000|Reg Select| | |
+|W4001|Reg Select| | |
+|W4002|Reg Select| | |
+|W4003|Reg Select| | |
+|W4004|Reg Select| | |
+|W4005|Reg Select| | |
+|W4006|Reg Select| | |
+|W4007|Reg Select| | |
+|W4008|Reg Select| | |
+|W400A|Reg Select| | |
+|W400B|Reg Select| | |
+|W400C|Reg Select| | |
+|W400E|Reg Select| | |
+|W400F|Reg Select| | |
+|W4010|Reg Select| | |
+|W4011|Reg Select| | |
+|W4012|Reg Select| | |
+|W4013|Reg Select| | |
+|W4014|Reg Select| | |
+|W4015|Reg Select| | |
+|W4016|Reg Select| | |
+|W4017|Reg Select| | |
+|W401A|Reg Select| | |
 |SQA\[3:0\]| | | |
 |SQB\[3:0\]| | | |
 |TRI\[3:0\]| | | |
 |RND\[3:0\]| | | |
 |DMC\[6:0\]| | | |
-|LOCK| | | |
+|LOCK|Lock FF| | |
 
 Предекодер, для выбора адресного пространства регистров APU:
 
@@ -56,6 +56,8 @@
 R/W декодер для регистровых операций:
 
 ![reg_rw_decoder_tran](/BreakingNESWiki/imgstore/apu/reg_rw_decoder_tran.jpg)
+
+![RegPredecode](/BreakingNESWiki/imgstore/apu/RegPredecode.jpg)
 
 Выбор регистровой операции:
 
