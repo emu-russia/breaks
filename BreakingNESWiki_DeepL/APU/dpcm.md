@@ -191,8 +191,6 @@ LFSR bit:
 
 ![LFSRBit](/BreakingNESWiki/imgstore/apu/LFSRBit.jpg)
 
-The use of LFSR instead of a regular counter is not reasonable. Other sources claim that this was done to save space, but the economy is questionable: the LFSR input value (9 bits) requires the same number of bits as a regular 9-bit counter. If a regular counter were used instead of the LFSR, it would only take up 1.2 times as much space.
-
 ## DPCM Address Register ($4012)
 
 |![dpcm_addr_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_addr_in_tran.jpg)|![DPCM_AddressReg](/BreakingNESWiki/imgstore/apu/DPCM_AddressReg.jpg)|

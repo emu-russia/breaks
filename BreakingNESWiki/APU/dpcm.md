@@ -187,8 +187,6 @@ PLA1 является обычным демультиплексором 4-в-16,
 
 ![LFSRBit](/BreakingNESWiki/imgstore/apu/LFSRBit.jpg)
 
-Применение LFSR вместо обычного счётчика не находит обоснования. В других источниках утверждается что это было сделано ради экономии, но экономия сомнительная: входное значение LFSR (9 бит) требует столько же разрядов, как и обычный 9-разрядный счётчик. Если бы вместо LFSR использовался обычный счётчик - он бы занимал только в 1.2 раза большую площадь.
-
 ## DPCM Address Register ($4012)
 
 |![dpcm_addr_in_tran](/BreakingNESWiki/imgstore/apu/dpcm_addr_in_tran.jpg)|![DPCM_AddressReg](/BreakingNESWiki/imgstore/apu/DPCM_AddressReg.jpg)|

@@ -66,6 +66,49 @@ Selecting a register operation:
 
 :warning: The APU registers address space is selected by the value of the CPU address bus (`CPU_Ax`). But the choice of register is made by the value of the address, which is formed at the address multiplexer of DMA-controller (signals A0-A4).
 
+Bitmask:
+
+```
+101010110100
+110010110100
+101100110100
+001100110101
+
+110011001100
+010100101011
+001100101011
+010101001011
+010010101011
+
+001011001011
+010011001011
+001011010011
+001101001011
+001010101011
+
+001010110011
+010011001101
+001100110011
+010010101101
+010100110011
+
+010101010011
+001101010011
+110101001100
+010100101101
+101101001100
+
+001100101101
+001101001101
+001010101101
+010101001101
+001011001101
+```
+
+The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
+
+![RegSel](/BreakingNESWiki/imgstore/apu/RegSel.jpg)
+
 ## Debug Interface
 
 Auxiliary circuits for internal `DBG` signal:
