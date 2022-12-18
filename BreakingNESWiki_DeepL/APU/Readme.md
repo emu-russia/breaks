@@ -8,17 +8,18 @@ The official name is just CPU, but we will stick to the unofficial term.
 
 The chip was developed by [Ricoh](../Ricoh.md), chip names are RP2A03 for NTSC and RP2A07 for PAL.
 
+![APU](/BreakingNESWiki/imgstore/apu/APU.jpg)
+
 The APU includes:
 - MOS 6502 processor core, with disabled decimal correction (BCD) circuit
-- DMA to send sprites (hardwired to external PPU register)
-- Tone generators: 2 square, 1 triangle, 1 noise generator
-- Delta PCM
-- DACs to convert digital outputs of synthesized sound to analog levels
-- DMA for sampling DPCM samples
-- Small DMA controller
-- Software Timer (commonly known as `Frame counter`)
 - Input clock frequency divider
-- I/O ports (which are used to receive data from controllers in NES)
+- Software Timer (commonly known as `Frame counter`)
+- Sound generators: 2 square channels, 1 triangle, 1 noise generator
+- Delta PCM
+- DMA for sampling DPCM samples
+- DACs to convert digital outputs of synthesized sound to analog levels
+- DMA to send sprites (hardwired to external PPU register $2004) and dedicated DMA controller
+- I/O ports (which are usually used to receive data from controllers in NES)
 - Debug registers (not available on Retail consoles)
 
 The DAC makes the APU a semi-analog circuit.
