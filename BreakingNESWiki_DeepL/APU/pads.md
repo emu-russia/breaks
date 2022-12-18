@@ -113,6 +113,10 @@ Circuit for producing OUTx signals:
 
 ![out_tran](/BreakingNESWiki/imgstore/apu/out_tran.jpg)
 
+![OUT_Ports](/BreakingNESWiki/imgstore/apu/OUT_Ports.jpg)
+
+![IORegBit](/BreakingNESWiki/imgstore/apu/IORegBit.jpg)
+
 ## Pads Schematics
 
 Truly unidirectional terminals:
