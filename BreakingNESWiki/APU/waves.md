@@ -32,7 +32,13 @@ TBD.
 
 ## Декодер регистровых операций
 
-TBD.
+Чтение регистров:
+
+![regops_read](/BreakingNESWiki/imgstore/apu/waves/regops_read.png)
+
+Запись регистров:
+
+![regops_write](/BreakingNESWiki/imgstore/apu/waves/regops_write.png)
 
 ## Декодер счётчиков длительности
 
