@@ -17,3 +17,13 @@ Under reset conditions:
 Without reset:
 
 ![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
+
+## Register Operations Decoder
+
+Read Registers:
+
+![regops_read](/BreakingNESWiki/imgstore/apu/waves/regops_read.png)
+
+Write Registers:
+
+![regops_write](/BreakingNESWiki/imgstore/apu/waves/regops_write.png)
