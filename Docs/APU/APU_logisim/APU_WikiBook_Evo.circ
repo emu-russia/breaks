@@ -238,7 +238,7 @@
       <a name="text" val="RES"/>
     </comp>
     <comp loc="(1210,100)" name="SoftCLK"/>
-    <comp loc="(1340,570)" name="ToneGenerators"/>
+    <comp loc="(1340,570)" name="SoundGenerators"/>
     <comp loc="(1670,440)" name="DebugLock"/>
     <comp loc="(1670,80)" name="OUT_Ports"/>
     <comp loc="(1670,840)" name="RWDecode"/>
@@ -7583,9 +7583,9 @@
       <a name="output" val="true"/>
     </comp>
   </circuit>
-  <circuit name="ToneGenerators">
+  <circuit name="SoundGenerators">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="ToneGenerators"/>
+    <a name="circuit" val="SoundGenerators"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(130,100)" name="Pin">
@@ -8233,34 +8233,76 @@
     <a name="circuit" val="RWDecode"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
-    <comp lib="0" loc="(160,140)" name="Pin">
+    <comp lib="0" loc="(150,120)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="n_R4015"/>
     </comp>
-    <comp lib="0" loc="(160,190)" name="Pin">
+    <comp lib="0" loc="(150,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="DBG"/>
     </comp>
-    <comp lib="0" loc="(160,240)" name="Pin">
+    <comp lib="0" loc="(150,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="n_REGRD"/>
     </comp>
-    <comp lib="0" loc="(160,90)" name="Pin">
+    <comp lib="0" loc="(150,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="APU_RW"/>
     </comp>
-    <comp lib="0" loc="(440,140)" name="Pin">
+    <comp lib="0" loc="(400,120)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RD"/>
       <a name="output" val="true"/>
     </comp>
-    <comp lib="0" loc="(440,80)" name="Pin">
+    <comp lib="0" loc="(400,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="WR"/>
       <a name="output" val="true"/>
     </comp>
+    <comp lib="1" loc="(190,220)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(250,190)" name="NAND Gate">
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(320,70)" name="NAND Gate">
+      <a name="inputs" val="3"/>
+      <a name="size" val="30"/>
+    </comp>
+    <comp lib="1" loc="(350,120)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(360,70)" name="Buffer"/>
+    <comp lib="1" loc="(390,120)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="8" loc="(71,56)" name="Text">
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="from DMA buf"/>
+    </comp>
+    <wire from="(150,120)" to="(190,120)"/>
+    <wire from="(150,170)" to="(200,170)"/>
+    <wire from="(150,220)" to="(170,220)"/>
+    <wire from="(150,70)" to="(240,70)"/>
+    <wire from="(190,220)" to="(200,220)"/>
+    <wire from="(190,60)" to="(190,120)"/>
+    <wire from="(190,60)" to="(280,60)"/>
+    <wire from="(200,170)" to="(200,180)"/>
+    <wire from="(200,180)" to="(210,180)"/>
+    <wire from="(200,200)" to="(200,220)"/>
+    <wire from="(200,200)" to="(210,200)"/>
+    <wire from="(240,120)" to="(330,120)"/>
+    <wire from="(240,70)" to="(240,120)"/>
+    <wire from="(240,70)" to="(280,70)"/>
+    <wire from="(250,190)" to="(260,190)"/>
+    <wire from="(260,80)" to="(260,190)"/>
+    <wire from="(260,80)" to="(280,80)"/>
+    <wire from="(320,70)" to="(340,70)"/>
+    <wire from="(350,120)" to="(370,120)"/>
+    <wire from="(360,70)" to="(400,70)"/>
+    <wire from="(390,120)" to="(400,120)"/>
   </circuit>
   <circuit name="RegPredecode">
     <a name="appearance" val="logisim_evolution"/>
@@ -8602,6 +8644,10 @@
       <a name="appearance" val="NewPins"/>
       <a name="label" val="W4016"/>
     </comp>
+    <comp lib="0" loc="(170,110)" name="Tunnel">
+      <a name="label" val="nACLK5"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
     <comp lib="0" loc="(180,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="D_In"/>
@@ -8625,6 +8671,11 @@
       <a name="label" val="OUT_0"/>
       <a name="output" val="true"/>
     </comp>
+    <comp lib="1" loc="(150,110)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <wire from="(110,110)" to="(130,110)"/>
+    <wire from="(150,110)" to="(170,110)"/>
   </circuit>
   <circuit name="TranspDLatch">
     <a name="appearance" val="evolution"/>

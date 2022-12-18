@@ -140,6 +140,8 @@ Not very appropriate, but I have to say it here, because in addition to storing 
 
 :warning: It just so happens that the 6502 core signal `R/W` is very similar in name to the `RW` signal which goes to the external R/W pad. Don't get confused :smiley:
 
+![RWDecode](/BreakingNESWiki/imgstore/apu/RWDecode.jpg)
+
 ### A0-A15
 
 The outputs of the 6502 core address bus are associated with the internal CPU_A0-15 signals.
