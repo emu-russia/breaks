@@ -10755,4 +10755,36 @@
     <wire from="(810,100)" to="(810,480)"/>
     <wire from="(810,100)" to="(840,100)"/>
   </circuit>
+  <circuit name="DbgReadoutBit">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="DbgReadoutBit"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(100,50)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="n_rd"/>
+    </comp>
+    <comp lib="0" loc="(100,80)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="val"/>
+    </comp>
+    <comp lib="0" loc="(260,80)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="Dx"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="true"/>
+    </comp>
+    <comp lib="1" loc="(180,50)" name="NOT Gate">
+      <a name="size" val="20"/>
+    </comp>
+    <comp lib="1" loc="(200,80)" name="Controlled Buffer">
+      <a name="control" val="left"/>
+    </comp>
+    <wire from="(100,50)" to="(160,50)"/>
+    <wire from="(100,80)" to="(180,80)"/>
+    <wire from="(180,50)" to="(190,50)"/>
+    <wire from="(190,50)" to="(190,70)"/>
+    <wire from="(200,80)" to="(260,80)"/>
+  </circuit>
 </project>
