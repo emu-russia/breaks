@@ -29,6 +29,8 @@
 - Генерирование прерываний
 - Тактирование остальных тональных генераторов APU низкочастотными сигналами (`/LFO1`, `/LFO2`)
 
+![SoftCLK](/BreakingNESWiki/imgstore/apu/SoftCLK.jpg)
+
 ### Программная модель
 
 Soft CLK управляется регистром $4017 (write-only):
@@ -50,7 +52,15 @@ Soft CLK управляется регистром $4017 (write-only):
 
 ### Счётчик Soft CLK
 
+Представляет собой счётчик Джонсона с обратной связью.
+
 ![softclk_counter_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_tran.jpg)
+
+![SoftCLK_SR](/BreakingNESWiki/imgstore/apu/SoftCLK_SR.jpg)
+
+![SoftCLK_SRBit](/BreakingNESWiki/imgstore/apu/SoftCLK_SRBit.jpg)
+
+Особенностью является инверсный вход для регистра сдвига. Выходы регистра сдвига (в комплементарной форме) подаются на вход декодера (PLA).
 
 ### Управление счётчиком Soft CLK
 

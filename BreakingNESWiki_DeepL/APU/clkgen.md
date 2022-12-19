@@ -29,6 +29,8 @@ Soft CLK features:
 - Generating interrupts
 - Timing the remaining APU tone generators with low-frequency signals (`/LFO1`, `/LFO2`)
 
+![SoftCLK](/BreakingNESWiki/imgstore/apu/SoftCLK.jpg)
+
 ### Programming Model
 
 Soft CLK is controlled by register $4017 (write-only):
@@ -50,7 +52,15 @@ Bit $4015\[6\] contains the interrupt status.
 
 ### Soft CLK Counter
 
+It is a Johnson counter with feedback.
+
 ![softclk_counter_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_tran.jpg)
+
+![SoftCLK_SR](/BreakingNESWiki/imgstore/apu/SoftCLK_SR.jpg)
+
+![SoftCLK_SRBit](/BreakingNESWiki/imgstore/apu/SoftCLK_SRBit.jpg)
+
+A special feature is the inverse input for the shift register. The outputs of the shift register (in complementary form) are fed to the decoder input (PLA).
 
 ### Soft CLK Counter Control
 
