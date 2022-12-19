@@ -9694,19 +9694,18 @@
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(160,220)" name="Splitter">
-      <a name="fanout" val="8"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="none"/>
+      <a name="bit2" val="none"/>
+      <a name="bit3" val="none"/>
+      <a name="bit4" val="none"/>
+      <a name="bit5" val="none"/>
+      <a name="bit6" val="none"/>
+      <a name="bit7" val="0"/>
+      <a name="fanout" val="1"/>
       <a name="incoming" val="8"/>
     </comp>
-    <comp lib="0" loc="(190,210)" name="Tunnel">
-      <a name="label" val="D7"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
     <comp lib="0" loc="(220,60)" name="NoConnect"/>
-    <comp lib="0" loc="(220,80)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="D7"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
     <comp lib="0" loc="(300,210)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="RES"/>
@@ -9738,9 +9737,10 @@
     <wire from="(150,220)" to="(160,220)"/>
     <wire from="(160,30)" to="(160,80)"/>
     <wire from="(160,30)" to="(290,30)"/>
-    <wire from="(180,210)" to="(190,210)"/>
+    <wire from="(180,210)" to="(200,210)"/>
+    <wire from="(200,80)" to="(200,210)"/>
+    <wire from="(200,80)" to="(230,80)"/>
     <wire from="(220,60)" to="(230,60)"/>
-    <wire from="(220,80)" to="(230,80)"/>
     <wire from="(240,20)" to="(240,50)"/>
     <wire from="(260,70)" to="(270,70)"/>
     <wire from="(270,110)" to="(270,160)"/>
