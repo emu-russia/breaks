@@ -10282,7 +10282,7 @@
     <comp lib="1" loc="(580,210)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="1" loc="(610,240)" name="Controlled Inverter">
+    <comp lib="1" loc="(600,240)" name="Controlled Buffer">
       <a name="control" val="left"/>
     </comp>
     <comp lib="8" loc="(187,254)" name="Text">
@@ -10366,7 +10366,7 @@
     <wire from="(560,240)" to="(580,240)"/>
     <wire from="(580,210)" to="(590,210)"/>
     <wire from="(590,210)" to="(590,230)"/>
-    <wire from="(610,240)" to="(630,240)"/>
+    <wire from="(600,240)" to="(630,240)"/>
   </circuit>
   <circuit name="Pads2">
     <a name="circuit" val="Pads2"/>

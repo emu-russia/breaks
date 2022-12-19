@@ -76,10 +76,7 @@ module ApuPadsLogic(
 	nor (NotDBG_RES, ~nDBG, ~RES_frompad);
 	wire m2;
 	nor (m2, n_M2_topad, NotDBG_RES);
-	bustris m2_tris (
-		.a(m2),
-		.n_x(M2Pad),
-		.n_en(NotDBG_RES) );
+	bufif0 (M2Pad, m2, NotDBG_RES);		// data_out, data_in, ctrl
 
 	nor (n_IRQ_tocore, ~n_IRQPad, Timer_Int);
 
