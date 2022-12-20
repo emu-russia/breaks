@@ -2,6 +2,8 @@
 
 This section contains signal timings for different APU units. Circuit engineers like to look thoughtfully at these.
 
+The timeline is respected more or less accurately only for SoftCLK LFO signals, in other cases the timescale is chosen arbitrarily (it makes no sense to make it accurate).
+
 ## CLK Divider
 
 ![div](/BreakingNESWiki/imgstore/apu/waves/div.png)
