@@ -12,7 +12,7 @@ module dlatch (d, en, q, nq);
 
 	reg dout; 
 	always @(d or en) begin
-		if (en == 1'b1) 
+		if (en == 1'b1 && (d == 1'b0 || d == 1'b1))
 			dout <= d;   // Use non-blocking
 	end
 

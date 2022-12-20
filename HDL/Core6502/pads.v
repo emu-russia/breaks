@@ -26,4 +26,8 @@ module PadsLogic(
 	input WR_topad;
 	output RnW;
 
+	// TBD
+
+	assign RnW = 1'b0;
+
 endmodule // PadsLogic

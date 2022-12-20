@@ -18,6 +18,20 @@ Without reset:
 
 ![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
 
+## SoftCLK counter (LFSR)
+
+![softclk_lfsr](/BreakingNESWiki/imgstore/apu/waves/softclk_lfsr.png)
+
+## SoftCLK PLA, low frequency oscillation signals (LFO) and interrupts
+
+Mode = 0:
+
+![softclk_mode0](/BreakingNESWiki/imgstore/apu/waves/softclk_mode0.png)
+
+Mode = 1:
+
+![softclk_mode1](/BreakingNESWiki/imgstore/apu/waves/softclk_mode1.png)
+
 ## Register Operations Decoder
 
 Read Registers:

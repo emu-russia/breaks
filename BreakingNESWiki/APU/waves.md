@@ -22,13 +22,19 @@
 
 ![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
 
-## Низкочастотные сигналы (LFO)
+## Счётчик SoftCLK (LFSR)
 
-TBD.
+![softclk_lfsr](/BreakingNESWiki/imgstore/apu/waves/softclk_lfsr.png)
 
-## Декодер SoftCLK
+## Декодер SoftCLK, низкочастотные сигналы (LFO) и прерывание
 
-TBD.
+Mode = 0:
+
+![softclk_mode0](/BreakingNESWiki/imgstore/apu/waves/softclk_mode0.png)
+
+Mode = 1:
+
+![softclk_mode1](/BreakingNESWiki/imgstore/apu/waves/softclk_mode1.png)
 
 ## Декодер регистровых операций
 
@@ -89,9 +95,5 @@ TBD.
 TBD.
 
 ## Тест шумового канала
-
-TBD.
-
-## Тест прерывания SoftCLK
 
 TBD.
