@@ -5,6 +5,7 @@
 Генератор тайминга содержит в своем составе следующие компоненты:
 - Генератор ACLK
 - Программный таймер (известный также как `Frame Counter`)
+- По совместительству реализует Daisy-chain проброс прерывания от DPCM и подмешивание при необходимости своего прерывания от таймера
 
 ## Генератор ACLK
 
@@ -14,7 +15,7 @@
 
 ![ACLK_Gen](/BreakingNESWiki/imgstore/apu/ACLK_Gen.jpg)
 
-Сигналы `ACLK` и `/ACLK` не комплементарны и имеют перекрывание:
+Сигналы `ACLK` и `/ACLK` не комплементарны и имеют перекрытие:
 
 ![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
 
@@ -50,6 +51,14 @@ Soft CLK управляется регистром $4017 (write-only):
 - INT: общий сигнал прерывания от Soft CLK или DPCM
 - RES: внутренний сигнал сброса (получается из контакта /RES)
 
+Управление счётчиком:
+
+![softclk_counter_control_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_control_tran.jpg)
+
+Логика:
+
+![SoftCLK_Control](/BreakingNESWiki/imgstore/apu/SoftCLK_Control.jpg)
+
 ### Счётчик Soft CLK
 
 Представляет собой счётчик Джонсона с обратной связью.
@@ -61,10 +70,6 @@ Soft CLK управляется регистром $4017 (write-only):
 ![SoftCLK_SRBit](/BreakingNESWiki/imgstore/apu/SoftCLK_SRBit.jpg)
 
 Особенностью является инверсный вход для регистра сдвига. Выходы регистра сдвига (в комплементарной форме) подаются на вход декодера (PLA).
-
-### Управление счётчиком Soft CLK
-
-![softclk_counter_control_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_control_tran.jpg)
 
 ### PLA
 
@@ -115,8 +120,8 @@ Soft CLK управляется регистром $4017 (write-only):
 
 ### /ACLK2
 
-В самом центре схемы DPCM находится схема, для получения "другого" /ACLK, который используется в [DPCM](dpcm.md), а также в [спрайтовой DMA](dma.md). Данный сигнал /ACLK отличается от обычного небольшой задержкой.
-Этот сигнал ещё можно встретить в наших схемах под названием `/ACLK2`.
+В самом центре схемы DPCM находится схема, для получения "другого" /ACLK, который используется в [DPCM](dpcm.md), а также в [спрайтовой DMA](dma.md).
+Этот сигнал можно встретить в наших схемах под названием `/ACLK2`.
 
 ![nACLK2](/BreakingNESWiki/imgstore/apu/nACLK2.jpg)
 
