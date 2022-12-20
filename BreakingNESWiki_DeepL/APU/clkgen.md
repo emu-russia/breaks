@@ -5,6 +5,7 @@
 The timing generator contains the following components:
 - ACLK generator
 - Software timer (also known as `Frame Counter`)
+- Also implements Daisy-chain interrupt forwarding from DPCM and mixing in its own timer interrupt if needed
 
 ## ACLK Generator
 
@@ -14,7 +15,7 @@ The ACLK generator is used to generate an internal ACLK clock signal (APU CLK), 
 
 ![ACLK_Gen](/BreakingNESWiki/imgstore/apu/ACLK_Gen.jpg)
 
-The `ACLK` and `ACLK` signals are not complementary and have an overlap:
+The `ACLK` and `/ACLK` signals are not complementary and have an overlap:
 
 ![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
 
@@ -50,6 +51,14 @@ Bit $4015\[6\] contains the interrupt status.
 - INT: Joint SoftCLK or DPCM interrupt signal
 - RES: internal reset signal (derived from /RES pin)
 
+Soft CLK Counter Control:
+
+![softclk_counter_control_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_control_tran.jpg)
+
+Logic:
+
+![SoftCLK_Control](/BreakingNESWiki/imgstore/apu/SoftCLK_Control.jpg)
+
 ### Soft CLK Counter
 
 It is a Johnson counter with feedback.
@@ -61,10 +70,6 @@ It is a Johnson counter with feedback.
 ![SoftCLK_SRBit](/BreakingNESWiki/imgstore/apu/SoftCLK_SRBit.jpg)
 
 A special feature is the inverse input for the shift register. The outputs of the shift register (in complementary form) are fed to the decoder input (PLA).
-
-### Soft CLK Counter Control
-
-![softclk_counter_control_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_control_tran.jpg)
 
 ### PLA
 
@@ -115,8 +120,8 @@ In the diagrams :warning: sign marks the places where other `/ACLK` is used.
 
 ## /ACLK2
 
-In the very center of the DPCM circuitry is a circuit to produce the "other" /ACLK that is used in [DPCM](dpcm.md) as well as in [sprite DMA](dma.md). This /ACLK signal differs from the regular /ACLK signal by a slight delay.
-This signal can also be found in our circuits as `/ACLK2`.
+In the very center of the DPCM circuitry is a circuit to produce the "other" /ACLK that is used in [DPCM](dpcm.md) as well as in [sprite DMA](dma.md).
+This signal can be found in our circuits as `/ACLK2`.
 
 ![nACLK2](/BreakingNESWiki/imgstore/apu/nACLK2.jpg)
 
