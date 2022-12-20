@@ -30,4 +30,11 @@ module DPCMChan(
 	output [15:0] DMC_Addr;
 	output [6:0] DMC_Out;
 
+	// TBD
+
+	assign n_DMCAB = 1'b1;
+	assign RUNDMC = 1'b0;
+	assign DMCRDY = 1'b1;
+	assign DMCINT = 1'b0;
+
 endmodule // DPCMChan

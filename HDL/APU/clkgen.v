@@ -244,7 +244,7 @@ module FrameCnt_LFSR(
 
 	FrameCnt_LFSR_Bit bits [14:0] (
 		.n_ACLK(n_ACLK),
-		.n_sin(n_sin),
+		.n_sin({n_sout[13:0],n_sin}),
 		.F1(F1_Reset),
 		.F2(F2_Step),
 		.sout(sout),

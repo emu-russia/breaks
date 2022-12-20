@@ -19,6 +19,11 @@ The `ACLK` and `/ACLK` signals are not complementary and have an overlap:
 
 ![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
 
+|APU|OSC frequency|CLK|PHI|ACLK|
+|---|---|---|---|---|
+|2A03|21477272 Hz|~46.56 ns|~558.73 ns|~1117.46 ns|
+|2A07|26601712 Hz|~37.59 ns|~601.46 ns|~1202.93 ns|
+
 ## Software Timer
 
 From the official documentation we know that this component is called `Soft CLK`.
@@ -59,9 +64,7 @@ Logic:
 
 ![SoftCLK_Control](/BreakingNESWiki/imgstore/apu/SoftCLK_Control.jpg)
 
-### Soft CLK Counter
-
-It is a Johnson counter with feedback.
+### Soft CLK Counter (LFSR)
 
 ![softclk_counter_tran](/BreakingNESWiki/imgstore/apu/softclk_counter_tran.jpg)
 
@@ -109,6 +112,12 @@ A special feature is the inverse input for the shift register. The outputs of th
 The placement is topological. 1 means there is a transistor, 0 means there is no transistor.
 
 ![SoftCLK_PLA](/BreakingNESWiki/imgstore/apu/SoftCLK_PLA.jpg)
+
+Features of using PLA:
+- Output 3 is used to generate an interrupt and is simultaneously skipped in Mode=1. Therefore interrupts are only available in Mode=0
+- Output 4 is used only in Mode=1
+- Output 5 is used exclusively to reload LFSR and has no effect on the generation of LFO signals
+- The PLA outputs, which are involved in the generation of LFO signals, are activated in turn (0,1,2,3 for Mode=0 and 0,1,2,4 for Mode=1)
 
 ## Other /ACLKs
 

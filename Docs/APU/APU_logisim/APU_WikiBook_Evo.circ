@@ -7705,6 +7705,10 @@
       <a name="label" val="D_In"/>
       <a name="width" val="8"/>
     </comp>
+    <comp lib="0" loc="(580,100)" name="Constant"/>
+    <comp lib="0" loc="(580,60)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
     <comp lib="0" loc="(600,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
@@ -7750,6 +7754,8 @@
       <a name="label" val="DMCINT"/>
       <a name="output" val="true"/>
     </comp>
+    <wire from="(580,100)" to="(600,100)"/>
+    <wire from="(580,60)" to="(600,60)"/>
   </circuit>
   <circuit name="DIV">
     <a name="appearance" val="logisim_evolution"/>
@@ -9394,6 +9400,7 @@
       <a name="fanout" val="6"/>
       <a name="incoming" val="6"/>
     </comp>
+    <comp lib="0" loc="(210,220)" name="NoConnect"/>
     <comp lib="0" loc="(250,520)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="n_ACLK"/>
@@ -9667,9 +9674,13 @@
     <comp lib="8" loc="(665,446)" name="Text">
       <a name="text" val="z_ff"/>
     </comp>
+    <comp lib="8" loc="(728,343)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="self-clear FF"/>
+    </comp>
     <comp lib="8" loc="(765,250)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="LFO operation"/>
+      <a name="text" val="LFSR reload"/>
     </comp>
     <comp lib="8" loc="(798,124)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
@@ -9719,10 +9730,10 @@
     <wire from="(210,180)" to="(260,180)"/>
     <wire from="(210,190)" to="(250,190)"/>
     <wire from="(210,200)" to="(230,200)"/>
-    <wire from="(210,210)" to="(340,210)"/>
-    <wire from="(210,220)" to="(220,220)"/>
+    <wire from="(210,210)" to="(220,210)"/>
     <wire from="(210,690)" to="(210,710)"/>
-    <wire from="(220,220)" to="(220,320)"/>
+    <wire from="(220,210)" to="(220,320)"/>
+    <wire from="(220,210)" to="(340,210)"/>
     <wire from="(220,320)" to="(220,400)"/>
     <wire from="(220,320)" to="(310,320)"/>
     <wire from="(220,400)" to="(310,400)"/>
