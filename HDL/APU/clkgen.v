@@ -1,78 +1,4 @@
 
-module CLK_Divider(n_CLK_frompad, PHI0_tocore, PHI2_fromcore, n_M2_topad);
-
-	input n_CLK_frompad;
-	output PHI0_tocore;
-	input PHI2_fromcore;
-	output n_M2_topad;
-
-	wire [5:0] sout;
-	wire rst;
-	wire q;
-	wire nq;
-	wire nval_4;
-
-	DivPhaseSpiltter phase_split (
-		.n_clk(n_CLK_frompad),
-		.q(q),
-		.nq(nq) );
-
-	assign PHI0_tocore = ~sout[5];
-	nor (rst, PHI0_tocore, sout[4]);
-
-	DivSRBit sr0 (.q(q), .nq(nq), .rst(rst), .sin(PHI0_tocore), .sout(sout[0]));
-	DivSRBit sr1 (.q(q), .nq(nq), .rst(rst), .sin(sout[0]), .sout(sout[1]));
-	DivSRBit sr2 (.q(q), .nq(nq), .rst(rst), .sin(sout[1]), .sout(sout[2]));
-	DivSRBit sr3 (.q(q), .nq(nq), .rst(rst), .sin(sout[2]), .sout(sout[3]));
-	DivSRBit sr4 (.q(q), .nq(nq), .rst(1'b0), .sin(sout[3]), .sout(sout[4]), .n_val(nval_4));
-	DivSRBit sr5 (.q(q), .nq(nq), .rst(1'b0), .sin(sout[4]), .sout(sout[5]));
-
-	nor (n_M2_topad, nval_4, PHI2_fromcore);
-
-endmodule // CLK_Divider
-
-module DivSRBit(q, nq, rst, sin, n_val, sout);
-
-	input q;
-	input nq;
-	input rst;
-	input sin;
-	output n_val;
-	output sout;
-
-	wire out_val;
-
-	dlatch in_latch (
-		.d(sin),
-		.en(q),
-		.nq(n_val) );
-
-	dlatch out_latch (
-		.d(n_val),
-		.en(nq),
-		.q(out_val) );
-
-	nor (sout, out_val, rst);
-
-endmodule // DivSRBit
-
-module DivPhaseSpiltter(n_clk, q, nq);
-
-	input n_clk;
-	output q;
-	output nq;
-
-	(* keep = "true" *) wire not1_out;
-	(* keep = "true" *) wire not2_out;
-
-	assign not1_out = ~n_clk;
-	assign not2_out = ~not1_out;
-
-	nor (nq, not1_out, q);
-	nor (q, nq, not2_out);
-
-endmodule // DivPhaseSpiltter
-
 module ACLKGen(PHI1, PHI2, ACLK, n_ACLK, RES);
 
 	input PHI1;
@@ -126,11 +52,13 @@ module SoftTimer(
 	wire mode;
 	wire [5:0] PLA_out;
 	wire Z2;
-	wire F1;
-	wire F2;
-	wire sin;
+	wire F1;				// 1: Reset LFSR
+	wire F2;				// 1: Perform the LFSR step
+	wire n_sin;
 	wire [14:0] sout;
 	wire [14:0] n_sout;
+
+	// SoftCLK control circuits have a very conventional division, because they are "scattered" in an even layer on the chip and it is difficult to determine their boundaries
 
 	FrameCnt_Control fcnt_ctl (
 		.PHI1(PHI1),
@@ -153,18 +81,18 @@ module SoftTimer(
 		.n_mode(n_mode),
 		.mode(mode),
 		.PLA_in(PLA_out),
-		.C13(sout[13]),
-		.C14(sout[14]),
+		.C13(n_sout[13]),
+		.C14(n_sout[14]),
 		.Z2(Z2),
 		.F1(F1),
 		.F2(F2),
-		.sin_toLFSR(sin) );
+		.n_sin_toLFSR(n_sin) );
 
 	FrameCnt_LFSR lfsr (
 		.n_ACLK(n_ACLK),
-		.F1(F1),
-		.F2(F2),
-		.sin(sin),
+		.F1_Reset(F1),
+		.F2_Step(F2),
+		.n_sin(n_sin),
 		.sout(sout),
 		.n_sout(n_sout) );
 
@@ -233,7 +161,7 @@ endmodule // FrameCnt_Control
 module FrameCnt_LFSR_Control(
 	n_ACLK, ACLK,
 	RES, W4017, n_mode, mode, PLA_in, C13, C14,
-	Z2, F1, F2, sin_toLFSR);
+	Z2, F1, F2, n_sin_toLFSR);
 
 	input n_ACLK;
 	input ACLK;
@@ -249,7 +177,7 @@ module FrameCnt_LFSR_Control(
 	output Z2;
 	output F1;
 	output F2;
-	output sin_toLFSR;
+	output n_sin_toLFSR;
 
 	wire Z1;
 
@@ -272,22 +200,22 @@ module FrameCnt_LFSR_Control(
 	rsff_2_3 z_ff (.res1(RES), .res2(W4017), .s(zff_set), .q(zff_out) );
 	nor (Z2, z1_out, z2_out);
 
-	// LFSR shift in
+	// LFSR shift in complement
 
 	wire tmp1;
 	nor (tmp1, C13, C14, PLA_in[5]);
-	nor (sin_toLFSR, C13 & C14, tmp1);
+	nor (n_sin_toLFSR, C13 & C14, tmp1);
 
 endmodule // FrameCnt_LFSR_Control
 
 module FrameCnt_LFSR_Bit(
 	n_ACLK,
-	sin, F1, F2,
+	n_sin, F1, F2,
 	sout, n_sout);
 
 	input n_ACLK;
 
-	input sin;
+	input n_sin;
 	input F1;
 	input F2;
 
@@ -296,29 +224,29 @@ module FrameCnt_LFSR_Bit(
 
 	wire inlatch_out;
 	dlatch in_latch (
-		.d(F2 ? sin : (F1 ? 1'b1 : 1'bz)),
+		.d(F2 ? n_sin : (F1 ? 1'b1 : 1'bz)),
 		.en(1'b1), .nq(inlatch_out));
-	dlatch out_latch (.d(inlatch_out), .en(n_ACLK), .q(n_sout), .nq(sout));
+	dlatch out_latch (.d(inlatch_out), .en(n_ACLK), .q(sout), .nq(n_sout));
 
 endmodule // FrameCnt_LFSR_Bit
 
 module FrameCnt_LFSR(
-	n_ACLK, F1, F2, sin,
+	n_ACLK, F1_Reset, F2_Step, n_sin,
 	sout, n_sout);
 
 	input n_ACLK;
-	input F1;
-	input F2;
-	input sin;
+	input F1_Reset;
+	input F2_Step;
+	input n_sin;		// Inverse Shift-in
 
 	output [14:0] sout;
 	output [14:0] n_sout;
 
 	FrameCnt_LFSR_Bit bits [14:0] (
 		.n_ACLK(n_ACLK),
-		.sin(sin),
-		.F1(F1),
-		.F2(F2),
+		.n_sin(n_sin),
+		.F1(F1_Reset),
+		.F2(F2_Step),
 		.sout(sout),
 		.n_sout(n_sout) );
 
@@ -331,11 +259,11 @@ module FrameCnt_PLA(s, ns, md, PLA_out);
 	input md; 			// For PLA[3]
 	output [5:0] PLA_out;
 
-	nor (PLA_out[0], ns[0], s[1], s[2], s[3], s[4], ns[5], ns[6], s[7], s[8], s[9], s[10], s[11], ns[12], s[13], s[14]);
-	nor (PLA_out[1], ns[0], ns[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], ns[9], ns[10], s[11], ns[12], ns[13], s[14]);
-	nor (PLA_out[2], ns[0], ns[1], s[2], s[3], ns[4], s[5], ns[6], ns[7], s[8], s[9], ns[10], ns[11], s[12], ns[13], s[14]);
-	nor (PLA_out[3], ns[0], ns[1], ns[2], ns[3], ns[4], s[5], s[6], s[7], s[8], ns[9], s[10], ns[11], s[12], s[13], s[14], md);	// ⚠️
-	nor (PLA_out[4], ns[0], s[1], ns[2], s[3], s[4], s[5], s[6], ns[7], ns[8], s[9], s[10], s[11], ns[12], ns[13], ns[14]);
-	nor (PLA_out[5], s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], s[9], s[10], s[11], s[12], s[13], s[14]);
+	nor (PLA_out[0], s[0], ns[1], ns[2], ns[3], ns[4], s[5], s[6], ns[7], ns[8], ns[9], ns[10], ns[11], s[12], ns[13], ns[14]);
+	nor (PLA_out[1], s[0], s[1], ns[2], ns[3], ns[4], ns[5], ns[6], ns[7], ns[8], s[9], s[10], ns[11], s[12], s[13], ns[14]);
+	nor (PLA_out[2], s[0], s[1], ns[2], ns[3], s[4], ns[5], s[6], s[7], ns[8], ns[9], s[10], s[11], ns[12], s[13], ns[14]);
+	nor (PLA_out[3], s[0], s[1], s[2], s[3], s[4], ns[5], ns[6], ns[7], ns[8], s[9], ns[10], s[11], ns[12], ns[13], ns[14], md);	// ⚠️
+	nor (PLA_out[4], s[0], ns[1], s[2], ns[3], ns[4], ns[5], ns[6], s[7], s[8], ns[9], ns[10], ns[11], s[12], s[13], s[14]);
+	nor (PLA_out[5], ns[0], ns[1], ns[2], ns[3], ns[4], ns[5], ns[6], ns[7], ns[8], ns[9], ns[10], ns[11], ns[12], ns[13], ns[14]);
 
 endmodule // FrameCnt_PLA
