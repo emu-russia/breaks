@@ -40,8 +40,8 @@ Soft CLK features:
 ### Programming Model
 
 Soft CLK is controlled by register $4017 (write-only):
-- $4017\[6\]: Mask interrupt (1: interrupt disable, 0: enable)
-- $4017\[7\]: Writing to this bit selects mode (0: normal mode, 1: extended mode)
+- $4017\[6\]: Mask SoftCLK interrupt (1: interrupt disable, 0: enable)
+- $4017\[7\]: LFO Mode (0: normal mode, 1: extended mode)
 
 Bit $4015\[6\] contains the interrupt status.
 
@@ -63,6 +63,11 @@ Soft CLK Counter Control:
 Logic:
 
 ![SoftCLK_Control](/BreakingNESWiki/imgstore/apu/SoftCLK_Control.jpg)
+
+|Frequency of LFO signals|Mode=0|Mode=1|Where the signal is routed|
+|---|---|---|---|
+|LFO1|~240 Hz|~192 Hz|Square 0/1, Noise, Triangle|
+|LFO2|~120 Hz|~96 Hz|Square 0/1|
 
 ### Soft CLK Counter (LFSR)
 
