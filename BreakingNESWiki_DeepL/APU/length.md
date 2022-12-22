@@ -4,6 +4,22 @@
 
 ![length_sm](/BreakingNESWiki/imgstore/apu/length_sm.jpg)
 
+![LengthCounters](/BreakingNESWiki/imgstore/apu/LengthCounters.jpg)
+
+## Signals
+
+|Signal|From where|Where to|Description|
+|---|---|---|---|
+|/LFO2|SoftCLK|Length Counters|Low frequency oscillation signal|
+|SQA_LC|Square 0|Length Counters|Input carry for Square0 LC|
+|SQB_LC|Square 1|Length Counters|Input carry for Square1 LC|
+|TRI_LC|Triangle|Length Counters|Input carry for Triangle LC|
+|RND_LC|Noise|Length Counters|Input carry for Noise LC|
+|NOSQA|Length Counters|Square 0|Square0 LC does not count / disabled|
+|NOSQB|Length Counters|Square 1|Square1 LC does not count / disabled|
+|NOTRI|Length Counters|Triangle|Triangle LC does not count / disabled|
+|NORND|Length Counters|Noise|Noise LC does not count / disabled|
+
 ## Length Decoder
 
 ![length_decoder_tran](/BreakingNESWiki/imgstore/apu/length_decoder_tran.jpg)
@@ -90,10 +106,18 @@ The second stage of the decoder:
 
 The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
 
+![Length_Decoder](/BreakingNESWiki/imgstore/apu/Length_Decoder.jpg)
+
 ## Length Counter Control
 
 ![length_counter_control_tran](/BreakingNESWiki/imgstore/apu/length_counter_control_tran.jpg)
 
+![Length_Control](/BreakingNESWiki/imgstore/apu/Length_Control.jpg)
+
 ## Length Counter
 
+The usual down counter.
+
 ![length_counter_tran](/BreakingNESWiki/imgstore/apu/length_counter_tran.jpg)
+
+![Length_Counter](/BreakingNESWiki/imgstore/apu/Length_Counter.jpg)
