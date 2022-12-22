@@ -150,6 +150,11 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "nACLK3", [4799, 3233, 200, 181] )
 	CropImage (FusedTopo, imgstore + "nACLK4", [3050, 7710, 261, 187] )
 	CropImage (FusedTopo, imgstore + "nACLK5", [7845, 2000, 234, 616] )
+	# Common
+	CropImage (FusedTopo, imgstore + "RegisterBit_tran", [5396, 3710, 184, 169] )
+	CropImage (FusedTopo, imgstore + "CounterBit_tran", [5211, 9555, 565, 163] )
+	CropImage (FusedTopo, imgstore + "DownCounterBit_tran", [3863, 5697, 544, 170] )
+	CropImage (FusedTopo, imgstore + "RevCounterBit_tran", [1639, 5571, 609, 174] )
 
 def PpuShredder (FusedTopo):
 	# TBD: Add missing labels in psd

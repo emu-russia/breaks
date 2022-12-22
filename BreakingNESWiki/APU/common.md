@@ -6,6 +6,8 @@
 
 Разряд регистра:
 
+![RegisterBit_tran](/BreakingNESWiki/imgstore/apu/RegisterBit_tran.jpg)
+
 ![RegisterBit](/BreakingNESWiki/imgstore/apu/RegisterBit.jpg)
 
 Где применяется:
@@ -14,6 +16,8 @@
 ## Up Counter
 
 Разряд прямого счётчика:
+
+![CounterBit_tran](/BreakingNESWiki/imgstore/apu/CounterBit_tran.jpg)
 
 ![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
 
@@ -26,6 +30,8 @@
 
 Разряд обратного счётчика:
 
+![DownCounterBit_tran](/BreakingNESWiki/imgstore/apu/DownCounterBit_tran.jpg)
+
 ![DownCounterBit](/BreakingNESWiki/imgstore/apu/DownCounterBit.jpg)
 
 Где применяется:
@@ -35,6 +41,8 @@
 ## Reversible (Up/Down) Counter
 
 Разряд реверсивного счётчика:
+
+![RevCounterBit_tran](/BreakingNESWiki/imgstore/apu/RevCounterBit_tran.jpg)
 
 ![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
 
