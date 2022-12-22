@@ -67,7 +67,7 @@ Soft CLK управляется регистром $4017 (write-only):
 |Частота сигналов LFO|Mode=0|Mode=1|Куда роутится сигнал|
 |---|---|---|---|
 |LFO1|~240 Hz|~192 Hz|Square 0/1, Noise, Triangle|
-|LFO2|~120 Hz|~96 Hz|Square 0/1|
+|LFO2|~120 Hz|~96 Hz|Square 0/1, Length Counters|
 
 ### Счётчик Soft CLK (LFSR)
 

@@ -67,7 +67,7 @@ Logic:
 |Frequency of LFO signals|Mode=0|Mode=1|Where the signal is routed|
 |---|---|---|---|
 |LFO1|~240 Hz|~192 Hz|Square 0/1, Noise, Triangle|
-|LFO2|~120 Hz|~96 Hz|Square 0/1|
+|LFO2|~120 Hz|~96 Hz|Square 0/1, Length Counters|
 
 ### Soft CLK Counter (LFSR)
 

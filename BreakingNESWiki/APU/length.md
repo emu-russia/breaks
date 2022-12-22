@@ -4,6 +4,22 @@
 
 ![length_sm](/BreakingNESWiki/imgstore/apu/length_sm.jpg)
 
+![LengthCounters](/BreakingNESWiki/imgstore/apu/LengthCounters.jpg)
+
+## Сигналы
+
+|Сигнал|Откуда|Куда|Описание|
+|---|---|---|---|
+|/LFO2|SoftCLK|Length Counters|Сигнал низкочастотной осцилляции|
+|SQA_LC|Square 0|Length Counters|Входной перенос для Square0 LC|
+|SQB_LC|Square 1|Length Counters|Входной перенос для Square1 LC|
+|TRI_LC|Triangle|Length Counters|Входной перенос для Triangle LC|
+|RND_LC|Noise|Length Counters|Входной перенос для Noise LC|
+|NOSQA|Length Counters|Square 0|Square0 LC не считает / отключен|
+|NOSQB|Length Counters|Square 1|Square1 LC не считает / отключен|
+|NOTRI|Length Counters|Triangle|Triangle LC не считает / отключен|
+|NORND|Length Counters|Noise|Noise LC не считает / отключен|
+
 ## Length Decoder
 
 ![length_decoder_tran](/BreakingNESWiki/imgstore/apu/length_decoder_tran.jpg)
@@ -90,10 +106,18 @@
 
 Битовая маска топологическая. 1 означает есть транзистор, 0 означает нет транзистора.
 
+![Length_Decoder](/BreakingNESWiki/imgstore/apu/Length_Decoder.jpg)
+
 ## Length Counter Control
 
 ![length_counter_control_tran](/BreakingNESWiki/imgstore/apu/length_counter_control_tran.jpg)
 
+![Length_Control](/BreakingNESWiki/imgstore/apu/Length_Control.jpg)
+
 ## Length Counter
 
+Обычный обратный счётчик.
+
 ![length_counter_tran](/BreakingNESWiki/imgstore/apu/length_counter_tran.jpg)
+
+![Length_Counter](/BreakingNESWiki/imgstore/apu/Length_Counter.jpg)
