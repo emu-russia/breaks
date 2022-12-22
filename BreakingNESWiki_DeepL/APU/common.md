@@ -11,7 +11,15 @@ The register bit:
 ![RegisterBit](/BreakingNESWiki/imgstore/apu/RegisterBit.jpg)
 
 Used in:
-- TBD
+- IO Ports ($4016)
+- SoftCLK Regs ($4017)
+- Square 0/1 Freq Regs ($4002/$4003, $4006/$4007)
+- Square 0/1 Shift/Control Reg ($4001, $4005)
+- Square 0/1 Volume/Control Reg ($4000, $4004)
+- Triangle Reg ($4008)
+- Noise Regs ($400C, $400E)
+- DPCM Regs ($4010, $4012, $4013)
+- DPCM Sample Buffer
 
 ## Up Counter
 
@@ -22,9 +30,10 @@ The bit of the `up` counter:
 ![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
 
 Used in:
+- Triangle Output
 - DPCM Sample Bit Counter
 - DPCM Address Counter
-- TBD
+- SPR DMA Address (low bits)
 
 ## Down Counter
 
@@ -35,8 +44,16 @@ The bit of the `down` counter:
 ![DownCounterBit](/BreakingNESWiki/imgstore/apu/DownCounterBit.jpg)
 
 Used in:
+- Length Counters
+- Square 0/1 Freq Counter
+- Square 0/1 Envelope
+- Square 0/1 Sweep
+- Square 0/1 Duty
+- Triangle Linear Counter
+- Triangle Freq Counter
+- Noise Envelope
+- Noise Output
 - DPCM Sample Counter
-- TBD
 
 ## Reversible (Up/Down) Counter
 
