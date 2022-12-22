@@ -2700,12 +2700,12 @@
       <a name="label" val="LOOPMode"/>
       <a name="output" val="true"/>
     </comp>
-    <comp loc="(490,190)" name="PosedgeDFF"/>
-    <comp loc="(490,290)" name="PosedgeDFF"/>
-    <comp loc="(490,390)" name="PosedgeDFF"/>
-    <comp loc="(490,490)" name="PosedgeDFF"/>
-    <comp loc="(490,590)" name="PosedgeDFF"/>
-    <comp loc="(490,90)" name="PosedgeDFF"/>
+    <comp loc="(490,190)" name="RegisterBit"/>
+    <comp loc="(490,290)" name="RegisterBit"/>
+    <comp loc="(490,390)" name="RegisterBit"/>
+    <comp loc="(490,490)" name="RegisterBit"/>
+    <comp loc="(490,590)" name="RegisterBit"/>
+    <comp loc="(490,90)" name="RegisterBit"/>
     <wire from="(100,110)" to="(250,110)"/>
     <wire from="(100,70)" to="(260,70)"/>
     <wire from="(160,240)" to="(170,240)"/>
@@ -4199,7 +4199,7 @@
       <a name="output" val="true"/>
       <a name="width" val="8"/>
     </comp>
-    <comp loc="(420,90)" name="PosedgeDFF_x8">
+    <comp loc="(420,90)" name="RegisterBit_x8">
       <a name="label" val="cnt_reg"/>
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
@@ -4338,7 +4338,7 @@
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="The shift register is loaded with an inverse value, but pushes out the bits in the direct value."/>
     </comp>
-    <comp loc="(430,210)" name="PosedgeDFF_x8"/>
+    <comp loc="(430,210)" name="RegisterBit_x8"/>
     <comp loc="(710,130)" name="ShiftReg8"/>
     <wire from="(150,310)" to="(180,310)"/>
     <wire from="(160,180)" to="(160,200)"/>
@@ -4685,7 +4685,7 @@
       <a name="output" val="true"/>
       <a name="width" val="8"/>
     </comp>
-    <comp loc="(430,90)" name="PosedgeDFF_x8">
+    <comp loc="(430,90)" name="RegisterBit_x8">
       <a name="label" val="addr_reg"/>
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
@@ -4932,7 +4932,7 @@
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="n_BOUT"/>
     </comp>
-    <comp loc="(570,290)" name="PosedgeDFF"/>
+    <comp loc="(570,290)" name="RegisterBit"/>
     <comp loc="(570,90)" name="RevCounter6"/>
     <wire from="(120,120)" to="(320,120)"/>
     <wire from="(120,180)" to="(330,180)"/>
@@ -5848,9 +5848,9 @@
     <wire from="(990,540)" to="(990,710)"/>
     <wire from="(990,710)" to="(1020,710)"/>
   </circuit>
-  <circuit name="PosedgeDFF">
-    <a name="appearance" val="evolution"/>
-    <a name="circuit" val="PosedgeDFF"/>
+  <circuit name="RegisterBit">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="RegisterBit"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(250,160)" name="Constant"/>
@@ -5918,9 +5918,9 @@
     <wire from="(90,180)" to="(170,180)"/>
     <wire from="(90,70)" to="(180,70)"/>
   </circuit>
-  <circuit name="PosedgeDFF_x8">
+  <circuit name="RegisterBit_x8">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="PosedgeDFF_x8"/>
+    <a name="circuit" val="RegisterBit_x8"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(130,150)" name="Pin">
@@ -5966,14 +5966,14 @@
       <a name="output" val="true"/>
       <a name="width" val="8"/>
     </comp>
-    <comp loc="(510,190)" name="PosedgeDFF"/>
-    <comp loc="(510,290)" name="PosedgeDFF"/>
-    <comp loc="(510,390)" name="PosedgeDFF"/>
-    <comp loc="(510,490)" name="PosedgeDFF"/>
-    <comp loc="(510,590)" name="PosedgeDFF"/>
-    <comp loc="(510,690)" name="PosedgeDFF"/>
-    <comp loc="(510,790)" name="PosedgeDFF"/>
-    <comp loc="(510,90)" name="PosedgeDFF"/>
+    <comp loc="(510,190)" name="RegisterBit"/>
+    <comp loc="(510,290)" name="RegisterBit"/>
+    <comp loc="(510,390)" name="RegisterBit"/>
+    <comp loc="(510,490)" name="RegisterBit"/>
+    <comp loc="(510,590)" name="RegisterBit"/>
+    <comp loc="(510,690)" name="RegisterBit"/>
+    <comp loc="(510,790)" name="RegisterBit"/>
+    <comp loc="(510,90)" name="RegisterBit"/>
     <wire from="(130,150)" to="(250,150)"/>
     <wire from="(130,260)" to="(150,260)"/>
     <wire from="(130,80)" to="(280,80)"/>
@@ -9351,19 +9351,24 @@
       <a name="label" val="DMCINT"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
-    <comp lib="0" loc="(130,520)" name="Pin">
+    <comp lib="0" loc="(130,440)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="n_R4015"/>
     </comp>
-    <comp lib="0" loc="(130,520)" name="Tunnel">
+    <comp lib="0" loc="(130,440)" name="Tunnel">
       <a name="label" val="n_R4015"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
-    <comp lib="0" loc="(130,560)" name="Pin">
+    <comp lib="0" loc="(130,480)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="W4017"/>
     </comp>
-    <comp lib="0" loc="(130,560)" name="Tunnel">
+    <comp lib="0" loc="(130,480)" name="Tunnel">
+      <a name="label" val="W4017"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(130,540)" name="Tunnel">
+      <a name="facing" val="east"/>
       <a name="label" val="W4017"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
@@ -9375,17 +9380,32 @@
       <a name="label" val="n_ACLK"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
+    <comp lib="0" loc="(140,520)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="n_ACLK"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(140,640)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="n_ACLK"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
+    <comp lib="0" loc="(140,660)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="W4017"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+    </comp>
     <comp lib="0" loc="(150,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="pla"/>
       <a name="width" val="6"/>
     </comp>
-    <comp lib="0" loc="(180,720)" name="Pin">
+    <comp lib="0" loc="(150,710)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="D_In"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="0" loc="(180,720)" name="Splitter">
+    <comp lib="0" loc="(150,710)" name="Splitter">
       <a name="bit0" val="none"/>
       <a name="bit1" val="none"/>
       <a name="bit2" val="none"/>
@@ -9401,26 +9421,6 @@
       <a name="incoming" val="6"/>
     </comp>
     <comp lib="0" loc="(210,220)" name="NoConnect"/>
-    <comp lib="0" loc="(250,520)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
-    <comp lib="0" loc="(250,540)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="W4017"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
-    <comp lib="0" loc="(250,620)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
-    <comp lib="0" loc="(250,640)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="W4017"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
     <comp lib="0" loc="(290,350)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="Z2"/>
@@ -9690,12 +9690,12 @@
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="to core"/>
     </comp>
-    <comp loc="(380,530)" name="PosedgeDFF">
+    <comp loc="(420,520)" name="RegisterBit">
       <a name="label" val="reg_mode"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(380,630)" name="PosedgeDFF">
+    <comp loc="(420,640)" name="RegisterBit">
       <a name="label" val="reg_mask"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
@@ -9720,18 +9720,22 @@
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
+    <wire from="(130,540)" to="(200,540)"/>
+    <wire from="(140,520)" to="(200,520)"/>
+    <wire from="(140,640)" to="(200,640)"/>
+    <wire from="(140,660)" to="(200,660)"/>
     <wire from="(150,230)" to="(190,230)"/>
-    <wire from="(180,580)" to="(180,690)"/>
-    <wire from="(180,580)" to="(250,580)"/>
-    <wire from="(180,690)" to="(210,690)"/>
-    <wire from="(200,700)" to="(260,700)"/>
-    <wire from="(200,710)" to="(210,710)"/>
+    <wire from="(170,690)" to="(190,690)"/>
+    <wire from="(170,700)" to="(180,700)"/>
+    <wire from="(180,560)" to="(180,700)"/>
+    <wire from="(180,560)" to="(200,560)"/>
+    <wire from="(190,680)" to="(190,690)"/>
+    <wire from="(190,680)" to="(200,680)"/>
     <wire from="(210,170)" to="(300,170)"/>
     <wire from="(210,180)" to="(260,180)"/>
     <wire from="(210,190)" to="(250,190)"/>
     <wire from="(210,200)" to="(230,200)"/>
     <wire from="(210,210)" to="(220,210)"/>
-    <wire from="(210,690)" to="(210,710)"/>
     <wire from="(220,210)" to="(220,320)"/>
     <wire from="(220,210)" to="(340,210)"/>
     <wire from="(220,320)" to="(220,400)"/>
@@ -9746,22 +9750,10 @@
     <wire from="(230,490)" to="(440,490)"/>
     <wire from="(250,190)" to="(250,290)"/>
     <wire from="(250,290)" to="(310,290)"/>
-    <wire from="(250,520)" to="(260,520)"/>
-    <wire from="(250,540)" to="(270,540)"/>
-    <wire from="(250,550)" to="(250,580)"/>
-    <wire from="(250,550)" to="(270,550)"/>
-    <wire from="(250,620)" to="(260,620)"/>
-    <wire from="(250,640)" to="(270,640)"/>
     <wire from="(260,180)" to="(260,280)"/>
     <wire from="(260,280)" to="(260,370)"/>
     <wire from="(260,280)" to="(310,280)"/>
     <wire from="(260,370)" to="(310,370)"/>
-    <wire from="(260,520)" to="(260,530)"/>
-    <wire from="(260,530)" to="(270,530)"/>
-    <wire from="(260,620)" to="(260,630)"/>
-    <wire from="(260,630)" to="(270,630)"/>
-    <wire from="(260,650)" to="(260,700)"/>
-    <wire from="(260,650)" to="(270,650)"/>
     <wire from="(290,350)" to="(300,350)"/>
     <wire from="(290,430)" to="(300,430)"/>
     <wire from="(300,170)" to="(300,270)"/>
@@ -9775,14 +9767,14 @@
     <wire from="(340,170)" to="(340,210)"/>
     <wire from="(340,170)" to="(460,170)"/>
     <wire from="(370,390)" to="(420,390)"/>
-    <wire from="(380,540)" to="(460,540)"/>
-    <wire from="(380,630)" to="(420,630)"/>
     <wire from="(390,300)" to="(420,300)"/>
     <wire from="(410,320)" to="(420,320)"/>
     <wire from="(410,410)" to="(420,410)"/>
-    <wire from="(420,630)" to="(420,720)"/>
-    <wire from="(420,720)" to="(580,720)"/>
+    <wire from="(420,540)" to="(460,540)"/>
+    <wire from="(420,640)" to="(430,640)"/>
     <wire from="(430,140)" to="(450,140)"/>
+    <wire from="(430,640)" to="(430,720)"/>
+    <wire from="(430,720)" to="(580,720)"/>
     <wire from="(440,490)" to="(440,630)"/>
     <wire from="(440,630)" to="(530,630)"/>
     <wire from="(450,140)" to="(450,150)"/>
