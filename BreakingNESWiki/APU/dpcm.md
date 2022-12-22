@@ -61,20 +61,6 @@
 
 Исключение составляет команда FLOAD: Frequency LFSR перезагружает сам себя после пересчёта, но при этом одновременно сигнализирует в основной блок управления.
 
-## Счётчики DPCM
-
-Разряд прямого счётчика, применяемого в Sample Bit Counter и Address Counter:
-
-![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
-
-Разряд обратного счётчика, применяемого в Sample Counter:
-
-![DownCounterBit](/BreakingNESWiki/imgstore/apu/DownCounterBit.jpg)
-
-Разряд реверсивного счётчика, применяемого для выходного значения:
-
-![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
-
 ## DPCM Control Summary
 
 ![DPCM_Control](/BreakingNESWiki/imgstore/apu/DPCM_Control.jpg)
@@ -83,10 +69,6 @@
 
 |![dpcm_control_reg_tran](/BreakingNESWiki/imgstore/apu/dpcm_control_reg_tran.jpg)|![DPCM_ControlReg](/BreakingNESWiki/imgstore/apu/DPCM_ControlReg.jpg)|
 |---|---|
-
-Разряд регистра, который используется и в других схемах:
-
-![PosedgeDFF](/BreakingNESWiki/imgstore/apu/PosedgeDFF.jpg)
 
 ## DPCM Interrupt Control
 

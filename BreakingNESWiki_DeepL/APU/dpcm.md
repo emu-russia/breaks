@@ -61,20 +61,6 @@ The majority of control signals are of the same nature:
 
 An exception is the FLOAD command: Frequency LFSR reloads itself after counting, but at the same time signals to the main control unit.
 
-## DPCM Counters
-
-The bit of the `up` counter used in Sample Bit Counter and Address Counter:
-
-![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
-
-The bit of the `down` counter used in Sample Counter:
-
-![DownCounterBit](/BreakingNESWiki/imgstore/apu/DownCounterBit.jpg)
-
-The bit of the `reversible` counter used in DPCM Output:
-
-![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
-
 ## DPCM Control Summary
 
 ![DPCM_Control](/BreakingNESWiki/imgstore/apu/DPCM_Control.jpg)
@@ -83,10 +69,6 @@ The bit of the `reversible` counter used in DPCM Output:
 
 |![dpcm_control_reg_tran](/BreakingNESWiki/imgstore/apu/dpcm_control_reg_tran.jpg)|![DPCM_ControlReg](/BreakingNESWiki/imgstore/apu/DPCM_ControlReg.jpg)|
 |---|---|
-
-A register bit that is used in other circuits as well:
-
-![PosedgeDFF](/BreakingNESWiki/imgstore/apu/PosedgeDFF.jpg)
 
 ## DPCM Interrupt Control
 
@@ -130,10 +112,6 @@ Down counter is used.
 
 |![dpcm_sample_counter_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_counter_tran.jpg)|![DPCM_SampleCounter](/BreakingNESWiki/imgstore/apu/DPCM_SampleCounter.jpg)|
 |---|---|
-
-The bit of the counter used in this and other circuits:
-
-![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
 
 ## DPCM Sample Buffer
 

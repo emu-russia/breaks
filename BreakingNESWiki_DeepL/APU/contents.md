@@ -2,6 +2,7 @@
 
 - [Overview](Readme.md)
 - [Pinout](pads.md)
+- [Common elements of APU circuitry](common.md)
 - [6502 Core Binding](core.md)
 - [Timing Generator](clkgen.md)
 - [Register Operations](regs.md)
