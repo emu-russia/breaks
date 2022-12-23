@@ -84,15 +84,15 @@ module SPRDMA_AddrLowCounter(n_ACLK, Clear, Step, Load, EndCount, AddrLow);
 
 	wire [7:0] cc; 		// Carry chain
 
-	apu_cntbit cnt [7:0] (
-		.Clk(n_ACLK),
-		.Clear(Clear),
-		.Step(Step),
-		.Load(Load),
-		.CarryIn({cc[6:0], 1'b1}),
-		.Value(8'h00),
-		.ValOut(AddrLow),
-		.CarryOut(cc) );
+	CounterBit cnt [7:0] (
+		.n_ACLK(n_ACLK),
+		.clear(Clear),
+		.step(Step),
+		.load(Load),
+		.cin({cc[6:0], 1'b1}),
+		.d(8'h00),
+		.q(AddrLow),
+		.cout(cc) );
 
 	assign EndCount = cc[7];
 
@@ -105,10 +105,10 @@ module SPRDMA_AddrHigh(n_ACLK, SetAddr, DB, AddrHigh);
 	inout [7:0] DB;
 	output [7:0] AddrHigh;
 
-	sdffe val_hi [7:0] (
+	RegisterBit val_hi [7:0] (
 		.d(DB),
-		.en(SetAddr),
-		.phi_keep(n_ACLK),
+		.ena(SetAddr),
+		.n_ACLK(n_ACLK),
 		.q(AddrHigh) );
 
 endmodule // SPRDMA_AddrHigh
@@ -190,30 +190,3 @@ module Address_MUX(SPR_CPU, SPR_PPU, n_DMCAB, DMC_Addr, SPR_Addr, CPU_Addr, Addr
 				(CPU_AB ? CPU_Addr : 16'hzzzz) ) );
 
 endmodule // Address_MUX
-
-module apu_cntbit (Clk, Clear, Step, Load, CarryIn, Value, ValOut, n_ValOut, CarryOut);
-
-	input Clk;
-	input Clear;
-	input Step;
-	input Load;
-	input CarryIn;
-	input Value;
-
-	output ValOut;
-	output n_ValOut;
-	output CarryOut;
-
-	wire cntint;
-	wire cgin;
-	wire cgout;
-
-	assign cntint = Load ? Value : (Clear ? 1'b0 : (Step ? cgout : (Clk ? ValOut : 1'bz) ));
-	assign cgin = CarryIn ? ValOut : n_ValOut;
-
-	dlatch latch1 (.d(cntint), .en(1'b1), .q(ValOut), .nq(n_ValOut));
-	dlatch latch2 (.d(cgin), .en(Clk), .nq(cgout));
-
-	nor (CarryOut, ~CarryIn, n_ValOut);
-
-endmodule // apu_cntbit

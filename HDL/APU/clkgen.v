@@ -146,8 +146,8 @@ module FrameCnt_Control(
 
 	nor (R4015_clear, n_R4015, PHI1);
 
-	sdffe mode (.d(DB[7]), .en(W4017), .phi_keep(n_ACLK), .nq(n_mdout) );
-	sdffe mask (.d(DB[6]), .en(W4017), .phi_keep(n_ACLK), .q(mask_clear) );
+	RegisterBit mode (.d(DB[7]), .ena(W4017), .n_ACLK(n_ACLK), .nq(n_mdout) );
+	RegisterBit mask (.d(DB[6]), .ena(W4017), .n_ACLK(n_ACLK), .q(mask_clear) );
 	rsff_2_4 int_ff (.res1(RES), .res2(R4015_clear), .res3(mask_clear), .s(n_mdout & PLA_in[3]), .q(intff_out), .nq(n_intff_out) );
 	dlatch md_latch (.d(n_mdout), .en(n_ACLK), .nq(mdout) );
 	dlatch int_latch (.d(n_intff_out), .en(n_ACLK), .q(int_latch_out) );
