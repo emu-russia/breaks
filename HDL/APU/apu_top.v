@@ -213,6 +213,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.n_DBGRD(n_DBGRD) );
 
 	IOPorts io(
+		.ACLK(ACLK),
 		.n_ACLK(n_ACLK),
 		.W4016(W4016),
 		.n_R4016(n_R4016),

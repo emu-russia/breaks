@@ -146,13 +146,13 @@ module LC_DownCounter(Clk, Clear, Step, Val_in, Carry_in, Carry_out);
 
 	wire [7:0] carry_chain;
 
-	apu_downcnt_bit lc_cnt [7:0] (
-		.Clk(Clk),
-		.Clear(Clear),
-		.Step(Step),
-		.Val_in(Val_in),
-		.Carry_in({carry_chain[6:0], Carry_in}),
-		.Carry_out(carry_chain) );
+	DownCounterBit lc_cnt [7:0] (
+		.n_ACLK(Clk),
+		.clear(Clear),
+		.step(Step),
+		.d(Val_in),
+		.cin({carry_chain[6:0], Carry_in}),
+		.cout(carry_chain) );
 
 	assign Carry_out = carry_chain[7];
 
@@ -164,14 +164,3 @@ module LengthCounter_PLA(DB, LC_Out);
 	output [7:0] LC_Out;
 
 endmodule // LengthCounter_PLA
-
-module apu_downcnt_bit(Clk, Clear, Step, Val_in, Carry_in, Carry_out);
-
-	input Clk;
-	input Clear;
-	input Step;
-	input Val_in;
-	input Carry_in;
-	output Carry_out;
-
-endmodule // apu_downcnt
