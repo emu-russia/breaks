@@ -4,6 +4,8 @@ This section contains signal timings for different APU units. Circuit engineers 
 
 The timeline is respected more or less accurately only for SoftCLK LFO signals, in other cases the timescale is chosen arbitrarily (it makes no sense to make it accurate).
 
+The sources of all the tests that were used to make the diagrams are in the folder `/HDL/Framework/Icarus`.
+
 ## CLK Divider
 
 ![div](/BreakingNESWiki/imgstore/apu/waves/div.png)
@@ -47,3 +49,13 @@ Write Registers:
 ## Length Counters Decoder
 
 ![length_decoder](/BreakingNESWiki/imgstore/apu/waves/length_decoder.png)
+
+## Length Counter
+
+![length_counter](/BreakingNESWiki/imgstore/apu/waves/length_counter.png)
+
+The diagram shows the essence of the operation, with some peculiarities:
+- The phase pattern for the ACLK is respected
+- The LFO2 frequency that controls the counter counting is not scaled, but synthetically shortened
+- The main purpose is to show that after the end of the countdown the circuit generates a `NotCount` signal (which corresponds to the NOSQA/NOSQB/NOTRI/NORND signals for the four real counters)
+- Before starting the counter, the value 0b1001 (9) is loaded into the counter, which after processing on the decoder corresponds to the value 0x07.
