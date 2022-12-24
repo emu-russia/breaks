@@ -24,6 +24,43 @@
 
 ![length_decoder_tran](/BreakingNESWiki/imgstore/apu/length_decoder_tran.jpg)
 
+![Length_Decoder](/BreakingNESWiki/imgstore/apu/Length_Decoder.jpg)
+
+|Decoder In|Decoder Out|
+|---|---|
+|0|0x9|
+|1|0xfd|
+|2|0x13|
+|3|0x1|
+|4|0x27|
+|5|0x3|
+|6|0x4f|
+|7|0x5|
+|8|0x9f|
+|9|0x7|
+|10|0x3b|
+|11|0x9|
+|12|0xd|
+|13|0xb|
+|14|0x19|
+|15|0xd|
+|16|0xb|
+|17|0xf|
+|18|0x17|
+|19|0x11|
+|20|0x2f|
+|21|0x13|
+|22|0x5f|
+|23|0x15|
+|24|0xbf|
+|25|0x17|
+|26|0x47|
+|27|0x19|
+|28|0xf|
+|29|0x1b|
+|30|0x1f|
+|31|0x1d|
+
 The first stage of the decoder (5-to-32 demultiplexer):
 
 ```
@@ -63,6 +100,10 @@ The first stage of the decoder (5-to-32 demultiplexer):
 0110010101
 0101010101
 ```
+
+The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
+
+![Length_Decoder1](/BreakingNESWiki/imgstore/apu/Length_Decoder1.jpg)
 
 The second stage of the decoder:
 
@@ -106,7 +147,7 @@ The second stage of the decoder:
 
 The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
 
-![Length_Decoder](/BreakingNESWiki/imgstore/apu/Length_Decoder.jpg)
+![Length_Decoder2](/BreakingNESWiki/imgstore/apu/Length_Decoder2.jpg)
 
 ## Length Counter Control
 
