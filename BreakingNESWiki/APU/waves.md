@@ -50,7 +50,7 @@ Mode = 1:
 
 ## Декодер счётчиков длительности
 
-TBD.
+![length_decoder](/BreakingNESWiki/imgstore/apu/waves/length_decoder.png)
 
 ## Счётчик длительности
 

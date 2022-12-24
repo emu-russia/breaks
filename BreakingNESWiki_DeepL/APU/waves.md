@@ -43,3 +43,7 @@ Read Registers:
 Write Registers:
 
 ![regops_write](/BreakingNESWiki/imgstore/apu/waves/regops_write.png)
+
+## Length Counters Decoder
+
+![length_decoder](/BreakingNESWiki/imgstore/apu/waves/length_decoder.png)
