@@ -1,11 +1,12 @@
 
 module LengthCounters(
-	n_ACLK,
+	ACLK, n_ACLK,
 	RES, DB, n_R4015, W4015, nLFO2, 
 	W4003, W4007, W400B, W400F,
 	SQA_LC, SQB_LC, TRI_LC, RND_LC,
 	NOSQA, NOSQB, NOTRI, NORND);
 
+	input ACLK;
 	input n_ACLK;
 
 	input RES;
@@ -30,6 +31,7 @@ module LengthCounters(
 	output NORND;
 
 	LengthCounter length_cnt [3:0] (
+		.ACLK(ACLK),
 		.n_ACLK(n_ACLK),
 		.RES(RES),
 		.W400x_load({W400F, W400B, W4007, W4003}),
@@ -44,10 +46,11 @@ module LengthCounters(
 endmodule // LengthCounters
 
 module LengthCounter(
-	n_ACLK,
+	ACLK, n_ACLK,
 	RES, W400x_load, n_R4015, W4015, DB, dbit_ena, nLFO2,
 	NotCount, Carry_in);
 
+	input ACLK;
 	input n_ACLK;
 
 	input RES;
@@ -77,7 +80,8 @@ module LengthCounter(
 		.Carry_in(Carry_in),
 		.Carry_out(Carry_out) );
 
-	LC_Control ctl(
+	LC_Control ctl (
+		.ACLK(ACLK),
 		.n_ACLK(n_ACLK),
 		.RES(RES),
 		.W400x_load(W400x_load),
@@ -92,10 +96,11 @@ module LengthCounter(
 endmodule // LengthCounter
 
 module LC_Control(
-	n_ACLK,
+	ACLK, n_ACLK,
 	RES, W400x_load, n_R4015, W4015, dbit_ena, nLFO2, cout,
 	NotCount, Step);
 
+	input ACLK;
 	input n_ACLK;
 
 	input RES;
@@ -115,9 +120,11 @@ module LC_Control(
 	wire StatOut;
 	wire n_StatOut;
 	wire step_latch_out;
+	wire n_ACLK4;		// Other /ACLK
 
+	assign n_ACLK4 = ~ACLK;
 	sdffre ena_ff (.d(dbit_ena), .en(W4015), .res(RES), .phi_keep(n_ACLK), .nq(LCDIS));
-	dlatch ena_latch (.d(LCDIS), .en(n_ACLK), .q(ena_latch_out));
+	dlatch ena_latch (.d(LCDIS), .en(n_ACLK4), .q(ena_latch_out));
 	dlatch cout_latch (.d(cout), .en(n_ACLK), .q(cout_latch_out));
 	rsff_2_4 stat_ff (
 		.res1(ena_latch_out & n_ACLK),
@@ -163,4 +170,107 @@ module LengthCounter_PLA(DB, LC_Out);
 	inout [7:0] DB;
 	output [7:0] LC_Out;
 
+	wire [4:0] Dec1_in;
+	wire [31:0] Dec1_out;
+
+	dlatch din [4:0] (.d(DB[7:3]), .en(1'b1), .q(Dec1_in));
+	LengthDecoder1 dec1 (.Dec1_in(Dec1_in), .Dec1_out(Dec1_out));
+	LengthDecoder2 dec2 (.Dec2_in(Dec1_out), .Dec2_out(LC_Out));
+
 endmodule // LengthCounter_PLA
+
+module LengthDecoder1 (Dec1_in, Dec1_out);
+
+	input [4:0] Dec1_in;
+	output [31:0] Dec1_out;
+
+	wire [4:0] d;
+	wire [4:0] nd;
+
+	assign d = Dec1_in;
+	assign nd = ~Dec1_in;
+
+	nor (Dec1_out[0], d[0], d[1], d[2], d[3], d[4]);
+	nor (Dec1_out[1], d[0], nd[1], d[2], d[3], d[4]);
+	nor (Dec1_out[2], d[0], d[1], nd[2], d[3], d[4]);
+	nor (Dec1_out[3], d[0], nd[1], nd[2], d[3], d[4]);
+	nor (Dec1_out[4], d[0], d[1], d[2], nd[3], d[4]);
+	nor (Dec1_out[5], d[0], nd[1], d[2], nd[3], d[4]);
+	nor (Dec1_out[6], d[0], d[1], nd[2], nd[3], d[4]);
+	nor (Dec1_out[7], d[0], nd[1], nd[2], nd[3], d[4]);
+
+	nor (Dec1_out[8], d[0], d[1], d[2], d[3], nd[4]);
+	nor (Dec1_out[9], d[0], nd[1], d[2], d[3], nd[4]);
+	nor (Dec1_out[10], d[0], d[1], nd[2], d[3], nd[4]);
+	nor (Dec1_out[11], d[0], nd[1], nd[2], d[3], nd[4]);
+	nor (Dec1_out[12], d[0], d[1], d[2], nd[3], nd[4]);
+	nor (Dec1_out[13], d[0], nd[1], d[2], nd[3], nd[4]);
+	nor (Dec1_out[14], d[0], d[1], nd[2], nd[3], nd[4]);
+	nor (Dec1_out[15], d[0], nd[1], nd[2], nd[3], nd[4]);
+
+	nor (Dec1_out[16], nd[0], d[1], d[2], d[3], d[4]);
+	nor (Dec1_out[17], nd[0], nd[1], d[2], d[3], d[4]);
+	nor (Dec1_out[18], nd[0], d[1], nd[2], d[3], d[4]);
+	nor (Dec1_out[19], nd[0], nd[1], nd[2], d[3], d[4]);
+	nor (Dec1_out[20], nd[0], d[1], d[2], nd[3], d[4]);
+	nor (Dec1_out[21], nd[0], nd[1], d[2], nd[3], d[4]);
+	nor (Dec1_out[22], nd[0], d[1], nd[2], nd[3], d[4]);
+	nor (Dec1_out[23], nd[0], nd[1], nd[2], nd[3], d[4]);
+
+	nor (Dec1_out[24], nd[0], d[1], d[2], d[3], nd[4]);
+	nor (Dec1_out[25], nd[0], nd[1], d[2], d[3], nd[4]);
+	nor (Dec1_out[26], nd[0], d[1], nd[2], d[3], nd[4]);
+	nor (Dec1_out[27], nd[0], nd[1], nd[2], d[3], nd[4]);
+	nor (Dec1_out[28], nd[0], d[1], d[2], nd[3], nd[4]);
+	nor (Dec1_out[29], nd[0], nd[1], d[2], nd[3], nd[4]);
+	nor (Dec1_out[30], nd[0], d[1], nd[2], nd[3], nd[4]);
+	nor (Dec1_out[31], nd[0], nd[1], nd[2], nd[3], nd[4]);
+
+endmodule // LengthDecoder1
+
+module LengthDecoder2 (Dec2_in, Dec2_out);
+
+	input [31:0] Dec2_in;
+	output [7:0] Dec2_out;
+
+	wire [31:0] d;
+	assign d = Dec2_in;
+
+	nor (Dec2_out[7], 
+		d[0], d[1], d[2], d[3], d[5], d[6], d[7],
+		d[8], d[9], d[10], d[11], d[13], d[14], d[15],
+		d[17], d[18], d[19], d[20], d[21], d[22], d[23],
+		d[24], d[25], d[26], d[27], d[28], d[29], d[30], d[31] );
+	nor (Dec2_out[6], 
+		d[0], d[1], d[2], d[4], d[5], d[6], d[7], 
+		d[8], d[9], d[10], d[12], d[14], d[15], 
+		d[17], d[18], d[19], d[20], d[21], d[22], d[23], 
+		d[24], d[25], d[26], d[27], d[28], d[29], d[30], d[31] );
+	nor (Dec2_out[5], 
+		d[0], d[1], d[3], d[4], d[6], d[7], 
+		d[8], d[9], d[11], d[13], d[14], d[15], 
+		d[17], d[18], d[19], d[20], d[21], d[22], d[23], 
+		d[24], d[25], d[26], d[27], d[28], d[29], d[30], d[31] );
+	nor (Dec2_out[4], 
+		d[0], d[2], d[3], d[6], 
+		d[8], d[10], d[13], d[14], 
+		d[17], d[18], d[19], d[20], d[21], d[22], d[23],
+		d[24] );
+	nor (Dec2_out[3], 
+		d[1], d[2], 
+		d[9], d[13], 
+		d[17], d[18], d[19], d[20], 
+		d[25], d[26], d[27], d[28] );
+	nor (Dec2_out[2], 
+		d[0], d[1], d[5], d[7], 
+		d[8], 
+		d[17], d[18], d[21], d[22], 
+		d[25], d[26], d[29], d[30] );
+	nor (Dec2_out[1], 
+		d[0], d[6], d[7], 
+		//...
+		d[16], d[17], d[19], d[21], d[23], 
+		d[25], d[27], d[29], d[31] );
+	assign Dec2_out[0] = 1'b1;
+
+endmodule //  LengthDecoder2
