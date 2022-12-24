@@ -20,6 +20,7 @@ Used in:
 - Noise Regs ($400C, $400E)
 - DPCM Regs ($4010, $4012, $4013)
 - DPCM Sample Buffer
+- SPR DMA Address (high bits)
 
 ## Up Counter
 

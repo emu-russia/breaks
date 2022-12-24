@@ -40,15 +40,15 @@ module LengthCounters(
 		.DB(DB),
 		.dbit_ena({DB[3], DB[2], DB[1], DB[0]}),
 		.nLFO2(nLFO2),
-		.NotCount({NORND, NOTRI, NOSQB, NOSQA}),
-		.Carry_in({RND_LC, TRI_LC, SQB_LC, SQA_LC}) );
+		.Carry_in({RND_LC, TRI_LC, SQB_LC, SQA_LC}),
+		.NotCount({NORND, NOTRI, NOSQB, NOSQA}) );
 
 endmodule // LengthCounters
 
 module LengthCounter(
 	ACLK, n_ACLK,
 	RES, W400x_load, n_R4015, W4015, DB, dbit_ena, nLFO2,
-	NotCount, Carry_in);
+	Carry_in, NotCount);
 
 	input ACLK;
 	input n_ACLK;
@@ -61,8 +61,8 @@ module LengthCounter(
 	inout dbit_ena;
 	input nLFO2;
 
-	output NotCount;
 	input Carry_in;
+	output NotCount;
 
 	wire [7:0] LC;
 	wire STEP;
@@ -76,6 +76,7 @@ module LengthCounter(
 		.Clk(n_ACLK),
 		.Clear(RES),
 		.Step(STEP),
+		.Load(W400x_load),
 		.Val_in(LC),
 		.Carry_in(Carry_in),
 		.Carry_out(Carry_out) );
@@ -124,10 +125,10 @@ module LC_Control(
 
 	assign n_ACLK4 = ~ACLK;
 	sdffre ena_ff (.d(dbit_ena), .en(W4015), .res(RES), .phi_keep(n_ACLK), .nq(LCDIS));
-	dlatch ena_latch (.d(LCDIS), .en(n_ACLK4), .q(ena_latch_out));
+	dlatch ena_latch (.d(LCDIS), .en(n_ACLK), .q(ena_latch_out));
 	dlatch cout_latch (.d(cout), .en(n_ACLK), .q(cout_latch_out));
 	rsff_2_4 stat_ff (
-		.res1(ena_latch_out & n_ACLK),
+		.res1(ena_latch_out & n_ACLK4),
 		.res2(cout_latch_out & Step),
 		.res3(RES),
 		.s(W400x_load),
@@ -142,22 +143,26 @@ module LC_Control(
 
 endmodule // LC_Control
 
-module LC_DownCounter(Clk, Clear, Step, Val_in, Carry_in, Carry_out);
+module LC_DownCounter(Clk, Clear, Step, Load, Val_in, Carry_in, Carry_out);
 
 	input Clk;
 	input Clear;
 	input Step;
+	input Load;
 	input [7:0] Val_in;
 	input Carry_in;
 	output Carry_out;
 
 	wire [7:0] carry_chain;
+	wire [7:0] cnt_value; 	// debug
 
 	DownCounterBit lc_cnt [7:0] (
 		.n_ACLK(Clk),
+		.load(Load),
 		.clear(Clear),
 		.step(Step),
 		.d(Val_in),
+		.q(cnt_value),
 		.cin({carry_chain[6:0], Carry_in}),
 		.cout(carry_chain) );
 
