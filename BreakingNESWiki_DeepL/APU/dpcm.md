@@ -39,8 +39,8 @@ DMC internal state control signals:
 
 |Signal|From where|Where to|Description|
 |---|---|---|---|
-|SLOAD|DPCM Control|Sample Counter, DPCM Address|Load value into Sample Counter|
-|SSTEP|DPCM Control|Sample Counter, DPCM Address|Perform Sample Counter increment|
+|DSLOAD|DPCM Control|Sample Counter, DPCM Address|Load value into Sample Counter|
+|DSSTEP|DPCM Control|Sample Counter, DPCM Address|Perform Sample Counter increment|
 |BLOAD|DPCM Control|Sample Buffer|Load value into Sample Buffer|
 |BSTEP|DPCM Control|Sample Buffer|Perform a Sample Buffer bit shift|
 |NSTEP|DPCM Control|Sample Bit Counter|Perform Sample Bit Counter increment|
@@ -51,7 +51,7 @@ DMC internal state control signals:
 |DOUT|DPCM Output|DPCM Control|DPCM Out counter has finished counting|
 |NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter has finished counting|
 |SOUT|Sample Counter|DPCM Control|Sample Counter has finished counting|
-|FLOAD|LFSR|DPCM Control|Frequency LFSR finished counting and reloaded itself|
+|DFLOAD|LFSR|DPCM Control|Frequency LFSR finished counting and reloaded itself|
 |n_BOUT|Sample Buffer|DPCM Output|The next bit value pushed out of the Sample Buffer shift register (inverted value)|
 
 The majority of control signals are of the same nature:
@@ -59,7 +59,7 @@ The majority of control signals are of the same nature:
 - xSTEP: Perform some action
 - xOUT: Counter finished counting
 
-An exception is the FLOAD command: Frequency LFSR reloads itself after counting, but at the same time signals to the main control unit.
+An exception is the DFLOAD command: Frequency LFSR reloads itself after counting, but at the same time signals to the main control unit.
 
 ## DPCM Control Summary
 

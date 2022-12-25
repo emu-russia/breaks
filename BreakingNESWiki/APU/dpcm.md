@@ -39,8 +39,8 @@
 
 |Сигнал|Откуда|Куда|Описание|
 |---|---|---|---|
-|SLOAD|DPCM Control|Sample Counter, DPCM Address|Загрузить значение в Sample Counter|
-|SSTEP|DPCM Control|Sample Counter, DPCM Address|Выполнить инкремент Sample Counter|
+|DSLOAD|DPCM Control|Sample Counter, DPCM Address|Загрузить значение в Sample Counter|
+|DSSTEP|DPCM Control|Sample Counter, DPCM Address|Выполнить инкремент Sample Counter|
 |BLOAD|DPCM Control|Sample Buffer|Загрузить значение в Sample Buffer|
 |BSTEP|DPCM Control|Sample Buffer|Выполнить сдвиг разряда Sample Buffer|
 |NSTEP|DPCM Control|Sample Bit Counter|Выполнить инкремент Sample Bit Counter|
@@ -51,7 +51,7 @@
 |DOUT|DPCM Output|DPCM Control|Счётчик DPCM Out закончил пересчёт|
 |NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter закончил пересчёт|
 |SOUT|Sample Counter|DPCM Control|Sample Counter закончил пересчёт|
-|FLOAD|LFSR|DPCM Control|Frequency LFSR закончил пересчёт и перезагрузил сам себя|
+|DFLOAD|LFSR|DPCM Control|Frequency LFSR закончил пересчёт и перезагрузил сам себя|
 |/BOUT|Sample Buffer|DPCM Output|Очередное значение бита, вытолкнутое из регистра сдвига Sample Buffer (инвертированное значение)|
 
 Большая часть сигналов управления имеют однотипную природу:
@@ -59,7 +59,7 @@
 - xSTEP: Выполнить какое-то действие
 - xOUT: Счётчик закончил пересчёт
 
-Исключение составляет команда FLOAD: Frequency LFSR перезагружает сам себя после пересчёта, но при этом одновременно сигнализирует в основной блок управления.
+Исключение составляет команда DFLOAD: Frequency LFSR перезагружает сам себя после пересчёта, но при этом одновременно сигнализирует в основной блок управления.
 
 ## DPCM Control Summary
 
