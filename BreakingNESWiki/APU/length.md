@@ -6,6 +6,8 @@
 
 ![LengthCounters](/BreakingNESWiki/imgstore/apu/LengthCounters.jpg)
 
+Схемы всех четырёх счётчиков идентичны, отличие только в сигналах (см. далее). По этой причине на схемах показан только счётчик Square0.
+
 ## Сигналы
 
 |Сигнал|Откуда|Куда|Описание|
@@ -19,6 +21,13 @@
 |NOSQB|Length Counters|Square 1|Square1 LC не считает / отключен|
 |NOTRI|Length Counters|Triangle|Triangle LC не считает / отключен|
 |NORND|Length Counters|Noise|Noise LC не считает / отключен|
+
+|Счётчик|Сигнал входного переноса|Сигнал окончания пересчёта|Сигнал записи в счётчик|
+|---|---|---|---|
+|Square0|SQA_LC|NOSQA|W4003|
+|Square1|SQB_LC|NOSQB|W4007|
+|Triangle|TRI_LC|NOTRI|W400B|
+|Noise|RND_LC|NORND|W400F|
 
 ## Length Decoder
 
