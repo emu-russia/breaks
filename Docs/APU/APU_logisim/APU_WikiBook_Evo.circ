@@ -3285,7 +3285,7 @@
     </comp>
     <comp lib="0" loc="(130,380)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="FLOAD"/>
+      <a name="label" val="DFLOAD"/>
     </comp>
     <comp lib="0" loc="(130,40)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3298,13 +3298,13 @@
     <comp lib="0" loc="(730,130)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SLOAD"/>
+      <a name="label" val="DSLOAD"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(730,170)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SSTEP"/>
+      <a name="label" val="DSSTEP"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(730,240)" name="Pin">
@@ -3480,7 +3480,7 @@
     </comp>
     <comp lib="0" loc="(100,340)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="FLOAD"/>
+      <a name="label" val="DFLOAD"/>
     </comp>
     <comp lib="0" loc="(100,380)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3889,7 +3889,7 @@
     </comp>
     <comp lib="0" loc="(100,550)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="FLOAD"/>
+      <a name="label" val="DFLOAD"/>
     </comp>
     <comp lib="0" loc="(100,60)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3916,13 +3916,13 @@
     <comp lib="0" loc="(1200,230)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SLOAD"/>
+      <a name="label" val="DSLOAD"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(1200,260)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SSTEP"/>
+      <a name="label" val="DSSTEP"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(1200,290)" name="Pin">
@@ -4243,11 +4243,11 @@
     </comp>
     <comp lib="0" loc="(90,160)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="SLOAD"/>
+      <a name="label" val="DSLOAD"/>
     </comp>
     <comp lib="0" loc="(90,190)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="SSTEP"/>
+      <a name="label" val="DSSTEP"/>
     </comp>
     <comp lib="0" loc="(90,40)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4501,7 +4501,7 @@
     <comp lib="0" loc="(810,80)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="FLOAD"/>
+      <a name="label" val="DFLOAD"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="1" loc="(140,30)" name="NOT Gate">
@@ -4710,11 +4710,11 @@
     </comp>
     <comp lib="0" loc="(100,180)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="SLOAD"/>
+      <a name="label" val="DSLOAD"/>
     </comp>
     <comp lib="0" loc="(100,220)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="SSTEP"/>
+      <a name="label" val="DSSTEP"/>
     </comp>
     <comp lib="0" loc="(100,70)" name="Pin">
       <a name="appearance" val="classic"/>
