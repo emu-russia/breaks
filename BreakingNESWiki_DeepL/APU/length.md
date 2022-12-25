@@ -6,6 +6,8 @@
 
 ![LengthCounters](/BreakingNESWiki/imgstore/apu/LengthCounters.jpg)
 
+The schematics of all four counters are identical, the only difference is in the signals (see below). For this reason, only the Square0 counter is shown in the drawings.
+
 ## Signals
 
 |Signal|From where|Where to|Description|
@@ -19,6 +21,13 @@
 |NOSQB|Length Counters|Square 1|Square1 LC does not count / disabled|
 |NOTRI|Length Counters|Triangle|Triangle LC does not count / disabled|
 |NORND|Length Counters|Noise|Noise LC does not count / disabled|
+
+|Counter|Input carry signal|End of count signal|Load counter signal|
+|---|---|---|---|
+|Square0|SQA_LC|NOSQA|W4003|
+|Square1|SQB_LC|NOSQB|W4007|
+|Triangle|TRI_LC|NOTRI|W400B|
+|Noise|RND_LC|NORND|W400F|
 
 ## Length Decoder
 
