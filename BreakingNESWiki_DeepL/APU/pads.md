@@ -8,8 +8,8 @@ The study of any IC begins with the pinout.
 
 |Name|Number|Direction|Description|
 |---|---|---|---|
-|SND1|1|APU =>|DAC output of square channels (can be found under the name `AUX A`)|
-|SND2|2|APU =>|DAC output for the remaining channels (triangle, noise, and DPCM) (can be found as `AUX B`)|
+|AUX A|1|APU =>|DAC output of square channels|
+|AUX B|2|APU =>|DAC output for the remaining channels (triangle, noise, and DPCM)|
 |/RES|3|APU =>|Reset signal|
 |A0-A15|4-19|APU =>|Address bus|
 |GND|20| |Ground|
@@ -27,7 +27,7 @@ The study of any IC begins with the pinout.
 |OUT0|39|APU =>|Write to the I/O port associated with register bit $4016\[0\]|
 |VCC|40| |Power +5V|
 
-## SND1/2
+## AUX A/B
 
 Considered in the [DAC](dac.md) section.
 
