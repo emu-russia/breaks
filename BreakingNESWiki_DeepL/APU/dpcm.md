@@ -4,6 +4,7 @@
 
 This device is used to generate PCM audio:
 - The $4011 output register is a reverse counter that counts down if the next bitstream bit is 0 or up if the next bitstream bit is 1
+- It is also possible to load a value directly into the $4011 register for Direct Playback
 - Everything else is a set of counters and control logic to organize the DMA process
 - DPCM DMA does not use [sprite DMA](dma.md) facilities, but instead arranges its own buffer to store the selected PCM sample. The `RUNDMC` control signal is used to intercept control over sprite DMA.
 
