@@ -133,6 +133,8 @@ Operating modes of OAM counters:
 
 The even and odd bits of the comparator are combined into a single circuit, to compact the inverted carry chain. Between "duplets" the carry chain is kept in direct logic.
 
+Since the circuit is essentially a subtractor, it is more appropriate to say "borrow" instead of "carry", but the phrase "borrow chain" is not commonly used, so "carry chain" is used.
+
 ![OAM_Cmp](/BreakingNESWiki/imgstore/ppu/OAM_Cmp.png)
 
 The opening transistors for the input latches are next to the OAM Buffer:
