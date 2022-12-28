@@ -32,9 +32,9 @@ def PrintHelp ():
 def ApuShredder (FusedTopo):
 	imgstore = "../BreakingNESWiki/imgstore/apu/"
 	# DPCM chan
-	CropImage (FusedTopo, imgstore + "dpcm_addr_in_tran", [5001, 9557, 219, 1291] )
-	CropImage (FusedTopo, imgstore + "dpcm_address_high_tran", [5210, 9878, 565, 1153] )
-	CropImage (FusedTopo, imgstore + "dpcm_address_low_tran", [5208, 8581, 567, 1300] )
+	CropImage (FusedTopo, imgstore + "dpcm_addr_in_tran", [5003, 9555, 233, 1290] )
+	CropImage (FusedTopo, imgstore + "dpcm_address_high_tran", [5197, 9880, 574, 1126] )
+	CropImage (FusedTopo, imgstore + "dpcm_address_low_tran", [5183, 8581, 588, 1298] )
 	CropImage (FusedTopo, imgstore + "dpcm_control_reg_tran", [4976, 8545, 213, 1015] )
 	CropImage (FusedTopo, imgstore + "dpcm_debug_tran", [1190, 5219, 284, 1238] )
 	CropImage (FusedTopo, imgstore + "dpcm_decoder_tran", [4030, 9256, 973, 811] )
@@ -48,9 +48,9 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "dpcm_sample_buffer_tran", [4627, 5420, 569, 1396] )
 	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_control_tran1", [4258, 7447, 545, 393] )
 	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_control_tran2", [4200, 8013, 373, 347] )
-	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_in_tran", [4402, 5533, 203, 1296] )
-	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_tran", [3863, 5516, 543, 1952] )
-	CropImage (FusedTopo, imgstore + "DMC_A15", [5756, 11015, 366, 170] )
+	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_in_tran", [4395, 5535, 209, 1292] )
+	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_tran", [3865, 5517, 568, 1952] )
+	CropImage (FusedTopo, imgstore + "DMC_A15", [5745, 11016, 376, 161] )
 	# Length counters
 	CropImage (FusedTopo, imgstore + "length_counter_control_tran", [3450, 9533, 554, 327] )
 	CropImage (FusedTopo, imgstore + "length_counter_tran", [3469, 9887, 584, 1301] )
