@@ -115,7 +115,7 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "sprdma_control_tran", [5167, 7496, 607, 757] )
 	# Square chan
 	CropImage (FusedTopo, imgstore + "square_adder_tran", [5347, 1391, 783, 2099] )
-	CropImage (FusedTopo, imgstore + "square_barrel_shifter_tran1", [5055, 1517, 297, 1771] )
+	CropImage (FusedTopo, imgstore + "square_barrel_shifter_tran1", [5030, 1509, 321, 1780] )
 	CropImage (FusedTopo, imgstore + "square_barrel_shifter_tran2", [5054, 3271, 411, 206] )
 	CropImage (FusedTopo, imgstore + "square_duty_counter_tran", [6168, 3248, 552, 485] )
 	CropImage (FusedTopo, imgstore + "square_duty_cycle_tran", [6750, 3277, 375, 764] )
