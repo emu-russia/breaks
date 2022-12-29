@@ -1,6 +1,6 @@
 // Typical asynchronous Reset-Set FF based on two looped nor elements.	(nor-3 to reset)
 
-module rsff_2_3(res1, res2, s, q, nq);
+module rsff_2_3 (res1, res2, s, q, nq);
 
 	input res1; 	// 1: Reset1 value (0)
 	input res2; 	// 1: Reset2 value (0)

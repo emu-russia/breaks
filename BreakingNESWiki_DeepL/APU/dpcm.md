@@ -21,7 +21,7 @@ Inputs:
 |PHI1|CPU|First half of the CPU cycle|
 |RES|RES Pad|External reset signal|
 |R/W|CPU|CPU data bus mode (1: Read, 0: Write)|
-|LOCK|Core|The LOCK signal is used to temporarily suspend the tone generators so that their values can be fixed in the debug registers|
+|LOCK|Core|The LOCK signal is used to temporarily suspend the sound generators so that their values can be fixed in the debug registers|
 |W401x|Reg Select|1: $401x register write operation|
 |/R4015|Reg Select|0: $4015 register read operation|
 
@@ -41,7 +41,7 @@ DMC internal state control signals:
 |Signal|From where|Where to|Description|
 |---|---|---|---|
 |DSLOAD|DPCM Control|Sample Counter, DPCM Address|Load value into Sample Counter|
-|DSSTEP|DPCM Control|Sample Counter, DPCM Address|Perform Sample Counter increment|
+|DSSTEP|DPCM Control|Sample Counter, DPCM Address|Perform Sample Counter decrement|
 |BLOAD|DPCM Control|Sample Buffer|Load value into Sample Buffer|
 |BSTEP|DPCM Control|Sample Buffer|Perform a Sample Buffer bit shift|
 |NSTEP|DPCM Control|Sample Bit Counter|Perform Sample Bit Counter increment|
@@ -119,9 +119,10 @@ Down counter is used.
 |![dpcm_sample_buffer_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_tran.jpg)|![DPCM_SampleBuffer](/BreakingNESWiki/imgstore/apu/DPCM_SampleBuffer.jpg)|
 |---|---|
 
-The bit of the shift register used in the Sample Buffer:
+Shift register:
 
-![SRBit](/BreakingNESWiki/imgstore/apu/SRBit.jpg)
+|![DPCM_SRBit](/BreakingNESWiki/imgstore/apu/DPCM_SRBit.jpg)|![DPCM_ShiftReg8](/BreakingNESWiki/imgstore/apu/DPCM_ShiftReg8.jpg)|
+|---|---|
 
 ## DPCM Sample Bit Counter
 
@@ -166,9 +167,10 @@ PLA1 is a regular 4-in-16 demultiplexer and PLA2 generates the input value to lo
 |![dpcm_freq_counter_lfsr_tran](/BreakingNESWiki/imgstore/apu/dpcm_freq_counter_lfsr_tran.jpg)|![DPCM_FreqLFSR](/BreakingNESWiki/imgstore/apu/DPCM_FreqLFSR.jpg)|
 |---|---|
 
-LFSR bit:
+LFSR:
 
-![LFSRBit](/BreakingNESWiki/imgstore/apu/LFSRBit.jpg)
+|![DPCM_LFSRBit](/BreakingNESWiki/imgstore/apu/DPCM_LFSRBit.jpg)|![DPCM_LFSR](/BreakingNESWiki/imgstore/apu/DPCM_LFSR.jpg)|
+|---|---|
 
 ## DPCM Address Register ($4012)
 

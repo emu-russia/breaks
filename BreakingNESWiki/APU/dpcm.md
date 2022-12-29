@@ -21,7 +21,7 @@
 |PHI1|CPU|Первая половина цикла CPU|
 |RES|RES Pad|Внешний сигнал сброса|
 |R/W|CPU|Режим работы шины данных CPU (1: Read, 0: Write)|
-|LOCK|Core|Сигнал LOCK используется для временной приостановки тональных генераторов, чтобы их значения были зафиксированы в отладочных регистрах|
+|LOCK|Core|Сигнал LOCK используется для временной приостановки звуковых генераторов, чтобы их значения были зафиксированы в отладочных регистрах|
 |W401x|Reg Select|1: Операция записи в регистр $401x|
 |/R4015|Reg Select|0: Операция чтения регистра $4015|
 
@@ -41,7 +41,7 @@
 |Сигнал|Откуда|Куда|Описание|
 |---|---|---|---|
 |DSLOAD|DPCM Control|Sample Counter, DPCM Address|Загрузить значение в Sample Counter|
-|DSSTEP|DPCM Control|Sample Counter, DPCM Address|Выполнить инкремент Sample Counter|
+|DSSTEP|DPCM Control|Sample Counter, DPCM Address|Выполнить декремент Sample Counter|
 |BLOAD|DPCM Control|Sample Buffer|Загрузить значение в Sample Buffer|
 |BSTEP|DPCM Control|Sample Buffer|Выполнить сдвиг разряда Sample Buffer|
 |NSTEP|DPCM Control|Sample Bit Counter|Выполнить инкремент Sample Bit Counter|
@@ -119,9 +119,10 @@
 |![dpcm_sample_buffer_tran](/BreakingNESWiki/imgstore/apu/dpcm_sample_buffer_tran.jpg)|![DPCM_SampleBuffer](/BreakingNESWiki/imgstore/apu/DPCM_SampleBuffer.jpg)|
 |---|---|
 
-Разряд сдвигового регистра, применяемого в Sample Buffer:
+Регистр сдвига:
 
-![SRBit](/BreakingNESWiki/imgstore/apu/SRBit.jpg)
+|![DPCM_SRBit](/BreakingNESWiki/imgstore/apu/DPCM_SRBit.jpg)|![DPCM_ShiftReg8](/BreakingNESWiki/imgstore/apu/DPCM_ShiftReg8.jpg)|
+|---|---|
 
 ## DPCM Sample Bit Counter
 
@@ -166,9 +167,10 @@ PLA1 является обычным демультиплексором 4-в-16,
 |![dpcm_freq_counter_lfsr_tran](/BreakingNESWiki/imgstore/apu/dpcm_freq_counter_lfsr_tran.jpg)|![DPCM_FreqLFSR](/BreakingNESWiki/imgstore/apu/DPCM_FreqLFSR.jpg)|
 |---|---|
 
-Разряд LFSR:
+LFSR:
 
-![LFSRBit](/BreakingNESWiki/imgstore/apu/LFSRBit.jpg)
+|![DPCM_LFSRBit](/BreakingNESWiki/imgstore/apu/DPCM_LFSRBit.jpg)|![DPCM_LFSR](/BreakingNESWiki/imgstore/apu/DPCM_LFSR.jpg)|
+|---|---|
 
 ## DPCM Address Register ($4012)
 

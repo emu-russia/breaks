@@ -1,6 +1,6 @@
 // Common elements of APU circuitry
 
-module RegisterBit(n_ACLK, ena, d, q, nq);
+module RegisterBit (n_ACLK, ena, d, q, nq);
 	input n_ACLK;
 	input ena;
 	input d;
@@ -19,7 +19,50 @@ module RegisterBit(n_ACLK, ena, d, q, nq);
 
 endmodule // RegisterBit
 
-module CounterBit(n_ACLK, d, load, clear, step, cin, q, nq, cout);
+module RegisterBitRes (n_ACLK, ena, d, res, q, nq);
+
+	input n_ACLK;
+	input ena;
+	input d;
+	input res;
+	output q;
+	output nq;
+
+	wire tq;
+	wire ntq;
+	wire latch_in;
+
+	assign latch_in = ena ? d : (n_ACLK ? q : 1'bz);
+	dlatch transp (.d(latch_in & ~res), .en(1'b1), .nq(ntq));
+	assign tq = ~ntq;
+	assign q = tq;
+	assign nq = ntq;
+
+endmodule // RegisterBitRes2
+
+module RegisterBitRes2 (n_ACLK, ena, d, res1, res2, q, nq);
+
+	input n_ACLK;
+	input ena;
+	input d;
+	input res1;
+	input res2;
+	output q;
+	output nq;
+
+	wire tq;
+	wire ntq;
+	wire latch_in;
+
+	assign latch_in = ena ? d : (n_ACLK ? q : 1'bz);
+	dlatch transp (.d(latch_in & ~(res1 | res2)), .en(1'b1), .nq(ntq));
+	assign tq = ~ntq;
+	assign q = tq;
+	assign nq = ntq;
+
+endmodule // RegisterBitRes2
+
+module CounterBit (n_ACLK, d, load, clear, step, cin, q, nq, cout);
 	input n_ACLK;
 	input d;
 	input load;
@@ -47,7 +90,7 @@ module CounterBit(n_ACLK, d, load, clear, step, cin, q, nq, cout);
 
 endmodule // CounterBit
 
-module DownCounterBit(n_ACLK, d, load, clear, step, cin, q, nq, cout);
+module DownCounterBit (n_ACLK, d, load, clear, step, cin, q, nq, cout);
 	input n_ACLK;
 	input d;
 	input load;
@@ -75,7 +118,7 @@ module DownCounterBit(n_ACLK, d, load, clear, step, cin, q, nq, cout);
 
 endmodule // DownCounterBit
 
-module RevCounterBit(n_ACLK, d, load, clear, step, cin, dec, q, nq, cout);
+module RevCounterBit (n_ACLK, d, load, clear, step, cin, dec, q, nq, cout);
 	input n_ACLK;
 	input d;
 	input load;
