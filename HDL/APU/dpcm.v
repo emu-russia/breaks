@@ -327,9 +327,9 @@ module DPCM_ControlReg (n_ACLK, W4010, DB, Fx, n_IRQEN, LOOPMode);
 	output n_IRQEN;
 	output LOOPMode;
 
-	RegisterBit reg_f [3:0] (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[3:0]), .q(Fx) );
-	RegisterBit reg_loop (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[6]), .q(LOOPMode) );
-	RegisterBit reg_irq (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[7]), .nq(n_IRQEN) );
+	RegisterBit f_reg [3:0] (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[3:0]), .q(Fx) );
+	RegisterBit loop_reg (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[6]), .q(LOOPMode) );
+	RegisterBit irq_reg (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[7]), .nq(n_IRQEN) );
 
 endmodule // DPCM_ControlReg
 
@@ -569,14 +569,14 @@ module DPCM_Output (n_ACLK, RES, W4011, CountDown, DSTEP, DB, DMC_Out, DOUT);
 	output [6:0] DMC_Out;
 	output DOUT;
 
-	wire out_b0_q;
+	wire out_reg_q;
 	wire [5:0] out_cnt_q;
 	wire [5:0] cout;
 
 	RevCounterBit out_cnt [5:0] (.n_ACLK(n_ACLK), .d(DB[6:1]), .load(W4011), .clear(RES), .step(DSTEP), .cin({cout[4:0],1'b1}), .dec(CountDown), .q(out_cnt_q), .cout(cout) );
-	RegisterBit out_b0 (.n_ACLK(n_ACLK), .ena(W4011), .d(DB[0]), .q(out_b0_q) );
+	RegisterBit out_reg (.n_ACLK(n_ACLK), .ena(W4011), .d(DB[0]), .q(out_reg_q) );
 
-	assign DMC_Out = {out_cnt_q,out_b0_q};
+	assign DMC_Out = {out_cnt_q,out_reg_q};
 	assign DOUT = cout[5];
 
 endmodule // DPCM_Output
