@@ -60,6 +60,8 @@ module DPCMChan(
 
 	assign n_ACLK2 = ~ACLK;
 
+	DPCM_ControlReg ctrl_reg (.n_ACLK(n_ACLK), .W4010(W4010), .DB(DB), .Fx(Fx), .n_IRQEN(n_IRQEN), .LOOPMode(LOOPMode) );
+
 	DPCM_Control dpcm_ctrl (
 		.ACLK(ACLK),
 		.n_ACLK(n_ACLK),
@@ -91,8 +93,6 @@ module DPCMChan(
 
 	// Sampling
 
-	DPCM_ControlReg ctrl_reg (.n_ACLK(n_ACLK), .W4010(W4010), .DB(DB), .Fx(Fx), .n_IRQEN(n_IRQEN), .LOOPMode(LOOPMode) );
-
 	DPCM_Decoder decoder (.Fx(Fx), .FR(FR) );
 
 	DPCM_FreqLFSR lfsr (.ACLK(ACLK), .n_ACLK(n_ACLK), .n_ACLK2(n_ACLK2), .RES(RES), .FR(FR), .DFLOAD(DFLOAD) );
@@ -114,6 +114,21 @@ module DPCMChan(
 	DPCM_Output dpcm_out (.n_ACLK(n_ACLK), .RES(RES), .W4011(W4011), .CountDown(n_BOUT), .DSTEP(DSTEP), .DB(DB), .DMC_Out(DMC_Out), .DOUT(DOUT) );
 
 endmodule // DPCMChan
+
+module DPCM_ControlReg (n_ACLK, W4010, DB, Fx, n_IRQEN, LOOPMode);
+
+	input n_ACLK;
+	input W4010;
+	inout [7:0] DB;
+	output [3:0] Fx;
+	output n_IRQEN;
+	output LOOPMode;
+
+	RegisterBit f_reg [3:0] (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[3:0]), .q(Fx) );
+	RegisterBit loop_reg (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[6]), .q(LOOPMode) );
+	RegisterBit irq_reg (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[7]), .nq(n_IRQEN) );
+
+endmodule // DPCM_ControlReg
 
 module DPCM_Control( ACLK, n_ACLK, n_ACLK2, PHI1, RES, RnW, LOCK, W4015, n_R4015, LOOPMode, n_IRQEN, DOUT, NOUT, SOUT, DFLOAD, DB,
 	n_DMCAB, RUNDMC, DMCRDY, DMCINT, DSLOAD, DSSTEP, BLOAD, BSTEP, NSTEP, DSTEP, PCM );
@@ -317,21 +332,6 @@ module DPCM_SampleBufferControl(ACLK, n_ACLK, n_ACLK2, PHI1, RES, LOCK, DFLOAD, 
 	nor (BSTEP, n_DFLOAD, ~NOUT);
 
 endmodule // DPCM_SampleBufferControl
-
-module DPCM_ControlReg (n_ACLK, W4010, DB, Fx, n_IRQEN, LOOPMode);
-
-	input n_ACLK;
-	input W4010;
-	inout [7:0] DB;
-	output [3:0] Fx;
-	output n_IRQEN;
-	output LOOPMode;
-
-	RegisterBit f_reg [3:0] (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[3:0]), .q(Fx) );
-	RegisterBit loop_reg (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[6]), .q(LOOPMode) );
-	RegisterBit irq_reg (.n_ACLK(n_ACLK), .ena(W4010), .d(DB[7]), .nq(n_IRQEN) );
-
-endmodule // DPCM_ControlReg
 
 module DPCM_Decoder (Fx, FR);
 
