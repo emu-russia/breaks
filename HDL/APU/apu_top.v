@@ -151,7 +151,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.n_ACLK(n_ACLK),
 		.RES(RES) );
 
-	SoftTimer frame_cnt(
+	SoftTimer softclk (
 		.PHI1(PHI1),
 		.n_ACLK(n_ACLK),
 		.ACLK(ACLK),
