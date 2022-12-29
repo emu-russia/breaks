@@ -60,7 +60,7 @@ module SoftTimer(
 
 	// SoftCLK control circuits have a very conventional division, because they are "scattered" in an even layer on the chip and it is difficult to determine their boundaries
 
-	FrameCnt_Control fcnt_ctl (
+	SoftCLK_Control ctrl (
 		.PHI1(PHI1),
 		.n_ACLK(n_ACLK),
 		.RES(RES),
@@ -73,7 +73,7 @@ module SoftTimer(
 		.mdout(mode),
 		.Timer_Int(INT_out) );
 
-	FrameCnt_LFSR_Control lfsr_ctl(
+	SoftCLK_LFSR_Control lfsr_ctrl (
 		.n_ACLK(n_ACLK),
 		.ACLK(ACLK),
 		.RES(RES),
@@ -88,7 +88,7 @@ module SoftTimer(
 		.F2(F2),
 		.n_sin_toLFSR(n_sin) );
 
-	FrameCnt_LFSR lfsr (
+	SoftCLK_LFSR lfsr (
 		.n_ACLK(n_ACLK),
 		.F1_Reset(F1),
 		.F2_Step(F2),
@@ -96,7 +96,7 @@ module SoftTimer(
 		.sout(sout),
 		.n_sout(n_sout) );
 
-	FrameCnt_PLA pla (
+	SoftCLK_PLA pla (
 		.s(sout),
 		.ns(n_sout),
 		.md(mode),
@@ -118,7 +118,7 @@ module SoftTimer(
 
 endmodule // SoftTimer
 
-module FrameCnt_Control(
+module SoftCLK_Control(
 	PHI1, n_ACLK,
 	RES, DB, DMCINT, n_R4015, W4017, PLA_in,
 	n_mdout, mdout, Timer_Int);
@@ -156,9 +156,9 @@ module FrameCnt_Control(
 	nor (int_sum, intff_out, DMCINT);
 	assign Timer_Int = ~int_sum;
 
-endmodule // FrameCnt_Control
+endmodule // SoftCLK_Control
 
-module FrameCnt_LFSR_Control(
+module SoftCLK_LFSR_Control(
 	n_ACLK, ACLK,
 	RES, W4017, n_mode, mode, PLA_in, C13, C14,
 	Z2, F1, F2, n_sin_toLFSR);
@@ -206,9 +206,9 @@ module FrameCnt_LFSR_Control(
 	nor (tmp1, C13, C14, PLA_in[5]);
 	nor (n_sin_toLFSR, C13 & C14, tmp1);
 
-endmodule // FrameCnt_LFSR_Control
+endmodule // SoftCLK_LFSR_Control
 
-module FrameCnt_LFSR_Bit(
+module SoftCLK_LFSR_Bit(
 	n_ACLK,
 	n_sin, F1, F2,
 	sout, n_sout);
@@ -228,9 +228,9 @@ module FrameCnt_LFSR_Bit(
 		.en(1'b1), .nq(inlatch_out));
 	dlatch out_latch (.d(inlatch_out), .en(n_ACLK), .q(sout), .nq(n_sout));
 
-endmodule // FrameCnt_LFSR_Bit
+endmodule // SoftCLK_LFSR_Bit
 
-module FrameCnt_LFSR(
+module SoftCLK_LFSR(
 	n_ACLK, F1_Reset, F2_Step, n_sin,
 	sout, n_sout);
 
@@ -242,7 +242,7 @@ module FrameCnt_LFSR(
 	output [14:0] sout;
 	output [14:0] n_sout;
 
-	FrameCnt_LFSR_Bit bits [14:0] (
+	SoftCLK_LFSR_Bit bits [14:0] (
 		.n_ACLK(n_ACLK),
 		.n_sin({n_sout[13:0],n_sin}),
 		.F1(F1_Reset),
@@ -250,9 +250,9 @@ module FrameCnt_LFSR(
 		.sout(sout),
 		.n_sout(n_sout) );
 
-endmodule // FrameCnt_LFSR
+endmodule // SoftCLK_LFSR
 
-module FrameCnt_PLA(s, ns, md, PLA_out);
+module SoftCLK_PLA(s, ns, md, PLA_out);
 
 	input [14:0] s;
 	input [14:0] ns;
@@ -266,4 +266,4 @@ module FrameCnt_PLA(s, ns, md, PLA_out);
 	nor (PLA_out[4], s[0], ns[1], s[2], ns[3], ns[4], ns[5], ns[6], s[7], s[8], ns[9], ns[10], ns[11], s[12], s[13], s[14]);
 	nor (PLA_out[5], ns[0], ns[1], ns[2], ns[3], ns[4], ns[5], ns[6], ns[7], ns[8], ns[9], ns[10], ns[11], ns[12], ns[13], ns[14]);
 
-endmodule // FrameCnt_PLA
+endmodule // SoftCLK_PLA

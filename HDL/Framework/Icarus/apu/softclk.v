@@ -57,11 +57,11 @@ module SoftCLK_Run();
 		// Set mode (by hand)
 		// Set the value of the register $4017[7] bit directly  (0 - normal mode, 1 - extended mode)
 
-		apu.frame_cnt.fcnt_ctl.mode.val <= 1'b0;
+		apu.softclk.ctrl.mode.transp.dout <= 1'b0;
 
 		// Set timer interrupt enable $4017[6] (0 - enable)
 
-		apu.frame_cnt.fcnt_ctl.mask.val <= 1'b0;
+		apu.softclk.ctrl.mask.transp.dout <= 1'b0;
 
 		// Taking into account the divider 2A03 (by 6) 30k iterations should be enough for any SoftCLK mode.
 		// Repeat batch 4 times

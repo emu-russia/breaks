@@ -48,7 +48,7 @@ module CLK_Divider(n_CLK_frompad, PHI0_tocore, PHI2_fromcore, n_M2_topad);
 	wire nq;
 	wire nval_4;
 
-	DivPhaseSpiltter phase_split (
+	DivPhaseSplitter phase_split (
 		.n_clk(n_CLK_frompad),
 		.q(q),
 		.nq(nq) );
@@ -92,7 +92,7 @@ module DivSRBit(q, nq, rst, sin, n_val, sout);
 
 endmodule // DivSRBit
 
-module DivPhaseSpiltter(n_clk, q, nq);
+module DivPhaseSplitter(n_clk, q, nq);
 
 	input n_clk;
 	output q;
@@ -107,4 +107,4 @@ module DivPhaseSpiltter(n_clk, q, nq);
 	nor (nq, not1_out, q);
 	nor (q, nq, not2_out);
 
-endmodule // DivPhaseSpiltter
+endmodule // DivPhaseSplitter
