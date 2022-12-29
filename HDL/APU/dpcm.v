@@ -417,6 +417,9 @@ module DPCM_FreqLFSR (ACLK, n_ACLK, n_ACLK2, RES, FR, DFLOAD);
 	assign DFLOAD = ~(~n_ACLK2 | ~nor3_out);
 	assign DFSTEP = ~(~n_ACLK2 | nor3_out);
 
+	nor (nor1_out, sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8]);
+	nor (nor2_out, ~sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8]);
+
 	DPCM_LFSRBit lfsr [8:0] (.n_ACLK(n_ACLK), .load(DFLOAD), .step(DFSTEP), .val(FR), .sin({sout[7:0],feedback}), .sout(sout) );
 
 endmodule // DPCM_FreqLFSR
