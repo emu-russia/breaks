@@ -1,6 +1,6 @@
 // Inverting tristate with inverted permission.
 
-module bustris(a, n_x, n_en);
+module bustris (a, n_x, n_en);
 
 	input a;
 	output n_x;
