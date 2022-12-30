@@ -14,8 +14,7 @@ The APU includes:
 - MOS 6502 processor core, with disabled decimal correction (BCD) circuit
 - Input clock frequency divider
 - Software Timer (commonly known as `Frame counter`)
-- Sound generators: 2 square channels, 1 triangle, 1 noise generator
-- Delta PCM
+- Sound generators: 2 square channels, 1 triangle, 1 noise generator, Delta PCM
 - DMA for sampling DPCM samples
 - DACs to convert digital outputs of synthesized sound to analog levels
 - DMA to send sprites (hardwired to external PPU register $2004) and dedicated DMA controller
