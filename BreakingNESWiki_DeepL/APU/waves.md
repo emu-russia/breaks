@@ -59,3 +59,7 @@ The diagram shows the essence of the operation, with some peculiarities:
 - The LFO2 frequency that controls the counter counting is not scaled, but synthetically shortened
 - The main purpose is to show that after the end of the countdown the circuit generates a `NotCount` signal (which corresponds to the NOSQA/NOSQB/NOTRI/NORND signals for the four real counters)
 - Before starting the counter, the value 0b1001 (9) is loaded into the counter, which after processing on the decoder corresponds to the value 0x07.
+
+## DPCM Decoder
+
+![dpcm_decoder](/BreakingNESWiki/imgstore/apu/waves/dpcm_decoder.png)
