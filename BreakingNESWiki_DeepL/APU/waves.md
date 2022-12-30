@@ -63,3 +63,7 @@ The diagram shows the essence of the operation, with some peculiarities:
 ## DPCM Decoder
 
 ![dpcm_decoder](/BreakingNESWiki/imgstore/apu/waves/dpcm_decoder.png)
+
+## DPCM Output
+
+![dpcm_output](/BreakingNESWiki/imgstore/apu/waves/dpcm_output.png)

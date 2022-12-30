@@ -88,13 +88,9 @@ TBD.
 
 TBD.
 
-## DPCM DMA
+## Тест DPCM
 
-TBD.
-
-## Совместная работа спрайтовой DMA и DPCM
-
-TBD.
+![dpcm_output](/BreakingNESWiki/imgstore/apu/waves/dpcm_output.png)
 
 ## Тест прямоугольного канала
 
@@ -105,5 +101,9 @@ TBD.
 TBD.
 
 ## Тест шумового канала
+
+TBD.
+
+## Совместная работа спрайтовой DMA и DPCM
 
 TBD.
