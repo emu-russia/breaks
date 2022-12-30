@@ -11,6 +11,15 @@ All circuits for generating sound are, for the most part, various counters contr
 
 ![SoundGenerators](/BreakingNESWiki/imgstore/apu/SoundGenerators.jpg)
 
+## Timing
+
+The sound generators are clocked by the following signals:
+- PHI1/2: CPU Core clock frequency
+- ACLK: Audio CLK. Two times slower PHI, but with a special overlapping phase pattern
+- LFO1/2: Low frequency oscillation signals (on the order of hundreds of Hertz)
+
+For some reason the developers decided to use PHI1 instead of ACLK for the triangular channel.
+
 ## Sweep
 
 TBD: Description and picture.
