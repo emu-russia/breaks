@@ -264,35 +264,39 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.NOTRI(NOTRI),
 		.NORND(NORND) );
 
-	SquareChan_0 sqa(
+	SquareChan sqa(
+		.ACLK(ACLK),
 		.n_ACLK(n_ACLK), 
 		.RES(RES),
 		.DB(DB),
-		.W4000(W4000),
-		.W4001(W4001),
-		.W4002(W4002),
-		.W4003(W4003),
+		.WR0(W4000),
+		.WR1(W4001),
+		.WR2(W4002),
+		.WR3(W4003),
 		.nLFO1(nLFO1),
 		.nLFO2(nLFO2),
-		.SQA_LC(SQA_LC),
-		.NOSQA(NOSQA),
+		.SQ_LC(SQA_LC),
+		.NOSQ(NOSQA),
 		.LOCK(DebugLock), 
-		.SQA_Out(SQA) );
+		.AdderCarryMode(1'b1),
+		.SQ_Out(SQA) );
 
-	SquareChan_1 sqb(
+	SquareChan sqb(
+		.ACLK(ACLK),
 		.n_ACLK(n_ACLK),
 		.RES(RES),
 		.DB(DB),
-		.W4004(W4004),
-		.W4005(W4005),
-		.W4006(W4006),
-		.W4007(W4007),
+		.WR0(W4004),
+		.WR1(W4005),
+		.WR2(W4006),
+		.WR3(W4007),
 		.nLFO1(nLFO1),
 		.nLFO2(nLFO2),
-		.SQB_LC(SQB_LC),
-		.NOSQB(NOSQB),
+		.SQ_LC(SQB_LC),
+		.NOSQ(NOSQB),
 		.LOCK(DebugLock), 
-		.SQB_Out(SQB) );
+		.AdderCarryMode(1'b0),
+		.SQ_Out(SQB) );
 	
 	NoiseChan noise(
 		.n_ACLK(n_ACLK),
