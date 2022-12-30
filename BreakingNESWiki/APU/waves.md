@@ -78,7 +78,7 @@ TBD.
 
 ## Декодер DPCM
 
-TBD.
+![dpcm_decoder](/BreakingNESWiki/imgstore/apu/waves/dpcm_decoder.png)
 
 ## Декодер шумового канала
 
