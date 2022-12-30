@@ -462,10 +462,11 @@ module DPCM_SampleCounter (n_ACLK, RES, DSLOAD, DSSTEP, DSC, SOUT);
 	input DSSTEP;
 	input [7:0] DSC;
 	output SOUT;
+	output [11:0] debug_cnt_out;
 
 	wire [11:0] cout;
 
-	DownCounterBit cnt [11:0] (.n_ACLK(), .d({DSC[7:0],4'b0000}), .load(DSLOAD), .clear(RES), .step(DSSTEP), .cin({cout[10:0],1'b1}), .cout(cout) );
+	DownCounterBit cnt [11:0] (.n_ACLK(n_ACLK), .d({DSC[7:0],4'b0000}), .load(DSLOAD), .clear(RES), .step(DSSTEP), .cin({cout[10:0],1'b1}), .cout(cout), .q(debug_cnt_out) );
 
 	assign SOUT = cout[11];
 
