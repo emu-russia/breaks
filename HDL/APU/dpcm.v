@@ -1,7 +1,7 @@
 
 // At first glance you might get lost here, but in fact there is nothing complicated: there is a control circuit (which includes a number of subcircuits), counters for sampling, a counter for addressing, and an output circuit.
 
-module DPCMChan(
+module DPCMChan (
 	PHI1, n_ACLK, ACLK, 
 	RES, DB, RnW, LOCK,
 	W4010, W4011, W4012, W4013, W4015, n_R4015, 
