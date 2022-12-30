@@ -12,4 +12,4 @@
 
 Тестовый паттерн для 2A07A ничем интересным не выделяется:
 
-![testarea_2A07A](/BreakingNESWiki/imgstore/apu/testarea_2A07A.jpg)
+![testarea_2A07A](/BreakingNESWiki/imgstore/apu/pal/testarea_2A07A.jpg)

@@ -12,4 +12,4 @@ The test pattern for the 2A03G does not stand out as interesting:
 
 The test pattern for the 2A07A does not stand out in any interesting way:
 
-![testarea_2A07A](/BreakingNESWiki/imgstore/apu/testarea_2A07A.jpg)
+![testarea_2A07A](/BreakingNESWiki/imgstore/apu/pal/testarea_2A07A.jpg)
