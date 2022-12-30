@@ -6,7 +6,7 @@
 
 `timescale 1ns/1ns
 
-`define SampleAddr 16'hf000
+`define SampleAddr 16'hf000 		// The starting address of the buffer with DPCM samples in 6502 Plain memory.
 
 module DPCMChan_Run();
 
@@ -47,6 +47,8 @@ module DPCMChan_Run();
 
 	BogusCorePhi phi (.PHI0(PHI0), .PHI1(PHI1), .PHI2(PHI2), .RnW(RnW));
 
+	DPCMRegMaster reg_master (.W4010(W4010), .W4012(W4012), .W4013(W4013), .W4015(W4015), .DataBus(DataBus) );
+
 	ACLKGen clkgen (
 		.PHI1(PHI1),
 		.PHI2(PHI2),
@@ -80,8 +82,25 @@ module DPCMChan_Run();
 		W4015 <= 1'b0;
 		n_R4015 <= 1'b1;
 
+		// Start DPCM Playback
 
-		repeat (256) @ (posedge CLK);
+		W4010 <= 1'b1;
+		repeat (1) @ (posedge CLK);
+		W4010 <= 1'b0;
+
+		W4012 <= 1'b1;
+		repeat (1) @ (posedge CLK);
+		W4012 <= 1'b0;
+
+		W4013 <= 1'b1;
+		repeat (1) @ (posedge CLK);
+		W4013 <= 1'b0;
+
+		W4015 <= 1'b1;
+		repeat (1) @ (posedge CLK);
+		W4015 <= 1'b0;
+
+		repeat (32768) @ (posedge CLK);
 		$finish;
 	end
 
@@ -99,6 +118,29 @@ module BogusCorePhi (PHI0, PHI1, PHI2, RnW);
 	assign RnW = 1'b1;		// Read mode always
 
 endmodule // BogusCorePhi
+
+module DPCMRegMaster (W4010, W4012, W4013, W4015, DataBus);
+
+	input W4010;
+	input W4012;
+	input W4013;
+	input W4015;
+	inout [7:0] DataBus;
+
+	//LDA #$E
+	//STA $4010
+	//LDA #$C0
+	//STA $4012
+	//LDA #$FF
+	//STA $4013
+	//LDA #$F
+	//STA $4015
+	//LDA #$1F
+	//STA $4015
+
+	assign DataBus = W4010 ? 8'h0E : (W4012 ? 8'hC0 : (W4013 ? 8'hFF : (W4015 ? 8'h1F : 8'hzz)));
+
+endmodule // DPCMRegMaster
 
 module DPCMSampleMem (addr, data, ReadMode);
 
