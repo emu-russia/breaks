@@ -10,13 +10,21 @@ The difference between SQUARE0 and SQUARE1 is the input carry design for the add
 
 Sometimes instead of Square0/Square1 we have the designation SquareA/SquareB.
 
-## Frequency In
+![SQUARE](/BreakingNESWiki/imgstore/apu/SQUARE.jpg)
+
+## Frequency Reg
 
 ![square_freq_in_tran](/BreakingNESWiki/imgstore/apu/square_freq_in_tran.jpg)
 
-## Shift In
+![SQUARE_FreqReg](/BreakingNESWiki/imgstore/apu/SQUARE_FreqReg.jpg)
+
+![SQUARE_FreqRegBit](/BreakingNESWiki/imgstore/apu/SQUARE_FreqRegBit.jpg)
+
+## Shift Reg
 
 ![square_shift_in_tran](/BreakingNESWiki/imgstore/apu/square_shift_in_tran.jpg)
+
+![SQAURE_ShiftReg](/BreakingNESWiki/imgstore/apu/SQAURE_ShiftReg.jpg)
 
 ## Barrel Shifter
 
@@ -24,9 +32,15 @@ Sometimes instead of Square0/Square1 we have the designation SquareA/SquareB.
 
 ![square_barrel_shifter_tran2](/BreakingNESWiki/imgstore/apu/square_barrel_shifter_tran2.jpg)
 
+![SQUARE_BarrelShifter](/BreakingNESWiki/imgstore/apu/SQUARE_BarrelShifter.jpg)
+
 ## Adder
 
 ![square_adder_tran](/BreakingNESWiki/imgstore/apu/square_adder_tran.jpg)
+
+![SQUARE_Adder](/BreakingNESWiki/imgstore/apu/SQUARE_Adder.jpg)
+
+![SQUARE_AdderBit](/BreakingNESWiki/imgstore/apu/SQUARE_AdderBit.jpg)
 
 ## Frequency Counter
 
@@ -34,15 +48,23 @@ Sometimes instead of Square0/Square1 we have the designation SquareA/SquareB.
 
 ![square_freq_counter_control_tran](/BreakingNESWiki/imgstore/apu/square_freq_counter_control_tran.jpg)
 
+![SQUARE_FreqCounter](/BreakingNESWiki/imgstore/apu/SQUARE_FreqCounter.jpg)
+
 ## Envelope
 
-![square_volume_envelope_tran](/BreakingNESWiki/imgstore/apu/square_volume_envelope_tran.jpg)
+Decay Counter:
+
+![square_decay_counter_tran](/BreakingNESWiki/imgstore/apu/square_decay_counter_tran.jpg)
 
 ![square_envelope_control_tran1](/BreakingNESWiki/imgstore/apu/square_envelope_control_tran1.jpg)
 
 ![square_envelope_control_tran2](/BreakingNESWiki/imgstore/apu/square_envelope_control_tran2.jpg)
 
+Envelope Counter:
+
 ![square_envelope_counter_tran](/BreakingNESWiki/imgstore/apu/square_envelope_counter_tran.jpg)
+
+![SQUARE_Envelope](/BreakingNESWiki/imgstore/apu/SQUARE_Envelope.jpg)
 
 ## Sweep
 
@@ -50,16 +72,26 @@ Sometimes instead of Square0/Square1 we have the designation SquareA/SquareB.
 
 ![square_sweep_control_tran2](/BreakingNESWiki/imgstore/apu/square_sweep_control_tran2.jpg)
 
+Sweep Counter:
+
 ![square_sweep_counter_tran](/BreakingNESWiki/imgstore/apu/square_sweep_counter_tran.jpg)
 
 ![square_sweep_counter_control_tran](/BreakingNESWiki/imgstore/apu/square_sweep_counter_control_tran.jpg)
 
+![SQUARE_Sweep](/BreakingNESWiki/imgstore/apu/SQUARE_Sweep.jpg)
+
 ## Duty
+
+Duty Counter:
 
 ![square_duty_counter_tran](/BreakingNESWiki/imgstore/apu/square_duty_counter_tran.jpg)
 
 ![square_duty_cycle_tran](/BreakingNESWiki/imgstore/apu/square_duty_cycle_tran.jpg)
 
+![SQUARE_Duty](/BreakingNESWiki/imgstore/apu/SQUARE_Duty.jpg)
+
 ## Output
 
 ![square_output_tran](/BreakingNESWiki/imgstore/apu/square_output_tran.jpg)
+
+![SQUARE_Output](/BreakingNESWiki/imgstore/apu/SQUARE_Output.jpg)
