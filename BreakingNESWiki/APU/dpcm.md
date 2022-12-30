@@ -50,7 +50,7 @@
 |LOOP|$4010\[7\]|DPCM Control|1: Зацикленное воспроизведение DPCM|
 |/IRQEN|$4010\[6\]|DPCM Control|0: Разрешить прерывание от DPCM|
 |DOUT|DPCM Output|DPCM Control|Счётчик DPCM Out закончил пересчёт|
-|NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter закончил пересчёт|
+|/NOUT|Sample Bit Counter|DPCM Control|0: Sample Bit Counter закончил пересчёт|
 |SOUT|Sample Counter|DPCM Control|Sample Counter закончил пересчёт|
 |DFLOAD|LFSR|DPCM Control|Frequency LFSR закончил пересчёт и перезагрузил сам себя|
 |/BOUT|Sample Buffer|DPCM Output|Очередное значение бита, вытолкнутое из регистра сдвига Sample Buffer (инвертированное значение)|

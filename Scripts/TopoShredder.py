@@ -43,7 +43,7 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "dpcm_freq_counter_lfsr_tran", [4466, 7959, 536, 1264] )
 	CropImage (FusedTopo, imgstore + "dpcm_int_control_tran", [3478, 7414, 551, 622] )
 	CropImage (FusedTopo, imgstore + "dpcm_output_tran", [1635, 5193, 621, 1200] )
-	CropImage (FusedTopo, imgstore + "dpcm_sample_bit_counter_tran", [3642, 8123, 563, 477] )
+	CropImage (FusedTopo, imgstore + "dpcm_sample_bit_counter_tran", [3619, 8075, 959, 529] )
 	CropImage (FusedTopo, imgstore + "dpcm_sample_buffer_control_tran", [4413, 6798, 795, 546] )
 	CropImage (FusedTopo, imgstore + "dpcm_sample_buffer_tran", [4627, 5420, 569, 1396] )
 	CropImage (FusedTopo, imgstore + "dpcm_sample_counter_control_tran1", [4258, 7447, 545, 393] )
