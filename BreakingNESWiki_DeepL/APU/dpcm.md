@@ -50,7 +50,7 @@ DMC internal state control signals:
 |LOOP|$4010\[7\]|DPCM Control|1: DPCM looped playback|
 |/IRQEN|$4010\[6\]|DPCM Control|0: Enable interrupt from DPCM|
 |DOUT|DPCM Output|DPCM Control|DPCM Out counter has finished counting|
-|NOUT|Sample Bit Counter|DPCM Control|Sample Bit Counter has finished counting|
+|/NOUT|Sample Bit Counter|DPCM Control|0: Sample Bit Counter has finished counting|
 |SOUT|Sample Counter|DPCM Control|Sample Counter has finished counting|
 |DFLOAD|LFSR|DPCM Control|Frequency LFSR finished counting and reloaded itself|
 |n_BOUT|Sample Buffer|DPCM Output|The next bit value pushed out of the Sample Buffer shift register (inverted value)|

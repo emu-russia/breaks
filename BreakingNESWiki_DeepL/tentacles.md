@@ -90,3 +90,4 @@ Correction history:
 |FLOAD,FSTEP,LOAD,STEP,TSTEP|TFLOAD,TFSTEP,TLOAD,TSTEP,TTSTEP (triangle)|
 |/ACLK2|/ACLK3A (square0)|
 |/ACLK2|/ACLK3B (square1)|
+|NOUT|/NOUT|

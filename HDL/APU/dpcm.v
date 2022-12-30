@@ -1,7 +1,7 @@
 
 // At first glance you might get lost here, but in fact there is nothing complicated: there is a control circuit (which includes a number of subcircuits), counters for sampling, a counter for addressing, and an output circuit.
 
-module DPCMChan(
+module DPCMChan (
 	PHI1, n_ACLK, ACLK, 
 	RES, DB, RnW, LOCK,
 	W4010, W4011, W4012, W4013, W4015, n_R4015, 
@@ -45,7 +45,7 @@ module DPCMChan(
 	wire DSTEP;				// Increment/decrement the DPCM Output counter
 	wire PCM;				// Load new sample value into Sample Buffer
 	wire DOUT;				// DPCM Out counter has finished counting
-	wire NOUT;				// Sample Bit Counter has finished counting
+	wire n_NOUT;			// 0: Sample Bit Counter has finished counting
 	wire SOUT;				// Sample Counter has finished counting
 	wire DFLOAD;			// Frequency LFSR finished counting and reloaded itself
 	wire n_BOUT; 			// The next bit value pushed out of the Sample Buffer shift register (inverted value)
@@ -75,7 +75,7 @@ module DPCMChan(
 		.LOOPMode(LOOPMode),
 		.n_IRQEN(n_IRQEN),
 		.DOUT(DOUT),
-		.NOUT(NOUT),
+		.n_NOUT(n_NOUT),
 		.SOUT(SOUT),
 		.DFLOAD(DFLOAD),
 		.DB(DB),
@@ -101,7 +101,7 @@ module DPCMChan(
 
 	DPCM_SampleCounter scnt (.n_ACLK(n_ACLK), .RES(RES), .DSLOAD(DSLOAD), .DSSTEP(DSSTEP), .DSC(DSC), .SOUT(SOUT) );
 
-	DPCM_SampleBitCounter sbcnt (.n_ACLK(n_ACLK), .RES(RES), .NSTEP(NSTEP), .NOUT(NOUT) );
+	DPCM_SampleBitCounter sbcnt (.n_ACLK(n_ACLK), .RES(RES), .NSTEP(NSTEP), .n_NOUT(n_NOUT) );
 
 	DPCM_SampleBuffer sbuf (.n_ACLK(n_ACLK), .RES(RES), .BLOAD(BLOAD), .BSTEP(BSTEP), .PCM(PCM), .DB(DB), .n_BOUT(n_BOUT) );
 
@@ -130,7 +130,7 @@ module DPCM_ControlReg (n_ACLK, W4010, DB, Fx, n_IRQEN, LOOPMode);
 
 endmodule // DPCM_ControlReg
 
-module DPCM_Control( ACLK, n_ACLK, n_ACLK2, PHI1, RES, RnW, LOCK, W4015, n_R4015, LOOPMode, n_IRQEN, DOUT, NOUT, SOUT, DFLOAD, DB,
+module DPCM_Control( ACLK, n_ACLK, n_ACLK2, PHI1, RES, RnW, LOCK, W4015, n_R4015, LOOPMode, n_IRQEN, DOUT, n_NOUT, SOUT, DFLOAD, DB,
 	n_DMCAB, RUNDMC, DMCRDY, DMCINT, DSLOAD, DSSTEP, BLOAD, BSTEP, NSTEP, DSTEP, PCM );
 
 	input ACLK;
@@ -145,7 +145,7 @@ module DPCM_Control( ACLK, n_ACLK, n_ACLK2, PHI1, RES, RnW, LOCK, W4015, n_R4015
 	input LOOPMode;
 	input n_IRQEN;
 	input DOUT;
-	input NOUT;
+	input n_NOUT;
 	input SOUT;
 	input DFLOAD;
 	inout [7:0] DB;
@@ -179,7 +179,7 @@ module DPCM_Control( ACLK, n_ACLK, n_ACLK2, PHI1, RES, RnW, LOCK, W4015, n_R4015
 
 	DPCM_SampleCounterControl scnt_ctrl (.ACLK(ACLK), .n_ACLK(n_ACLK), .n_ACLK2(n_ACLK2), .PCMDone(DMC1), .DMCFinish(DMC2), .DMCEnable(ED2), .DFLOAD(DFLOAD), .DSLOAD(DSLOAD), .DSSTEP(DSSTEP), .NSTEP(NSTEP), .CTRL2(CTRL2) );
 
-	DPCM_SampleBufferControl sbuf_ctrl (.ACLK(ACLK), .n_ACLK(n_ACLK), .n_ACLK2(n_ACLK2), .PHI1(PHI1), .RES(RES), .LOCK(LOCK), .DFLOAD(DFLOAD), .DOUT(DOUT), .NOUT(NOUT), .n_DMCAB(n_DMCAB), .BLOAD(BLOAD), .BSTEP(BSTEP), .PCM(PCM), .DSTEP(DSTEP), .DMC1(DMC1), .CTRL1(CTRL1) );
+	DPCM_SampleBufferControl sbuf_ctrl (.ACLK(ACLK), .n_ACLK(n_ACLK), .n_ACLK2(n_ACLK2), .PHI1(PHI1), .RES(RES), .LOCK(LOCK), .DFLOAD(DFLOAD), .DOUT(DOUT), .n_NOUT(n_NOUT), .n_DMCAB(n_DMCAB), .BLOAD(BLOAD), .BSTEP(BSTEP), .PCM(PCM), .DSTEP(DSTEP), .DMC1(DMC1), .CTRL1(CTRL1) );
 
 endmodule // DPCMControl
 
@@ -247,7 +247,7 @@ module DPCM_DMAControl(ACLK, n_ACLK, n_ACLK2, PHI1, RnW, RES, nDMAStop, nDMCEnab
 
 	dlatch run_latch1 (.d(DMAStart), .en(n_ACLK2), .q(run_latch1_q), .nq(run_latch1_nq) );
 	dlatch run_latch2 (.d(run_latch1_nq), .en(n_ACLK), .nq(RUNDMC) );
-	assign start_set = ~(~(~PHI1 & RnW) | nDMCEnableDelay | ~nDMAStop);
+	assign start_set = ~( ~(~PHI1 & RnW) | nDMCEnableDelay | ~nDMAStop );
 	rsff_2_4 start_ff (.res1(nDMCEnableDelay), .res2(RES), .res3(~nDMAStop), .s(start_set), .q(DMAStart) );
 	rsff rdy_ff (.r(n_ACLK2), .s(run_latch1_q & n_ACLK), .q(rdy_ff_q), .nq(n_DMCAB) );
 	nor (DMCRDY, DMAStart, rdy_ff_q);
@@ -286,7 +286,7 @@ module DPCM_SampleCounterControl(ACLK, n_ACLK, n_ACLK2, PCMDone, DMCFinish, DMCE
 
 endmodule // DPCM_SampleCounterControl
 
-module DPCM_SampleBufferControl(ACLK, n_ACLK, n_ACLK2, PHI1, RES, LOCK, DFLOAD, DOUT, NOUT, n_DMCAB, BLOAD, BSTEP, PCM, DSTEP, DMC1, CTRL1);
+module DPCM_SampleBufferControl(ACLK, n_ACLK, n_ACLK2, PHI1, RES, LOCK, DFLOAD, DOUT, n_NOUT, n_DMCAB, BLOAD, BSTEP, PCM, DSTEP, DMC1, CTRL1);
 
 	input ACLK;
 	input n_ACLK;
@@ -296,7 +296,7 @@ module DPCM_SampleBufferControl(ACLK, n_ACLK, n_ACLK2, PHI1, RES, LOCK, DFLOAD, 
 	input LOCK;
 	input DFLOAD;
 	input DOUT;
-	input NOUT;
+	input n_NOUT;
 	input n_DMCAB;
 	output BLOAD;
 	output BSTEP;
@@ -316,7 +316,7 @@ module DPCM_SampleBufferControl(ACLK, n_ACLK, n_ACLK2, PHI1, RES, LOCK, DFLOAD, 
 
 	assign n_DFLOAD = ~DFLOAD;
 
-	rsff_2_3 step_ff (.res1(~(~stop_latch_nq | n_DFLOAD | NOUT)), .res2(RES), .s(BLOAD), .nq(step_ff_nq) );
+	rsff_2_3 step_ff (.res1(~(~stop_latch_nq | n_DFLOAD | n_NOUT)), .res2(RES), .s(BLOAD), .nq(step_ff_nq) );
 	rsff_2_3 stop_ff (.res1(BLOAD), .res2(RES), .s(PCM), .q(stop_ff_q), .nq(CTRL1) );
 	rsff_2_3 pcm_ff (.res1(DMC1), .res2(RES), .s(PCM), .nq(pcm_ff_nq) );
 
@@ -328,8 +328,8 @@ module DPCM_SampleBufferControl(ACLK, n_ACLK, n_ACLK2, PHI1, RES, LOCK, DFLOAD, 
 	nor (PCM, PHI1, n_DMCAB);
 	nor (DMC1, pcm_latch_q, ~n_ACLK2);
 	nor (DSTEP, dout_latch_q, dstep_latch_q, n_DFLOAD, LOCK);
-	nor (BLOAD, stop_latch_nq, n_DFLOAD, NOUT);
-	nor (BSTEP, n_DFLOAD, ~NOUT);
+	nor (BLOAD, stop_latch_nq, n_DFLOAD, n_NOUT);
+	nor (BSTEP, n_DFLOAD, ~n_NOUT);
 
 endmodule // DPCM_SampleBufferControl
 
@@ -420,7 +420,7 @@ module DPCM_FreqLFSR (ACLK, n_ACLK, n_ACLK2, RES, FR, DFLOAD);
 	nor (nor1_out, sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8]);
 	nor (nor2_out, ~sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8]);
 
-	DPCM_LFSRBit lfsr [8:0] (.n_ACLK(n_ACLK), .load(DFLOAD), .step(DFSTEP), .val(FR), .sin({sout[7:0],feedback}), .sout(sout) );
+	DPCM_LFSRBit lfsr [8:0] (.n_ACLK(n_ACLK), .load(DFLOAD), .step(DFSTEP), .val(FR), .sin({feedback,sout[8:1]}), .sout(sout) );
 
 endmodule // DPCM_FreqLFSR
 
@@ -465,24 +465,23 @@ module DPCM_SampleCounter (n_ACLK, RES, DSLOAD, DSSTEP, DSC, SOUT);
 
 	wire [11:0] cout;
 
-	DownCounterBit cnt [11:0] (.n_ACLK(), .d({DSC[7:0],4'b0000}), .load(DSLOAD), .clear(RES), .step(DSSTEP), .cin({cout[10:0],1'b1}), .cout(cout) );
+	DownCounterBit cnt [11:0] (.n_ACLK(n_ACLK), .d({DSC[7:0],4'b0000}), .load(DSLOAD), .clear(RES), .step(DSSTEP), .cin({cout[10:0],1'b1}), .cout(cout) );
 
 	assign SOUT = cout[11];
 
 endmodule // DPCM_SampleCounter
 
-module DPCM_SampleBitCounter (n_ACLK, RES, NSTEP, NOUT);
+module DPCM_SampleBitCounter (n_ACLK, RES, NSTEP, n_NOUT);
 
 	input n_ACLK;
 	input RES;
 	input NSTEP;
-	output NOUT;
+	output n_NOUT;
 
 	wire [2:0] cout;
 
 	CounterBit cnt [2:0] (.n_ACLK(n_ACLK), .d(3'b000), .load(RES), .clear(RES), .step(NSTEP), .cin({cout[1:0],1'b1}), .cout(cout) );
-
-	assign NOUT = cout[2];
+	dlatch nout_latch (.d(cout[2]), .en(n_ACLK), .nq(n_NOUT));
 
 endmodule // DPCM_SampleBitCounter
 

@@ -3492,7 +3492,7 @@
     </comp>
     <comp lib="0" loc="(100,420)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="NOUT"/>
+      <a name="label" val="n_NOUT"/>
     </comp>
     <comp lib="0" loc="(100,500)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3881,7 +3881,7 @@
     </comp>
     <comp lib="0" loc="(100,490)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="NOUT"/>
+      <a name="label" val="n_NOUT"/>
     </comp>
     <comp lib="0" loc="(100,520)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4380,10 +4380,10 @@
     <comp lib="0" loc="(230,80)" name="Constant">
       <a name="value" val="0x0"/>
     </comp>
-    <comp lib="0" loc="(510,380)" name="Pin">
+    <comp lib="0" loc="(610,380)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="NOUT"/>
+      <a name="label" val="n_NOUT"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(90,100)" name="Pin">
@@ -4401,6 +4401,14 @@
     <comp loc="(470,210)" name="CounterBit"/>
     <comp loc="(470,380)" name="CounterBit"/>
     <comp loc="(470,40)" name="CounterBit"/>
+    <comp loc="(540,360)" name="DLatch">
+      <a name="label" val="nout_latch"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <wire from="(150,10)" to="(150,40)"/>
+    <wire from="(150,10)" to="(520,10)"/>
+    <wire from="(150,40)" to="(240,40)"/>
     <wire from="(190,100)" to="(190,230)"/>
     <wire from="(190,100)" to="(250,100)"/>
     <wire from="(190,230)" to="(190,270)"/>
@@ -4434,13 +4442,16 @@
     <wire from="(240,40)" to="(240,210)"/>
     <wire from="(240,40)" to="(250,40)"/>
     <wire from="(470,210)" to="(490,210)"/>
-    <wire from="(470,380)" to="(510,380)"/>
+    <wire from="(470,380)" to="(540,380)"/>
     <wire from="(470,40)" to="(490,40)"/>
     <wire from="(490,210)" to="(490,360)"/>
     <wire from="(490,40)" to="(490,190)"/>
+    <wire from="(520,10)" to="(520,360)"/>
+    <wire from="(520,360)" to="(540,360)"/>
+    <wire from="(580,380)" to="(610,380)"/>
     <wire from="(90,100)" to="(190,100)"/>
     <wire from="(90,140)" to="(200,140)"/>
-    <wire from="(90,40)" to="(240,40)"/>
+    <wire from="(90,40)" to="(150,40)"/>
   </circuit>
   <circuit name="DPCM_Decoder">
     <a name="appearance" val="logisim_evolution"/>

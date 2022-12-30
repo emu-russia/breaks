@@ -141,7 +141,7 @@ This signal can be found in our circuits as `/ACLK2`.
 
 ### /ACLK3
 
-Used for [square wave sound generators](square.md), and more specifically for the $4002/$4003 registers.
+Used for [square wave sound generators](square.md), and more specifically for the $4002/$4003/$4006/$4007 registers.
 
 ![nACLK3](/BreakingNESWiki/imgstore/apu/nACLK3.jpg)
 
