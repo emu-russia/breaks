@@ -61,6 +61,16 @@ The bit mask is topological. 1 means there is a transistor, 0 means no transisto
 
 ![noise_envelope_counter_tran](/BreakingNESWiki/imgstore/apu/noise_envelope_counter_tran.jpg)
 
+The circuit is identical to the Envelope of square channels. On the transistor circuit the labels of the intermediate signals may be different, but don't pay attention to this, the context should be clear.
+
+![EnvelopeUnit](/BreakingNESWiki/imgstore/apu/EnvelopeUnit.jpg)
+
+|EnvelopeUnit Signal|Noise Channel|
+|---|---|
+|WR_Reg|W400C|
+|WR_LC|W400F|
+|LC|RND/LC|
+
 ## Output
 
 ![noise_output_tran](/BreakingNESWiki/imgstore/apu/noise_output_tran.jpg)

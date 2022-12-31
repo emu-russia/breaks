@@ -64,7 +64,15 @@ Envelope Counter:
 
 ![square_envelope_counter_tran](/BreakingNESWiki/imgstore/apu/square_envelope_counter_tran.jpg)
 
-![SQUARE_Envelope](/BreakingNESWiki/imgstore/apu/SQUARE_Envelope.jpg)
+Схема идентична схеме Envelope в генераторе шума.
+
+![EnvelopeUnit](/BreakingNESWiki/imgstore/apu/EnvelopeUnit.jpg)
+
+|Сигнал EnvelopeUnit|Square0 Channel|Square1 Channel|
+|---|---|---|
+|WR_Reg|W4000|W4004|
+|WR_LC|W4003|W4007|
+|LC|SQA/LC|SQB/LC|
 
 ## Sweep
 
