@@ -61,6 +61,16 @@
 
 ![noise_envelope_counter_tran](/BreakingNESWiki/imgstore/apu/noise_envelope_counter_tran.jpg)
 
+Схема идентична схеме Envelope прямоугольных каналов. На транзисторной схеме пометки промежуточных сигналов могут отличаться, но не обращайте на это внимание, по контексту всё должно быть понятно.
+
+![EnvelopeUnit](/BreakingNESWiki/imgstore/apu/EnvelopeUnit.jpg)
+
+|Сигнал EnvelopeUnit|Noise Channel|
+|---|---|
+|WR_Reg|W400C|
+|WR_LC|W400F|
+|LC|RND/LC|
+
 ## Output
 
 ![noise_output_tran](/BreakingNESWiki/imgstore/apu/noise_output_tran.jpg)

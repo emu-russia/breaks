@@ -15573,7 +15573,7 @@
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(1360,420)" name="SQUARE_Envelope">
+    <comp loc="(1360,420)" name="EnvelopeUnit">
       <a name="label" val="env_unit"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
@@ -16492,7 +16492,6 @@
     <comp lib="0" loc="(160,370)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="n_sum"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(160,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16503,14 +16502,12 @@
       <a name="facing" val="west"/>
       <a name="label" val="nFx"/>
       <a name="output" val="true"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="0" loc="(720,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Fx"/>
       <a name="output" val="true"/>
-      <a name="radix" val="16"/>
     </comp>
     <comp lib="1" loc="(200,80)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -17922,15 +17919,15 @@
     <wire from="(720,200)" to="(820,200)"/>
     <wire from="(720,50)" to="(720,200)"/>
   </circuit>
-  <circuit name="SQUARE_Envelope">
+  <circuit name="EnvelopeUnit">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="SQUARE_Envelope"/>
+    <a name="circuit" val="EnvelopeUnit"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(1110,170)" name="Constant"/>
     <comp lib="0" loc="(130,590)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="WR3"/>
+      <a name="label" val="WR_LC"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(1460,320)" name="Splitter">
@@ -17940,11 +17937,11 @@
     </comp>
     <comp lib="0" loc="(150,160)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WR0"/>
+      <a name="label" val="WR_Reg"/>
     </comp>
     <comp lib="0" loc="(150,190)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="WR3"/>
+      <a name="label" val="WR_LC"/>
     </comp>
     <comp lib="0" loc="(150,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -17966,11 +17963,11 @@
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(160,160)" name="Tunnel">
-      <a name="label" val="WR0"/>
+      <a name="label" val="WR_Reg"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(160,190)" name="Tunnel">
-      <a name="label" val="WR3"/>
+      <a name="label" val="WR_LC"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(160,240)" name="Tunnel">
@@ -17980,7 +17977,7 @@
     <comp lib="0" loc="(1600,1120)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SQ_LC"/>
+      <a name="label" val="LC"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(170,360)" name="Pin">
@@ -18010,32 +18007,32 @@
     </comp>
     <comp lib="0" loc="(370,130)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="WR0"/>
+      <a name="label" val="WR_Reg"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(370,290)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="WR0"/>
+      <a name="label" val="WR_Reg"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(370,450)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="WR0"/>
+      <a name="label" val="WR_Reg"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(370,610)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="WR0"/>
+      <a name="label" val="WR_Reg"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(370,870)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="WR0"/>
+      <a name="label" val="WR_Reg"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(370,990)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="WR0"/>
+      <a name="label" val="WR_Reg"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(60,470)" name="Tunnel">
@@ -18147,7 +18144,7 @@
     </comp>
     <comp lib="8" loc="(663,981)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="SQ_LC"/>
+      <a name="text" val="XXX_LC"/>
     </comp>
     <comp lib="8" loc="(732,766)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
@@ -18162,7 +18159,7 @@
     </comp>
     <comp lib="8" loc="(997,893)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="LOAD"/>
+      <a name="text" val="RLOAD"/>
     </comp>
     <comp loc="(1190,1050)" name="DLatch">
       <a name="label" val="reload_latch"/>
@@ -18209,7 +18206,7 @@
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(610,970)" name="RegisterBit">
-      <a name="label" val="sqlc_reg"/>
+      <a name="label" val="lc_reg"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>

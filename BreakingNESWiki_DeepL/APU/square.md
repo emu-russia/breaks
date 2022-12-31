@@ -64,7 +64,15 @@ Envelope Counter:
 
 ![square_envelope_counter_tran](/BreakingNESWiki/imgstore/apu/square_envelope_counter_tran.jpg)
 
-![SQUARE_Envelope](/BreakingNESWiki/imgstore/apu/SQUARE_Envelope.jpg)
+The circuit is identical to the Envelope circuit in the noise generator.
+
+![EnvelopeUnit](/BreakingNESWiki/imgstore/apu/EnvelopeUnit.jpg)
+
+|EnvelopeUnit Signal|Square0 Channel|Square1 Channel|
+|---|---|---|
+|WR_Reg|W4000|W4004|
+|WR_LC|W4003|W4007|
+|LC|SQA/LC|SQB/LC|
 
 ## Sweep
 
