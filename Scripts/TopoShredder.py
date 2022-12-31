@@ -131,7 +131,7 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "square_sweep_control_tran2", [5399, 3230, 688, 317] )
 	CropImage (FusedTopo, imgstore + "square_sweep_counter_control_tran", [5611, 3351, 516, 217] )
 	CropImage (FusedTopo, imgstore + "square_sweep_counter_tran", [5396, 3549, 759, 515] )
-	CropImage (FusedTopo, imgstore + "square_volume_envelope_tran", [6742, 1474, 764, 648] )
+	CropImage (FusedTopo, imgstore + "square_decay_counter_tran", [6742, 1474, 764, 648] )
 	CropImage (FusedTopo, imgstore + "square0_debug_tran", [8083, 3562, 275, 669] )
 	CropImage (FusedTopo, imgstore + "square1_debug_tran", [1146, 3212, 505, 745] )
 	# Triangle chan
