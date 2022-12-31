@@ -19047,8 +19047,24 @@
     <comp lib="1" loc="(710,330)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="2" loc="(760,340)" name="Multiplexer">
+    <comp lib="2" loc="(780,340)" name="Multiplexer">
       <a name="select" val="2"/>
+    </comp>
+    <comp lib="8" loc="(666,385)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="75%"/>
+    </comp>
+    <comp lib="8" loc="(688,466)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="50%"/>
+    </comp>
+    <comp lib="8" loc="(709,285)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="12.5%"/>
+    </comp>
+    <comp lib="8" loc="(726,333)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="25%"/>
     </comp>
     <comp loc="(560,110)" name="DownCounterBit"/>
     <comp loc="(560,270)" name="DownCounterBit"/>
@@ -19139,7 +19155,7 @@
     <wire from="(590,470)" to="(700,470)"/>
     <wire from="(600,150)" to="(600,280)"/>
     <wire from="(600,280)" to="(620,280)"/>
-    <wire from="(620,620)" to="(740,620)"/>
+    <wire from="(620,620)" to="(760,620)"/>
     <wire from="(630,300)" to="(630,390)"/>
     <wire from="(630,300)" to="(650,300)"/>
     <wire from="(630,390)" to="(680,390)"/>
@@ -19148,16 +19164,16 @@
     <wire from="(680,330)" to="(680,350)"/>
     <wire from="(680,330)" to="(690,330)"/>
     <wire from="(680,350)" to="(680,390)"/>
-    <wire from="(680,350)" to="(720,350)"/>
+    <wire from="(680,350)" to="(740,350)"/>
     <wire from="(680,390)" to="(680,440)"/>
     <wire from="(690,290)" to="(710,290)"/>
     <wire from="(700,340)" to="(700,470)"/>
-    <wire from="(700,340)" to="(720,340)"/>
+    <wire from="(700,340)" to="(740,340)"/>
     <wire from="(710,290)" to="(710,320)"/>
-    <wire from="(710,320)" to="(720,320)"/>
-    <wire from="(710,330)" to="(720,330)"/>
-    <wire from="(740,360)" to="(740,620)"/>
-    <wire from="(760,340)" to="(790,340)"/>
+    <wire from="(710,320)" to="(740,320)"/>
+    <wire from="(710,330)" to="(740,330)"/>
+    <wire from="(760,360)" to="(760,620)"/>
+    <wire from="(780,340)" to="(790,340)"/>
   </circuit>
   <circuit name="SQUARE_Output">
     <a name="appearance" val="logisim_evolution"/>
