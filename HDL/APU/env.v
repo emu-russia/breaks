@@ -28,7 +28,6 @@ module Envelope_Unit (n_ACLK, RES, WR_Reg, WR_LC, n_LFO1, DB, V, LC);
 	wire [3:0] decay_cnt_cout;
 	wire [3:0] env_cnt_cout;
 	wire EnvReload_q;
-	wire EnvReload_nq;
 	wire erld_latch_q;
 	wire reload_latch_q;
 	wire rco_latch_q;
@@ -47,7 +46,7 @@ module Envelope_Unit (n_ACLK, RES, WR_Reg, WR_LC, n_LFO1, DB, V, LC);
 	assign RCO = decay_cnt_cout[3];
 	assign ECO = env_cnt_cout[3];
 
-	rsff EnvReload (.r(WR_LC), .s(~(n_LFO1 | erld_latch_q)), .q(EnvReload_q), .nq(EnvReload_nq) );
+	rsff EnvReload (.r(WR_LC), .s(~(n_LFO1 | erld_latch_q)), .q(EnvReload_q), .nq(RELOAD) );
 
 	dlatch erld_latch (.d(EnvReload_q), .en(n_ACLK), .q(erld_latch_q) );
 	dlatch reload_latch (.d(RELOAD), .en(n_ACLK), .q(reload_latch_q) );
