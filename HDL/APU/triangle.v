@@ -58,6 +58,27 @@ module TRIANGLE_Control (PHI1, n_ACLK, W4008, W400B, n_LFO1, NOTRI, LOCK, TCO, n
 	output STEP;
 	output TSTEP;
 
+	wire TRELOAD;
+	wire lc_reg_q;
+	wire Reload_FF_q;
+	wire Reload_FF_nq;
+	wire reload_latch1_q;
+	wire reload_latch2_q;
+	wire tco_latch_q;
+	wire tco_latch_nq;
+
+	RegisterBit lc_reg (.n_ACLK(n_ACLK), .ena(W4008), .d(DB[7]), .q(lc_reg_q), .nq(TRI_LC) );
+
+	rsff Reload_FF (.r(W400B), .s(~(reload_latch1_q | lc_reg_q | n_LFO1)), .q(Reload_FF_q), .nq(Reload_FF_nq) );
+
+	dlatch reload_latch1 (.d(Reload_FF_nq), .en(n_ACLK), .q(reload_latch1_q) );
+	dlatch reload_latch2 (.d(TRELOAD), .en(n_ACLK), .q(reload_latch2_q) );
+	dlatch tco_latch (.d(TCO), .en(n_ACLK), .q(tco_latch_q), .nq(tco_latch_nq) );
+
+	nor (LOAD, n_LFO1, tco_latch_nq);
+	nor (STEP, n_LFO1, reload_latch2_q, tco_latch_q);
+	nor (TSTEP, TCO, LOCK, PHI1, NOTRI, n_FOUT);
+
 endmodule // TRIANGLE_Control
 
 module TRIANGLE_LinearCounter (n_ACLK, RES, W4008, LOAD, STEP, DB, TCO);
@@ -70,6 +91,12 @@ module TRIANGLE_LinearCounter (n_ACLK, RES, W4008, LOAD, STEP, DB, TCO);
 	inout [7:0] DB;
 	output TCO;
 
+	wire [6:0] lq;
+	wire [6:0] cout;
+
+	RegisterBit lin_reg [6:0] (.n_ACLK(n_ACLK), .ena(W4008), .d(DB[6:0]), .q(lq) );
+	DownCounterBit lin_cnt [6:0] (.n_ACLK(n_ACLK), .d(lq), .load(LOAD), .clear(RES), .step(STEP), .cin({cout[5:0],1'b1}), .cout(cout) );
+
 endmodule // TRIANGLE_LinearCounter
 
 module TRIANGLE_FreqCounter (PHI1, RES, W400A, W400B, DB, n_FOUT);
@@ -81,6 +108,21 @@ module TRIANGLE_FreqCounter (PHI1, RES, W400A, W400B, DB, n_FOUT);
 	inout [7:0] DB;
 	output n_FOUT;
 
+	wire FLOAD;
+	wire FSTEP;
+	wire FOUT;
+	wire [10:0] fq;
+	wire [10:0] cout;
+
+	RegisterBit freq_reg [10:0] (.n_ACLK(PHI1), .ena({ {3{W400B}}, {8{W400A}} }), .d({DB[2:0],DB[7:0]}), .q(fq) );
+	DownCounterBit freq_cnt [10:0] (.n_ACLK(PHI1), .d(fq), .load(FLOAD), .clear(RES), .step(FSTEP), .cin({cout[9:0],1'b1}), .cout(cout) );
+	assign FOUT = cout[10];
+
+	dlatch fout_latch (.d(FOUT), .en(PHI1), .nq(n_FOUT) );
+
+	nor (FLOAD, PHI1, n_FOUT);
+	nor (FSTEP, PHI1, ~n_FOUT);
+
 endmodule // TRIANGLE_FreqCounter
 
 module TRIANGLE_Output (PHI1, RES, W401A, TSTEP, DB, TRI_Out);
@@ -91,5 +133,12 @@ module TRIANGLE_Output (PHI1, RES, W401A, TSTEP, DB, TRI_Out);
 	input TSTEP;
 	inout [7:0] DB;
 	output [3:0] TRI_Out;
+
+	wire [4:0] cout;
+	wire [4:0] T;
+	wire [4:0] nT;
+
+	CounterBit out_cnt [4:0] (.n_ACLK(), .d(DB[4:0]), .load(W401A), .clear(RES), .step(TSTEP), .cin({cout[3:0],1'b1}), .q(T), .nq(nT), .cout(cout) );
+	assign TRI_Out = ~(T[4] ? nT[3:0] : T[3:0]);
 
 endmodule // TRIANGLE_Output
