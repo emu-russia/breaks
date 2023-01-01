@@ -1,4 +1,4 @@
-// It looks a little sloppy, but if you'd seen the silicone, you'd understand why.
+// It looks a little sloppy, but if you'd seen the silicon, you'd understand why.
 
 module ApuPadsLogic(
 	CLKPad, n_CLK_frompad,
