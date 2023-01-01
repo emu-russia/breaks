@@ -137,7 +137,7 @@ module TRIANGLE_Output (PHI1, RES, W401A, TSTEP, DB, TRI_Out);
 	wire [4:0] T;
 	wire [4:0] nT;
 
-	CounterBit out_cnt [4:0] (.n_ACLK(), .d(DB[4:0]), .load(W401A), .clear(RES), .step(TSTEP), .cin({cout[3:0],1'b1}), .q(T), .nq(nT), .cout(cout) );
+	CounterBit out_cnt [4:0] (.n_ACLK(n_ACLK), .d(DB[4:0]), .load(W401A), .clear(RES), .step(TSTEP), .cin({cout[3:0],1'b1}), .q(T), .nq(nT), .cout(cout) );
 	assign TRI_Out = ~(T[4] ? nT[3:0] : T[3:0]);
 
 endmodule // TRIANGLE_Output
