@@ -2,6 +2,8 @@
 
 ![apu_locator_triangle](/BreakingNESWiki/imgstore/apu/apu_locator_triangle.jpg)
 
+![TRIANGLE](/BreakingNESWiki/imgstore/apu/TRIANGLE.jpg)
+
 ## Linear Counter
 
 ![tri_linear_counter_tran](/BreakingNESWiki/imgstore/apu/tri_linear_counter_tran.jpg)

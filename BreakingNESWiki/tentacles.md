@@ -91,3 +91,5 @@
 |/ACLK2|/ACLK3A (square0)|
 |/ACLK2|/ACLK3B (square1)|
 |NOUT|/NOUT|
+|MUTE|RNDOUT|
+|LOAD|RLOAD (Square decay rate counter)|

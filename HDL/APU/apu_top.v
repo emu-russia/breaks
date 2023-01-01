@@ -320,6 +320,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.RES(RES),
 		.DB(DB),
 		.W4008(W4008),
+		.W400A(W400A),
 		.W400B(W400B),
 		.W401A(W401A),
 		.nLFO1(nLFO1),

@@ -2,6 +2,8 @@
 
 ![apu_locator_noise](/BreakingNESWiki/imgstore/apu/apu_locator_noise.jpg)
 
+![NOISE](/BreakingNESWiki/imgstore/apu/NOISE.jpg)
+
 ## Frequency In
 
 ![noise_freq_in_tran](/BreakingNESWiki/imgstore/apu/noise_freq_in_tran.jpg)
