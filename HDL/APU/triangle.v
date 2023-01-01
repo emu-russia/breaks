@@ -61,7 +61,6 @@ module TRIANGLE_Control (PHI1, n_ACLK, W4008, W400B, n_LFO1, NOTRI, LOCK, TCO, n
 	wire TRELOAD;
 	wire lc_reg_q;
 	wire Reload_FF_q;
-	wire Reload_FF_nq;
 	wire reload_latch1_q;
 	wire reload_latch2_q;
 	wire tco_latch_q;
@@ -69,9 +68,9 @@ module TRIANGLE_Control (PHI1, n_ACLK, W4008, W400B, n_LFO1, NOTRI, LOCK, TCO, n
 
 	RegisterBit lc_reg (.n_ACLK(n_ACLK), .ena(W4008), .d(DB[7]), .q(lc_reg_q), .nq(TRI_LC) );
 
-	rsff Reload_FF (.r(W400B), .s(~(reload_latch1_q | lc_reg_q | n_LFO1)), .q(Reload_FF_q), .nq(Reload_FF_nq) );
+	rsff Reload_FF (.r(W400B), .s(~(reload_latch1_q | lc_reg_q | n_LFO1)), .q(Reload_FF_q), .nq(TRELOAD) );
 
-	dlatch reload_latch1 (.d(Reload_FF_nq), .en(n_ACLK), .q(reload_latch1_q) );
+	dlatch reload_latch1 (.d(Reload_FF_q), .en(n_ACLK), .q(reload_latch1_q) );
 	dlatch reload_latch2 (.d(TRELOAD), .en(n_ACLK), .q(reload_latch2_q) );
 	dlatch tco_latch (.d(TCO), .en(n_ACLK), .q(tco_latch_q), .nq(tco_latch_nq) );
 
