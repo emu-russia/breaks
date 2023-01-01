@@ -1,4 +1,6 @@
 
+// Debugging mechanisms of the 2A03G APU revision (so called "Test Mode").
+
 module Test(
 	n_ACLK,
 	RES, DB, W401A, n_R4018, n_R4019, n_R401A,

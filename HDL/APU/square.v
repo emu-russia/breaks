@@ -1,4 +1,7 @@
 
+// In the real circuit there is no `AdderCarryMode` signal. For Square0 the input n_carry is connected directly to VDD and for Square1 it is connected to INC.
+// But we cheat a little bit here for convenience by making the connection using multiplexer.
+
 module SquareChan (
 	ACLK, n_ACLK, 
 	RES, DB, WR0, WR1, WR2, WR3, nLFO1, nLFO2, SQ_LC, NOSQ, LOCK, AdderCarryMode,
@@ -18,7 +21,7 @@ module SquareChan (
 	output SQ_LC;
 	input NOSQ;
 	input LOCK;
-	input AdderCarryMode;			// 0: input carry connected to INC, 1: input carry connected to Vdd
+	input AdderCarryMode;			// 0: input n_carry connected to INC, 1: input n_carry connected to Vdd
 
 	output [3:0] SQ_Out;
 
