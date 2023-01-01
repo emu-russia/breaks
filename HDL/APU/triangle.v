@@ -95,6 +95,7 @@ module TRIANGLE_LinearCounter (n_ACLK, RES, W4008, LOAD, STEP, DB, TCO);
 
 	RegisterBit lin_reg [6:0] (.n_ACLK(n_ACLK), .ena(W4008), .d(DB[6:0]), .q(lq) );
 	DownCounterBit lin_cnt [6:0] (.n_ACLK(n_ACLK), .d(lq), .load(LOAD), .clear(RES), .step(STEP), .cin({cout[5:0],1'b1}), .cout(cout) );
+	assign TCO = cout[6];
 
 endmodule // TRIANGLE_LinearCounter
 
