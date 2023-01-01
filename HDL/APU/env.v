@@ -42,7 +42,7 @@ module Envelope_Unit (n_ACLK, RES, WR_Reg, WR_LC, n_LFO1, DB, V, LC);
 	RegisterBit vol_reg [3:0] (.n_ACLK(n_ACLK), .ena(WR_Reg), .d(DB[3:0]), .q(VOL) );
 
 	DownCounterBit decay_cnt [3:0] (.n_ACLK(n_ACLK), .d(VOL), .load(RLOAD), .clear(RES), .step(RSTEP), .cin({decay_cnt_cout[2:0],1'b1}), .cout(decay_cnt_cout) );
-	DownCounterBit env_cnt [3:0] (.n_ACLK(n_ACLK), .d({4{EIN}}), .load(ERES), .clear(RES), .step(ESTEP), .cin({env_cnt_cout[2:0],1'b1}), .cout(env_cnt_cout) );
+	DownCounterBit env_cnt [3:0] (.n_ACLK(n_ACLK), .d({4{EIN}}), .load(ERES), .clear(RES), .step(ESTEP), .q(ENV), .cin({env_cnt_cout[2:0],1'b1}), .cout(env_cnt_cout) );
 	assign RCO = decay_cnt_cout[3];
 	assign ECO = env_cnt_cout[3];
 
