@@ -37,7 +37,7 @@ module Envelope_Unit (n_ACLK, RES, WR_Reg, WR_LC, n_LFO1, DB, V, LC);
 
 	// Logic
 
-	RegisterBit envdis_res (.n_ACLK(n_ACLK), .ena(WR_Reg), .d(DB[4]), .q(ENVDIS) );
+	RegisterBit envdis_reg (.n_ACLK(n_ACLK), .ena(WR_Reg), .d(DB[4]), .q(ENVDIS) );
 	RegisterBit lc_reg (.n_ACLK(n_ACLK), .ena(WR_Reg), .d(DB[5]), .nq(LC) );
 	RegisterBit vol_reg [3:0] (.n_ACLK(n_ACLK), .ena(WR_Reg), .d(DB[3:0]), .q(VOL) );
 
