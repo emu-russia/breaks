@@ -18,6 +18,7 @@
 - Square 0/1 Volume/Control Reg ($4000, $4004)
 - Triangle Reg ($4008)
 - Noise Regs ($400C, $400E)
+- Noise Random LFSR
 - DPCM Regs ($4010, $4012, $4013)
 - DPCM Sample Buffer
 - SPR DMA Address (старшие разряды)

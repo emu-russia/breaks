@@ -4,9 +4,15 @@
 
 ![NOISE](/BreakingNESWiki/imgstore/apu/NOISE.jpg)
 
-## Frequency In
+## Frequency Reg
 
 ![noise_freq_in_tran](/BreakingNESWiki/imgstore/apu/noise_freq_in_tran.jpg)
+
+![NOISE_FreqReg](/BreakingNESWiki/imgstore/apu/NOISE_FreqReg.jpg)
+
+![RegisterBitRes](/BreakingNESWiki/imgstore/apu/RegisterBitRes.jpg)
+
+Используется вариация регистра с дополнительным сбросом (сразу на защёлку).
 
 ## Decoder
 
@@ -49,11 +55,21 @@
 
 ![noise_freq_control_tran](/BreakingNESWiki/imgstore/apu/noise_freq_control_tran.jpg)
 
+![NOISE_FreqLFSR](/BreakingNESWiki/imgstore/apu/NOISE_FreqLFSR.jpg)
+
+![FreqLFSRBit](/BreakingNESWiki/imgstore/apu/FreqLFSRBit.jpg)
+
 ## Random LFSR
 
 ![noise_random_lfsr_tran](/BreakingNESWiki/imgstore/apu/noise_random_lfsr_tran.jpg)
 
 ![noise_feedback_tran](/BreakingNESWiki/imgstore/apu/noise_feedback_tran.jpg)
+
+![NOISE_RandomLFSR](/BreakingNESWiki/imgstore/apu/NOISE_RandomLFSR.jpg)
+
+![RandomLFSRBit](/BreakingNESWiki/imgstore/apu/RandomLFSRBit.jpg)
+
+Дизайн регистра сдвига для ДСЧ отличается тем, что значение хранится в регистре (статическая память), т.к. между сдвигом значения может пройти значительное время и поэтому нельзя использовать регистры сдвига на динамической памяти (DLatch).
 
 ## Envelope
 

@@ -31,7 +31,7 @@ module NoiseChan(
 
 	// Instantiate
 
-	NOISE_FreqReg freq_reg (.n_ACLK(n_ACLK), .W400E(W400E), .DB(DB), .NF(NF) );
+	NOISE_FreqReg freq_reg (.n_ACLK(n_ACLK), .RES(RES), .W400E(W400E), .DB(DB), .NF(NF) );
 
 	NOISE_Decoder dec (.NF(NF), .NNF(NNF) );
 
@@ -45,9 +45,10 @@ module NoiseChan(
 
 endmodule // NoiseChan
 
-module NOISE_FreqReg (n_ACLK, W400E, DB, NF);
+module NOISE_FreqReg (n_ACLK, RES, W400E, DB, NF);
 
 	input n_ACLK;
+	input RES;
 	input W400E;
 	inout [7:0] DB;
 	output [3:0] NF;
@@ -77,6 +78,17 @@ module NOISE_FreqLFSR (ACLK, n_ACLK, RES, NNF, RSTEP);
 
 endmodule // NOISE_FreqLFSR
 
+module NOISE_FreqLFSRBit (n_ACLK, load, step, val, sin, sout);
+
+	input n_ACLK;
+	input load;
+	input step;
+	input val;
+	input sin;
+	output sout;
+
+endmodule // NOISE_FreqLFSRBit
+
 module NOISE_RandomLFSR (n_ACLK, RSTEP, NORND, LOCK, W400E, DB, RNDOUT);
 
 	input n_ACLK;
@@ -88,3 +100,12 @@ module NOISE_RandomLFSR (n_ACLK, RSTEP, NORND, LOCK, W400E, DB, RNDOUT);
 	output RNDOUT;
 
 endmodule // NOISE_RandomLFSR
+
+module NOISE_RandomLFSRBit (n_ACLK, load, sin, sout);
+
+	input n_ACLK;
+	input load;
+	input sin;
+	output sout;
+
+endmodule // NOISE_RandomLFSRBit
