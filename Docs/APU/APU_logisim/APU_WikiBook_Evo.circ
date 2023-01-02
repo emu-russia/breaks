@@ -22335,14 +22335,14 @@
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <wire from="(170,100)" to="(200,100)"/>
-    <wire from="(170,130)" to="(220,130)"/>
+    <wire from="(170,100)" to="(220,100)"/>
+    <wire from="(170,130)" to="(200,130)"/>
     <wire from="(170,170)" to="(210,170)"/>
     <wire from="(170,200)" to="(190,200)"/>
     <wire from="(170,70)" to="(390,70)"/>
-    <wire from="(200,100)" to="(200,190)"/>
+    <wire from="(200,130)" to="(200,190)"/>
     <wire from="(210,200)" to="(240,200)"/>
-    <wire from="(220,130)" to="(220,160)"/>
+    <wire from="(220,100)" to="(220,160)"/>
     <wire from="(230,170)" to="(240,170)"/>
     <wire from="(240,160)" to="(240,170)"/>
     <wire from="(240,160)" to="(250,160)"/>
