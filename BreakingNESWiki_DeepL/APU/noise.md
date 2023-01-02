@@ -4,9 +4,15 @@
 
 ![NOISE](/BreakingNESWiki/imgstore/apu/NOISE.jpg)
 
-## Frequency In
+## Frequency Reg
 
 ![noise_freq_in_tran](/BreakingNESWiki/imgstore/apu/noise_freq_in_tran.jpg)
+
+![NOISE_FreqReg](/BreakingNESWiki/imgstore/apu/NOISE_FreqReg.jpg)
+
+![RegisterBitRes](/BreakingNESWiki/imgstore/apu/RegisterBitRes.jpg)
+
+A variation of the register with an additional reset (immediately on the latch) is used.
 
 ## Decoder
 
@@ -49,11 +55,21 @@ The bit mask is topological. 1 means there is a transistor, 0 means no transisto
 
 ![noise_freq_control_tran](/BreakingNESWiki/imgstore/apu/noise_freq_control_tran.jpg)
 
+![NOISE_FreqLFSR](/BreakingNESWiki/imgstore/apu/NOISE_FreqLFSR.jpg)
+
+![FreqLFSRBit](/BreakingNESWiki/imgstore/apu/FreqLFSRBit.jpg)
+
 ## Random LFSR
 
 ![noise_random_lfsr_tran](/BreakingNESWiki/imgstore/apu/noise_random_lfsr_tran.jpg)
 
 ![noise_feedback_tran](/BreakingNESWiki/imgstore/apu/noise_feedback_tran.jpg)
+
+![NOISE_RandomLFSR](/BreakingNESWiki/imgstore/apu/NOISE_RandomLFSR.jpg)
+
+![RandomLFSRBit](/BreakingNESWiki/imgstore/apu/RandomLFSRBit.jpg)
+
+The shift register design for Random LFSR is different in that the value is stored in a register (static memory), because significant time can pass between shifts of the value and therefore you can not use shift registers on a dynamic memory (DLatch).
 
 ## Envelope
 
