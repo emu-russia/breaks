@@ -82,7 +82,7 @@ TBD.
 
 ## Декодер шумового канала
 
-TBD.
+![noise_decoder](/BreakingNESWiki/imgstore/apu/waves/noise_decoder.png)
 
 ## Спрайтовая DMA
 

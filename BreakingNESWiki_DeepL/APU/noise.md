@@ -18,6 +18,8 @@ A variation of the register with an additional reset (immediately on the latch) 
 
 ![noise_decoder_tran](/BreakingNESWiki/imgstore/apu/noise_decoder_tran.jpg)
 
+![NOISE_Decoder](/BreakingNESWiki/imgstore/apu/NOISE_Decoder.jpg)
+
 The first stage of the decoder (4-to-16 demultiplexer):
 
 ```
@@ -48,6 +50,28 @@ The second stage of the decoder:
 ```
 
 The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
+
+|![NOISE_Decoder1](/BreakingNESWiki/imgstore/apu/NOISE_Decoder1.jpg)|![NOISE_Decoder2](/BreakingNESWiki/imgstore/apu/NOISE_Decoder2.jpg)|
+|---|---|
+
+|Decoder In|Decoder Out|
+|---|---|
+|0|0x002|
+|1|0x00a|
+|2|0x0aa|
+|3|0x2bb|
+|4|0x139|
+|5|0x173|
+|6|0x063|
+|7|0x067|
+|8|0x1a9|
+|9|0x106|
+|10|0x227|
+|11|0x062|
+|12|0x642|
+|13|0x20f|
+|14|0x300|
+|15|0x140|
 
 ## Frequency LFSR
 
