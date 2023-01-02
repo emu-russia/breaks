@@ -20940,11 +20940,11 @@
     </comp>
     <comp lib="8" loc="(490,954)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="FSTEP"/>
+      <a name="text" val="NFSTEP"/>
     </comp>
     <comp lib="8" loc="(491,892)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="FLOAD"/>
+      <a name="text" val="NFLOAD"/>
     </comp>
     <comp lib="8" loc="(619,746)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
@@ -21201,7 +21201,6 @@
     <wire from="(750,110)" to="(760,110)"/>
     <wire from="(750,380)" to="(760,380)"/>
     <wire from="(750,70)" to="(750,110)"/>
-    <wire from="(750,70)" to="(770,70)"/>
     <wire from="(760,120)" to="(990,120)"/>
     <wire from="(770,790)" to="(790,790)"/>
     <wire from="(780,850)" to="(790,850)"/>
