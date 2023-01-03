@@ -16904,14 +16904,20 @@
     <comp lib="1" loc="(640,290)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(236,65)" name="Text">
+    <comp lib="8" loc="(236,73)" name="Text">
+      <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="/ACLK3"/>
     </comp>
-    <comp lib="8" loc="(485,277)" name="Text">
+    <comp lib="8" loc="(487,301)" name="Text">
       <a name="text" val="Freq_FF"/>
     </comp>
     <comp loc="(360,130)" name="DLatch">
       <a name="label" val="sum_latch"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(540,230)" name="TranspDLatch">
+      <a name="label" val="transp"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
@@ -16941,7 +16947,7 @@
     <wire from="(400,130)" to="(670,130)"/>
     <wire from="(400,150)" to="(490,150)"/>
     <wire from="(400,230)" to="(400,280)"/>
-    <wire from="(400,230)" to="(600,230)"/>
+    <wire from="(400,230)" to="(440,230)"/>
     <wire from="(440,170)" to="(440,190)"/>
     <wire from="(440,170)" to="(490,170)"/>
     <wire from="(450,360)" to="(450,390)"/>
@@ -16949,6 +16955,7 @@
     <wire from="(450,390)" to="(670,390)"/>
     <wire from="(520,160)" to="(560,160)"/>
     <wire from="(520,350)" to="(560,350)"/>
+    <wire from="(540,230)" to="(600,230)"/>
     <wire from="(560,160)" to="(560,210)"/>
     <wire from="(560,210)" to="(600,210)"/>
     <wire from="(560,300)" to="(560,350)"/>
