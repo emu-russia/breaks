@@ -46,6 +46,8 @@ module SquareChan (
 
 	// Instantiate
 
+	RegisterBit dir_reg (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[3]), .q(DEC) );
+
 	assign INC = ~DEC;
 	assign BS = {DEC, DEC ? nFx : Fx};
 
