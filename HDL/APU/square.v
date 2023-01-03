@@ -59,7 +59,7 @@ module SquareChan (
 
 	SQUARE_FreqCounter freq_cnt (.ACLK(ACLK), .n_ACLK(n_ACLK), .RES(RES), .Fx(Fx), .FCO(FCO), .FLOAD(FLOAD) );
 
-	Envelope_Unit env_unit (.n_ACLK(n_ACLK), .RES(RES), .WR_Reg(WR_Reg), .WR_LC(WR_LC), .n_LFO1(n_LFO1), .DB(DB), .V(Vol), .LC(LC) );
+	Envelope_Unit env_unit (.n_ACLK(n_ACLK), .RES(RES), .WR_Reg(WR0), .WR_LC(WR3), .n_LFO1(n_LFO1), .DB(DB), .V(Vol), .LC(SQ_LC) );
 
 	SQUARE_Sweep sweep_unit (.n_ACLK(n_ACLK), .RES(RES), .WR1(WR1), .SR(SR), .DEC(DEC), .n_COUT(n_COUT), .SWEEP(SWEEP), .NOSQ(NOSQ), .n_LFO2(nLFO2), 
 		.DB(DB), .ADDOUT(ADDOUT), .SWCTRL(SWCTRL) );
