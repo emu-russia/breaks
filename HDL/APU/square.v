@@ -260,14 +260,13 @@ module SQUARE_Sweep (n_ACLK, RES, WR1, SR, DEC, n_COUT, SWEEP, NOSQ, n_LFO2, DB,
 	wire SCO;
 	wire n_SCO;
 	wire reload_latch_q;
-	wire reload_latch_nq;
 	wire sco_latch_q;
 	wire reload_ff_q;
 	wire [2:0] sweep_reg_q;
 	wire [2:0] cout;
 	wire temp_reload;
 
-	dlatch reload_latch (.d(reload_ff_q), .en(n_ACLK), .q(reload_latch_q), .nq(reload_latch_nq) );
+	dlatch reload_latch (.d(reload_ff_q), .en(n_ACLK), .q(reload_latch_q), .nq(SWRELOAD) );
 	dlatch sco_latch (.d(SCO), .en(n_ACLK), .q(sco_latch_q), .nq(n_SCO) );
 
 	rsff reload_ff (.r(WR1), .s(~(n_LFO2 | reload_latch_q)), .q(reload_ff_q) );
