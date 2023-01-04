@@ -9,10 +9,11 @@
 
 import os
 import sys
+import csv
 
 IntRes = 5.1 * 1000 	# Internal single MOSFET resistance
 IntUnloaded = 999999 	# Non-loaded DAC internal resistance 
-ExtRes = 75 			# On-board pull-down resistor to GND
+ExtRes = 100 			# On-board pull-down resistor to GND
 Vdd = 5.0
 
 # According to the results of comparisons with real measurements, the internal resistance of the FET is out of the nominal resistance range (E24 5.1k)
@@ -63,12 +64,29 @@ def AUX_A_Resistance (sqa, sqb):
 
 	return 1 / r
 
-if __name__ == '__main__':
-	#SchoolTest()
-
+def DumpPrint():
 	for sqb in range(16):
 		for sqa in range(16):
 			r = AUX_A_Resistance (sqa, sqb)
 			i = Vdd / (r + ExtRes)
 			aux_v = i * ExtRes
 			print (f"sqb:{sqb} sqa:{sqa}: {aux_v * 1000} mV")
+
+def DumpCsv():
+	with open('auxa.csv', 'w', encoding='UTF8', newline='') as f:
+		writer = csv.writer(f)
+		header = ['sqb.sqa', 'mV']
+		writer.writerow(header)
+		for sqb in range(16):
+			for sqa in range(16):
+				r = AUX_A_Resistance (sqa, sqb)
+				i = Vdd / (r + ExtRes)
+				aux_v = i * ExtRes
+				row = [(sqb << 4) | sqa, aux_v * 1000]
+				writer.writerow(row)
+	return
+
+if __name__ == '__main__':
+	#SchoolTest()
+	#DumpPrint()
+	DumpCsv()
