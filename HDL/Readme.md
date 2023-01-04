@@ -4,6 +4,8 @@ This folder contains HDLs for the main NES chips: APU(+6502 Core) and PPU.
 
 TBD: Right now only _TOP_ circuits, we will add more as we go.
 
+:warning: The schematics in the Design folder are periodically exported from Xilinx PlanAhead and may be lagging relative to the current implementation. That's okay, you'll figure it out.
+
 ## Approach
 
 We take a chip-perfect approach. This means that all the circuit elements of the original NMOS chips are repeated in the verilog design.
