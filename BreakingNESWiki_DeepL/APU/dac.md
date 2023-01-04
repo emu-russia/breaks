@@ -30,7 +30,7 @@ Maximum amplitude measurements of DAC AUX A:
 
 Results:
 - Maximum AUX A voltage: 272 mV
-- You can see that the lower level also has a small voltage relative to ground
+- You can see that the lower level also has a small voltage relative to ground (the moment is controversial, because the probe can introduce its own distortions)
 
 Credits: @HardWareMan
 
