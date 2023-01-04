@@ -14,7 +14,7 @@ Source: http://forum.6502.org/viewtopic.php?p=94693#p94693
 
 Inside the microcircuit the pads for the terminals are not loaded in any way and are just pads.
 
-Outside on the board there are usually small pull-down resistors to GND (Famicom - 100 ohms, Famiclones - 75 ohms).
+Outside on the board there are usually small pull-down resistors to GND (usually 100 ohms on each AUX output).
 
 ## Square 0/1
 
@@ -22,7 +22,7 @@ Outside on the board there are usually small pull-down resistors to GND (Famicom
 
 Maximum amplitude measurements of DAC AUX A:
 - RP2A03G chip
-- External resistance 75 Ohm
+- External resistance 75 Ohm (unusual, but does not affect the essence of what is happening much)
 - The dac_square.nes demo was used (https://github.com/bbbradsmith/nes-audio-tests)
 - SQA = 0xf, SQB = 0xf
 
