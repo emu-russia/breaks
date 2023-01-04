@@ -15,6 +15,8 @@ IntUnloaded = 999999 	# Non-loaded DAC internal resistance
 ExtRes = 75 			# On-board pull-down resistor to GND
 Vdd = 5.0
 
+# According to the results of comparisons with real measurements, the internal resistance of the FET is out of the nominal resistance range (E24 5.1k)
+
 """
 	Recall the school curriculum.
 """
