@@ -10,6 +10,7 @@
 import os
 import sys
 import csv
+import struct
 
 IntRes = 39 * 1000 		# Internal single MOSFET resistance
 IntUnloaded = 999999 	# Non-loaded DAC internal resistance 
@@ -128,6 +129,35 @@ def DumpCsv():
 					row = [(dmc << 8) | (rnd << 4) | tri, aux_v * 1000]
 					writer.writerow(row)
 
+# https://stackoverflow.com/questions/23624212/how-to-convert-a-float-into-hex
+def float_to_hex(f):
+    return hex(struct.unpack('<I', struct.pack('<f', f))[0])
+
+"""
+	Output all the same, but for Verilog. Use volts instead of millivolts.
+"""
+def DumpVerilogMem():
+	with open('auxa.mem', 'w', encoding='UTF8', newline='') as f:
+		print ("// AUX A dump as floats (units in volts). The array is indexed as: {SQB[3:0],SQA[3:0]}\n", file=f)
+		for sqb in range(16):
+			for sqa in range(16):
+				r = AUX_A_Resistance (sqa, sqb)
+				i = Vdd / (r + ExtRes)
+				aux_v = i * ExtRes
+				aux_hex = float_to_hex (aux_v)[2:]
+				print (f"{aux_hex} ", file=f, end = '')
+	with open('auxb.mem', 'w', encoding='UTF8', newline='') as f:
+		print ("// AUX B dump as floats (units in volts). The array is indexed as: {DMC[6:0],RND[3:0],TRI[3:0]}\n", file=f)
+		for dmc in range(128):
+			for rnd in range(16):
+				for tri in range(16):
+					r = AUX_B_Resistance (tri, rnd, dmc)
+					i = Vdd / (r + ExtRes)
+					aux_v = i * ExtRes
+					aux_hex = float_to_hex (aux_v)[2:]
+					print (f"{aux_hex} ", file=f, end = '')
+
 if __name__ == '__main__':
 	#SchoolTest()
 	DumpCsv()
+	DumpVerilogMem()
