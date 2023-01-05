@@ -1,8 +1,8 @@
 
 module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_IN1, OUT0, OUT1, OUT2);
 
-	output AUX_A;
-	output AUX_B;
+	output [7:0] AUX_A;
+	output [14:0] AUX_B;
 	input n_RES;
 	output [15:0] A;
 	inout [7:0] D;
@@ -356,8 +356,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.AUX_A(AUX_A) );
 
 	DAC_Others auxb(
-		.RND(RND),
 		.TRI(TRI),
+		.RND(RND),
 		.DMC(DMC),
 		.AUX_B(AUX_B) );
 
