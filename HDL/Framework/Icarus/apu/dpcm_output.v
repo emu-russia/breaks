@@ -1,8 +1,7 @@
 // Test for playing a DPCM sample.
 
-// From the APU only the ACLK generator and the DPCM channel itself are used
-// The DPCM sample is compiled from assembler source and loaded into a dummy memory device which is addressed by `DMC_Addr`.
-// DPCM Output is dumped to a separate memory as RAW samples and then saved to a file for further playback in tools like Audacity.
+// From the APU only the ACLK generator and the DPCM channel itself are used.
+// The DPCM samples are in the `dpcm_sample.mem` file and are loaded into a dummy memory device which is addressed by `DMC_Addr`.
 
 `timescale 1ns/1ns
 
