@@ -10,9 +10,6 @@ module LengthCounter_Run();
 
 	reg CLK;
 	wire RES;
-	wire PHI0;
-	wire PHI1;
-	wire PHI2;
 	wire ACLK;
 	wire n_ACLK;
 	reg WriteEnable;			// Used to load the initial value ($400x)
@@ -27,20 +24,7 @@ module LengthCounter_Run();
 	assign RES = 1'b0;
 	assign DataBus = 8'b01001_001;		// Used both for the enable bit value and for selecting the initial LC value (val=9 -> decoded as 0x07)
 
-	// The ACLK pattern requires all of these "spares".
-
-	CLK_Divider div (
-		.n_CLK_frompad(~CLK),
-		.PHI0_tocore(PHI0));
-
-	BogusCorePhi phi (.PHI0(PHI0), .PHI1(PHI1), .PHI2(PHI2));
-
-	ACLKGen clkgen (
-		.PHI1(PHI1),
-		.PHI2(PHI2),
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
-		.RES(RES));
+	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .ACLK(ACLK), .n_ACLK(n_ACLK) );
 
 	LengthCounter lc (
 		.ACLK(ACLK),
@@ -59,8 +43,7 @@ module LengthCounter_Run();
 
 		$dumpfile("length_counter.vcd");
 		$dumpvars(0, lc);
-		$dumpvars(1, clkgen);
-		$dumpvars(2, div);
+		$dumpvars(1, aclk);
 
 		CLK <= 1'b0;
 		LC_Carry <= 1'b0;
@@ -93,14 +76,3 @@ module LengthCounter_Run();
 		nLFO2 <= 1'b1;
 
 endmodule // LengthCounter_Run
-
-module BogusCorePhi (PHI0, PHI1, PHI2);
-	
-	input PHI0;
-	output PHI1;
-	output PHI2;
-
-	assign PHI1 = ~PHI0;
-	assign PHI2 = PHI0;
-
-endmodule // BogusCorePhi

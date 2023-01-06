@@ -12,9 +12,7 @@ module DPCMChan_Run();
 
 	reg CLK;
 	reg RES;
-	wire PHI0;
 	wire PHI1;
-	wire PHI2;
 	wire RnW;
 	wire ACLK;
 	wire n_ACLK;
@@ -39,22 +37,11 @@ module DPCMChan_Run();
 	// Tune CLK/ACLK timing according to 2A03
 	always #23.28 CLK = ~CLK;
 
-	// The ACLK pattern requires all of these "spares".
+	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .ACLK(ACLK), .n_ACLK(n_ACLK) );
 
-	CLK_Divider div (
-		.n_CLK_frompad(~CLK),
-		.PHI0_tocore(PHI0));
-
-	BogusCorePhi phi (.PHI0(PHI0), .PHI1(PHI1), .PHI2(PHI2), .RnW(RnW));
+	assign RnW = 1'b1;
 
 	DPCMRegMaster reg_master (.W4010(W4010), .W4012(W4012), .W4013(W4013), .W4015(W4015), .DataBus(DataBus) );
-
-	ACLKGen clkgen (
-		.PHI1(PHI1),
-		.PHI2(PHI2),
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
-		.RES(RES));
 
 	DPCMSampleMem mem (.addr(DMC_Addr), .data(DataBus), .ReadMode(~n_DMCAB));
 
@@ -69,8 +56,7 @@ module DPCMChan_Run();
 
 		$dumpfile("dpcm_output.vcd");
 		$dumpvars(0, dpcm);
-		$dumpvars(1, clkgen);
-		$dumpvars(2, div);
+		$dumpvars(1, aclk);
 
 		CLK <= 1'b0;
 		RES <= 1'b0;
@@ -106,19 +92,7 @@ module DPCMChan_Run();
 
 endmodule // DPCMChan_Run
 
-module BogusCorePhi (PHI0, PHI1, PHI2, RnW);
-	
-	input PHI0;
-	output PHI1;
-	output PHI2;
-	output RnW;
-
-	assign PHI1 = ~PHI0;
-	assign PHI2 = PHI0;
-	assign RnW = 1'b1;		// Read mode always
-
-endmodule // BogusCorePhi
-
+// This module executes a "program" sequence of writes to the DPCM registers
 module DPCMRegMaster (W4010, W4012, W4013, W4015, DataBus);
 
 	input W4010;
