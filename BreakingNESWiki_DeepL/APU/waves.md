@@ -60,6 +60,12 @@ The diagram shows the essence of the operation, with some peculiarities:
 - The main purpose is to show that after the end of the countdown the circuit generates a `NotCount` signal (which corresponds to the NOSQA/NOSQB/NOTRI/NORND signals for the four real counters)
 - Before starting the counter, the value 0b1001 (9) is loaded into the counter, which after processing on the decoder corresponds to the value 0x07.
 
+## Envelope Unit
+
+![env_unit](/BreakingNESWiki/imgstore/apu/waves/env_unit.png)
+
+The simulation of LFO generation is artificially tweaked to trigger more frequently.
+
 ## DPCM Decoder
 
 ![dpcm_decoder](/BreakingNESWiki/imgstore/apu/waves/dpcm_decoder.png)

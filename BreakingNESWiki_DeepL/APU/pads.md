@@ -69,6 +69,8 @@ For some reason the circuit contains a disabled "comb" of transistors, which is 
 
 In debug mode (when DBG=1) - the external signal M2 is not touched during reset. In regular mode (for Retail consoles) - during reset the external signal M2 is in `z` state (Open-drain).
 
+The M2 duty cycle is made so that the top level of M2 becomes active 1.5 CLK (3 half cycles) before the top level of the PHI2 core. Thus external devices start their bus activity before the built-in 6502 core. When set to read mode, external devices can "advance" the data for the processor. When write mode is set, external devices can "preemptively" free the bus for the processor.
+
 ## DBG
 
 ![pad_dbg](/BreakingNESWiki/imgstore/apu/pad_dbg.jpg)

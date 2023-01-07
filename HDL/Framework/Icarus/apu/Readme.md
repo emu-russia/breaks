@@ -45,6 +45,10 @@ The DPCM samples are in the `dpcm_sample.mem` file and are loaded into a dummy m
 
 ![dpcm_output](/BreakingNESWiki/imgstore/apu/waves/dpcm_output.png)
 
+## env_unit
+
+![env_unit](/BreakingNESWiki/imgstore/apu/waves/env_unit.png)
+
 ## length_counter
 
 Synthetic Length Counter testing.
