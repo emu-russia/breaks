@@ -44,8 +44,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="valign" val="base"/>
     </tool>
   </lib>
-  <lib desc="file#C:\Andruxa\breaks\Docs\APU\APU_logisim\2A03_APU.circ" name="7"/>
-  <lib desc="file#C:\Andruxa\breaks\Docs\6502\6502_logisim\6502.circ" name="8"/>
+  <lib desc="file#..\APU\APU_logisim\2A03_APU.circ" name="7"/>
+  <lib desc="file#..\6502\6502_logisim\6502.circ" name="8"/>
   <main name="NSFPlayer"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
