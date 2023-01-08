@@ -38,6 +38,13 @@ It is necessary to change, if possible, all the places where the signal to be re
 
 There are questions about the `BRK7` signal. From the description of 6502 - BRK-sequence consists of cycles T0-T6, so from the name of the signal it may seem that from somewhere cycle T7 came. But no, it's just an abbreviation of `BRK7` :)
 
+|Was|Still|
+|---|---|
+|T5|T6 (RMW)|
+|T6|T7 (RMW)|
+|SBXY|#SBXY (active low)|
+|TRESX|#TRESX (active low)|
+
 ## PPU
 
 Correction history:
