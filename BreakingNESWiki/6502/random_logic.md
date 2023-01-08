@@ -62,7 +62,7 @@
 |PGX|Bus Control|ALU Control|Промежуточный сигнал ("Page X")|
 |/ready|Dispatch|All|Глобальный внутренний сигнал готовности процессора|
 |RTI/5|Decoder|Regs Control, ALU Control|Используется для получения сигналов `STKOP` и `NOADL`|
-|SBXY|Regs Control|Bus Control|Промежуточный сигнал ("SB Bus X,Y"). На самом деле этот сигнал в инверсной логике (`#SBXY`)|
+|#SBXY|Regs Control|Bus Control|Промежуточный сигнал ("SB Bus X,Y")|
 |STK2|Decoder|Regs Control, ALU Control|Вспомогательный сигнал с декодера (X35)|
 |STKOP|Regs Control|ALU Control|Промежуточный сигнал ("Stack Operation")|
 |STOR|Dispatcher|Regs Control, ALU Control, RW Control|Промежуточный сигнал|

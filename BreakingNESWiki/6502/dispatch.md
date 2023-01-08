@@ -63,7 +63,7 @@
 
 ![dispatch_tresx_tran](/BreakingNESWiki/imgstore/6502/dispatch_tresx_tran.jpg)
 
-- TRESX: Сбросить счётчики циклов
+- #TRESX: Сбросить счётчики циклов
 
 ![dispatch_tres2_tran](/BreakingNESWiki/imgstore/6502/dispatch_tres2_tran.jpg)
 

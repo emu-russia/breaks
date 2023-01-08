@@ -63,7 +63,7 @@ The `/ready` is the global ready signal of the processor, derived from the `RDY`
 
 ![dispatch_tresx_tran](/BreakingNESWiki/imgstore/6502/dispatch_tresx_tran.jpg)
 
-- TRESX: Reset Cycle Counters
+- #TRESX: Reset Cycle Counters
 
 ![dispatch_tres2_tran](/BreakingNESWiki/imgstore/6502/dispatch_tres2_tran.jpg)
 

@@ -62,7 +62,7 @@ This section contains a table of auxiliary signals exchanged between all parts o
 |PGX|Bus Control|ALU Control|Intermediate signal ("Page X")|
 |/ready|Dispatch|All|Global internal processor readiness signal|
 |RTI/5|Decoder|Regs Control, ALU Control|Used to obtain `STKOP` and `NOADL` signals|
-|SBXY|Regs Control|Bus Control|Intermediate signal ("SB Bus X,Y"). This signal is actually in inverse logic (`#SBXY`)|
+|#SBXY|Regs Control|Bus Control|Intermediate signal ("SB Bus X,Y")|
 |STK2|Decoder|Regs Control, ALU Control|Auxiliary signal from decoder (X35)|
 |STKOP|Regs Control|ALU Control|Intermediate signal ("Stack Operation")|
 |STOR|Dispatcher|Regs Control, ALU Control, RW Control|Intermediate signal|
