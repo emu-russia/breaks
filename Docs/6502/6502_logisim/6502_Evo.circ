@@ -822,43 +822,43 @@
     <comp lib="6" loc="(1170,190)" name="Text">
       <a name="text" val="/PRDY"/>
     </comp>
-    <comp lib="6" loc="(127,115)" name="Text">
+    <comp lib="6" loc="(125,115)" name="Text">
       <a name="text" val="PHI2"/>
     </comp>
-    <comp lib="6" loc="(1283,244)" name="Text">
+    <comp lib="6" loc="(1280,240)" name="Text">
       <a name="text" val="RESP"/>
     </comp>
-    <comp lib="6" loc="(133,1086)" name="Text">
+    <comp lib="6" loc="(130,1085)" name="Text">
       <a name="text" val="PHI2"/>
     </comp>
-    <comp lib="6" loc="(150,1056)" name="Text">
+    <comp lib="6" loc="(150,1055)" name="Text">
       <a name="text" val="PHI1"/>
     </comp>
-    <comp lib="6" loc="(156,159)" name="Text">
+    <comp lib="6" loc="(155,155)" name="Text">
       <a name="text" val="PHI1"/>
     </comp>
-    <comp lib="6" loc="(1693,123)" name="Text">
+    <comp lib="6" loc="(1690,120)" name="Text">
       <a name="text" val="PHI2"/>
     </comp>
-    <comp lib="6" loc="(1693,168)" name="Text">
+    <comp lib="6" loc="(1690,165)" name="Text">
       <a name="text" val="PHI1"/>
     </comp>
     <comp lib="6" loc="(175,1870)" name="Text">
       <a name="text" val="The pin layout corresponds to the real chip"/>
     </comp>
-    <comp lib="6" loc="(1833,274)" name="Text">
+    <comp lib="6" loc="(1830,270)" name="Text">
       <a name="text" val="WR"/>
     </comp>
-    <comp lib="6" loc="(2037,1053)" name="Text">
+    <comp lib="6" loc="(2035,1050)" name="Text">
       <a name="text" val="PHI1"/>
     </comp>
     <comp lib="6" loc="(205,690)" name="Text">
       <a name="text" val="T1"/>
     </comp>
-    <comp lib="6" loc="(2057,1086)" name="Text">
+    <comp lib="6" loc="(2055,1085)" name="Text">
       <a name="text" val="PHI2"/>
     </comp>
-    <comp lib="6" loc="(359,203)" name="Text">
+    <comp lib="6" loc="(355,200)" name="Text">
       <a name="text" val="/NMIP"/>
     </comp>
     <comp lib="6" loc="(500,1105)" name="Text">
@@ -10518,10 +10518,10 @@
     <comp lib="6" loc="(2190,540)" name="Text">
       <a name="text" val="Branch T0 Skip"/>
     </comp>
-    <comp lib="6" loc="(4442,116)" name="Text">
+    <comp lib="6" loc="(4440,115)" name="Text">
       <a name="text" val="Push/pull"/>
     </comp>
-    <comp lib="6" loc="(793,134)" name="Text">
+    <comp lib="6" loc="(790,130)" name="Text">
       <a name="text" val="BRK5"/>
       <a name="valign" val="top"/>
     </comp>
@@ -12400,7 +12400,7 @@
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="74" y="100">PHI2</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="77" y="129">STOR</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="77" y="149">/ready</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="325" y="149">SBXY</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="323" y="150">#SBXY</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="324" y="178">STXY</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="319" y="119">STKOP</text>
       <circ-anchor facing="east" x="70" y="220"/>
@@ -12620,7 +12620,7 @@
     <comp lib="0" loc="(900,640)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SBXY"/>
+      <a name="label" val="n_SBXY"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(900,700)" name="Pin">
@@ -12766,11 +12766,11 @@
     <comp lib="6" loc="(420,90)" name="Text">
       <a name="text" val="STOR"/>
     </comp>
-    <comp lib="6" loc="(526,872)" name="Text">
-      <a name="text" val="STKOP"/>
-    </comp>
-    <comp lib="6" loc="(527,346)" name="Text">
+    <comp lib="6" loc="(525,345)" name="Text">
       <a name="text" val="STOR"/>
+    </comp>
+    <comp lib="6" loc="(525,870)" name="Text">
+      <a name="text" val="STKOP"/>
     </comp>
     <comp lib="6" loc="(615,1015)" name="Text">
       <a name="text" val="#S/ADL"/>
@@ -12787,8 +12787,8 @@
     <comp lib="6" loc="(630,515)" name="Text">
       <a name="text" val="#S/SB"/>
     </comp>
-    <comp lib="6" loc="(635,630)" name="Text">
-      <a name="text" val="SBXY"/>
+    <comp lib="6" loc="(633,631)" name="Text">
+      <a name="text" val="#SBXY"/>
     </comp>
     <comp loc="(320,900)" name="D_Latch">
       <a name="label" val="nready_latch"/>
@@ -14103,10 +14103,10 @@
     <comp lib="6" loc="(1075,100)" name="Text">
       <a name="text" val="#NDB/ADD"/>
     </comp>
-    <comp lib="6" loc="(1112,954)" name="Text">
+    <comp lib="6" loc="(1110,950)" name="Text">
       <a name="text" val="#ADD/SB7"/>
     </comp>
-    <comp lib="6" loc="(1162,764)" name="Text">
+    <comp lib="6" loc="(1160,760)" name="Text">
       <a name="text" val="#ADD/SB06"/>
     </comp>
     <comp lib="6" loc="(1265,385)" name="Text">
@@ -15296,7 +15296,7 @@
     <comp lib="6" loc="(120,140)" name="Text">
       <a name="text" val="JSR/5"/>
     </comp>
-    <comp lib="6" loc="(136,430)" name="Text">
+    <comp lib="6" loc="(135,430)" name="Text">
       <a name="text" val="Push/pull"/>
     </comp>
     <comp lib="6" loc="(205,355)" name="Text">
@@ -15668,7 +15668,7 @@
     </appear>
     <comp lib="0" loc="(1010,480)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="L_MemOP_4f567ebd"/>
+      <a name="label" val="n_MemOP"/>
     </comp>
     <comp lib="0" loc="(1030,70)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -15695,7 +15695,7 @@
       <a name="label" val="T7"/>
     </comp>
     <comp lib="0" loc="(1170,410)" name="Tunnel">
-      <a name="label" val="TRESX"/>
+      <a name="label" val="n_TRESX"/>
     </comp>
     <comp lib="0" loc="(1190,940)" name="Tunnel">
       <a name="label" val="n_ready"/>
@@ -15769,7 +15769,7 @@
     <comp lib="0" loc="(1230,440)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="TRESX"/>
+      <a name="label" val="n_TRESX"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(1230,490)" name="Pin">
@@ -15990,7 +15990,7 @@
       <a name="label" val="n_SHIFT"/>
     </comp>
     <comp lib="0" loc="(290,840)" name="Tunnel">
-      <a name="label" val="L_MemOP_4f567ebd"/>
+      <a name="label" val="n_MemOP"/>
     </comp>
     <comp lib="0" loc="(310,560)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -16070,7 +16070,7 @@
     </comp>
     <comp lib="0" loc="(540,650)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="L_MemOP_4f567ebd"/>
+      <a name="label" val="n_MemOP"/>
     </comp>
     <comp lib="0" loc="(550,110)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -16090,7 +16090,7 @@
     </comp>
     <comp lib="0" loc="(550,1640)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="TRESX"/>
+      <a name="label" val="n_TRESX"/>
     </comp>
     <comp lib="0" loc="(550,1690)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -16129,7 +16129,7 @@
     </comp>
     <comp lib="0" loc="(740,200)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="L_MemOP_4f567ebd"/>
+      <a name="label" val="n_MemOP"/>
     </comp>
     <comp lib="0" loc="(750,370)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -16464,7 +16464,7 @@
       <a name="text" val="RDY_FF"/>
     </comp>
     <comp lib="6" loc="(955,90)" name="Text">
-      <a name="text" val="T5_FF"/>
+      <a name="text" val="T6_FF"/>
     </comp>
     <comp loc="(1030,610)" name="D_Latch">
       <a name="label" val="tresx_latch2"/>
@@ -16472,12 +16472,12 @@
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(1080,160)" name="D_Latch">
-      <a name="label" val="t5_latch1"/>
+      <a name="label" val="t6_latch1"/>
       <a name="labelfont" val="SansSerif plain 10"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(1080,270)" name="D_Latch">
-      <a name="label" val="t6_latch2"/>
+      <a name="label" val="t7_latch2"/>
       <a name="labelfont" val="SansSerif plain 10"/>
       <a name="labelloc" val="south"/>
     </comp>
@@ -16487,7 +16487,7 @@
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(1080,80)" name="D_Latch">
-      <a name="label" val="t5_latch2"/>
+      <a name="label" val="t6_latch2"/>
       <a name="labelfont" val="SansSerif plain 10"/>
       <a name="labelloc" val="south"/>
     </comp>
@@ -16562,7 +16562,7 @@
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(890,190)" name="D_Latch">
-      <a name="label" val="t56_latch"/>
+      <a name="label" val="t67_latch"/>
       <a name="labelfont" val="SansSerif plain 10"/>
       <a name="labelloc" val="south"/>
     </comp>
@@ -16612,7 +16612,7 @@
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(980,270)" name="D_Latch">
-      <a name="label" val="t6_latch1"/>
+      <a name="label" val="t7_latch1"/>
       <a name="labelfont" val="SansSerif plain 10"/>
       <a name="labelloc" val="south"/>
     </comp>
@@ -17123,7 +17123,7 @@
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="80" y="379">INC_SB</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="79" y="400">BRK6E</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="79" y="319">0/ADL0</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="75" y="339">SBXY</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="78" y="340">#SBXY</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="454" y="352">ZTST</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="74" y="359">STXY</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="81" y="419">DL/PCH</text>
@@ -17393,7 +17393,7 @@
     </comp>
     <comp lib="0" loc="(100,80)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="SBXY"/>
+      <a name="label" val="n_SBXY"/>
     </comp>
     <comp lib="0" loc="(100,810)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -17762,11 +17762,11 @@
     <comp lib="1" loc="(960,650)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="6" loc="(115,590)" name="Text">
-      <a name="text" val="BR0"/>
-    </comp>
     <comp lib="6" loc="(115,655)" name="Text">
       <a name="text" val="STA"/>
+    </comp>
+    <comp lib="6" loc="(124,596)" name="Text">
+      <a name="text" val="BR0"/>
     </comp>
     <comp lib="6" loc="(125,1385)" name="Text">
       <a name="text" val="JSR2"/>
@@ -17783,17 +17783,17 @@
     <comp lib="6" loc="(265,995)" name="Text">
       <a name="text" val="IMPLIED"/>
     </comp>
-    <comp lib="6" loc="(295,585)" name="Text">
-      <a name="text" val="PGX"/>
-    </comp>
     <comp lib="6" loc="(305,1625)" name="Text">
       <a name="text" val="JSR/5"/>
     </comp>
     <comp lib="6" loc="(305,250)" name="Text">
       <a name="text" val="#SB/AC"/>
     </comp>
-    <comp lib="6" loc="(355,294)" name="Text">
-      <a name="text" val="SBXY"/>
+    <comp lib="6" loc="(330,615)" name="Text">
+      <a name="text" val="PGX"/>
+    </comp>
+    <comp lib="6" loc="(351,193)" name="Text">
+      <a name="text" val="#SBXY"/>
     </comp>
     <comp lib="6" loc="(360,850)" name="Text">
       <a name="text" val="IND"/>
@@ -17801,7 +17801,7 @@
     <comp lib="6" loc="(395,360)" name="Text">
       <a name="text" val="AND"/>
     </comp>
-    <comp lib="6" loc="(446,185)" name="Text">
+    <comp lib="6" loc="(445,185)" name="Text">
       <a name="text" val="#DL/ADL"/>
     </comp>
     <comp lib="6" loc="(515,1080)" name="Text">
@@ -18478,13 +18478,13 @@
     <comp lib="6" loc="(285,835)" name="Text">
       <a name="text" val="/PIN"/>
     </comp>
-    <comp lib="6" loc="(336,544)" name="Text">
+    <comp lib="6" loc="(335,540)" name="Text">
       <a name="text" val="ZTST"/>
     </comp>
     <comp lib="6" loc="(395,405)" name="Text">
       <a name="text" val="/ARIT"/>
     </comp>
-    <comp lib="6" loc="(395,653)" name="Text">
+    <comp lib="6" loc="(395,650)" name="Text">
       <a name="text" val="BIT1"/>
     </comp>
     <comp loc="(510,120)" name="D_Latch">
