@@ -49,7 +49,7 @@ The `/ready` is the global ready signal of the processor, derived from the `RDY`
 
 ![dispatch_long_cycle_tran](/BreakingNESWiki/imgstore/6502/dispatch_long_cycle_tran.jpg)
 
-- T5, T6: The processor is in the RMW cycle T6/T7 (the signal names T5/T6 are old, but we will not rename them anymore)
+- T6, T7: The processor is in the RMW cycle T6/T7
 
 ## Instruction Completion
 
@@ -63,7 +63,7 @@ The `/ready` is the global ready signal of the processor, derived from the `RDY`
 
 ![dispatch_tresx_tran](/BreakingNESWiki/imgstore/6502/dispatch_tresx_tran.jpg)
 
-- TRESX: Reset Cycle Counters
+- #TRESX: Reset Cycle Counters
 
 ![dispatch_tres2_tran](/BreakingNESWiki/imgstore/6502/dispatch_tres2_tran.jpg)
 

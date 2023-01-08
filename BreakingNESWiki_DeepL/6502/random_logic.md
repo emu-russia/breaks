@@ -62,7 +62,7 @@ This section contains a table of auxiliary signals exchanged between all parts o
 |PGX|Bus Control|ALU Control|Intermediate signal ("Page X")|
 |/ready|Dispatch|All|Global internal processor readiness signal|
 |RTI/5|Decoder|Regs Control, ALU Control|Used to obtain `STKOP` and `NOADL` signals|
-|SBXY|Regs Control|Bus Control|Intermediate signal ("SB Bus X,Y"). This signal is actually in inverse logic (`#SBXY`)|
+|#SBXY|Regs Control|Bus Control|Intermediate signal ("SB Bus X,Y")|
 |STK2|Decoder|Regs Control, ALU Control|Auxiliary signal from decoder (X35)|
 |STKOP|Regs Control|ALU Control|Intermediate signal ("Stack Operation")|
 |STOR|Dispatcher|Regs Control, ALU Control, RW Control|Intermediate signal|
@@ -70,8 +70,8 @@ This section contains a table of auxiliary signals exchanged between all parts o
 |T0|Short Cycle Counter|All|Processor in the T0 instruction execution cycle|
 |T1|PC Control|All|Processor in the T1 cycle|
 |T2|Decoder|All|Processor in the T2 cycle|
-|T5|Long Cycle Counter|All|Processor in cycle RMW T6 (the name `T5` is the old name of the signal, but we will not rename it anymore)|
-|T6|Long Cycle Counter|All|Processor in cycle RMW T7 (the name `T6` is the old name of the signal, but we will not rename it anymore)|
+|T6 RMW|Long Cycle Counter|All|Processor in cycle RMW T6 (the name `T5` is the old name of the signal)|
+|T7 RMW|Long Cycle Counter|All|Processor in cycle RMW T7 (the name `T6` is the old name of the signal)|
 |ZTST|Bus Control|Flags Control|Intermediate signal ("Z Test")|
 
 Do not look for any sacred meaning in the auxiliary signals - just take them as intermediate values of combinatorial logic.

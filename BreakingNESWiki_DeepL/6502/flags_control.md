@@ -23,7 +23,7 @@ Input signals:
 
 - /T0: Processor executes cycle T0 of the current instruction
 - /T1X: Processor executes T1 cycle of the current instruction
-- T6: Processor executes T6 cycle of current instruction
+- T7 RMW: Processor executes T7 cycle of current instruction (RMW)
 
 Output signals:
 

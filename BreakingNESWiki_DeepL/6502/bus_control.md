@@ -48,8 +48,8 @@ The other auxiliary and intermediate signals that can be found in the schematics
 |RTI/5|Decoder X26|
 |STXY|Comes from [register control circuitry](regs_control.md)|
 |BR0|Decoder X73. Additionally modified with the /PRDY signal|
-|T5|Comes from the cycle counter of long instructions|
-|T6|Comes from the cycle counter of long instructions|
+|T6 RMW|Comes from the cycle counter of long instructions|
+|T7 RMW|Comes from the cycle counter of long instructions|
 |PGX|Output signal from ADL/ABL circuit|
 |JSR/5|Decoder X56|
 |T2|Decoder X28|
@@ -61,7 +61,7 @@ The other auxiliary and intermediate signals that can be found in the schematics
 |AND|Comes from the [ALU control](alu_control.md) circuit|
 |STA|Decoder X79|
 |STOR|Intermediate signal from the dispatcher|
-|SBXY|Comes from a register control circuit (not to be confused with STXY)|
+|#SBXY|Comes from a register control circuit (not to be confused with STXY)|
 |T1|Comes from the PC increment circuit (see [dispatcher](dispatch.md))|
 |BR2|Decoder X80|
 |ZTST|Output signal for [flags control](flags_control.md) from SB/DB circuit|

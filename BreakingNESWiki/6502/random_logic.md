@@ -62,7 +62,7 @@
 |PGX|Bus Control|ALU Control|Промежуточный сигнал ("Page X")|
 |/ready|Dispatch|All|Глобальный внутренний сигнал готовности процессора|
 |RTI/5|Decoder|Regs Control, ALU Control|Используется для получения сигналов `STKOP` и `NOADL`|
-|SBXY|Regs Control|Bus Control|Промежуточный сигнал ("SB Bus X,Y"). На самом деле этот сигнал в инверсной логике (`#SBXY`)|
+|#SBXY|Regs Control|Bus Control|Промежуточный сигнал ("SB Bus X,Y")|
 |STK2|Decoder|Regs Control, ALU Control|Вспомогательный сигнал с декодера (X35)|
 |STKOP|Regs Control|ALU Control|Промежуточный сигнал ("Stack Operation")|
 |STOR|Dispatcher|Regs Control, ALU Control, RW Control|Промежуточный сигнал|
@@ -70,8 +70,8 @@
 |T0|Short Cycle Counter|All|Процессор в цикле T0 выполнения инструкции|
 |T1|PC Control|All|Процессор в цикле T1|
 |T2|Decoder|All|Процессор в цикле T2|
-|T5|Long Cycle Counter|All|Процессор в цикле T6 RMW (название `T5` - это старое название сигнала, но уже не будем переименовывать)|
-|T6|Long Cycle Counter|All|Процессор в цикле T7 RMW (название `T6` - это старое название сигнала, но уже не будем переименовывать)|
+|T6 RMW|Long Cycle Counter|All|Процессор в цикле T6 RMW (название `T5` - это старое название сигнала)|
+|T7 RMW|Long Cycle Counter|All|Процессор в цикле T7 RMW (название `T6` - это старое название сигнала)|
 |ZTST|Bus Control|Flags Control|Промежуточный сигнал ("Z Test")|
 
 Во вспомогательных сигналах не стоить искать какой-то сакральный смысл - воcпринимайте их просто как промежуточные значения комбинаторной логики.

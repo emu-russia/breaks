@@ -49,7 +49,7 @@
 
 ![dispatch_long_cycle_tran](/BreakingNESWiki/imgstore/6502/dispatch_long_cycle_tran.jpg)
 
-- T5, T6: Процессор находится в цикле RMW T6/T7 (названия сигналов T5/T6 старые, но уже не будем переименовывать)
+- T6, T7: Процессор находится в цикле RMW T6/T7
 
 ## Схема завершения выполнения
 
@@ -63,7 +63,7 @@
 
 ![dispatch_tresx_tran](/BreakingNESWiki/imgstore/6502/dispatch_tresx_tran.jpg)
 
-- TRESX: Сбросить счётчики циклов
+- #TRESX: Сбросить счётчики циклов
 
 ![dispatch_tres2_tran](/BreakingNESWiki/imgstore/6502/dispatch_tres2_tran.jpg)
 
