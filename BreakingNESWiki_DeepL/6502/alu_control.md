@@ -18,7 +18,8 @@ Table of auxiliary and intermediate signals, which are found further in the sche
 |SR|Intermediate signal|
 |AND|Intermediate signal|
 |T0|Comes from the cycle counter of short instructions|
-|T5|Comes from the cycle counter of long instructions|
+|T6 RMW|Comes from the cycle counter of long instructions|
+|T7 RMW|Comes from the cycle counter of long instructions|
 |/C_OUT|[Flag](flags.md) C value (inverted value)|
 |CSET|Intermediate signal ("Carry Set"), used in the main ALU control circuit|
 |STK2|Decoder X35|
@@ -35,7 +36,6 @@ Table of auxiliary and intermediate signals, which are found further in the sche
 |NOADL|Comes from the bus control circuitry|
 |BRFW|Comes from the conditional [branch logic](branch_logic.md)|
 |T1|Comes from the PC increment circuit (see [dispatcher](dispatch.md))|
-|T6|Comes from the cycle counter of long instructions|
 |D_OUT|Flag D value|
 |C_OUT|Flag C value|
 
