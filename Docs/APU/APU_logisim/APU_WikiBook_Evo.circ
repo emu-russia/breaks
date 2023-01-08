@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project source="3.7.2" version="1.0">
-  This file is intended to be loaded by Logisim-evolution v3.7.2(https://github.com/logisim-evolution/).
+<project source="3.8.0" version="1.0">
+  This file is intended to be loaded by Logisim-evolution v3.8.0(https://github.com/logisim-evolution/).
 
   <lib desc="#Wiring" name="0">
     <tool name="Pin">
@@ -14,10 +14,15 @@
   <lib desc="#I/O" name="5"/>
   <lib desc="#TTL" name="6"/>
   <lib desc="#TCL" name="7"/>
-  <lib desc="#Base" name="8"/>
+  <lib desc="#Base" name="8">
+    <tool name="Text Tool">
+      <a name="font" val="SansSerif plain 12"/>
+    </tool>
+  </lib>
   <lib desc="#BFH-Praktika" name="9"/>
   <lib desc="#Input/Output-Extra" name="10"/>
   <lib desc="#Soc" name="11"/>
+  <lib desc="file#..\..\6502\6502_logisim\6502_Evo.circ" name="12"/>
   <main name="APU"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
@@ -33,7 +38,9 @@
     <tool lib="8" name="Poke Tool"/>
     <tool lib="8" name="Edit Tool"/>
     <tool lib="8" name="Wiring Tool"/>
-    <tool lib="8" name="Text Tool"/>
+    <tool lib="8" name="Text Tool">
+      <a name="font" val="SansSerif plain 12"/>
+    </tool>
     <sep/>
     <tool lib="0" name="Pin"/>
     <tool lib="0" name="Pin">
@@ -242,23 +249,59 @@
     <comp lib="1" loc="(570,160)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="8" loc="(1607,343)" name="Text">
-      <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="NotDBG_RES"/>
-    </comp>
-    <comp lib="8" loc="(164,102)" name="Text">
+    <comp lib="8" loc="(160,100)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="RES"/>
     </comp>
-    <comp loc="(1210,100)" name="SoftCLK"/>
-    <comp loc="(1340,570)" name="SoundGenerators"/>
-    <comp loc="(1670,440)" name="DebugLock"/>
-    <comp loc="(1670,80)" name="OUT_Ports"/>
-    <comp loc="(1670,840)" name="RWDecode"/>
-    <comp loc="(2010,560)" name="DataBusPads"/>
-    <comp loc="(480,100)" name="DIV"/>
-    <comp loc="(490,490)" name="RegPredecode"/>
-    <comp loc="(760,450)" name="RegSel"/>
+    <comp lib="8" loc="(1605,340)" name="Text">
+      <a name="font" val="SansSerif bold 10"/>
+      <a name="text" val="NotDBG_RES"/>
+    </comp>
+    <comp loc="(1210,100)" name="SoftCLK">
+      <a name="label" val="soft_clk"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1340,570)" name="SoundGenerators">
+      <a name="label" val="sound_gen"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1670,440)" name="DebugLock">
+      <a name="label" val="lock"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1670,80)" name="OUT_Ports">
+      <a name="label" val="io"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(1670,840)" name="RWDecode">
+      <a name="label" val="rw_decoder"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(2010,560)" name="DataBusPads">
+      <a name="label" val="dbus"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(480,100)" name="DIV">
+      <a name="label" val="clk_div"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(490,490)" name="RegPredecode">
+      <a name="label" val="regs_predecode"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <comp loc="(760,450)" name="RegSel">
+      <a name="label" val="regops"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
     <comp loc="(800,100)" name="Core">
       <a name="label" val="m6502"/>
       <a name="labelfont" val="SansSerif bold 9"/>
@@ -315,8 +358,8 @@
     <wire from="(1290,310)" to="(1290,500)"/>
     <wire from="(1290,310)" to="(1390,310)"/>
     <wire from="(1290,500)" to="(1450,500)"/>
-    <wire from="(1320,200)" to="(1320,260)"/>
-    <wire from="(1320,260)" to="(1320,540)"/>
+    <wire from="(1320,200)" to="(1320,270)"/>
+    <wire from="(1320,270)" to="(1320,540)"/>
     <wire from="(1320,540)" to="(1450,540)"/>
     <wire from="(1340,570)" to="(1360,570)"/>
     <wire from="(1340,590)" to="(1370,590)"/>
@@ -329,7 +372,7 @@
     <wire from="(1350,80)" to="(1450,80)"/>
     <wire from="(1360,280)" to="(1360,570)"/>
     <wire from="(1370,300)" to="(1370,590)"/>
-    <wire from="(1380,630)" to="(1380,1050)"/>
+    <wire from="(1380,630)" to="(1380,1080)"/>
     <wire from="(1380,630)" to="(1750,630)"/>
     <wire from="(1390,140)" to="(1390,310)"/>
     <wire from="(1390,140)" to="(1450,140)"/>
@@ -337,7 +380,7 @@
     <wire from="(1390,360)" to="(1530,360)"/>
     <wire from="(1390,420)" to="(1390,880)"/>
     <wire from="(1390,880)" to="(1450,880)"/>
-    <wire from="(1390,900)" to="(1390,1060)"/>
+    <wire from="(1390,900)" to="(1390,1090)"/>
     <wire from="(1390,900)" to="(1450,900)"/>
     <wire from="(1400,330)" to="(1400,860)"/>
     <wire from="(1400,860)" to="(1450,860)"/>
@@ -462,16 +505,16 @@
     <wire from="(490,510)" to="(540,510)"/>
     <wire from="(500,120)" to="(500,170)"/>
     <wire from="(500,120)" to="(580,120)"/>
-    <wire from="(510,1060)" to="(1390,1060)"/>
-    <wire from="(510,490)" to="(510,1060)"/>
+    <wire from="(510,1090)" to="(1390,1090)"/>
+    <wire from="(510,490)" to="(510,1090)"/>
     <wire from="(510,490)" to="(540,490)"/>
-    <wire from="(520,1050)" to="(1380,1050)"/>
+    <wire from="(520,1080)" to="(1380,1080)"/>
     <wire from="(520,140)" to="(520,220)"/>
     <wire from="(520,140)" to="(580,140)"/>
     <wire from="(520,370)" to="(520,450)"/>
     <wire from="(520,370)" to="(870,370)"/>
     <wire from="(520,450)" to="(540,450)"/>
-    <wire from="(520,530)" to="(520,1050)"/>
+    <wire from="(520,530)" to="(520,1080)"/>
     <wire from="(520,530)" to="(540,530)"/>
     <wire from="(540,160)" to="(550,160)"/>
     <wire from="(540,200)" to="(540,310)"/>
@@ -526,8 +569,8 @@
     <wire from="(800,720)" to="(930,720)"/>
     <wire from="(810,1030)" to="(1420,1030)"/>
     <wire from="(810,120)" to="(880,120)"/>
-    <wire from="(810,200)" to="(810,260)"/>
-    <wire from="(810,260)" to="(1320,260)"/>
+    <wire from="(810,200)" to="(810,270)"/>
+    <wire from="(810,270)" to="(1320,270)"/>
     <wire from="(810,70)" to="(810,120)"/>
     <wire from="(810,730)" to="(810,770)"/>
     <wire from="(810,730)" to="(930,730)"/>
@@ -1433,10 +1476,10 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="trigger" val="high"/>
     </comp>
-    <comp lib="8" loc="(267,270)" name="Text">
+    <comp lib="8" loc="(265,270)" name="Text">
       <a name="text" val="q"/>
     </comp>
-    <comp lib="8" loc="(356,153)" name="Text">
+    <comp lib="8" loc="(355,150)" name="Text">
       <a name="text" val="~q"/>
     </comp>
     <comp loc="(480,190)" name="DLatch">
@@ -1593,13 +1636,13 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="trigger" val="high"/>
     </comp>
-    <comp lib="8" loc="(267,270)" name="Text">
+    <comp lib="8" loc="(265,270)" name="Text">
       <a name="text" val="q"/>
     </comp>
-    <comp lib="8" loc="(356,153)" name="Text">
+    <comp lib="8" loc="(355,150)" name="Text">
       <a name="text" val="~q"/>
     </comp>
-    <comp lib="8" loc="(408,86)" name="Text">
+    <comp lib="8" loc="(405,85)" name="Text">
       <a name="text" val="!!!"/>
     </comp>
     <comp loc="(480,190)" name="DLatch">
@@ -1764,10 +1807,10 @@
       <a name="appearance" val="logisim_evolution"/>
       <a name="trigger" val="high"/>
     </comp>
-    <comp lib="8" loc="(267,270)" name="Text">
+    <comp lib="8" loc="(265,270)" name="Text">
       <a name="text" val="q"/>
     </comp>
-    <comp lib="8" loc="(356,153)" name="Text">
+    <comp lib="8" loc="(355,150)" name="Text">
       <a name="text" val="~q"/>
     </comp>
     <comp loc="(480,190)" name="DLatch">
@@ -1952,10 +1995,10 @@
       <a name="size" val="20"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="8" loc="(392,216)" name="Text">
+    <comp lib="8" loc="(390,215)" name="Text">
       <a name="text" val="x8"/>
     </comp>
-    <comp lib="8" loc="(507,192)" name="Text">
+    <comp lib="8" loc="(505,190)" name="Text">
       <a name="text" val="FFx8"/>
     </comp>
     <comp loc="(620,100)" name="DLatch_x8"/>
@@ -2108,31 +2151,31 @@
     <comp lib="1" loc="(690,360)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="8" loc="(191,675)" name="Text">
+    <comp lib="8" loc="(190,675)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="/ACLK"/>
     </comp>
-    <comp lib="8" loc="(215,126)" name="Text">
+    <comp lib="8" loc="(215,125)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="SPRE"/>
     </comp>
-    <comp lib="8" loc="(221,437)" name="Text">
+    <comp lib="8" loc="(220,435)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="W4014"/>
     </comp>
-    <comp lib="8" loc="(226,377)" name="Text">
+    <comp lib="8" loc="(225,375)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="RES"/>
     </comp>
-    <comp lib="8" loc="(226,606)" name="Text">
+    <comp lib="8" loc="(225,605)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="Delayed /ACLK"/>
     </comp>
-    <comp lib="8" loc="(233,276)" name="Text">
+    <comp lib="8" loc="(230,275)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="RUNDMC"/>
     </comp>
-    <comp lib="8" loc="(296,359)" name="Text">
+    <comp lib="8" loc="(295,355)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="StartDMA"/>
     </comp>
@@ -2140,43 +2183,43 @@
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="DMADirToggle"/>
     </comp>
-    <comp lib="8" loc="(356,501)" name="Text">
+    <comp lib="8" loc="(355,500)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="PHI1"/>
     </comp>
-    <comp lib="8" loc="(364,88)" name="Text">
+    <comp lib="8" loc="(360,85)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="SPRS"/>
     </comp>
-    <comp lib="8" loc="(392,573)" name="Text">
+    <comp lib="8" loc="(390,570)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="RUNDMC"/>
     </comp>
-    <comp lib="8" loc="(395,521)" name="Text">
-      <a name="font" val="SansSerif bold 11"/>
-      <a name="text" val="R/W"/>
-    </comp>
-    <comp lib="8" loc="(398,156)" name="Text">
+    <comp lib="8" loc="(395,155)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="RES"/>
     </comp>
-    <comp lib="8" loc="(401,217)" name="Text">
+    <comp lib="8" loc="(395,520)" name="Text">
+      <a name="font" val="SansSerif bold 11"/>
+      <a name="text" val="R/W"/>
+    </comp>
+    <comp lib="8" loc="(400,215)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="DOSPR"/>
     </comp>
-    <comp lib="8" loc="(408,425)" name="Text">
+    <comp lib="8" loc="(405,425)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="Delayed /ACLK"/>
     </comp>
-    <comp lib="8" loc="(453,547)" name="Text">
+    <comp lib="8" loc="(450,545)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="NOSPR"/>
     </comp>
-    <comp lib="8" loc="(467,136)" name="Text">
+    <comp lib="8" loc="(465,135)" name="Text">
       <a name="font" val="SansSerif bold 14"/>
       <a name="text" val="StopDMA"/>
     </comp>
-    <comp lib="8" loc="(560,274)" name="Text">
+    <comp lib="8" loc="(560,270)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="Increment DMA Addr"/>
     </comp>
@@ -2184,23 +2227,23 @@
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="DMA Buffer -&gt; PPU"/>
     </comp>
-    <comp lib="8" loc="(581,676)" name="Text">
+    <comp lib="8" loc="(580,675)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="RAM -&gt; DMA Buffer"/>
     </comp>
-    <comp lib="8" loc="(594,484)" name="Text">
+    <comp lib="8" loc="(590,480)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="DOSPR"/>
     </comp>
-    <comp lib="8" loc="(625,156)" name="Text">
+    <comp lib="8" loc="(625,155)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="NOSPR"/>
     </comp>
-    <comp lib="8" loc="(664,403)" name="Text">
+    <comp lib="8" loc="(660,400)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="DMCRDY"/>
     </comp>
-    <comp lib="8" loc="(694,353)" name="Text">
+    <comp lib="8" loc="(690,350)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="RDY"/>
     </comp>
@@ -2493,11 +2536,11 @@
     <comp lib="1" loc="(390,400)" name="Buffer">
       <a name="width" val="16"/>
     </comp>
-    <comp lib="8" loc="(249,255)" name="Text">
+    <comp lib="8" loc="(245,255)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="DMC_AB"/>
     </comp>
-    <comp lib="8" loc="(329,193)" name="Text">
+    <comp lib="8" loc="(325,190)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="CPU_AB (default)"/>
     </comp>
@@ -2550,11 +2593,11 @@
       <rect fill="#2cff4e" height="40" stroke="#000000" width="40" x="50" y="50"/>
       <ellipse cx="90" cy="80" fill="none" rx="5" ry="5" stroke="#000000" stroke-width="2"/>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="42">DL</text>
-      <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
-      <circ-port height="10" pin="370,130" width="10" x="85" y="55"/>
-      <circ-port height="10" pin="370,210" width="10" x="85" y="75"/>
-      <circ-port height="8" pin="120,130" width="8" x="46" y="56"/>
-      <circ-port height="8" pin="120,210" width="8" x="46" y="76"/>
+      <circ-anchor facing="east" x="50" y="60"/>
+      <circ-port dir="in" pin="120,130" x="50" y="60"/>
+      <circ-port dir="in" pin="120,210" x="50" y="80"/>
+      <circ-port dir="out" pin="370,130" x="90" y="60"/>
+      <circ-port dir="out" pin="370,210" x="90" y="80"/>
     </appear>
     <comp lib="0" loc="(120,130)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -2603,11 +2646,11 @@
       <rect fill="#2cff4e" height="40" stroke="#000000" width="40" x="50" y="50"/>
       <ellipse cx="90" cy="80" fill="none" rx="5" ry="5" stroke="#000000" stroke-width="2"/>
       <text dominant-baseline="central" font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="42">DL x8</text>
-      <circ-anchor facing="east" height="6" width="6" x="47" y="57"/>
-      <circ-port height="10" pin="440,140" width="10" x="85" y="75"/>
-      <circ-port height="10" pin="440,60" width="10" x="85" y="55"/>
-      <circ-port height="8" pin="190,140" width="8" x="46" y="76"/>
-      <circ-port height="8" pin="190,60" width="8" x="46" y="56"/>
+      <circ-anchor facing="east" x="50" y="60"/>
+      <circ-port dir="in" pin="190,140" x="50" y="80"/>
+      <circ-port dir="in" pin="190,60" x="50" y="60"/>
+      <circ-port dir="out" pin="440,140" x="90" y="80"/>
+      <circ-port dir="out" pin="440,60" x="90" y="60"/>
     </appear>
     <comp lib="0" loc="(190,140)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -2953,19 +2996,19 @@
     <comp lib="1" loc="(530,360)" name="Controlled Inverter">
       <a name="control" val="left"/>
     </comp>
-    <comp lib="8" loc="(118,266)" name="Text">
+    <comp lib="8" loc="(115,265)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="DMC1"/>
     </comp>
-    <comp lib="8" loc="(455,163)" name="Text">
+    <comp lib="8" loc="(455,160)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="AssertInt"/>
     </comp>
-    <comp lib="8" loc="(497,115)" name="Text">
+    <comp lib="8" loc="(495,115)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="DMCFinish"/>
     </comp>
-    <comp lib="8" loc="(531,431)" name="Text">
+    <comp lib="8" loc="(530,430)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="DMCEnable"/>
     </comp>
@@ -3139,27 +3182,27 @@
     <comp lib="1" loc="(720,70)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(188,435)" name="Text">
+    <comp lib="8" loc="(185,435)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="CTRL2"/>
     </comp>
-    <comp lib="8" loc="(190,392)" name="Text">
+    <comp lib="8" loc="(190,390)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="CTRL1"/>
     </comp>
-    <comp lib="8" loc="(306,24)" name="Text">
+    <comp lib="8" loc="(305,20)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="Delayed /ACLK"/>
     </comp>
-    <comp lib="8" loc="(404,297)" name="Text">
+    <comp lib="8" loc="(400,295)" name="Text">
       <a name="font" val="SansSerif bold 13"/>
       <a name="text" val="S"/>
     </comp>
-    <comp lib="8" loc="(404,434)" name="Text">
+    <comp lib="8" loc="(400,430)" name="Text">
       <a name="font" val="SansSerif bold 13"/>
       <a name="text" val="R"/>
     </comp>
-    <comp lib="8" loc="(504,407)" name="Text">
+    <comp lib="8" loc="(500,405)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="DMAStart"/>
     </comp>
@@ -3352,27 +3395,27 @@
       <a name="inputs" val="3"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(172,304)" name="Text">
-      <a name="font" val="SansSerif bold 9"/>
-      <a name="text" val="ED2"/>
-    </comp>
-    <comp lib="8" loc="(173,255)" name="Text">
+    <comp lib="8" loc="(170,255)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="DMC2"/>
     </comp>
-    <comp lib="8" loc="(179,133)" name="Text">
+    <comp lib="8" loc="(170,300)" name="Text">
+      <a name="font" val="SansSerif bold 9"/>
+      <a name="text" val="ED2"/>
+    </comp>
+    <comp lib="8" loc="(175,130)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="DMC1"/>
     </comp>
-    <comp lib="8" loc="(369,260)" name="Text">
+    <comp lib="8" loc="(365,260)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="Edge detector"/>
     </comp>
-    <comp lib="8" loc="(529,203)" name="Text">
+    <comp lib="8" loc="(525,200)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="DMC3"/>
     </comp>
-    <comp lib="8" loc="(649,304)" name="Text">
+    <comp lib="8" loc="(645,300)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="#DMCEnableDelay"/>
     </comp>
@@ -3632,29 +3675,29 @@
     <comp lib="4" loc="(680,370)" name="D Flip-Flop">
       <a name="appearance" val="logisim_evolution"/>
     </comp>
-    <comp lib="8" loc="(175,32)" name="Text">
+    <comp lib="8" loc="(175,30)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="Delayed /ACLK"/>
     </comp>
-    <comp lib="8" loc="(232,484)" name="Text">
+    <comp lib="8" loc="(230,480)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="PCM"/>
     </comp>
-    <comp lib="8" loc="(546,247)" name="Text">
+    <comp lib="8" loc="(545,245)" name="Text">
       <a name="text" val="="/>
     </comp>
-    <comp lib="8" loc="(699,67)" name="Text">
+    <comp lib="8" loc="(695,65)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="In the schematic, several DLatch are replaced by Posedge DFFs, for simulation purposes."/>
     </comp>
-    <comp lib="8" loc="(724,333)" name="Text">
+    <comp lib="8" loc="(720,330)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="nDMAStop"/>
     </comp>
-    <comp lib="8" loc="(760,409)" name="Text">
+    <comp lib="8" loc="(760,405)" name="Text">
       <a name="text" val="="/>
     </comp>
-    <comp lib="8" loc="(764,609)" name="Text">
+    <comp lib="8" loc="(760,605)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="PCMDone"/>
     </comp>
@@ -4338,7 +4381,7 @@
     <comp lib="1" loc="(740,130)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="8" loc="(477,308)" name="Text">
+    <comp lib="8" loc="(475,305)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="The shift register is loaded with an inverse value, but pushes out the bits in the direct value."/>
     </comp>
@@ -4562,7 +4605,7 @@
       <a name="inputs" val="9"/>
       <a name="size" val="70"/>
     </comp>
-    <comp lib="8" loc="(180,23)" name="Text">
+    <comp lib="8" loc="(180,20)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
       <a name="text" val="Delayed /ACLK"/>
     </comp>
@@ -4943,7 +4986,7 @@
       <a name="output" val="true"/>
       <a name="width" val="7"/>
     </comp>
-    <comp lib="8" loc="(195,174)" name="Text">
+    <comp lib="8" loc="(195,170)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="n_BOUT"/>
     </comp>
@@ -6610,7 +6653,7 @@
       <a name="select" val="4"/>
       <a name="selloc" val="tr"/>
     </comp>
-    <comp lib="8" loc="(426,55)" name="Text">
+    <comp lib="8" loc="(425,55)" name="Text">
       <a name="text" val="DMX 4-to-16"/>
     </comp>
     <wire from="(100,100)" to="(110,100)"/>
@@ -7696,20 +7739,34 @@
       <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="0" loc="(440,160)" name="Constant"/>
-    <comp lib="0" loc="(460,160)" name="Pin">
+    <comp lib="0" loc="(320,370)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+    </comp>
+    <comp lib="0" loc="(330,90)" name="Constant"/>
+    <comp lib="0" loc="(530,110)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="16"/>
+      <a name="incoming" val="16"/>
+    </comp>
+    <comp lib="0" loc="(530,280)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+    </comp>
+    <comp lib="0" loc="(700,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RnW"/>
       <a name="output" val="true"/>
     </comp>
-    <comp lib="0" loc="(460,190)" name="Pin">
+    <comp lib="0" loc="(700,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="SYNC"/>
       <a name="output" val="true"/>
     </comp>
-    <comp lib="0" loc="(460,270)" name="Pin">
+    <comp lib="0" loc="(700,280)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Ax"/>
@@ -7717,7 +7774,7 @@
       <a name="radix" val="16"/>
       <a name="width" val="16"/>
     </comp>
-    <comp lib="0" loc="(460,310)" name="Pin">
+    <comp lib="0" loc="(700,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="D_Out"/>
@@ -7725,27 +7782,90 @@
       <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="0" loc="(460,40)" name="Pin">
+    <comp lib="0" loc="(700,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PHI1"/>
       <a name="output" val="true"/>
     </comp>
-    <comp lib="0" loc="(460,70)" name="Pin">
+    <comp lib="0" loc="(700,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PHI2"/>
       <a name="output" val="true"/>
     </comp>
-    <comp lib="1" loc="(430,40)" name="NOT Gate"/>
-    <wire from="(130,40)" to="(300,40)"/>
-    <wire from="(300,40)" to="(300,70)"/>
-    <wire from="(300,70)" to="(370,70)"/>
-    <wire from="(370,40)" to="(370,70)"/>
-    <wire from="(370,40)" to="(400,40)"/>
-    <wire from="(370,70)" to="(460,70)"/>
-    <wire from="(430,40)" to="(460,40)"/>
-    <wire from="(440,160)" to="(460,160)"/>
+    <comp lib="12" loc="(360,60)" name="MOS_6502">
+      <a name="label" val="core"/>
+      <a name="labelfont" val="SansSerif bold 10"/>
+      <a name="labelloc" val="south"/>
+    </comp>
+    <wire from="(130,110)" to="(360,110)"/>
+    <wire from="(130,150)" to="(260,150)"/>
+    <wire from="(130,190)" to="(280,190)"/>
+    <wire from="(130,260)" to="(240,260)"/>
+    <wire from="(130,40)" to="(230,40)"/>
+    <wire from="(200,310)" to="(250,310)"/>
+    <wire from="(230,40)" to="(230,60)"/>
+    <wire from="(230,60)" to="(360,60)"/>
+    <wire from="(240,80)" to="(240,260)"/>
+    <wire from="(240,80)" to="(360,80)"/>
+    <wire from="(250,310)" to="(250,370)"/>
+    <wire from="(250,370)" to="(320,370)"/>
+    <wire from="(260,120)" to="(260,150)"/>
+    <wire from="(260,120)" to="(360,120)"/>
+    <wire from="(280,130)" to="(280,190)"/>
+    <wire from="(280,130)" to="(360,130)"/>
+    <wire from="(330,90)" to="(360,90)"/>
+    <wire from="(340,290)" to="(360,290)"/>
+    <wire from="(340,300)" to="(360,300)"/>
+    <wire from="(340,310)" to="(360,310)"/>
+    <wire from="(340,320)" to="(360,320)"/>
+    <wire from="(340,330)" to="(360,330)"/>
+    <wire from="(340,340)" to="(360,340)"/>
+    <wire from="(340,350)" to="(360,350)"/>
+    <wire from="(340,360)" to="(360,360)"/>
+    <wire from="(490,100)" to="(620,100)"/>
+    <wire from="(490,120)" to="(510,120)"/>
+    <wire from="(490,130)" to="(510,130)"/>
+    <wire from="(490,140)" to="(510,140)"/>
+    <wire from="(490,150)" to="(510,150)"/>
+    <wire from="(490,160)" to="(510,160)"/>
+    <wire from="(490,170)" to="(510,170)"/>
+    <wire from="(490,180)" to="(510,180)"/>
+    <wire from="(490,190)" to="(510,190)"/>
+    <wire from="(490,200)" to="(510,200)"/>
+    <wire from="(490,210)" to="(510,210)"/>
+    <wire from="(490,220)" to="(510,220)"/>
+    <wire from="(490,230)" to="(510,230)"/>
+    <wire from="(490,240)" to="(510,240)"/>
+    <wire from="(490,250)" to="(510,250)"/>
+    <wire from="(490,260)" to="(510,260)"/>
+    <wire from="(490,270)" to="(510,270)"/>
+    <wire from="(490,290)" to="(510,290)"/>
+    <wire from="(490,300)" to="(510,300)"/>
+    <wire from="(490,310)" to="(510,310)"/>
+    <wire from="(490,320)" to="(510,320)"/>
+    <wire from="(490,330)" to="(510,330)"/>
+    <wire from="(490,340)" to="(510,340)"/>
+    <wire from="(490,350)" to="(510,350)"/>
+    <wire from="(490,360)" to="(510,360)"/>
+    <wire from="(490,60)" to="(540,60)"/>
+    <wire from="(490,70)" to="(640,70)"/>
+    <wire from="(490,90)" to="(630,90)"/>
+    <wire from="(530,110)" to="(570,110)"/>
+    <wire from="(530,280)" to="(550,280)"/>
+    <wire from="(540,50)" to="(540,60)"/>
+    <wire from="(540,50)" to="(700,50)"/>
+    <wire from="(550,280)" to="(550,320)"/>
+    <wire from="(550,320)" to="(700,320)"/>
+    <wire from="(570,110)" to="(570,280)"/>
+    <wire from="(570,280)" to="(700,280)"/>
+    <wire from="(620,100)" to="(620,200)"/>
+    <wire from="(620,200)" to="(700,200)"/>
+    <wire from="(630,170)" to="(700,170)"/>
+    <wire from="(630,90)" to="(630,170)"/>
+    <wire from="(640,70)" to="(640,80)"/>
+    <wire from="(640,80)" to="(700,80)"/>
   </circuit>
   <circuit name="SoundGenerators">
     <a name="appearance" val="logisim_evolution"/>
@@ -8330,7 +8450,7 @@
     <wire from="(1240,320)" to="(1240,420)"/>
     <wire from="(1240,420)" to="(1440,420)"/>
     <wire from="(1250,300)" to="(1250,530)"/>
-    <wire from="(1250,530)" to="(1810,530)"/>
+    <wire from="(1250,530)" to="(1800,530)"/>
     <wire from="(1260,280)" to="(1260,580)"/>
     <wire from="(1260,580)" to="(1700,580)"/>
     <wire from="(1280,240)" to="(1280,400)"/>
@@ -8409,15 +8529,15 @@
     <wire from="(1750,90)" to="(1750,650)"/>
     <wire from="(1750,90)" to="(1770,90)"/>
     <wire from="(1770,630)" to="(1770,690)"/>
-    <wire from="(1770,710)" to="(1770,800)"/>
-    <wire from="(1770,800)" to="(1880,800)"/>
+    <wire from="(1770,710)" to="(1770,780)"/>
+    <wire from="(1770,780)" to="(1880,780)"/>
     <wire from="(180,100)" to="(180,210)"/>
     <wire from="(180,100)" to="(420,100)"/>
     <wire from="(180,450)" to="(230,450)"/>
-    <wire from="(1810,530)" to="(1810,760)"/>
+    <wire from="(1800,530)" to="(1800,800)"/>
+    <wire from="(1800,800)" to="(1880,800)"/>
+    <wire from="(1810,760)" to="(1810,1040)"/>
     <wire from="(1810,760)" to="(1880,760)"/>
-    <wire from="(1810,780)" to="(1810,1040)"/>
-    <wire from="(1810,780)" to="(1880,780)"/>
     <wire from="(1820,150)" to="(1820,260)"/>
     <wire from="(1820,150)" to="(2040,150)"/>
     <wire from="(1840,640)" to="(1840,1070)"/>
@@ -8722,11 +8842,11 @@
     <comp lib="1" loc="(790,170)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(262,64)" name="Text">
+    <comp lib="8" loc="(260,60)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="Phase splitter"/>
     </comp>
-    <comp lib="8" loc="(267,180)" name="Text">
+    <comp lib="8" loc="(265,180)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="CLK_FF"/>
     </comp>
@@ -9022,7 +9142,7 @@
     <comp lib="1" loc="(470,420)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(385,368)" name="Text">
+    <comp lib="8" loc="(385,365)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="LFSR feedback"/>
     </comp>
@@ -9798,7 +9918,7 @@
       <a name="inputs" val="15"/>
       <a name="size" val="70"/>
     </comp>
-    <comp lib="8" loc="(1188,400)" name="Text">
+    <comp lib="8" loc="(1185,400)" name="Text">
       <a name="text" val="nor-16"/>
     </comp>
     <wire from="(1000,350)" to="(1000,520)"/>
@@ -10466,21 +10586,21 @@
     <comp lib="1" loc="(850,600)" name="Controlled Inverter">
       <a name="control" val="left"/>
     </comp>
-    <comp lib="8" loc="(409,273)" name="Text">
+    <comp lib="8" loc="(405,270)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="LFO Outputs"/>
     </comp>
-    <comp lib="8" loc="(640,532)" name="Text">
+    <comp lib="8" loc="(640,530)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="mode to PLA"/>
     </comp>
-    <comp lib="8" loc="(642,732)" name="Text">
+    <comp lib="8" loc="(640,730)" name="Text">
       <a name="text" val="int_ff"/>
     </comp>
-    <comp lib="8" loc="(665,446)" name="Text">
+    <comp lib="8" loc="(665,445)" name="Text">
       <a name="text" val="z_ff"/>
     </comp>
-    <comp lib="8" loc="(728,343)" name="Text">
+    <comp lib="8" loc="(725,340)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="self-clear FF"/>
     </comp>
@@ -10488,11 +10608,11 @@
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="LFSR reload"/>
     </comp>
-    <comp lib="8" loc="(798,124)" name="Text">
+    <comp lib="8" loc="(795,120)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="LFSR operation"/>
     </comp>
-    <comp lib="8" loc="(866,695)" name="Text">
+    <comp lib="8" loc="(865,695)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="to core"/>
     </comp>
@@ -10748,7 +10868,7 @@
     <comp lib="1" loc="(390,120)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="8" loc="(71,56)" name="Text">
+    <comp lib="8" loc="(70,55)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="from DMA buf"/>
     </comp>
@@ -10832,11 +10952,11 @@
     <comp lib="1" loc="(530,310)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="8" loc="(449,261)" name="Text">
+    <comp lib="8" loc="(445,260)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="nor 12"/>
     </comp>
-    <comp lib="8" loc="(454,85)" name="Text">
+    <comp lib="8" loc="(450,85)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="nor 12"/>
     </comp>
@@ -11442,7 +11562,7 @@
     <comp lib="1" loc="(990,980)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(330,442)" name="Text">
+    <comp lib="8" loc="(330,440)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="address complement"/>
     </comp>
@@ -12451,7 +12571,7 @@
     <comp lib="1" loc="(660,300)" name="Controlled Inverter">
       <a name="control" val="left"/>
     </comp>
-    <comp lib="8" loc="(347,154)" name="Text">
+    <comp lib="8" loc="(345,150)" name="Text">
       <a name="text" val="ESD"/>
     </comp>
     <comp loc="(500,220)" name="TranspDLatch"/>
@@ -12691,22 +12811,22 @@
     <comp lib="1" loc="(600,240)" name="Controlled Buffer">
       <a name="control" val="left"/>
     </comp>
-    <comp lib="8" loc="(187,254)" name="Text">
+    <comp lib="8" loc="(185,250)" name="Text">
       <a name="text" val="ESD"/>
     </comp>
-    <comp lib="8" loc="(197,114)" name="Text">
+    <comp lib="8" loc="(195,110)" name="Text">
       <a name="text" val="ESD"/>
     </comp>
-    <comp lib="8" loc="(197,34)" name="Text">
+    <comp lib="8" loc="(195,30)" name="Text">
       <a name="text" val="ESD"/>
     </comp>
-    <comp lib="8" loc="(260,402)" name="Text">
+    <comp lib="8" loc="(260,400)" name="Text">
       <a name="text" val="x6"/>
     </comp>
-    <comp lib="8" loc="(260,482)" name="Text">
+    <comp lib="8" loc="(260,480)" name="Text">
       <a name="text" val="x6"/>
     </comp>
-    <comp lib="8" loc="(376,86)" name="Text">
+    <comp lib="8" loc="(375,85)" name="Text">
       <a name="text" val="to div"/>
     </comp>
     <wire from="(160,160)" to="(220,160)"/>
@@ -12887,7 +13007,7 @@
     <comp lib="8" loc="(315,645)" name="Text">
       <a name="text" val="I/O"/>
     </comp>
-    <comp lib="8" loc="(320,327)" name="Text">
+    <comp lib="8" loc="(320,325)" name="Text">
       <a name="text" val="Data bus"/>
     </comp>
     <comp loc="(370,150)" name="BIDIR_Pad"/>
@@ -13374,101 +13494,101 @@
     <comp lib="1" loc="(750,680)" name="NOR Gate">
       <a name="inputs" val="5"/>
     </comp>
-    <comp lib="8" loc="(1046,523)" name="Text">
+    <comp lib="8" loc="(1045,520)" name="Text">
       <a name="text" val="9"/>
     </comp>
-    <comp lib="8" loc="(1049,579)" name="Text">
+    <comp lib="8" loc="(1045,575)" name="Text">
       <a name="text" val="11"/>
     </comp>
-    <comp lib="8" loc="(1050,424)" name="Text">
+    <comp lib="8" loc="(1050,360)" name="Text">
+      <a name="text" val="5"/>
+    </comp>
+    <comp lib="8" loc="(1050,420)" name="Text">
       <a name="text" val="7"/>
     </comp>
     <comp lib="8" loc="(1050,640)" name="Text">
       <a name="text" val="13"/>
     </comp>
-    <comp lib="8" loc="(1054,364)" name="Text">
-      <a name="text" val="5"/>
-    </comp>
-    <comp lib="8" loc="(1054,699)" name="Text">
+    <comp lib="8" loc="(1050,695)" name="Text">
       <a name="text" val="15"/>
     </comp>
-    <comp lib="8" loc="(1056,309)" name="Text">
-      <a name="text" val="3"/>
-    </comp>
-    <comp lib="8" loc="(1058,249)" name="Text">
+    <comp lib="8" loc="(1055,245)" name="Text">
       <a name="text" val="1"/>
     </comp>
-    <comp lib="8" loc="(1354,424)" name="Text">
+    <comp lib="8" loc="(1055,305)" name="Text">
+      <a name="text" val="3"/>
+    </comp>
+    <comp lib="8" loc="(1350,420)" name="Text">
       <a name="text" val="23"/>
     </comp>
-    <comp lib="8" loc="(1356,524)" name="Text">
-      <a name="text" val="25"/>
-    </comp>
-    <comp lib="8" loc="(1357,304)" name="Text">
-      <a name="text" val="19"/>
-    </comp>
-    <comp lib="8" loc="(1357,363)" name="Text">
-      <a name="text" val="21"/>
-    </comp>
-    <comp lib="8" loc="(1359,247)" name="Text">
+    <comp lib="8" loc="(1355,245)" name="Text">
       <a name="text" val="17"/>
     </comp>
-    <comp lib="8" loc="(1362,585)" name="Text">
+    <comp lib="8" loc="(1355,300)" name="Text">
+      <a name="text" val="19"/>
+    </comp>
+    <comp lib="8" loc="(1355,360)" name="Text">
+      <a name="text" val="21"/>
+    </comp>
+    <comp lib="8" loc="(1355,520)" name="Text">
+      <a name="text" val="25"/>
+    </comp>
+    <comp lib="8" loc="(1360,585)" name="Text">
       <a name="text" val="27"/>
     </comp>
-    <comp lib="8" loc="(1363,701)" name="Text">
+    <comp lib="8" loc="(1360,700)" name="Text">
       <a name="text" val="31"/>
     </comp>
-    <comp lib="8" loc="(1365,642)" name="Text">
+    <comp lib="8" loc="(1365,640)" name="Text">
       <a name="text" val="29"/>
     </comp>
-    <comp lib="8" loc="(457,528)" name="Text">
+    <comp lib="8" loc="(455,420)" name="Text">
+      <a name="text" val="6"/>
+    </comp>
+    <comp lib="8" loc="(455,525)" name="Text">
       <a name="text" val="8"/>
     </comp>
-    <comp lib="8" loc="(458,585)" name="Text">
+    <comp lib="8" loc="(455,585)" name="Text">
       <a name="text" val="10"/>
     </comp>
-    <comp lib="8" loc="(459,423)" name="Text">
-      <a name="text" val="6"/>
+    <comp lib="8" loc="(460,365)" name="Text">
+      <a name="text" val="4"/>
     </comp>
     <comp lib="8" loc="(460,640)" name="Text">
       <a name="text" val="12"/>
     </comp>
-    <comp lib="8" loc="(460,699)" name="Text">
+    <comp lib="8" loc="(460,695)" name="Text">
       <a name="text" val="14"/>
     </comp>
-    <comp lib="8" loc="(463,367)" name="Text">
-      <a name="text" val="4"/>
-    </comp>
-    <comp lib="8" loc="(466,245)" name="Text">
+    <comp lib="8" loc="(465,245)" name="Text">
       <a name="text" val="0"/>
     </comp>
-    <comp lib="8" loc="(467,306)" name="Text">
+    <comp lib="8" loc="(465,305)" name="Text">
       <a name="text" val="2"/>
     </comp>
-    <comp lib="8" loc="(753,523)" name="Text">
-      <a name="text" val="24"/>
-    </comp>
-    <comp lib="8" loc="(754,426)" name="Text">
+    <comp lib="8" loc="(750,425)" name="Text">
       <a name="text" val="22"/>
     </comp>
-    <comp lib="8" loc="(757,307)" name="Text">
+    <comp lib="8" loc="(750,520)" name="Text">
+      <a name="text" val="24"/>
+    </comp>
+    <comp lib="8" loc="(755,305)" name="Text">
       <a name="text" val="18"/>
     </comp>
-    <comp lib="8" loc="(757,366)" name="Text">
+    <comp lib="8" loc="(755,365)" name="Text">
       <a name="text" val="20"/>
     </comp>
-    <comp lib="8" loc="(757,697)" name="Text">
-      <a name="text" val="30"/>
-    </comp>
-    <comp lib="8" loc="(759,637)" name="Text">
+    <comp lib="8" loc="(755,635)" name="Text">
       <a name="text" val="28"/>
     </comp>
-    <comp lib="8" loc="(760,583)" name="Text">
-      <a name="text" val="26"/>
+    <comp lib="8" loc="(755,695)" name="Text">
+      <a name="text" val="30"/>
     </comp>
-    <comp lib="8" loc="(764,247)" name="Text">
+    <comp lib="8" loc="(760,245)" name="Text">
       <a name="text" val="16"/>
+    </comp>
+    <comp lib="8" loc="(760,580)" name="Text">
+      <a name="text" val="26"/>
     </comp>
     <wire from="(1040,260)" to="(1090,260)"/>
     <wire from="(1040,320)" to="(1080,320)"/>
@@ -13997,22 +14117,22 @@
       <a name="inputs" val="28"/>
       <a name="size" val="70"/>
     </comp>
-    <comp lib="8" loc="(1091,475)" name="Text">
+    <comp lib="8" loc="(1090,475)" name="Text">
       <a name="text" val="4"/>
     </comp>
-    <comp lib="8" loc="(1091,668)" name="Text">
+    <comp lib="8" loc="(1090,665)" name="Text">
       <a name="text" val="3"/>
     </comp>
     <comp lib="8" loc="(1095,1020)" name="Text">
       <a name="text" val="1"/>
     </comp>
-    <comp lib="8" loc="(1095,839)" name="Text">
+    <comp lib="8" loc="(1095,835)" name="Text">
       <a name="text" val="2"/>
     </comp>
-    <comp lib="8" loc="(627,1084)" name="Text">
+    <comp lib="8" loc="(625,1080)" name="Text">
       <a name="text" val="5"/>
     </comp>
-    <comp lib="8" loc="(627,783)" name="Text">
+    <comp lib="8" loc="(625,780)" name="Text">
       <a name="text" val="6"/>
     </comp>
     <comp lib="8" loc="(630,485)" name="Text">
@@ -14690,14 +14810,14 @@
     <comp lib="8" loc="(430,120)" name="Text">
       <a name="text" val="reg_enable"/>
     </comp>
-    <comp lib="8" loc="(534,192)" name="Text">
+    <comp lib="8" loc="(530,190)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="disable"/>
     </comp>
-    <comp lib="8" loc="(832,178)" name="Text">
+    <comp lib="8" loc="(830,175)" name="Text">
       <a name="text" val="stat_ff"/>
     </comp>
-    <comp lib="8" loc="(970,326)" name="Text">
+    <comp lib="8" loc="(970,325)" name="Text">
       <a name="text" val="notif0"/>
     </comp>
     <comp loc="(490,170)" name="TranspDLatch"/>
@@ -15123,10 +15243,10 @@
       <a name="fanout" val="4"/>
       <a name="incoming" val="8"/>
     </comp>
-    <comp lib="8" loc="(108,605)" name="Text">
+    <comp lib="8" loc="(105,605)" name="Text">
       <a name="text" val="Carries in"/>
     </comp>
-    <comp lib="8" loc="(120,282)" name="Text">
+    <comp lib="8" loc="(120,280)" name="Text">
       <a name="text" val="write enablers"/>
     </comp>
     <comp loc="(1030,330)" name="Length_Counter">
@@ -16339,11 +16459,6 @@
     <a name="circuit" val="DAC_B"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
-    <comp lib="0" loc="(160,100)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="DMC"/>
-      <a name="width" val="7"/>
-    </comp>
     <comp lib="0" loc="(160,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="TRIA"/>
@@ -16354,21 +16469,26 @@
       <a name="label" val="RND"/>
       <a name="width" val="4"/>
     </comp>
+    <comp lib="0" loc="(160,230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="DMC"/>
+      <a name="width" val="7"/>
+    </comp>
     <comp lib="0" loc="(240,120)" name="Splitter">
       <a name="bit1" val="0"/>
-      <a name="bit10" val="1"/>
+      <a name="bit10" val="2"/>
       <a name="bit11" val="2"/>
       <a name="bit12" val="2"/>
       <a name="bit13" val="2"/>
       <a name="bit14" val="2"/>
       <a name="bit2" val="0"/>
       <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit6" val="0"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
       <a name="bit7" val="1"/>
-      <a name="bit8" val="1"/>
-      <a name="bit9" val="1"/>
+      <a name="bit8" val="2"/>
+      <a name="bit9" val="2"/>
       <a name="facing" val="west"/>
       <a name="fanout" val="3"/>
       <a name="incoming" val="15"/>
@@ -16390,11 +16510,15 @@
       <a name="dataWidth" val="32"/>
       <a name="label" val="auxb_rom"/>
     </comp>
-    <wire from="(160,100)" to="(220,100)"/>
-    <wire from="(160,140)" to="(220,140)"/>
-    <wire from="(160,180)" to="(220,180)"/>
-    <wire from="(220,100)" to="(220,130)"/>
-    <wire from="(220,150)" to="(220,180)"/>
+    <wire from="(160,140)" to="(180,140)"/>
+    <wire from="(160,180)" to="(190,180)"/>
+    <wire from="(160,230)" to="(200,230)"/>
+    <wire from="(180,130)" to="(180,140)"/>
+    <wire from="(180,130)" to="(220,130)"/>
+    <wire from="(190,140)" to="(190,180)"/>
+    <wire from="(190,140)" to="(220,140)"/>
+    <wire from="(200,150)" to="(200,230)"/>
+    <wire from="(200,150)" to="(220,150)"/>
     <wire from="(240,90)" to="(240,120)"/>
     <wire from="(240,90)" to="(270,90)"/>
     <wire from="(510,140)" to="(560,140)"/>
@@ -16904,11 +17028,11 @@
     <comp lib="1" loc="(640,290)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(236,73)" name="Text">
+    <comp lib="8" loc="(235,70)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="/ACLK3"/>
     </comp>
-    <comp lib="8" loc="(487,301)" name="Text">
+    <comp lib="8" loc="(485,300)" name="Text">
       <a name="text" val="Freq_FF"/>
     </comp>
     <comp loc="(360,130)" name="DLatch">
@@ -18065,11 +18189,11 @@
     <comp lib="1" loc="(510,50)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(586,94)" name="Text">
+    <comp lib="8" loc="(585,90)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="FSTEP"/>
     </comp>
-    <comp lib="8" loc="(597,43)" name="Text">
+    <comp lib="8" loc="(595,40)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="FLOAD"/>
     </comp>
@@ -18484,63 +18608,63 @@
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="RCO"/>
     </comp>
-    <comp lib="8" loc="(1293,862)" name="Text">
+    <comp lib="8" loc="(1290,860)" name="Text">
       <a name="text" val="Envelope Control"/>
     </comp>
-    <comp lib="8" loc="(1332,975)" name="Text">
+    <comp lib="8" loc="(1330,975)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="RLOAD"/>
     </comp>
-    <comp lib="8" loc="(1402,541)" name="Text">
+    <comp lib="8" loc="(1400,540)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="ECO"/>
     </comp>
-    <comp lib="8" loc="(1418,913)" name="Text">
+    <comp lib="8" loc="(1415,910)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="EIN"/>
     </comp>
-    <comp lib="8" loc="(1478,305)" name="Text">
+    <comp lib="8" loc="(1475,305)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="ENV"/>
     </comp>
-    <comp lib="8" loc="(1496,1004)" name="Text">
+    <comp lib="8" loc="(1495,1000)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="ESTEP"/>
     </comp>
-    <comp lib="8" loc="(1521,1063)" name="Text">
+    <comp lib="8" loc="(1520,1060)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="ERES"/>
     </comp>
-    <comp lib="8" loc="(156,619)" name="Text">
+    <comp lib="8" loc="(155,615)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="EnvReload_FF"/>
     </comp>
-    <comp lib="8" loc="(323,732)" name="Text">
+    <comp lib="8" loc="(320,730)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="RELOAD"/>
     </comp>
-    <comp lib="8" loc="(657,843)" name="Text">
+    <comp lib="8" loc="(655,840)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="ENVDIS"/>
     </comp>
-    <comp lib="8" loc="(663,981)" name="Text">
+    <comp lib="8" loc="(660,980)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="XXX_LC"/>
     </comp>
-    <comp lib="8" loc="(732,766)" name="Text">
+    <comp lib="8" loc="(730,765)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="VOL"/>
     </comp>
-    <comp lib="8" loc="(914,1046)" name="Text">
+    <comp lib="8" loc="(910,1045)" name="Text">
       <a name="text" val="Decay Control"/>
     </comp>
-    <comp lib="8" loc="(996,963)" name="Text">
-      <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="RSTEP"/>
-    </comp>
-    <comp lib="8" loc="(997,893)" name="Text">
+    <comp lib="8" loc="(995,890)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="RLOAD"/>
+    </comp>
+    <comp lib="8" loc="(995,960)" name="Text">
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="RSTEP"/>
     </comp>
     <comp loc="(1190,1050)" name="DLatch">
       <a name="label" val="reload_latch"/>
@@ -19135,27 +19259,27 @@
     <comp lib="1" loc="(990,380)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(1022,367)" name="Text">
-      <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="SLOAD"/>
-    </comp>
-    <comp lib="8" loc="(1024,310)" name="Text">
+    <comp lib="8" loc="(1020,310)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="SSTEP"/>
     </comp>
-    <comp lib="8" loc="(1090,252)" name="Text">
+    <comp lib="8" loc="(1020,365)" name="Text">
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="SLOAD"/>
+    </comp>
+    <comp lib="8" loc="(1090,250)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="/SCO"/>
     </comp>
-    <comp lib="8" loc="(333,195)" name="Text">
+    <comp lib="8" loc="(330,195)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="SRZ"/>
     </comp>
-    <comp lib="8" loc="(649,227)" name="Text">
+    <comp lib="8" loc="(645,225)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="Reload_FF"/>
     </comp>
-    <comp lib="8" loc="(764,103)" name="Text">
+    <comp lib="8" loc="(760,100)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="SWDIS"/>
     </comp>
@@ -19431,19 +19555,19 @@
     <comp lib="2" loc="(780,340)" name="Multiplexer">
       <a name="select" val="2"/>
     </comp>
-    <comp lib="8" loc="(666,385)" name="Text">
+    <comp lib="8" loc="(665,385)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="75%"/>
     </comp>
-    <comp lib="8" loc="(688,466)" name="Text">
+    <comp lib="8" loc="(685,465)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="50%"/>
     </comp>
-    <comp lib="8" loc="(709,285)" name="Text">
+    <comp lib="8" loc="(705,285)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="12.5%"/>
     </comp>
-    <comp lib="8" loc="(726,333)" name="Text">
+    <comp lib="8" loc="(725,330)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="25%"/>
     </comp>
@@ -19930,13 +20054,13 @@
     <comp lib="1" loc="(1290,790)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(1323,782)" name="Text">
+    <comp lib="8" loc="(1320,780)" name="Text">
       <a name="text" val="FSTEP"/>
     </comp>
-    <comp lib="8" loc="(1328,721)" name="Text">
+    <comp lib="8" loc="(1325,720)" name="Text">
       <a name="text" val="FLOAD"/>
     </comp>
-    <comp lib="8" loc="(981,1386)" name="Text">
+    <comp lib="8" loc="(980,1385)" name="Text">
       <a name="text" val="W400B"/>
     </comp>
     <comp loc="(1090,760)" name="DLatch"/>
@@ -20348,11 +20472,11 @@
     <comp lib="1" loc="(720,200)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(697,105)" name="Text">
+    <comp lib="8" loc="(695,105)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="Reload_FF"/>
     </comp>
-    <comp lib="8" loc="(726,260)" name="Text">
+    <comp lib="8" loc="(725,260)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="TRELOAD"/>
     </comp>
@@ -20529,13 +20653,13 @@
     <comp lib="2" loc="(730,420)" name="Multiplexer">
       <a name="width" val="4"/>
     </comp>
-    <comp lib="8" loc="(551,753)" name="Text">
+    <comp lib="8" loc="(550,750)" name="Text">
       <a name="text" val="T4"/>
     </comp>
-    <comp lib="8" loc="(663,329)" name="Text">
+    <comp lib="8" loc="(660,325)" name="Text">
       <a name="text" val="q"/>
     </comp>
-    <comp lib="8" loc="(663,447)" name="Text">
+    <comp lib="8" loc="(660,445)" name="Text">
       <a name="text" val="nq"/>
     </comp>
     <comp loc="(520,240)" name="CounterBit"/>
@@ -21575,27 +21699,27 @@
       <a name="inputs" val="3"/>
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(166,34)" name="Text">
+    <comp lib="8" loc="(165,30)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="/ACLK4"/>
     </comp>
-    <comp lib="8" loc="(373,750)" name="Text">
+    <comp lib="8" loc="(370,750)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="NFZ"/>
     </comp>
-    <comp lib="8" loc="(490,954)" name="Text">
-      <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="NFSTEP"/>
-    </comp>
-    <comp lib="8" loc="(491,892)" name="Text">
+    <comp lib="8" loc="(490,890)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="NFLOAD"/>
     </comp>
-    <comp lib="8" loc="(619,746)" name="Text">
+    <comp lib="8" loc="(490,950)" name="Text">
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="NFSTEP"/>
+    </comp>
+    <comp lib="8" loc="(615,745)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="NFOUT"/>
     </comp>
-    <comp lib="8" loc="(889,811)" name="Text">
+    <comp lib="8" loc="(885,810)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="NSIN"/>
     </comp>
@@ -22022,11 +22146,11 @@
     <comp lib="2" loc="(610,130)" name="Multiplexer">
       <a name="selloc" val="tr"/>
     </comp>
-    <comp lib="8" loc="(1187,40)" name="Text">
+    <comp lib="8" loc="(1185,40)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="RSOZ"/>
     </comp>
-    <comp lib="8" loc="(902,99)" name="Text">
+    <comp lib="8" loc="(900,95)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="RIN"/>
     </comp>
