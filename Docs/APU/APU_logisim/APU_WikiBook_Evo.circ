@@ -8450,7 +8450,7 @@
     <wire from="(1240,320)" to="(1240,420)"/>
     <wire from="(1240,420)" to="(1440,420)"/>
     <wire from="(1250,300)" to="(1250,530)"/>
-    <wire from="(1250,530)" to="(1810,530)"/>
+    <wire from="(1250,530)" to="(1800,530)"/>
     <wire from="(1260,280)" to="(1260,580)"/>
     <wire from="(1260,580)" to="(1700,580)"/>
     <wire from="(1280,240)" to="(1280,400)"/>
@@ -8529,15 +8529,15 @@
     <wire from="(1750,90)" to="(1750,650)"/>
     <wire from="(1750,90)" to="(1770,90)"/>
     <wire from="(1770,630)" to="(1770,690)"/>
-    <wire from="(1770,710)" to="(1770,800)"/>
-    <wire from="(1770,800)" to="(1880,800)"/>
+    <wire from="(1770,710)" to="(1770,780)"/>
+    <wire from="(1770,780)" to="(1880,780)"/>
     <wire from="(180,100)" to="(180,210)"/>
     <wire from="(180,100)" to="(420,100)"/>
     <wire from="(180,450)" to="(230,450)"/>
-    <wire from="(1810,530)" to="(1810,760)"/>
+    <wire from="(1800,530)" to="(1800,800)"/>
+    <wire from="(1800,800)" to="(1880,800)"/>
+    <wire from="(1810,760)" to="(1810,1040)"/>
     <wire from="(1810,760)" to="(1880,760)"/>
-    <wire from="(1810,780)" to="(1810,1040)"/>
-    <wire from="(1810,780)" to="(1880,780)"/>
     <wire from="(1820,150)" to="(1820,260)"/>
     <wire from="(1820,150)" to="(2040,150)"/>
     <wire from="(1840,640)" to="(1840,1070)"/>
@@ -16459,11 +16459,6 @@
     <a name="circuit" val="DAC_B"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
-    <comp lib="0" loc="(160,100)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="DMC"/>
-      <a name="width" val="7"/>
-    </comp>
     <comp lib="0" loc="(160,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="TRIA"/>
@@ -16474,21 +16469,26 @@
       <a name="label" val="RND"/>
       <a name="width" val="4"/>
     </comp>
+    <comp lib="0" loc="(160,230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="DMC"/>
+      <a name="width" val="7"/>
+    </comp>
     <comp lib="0" loc="(240,120)" name="Splitter">
       <a name="bit1" val="0"/>
-      <a name="bit10" val="1"/>
+      <a name="bit10" val="2"/>
       <a name="bit11" val="2"/>
       <a name="bit12" val="2"/>
       <a name="bit13" val="2"/>
       <a name="bit14" val="2"/>
       <a name="bit2" val="0"/>
       <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit6" val="0"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
       <a name="bit7" val="1"/>
-      <a name="bit8" val="1"/>
-      <a name="bit9" val="1"/>
+      <a name="bit8" val="2"/>
+      <a name="bit9" val="2"/>
       <a name="facing" val="west"/>
       <a name="fanout" val="3"/>
       <a name="incoming" val="15"/>
@@ -16510,11 +16510,15 @@
       <a name="dataWidth" val="32"/>
       <a name="label" val="auxb_rom"/>
     </comp>
-    <wire from="(160,100)" to="(220,100)"/>
-    <wire from="(160,140)" to="(220,140)"/>
-    <wire from="(160,180)" to="(220,180)"/>
-    <wire from="(220,100)" to="(220,130)"/>
-    <wire from="(220,150)" to="(220,180)"/>
+    <wire from="(160,140)" to="(180,140)"/>
+    <wire from="(160,180)" to="(190,180)"/>
+    <wire from="(160,230)" to="(200,230)"/>
+    <wire from="(180,130)" to="(180,140)"/>
+    <wire from="(180,130)" to="(220,130)"/>
+    <wire from="(190,140)" to="(190,180)"/>
+    <wire from="(190,140)" to="(220,140)"/>
+    <wire from="(200,150)" to="(200,230)"/>
+    <wire from="(200,150)" to="(220,150)"/>
     <wire from="(240,90)" to="(240,120)"/>
     <wire from="(240,90)" to="(270,90)"/>
     <wire from="(510,140)" to="(560,140)"/>
