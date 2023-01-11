@@ -21,7 +21,7 @@ module OAM_DMA_Run();
 	wire RDY;
 
 	wire WR;		// 1: External dbus write enable
-	wire RD;		// 0: External dbus read enable
+	wire RD;		// 1: External dbus read enable
 
 	wire [7:0] DataBus; 		// Internal databus
 	wire [15:0] Addr; 		// Address from DMA multiplexer (external addrbus)
