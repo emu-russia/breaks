@@ -71,6 +71,20 @@ Run all Noise decoder values.
 
 ![noise_decoder](/BreakingNESWiki/imgstore/apu/waves/noise_decoder.png)
 
+## oam_dma
+
+Test bench setup:
+
+![oam_dma_tb](/BreakingNESWiki/imgstore/apu/waves/oam_dma_tb.png)
+
+![oam_dma_start](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start.png)
+
+![oam_dma_last](/BreakingNESWiki/imgstore/apu/waves/oam_dma_last.png)
+
+## oam_dma_with_dpcm
+
+TBD.
+
 ## regops
 
 Testing register operations.
