@@ -77,3 +77,13 @@ The simulation of LFO generation is artificially tweaked to trigger more frequen
 ## DPCM Output
 
 ![dpcm_output](/BreakingNESWiki/imgstore/apu/waves/dpcm_output.png)
+
+## OAM DMA
+
+Test bench setup:
+
+![oam_dma_tb](/BreakingNESWiki/imgstore/apu/waves/oam_dma_tb.png)
+
+![oam_dma_start](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start.png)
+
+![oam_dma_last](/BreakingNESWiki/imgstore/apu/waves/oam_dma_last.png)

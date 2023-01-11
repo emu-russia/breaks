@@ -112,7 +112,13 @@ TBD.
 
 ## Спрайтовая DMA
 
-TBD.
+Тестовая среда:
+
+![oam_dma_tb](/BreakingNESWiki/imgstore/apu/waves/oam_dma_tb.png)
+
+![oam_dma_start](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start.png)
+
+![oam_dma_last](/BreakingNESWiki/imgstore/apu/waves/oam_dma_last.png)
 
 ## Совместная работа спрайтовой DMA и DPCM
 
