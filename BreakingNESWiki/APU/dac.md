@@ -32,7 +32,7 @@ Source: http://forum.6502.org/viewtopic.php?p=94693#p94693
 - Максимальное напряжение AUX A: 272 mV
 - Видно что нижний уровень также имеет небольшое напряжение относительно GND (момент спорный, т.к. щуп может вносить свои искажения)
 
-Credits: @HardWareMan
+Credits: @HardWrMan
 
 ## Triangle/Noise/DPCM
 
