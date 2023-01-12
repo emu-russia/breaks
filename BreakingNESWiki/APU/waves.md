@@ -116,10 +116,38 @@ TBD.
 
 ![oam_dma_tb](/BreakingNESWiki/imgstore/apu/waves/oam_dma_tb.png)
 
+Начало OAM DMA:
+
 ![oam_dma_start](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start.png)
+
+Завершение OAM DMA:
 
 ![oam_dma_last](/BreakingNESWiki/imgstore/apu/waves/oam_dma_last.png)
 
 ## Совместная работа спрайтовой DMA и DPCM
 
-TBD.
+![both_dma_tb](/BreakingNESWiki/imgstore/apu/waves/both_dma_tb.png)
+
+Начало DPCM DMA (запись в регистры $400x и несколько итераций процесса):
+
+![both_dma_start_dpcm](/BreakingNESWiki/imgstore/apu/waves/both_dma_start_dpcm.png)
+
+Начало OAM DMA (запись в регистр $4014)
+
+![both_dma_start_oam](/BreakingNESWiki/imgstore/apu/waves/both_dma_start_oam.png)
+
+Момент пересечения DPCM DMA и OAM DMA:
+
+![both_dma](/BreakingNESWiki/imgstore/apu/waves/both_dma.png)
+
+Момент пересечения DPCM DMA и OAM DMA (приближенная версия конкретного момента):
+
+![both_dma_zoom](/BreakingNESWiki/imgstore/apu/waves/both_dma_zoom.png)
+
+Завершение OAM DMA:
+
+![both_dma_last_oam](/BreakingNESWiki/imgstore/apu/waves/both_dma_last_oam.png)
+
+Некоторое затишье после окончания OAM DMA и началом следующего DPCM DMA:
+
+![both_dma_after_oam_before_next_dpcm](/BreakingNESWiki/imgstore/apu/waves/both_dma_after_oam_before_next_dpcm.png)
