@@ -66,6 +66,22 @@ The diagram shows the essence of the operation, with some peculiarities:
 
 The simulation of LFO generation is artificially tweaked to trigger more frequently.
 
+## Square Barrel Shifter
+
+TBD.
+
+## Square Adder
+
+TBD.
+
+## Square Sweep Unit
+
+TBD.
+
+## Square Duty Unit
+
+TBD.
+
 ## DPCM Decoder
 
 ![dpcm_decoder](/BreakingNESWiki/imgstore/apu/waves/dpcm_decoder.png)
@@ -77,6 +93,18 @@ The simulation of LFO generation is artificially tweaked to trigger more frequen
 ## DPCM Output
 
 ![dpcm_output](/BreakingNESWiki/imgstore/apu/waves/dpcm_output.png)
+
+## Square Output
+
+TBD.
+
+## Triangle Output
+
+TBD.
+
+## Noise Output
+
+TBD.
 
 ## OAM DMA
 
