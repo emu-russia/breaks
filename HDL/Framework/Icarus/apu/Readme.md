@@ -117,6 +117,34 @@ This is not a unit test right now, we are just doing some preliminary SoftCLK fi
 
 ![softclk_mode0](/BreakingNESWiki/imgstore/apu/waves/softclk_mode0.png)
 
+## square_barrel
+
+TBD.
+
+## square_adder
+
+TBD.
+
+## square_sweep
+
+TBD.
+
+## square_duty
+
+TBD.
+
+## square_output
+
+TBD.
+
+## triangle_output
+
+TBD.
+
+## noise_output
+
+TBD.
+
 ## test_counters
 
 Run the counters and see how they work.
