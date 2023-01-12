@@ -84,6 +84,40 @@ Test bench setup:
 
 ![oam_dma_tb](/BreakingNESWiki/imgstore/apu/waves/oam_dma_tb.png)
 
+Start of OAM DMA:
+
 ![oam_dma_start](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start.png)
 
+Completing an OAM DMA:
+
 ![oam_dma_last](/BreakingNESWiki/imgstore/apu/waves/oam_dma_last.png)
+
+## Both DMA
+
+Test bench setup:
+
+![both_dma_tb](/BreakingNESWiki/imgstore/apu/waves/both_dma_tb.png)
+
+Starting DPCM DMA (writing to registers $400x and several iterations of the process):
+
+![both_dma_start_dpcm](/BreakingNESWiki/imgstore/apu/waves/both_dma_start_dpcm.png)
+
+Start of OAM DMA (write to register $4014)
+
+![both_dma_start_oam](/BreakingNESWiki/imgstore/apu/waves/both_dma_start_oam.png)
+
+Moment of intersection of DPCM DMA and OAM DMA:
+
+![both_dma](/BreakingNESWiki/imgstore/apu/waves/both_dma.png)
+
+Moment of intersection of DPCM DMA and OAM DMA (close-up version of a particular moment):
+
+![both_dma_zoom](/BreakingNESWiki/imgstore/apu/waves/both_dma_zoom.png)
+
+Completing an OAM DMA:
+
+![both_dma_last_oam](/BreakingNESWiki/imgstore/apu/waves/both_dma_last_oam.png)
+
+Some lull after the OAM DMA ends and the next DPCM DMA begins:
+
+![both_dma_after_oam_before_next_dpcm](/BreakingNESWiki/imgstore/apu/waves/both_dma_after_oam_before_next_dpcm.png)

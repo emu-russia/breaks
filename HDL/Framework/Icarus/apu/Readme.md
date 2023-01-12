@@ -81,9 +81,23 @@ Test bench setup:
 
 ![oam_dma_last](/BreakingNESWiki/imgstore/apu/waves/oam_dma_last.png)
 
-## oam_dma_with_dpcm
+## both_dma
 
-TBD.
+Test bench setup:
+
+![both_dma_tb](/BreakingNESWiki/imgstore/apu/waves/both_dma_tb.png)
+
+![both_dma_start_dpcm](/BreakingNESWiki/imgstore/apu/waves/both_dma_start_dpcm.png)
+
+![both_dma_start_oam](/BreakingNESWiki/imgstore/apu/waves/both_dma_start_oam.png)
+
+![both_dma](/BreakingNESWiki/imgstore/apu/waves/both_dma.png)
+
+![both_dma_zoom](/BreakingNESWiki/imgstore/apu/waves/both_dma_zoom.png)
+
+![both_dma_last_oam](/BreakingNESWiki/imgstore/apu/waves/both_dma_last_oam.png)
+
+![both_dma_after_oam_before_next_dpcm](/BreakingNESWiki/imgstore/apu/waves/both_dma_after_oam_before_next_dpcm.png)
 
 ## regops
 
