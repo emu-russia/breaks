@@ -68,7 +68,7 @@ The simulation of LFO generation is artificially tweaked to trigger more frequen
 
 ## Square Barrel Shifter
 
-TBD.
+![square_barrel](/BreakingNESWiki/imgstore/apu/waves/square_barrel.png)
 
 ## Square Adder
 

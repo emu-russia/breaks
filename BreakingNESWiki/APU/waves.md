@@ -72,7 +72,7 @@ Mode = 1:
 
 ## Barrel Shifter прямоугольного канала
 
-TBD.
+![square_barrel](/BreakingNESWiki/imgstore/apu/waves/square_barrel.png)
 
 ## Сумматор прямоугольного канала
 

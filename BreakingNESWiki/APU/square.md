@@ -22,11 +22,15 @@ APU содержит два тональных генератора прямоу
 
 ## Shift Reg
 
+Содержит значение сдвига для сдвигателя (0...7).
+
 ![square_shift_in_tran](/BreakingNESWiki/imgstore/apu/square_shift_in_tran.jpg)
 
 ![SQAURE_ShiftReg](/BreakingNESWiki/imgstore/apu/SQAURE_ShiftReg.jpg)
 
 ## Barrel Shifter
+
+Сдвигатель 12-битного значения вправо со знаком (бит msb сдвигаясь вправо заполняет все остальные биты). Старший бит затем отбрасывается, формируя 11-битный результат.
 
 ![square_barrel_shifter_tran1](/BreakingNESWiki/imgstore/apu/square_barrel_shifter_tran1.jpg)
 
