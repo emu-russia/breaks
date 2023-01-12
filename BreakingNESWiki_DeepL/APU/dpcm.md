@@ -18,7 +18,7 @@ Inputs:
 |---|---|---|
 |ACLK|Soft CLK|APU Clock (high level)|
 |/ACLK|Soft CLK|APU Clock (low level)|
-|PHI1|CPU|First half of the CPU cycle|
+|PHI1|CPU|First half of the CPU cycle. It is used only to detect the Read Cycle of the 6502 core and to load samples. All internal counters and most of the control circuits are clocked by ACLK.|
 |RES|RES Pad|External reset signal|
 |R/W|CPU|CPU data bus mode (1: Read, 0: Write)|
 |LOCK|Core|The LOCK signal is used to temporarily suspend the sound generators so that their values can be fixed in the debug registers|

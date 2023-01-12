@@ -10,6 +10,8 @@ The sprite DMA is very closely tied in with the [DMC DMA](dpcm.md) and is "slave
 
 Unfortunately, the sprite DMA destination address cannot be configured and is hardwired to PPU register $2004.
 
+Note on PHI and ACLK: PHI1 is only used to detect the Read Cycle of the 6502 core and PHI2 (PHI1 complement) to load data into the DMA Buffer. All other parts (registers, counters and control circuits) are clocked by ACLK.
+
 ## SPR DMA Address
 
 Low address bits:
