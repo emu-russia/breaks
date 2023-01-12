@@ -119,7 +119,7 @@ This is not a unit test right now, we are just doing some preliminary SoftCLK fi
 
 ## square_barrel
 
-TBD.
+![square_barrel](/BreakingNESWiki/imgstore/apu/waves/square_barrel.png)
 
 ## square_adder
 

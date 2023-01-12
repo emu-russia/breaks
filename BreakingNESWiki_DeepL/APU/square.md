@@ -22,11 +22,15 @@ Sometimes instead of Square0/Square1 we have the designation SquareA/SquareB.
 
 ## Shift Reg
 
+Contains the shift value for the shifter (0...7).
+
 ![square_shift_in_tran](/BreakingNESWiki/imgstore/apu/square_shift_in_tran.jpg)
 
 ![SQAURE_ShiftReg](/BreakingNESWiki/imgstore/apu/SQAURE_ShiftReg.jpg)
 
 ## Barrel Shifter
+
+Shifts the 12-bit value to the right with the sign (the msb bit shifts to the right and fills all other bits). The most significant bit is then discarded, forming an 11-bit result.
 
 ![square_barrel_shifter_tran1](/BreakingNESWiki/imgstore/apu/square_barrel_shifter_tran1.jpg)
 
