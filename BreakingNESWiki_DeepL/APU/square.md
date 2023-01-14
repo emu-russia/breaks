@@ -97,7 +97,7 @@ The circuit is identical to the Envelope circuit in the noise generator.
 |SWDIS|Register WR1\[3\]|Sweep|1: Disable Sweep process, ADDOUT is always 0|
 
 By carefully examining and understanding all the signals that are used in the Sweep Unit you can get a picture of what is going on:
-- The main driver of the Sweep process is the ADDOUT signal. When this signal is activated the frequency modulation process in the Freq Req register is started using the shift register and the adder
+- The main driver of the Sweep process is the ADDOUT signal. When this signal is activated the frequency modulation process in the Freq Reg is started using the shift register and the adder
 - The Sweep counter iterates with the low frequency oscillation signal `/LFO2`
 - The Sweep counter is overloaded by itself with the value from the Sweep Reg register, at the same time the ADDOUT signal is triggered (if all conditions are met, see below)
 
