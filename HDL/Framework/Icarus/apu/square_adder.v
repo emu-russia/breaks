@@ -5,8 +5,6 @@
 
 // A distinctive feature of the adder is the complementary wiring of the a/b signals and the carry chain and the inverse polarity of the result (#sum) and the output carry (#COUT).
 
-// On the whole, the adder was not very effective, but it is the last thing to criticize your ancestors.
-
 module Square_Adder_Run ();
 
 	// Counter for shaping the test vector of the single bit (Full Adder).

@@ -119,15 +119,25 @@ This is not a unit test right now, we are just doing some preliminary SoftCLK fi
 
 ## square_barrel
 
+Check all possible values of the shifter used in square channels.
+
 ![square_barrel](/BreakingNESWiki/imgstore/apu/waves/square_barrel.png)
 
 ## square_adder
+
+Testing of the adder of a square wave sound generator.
+
+This test runs a test vector exclusively for Adder and its single bit (full adder) circuitry. That is the testing is done abstractly from the APU - just to check that the adder... adds things up :-)
+
+A distinctive feature of the adder is the complementary wiring of the a/b signals and the carry chain and the inverse polarity of the result (#sum) and the output carry (#COUT).
 
 ![adder_single](/BreakingNESWiki/imgstore/apu/waves/adder_single.png)
 
 ![adder_full](/BreakingNESWiki/imgstore/apu/waves/adder_full.png)
 
 ![adder_full_max](/BreakingNESWiki/imgstore/apu/waves/adder_full_max.png)
+
+:warning: The test takes quite a long time (22-bit vector) and generates a .vcd of several hundred MBytes.
 
 ## square_sweep
 
