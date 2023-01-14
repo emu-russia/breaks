@@ -123,7 +123,11 @@ This is not a unit test right now, we are just doing some preliminary SoftCLK fi
 
 ## square_adder
 
-TBD.
+![adder_single](/BreakingNESWiki/imgstore/apu/waves/adder_single.png)
+
+![adder_full](/BreakingNESWiki/imgstore/apu/waves/adder_full.png)
+
+![adder_full_max](/BreakingNESWiki/imgstore/apu/waves/adder_full_max.png)
 
 ## square_sweep
 

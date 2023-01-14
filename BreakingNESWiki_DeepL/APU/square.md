@@ -40,6 +40,8 @@ Shifts the 12-bit value to the right with the sign (the msb bit shifts to the ri
 
 ## Adder
 
+A distinctive feature of the adder is the complementary layout of the a/b signals between the bits and the complementary carry chain, as well as the inverse polarity of the result (`#sum`) and output carry (`#COUT`).
+
 ![square_adder_tran](/BreakingNESWiki/imgstore/apu/square_adder_tran.jpg)
 
 ![SQUARE_Adder](/BreakingNESWiki/imgstore/apu/SQUARE_Adder.jpg)
