@@ -11,6 +11,8 @@ All circuits for generating sound are, for the most part, various counters contr
 
 ![SoundGenerators](/BreakingNESWiki/imgstore/apu/SoundGenerators.jpg)
 
+(In addition to the audio generators themselves, the diagram also shows the OAM DMA, as it interacts closely with the DPCM DMA).
+
 ## Timing
 
 The sound generators are clocked by the following signals:

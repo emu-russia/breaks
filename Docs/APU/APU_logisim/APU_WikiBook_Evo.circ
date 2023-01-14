@@ -8022,35 +8022,25 @@
     </comp>
     <comp lib="0" loc="(1540,750)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="W400A"/>
+      <a name="label" val="W400C"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(1540,770)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="W400B"/>
+      <a name="label" val="W400E"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(1540,790)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="W400C"/>
+      <a name="label" val="W400F"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(1540,810)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="W400E"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
-    <comp lib="0" loc="(1540,830)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="W400F"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
-    <comp lib="0" loc="(1540,850)" name="Tunnel">
-      <a name="facing" val="east"/>
       <a name="label" val="n_LFO1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
-    <comp lib="0" loc="(1540,890)" name="Tunnel">
+    <comp lib="0" loc="(1540,850)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="LOCK"/>
       <a name="labelfont" val="SansSerif bold 10"/>
@@ -8496,13 +8486,13 @@
     <wire from="(1430,710)" to="(1430,1040)"/>
     <wire from="(1440,90)" to="(1440,200)"/>
     <wire from="(1440,90)" to="(1750,90)"/>
-    <wire from="(1470,550)" to="(1470,870)"/>
-    <wire from="(1470,870)" to="(1550,870)"/>
+    <wire from="(1470,550)" to="(1470,830)"/>
+    <wire from="(1470,830)" to="(1550,830)"/>
     <wire from="(150,590)" to="(380,590)"/>
     <wire from="(150,70)" to="(1400,70)"/>
     <wire from="(150,70)" to="(150,100)"/>
-    <wire from="(1530,910)" to="(1530,1000)"/>
-    <wire from="(1530,910)" to="(1550,910)"/>
+    <wire from="(1530,870)" to="(1530,1000)"/>
+    <wire from="(1530,870)" to="(1550,870)"/>
     <wire from="(1540,640)" to="(1540,710)"/>
     <wire from="(1540,640)" to="(1740,640)"/>
     <wire from="(1540,710)" to="(1550,710)"/>
@@ -8511,9 +8501,7 @@
     <wire from="(1540,770)" to="(1550,770)"/>
     <wire from="(1540,790)" to="(1550,790)"/>
     <wire from="(1540,810)" to="(1550,810)"/>
-    <wire from="(1540,830)" to="(1550,830)"/>
     <wire from="(1540,850)" to="(1550,850)"/>
-    <wire from="(1540,890)" to="(1550,890)"/>
     <wire from="(1550,650)" to="(1550,690)"/>
     <wire from="(1550,650)" to="(1750,650)"/>
     <wire from="(1660,200)" to="(1860,200)"/>
@@ -16193,14 +16181,6 @@
       <a name="appearance" val="NewPins"/>
       <a name="label" val="RES"/>
     </comp>
-    <comp lib="0" loc="(180,190)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="W400A"/>
-    </comp>
-    <comp lib="0" loc="(180,220)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="W400B"/>
-    </comp>
     <comp lib="0" loc="(180,250)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="W400C"/>
@@ -16241,14 +16221,6 @@
     </comp>
     <comp lib="0" loc="(190,130)" name="Tunnel">
       <a name="label" val="RES"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
-    <comp lib="0" loc="(190,190)" name="Tunnel">
-      <a name="label" val="W400A"/>
-      <a name="labelfont" val="SansSerif bold 10"/>
-    </comp>
-    <comp lib="0" loc="(190,220)" name="Tunnel">
-      <a name="label" val="W400B"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(190,250)" name="Tunnel">
@@ -16341,8 +16313,6 @@
     <wire from="(1080,290)" to="(1080,500)"/>
     <wire from="(1080,290)" to="(1100,290)"/>
     <wire from="(180,130)" to="(190,130)"/>
-    <wire from="(180,190)" to="(190,190)"/>
-    <wire from="(180,220)" to="(190,220)"/>
     <wire from="(180,250)" to="(190,250)"/>
     <wire from="(180,280)" to="(190,280)"/>
     <wire from="(180,310)" to="(190,310)"/>
