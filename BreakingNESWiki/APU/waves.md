@@ -76,7 +76,17 @@ Mode = 1:
 
 ## Сумматор прямоугольного канала
 
-TBD.
+Full Adder (один бит сумматора):
+
+![adder_single](/BreakingNESWiki/imgstore/apu/waves/adder_single.png)
+
+Результат суммирования где-то по середине:
+
+![adder_full](/BreakingNESWiki/imgstore/apu/waves/adder_full.png)
+
+Суммирование максимальных значений:
+
+![adder_full_max](/BreakingNESWiki/imgstore/apu/waves/adder_full_max.png)
 
 ## Sweep Unit прямоугольного канала
 

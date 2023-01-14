@@ -2,7 +2,7 @@
 
 module Square_Barrel_Run ();
 
-	reg [14:0] val; 	// {BS[11:0] | SR[2:0]}
+	reg [14:0] val; 	// {BS[11:0] || SR[2:0]}
 	output [10:0] S;
 
 	always #1 val = val + 1;

@@ -40,6 +40,8 @@ APU содержит два тональных генератора прямоу
 
 ## Adder
 
+Отличительной особенностью сумматора является комплементарная разводка сигналов a/b между разрядами и комплементарная цепочка переноса, а также инверсная полярность результата (`#sum`) и выходного переноса (`#COUT`).
+
 ![square_adder_tran](/BreakingNESWiki/imgstore/apu/square_adder_tran.jpg)
 
 ![SQUARE_Adder](/BreakingNESWiki/imgstore/apu/SQUARE_Adder.jpg)

@@ -72,7 +72,17 @@ The simulation of LFO generation is artificially tweaked to trigger more frequen
 
 ## Square Adder
 
-TBD.
+Full Adder (single bit):
+
+![adder_single](/BreakingNESWiki/imgstore/apu/waves/adder_single.png)
+
+The summation result was somewhere in the middle:
+
+![adder_full](/BreakingNESWiki/imgstore/apu/waves/adder_full.png)
+
+The summation of the maximum values:
+
+![adder_full_max](/BreakingNESWiki/imgstore/apu/waves/adder_full_max.png)
 
 ## Square Sweep Unit
 
