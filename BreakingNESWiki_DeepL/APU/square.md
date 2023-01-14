@@ -82,6 +82,34 @@ The circuit is identical to the Envelope circuit in the noise generator.
 
 ## Sweep
 
+|Signal/Group|From Where|Where To|Description|
+|---|---|---|---|
+|ADDOUT|Sweep|Freq Reg|The main signal that controls the Sweep process of the frequency value loaded in the Freq Reg|
+|SR\[2:0\], SRZ|Shift Reg|Sweep,Shifter|Determines the shift magnitude of the source frequency. If SR=0, the ADDOUT signal is never generated (obviously)|
+|DEC (and its complement INC)|Dir Reg|Sweep,Shifter,Adder|Defines the direction of frequency step (DEC=1: frequency decreases, DEC=0: frequency increases)|
+|#COUT|Adder|Sweep|Adder output carry (inverse polarity)|
+|SWCTRL|Sweep|Sweep,Output|Equals 1 when INC=1 and adder output carry is active. When SWCTRL=1 - ADDOUT is 0. That is the Sweep process does not happen at frequency overflow (obviously)|
+|SWEEP|Adder|Sweep,Output|1: Frequency value is less than 4 (Freq Reg bits \[10:2\] are zeros). When SWEEP=1 - ADDOUT is 0. That is, when the frequency is too low it makes no sense to do Sweep|
+|NOSQ|Length Counter|Common|1: The length counter has finished counting/deactivated. When the length counter is disabled the ADDOUT signal is never generated (obviously)|
+|/LFO2|SoftCLK|Common|Low-frequency oscillation signal (inverse polarity). When applied to Sweep - it resets the Sweep counter with a value from the Sweep Reg|
+|SCO|Sweep|Sweep|Sweep Counter output carry. While Sweep Counter is counting - ADDOUT is 0|
+|SWRELOAD|Sweep|Sweep|1: Perform a Sweep Counter restart|
+|SWDIS|Register WR1\[3\]|Sweep|1: Disable Sweep process, ADDOUT is always 0|
+
+By carefully examining and understanding all the signals that are used in the Sweep Unit you can get a picture of what is going on:
+- The main driver of the Sweep process is the ADDOUT signal. When this signal is activated the frequency modulation process in the Freq Req register is started using the shift register and the adder
+- The Sweep counter iterates with the low frequency oscillation signal `/LFO2`
+- The Sweep counter is overloaded by itself with the value from the Sweep Reg register, at the same time the ADDOUT signal is triggered (if all conditions are met, see below)
+
+Sweep does NOT occur under the following conditions (in the schematic it is a large NOR):
+- Sweep is disabled by the appropriate control register (SWDIS)
+- A square channel length counter has finished counting or has been disabled (NOSQ)
+- The magnitude value of the Shift Reg is 0 (SRZ)
+- Frequency value led to an overflow of the adder, in the frequency increase mode (SWCTRL)
+- Frequency value is less than 4 (SWEEP)
+- Sweep counter has not completed its work (SCO=0)
+- Low-frequency oscillation signal is not active (/LFO2=1)
+
 ![square_sweep_control_tran1](/BreakingNESWiki/imgstore/apu/square_sweep_control_tran1.jpg)
 
 ![square_sweep_control_tran2](/BreakingNESWiki/imgstore/apu/square_sweep_control_tran2.jpg)
