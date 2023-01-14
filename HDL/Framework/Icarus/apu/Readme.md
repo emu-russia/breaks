@@ -47,7 +47,11 @@ The DPCM samples are in the `dpcm_sample.mem` file and are loaded into a dummy m
 
 ## env_unit
 
+Testing the Envelope Unit.
+
 ![env_unit](/BreakingNESWiki/imgstore/apu/waves/env_unit.png)
+
+:warning: The simulation of LFO generation is artificially tweaked to trigger more frequently.
 
 ## length_counter
 
