@@ -160,7 +160,13 @@ For this test it does not matter what happens to the Freq Reg, shifter, adder an
 
 ## square_duty
 
-TBD.
+![duty_tb](/BreakingNESWiki/imgstore/apu/waves/duty_tb.png)
+
+Check the DUTY signal generation, depending on the different Duty register settings and Duty counter values.
+
+The generation of the FLOAD signal (to iterate the Duty counter) is artificially accelerated.
+
+![duty_unit](/BreakingNESWiki/imgstore/apu/waves/duty_unit.png)
 
 ## square_output
 
