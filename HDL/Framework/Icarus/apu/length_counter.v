@@ -26,6 +26,12 @@ module LengthCounter_Run();
 
 	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .ACLK(ACLK), .n_ACLK(n_ACLK) );
 
+	wire [7:0] LC;
+
+	LengthCounter_PLA pla (
+		.DB(DataBus),
+		.LC_Out(LC) );
+
 	LengthCounter lc (
 		.ACLK(ACLK),
 		.n_ACLK(n_ACLK),
@@ -33,7 +39,7 @@ module LengthCounter_Run();
 		.W400x_load(WriteEnable),
 		.n_R4015(1'b1),
 		.W4015(W4015),
-		.DB(DataBus[7:0]),
+		.LC(LC),
 		.dbit_ena(DataBus[0]),
 		.nLFO2(nLFO2),
 		.NotCount(NotCount),
