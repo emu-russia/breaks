@@ -47,7 +47,11 @@ The DPCM samples are in the `dpcm_sample.mem` file and are loaded into a dummy m
 
 ## env_unit
 
+Testing the Envelope Unit.
+
 ![env_unit](/BreakingNESWiki/imgstore/apu/waves/env_unit.png)
+
+:warning: The simulation of LFO generation is artificially tweaked to trigger more frequently.
 
 ## length_counter
 
@@ -119,9 +123,17 @@ This is not a unit test right now, we are just doing some preliminary SoftCLK fi
 
 ## square_barrel
 
+Check all possible values of the shifter used in square channels.
+
 ![square_barrel](/BreakingNESWiki/imgstore/apu/waves/square_barrel.png)
 
 ## square_adder
+
+Testing of the adder of a square wave sound generator.
+
+This test runs a test vector exclusively for Adder and its single bit (full adder) circuitry. That is the testing is done abstractly from the APU - just to check that the adder... adds things up :-)
+
+A distinctive feature of the adder is the complementary wiring of the a/b signals and the carry chain and the inverse polarity of the result (#sum) and the output carry (#COUT).
 
 ![adder_single](/BreakingNESWiki/imgstore/apu/waves/adder_single.png)
 
@@ -129,9 +141,22 @@ This is not a unit test right now, we are just doing some preliminary SoftCLK fi
 
 ![adder_full_max](/BreakingNESWiki/imgstore/apu/waves/adder_full_max.png)
 
+:warning: The test takes quite a long time (22-bit vector) and generates a .vcd of several hundred MBytes.
+
 ## square_sweep
 
-TBD.
+![sweep_tb](/BreakingNESWiki/imgstore/apu/waves/sweep_tb.png)
+
+With this test we are trying to get the Sweep Unit to generate the ADDOUT signal as it should be for the Sweep process to work.
+
+That is, we need to organize the artificial generation of /LFO2 signal (not too slow, as in real conditions, to speed up the process)
+and check that the ADDOUT signal is generated as it should be.
+
+For this test it does not matter what happens to the Freq Reg, shifter, adder and all other parts of the square wave generator.
+
+![sweep_unit](/BreakingNESWiki/imgstore/apu/waves/sweep_unit.png)
+
+:warning: The simulation of LFO generation is artificially tweaked to trigger more frequently.
 
 ## square_duty
 

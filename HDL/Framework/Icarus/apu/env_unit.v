@@ -26,7 +26,7 @@ module EnvUnit_Run();
 
 	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .ACLK(ACLK), .n_ACLK(n_ACLK) );
 
-	BogusLFO lfo (.CLK(CLK), .ACLK(ACLK), .LFO(n_LFO1) );
+	BogusLFO lfo (.CLK(CLK), .RES(RES), .ACLK(ACLK), .LFO(n_LFO1) );
 
 	Envelope_Unit env_unit (.n_ACLK(n_ACLK), .RES(RES), .WR_Reg(WR_Reg), .WR_LC(WR_LC), .n_LFO1(n_LFO1), .DB(DataBus), .V(VolOut) );
 
@@ -54,27 +54,3 @@ module EnvUnit_Run();
 	end
 
 endmodule // EnvUnit_Run
-
-module BogusLFO (CLK, ACLK, LFO);
-	
-	input CLK;
-	input ACLK;
-	output reg LFO;
-	reg [1:0] cnt;
-	wire [1:0] n_cnt;
-	wire all_ones;
-
-	initial begin
-		cnt <= 0;
-	end
-	always @ (negedge ACLK) begin
-		cnt <= cnt + 1;
-		LFO <= all_ones ? 1'b0 : 1'b1;
-	end
-	always @ (posedge CLK)
-		LFO <= 1'b1;
-
-	assign n_cnt = ~cnt;
-	nor (all_ones, n_cnt[0], n_cnt[1]);
-
-endmodule // BogusLFO
