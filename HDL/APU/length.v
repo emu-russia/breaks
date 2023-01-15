@@ -30,6 +30,12 @@ module LengthCounters(
 	output NOTRI;
 	output NORND;
 
+	wire [7:0] LC;
+
+	LengthCounter_PLA pla (
+		.DB(DB),
+		.LC_Out(LC) );
+
 	LengthCounter length_cnt [3:0] (
 		.ACLK(ACLK),
 		.n_ACLK(n_ACLK),
@@ -37,7 +43,7 @@ module LengthCounters(
 		.W400x_load({W400F, W400B, W4007, W4003}),
 		.n_R4015(n_R4015),
 		.W4015(W4015),
-		.DB(DB),
+		.LC(LC),
 		.dbit_ena({DB[3], DB[2], DB[1], DB[0]}),
 		.nLFO2(nLFO2),
 		.Carry_in({RND_LC, TRI_LC, SQB_LC, SQA_LC}),
@@ -47,7 +53,7 @@ endmodule // LengthCounters
 
 module LengthCounter(
 	ACLK, n_ACLK,
-	RES, W400x_load, n_R4015, W4015, DB, dbit_ena, nLFO2,
+	RES, W400x_load, n_R4015, W4015, LC, dbit_ena, nLFO2,
 	Carry_in, NotCount);
 
 	input ACLK;
@@ -57,20 +63,15 @@ module LengthCounter(
 	input W400x_load;
 	input n_R4015;
 	input W4015;
-	inout [7:0] DB;
+	input [7:0] LC;
 	inout dbit_ena;
 	input nLFO2;
 
 	input Carry_in;
 	output NotCount;
 
-	wire [7:0] LC;
 	wire STEP;
 	wire Carry_out;
-
-	LengthCounter_PLA pla (
-		.DB(DB),
-		.LC_Out(LC) );
 
 	LC_DownCounter cnt (
 		.Clk(n_ACLK),
