@@ -23,6 +23,86 @@
 
 // The simulation of LFO generation is artificially tweaked to trigger more frequently.
 
+`timescale 1ns/1ns
+
+`define CoreCyclesPerCLK 6
+
 module Square_Sweep_Run ();
 
+	reg CLK;
+	reg RES;
+	wire PHI1;
+	wire ACLK;
+	wire n_ACLK;
+
+	// Tune CLK/ACLK timing according to 2A03
+	always #23.28 CLK = ~CLK;
+
+	reg WR_Reg1; 		// Used to simulate writing to the Sweep registers by the "processor" (RegDriver)
+	wire [7:0] DataBus;
+
+	wire n_LFO2;
+
+	wire ADDOUT; 			// The signal for which it is all about
+
+	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .ACLK(ACLK), .n_ACLK(n_ACLK) );
+
+	BogusLFO lfo (.CLK(CLK), .RES(RES), .ACLK(ACLK), .LFO(n_LFO2) );
+
+	RegDriver reg_driver (.PHI1(PHI1), .WR_Reg1(WR_Reg1), .DataBus(DataBus) );
+
+	SQUARE_Sweep sweep_unit (
+		.n_ACLK(n_ACLK), 
+		.RES(RES), 
+		.WR1(WR_Reg1), 
+		.SR(3'b111),  		// Make a convenient value of the frequency shift magnitude so that the SRZ signal does not occur
+		.DEC(1'b1),  		// Make decrement mode to ignore overflow 
+		.n_COUT(1'b1), 		// Set the Adder output carry to a convenient value
+		.SWEEP(1'b0),		// Pretend that the frequency is greater than the minimum value (>= 4) 
+		.NOSQ(1'b0),		// Pretend that the length counter is not stopped 
+		.n_LFO2(n_LFO2), 	// Dummy accelerated LFO signal
+		.DB(DataBus), 
+		.ADDOUT(ADDOUT) );
+
+	initial begin
+
+		$dumpfile("square_sweep.vcd");
+		$dumpvars(0, aclk);
+		$dumpvars(1, sweep_unit);
+		$dumpvars(2, ADDOUT);
+
+		CLK <= 1'b0;
+		RES <= 1'b0;
+		WR_Reg1 <= 1'b0;
+
+		// Perform a reset to reset the counter to zero
+
+		RES <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		RES <= 1'b0;
+
+		// Set the initial values of the Sweep registers
+
+		WR_Reg1 <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		WR_Reg1 <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+
+		// Continue the Sweep Unit and see in the .vcd what you get 
+
+		repeat (2048) @ (posedge CLK);
+		$finish;
+	end
+
 endmodule // Square_Sweep_Run
+
+// This module executes a "program" sequence of writes to the SweepUnit registers
+module RegDriver (PHI1, WR_Reg1, DataBus);
+
+	input PHI1;
+	input WR_Reg1;
+	inout [7:0] DataBus;
+
+	assign DataBus = ~PHI1 ? (WR_Reg1 ? 8'b01111000 : 8'hzz) : 8'hzz;	// Sweep=3; Enable=1
+
+endmodule // RegDriver

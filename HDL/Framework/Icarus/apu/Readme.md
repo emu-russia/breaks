@@ -145,7 +145,18 @@ A distinctive feature of the adder is the complementary wiring of the a/b signal
 
 ## square_sweep
 
-TBD.
+![sweep_tb](/BreakingNESWiki/imgstore/apu/waves/sweep_tb.png)
+
+With this test we are trying to get the Sweep Unit to generate the ADDOUT signal as it should be for the Sweep process to work.
+
+That is, we need to organize the artificial generation of /LFO2 signal (not too slow, as in real conditions, to speed up the process)
+and check that the ADDOUT signal is generated as it should be.
+
+For this test it does not matter what happens to the Freq Reg, shifter, adder and all other parts of the square wave generator.
+
+![sweep_unit](/BreakingNESWiki/imgstore/apu/waves/sweep_unit.png)
+
+:warning: The simulation of LFO generation is artificially tweaked to trigger more frequently.
 
 ## square_duty
 

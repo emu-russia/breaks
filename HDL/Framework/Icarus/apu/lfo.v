@@ -4,9 +4,10 @@
 
 // Wherever artificially accelerated LFO signals are used in tests, there is a special note.
 
-module BogusLFO (CLK, ACLK, LFO);
+module BogusLFO (CLK, RES, ACLK, LFO);
 	
 	input CLK;
+	input RES;
 	input ACLK;
 	output reg LFO; 		// inverse polarity (0: LFO triggers)
 	reg [1:0] cnt;
@@ -18,7 +19,7 @@ module BogusLFO (CLK, ACLK, LFO);
 	end
 	always @ (negedge ACLK) begin
 		cnt <= cnt + 1;
-		LFO <= all_ones ? 1'b0 : 1'b1;
+		LFO <= all_ones && ~RES ? 1'b0 : 1'b1;
 	end
 	always @ (posedge CLK)
 		LFO <= 1'b1;

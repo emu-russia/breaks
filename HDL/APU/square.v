@@ -263,6 +263,7 @@ module SQUARE_Sweep (n_ACLK, RES, WR1, SR, DEC, n_COUT, SWEEP, NOSQ, n_LFO2, DB,
 	wire sco_latch_q;
 	wire reload_ff_q;
 	wire [2:0] sweep_reg_q;
+	wire [2:0] cnt_q; 	// debug
 	wire [2:0] cout;
 	wire temp_reload;
 
@@ -274,7 +275,7 @@ module SQUARE_Sweep (n_ACLK, RES, WR1, SR, DEC, n_COUT, SWEEP, NOSQ, n_LFO2, DB,
 	RegisterBit swdis_reg (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[3]), .nq(SWDIS) );
 
 	RegisterBit sweep_reg [2:0] (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[6:4]), .q(sweep_reg_q) );
-	DownCounterBit sweep_cnt [2:0] (.n_ACLK(n_ACLK), .d(sweep_reg_q), .load(SLOAD), .clear(RES), .step(SSTEP), .cin({cout[1:0],1'b1}), .cout(cout) );
+	DownCounterBit sweep_cnt [2:0] (.n_ACLK(n_ACLK), .d(sweep_reg_q), .load(SLOAD), .clear(RES), .step(SSTEP), .cin({cout[1:0],1'b1}), .cout(cout), .q(cnt_q) );
 	assign SCO = cout[2];
 
 	nor (temp_reload, SWRELOAD, sco_latch_q);

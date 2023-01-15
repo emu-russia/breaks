@@ -26,7 +26,7 @@ module EnvUnit_Run();
 
 	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .ACLK(ACLK), .n_ACLK(n_ACLK) );
 
-	BogusLFO lfo (.CLK(CLK), .ACLK(ACLK), .LFO(n_LFO1) );
+	BogusLFO lfo (.CLK(CLK), .RES(RES), .ACLK(ACLK), .LFO(n_LFO1) );
 
 	Envelope_Unit env_unit (.n_ACLK(n_ACLK), .RES(RES), .WR_Reg(WR_Reg), .WR_LC(WR_LC), .n_LFO1(n_LFO1), .DB(DataBus), .V(VolOut) );
 
