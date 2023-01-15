@@ -1,6 +1,6 @@
 // Testing the output of a square wave generator.
 
-// From the main APU "honestly" simulated: ACLK and LFO, the length counter and the whole Square block. 
+// From the main APU "honestly" simulated: ACLK and LFO, the length counter and the whole sound channel block.
 
 `timescale 1ns/1ns
 
