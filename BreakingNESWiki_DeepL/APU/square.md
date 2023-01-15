@@ -132,6 +132,25 @@ Duty Counter:
 
 ![SQUARE_Duty](/BreakingNESWiki/imgstore/apu/SQUARE_Duty.jpg)
 
+Principle of operation:
+- The FLOAD signal used to load the frequency counter is simultaneously used to iterate the Duty counter
+- Loading the length counter clears the Duty counter of the corresponding square channel
+- Frequency counter output carry (FCO signal) is the input carry for the Duty counter
+- When the `DUTY` signal is 0 at the output of the square generator is also 0
+
+Table of DUTY signal values depending on Duty counter values and Duty register settings (d):
+
+|Duty counter value|d=0 (12.5%)|d=1 (25%)|d=2 (50%)|d=3 (75%)|
+|---|---|---|---|---|
+|0|0|0|0|1|
+|1|0|0|0|1|
+|2|0|0|0|1|
+|3|0|0|0|1|
+|4|0|0|1|1|
+|5|0|0|1|1|
+|6|0|1|1|0|
+|7|1|1|1|0|
+
 ## Output
 
 ![square_output_tran](/BreakingNESWiki/imgstore/apu/square_output_tran.jpg)

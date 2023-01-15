@@ -1,7 +1,5 @@
 # APU Overview
 
-:warning: The names and polarities of internal APU signals are being actively discussed and corrected. There may also be minor issues in the schematics. But a critical mass of information is already contained here and that's a good thing. This mention will disappear after all the points are settled and all APU circuits are verified by simulation.
-
 **APU** is the unofficial name for the specialized NES CPU.
 
 The official name is just CPU, but we will stick to the unofficial term.
