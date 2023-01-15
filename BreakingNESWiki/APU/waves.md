@@ -105,7 +105,13 @@ Full Adder (один бит сумматора):
 
 ## Duty Unit прямоугольного канала
 
-TBD.
+![duty_tb](/BreakingNESWiki/imgstore/apu/waves/duty_tb.png)
+
+Проверить генерацию сигнала DUTY в зависимости от различных настроек регистра Duty и значений счётчика Duty.
+
+Генерация сигнала FLOAD (для итерации счётчика Duty) искусственно ускорена.
+
+![duty_unit](/BreakingNESWiki/imgstore/apu/waves/duty_unit.png)
 
 ## Декодер DPCM
 

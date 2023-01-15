@@ -306,10 +306,10 @@ module SQUARE_Duty (n_ACLK, RES, FLOAD, FCO, WR0, WR3, DB, DUTY);
 	RegisterBit duty_reg [1:0] (.n_ACLK(n_ACLK), .ena(WR0), .d(DB[7:6]), .q(DT) );
 	DownCounterBit duty_cnt [2:0] (.n_ACLK(n_ACLK), .d(3'b000), .load(WR3), .clear(RES), .step(FLOAD), .cin({cout[1:0],1'b1}), .q(DC), .cout(cout) );
 
-	nor (in[0], ~DC[0], in[3]);
 	nand (in[3], DC[1], DC[2]);
+	nor (in[0], ~DC[0], in[3]);
 	assign in[1] = ~in[3];
-	assign in[2] = DC[3];
+	assign in[2] = DC[2];
 
 	assign DUTY = DT[1] ? (DT[0] ? in[3] : in[2]) : (DT[0] ? in[1] : in[0]); 	// mux 4-to-1
 
