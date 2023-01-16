@@ -13,7 +13,7 @@ Since the 6502 processor is part of the 2A03 chip in a slightly "stripped-down" 
 
 The source of the information is high-resolution microphotographs of the ICs.
 
-At that time ICs were very simple and were produced by [NMOS](nmos.md) technology, with one surface layer of metal. Therefore, to obtain vector masks, two types of photos were sufficient: a photo of the surface with metal and a photo without metal. Usually boiling acid is used to remove metal from old ICs.
+At that time ICs were very simple and were produced by [NMOS](nmos.md) technology, with one surface layer of metal. Therefore, to obtain vector masks, two types of photos were sufficient: a photo of the surface with metal and a photo without metal.
 
 The chips under the microscope look like this:
 
@@ -30,8 +30,6 @@ The functions of the wiki include a detailed description of all the functional b
 The wiki is divided into 3 sections, according to the number of chips being studied. Through the navigation menu you can get insight into the main functional blocks of each chip.
 
 Each section is a detailed review of the transistor circuit, the logic circuit and, if possible, an analysis of the operation.
-
-Also in some places at the end of the section is a Verilog for the circuit being studied.
 
 As usual, a knowledge of microelectronics and programming is required to understand the material.
 
