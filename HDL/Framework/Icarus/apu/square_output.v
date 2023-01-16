@@ -27,6 +27,8 @@ module Square_Run ();
 	reg n_R4015;
 	wire [7:0] DataBus;
 
+	wire [31:0] AuxOut;
+
 	// Tune CLK/ACLK timing according to 2A03
 	always #23.28 CLK = ~CLK;
 
@@ -65,6 +67,8 @@ module Square_Run ();
 		.AdderCarryMode(1'b0),			// Adder n_carry = INC
 		.SQ_Out(SQ_Out) );
 
+	AUX aux (.AUX_A({4'b000,SQ_Out}), .AUX_B(15'b0000000_0000_0000), .AOut(AuxOut) );
+
 	initial begin
 
 		$dumpfile("square_output.vcd");
@@ -75,6 +79,7 @@ module Square_Run ();
 		$dumpvars(4, pla);
 		$dumpvars(5, length);
 		$dumpvars(6, square);
+		$dumpvars(7, AuxOut);
 
 		CLK <= 1'b0;
 		RES <= 1'b0;

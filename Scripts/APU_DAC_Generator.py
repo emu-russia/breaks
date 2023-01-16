@@ -136,7 +136,7 @@ def float_to_hex(f):
 """
 	Output all the same, but for Verilog. Use volts instead of millivolts.
 """
-def DumpVerilogMem():
+def DumpVerilogMem(gain):
 	with open('auxa.mem', 'w', encoding='UTF8', newline='') as f:
 		print ("// AUX A dump as floats (units in volts). The array is indexed as: {SQB[3:0],SQA[3:0]}\n", file=f)
 		for sqb in range(16):
@@ -144,7 +144,7 @@ def DumpVerilogMem():
 				r = AUX_A_Resistance (sqa, sqb)
 				i = Vdd / (r + ExtRes)
 				aux_v = i * ExtRes
-				aux_hex = float_to_hex (aux_v)[2:]
+				aux_hex = float_to_hex (aux_v * gain)[2:]
 				print (f"{aux_hex} ", file=f, end = '')
 	with open('auxb.mem', 'w', encoding='UTF8', newline='') as f:
 		print ("// AUX B dump as floats (units in volts). The array is indexed as: {DMC[6:0],RND[3:0],TRI[3:0]}\n", file=f)
@@ -154,10 +154,10 @@ def DumpVerilogMem():
 					r = AUX_B_Resistance (tri, rnd, dmc)
 					i = Vdd / (r + ExtRes)
 					aux_v = i * ExtRes
-					aux_hex = float_to_hex (aux_v)[2:]
+					aux_hex = float_to_hex (aux_v * gain)[2:]
 					print (f"{aux_hex} ", file=f, end = '')
 
 if __name__ == '__main__':
 	#SchoolTest()
 	DumpCsv()
-	DumpVerilogMem()
+	DumpVerilogMem(1024)
