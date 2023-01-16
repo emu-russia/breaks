@@ -136,28 +136,45 @@ def float_to_hex(f):
 """
 	Output all the same, but for Verilog. Use volts instead of millivolts.
 """
-def DumpVerilogMem():
+def DumpVerilogMem(gain):
 	with open('auxa.mem', 'w', encoding='UTF8', newline='') as f:
-		print ("// AUX A dump as floats (units in volts). The array is indexed as: {SQB[3:0],SQA[3:0]}\n", file=f)
+		print (f"// AUX A dump as floats (normalized to [-0.5;0.5] and scaled by {gain}). The array is indexed as: {{SQB[3:0],SQA[3:0]}}\n", file=f)
+		vmax = 0
 		for sqb in range(16):
 			for sqa in range(16):
 				r = AUX_A_Resistance (sqa, sqb)
 				i = Vdd / (r + ExtRes)
 				aux_v = i * ExtRes
-				aux_hex = float_to_hex (aux_v)[2:]
+				if aux_v > vmax:
+					vmax = aux_v
+		for sqb in range(16):
+			for sqa in range(16):
+				r = AUX_A_Resistance (sqa, sqb)
+				i = Vdd / (r + ExtRes)
+				aux_v = ((i * ExtRes) / vmax) - 0.5
+				aux_hex = float_to_hex (aux_v * gain)[2:]
 				print (f"{aux_hex} ", file=f, end = '')
 	with open('auxb.mem', 'w', encoding='UTF8', newline='') as f:
-		print ("// AUX B dump as floats (units in volts). The array is indexed as: {DMC[6:0],RND[3:0],TRI[3:0]}\n", file=f)
+		print (f"// AUX B dump as floats (normalized to [-0.5;0.5] and scaled by {gain}). The array is indexed as: {{DMC[6:0],RND[3:0],TRI[3:0]}}\n", file=f)
+		vmax = 0
 		for dmc in range(128):
 			for rnd in range(16):
 				for tri in range(16):
 					r = AUX_B_Resistance (tri, rnd, dmc)
 					i = Vdd / (r + ExtRes)
 					aux_v = i * ExtRes
-					aux_hex = float_to_hex (aux_v)[2:]
+					if aux_v > vmax:
+						vmax = aux_v
+		for dmc in range(128):
+			for rnd in range(16):
+				for tri in range(16):
+					r = AUX_B_Resistance (tri, rnd, dmc)
+					i = Vdd / (r + ExtRes)
+					aux_v = ((i * ExtRes) / vmax) - 0.5
+					aux_hex = float_to_hex (aux_v * gain)[2:]
 					print (f"{aux_hex} ", file=f, end = '')
 
 if __name__ == '__main__':
 	#SchoolTest()
 	DumpCsv()
-	DumpVerilogMem()
+	DumpVerilogMem(1024)

@@ -25,6 +25,8 @@ module DPCMChan_Run();
 
 	wire [7:0] DataBus;
 
+	wire [31:0] AuxOut;
+
 	wire n_DMCAB;			// 0: Gain control of the address bus to read the DPCM sample
 	wire RUNDMC;			// 1: DMC is minding its own business and hijacks DMA control
 	wire DMCRDY;			// 1: DMC Ready. Used to control processor readiness (RDY)
@@ -51,11 +53,14 @@ module DPCMChan_Run();
 		.n_DMCAB(n_DMCAB), .RUNDMC(RUNDMC), .DMCRDY(DMCRDY), .DMCINT(DMCINT),
 		.DMC_Addr(DMC_Addr), .DMC_Out(DMC_Out) );
 
+	AUX aux (.AUX_A(8'h00), .AUX_B({DMC_Out,8'h00}), .BOut(AuxOut) );
+
 	initial begin
 
 		$dumpfile("dpcm_output.vcd");
 		$dumpvars(0, dpcm);
 		$dumpvars(1, aclk);
+		$dumpvars(2, AuxOut);
 
 		CLK <= 1'b0;
 		RES <= 1'b0;
