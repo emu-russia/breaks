@@ -8,6 +8,14 @@ Check that the APU is moving.
 
 The test runs the APU "idle" a number of cycles and ends. Just to check that the sources do not contain errors.
 
+## aux_test
+
+Check the operation of the DAC.
+
+Runs all digital AUX A/B values and saves a dump of analog levels in the normalized little-endian float format [-1.0; +1.0] (to be checked in Audacity).
+
+![aux_test](/BreakingNESWiki/imgstore/apu/waves/aux_test.png)
+
 ## clkgen
 
 A unit test for checking APU Clock Trees.
