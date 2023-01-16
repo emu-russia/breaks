@@ -177,4 +177,4 @@ def DumpVerilogMem(gain):
 if __name__ == '__main__':
 	#SchoolTest()
 	DumpCsv()
-	DumpVerilogMem(1024)
+	DumpVerilogMem(2)
