@@ -142,7 +142,7 @@ module SPRDMA_Control(PHI1, RnW, n_ACLK, ACLK, RES, W4014, RUNDMC, DMCReady, SPR
 	wire n_StartDma;
 	wire toggle;
 
-	nor (SPRS, NOSPR, ~n_ACLK2);
+	nor (SPRS, NOSPR, RUNDMC, ~n_ACLK2);
 
 	dlatch spre_latch (.d(SPRE), .en(n_ACLK), .q(spre_out) );
 	dlatch nospr_latch (.d(StopDma), .en(n_ACLK), .nq(NOSPR) );
