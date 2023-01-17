@@ -74,6 +74,7 @@ module OAM_DMA_With_DPCM_Run ();
 		$dumpvars(2, dpcm);
 		$dumpvars(3, mem);
 		$dumpvars(4, aclk);
+		$dumpvars(5, dpcm.dpcm_ctrl);
 
 		CLK <= 1'b0;
 		RES <= 1'b0;

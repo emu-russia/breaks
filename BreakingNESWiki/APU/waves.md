@@ -178,3 +178,9 @@ TBD.
 Некоторое затишье после окончания OAM DMA и началом следующего DPCM DMA:
 
 ![both_dma_after_oam_before_next_dpcm](/BreakingNESWiki/imgstore/apu/waves/both_dma_after_oam_before_next_dpcm.png)
+
+Обычный DPCM DMA в сравнении с пересекаемым OAM DMA:
+
+![both_side_by_side](/BreakingNESWiki/imgstore/apu/waves/both_side_by_side.png)
+
+Видно что часть циклов DPCM DMA резервируется для возможной передачи OAM DMA, так как невозможно сделать 2 чтения одновременно. Поэтому в начале DPCM передачи находится "окно", после которого сигналом RUNDMC подавляется возможная активная OAM DMA.

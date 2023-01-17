@@ -111,6 +111,8 @@ Test bench setup:
 
 ![both_dma_after_oam_before_next_dpcm](/BreakingNESWiki/imgstore/apu/waves/both_dma_after_oam_before_next_dpcm.png)
 
+![both_side_by_side](/BreakingNESWiki/imgstore/apu/waves/both_side_by_side.png)
+
 ## regops
 
 Testing register operations.

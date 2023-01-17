@@ -176,3 +176,9 @@ Completing an OAM DMA:
 Some lull after the OAM DMA ends and the next DPCM DMA begins:
 
 ![both_dma_after_oam_before_next_dpcm](/BreakingNESWiki/imgstore/apu/waves/both_dma_after_oam_before_next_dpcm.png)
+
+Regular DPCM DMA versus interleaved OAM DMA:
+
+![both_side_by_side](/BreakingNESWiki/imgstore/apu/waves/both_side_by_side.png)
+
+It can be seen that part of the DPCM DMA cycles are reserved for a possible OAM DMA transfer, since it is impossible to do two reads simultaneously. Therefore there is a "window" at the beginning of the DPCM transfer after which a possible active OAM DMA is suppressed by the RUNDMC signal.
