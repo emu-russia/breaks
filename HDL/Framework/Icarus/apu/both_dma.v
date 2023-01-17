@@ -1,8 +1,12 @@
-// Mix OAM DMA + DPCM DMA Output.
+// Mixed OAM DMA + DPCM DMA Test.
+
+//⚠️ To avoid confusion please keep in mind that this test does NOT use a real processor. Therefore all register write signals ("RegOps") and R/W of the processor are manually adjusted.
+
+// 17.01.2023: added a second OAM DMA, which starts on an unaligned PHI relative to #ACLK, so it has one Waste cycle 
 
 `timescale 1ns/1ns
 
-`define CoreCyclesPerCLK 6
+`define CoreCyclesPerCLK 12
 `define SampleAddr 16'hf000 		// The starting address of the buffer with DPCM samples in 6502 Plain memory.
 
 module OAM_DMA_With_DPCM_Run ();
@@ -10,7 +14,7 @@ module OAM_DMA_With_DPCM_Run ();
 	reg CLK;
 	reg RES;
 	wire PHI1;
-	wire RnW; 		// From "core"
+	reg RnW; 		// From "core". When a write to the APU registers is simulated the R/W of the processor is also set to Write Mode (R/W = 0)
 	wire ACLK;
 	wire n_ACLK;
 
@@ -64,8 +68,6 @@ module OAM_DMA_With_DPCM_Run ();
 		.n_DMCAB(n_DMCAB), .RUNDMC(RUNDMC), .DMCRDY(DMCRDY), .DMCINT(DMCINT),
 		.DMC_Addr(DMC_Addr), .DMC_Out(DMC_Out) );
 
-	assign RnW = 1'b1; 		// Virtual CPU always Read Mode
-
 	initial begin
 
 		$dumpfile("both_dma.vcd");
@@ -78,6 +80,7 @@ module OAM_DMA_With_DPCM_Run ();
 
 		CLK <= 1'b0;
 		RES <= 1'b0;
+		RnW <= 1'b1;
 
 		W4010 <= 1'b0;
 		W4011 <= 1'b0;
@@ -89,36 +92,69 @@ module OAM_DMA_With_DPCM_Run ();
 
 		// Start DPCM DMA and run it for a while
 
+		// For the correct simulation of registers by the processor, RegOps must be ON at PHI1=0, and R/W must be 0 whole cycle
+
 		W4010 <= 1'b1;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		RnW <= 1'b0;		
+		repeat (`CoreCyclesPerCLK + 1) @ (CLK);
 		W4010 <= 1'b0;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		repeat (`CoreCyclesPerCLK) @ (CLK);
 
 		W4012 <= 1'b1;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		RnW <= 1'b0;		
+		repeat (`CoreCyclesPerCLK) @ (CLK);
 		W4012 <= 1'b0;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		repeat (`CoreCyclesPerCLK) @ (CLK);
 
 		W4013 <= 1'b1;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		RnW <= 1'b0;		
+		repeat (`CoreCyclesPerCLK) @ (CLK);
 		W4013 <= 1'b0;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		repeat (`CoreCyclesPerCLK) @ (CLK);
 
 		W4015 <= 1'b1;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		RnW <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (CLK);
 		W4015 <= 1'b0;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
-
-		repeat (32760) @ (posedge CLK);
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		
+		RnW <= 1'b1;
+		repeat (32760) @ (negedge CLK);
 
 		// Then suddenly the "processor" decides to start OAM DMA and further execution takes place in interleave mode
 
-		W4014 <= 1'b1;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
-		W4014 <= 1'b0;
-		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		// ** OAM DMA NO Delay **
 
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		RnW <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		W4014 <= 1'b1;		
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		W4014 <= 1'b0;
+
+		// Free flight for a while..
+
+		RnW <= 1'b1;
+		repeat (32766) @ (negedge CLK);
+
+		// ** OAM DMA YES Delay **
+
+		// Add delay here so that the start of the OAM DMA is not aligned to #ACLK and you get 1 Waste Cycle
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		RnW <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		W4014 <= 1'b1;		
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		W4014 <= 1'b0;
+
+		// Free flight for a while..
+
+		RnW <= 1'b1;
 		repeat (32768) @ (posedge CLK);
+
 		$finish;
 	end
 
