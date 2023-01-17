@@ -4,14 +4,20 @@
 
 // The APU dma+dmabuf and the ACLK generator are external modules (oddly enough the DMA is clocked using ACLK; PHI1 is only used to delay core Read Cycle detection)
 
+//⚠️ To avoid confusion please keep in mind that this test does NOT use a real processor. Therefore all register write signals ("RegOps") and R/W of the processor are manually adjusted.
+
+// 17.01.2023: added a second OAM DMA, which starts on an unaligned PHI relative to #ACLK, so it has one Waste cycle 
+
 `timescale 1ns/1ns
+
+`define CoreCyclesPerCLK 12
 
 module OAM_DMA_Run();
 
 	reg CLK;
 	reg RES;
 	wire PHI1;
-	wire RnW; 		// From "core"
+	reg RnW; 		// From "core". When a write to the APU registers is simulated the R/W of the processor is also set to Write Mode (R/W = 0)
 	wire ACLK;
 	wire n_ACLK;
 
@@ -43,8 +49,6 @@ module OAM_DMA_Run();
 
 	RegDriver dma_enabler (.W4014(W4014), .DB(DataBus));
 
-	assign RnW = 1'b1; 		// Virtual CPU always Read Mode
-
 	initial begin
 
 		$dumpfile("oam_dma.vcd");
@@ -55,17 +59,49 @@ module OAM_DMA_Run();
 
 		CLK <= 1'b0;
 		RES <= 1'b0;
+		RnW <= 1'b1;
 
 		W4014 <= 1'b0;
 		n_R4015 <= 1'b1;
 
+		// Some idle time
+
+		repeat (16 * `CoreCyclesPerCLK) @ (CLK);
+
 		// Start OAM DMA
 
-		W4014 <= 1'b1;
-		repeat (1) @ (posedge CLK);
+		// ** OAM DMA NO Delay **
+
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		RnW <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		W4014 <= 1'b1;		
+		repeat (`CoreCyclesPerCLK) @ (CLK);
 		W4014 <= 1'b0;
 
+		// Free flight for a while..
+
+		RnW <= 1'b1;
+		repeat (32743) @ (negedge CLK);
+
+		// ** OAM DMA YES Delay **
+
+		// Add delay here so that the start of the OAM DMA is not aligned to #ACLK and you get 1 Waste Cycle
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		RnW <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		W4014 <= 1'b1;		
+		repeat (`CoreCyclesPerCLK) @ (CLK);
+		W4014 <= 1'b0;
+
+		// Free flight for a while..
+
+		RnW <= 1'b1;
 		repeat (32768) @ (posedge CLK);
+
 		$finish;
 	end
 
