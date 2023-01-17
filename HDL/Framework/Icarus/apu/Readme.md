@@ -89,7 +89,13 @@ Test bench setup:
 
 ![oam_dma_tb](/BreakingNESWiki/imgstore/apu/waves/oam_dma_tb.png)
 
-![oam_dma_start](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start.png)
+Aligned OAM DMA:
+
+![oam_dma_start1](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start1.png)
+
+Unaligned OAM DMA:
+
+![oam_dma_start2](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start2.png)
 
 ![oam_dma_last](/BreakingNESWiki/imgstore/apu/waves/oam_dma_last.png)
 

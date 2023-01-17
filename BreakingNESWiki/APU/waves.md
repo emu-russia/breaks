@@ -143,9 +143,13 @@ TBD.
 
 ![oam_dma_tb](/BreakingNESWiki/imgstore/apu/waves/oam_dma_tb.png)
 
-Начало OAM DMA:
+Начало OAM DMA (выровненное на #ACLK):
 
-![oam_dma_start](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start.png)
+![oam_dma_start1](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start1.png)
+
+Начало OAM DMA (невыровненное на #ACLK, требуется 1 дополнительный цикл CPU):
+
+![oam_dma_start2](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start2.png)
 
 Завершение OAM DMA:
 
