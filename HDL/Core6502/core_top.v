@@ -50,8 +50,8 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	wire n_T5;
 	wire n_T0;
 	wire n_T1X;
-	wire T5;
 	wire T6;
+	wire T7;
 
 	wire [129:0] Decoder_out;
 
@@ -280,8 +280,8 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.X(Decoder_out),
 		.T0(T0),
 		.T1(T1),
-		.T5(T5),
 		.T6(T6),
+		.T7(T7),
 		.n_DOUT(n_DOUT),
 		.n_COUT(n_COUT),
 		.INC_SB(INC_SB),
@@ -322,8 +322,8 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_PCH_PCH(n_PCH_PCH),
 		.T0(T0),
 		.T1(T1),
-		.T5(T5),
 		.T6(T6),
+		.T7(T7),
 		.X(Decoder_out),
 		.ZTST(ZTST),
 		.PGX(PGX), 
@@ -397,8 +397,8 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_ADL_PCL(n_ADL_PCL), 
 		.X(Decoder_out), 
 		.ACRL2(ACRL2),
-		.T5(T5),
 		.T6(T6),
+		.T7(T7),
 		.TRES2(TRES2),
 		.STOR(STOR),
 		.Z_IR(Z_IR),
