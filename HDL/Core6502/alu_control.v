@@ -3,7 +3,7 @@ module ALU_Control(
 	PHI1, PHI2,
 	BRFW, n_ready, BRK6E, STKOP, PGX,
 	X,
-	T0, T1, T5, T6,
+	T0, T1, T6, T7,
 	n_DOUT, n_COUT,
 	INC_SB, SR, AND,
 	NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD, ADD_SB06, ADD_SB7, ADD_ADL, ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA);
@@ -21,8 +21,8 @@ module ALU_Control(
 	
 	input T0;
 	input T1;
-	input T5;
 	input T6;
+	input T7;
 	
 	input n_DOUT;
 	input n_COUT;
