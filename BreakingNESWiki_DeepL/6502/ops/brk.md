@@ -88,11 +88,11 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 ![FF_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/FF_UB_T1_PHI1.jpg)
 
-## UB (0xFF), T1 (PHI2)
+## UB (0xFF), T1+T7 (PHI2)
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 0, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T5: 0, T6: 1, ENDS: 0, ENDX: 0, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 0, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 1, ENDS: 0, ENDX: 0, TRES1: 0, TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 1, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|44: INC NOP (TX), 60: ADC SBC (T1), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX), 112: ADC SBC (T1)|
@@ -130,7 +130,7 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
@@ -168,7 +168,7 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 1, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
@@ -206,7 +206,7 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
@@ -244,7 +244,7 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T5: 0, T6: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
