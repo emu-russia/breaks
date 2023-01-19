@@ -10422,7 +10422,7 @@
     </comp>
     <comp lib="0" loc="(720,590)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="n_ACLK"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(750,710)" name="Tunnel">
