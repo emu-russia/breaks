@@ -123,7 +123,15 @@ The generation of the FLOAD signal (to iterate the Duty counter) is artificially
 
 ## Square Output
 
-TBD.
+![square_output](/BreakingNESWiki/imgstore/apu/waves/square_output.png)
+
+```
+W4015 <= 0000000 1  (SQA Length counter enable: 1)
+W4000 <= 10 0 0 0110 (D=2, Length Counter #carry in=0, ConstVol=0, Vol=6)
+W4001 <= 1 001 0 010 (Sweep=1, Period=1, Negative=0, Magnitude=2^2)
+W4002 <= 0110 1001  (Freq Lo=0x69)
+W4003 <= 11111 010  (Length=11111, Freq Hi=2)
+```
 
 ## Triangle Output
 

@@ -103,6 +103,6 @@ module RegDriver (PHI1, WR_Reg1, DataBus);
 	input WR_Reg1;
 	inout [7:0] DataBus;
 
-	assign DataBus = ~PHI1 ? (WR_Reg1 ? 8'b01111000 : 8'hzz) : 8'hzz;	// Sweep=3; Enable=1
+	assign DataBus = ~PHI1 ? (WR_Reg1 ? 8'b11110001 : 8'hzz) : 8'hzz;	// Enable=1; Period=7; Negative=0; Shift=1 
 
 endmodule // RegDriver

@@ -272,7 +272,7 @@ module SQUARE_Sweep (n_ACLK, RES, WR1, SR, DEC, n_COUT, SWEEP, NOSQ, n_LFO2, DB,
 
 	rsff reload_ff (.r(WR1), .s(~(n_LFO2 | reload_latch_q)), .q(reload_ff_q) );
 
-	RegisterBit swdis_reg (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[3]), .nq(SWDIS) );
+	RegisterBit swdis_reg (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[7]), .nq(SWDIS) );
 
 	RegisterBit sweep_reg [2:0] (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[6:4]), .q(sweep_reg_q) );
 	DownCounterBit sweep_cnt [2:0] (.n_ACLK(n_ACLK), .d(sweep_reg_q), .load(SLOAD), .clear(RES), .step(SSTEP), .cin({cout[1:0],1'b1}), .cout(cout), .q(cnt_q) );

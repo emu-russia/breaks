@@ -24,12 +24,28 @@ The developers decided to use PHI1 for the triangle channel instead of ACLK to s
 
 ## Sweep
 
-TBD: Description and picture.
+Sweep is a time-constant increase or decrease in signal frequency (period). It affects pitch (tonality).
+
+The word `Sweep` does not translate into other languages.
+
+In APU it is used only in square channels.
+
+![wave_sweep](/BreakingNESWiki/imgstore/apu/wave_sweep.png)
 
 ## Envelope
 
-TBD: Description and picture.
+Envelope is the constant fading of the signal amplitude (as applied to APU audio generators).
+
+Envelope is a special case of ADSR envelope, and specifically is a Decay component.
+
+In APU it is used in square channels and noise generator.
+
+![wave_envelope](/BreakingNESWiki/imgstore/apu/wave_envelope.png)
 
 ## Duty
 
-TBD: Description and picture.
+Duty is a change in the duty cycle of a square wave signal.
+
+In APU it is used only in square channels.
+
+![wave_duty](/BreakingNESWiki/imgstore/apu/wave_duty.png)
