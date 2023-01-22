@@ -12,7 +12,7 @@ The test runs the APU "idle" a number of cycles and ends. Just to check that the
 
 Check the operation of the DAC.
 
-Runs all digital AUX A/B values and saves a dump of analog levels in the normalized little-endian float format [-1.0; +1.0] (to be checked in Audacity).
+Runs all digital AUX A/B values and saves a dump of analog levels in the normalized little-endian float format \[-1.0; +1.0\] (to be checked in Audacity).
 
 ![aux_test](/BreakingNESWiki/imgstore/apu/waves/aux_test.png)
 
@@ -194,7 +194,7 @@ The generation of the FLOAD signal (to iterate the Duty counter) is artificially
 
 ## noise_output
 
-TBD.
+![noise_output](/BreakingNESWiki/imgstore/apu/waves/noise_output.png)
 
 ## test_counters
 
