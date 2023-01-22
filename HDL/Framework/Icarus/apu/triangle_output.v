@@ -1,6 +1,8 @@
 // Testing the output of a triangle wave generator.
 
-// From the main APU "honestly" simulated: ACLK and LFO, the length counter and the whole sound channel block. 
+// From the main APU "honestly" simulated: ACLK and LFO, the length counter and the whole sound channel block.
+
+//⚠️ The register write simulation (RegOps) takes place in a redundant mode, because no alignment cycles are required to write the registers of the audio generators.
 
 `timescale 1ns/1ns
 
@@ -26,6 +28,8 @@ module Triangle_Run ();
 	reg W4017;
 	reg n_R4015;
 	wire [7:0] DataBus;
+
+	wire [31:0] AuxOut;
 
 	// Tune CLK/ACLK timing according to 2A03
 	always #23.28 CLK = ~CLK;
@@ -65,6 +69,10 @@ module Triangle_Run ();
 		.nLFO1(nLFO1), .TRI_LC(TRI_LC), .NOTRI(NOTRI), .LOCK(1'b0),
 		.TRI_Out(TRI_Out) );
 
+	AUX aux (.AUX_A(8'b0000_0000), .AUX_B({11'b0000000_0000,TRI_Out}), .BOut(AuxOut) );
+
+	RegDriver reg_driver (.PHI1(PHI1), .W4008(W4008), .W400A(W400A), .W400B(W400B), .W4015(W4015), .DataBus(DataBus) );
+
 	initial begin
 
 		$dumpfile("triangle_output.vcd");
@@ -75,6 +83,7 @@ module Triangle_Run ();
 		$dumpvars(4, pla);
 		$dumpvars(5, length);
 		$dumpvars(6, triangle);
+		$dumpvars(7, AuxOut);
 
 		CLK <= 1'b0;
 		RES <= 1'b0;
@@ -82,16 +91,42 @@ module Triangle_Run ();
 		W4008 <= 1'b0;
 		W400A <= 1'b0;
 		W400B <= 1'b0;
-		W401A <= 1'b0;
+		W401A <= 1'b0; 		// Debug reg, unused
 		W4015 <= 1'b0;
 		W4017 <= 1'b0;
 		n_R4015 <= 1'b1;
 
+		// Reset
+
+		RES <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		RES <= 1'b0;
+
 		// Configure the registers of the entire system
+
+		W4015 <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		W4015 <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+
+		W4008 <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		W4008 <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+
+		W400A <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		W400A <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+
+		W400B <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		W400B <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
 
 		// Run the simulation in free flight to obtain sound
 
-		repeat (32768 * 1) @ (posedge CLK);
+		repeat (32768 * 128) @ (posedge CLK);
 		$finish;
 	end
 
@@ -108,3 +143,22 @@ module BogusCPU (PHI0, PHI1, PHI2);
 	assign PHI2 = PHI0;
 
 endmodule // BogusCPU
+
+// This module executes a "program" sequence of writes to various registers
+module RegDriver (PHI1, W4008, W400A, W400B, W4015, DataBus);
+
+	input PHI1;
+	input W4008;
+	input W400A;
+	input W400B;
+	input W4015;
+	inout [7:0] DataBus;
+
+	// W4015 <= 00000 1 00  (Triangle Length counter enable: 1)
+	// W4008 <= 0 0001111 (Triangle length counter #carry in: 0, Linear counter reload: 0xf)
+	// W400A <= 0110 1001  (Freq Lo=0x69)
+	// W400B <= 11111 010  (Length=11111, Freq Hi=2)
+
+	assign DataBus = ~PHI1 ? (W4008 ? 8'b00001111 : (W400A ? 8'b01101001 : (W400B ? 8'b11111010 : (W4015 ? 8'b00000100 : 8'hzz)))) : 8'hzz;
+
+endmodule // RegDriver

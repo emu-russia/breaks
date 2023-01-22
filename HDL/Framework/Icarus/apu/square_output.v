@@ -2,6 +2,8 @@
 
 // From the main APU "honestly" simulated: ACLK and LFO, the length counter and the whole sound channel block.
 
+//⚠️ The register write simulation (RegOps) takes place in a redundant mode, because no alignment cycles are required to write the registers of the audio generators.
+
 `timescale 1ns/1ns
 
 `define CoreCyclesPerCLK 6
@@ -67,7 +69,7 @@ module Square_Run ();
 		.AdderCarryMode(1'b0),			// Adder n_carry = INC
 		.SQ_Out(SQ_Out) );
 
-	AUX aux (.AUX_A({4'b000,SQ_Out}), .AUX_B(15'b0000000_0000_0000), .AOut(AuxOut) );
+	AUX aux (.AUX_A({4'b0000,SQ_Out}), .AUX_B(15'b0000000_0000_0000), .AOut(AuxOut) );
 
 	RegDriver reg_driver (.PHI1(PHI1), .W4000(W4000), .W4001(W4001), .W4002(W4002), .W4003(W4003), .W4015(W4015), .DataBus(DataBus) );
 
