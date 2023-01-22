@@ -36,7 +36,7 @@ In APU it is used only in square channels.
 
 Envelope is the constant fading of the signal amplitude (as applied to APU audio generators).
 
-Envelope is a special case of ADSR envelope, and specifically is a Decay component.
+Envelope is a special case of ADSR, and specifically is a Decay component.
 
 In APU it is used in square channels and noise generator.
 
