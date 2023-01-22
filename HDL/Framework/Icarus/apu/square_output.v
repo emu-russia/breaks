@@ -69,6 +69,8 @@ module Square_Run ();
 
 	AUX aux (.AUX_A({4'b000,SQ_Out}), .AUX_B(15'b0000000_0000_0000), .AOut(AuxOut) );
 
+	RegDriver reg_driver (.PHI1(PHI1), .W4000(W4000), .W4001(W4001), .W4002(W4002), .W4003(W4003), .W4015(W4015), .DataBus(DataBus) );
+
 	initial begin
 
 		$dumpfile("square_output.vcd");
@@ -92,11 +94,42 @@ module Square_Run ();
 		W4017 <= 1'b0;
 		n_R4015 <= 1'b1;
 
+		// Reset
+
+		RES <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		RES <= 1'b0;
+
 		// Configure the registers of the entire system
+
+		W4015 <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		W4015 <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+
+		W4000 <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		W4000 <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+
+		W4001 <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		W4001 <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+
+		W4002 <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		W4002 <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+
+		W4003 <= 1'b1;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
+		W4003 <= 1'b0;
+		repeat (`CoreCyclesPerCLK) @ (posedge CLK);
 
 		// Run the simulation in free flight to obtain sound
 
-		repeat (32768 * 1) @ (posedge CLK);
+		repeat (32768 * 128) @ (posedge CLK);
 		$finish;
 	end
 
@@ -113,3 +146,24 @@ module BogusCPU (PHI0, PHI1, PHI2);
 	assign PHI2 = PHI0;
 
 endmodule // BogusCPU
+
+// This module executes a "program" sequence of writes to various registers
+module RegDriver (PHI1, W4000, W4001, W4002, W4003, W4015, DataBus);
+
+	input PHI1;
+	input W4000;
+	input W4001;
+	input W4002;
+	input W4003;
+	input W4015;
+	inout [7:0] DataBus;
+
+	// W4015 <= 0000000 1  (SQA Length counter enable: 1)
+	// W4000 <= 10 0 0 0110 (D=2, Length Counter #carry in=0, ConstVol=0, Vol=6)
+	// W4001 <= 1 001 0 010 (Sweep=1, Period=1, Negative=0, Magnitude=2^2)
+	// W4002 <= 0110 1001  (Freq Lo=0x69)
+	// W4003 <= 11111 010  (Length=11111, Freq Hi=2)
+
+	assign DataBus = ~PHI1 ? (W4000 ? 8'b10000110 : (W4001 ? 8'b10010010 : (W4002 ? 8'b01101001 : (W4003 ? 8'b11111010 : (W4015 ? 8'b00000001 : 8'hzz))))) : 8'hzz;
+
+endmodule // RegDriver

@@ -19109,11 +19109,11 @@
       <a name="bit0" val="none"/>
       <a name="bit1" val="none"/>
       <a name="bit2" val="none"/>
-      <a name="bit3" val="0"/>
+      <a name="bit3" val="none"/>
       <a name="bit4" val="none"/>
       <a name="bit5" val="none"/>
       <a name="bit6" val="none"/>
-      <a name="bit7" val="none"/>
+      <a name="bit7" val="0"/>
       <a name="fanout" val="1"/>
       <a name="incoming" val="8"/>
     </comp>
