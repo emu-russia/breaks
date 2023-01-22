@@ -146,7 +146,14 @@ W400B <= 11111 010  (Length=11111, Freq Hi=2)
 
 ## Noise Output
 
-TBD.
+![noise_output](/BreakingNESWiki/imgstore/apu/waves/noise_output.png)
+
+```
+W4015 <= 0000 1 000  (Noise Length counter enable: 1)
+W400C <= xx 0 0 0110 (Noise Length counter #carry: 0, Constant: 0, Env: 6)
+W400E <= 1 xxx 0111 (Loop: 1, Period: 7)
+W400F <= 11111 xxx (Length: 11111)
+```
 
 ## OAM DMA
 
