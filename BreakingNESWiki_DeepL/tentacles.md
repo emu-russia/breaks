@@ -100,3 +100,6 @@ Correction history:
 |NOUT|/NOUT|
 |MUTE|RNDOUT|
 |LOAD|RLOAD (Square decay rate counter)|
+|SWCTRL|SW_OVF (Sweep Unit)|
+|SWEEP|SW_UVF (Sweep Unit)|
+|ADDOUT|DO_SWEEP (Sweep Unit)|
