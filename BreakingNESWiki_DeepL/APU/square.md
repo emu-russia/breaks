@@ -84,7 +84,7 @@ The circuit is identical to the Envelope circuit in the noise generator.
 
 |Signal/Group|From Where|Where To|Description|
 |---|---|---|---|
-|ADDOUT|Sweep|Freq Reg|The main signal that controls the Sweep process of the frequency value loaded in the Freq Reg|
+|ADDOUT|Sweep|Freq Reg|The main signal that controls the Sweep process of the frequency value loaded in the Freq Reg. The signal is set only during PHI1, so as not to conflict with the register writes by the CPU, which only occur during PHI2.|
 |SR\[2:0\], SRZ|Shift Reg|Sweep,Shifter|Determines the shift magnitude of the source frequency. If SR=0, the ADDOUT signal is never generated (obviously)|
 |DEC (and its complement INC)|Dir Reg|Sweep,Shifter,Adder|Defines the direction of frequency step (DEC=1: frequency decreases, DEC=0: frequency increases)|
 |#COUT|Adder|Sweep|Adder output carry (inverse polarity)|

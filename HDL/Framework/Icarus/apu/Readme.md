@@ -190,7 +190,7 @@ The generation of the FLOAD signal (to iterate the Duty counter) is artificially
 
 ## triangle_output
 
-TBD.
+![triangle_output](/BreakingNESWiki/imgstore/apu/waves/triangle_output.png)
 
 ## noise_output
 

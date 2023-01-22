@@ -135,7 +135,14 @@ W4003 <= 11111 010  (Length=11111, Freq Hi=2)
 
 ## Triangle Output
 
-TBD.
+![triangle_output](/BreakingNESWiki/imgstore/apu/waves/triangle_output.png)
+
+```
+W4015 <= 00000 1 00  (Triangle Length counter enable: 1)
+W4008 <= 0 0001111 (Triangle length counter #carry in: 0, Linear counter reload: 0xf)
+W400A <= 0110 1001  (Freq Lo=0x69)
+W400B <= 11111 010  (Length=11111, Freq Hi=2)
+```
 
 ## Noise Output
 
