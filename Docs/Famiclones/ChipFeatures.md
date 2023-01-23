@@ -22,10 +22,10 @@ At the beginning the CPU/PPU were separate chips. Then they began to move toward
 |UA6527	|UMC	|no	|CPU	|The 25% and 50% duty cycle on both squares are reversed. Rich frequency response, juicier bass and treble compared to the originals.|
 |UA6528	|UMC	|no	|PPU	|unknown|
 |UA6540	|UMC	|no	|CPU	|The 25% and 50% duty cycle on both squares are reversed. Rich frequency response, juicier bass and treble compared to the originals.|
-|UA6541	|UMC	|no	|PPU	|Red/Green emphase bits are mixed up as in the official 2C07. Output levels are brighter than the official PAL|
+|UA6541	|UMC	|no	|PPU	|Red/Green emphasis bits are mixed up as in the official 2C07. Output levels are brighter than the official PAL|
 |UA6527P	|UMC	|no	|CPU	|The 25% and 50% duty cycle on both squares are reversed. Rich frequency response, juicier bass and treble compared to the originals.|
-|UA6538	|UMC	|no	|PPU	|Red/Green emphase bits are mixed up as in the official 2C07. Output levels are brighter than the official PAL|
-|UM6561	Family. F - in DIP packages. H and T - in blobs|||||
+|UA6538	|UMC	|no	|PPU	|Red/Green emphasis bits are mixed up as in the official 2C07. Output levels are brighter than the official PAL|
+|UM6561	Family. F - in packages. H and T - in blobs|||||
 |UM6561F-1	|UMC	|no	|FullNOAC	|Duty Cycle OK. Triangle clicks. Emphasis bits are brighter than needed (no idea if they are mixed up), so they darken more when all three are on.|
 |UM6561AF-1	|UMC	|no	|FullNOAC	|Prince of Persia is wildly glitchy. The rest is like F and requires further study.|
 |UM6561BF-1	|UMC	|no	|FullNOAC	|unknown.  On the forums they say that there are problems with DPCM, but this information is not verified|
