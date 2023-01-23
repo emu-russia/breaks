@@ -6,10 +6,10 @@
 	nop
 ```
 
-|T|PHI1|PHI2|R/W Mode|
-|---|---|---|---|
-|T0+2|![EA_NOP_T02_PHI1](/BreakingNESWiki/imgstore/ops/EA_NOP_T02_PHI1.jpg)|![EA_NOP_T02_PHI2](/BreakingNESWiki/imgstore/ops/EA_NOP_T02_PHI2.jpg)|Read |
-|T1|![EA_NOP_T1_PHI1](/BreakingNESWiki/imgstore/ops/EA_NOP_T1_PHI1.jpg)|![EA_NOP_T1_PHI2](/BreakingNESWiki/imgstore/ops/EA_NOP_T1_PHI2.jpg)|Read |
+|T|PHI1|PHI2|R/W Mode|Notes|
+|---|---|---|---|---|
+|T0+T2|![EA_NOP_T02_PHI1](/BreakingNESWiki/imgstore/ops/EA_NOP_T02_PHI1.jpg)|![EA_NOP_T02_PHI2](/BreakingNESWiki/imgstore/ops/EA_NOP_T02_PHI2.jpg)|Read | |
+|T1|![EA_NOP_T1_PHI1](/BreakingNESWiki/imgstore/ops/EA_NOP_T1_PHI1.jpg)|![EA_NOP_T1_PHI2](/BreakingNESWiki/imgstore/ops/EA_NOP_T1_PHI2.jpg)|Read | |
 
 ## NOP (0xEA), T02 (PHI1)
 

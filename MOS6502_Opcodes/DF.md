@@ -4,17 +4,15 @@
 - Size: 3
 - Sequence (7 total): T2, T3, T4, T5+T6, T7, T0, T1
 
-## Quick Outline
-
-|T|PHI1 (Set Address)|PHI2 (Read/Write Data)|Notes|
-|---|---|---|---|
-|T2|![DF_UB_T2_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T2_PHI1.jpg)|![DF_UB_T2_PHI2](/BreakingNESWiki/imgstore/ops/DF_UB_T2_PHI2.jpg)|Addr = PC++; DL = MemRead()|
-|T3|![DF_UB_T3_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T3_PHI1.jpg)|![DF_UB_T3_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T3_PHI2.jpg)|Addr = PC++; ADD = X + DL; DL = MemRead()|
-|T4|![DF_UB_T4_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T4_PHI1.jpg)|![DF_UB_T4_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T4_PHI2.jpg)|Addr = (DL << 8) \| ADD; ADD = DL + 1; DL = MemRead()|
-|T5+T6|![DF_UB_T5_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T5_PHI1.jpg)|![DF_UB_T5_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T5_PHI2.jpg)|ADD = ADD + 0xFF; DL = MemRead()|
-|T7|![DF_UB_T7_RMW_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T7_RMW_PHI1.jpg)|![DF_UB_T7_RMW_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T7_RMW_PHI2.jpg)|DOR = DL; ADD = DL + 0xFF; MemWrite()|
-|T0|![DF_UB_T0_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T0_PHI1.jpg)|![DF_UB_T0_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T0_PHI2.jpg)|DOR = ADD; MemWrite()|
-|T1|![DF_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T1_PHI1.jpg)|![DF_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T1_PHI2.jpg)|Addr = PC++; ADD = AC + ~DL + 1; DL = MemRead()|
+|T|PHI1 (Set Address)|PHI2 (Read/Write Data)|R/W Mode|Notes|
+|---|---|---|---|---|
+|T2|![DF_UB_T2_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T2_PHI1.jpg)|![DF_UB_T2_PHI2](/BreakingNESWiki/imgstore/ops/DF_UB_T2_PHI2.jpg)|Read |Addr = PC++|
+|T3|![DF_UB_T3_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T3_PHI1.jpg)|![DF_UB_T3_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T3_PHI2.jpg)|Read |Addr = PC++; ADD = X + DL|
+|T4|![DF_UB_T4_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T4_PHI1.jpg)|![DF_UB_T4_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T4_PHI2.jpg)|Read |Addr = (DL << 8) \| ADD; ADD = DL + 1|
+|T5+T6|![DF_UB_T5_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T5_PHI1.jpg)|![DF_UB_T5_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T5_PHI2.jpg)|Read |ADD = ADD + 0xFF|
+|T7|![DF_UB_T7_RMW_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T7_RMW_PHI1.jpg)|![DF_UB_T7_RMW_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T7_RMW_PHI2.jpg)|Write|DOR = DL; ADD = DL + 0xFF|
+|T0|![DF_UB_T0_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T0_PHI1.jpg)|![DF_UB_T0_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T0_PHI2.jpg)|Write|DOR = ADD|
+|T1|![DF_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T1_PHI1.jpg)|![DF_UB_T1_PHI1](/BreakingNESWiki/imgstore/ops/DF_UB_T1_PHI2.jpg)|Read |Addr = PC++; ADD = AC + ~DL + 1|
 
 ## UB (0xDF), T2 (PHI1)
 
