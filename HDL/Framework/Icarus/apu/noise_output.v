@@ -124,7 +124,7 @@ module Noise_Run ();
 
 		// Run the simulation in free flight to obtain sound
 
-		repeat (32768 * 16) @ (posedge CLK);
+		repeat (32768 * 64) @ (posedge CLK);
 		$finish;
 	end
 
@@ -154,9 +154,9 @@ module RegDriver (PHI1, W400C, W400E, W400F, W4015, DataBus);
 
 	// W4015 <= 0000 1 000  (Noise Length counter enable: 1)
 	// W400C <= xx 0 0 0110 (Noise Length counter #carry: 0, Constant: 0, Env: 6)
-	// W400E <= 1 xxx 0111 (Loop: 1, Period: 7)
+	// W400E <= 0 xxx 0111 (Loop: 0, Period: 7)
 	// W400F <= 11111 xxx (Length: 11111)
 
-	assign DataBus = ~PHI1 ? (W400C ? 8'b00000110 : (W400E ? 8'b10000111 : (W400F ? 8'b11111000 : (W4015 ? 8'b00001000 : 8'hzz)))) : 8'hzz;
+	assign DataBus = ~PHI1 ? (W400C ? 8'b00000110 : (W400E ? 8'b00000111 : (W400F ? 8'b11111000 : (W4015 ? 8'b00001000 : 8'hzz)))) : 8'hzz;
 
 endmodule // RegDriver
