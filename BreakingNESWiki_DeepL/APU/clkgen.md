@@ -7,6 +7,29 @@ The timing generator contains the following components:
 - Software timer (also known as `Frame Counter`)
 - Also implements Daisy-chain interrupt forwarding from DPCM and mixing in its own timer interrupt if needed
 
+## Clock Distribution
+
+The following are the distinctive features of the APU clocks distribution.
+
+![2A03_ACLK_Distrib_sm](/BreakingNESWiki/imgstore/apu/2A03_ACLK_Distrib_sm.png)
+
+|Feature|Description|
+|---|---|
+|1|/CLK signal from the CLK pad for the divider|
+|2|Divider, to obtain the PHI0 clock signal for the core|
+|3|PHI0 clock signal (CLK ÷ 12)|
+|4|PHI1 clock signal ("left" half of the CPU cycle: "Set Read/Write mode and address")|
+|5|PHI2 clock signal ("right" half of the CPU cycle: "Read/Write data")|
+|6|PHI2 signal for modulation of M2 signal duty cycle|
+|7|M2 signal for external devices|
+|8|PHI1 signal for register operations (register operations are inactive during PHI1)|
+|9|Output of ACLK and /ACLK signals from the ACLK generator (PHI ÷ 2)|
+|10|Output of low frequency oscillation signals /LFO1 and /LFO2 for audio generators|
+|11|PHI1 signal is additionally used by the triangle channel to smooth out the "steps" of the signal|
+|12|"Others /ACLKs"|
+
+Full size image: https://github.com/emu-russia/breaks/blob/master/Docs/APU/2A03_ACLK_Distrib.png
+
 ## ACLK Generator
 
 The ACLK generator is used to generate an internal ACLK clock signal (APU CLK), based on the 6502 CPU clock frequency.
