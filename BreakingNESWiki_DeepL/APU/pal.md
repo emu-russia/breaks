@@ -1,6 +1,10 @@
 # RP 2A07
 
+![RP2A07A_package](/BreakingNESWiki/imgstore/apu/pal/RP2A07A_package.jpg)
+
 ## SoftCLK PLA
+
+![softclk_decoder_2a07](/BreakingNESWiki/imgstore/apu/pal/softclk_decoder_2a07.jpg)
 
 ```
 000010
@@ -36,3 +40,88 @@
 ```
 
 The placement is topological. 1 means there is a transistor, 0 means there is no transistor.
+
+## DPCM Decoder
+
+![dpcm_decoder_2a07](/BreakingNESWiki/imgstore/apu/pal/dpcm_decoder_2a07.jpg)
+
+The first stage of the decoder (4-to-16 demultiplexer):
+
+```
+10101010
+01101010
+10011010
+01011010
+10100110
+01100110
+10010110
+01010110
+
+10101001
+01101001
+10011001
+01011001
+10100101
+01100101
+10010101
+01010101
+```
+
+The second stage of the decoder:
+
+```
+010101000
+011100100
+011100011
+111010101
+000110010
+000110000
+001011100
+110110101
+
+011001101
+110100011
+110000100
+000011110
+010111100
+100100110
+110011000
+000101000
+```
+
+The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
+
+## Noise Channel Decoder
+
+![noise_decoder_2a07](/BreakingNESWiki/imgstore/apu/pal/noise_decoder_2a07.jpg)
+
+The first stage of the decoder (4-to-16 demultiplexer):
+
+```
+00000000 11111111
+11111111 00000000
+00001111 00001111
+11110000 11110000
+00110011 00110011
+11001100 11001100
+01010101 01010101
+10101010 10101010
+```
+
+The second stage of the decoder:
+
+```
+10010100 00000111
+01100011 00001111
+11001001 01010111
+10001011 00011111
+00100111 00100011
+10001010 11111111
+10101100 11010011
+01100001 11100101
+01011101 11000011
+00111010 10001100
+10101010 00010011
+```
+
+The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
