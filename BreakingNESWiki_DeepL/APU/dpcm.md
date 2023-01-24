@@ -162,6 +162,52 @@ PLA1 is a regular 4-in-16 demultiplexer and PLA2 generates the input value to lo
 |---|---|
 |![DPCM_PLA1](/BreakingNESWiki/imgstore/apu/DPCM_PLA1.jpg)|![DPCM_PLA2](/BreakingNESWiki/imgstore/apu/DPCM_PLA2.jpg)|
 
+The first stage of the decoder (4-to-16 demultiplexer):
+
+```
+10101010
+01101010
+10011010
+01011010
+10100110
+01100110
+10010110
+01010110
+
+10101001
+01101001
+10011001
+01011001
+10100101
+01100101
+10010101
+01010101
+```
+
+The second stage of the decoder:
+
+```
+100101010
+100011100
+011011100
+010011101
+011000001
+011100001
+110001001
+011011111
+
+011101000
+010000011
+000000111
+100010000
+001001001
+001111010
+101011101
+001100010
+```
+
+The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
+
 ## DPCM Frequency Counter LFSR
 
 |![dpcm_freq_counter_lfsr_tran](/BreakingNESWiki/imgstore/apu/dpcm_freq_counter_lfsr_tran.jpg)|![DPCM_FreqLFSR](/BreakingNESWiki/imgstore/apu/DPCM_FreqLFSR.jpg)|
