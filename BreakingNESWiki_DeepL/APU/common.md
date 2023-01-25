@@ -21,9 +21,30 @@ Used in:
 - Noise Random LFSR
 - DPCM Regs ($4010, $4012, $4013)
 - DPCM Sample Buffer
-- SPR DMA Address (high bits)
+- OAM DMA Address (high bits)
 
-## Up Counter
+## Counters
+
+|Counter name|Counter direction|Bit depth|Counter reset|Output carry|Output value|
+|---|---|---|---|---|---|
+|Square Sweep|Down|3|yes|yes|no|
+|Square Freq|Down|11|yes|yes|no|
+|Square Duty|Down|3|yes or W4003(7)|no|yes|
+|Square Decay|Down|4|yes|yes|no|
+|Square Envelope|Down|4|yes|yes|yes|
+|Triangle Freq|Down|11|yes|yes|no|
+|Triangle Linear|Down|7|yes|yes|no|
+|Triangle Output|Up|5|yes|no|yes|
+|Noise Decay|Down|4|yes|yes|no|
+|Noise Envelope|Down|4|yes|yes|yes|
+|DPCM Address|Up|15|yes|no|yes|
+|DPCM Sample bit|Up|3|yes|yes|no|
+|DPCM Sample length|Down|12|yes|yes|no|
+|DPCM Output|Reversible|6|yes|yes|yes|
+|OAM DMA (low bits)|Up|8|yes or W4014|yes|yes|
+|Length|Down|8|yes|yes|no|
+
+### Up Counter
 
 The bit of the `up` counter:
 
@@ -31,13 +52,7 @@ The bit of the `up` counter:
 
 ![CounterBit](/BreakingNESWiki/imgstore/apu/CounterBit.jpg)
 
-Used in:
-- Triangle Output
-- DPCM Sample Bit Counter
-- DPCM Address Counter
-- SPR DMA Address (low bits)
-
-## Down Counter
+### Down Counter
 
 The bit of the `down` counter:
 
@@ -45,25 +60,10 @@ The bit of the `down` counter:
 
 ![DownCounterBit](/BreakingNESWiki/imgstore/apu/DownCounterBit.jpg)
 
-Used in:
-- Length Counters
-- Square 0/1 Freq Counter
-- Square 0/1 Envelope
-- Square 0/1 Sweep
-- Square 0/1 Duty
-- Triangle Linear Counter
-- Triangle Freq Counter
-- Noise Envelope
-- Noise Output
-- DPCM Sample Counter
-
-## Reversible (Up/Down) Counter
+### Reversible (Up/Down) Counter
 
 The bit of the `reversible` counter:
 
 ![RevCounterBit_tran](/BreakingNESWiki/imgstore/apu/RevCounterBit_tran.jpg)
 
 ![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
-
-Used in:
-- DPCM Output
