@@ -1,5 +1,5 @@
 
-module HVDecoder(
+module HVDecoder (
 	H_in, V_in, VB, BLNK,
 	HPLA_out, VPLA_out);
 

@@ -59,10 +59,10 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire n_TG;					// 0: "Tint Green". Modifying value for Emphasis
 	wire n_TB;					// 0: "Tint Blue". Modifying value for Emphasis
 
-	wire [8:0] HCnt;
-	wire [8:0] VCnt;			// The V counter bits.
-	wire [23:0] HDecoder_out;
-	wire [8:0] VDecoder_out;
+	wire [8:0] HCnt; 			// H counter bits.
+	wire [8:0] VCnt;			// V counter bits.
+	wire [23:0] HDecoder_out; 	// H decoder outputs
+	wire [8:0] VDecoder_out; 	// V decoder outputs
 
 	wire H0_D;					// H0 signal delayed by one DLatch
 	wire nH1_D;					// H1 signal delayed by one DLatch (in inverse logic)
@@ -254,10 +254,10 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	PPU_FSM fsm(
 		.n_PCLK(n_PCLK),
 		.PCLK(PCLK),
-		.H_in(HCnt),
-		.V_in(VCnt),
-		.HPLA_in(HDecoder_out),
-		.VPLA_in(VDecoder_out),
+		.H_out(HCnt),
+		.V_out(VCnt),
+		.HPLA_out(HDecoder_out),
+		.VPLA_out(VDecoder_out),
 		.RES(RES_frompad),
 		.VBL_EN(VBL_Ena),
 		.n_R2(n_R2),

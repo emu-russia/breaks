@@ -1,5 +1,5 @@
 
-module HVCounters(
+module HVCounters (
 	n_PCLK, PCLK,
 	RES, HC, VC, V_IN,
 	H_out, V_out);

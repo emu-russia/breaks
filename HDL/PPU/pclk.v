@@ -1,6 +1,6 @@
 // Pixel clock (abbreviated as PCLK) is used by all PPU parts (except the video phase generator).
 
-module PixelClock(
+module PixelClock (
 	n_CLK, CLK, RES,
 	n_PCLK, PCLK);
 
