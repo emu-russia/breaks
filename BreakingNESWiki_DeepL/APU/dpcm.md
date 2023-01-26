@@ -40,8 +40,8 @@ DMC internal state control signals:
 
 |Signal|From where|Where to|Description|
 |---|---|---|---|
-|DSLOAD|DPCM Control|Sample Counter, DPCM Address|Load value into Sample Counter|
-|DSSTEP|DPCM Control|Sample Counter, DPCM Address|Perform Sample Counter decrement|
+|DSLOAD|DPCM Control|Sample Counter, DPCM Address Counter|Load value into Sample Counter and simultaneously into DPCM Address Counter|
+|DSSTEP|DPCM Control|Sample Counter, DPCM Address Counter|Perform Sample Counter decrement and DPCM Address Counter increment simultaneously|
 |BLOAD|DPCM Control|Sample Buffer|Load value into Sample Buffer|
 |BSTEP|DPCM Control|Sample Buffer|Perform a Sample Buffer bit shift|
 |NSTEP|DPCM Control|Sample Bit Counter|Perform Sample Bit Counter increment|
