@@ -146,6 +146,8 @@ The synchronization between PPUs is done simply by the sequence of EXT pins outp
 
 ![ext_pads](/BreakingNESWiki/imgstore/ppu/ext_pads.png)
 
+![pads_ext](/BreakingNESWiki/imgstore/ppu/pads_ext.jpg)
+
 ## Control signals
 
 ### CLK
