@@ -3,6 +3,8 @@
 // From the base PPU sources only a minimalistic set is used: PCLK, H/V counters with decoders and the FSM itself.
 // We call this setup: "PPU Zero"
 
+`timescale 1ns/1ns
+
 module FSM_Run ();
 
 	reg CLK;
@@ -22,7 +24,8 @@ module FSM_Run ();
 	wire VB;
 	wire BLNK;
 
-	always #25 CLK = ~CLK;
+	// Tune CLK/PCLK timing according to 2C02
+	always #23.28 CLK = ~CLK;
 
 	PixelClock pclk (
 		.n_CLK(~CLK), .CLK(CLK), .RES(RES),
@@ -57,7 +60,9 @@ module FSM_Run ();
 		CLK <= 1'b0;
 		RES <= 1'b0;
 
-		repeat (32768) @ (posedge CLK);
+		// Run the number of cycles sufficient to capture the full field.
+
+		repeat (2048 * 262) @ (posedge CLK);
 		$finish;
 	end
 

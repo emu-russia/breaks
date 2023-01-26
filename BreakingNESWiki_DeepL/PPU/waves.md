@@ -14,6 +14,16 @@ The sources of all the tests that were used to make the diagrams are in the fold
 
 ## FSM State Signals
 
+The states within the scanline:
+
+![fsm_scan](/BreakingNESWiki/imgstore/ppu/waves/fsm_scan.png)
+
+States inside VBlank:
+
+![fsm_vblank](/BreakingNESWiki/imgstore/ppu/waves/fsm_vblank.png)
+
+Note that the figure with the scalines is scaled up (as seen by the change in the pixel counter H), compared to the scale in the VBlank figure (as seen by the change in the line counter V).
+
 ## OAM Evaluate
 
 ## OAM Comparator
