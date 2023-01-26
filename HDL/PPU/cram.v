@@ -1,5 +1,5 @@
 
-module CRAM_Block(
+module CRAM_Block (
 	n_PCLK, PCLK,
 	n_R7, n_DBE, TH_MUX, DB_PAR, n_PICTURE, BnW,
 	PAL,

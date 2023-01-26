@@ -1,6 +1,6 @@
 // Check if the FSM is working properly.
 
-// From the basic PPU sources only a minimalistic set is used: PCLK, H/V counters with decoders and the FSM itself.
+// From the base PPU sources only a minimalistic set is used: PCLK, H/V counters with decoders and the FSM itself.
 // We call this setup: "PPU Zero"
 
 module FSM_Run ();

@@ -33,4 +33,4 @@ Located to the right of [OAM FIFO](fifo.md). Read Buffer is associated with regi
 
 |Transistor circuit|Logic circuit|
 |---|---|
-|![ppu_readbuffer](/BreakingNESWiki/imgstore/ppu/ppu_readbuffer.jpg)|![ppu_logisim_rb](/BreakingNESWiki/imgstore/ppu/ppu_logisim_rb.jpg)|
+|![readbuffer_tran](/BreakingNESWiki/imgstore/ppu/readbuffer_tran.jpg)|![readbuffer_logisim](/BreakingNESWiki/imgstore/ppu/readbuffer_logisim.jpg)|

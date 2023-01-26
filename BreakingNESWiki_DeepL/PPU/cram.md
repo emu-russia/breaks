@@ -8,6 +8,8 @@ The logic for working with the palette includes the following circuits:
 - Palette memory (Color RAM)
 - Decoder of the palette index, coming from the output of the multiplexer
 
+![CRAM_All](/BreakingNESWiki/imgstore/ppu/CRAM_All.jpg)
+
 Signals:
 
 |Signal|From|Purpose|
