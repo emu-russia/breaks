@@ -46,6 +46,8 @@ Another topological feature of the H/V decoder is the lower left corner, the out
 |22|308|01101001011001101000| | |BURST FF|
 |23|340|01100110011001101000| | |HCounter clear / VCounter step|
 
+![H_Decoder](/BreakingNESWiki/imgstore/ppu/H_Decoder.jpg)
+
 ## V Decoder
 
 ![ntsc_v](/BreakingNESWiki/imgstore/ppu/ntsc_v.png)
@@ -61,3 +63,5 @@ Another topological feature of the H/V decoder is the lower left corner, the out
 |6|240|000101010110101010|VB FF, BLNK FF|
 |7|261|011010101010011001|BLNK FF|
 |8|261|011010101010011001|VCLR|
+
+![V_Decoder](/BreakingNESWiki/imgstore/ppu/V_Decoder.jpg)
