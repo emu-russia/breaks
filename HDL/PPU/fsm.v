@@ -174,6 +174,28 @@ module DelayedH (PCLK, n_PCLK, H_out, H0_DD, H0_D, H1_DD, nH1_D, H2_DD, nH2_D, H
 	output H4_DD;
 	output H5_DD;
 
+	// Wires
+
+	wire h0_latch1_nq;
+	wire h3_latch1_nq;
+	wire h4_latch1_nq;
+	wire h5_latch1_nq;
+
+	// Instances
+
+	dlatch h0_latch1 (.d(H_out[0]), .en(n_PCLK), .nq(h0_latch1_nq));
+	dlatch h0_latch2 (.d(h0_latch1_nq), .en(PCLK), .nq(H0_DD));
+	dlatch h1_latch1 (.d(H_out[1]), .en(n_PCLK), .nq(nH1_D));
+	dlatch h1_latch2 (.d(nH1_D), .en(PCLK), .nq(H1_DD));
+	dlatch h2_latch1 (.d(H_out[2]), .en(n_PCLK), .nq(nH2_D));
+	dlatch h2_latch2 (.d(nH2_D), .en(PCLK), .nq(H2_DD));
+	dlatch h3_latch1 (.d(H_out[3]), .en(n_PCLK), .nq(h3_latch1_nq));
+	dlatch h3_latch2 (.d(h3_latch1_nq), .en(PCLK), .nq(H3_DD));
+	dlatch h4_latch1 (.d(H_out[4]), .en(n_PCLK), .nq(h4_latch1_nq));
+	dlatch h4_latch2 (.d(h4_latch1_nq), .en(PCLK), .nq(H4_DD));
+	dlatch h5_latch1 (.d(H_out[5]), .en(n_PCLK), .nq(h5_latch1_nq));
+	dlatch h5_latch2 (.d(h5_latch1_nq), .en(PCLK), .nq(H5_DD));
+
 endmodule // DelayedH
 
 // EVEN/ODD circuitry
@@ -184,6 +206,10 @@ module EvenOdd (V8, RES, nHPLA_5, RESCL, EvenOddOut);
 	input nHPLA_5;
 	input RESCL;
 	output EvenOddOut;
+
+	// TBD.
+
+	assign EvenOddOut = 1'b0;
 
 endmodule // EvenOdd
 
@@ -198,7 +224,22 @@ module VBlankInt (PCLK, n_PCLK, nVSET, VCLR, VBL_EN, n_R2, n_DBE, INT, DB7Out);
 	input n_R2;
 	input n_DBE;
 	output INT;
-	output DB7Out;
+	inout DB7Out;
+
+	wire R2_EN;
+	wire vset_latch1_q;
+	wire vset_latch2_q;
+	wire db_latch_nq;
+	wire int_ff_q;
+
+	dlatch vset_latch1 (.d(nVSET), .en(PCLK), .q(vset_latch1_q));
+	dlatch vset_latch2 (.d(vset_latch1_q), .en(n_PCLK), .q(vset_latch2));
+	dlatch db_latch (.d(~int_ff_q), .en(~R2_EN), .nq(db_latch_nq));
+	rsff_2_3 int_ff (.res1(VCLR), .res2(R2_EN), .s(~(n_PCLK | nVSET | vset_latch2_q)), .q(int_ff_q));
+
+	nor (R2_EN, n_R2, n_DBE);
+	nor (INT, ~VBL_EN, ~int_ff_q);
+	assign DB7Out = R2_EN ? db_latch_nq : 1'bz;
 
 endmodule // VBlankInt
 
@@ -212,6 +253,14 @@ module HVCounterControl (n_PCLK, HPLA_23, EvenOddOut, VPLA_2, V_IN, HC, VC);
 	output V_IN;
 	output HC;
 	output VC;
+
+	wire ctrl_latch2_nq;
+
+	dlatch ctrl_latch1 (.d(~(HPLA_23 | EvenOddOut)), .en(n_PCLK), .nq(HC));
+	dlatch ctrl_latch2 (.d(VPLA_2), .en(n_PCLK), .nq(ctrl_latch2_nq));
+
+	assign V_IN = HPLA_23;
+	nor (VC, ~HC, ctrl_latch2_nq);
 
 endmodule // HVCounterControl
 
@@ -247,6 +296,128 @@ module HPosLogic (PCLK, n_PCLK, HPLA_out, n_OBCLIP, n_BGCLIP, VSYNC, BLACK,
 	output BURST;
 	output SYNC;
 
+	// Wires
+
+	wire fp_latch1_q;
+	wire fp_latch2_q;
+	wire sev_latch1_nq;
+	wire sev_latch2_nq;
+	wire clpo_latch1_q;
+	wire clpo_latch2_q;
+	wire clpb_latch1_nq;
+	wire clpb_latch2_q;
+	wire hpos_latch1_q;
+	wire hpos_latch1_nq;
+	wire hpos_latch2_nq;
+	wire eval_latch1_q;
+	wire eval_latch2_nq;
+	wire eev_latch1_q;
+	wire eev_latch1_nq;
+	wire eev_latch2_nq;
+	wire ioam_latch1_nq;
+	wire ioam_latch2_nq;
+	wire paro_latch1_nq;
+	wire paro_latch2_nq;
+	wire nvis_latch1_nq;
+	wire nvis_latch2_nq;
+	wire fnt_latch1_nq;
+	wire fnt_latch2_nq;
+	wire ftb_latch1_nq;
+	wire ftb_latch2_q;
+	wire fta_latch1_nq;
+	wire fta_latch2_q;
+	wire fo_latch1_q;
+	wire fo_latch2_q;
+	wire fo_latch3_q;
+	wire fo_latch3_nq;
+	wire fat_latch1_nq;
+	wire bp_latch1_q;
+	wire bp_latch2_q;
+	wire hb_latch1_q;
+	wire hb_latch2_q;
+	wire cb_latch1_q;
+	wire cb_latch2_q;
+	wire sync_latch1_q;
+	wire sync_latch2_q;
+	wire fporch_ff_nq;
+	wire bporch_ff_q;
+	wire hblank_ff_q;
+	wire hblank_ff_nq;
+	wire burst_ff_nq;
+
+	wire clp;
+	wire fo3;
+
+	// Instances
+
+	dlatch fp_latch1 (.d(HPLA_out[0]), .en(n_PCLK), .q(fp_latch1_q));
+	dlatch fp_latch2 (.d(HPLA_out[1]), .en(n_PCLK), .q(fp_latch2_q));
+	dlatch sev_latch1 (.d(HPLA_out[2]), .en(n_PCLK), .nq(sev_latch1_nq));
+	dlatch sev_latch2 (.d(sev_latch1_nq), .en(PCLK), .nq(sev_latch2_nq));
+	dlatch clpo_latch1 (.d(HPLA_out[3]), .en(n_PCLK), .q(clpo_latch1_q));
+	dlatch clpo_latch2 (.d(clp), .en(PCLK), .q(clpo_latch2_q));
+	dlatch clpb_latch1 (.d(HPLA_out[4]), .en(n_PCLK), .nq(clpb_latch1_nq));
+	dlatch clpb_latch2 (.d(clp), .en(PCLK), .q(clpb_latch2_q));
+	dlatch hpos_latch1 (.d(HPLA_out[5]), .en(n_PCLK), .q(hpos_latch1_q), .nq(hpos_latch1_nq));
+	dlatch hpos_latch2 (.d(hpos_latch1_nq), .en(PCLK), .nq(hpos_latch2_nq));
+	dlatch eval_latch1 (.d(HPLA_out[6]), .en(n_PCLK), .q(eval_latch1_q));
+	dlatch eval_latch2 (.d(~(hpos_latch1_q | eval_latch1_q | eev_latch1_q)), .en(PCLK), .nq(eval_latch2_nq));
+	dlatch eev_latch1 (.d(HPLA_out[7]), .en(n_PCLK), .q(eev_latch1_q), .nq(eev_latch1_nq));
+	dlatch eev_latch2 (.d(eev_latch1_nq), .en(PCLK), .nq(eev_latch2_nq));
+	dlatch ioam_latch1 (.d(HPLA_out[8]), .en(n_PCLK), .nq(ioam_latch1_nq));
+	dlatch ioam_latch2 (.d(ioam_latch1_nq), .en(PCLK), .nq(ioam_latch2_nq));
+	dlatch paro_latch1 (.d(HPLA_out[9]), .en(n_PCLK), .nq(paro_latch1_nq));
+	dlatch paro_latch2 (.d(paro_latch1_nq), .en(PCLK), .nq(paro_latch2_nq));
+	dlatch nvis_latch1 (.d(HPLA_out[10]), .en(n_PCLK), .nq(nvis_latch1_nq));
+	dlatch nvis_latch2 (.d(nvis_latch1_nq), .en(PCLK), .nq(nvis_latch2_nq));
+	dlatch fnt_latch1 (.d(HPLA_out[11]), .en(n_PCLK), .nq(fnt_latch1_nq));
+	dlatch fnt_latch2 (.d(fnt_latch1_nq), .en(PCLK), .nq(fnt_latch2_nq));
+	dlatch ftb_latch1 (.d(HPLA_out[12]), .en(n_PCLK), .nq(ftb_latch1_nq));
+	dlatch ftb_latch2 (.d(ftb_latch1_nq), .en(PCLK), .q(ftb_latch2_q));
+	dlatch fta_latch1 (.d(HPLA_out[13]), .en(n_PCLK), .nq(fta_latch1_nq));
+	dlatch fta_latch2 (.d(fta_latch1_nq), .en(PCLK), .q(fta_latch2_q));
+	dlatch fo_latch1 (.d(HPLA_out[14]), .en(n_PCLK), .q(fo_latch1_q));
+	dlatch fo_latch2 (.d(HPLA_out[15]), .en(n_PCLK), .q(fo_latch2_q));
+	dlatch fo_latch3 (.d(fo3), .en(PCLK), .q(fo_latch3_q), .nq(fo_latch3_nq));
+	dlatch fat_latch1 (.d(HPLA_out[16]), .en(n_PCLK), .nq(fat_latch1_nq));
+	
+	dlatch bp_latch1 (.d(HPLA_out[17]), .en(n_PCLK), .q(bp_latch1_q));
+	dlatch bp_latch2 (.d(HPLA_out[18]), .en(n_PCLK), .q(bp_latch2_q));
+	dlatch hb_latch1 (.d(HPLA_out[19]), .en(n_PCLK), .q(hb_latch1_q));
+	dlatch hb_latch2 (.d(HPLA_out[20]), .en(n_PCLK), .q(hb_latch2_q));
+	dlatch cb_latch1 (.d(HPLA_out[21]), .en(n_PCLK), .q(cb_latch1_q));
+	dlatch cb_latch2 (.d(HPLA_out[22]), .en(n_PCLK), .q(cb_latch2_q));
+	dlatch sync_latch1 (.d(burst_ff_nq), .en(PCLK), .q(sync_latch1_q));
+	dlatch sync_latch2 (.d(~fporch_ff_nq), .en(PCLK), .q(sync_latch2_q));
+
+	rsff fporch_ff (.r(fp_latch1_q), .s(fp_latch2_q), .nq(fporch_ff_nq));
+	rsff bporch_ff (.r(bp_latch2_q), .s(bp_latch1_q), .q(bporch_ff_q));
+	rsff hblank_ff (.r(hb_latch2_q), .s(hb_latch1_q), .q(hblank_ff_q), .nq(hblank_ff_nq));
+	rsff burst_ff (.r(cb_latch1_q), .s(cb_latch2_q), .nq(burst_ff_nq));
+
+	nor (clp, clpo_latch1_q, clpb_latch1_nq);
+	nor (fo3, fo_latch1_q, fo_latch2_q);
+
+	assign S_EV = sev_latch2_nq;
+	assign CLIP_O = ~(n_OBCLIP | clpo_latch2_q);
+	assign CLIP_B = ~(n_BGCLIP | clpb_latch2_q);
+	assign Z_HPOS = hpos_latch2_nq;
+	assign n_EVAL = ~eval_latch2_nq;
+	assign E_EV = eev_latch2_nq;
+	assign I_OAM2 = ioam_latch2_nq;
+	assign PAR_O = paro_latch2_nq;
+	assign n_VIS = ~nvis_latch2_nq;
+	assign n_FNT = ~fnt_latch2_nq;
+	assign F_TB = ~(ftb_latch2_q | fo_latch3_q);
+	assign F_TA = ~(fta_latch2_q | fo_latch3_q);
+	assign n_FO = fo_latch3_nq;
+	assign F_AT = ~(fo3 | fat_latch1_nq);
+	assign BPORCH = bporch_ff_q;
+	assign SC_CNT = ~(hblank_ff_nq | BLACK);
+	assign n_HB = hblank_ff_q;
+	assign BURST = ~(sync_latch1_q | SYNC);
+	assign SYNC = ~(sync_latch2_q | VSYNC);
+
 endmodule // HPosLogic
 
 // Vertical logic associated with the V decoder
@@ -266,5 +437,46 @@ module VPosLogic (PCLK, n_PCLK, n_HB, BPORCH, BLACK, VPLA_out,
 	output nVSET;
 	output VB;
 	output BLNK;
+
+	// Wires
+
+	wire vsync_latch1_q;
+	wire pic_latch1_q;
+	wire pic_latch2_q;
+	wire vset_latch1_nq;
+	wire vb_latch1_q;
+	wire vb_latch2_q;
+	wire blnk_latch1_q;
+	wire vclr_latch1_nq;
+	wire vclr_latch2_nq;
+
+	wire vsync_ff_q;
+	wire picture_ff_q;
+	wire vb_ff_nq;
+	wire blnk_ff_q;
+
+	// Instances
+
+	dlatch vsync_latch1 (.d(~(n_HB | vsync_ff_q)), .en(PCLK), .q(vsync_latch1_q));
+	dlatch pic_latch1 (.d(picture_ff_q), .en(PCLK), .q(pic_latch1_q));
+	dlatch pic_latch2 (.d(BPORCH), .en(PCLK), .q(pic_latch2_q));
+	dlatch vset_latch1 (.d(VPLA_out[4]), .en(n_PCLK), .nq(vset_latch1_nq));
+	dlatch vb_latch1 (.d(VPLA_out[5]), .en(n_PCLK), .q(vb_latch1_q));
+	dlatch vb_latch2 (.d(VPLA_out[6]), .en(n_PCLK), .q(vb_latch2_q));
+	dlatch blnk_latch1 (.d(VPLA_out[7]), .en(n_PCLK), .q(blnk_latch1_q));
+	dlatch vclr_latch1 (.d(VPLA_out[8]), .en(n_PCLK), .nq(vclr_latch1_nq));
+	dlatch vclr_latch2 (.d(vclr_latch1_nq), .en(PCLK), .nq(vclr_latch2_nq));
+
+	rsff vsync_ff (.r(n_HB & VPLA_out[0]), .s(n_HB & VPLA_out[1]), .q(vsync_ff_q));
+	rsff picture_ff (.r(BPORCH & VPLA_out[2]), .s(BPORCH & VPLA_out[3]), .q(picture_ff_q));
+	rsff vb_ff (.r(vb_latch1_q), .s(vb_latch2_q), .nq(vb_ff_nq));
+	rsff blnk_ff (.r(blnk_latch1_q), .s(vb_latch2_q), .q(blnk_ff_q));
+
+	assign n_PICTURE = ~(~(pic_latch1_q | pic_latch2_q));
+	assign RESCL = vclr_latch2_nq;
+	assign VSYNC = vsync_latch1_q;
+	assign nVSET = vset_latch1_nq;
+	assign VB = ~vb_ff_nq;
+	assign BLNK = ~(~blnk_ff_q & ~BLACK);
 
 endmodule // VPosLogic
