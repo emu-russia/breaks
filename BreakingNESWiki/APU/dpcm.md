@@ -40,8 +40,8 @@
 
 |Сигнал|Откуда|Куда|Описание|
 |---|---|---|---|
-|DSLOAD|DPCM Control|Sample Counter, DPCM Address|Загрузить значение в Sample Counter|
-|DSSTEP|DPCM Control|Sample Counter, DPCM Address|Выполнить декремент Sample Counter|
+|DSLOAD|DPCM Control|Sample Counter, DPCM Address Counter|Загрузить значение в Sample Counter и одновременно в DPCM Address Counter|
+|DSSTEP|DPCM Control|Sample Counter, DPCM Address Counter|Выполнить декремент Sample Counter и одновременно инкремент DPCM Address Counter|
 |BLOAD|DPCM Control|Sample Buffer|Загрузить значение в Sample Buffer|
 |BSTEP|DPCM Control|Sample Buffer|Выполнить сдвиг разряда Sample Buffer|
 |NSTEP|DPCM Control|Sample Bit Counter|Выполнить инкремент Sample Bit Counter|
