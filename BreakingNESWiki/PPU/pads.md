@@ -146,6 +146,8 @@
 
 ![ext_pads](/BreakingNESWiki/imgstore/ppu/ext_pads.png)
 
+![pads_ext](/BreakingNESWiki/imgstore/ppu/pads_ext.jpg)
+
 ## Управляющие сигналы
 
 ### CLK

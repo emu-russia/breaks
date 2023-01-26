@@ -243,7 +243,7 @@ def PpuShredder (FusedTopo):
 	# Misc
 	CropImage (FusedTopo, imgstore + "pclk", [1927, 2910, 609, 647] )
 	CropImage (FusedTopo, imgstore + "mux", [4973, 5416, 1567, 1523] )
-	CropImage (FusedTopo, imgstore + "ppu_readbuffer", [6062, 8987, 722, 1413] )
+	CropImage (FusedTopo, imgstore + "readbuffer_tran", [6062, 8987, 722, 1413] )
 	CropImage (FusedTopo, imgstore + "vram_control_tran", [5453, 10513, 1944, 920] )
 	# Video Out
 	CropImage (FusedTopo, imgstore + "vout_dac", [1419, 3230, 799, 1844] )

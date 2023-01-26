@@ -2,6 +2,10 @@
 
 ![RP2A07A_package](/BreakingNESWiki/imgstore/apu/pal/RP2A07A_package.jpg)
 
+Comparing the topology of 2A03 and 2A07 you can see that 2A03 has some elements from 2A07 that are not used:
+- Regular RDY terminal connection, instead of the 2A07 test mode
+- Traces of the topology of the PAL version of the divider in 2A03
+
 ## SoftCLK PLA
 
 ![softclk_decoder_2a07](/BreakingNESWiki/imgstore/apu/pal/softclk_decoder_2a07.jpg)
@@ -125,3 +129,24 @@ The second stage of the decoder:
 ```
 
 The bit mask is topological. 1 means there is a transistor, 0 means no transistor.
+
+## Test Mode
+
+There is no debug mode in 2A07 as such: all circuits for reading debug registers were cut out and the register operation decoder was shortened.
+
+Nevertheless, there are some traces left.
+
+## Register Select
+
+TBD.
+
+## RDY
+
+TBD.
+
+## Debug write to register $401A (triangle channel)
+
+What used to be the W401A signal is now grounded:
+
+![w401a](/BreakingNESWiki/imgstore/apu/pal/w401a.jpg)
+

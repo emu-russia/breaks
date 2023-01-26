@@ -67,3 +67,9 @@
 ![RevCounterBit_tran](/BreakingNESWiki/imgstore/apu/RevCounterBit_tran.jpg)
 
 ![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
+
+## Схема Load/Step
+
+Данная типовая схема часто используется для формирования сигналов "Load" и "Step" для различных счётчиков.
+
+![load_step](/BreakingNESWiki/imgstore/apu/load_step.png)

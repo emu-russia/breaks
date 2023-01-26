@@ -67,3 +67,9 @@ The bit of the `reversible` counter:
 ![RevCounterBit_tran](/BreakingNESWiki/imgstore/apu/RevCounterBit_tran.jpg)
 
 ![RevCounterBit](/BreakingNESWiki/imgstore/apu/RevCounterBit.jpg)
+
+## Load/Step Circuit
+
+This typical circuit is often used to produce "Load" and "Step" signals for various counters.
+
+![load_step](/BreakingNESWiki/imgstore/apu/load_step.png)
