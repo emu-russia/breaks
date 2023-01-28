@@ -30,6 +30,10 @@ The following are the distinctive features of the APU clocks distribution.
 
 Full size image: https://github.com/emu-russia/breaks/blob/master/Docs/APU/2A03_ACLK_Distrib.png
 
+Simplified chart:
+
+![apu_clocks](/BreakingNESWiki/imgstore/apu/apu_clocks.png)
+
 ## ACLK Generator
 
 The ACLK generator is used to generate an internal ACLK clock signal (APU CLK), based on the 6502 CPU clock frequency.

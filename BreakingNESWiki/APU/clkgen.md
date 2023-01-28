@@ -30,6 +30,10 @@
 
 Изображение в полном размере: https://github.com/emu-russia/breaks/blob/master/Docs/APU/2A03_ACLK_Distrib.png
 
+Упрощённая диаграмма:
+
+![apu_clocks](/BreakingNESWiki/imgstore/apu/apu_clocks.png)
+
 ## Генератор ACLK
 
 Генератор ACLK используется для формирования внутреннего тактового сигнала ACLK (APU CLK), на базе тактовой частоты 6502 CPU.
