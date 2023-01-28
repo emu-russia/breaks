@@ -15,7 +15,8 @@ module APU_Run();
 	wire [1:0] nIN_Ports;
 	wire [2:0] OUT_Ports;
 
-	always #25 CLK = ~CLK;
+	// Tune CLK/ACLK timing according to 2A03
+	always #23.28 CLK = ~CLK;
 
 	APU apu (
 		.n_RES(n_RES),
@@ -45,7 +46,7 @@ module APU_Run();
 		$dumpfile("apu.vcd");
 		$dumpvars(0, apu);
 
-		repeat (1000) @ (posedge CLK);
+		repeat (32768 * 16) @ (posedge CLK);
 		$finish;
 	end
 
