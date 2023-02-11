@@ -90,7 +90,7 @@ def ApuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "apu_core_phi_internal", [9660, 6075, 791, 397] )
 	CropImage (FusedTopo, imgstore + "apu_core_phi1_ext", [7736, 6065, 294, 413] )
 	CropImage (FusedTopo, imgstore + "apu_core_phi2_ext", [8734, 6077, 623, 373] )
-	CropImage (FusedTopo, imgstore + "apu_core_rdy", [7994, 6217, 271, 265] )
+	CropImage (FusedTopo, imgstore + "apu_core_rdy", [7994, 6203, 268, 280] )
 	CropImage (FusedTopo, imgstore + "apu_core_res", [8247, 6270, 535, 183] )
 	CropImage (FusedTopo, imgstore + "apu_core_rw", [10983, 6265, 264, 287] )
 	CropImage (FusedTopo, imgstore + "apu_core_so", [9351, 6118, 307, 364] )
