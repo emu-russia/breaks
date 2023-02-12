@@ -104,7 +104,7 @@ Logic:
 
 ![SoftCLK_SRBit](/BreakingNESWiki/imgstore/apu/SoftCLK_SRBit.jpg)
 
-A special feature is the inverse input for the shift register. The outputs of the shift register (in complementary form) are fed to the decoder input (PLA).
+The outputs of the shift register (in complementary form) are fed to the decoder input (PLA).
 
 ### PLA
 
@@ -148,7 +148,7 @@ The placement is topological. 1 means there is a transistor, 0 means there is no
 Features of using PLA:
 - Output 3 is used to generate an interrupt and is simultaneously skipped in Mode=1. Therefore interrupts are only available in Mode=0
 - Output 4 is used only in Mode=1
-- Output 5 is used exclusively to reload LFSR and has no effect on the generation of LFO signals
+- Output 5 is used to protect against a value of 0 on the LFSR and does not affect the generation of LFO signals
 - The PLA outputs, which are involved in the generation of LFO signals, are activated in turn (0,1,2,3 for Mode=0 and 0,1,2,4 for Mode=1)
 
 ## Other /ACLKs
