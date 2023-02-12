@@ -9415,7 +9415,7 @@
     <comp lib="0" loc="(1210,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="n_sout"/>
+      <a name="label" val="sout"/>
       <a name="output" val="true"/>
       <a name="radix" val="16"/>
       <a name="width" val="15"/>
@@ -9423,7 +9423,7 @@
     <comp lib="0" loc="(1210,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="sout"/>
+      <a name="label" val="n_sout"/>
       <a name="output" val="true"/>
       <a name="radix" val="16"/>
       <a name="width" val="15"/>
@@ -9438,7 +9438,7 @@
     </comp>
     <comp lib="0" loc="(140,160)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_sin"/>
+      <a name="label" val="sin"/>
     </comp>
     <comp lib="0" loc="(140,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -9781,7 +9781,7 @@
     </comp>
     <comp lib="0" loc="(140,160)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_sin"/>
+      <a name="label" val="sin"/>
     </comp>
     <comp lib="0" loc="(140,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -9792,13 +9792,13 @@
     <comp lib="0" loc="(560,120)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="sout"/>
+      <a name="label" val="n_sout"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(560,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="n_sout"/>
+      <a name="label" val="sout"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="2" loc="(250,100)" name="Multiplexer">
@@ -9848,13 +9848,13 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(150,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ns"/>
+      <a name="label" val="s"/>
       <a name="radix" val="16"/>
       <a name="width" val="15"/>
     </comp>
     <comp lib="0" loc="(150,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="s"/>
+      <a name="label" val="ns"/>
       <a name="radix" val="16"/>
       <a name="width" val="15"/>
     </comp>
