@@ -153,7 +153,7 @@ Features of using PLA:
 
 Table of activation sequence of PLA outputs and duration between activations (number of PHI1 cycles):
 
-|NTSC 2A03||||||
+|NTSC 2A03|||||
 |---|---|---|---|---|
 |nLFO1  mode4|PLA0   (7457 )|PLA1 (7457 )|PLA2 (7457 )|PLA3  (7457 )  (SET LFSR)|
 |nLFO1  mode5|PLA0   (7457 )|PLA1 (7457 )|PLA2 (7457 )|PLA4  (14913) (SET LFSR)|
