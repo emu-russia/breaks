@@ -1,4 +1,4 @@
-# Sprite DMA
+# Sprite DMA (OAM DMA)
 
 ![apu_locator_dma](/BreakingNESWiki/imgstore/apu/apu_locator_dma.jpg)
 
@@ -12,7 +12,7 @@ Unfortunately, the sprite DMA destination address cannot be configured and is ha
 
 Note on PHI and ACLK: PHI1 is only used to detect the Read Cycle of the 6502 core and PHI2 (PHI1 complement) to load data into the DMA Buffer. All other parts (registers, counters and control circuits) are clocked by ACLK.
 
-## SPR DMA Address
+## OAM DMA Address
 
 Low address bits:
 
@@ -26,7 +26,7 @@ High address bits:
 
 The :warning: sign mark the places where the constant address of the PPU $2004 register is formed.
 
-## SPR DMA Control
+## OAM DMA Control
 
 ![sprdma_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_control_tran.jpg)
 
@@ -57,7 +57,7 @@ Signals affecting the DMA process:
 
 Immediately after the start of sprite DMA the SPR/PPU and SPR/CPU control signals alternate their values so that the value is first read from memory into the sprite buffer and then written to the PPU register $2004.
 
-## SPR DMA Buffer
+## OAM DMA Buffer
 
 ![sprbuf_tran](/BreakingNESWiki/imgstore/apu/sprbuf_tran.jpg)
 
