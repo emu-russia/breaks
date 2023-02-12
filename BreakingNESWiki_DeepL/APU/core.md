@@ -36,7 +36,6 @@ The 6502 core and surrounding logic includes the following entities:
 |CPU_A\[15:0\]| | | |
 |A\[15:0\]| | | |
 |D\[7:0\]| | | |
-|/ACLK| | | |
 
 ## Divider
 
@@ -83,7 +82,7 @@ Auxiliary logic for NMI and IRQ processing:
 
 ![apu_core_rdy](/BreakingNESWiki/imgstore/apu/apu_core_rdy.jpg)
 
-There is another transistor next to the RDY input which is always open in the NTSC APU. TBD: Add about the PAL APU.
+Next to the RDY input there is another transistor, which in the NTSC APU is always open (RDY2=1). The PAL APU uses the /DBG signal (inversion of the signal from the external DBG terminal) instead of the constant RDY2 signal.
 
 ### /RES
 
@@ -172,4 +171,4 @@ The key parts of the analysis (decoder, random logic, flags and ALU) are shown i
 
 ![2a03_6502_diff_sm](/BreakingNESWiki/imgstore/apu/2a03_6502_diff_sm.jpg)
 
-To understand more about the differences in the operation of the BCD circuit, it is recommended to study the design of the 6502 ALU.
+To understand more about the differences in the operation of the BCD circuit, it is recommended to study the design of the [6502 ALU](/BreakingNESWiki_DeepL/6502/alu.md).
