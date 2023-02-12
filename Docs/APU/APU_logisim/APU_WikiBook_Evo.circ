@@ -2442,13 +2442,22 @@
     <comp lib="1" loc="(260,220)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
+    <comp lib="1" loc="(360,40)" name="NOT Gate"/>
     <comp lib="1" loc="(500,110)" name="NOT Gate">
       <a name="size" val="20"/>
       <a name="width" val="8"/>
     </comp>
+    <comp lib="1" loc="(530,100)" name="NOT Gate">
+      <a name="facing" val="south"/>
+      <a name="size" val="20"/>
+    </comp>
     <comp lib="1" loc="(540,110)" name="Controlled Buffer">
       <a name="control" val="left"/>
       <a name="width" val="8"/>
+    </comp>
+    <comp lib="8" loc="(394,32)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="PPU/SPR"/>
     </comp>
     <comp loc="(470,90)" name="DLatch_x8"/>
     <wire from="(130,230)" to="(150,230)"/>
@@ -2458,13 +2467,14 @@
     <wire from="(190,130)" to="(240,130)"/>
     <wire from="(210,210)" to="(220,210)"/>
     <wire from="(210,40)" to="(210,210)"/>
-    <wire from="(210,40)" to="(530,40)"/>
+    <wire from="(210,40)" to="(330,40)"/>
     <wire from="(240,110)" to="(240,130)"/>
     <wire from="(240,110)" to="(250,110)"/>
     <wire from="(260,220)" to="(620,220)"/>
+    <wire from="(360,40)" to="(530,40)"/>
     <wire from="(470,110)" to="(480,110)"/>
     <wire from="(500,110)" to="(520,110)"/>
-    <wire from="(530,40)" to="(530,100)"/>
+    <wire from="(530,40)" to="(530,80)"/>
     <wire from="(540,110)" to="(560,110)"/>
   </circuit>
   <circuit name="Addr_MUX">
