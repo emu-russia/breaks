@@ -6,8 +6,8 @@
 |---|---|---|---|
 |R/W|CPU Core|DMABuffer, Reg Select, OAM DMA, DPCM DMA|6502 core terminal. When applied to DMA it is used to detect CPU read cycle, to set RDY terminal appropriately|
 |/DBGRD|Reg Select|DMABuffer|0: The APU register is read and the test mode is enabled (DBG=1)|
-|CPU_A\[15:0\]|CPU Core|Reg Predecode, Address Mux|The 6502 core address bus. Participates in APU register selection and for address multiplexing|
-|A\[15:0\]|Address Mux|External Address Pads|Output value from the address multiplexer for AB terminals|
+|CPU_A\[15:0\]|CPU Core|Reg Predecode, Address Mux|The 6502 core address bus. Participates in selecting the APU registers address space and for address multiplexing|
+|A\[15:0\]|Address Mux|External Address Pads|Output value from the address multiplexer for AB terminals. Also involved in selecting a specific APU register|
 |/REGRD|Reg Predecode|Reg Select|0: The APU register is being read from the 6502 core side|
 |/REGWR|Reg Predecode|Reg Select|0: Writing to the APU register on the 6502 core side|
 |/R4015|Reg Select|SoftCLK, DMABuffer, Length, DPCM|0: Read register $4015. Note that this operation is additionally tracked in the DMABuffer.|
