@@ -13,29 +13,31 @@ The 6502 core and surrounding logic includes the following entities:
 
 |Signal|From|Where to|Description|
 |---|---|---|---|
-|CLK| | | |
-|/M2| | | |
-|DBG| | | |
-|NotDBG_RES| | | |
-|RES| | | |
-|R/W| | | |
-|/NMI| | | |
-|INT| | | |
-|/IRQ| | | |
-|/IRQ_INT| | | |
-|PHI0| | | |
-|PHI1| | | |
-|PHI2| | | |
-|RW| | | |
-|WR| | | |
-|RD| | | |
-|RDY| | | |
-|RDY2| | | |
-|SPR/PPU| | | |
-|/DBGRD| | | |
-|CPU_A\[15:0\]| | | |
-|A\[15:0\]| | | |
-|D\[7:0\]| | | |
+|CLK|CLK Pad|Divider|Input CLK|
+|/M2|Divider|M2 Pad|Intermediate signal for M2 terminal ( inverse polarity)|
+|DBG|DBG Pad|Test|1: Activation of test mode. In 2A03 the debug registers become available. In 2A07 it is converted to RDY2 signal (DBG=1 -> RDY2=0), essentially acting as a debugging WAIT|
+|NotDBG_RES|Test|M2 Pad|Intermediate signal for controlling the M2 terminal under reset and test mode conditions|
+|RES|/RES Pad|All|Global reset signal. Spreads to almost all corners of the APU|
+|R/W|CPU Core|DMABuffer, Reg Select, OAM DMA, DPCM DMA|6502 core terminal. When applied to DMA it is used to detect CPU read cycle, to set RDY terminal appropriately|
+|/NMI|/NMI Pad|CPU Core|From the /NMI terminal, the signal goes almost immediately to the core (not counting the intermediate inverters)|
+|INT|SoftCLK|IRQ Combine|Combined DPCM and/or Timer interrupt from SoftCLK (which acts also as a Daisy Chain)|
+|/IRQ|/IRQ Pad|IRQ Combine|The external interrupt signal is combined with the INT signal from SoftCLK|
+|/IRQ_INT|IRQ Combine|CPU Core|Combined interrupt signal for the core|
+|PHI0|Divider|CPU Core|Base clock signal for the core|
+|PHI1|CPU Core|SoftCLK, Triangle|The first half of the core cycle|
+|PHI2|CPU Core|SoftCLK|The second half of the core cycle|
+|RW|DMABuffer|R/W Pad|The external R/W terminal is controlled by the DMABuffer circuit|
+|WR|DMABuffer|External DataBus Pads|1: Write mode for external data bus terminals|
+|RD|DMABuffer|External DataBus Pads|1: Read mode for external data bus terminals|
+|RDY|OAM DMA|CPU Core|Readiness signal for the core. The core readiness is controlled by the OAM DMA circuit|
+|RDY2|Test|CPU Core|An additional test signal for core readiness. In 2A03 it is always 1. In 2A07 it can be controlled externally using the DBG Pad|
+|SPR/PPU|OAM DMA|DMABuffer|DMABuffer mode (1: Write to register $2004, 0: Read the next byte for OAM DMA from memory)|
+|/DBGRD|Reg Select|DMABuffer|0: The APU register is read and the test mode is enabled (DBG=1)|
+|CPU_A\[15:0\]|CPU Core|Reg Predecode, Address Mux|The 6502 core address bus. Participates in selecting the APU registers address space and for address multiplexing|
+|A\[15:0\]|Address Mux|External Address Pads|Output value from the address multiplexer for AB terminals. Also involved in selecting a specific APU register|
+|D\[7:0\]|Internal DataBus|External DataBus Pads|Internal data bus, to which the 6502 core is also connected|
+
+As you can see the signals associated with the core are very tightly twisted. Yes, this part in APU is the most complicated, in sound generators everything is much simpler and more straightforward.
 
 ## Divider
 
