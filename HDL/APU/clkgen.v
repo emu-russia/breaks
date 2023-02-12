@@ -54,7 +54,7 @@ module SoftTimer(
 	wire Z2;
 	wire F1;				// 1: Reset LFSR
 	wire F2;				// 1: Perform the LFSR step
-	wire n_sin;
+	wire sin;
 	wire [14:0] sout;
 	wire [14:0] n_sout;
 
@@ -81,18 +81,18 @@ module SoftTimer(
 		.n_mode(n_mode),
 		.mode(mode),
 		.PLA_in(PLA_out),
-		.C13(n_sout[13]),
-		.C14(n_sout[14]),
+		.C13(sout[13]),
+		.C14(sout[14]),
 		.Z2(Z2),
 		.F1(F1),
 		.F2(F2),
-		.n_sin_toLFSR(n_sin) );
+		.sin_toLFSR(sin) );
 
 	SoftCLK_LFSR lfsr (
 		.n_ACLK(n_ACLK),
 		.F1_Reset(F1),
 		.F2_Step(F2),
-		.n_sin(n_sin),
+		.sin(sin),
 		.sout(sout),
 		.n_sout(n_sout) );
 
@@ -161,7 +161,7 @@ endmodule // SoftCLK_Control
 module SoftCLK_LFSR_Control(
 	n_ACLK, ACLK,
 	RES, W4017, n_mode, mode, PLA_in, C13, C14,
-	Z2, F1, F2, n_sin_toLFSR);
+	Z2, F1, F2, sin_toLFSR);
 
 	input n_ACLK;
 	input ACLK;
@@ -177,7 +177,7 @@ module SoftCLK_LFSR_Control(
 	output Z2;
 	output F1;
 	output F2;
-	output n_sin_toLFSR;
+	output sin_toLFSR;
 
 	wire Z1;
 
@@ -200,22 +200,22 @@ module SoftCLK_LFSR_Control(
 	rsff_2_3 z_ff (.res1(RES), .res2(W4017), .s(zff_set), .q(zff_out) );
 	nor (Z2, z1_out, z2_out);
 
-	// LFSR shift in complement
+	// LFSR shift in
 
 	wire tmp1;
 	nor (tmp1, C13, C14, PLA_in[5]);
-	nor (n_sin_toLFSR, C13 & C14, tmp1);
+	nor (sin_toLFSR, C13 & C14, tmp1);
 
 endmodule // SoftCLK_LFSR_Control
 
 module SoftCLK_LFSR_Bit(
 	n_ACLK,
-	n_sin, F1, F2,
+	sin, F1, F2,
 	sout, n_sout);
 
 	input n_ACLK;
 
-	input n_sin;
+	input sin;
 	input F1;
 	input F2;
 
@@ -224,27 +224,27 @@ module SoftCLK_LFSR_Bit(
 
 	wire inlatch_out;
 	dlatch in_latch (
-		.d(F2 ? n_sin : (F1 ? 1'b1 : 1'bz)),
+		.d(F2 ? sin : (F1 ? 1'b1 : 1'bz)),
 		.en(1'b1), .nq(inlatch_out));
-	dlatch out_latch (.d(inlatch_out), .en(n_ACLK), .q(sout), .nq(n_sout));
+	dlatch out_latch (.d(inlatch_out), .en(n_ACLK), .q(n_sout), .nq(sout));
 
 endmodule // SoftCLK_LFSR_Bit
 
 module SoftCLK_LFSR(
-	n_ACLK, F1_Reset, F2_Step, n_sin,
+	n_ACLK, F1_Reset, F2_Step, sin,
 	sout, n_sout);
 
 	input n_ACLK;
 	input F1_Reset;
 	input F2_Step;
-	input n_sin;		// Inverse Shift-in
+	input sin;
 
 	output [14:0] sout;
 	output [14:0] n_sout;
 
 	SoftCLK_LFSR_Bit bits [14:0] (
 		.n_ACLK(n_ACLK),
-		.n_sin({n_sout[13:0],n_sin}),
+		.sin({sout[13:0],sin}),
 		.F1(F1_Reset),
 		.F2(F2_Step),
 		.sout(sout),
@@ -259,11 +259,11 @@ module SoftCLK_PLA(s, ns, md, PLA_out);
 	input md; 			// For PLA[3]
 	output [5:0] PLA_out;
 
-	nor (PLA_out[0], s[0], ns[1], ns[2], ns[3], ns[4], s[5], s[6], ns[7], ns[8], ns[9], ns[10], ns[11], s[12], ns[13], ns[14]);
-	nor (PLA_out[1], s[0], s[1], ns[2], ns[3], ns[4], ns[5], ns[6], ns[7], ns[8], s[9], s[10], ns[11], s[12], s[13], ns[14]);
-	nor (PLA_out[2], s[0], s[1], ns[2], ns[3], s[4], ns[5], s[6], s[7], ns[8], ns[9], s[10], s[11], ns[12], s[13], ns[14]);
-	nor (PLA_out[3], s[0], s[1], s[2], s[3], s[4], ns[5], ns[6], ns[7], ns[8], s[9], ns[10], s[11], ns[12], ns[13], ns[14], md);	// ⚠️
-	nor (PLA_out[4], s[0], ns[1], s[2], ns[3], ns[4], ns[5], ns[6], s[7], s[8], ns[9], ns[10], ns[11], s[12], s[13], s[14]);
-	nor (PLA_out[5], ns[0], ns[1], ns[2], ns[3], ns[4], ns[5], ns[6], ns[7], ns[8], ns[9], ns[10], ns[11], ns[12], ns[13], ns[14]);
+	nor (PLA_out[0], ns[0], s[1], s[2], s[3], s[4], ns[5], ns[6], s[7], s[8], s[9], s[10], s[11], ns[12], s[13], s[14]);
+	nor (PLA_out[1], ns[0], ns[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], ns[9], ns[10], s[11], ns[12], ns[13], s[14]);
+	nor (PLA_out[2], ns[0], ns[1], s[2], s[3], ns[4], s[5], ns[6], ns[7], s[8], s[9], ns[10], ns[11], s[12], ns[13], s[14]);
+	nor (PLA_out[3], ns[0], ns[1], ns[2], ns[3], ns[4], s[5], s[6], s[7], s[8], ns[9], s[10], ns[11], s[12], s[13], s[14], md);	// ⚠️
+	nor (PLA_out[4], ns[0], s[1], ns[2], s[3], s[4], s[5], s[6], ns[7], ns[8], s[9], s[10], s[11], ns[12], ns[13], ns[14]);
+	nor (PLA_out[5], s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], s[9], s[10], s[11], s[12], s[13], s[14]);
 
 endmodule // SoftCLK_PLA
