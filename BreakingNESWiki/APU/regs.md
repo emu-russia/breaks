@@ -4,47 +4,47 @@
 
 |Сигнал|Откуда|Куда|Описание|
 |---|---|---|---|
-|R/W|CPU Core| | |
-|/DBGRD| | | |
-|CPU_A\[15:0\]|CPU Core| | |
-|A\[15:0\]|Address Mux| | |
-|/REGRD|Reg Predecode| | |
-|/REGWR|Reg Predecode| | |
-|/R4015|Reg Select| | |
-|/R4016|Reg Select| | |
-|/R4017|Reg Select| | |
-|/R4018|Reg Select| | |
-|/R4019|Reg Select| | |
-|/R401A|Reg Select| | |
-|W4000|Reg Select| | |
-|W4001|Reg Select| | |
-|W4002|Reg Select| | |
-|W4003|Reg Select| | |
-|W4004|Reg Select| | |
-|W4005|Reg Select| | |
-|W4006|Reg Select| | |
-|W4007|Reg Select| | |
-|W4008|Reg Select| | |
-|W400A|Reg Select| | |
-|W400B|Reg Select| | |
-|W400C|Reg Select| | |
-|W400E|Reg Select| | |
-|W400F|Reg Select| | |
-|W4010|Reg Select| | |
-|W4011|Reg Select| | |
-|W4012|Reg Select| | |
-|W4013|Reg Select| | |
-|W4014|Reg Select| | |
-|W4015|Reg Select| | |
-|W4016|Reg Select| | |
-|W4017|Reg Select| | |
-|W401A|Reg Select| | |
-|SQA\[3:0\]| | | |
-|SQB\[3:0\]| | | |
-|TRI\[3:0\]| | | |
-|RND\[3:0\]| | | |
-|DMC\[6:0\]| | | |
-|LOCK|Lock FF| | |
+|R/W|CPU Core|DMABuffer, Reg Select, OAM DMA, DPCM DMA|Терминал ядра 6502. В применении к DMA используется для детектирования цикла чтения CPU, для корректной установки терминала RDY|
+|/DBGRD|Reg Select|DMABuffer|0: Производится чтение отладочного регистра|
+|CPU_A\[15:0\]|CPU Core|Reg Predecode, Address Mux|Шина адреса ядра 6502. Участвует в выборе регистра APU и для мультиплексирования адреса|
+|A\[15:0\]|Address Mux|External Address Pads|Выходное значение с адресного мультиплексора для терминалов AB|
+|/REGRD|Reg Predecode|Reg Select|0: Производится чтение регистра APU со стороны ядра 6502|
+|/REGWR|Reg Predecode|Reg Select|0: Производится запись в регистр APU со стороны ядра 6502|
+|/R4015|Reg Select|SoftCLK, DMABuffer, Length, DPCM|0: Чтение регистра $4015. Обратите внимание что эта операция дополнительно отслеживается в DMABuffer.|
+|/R4016|Reg Select|IOPorts|0: Чтение регистра $4016|
+|/R4017|Reg Select|IOPorts|0: Чтение регистра $4017|
+|/R4018|Reg Select|Test|0: Чтение отладочного регистра $4018 (только для 2A03)|
+|/R4019|Reg Select|Test|0: Чтение отладочного регистра $4019 (только для 2A03)|
+|/R401A|Reg Select|Test|0: Чтение отладочного регистра $401A (только для 2A03)|
+|W4000|Reg Select|Square0|1: Запись регистра $4000|
+|W4001|Reg Select|Square0|1: Запись регистра $4001|
+|W4002|Reg Select|Square0|1: Запись регистра $4002|
+|W4003|Reg Select|Square0|1: Запись регистра $4003|
+|W4004|Reg Select|Square1|1: Запись регистра $4004|
+|W4005|Reg Select|Square1|1: Запись регистра $4005|
+|W4006|Reg Select|Square1|1: Запись регистра $4006|
+|W4007|Reg Select|Square1|1: Запись регистра $4007|
+|W4008|Reg Select|Triangle|1: Запись регистра $4008|
+|W400A|Reg Select|Triangle|1: Запись регистра $400A|
+|W400B|Reg Select|Triangle|1: Запись регистра $400B|
+|W400C|Reg Select|Noise|1: Запись регистра $400C|
+|W400E|Reg Select|Noise|1: Запись регистра $400E|
+|W400F|Reg Select|Noise|1: Запись регистра $400F|
+|W4010|Reg Select|DPCM|1: Запись регистра $4010|
+|W4011|Reg Select|DPCM|1: Запись регистра $4011|
+|W4012|Reg Select|DPCM|1: Запись регистра $4012|
+|W4013|Reg Select|DPCM|1: Запись регистра $4013|
+|W4014|Reg Select|OAM DMA|1: Запись регистра $4014|
+|W4015|Reg Select|Length, DPCM|1: Запись регистра $4015|
+|W4016|Reg Select|IOPorts|1: Запись регистра $4016|
+|W4017|Reg Select|SoftCLK|1: Запись регистра $4017|
+|W401A|Reg Select|Test, Triangle|1: Запись отладочного регистра $401A (только для 2A03)|
+|SQA\[3:0\]|Square0|AUX A|Выходное цифровое значение звукового генератора Square0|
+|SQB\[3:0\]|Square1|AUX A|Выходное цифровое значение звукового генератора Square1|
+|TRI\[3:0\]|Triangle|AUX B|Выходное цифровое значение звукового генератора Triangle|
+|RND\[3:0\]|Noise|AUX B|Выходное цифровое значение звукового генератора Noise|
+|DMC\[6:0\]|DPCM|AUX B|Выходное цифровое значение звукового генератора DPCM|
+|LOCK|Lock FF|Square0, Square1, Triangle, Noise, DPCM|Для фиксации громкости звуковых генераторов, чтобы можно было прочитать значение используя отладочные регистры|
 
 Предекодер, для выбора адресного пространства регистров APU:
 
@@ -110,7 +110,7 @@ R/W декодер для регистровых операций:
 
 ## Отладочный интерфейс
 
-:warning: Отладочная обвязка доступна только в 2A03. PAL-версия APU (2A07) не содержит отладочных механизмов.
+:warning: Отладочная обвязка доступна только в 2A03. PAL-версия APU (2A07) не содержит отладочных механизмов (кроме сигнала RDY2).
 
 Вспомогательные схемы для внутреннего сигнала `DBG`:
 
@@ -139,4 +139,4 @@ R/W декодер для регистровых операций:
 |![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)|![lock](/BreakingNESWiki/imgstore/apu/lock.jpg)|
 |---|---|
 
-Сигнал `LOCK` используется для приостановки звуковых генераторов, чтобы их значения были зафиксированы и могли быть прочитаны используя регистры.
+Сигнал `LOCK` используется для приостановки или отсоединения звуковых генераторов от выхода, чтобы текущие значения громкости были зафиксированы и могли быть прочитаны используя отладочные регистры.
