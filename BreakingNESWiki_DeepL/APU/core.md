@@ -30,6 +30,7 @@ The 6502 core and surrounding logic includes the following entities:
 |WR| | | |
 |RD| | | |
 |RDY| | | |
+|RDY2| | | |
 |SPR/PPU| | | |
 |/DBGRD| | | |
 |CPU_A\[15:0\]| | | |

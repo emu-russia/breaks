@@ -4,48 +4,47 @@
 
 |Signal|From|Where to|Description|
 |---|---|---|---|
-|R/W|CPU Core| | |
-|/DBGRD| | | |
-|CPU_A\[15:0\]|CPU Core| | |
-|A\[15:0\]|Address Mux| | |
-|D\[7:0\]| | | |
-|/REGRD|Reg Predecode| | |
-|/REGWR|Reg Predecode| | |
-|/R4015|Reg Select| | |
-|/R4016|Reg Select| | |
-|/R4017|Reg Select| | |
-|/R4018|Reg Select| | |
-|/R4019|Reg Select| | |
-|/R401A|Reg Select| | |
-|W4000|Reg Select| | |
-|W4001|Reg Select| | |
-|W4002|Reg Select| | |
-|W4003|Reg Select| | |
-|W4004|Reg Select| | |
-|W4005|Reg Select| | |
-|W4006|Reg Select| | |
-|W4007|Reg Select| | |
-|W4008|Reg Select| | |
-|W400A|Reg Select| | |
-|W400B|Reg Select| | |
-|W400C|Reg Select| | |
-|W400E|Reg Select| | |
-|W400F|Reg Select| | |
-|W4010|Reg Select| | |
-|W4011|Reg Select| | |
-|W4012|Reg Select| | |
-|W4013|Reg Select| | |
-|W4014|Reg Select| | |
-|W4015|Reg Select| | |
-|W4016|Reg Select| | |
-|W4017|Reg Select| | |
-|W401A|Reg Select| | |
-|SQA\[3:0\]| | | |
-|SQB\[3:0\]| | | |
-|TRI\[3:0\]| | | |
-|RND\[3:0\]| | | |
-|DMC\[6:0\]| | | |
-|LOCK|Lock FF| | |
+|R/W|CPU Core|DMABuffer, Reg Select, OAM DMA, DPCM DMA|6502 core terminal. When applied to DMA it is used to detect CPU read cycle, to set RDY terminal appropriately|
+|/DBGRD|Reg Select|DMABuffer|0: Reading of debug register is performed|
+|CPU_A\[15:0\]|CPU Core|Reg Predecode, Address Mux|The 6502 core address bus. Participates in APU register selection and for address multiplexing|
+|A\[15:0\]|Address Mux|External Address Pads|Output value from the address multiplexer for AB terminals|
+|/REGRD|Reg Predecode|Reg Select|0: The APU register is being read from the 6502 core side|
+|/REGWR|Reg Predecode|Reg Select|0: Writing to the APU register on the 6502 core side|
+|/R4015|Reg Select|SoftCLK, DMABuffer, Length, DPCM|0: Read register $4015. Note that this operation is additionally tracked in the DMABuffer.|
+|/R4016|Reg Select|IOPorts|0: Read register $4016|
+|/R4017|Reg Select|IOPorts|0: Read register $4017|
+|/R4018|Reg Select|Test|0: Read debug register $4018 (2A03 only)|
+|/R4019|Reg Select|Test|0: Read debug register $4019 (2A03 only)|
+|/R401A|Reg Select|Test|0: Read debug register $401A (2A03 only)|
+|W4000|Reg Select|Square0|1: Write register $4000|
+|W4001|Reg Select|Square0|1: Write register $4001|
+|W4002|Reg Select|Square0|1: Write register $4002|
+|W4003|Reg Select|Square0|1: Write register $4003|
+|W4004|Reg Select|Square1|1: Write register $4004|
+|W4005|Reg Select|Square1|1: Write register $4005|
+|W4006|Reg Select|Square1|1: Write register $4006|
+|W4007|Reg Select|Square1|1: Write register $4007|
+|W4008|Reg Select|Triangle|1: Write register $4008|
+|W400A|Reg Select|Triangle|1: Write register $400A|
+|W400B|Reg Select|Triangle|1: Write register $400B|
+|W400C|Reg Select|Noise|1: Write register $400C|
+|W400E|Reg Select|Noise|1: Write register $400E|
+|W400F|Reg Select|Noise|1: Write register $400F|
+|W4010|Reg Select|DPCM|1: Write register $4010|
+|W4011|Reg Select|DPCM|1: Write register $4011|
+|W4012|Reg Select|DPCM|1: Write register $4012|
+|W4013|Reg Select|DPCM|1: Write register $4013|
+|W4014|Reg Select|OAM DMA|1: Write register $4014|
+|W4015|Reg Select|Length, DPCM|1: Write register $4015|
+|W4016|Reg Select|IOPorts|1: Write register $4016|
+|W4017|Reg Select|SoftCLK|1: Write register $4017|
+|W401A|Reg Select|Test, Triangle|1: Write debug register $401A (2A03 only)|
+|SQA\[3:0\]|Square0|AUX A|Output digital value of the Square0 sound generator|
+|SQB\[3:0\]|Square1|AUX A|Output digital value of the Square1 sound generator|
+|TRI\[3:0\]|Triangle|AUX B|Output digital value of the Triangle sound generator|
+|RND\[3:0\]|Noise|AUX B|Output digital value of the Noise sound generator|
+|DMC\[6:0\]|DPCM|AUX B|Output digital value of the DPCM sound generator|
+|LOCK|Lock FF|Square0, Square1, Triangle, Noise, DPCM|To lock the volume of the audio generators so that you can read the value using the debug registers|
 
 Pre-decoder, to select the address space of the APU registers:
 
@@ -111,7 +110,7 @@ The bit mask is topological. 1 means there is a transistor, 0 means no transisto
 
 ## Debug Interface
 
-:warning: The debug hookup is only available in 2A03. The PAL version of the APU (2A07) does not contain any debugging mechanisms.
+:warning: The debug hookup is only available in 2A03. The PAL version of the APU (2A07) does not contain any debugging mechanisms (except RDY2).
 
 Auxiliary circuits for internal `DBG` signal:
 
@@ -140,4 +139,4 @@ LOCK circuit:
 |![lock_tran](/BreakingNESWiki/imgstore/apu/lock_tran.jpg)|![lock](/BreakingNESWiki/imgstore/apu/lock.jpg)|
 |---|---|
 
-The `LOCK` signal is used to suspend the sound generators so that their values can be locked and can be read using the registers.
+The `LOCK` signal is used to suspend or disconnect the audio generators from the output so that the current volume values are latched and can be read using the debug registers.
