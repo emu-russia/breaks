@@ -1,4 +1,4 @@
-# Спрайтовая DMA
+# Спрайтовая DMA (OAM DMA)
 
 ![apu_locator_dma](/BreakingNESWiki/imgstore/apu/apu_locator_dma.jpg)
 
@@ -12,7 +12,7 @@
 
 Примечание по PHI и ACLK: PHI1 используется только для определения Read Cycle ядра 6502, а PHI2 (комплемент PHI1) для загрузки данных в DMA Buffer. Все остальные части (регистры, счётчики и схемы контроля) тактируются ACLK.
 
-## SPR DMA Address
+## OAM DMA Address
 
 Младшие разряды адреса:
 
@@ -26,7 +26,7 @@
 
 Знаком :warning: отмечены места, где формируется константный адрес регистра PPU $2004.
 
-## SPR DMA Control
+## OAM DMA Control
 
 ![sprdma_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_control_tran.jpg)
 
@@ -57,7 +57,7 @@
 
 Сразу после начала спрайтовой DMA контрольные сигналы SPR/PPU и SPR/CPU попеременно начинают менять своё значение, для того чтобы значение вначале прочиталось из памяти в спрайтовый буфер, а затем записалось в регистр PPU $2004.
 
-## SPR DMA Buffer
+## OAM DMA Buffer
 
 ![sprbuf_tran](/BreakingNESWiki/imgstore/apu/sprbuf_tran.jpg)
 
