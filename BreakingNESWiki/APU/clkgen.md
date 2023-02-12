@@ -156,15 +156,15 @@ Soft CLK управляется регистром $4017 (write-only):
 |NTSC 2A03|||||
 |---|---|---|---|---|
 |nLFO1  mode4|PLA0   (7457 )|PLA1 (7457 )|PLA2 (7457 )|PLA3  (7457 )  (SET LFSR)|
-|nLFO1  mode5|PLA0   (7457 )|PLA1 (7457 )|PLA2 (7457 )|PLA4  (14913) (SET LFSR)|
 |nLFO2  mode4|no|PLA1 (14913)|no|PLA3  (14913) (SET LFSR)|
+|nLFO1  mode5|PLA0   (7457 )|PLA1 (7457 )|PLA2 (7457 )|PLA4  (14913) (SET LFSR)|
 |nLFO2  mode5|no|PLA1 (14913)|no|PLA4  (22367) (SET LFSR)|
 
 |PAL 2A07|||||
 |---|---|---|---|---|
 |nLFO1 mode4|PLA0  (8313)|PLA1 (8313)|PLA2 (8313)|PLA3  (8313)   (SET LFSR)|
-|nLFO1 mode5|PLA0  (8313)|PLA1 (8313)|PLA2 (8313)|PLA4  (16625) (SET LFSR)|
 |nLFO2 mode4|no|PLA1 (16625)|no|PLA3  (16625) (SET LFSR)|
+|nLFO1 mode5|PLA0  (8313)|PLA1 (8313)|PLA2 (8313)|PLA4  (16625) (SET LFSR)|
 |nLFO2 mode5|no|PLA1 (16625)|no|PLA4  (24939) (SET LFSR)|
 
 (в таблице не учитывается незначительно плавающее количество циклов для последнего выхода)
