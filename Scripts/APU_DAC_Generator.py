@@ -134,7 +134,7 @@ def float_to_hex(f):
     return hex(struct.unpack('<I', struct.pack('<f', f))[0])
 
 """
-	Output all the same, but for Verilog. Use volts instead of millivolts.
+	Output all the same, but for Verilog (normalized to [-0.5;0.5] and scaled by {gain}). To play in Audacity as RAW float.
 """
 def DumpVerilogMem(gain):
 	with open('auxa.mem', 'w', encoding='UTF8', newline='') as f:
@@ -174,7 +174,49 @@ def DumpVerilogMem(gain):
 					aux_hex = float_to_hex (aux_v * gain)[2:]
 					print (f"{aux_hex} ", file=f, end = '')
 
+"""
+	Output all the same, but for Logisim (normalized to [0.0;1.0])
+"""
+def DumpLogisimHex():
+	with open('auxa.hex', 'w', encoding='UTF8', newline='') as f:
+		print (f"v2.0 raw\n", file=f)
+		vmax = 0
+		for sqb in range(16):
+			for sqa in range(16):
+				r = AUX_A_Resistance (sqa, sqb)
+				i = Vdd / (r + ExtRes)
+				aux_v = i * ExtRes
+				if aux_v > vmax:
+					vmax = aux_v
+		for sqb in range(16):
+			for sqa in range(16):
+				r = AUX_A_Resistance (sqa, sqb)
+				i = Vdd / (r + ExtRes)
+				aux_v = ((i * ExtRes) / vmax)
+				aux_hex = float_to_hex (aux_v)[2:]
+				print (f"{aux_hex} ", file=f, end = '')
+	with open('auxb.hex', 'w', encoding='UTF8', newline='') as f:
+		print (f"v2.0 raw\n", file=f)
+		vmax = 0
+		for dmc in range(128):
+			for rnd in range(16):
+				for tri in range(16):
+					r = AUX_B_Resistance (tri, rnd, dmc)
+					i = Vdd / (r + ExtRes)
+					aux_v = i * ExtRes
+					if aux_v > vmax:
+						vmax = aux_v
+		for dmc in range(128):
+			for rnd in range(16):
+				for tri in range(16):
+					r = AUX_B_Resistance (tri, rnd, dmc)
+					i = Vdd / (r + ExtRes)
+					aux_v = ((i * ExtRes) / vmax)
+					aux_hex = float_to_hex (aux_v)[2:]
+					print (f"{aux_hex} ", file=f, end = '')
+
 if __name__ == '__main__':
 	#SchoolTest()
 	DumpCsv()
 	DumpVerilogMem(2)
+	DumpLogisimHex()
