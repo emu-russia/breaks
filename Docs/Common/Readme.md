@@ -63,3 +63,13 @@ c:\Work\breaks\Docs\6502\6502_logisim>py -3 bin2hex.py mario_oam.bin mario_oam.h
 Открываем сохраненный .hex в PPUPlayer, в меню Misc -> Load Composite Dump...
 
 PS. Можно дампить больше одного кадра, выбирать их можно с помощью Combo Box. Если сдампится меньше кадра - то покажется "огрызок".
+
+## APU Player
+
+Standalone APU test circuit. (Logisim 2.7.1)
+
+![APUPlayer.jpg](APUPlayer.jpg)
+
+![Fake6502.jpg](Fake6502.jpg)
+
+![RegDumpProcessor.jpg](RegDumpProcessor.jpg)
