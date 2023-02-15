@@ -88,10 +88,10 @@ The summation of the maximum values:
 
 ![sweep_tb](/BreakingNESWiki/imgstore/apu/waves/sweep_tb.png)
 
-With this test we are trying to get the Sweep Unit to generate the ADDOUT signal as it should be for the Sweep process to work.
+With this test we are trying to get the Sweep Unit to generate the DO_SWEEP signal as it should be for the Sweep process to work.
 
 That is, we need to organize the artificial generation of /LFO2 signal (not too slow, as in real conditions, to speed up the process)
-and check that the ADDOUT signal is generated as it should be.
+and check that the DO_SWEEP signal is generated as it should be.
 
 For this test it does not matter what happens to the Freq Reg, shifter, adder and all other parts of the square wave generator.
 
