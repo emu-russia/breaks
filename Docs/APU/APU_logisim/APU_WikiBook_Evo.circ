@@ -2455,7 +2455,7 @@
       <a name="control" val="left"/>
       <a name="width" val="8"/>
     </comp>
-    <comp lib="8" loc="(394,32)" name="Text">
+    <comp lib="8" loc="(390,30)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="PPU/SPR"/>
     </comp>
@@ -16580,7 +16580,7 @@
     </comp>
     <comp lib="0" loc="(160,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ADDOUT"/>
+      <a name="label" val="DO_SWEEP"/>
     </comp>
     <comp lib="0" loc="(160,370)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16643,69 +16643,69 @@
       <a name="fanout" val="3"/>
       <a name="incoming" val="3"/>
     </comp>
-    <comp loc="(1000,170)" name="SQ_FreqRegBit">
+    <comp loc="(1010,170)" name="SQ_FreqRegBit">
       <a name="label" val="f8"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(1000,290)" name="SQ_FreqRegBit">
+    <comp loc="(1010,290)" name="SQ_FreqRegBit">
       <a name="label" val="f9"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(1000,410)" name="SQ_FreqRegBit">
+    <comp loc="(1010,410)" name="SQ_FreqRegBit">
       <a name="label" val="f10"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(510,1010)" name="SQ_FreqRegBit">
+    <comp loc="(520,1010)" name="SQ_FreqRegBit">
       <a name="label" val="f7"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(510,170)" name="SQ_FreqRegBit">
+    <comp loc="(520,170)" name="SQ_FreqRegBit">
       <a name="label" val="f0"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(510,290)" name="SQ_FreqRegBit">
+    <comp loc="(520,290)" name="SQ_FreqRegBit">
       <a name="label" val="f1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(510,410)" name="SQ_FreqRegBit">
+    <comp loc="(520,410)" name="SQ_FreqRegBit">
       <a name="label" val="f2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(510,530)" name="SQ_FreqRegBit">
+    <comp loc="(520,530)" name="SQ_FreqRegBit">
       <a name="label" val="f3"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(510,650)" name="SQ_FreqRegBit">
+    <comp loc="(520,650)" name="SQ_FreqRegBit">
       <a name="label" val="f4"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(510,770)" name="SQ_FreqRegBit">
+    <comp loc="(520,770)" name="SQ_FreqRegBit">
       <a name="label" val="f5"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(510,890)" name="SQ_FreqRegBit">
+    <comp loc="(520,890)" name="SQ_FreqRegBit">
       <a name="label" val="f6"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <wire from="(1000,170)" to="(1050,170)"/>
-    <wire from="(1000,180)" to="(1100,180)"/>
-    <wire from="(1000,290)" to="(1030,290)"/>
-    <wire from="(1000,300)" to="(1010,300)"/>
-    <wire from="(1000,410)" to="(1050,410)"/>
-    <wire from="(1000,420)" to="(1100,420)"/>
-    <wire from="(1010,300)" to="(1010,350)"/>
-    <wire from="(1010,350)" to="(1100,350)"/>
+    <wire from="(1010,170)" to="(1050,170)"/>
+    <wire from="(1010,180)" to="(1100,180)"/>
+    <wire from="(1010,290)" to="(1030,290)"/>
+    <wire from="(1010,300)" to="(1020,300)"/>
+    <wire from="(1010,410)" to="(1050,410)"/>
+    <wire from="(1010,420)" to="(1100,420)"/>
+    <wire from="(1020,300)" to="(1020,350)"/>
+    <wire from="(1020,350)" to="(1100,350)"/>
     <wire from="(1030,290)" to="(1030,310)"/>
     <wire from="(1030,310)" to="(1050,310)"/>
     <wire from="(1050,170)" to="(1050,300)"/>
@@ -16732,6 +16732,9 @@
     <wire from="(180,370)" to="(180,460)"/>
     <wire from="(190,100)" to="(190,170)"/>
     <wire from="(190,100)" to="(380,100)"/>
+    <wire from="(20,300)" to="(170,300)"/>
+    <wire from="(20,300)" to="(20,580)"/>
+    <wire from="(20,580)" to="(150,580)"/>
     <wire from="(200,110)" to="(200,200)"/>
     <wire from="(200,110)" to="(870,110)"/>
     <wire from="(200,1100)" to="(780,1100)"/>
@@ -16835,9 +16838,6 @@
     <wire from="(390,80)" to="(880,80)"/>
     <wire from="(390,900)" to="(390,1020)"/>
     <wire from="(390,900)" to="(410,900)"/>
-    <wire from="(40,300)" to="(170,300)"/>
-    <wire from="(40,300)" to="(40,580)"/>
-    <wire from="(40,580)" to="(150,580)"/>
     <wire from="(400,1010)" to="(410,1010)"/>
     <wire from="(400,170)" to="(400,290)"/>
     <wire from="(400,170)" to="(410,170)"/>
@@ -16855,22 +16855,22 @@
     <wire from="(400,770)" to="(410,770)"/>
     <wire from="(400,890)" to="(400,1010)"/>
     <wire from="(400,890)" to="(410,890)"/>
-    <wire from="(510,1010)" to="(590,1010)"/>
-    <wire from="(510,1020)" to="(670,1020)"/>
-    <wire from="(510,170)" to="(590,170)"/>
-    <wire from="(510,180)" to="(670,180)"/>
-    <wire from="(510,290)" to="(580,290)"/>
-    <wire from="(510,300)" to="(660,300)"/>
-    <wire from="(510,410)" to="(570,410)"/>
-    <wire from="(510,420)" to="(650,420)"/>
-    <wire from="(510,530)" to="(590,530)"/>
-    <wire from="(510,540)" to="(530,540)"/>
-    <wire from="(510,650)" to="(560,650)"/>
-    <wire from="(510,660)" to="(630,660)"/>
-    <wire from="(510,770)" to="(570,770)"/>
-    <wire from="(510,780)" to="(650,780)"/>
-    <wire from="(510,890)" to="(580,890)"/>
-    <wire from="(510,900)" to="(660,900)"/>
+    <wire from="(520,1010)" to="(590,1010)"/>
+    <wire from="(520,1020)" to="(670,1020)"/>
+    <wire from="(520,170)" to="(590,170)"/>
+    <wire from="(520,180)" to="(670,180)"/>
+    <wire from="(520,290)" to="(580,290)"/>
+    <wire from="(520,300)" to="(660,300)"/>
+    <wire from="(520,410)" to="(570,410)"/>
+    <wire from="(520,420)" to="(650,420)"/>
+    <wire from="(520,530)" to="(590,530)"/>
+    <wire from="(520,540)" to="(530,540)"/>
+    <wire from="(520,650)" to="(560,650)"/>
+    <wire from="(520,660)" to="(630,660)"/>
+    <wire from="(520,770)" to="(570,770)"/>
+    <wire from="(520,780)" to="(650,780)"/>
+    <wire from="(520,890)" to="(580,890)"/>
+    <wire from="(520,900)" to="(660,900)"/>
     <wire from="(530,540)" to="(530,620)"/>
     <wire from="(530,620)" to="(670,620)"/>
     <wire from="(560,540)" to="(560,650)"/>
@@ -16965,7 +16965,7 @@
     </comp>
     <comp lib="0" loc="(160,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ADDOUT"/>
+      <a name="label" val="DO_SWEEP"/>
     </comp>
     <comp lib="0" loc="(160,370)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -17550,7 +17550,7 @@
     <comp lib="0" loc="(1220,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SWEEP"/>
+      <a name="label" val="SW_UVF"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(170,110)" name="Pin">
@@ -19023,13 +19023,13 @@
     <comp lib="0" loc="(1110,130)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ADDOUT"/>
+      <a name="label" val="DO_SWEEP"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(1110,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="SWCTRL"/>
+      <a name="label" val="SW_OVF"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(180,130)" name="Pin">
@@ -19051,7 +19051,7 @@
     </comp>
     <comp lib="0" loc="(180,350)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="SWEEP"/>
+      <a name="label" val="SW_UVF"/>
     </comp>
     <comp lib="0" loc="(180,410)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -19080,7 +19080,7 @@
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(190,350)" name="Tunnel">
-      <a name="label" val="SWEEP"/>
+      <a name="label" val="SW_UVF"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(190,410)" name="Tunnel">
@@ -19100,7 +19100,7 @@
       <a name="incoming" val="3"/>
     </comp>
     <comp lib="0" loc="(310,300)" name="Tunnel">
-      <a name="label" val="SWCTRL"/>
+      <a name="label" val="SW_OVF"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(390,690)" name="Splitter">
@@ -19184,12 +19184,12 @@
     </comp>
     <comp lib="0" loc="(890,130)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="SWCTRL"/>
+      <a name="label" val="SW_OVF"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(890,160)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="SWEEP"/>
+      <a name="label" val="SW_UVF"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(910,290)" name="Tunnel">
@@ -19675,7 +19675,7 @@
     </comp>
     <comp lib="0" loc="(140,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="SWEEP"/>
+      <a name="label" val="SW_UVF"/>
     </comp>
     <comp lib="0" loc="(140,250)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -19683,7 +19683,7 @@
     </comp>
     <comp lib="0" loc="(140,280)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="SWCTRL"/>
+      <a name="label" val="SW_OVF"/>
     </comp>
     <comp lib="0" loc="(140,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
