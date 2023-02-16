@@ -180,7 +180,8 @@ The counter digit circuits (OAM Counter and OAM2 Counter) are modified so that t
 
 The BLNK signal processing circuit (located just above the OAM2 Counter) is different:
 
-![eval_blnk](/BreakingNESWiki/imgstore/ppu/pal/eval_blnk.png)
+|![eval_blnk](/BreakingNESWiki/imgstore/ppu/pal/eval_blnk.png)|![eval_blnk_analysis](/BreakingNESWiki/imgstore/ppu/pal/eval_blnk_analysis.png)
+|---|---|
 
 The control circuit of OAM Counter for the control signal `OMSTEP` is additionally modified by the signal `EvenOddOut`, which comes from the EVEN/ODD circuit (this circuit is to the right of V PLA):
 

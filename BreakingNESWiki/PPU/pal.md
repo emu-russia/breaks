@@ -180,7 +180,11 @@ PCLK:
 
 Отличается схема обработки сигнала BLNK (находится чуть выше OAM2 Counter):
 
-![eval_blnk](/BreakingNESWiki/imgstore/ppu/pal/eval_blnk.png)
+|![eval_blnk](/BreakingNESWiki/imgstore/ppu/pal/eval_blnk.png)|![eval_blnk_analysis](/BreakingNESWiki/imgstore/ppu/pal/eval_blnk_analysis.png)
+|---|---|
+
+Most likely this DLatch is used to deal with the unaligned interaction between the CPU/PPU and register $2004.
+In simple words: Disabling PPU rendering in 2C07 has the effect of addressing the OAM only to the beginning of the next pixel if it was done to the "second half" of the current pixel.
 
 Схема управления OAM Counter для получения контрольного сигнала `OMSTEP` дополнительно модифицирована сигналом `EvenOddOut`, который приходит со схемы EVEN/ODD (эта схема находится правее V PLA):
 
