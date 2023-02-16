@@ -15,4 +15,8 @@
 	- [DAC](dac.md)
 - [Sprite DMA](dma.md)
 - [Test Pattern](test_pattern.md)
+
+Appendix:
+
 - [Waves](waves.md)
+- [Cycles](cycles.md)
