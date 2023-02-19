@@ -48,9 +48,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="valign" val="base"/>
     </tool>
   </lib>
-  <lib desc="file#2A03_APU_ForAPUPlayer.circ" name="7"/>
-  <lib desc="jar#Logisim-Floating-Point-Library/IEEE754.jar#com.cheese.IEEE754.IEEE754" name="8"/>
-  <main name="AUXDumper"/>
+  <lib desc="file#2A03_APU.circ" name="7"/>
+  <lib desc="jar#IEEE754.jar#com.cheese.IEEE754.IEEE754" name="8"/>
+  <main name="APUPlayer"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
     <a name="simlimit" val="1000"/>
@@ -134,6 +134,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(260,1180)" to="(270,1180)"/>
     <wire from="(220,320)" to="(300,320)"/>
     <wire from="(330,1010)" to="(340,1010)"/>
+    <wire from="(700,440)" to="(700,630)"/>
     <wire from="(540,320)" to="(670,320)"/>
     <wire from="(240,880)" to="(240,930)"/>
     <wire from="(610,190)" to="(610,380)"/>
@@ -230,9 +231,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1360,610)" to="(1380,610)"/>
     <wire from="(770,1070)" to="(780,1070)"/>
     <wire from="(670,890)" to="(680,890)"/>
+    <wire from="(700,440)" to="(710,440)"/>
     <wire from="(1150,640)" to="(1170,640)"/>
     <wire from="(530,1150)" to="(540,1150)"/>
     <wire from="(930,400)" to="(930,670)"/>
+    <wire from="(800,630)" to="(850,630)"/>
     <wire from="(630,940)" to="(680,940)"/>
     <wire from="(350,490)" to="(350,810)"/>
     <wire from="(510,980)" to="(560,980)"/>
@@ -330,6 +333,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(510,1030)" to="(510,1080)"/>
     <wire from="(790,950)" to="(800,950)"/>
     <wire from="(780,940)" to="(790,940)"/>
+    <wire from="(840,440)" to="(850,440)"/>
     <wire from="(630,1030)" to="(640,1030)"/>
     <wire from="(740,1060)" to="(750,1060)"/>
     <wire from="(650,980)" to="(650,990)"/>
@@ -382,6 +386,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(290,180)" to="(300,180)"/>
     <wire from="(850,240)" to="(980,240)"/>
     <wire from="(40,750)" to="(310,750)"/>
+    <wire from="(850,440)" to="(850,630)"/>
     <wire from="(970,610)" to="(1040,610)"/>
     <wire from="(210,980)" to="(220,980)"/>
     <wire from="(630,140)" to="(630,330)"/>
@@ -424,6 +429,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(280,1180)" to="(290,1180)"/>
     <wire from="(90,1030)" to="(90,1080)"/>
     <wire from="(90,1230)" to="(100,1230)"/>
+    <wire from="(690,630)" to="(700,630)"/>
     <wire from="(660,1010)" to="(660,1020)"/>
     <wire from="(1380,290)" to="(1380,310)"/>
     <wire from="(790,1060)" to="(790,1070)"/>
@@ -461,84 +467,89 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(130,1000)" to="(140,1000)"/>
     <wire from="(170,140)" to="(300,140)"/>
     <wire from="(550,1180)" to="(560,1180)"/>
-    <comp lib="5" loc="(290,1020)" name="LED"/>
-    <comp lib="5" loc="(410,980)" name="LED"/>
-    <comp lib="5" loc="(140,1200)" name="LED"/>
-    <comp lib="6" loc="(422,926)" name="Text">
-      <a name="text" val="SW_A"/>
+    <comp lib="5" loc="(140,1180)" name="LED"/>
+    <comp lib="6" loc="(568,860)" name="Text">
+      <a name="text" val="SQB_F"/>
     </comp>
-    <comp lib="5" loc="(800,1050)" name="LED"/>
-    <comp lib="0" loc="(380,890)" name="Splitter"/>
-    <comp lib="5" loc="(290,1120)" name="LED">
-      <a name="label" val="SQA_ENV"/>
+    <comp lib="5" loc="(410,1020)" name="LED"/>
+    <comp lib="5" loc="(410,1000)" name="LED"/>
+    <comp lib="5" loc="(410,890)" name="LED"/>
+    <comp lib="0" loc="(1260,670)" name="Constant"/>
+    <comp lib="5" loc="(290,960)" name="LED"/>
+    <comp lib="5" loc="(140,1260)" name="LED"/>
+    <comp lib="5" loc="(410,1080)" name="LED"/>
+    <comp lib="0" loc="(690,360)" name="Constant"/>
+    <comp lib="5" loc="(140,940)" name="LED"/>
+    <comp lib="5" loc="(800,1090)" name="LED">
+      <a name="label" val="ENVDIS"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(1260,670)" name="Constant"/>
-    <comp lib="5" loc="(1260,290)" name="Hex Digit Display"/>
-    <comp lib="5" loc="(140,1180)" name="LED"/>
-    <comp lib="5" loc="(680,1000)" name="LED"/>
+    <comp lib="5" loc="(680,1060)" name="LED"/>
     <comp lib="5" loc="(680,960)" name="LED"/>
+    <comp lib="5" loc="(290,1180)" name="LED"/>
+    <comp lib="5" loc="(290,940)" name="LED"/>
     <comp lib="0" loc="(650,890)" name="Splitter"/>
-    <comp lib="6" loc="(560,405)" name="Text">
-      <a name="text" val="N.C."/>
+    <comp lib="0" loc="(220,980)" name="Splitter">
+      <a name="fanout" val="11"/>
+      <a name="incoming" val="11"/>
+      <a name="appear" val="center"/>
     </comp>
+    <comp lib="5" loc="(560,1160)" name="LED"/>
     <comp lib="5" loc="(800,870)" name="LED">
       <a name="label" val="RMODE"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="5" loc="(140,1040)" name="LED"/>
-    <comp lib="5" loc="(410,940)" name="LED"/>
-    <comp lib="0" loc="(1210,420)" name="Splitter">
-      <a name="fanout" val="1"/>
-      <a name="incoming" val="16"/>
-      <a name="bit0" val="none"/>
-      <a name="bit1" val="none"/>
-      <a name="bit2" val="none"/>
-      <a name="bit3" val="none"/>
-      <a name="bit4" val="none"/>
-      <a name="bit5" val="none"/>
-      <a name="bit6" val="none"/>
-      <a name="bit7" val="none"/>
-      <a name="bit8" val="none"/>
-      <a name="bit9" val="none"/>
-      <a name="bit10" val="none"/>
-      <a name="bit11" val="none"/>
-      <a name="bit12" val="none"/>
-      <a name="bit13" val="none"/>
-      <a name="bit14" val="0"/>
-      <a name="bit15" val="none"/>
+    <comp lib="5" loc="(290,1060)" name="LED"/>
+    <comp lib="5" loc="(130,400)" name="LED">
+      <a name="facing" val="east"/>
+      <a name="label" val="TRI"/>
+      <a name="labelloc" val="west"/>
     </comp>
-    <comp lib="5" loc="(680,1080)" name="LED"/>
-    <comp lib="5" loc="(410,870)" name="LED">
-      <a name="label" val="SQA_DUTY"/>
-      <a name="labelloc" val="north"/>
-    </comp>
-    <comp lib="5" loc="(140,1280)" name="LED">
-      <a name="label" val="TRI_RELOAD"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="5" loc="(800,1110)" name="LED">
-      <a name="label" val="HALT NOISE"/>
-      <a name="labelloc" val="east"/>
+    <comp lib="6" loc="(688,921)" name="Text">
+      <a name="text" val="SW_B"/>
     </comp>
     <comp lib="5" loc="(800,950)" name="LED"/>
+    <comp lib="5" loc="(290,1080)" name="LED"/>
+    <comp lib="5" loc="(290,1220)" name="LED">
+      <a name="label" val="HALT SQA"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(560,405)" name="Text">
+      <a name="text" val="N.C."/>
+    </comp>
+    <comp loc="(700,160)" name="WRAM">
+      <a name="label" val="wram"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp lib="0" loc="(70,1210)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="5" loc="(140,1140)" name="LED"/>
+    <comp lib="5" loc="(680,980)" name="LED"/>
+    <comp lib="6" loc="(1356,561)" name="Text">
+      <a name="text" val="Taram-param-pam. Pam! Peep, peep, peep. Pipipipip, pip, pibibip"/>
+      <a name="font" val="SansSerif bolditalic 12"/>
+    </comp>
+    <comp lib="5" loc="(680,1020)" name="LED"/>
     <comp lib="0" loc="(340,1010)" name="Splitter">
       <a name="fanout" val="8"/>
       <a name="incoming" val="8"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="5" loc="(290,980)" name="LED"/>
-    <comp lib="5" loc="(140,1160)" name="LED"/>
-    <comp lib="5" loc="(560,1080)" name="LED"/>
-    <comp lib="0" loc="(100,170)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="/RES"/>
+    <comp lib="5" loc="(680,1080)" name="LED"/>
+    <comp lib="5" loc="(1300,290)" name="Hex Digit Display"/>
+    <comp lib="5" loc="(140,1000)" name="LED"/>
+    <comp lib="0" loc="(280,190)" name="Constant"/>
+    <comp lib="5" loc="(680,1000)" name="LED"/>
+    <comp lib="5" loc="(130,420)" name="LED">
+      <a name="facing" val="east"/>
+      <a name="label" val="SQB"/>
+      <a name="labelloc" val="west"/>
     </comp>
-    <comp lib="0" loc="(760,940)" name="Splitter">
-      <a name="fanout" val="4"/>
-      <a name="incoming" val="4"/>
-      <a name="appear" val="center"/>
-    </comp>
+    <comp lib="5" loc="(1340,290)" name="Hex Digit Display"/>
     <comp lib="0" loc="(1300,330)" name="Splitter">
       <a name="facing" val="north"/>
       <a name="fanout" val="4"/>
@@ -560,73 +571,57 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="bit14" val="3"/>
       <a name="bit15" val="3"/>
     </comp>
-    <comp lib="5" loc="(140,1060)" name="LED"/>
-    <comp lib="5" loc="(290,1200)" name="LED">
-      <a name="label" val="ENVDIS"/>
-      <a name="labelloc" val="east"/>
+    <comp lib="5" loc="(560,1000)" name="LED"/>
+    <comp lib="5" loc="(680,870)" name="LED">
+      <a name="label" val="SQB_DUTY"/>
+      <a name="labelloc" val="north"/>
     </comp>
-    <comp lib="0" loc="(550,520)" name="Constant">
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp loc="(1040,610)" name="AUXDumper">
-      <a name="label" val="dumper"/>
-      <a name="labelloc" val="south"/>
-      <a name="labelfont" val="SansSerif plain 10"/>
-    </comp>
-    <comp lib="6" loc="(148,861)" name="Text">
-      <a name="text" val="TRI_F"/>
-    </comp>
-    <comp lib="5" loc="(800,910)" name="LED">
-      <a name="label" val="NFREQ"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="5" loc="(140,1260)" name="LED"/>
-    <comp lib="6" loc="(1356,561)" name="Text">
-      <a name="text" val="Taram-param-pam. Pam! Peep, peep, peep. Pipipipip, pip, pibibip"/>
-      <a name="font" val="SansSerif bolditalic 12"/>
-    </comp>
-    <comp lib="5" loc="(560,900)" name="LED"/>
-    <comp lib="5" loc="(410,1060)" name="LED"/>
-    <comp lib="5" loc="(560,1200)" name="LED">
-      <a name="label" val="ENVDIS"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="5" loc="(800,1030)" name="LED"/>
-    <comp lib="5" loc="(800,1090)" name="LED">
-      <a name="label" val="ENVDIS"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(1295,220)" name="Text">
-      <a name="text" val="Last APU Register"/>
-    </comp>
-    <comp lib="5" loc="(560,980)" name="LED"/>
-    <comp lib="5" loc="(800,1070)" name="LED"/>
-    <comp lib="5" loc="(290,1140)" name="LED"/>
-    <comp lib="5" loc="(800,970)" name="LED"/>
-    <comp lib="5" loc="(290,880)" name="LED"/>
-    <comp loc="(700,160)" name="WRAM">
-      <a name="label" val="wram"/>
-      <a name="labelloc" val="south"/>
-      <a name="labelfont" val="SansSerif plain 10"/>
-    </comp>
-    <comp lib="0" loc="(490,980)" name="Splitter">
-      <a name="fanout" val="11"/>
-      <a name="incoming" val="11"/>
+    <comp lib="5" loc="(140,1240)" name="LED"/>
+    <comp lib="5" loc="(290,1160)" name="LED"/>
+    <comp lib="0" loc="(610,1010)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="5" loc="(560,960)" name="LED"/>
-    <comp lib="5" loc="(140,960)" name="LED"/>
-    <comp lib="5" loc="(560,1140)" name="LED"/>
-    <comp lib="6" loc="(688,921)" name="Text">
-      <a name="text" val="SW_B"/>
+    <comp lib="0" loc="(800,630)" name="Probe">
+      <a name="radix" val="16"/>
+      <a name="labelfont" val="SansSerif plain 40"/>
     </comp>
+    <comp loc="(710,330)" name="Fake6502">
+      <a name="label" val="core"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp lib="5" loc="(410,940)" name="LED"/>
     <comp lib="5" loc="(140,980)" name="LED"/>
-    <comp lib="5" loc="(290,1080)" name="LED"/>
-    <comp lib="5" loc="(140,940)" name="LED"/>
+    <comp lib="5" loc="(290,1040)" name="LED"/>
+    <comp lib="6" loc="(298,861)" name="Text">
+      <a name="text" val="SQA_F"/>
+    </comp>
+    <comp lib="5" loc="(140,1160)" name="LED"/>
+    <comp lib="5" loc="(290,900)" name="LED"/>
+    <comp lib="5" loc="(560,1180)" name="LED"/>
+    <comp lib="5" loc="(140,1280)" name="LED">
+      <a name="label" val="TRI_RELOAD"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="5" loc="(560,900)" name="LED"/>
     <comp lib="5" loc="(560,1220)" name="LED">
       <a name="label" val="HALT SQB"/>
       <a name="labelloc" val="east"/>
     </comp>
+    <comp lib="5" loc="(800,1070)" name="LED"/>
+    <comp lib="5" loc="(140,1080)" name="LED"/>
+    <comp lib="5" loc="(560,980)" name="LED"/>
+    <comp lib="5" loc="(1380,290)" name="Hex Digit Display"/>
+    <comp lib="5" loc="(1260,290)" name="Hex Digit Display"/>
+    <comp lib="5" loc="(560,920)" name="LED"/>
+    <comp lib="7" loc="(300,120)" name="2A03_APU">
+      <a name="label" val="apu"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp lib="0" loc="(380,890)" name="Splitter"/>
     <comp lib="0" loc="(580,450)" name="Splitter">
       <a name="facing" val="west"/>
       <a name="fanout" val="3"/>
@@ -655,169 +650,188 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="bit22" val="1"/>
       <a name="bit23" val="2"/>
     </comp>
-    <comp lib="5" loc="(560,1180)" name="LED"/>
-    <comp lib="5" loc="(1380,290)" name="Hex Digit Display"/>
-    <comp lib="5" loc="(130,420)" name="LED">
-      <a name="facing" val="east"/>
-      <a name="label" val="SQB"/>
-      <a name="labelloc" val="west"/>
+    <comp lib="0" loc="(510,1170)" name="Splitter">
+      <a name="fanout" val="6"/>
+      <a name="incoming" val="6"/>
+      <a name="appear" val="center"/>
     </comp>
+    <comp lib="5" loc="(140,900)" name="LED"/>
+    <comp lib="0" loc="(240,1170)" name="Splitter">
+      <a name="fanout" val="6"/>
+      <a name="incoming" val="6"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="5" loc="(560,880)" name="LED"/>
     <comp lib="0" loc="(750,1060)" name="Splitter">
       <a name="fanout" val="6"/>
       <a name="incoming" val="6"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="5" loc="(1340,290)" name="Hex Digit Display"/>
-    <comp lib="5" loc="(290,1060)" name="LED"/>
+    <comp lib="5" loc="(680,940)" name="LED"/>
+    <comp lib="5" loc="(410,1060)" name="LED"/>
+    <comp lib="0" loc="(70,980)" name="Splitter">
+      <a name="fanout" val="11"/>
+      <a name="incoming" val="11"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="0" loc="(100,90)" name="Clock">
+      <a name="label" val="XTAL"/>
+    </comp>
+    <comp lib="5" loc="(560,960)" name="LED"/>
+    <comp lib="5" loc="(560,1020)" name="LED"/>
+    <comp lib="5" loc="(560,1060)" name="LED"/>
+    <comp lib="0" loc="(1300,670)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="5" loc="(140,880)" name="LED"/>
+    <comp lib="5" loc="(290,1120)" name="LED">
+      <a name="label" val="SQA_ENV"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="5" loc="(410,870)" name="LED">
+      <a name="label" val="SQA_DUTY"/>
+      <a name="labelloc" val="north"/>
+    </comp>
+    <comp lib="5" loc="(140,960)" name="LED"/>
+    <comp lib="5" loc="(800,1050)" name="LED"/>
+    <comp lib="5" loc="(410,960)" name="LED"/>
+    <comp lib="6" loc="(148,861)" name="Text">
+      <a name="text" val="TRI_F"/>
+    </comp>
+    <comp lib="5" loc="(140,1040)" name="LED"/>
+    <comp lib="5" loc="(560,1040)" name="LED"/>
+    <comp lib="5" loc="(290,880)" name="LED"/>
+    <comp lib="5" loc="(410,1040)" name="LED"/>
     <comp lib="5" loc="(800,1010)" name="LED">
       <a name="label" val="N_ENV"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="5" loc="(410,1080)" name="LED"/>
-    <comp lib="5" loc="(1300,290)" name="Hex Digit Display"/>
-    <comp lib="5" loc="(560,1160)" name="LED"/>
-    <comp lib="0" loc="(1300,670)" name="Constant">
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="0" loc="(70,1210)" name="Splitter">
-      <a name="fanout" val="8"/>
-      <a name="incoming" val="8"/>
+    <comp lib="5" loc="(800,1030)" name="LED"/>
+    <comp lib="5" loc="(140,920)" name="LED"/>
+    <comp lib="0" loc="(760,940)" name="Splitter">
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
       <a name="appear" val="center"/>
+    </comp>
+    <comp lib="5" loc="(140,1220)" name="LED"/>
+    <comp lib="5" loc="(410,980)" name="LED"/>
+    <comp lib="0" loc="(1210,420)" name="Splitter">
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="16"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="none"/>
+      <a name="bit2" val="none"/>
+      <a name="bit3" val="none"/>
+      <a name="bit4" val="none"/>
+      <a name="bit5" val="none"/>
+      <a name="bit6" val="none"/>
+      <a name="bit7" val="none"/>
+      <a name="bit8" val="none"/>
+      <a name="bit9" val="none"/>
+      <a name="bit10" val="none"/>
+      <a name="bit11" val="none"/>
+      <a name="bit12" val="none"/>
+      <a name="bit13" val="none"/>
+      <a name="bit14" val="0"/>
+      <a name="bit15" val="none"/>
+    </comp>
+    <comp lib="5" loc="(690,630)" name="Button">
+      <a name="label" val="Next RegOp"/>
+      <a name="labelloc" val="west"/>
+    </comp>
+    <comp lib="5" loc="(560,1140)" name="LED"/>
+    <comp lib="6" loc="(775,501)" name="Text">
+      <a name="text" val="Load regdump here"/>
+      <a name="font" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(280,350)" name="Constant">
+      <a name="value" val="0x0"/>
     </comp>
     <comp lib="5" loc="(130,440)" name="LED">
       <a name="facing" val="east"/>
       <a name="label" val="SQA"/>
       <a name="labelloc" val="west"/>
     </comp>
-    <comp lib="6" loc="(568,860)" name="Text">
-      <a name="text" val="SQB_F"/>
-    </comp>
-    <comp lib="5" loc="(140,1080)" name="LED"/>
-    <comp lib="5" loc="(140,1140)" name="LED"/>
+    <comp lib="5" loc="(140,1200)" name="LED"/>
     <comp lib="5" loc="(130,460)" name="LED">
       <a name="facing" val="east"/>
       <a name="label" val="RND"/>
       <a name="labelloc" val="west"/>
     </comp>
-    <comp lib="0" loc="(280,350)" name="Constant">
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="5" loc="(410,1020)" name="LED"/>
-    <comp lib="0" loc="(690,360)" name="Constant"/>
-    <comp lib="5" loc="(560,1020)" name="LED"/>
-    <comp lib="5" loc="(560,1120)" name="LED">
-      <a name="label" val="SQB_ENV"/>
+    <comp lib="5" loc="(800,1110)" name="LED">
+      <a name="label" val="HALT NOISE"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="5" loc="(680,980)" name="LED"/>
-    <comp loc="(710,330)" name="Fake6502">
-      <a name="label" val="core"/>
-      <a name="labelloc" val="south"/>
-      <a name="labelfont" val="SansSerif plain 10"/>
+    <comp lib="6" loc="(1295,220)" name="Text">
+      <a name="text" val="Last APU Register"/>
     </comp>
-    <comp lib="5" loc="(410,960)" name="LED"/>
-    <comp lib="5" loc="(290,900)" name="LED"/>
-    <comp lib="5" loc="(560,940)" name="LED"/>
-    <comp lib="0" loc="(240,1170)" name="Splitter">
-      <a name="fanout" val="6"/>
-      <a name="incoming" val="6"/>
-      <a name="appear" val="center"/>
+    <comp lib="6" loc="(152,1126)" name="Text">
+      <a name="text" val="TRI_LIN"/>
     </comp>
     <comp lib="4" loc="(1270,400)" name="Register">
       <a name="width" val="16"/>
       <a name="trigger" val="high"/>
       <a name="label" val="transp_latch"/>
     </comp>
-    <comp lib="5" loc="(410,1040)" name="LED"/>
-    <comp lib="5" loc="(680,870)" name="LED">
-      <a name="label" val="SQB_DUTY"/>
-      <a name="labelloc" val="north"/>
-    </comp>
-    <comp lib="6" loc="(775,501)" name="Text">
-      <a name="text" val="Load regdump here"/>
-      <a name="font" val="SansSerif bold 12"/>
-    </comp>
-    <comp lib="5" loc="(800,930)" name="LED"/>
-    <comp lib="5" loc="(560,1060)" name="LED"/>
-    <comp lib="0" loc="(70,980)" name="Splitter">
-      <a name="fanout" val="11"/>
-      <a name="incoming" val="11"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="0" loc="(280,190)" name="Constant"/>
-    <comp lib="0" loc="(100,90)" name="Clock">
-      <a name="label" val="XTAL"/>
-    </comp>
-    <comp lib="5" loc="(130,400)" name="LED">
-      <a name="facing" val="east"/>
-      <a name="label" val="TRI"/>
-      <a name="labelloc" val="west"/>
-    </comp>
-    <comp lib="5" loc="(290,1160)" name="LED"/>
-    <comp lib="5" loc="(140,920)" name="LED"/>
-    <comp lib="5" loc="(410,1000)" name="LED"/>
-    <comp lib="5" loc="(560,880)" name="LED"/>
-    <comp lib="5" loc="(560,920)" name="LED"/>
-    <comp lib="5" loc="(140,1020)" name="LED"/>
-    <comp lib="5" loc="(130,370)" name="LED">
-      <a name="facing" val="east"/>
-      <a name="label" val="DMC"/>
-      <a name="labelloc" val="west"/>
-    </comp>
-    <comp lib="5" loc="(290,1220)" name="LED">
-      <a name="label" val="HALT SQA"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="5" loc="(560,1000)" name="LED"/>
-    <comp lib="5" loc="(410,890)" name="LED"/>
-    <comp lib="5" loc="(290,1180)" name="LED"/>
-    <comp lib="5" loc="(680,1040)" name="LED"/>
-    <comp lib="5" loc="(680,940)" name="LED"/>
-    <comp lib="6" loc="(152,1126)" name="Text">
-      <a name="text" val="TRI_LIN"/>
-    </comp>
-    <comp lib="0" loc="(610,1010)" name="Splitter">
-      <a name="fanout" val="8"/>
-      <a name="incoming" val="8"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="7" loc="(300,120)" name="2A03_APU">
-      <a name="label" val="apu"/>
-      <a name="labelloc" val="south"/>
-      <a name="labelfont" val="SansSerif plain 10"/>
-    </comp>
-    <comp lib="5" loc="(140,880)" name="LED"/>
-    <comp lib="5" loc="(140,1000)" name="LED"/>
-    <comp lib="0" loc="(510,1170)" name="Splitter">
-      <a name="fanout" val="6"/>
-      <a name="incoming" val="6"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="5" loc="(290,1040)" name="LED"/>
     <comp lib="4" loc="(1360,610)" name="RAM">
       <a name="addrWidth" val="24"/>
       <a name="dataWidth" val="32"/>
       <a name="bus" val="asynch"/>
     </comp>
-    <comp lib="5" loc="(140,1240)" name="LED"/>
-    <comp lib="5" loc="(290,940)" name="LED"/>
-    <comp lib="5" loc="(290,960)" name="LED"/>
-    <comp lib="5" loc="(680,1060)" name="LED"/>
-    <comp lib="5" loc="(680,1020)" name="LED"/>
-    <comp lib="0" loc="(220,980)" name="Splitter">
+    <comp lib="5" loc="(290,1020)" name="LED"/>
+    <comp lib="5" loc="(290,1000)" name="LED"/>
+    <comp lib="5" loc="(560,1080)" name="LED"/>
+    <comp lib="5" loc="(560,1200)" name="LED">
+      <a name="label" val="ENVDIS"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(490,980)" name="Splitter">
       <a name="fanout" val="11"/>
       <a name="incoming" val="11"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="5" loc="(290,920)" name="LED"/>
-    <comp lib="5" loc="(290,1000)" name="LED"/>
-    <comp lib="5" loc="(140,1220)" name="LED"/>
-    <comp lib="6" loc="(298,861)" name="Text">
-      <a name="text" val="SQA_F"/>
+    <comp lib="5" loc="(680,1040)" name="LED"/>
+    <comp lib="6" loc="(422,926)" name="Text">
+      <a name="text" val="SW_A"/>
     </comp>
-    <comp lib="5" loc="(560,1040)" name="LED"/>
+    <comp lib="5" loc="(800,930)" name="LED"/>
+    <comp lib="5" loc="(130,370)" name="LED">
+      <a name="facing" val="east"/>
+      <a name="label" val="DMC"/>
+      <a name="labelloc" val="west"/>
+    </comp>
+    <comp lib="5" loc="(800,970)" name="LED"/>
+    <comp lib="5" loc="(290,920)" name="LED"/>
+    <comp lib="0" loc="(550,520)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="5" loc="(800,910)" name="LED">
+      <a name="label" val="NFREQ"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(100,170)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="/RES"/>
+    </comp>
+    <comp lib="5" loc="(140,1060)" name="LED"/>
+    <comp loc="(1040,610)" name="AUXDumper">
+      <a name="label" val="dumper"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp lib="5" loc="(290,1200)" name="LED">
+      <a name="label" val="ENVDIS"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="5" loc="(140,1020)" name="LED"/>
+    <comp lib="5" loc="(560,1120)" name="LED">
+      <a name="label" val="SQB_ENV"/>
+      <a name="labelloc" val="east"/>
+    </comp>
     <comp lib="5" loc="(680,890)" name="LED"/>
-    <comp lib="5" loc="(140,900)" name="LED"/>
+    <comp lib="5" loc="(560,940)" name="LED"/>
+    <comp lib="5" loc="(290,1140)" name="LED"/>
+    <comp lib="5" loc="(290,980)" name="LED"/>
   </circuit>
   <circuit name="AUXDumper">
     <a name="circuit" val="AUXDumper"/>
@@ -879,24 +893,34 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(350,140)" to="(480,140)"/>
     <wire from="(500,130)" to="(570,130)"/>
     <wire from="(260,210)" to="(330,210)"/>
-    <comp loc="(240,380)" name="AUX_A"/>
-    <comp lib="8" loc="(390,430)" name="Adder"/>
+    <comp lib="6" loc="(455,401)" name="Text">
+      <a name="text" val=" : 2"/>
+      <a name="font" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="6" loc="(690,285)" name="Text">
+      <a name="text" val="normalized samples in range [0.0f; 1.0f]"/>
+      <a name="font" val="SansSerif bold 12"/>
+    </comp>
     <comp lib="6" loc="(379,403)" name="Text">
       <a name="text" val="a + b"/>
       <a name="font" val="SansSerif bold 12"/>
     </comp>
-    <comp lib="0" loc="(720,70)" name="Pin">
+    <comp lib="4" loc="(390,190)" name="Counter">
+      <a name="width" val="1"/>
+      <a name="max" val="0x1"/>
+    </comp>
+    <comp lib="6" loc="(464,53)" name="Text">
+      <a name="text" val="The invention of the org to make the ADDR tick EVERY half cycle."/>
+    </comp>
+    <comp lib="0" loc="(720,220)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="width" val="24"/>
-      <a name="label" val="Addr"/>
+      <a name="width" val="32"/>
+      <a name="label" val="Data"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(130,150)" name="Pin">
-      <a name="width" val="24"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="AUX"/>
-    </comp>
+    <comp loc="(240,480)" name="AUX_B"/>
+    <comp loc="(240,380)" name="AUX_A"/>
     <comp lib="0" loc="(140,150)" name="Splitter">
       <a name="incoming" val="24"/>
       <a name="bit1" val="0"/>
@@ -923,43 +947,20 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="bit22" val="1"/>
       <a name="bit23" val="1"/>
     </comp>
-    <comp lib="4" loc="(390,190)" name="Counter">
-      <a name="width" val="1"/>
-      <a name="max" val="0x1"/>
-    </comp>
-    <comp loc="(240,480)" name="AUX_B"/>
-    <comp lib="0" loc="(720,220)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="label" val="Data"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(464,53)" name="Text">
-      <a name="text" val="The invention of the org to make the ADDR tick EVERY half cycle."/>
-    </comp>
-    <comp lib="4" loc="(350,140)" name="Counter">
-      <a name="width" val="23"/>
-      <a name="max" val="0x7fffff"/>
-    </comp>
-    <comp lib="4" loc="(390,270)" name="Counter">
-      <a name="width" val="1"/>
-      <a name="max" val="0x1"/>
-      <a name="trigger" val="falling"/>
-    </comp>
-    <comp lib="8" loc="(470,430)" name="Divider"/>
-    <comp lib="0" loc="(90,60)" name="Pin">
+    <comp lib="0" loc="(130,150)" name="Pin">
+      <a name="width" val="24"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="PHI1"/>
-    </comp>
-    <comp lib="6" loc="(455,401)" name="Text">
-      <a name="text" val=" : 2"/>
-      <a name="font" val="SansSerif bold 12"/>
+      <a name="label" val="AUX"/>
     </comp>
     <comp lib="0" loc="(430,510)" name="Constant">
       <a name="width" val="32"/>
       <a name="value" val="0x40000000"/>
     </comp>
+    <comp lib="4" loc="(350,140)" name="Counter">
+      <a name="width" val="23"/>
+      <a name="max" val="0x7fffff"/>
+    </comp>
+    <comp lib="8" loc="(470,430)" name="Divider"/>
     <comp lib="0" loc="(500,130)" name="Splitter">
       <a name="facing" val="west"/>
       <a name="incoming" val="24"/>
@@ -988,14 +989,27 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="bit22" val="0"/>
       <a name="bit23" val="0"/>
     </comp>
+    <comp lib="0" loc="(90,60)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="PHI1"/>
+    </comp>
+    <comp lib="0" loc="(720,70)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="24"/>
+      <a name="label" val="Addr"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="4" loc="(390,270)" name="Counter">
+      <a name="width" val="1"/>
+      <a name="max" val="0x1"/>
+      <a name="trigger" val="falling"/>
+    </comp>
     <comp lib="1" loc="(480,230)" name="XNOR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
-    <comp lib="6" loc="(690,285)" name="Text">
-      <a name="text" val="normalized samples in range [0.0f; 1.0f]"/>
-      <a name="font" val="SansSerif bold 12"/>
-    </comp>
+    <comp lib="8" loc="(390,430)" name="Adder"/>
   </circuit>
   <circuit name="AUX_A">
     <a name="circuit" val="AUX_A"/>
@@ -1015,6 +1029,20 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(240,190)" to="(250,190)"/>
     <wire from="(250,170)" to="(250,190)"/>
     <wire from="(340,130)" to="(380,130)"/>
+    <comp lib="0" loc="(240,190)" name="Constant"/>
+    <comp lib="0" loc="(380,130)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="a"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(170,130)" name="Pin">
+      <a name="width" val="8"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="d"/>
+    </comp>
     <comp lib="4" loc="(340,130)" name="ROM">
       <a name="dataWidth" val="32"/>
       <a name="contents">addr/data: 8 32
@@ -1052,22 +1080,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
 3f4797dd 3f4fc4a3 3f57e753 3f600000 3f680ebc 3f701399 3f780eaa 3f800000
 </a>
     </comp>
-    <comp lib="0" loc="(380,130)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="a"/>
-      <a name="labelloc" val="east"/>
-    </comp>
     <comp lib="6" loc="(124,159)" name="Text">
       <a name="text" val="0...255"/>
-    </comp>
-    <comp lib="0" loc="(240,190)" name="Constant"/>
-    <comp lib="0" loc="(170,130)" name="Pin">
-      <a name="width" val="8"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="d"/>
     </comp>
   </circuit>
   <circuit name="AUX_B">
@@ -1089,37 +1103,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(250,170)" to="(250,190)"/>
     <wire from="(340,130)" to="(380,130)"/>
     <wire from="(130,140)" to="(150,140)"/>
-    <comp lib="0" loc="(150,140)" name="Splitter">
-      <a name="fanout" val="1"/>
-      <a name="incoming" val="16"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit6" val="0"/>
-      <a name="bit7" val="0"/>
-      <a name="bit8" val="0"/>
-      <a name="bit9" val="0"/>
-      <a name="bit10" val="0"/>
-      <a name="bit11" val="0"/>
-      <a name="bit12" val="0"/>
-      <a name="bit13" val="0"/>
-      <a name="bit14" val="0"/>
-      <a name="bit15" val="none"/>
-    </comp>
-    <comp lib="6" loc="(89,177)" name="Text">
-      <a name="text" val="0...32767"/>
-    </comp>
-    <comp lib="0" loc="(240,190)" name="Constant"/>
-    <comp lib="0" loc="(380,130)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="a"/>
-      <a name="labelloc" val="east"/>
-    </comp>
     <comp lib="4" loc="(340,130)" name="ROM">
       <a name="addrWidth" val="15"/>
       <a name="dataWidth" val="32"/>
@@ -5222,10 +5205,41 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
 3f65691b 3f694d81 3f6d29bf 3f70fded 3f74ca25 3f788e81 3f7c4b17 3f800000
 </a>
     </comp>
+    <comp lib="0" loc="(380,130)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="a"/>
+      <a name="labelloc" val="east"/>
+    </comp>
     <comp lib="0" loc="(130,140)" name="Pin">
       <a name="width" val="16"/>
       <a name="tristate" val="false"/>
       <a name="label" val="d"/>
+    </comp>
+    <comp lib="6" loc="(89,177)" name="Text">
+      <a name="text" val="0...32767"/>
+    </comp>
+    <comp lib="0" loc="(240,190)" name="Constant"/>
+    <comp lib="0" loc="(150,140)" name="Splitter">
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="16"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="0"/>
+      <a name="bit8" val="0"/>
+      <a name="bit9" val="0"/>
+      <a name="bit10" val="0"/>
+      <a name="bit11" val="0"/>
+      <a name="bit12" val="0"/>
+      <a name="bit13" val="0"/>
+      <a name="bit14" val="0"/>
+      <a name="bit15" val="none"/>
     </comp>
   </circuit>
   <circuit name="Fake6502">
@@ -5262,6 +5276,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <circ-port height="10" pin="840,180" width="10" x="175" y="105"/>
       <circ-port height="10" pin="840,240" width="10" x="175" y="135"/>
       <circ-port height="10" pin="830,380" width="10" x="175" y="165"/>
+      <circ-port height="10" pin="830,460" width="10" x="175" y="175"/>
+      <circ-port height="8" pin="140,470" width="8" x="46" y="176"/>
       <circ-anchor facing="east" height="6" width="6" x="47" y="67"/>
     </appear>
     <wire from="(790,90)" to="(840,90)"/>
@@ -5272,6 +5288,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(700,90)" to="(760,90)"/>
     <wire from="(330,270)" to="(330,280)"/>
     <wire from="(700,90)" to="(700,120)"/>
+    <wire from="(730,460)" to="(830,460)"/>
     <wire from="(440,230)" to="(440,320)"/>
     <wire from="(470,90)" to="(700,90)"/>
     <wire from="(710,240)" to="(710,260)"/>
@@ -5280,3399 +5297,73 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(660,320)" to="(690,320)"/>
     <wire from="(420,230)" to="(440,230)"/>
     <wire from="(470,210)" to="(490,210)"/>
+    <wire from="(470,220)" to="(490,220)"/>
     <wire from="(660,280)" to="(750,280)"/>
     <wire from="(750,280)" to="(750,380)"/>
+    <wire from="(660,220)" to="(730,220)"/>
     <wire from="(320,280)" to="(330,280)"/>
     <wire from="(710,150)" to="(840,150)"/>
     <wire from="(710,240)" to="(840,240)"/>
     <wire from="(140,90)" to="(470,90)"/>
+    <wire from="(140,470)" to="(470,470)"/>
     <wire from="(710,150)" to="(710,210)"/>
     <wire from="(210,230)" to="(280,230)"/>
     <wire from="(830,180)" to="(840,180)"/>
     <wire from="(750,380)" to="(830,380)"/>
+    <wire from="(730,220)" to="(730,460)"/>
+    <wire from="(470,220)" to="(470,470)"/>
     <wire from="(700,120)" to="(840,120)"/>
     <wire from="(470,90)" to="(470,210)"/>
-    <comp lib="6" loc="(349,172)" name="Text">
-      <a name="text" val="Load regdump here"/>
-      <a name="font" val="SansSerif bold 12"/>
+    <comp lib="0" loc="(140,370)" name="Pin">
+      <a name="width" val="8"/>
+      <a name="label" val="DB_in"/>
     </comp>
-    <comp lib="6" loc="(164,260)" name="Text">
-      <a name="text" val="N.C."/>
+    <comp lib="0" loc="(830,460)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(320,280)" name="Constant"/>
-    <comp lib="0" loc="(830,180)" name="Constant">
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="0" loc="(140,90)" name="Pin">
+    <comp lib="0" loc="(140,290)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="PHI0"/>
+      <a name="label" val="/RES"/>
     </comp>
     <comp lib="0" loc="(140,230)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="/NMI"/>
+    </comp>
+    <comp lib="6" loc="(164,260)" name="Text">
+      <a name="text" val="N.C."/>
+    </comp>
+    <comp lib="0" loc="(140,260)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="/IRQ"/>
+    </comp>
+    <comp lib="6" loc="(162,138)" name="Text">
+      <a name="text" val="N.C."/>
+    </comp>
+    <comp lib="0" loc="(140,90)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="PHI0"/>
     </comp>
     <comp loc="(490,210)" name="RegDumpProcessor">
       <a name="label" val="redump"/>
       <a name="labelloc" val="south"/>
       <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
-    <comp lib="0" loc="(140,290)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="/RES"/>
-    </comp>
-    <comp lib="4" loc="(420,230)" name="ROM">
-      <a name="addrWidth" val="24"/>
-      <a name="dataWidth" val="32"/>
-      <a name="contents">addr/data: 24 32
-df5c 17 a 16 9 95 1 15
-a 14 20b 13 a 12 a 11
-a 10 a f a e a d
-a c a b a a a 9
-a 8 a 7 a 6 a 5
-a 4 a 3 a 2 a 1
-a 0 a c010 6 8017 6 f15
-9ac6 214 198b2 0 9 2 72 4
-9 6 72 8 9 a 72 c
-9 e b8 0 9 2 72 4
-9 6 72 8 9 a 72 c
-9 e 4b 116 6 16 b49 214
-72b 4301 f b600 9 a602 e 1a03
-2d7 4305 f b604 9 4e06 e 1d07
-255 4309 f 1f08 9 a60a e 6a0b
-198 430d f 140c 9 d0e e 680f
-d92 116 6 16 5837 214 538 b500
-9 a602 c1 b504 9 4e06 d3 1f08
-9 a50a 72 140c 9 d0e d6f 116
-6 16 5f7d 214 12f6 116 6 16
-615a 214 590 b400 9 a502 119 b404
-9 4b06 d2 1f08 9 a60a 72 140c
-9 d0e d6f 116 6 16 5ecf 214
-12dd 116 6 16 6171 214 58e b300
-9 a602 c1 b304 9 4b06 d3 1f08
-9 a50a 72 140c 9 d0e d6f 116
-6 16 5f28 214 12de 116 6 16
-6171 214 58f b200 9 a502 118 b204
-9 4e06 d2 1f08 9 a60a 72 140c
-9 d0e d57 116 6 16 5ee6 214
-58e b100 9 a602 c1 b104 9 4e06
-d3 1f08 9 a50a 72 140c 9 d0e
-d57 116 6 16 5f40 214 55b 4301
-f b600 9 3a02 e 1a03 107 4305
-f b604 9 a606 e 1a07 f1 4309
-f 1f08 9 a60a e 6a0b 176 430d
-f 150c 9 60e e 380f d7a 116
-6 16 5d73 214 590 b500 9 3902
-119 b504 9 a306 d2 1f08 9 a70a
-72 150c 9 60e d5d 116 6 16
-5ee2 214 12b4 116 6 16 6198 214
-58f b400 9 3a02 c1 b404 9 a306
-d3 1f08 9 a60a 72 150c 9 60e
-11a5 116 6 16 5af4 214 12b4 116
-6 16 6198 214 590 b300 9 3902
-118 b304 9 a606 d2 1f08 9 a70a
-72 150c 9 60e d36 116 6 16
-5f09 214 1275 116 6 16 61da 214
-58f b200 9 3a02 c1 b204 9 a606
-d3 1f08 9 a60a 72 150c 9 60e
-d07 116 6 16 5f8d 214 58f b100
-9 3902 119 b104 9 a306 d2 1f08
-9 a70a 72 150c 9 60e d07 116
-6 16 5f38 214 55b 4301 f b600
-9 3a02 e 1a03 107 4305 f b604
-9 a606 e 1a07 f1 4309 f 1f08
-9 a60a e 6a0b f6 430d f 150c
-9 60e e 380f d2a 116 6 16
-5e44 214 58e b500 9 3b02 c1 b504
-9 a606 d3 1f08 9 a50a 72 150c
-9 60e d07 116 6 16 5f91 214
-1275 116 6 16 61d9 214 58f b400
-9 3a02 118 b404 9 a906 d2 1f08
-9 a60a 72 150c 9 60e dd9 116
-6 16 5e66 214 1301 116 6 16
-614e 214 58f b300 9 3b02 c1 b304
-9 a906 d3 1f08 9 a50a 72 150c
-9 60e 1008 116 6 16 5c8b 214
-1302 116 6 16 614e 214 590 b200
-9 3a02 119 b204 9 a606 d2 1f08
-9 a60a 72 150c 9 60e d07 116
-6 16 5f38 214 58f b100 9 3b02
-c1 b104 9 a606 d3 1f08 9 a50a
-72 150c 9 60e d07 116 6 16
-5f8d 214 55a 4301 f b600 9 5c02
-e 1a03 107 4305 f b604 9 f906
-e 1a07 f1 4309 f 1f08 9 f90a
-e 6a0b f6 430d f 150c 9 60e
-e 380f d2a 116 6 16 5e44 214
-58f b500 9 5b02 118 b504 9 fc06
-d2 1f08 9 fa0a 72 150c 9 60e
-d07 116 6 16 5f3a 214 1275 116
-6 16 61da 214 58f b400 9 5c02
-c1 b404 9 fc06 d3 1f08 9 f90a
-72 150c 9 60e eac 116 6 16
-5dea 214 1275 116 6 16 61da 214
-590 b300 9 5b02 119 b304 9 f906
-d2 1f08 9 fa0a 72 150c 9 60e
-d07 116 6 16 5f34 214 1276 116
-6 16 61da 214 58f b200 9 5c02
-c1 b204 9 f906 d3 1f08 9 f90a
-72 150c 9 60e d07 116 6 16
-5f8d 214 58f b100 9 5b02 118 b104
-9 fc06 d2 1f08 9 fa0a 72 150c
-9 60e d07 116 6 16 5f38 214
-6a0 4301 f b200 9 fc02 e 1903
-252 4305 f b204 9 5c06 e 1a07
-f7 4309 f 1f08 9 a60a e 6a0b
-259 430d f 320c 9 40e e 180f
-e01 116 6 16 5975 214 55d b200
-9 fd02 90 b204 9 5c06 d3 1f08
-9 a50a 88 320c 9 40e ead 116
-6 16 5e35 214 138d 116 6 16
-60c3 214 55f b200 9 fc02 e9 b204
-9 5906 d2 1f08 9 a60a 88 320c
-9 40e d07 116 6 16 5f81 214
-1275 116 6 16 61d9 214 55e b200
-9 fd02 91 b204 9 5906 d3 1f08
-9 a50a 88 320c 9 40e d07 116
-6 16 5fd8 214 1276 116 6 16
-61d9 214 55f b200 9 fc02 e8 b204
-9 5c06 d2 1f08 9 a60a 88 320c
-9 40e d07 116 6 16 5f81 214
-55f b200 9 fd02 91 b204 9 5c06
-d3 1f08 9 a50a 88 320c 9 40e
-d07 116 6 16 5fdb 214 5c0 4309
-f 1f08 9 a60a e 6a0b e80 116
-6 16 5fe6 214 55f b200 9 fc02
-e9 b204 9 5906 d2 1f08 9 a70a
-88 320c 9 40e d93 116 6 16
-5ef6 214 138e 116 6 16 60c3 214
-55e b200 9 fd02 91 b204 9 5906
-d3 1f08 9 a60a 88 320c 9 40e
-d07 116 6 16 5fdb 214 1275 116
-6 16 61da 214 560 b200 9 fc02
-e8 b204 9 5c06 d2 1f08 9 a70a
-ba 330c 9 40e d07 116 6 16
-5f4b 214 1276 116 6 16 61da 214
-591 b300 9 fd02 c3 b304 9 5c06
-d3 1f08 9 a60a 88 330c 9 40e
-e20 116 6 16 5e5f 214 560 b300
-9 fc02 e9 b304 9 5906 d2 1f08
-9 a70a 88 330c 9 40e d93 116
-6 16 5ef2 214 5c2 4309 f 1f08
-9 fc0a e 690b d68 116 6 16
-6101 214 55e b300 9 fd02 91 b304
-9 5906 d3 1f08 9 fb0a 88 330c
-9 40e d94 116 6 16 5f47 214
-1276 116 6 16 61d9 214 55f b300
-9 fc02 e8 b304 9 5c06 d2 1f08
-9 fc0a 88 330c 9 40e d07 116
-6 16 5f84 214 1275 116 6 16
-61d9 214 55e b300 9 fd02 91 b304
-9 5c06 d3 1f08 9 fb0a 88 330c
-9 40e d07 116 6 16 5fd8 214
-141b 116 6 16 6035 214 560 b300
-9 fc02 e9 b304 9 5906 d2 1f08
-9 fc0a 88 330c 9 40e e20 116
-6 16 5e66 214 55e b300 9 fd02
-91 b304 9 5906 d3 1f08 9 fb0a
-88 330c 9 40e e21 116 6 16
-5ec3 214 5c2 4309 f 1f08 9 c40a
-e 690b e39 116 6 16 602a 214
-560 b300 9 fc02 e8 b304 9 5c06
-d2 1f08 9 c50a ba 340c 9 40e
-d93 116 6 16 5ec7 214 1276 116
-6 16 61da 214 591 b400 9 fd02
-c3 b404 9 5c06 d3 1f08 9 c40a
-88 340c 9 40e d07 116 6 16
-5f71 214 1275 116 6 16 61da 214
-560 b400 9 fc02 e9 b404 9 5906
-d2 1f08 9 c50a 88 340c 9 40e
-e20 116 6 16 5e68 214 138e 116
-6 16 60bf 214 55f b400 9 fd02
-91 b404 9 5906 d3 1f08 9 c40a
-88 340c 9 40e d4c 116 6 16
-5f94 214 55f b400 9 fc02 e8 b404
-9 5c06 d2 1f08 9 c50a 88 340c
-9 40e f39 116 6 16 5d50 214
-746 4301 f b600 9 3a02 e 1a03
-2b6 4305 f b204 9 6 e 1807
-175 4309 f 1f08 9 ab0a e 690b
-2ac 430d f 160c 9 d0e e 480f
-d2a 116 6 16 5871 214 58e b500
-9 3b02 91 b204 9 6 d3 1f08
-9 aa0a 72 160c 9 d0e d07 116
-6 16 5fbf 214 1275 116 6 16
-61d9 214 58f b400 9 3a02 d6 b104
-9 6 d2 1f08 9 ab0a 72 160c
-9 d0e d07 116 6 16 5f79 214
-1303 116 6 16 614e 214 58e b300
-9 3b02 91 b104 9 6 d3 1f08
-9 aa0a 72 160c 9 d0e d07 116
-6 16 5fbf 214 1301 116 6 16
-614e 214 590 b200 9 3a02 da b004
-9 6 d2 1f08 9 ab0a 72 160c
-9 d0e d93 116 6 16 5eea 214
-58e b100 9 3b02 7b b004 9 6
-d3 1f08 9 aa0a 72 160c 9 d0e
-d07 116 6 16 5fd4 214 55d 4301
-f b600 9 1c02 e 1903 131 4309
-f 1f08 9 ab0a e 690b 16e 430d
-f 130c 9 d0e e 480f d2a 116
-6 16 5eb5 214 58f b500 9 1b02
-90 b004 9 6 d2 1f08 9 ac0a
-72 130c 9 d0e d07 116 6 16
-5fc3 214 5d1 4305 f b204 9 3a06
-e 1a07 da6 116 6 16 60b0 214
-58e b400 9 1c02 91 b204 9 3a06
-d3 1f08 9 ab0a 72 130c 9 d0e
-dd8 116 6 16 5eee 214 1301 116
-6 16 614e 214 590 b300 9 1b02
-119 b104 9 3706 d2 1f08 9 ac0a
-72 130c 9 d0e ef1 116 6 16
-5d4c 214 138e 116 6 16 60c3 214
-58e b200 9 1c02 91 b104 9 3706
-d3 1f08 9 ab0a 72 130c 9 d0e
-d07 116 6 16 5fbf 214 58f b100
-9 1b02 11c b004 9 3a06 d2 1f08
-9 ac0a 72 130c 9 d0e d07 116
-6 16 5f32 214 55c 4301 f b600
-9 1c02 e 1903 131 4309 f 1f08
-9 ab0a e 690b 16e 430d f 120c
-9 d0e e 480f d2a 116 6 16
-5eb8 214 58f b500 9 1d02 7b b004
-9 3a06 d3 1f08 9 aa0a 72 120c
-9 d0e d07 116 6 16 5fd6 214
-59b 4305 f b204 9 1c06 e 1907
-ebe 116 6 16 5fce 214 58f b400
-9 1c02 e9 b204 9 1906 d2 1f08
-9 ab0a 72 120c 9 d0e d94 116
-6 16 5eda 214 1275 116 6 16
-61df 214 58e b300 9 1d02 c1 b104
-9 1906 d3 1f08 9 aa0a 72 120c
-9 d0e e1f 116 6 16 5e72 214
-1276 116 6 16 61d9 214 58f b200
-9 1c02 e8 b104 9 1c06 d2 1f08
-9 ab0a 72 120c 9 d0e d07 116
-6 16 5f6a 214 58e b100 9 1d02
-c5 b004 9 1c06 d3 1f08 9 aa0a
-72 120c 9 d0e d07 116 6 16
-5f8d 214 55c 4301 f b600 9 2d02
-e 1903 131 4309 f 1f08 9 ab0a
-e 690b 16e 430d f 110c 9 d0e
-e 480f d2a 116 6 16 5eb5 214
-58f b500 9 2c02 d3 b004 9 1906
-d2 1f08 9 ac0a 72 110c 9 d0e
-d07 116 6 16 5f7d 214 59a 4305
-f b204 9 1c06 e 1907 e77 116
-6 16 6019 214 58e b400 9 2d02
-91 b204 9 1c06 d3 1f08 9 ab0a
-72 110c 9 d0e ef0 116 6 16
-5dd6 214 138e 116 6 16 60bf 214
-590 b300 9 2c02 118 b104 9 1f06
-d2 1f08 9 ac0a 72 110c 9 d0e
-d07 116 6 16 5f3a 214 1275 116
-6 16 61da 214 58f b200 9 2d02
-91 b104 9 1f06 d3 1f08 9 ab0a
-72 110c 9 d0e d07 116 6 16
-5fbf 214 58f b100 9 2c02 11d b004
-9 1c06 d2 1f08 9 ac0a 72 110c
-9 d0e d07 116 6 16 5f32 214
-592 4301 f b600 9 7c02 e 1903
-199 4309 f 1f08 9 ab0a e 690b
-1c2 430d f 160c 9 60e e 480f
-d2a 116 6 16 5dc7 214 58f b500
-9 7d02 7b b004 9 1c06 d3 1f08
-9 aa0a 72 160c 9 60e d94 116
-6 16 5f44 214 59a 4305 f b204
-9 2d06 e 1907 ebf 116 6 16
-5fd2 214 590 b400 9 7c02 e8 b204
-9 3006 d2 1f08 9 ab0a 72 160c
-9 60e e1f 116 6 16 5e4f 214
-1276 116 6 16 61d9 214 58e b300
-9 7d02 c1 b104 9 3006 d3 1f08
-9 aa0a 72 160c 9 60e d07 116
-6 16 5f91 214 1275 116 6 16
-61d6 214 590 b200 9 7c02 e9 b104
-9 2d06 d2 1f08 9 ab0a 72 160c
-9 60e d07 116 6 16 5f66 214
-58f b100 9 7d02 c5 b004 9 2d06
-d3 1f08 9 aa0a 72 160c 9 60e
-e20 116 6 16 5e73 214 5c3 4309
-f 1f08 9 ab0a e 690b 16e 430d
-f 130c 9 60e e 480f d2a 116
-6 16 5fa8 214 593 b000 9 7c02
-d2 b004 9 3006 d2 1f08 9 ac0a
-72 130c 9 60e ee2 116 6 16
-5d9e 214 5d0 4305 f b204 9 7c06
-e 1907 def 116 6 16 6069 214
-549 b000 9 7d02 91 b204 9 7c06
-d3 1f08 9 ab0a 72 130c 9 60e
-cbe 116 6 16 604e 214 122c 116
-6 16 6223 214 54a b000 9 7c02
-119 b104 9 7906 d2 1f08 9 ac0a
-72 130c 9 60e cf1 116 6 16
-5f94 214 1248 116 6 16 6207 214
-548 b000 9 7d02 91 b104 9 7906
-d3 1f08 9 ab0a 72 130c 9 60e
-d65 116 6 16 5fa7 214 593 4301
-f b600 9 fc02 e 1903 131 4309
-f 1f08 9 ab0a e 690b 16e 430d
-f 150c 9 d0e e 480f ea1 116
-6 16 5d09 214 58f b500 9 fb02
-11c b004 9 7c06 d2 1f08 9 ac0a
-72 150c 9 d0e d86 116 6 16
-5eb8 214 58f b400 9 fc02 7b b004
-9 7c06 d3 1f08 9 ab0a 72 150c
-9 d0e dfa 116 6 16 5edf 214
-1251 116 6 16 61fc 214 58f b300
-9 fb02 d3 b004 9 7906 d2 1f08
-9 ac0a 72 150c 9 d0e ce2 116
-6 16 5fa4 214 1274 116 6 16
-61d9 214 58f b200 9 fc02 7b b004
-9 7906 d3 1f08 9 ab0a 72 150c
-9 d0e cee 116 6 16 5fee 214
-125c 116 6 16 61f4 214 58f b100
-9 fb02 d2 b004 9 7c06 d2 1f08
-9 ac0a 72 150c 9 d0e d7a 116
-6 16 5f0a 214 55d 4301 f b600
-9 c402 e 1903 131 4309 f 1f08
-9 ab0a e 690b 16e 430d f 120c
-9 d0e e 480f 1058 116 6 16
-5b8b 214 70e b500 9 c502 7b b004
-9 7c06 d3 1f08 9 aa0a 72 120c
-9 d0e cfd 116 6 16 5e5d 214
-6b5 b400 9 c402 d3 b004 9 7906
-d2 1f08 9 ab0a 72 120c 9 d0e
-cfd 116 6 16 5e62 214 6f8 4305
-f b204 9 fc06 e 1907 d9c 116
-6 16 5f94 214 6b5 b300 9 c502
-91 b204 9 fc06 d3 1f08 9 aa0a
-72 120c 9 d0e cfd 116 6 16
-5ea4 214 1392 116 6 16 60bb 214
-6bb b200 9 c402 118 b104 9 ff06
-d2 1f08 9 ab0a 72 120c 9 d0e
-dce 116 6 16 5d48 214 1538 116
-6 16 5f15 214 6b5 b100 9 c502
-91 b104 9 ff06 d3 1f08 9 aa0a
-72 120c 9 d0e d89 116 6 16
-5e15 214 682 4301 f b600 9 3a02
-e 1a03 193 4309 f 1f08 9 ab0a
-e 690b 1ea 430d f 160c 9 d0e
-e 480f e68 116 6 16 5b77 214
-609 b500 9 3902 11d b004 9 fc06
-d2 1f08 9 ac0a 72 160c 9 d0e
-ccd 116 6 16 5ef2 214 607 b400
-9 3a02 7b b004 9 fc06 d3 1f08
-9 ab0a 72 160c 9 d0e ccd 116
-6 16 5f98 214 612 4305 f b204
-9 c406 e 1907 d6c 116 6 16
-60a9 214 609 b300 9 3902 e8 b204
-9 c706 d2 1f08 9 ac0a 72 160c
-9 d0e ce5 116 6 16 5f11 214
-13cc 116 6 16 6082 214 607 b200
-9 3a02 c1 b104 9 c706 d3 1f08
-9 ab0a 72 160c 9 d0e d59 116
-6 16 5ec7 214 1340 116 6 16
-610c 214 662 b100 9 3902 e9 b104
-9 c406 d2 1f08 9 ac0a 72 160c
-9 d0e cd9 116 6 16 5ec3 214
-5d5 4301 f b600 9 1c02 e 1903
-131 4309 f 1f08 9 ab0a e 690b
-16e 430d f 130c 9 d0e e 480f
-ce4 116 6 16 5e85 214 608 b500
-9 1d02 c5 b004 9 c406 d3 1f08
-9 aa0a 72 130c 9 d0e cc1 116
-6 16 5f5b 214 609 b400 9 1c02
-d2 b004 9 c706 d2 1f08 9 ab0a
-72 130c 9 d0e cc1 116 6 16
-5f48 214 612 4305 f b204 9 3a06
-e 1a07 d6f 116 6 16 60a7 214
-608 b300 9 1d02 91 b204 9 3a06
-d3 1f08 9 aa0a 72 130c 9 d0e
-dd0 116 6 16 5e7c 214 132c 116
-6 16 6123 214 608 b200 9 1c02
-119 b104 9 3706 d2 1f08 9 ab0a
-72 130c 9 d0e d44 116 6 16
-5e82 214 13c3 116 6 16 608d 214
-608 b100 9 1d02 91 b104 9 3706
-d3 1f08 9 aa0a 72 130c 9 d0e
-c95 116 6 16 5fb4 214 5d5 4301
-f b600 9 1c02 e 1903 131 4309
-f 1f08 9 ab0a e 690b 16e 430d
-f 120c 9 d0e e 480f cb8 116
-6 16 5eb3 214 608 b500 9 1b02
-11c b004 9 3a06 d2 1f08 9 ac0a
-72 120c 9 d0e c95 116 6 16
-5f2e 214 607 b400 9 1c02 7b b004
-9 3a06 d3 1f08 9 ab0a 72 120c
-9 d0e c95 116 6 16 5fcb 214
-614 4305 f b204 9 1c06 e 1907
-e4c 116 6 16 5fcb 214 608 b300
-9 1b02 e9 b204 9 1906 d2 1f08
-9 ac0a 72 120c 9 d0e d21 116
-6 16 5ed3 214 127d 116 6 16
-61d6 214 607 b200 9 1c02 c1 b104
-9 1906 d3 1f08 9 ab0a 72 120c
-9 d0e d67 116 6 16 5eb3 214
-1309 116 6 16 6146 214 608 b100
-9 1b02 e8 b104 9 1c06 d2 1f08
-9 ac0a 72 120c 9 d0e c95 116
-6 16 5f64 214 5d6 4301 f b600
-9 2d02 e 1903 131 4309 f 1f08
-9 ab0a e 690b 16e 430d f 110c
-9 d0e e 480f cb8 116 6 16
-5eab 214 608 b500 9 2e02 c5 b004
-9 1c06 d3 1f08 9 aa0a 72 110c
-9 d0e c95 116 6 16 5f84 214
-607 b400 9 2d02 d3 b004 9 1906
-d2 1f08 9 ab0a 72 110c 9 d0e
-d21 116 6 16 5eee 214 613 4305
-f b204 9 1c06 e 1907 e4e 116
-6 16 5fc7 214 608 b300 9 2e02
-91 b204 9 1c06 d3 1f08 9 aa0a
-72 110c 9 d0e dad 116 6 16
-5ea0 214 12c1 116 6 16 618c 214
-609 b200 9 2d02 118 b104 9 1f06
-d2 1f08 9 ab0a 72 110c 9 d0e
-d21 116 6 16 5ea4 214 127c 116
-6 16 61d1 214 660 b100 9 2e02
-91 b104 9 1f06 d3 1f08 9 aa0a
-72 110c 9 d0e c95 116 6 16
-5f60 214 60b 4301 f b600 9 7c02
-e 1903 199 4309 f 1f08 9 ab0a
-e 690b 27c 430d f 160c 9 60e
-e 480f cb8 116 6 16 5d05 214
-607 b500 9 7b02 11d b004 9 1c06
-d2 1f08 9 ac0a 72 160c 9 60e
-dad 116 6 16 5e15 214 607 b400
-9 7c02 7b b004 9 1c06 d3 1f08
-9 ab0a 72 160c 9 60e cda 116
-6 16 5f8a 214 614 4305 f b204
-9 2d06 e 1907 e4e 116 6 16
-5fc7 214 608 b300 9 7b02 e8 b204
-9 3006 d2 1f08 9 ac0a 72 160c
-9 60e c95 116 6 16 5f64 214
-127d 116 6 16 61d0 214 606 b200
-9 7c02 c1 b104 9 3006 d3 1f08
-9 ab0a 72 160c 9 60e c95 116
-6 16 5f88 214 127d 116 6 16
-61d6 214 608 b100 9 7b02 e9 b104
-9 2d06 d2 1f08 9 ac0a 72 160c
-9 60e c95 116 6 16 5f5b 214
-63c 4309 f 1f08 9 ab0a e 690b
-16e 430d f 130c 9 60e e 480f
-cfd 116 6 16 5f60 214 60b b000
-9 7c02 c5 b004 9 2d06 d3 1f08
-9 aa0a 72 130c 9 60e e39 116
-6 16 5dda 214 5c1 b000 9 7b02
-d2 b004 9 3006 d2 1f08 9 ab0a
-72 130c 9 60e d21 116 6 16
-5f34 214 648 4305 f b204 9 7c06
-e 1907 e52 116 6 16 5f8d 214
-5c2 b000 9 7c02 91 b204 9 7c06
-d3 1f08 9 aa0a 72 130c 9 60e
-c95 116 6 16 5ffd 214 127c 116
-6 16 61d1 214 5c1 b000 9 7b02
-119 b104 9 7906 d2 1f08 9 ab0a
-72 130c 9 60e c95 116 6 16
-5f79 214 127c 116 6 16 61d1 214
-5c2 b000 9 7c02 91 b104 9 7906
-d3 1f08 9 aa0a 72 130c 9 60e
-c95 116 6 16 6003 214 5d5 4301
-f b600 9 fc02 e 1903 137 4309
-f 1f08 9 ab0a e 690b 16e 430d
-f 120c 9 60e e 480f d8a 116
-6 16 5dd3 214 607 b500 9 fb02
-11c b004 9 7c06 d2 1f08 9 ac0a
-72 120c 9 60e e3a 116 6 16
-5d8a 214 5c1 b400 9 fc02 7b b004
-9 7c06 d3 1f08 9 ab0a 72 120c
-9 60e c95 116 6 16 6016 214
-1236 116 6 16 6217 214 5c1 b300
-9 fb02 d3 b004 9 7906 d2 1f08
-9 ac0a 72 120c 9 60e c95 116
-6 16 5fbf 214 1235 116 6 16
-621b 214 5c0 b200 9 fc02 7b b004
-9 7906 d3 1f08 9 ab0a 72 120c
-9 60e c95 116 6 16 6013 214
-134d 116 6 16 6101 214 5c1 b100
-9 fb02 d2 b004 9 7c06 d2 1f08
-9 ac0a 72 120c 9 60e d21 116
-6 16 5f32 214 58e 4301 f b600
-9 c402 e 1903 137 4309 f 1f08
-9 ab0a e 690b 16e 430d f 110c
-9 60e e 480f d44 116 6 16
-5e68 214 5c1 b500 9 c502 7b b004
-9 7c06 d3 1f08 9 aa0a 72 110c
-9 60e d22 116 6 16 5f88 214
-5c1 b400 9 c402 d3 b004 9 7906
-d2 1f08 9 ab0a 72 110c 9 60e
-c95 116 6 16 5fbb 214 5cb 4305
-f b204 9 fc06 e 1907 d3a 116
-6 16 6123 214 5c0 b300 9 c502
-91 b204 9 fc06 d3 1f08 9 aa0a
-72 110c 9 60e c95 116 6 16
-6003 214 1235 116 6 16 6217 214
-5c1 b200 9 c402 118 b104 9 ff06
-d2 1f08 9 ab0a 72 110c 9 60e
-d21 116 6 16 5eee 214 1392 116
-6 16 60bb 214 5c1 b100 9 c502
-91 b104 9 ff06 d3 1f08 9 aa0a
-72 110c 9 60e dad 116 6 16
-5ee6 214 751 4301 f 7500 9 a602
-e 1a03 2cb 4305 f 7504 9 4e06
-e 1d07 1c3 4309 f 1f08 9 520a
-e 690b 2c4 430d f 160c 9 d0e
-e 480f e5c 116 6 16 56b8 214
-5c1 7400 9 a502 119 7404 9 4b06
-d2 1f08 9 530a 72 160c 9 d0e
-c95 116 6 16 5f79 214 5c0 7300
-9 a602 c1 7304 9 4b06 d3 1f08
-9 520a 72 160c 9 d0e c95 116
-6 16 5fcf 214 1235 116 6 16
-621b 214 5c1 7200 9 a502 118 7204
-9 4e06 d2 1f08 9 530a 72 160c
-9 d0e c95 116 6 16 5f75 214
-12c2 116 6 16 6190 214 5c1 7100
-9 a602 c1 7104 9 4e06 d3 1f08
-9 520a 72 160c 9 d0e c95 116
-6 16 5fcb 214 1235 116 6 16
-621b 214 5c5 7000 9 a502 11d 7004
-9 4b06 d2 1f08 9 530a 72 160c
-9 d0e c95 116 6 16 5f71 214
-58e 4301 f 7500 9 1c02 e 1903
-109 4305 f 7504 9 5206 e 1907
-f3 4309 f 1f08 9 520a e 690b
-16e 430d f 130c 9 d0e e 480f
-cb8 116 6 16 5e06 214 5c0 7400
-9 1d02 c1 7404 9 5206 d3 1f08
-9 510a 72 130c 9 d0e c95 116
-6 16 5fcf 214 5c1 7300 9 1c02
-118 7304 9 5506 d2 1f08 9 520a
-72 130c 9 d0e c95 116 6 16
-5f79 214 1236 116 6 16 6217 214
-5c0 7200 9 1d02 c1 7204 9 5506
-d3 1f08 9 510a 72 130c 9 d0e
-e39 116 6 16 5e2d 214 1392 116
-6 16 60bb 214 5c2 7100 9 1c02
-119 7104 9 5206 d2 1f08 9 520a
-72 130c 9 d0e e3a 116 6 16
-5dd3 214 12c2 116 6 16 618c 214
-5c5 7000 9 1d02 c5 7004 9 5206
-d3 1f08 9 510a 72 130c 9 d0e
-c95 116 6 16 5fc7 214 58e 4301
-f 7500 9 1c02 e 1903 109 4305
-f 7504 9 5206 e 1907 f3 4309
-f 1f08 9 520a e 690b 16e 430d
-f 120c 9 d0e e 480f cb8 116
-6 16 5e05 214 5c2 7400 9 1b02
-118 7404 9 5506 d2 1f08 9 530a
-72 120c 9 d0e c95 116 6 16
-5f79 214 5c1 7300 9 1c02 c1 7304
-9 5506 d3 1f08 9 520a 72 120c
-9 d0e c95 116 6 16 5fcf 214
-12c1 116 6 16 618c 214 5c2 7200
-9 1b02 119 7204 9 5206 d2 1f08
-9 530a 72 120c 9 d0e c95 116
-6 16 5f75 214 1368 116 6 16
-60e7 214 5c1 7100 9 1c02 c1 7104
-9 5206 d3 1f08 9 520a 72 120c
-9 d0e ee4 116 6 16 5d80 214
-1254 116 6 16 61fc 214 5c5 7000
-9 1b02 11c 7004 9 5506 d2 1f08
-9 530a 72 120c 9 d0e cb4 116
-6 16 5f4f 214 58e 4301 f 7500
-9 2d02 e 1903 109 4305 f 7504
-9 7c06 e 1907 f3 4309 f 1f08
-9 520a e 690b 16e 430d f 110c
-9 d0e e 480f d0a 116 6 16
-5db6 214 5c0 7400 9 2e02 c1 7404
-9 7c06 d3 1f08 9 510a 72 110c
-9 d0e ccf 116 6 16 5f94 214
-5c2 7300 9 2d02 119 7304 9 7906
-d2 1f08 9 520a 72 110c 9 d0e
-de8 116 6 16 5e24 214 1388 116
-6 16 60c7 214 5c1 7200 9 2e02
-c1 7204 9 7906 d3 1f08 9 510a
-72 110c 9 d0e cf0 116 6 16
-5f75 214 1392 116 6 16 60bb 214
-5c1 7100 9 2d02 118 7104 9 7c06
-d2 1f08 9 520a 72 110c 9 d0e
-cd8 116 6 16 5f37 214 1278 116
-6 16 61d4 214 5c4 7000 9 2e02
-c5 7004 9 7c06 d3 1f08 9 510a
-72 110c 9 d0e cfc 116 6 16
-5f62 214 58c 4301 f 7500 9 a602
-e 1a03 107 4305 f 7504 9 4e06
-e 1d07 155 4309 f 1f08 9 520a
-e 690b 1c2 430d f 160c 9 60e
-e 480f d07 116 6 16 5d05 214
-5c1 7400 9 a502 119 7404 9 4b06
-d2 1f08 9 530a 72 160c 9 60e
-dfd 116 6 16 5e11 214 1284 116
-6 16 61c8 214 5c0 7300 9 a602
-c1 7304 9 4b06 d3 1f08 9 520a
-72 160c 9 60e 103f 116 6 16
-5c29 214 6d8 7200 9 a502 118 7204
-9 4e06 d2 1f08 9 530a 72 160c
-9 60e cfd 116 6 16 5df6 214
-13af 116 6 16 60a0 214 6d1 7100
-9 a602 c1 7104 9 4e06 d3 1f08
-9 520a 72 160c 9 60e cfd 116
-6 16 5e57 214 13af 116 6 16
-60a0 214 6d6 7000 9 a502 11d 7004
-9 4b06 d2 1f08 9 530a 72 160c
-9 60e cfd 116 6 16 5df6 214
-6a5 4301 f 7500 9 fd02 e 1803
-109 4305 f 7504 9 2d06 e 1907
-f3 4309 f 1f08 9 520a e 690b
-16e 430d f 130c 9 60e e 480f
-dac 116 6 16 5bfd 214 6d1 7400
-9 fe02 c1 7404 9 2d06 d3 1f08
-9 510a 72 130c 9 60e ea1 116
-6 16 5cb3 214 14f7 116 6 16
-5f57 214 63b 7300 9 fd02 118 7304
-9 3006 d2 1f08 9 520a 72 130c
-9 60e d5a 116 6 16 5e38 214
-639 7200 9 fe02 c1 7204 9 3006
-d3 1f08 9 510a 72 130c 9 60e
-ccd 116 6 16 5f20 214 12e7 116
-6 16 6165 214 63b 7100 9 fd02
-119 7104 9 2d06 d2 1f08 9 520a
-72 130c 9 60e ce5 116 6 16
-5eaf 214 12e6 116 6 16 6169 214
-63f 7000 9 fe02 c5 7004 9 2d06
-d3 1f08 9 510a 72 130c 9 60e
-d59 116 6 16 5e8b 214 608 4301
-f 7500 9 fd02 e 1803 109 4305
-f 7504 9 2d06 e 1907 f3 4309
-f 1f08 9 520a e 690b 16e 430d
-f 150c 9 d0e e 480f e08 116
-6 16 5c39 214 63b 7400 9 fc02
-118 7404 9 3006 d2 1f08 9 530a
-72 150c 9 d0e d65 116 6 16
-5e31 214 1368 116 6 16 60e5 214
-63a 7300 9 fd02 c1 7304 9 3006
-d3 1f08 9 520a 72 150c 9 d0e
-cc1 116 6 16 5f28 214 63b 7200
-9 fc02 119 7204 9 2d06 d2 1f08
-9 530a 72 150c 9 d0e cc1 116
-6 16 5ed3 214 12ea 116 6 16
-6165 214 63b 7100 9 fd02 c1 7104
-9 2d06 d3 1f08 9 520a 72 150c
-9 d0e cb8 116 6 16 5f32 214
-13a3 116 6 16 60a9 214 63f 7000
-9 fc02 11c 7004 9 3006 d2 1f08
-9 530a 72 150c 9 d0e e5d 116
-6 16 5d30 214 608 4301 f 7500
-9 2d02 e 1903 109 4305 f 7504
-9 7c06 e 1907 f3 4309 f 1f08
-9 520a e 690b 16e 430d f 120c
-9 d0e e 480f d2c 116 6 16
-5d19 214 63b 7400 9 2e02 c1 7404
-9 7c06 d3 1f08 9 510a 72 120c
-9 d0e dad 116 6 16 5e3c 214
-12b0 116 6 16 619f 214 63b 7300
-9 2d02 119 7304 9 7906 d2 1f08
-9 520a 72 120c 9 d0e c95 116
-6 16 5efd 214 694 7200 9 2e02
-c1 7204 9 7906 d3 1f08 9 510a
-72 120c 9 d0e c95 116 6 16
-5efd 214 12af 116 6 16 619c 214
-63b 7100 9 2d02 118 7104 9 7c06
-d2 1f08 9 520a 72 120c 9 d0e
-e37 116 6 16 5d5f 214 13c7 116
-6 16 6086 214 63f 7000 9 2e02
-c5 7004 9 7c06 d3 1f08 9 510a
-72 120c 9 d0e d22 116 6 16
-5ebf 214 607 4301 f 7500 9 f902
-e 1a03 107 4305 f 7504 9 f406
-e 1d07 1c3 4309 f 1f08 9 7c0a
-e 690b 1ea 430d f 160c 9 d0e
-e 480f dd0 116 6 16 5b2c 214
-63b 7400 9 f802 119 7404 9 f106
-d2 1f08 9 7d0a 72 160c 9 d0e
-c95 116 6 16 5efd 214 12ae 116
-6 16 61a0 214 63a 7300 9 f902
-c1 7304 9 f106 d3 1f08 9 7c0a
-72 160c 9 d0e c95 116 6 16
-5f57 214 63b 7200 9 f802 118 7204
-9 f406 d2 1f08 9 7d0a 72 160c
-9 d0e c95 116 6 16 5efd 214
-133a 116 6 16 6117 214 639 7100
-9 f902 c1 7104 9 f406 d3 1f08
-9 7c0a 72 160c 9 d0e dae 116
-6 16 5e3c 214 1422 116 6 16
-602c 214 640 7000 9 f802 11d 7004
-9 f106 d2 1f08 9 7d0a 72 160c
-9 d0e d21 116 6 16 5e69 214
-608 4301 f 7500 9 1c02 e 1903
-109 4305 f 7504 9 5206 e 1907
-f3 4309 f 1f08 9 7c0a e 690b
-16e 430d f 130c 9 d0e e 480f
-cb8 116 6 16 5d8d 214 63b 7400
-9 1d02 c1 7404 9 5206 d3 1f08
-9 7b0a 72 130c 9 d0e c95 116
-6 16 5f55 214 12af 116 6 16
-619f 214 63b 7300 9 1c02 118 7304
-9 5506 d2 1f08 9 7c0a 72 130c
-9 d0e c95 116 6 16 5efd 214
-63a 7200 9 1d02 c1 7204 9 5506
-d3 1f08 9 7b0a 72 130c 9 d0e
-dad 116 6 16 5e40 214 133b 116
-6 16 6114 214 63c 7100 9 1c02
-119 7104 9 5206 d2 1f08 9 7c0a
-72 130c 9 d0e c95 116 6 16
-5efd 214 133b 116 6 16 6110 214
-63f 7000 9 1d02 c5 7004 9 5206
-d3 1f08 9 7b0a 72 130c 9 d0e
-c95 116 6 16 5f4e 214 609 4301
-f 7500 9 1c02 e 1903 109 4305
-f 7504 9 5206 e 1907 f3 4309
-f 1f08 9 7c0a e 690b 16e 430d
-f 120c 9 d0e e 480f cb8 116
-6 16 5d8e 214 63b 7400 9 1b02
-118 7404 9 5506 d2 1f08 9 7d0a
-72 120c 9 d0e c95 116 6 16
-5efd 214 130a 116 6 16 6142 214
-63b 7300 9 1c02 c1 7304 9 5506
-d3 1f08 9 7c0a 72 120c 9 d0e
-df2 116 6 16 5dfa 214 63a 7200
-9 1b02 119 7204 9 5206 d2 1f08
-9 7d0a 72 120c 9 d0e e39 116
-6 16 5d59 214 133c 116 6 16
-6113 214 639 7100 9 1c02 c1 7104
-9 5206 d3 1f08 9 7c0a 72 120c
-9 d0e d67 116 6 16 5e86 214
-133c 116 6 16 6110 214 63f 7000
-9 1b02 11c 7004 9 5506 d2 1f08
-9 7d0a 72 120c 9 d0e c95 116
-6 16 5ef6 214 608 4301 f 7500
-9 2d02 e 1903 109 4305 f 7504
-9 7c06 e 1907 f3 4309 f 1f08
-9 7c0a e 690b 16e 430d f 110c
-9 d0e e 480f cb8 116 6 16
-5d8d 214 63b 7400 9 2e02 c1 7404
-9 7c06 d3 1f08 9 7b0a 72 110c
-9 d0e c95 116 6 16 5f55 214
-133b 116 6 16 6113 214 63b 7300
-9 2d02 119 7304 9 7906 d2 1f08
-9 7c0a 72 110c 9 d0e d21 116
-6 16 5e72 214 63b 7200 9 2e02
-c1 7204 9 7906 d3 1f08 9 7b0a
-72 110c 9 d0e cda 116 6 16
-5f11 214 13c9 116 6 16 6084 214
-63b 7100 9 2d02 118 7104 9 7c06
-d2 1f08 9 7c0a 72 110c 9 d0e
-c95 116 6 16 5eff 214 12af 116
-6 16 61a0 214 63e 7000 9 2e02
-c5 7004 9 7c06 d3 1f08 9 7b0a
-72 110c 9 d0e c95 116 6 16
-5f4e 214 607 4301 f 7500 9 f902
-e 1a03 107 4305 f 7504 9 f406
-e 1d07 155 4309 f 1f08 9 7c0a
-e 690b 27c 430d f 160c 9 60e
-e 480f cb8 116 6 16 5c1d 214
-696 7400 9 f802 119 7404 9 f106
-d2 1f08 9 7d0a 72 160c 9 60e
-dad 116 6 16 5d8d 214 133b 116
-6 16 6114 214 63b 7300 9 f902
-c1 7304 9 f106 d3 1f08 9 7c0a
-72 160c 9 60e e3a 116 6 16
-5dad 214 63c 7200 9 f802 118 7204
-9 f406 d2 1f08 9 7d0a 72 160c
-9 60e c95 116 6 16 5efd 214
-12b0 116 6 16 619f 214 63a 7100
-9 f902 c1 7104 9 f406 d3 1f08
-9 7c0a 72 160c 9 60e c95 116
-6 16 5f55 214 12af 116 6 16
-61a3 214 63e 7000 9 f802 11d 7004
-9 f106 d2 1f08 9 7d0a 72 160c
-9 60e c95 116 6 16 5ef6 214
-608 4301 f 7500 9 fd02 e 1803
-109 4305 f 7504 9 2d06 e 1907
-f3 4309 f 1f08 9 7c0a e 690b
-16e 430d f 130c 9 60e e 480f
-dd0 116 6 16 5c73 214 63b 7400
-9 fe02 c1 7404 9 2d06 d3 1f08
-9 7b0a 72 130c 9 60e dae 116
-6 16 5e3c 214 133b 116 6 16
-6113 214 63b 7300 9 fd02 118 7304
-9 3006 d2 1f08 9 7c0a 72 130c
-9 60e d21 116 6 16 5e72 214
-63a 7200 9 fe02 c1 7204 9 3006
-d3 1f08 9 7b0a 72 130c 9 60e
-c95 116 6 16 5f57 214 12ae 116
-6 16 61a0 214 63b 7100 9 fd02
-119 7104 9 2d06 d2 1f08 9 7c0a
-72 130c 9 60e c95 116 6 16
-5efd 214 12af 116 6 16 61a0 214
-63f 7000 9 fe02 c5 7004 9 2d06
-d3 1f08 9 7b0a 72 130c 9 60e
-c95 116 6 16 5f4b 214 608 4301
-f 7500 9 fd02 e 1803 109 4305
-f 7504 9 2d06 e 1907 f3 4309
-f 1f08 9 7c0a e 690b 16e 430d
-f 120c 9 60e e 480f e5c 116
-6 16 5bea 214 63b 7400 9 fc02
-118 7404 9 3006 d2 1f08 9 7d0a
-72 120c 9 60e c95 116 6 16
-5efd 214 13c9 116 6 16 6086 214
-63a 7300 9 fd02 c1 7304 9 3006
-d3 1f08 9 7c0a 72 120c 9 60e
-c95 116 6 16 5f57 214 63b 7200
-9 fc02 119 7204 9 2d06 d2 1f08
-9 7d0a 72 120c 9 60e c95 116
-6 16 5efd 214 12af 116 6 16
-619f 214 63a 7100 9 fd02 c1 7104
-9 2d06 d3 1f08 9 7c0a 72 120c
-9 60e c95 116 6 16 5f55 214
-1498 116 6 16 5fb7 214 5f9 7000
-9 fc02 11c 7004 9 3006 d2 1f08
-9 7d0a 72 120c 9 60e d21 116
-6 16 5eaf 214 5c1 4301 f 7500
-9 2d02 e 1903 109 4305 f 7504
-9 7c06 e 1907 f3 4309 f 1f08
-9 7c0a e 690b 16e 430d f 110c
-9 60e e 480f dd1 116 6 16
-5cbb 214 5f4 7400 9 2e02 c1 7404
-9 7c06 d3 1f08 9 7b0a 72 110c
-9 60e c95 116 6 16 5f9c 214
-1268 116 6 16 61e8 214 5f4 7300
-9 2d02 119 7304 9 7906 d2 1f08
-9 7c0a 72 110c 9 60e c95 116
-6 16 5f44 214 5f3 7200 9 2e02
-c1 7204 9 7906 d3 1f08 9 7b0a
-72 110c 9 60e c95 116 6 16
-5f9c 214 1268 116 6 16 61e5 214
-5f5 7100 9 2d02 118 7104 9 7c06
-d2 1f08 9 7c0a 72 110c 9 60e
-d21 116 6 16 5ebb 214 12f4 116
-6 16 6159 214 5f8 7000 9 2e02
-c5 7004 9 7c06 d3 1f08 9 7b0a
-72 110c 9 60e e9a 116 6 16
-5d90 214 7ac 4301 f b600 9 3a02
-e 1a03 2eb 4305 f b204 9 6
-e 1807 1c9 4309 f 1f08 9 c40a
-e 690b 2c4 430d f 160c 9 d0e
-e 480f eca 116 6 16 55c7 214
-5f4 b500 9 3902 a6 b204 9 6
-d2 1f08 9 c50a 72 160c 9 d0e
-d4a 116 6 16 5f06 214 1291 116
-6 16 61ba 214 5f4 b400 9 3a02
-c1 b104 9 6 d3 1f08 9 c40a
-72 160c 9 d0e cf1 116 6 16
-5f40 214 5f4 b300 9 3902 a6 b104
-9 6 d2 1f08 9 c50a 72 160c
-9 d0e cd9 116 6 16 5f75 214
-12ac 116 6 16 61a3 214 5f4 b200
-9 3a02 c5 b004 9 6 d3 1f08
-9 c40a 72 160c 9 d0e df1 116
-6 16 5e38 214 1359 116 6 16
-60f8 214 5f5 b100 9 3902 90 b004
-9 6 d2 1f08 9 c50a 72 160c
-9 d0e d6e 116 6 16 5ef2 214
-5c1 4301 f b600 9 1c02 e 1903
-131 4309 f 1f08 9 c40a e 690b
-16e 430d f 130c 9 d0e e 480f
-d05 116 6 16 5e79 214 5f3 b500
-9 1d02 7b b004 9 6 d3 1f08
-9 c30a 72 130c 9 d0e ce2 116
-6 16 5f94 214 636 4305 f b204
-9 3a06 e 1a07 da5 116 6 16
-604e 214 5f4 b400 9 1c02 e9 b204
-9 3706 d2 1f08 9 c40a 72 130c
-9 d0e cee 116 6 16 5f1d 214
-5f3 b300 9 1d02 c1 b104 9 3706
-d3 1f08 9 c30a 72 130c 9 d0e
-e92 116 6 16 5d9e 214 12c2 116
-6 16 618c 214 5f5 b200 9 1c02
-e8 b104 9 3a06 d2 1f08 9 c40a
-72 130c 9 d0e 10c6 116 6 16
-5b44 214 14c3 116 6 16 5f8a 214
-75b b100 9 1d02 c5 b004 9 3a06
-d3 1f08 9 c30a 72 130c 9 d0e
-cfd 116 6 16 5dcb 214 729 4301
-f b600 9 1c02 e 1903 131 4309
-f 1f08 9 c40a e 690b 16e 430d
-f 120c 9 d0e e 480f d20 116
-6 16 5cf2 214 762 b500 9 1b02
-d3 b004 9 3706 d2 1f08 9 c50a
-72 120c 9 d0e cfd 116 6 16
-5db6 214 767 4305 f b204 9 1c06
-e 1907 dcc 116 6 16 5ef6 214
-609 b400 9 1c02 91 b204 9 1c06
-d3 1f08 9 c40a 72 120c 9 d0e
-ccd 116 6 16 5f7d 214 1413 116
-6 16 603b 214 609 b300 9 1b02
-118 b104 9 1f06 d2 1f08 9 c50a
-72 120c 9 d0e de5 116 6 16
-5de3 214 609 b200 9 1c02 91 b104
-9 1f06 d3 1f08 9 c40a 72 120c
-9 d0e d72 116 6 16 5eda 214
-12b5 116 6 16 6198 214 609 b100
-9 1b02 11d b004 9 1c06 d2 1f08
-9 c50a 72 120c 9 d0e ccd 116
-6 16 5ef2 214 5d6 4301 f b600
-9 2d02 e 1903 131 4309 f 1f08
-9 c40a e 690b 16e 430d f 110c
-9 d0e e 480f cf0 116 6 16
-5e79 214 608 b500 9 2e02 7b b004
-9 1c06 d3 1f08 9 c30a 72 110c
-9 d0e cd9 116 6 16 5f88 214
-614 4305 f b204 9 1c06 e 1907
-d60 116 6 16 60b7 214 609 b400
-9 2d02 e8 b204 9 1f06 d2 1f08
-9 c40a 72 110c 9 d0e ef1 116
-6 16 5d02 214 1336 116 6 16
-611b 214 609 b300 9 2e02 c1 b104
-9 1f06 d3 1f08 9 c30a 72 110c
-9 d0e cd0 116 6 16 5f49 214
-60a b200 9 2d02 e9 b104 9 1c06
-d2 1f08 9 c40a 72 110c 9 d0e
-cb8 116 6 16 5f3d 214 12a1 116
-6 16 61b1 214 609 b100 9 2e02
-c5 b004 9 1c06 d3 1f08 9 c30a
-72 110c 9 d0e cb8 116 6 16
-5f60 214 60b 4301 f b600 9 7c02
-e 1903 199 4309 f 1f08 9 c40a
-e 690b 1c2 430d f 160c 9 60e
-e 480f ce7 116 6 16 5d8e 214
-60a b500 9 7b02 d2 b004 9 1f06
-d2 1f08 9 c50a 72 160c 9 60e
-dad 116 6 16 5e5f 214 5ce 4305
-f b204 9 2d06 e 1907 dbe 116
-6 16 6098 214 5c2 b400 9 7c02
-91 b204 9 2d06 d3 1f08 9 c40a
-72 160c 9 60e ec7 116 6 16
-5dcb 214 12c4 116 6 16 618c 214
-5c3 b300 9 7b02 119 b104 9 2a06
-d2 1f08 9 c50a 72 160c 9 60e
-c95 116 6 16 5f75 214 5c2 b200
-9 7c02 91 b104 9 2a06 d3 1f08
-9 c40a 72 160c 9 60e c95 116
-6 16 5ffd 214 1237 116 6 16
-6217 214 5c3 b100 9 7b02 11c b004
-9 2d06 d2 1f08 9 c50a 72 160c
-9 60e c95 116 6 16 5f75 214
-5f5 4309 f 1f08 9 c40a e 690b
-16e 430d f 130c 9 60e e 480f
-dd0 116 6 16 5ecf 214 5c5 b000
-9 7c02 7b b004 9 2d06 d3 1f08
-9 c30a 72 130c 9 60e cda 116
-6 16 5fcb 214 602 4305 f b204
-9 7c06 e 1907 e53 116 6 16
-5fd2 214 57d b000 9 7b02 e9 b204
-9 7906 d2 1f08 9 c40a 72 130c
-9 60e e39 116 6 16 5e48 214
-1236 116 6 16 621b 214 57c b000
-9 7c02 c1 b104 9 7906 d3 1f08
-9 c30a 72 130c 9 60e c95 116
-6 16 6010 214 57c b000 9 7b02
-e8 b104 9 7c06 d2 1f08 9 c40a
-72 130c 9 60e c95 116 6 16
-5fee 214 1237 116 6 16 6217 214
-57c b000 9 7c02 c5 b004 9 7c06
-d3 1f08 9 c30a 72 130c 9 60e
-c95 116 6 16 6012 214 5c6 4301
-f b600 9 fc02 e 1903 131 4309
-f 1f08 9 c40a e 690b 16e 430d
-f 150c 9 d0e e 480f ea1 116
-6 16 5cd6 214 5c2 b500 9 fb02
-d3 b004 9 7906 d2 1f08 9 c50a
-72 150c 9 d0e d21 116 6 16
-5f34 214 12c2 116 6 16 6189 214
-5c2 b400 9 fc02 7b b004 9 7906
-d3 1f08 9 c40a 72 150c 9 d0e
-c95 116 6 16 6012 214 1236 116
-6 16 621b 214 5c3 b300 9 fb02
-d2 b004 9 7c06 d2 1f08 9 c50a
-72 150c 9 d0e c95 116 6 16
-5fbb 214 5c1 b200 9 fc02 7b b004
-9 7c06 d3 1f08 9 c40a 72 150c
-9 d0e c95 116 6 16 6013 214
-12c3 116 6 16 618c 214 5c2 b100
-9 fb02 d3 b004 9 7906 d2 1f08
-9 c50a 72 150c 9 d0e c95 116
-6 16 5fbf 214 590 4301 f b600
-9 c402 e 1903 131 4309 f 1f08
-9 c40a e 690b 16e 430d f 120c
-9 d0e e 480f ea2 116 6 16
-5d0a 214 5c1 b500 9 c502 7b b004
-9 7906 d3 1f08 9 c30a 72 120c
-9 d0e d66 116 6 16 5f44 214
-605 4305 f b204 9 fc06 e 1907
-dc0 116 6 16 6062 214 5c2 b400
-9 c402 e8 b204 9 ff06 d2 1f08
-9 c40a 72 120c 9 d0e c95 116
-6 16 5fa8 214 1237 116 6 16
-6217 214 5c2 b300 9 c502 c1 b104
-9 ff06 d3 1f08 9 c30a 72 120c
-9 d0e c95 116 6 16 5fcf 214
-5c3 b200 9 c402 e9 b104 9 fc06
-d2 1f08 9 c40a 72 120c 9 d0e
-d21 116 6 16 5f19 214 12c3 116
-6 16 618c 214 5c1 b100 9 c502
-c5 b004 9 fc06 d3 1f08 9 c30a
-72 120c 9 d0e d21 116 6 16
-5f3d 214 58e 4301 f b600 9 3a02
-e 1a03 193 4309 f 1f08 9 c40a
-e 690b 1ea 430d f 160c 9 d0e
-e 480f ea3 116 6 16 5c30 214
-5c3 b500 9 3902 d2 b004 9 ff06
-d2 1f08 9 c50a 72 160c 9 d0e
-d22 116 6 16 5f2e 214 5cd 4305
-f b204 9 c406 e 1907 d34 116
-6 16 6127 214 5c1 b400 9 3a02
-91 b204 9 c406 d3 1f08 9 c40a
-72 160c 9 d0e c95 116 6 16
-6003 214 1237 116 6 16 6213 214
-5c3 b300 9 3902 119 b104 9 c106
-d2 1f08 9 c50a 72 160c 9 d0e
-dad 116 6 16 5e5f 214 5c2 b200
-9 3a02 91 b104 9 c106 d3 1f08
-9 c40a 72 160c 9 d0e c95 116
-6 16 5ffd 214 12c3 116 6 16
-618c 214 5c2 b100 9 3902 11c b004
-9 c406 d2 1f08 9 c50a 72 160c
-9 d0e d22 116 6 16 5ee6 214
-58f 4301 f b600 9 1c02 e 1903
-131 4309 f 1f08 9 c40a e 690b
-16e 430d f 130c 9 d0e e 480f
-cb8 116 6 16 5ef6 214 5c1 b500
-9 1d02 7b b004 9 c406 d3 1f08
-9 c30a 72 130c 9 d0e c95 116
-6 16 6016 214 5cb 4305 f b204
-9 3a06 e 1a07 d34 116 6 16
-612a 214 5c3 b400 9 1c02 e9 b204
-9 3706 d2 1f08 9 c40a 72 130c
-9 d0e c95 116 6 16 5fa4 214
-13da 116 6 16 6075 214 5c2 b300
-9 1d02 c1 b104 9 3706 d3 1f08
-9 c30a 72 130c 9 d0e d22 116
-6 16 5f41 214 5c2 b200 9 1c02
-e8 b104 9 3a06 d2 1f08 9 c40a
-72 130c 9 d0e d21 116 6 16
-5f1d 214 134e 116 6 16 60ff 214
-5c2 b100 9 1d02 c5 b004 9 3a06
-d3 1f08 9 c30a 72 130c 9 d0e
-c95 116 6 16 5fcb 214 590 4301
-f b600 9 1c02 e 1903 131 4309
-f 1f08 9 c40a e 690b 16e 430d
-f 120c 9 d0e e 480f cb8 116
-6 16 5ef2 214 5c2 b500 9 1b02
-d3 b004 9 3706 d2 1f08 9 c50a
-72 120c 9 d0e c95 116 6 16
-5fbf 214 5ce 4305 f b204 9 1c06
-e 1907 d34 116 6 16 6127 214
-5c1 b400 9 1c02 91 b204 9 1c06
-d3 1f08 9 c40a 72 120c 9 d0e
-c95 116 6 16 5ffd 214 1237 116
-6 16 6217 214 5c3 b300 9 1b02
-118 b104 9 1f06 d2 1f08 9 c50a
-72 120c 9 d0e e3a 116 6 16
-5dd3 214 5c2 b200 9 1c02 91 b104
-9 1f06 d3 1f08 9 c40a 72 120c
-9 d0e e3a 116 6 16 5e57 214
-1236 116 6 16 621b 214 5c3 b100
-9 1b02 11d b004 9 1c06 d2 1f08
-9 c50a 72 120c 9 d0e c95 116
-6 16 5f71 214 590 4301 f b600
-9 2d02 e 1903 131 4309 f 1f08
-9 c40a e 690b 16e 430d f 110c
-9 d0e e 480f cb8 116 6 16
-5ef6 214 5c1 b500 9 2e02 7b b004
-9 1c06 d3 1f08 9 c30a 72 110c
-9 d0e c95 116 6 16 6013 214
-5ce 4305 f b204 9 1c06 e 1907
-d34 116 6 16 6127 214 5c2 b400
-9 2d02 e8 b204 9 1f06 d2 1f08
-9 c40a 72 110c 9 d0e d66 116
-6 16 5ed6 214 1393 116 6 16
-60bb 214 5c1 b300 9 2e02 c1 b104
-9 1f06 d3 1f08 9 c30a 72 110c
-9 d0e cda 116 6 16 5f88 214
-5c3 b200 9 2d02 e9 b104 9 1c06
-d2 1f08 9 c40a 72 110c 9 d0e
-d22 116 6 16 5f19 214 1236 116
-6 16 621b 214 5c2 b100 9 2e02
-c5 b004 9 1c06 d3 1f08 9 c30a
-72 110c 9 d0e c95 116 6 16
-5fc7 214 5c5 4301 f b600 9 7c02
-e 1903 199 4309 f 1f08 9 c40a
-e 690b 27c 430d f 160c 9 60e
-e 480f cb8 116 6 16 5d4c 214
-5c3 b500 9 7b02 d2 b004 9 1f06
-d2 1f08 9 c50a 72 160c 9 60e
-d21 116 6 16 5f34 214 5ce 4305
-f b204 9 2d06 e 1907 e4d 116
-6 16 600d 214 5c2 b400 9 7c02
-91 b204 9 2d06 d3 1f08 9 c40a
-72 160c 9 60e d21 116 6 16
-5f6d 214 1237 116 6 16 6217 214
-5c3 b300 9 7b02 119 b104 9 2a06
-d2 1f08 9 c50a 72 160c 9 60e
-c95 116 6 16 5f79 214 5c2 b200
-9 7c02 91 b104 9 2a06 d3 1f08
-9 c40a 72 160c 9 60e c95 116
-6 16 5ffd 214 1237 116 6 16
-6217 214 5c3 b100 9 7b02 11c b004
-9 2d06 d2 1f08 9 c50a 72 160c
-9 60e c95 116 6 16 5f71 214
-5f5 4309 f 1f08 9 c40a e 690b
-16e 430d f 130c 9 60e e 480f
-dd0 116 6 16 5ecf 214 5c5 b000
-9 7c02 7b b004 9 2d06 d3 1f08
-9 c30a 72 130c 9 60e dad 116
-6 16 5efa 214 602 4305 f b204
-9 7c06 e 1907 f86 116 6 16
-5ea0 214 57c b000 9 7b02 e9 b204
-9 7906 d2 1f08 9 c40a 72 130c
-9 60e e59 116 6 16 5e28 214
-1255 116 6 16 61fc 214 57c b000
-9 7c02 c1 b104 9 7906 d3 1f08
-9 c30a 72 130c 9 60e cb4 116
-6 16 5ff2 214 57d b000 9 7b02
-e8 b104 9 7c06 d2 1f08 9 c40a
-72 130c 9 60e ce7 116 6 16
-5f9c 214 1271 116 6 16 61dd 214
-57c b000 9 7c02 c5 b004 9 7c06
-d3 1f08 9 c30a 72 130c 9 60e
-d5b 116 6 16 5f48 214 58e 4301
-f b600 9 fc02 e 1903 137 4309
-f 1f08 9 c40a e 690b 16e 430d
-f 120c 9 60e e 480f d7e 116
-6 16 5e2c 214 5c3 b500 9 fb02
-d3 b004 9 7906 d2 1f08 9 c50a
-72 120c 9 60e e08 116 6 16
-5e48 214 127a 116 6 16 61d4 214
-5c2 b400 9 fc02 7b b004 9 7906
-d3 1f08 9 c40a 72 120c 9 60e
-cd8 116 6 16 5fd2 214 127a 116
-6 16 61d4 214 5c3 b300 9 fb02
-d2 b004 9 7c06 d2 1f08 9 c50a
-72 120c 9 60e cfc 116 6 16
-5f57 214 5c2 b200 9 fc02 7b b004
-9 7c06 d3 1f08 9 c40a 72 120c
-9 60e ce4 116 6 16 5fc3 214
-1311 116 6 16 613e 214 5c3 b100
-9 fb02 d3 b004 9 7906 d2 1f08
-9 c50a 72 120c 9 60e f14 116
-6 16 5d3c 214 590 4301 f b600
-9 c402 e 1903 137 4309 f 1f08
-9 c40a e 690b 16e 430d f 110c
-9 60e e 480f e1f 116 6 16
-5d8a 214 5c2 b500 9 c502 7b b004
-9 7906 d3 1f08 9 c30a 72 110c
-9 60e d50 116 6 16 5f5b 214
-5cc 4305 f b204 9 fc06 e 1907
-d68 116 6 16 60f2 214 5c2 b400
-9 c402 e8 b204 9 ff06 d2 1f08
-9 c40a 72 110c 9 60e cc3 116
-6 16 5f79 214 127c 116 6 16
-61d6 214 5c1 b300 9 c502 c1 b104
-9 ff06 d3 1f08 9 c30a 72 110c
-9 60e cc3 116 6 16 5f9c 214
-5c2 b200 9 c402 e9 b104 9 fc06
-d2 1f08 9 c40a 72 110c 9 60e
-d4f 116 6 16 5eee 214 12f0 116
-6 16 615e 214 5c1 b100 9 c502
-c5 b004 9 fc06 d3 1f08 9 c30a
-72 110c 9 60e d5c 116 6 16
-5f06 214 6e3 4301 f 1600 9 2
-e 2803 2a5 4305 f 1604 9 6
-e 2807 1c8 4309 f 1f08 9 fc0a
-e 690b 2c4 430d f 160c 9 d0e
-e 480f d1f 116 6 16 5880 214
-57f 1500 9 2 a6 1604 9 6
-d2 1f08 9 fd0a 72 160c 9 d0e
-d43 116 6 16 5f80 214 1258 116
-6 16 61f4 214 57f 1400 9 2
-c1 1504 9 6 d3 1f08 9 fc0a
-72 160c 9 d0e cc6 116 6 16
-5fe2 214 1250 116 6 16 61fc 214
-580 1300 9 2 a6 1504 9 6
-d2 1f08 9 fd0a 72 160c 9 d0e
-e52 116 6 16 5e70 214 1368 116
-6 16 60e5 214 57f 1200 9 2
-c1 1404 9 6 d3 1f08 9 fc0a
-72 160c 9 d0e de2 116 6 16
-5ec7 214 586 1100 9 2 a6 1404
-9 6 d2 1f08 9 fd0a 72 160c
-9 d0e d66 116 6 16 5f52 214
-58e 4301 f 1600 9 fc02 e 2903
-10f 4305 f 1604 9 fd06 e 2807
-f8 4309 f 1f08 9 fc0a e 690b
-16e 430d f 130c 9 d0e e 480f
-d44 116 6 16 5d6f 214 5c2 1500
-9 fb02 c1 1504 9 fd06 d3 1f08
-9 fb0a 72 130c 9 d0e c95 116
-6 16 5fcf 214 1236 116 6 16
-6217 214 5c2 1400 9 fc02 e8 1504
-9 6 e 2907 c8 1f08 9 fc0a
-72 130c 9 d0e c95 116 6 16
-5fa4 214 12c2 116 6 16 618c 214
-5c2 1300 9 fb02 c1 1404 9 6
-d3 1f08 9 fb0a 72 130c 9 d0e
-c95 116 6 16 5fcf 214 13db 116
-6 16 6075 214 5c1 1200 9 fc02
-e9 1404 9 fd06 e 2807 c8 1f08
-9 fc0a 72 130c 9 d0e e39 116
-6 16 5dfe 214 5c3 1100 9 fb02
-c1 1304 9 fd06 d3 1f08 9 fb0a
-72 130c 9 d0e c95 116 6 16
-5fcb 214 5c7 4301 f 1600 9 ab02
-e 2903 141 4305 f 1604 9 d506
-e 2807 f2 4309 f 1f08 9 fc0a
-e 690b 16e 430d f 120c 9 d0e
-e 480f cb8 116 6 16 5d97 214
-5c2 1500 9 ac02 e8 1604 9 d806
-d2 1f08 9 fd0a 72 120c 9 d0e
-c95 116 6 16 5fa7 214 1237 116
-6 16 6217 214 5c3 1400 9 ab02
-c1 1504 9 d806 d3 1f08 9 fc0a
-72 120c 9 d0e d21 116 6 16
-5f43 214 60e 4301 f 1200 9 fc02
-e 2903 189 4305 f 1204 9 fd06
-e 2807 e4c 116 6 16 5e1d 214
-57b 1200 9 fd02 d3 1204 9 fa06
-d2 1f08 9 fd0a 72 120c 9 d0e
-d21 116 6 16 5f79 214 1236 116
-6 16 6217 214 57d 1200 9 fc02
-7b 1204 9 fa06 d3 1f08 9 fc0a
-72 120c 9 d0e c95 116 6 16
-6059 214 57b 1200 9 fd02 d2 1204
-9 fd06 d2 1f08 9 fd0a 72 120c
-9 d0e c95 116 6 16 6007 214
-5c1 4301 f 1600 9 5202 e 2903
-13a 4305 f 1604 9 a906 e 2807
-f2 4309 f 1f08 9 fc0a e 690b
-16e 430d f 110c 9 d0e e 480f
-cb8 116 6 16 5da1 214 5c3 1500
-9 5102 91 1604 9 a906 d3 1f08
-9 fb0a 72 110c 9 d0e c95 116
-6 16 5ffd 214 12c2 116 6 16
-618c 214 5c1 1400 9 5202 119 1504
-9 a606 d2 1f08 9 fc0a 72 110c
-9 d0e dae 116 6 16 5e63 214
-5c1 4301 f 1200 9 ab02 e 2903
-13a 4305 f 1204 9 d506 e 2807
-e4c 116 6 16 5eb8 214 5c2 1100
-9 aa02 91 1204 9 d506 d3 1f08
-9 fb0a 72 110c 9 d0e d66 116
-6 16 5f2c 214 12c2 116 6 16
-618c 214 5c5 1000 9 ab02 118 1104
-9 d806 d2 1f08 9 fc0a 72 110c
-9 d0e c95 116 6 16 5f75 214
-57d 1000 9 aa02 91 1104 9 d806
-d3 1f08 9 fb0a 72 110c 9 d0e
-c95 116 6 16 6042 214 5c1 4301
-f 1600 9 1c02 e 2903 13a 4305
-f 1604 9 8e06 e 2807 154 4309
-f 1f08 9 fc0a e 690b 1c2 430d
-f 160c 9 60e e 480f cb8 116
-6 16 5cee 214 5c1 1500 9 1d02
-119 1504 9 8b06 d2 1f08 9 fd0a
-72 160c 9 60e e39 116 6 16
-5dd3 214 12c2 116 6 16 618c 214
-5c2 1400 9 1c02 91 1504 9 8b06
-d3 1f08 9 fc0a 72 160c 9 60e
-c95 116 6 16 6003 214 5c0 4301
-f 1200 9 5202 e 2903 13a 4305
-f 1204 9 a906 e 2807 d34 116
-6 16 5fcf 214 5c2 1100 9 5302
-118 1104 9 ac06 d2 1f08 9 fd0a
-72 160c 9 60e c95 116 6 16
-5f79 214 1237 116 6 16 6217 214
-5c7 1000 9 5202 91 1104 9 ac06
-d3 1f08 9 fc0a 72 160c 9 60e
-c95 116 6 16 5ff9 214 57b 1000
-9 5302 11d 1004 9 a906 d2 1f08
-9 fd0a 72 160c 9 60e c95 116
-6 16 5fb8 214 5c1 4301 f 1600
-9 5202 e 2903 13a 4305 f 1604
-9 a906 e 2807 f2 4309 f 1f08
-9 fc0a e 690b 16e 430d f 130c
-9 60e e 480f cb8 116 6 16
-5da4 214 5c2 1500 9 5102 91 1604
-9 a906 d3 1f08 9 fb0a 72 130c
-9 60e df2 116 6 16 5ea0 214
-134c 116 6 16 6104 214 5c1 1400
-9 5202 118 1504 9 ac06 d2 1f08
-9 fc0a 72 130c 9 60e ec6 116
-6 16 5d48 214 5c1 4301 f 1200
-9 1c02 e 2903 13a 4305 f 1204
-9 8e06 e 2807 d34 116 6 16
-5fd2 214 5c2 1100 9 1b02 91 1204
-9 8e06 d3 1f08 9 fb0a 72 130c
-9 60e c95 116 6 16 5ffd 214
-1236 116 6 16 621b 214 5c6 1000
-9 1c02 119 1104 9 8b06 d2 1f08
-9 fc0a 72 130c 9 60e c95 116
-6 16 5f71 214 57c 1000 9 1b02
-91 1104 9 8b06 d3 1f08 9 fb0a
-72 130c 9 60e daf 116 6 16
-5f2e 214 5c1 4301 f 1600 9 ab02
-e 2903 13a 4305 f 1604 9 d506
-e 2807 f2 4309 f 1f08 9 fc0a
-e 690b 16e 430d f 150c 9 d0e
-e 480f cb8 116 6 16 5d9f 214
-5c2 1500 9 ac02 118 1504 9 d806
-d2 1f08 9 fd0a 72 150c 9 d0e
-d66 116 6 16 5ea8 214 134f 116
-6 16 60ff 214 5c3 1400 9 ab02
-91 1504 9 d806 d3 1f08 9 fc0a
-72 150c 9 d0e c95 116 6 16
-5ffb 214 5c0 4301 f 1200 9 5202
-e 2903 13a 4305 f 1204 9 a906
-e 2807 d34 116 6 16 5fd6 214
-5c1 1100 9 5302 119 1104 9 a606
-d2 1f08 9 fd0a 72 150c 9 d0e
-c95 116 6 16 5f79 214 1236 116
-6 16 6217 214 5c7 1000 9 5202
-91 1104 9 a606 d3 1f08 9 fc0a
-72 150c 9 d0e dad 116 6 16
-5edf 214 57b 1000 9 5302 11c 1004
-9 a906 d2 1f08 9 fd0a 72 150c
-9 d0e c95 116 6 16 5fbb 214
-5c0 4301 f 1600 9 fc02 e 2903
-13a 4305 f 1604 9 fd06 e 2807
-f2 4309 f 1f08 9 fc0a e 690b
-16e 430d f 120c 9 d0e e 480f
-d44 116 6 16 5d19 214 5c2 1500
-9 fb02 91 1604 9 fd06 d3 1f08
-9 fb0a 72 120c 9 d0e ec5 116
-6 16 5dcf 214 1236 116 6 16
-6217 214 5c2 1400 9 fc02 119 1504
-9 fa06 d2 1f08 9 fc0a 72 120c
-9 d0e c95 116 6 16 5f75 214
-5c0 4301 f 1200 9 ab02 e 2903
-13a 4305 f 1204 9 d506 e 2807
-d34 116 6 16 5fd7 214 5c3 1100
-9 aa02 91 1204 9 d506 d3 1f08
-9 fb0a 72 120c 9 d0e c95 116
-6 16 5ffd 214 127b 116 6 16
-61d6 214 5c6 1000 9 ab02 118 1104
-9 d806 d2 1f08 9 fc0a 72 120c
-9 d0e dad 116 6 16 5e57 214
-57d 1000 9 aa02 91 1104 9 d806
-d3 1f08 9 fb0a 72 120c 9 d0e
-ec7 116 6 16 5e11 214 5b9 4301
-f 1600 9 2 e 2803 133 4305
-f 1604 9 6 e 2807 1c3 4309
-f 1f08 9 7c0a e 690b 1ea 430d
-f 160c 9 d0e e 480f d44 116
-6 16 5bd8 214 580 1500 9 2
-d6 1504 9 6 d2 1f08 9 7d0a
-72 160c 9 d0e c95 116 6 16
-5ffd 214 1237 116 6 16 6217 214
-580 1400 9 2 91 1504 9 6
-d3 1f08 9 7c0a 72 160c 9 d0e
-c95 116 6 16 6042 214 5bf 4301
-f 1200 9 fc02 e 2903 13a 4305
-f 1204 9 fd06 e 2807 d34 116
-6 16 5fd2 214 5c2 1100 9 fd02
-119 1104 9 fa06 d2 1f08 9 7d0a
-72 160c 9 d0e d22 116 6 16
-5eea 214 127b 116 6 16 61d4 214
-5c7 1000 9 fc02 91 1104 9 fa06
-d3 1f08 9 7c0a 72 160c 9 d0e
-d22 116 6 16 5f6d 214 57c 1000
-9 fd02 11c 1004 9 fd06 d2 1f08
-9 7d0a 72 160c 9 d0e df2 116
-6 16 5e5d 214 5c0 4301 f 1600
-9 fd02 e 2803 13a 4305 f 1604
-9 7e06 e 2807 f3 4309 f 1f08
-9 7c0a e 690b 16e 430d f 130c
-9 d0e e 480f d45 116 6 16
-5d15 214 5c3 1500 9 fc02 91 1604
-9 7e06 d3 1f08 9 7b0a 72 130c
-9 d0e c95 116 6 16 5ffd 214
-1236 116 6 16 6217 214 5c2 1400
-9 fd02 119 1504 9 7b06 d2 1f08
-9 7c0a 72 130c 9 d0e c95 116
-6 16 5f79 214 5b9 4301 f 1200
-9 2 e 2803 133 4305 f 1204
-9 6 e 2807 e05 116 6 16
-5f11 214 57f 1100 9 2 91 1204
-9 6 d3 1f08 9 7b0a 72 130c
-9 d0e dae 116 6 16 5f28 214
-134f 116 6 16 6101 214 584 1000
-9 2 d6 1104 9 6 d2 1f08
-9 7c0a 72 130c 9 d0e c95 116
-6 16 5ff6 214 539 1000 9 2
-91 1104 9 6 d3 1f08 9 7b0a
-72 130c 9 d0e c95 116 6 16
-6085 214 5c1 4301 f 1600 9 d502
-e 2803 13a 4305 f 1604 9 6a06
-e 2807 f3 4309 f 1f08 9 7c0a
-e 690b 16e 430d f 120c 9 d0e
-e 480f cb8 116 6 16 5da2 214
-5c3 1500 9 d402 118 1504 9 6d06
-d2 1f08 9 7d0a 72 120c 9 d0e
-c95 116 6 16 5f79 214 1236 116
-6 16 6217 214 5c2 1400 9 d502
-91 1504 9 6d06 d3 1f08 9 7c0a
-72 120c 9 d0e d21 116 6 16
-5f71 214 5c1 4301 f 1200 9 fd02
-e 2803 13a 4305 f 1204 9 7e06
-e 2807 e4c 116 6 16 5ebc 214
-5c2 1100 9 fc02 119 1104 9 7b06
-d2 1f08 9 7d0a 72 120c 9 d0e
-dad 116 6 16 5e5f 214 12c4 116
-6 16 6189 214 5c5 1000 9 fd02
-91 1104 9 7b06 d3 1f08 9 7c0a
-72 120c 9 d0e c95 116 6 16
-5ffb 214 57d 1000 9 fc02 11c 1004
-9 7e06 d2 1f08 9 7d0a 72 120c
-9 d0e c95 116 6 16 5fb8 214
-5c1 4301 f 1600 9 a902 e 2803
-13a 4305 f 1604 9 5406 e 2807
-f3 4309 f 1f08 9 7c0a e 690b
-16e 430d f 110c 9 d0e e 480f
-cb8 116 6 16 5da4 214 5c2 1500
-9 aa02 91 1604 9 5406 d3 1f08
-9 7b0a 72 110c 9 d0e c95 116
-6 16 5ffd 214 127c 116 6 16
-61d6 214 5c3 1400 9 a902 119 1504
-9 5106 d2 1f08 9 7c0a 72 110c
-9 d0e ec7 116 6 16 5d40 214
-5c0 4301 f 1200 9 d502 e 2803
-13a 4305 f 1204 9 6a06 e 2807
-d34 116 6 16 5fd4 214 5c1 1100
-9 d602 91 1204 9 6a06 d3 1f08
-9 7b0a 72 110c 9 d0e c95 116
-6 16 5ffd 214 1237 116 6 16
-621b 214 5c7 1000 9 d502 118 1104
-9 6d06 d2 1f08 9 7c0a 72 110c
-9 d0e c95 116 6 16 5f71 214
-57b 1000 9 d602 91 1104 9 6d06
-d3 1f08 9 7b0a 72 110c 9 d0e
-c95 116 6 16 6046 214 5c0 4301
-f 1600 9 1c02 e 2903 13a 4305
-f 1604 9 8e06 e 2807 155 4309
-f 1f08 9 7c0a e 690b 27c 430d
-f 160c 9 60e e 480f cb8 116
-6 16 5c30 214 5c3 1500 9 1b02
-119 1504 9 8b06 d2 1f08 9 7d0a
-72 160c 9 60e dad 116 6 16
-5e5f 214 12c4 116 6 16 6189 214
-5c1 1400 9 1c02 91 1504 9 8b06
-d3 1f08 9 7c0a 72 160c 9 60e
-d1f 116 6 16 5f75 214 5c1 4301
-f 1200 9 a902 e 2803 13a 4305
-f 1204 9 5406 e 2807 e4d 116
-6 16 5ebc 214 5c3 1100 9 a802
-118 1104 9 5706 d2 1f08 9 7d0a
-72 160c 9 60e c95 116 6 16
-5f75 214 1236 116 6 16 621b 214
-5c6 1000 9 a902 91 1104 9 5706
-d3 1f08 9 7c0a 72 160c 9 60e
-c95 116 6 16 5ff9 214 57d 1000
-9 a802 11d 1004 9 5406 d2 1f08
-9 7d0a 72 160c 9 60e c95 116
-6 16 5fb8 214 5c0 4301 f 1600
-9 9602 e 2803 13a 4305 f 1604
-9 4b06 e 2807 f3 4309 f 1f08
-9 7c0a e 690b 16e 430d f 130c
-9 60e e 480f e16 116 6 16
-5c44 214 5c2 1500 9 9702 91 1604
-9 4b06 d3 1f08 9 7b0a 72 130c
-9 60e d67 116 6 16 5f2a 214
-14aa 116 6 16 5fa7 214 5c3 1400
-9 9602 118 1504 9 4e06 d2 1f08
-9 7c0a 72 130c 9 60e daa 116
-6 16 5e63 214 5c1 4301 f 1200
-9 8e02 e 2803 13a 4305 f 1204
-9 4606 e 2807 d31 116 6 16
-5fd4 214 5c2 1100 9 8f02 91 1204
-9 4606 d3 1f08 9 7b0a 72 130c
-9 60e c92 116 6 16 5fff 214
-1281 116 6 16 61d0 214 5c7 1000
-9 8e02 119 1104 9 4306 d2 1f08
-9 7c0a 72 130c 9 60e cc8 116
-6 16 5f3e 214 57c 1000 9 8f02
-91 1104 9 4306 d3 1f08 9 7b0a
-72 130c 9 60e d55 116 6 16
-5f84 214 5c0 4301 f 1600 9 bd02
-e 2803 13a 4305 f 1604 9 5e06
-e 2807 f3 4309 f 1f08 9 7c0a
-e 690b 16e 430d f 120c 9 60e
-e 480f ceb 116 6 16 5d6f 214
-5c3 1500 9 bc02 118 1504 9 6106
-d2 1f08 9 7d0a 72 120c 9 60e
-e0b 116 6 16 5e01 214 141f 116
-6 16 6030 214 5c2 1400 9 bd02
-91 1504 9 6106 d3 1f08 9 7c0a
-72 120c 9 60e cda 116 6 16
-5fb7 214 5c0 4301 f 1200 9 9602
-e 2803 13a 4305 f 1204 9 4b06
-e 2807 d79 116 6 16 5f91 214
-5c2 1100 9 9502 119 1104 9 4806
-d2 1f08 9 7d0a 72 120c 9 60e
-d0a 116 6 16 5f02 214 1294 116
-6 16 61ba 214 5c6 1000 9 9602
-91 1104 9 4806 d3 1f08 9 7c0a
-72 120c 9 60e d37 116 6 16
-5f57 214 5c1 4301 f 1600 9 a902
-e 2803 13a 4305 f 1604 9 5406
-e 2807 f3 4309 f 1f08 9 7c0a
-e 690b 16e 430d f 110c 9 60e
-e 480f da1 116 6 16 5cb9 214
-5c3 1500 9 a802 118 1504 9 5706
-d2 1f08 9 7d0a 72 110c 9 60e
-e3b 116 6 16 5dd3 214 6ce9 214
-3ed7f 1500 9 a802 72 1504 9 5706
-72 1f08 9 7d0a 72 110c 9 60e
-b8 1500 9 a802 72 1504 9 5706
-72 1f08 9 7d0a 72 110c 9 60e
-4b 116 6 16 2ce7 214 b1e 4301
-f 5600 9 5602 e 303 2a5 4305
-f 5604 9 7506 e 407 223 4309
-f 1f08 9 560a e 8b0b 21c 430d
-f 110c 9 7f0e e 280f 2f9c 116
-6 16 1a7 2411 99 2211 99 2211
-99 2111 99 2511 99 1e11 99 2411
-99 2311 99 2311 99 1f11 99 2111
-99 2111 99 1f11 99 2511 99 2211
-99 1f11 99 2311 99 2111 99 2211
-99 2011 99 2211 99 2211 99 2211
-99 2311 99 2511 99 1e11 99 2111
-99 1f11 99 1f11 99 2311 99 1e11
-99 1e11 99 2311 99 2311 99 1f11
-99 2311 99 2211 99 2511 99 1f11
-99 2311 99 2111 99 2011 99 2011
-99 2111 99 2211 99 2311 99 2511
-99 2011 99 1f11 99 2211 99 2211
-99 1f11 99 2511 99 1f11 99 2311
-99 2611 99 1f11 99 1f11 99 1f11
-99 2011 99 1e11 99 2511 99 2411
-99 2411 99 1e11 99 2111 99 2211
-99 2111 99 2211 99 2511 99 2311
-99 2111 99 2211 99 1e11 99 2111
-99 2011 99 2411 99 1f11 99 2011
-99 2511 99 2511 ad 214 2df 5600
-9 5602 91 5604 9 7506 7b 1f08
-9 560a 72 110c 9 7f0e 96 1f11
-95 1f11 95 2211 10e 1911 a2 1511
-a2 1311 a2 1311 a2 1511 a2 1911
-a2 1f11 a2 2611 101 2d11 a2 3111
-a2 3411 a2 3411 a2 3411 a2 3111
-a6 2d11 93 2811 93 2411 93 1f11
-f9 1c11 a6 1811 a6 1511 a6 1311
-a6 1111 a6 f11 a6 e11 a6 d11
-a6 d11 a6 d11 a6 e11 a6 1011
-a6 1111 a6 1311 a6 1611 a6 1911
-a6 1d11 a6 2111 105 2511 a6 2811
-a6 2b11 a6 2e11 a6 3011 a6 3311
-a6 3511 a6 3611 a6 3711 a6 3811
-a6 3911 a6 3911 a6 3911 a6 3911
-a6 3811 a6 3711 a6 3611 a6 3511
-a6 3311 a6 3011 a6 2e11 a6 2b11
-a6 2811 93 2511 93 2211 93 1f11
-f9 1c11 b8 1911 9b 1711 9b 1511
-9b 1311 9b 1111 9b 1011 9b f11
-9b e11 9b d11 9b d11 9b d11
-9b d11 9b d11 9b e11 9b f11
-9b 1011 9b 1111 9b 1311 9b 1511
-9b 1711 9b 1911 9b 1c11 9b 1f11
-9b 2211 fa 2511 9b 2711 9b 2a11
-9b 2c11 9b 2e11 9b 3011 9b 3211
-9b 3311 9b 3411 9b 3511 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3511 9b 3511 9b 3411
-9b 3211 9b 3111 9b 2f11 9b 2d11
-88 2b11 88 2911 88 2811 88 2611
-88 2411 88 2211 88 2011 88 1e11
-f5 1c11 9b 1b11 9b 1911 9b 1811
-9b 1711 9b 1711 9b 1611 9b 1611
-9b 1511 9b 1511 9b 1511 9b 1611
-9b 1611 9b 1711 9b 1811 9b 1911
-9b 1a11 9b 1c11 9b 1d11 9b 1f11
-9b 2111 fa 2311 9b 2511 9b 2611
-9b 2811 9b 2911 9b 2a11 9b 2b11
-9b 2c11 9b 2d11 9b 2d11 9b 2d11
-9b 2e11 9b 2e11 9b 2d11 9b 2d11
-9b 2d11 9b 2c11 9b 2b11 9b 2a11
-9b 2911 9b 2811 9b 2611 9b 2511
-9b 2311 9b 2111 9b 1f11 ee 1d11
-9b 1c11 9b 1a11 9b 1911 9b 1711
-9b 1611 9b 1511 9b 1411 88 214
-404 1311 a2 1311 a2 1211 a2 1211
-a2 1211 a2 1211 a2 1211 a2 1211
-a2 1211 a2 1311 a2 1311 a2 1411
-a2 1511 a2 1611 a2 1711 a2 1911
-a2 1a11 a6 1c11 a6 1e11 a6 2011
-105 2111 a6 2311 a6 2511 a6 2611
-a6 2711 a6 2911 a6 2a11 a6 2b11
-a6 2c11 a6 2d11 a6 2d11 a6 2e11
-a6 2e11 a6 2f11 a6 2f11 a6 2f11
-a6 2f11 a6 2f11 a6 2f11 a6 2f11
-a6 2e11 a6 2e11 a6 2d11 a6 2c11
-a6 2c11 a6 2b11 a6 2a11 a6 2811
-a6 2711 a6 2611 a6 2411 a6 2311
-a6 2111 a6 1f11 f9 1e11 a6 1c11
-a6 1b11 a6 1911 a6 1811 a6 1711
-a6 1611 a6 1511 a6 1511 a6 1411
-a6 1411 a6 1311 a6 1311 a6 1311
-b8 1311 9b 1311 9b 1411 9b 1411
-9b 1511 9b 1511 9b 1611 9b 1711
-9b 1811 9b 1911 9b 1b11 9b 1c11
-9b 1e11 9b 1f11 9b 2111 fa 2311
-9b 2411 9b 2611 9b 2711 9b 2911
-9b 2a11 9b 2b11 9b 2c11 9b 2d11
-9b 2e11 9b 2f11 9b 2f11 9b 3011
-9b 3111 9b 3111 9b 3111 9b 3211
-9b 3211 9b 3211 9b 3211 9b 3111
-9b 3111 9b 3111 9b 3011 9b 3011
-9b 2f11 9b 2f11 9b 2e11 9b 2d11
-9b 2c11 9b 2b11 9b 2a11 9b 2811
-9b 2711 9b 2511 9b 2411 9b 2211
-9b 2011 9b 1f11 f5 1c11 9b 1a11
-9b 1b11 9b 1911 9b 1611 9b 1711
-9b 1411 9b 1511 9b 1211 9b 1311
-9b 1311 9b 1011 9b 1011 9b 1111
-9b 1111 9b 1111 9b 1111 9b 1111
-9b 1111 9b 1011 9b 1011 9b 1311
-9b 1311 9b 1211 9b 1511 9b 1411
-9b 1711 9b 1611 9b 1811 9b 1b11
-9b 1d11 9b 1c11 9b 1e11 9b 2011
-fa 2211 9b 2411 9b 2711 9b 2911
-9b 2811 9b 2a11 9b 2d11 9b 2c11
-9b 2f11 9b 2e11 9b 3111 9b 3011
-9b 3311 9b 3211 9b 3511 9b 3511
-9b 3411 9b 3411 9b 3711 9b 3711
-9b 3711 9b 3711 9e 214 30f 5500
-9 5602 c1 5504 9 7506 7b 1f08
-9 560a 72 110c 9 7f0e a7 3611
-a2 3611 a2 3711 a2 3711 a2 3711
-a2 3711 a2 3411 a2 3411 a2 3511
-a2 3511 a2 3211 a2 3311 a2 3011
-a2 3111 a2 2e11 a2 2f11 a2 2c11
-a6 2d11 a6 2a11 a6 2811 a6 2911
-a6 2711 a6 2411 a6 2211 a6 2011
-a6 1e11 f9 1c11 a6 1d11 a6 1b11
-a6 1811 a6 1611 a6 1711 a6 1411
-a6 1511 a6 1311 a6 1311 a6 1011
-a6 1111 a6 e11 a6 e11 a6 f11
-a6 f11 a6 f11 a6 c11 a6 c11
-a6 c11 a6 c11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1011 a6 1311 a6 1311 a6 1511
-a6 1411 a6 1711 a6 1611 a6 1811
-a6 1b11 a6 1d11 a6 1c11 a6 1e11
-a6 2011 105 2211 b8 2411 9b 2711
-9b 2911 9b 2811 9b 2a11 9b 2d11
-9b 2c11 9b 2f11 9b 2e11 9b 3111
-9b 3011 9b 3311 9b 3211 9b 3511
-9b 3511 9b 3411 9b 3411 9b 3711
-9b 3711 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3411 9b 3411 9b 3511
-9b 3511 9b 3211 9b 3311 9b 3011
-9b 3111 9b 2e11 9b 2f11 9b 2c11
-9b 2d11 9b 2a11 9b 2811 9b 2911
-9b 2711 9b 2411 9b 2211 9b 2011
-9b 1e11 ee 1c11 9b 1d11 9b 1b11
-9b 1811 9b 1611 9b 1711 9b 1411
-9b 1511 9b 1311 9b 1311 9b 1011
-9b 1111 9b e11 9b e11 9b f11
-9b f11 9b f11 9b c11 9b c11
-9b c11 9b c11 9b f11 9b f11
-9b f11 9b e11 9b e11 9b 1111
-9b 1011 9b 1311 9b 1311 9b 1511
-9b 1411 9b 1711 9b 1611 9b 1811
-9b 1b11 9b 1d11 9b 1c11 88 1e11
-88 2011 fa 2311 9b 2511 9b 2411
-9b 2611 9b 2911 9b 2b11 9b 2a11
-9b 2d11 9b 2c11 9b 2f11 9b 2e11
-9b 3111 9b 3011 9b 3311 9b 3211
-9b 3211 9b 3511 9b 3511 9b 3411
-9b 3411 9b 3711 9b 3711 9b 3711
-4c 214 338 5500 9 5502 e9 5504
-9 7406 d3 1f08 9 550a 72 110c
-9 7f0e 100 3711 a2 3611 a2 3611
-a2 3611 a2 3611 a2 3711 a2 3711
-a2 3711 a2 3711 a2 3411 a2 3411
-a2 3511 a2 3511 a2 3211 a2 3211
-a2 3311 a6 3011 a6 3111 a6 2e11
-a6 2f11 a6 2c11 a6 2d11 a6 2a11
-a6 2b11 a6 2911 a6 2611 a6 2411
-a6 2511 a6 2311 a6 2011 a6 1e11
-100 1c11 a6 1d11 a6 1b11 a6 1811
-a6 1911 a6 1611 a6 1411 a6 1511
-a6 1211 a6 1311 a6 1311 a6 1011
-a6 1111 a6 1111 a6 e11 a6 e11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1111 a6 1011 a6 1011 a6 1311
-a6 1211 a6 1511 b8 1411 9b 1711
-9b 1911 9b 1811 9b 1b11 88 1d11
-88 1c11 88 1f11 88 2111 3ee0 214
-4237 116 6 16 3215 214 9b0 5400
-9 5602 fe 5404 9 7506 b8 1f08
-9 560a 72 110c 9 7f0e 363b 116
-6 16 3218 214 4234 116 6 16
-321c 214 981 5400 9 5702 e8 5404
-9 7606 d2 1f08 9 570a 72 110c
-9 7f0e 3665 116 6 16 3218 214
-998 5300 9 5602 ff 5304 9 7506
-b9 1f08 9 560a 72 110c 9 7f0e
-3650 116 6 16 3218 214 b2e 4301
-f 5600 9 5602 e 303 2c1 4305
-f 5604 9 7506 e 407 173 4309
-f 1f08 9 560a e 8b0b 1b5 430d
-f 110c 9 7f0e e 280f 308a 116
-6 16 1a7 1f11 8e 2511 8e 2411
-8e 2311 8e 2311 8e 2311 8e 2011
-8e 2011 8e 2211 8e 2011 8e 2411
-8e 2411 8e 2411 8e 2011 8e 1e11
-8e 2111 8e 2211 8e 2411 8e 2411
-8e 2111 8e 2411 8e 2411 8e 1e11
-8e 2511 8e 2211 8e 2011 8e 2411
-8e 2211 8e 2211 8e 2011 8e 2311
-8e 2011 8e 2111 8e 2311 8e 2411
-8e 1f11 8e 2411 8e 1f11 8e 2311
-8e 2411 8e 2111 8e 2211 8e 2511
-8e 2611 8e 2311 8e 2311 8e 2111
-8e 1f11 8e 2111 8e 1e11 8e 2511
-8e 2411 8e 2111 8e 2611 8e 2011
-8e 2211 8e 2211 8e 2111 8e 1e11
-8e 2411 8e 1e11 8e 1e11 8e 1e11
-8e 2011 8e 2111 8e 1e11 8e 2411
-8e 2511 8e 2611 8e 1e11 8e 2411
-8e 2111 8e 2111 8e 2011 8e 2011
-8e 1e11 8e 2111 8e 2411 8e 2311
-8e 2311 8e 2411 8e 1f11 8e 2211
-8e 2511 107 1911 9b 1511 9b 1311
-31 214 337 5600 9 5502 e9 5604
-9 7406 d3 1f08 9 550a 72 110c
-9 7f0e 11b 1311 a2 1511 a2 1911
-a2 1f11 a2 2611 101 2d11 a2 3111
-a2 3411 a2 3411 a2 3411 a2 3111
-a2 2d11 8f 2811 8f 2411 8f 1f11
-f5 1c11 a6 1811 a6 1511 a6 1311
-a6 1111 a6 f11 a6 e11 a6 d11
-a6 d11 a6 d11 a6 e11 a6 1011
-a6 1111 a6 1311 a6 1611 a6 1911
-a6 1d11 a6 2111 105 2511 a6 2811
-a6 2b11 a6 2e11 a6 3011 a6 3311
-a6 3511 a6 3611 a6 3711 a6 3811
-a6 3911 a6 3911 a6 3911 a6 3911
-a6 3811 a6 3711 a6 3611 a6 3511
-a6 3311 a6 3011 a6 2e11 a6 2b11
-a6 2811 93 2511 93 2211 93 1f11
-f9 1c11 a6 1911 a6 1711 a6 1511
-a6 1311 b8 1111 9b 1011 9b f11
-9b e11 9b d11 9b d11 9b d11
-9b d11 9b d11 9b e11 9b f11
-9b 1011 9b 1111 9b 1311 9b 1511
-9b 1711 9b 1911 9b 1c11 9b 1f11
-9b 2211 fa 2511 9b 2711 9b 2a11
-9b 2c11 9b 2e11 9b 3011 9b 3211
-9b 3311 9b 3411 9b 3511 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3511 9b 3511 9b 3411
-9b 3211 9b 3111 9b 2f11 9b 2d11
-88 2b11 88 2911 88 2811 88 2611
-88 2411 88 2211 88 2011 88 1e11
-f5 1c11 9b 1b11 9b 1911 9b 1811
-9b 1711 9b 1711 9b 1611 9b 1611
-9b 1511 9b 1511 9b 1511 9b 1611
-9b 1611 9b 1711 9b 1811 9b 1911
-9b 1a11 9b 1c11 9b 1d11 9b 1f11
-9b 2111 fa 2311 9b 2511 9b 2611
-9b 2811 9b 2911 9b 2a11 9b 2b11
-9b 2c11 9b 2d11 9b 2d11 9b 2d11
-9b 2e11 9b 2e11 9b 2d11 9b 2d11
-9b 2d11 9b 2c11 9b 2b11 9b 2a11
-9b 2911 9b 2811 9b 2611 9b 2511
-9b 2311 9b 2111 9b 1f11 ee 1d11
-9b 1c11 9b 1a11 9b 1911 9b 1711
-9b 1611 9b 1511 9b 1411 9b 1311
-9b 1311 9b 1211 9b 1211 96 214
-3f5 1211 a2 1211 a2 1211 a2 1211
-a2 1211 a2 1311 a2 1311 a2 1411
-a2 1511 a2 1611 a2 1711 a2 1911
-a2 1a11 a2 1c11 a2 1e11 a2 2011
-101 2111 a6 2311 a6 2511 a6 2611
-a6 2711 a6 2911 a6 2a11 a6 2b11
-a6 2c11 a6 2d11 a6 2d11 a6 2e11
-a6 2e11 a6 2f11 a6 2f11 a6 2f11
-a6 2f11 a6 2f11 a6 2f11 a6 2f11
-a6 2e11 a6 2e11 a6 2d11 a6 2c11
-a6 2c11 a6 2b11 a6 2a11 a6 2811
-a6 2711 a6 2611 a6 2411 a6 2311
-a6 2111 a6 1f11 f9 1e11 a6 1c11
-a6 1b11 a6 1911 a6 1811 a6 1711
-a6 1611 a6 1511 a6 1511 a6 1411
-a6 1411 a6 1311 a6 1311 a6 1311
-a6 1311 a6 1311 a6 1411 a6 1411
-b8 1511 9b 1511 9b 1611 9b 1711
-9b 1811 9b 1911 9b 1b11 9b 1c11
-9b 1e11 9b 1f11 9b 2111 fa 2311
-9b 2411 9b 2611 9b 2711 9b 2911
-9b 2a11 9b 2b11 9b 2c11 9b 2d11
-9b 2e11 9b 2f11 9b 2f11 9b 3011
-9b 3111 9b 3111 9b 3111 9b 3211
-9b 3211 9b 3211 9b 3211 9b 3111
-9b 3111 9b 3111 9b 3011 9b 3011
-9b 2f11 9b 2f11 9b 2e11 9b 2d11
-9b 2c11 9b 2b11 9b 2a11 9b 2811
-9b 2711 9b 2511 9b 2411 9b 2211
-9b 2011 9b 1f11 f5 1c11 9b 1a11
-9b 1b11 9b 1911 9b 1611 9b 1711
-9b 1411 9b 1511 9b 1211 9b 1311
-9b 1311 9b 1011 9b 1011 9b 1111
-9b 1111 9b 1111 9b 1111 9b 1111
-9b 1111 9b 1011 9b 1011 9b 1311
-9b 1311 9b 1211 9b 1511 9b 1411
-9b 1711 9b 1611 9b 1811 9b 1b11
-9b 1d11 9b 1c11 9b 1e11 9b 2011
-fa 2211 9b 2411 9b 2711 9b 2911
-9b 2811 9b 2a11 9b 2d11 9b 2c11
-9b 2f11 9b 2e11 9b 3111 9b 3011
-9b 3311 9b 3211 9b 3511 9b 3511
-9b 3411 9b 3411 9b 3711 9b 3711
-9b 3711 9b 3711 9b 3611 9b 3611
-9b 3711 9b 3711 ad 214 34d 5500
-9 5602 fe 5504 9 7506 b8 1f08
-9 560a 72 110c 9 7f0e 98 3711
-a2 3711 a2 3411 a2 3411 a2 3511
-a2 3511 a2 3211 a2 3311 a2 3011
-a2 3111 a2 2e11 a2 2f11 a2 2c11
-a2 2d11 a2 2a11 a2 2811 a2 2911
-a6 2711 a6 2411 a6 2211 a6 2011
-a6 1e11 f9 1c11 a6 1d11 a6 1b11
-a6 1811 a6 1611 a6 1711 a6 1411
-a6 1511 a6 1311 a6 1311 a6 1011
-a6 1111 a6 e11 a6 e11 a6 f11
-a6 f11 a6 f11 a6 c11 a6 c11
-a6 c11 a6 c11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1011 a6 1311 a6 1311 a6 1511
-a6 1411 a6 1711 a6 1611 a6 1811
-a6 1b11 a6 1d11 a6 1c11 a6 1e11
-a6 2011 105 2211 a6 2411 a6 2711
-b8 2911 9b 2811 9b 2a11 9b 2d11
-9b 2c11 9b 2f11 9b 2e11 9b 3111
-9b 3011 9b 3311 9b 3211 9b 3511
-9b 3511 9b 3411 9b 3411 9b 3711
-9b 3711 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3411 9b 3411 9b 3511
-9b 3511 9b 3211 9b 3311 9b 3011
-9b 3111 9b 2e11 9b 2f11 9b 2c11
-9b 2d11 9b 2a11 9b 2811 9b 2911
-9b 2711 9b 2411 9b 2211 9b 2011
-9b 1e11 ee 1c11 9b 1d11 9b 1b11
-9b 1811 9b 1611 9b 1711 9b 1411
-9b 1511 9b 1311 9b 1311 9b 1011
-9b 1111 9b e11 9b e11 9b f11
-9b f11 9b f11 9b c11 9b c11
-9b c11 9b c11 9b f11 9b f11
-9b f11 9b e11 9b e11 9b 1111
-9b 1011 9b 1311 9b 1311 9b 1511
-9b 1411 9b 1711 9b 1611 9b 1811
-9b 1b11 9b 1d11 9b 1c11 88 1e11
-88 2011 fa 2311 9b 2511 9b 2411
-9b 2611 9b 2911 9b 2b11 9b 2a11
-9b 2d11 9b 2c11 9b 2f11 9b 2e11
-9b 3111 9b 3011 9b 3311 9b 3211
-9b 3211 9b 3511 9b 3511 9b 3411
-9b 3411 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3611 9b 3611 54 214
-43e 3611 a2 3611 a2 3711 a2 3711
-a2 3711 a2 3711 a2 3411 a2 3411
-a2 3511 a2 3511 a2 3211 a2 3211
-a2 3311 a2 3011 a2 3111 a2 2e11
-a6 2f11 a6 2c11 a6 2d11 a6 2a11
-a6 2b11 a6 2911 a6 2611 a6 2411
-a6 2511 a6 2311 a6 2011 a6 1e11
-100 1c11 a6 1d11 a6 1b11 a6 1811
-a6 1911 a6 1611 a6 1411 a6 1511
-a6 1211 a6 1311 a6 1311 a6 1011
-a6 1111 a6 1111 a6 e11 a6 e11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1111 a6 1011 a6 1011 a6 1311
-a6 1211 a6 1511 a6 1411 a6 1711
-a6 1911 a6 1811 a6 1b11 93 1d11
-93 1c11 a5 1f11 88 2111 42ce 214
-967 5500 9 5702 e8 5504 9 7606
-d2 1f08 9 570a 72 110c 9 7f0e
-3681 116 6 16 3218 214 97e 5400
-9 5602 ff 5404 9 7506 b9 1f08
-9 560a 72 110c 9 7f0e 366c 116
-6 16 3218 214 4236 116 6 16
-3215 214 96a 5400 9 5502 e9 5404
-9 7406 d3 1f08 9 550a 72 110c
-9 7f0e 367a 116 6 16 321b 214
-4236 116 6 16 3218 214 968 5300
-9 5602 fe 5304 9 7506 b8 1f08
-9 560a 72 110c 9 7f0e 3681 116
-6 16 3218 214 951 5300 9 5702
-e8 5304 9 7606 d2 1f08 9 570a
-72 110c 9 7f0e 3696 116 6 16
-3218 214 4236 116 6 16 3218 214
-93a 5200 9 5602 ff 5204 9 7506
-b9 1f08 9 560a 72 110c 9 7f0e
-36b2 116 6 16 3215 214 4237 116
-6 16 3218 214 924 5200 9 5502
-e9 5204 9 7406 d3 1f08 9 550a
-72 110c 9 7f0e 36c0 116 6 16
-3218 214 4238 116 6 16 3218 214
-939 5100 9 5602 fe 5104 9 7506
-b8 1f08 9 560a 72 110c 9 7f0e
-36b2 116 6 16 3215 214 923 5100
-9 5702 e8 5104 9 7606 d2 1f08
-9 570a 72 110c 9 7f0e 36c7 116
-6 16 3218 214 a59 4301 f 3600
-9 ab02 e 9903 245 4305 f 3604
-9 3a06 e 9a07 354a 116 6 16
-3218 214 924 3600 9 aa02 e9 3604
-9 3906 b9 1f08 9 560a 72 110c
-9 7f0e 36dc 116 6 16 3218 214
-4238 116 6 16 3215 214 938 3500
-9 ab02 fe 3504 9 3a06 d3 1f08
-9 550a 72 110c 9 7f0e 3696 116
-6 16 321b 214 922 3500 9 ac02
-e8 3504 9 3b06 b8 1f08 9 560a
-72 110c 9 7f0e 36dc 116 6 16
-321c 214 4237 116 6 16 3218 214
-93a 3400 9 ab02 ff 3404 9 3a06
-d2 1f08 9 570a 72 110c 9 7f0e
-3696 116 6 16 3213 214 4238 116
-6 16 3218 214 924 3400 9 aa02
-e9 3404 9 3906 b9 1f08 9 560a
-72 110c 9 7f0e 36dc 116 6 16
-3215 214 938 3300 9 ab02 fe 3304
-9 3a06 d3 1f08 9 550a 72 110c
-9 7f0e 3696 116 6 16 321b 214
-4237 116 6 16 3218 214 923 3300
-9 ac02 e8 3304 9 3b06 b8 1f08
-9 560a 72 110c 9 7f0e 36dc 116
-6 16 3218 214 4237 116 6 16
-3218 214 93a 3200 9 ab02 ff 3204
-9 3a06 d2 1f08 9 570a 72 110c
-9 7f0e 3696 116 6 16 3218 214
-4237 116 6 16 3218 214 924 3200
-9 aa02 e9 3204 9 3906 b9 1f08
-9 560a 72 110c 9 7f0e 36dc 116
-6 16 3218 214 939 3100 9 ab02
-fe 3104 9 3a06 d3 1f08 9 550a
-72 110c 9 7f0e 3696 116 6 16
-3215 214 4237 116 6 16 3218 214
-923 3100 9 ac02 e8 3104 9 3b06
-b8 1f08 9 560a 72 110c 9 7f0e
-36dc 116 6 16 321c 214 920 4301
-f 3600 9 ab02 e 9903 10d 4305
-f 3604 9 3a06 e 9a07 177 430d
-f 110c 9 7f0e e 280f 361e 116
-6 16 1a7 2611 8e 2311 8e 2211
-8e 1e11 8e 1f11 8e 2011 8e 2311
-8e 2411 8e 2311 8e 1e11 8e 1f11
-8e 2411 8e 1e11 8e 2111 8e 2211
-8e 2311 8e 2011 8e 2311 8e 2011
-8e 2411 8e 1f11 8e 2011 8e 2511
-8e 1e11 8e 2111 8e 1f11 8e 2111
-8e 2411 8e 1f11 8e 2511 8e 2311
-8e 2211 8e 2411 8e 2211 8e 2111
-8e 2311 8e 1f11 8e 2211 8e 2111
-8e 1f11 8e 1f11 8e 2311 8e 2311
-8e 2411 8e 1e11 8e 2411 8e 2511
-8e 2411 8e 2211 8e 2111 8e 2011
-8e 2011 8e 2211 8e 2011 8e 1f11
-8e 2511 8e 2011 8e 2211 8e 2011
-8e 2311 8e 2011 8e 1f11 8e 1e11
-8e 2411 8e 1e11 8e 2211 8e 2411
-8e 2011 8e 2411 8e 2211 8e 2311
-8e 1f11 8e 2311 8e 2311 8e 1e11
-8e 2411 8e 2311 8e 2311 8e 2411
-8e 1e11 8e 2211 8e 2311 8e 1e11
-8e 1f11 107 1911 9b 1511 9b 1311
-36 214 367 3500 9 aa02 119 3504
-9 3906 d2 1f08 9 570a 72 110c
-9 7f0e 116 1311 a2 1511 a2 1911
-a2 1f11 a2 2611 101 2d11 a2 3111
-a2 3411 a2 3411 a2 3411 a2 3111
-a2 2d11 8f 2811 8f 2411 8f 1f11
-f5 1c11 a6 1811 a6 1511 a6 1311
-a6 1111 a6 f11 a6 e11 a6 d11
-a6 d11 a6 d11 a6 e11 a6 1011
-a6 1111 a6 1311 a6 1611 a6 1911
-a6 1d11 a6 2111 105 2511 a6 2811
-a6 2b11 a6 2e11 a6 3011 a6 3311
-a6 3511 a6 3611 a6 3711 a6 3811
-a6 3911 a6 3911 a6 3911 a6 3911
-a6 3811 a6 3711 a6 3611 a6 3511
-a6 3311 a6 3011 a6 2e11 a6 2b11
-a6 2811 93 2511 93 2211 93 1f11
-f9 1c11 a6 1911 a6 1711 a6 1511
-b8 1311 9b 1111 9b 1011 9b f11
-9b e11 9b d11 9b d11 9b d11
-9b d11 9b d11 9b e11 9b f11
-9b 1011 9b 1111 9b 1311 9b 1511
-9b 1711 9b 1911 9b 1c11 9b 1f11
-9b 2211 fa 2511 9b 2711 9b 2a11
-9b 2c11 9b 2e11 9b 3011 9b 3211
-9b 3311 9b 3411 9b 3511 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3511 9b 3511 9b 3411
-9b 3211 9b 3111 9b 2f11 9b 2d11
-88 2b11 88 2911 88 2811 88 2611
-88 2411 88 2211 88 2011 88 1e11
-f5 1c11 9b 1b11 9b 1911 9b 1811
-9b 1711 9b 1711 9b 1611 9b 1611
-9b 1511 9b 1511 9b 1511 9b 1611
-9b 1611 9b 1711 9b 1811 9b 1911
-9b 1a11 9b 1c11 9b 1d11 9b 1f11
-9b 2111 fa 2311 9b 2511 9b 2611
-9b 2811 9b 2911 9b 2a11 9b 2b11
-9b 2c11 9b 2d11 9b 2d11 9b 2d11
-9b 2e11 9b 2e11 9b 2d11 9b 2d11
-9b 2d11 9b 2c11 9b 2b11 9b 2a11
-9b 2911 9b 2811 9b 2611 9b 2511
-9b 2311 9b 2111 9b 1f11 ee 1d11
-9b 1c11 9b 1a11 9b 1911 9b 1711
-9b 1611 9b 1511 9b 1411 9b 1311
-9b 1311 9b 1211 9b 1211 47 214
-31c 3500 9 ab02 ce 3504 9 3a06
-b9 1f08 9 560a 72 110c 9 7f0e
-105 1211 a2 1211 a2 1211 a2 1211
-a2 1211 a2 1311 a2 1311 a2 1411
-a2 1511 a2 1611 a2 1711 a2 1911
-a2 1a11 a2 1c11 a2 1e11 a2 2011
-105 2111 a6 2311 a6 2511 a6 2611
-a6 2711 a6 2911 a6 2a11 a6 2b11
-a6 2c11 a6 2d11 a6 2d11 a6 2e11
-a6 2e11 a6 2f11 a6 2f11 a6 2f11
-a6 2f11 a6 2f11 a6 2f11 a6 2f11
-a6 2e11 a6 2e11 a6 2d11 a6 2c11
-a6 2c11 a6 2b11 a6 2a11 a6 2811
-a6 2711 a6 2611 a6 2411 a6 2311
-a6 2111 a6 1f11 f9 1e11 a6 1c11
-a6 1b11 a6 1911 a6 1811 a6 1711
-a6 1611 a6 1511 a6 1511 a6 1411
-a6 1411 a6 1311 a6 1311 a6 1311
-a6 1311 b8 1311 9b 1411 9b 1411
-9b 1511 9b 1511 9b 1611 9b 1711
-9b 1811 9b 1911 9b 1b11 9b 1c11
-9b 1e11 9b 1f11 9b 2111 fa 2311
-9b 2411 9b 2611 9b 2711 9b 2911
-9b 2a11 9b 2b11 9b 2c11 9b 2d11
-9b 2e11 9b 2f11 9b 2f11 9b 3011
-9b 3111 9b 3111 9b 3111 9b 3211
-9b 3211 9b 3211 9b 3211 9b 3111
-9b 3111 9b 3111 9b 3011 9b 3011
-9b 2f11 9b 2f11 9b 2e11 9b 2d11
-9b 2c11 9b 2b11 9b 2a11 9b 2811
-9b 2711 9b 2511 9b 2411 9b 2211
-9b 2011 9b 1f11 f5 1c11 9b 1a11
-9b 1b11 9b 1911 9b 1611 9b 1711
-9b 1411 9b 1511 9b 1211 9b 1311
-9b 1311 9b 1011 9b 1011 9b 1111
-9b 1111 9b 1111 9b 1111 9b 1111
-9b 1111 9b 1011 9b 1011 9b 1311
-9b 1311 9b 1211 9b 1511 9b 1411
-9b 1711 9b 1611 9b 1811 9b 1b11
-9b 1d11 9b 1c11 9b 1e11 9b 2011
-fa 2211 9b 2411 9b 2711 9b 2911
-9b 2811 9b 2a11 9b 2d11 9b 2c11
-9b 2f11 9b 2e11 9b 3111 9b 3011
-9b 3311 9b 3211 9b 3511 9b 3511
-9b 3411 9b 3411 9b 3711 9b 3711
-9b 3711 9b 3711 9b 3611 51 214
-441 3611 a2 3711 a2 3711 a2 3711
-a2 3711 a2 3411 a2 3411 a2 3511
-a2 3511 a2 3211 a2 3311 a2 3011
-a2 3111 a2 2e11 a2 2f11 a2 2c11
-a6 2d11 a6 2a11 a6 2811 a6 2911
-a6 2711 a6 2411 a6 2211 a6 2011
-a6 1e11 f9 1c11 a6 1d11 a6 1b11
-a6 1811 a6 1611 a6 1711 a6 1411
-a6 1511 a6 1311 a6 1311 a6 1011
-a6 1111 a6 e11 a6 e11 a6 f11
-a6 f11 a6 f11 a6 c11 a6 c11
-a6 c11 a6 c11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1011 a6 1311 a6 1311 a6 1511
-a6 1411 a6 1711 a6 1611 a6 1811
-a6 1b11 a6 1d11 a6 1c11 a6 1e11
-a6 2011 105 2211 a6 2411 a6 2711
-b8 2911 9b 2811 9b 2a11 9b 2d11
-9b 2c11 9b 2f11 9b 2e11 9b 3111
-9b 3011 9b 3311 9b 3211 9b 3511
-9b 3511 9b 3411 9b 3411 9b 3711
-9b 3711 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3411 9b 3411 9b 3511
-9b 3511 9b 3211 9b 3311 9b 3011
-9b 3111 9b 2e11 9b 2f11 9b 2c11
-9b 2d11 9b 2a11 9b 2811 9b 2911
-9b 2711 9b 2411 9b 2211 9b 2011
-9b 1e11 ee 1c11 9b 1d11 9b 1b11
-9b 1811 9b 1611 9b 1711 9b 1411
-9b 1511 9b 1311 9b 1311 9b 1011
-9b 1111 9b e11 9b e11 9b f11
-9b f11 9b f11 9b c11 9b c11
-9b c11 9b c11 9b f11 9b f11
-9b f11 9b e11 9b e11 9b 1111
-9b 1011 9b 1311 9b 1311 9b 1511
-9b 1411 9b 1711 9b 1611 9b 1811
-9b 1b11 9b 1d11 9b 1c11 88 1e11
-88 2011 fa 2311 9b 2511 9b 2411
-9b 2611 9b 2911 9b 2b11 9b 2a11
-9b 2d11 9b 2c11 9b 2f11 9b 2e11
-9b 3111 9b 3011 9b 3311 9b 3211
-9b 3211 9b 3511 9b 3511 9b 3411
-9b 3411 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3611 9b 3611 4c 214
-367 3400 9 ac02 118 3404 9 3b06
-d3 1f08 9 550a 72 110c 9 7f0e
-100 3611 a2 3611 a2 3711 a2 3711
-a2 3711 a2 3711 a2 3411 a2 3411
-a2 3511 a2 3511 a2 3211 a2 3211
-a2 3311 a2 3011 a2 3111 a2 2e11
-a6 2f11 a6 2c11 a6 2d11 a6 2a11
-a6 2b11 a6 2911 a6 2611 a6 2411
-a6 2511 a6 2311 a6 2011 a6 1e11
-100 1c11 a6 1d11 a6 1b11 a6 1811
-a6 1911 a6 1611 a6 1411 a6 1511
-a6 1211 a6 1311 a6 1311 a6 1011
-a6 1111 a6 1111 a6 e11 a6 e11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1111 a6 1011 a6 1011 a6 1311
-a6 1211 a6 1511 a6 1411 a6 1711
-b8 1911 9b 1811 9b 1b11 88 1d11
-88 1c11 88 1f11 88 2111 405f 214
-4237 116 6 16 3215 214 909 3400
-9 ab02 cf 3404 9 3a06 b8 1f08
-9 560a 72 110c 9 7f0e 3714 116
-6 16 3218 214 4237 116 6 16
-3215 214 953 3300 9 aa02 119 3304
-9 3906 d2 1f08 9 570a 72 110c
-9 7f0e 3665 116 6 16 3218 214
-909 3300 9 ab02 ce 3304 9 3a06
-b9 1f08 9 560a 72 110c 9 7f0e
-370d 116 6 16 321c 214 920 4301
-f 3600 9 df02 e 9903 10d 4305
-f 3604 9 3a06 e 9a07 37b9 116
-6 16 321b 214 953 3500 9 e002
-118 3504 9 3b06 d3 1f08 9 550a
-72 110c 9 7f0e 3665 116 6 16
-3213 214 4238 116 6 16 3218 214
-90a 3500 9 df02 cf 3504 9 3a06
-b8 1f08 9 560a 72 110c 9 7f0e
-370d 116 6 16 321c 214 954 3400
-9 de02 119 3404 9 3906 d2 1f08
-9 570a 72 110c 9 7f0e 365e 116
-6 16 321b 214 4238 116 6 16
-3215 214 908 3400 9 df02 ce 3404
-9 3a06 b9 1f08 9 560a 72 110c
-9 7f0e 3714 116 6 16 3218 214
-4238 116 6 16 3213 214 952 3300
-9 e002 118 3304 9 3b06 d3 1f08
-9 550a 72 110c 9 7f0e 3665 116
-6 16 3218 214 909 3300 9 df02
-cf 3304 9 3a06 b8 1f08 9 560a
-72 110c 9 7f0e 3714 116 6 16
-3213 214 4238 116 6 16 3218 214
-954 3200 9 de02 119 3204 9 3906
-d2 1f08 9 570a 72 110c 9 7f0e
-3665 116 6 16 3213 214 4237 116
-6 16 3218 214 909 3200 9 df02
-ce 3204 9 3a06 b9 1f08 9 560a
-72 110c 9 7f0e 3714 116 6 16
-3215 214 4237 116 6 16 3218 214
-953 3100 9 e002 118 3104 9 3b06
-d3 1f08 9 550a 72 110c 9 7f0e
-3665 116 6 16 3215 214 90a 3100
-9 df02 cf 3104 9 3a06 b8 1f08
-9 560a 72 110c 9 7f0e 370d 116
-6 16 321b 214 4237 116 6 16
-3218 214 958 3000 9 de02 11d 3004
-9 3906 d2 1f08 9 570a 72 110c
-9 7f0e 3657 116 6 16 321b 214
-4237 116 6 16 3215 214 8f2 3000
-9 df02 b8 3004 9 3a06 b9 1f08
-9 560a 72 110c 9 7f0e 373e 116
-6 16 3218 214 90d 3000 9 e002
-d2 3004 9 3b06 d3 1f08 9 550a
-72 110c 9 7f0e 36f1 116 6 16
-3215 214 4238 116 6 16 3218 214
-8f4 3000 9 df02 b9 3004 9 3a06
-b8 1f08 9 560a 72 110c 9 7f0e
-373e 116 6 16 3215 214 4238 116
-6 16 3218 214 90e 3000 9 de02
-d3 3004 9 3906 d2 1f08 9 570a
-72 110c 9 7f0e 36ea 116 6 16
-321c 214 4237 116 6 16 3218 214
-8f3 3000 9 df02 b8 3004 9 3a06
-b9 1f08 9 560a 72 110c 9 7f0e
-373e 116 6 16 3213 214 90c 3000
-9 e002 d2 3004 9 3b06 d3 1f08
-9 550a 72 110c 9 7f0e 36f1 116
-6 16 3218 214 a04 430d f 110c
-9 7f0e e 280f 380f 116 6 16
-1a7 1e11 8e 2311 8e 2011 8e 2511
-8e 2311 8e 1f11 8e 2211 8e 2111
-8e 2511 8e 2211 8e 2011 8e 2211
-8e 1f11 8e 2211 8e 2511 8e 1e11
-8e 2211 8e 1e11 8e 2411 8e 2211
-8e 2011 8e 2311 8e 2511 8e 1f11
-8e 2111 8e 2111 8e 2011 8e 1e11
-8e 2511 8e 2111 8e 2511 8e 2011
-8e 1f11 8e 2011 8e 2311 8e 2411
-8e 2211 8e 1f11 8e 2211 8e 2011
-8e 1e11 8e 2211 8e 2411 8e 2511
-8e 1e11 8e 1e11 8e 2311 8e 2311
-8e 2311 8e 2511 8e 2011 8e 2511
-8e 2311 8e 2011 8e 2011 8e 2111
-8e 2211 8e 2311 8e 2111 8e 1e11
-8e 2311 8e 2011 8e 2011 8e 2311
-8e 2311 8e 2511 8e 1f11 8e 1f11
-8e 1f11 8e 2611 8e 2011 8e 2111
-8e 2411 8e 2311 8e 1f11 8e 2411
-8e 2611 8e 2511 8e 2111 8e 2511
-8e 1f11 8e 2311 8e 2111 8e 2211
-107 1911 9b 1511 9b 1311 31 214
-307 3000 9 df02 b9 3004 9 3a06
-b8 1f08 9 560a 72 110c 9 7f0e
-11b 1311 a2 1511 a2 1911 a2 1f11
-a2 2611 101 2d11 a2 3111 a2 3411
-a2 3411 a2 3411 a2 3111 a2 2d11
-8f 2811 8f 2411 8f 1f11 f5 1c11
-a6 1811 a6 1511 a6 1311 a6 1111
-a6 f11 a6 e11 a6 d11 a6 d11
-a6 d11 a6 e11 a6 1011 a6 1111
-a6 1311 a6 1611 a6 1911 a6 1d11
-a6 2111 105 2511 a6 2811 a6 2b11
-a6 2e11 a6 3011 a6 3311 a6 3511
-a6 3611 a6 3711 a6 3811 a6 3911
-a6 3911 a6 3911 a6 3911 a6 3811
-a6 3711 a6 3611 a6 3511 a6 3311
-a6 3011 a6 2e11 a6 2b11 a6 2811
-93 2511 93 2211 93 1f11 f9 1c11
-a6 1911 a6 1711 a6 1511 a6 1311
-a6 1111 b8 1011 9b f11 9b e11
-9b d11 9b d11 9b d11 9b d11
-9b d11 9b e11 9b f11 9b 1011
-9b 1111 9b 1311 9b 1511 9b 1711
-9b 1911 9b 1c11 9b 1f11 9b 2211
-fa 2511 9b 2711 9b 2a11 9b 2c11
-9b 2e11 9b 3011 9b 3211 9b 3311
-9b 3411 9b 3511 9b 3611 9b 3611
-9b 3711 9b 3711 9b 3611 9b 3611
-9b 3511 9b 3511 9b 3411 9b 3211
-9b 3111 9b 2f11 9b 2d11 88 2b11
-88 2911 88 2811 88 2611 88 2411
-88 2211 88 2011 88 1e11 f5 1c11
-9b 1b11 9b 1911 9b 1811 9b 1711
-9b 1711 9b 1611 9b 1611 9b 1511
-9b 1511 9b 1511 9b 1611 9b 1611
-9b 1711 9b 1811 9b 1911 9b 1a11
-9b 1c11 9b 1d11 9b 1f11 9b 2111
-fa 2311 9b 2511 9b 2611 9b 2811
-9b 2911 9b 2a11 9b 2b11 9b 2c11
-9b 2d11 9b 2d11 9b 2d11 9b 2e11
-9b 2e11 9b 2d11 9b 2d11 9b 2d11
-9b 2c11 9b 2b11 9b 2a11 9b 2911
-9b 2811 9b 2611 9b 2511 9b 2311
-9b 2111 9b 1f11 ee 1d11 9b 1c11
-9b 1a11 9b 1911 9b 1711 9b 1611
-9b 1511 9b 1411 9b 1311 9b 1311
-9b 1211 9b 1211 9b 1211 6d 214
-41e 1211 a2 1211 a2 1211 a2 1211
-a2 1311 a2 1311 a2 1411 a2 1511
-a2 1611 a2 1711 a2 1911 a2 1a11
-a2 1c11 a2 1e11 a2 2011 101 2111
-a2 2311 a6 2511 a6 2611 a6 2711
-a6 2911 a6 2a11 a6 2b11 a6 2c11
-a6 2d11 a6 2d11 a6 2e11 a6 2e11
-a6 2f11 a6 2f11 a6 2f11 a6 2f11
-a6 2f11 a6 2f11 a6 2f11 a6 2e11
-a6 2e11 a6 2d11 a6 2c11 a6 2c11
-a6 2b11 a6 2a11 a6 2811 a6 2711
-a6 2611 a6 2411 a6 2311 a6 2111
-a6 1f11 f9 1e11 a6 1c11 a6 1b11
-a6 1911 a6 1811 a6 1711 a6 1611
-a6 1511 a6 1511 a6 1411 a6 1411
-a6 1311 a6 1311 a6 1311 a6 1311
-a6 1311 a6 1411 a6 1411 a6 1511
-b8 1511 9b 1611 9b 1711 9b 1811
-9b 1911 9b 1b11 9b 1c11 9b 1e11
-9b 1f11 9b 2111 fa 2311 9b 2411
-9b 2611 9b 2711 9b 2911 9b 2a11
-9b 2b11 9b 2c11 9b 2d11 9b 2e11
-9b 2f11 9b 2f11 9b 3011 9b 3111
-9b 3111 9b 3111 9b 3211 9b 3211
-9b 3211 9b 3211 9b 3111 9b 3111
-9b 3111 9b 3011 9b 3011 9b 2f11
-9b 2f11 9b 2e11 9b 2d11 9b 2c11
-9b 2b11 9b 2a11 9b 2811 9b 2711
-9b 2511 9b 2411 9b 2211 9b 2011
-9b 1f11 f5 1c11 9b 1a11 9b 1b11
-9b 1911 9b 1611 9b 1711 9b 1411
-9b 1511 9b 1211 9b 1311 9b 1311
-9b 1011 9b 1011 9b 1111 9b 1111
-9b 1111 9b 1111 9b 1111 9b 1111
-9b 1011 9b 1011 9b 1311 9b 1311
-9b 1211 9b 1511 9b 1411 9b 1711
-9b 1611 9b 1811 9b 1b11 9b 1d11
-9b 1c11 9b 1e11 9b 2011 fa 2211
-9b 2411 9b 2711 9b 2911 9b 2811
-9b 2a11 9b 2d11 9b 2c11 9b 2f11
-9b 2e11 9b 3111 9b 3011 9b 3311
-9b 3211 9b 3511 9b 3511 9b 3411
-9b 3411 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3611 9b 3611 9b 3711
-9b 3711 9b 3711 83 214 321 3000
-9 de02 d3 3004 9 3906 d2 1f08
-9 570a 72 110c 9 7f0e c2 3711
-a2 3411 a2 3411 a2 3511 a2 3511
-a2 3211 a2 3311 a2 3011 a2 3111
-a2 2e11 a2 2f11 a2 2c11 a2 2d11
-a2 2a11 a2 2811 a2 2911 a2 2711
-a6 2411 a6 2211 a6 2011 a6 1e11
-f9 1c11 a6 1d11 a6 1b11 a6 1811
-a6 1611 a6 1711 a6 1411 a6 1511
-a6 1311 a6 1311 a6 1011 a6 1111
-a6 e11 a6 e11 a6 f11 a6 f11
-a6 f11 a6 c11 a6 c11 a6 c11
-a6 c11 a6 f11 a6 f11 a6 f11
-a6 e11 a6 e11 a6 1111 a6 1011
-a6 1311 a6 1311 a6 1511 a6 1411
-a6 1711 a6 1611 a6 1811 a6 1b11
-a6 1d11 a6 1c11 a6 1e11 a6 2011
-105 2211 a6 2411 a6 2711 a6 2911
-b8 2811 9b 2a11 9b 2d11 9b 2c11
-9b 2f11 9b 2e11 9b 3111 9b 3011
-9b 3311 9b 3211 9b 3511 9b 3511
-9b 3411 9b 3411 9b 3711 9b 3711
-9b 3711 9b 3711 9b 3611 9b 3611
-9b 3711 9b 3711 9b 3711 9b 3711
-9b 3411 9b 3411 9b 3511 9b 3511
-9b 3211 9b 3311 9b 3011 9b 3111
-9b 2e11 9b 2f11 9b 2c11 9b 2d11
-9b 2a11 9b 2811 9b 2911 9b 2711
-9b 2411 9b 2211 9b 2011 9b 1e11
-ee 1c11 9b 1d11 9b 1b11 9b 1811
-9b 1611 9b 1711 9b 1411 9b 1511
-9b 1311 9b 1311 9b 1011 9b 1111
-9b e11 9b e11 9b f11 9b f11
-9b f11 9b c11 9b c11 9b c11
-9b c11 9b f11 9b f11 9b f11
-9b e11 9b e11 9b 1111 9b 1011
-9b 1311 9b 1311 9b 1511 9b 1411
-9b 1711 9b 1611 9b 1811 9b 1b11
-9b 1d11 9b 1c11 88 1e11 88 2011
-fa 2311 9b 2511 9b 2411 9b 2611
-9b 2911 9b 2b11 9b 2a11 9b 2d11
-9b 2c11 9b 2f11 9b 2e11 9b 3111
-9b 3011 9b 3311 9b 3211 9b 3211
-9b 3511 9b 3511 9b 3411 9b 3411
-9b 3711 9b 3711 9b 3711 9b 3711
-9b 3611 9b 3611 9b 3611 67 214
-307 3000 9 df02 b8 3004 9 3a06
-b9 1f08 9 560a 72 110c 9 7f0e
-e5 3611 a2 3711 a2 3711 a2 3711
-a2 3711 a2 3411 a2 3411 a2 3511
-a2 3511 a2 3211 a2 3211 a2 3311
-a2 3011 a2 3111 a2 2e11 a2 2f11
-a6 2c11 a6 2d11 a6 2a11 a6 2b11
-a6 2911 a6 2611 a6 2411 a6 2511
-a6 2311 a6 2011 a6 1e11 100 1c11
-a6 1d11 a6 1b11 a6 1811 a6 1911
-a6 1611 a6 1411 a6 1511 a6 1211
-a6 1311 a6 1311 a6 1011 a6 1111
-a6 1111 a6 e11 a6 e11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 e11 a6 e11 a6 1111 a6 1111
-a6 1011 a6 1011 a6 1311 a6 1211
-a6 1511 a6 1411 a6 1711 a6 1911
-a6 1811 a6 1b11 a5 1d11 88 1c11
-88 1f11 88 2111 41d6 214 4238 116
-6 16 3218 214 90d 3000 9 e002
-d2 3004 9 3b06 d3 1f08 9 550a
-72 110c 9 7f0e 36ea 116 6 16
-321c 214 4238 116 6 16 3218 214
-8f4 3000 9 df02 b9 3004 9 3a06
-b8 1f08 9 560a 72 110c 9 7f0e
-3737 116 6 16 321c 214 90e 3000
-9 de02 d3 3004 9 3906 d2 1f08
-9 570a 72 110c 9 7f0e 36ea 116
-6 16 3218 214 4237 116 6 16
-3218 214 8f3 3000 9 df02 b8 3004
-9 3a06 b9 1f08 9 560a 72 110c
-9 7f0e 373e 116 6 16 3218 214
-4238 116 6 16 3215 214 90c 3000
-9 e002 d2 3004 9 3b06 d3 1f08
-9 550a 72 110c 9 7f0e 36f1 116
-6 16 3218 214 4237 116 6 16
-3215 214 8f3 3000 9 df02 b9 3004
-9 3a06 b8 1f08 9 560a 72 110c
-9 7f0e 373e 116 6 16 3218 214
-90d 3000 9 de02 d3 3004 9 3906
-d2 1f08 9 570a 72 110c 9 7f0e
-36f1 116 6 16 3215 214 4237 116
-6 16 3218 214 8f3 3000 9 df02
-b8 3004 9 3a06 b9 1f08 9 560a
-72 110c 9 7f0e 373e 116 6 16
-3215 214 920 4301 f 3600 9 3f02
-e 9903 10f 4305 f 3604 9 ab06
-e 9907 37c0 116 6 16 3218 214
-923 3600 9 4002 e8 3604 9 ac06
-d3 1f08 9 550a 72 110c 9 7f0e
-36c0 116 6 16 3218 214 93a 3500
-9 3f02 ff 3504 9 ab06 b8 1f08
-9 560a 72 110c 9 7f0e 36b2 116
-6 16 3218 214 4237 116 6 16
-3213 214 923 3500 9 3e02 e9 3504
-9 aa06 d2 1f08 9 570a 72 110c
-9 7f0e 36c7 116 6 16 3218 214
-4231 116 6 16 321c 214 938 3400
-9 3f02 fe 3404 9 ab06 b9 1f08
-9 560a 72 110c 9 7f0e 36b2 116
-6 16 3218 214 4238 116 6 16
-3213 214 922 3400 9 4002 e8 3404
-9 ac06 d3 1f08 9 550a 72 110c
-9 7f0e 36c7 116 6 16 3218 214
-939 3300 9 3f02 ff 3304 9 ab06
-b8 1f08 9 560a 72 110c 9 7f0e
-36b2 116 6 16 3213 214 4238 116
-6 16 3218 214 924 3300 9 3e02
-e9 3304 9 aa06 d2 1f08 9 570a
-72 110c 9 7f0e 36c0 116 6 16
-321c 214 4237 116 6 16 3218 214
-939 3200 9 3f02 fe 3204 9 ab06
-b9 1f08 9 560a 72 110c 9 7f0e
-36ab 116 6 16 321c 214 922 3200
-9 4002 e8 3204 9 ac06 d3 1f08
-9 550a 72 110c 9 7f0e 36c0 116
-6 16 321b 214 4237 116 6 16
-3215 214 939 3100 9 3f02 ff 3104
-9 ab06 b8 1f08 9 560a 72 110c
-9 7f0e 36b2 116 6 16 3218 214
-4237 116 6 16 3218 214 924 3100
-9 3e02 e9 3104 9 aa06 d2 1f08
-9 570a 72 110c 9 7f0e 36c0 116
-6 16 3218 214 920 4301 f 3600
-9 3f02 e 9903 10f 4305 f 3604
-9 ab06 e 9907 177 430d f 110c
-9 7f0e e 280f 361e 116 6 16
-1a7 1e11 8e 2411 8e 2411 8e 2611
-8e 2511 8e 2411 8e 2211 8e 2211
-8e 2111 8e 2611 8e 2111 8e 2211
-8e 1f11 8e 2511 8e 2411 8e 2211
-8e 2011 8e 2211 8e 2511 8e 2111
-8e 2011 8e 2111 8e 2211 8e 2511
-8e 2011 8e 2111 8e 2311 8e 1f11
-8e 2511 8e 1f11 8e 2211 8e 2311
-8e 2011 8e 2411 8e 2111 8e 2011
-8e 2511 8e 2211 8e 2311 8e 2311
-8e 2011 8e 2311 8e 1e11 8e 2311
-8e 2411 8e 2211 8e 2011 8e 2011
-8e 2011 8e 2311 8e 2411 8e 2111
-8e 2111 8e 2611 8e 2211 8e 2111
-8e 2311 8e 2611 8e 2211 8e 2411
-8e 2111 8e 1f11 8e 2011 8e 2611
-8e 2511 8e 2311 8e 2211 8e 2211
-8e 2211 8e 2111 8e 1f11 8e 1f11
-8e 2311 8e 2111 8e 2311 8e 2211
-8e 1e11 8e 1f11 8e 2511 8e 2111
-8e 2611 8e 2211 8e 2411 8e 2111
-107 1911 9b 1511 9b 1311 36 214
-366 3500 9 4002 118 3504 9 ac06
-b9 1f08 9 560a 72 110c 9 7f0e
-116 1311 a2 1511 a2 1911 a2 1f11
-a2 2611 101 2d11 a2 3111 a2 3411
-a2 3411 a2 3411 a2 3111 a2 2d11
-8f 2811 8f 2411 8f 1f11 f5 1c11
-a6 1811 a6 1511 a6 1311 a6 1111
-a6 f11 a6 e11 a6 d11 a6 d11
-a6 d11 a6 e11 a6 1011 a6 1111
-a6 1311 a6 1611 a6 1911 a6 1d11
-a6 2111 105 2511 a6 2811 a6 2b11
-a6 2e11 a6 3011 a6 3311 a6 3511
-a6 3611 a6 3711 a6 3811 a6 3911
-a6 3911 a6 3911 a6 3911 a6 3811
-a6 3711 a6 3611 a6 3511 a6 3311
-a6 3011 a6 2e11 a6 2b11 a6 2811
-93 2511 93 2211 93 1f11 f9 1c11
-a6 1911 a6 1711 a6 1511 b8 1311
-9b 1111 9b 1011 9b f11 9b e11
-9b d11 9b d11 9b d11 9b d11
-9b d11 9b e11 9b f11 9b 1011
-9b 1111 9b 1311 9b 1511 9b 1711
-9b 1911 9b 1c11 9b 1f11 9b 2211
-fa 2511 9b 2711 9b 2a11 9b 2c11
-9b 2e11 9b 3011 9b 3211 9b 3311
-9b 3411 9b 3511 9b 3611 9b 3611
-9b 3711 9b 3711 9b 3611 9b 3611
-9b 3511 9b 3511 9b 3411 9b 3211
-9b 3111 9b 2f11 9b 2d11 88 2b11
-88 2911 88 2811 88 2611 88 2411
-88 2211 88 2011 88 1e11 f5 1c11
-9b 1b11 9b 1911 9b 1811 9b 1711
-9b 1711 9b 1611 9b 1611 9b 1511
-9b 1511 9b 1511 9b 1611 9b 1611
-9b 1711 9b 1811 9b 1911 9b 1a11
-9b 1c11 9b 1d11 9b 1f11 9b 2111
-fa 2311 9b 2511 9b 2611 9b 2811
-9b 2911 9b 2a11 9b 2b11 9b 2c11
-9b 2d11 9b 2d11 9b 2d11 9b 2e11
-9b 2e11 9b 2d11 9b 2d11 9b 2d11
-9b 2c11 9b 2b11 9b 2a11 9b 2911
-9b 2811 9b 2611 9b 2511 9b 2311
-9b 2111 9b 1f11 ee 1d11 9b 1c11
-9b 1a11 9b 1911 9b 1711 9b 1611
-9b 1511 9b 1411 9b 1311 9b 1311
-9b 1211 9b 1211 62 214 324 3500
-9 3f02 cf 3504 9 ab06 d3 1f08
-9 550a 72 110c 9 7f0e ea 1211
-a2 1211 a2 1211 a2 1211 a2 1211
-a2 1311 a2 1311 a2 1411 a2 1511
-a2 1611 a2 1711 a2 1911 a2 1a11
-a2 1c11 a2 1e11 a2 2011 105 2111
-a6 2311 a6 2511 a6 2611 a6 2711
-a6 2911 a6 2a11 a6 2b11 a6 2c11
-a6 2d11 a6 2d11 a6 2e11 a6 2e11
-a6 2f11 a6 2f11 a6 2f11 a6 2f11
-a6 2f11 a6 2f11 a6 2f11 a6 2e11
-a6 2e11 a6 2d11 a6 2c11 a6 2c11
-a6 2b11 a6 2a11 a6 2811 a6 2711
-a6 2611 a6 2411 a6 2311 a6 2111
-a6 1f11 f9 1e11 a6 1c11 a6 1b11
-a6 1911 a6 1811 a6 1711 a6 1611
-a6 1511 a6 1511 a6 1411 a6 1411
-a6 1311 a6 1311 a6 1311 a6 1311
-b8 1311 9b 1411 9b 1411 9b 1511
-9b 1511 9b 1611 9b 1711 9b 1811
-9b 1911 9b 1b11 9b 1c11 9b 1e11
-9b 1f11 9b 2111 fa 2311 9b 2411
-9b 2611 9b 2711 9b 2911 9b 2a11
-9b 2b11 9b 2c11 9b 2d11 9b 2e11
-9b 2f11 9b 2f11 9b 3011 9b 3111
-9b 3111 9b 3111 9b 3211 9b 3211
-9b 3211 9b 3211 9b 3111 9b 3111
-9b 3111 9b 3011 9b 3011 9b 2f11
-9b 2f11 9b 2e11 9b 2d11 9b 2c11
-9b 2b11 9b 2a11 9b 2811 9b 2711
-9b 2511 9b 2411 9b 2211 9b 2011
-9b 1f11 f5 1c11 9b 1a11 9b 1b11
-9b 1911 9b 1611 9b 1711 9b 1411
-9b 1511 9b 1211 9b 1311 9b 1311
-9b 1011 9b 1011 9b 1111 9b 1111
-9b 1111 9b 1111 9b 1111 9b 1111
-9b 1011 9b 1011 9b 1311 9b 1311
-9b 1211 9b 1511 9b 1411 9b 1711
-9b 1611 9b 1811 9b 1b11 9b 1d11
-9b 1c11 9b 1e11 9b 2011 fa 2211
-9b 2411 9b 2711 9b 2911 9b 2811
-9b 2a11 9b 2d11 9b 2c11 9b 2f11
-9b 2e11 9b 3111 9b 3011 9b 3311
-9b 3211 9b 3511 9b 3511 9b 3411
-9b 3411 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3611 4a 214 449 3611
-a2 3711 a2 3711 a2 3711 a2 3711
-a2 3411 a2 3411 a2 3511 a2 3511
-a2 3211 a2 3311 a2 3011 a2 3111
-a2 2e11 a2 2f11 a2 2c11 a6 2d11
-a6 2a11 a6 2811 a6 2911 a6 2711
-a6 2411 a6 2211 a6 2011 a6 1e11
-f9 1c11 a6 1d11 a6 1b11 a6 1811
-a6 1611 a6 1711 a6 1411 a6 1511
-a6 1311 a6 1311 a6 1011 a6 1111
-a6 e11 a6 e11 a6 f11 a6 f11
-a6 f11 a6 c11 a6 c11 a6 c11
-a6 c11 a6 f11 a6 f11 a6 f11
-a6 e11 a6 e11 a6 1111 a6 1011
-a6 1311 a6 1311 a6 1511 a6 1411
-a6 1711 a6 1611 a6 1811 a6 1b11
-a6 1d11 a6 1c11 a6 1e11 a6 2011
-105 2211 a6 2411 a6 2711 b8 2911
-9b 2811 9b 2a11 9b 2d11 9b 2c11
-9b 2f11 9b 2e11 9b 3111 9b 3011
-9b 3311 9b 3211 9b 3511 9b 3511
-9b 3411 9b 3411 9b 3711 9b 3711
-9b 3711 9b 3711 9b 3611 9b 3611
-9b 3711 9b 3711 9b 3711 9b 3711
-9b 3411 9b 3411 9b 3511 9b 3511
-9b 3211 9b 3311 9b 3011 9b 3111
-9b 2e11 9b 2f11 9b 2c11 9b 2d11
-9b 2a11 9b 2811 9b 2911 9b 2711
-9b 2411 9b 2211 9b 2011 9b 1e11
-ee 1c11 9b 1d11 9b 1b11 9b 1811
-9b 1611 9b 1711 9b 1411 9b 1511
-9b 1311 9b 1311 9b 1011 9b 1111
-9b e11 9b e11 9b f11 9b f11
-9b f11 9b c11 9b c11 9b c11
-9b c11 9b f11 9b f11 9b f11
-9b e11 9b e11 9b 1111 9b 1011
-9b 1311 9b 1311 9b 1511 9b 1411
-9b 1711 9b 1611 9b 1811 9b 1b11
-9b 1d11 9b 1c11 88 1e11 88 2011
-fa 2311 9b 2511 9b 2411 9b 2611
-9b 2911 9b 2b11 9b 2a11 9b 2d11
-9b 2c11 9b 2f11 9b 2e11 9b 3111
-9b 3011 9b 3311 9b 3211 9b 3211
-9b 3511 9b 3511 9b 3411 9b 3411
-9b 3711 9b 3711 9b 3711 9b 3711
-9b 3611 9b 3611 45 214 368 3400
-9 3e02 119 3404 9 aa06 b8 1f08
-9 560a 72 110c 9 7f0e 107 3611
-a2 3611 a2 3711 a2 3711 a2 3711
-a2 3711 a2 3411 a2 3411 a2 3511
-a2 3511 a2 3211 a2 3211 a2 3311
-a2 3011 a2 3111 a2 2e11 a6 2f11
-a6 2c11 a6 2d11 a6 2a11 a6 2b11
-a6 2911 a6 2611 a6 2411 a6 2511
-a6 2311 a6 2011 a6 1e11 100 1c11
-a6 1d11 a6 1b11 a6 1811 a6 1911
-a6 1611 a6 1411 a6 1511 a6 1211
-a6 1311 a6 1311 a6 1011 a6 1111
-a6 1111 a6 e11 a6 e11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 e11 a6 e11 a6 1111 a6 1111
-a6 1011 a6 1011 a6 1311 a6 1211
-a6 1511 a6 1411 a6 1711 b8 1911
-9b 1811 9b 1b11 88 1d11 88 1c11
-88 1f11 88 2111 406e 214 4238 116
-6 16 3218 214 909 3400 9 3f02
-ce 3404 9 ab06 d2 1f08 9 570a
-72 110c 9 7f0e 36f8 116 6 16
-3215 214 953 3300 9 4002 118 3304
-9 ac06 b9 1f08 9 560a 72 110c
-9 7f0e 3681 116 6 16 3218 214
-4237 116 6 16 3213 214 909 3300
-9 3f02 cf 3304 9 ab06 d3 1f08
-9 550a 72 110c 9 7f0e 36f8 116
-6 16 3218 214 921 4301 f 3600
-9 6702 e 9903 10f 4305 f 3604
-9 ab06 e 9907 37b9 116 6 16
-3218 214 953 3500 9 6602 119 3504
-9 aa06 b8 1f08 9 560a 72 110c
-9 7f0e 367a 116 6 16 321b 214
-909 3500 9 6702 ce 3504 9 ab06
-d2 1f08 9 570a 72 110c 9 7f0e
-36f8 116 6 16 3218 214 4237 116
-6 16 3218 214 953 3400 9 6802
-118 3404 9 ac06 b9 1f08 9 560a
-72 110c 9 7f0e 367a 116 6 16
-321c 214 4231 116 6 16 321b 214
-90a 3400 9 6702 cf 3404 9 ab06
-d3 1f08 9 550a 72 110c 9 7f0e
-36f8 116 6 16 3213 214 4237 116
-6 16 3218 214 954 3300 9 6602
-119 3304 9 aa06 b8 1f08 9 560a
-72 110c 9 7f0e 367a 116 6 16
-321c 214 908 3300 9 6702 ce 3304
-9 ab06 d2 1f08 9 570a 72 110c
-9 7f0e 36f8 116 6 16 3218 214
-4237 116 6 16 3215 214 952 3200
-9 6802 118 3204 9 ac06 b9 1f08
-9 560a 72 110c 9 7f0e 3681 116
-6 16 3218 214 4237 116 6 16
-3215 214 909 3200 9 6702 cf 3204
-9 ab06 d3 1f08 9 550a 72 110c
-9 7f0e 36f8 116 6 16 3218 214
-954 3100 9 6602 119 3104 9 aa06
-b8 1f08 9 560a 72 110c 9 7f0e
-367a 116 6 16 3218 214 4237 116
-6 16 3218 214 909 3100 9 6702
-ce 3104 9 ab06 d2 1f08 9 570a
-72 110c 9 7f0e 36f8 116 6 16
-3215 214 4238 116 6 16 3218 214
-957 3000 9 6802 11c 3004 9 ac06
-b9 1f08 9 560a 72 110c 9 7f0e
-3673 116 6 16 321c 214 a56 4301
-f 5600 9 5602 e 303 245 4305
-f 5604 9 7506 e 407 f7 4309
-f 1f08 9 560a e 8b0b 139 430d
-f 110c 9 7f0e e 280f 32cf 116
-6 16 1a7 2011 8e 1e11 8e 2111
-8e 2111 8e 2511 8e 2111 8e 2111
-8e 2211 8e 1e11 8e 1e11 8e 2211
-8e 2211 8e 2411 8e 2111 8e 1f11
-8e 2011 8e 2111 8e 2211 8e 2411
-8e 2011 8e 2111 8e 2611 8e 2311
-8e 1f11 8e 2311 8e 1f11 8e 2211
-8e 2511 8e 2311 8e 2011 8e 1f11
-8e 2211 8e 2511 8e 2211 8e 2311
-8e 2011 8e 1e11 8e 2011 8e 2111
-8e 2111 8e 2311 8e 2311 8e 1f11
-8e 1f11 8e 2011 8e 2311 8e 2311
-8e 2511 8e 1e11 8e 2111 8e 1e11
-8e 2011 8e 2411 8e 2211 8e 2411
-8e 2011 8e 2211 8e 2011 8e 2411
-8e 2011 8e 2411 8e 1f11 8e 2011
-8e 2411 8e 2411 8e 2311 8e 2511
-8e 2611 8e 1f11 8e 2011 8e 2211
-8e 2111 8e 2111 8e 2011 8e 2111
-8e 2211 8e 2511 8e 2211 8e 2211
-8e 2011 8e 2111 8e 2511 8e 2311
-8e 2211 107 1911 9b 1511 9b 1311
-36 214 337 5600 9 5502 e9 5604
-9 7406 d3 1f08 9 550a 72 110c
-9 7f0e 116 1311 a2 1511 a2 1911
-a2 1f11 a2 2611 101 2d11 a2 3111
-a2 3411 a2 3411 a2 3411 a2 3111
-a2 2d11 8f 2811 8f 2411 8f 1f11
-f5 1c11 a6 1811 a6 1511 a6 1311
-a6 1111 a6 f11 a6 e11 a6 d11
-a6 d11 a6 d11 a6 e11 a6 1011
-a6 1111 a6 1311 a6 1611 a6 1911
-a6 1d11 a6 2111 105 2511 a6 2811
-a6 2b11 a6 2e11 a6 3011 a6 3311
-a6 3511 a6 3611 a6 3711 a6 3811
-a6 3911 a6 3911 a6 3911 a6 3911
-a6 3811 a6 3711 a6 3611 a6 3511
-a6 3311 a6 3011 a6 2e11 a6 2b11
-a6 2811 93 2511 93 2211 93 1f11
-f9 1c11 a6 1911 a6 1711 a6 1511
-a6 1311 b8 1111 9b 1011 9b f11
-9b e11 9b d11 9b d11 9b d11
-9b d11 9b d11 9b e11 9b f11
-9b 1011 9b 1111 9b 1311 9b 1511
-9b 1711 9b 1911 9b 1c11 9b 1f11
-9b 2211 fa 2511 9b 2711 9b 2a11
-9b 2c11 9b 2e11 9b 3011 9b 3211
-9b 3311 9b 3411 9b 3511 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3511 9b 3511 9b 3411
-9b 3211 9b 3111 9b 2f11 9b 2d11
-88 2b11 88 2911 88 2811 88 2611
-88 2411 88 2211 88 2011 88 1e11
-f5 1c11 9b 1b11 9b 1911 9b 1811
-9b 1711 9b 1711 9b 1611 9b 1611
-9b 1511 9b 1511 9b 1511 9b 1611
-9b 1611 9b 1711 9b 1811 9b 1911
-9b 1a11 9b 1c11 9b 1d11 9b 1f11
-9b 2111 fa 2311 9b 2511 9b 2611
-9b 2811 9b 2911 9b 2a11 9b 2b11
-9b 2c11 9b 2d11 9b 2d11 9b 2d11
-9b 2e11 9b 2e11 9b 2d11 9b 2d11
-9b 2d11 9b 2c11 9b 2b11 9b 2a11
-9b 2911 9b 2811 9b 2611 9b 2511
-9b 2311 9b 2111 9b 1f11 ee 1d11
-9b 1c11 9b 1a11 9b 1911 9b 1711
-9b 1611 9b 1511 9b 1411 9b 1311
-9b 1311 9b 1211 9b 1211 9c 214
-34d 5500 9 5602 fe 5504 9 7506
-b8 1f08 9 560a 72 110c 9 7f0e
-a9 1211 a2 1211 a2 1211 a2 1211
-a2 1211 a2 1311 a2 1311 a2 1411
-a2 1511 a2 1611 a2 1711 a2 1911
-a2 1a11 a2 1c11 a2 1e11 a2 2011
-101 2111 a6 2311 a6 2511 a6 2611
-a6 2711 a6 2911 a6 2a11 a6 2b11
-a6 2c11 a6 2d11 a6 2d11 a6 2e11
-a6 2e11 a6 2f11 a6 2f11 a6 2f11
-a6 2f11 a6 2f11 a6 2f11 a6 2f11
-a6 2e11 a6 2e11 a6 2d11 a6 2c11
-a6 2c11 a6 2b11 a6 2a11 a6 2811
-a6 2711 a6 2611 a6 2411 a6 2311
-a6 2111 a6 1f11 f9 1e11 a6 1c11
-a6 1b11 a6 1911 a6 1811 a6 1711
-a6 1611 a6 1511 a6 1511 a6 1411
-a6 1411 a6 1311 a6 1311 a6 1311
-a6 1311 b8 1311 9b 1411 9b 1411
-9b 1511 9b 1511 9b 1611 9b 1711
-9b 1811 9b 1911 9b 1b11 9b 1c11
-9b 1e11 9b 1f11 9b 2111 fa 2311
-9b 2411 9b 2611 9b 2711 9b 2911
-9b 2a11 9b 2b11 9b 2c11 9b 2d11
-9b 2e11 9b 2f11 9b 2f11 9b 3011
-9b 3111 9b 3111 9b 3111 9b 3211
-9b 3211 9b 3211 9b 3211 9b 3111
-9b 3111 9b 3111 9b 3011 9b 3011
-9b 2f11 9b 2f11 9b 2e11 9b 2d11
-9b 2c11 9b 2b11 9b 2a11 9b 2811
-9b 2711 9b 2511 9b 2411 9b 2211
-9b 2011 9b 1f11 f5 1c11 9b 1a11
-9b 1b11 9b 1911 9b 1611 9b 1711
-9b 1411 9b 1511 9b 1211 9b 1311
-9b 1311 9b 1011 9b 1011 9b 1111
-9b 1111 9b 1111 9b 1111 9b 1111
-9b 1111 9b 1011 9b 1011 9b 1311
-9b 1311 9b 1211 9b 1511 9b 1411
-9b 1711 9b 1611 9b 1811 9b 1b11
-9b 1d11 9b 1c11 9b 1e11 9b 2011
-fa 2211 9b 2411 9b 2711 9b 2911
-9b 2811 9b 2a11 9b 2d11 9b 2c11
-9b 2f11 9b 2e11 9b 3111 9b 3011
-9b 3311 9b 3211 9b 3511 9b 3511
-9b 3411 9b 3411 9b 3711 9b 3711
-9b 3711 9b 3711 9b 3611 51 214
-442 3611 a2 3711 a2 3711 a2 3711
-a2 3711 a2 3411 a2 3411 a2 3511
-a2 3511 a2 3211 a2 3311 a2 3011
-a2 3111 a2 2e11 a2 2f11 a2 2c11
-a6 2d11 a6 2a11 a6 2811 a6 2911
-a6 2711 a6 2411 a6 2211 a6 2011
-a6 1e11 f9 1c11 a6 1d11 a6 1b11
-a6 1811 a6 1611 a6 1711 a6 1411
-a6 1511 a6 1311 a6 1311 a6 1011
-a6 1111 a6 e11 a6 e11 a6 f11
-a6 f11 a6 f11 a6 c11 a6 c11
-a6 c11 a6 c11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1011 a6 1311 a6 1311 a6 1511
-a6 1411 a6 1711 a6 1611 a6 1811
-a6 1b11 a6 1d11 a6 1c11 a6 1e11
-a6 2011 105 2211 a6 2411 a6 2711
-b8 2911 9b 2811 9b 2a11 9b 2d11
-9b 2c11 9b 2f11 9b 2e11 9b 3111
-9b 3011 9b 3311 9b 3211 9b 3511
-9b 3511 9b 3411 9b 3411 9b 3711
-9b 3711 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3411 9b 3411 9b 3511
-9b 3511 9b 3211 9b 3311 9b 3011
-9b 3111 9b 2e11 9b 2f11 9b 2c11
-9b 2d11 9b 2a11 9b 2811 9b 2911
-9b 2711 9b 2411 9b 2211 9b 2011
-9b 1e11 ee 1c11 9b 1d11 9b 1b11
-9b 1811 9b 1611 9b 1711 9b 1411
-9b 1511 9b 1311 9b 1311 9b 1011
-9b 1111 9b e11 9b e11 9b f11
-9b f11 9b f11 9b c11 9b c11
-9b c11 9b c11 9b f11 9b f11
-9b f11 9b e11 9b e11 9b 1111
-9b 1011 9b 1311 9b 1311 9b 1511
-9b 1411 9b 1711 9b 1611 9b 1811
-9b 1b11 9b 1d11 9b 1c11 88 1e11
-88 2011 fa 2311 9b 2511 9b 2411
-9b 2611 9b 2911 9b 2b11 9b 2a11
-9b 2d11 9b 2c11 9b 2f11 9b 2e11
-9b 3111 9b 3011 9b 3311 9b 3211
-9b 3211 9b 3511 9b 3511 9b 3411
-9b 3411 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3611 9b 3611 4c 214
-337 5500 9 5702 e8 5504 9 7606
-d2 1f08 9 570a 72 110c 9 7f0e
-100 3611 a2 3611 a2 3711 a2 3711
-a2 3711 a2 3711 a2 3411 a2 3411
-a2 3511 a2 3511 a2 3211 a2 3211
-a2 3311 a2 3011 a2 3111 a2 2e11
-a6 2f11 a6 2c11 a6 2d11 a6 2a11
-a6 2b11 a6 2911 a6 2611 a6 2411
-a6 2511 a6 2311 a6 2011 a6 1e11
-100 1c11 a6 1d11 a6 1b11 a6 1811
-a6 1911 a6 1611 a6 1411 a6 1511
-a6 1211 a6 1311 a6 1311 a6 1011
-a6 1111 a6 1111 a6 e11 a6 e11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1111 a6 1011 a6 1011 a6 1311
-a6 1211 a6 1511 a6 1411 a6 1711
-a6 1911 b8 1811 9b 1b11 88 1d11
-88 1c11 88 1f11 88 2111 40b2 214
-4238 116 6 16 3218 214 93a 5400
-9 5602 ff 5404 9 7506 b9 1f08
-9 560a 72 110c 9 7f0e 36ab 116
-6 16 321b 214 924 5400 9 5502
-e9 5404 9 7406 d3 1f08 9 550a
-72 110c 9 7f0e 36c0 116 6 16
-3218 214 4238 116 6 16 3218 214
-939 5300 9 5602 fe 5304 9 7506
-b8 1f08 9 560a 72 110c 9 7f0e
-36b2 116 6 16 3215 214 91f 4301
-f 5600 9 5602 e 303 10d 4305
-f 5604 9 7506 e 407 f7 4309
-f 1f08 9 560a e 8b0b 19b 430d
-f 110c 9 7f0e e 280f 34e3 116
-6 16 1a7 2311 8e 1f11 8e 1f11
-8e 2411 8e 1f11 8e 1e11 8e 2211
-8e 2411 8e 2411 8e 2211 8e 2311
-8e 2211 8e 1f11 8e 2211 8e 2511
-8e 2511 8e 1e11 8e 2511 8e 1f11
-8e 2311 8e 2311 8e 2211 8e 1e11
-8e 1f11 8e 2511 8e 2011 8e 2511
-8e 1e11 8e 2111 8e 1e11 8e 2311
-8e 1f11 8e 2111 8e 1e11 8e 2111
-8e 1f11 8e 2211 8e 1f11 8e 2011
-8e 1e11 8e 2111 8e 2411 8e 1e11
-8e 2011 8e 2511 8e 2211 8e 1e11
-8e 2311 8e 2511 8e 1f11 8e 2011
-8e 2511 8e 2111 8e 2511 8e 2011
-8e 2211 8e 2211 8e 1f11 8e 1e11
-8e 2411 8e 2411 8e 2511 8e 2011
-8e 2011 8e 2211 8e 2411 8e 2611
-8e 1e11 8e 2511 8e 2011 8e 2311
-8e 2411 8e 2311 8e 2411 8e 2311
-8e 2111 8e 2511 8e 2011 8e 2411
-8e 2611 8e 2011 8e 2011 8e 2411
-8e 2411 107 1911 9b 1511 9b 1311
-33 214 337 5600 9 5702 e8 5604
-9 7606 d2 1f08 9 570a 72 110c
-9 7f0e 119 1311 a2 1511 a2 1911
-a2 1f11 a2 2611 101 2d11 a2 3111
-a2 3411 a2 3411 a2 3411 a2 3111
-a2 2d11 8f 2811 8f 2411 8f 1f11
-f5 1c11 a6 1811 a6 1511 a6 1311
-a6 1111 a6 f11 a6 e11 a6 d11
-a6 d11 a6 d11 a6 e11 a6 1011
-a6 1111 a6 1311 a6 1611 a6 1911
-a6 1d11 a6 2111 105 2511 a6 2811
-a6 2b11 a6 2e11 a6 3011 a6 3311
-a6 3511 a6 3611 a6 3711 a6 3811
-a6 3911 a6 3911 a6 3911 a6 3911
-a6 3811 a6 3711 a6 3611 a6 3511
-a6 3311 a6 3011 a6 2e11 a6 2b11
-a6 2811 93 2511 93 2211 93 1f11
-f9 1c11 a6 1911 a6 1711 a6 1511
-a6 1311 b8 1111 9b 1011 9b f11
-9b e11 9b d11 9b d11 9b d11
-9b d11 9b d11 9b e11 9b f11
-9b 1011 9b 1111 9b 1311 9b 1511
-9b 1711 9b 1911 9b 1c11 9b 1f11
-9b 2211 fa 2511 9b 2711 9b 2a11
-9b 2c11 9b 2e11 9b 3011 9b 3211
-9b 3311 9b 3411 9b 3511 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3511 9b 3511 9b 3411
-9b 3211 9b 3111 9b 2f11 9b 2d11
-88 2b11 88 2911 88 2811 88 2611
-88 2411 88 2211 88 2011 88 1e11
-f5 1c11 9b 1b11 9b 1911 9b 1811
-9b 1711 9b 1711 9b 1611 9b 1611
-9b 1511 9b 1511 9b 1511 9b 1611
-9b 1611 9b 1711 9b 1811 9b 1911
-9b 1a11 9b 1c11 9b 1d11 9b 1f11
-9b 2111 fa 2311 9b 2511 9b 2611
-9b 2811 9b 2911 9b 2a11 9b 2b11
-9b 2c11 9b 2d11 9b 2d11 9b 2d11
-9b 2e11 9b 2e11 9b 2d11 9b 2d11
-9b 2d11 9b 2c11 9b 2b11 9b 2a11
-9b 2911 9b 2811 9b 2611 9b 2511
-9b 2311 9b 2111 9b 1f11 ee 1d11
-9b 1c11 9b 1a11 9b 1911 9b 1711
-9b 1611 9b 1511 9b 1411 9b 1311
-9b 1311 9b 1211 9b 1211 99 214
-34d 5500 9 5602 ff 5504 9 7506
-b9 1f08 9 560a 72 110c 9 7f0e
-ac 1211 a2 1211 a2 1211 a2 1211
-a2 1211 a2 1311 a2 1311 a2 1411
-a2 1511 a2 1611 a2 1711 a2 1911
-a2 1a11 a2 1c11 a2 1e11 a2 2011
-101 2111 a6 2311 a6 2511 a6 2611
-a6 2711 a6 2911 a6 2a11 a6 2b11
-a6 2c11 a6 2d11 a6 2d11 a6 2e11
-a6 2e11 a6 2f11 a6 2f11 a6 2f11
-a6 2f11 a6 2f11 a6 2f11 a6 2f11
-a6 2e11 a6 2e11 a6 2d11 a6 2c11
-a6 2c11 a6 2b11 a6 2a11 a6 2811
-a6 2711 a6 2611 a6 2411 a6 2311
-a6 2111 a6 1f11 f9 1e11 a6 1c11
-a6 1b11 a6 1911 a6 1811 a6 1711
-a6 1611 a6 1511 a6 1511 a6 1411
-a6 1411 a6 1311 a6 1311 a6 1311
-a6 1311 b8 1311 9b 1411 9b 1411
-9b 1511 9b 1511 9b 1611 9b 1711
-9b 1811 9b 1911 9b 1b11 9b 1c11
-9b 1e11 9b 1f11 9b 2111 fa 2311
-9b 2411 9b 2611 9b 2711 9b 2911
-9b 2a11 9b 2b11 9b 2c11 9b 2d11
-9b 2e11 9b 2f11 9b 2f11 9b 3011
-9b 3111 9b 3111 9b 3111 9b 3211
-9b 3211 9b 3211 9b 3211 9b 3111
-9b 3111 9b 3111 9b 3011 9b 3011
-9b 2f11 9b 2f11 9b 2e11 9b 2d11
-9b 2c11 9b 2b11 9b 2a11 9b 2811
-9b 2711 9b 2511 9b 2411 9b 2211
-9b 2011 9b 1f11 f5 1c11 9b 1a11
-9b 1b11 9b 1911 9b 1611 9b 1711
-9b 1411 9b 1511 9b 1211 9b 1311
-9b 1311 9b 1011 9b 1011 9b 1111
-9b 1111 9b 1111 9b 1111 9b 1111
-9b 1111 9b 1011 9b 1011 9b 1311
-9b 1311 9b 1211 9b 1511 9b 1411
-9b 1711 9b 1611 9b 1811 9b 1b11
-9b 1d11 9b 1c11 9b 1e11 9b 2011
-fa 2211 9b 2411 9b 2711 9b 2911
-9b 2811 9b 2a11 9b 2d11 9b 2c11
-9b 2f11 9b 2e11 9b 3111 9b 3011
-9b 3311 9b 3211 9b 3511 9b 3511
-9b 3411 9b 3411 9b 3711 9b 3711
-9b 3711 9b 3711 9b 3611 4f 214
-444 3611 a2 3711 a2 3711 a2 3711
-a2 3711 a2 3411 a2 3411 a2 3511
-a2 3511 a2 3211 a2 3311 a2 3011
-a2 3111 a2 2e11 a2 2f11 a2 2c11
-a6 2d11 a6 2a11 a6 2811 a6 2911
-a6 2711 a6 2411 a6 2211 a6 2011
-a6 1e11 f9 1c11 a6 1d11 a6 1b11
-a6 1811 a6 1611 a6 1711 a6 1411
-a6 1511 a6 1311 a6 1311 a6 1011
-a6 1111 a6 e11 a6 e11 a6 f11
-a6 f11 a6 f11 a6 c11 a6 c11
-a6 c11 a6 c11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1011 a6 1311 a6 1311 a6 1511
-a6 1411 a6 1711 a6 1611 a6 1811
-a6 1b11 a6 1d11 a6 1c11 a6 1e11
-a6 2011 105 2211 a6 2411 a6 2711
-b8 2911 9b 2811 9b 2a11 9b 2d11
-9b 2c11 9b 2f11 9b 2e11 9b 3111
-9b 3011 9b 3311 9b 3211 9b 3511
-9b 3511 9b 3411 9b 3411 9b 3711
-9b 3711 9b 3711 9b 3711 9b 3611
-9b 3611 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3411 9b 3411 9b 3511
-9b 3511 9b 3211 9b 3311 9b 3011
-9b 3111 9b 2e11 9b 2f11 9b 2c11
-9b 2d11 9b 2a11 9b 2811 9b 2911
-9b 2711 9b 2411 9b 2211 9b 2011
-9b 1e11 ee 1c11 9b 1d11 9b 1b11
-9b 1811 9b 1611 9b 1711 9b 1411
-9b 1511 9b 1311 9b 1311 9b 1011
-9b 1111 9b e11 9b e11 9b f11
-9b f11 9b f11 9b c11 9b c11
-9b c11 9b c11 9b f11 9b f11
-9b f11 9b e11 9b e11 9b 1111
-9b 1011 9b 1311 9b 1311 9b 1511
-9b 1411 9b 1711 9b 1611 9b 1811
-9b 1b11 9b 1d11 9b 1c11 88 1e11
-88 2011 fa 2311 9b 2511 9b 2411
-9b 2611 9b 2911 9b 2b11 9b 2a11
-9b 2d11 9b 2c11 9b 2f11 9b 2e11
-9b 3111 9b 3011 9b 3311 9b 3211
-9b 3211 9b 3511 9b 3511 9b 3411
-9b 3411 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3611 9b 3611 4a 214
-338 5500 9 5502 e9 5504 9 7406
-d3 1f08 9 550a 72 110c 9 7f0e
-102 3611 a2 3611 a2 3711 a2 3711
-a2 3711 a2 3711 a2 3411 a2 3411
-a2 3511 a2 3511 a2 3211 a2 3211
-a2 3311 a2 3011 a2 3111 a2 2e11
-a6 2f11 a6 2c11 a6 2d11 a6 2a11
-a6 2b11 a6 2911 a6 2611 a6 2411
-a6 2511 a6 2311 a6 2011 a6 1e11
-100 1c11 a6 1d11 a6 1b11 a6 1811
-a6 1911 a6 1611 a6 1411 a6 1511
-a6 1211 a6 1311 a6 1311 a6 1011
-a6 1111 a6 1111 a6 e11 a6 e11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 e11 a6 e11 a6 1111
-a6 1111 a6 1011 a6 1011 a6 1311
-a6 1211 a6 1511 a6 1411 a6 1711
-a6 1911 b8 1811 9b 1b11 88 1d11
-88 1c11 88 1f11 88 2111 40ac 214
-4237 116 6 16 3218 214 939 5400
-9 5602 fe 5404 9 7506 b8 1f08
-9 560a 72 110c 9 7f0e 36b2 116
-6 16 3218 214 4237 116 6 16
-3218 214 923 5400 9 5702 e8 5404
-9 7606 d2 1f08 9 570a 72 110c
-9 7f0e 36c0 116 6 16 321b 214
-93a 5300 9 5602 ff 5304 9 7506
-b9 1f08 9 560a 72 110c 9 7f0e
-36b2 116 6 16 3213 214 4237 116
-6 16 3218 214 924 5300 9 5502
-e9 5304 9 7406 d3 1f08 9 550a
-72 110c 9 7f0e 36c0 116 6 16
-321c 214 4231 116 6 16 321b 214
-939 5200 9 5602 fe 5204 9 7506
-b8 1f08 9 560a 72 110c 9 7f0e
-36b2 116 6 16 3218 214 922 5200
-9 5702 e8 5204 9 7606 d2 1f08
-9 570a 72 110c 9 7f0e 36c7 116
-6 16 3218 214 4231 116 6 16
-321c 214 939 5100 9 5602 ff 5104
-9 7506 b9 1f08 9 560a 72 110c
-9 7f0e 36ab 116 6 16 321b 214
-4238 116 6 16 3215 214 923 5100
-9 5502 e9 5104 9 7406 d3 1f08
-9 550a 72 110c 9 7f0e 36c0 116
-6 16 321b 214 a5b 4301 f 3600
-9 ab02 e 9903 246 4305 f 3604
-9 3a06 e 9a07 354a 116 6 16
-3218 214 923 3600 9 ac02 e8 3604
-9 3b06 b8 1f08 9 560a 72 110c
-9 7f0e 36dc 116 6 16 3218 214
-939 3500 9 ab02 ff 3504 9 3a06
-d2 1f08 9 570a 72 110c 9 7f0e
-3696 116 6 16 321c 214 4237 116
-6 16 3218 214 924 3500 9 aa02
-e9 3504 9 3906 b9 1f08 9 560a
-72 110c 9 7f0e 36d5 116 6 16
-321c 214 4237 116 6 16 3218 214
-939 3400 9 ab02 fe 3404 9 3a06
-d3 1f08 9 550a 72 110c 9 7f0e
-3696 116 6 16 3215 214 922 3400
-9 ac02 e8 3404 9 3b06 b8 1f08
-9 560a 72 110c 9 7f0e 36e3 116
-6 16 3218 214 4231 116 6 16
-321c 214 939 3300 9 ab02 ff 3304
-9 3a06 d2 1f08 9 570a 72 110c
-9 7f0e 3696 116 6 16 3218 214
-4237 116 6 16 3215 214 923 3300
-9 aa02 e9 3304 9 3906 b9 1f08
-9 560a 72 110c 9 7f0e 36dc 116
-6 16 3218 214 939 3200 9 ab02
-fe 3204 9 3a06 d3 1f08 9 550a
-72 110c 9 7f0e 3696 116 6 16
-321c 214 4231 116 6 16 321b 214
-923 3200 9 ac02 e8 3204 9 3b06
-b8 1f08 9 560a 72 110c 9 7f0e
-36dc 116 6 16 321c 214 4237 116
-6 16 3218 214 93a 3100 9 ab02
-ff 3104 9 3a06 d2 1f08 9 570a
-72 110c 9 7f0e 3696 116 6 16
-3213 214 4238 116 6 16 3218 214
-924 3100 9 aa02 e9 3104 9 3906
-b9 1f08 9 560a 72 110c 9 7f0e
-36dc 116 6 16 3215 214 93c 3000
-9 ab02 102 3004 9 3a06 d3 1f08
-9 550a 72 110c 9 7f0e 368f 116
-6 16 321b 214 921 4301 f 3600
-9 ab02 e 9903 10d 4305 f 3604
-9 3a06 e 9a07 177 430d f 110c
-9 7f0e e 280f 361e 116 6 16
-1a7 2211 8e 2011 8e 2411 8e 2511
-8e 2211 8e 1f11 8e 2311 8e 2411
-8e 1f11 8e 2511 8e 2411 8e 2511
-8e 2211 8e 2411 8e 2411 8e 2411
-8e 2411 8e 2111 8e 2111 8e 2311
-8e 2311 8e 2011 8e 2411 8e 1f11
-8e 2211 8e 2311 8e 1e11 8e 2511
-8e 2411 8e 2311 8e 2311 8e 1e11
-8e 2011 8e 2311 8e 2311 8e 1f11
-8e 1e11 8e 2511 8e 2011 8e 1f11
-8e 1f11 8e 2511 8e 2111 8e 2111
-8e 2511 8e 2411 8e 1f11 8e 2511
-8e 2411 8e 2411 8e 2311 8e 2011
-8e 2211 8e 2411 8e 2211 8e 2011
-8e 2511 8e 2611 8e 2011 8e 2211
-8e 2211 8e 2611 8e 2211 8e 2011
-8e 2611 8e 2511 8e 2411 8e 2611
-8e 2211 8e 2611 8e 2511 8e 2511
-8e 2211 8e 2111 8e 2111 8e 1f11
-8e 2311 8e 2111 8e 2411 8e 1f11
-8e 2311 8e 1e11 8e 1f11 8e 2011
-107 1911 9b 1511 9b 1311 33 214
-337 3600 9 ac02 e8 3604 9 3b06
-b8 1f08 9 560a 72 110c 9 7f0e
-119 1311 a2 1511 a2 1911 a2 1f11
-a2 2611 101 2d11 a2 3111 a2 3411
-a2 3411 a2 3411 a2 3111 a2 2d11
-8f 2811 8f 2411 8f 1f11 f5 1c11
-a6 1811 a6 1511 a6 1311 a6 1111
-a6 f11 a6 e11 a6 d11 a6 d11
-a6 d11 a6 e11 a6 1011 a6 1111
-a6 1311 a6 1611 a6 1911 a6 1d11
-a6 2111 105 2511 a6 2811 a6 2b11
-a6 2e11 a6 3011 a6 3311 a6 3511
-a6 3611 a6 3711 a6 3811 a6 3911
-a6 3911 a6 3911 a6 3911 a6 3811
-a6 3711 a6 3611 a6 3511 a6 3311
-a6 3011 a6 2e11 a6 2b11 a6 2811
-93 2511 93 2211 93 1f11 f9 1c11
-a6 1911 a6 1711 a6 1511 a6 1311
-b8 1111 9b 1011 9b f11 9b e11
-9b d11 9b d11 9b d11 9b d11
-9b d11 9b e11 9b f11 9b 1011
-9b 1111 9b 1311 9b 1511 9b 1711
-9b 1911 9b 1c11 9b 1f11 9b 2211
-fa 2511 9b 2711 9b 2a11 9b 2c11
-9b 2e11 9b 3011 9b 3211 9b 3311
-9b 3411 9b 3511 9b 3611 9b 3611
-9b 3711 9b 3711 9b 3611 9b 3611
-9b 3511 9b 3511 9b 3411 9b 3211
-9b 3111 9b 2f11 9b 2d11 88 2b11
-88 2911 88 2811 88 2611 88 2411
-88 2211 88 2011 88 1e11 f5 1c11
-9b 1b11 9b 1911 9b 1811 9b 1711
-9b 1711 9b 1611 9b 1611 9b 1511
-9b 1511 9b 1511 9b 1611 9b 1611
-9b 1711 9b 1811 9b 1911 9b 1a11
-9b 1c11 9b 1d11 9b 1f11 9b 2111
-fa 2311 9b 2511 9b 2611 9b 2811
-9b 2911 9b 2a11 9b 2b11 9b 2c11
-9b 2d11 9b 2d11 9b 2d11 9b 2e11
-9b 2e11 9b 2d11 9b 2d11 9b 2d11
-9b 2c11 9b 2b11 9b 2a11 9b 2911
-9b 2811 9b 2611 9b 2511 9b 2311
-9b 2111 9b 1f11 ee 1d11 9b 1c11
-9b 1a11 9b 1911 9b 1711 9b 1611
-9b 1511 9b 1411 9b 1311 9b 1311
-9b 1211 9b 1211 b9 214 3d2 1211
-a2 1211 a2 1211 a2 1211 a2 1211
-a2 1311 a2 1311 a2 1411 a2 1511
-a2 1611 a2 1711 a2 1911 a2 1a11
-a2 1c11 a2 1e11 a2 2011 101 2111
-a6 2311 a6 2511 a6 2611 a6 2711
-a6 2911 a6 2a11 a6 2b11 a6 2c11
-a6 2d11 a6 2d11 a6 2e11 a6 2e11
-a6 2f11 a6 2f11 a6 2f11 a6 2f11
-a6 2f11 a6 2f11 a6 2f11 a6 2e11
-a6 2e11 a6 2d11 a6 2c11 a6 2c11
-a6 2b11 a6 2a11 a6 2811 a6 2711
-a6 2611 a6 2411 a6 2311 a6 2111
-a6 1f11 f9 1e11 a6 1c11 a6 1b11
-a6 1911 a6 1811 a6 1711 a6 1611
-a6 1511 a6 1511 a6 1411 a6 1411
-a6 1311 a6 1311 a6 1311 a6 1311
-a6 1311 a6 1411 a6 1411 a6 1511
-b8 1511 9b 1611 9b 1711 9b 1811
-9b 1911 9b 1b11 9b 1c11 9b 1e11
-9b 1f11 9b 2111 fa 2311 9b 2411
-9b 2611 9b 2711 9b 2911 9b 2a11
-9b 2b11 9b 2c11 9b 2d11 9b 2e11
-9b 2f11 9b 2f11 9b 3011 9b 3111
-9b 3111 9b 3111 9b 3211 9b 3211
-9b 3211 9b 3211 9b 3111 9b 3111
-9b 3111 9b 3011 9b 3011 9b 2f11
-9b 2f11 9b 2e11 9b 2d11 9b 2c11
-9b 2b11 9b 2a11 9b 2811 9b 2711
-9b 2511 9b 2411 9b 2211 9b 2011
-9b 1f11 f5 1c11 9b 1a11 9b 1b11
-9b 1911 9b 1611 9b 1711 9b 1411
-9b 1511 9b 1211 9b 1311 9b 1311
-9b 1011 9b 1011 9b 1111 9b 1111
-9b 1111 9b 1111 9b 1111 9b 1111
-9b 1011 9b 1011 9b 1311 9b 1311
-9b 1211 9b 1511 9b 1411 9b 1711
-9b 1611 9b 1811 9b 1b11 9b 1d11
-9b 1c11 9b 1e11 9b 2011 fa 2211
-9b 2411 9b 2711 9b 2911 9b 2811
-9b 2a11 9b 2d11 9b 2c11 9b 2f11
-9b 2e11 9b 3111 9b 3011 9b 3311
-9b 3211 9b 3511 9b 3511 9b 3411
-9b 3411 9b 3711 9b 3711 9b 3711
-9b 3711 9b 3611 9b 3611 9b 3711
-9b 3711 c0 214 34d 3500 9 ab02
-ff 3504 9 3a06 d2 1f08 9 570a
-72 110c 9 7f0e 85 3711 a2 3711
-a2 3411 a2 3411 a2 3511 a2 3511
-a2 3211 a2 3311 a2 3011 a2 3111
-a2 2e11 a2 2f11 a2 2c11 a2 2d11
-a2 2a11 a2 2811 a2 2911 a6 2711
-a6 2411 a6 2211 a6 2011 a6 1e11
-f9 1c11 a6 1d11 a6 1b11 a6 1811
-a6 1611 a6 1711 a6 1411 a6 1511
-a6 1311 a6 1311 a6 1011 a6 1111
-a6 e11 a6 e11 a6 f11 a6 f11
-a6 f11 a6 c11 a6 c11 a6 c11
-a6 c11 a6 f11 a6 f11 a6 f11
-a6 e11 a6 e11 a6 1111 a6 1011
-a6 1311 a6 1311 a6 1511 a6 1411
-a6 1711 a6 1611 a6 1811 a6 1b11
-a6 1d11 a6 1c11 a6 1e11 a6 2011
-105 2211 a6 2411 a6 2711 b8 2911
-9b 2811 9b 2a11 9b 2d11 9b 2c11
-9b 2f11 9b 2e11 9b 3111 9b 3011
-9b 3311 9b 3211 9b 3511 9b 3511
-9b 3411 9b 3411 9b 3711 9b 3711
-9b 3711 9b 3711 9b 3611 9b 3611
-9b 3711 9b 3711 9b 3711 9b 3711
-9b 3411 9b 3411 9b 3511 9b 3511
-9b 3211 9b 3311 9b 3011 9b 3111
-9b 2e11 9b 2f11 9b 2c11 9b 2d11
-9b 2a11 9b 2811 9b 2911 9b 2711
-9b 2411 9b 2211 9b 2011 9b 1e11
-ee 1c11 9b 1d11 9b 1b11 9b 1811
-9b 1611 9b 1711 9b 1411 9b 1511
-9b 1311 9b 1311 9b 1011 9b 1111
-9b e11 9b e11 9b f11 9b f11
-9b f11 9b c11 9b c11 9b c11
-9b c11 9b f11 9b f11 9b f11
-9b e11 9b e11 9b 1111 9b 1011
-9b 1311 9b 1311 9b 1511 9b 1411
-9b 1711 9b 1611 9b 1811 9b 1b11
-9b 1d11 9b 1c11 88 1e11 88 2011
-fa 2311 9b 2511 9b 2411 9b 2611
-9b 2911 9b 2b11 9b 2a11 9b 2d11
-9b 2c11 9b 2f11 9b 2e11 9b 3111
-9b 3011 9b 3311 9b 3211 9b 3211
-9b 3511 9b 3511 9b 3411 9b 3411
-9b 3711 9b 3711 9b 3711 9b 3711
-9b 3611 9b 3611 4c 214 338 3500
-9 aa02 e9 3504 9 3906 b9 1f08
-9 560a 72 110c 9 7f0e 100 3611
-a2 3611 a2 3711 a2 3711 a2 3711
-a2 3711 a2 3411 a2 3411 a2 3511
-a2 3511 a2 3211 a2 3211 a2 3311
-a2 3011 a2 3111 a2 2e11 a6 2f11
-a6 2c11 a6 2d11 a6 2a11 a6 2b11
-a6 2911 a6 2611 a6 2411 a6 2511
-a6 2311 a6 2011 a6 1e11 100 1c11
-a6 1d11 a6 1b11 a6 1811 a6 1911
-a6 1611 a6 1411 a6 1511 a6 1211
-a6 1311 a6 1311 a6 1011 a6 1111
-a6 1111 a6 e11 a6 e11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 f11 a6 f11 a6 f11 a6 f11
-a6 e11 a6 e11 a6 1111 a6 1111
-a6 1011 a6 1011 a6 1311 a6 1211
-a6 1511 a6 1411 a6 1711 a6 1911
-b8 1811 9b 1b11 88 1d11 88 1c11
-88 1f11 88 2111 40cb 214 4238 116
-6 16 3218 214 939 3400 9 ab02
-fe 3404 9 3a06 d3 1f08 9 550a
-72 110c 9 7f0e 3696 116 6 16
-3215 214 4237 116 6 16 3218 214
-923 3400 9 ac02 e8 3404 9 3b06
-b8 1f08 9 560a 72 110c 9 7f0e
-36dc 116 6 16 321c 214 920 4301
-f 3600 9 df02 e 9903 10d 4305
-f 3604 9 3a06 e 9a07 37b9 116
-6 16 321b 214 954 3500 9 de02
-119 3504 9 3906 d2 1f08 9 570a
-72 110c 9 7f0e 3665 116 6 16
-3213 214 908 3500 9 df02 ce 3504
-9 3a06 b9 1f08 9 560a 72 110c
-9 7f0e 3714 116 6 16 3218 214
-4238 116 6 16 3215 214 952 3400
-9 e002 118 3404 9 3b06 d3 1f08
-9 550a 72 110c 9 7f0e 3665 116
-6 16 3218 214 4237 116 6 16
-3215 214 909 3400 9 df02 cf 3404
-9 3a06 b8 1f08 9 560a 72 110c
-9 7f0e 3714 116 6 16 3218 214
-953 3300 9 de02 119 3304 9 3906
-d2 1f08 9 570a 72 110c 9 7f0e
-365e 116 6 16 321c 214 4237 116
-6 16 3218 214 909 3300 9 df02
-ce 3304 9 3a06 b9 1f08 9 560a
-72 110c 9 7f0e 370d 116 6 16
-321c 214 4237 116 6 16 3218 214
-953 3200 9 e002 118 3204 9 3b06
-d3 1f08 9 550a 72 110c 9 7f0e
-365e 116 6 16 321c 214 90a 3200
-9 df02 cf 3204 9 3a06 b8 1f08
-9 560a 72 110c 9 7f0e 370d 116
-6 16 3218 214
-</a>
-    </comp>
     <comp lib="0" loc="(140,150)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="SO"/>
     </comp>
-    <comp lib="6" loc="(163,375)" name="Text">
-      <a name="text" val="N.C."/>
-    </comp>
-    <comp lib="0" loc="(140,370)" name="Pin">
-      <a name="width" val="8"/>
-      <a name="label" val="DB_in"/>
-    </comp>
-    <comp lib="1" loc="(790,90)" name="NOT Gate"/>
-    <comp lib="0" loc="(840,90)" name="Pin">
+    <comp lib="0" loc="(840,120)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="PHI1"/>
+      <a name="label" val="PHI2"/>
       <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(163,375)" name="Text">
+      <a name="text" val="N.C."/>
     </comp>
     <comp lib="0" loc="(840,240)" name="Pin">
       <a name="facing" val="west"/>
@@ -8682,13 +5373,7 @@ d3 1f08 9 550a 72 110c 9 7f0e
       <a name="label" val="Addr"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(840,180)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="SYNC"/>
-      <a name="labelloc" val="east"/>
-    </comp>
+    <comp lib="1" loc="(790,90)" name="NOT Gate"/>
     <comp lib="0" loc="(830,380)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -8696,19 +5381,8 @@ d3 1f08 9 550a 72 110c 9 7f0e
       <a name="label" val="DB_out"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="6" loc="(162,138)" name="Text">
-      <a name="text" val="N.C."/>
-    </comp>
-    <comp lib="0" loc="(140,260)" name="Pin">
+    <comp lib="0" loc="(140,470)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="/IRQ"/>
-    </comp>
-    <comp lib="0" loc="(840,120)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="PHI2"/>
-      <a name="labelloc" val="east"/>
     </comp>
     <comp lib="0" loc="(840,150)" name="Pin">
       <a name="facing" val="west"/>
@@ -8717,10 +5391,740 @@ d3 1f08 9 550a 72 110c 9 7f0e
       <a name="label" val="R/W"/>
       <a name="labelloc" val="east"/>
     </comp>
+    <comp lib="0" loc="(840,90)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="PHI1"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(349,172)" name="Text">
+      <a name="text" val="Load regdump here"/>
+      <a name="font" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(840,180)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="SYNC"/>
+      <a name="labelloc" val="east"/>
+    </comp>
     <comp lib="0" loc="(140,120)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="RDY"/>
     </comp>
+    <comp lib="0" loc="(830,180)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="4" loc="(420,230)" name="ROM">
+      <a name="addrWidth" val="24"/>
+      <a name="dataWidth" val="32"/>
+      <a name="contents">addr/data: 24 32
+8 ff17 c 15 5e 15 fff 13
+a 12 a 11 a 10 a f
+a e a d a c a b
+a a a 9 a 8 a 7
+a 6 a 5 a 4 a 3
+a 2 a 1 a 0 79 f15
+74dd c017 42b 1000 4 1004 4 100c
+6 8 4 11 2cd f302 9 d03
+9 7f01 14d 5e06 9 807 9 7f05
+15f ff08 11 fc0a 9 90b 9 9
+f8 c 8 10e 8 380f a5 b400
+b6 fa04 68f b500 b6 f904 60b0 c017
+dbc b600 b6 f804 65e1 c017 dbc b700
+b6 f704 65e4 c017 dbc b800 b6 f604
+65e1 c017 dbc b700 b6 f504 65e1 c017
+dbc b600 b6 f404 65e4 c017 dbc b500
+b6 f304 65e1 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f704 65f0 c017
+dae b600 b6 f704 65f0 c017 dae b600
+b6 f604 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f504 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f504 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 d32 f302 9 d03
+9 7f01 161 ff08 11 fc0a 9 90b
+9 9 a1 1000 aa 1004 6440 c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 db6 8
+11 fc0a 9 90b 9 9 a1 1000
+aa 1004 6530 c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d6e f302 9 d03 9 7f01
+e2 3a06 9 807 9 7f05 158 ff08
+11 fc0a 9 90b 9 9 f1 c
+8 10e 8 380f a5 b400 b6 fa04
+6209 c017 dbc b500 b6 f904 65e1 c017
+dbc b600 b6 f804 65e4 c017 dbc b700
+b6 f704 65e1 c017 dbc b800 b6 f604
+65e1 c017 dbc b700 b6 f504 65e4 c017
+dbc b600 b6 f404 65e1 c017 dbc b500
+b6 f304 65e1 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f704 65f0 c017
+dae b600 b6 f704 65f0 c017 dae b600
+b6 f604 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f504 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f504 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 d32 f302 9 d03
+9 7f01 161 ff08 11 fc0a 9 90b
+9 9 a1 1000 aa 1004 6443 c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 db6 8
+11 fc0a 9 90b 9 9 a1 1000
+aa 1004 6530 c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d6e f302 9 d03 9 7f01
+e2 4f06 9 807 9 7f05 158 ff08
+11 fc0a 9 90b 9 9 f1 c
+8 10e 8 380f a5 b400 b6 fa04
+6209 c017 dbc b500 b6 f904 65e4 c017
+dbc b600 b6 f804 65e1 c017 dbc b700
+b6 f704 65e1 c017 dbc b800 b6 f604
+65e4 c017 dbc b700 b6 f504 65e1 c017
+dbc b600 b6 f404 65e1 c017 dbc b500
+b6 f304 65e4 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f704 65f0 c017
+dae b600 b6 f704 65f0 c017 dae b600
+b6 f604 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f504 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f504 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 d32 f302 9 d03
+9 7f01 161 ff08 11 fc0a 9 90b
+9 9 a1 1000 aa 1004 6440 c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 db6 8
+11 fc0a 9 90b 9 9 a1 1000
+aa 1004 6530 c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d6e f302 9 d03 9 7f01
+de 4f06 9 807 9 7f05 158 ff08
+11 fc0a 9 90b 9 9 f1 c
+8 10e 8 380f a5 b400 4d 1004
+6275 c017 dbc b500 4d 1004 664a c017
+dbc b600 4d 1004 664d c017 dbc b700
+4d 1004 664a c017 dbc b800 4d 1004
+664a c017 dbc b700 4d 1004 664d c017
+dbc b600 4d 1004 664a c017 dbc b500
+4d 1004 664a c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 d32 f302 9 d03
+9 7f01 161 ff08 11 fc0a 9 90b
+9 9 a1 1000 4d 1004 64a0 c017
+d7d 1000 4d 1004 6689 c017 d7d 1000
+4d 1004 6689 c017 d7d 1000 4d 1004
+668c c017 d7d 1000 4d 1004 6689 c017
+d7d 1000 4d 1004 6689 c017 d7d 1000
+4d 1004 668c c017 d7d 1000 4d 1004
+6689 c017 d7d 1000 4d 1004 6689 c017
+d7d 1000 4d 1004 668c c017 d7d 1000
+4d 1004 6689 c017 d7d 1000 4d 1004
+6689 c017 d7d 1000 4d 1004 668c c017
+d7d 1000 4d 1004 6689 c017 db6 8
+11 fc0a 9 90b 9 9 a1 1000
+4d 1004 658d c017 d7d 1000 4d 1004
+6689 c017 d7d 1000 4d 1004 668c c017
+d7d 1000 4d 1004 6689 c017 d7d 1000
+4d 1004 6689 c017 d7d 1000 4d 1004
+668c c017 d7d 1000 4d 1004 6689 c017
+d7d 1000 4d 1004 6689 c017 d7d 1000
+4d 1004 668c c017 d7d 1000 4d 1004
+6689 c017 d7d 1000 4d 1004 6689 c017
+d7d 1000 4d 1004 668c c017 d7d 1000
+4d 1004 6689 c017 d7d 1000 4d 1004
+6689 c017 d6e f302 9 d03 9 7f01
+e2 5e06 9 807 9 7f05 158 ff08
+11 fc0a 9 90b 9 9 f1 c
+8 10e 8 380f a5 b400 b6 fa04
+6209 c017 dbc b500 b6 f904 65e4 c017
+dbc b600 b6 f804 65e1 c017 dbc b700
+b6 f704 65e1 c017 dbc b800 b6 f604
+65e4 c017 dbc b700 b6 f504 65e1 c017
+dbc b600 b6 f404 65e1 c017 dbc b500
+b6 f304 65e4 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f704 65f0 c017
+dae b600 b6 f704 65f0 c017 dae b600
+b6 f604 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f504 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f504 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 d32 f302 9 d03
+9 7f01 161 ff08 11 fc0a 9 90b
+9 9 a1 1000 aa 1004 6440 c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 db6 8
+11 fc0a 9 90b 9 9 a1 1000
+aa 1004 6530 c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d6e f302 9 d03 9 7f01
+e2 3406 9 807 9 7f05 158 ff08
+11 fc0a 9 90b 9 9 f1 c
+8 10e 8 380f a5 b400 b6 fa04
+6209 c017 dbc b500 b6 f904 65e1 c017
+dbc b600 b6 f804 65e1 c017 dbc b700
+b6 f704 65e4 c017 dbc b800 b6 f604
+65e1 c017 dbc b700 b6 f504 65e1 c017
+dbc b600 b6 f404 65e4 c017 dbc b500
+b6 f304 65e1 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f704 65f0 c017
+dae b600 b6 f704 65f0 c017 dae b600
+b6 f604 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f504 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f504 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 d32 f302 9 d03
+9 7f01 161 ff08 11 fc0a 9 90b
+9 9 a1 1000 aa 1004 6440 c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 db6 8
+11 fc0a 9 90b 9 9 a1 1000
+aa 1004 6530 c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d6e f302 9 d03 9 7f01
+e2 3a06 9 807 9 7f05 158 ff08
+11 fc0a 9 90b 9 9 f1 c
+8 10e 8 380f a5 b400 b6 fa04
+6209 c017 dbc b500 b6 f904 65e1 c017
+dbc b600 b6 f804 65e4 c017 dbc b700
+b6 f704 65e1 c017 dbc b800 b6 f604
+65e1 c017 dbc b700 b6 f504 65e4 c017
+dbc b600 b6 f404 65e1 c017 dbc b500
+b6 f304 65e1 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f704 65f0 c017
+dae b600 b6 f704 65f0 c017 dae b600
+b6 f604 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f504 65f0 c017 dae b600 b6 f504
+65f0 c017 dae b600 b6 f504 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f404 65f0 c017
+dae b600 b6 f404 65f0 c017 dae b600
+b6 f304 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f204 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f104
+65f0 c017 dae b600 b6 f104 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f204 65f0 c017 dae b600 b6 f204
+65f0 c017 dae b600 b6 f204 65f0 c017
+dae b600 b6 f104 65f0 c017 dae b600
+b6 f104 65f0 c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 dae b600 aa 1004
+65fc c017 dae b600 aa 1004 65fc c017
+dae b600 aa 1004 65fc c017 dae b600
+aa 1004 65fc c017 d32 f302 9 d03
+9 7f01 161 ff08 11 fc0a 9 90b
+9 9 a1 1000 aa 1004 6443 c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 db6 8
+11 fc0a 9 90b 9 9 a1 1000
+aa 1004 6530 c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662f c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662f c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662c c017 d7d 1000
+aa 1004 662f c017 d7d 1000 aa 1004
+662c c017 d7d 1000 aa 1004 662c c017
+d7d 1000 aa 1004 662f c017 d7d 1000
+aa 1004 662c c017 d7d 1000 aa 1004
+662c c017 d6e f302 9 d03 9 7f01
+de 3a06 9 807 9 7f05 158 ff08
+11 fc0a 9 90b 9 9 f1 c
+8 10e 8 380f a5 b400 4d 1004
+6278 c017 dbc b500 4d 1004 664a c017
+dbc b600 4d 1004 664a c017 dbc b700
+4d 1004 664d c017 dbc b800 4d 1004
+664a c017 dbc b700 4d 1004 664a c017
+dbc b600 4d 1004 664d c017 dbc b500
+4d 1004 664a c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004 6659 c017
+dae b600 4d 1004 6659 c017 dae b600
+4d 1004 6659 c017 dae b600 4d 1004
+6659 c017 dae b600 4d 1004
+</a>
+    </comp>
+    <comp lib="0" loc="(320,280)" name="Constant"/>
   </circuit>
   <circuit name="WRAM">
     <a name="circuit" val="WRAM"/>
@@ -8780,50 +6184,26 @@ d3 1f08 9 550a 72 110c 9 7f0e
     <wire from="(240,220)" to="(250,220)"/>
     <wire from="(600,320)" to="(600,380)"/>
     <wire from="(550,400)" to="(560,400)"/>
-    <comp lib="1" loc="(550,400)" name="NOT Gate"/>
-    <comp lib="0" loc="(160,450)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="/RES"/>
-    </comp>
     <comp lib="1" loc="(210,450)" name="NOT Gate"/>
-    <comp lib="0" loc="(490,290)" name="Splitter">
-      <a name="fanout" val="1"/>
-      <a name="incoming" val="16"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit6" val="0"/>
-      <a name="bit7" val="0"/>
-      <a name="bit8" val="0"/>
-      <a name="bit9" val="0"/>
-      <a name="bit10" val="0"/>
-      <a name="bit11" val="none"/>
-      <a name="bit12" val="none"/>
-      <a name="bit13" val="none"/>
-      <a name="bit14" val="none"/>
-      <a name="bit15" val="none"/>
+    <comp lib="1" loc="(550,400)" name="NOT Gate"/>
+    <comp lib="0" loc="(160,190)" name="Pin">
+      <a name="width" val="16"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Addr"/>
     </comp>
     <comp lib="1" loc="(370,190)" name="NOR Gate">
       <a name="size" val="70"/>
-    </comp>
-    <comp lib="0" loc="(160,120)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="M2"/>
     </comp>
     <comp lib="0" loc="(160,400)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="R/W"/>
     </comp>
-    <comp lib="4" loc="(670,280)" name="RAM">
-      <a name="addrWidth" val="11"/>
-      <a name="bus" val="separate"/>
-    </comp>
-    <comp lib="0" loc="(160,190)" name="Pin">
-      <a name="width" val="16"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Addr"/>
+    <comp lib="0" loc="(730,280)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+      <a name="label" val="DB_out"/>
+      <a name="labelloc" val="east"/>
     </comp>
     <comp lib="0" loc="(160,240)" name="Pin">
       <a name="width" val="8"/>
@@ -8849,12 +6229,36 @@ d3 1f08 9 550a 72 110c 9 7f0e
       <a name="bit14" val="3"/>
       <a name="bit15" val="4"/>
     </comp>
-    <comp lib="0" loc="(730,280)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="8"/>
-      <a name="label" val="DB_out"/>
-      <a name="labelloc" val="east"/>
+    <comp lib="0" loc="(160,120)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="M2"/>
+    </comp>
+    <comp lib="0" loc="(160,450)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="/RES"/>
+    </comp>
+    <comp lib="4" loc="(670,280)" name="RAM">
+      <a name="addrWidth" val="11"/>
+      <a name="bus" val="separate"/>
+    </comp>
+    <comp lib="0" loc="(490,290)" name="Splitter">
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="16"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="0"/>
+      <a name="bit8" val="0"/>
+      <a name="bit9" val="0"/>
+      <a name="bit10" val="0"/>
+      <a name="bit11" val="none"/>
+      <a name="bit12" val="none"/>
+      <a name="bit13" val="none"/>
+      <a name="bit14" val="none"/>
+      <a name="bit15" val="none"/>
     </comp>
   </circuit>
   <circuit name="RegDumpProcessor">
@@ -8877,9 +6281,13 @@ d3 1f08 9 550a 72 110c 9 7f0e
       <circ-port height="10" pin="1520,140" width="10" x="215" y="125"/>
       <circ-port height="10" pin="1520,190" width="10" x="215" y="145"/>
       <circ-port height="10" pin="1520,440" width="10" x="215" y="185"/>
+      <circ-port height="10" pin="600,670" width="10" x="215" y="85"/>
+      <circ-port height="8" pin="130,280" width="8" x="46" y="86"/>
       <circ-anchor facing="east" height="6" width="6" x="47" y="77"/>
     </appear>
+    <wire from="(550,670)" to="(600,670)"/>
     <wire from="(400,200)" to="(450,200)"/>
+    <wire from="(280,250)" to="(460,250)"/>
     <wire from="(1420,140)" to="(1520,140)"/>
     <wire from="(180,460)" to="(230,460)"/>
     <wire from="(360,120)" to="(360,140)"/>
@@ -8890,6 +6298,7 @@ d3 1f08 9 550a 72 110c 9 7f0e
     <wire from="(800,270)" to="(800,360)"/>
     <wire from="(1270,60)" to="(1330,60)"/>
     <wire from="(770,250)" to="(870,250)"/>
+    <wire from="(320,390)" to="(430,390)"/>
     <wire from="(510,390)" to="(750,390)"/>
     <wire from="(200,130)" to="(240,130)"/>
     <wire from="(730,430)" to="(900,430)"/>
@@ -8906,11 +6315,13 @@ d3 1f08 9 550a 72 110c 9 7f0e
     <wire from="(770,270)" to="(800,270)"/>
     <wire from="(230,310)" to="(380,310)"/>
     <wire from="(630,180)" to="(630,280)"/>
+    <wire from="(430,280)" to="(570,280)"/>
     <wire from="(370,330)" to="(380,330)"/>
+    <wire from="(530,210)" to="(530,270)"/>
     <wire from="(800,360)" to="(1190,360)"/>
     <wire from="(210,80)" to="(280,80)"/>
+    <wire from="(480,190)" to="(550,190)"/>
     <wire from="(650,210)" to="(660,210)"/>
-    <wire from="(480,280)" to="(480,350)"/>
     <wire from="(770,260)" to="(820,260)"/>
     <wire from="(1310,100)" to="(1310,250)"/>
     <wire from="(230,390)" to="(230,460)"/>
@@ -8922,12 +6333,12 @@ d3 1f08 9 550a 72 110c 9 7f0e
     <wire from="(390,280)" to="(390,300)"/>
     <wire from="(640,80)" to="(640,170)"/>
     <wire from="(230,310)" to="(230,390)"/>
+    <wire from="(550,190)" to="(570,190)"/>
     <wire from="(1400,210)" to="(1400,260)"/>
     <wire from="(230,460)" to="(450,460)"/>
     <wire from="(380,220)" to="(400,220)"/>
     <wire from="(1190,200)" to="(1390,200)"/>
     <wire from="(610,200)" to="(640,200)"/>
-    <wire from="(420,350)" to="(420,390)"/>
     <wire from="(1310,100)" to="(1340,100)"/>
     <wire from="(130,80)" to="(210,80)"/>
     <wire from="(820,380)" to="(1270,380)"/>
@@ -8941,15 +6352,13 @@ d3 1f08 9 550a 72 110c 9 7f0e
     <wire from="(730,190)" to="(730,430)"/>
     <wire from="(830,500)" to="(910,500)"/>
     <wire from="(1270,270)" to="(1270,380)"/>
-    <wire from="(560,210)" to="(570,210)"/>
     <wire from="(500,600)" to="(830,600)"/>
     <wire from="(900,430)" to="(900,480)"/>
     <wire from="(1270,60)" to="(1270,270)"/>
     <wire from="(210,80)" to="(210,530)"/>
     <wire from="(1400,100)" to="(1400,120)"/>
-    <wire from="(420,350)" to="(480,350)"/>
     <wire from="(180,110)" to="(240,110)"/>
-    <wire from="(280,270)" to="(460,270)"/>
+    <wire from="(520,300)" to="(570,300)"/>
     <wire from="(400,180)" to="(450,180)"/>
     <wire from="(730,100)" to="(730,190)"/>
     <wire from="(630,180)" to="(670,180)"/>
@@ -8960,19 +6369,18 @@ d3 1f08 9 550a 72 110c 9 7f0e
     <wire from="(280,80)" to="(640,80)"/>
     <wire from="(1310,250)" to="(1360,250)"/>
     <wire from="(1450,430)" to="(1460,430)"/>
-    <wire from="(480,190)" to="(570,190)"/>
     <wire from="(880,330)" to="(900,330)"/>
     <wire from="(760,460)" to="(760,500)"/>
     <wire from="(750,280)" to="(750,390)"/>
+    <wire from="(430,280)" to="(430,390)"/>
     <wire from="(640,200)" to="(670,200)"/>
+    <wire from="(280,80)" to="(280,250)"/>
     <wire from="(1360,50)" to="(1520,50)"/>
     <wire from="(1340,270)" to="(1360,270)"/>
     <wire from="(1370,180)" to="(1390,180)"/>
     <wire from="(360,140)" to="(360,200)"/>
-    <wire from="(280,80)" to="(280,270)"/>
     <wire from="(900,480)" to="(910,480)"/>
     <wire from="(300,600)" to="(500,600)"/>
-    <wire from="(560,300)" to="(570,300)"/>
     <wire from="(1310,40)" to="(1330,40)"/>
     <wire from="(690,520)" to="(690,530)"/>
     <wire from="(450,390)" to="(450,460)"/>
@@ -8981,95 +6389,110 @@ d3 1f08 9 550a 72 110c 9 7f0e
     <wire from="(1470,460)" to="(1470,490)"/>
     <wire from="(870,250)" to="(870,320)"/>
     <wire from="(1270,270)" to="(1310,270)"/>
+    <wire from="(130,280)" to="(180,280)"/>
+    <wire from="(530,210)" to="(570,210)"/>
     <wire from="(1030,220)" to="(1130,220)"/>
     <wire from="(1130,150)" to="(1130,220)"/>
-    <wire from="(320,390)" to="(420,390)"/>
     <wire from="(940,490)" to="(1470,490)"/>
-    <wire from="(150,280)" to="(180,280)"/>
-    <wire from="(480,280)" to="(570,280)"/>
     <wire from="(1380,130)" to="(1390,130)"/>
     <wire from="(1390,260)" to="(1400,260)"/>
     <wire from="(420,190)" to="(450,190)"/>
     <wire from="(180,110)" to="(180,280)"/>
+    <wire from="(550,190)" to="(550,670)"/>
     <wire from="(380,160)" to="(400,160)"/>
     <wire from="(640,170)" to="(670,170)"/>
     <wire from="(180,280)" to="(390,280)"/>
     <wire from="(1130,150)" to="(1390,150)"/>
     <wire from="(870,320)" to="(900,320)"/>
+    <wire from="(460,210)" to="(460,250)"/>
     <wire from="(410,320)" to="(420,320)"/>
     <wire from="(760,500)" to="(830,500)"/>
     <wire from="(1190,200)" to="(1190,360)"/>
     <wire from="(340,170)" to="(350,170)"/>
     <wire from="(340,210)" to="(350,210)"/>
     <wire from="(650,210)" to="(650,460)"/>
-    <wire from="(460,210)" to="(460,270)"/>
     <wire from="(720,190)" to="(730,190)"/>
-    <comp lib="1" loc="(1340,270)" name="NOT Gate"/>
-    <comp lib="1" loc="(1390,260)" name="AND Gate">
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
+    <wire from="(520,270)" to="(530,270)"/>
+    <comp lib="0" loc="(130,80)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="PHI0"/>
     </comp>
-    <comp lib="6" loc="(1504,96)" name="Text">
-      <a name="text" val="Default: Read address 0x0000"/>
+    <comp lib="0" loc="(340,230)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="4" loc="(510,390)" name="Register">
+      <a name="width" val="32"/>
+      <a name="label" val="regop_word"/>
+    </comp>
+    <comp lib="4" loc="(710,500)" name="Register">
+      <a name="width" val="1"/>
+      <a name="label" val="cnt_ovf_reg"/>
+    </comp>
+    <comp lib="1" loc="(1340,270)" name="NOT Gate"/>
+    <comp lib="6" loc="(816,183)" name="Text">
+      <a name="text" val="RegOp Setup"/>
     </comp>
     <comp lib="1" loc="(940,490)" name="OR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
-    <comp lib="3" loc="(610,200)" name="Comparator">
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(560,300)" name="Constant">
-      <a name="width" val="32"/>
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="0" loc="(1520,440)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="24"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="redump_addr"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="2" loc="(410,320)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="width" val="32"/>
+    <comp lib="2" loc="(1360,50)" name="Multiplexer">
       <a name="enable" val="false"/>
     </comp>
-    <comp lib="0" loc="(340,170)" name="Constant"/>
-    <comp lib="0" loc="(1450,430)" name="Constant">
+    <comp lib="2" loc="(1420,190)" name="Multiplexer">
+      <a name="width" val="8"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="6" loc="(819,242)" name="Text">
+      <a name="text" val="Reg Index (0-0x1f)"/>
+    </comp>
+    <comp lib="2" loc="(380,220)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="3" loc="(610,290)" name="Comparator">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(880,330)" name="Constant">
+      <a name="width" val="11"/>
       <a name="value" val="0x0"/>
     </comp>
-    <comp lib="6" loc="(769,517)" name="Text">
-      <a name="text" val="Load PHI Counter"/>
+    <comp lib="6" loc="(421,112)" name="Text">
+      <a name="text" val="Load/Decrement Setup (1: Load; 0: Decrement)"/>
     </comp>
-    <comp lib="6" loc="(816,183)" name="Text">
-      <a name="text" val="RegOp Setup"/>
-    </comp>
-    <comp lib="6" loc="(1467,396)" name="Text">
-      <a name="text" val="Falling edge"/>
-    </comp>
-    <comp lib="2" loc="(1360,50)" name="Multiplexer">
+    <comp lib="0" loc="(340,150)" name="Constant"/>
+    <comp lib="2" loc="(380,160)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
       <a name="enable" val="false"/>
     </comp>
     <comp lib="6" loc="(1447,239)" name="Text">
       <a name="text" val="1: RegOp + Write"/>
     </comp>
-    <comp lib="4" loc="(1490,440)" name="Counter">
-      <a name="width" val="24"/>
-      <a name="max" val="0xffffff"/>
-      <a name="ongoal" val="stay"/>
-      <a name="trigger" val="falling"/>
-      <a name="label" val="addr_cnt"/>
+    <comp lib="0" loc="(1450,450)" name="Constant"/>
+    <comp lib="1" loc="(720,190)" name="AND Gate">
+      <a name="inputs" val="4"/>
+      <a name="negate3" val="true"/>
     </comp>
-    <comp lib="2" loc="(380,160)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="enable" val="false"/>
+    <comp lib="0" loc="(370,330)" name="Constant">
+      <a name="width" val="32"/>
+      <a name="value" val="0x20"/>
     </comp>
-    <comp lib="1" loc="(1030,220)" name="OR Gate">
-      <a name="width" val="16"/>
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
+    <comp lib="6" loc="(758,92)" name="Text">
+      <a name="text" val="Do RegOp"/>
+    </comp>
+    <comp lib="3" loc="(610,200)" name="Comparator">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(1520,190)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+      <a name="label" val="Core DB"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(520,270)" name="Constant">
+      <a name="width" val="32"/>
+      <a name="value" val="0x0"/>
     </comp>
     <comp lib="0" loc="(1520,140)" name="Pin">
       <a name="facing" val="west"/>
@@ -9079,112 +6502,31 @@ d3 1f08 9 550a 72 110c 9 7f0e
       <a name="label" val="Core AB"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(340,210)" name="Constant"/>
-    <comp lib="0" loc="(880,330)" name="Constant">
-      <a name="width" val="11"/>
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="0" loc="(980,210)" name="Constant">
-      <a name="width" val="16"/>
-      <a name="value" val="0x4000"/>
-    </comp>
+    <comp lib="0" loc="(340,170)" name="Constant"/>
     <comp lib="6" loc="(1073,210)" name="Text">
       <a name="text" val="Reg Address"/>
     </comp>
-    <comp lib="0" loc="(1450,450)" name="Constant"/>
-    <comp lib="2" loc="(1420,140)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="width" val="16"/>
-      <a name="enable" val="false"/>
+    <comp lib="6" loc="(769,517)" name="Text">
+      <a name="text" val="Load PHI Counter"/>
     </comp>
-    <comp lib="6" loc="(358,38)" name="Text">
-      <a name="text" val="https://github.com/emu-russia/breaknes/blob/main/BreaksAPU/NSFPlayerInterop/RegDumpProcessor.cpp"/>
-    </comp>
-    <comp lib="0" loc="(1380,130)" name="Constant">
-      <a name="width" val="16"/>
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="0" loc="(1520,50)" name="Pin">
+    <comp lib="0" loc="(1310,40)" name="Constant"/>
+    <comp lib="0" loc="(600,670)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Core R/W"/>
+      <a name="width" val="32"/>
       <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(1090,396)" name="Text">
-      <a name="text" val="1: Read register"/>
-    </comp>
-    <comp lib="2" loc="(380,220)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="enable" val="false"/>
-    </comp>
-    <comp lib="6" loc="(421,112)" name="Text">
-      <a name="text" val="Load/Decrement Setup (1: Load; 0: Decrement)"/>
     </comp>
     <comp lib="1" loc="(270,120)" name="OR Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
-    <comp lib="0" loc="(1520,190)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="8"/>
-      <a name="label" val="Core DB"/>
-      <a name="labelloc" val="east"/>
+    <comp lib="1" loc="(1390,260)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
-    <comp lib="6" loc="(819,242)" name="Text">
-      <a name="text" val="Reg Index (0-0x1f)"/>
+    <comp lib="6" loc="(1504,96)" name="Text">
+      <a name="text" val="Default: Read address 0x0000"/>
     </comp>
-    <comp lib="6" loc="(1042,351)" name="Text">
-      <a name="text" val="Value (if write)"/>
-    </comp>
-    <comp lib="0" loc="(920,310)" name="Splitter">
-      <a name="facing" val="west"/>
-      <a name="incoming" val="16"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="1"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="1"/>
-      <a name="bit8" val="1"/>
-      <a name="bit9" val="1"/>
-      <a name="bit10" val="1"/>
-      <a name="bit11" val="1"/>
-      <a name="bit12" val="1"/>
-      <a name="bit13" val="1"/>
-      <a name="bit14" val="1"/>
-      <a name="bit15" val="1"/>
-    </comp>
-    <comp lib="6" loc="(758,92)" name="Text">
-      <a name="text" val="Do RegOp"/>
-    </comp>
-    <comp lib="4" loc="(710,500)" name="Register">
-      <a name="width" val="1"/>
-      <a name="label" val="cnt_ovf_reg"/>
-    </comp>
-    <comp lib="2" loc="(1420,190)" name="Multiplexer">
-      <a name="width" val="8"/>
-      <a name="enable" val="false"/>
-    </comp>
-    <comp lib="0" loc="(560,210)" name="Constant">
-      <a name="width" val="32"/>
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="4" loc="(320,390)" name="Register">
-      <a name="width" val="32"/>
-      <a name="label" val="delta_phi_word"/>
-    </comp>
-    <comp lib="5" loc="(150,280)" name="Button">
-      <a name="label" val="Next RegOp"/>
-      <a name="labelloc" val="west"/>
-    </comp>
-    <comp lib="1" loc="(720,190)" name="AND Gate">
-      <a name="inputs" val="4"/>
-      <a name="negate3" val="true"/>
-    </comp>
-    <comp lib="0" loc="(340,150)" name="Constant"/>
     <comp lib="0" loc="(750,280)" name="Splitter">
       <a name="fanout" val="3"/>
       <a name="incoming" val="32"/>
@@ -9220,35 +6562,107 @@ d3 1f08 9 550a 72 110c 9 7f0e
       <a name="bit30" val="none"/>
       <a name="bit31" val="none"/>
     </comp>
-    <comp lib="0" loc="(1310,40)" name="Constant"/>
-    <comp lib="0" loc="(370,330)" name="Constant">
-      <a name="width" val="32"/>
-      <a name="value" val="0x20"/>
+    <comp lib="0" loc="(1520,440)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="24"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="redump_addr"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(920,310)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="incoming" val="16"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="1"/>
+      <a name="bit8" val="1"/>
+      <a name="bit9" val="1"/>
+      <a name="bit10" val="1"/>
+      <a name="bit11" val="1"/>
+      <a name="bit12" val="1"/>
+      <a name="bit13" val="1"/>
+      <a name="bit14" val="1"/>
+      <a name="bit15" val="1"/>
+    </comp>
+    <comp lib="0" loc="(1520,50)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Core R/W"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(1450,430)" name="Constant">
+      <a name="value" val="0x0"/>
     </comp>
     <comp lib="0" loc="(180,460)" name="Pin">
       <a name="width" val="32"/>
       <a name="tristate" val="false"/>
       <a name="label" val="regdump_data"/>
     </comp>
-    <comp lib="3" loc="(610,290)" name="Comparator">
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="4" loc="(510,390)" name="Register">
-      <a name="width" val="32"/>
-      <a name="label" val="regop_word"/>
-    </comp>
-    <comp lib="0" loc="(340,230)" name="Constant">
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="0" loc="(130,80)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="PHI0"/>
-    </comp>
     <comp lib="4" loc="(480,190)" name="Counter">
       <a name="width" val="32"/>
       <a name="max" val="0xffffffff"/>
       <a name="ongoal" val="stay"/>
       <a name="label" val="phi_dec_cnt"/>
+    </comp>
+    <comp lib="6" loc="(1467,396)" name="Text">
+      <a name="text" val="Falling edge"/>
+    </comp>
+    <comp lib="4" loc="(1490,440)" name="Counter">
+      <a name="width" val="24"/>
+      <a name="max" val="0xffffff"/>
+      <a name="ongoal" val="stay"/>
+      <a name="trigger" val="falling"/>
+      <a name="label" val="addr_cnt"/>
+    </comp>
+    <comp lib="2" loc="(1420,140)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="16"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="1" loc="(1030,220)" name="OR Gate">
+      <a name="width" val="16"/>
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="6" loc="(358,38)" name="Text">
+      <a name="text" val="https://github.com/emu-russia/breaknes/blob/main/BreaksAPU/NSFPlayerInterop/RegDumpProcessor.cpp"/>
+    </comp>
+    <comp lib="0" loc="(340,210)" name="Constant"/>
+    <comp lib="6" loc="(1090,396)" name="Text">
+      <a name="text" val="1: Read register"/>
+    </comp>
+    <comp lib="6" loc="(1042,351)" name="Text">
+      <a name="text" val="Value (if write)"/>
+    </comp>
+    <comp lib="0" loc="(130,280)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="2" loc="(410,320)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="32"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="0" loc="(1380,130)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="0" loc="(980,210)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x4000"/>
+    </comp>
+    <comp lib="0" loc="(520,300)" name="Constant">
+      <a name="width" val="32"/>
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="4" loc="(320,390)" name="Register">
+      <a name="width" val="32"/>
+      <a name="label" val="delta_phi_word"/>
     </comp>
   </circuit>
 </project>
