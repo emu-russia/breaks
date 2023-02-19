@@ -48,8 +48,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="valign" val="base"/>
     </tool>
   </lib>
-  <lib desc="file#2A03_APU.circ" name="7"/>
-  <lib desc="jar#IEEE754.jar#com.cheese.IEEE754.IEEE754" name="8"/>
+  <lib desc="file#2A03_APU_ForAPUPlayer.circ" name="7"/>
+  <lib desc="jar#Logisim-Floating-Point-Library/IEEE754.jar#com.cheese.IEEE754.IEEE754" name="8"/>
   <main name="APUPlayer"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
