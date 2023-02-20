@@ -49,7 +49,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </tool>
   </lib>
   <lib desc="file#2A03_APU_ForAPUPlayer.circ" name="7"/>
-  <lib desc="jar#Logisim-Floating-Point-Library/IEEE754.jar#com.cheese.IEEE754.IEEE754" name="8"/>
+  <lib desc="jar#IEEE754.jar#com.cheese.IEEE754.IEEE754" name="8"/>
   <main name="APUPlayer"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
@@ -89,178 +89,108 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 12"/>
     <wire from="(840,340)" to="(960,340)"/>
-    <wire from="(220,320)" to="(220,710)"/>
     <wire from="(1380,610)" to="(1380,690)"/>
-    <wire from="(200,780)" to="(200,1170)"/>
     <wire from="(1200,400)" to="(1200,420)"/>
-    <wire from="(650,170)" to="(700,170)"/>
     <wire from="(430,830)" to="(480,830)"/>
     <wire from="(360,1080)" to="(410,1080)"/>
-    <wire from="(240,880)" to="(290,880)"/>
-    <wire from="(360,1000)" to="(410,1000)"/>
     <wire from="(330,890)" to="(380,890)"/>
     <wire from="(1340,310)" to="(1380,310)"/>
     <wire from="(400,880)" to="(400,890)"/>
     <wire from="(250,170)" to="(300,170)"/>
-    <wire from="(960,440)" to="(1250,440)"/>
     <wire from="(380,1020)" to="(380,1040)"/>
-    <wire from="(1010,640)" to="(1010,730)"/>
     <wire from="(530,1010)" to="(530,1040)"/>
-    <wire from="(120,1000)" to="(120,1020)"/>
-    <wire from="(770,1010)" to="(770,1030)"/>
-    <wire from="(600,430)" to="(710,430)"/>
-    <wire from="(200,1170)" to="(240,1170)"/>
-    <wire from="(540,940)" to="(540,960)"/>
-    <wire from="(250,900)" to="(290,900)"/>
     <wire from="(240,970)" to="(280,970)"/>
-    <wire from="(250,1060)" to="(290,1060)"/>
     <wire from="(540,1180)" to="(540,1200)"/>
     <wire from="(640,960)" to="(640,980)"/>
-    <wire from="(560,480)" to="(560,520)"/>
-    <wire from="(780,970)" to="(800,970)"/>
-    <wire from="(380,1040)" to="(410,1040)"/>
-    <wire from="(210,300)" to="(300,300)"/>
-    <wire from="(260,920)" to="(290,920)"/>
     <wire from="(260,1160)" to="(290,1160)"/>
-    <wire from="(270,940)" to="(290,940)"/>
     <wire from="(270,1020)" to="(290,1020)"/>
     <wire from="(260,1170)" to="(280,1170)"/>
     <wire from="(100,900)" to="(100,940)"/>
-    <wire from="(450,490)" to="(450,790)"/>
+    <wire from="(630,430)" to="(630,720)"/>
     <wire from="(770,870)" to="(800,870)"/>
-    <wire from="(770,1110)" to="(800,1110)"/>
-    <wire from="(620,390)" to="(710,390)"/>
-    <wire from="(280,960)" to="(290,960)"/>
+    <wire from="(1170,1110)" to="(1200,1110)"/>
     <wire from="(260,1180)" to="(270,1180)"/>
-    <wire from="(220,320)" to="(300,320)"/>
-    <wire from="(330,1010)" to="(340,1010)"/>
-    <wire from="(700,440)" to="(700,630)"/>
     <wire from="(540,320)" to="(670,320)"/>
     <wire from="(240,880)" to="(240,930)"/>
     <wire from="(610,190)" to="(610,380)"/>
     <wire from="(60,980)" to="(70,980)"/>
     <wire from="(630,330)" to="(710,330)"/>
     <wire from="(790,1070)" to="(800,1070)"/>
-    <wire from="(670,870)" to="(680,870)"/>
-    <wire from="(670,880)" to="(670,890)"/>
+    <wire from="(990,1200)" to="(1040,1200)"/>
     <wire from="(660,400)" to="(660,600)"/>
     <wire from="(630,1000)" to="(680,1000)"/>
-    <wire from="(630,1080)" to="(680,1080)"/>
     <wire from="(510,880)" to="(560,880)"/>
     <wire from="(780,910)" to="(780,920)"/>
     <wire from="(1250,420)" to="(1250,440)"/>
     <wire from="(120,1210)" to="(120,1220)"/>
-    <wire from="(320,490)" to="(320,760)"/>
-    <wire from="(290,180)" to="(290,190)"/>
-    <wire from="(520,760)" to="(770,760)"/>
-    <wire from="(510,970)" to="(550,970)"/>
+    <wire from="(1220,870)" to="(1220,900)"/>
     <wire from="(520,900)" to="(560,900)"/>
     <wire from="(520,1060)" to="(560,1060)"/>
     <wire from="(480,830)" to="(480,980)"/>
-    <wire from="(130,400)" to="(300,400)"/>
     <wire from="(590,730)" to="(1010,730)"/>
     <wire from="(780,1070)" to="(780,1090)"/>
     <wire from="(260,1190)" to="(260,1220)"/>
+    <wire from="(1010,1140)" to="(1010,1160)"/>
     <wire from="(60,760)" to="(60,980)"/>
-    <wire from="(650,1020)" to="(650,1040)"/>
+    <wire from="(1220,1110)" to="(1270,1110)"/>
     <wire from="(470,1170)" to="(510,1170)"/>
-    <wire from="(1300,670)" to="(1310,670)"/>
     <wire from="(1330,300)" to="(1340,300)"/>
-    <wire from="(100,90)" to="(130,90)"/>
     <wire from="(90,960)" to="(120,960)"/>
-    <wire from="(170,140)" to="(170,690)"/>
     <wire from="(540,460)" to="(560,460)"/>
     <wire from="(540,940)" to="(560,940)"/>
-    <wire from="(540,1020)" to="(560,1020)"/>
-    <wire from="(530,1170)" to="(550,1170)"/>
     <wire from="(650,1040)" to="(680,1040)"/>
     <wire from="(530,920)" to="(560,920)"/>
-    <wire from="(530,1160)" to="(560,1160)"/>
     <wire from="(250,1020)" to="(250,1060)"/>
     <wire from="(650,170)" to="(650,270)"/>
-    <wire from="(400,890)" to="(410,890)"/>
     <wire from="(260,1150)" to="(270,1150)"/>
     <wire from="(540,130)" to="(670,130)"/>
-    <wire from="(160,130)" to="(160,700)"/>
-    <wire from="(1310,670)" to="(1330,670)"/>
-    <wire from="(510,880)" to="(510,930)"/>
     <wire from="(210,820)" to="(410,820)"/>
-    <wire from="(930,400)" to="(1200,400)"/>
     <wire from="(550,960)" to="(560,960)"/>
-    <wire from="(530,1180)" to="(540,1180)"/>
     <wire from="(600,1010)" to="(610,1010)"/>
-    <wire from="(1270,650)" to="(1270,670)"/>
-    <wire from="(240,980)" to="(290,980)"/>
-    <wire from="(360,940)" to="(410,940)"/>
-    <wire from="(40,750)" to="(40,1210)"/>
+    <wire from="(990,1010)" to="(1040,1010)"/>
+    <wire from="(620,740)" to="(930,740)"/>
     <wire from="(670,130)" to="(670,160)"/>
-    <wire from="(130,370)" to="(300,370)"/>
     <wire from="(600,220)" to="(700,220)"/>
-    <wire from="(530,1190)" to="(530,1220)"/>
-    <wire from="(120,940)" to="(120,960)"/>
     <wire from="(100,1160)" to="(100,1180)"/>
-    <wire from="(370,1030)" to="(370,1060)"/>
-    <wire from="(670,240)" to="(670,320)"/>
-    <wire from="(260,920)" to="(260,950)"/>
+    <wire from="(1170,780)" to="(1170,1110)"/>
     <wire from="(360,940)" to="(360,970)"/>
-    <wire from="(240,990)" to="(280,990)"/>
+    <wire from="(1010,950)" to="(1010,970)"/>
     <wire from="(110,1010)" to="(110,1040)"/>
     <wire from="(600,220)" to="(600,240)"/>
     <wire from="(1320,300)" to="(1320,310)"/>
-    <wire from="(370,960)" to="(410,960)"/>
-    <wire from="(510,490)" to="(510,770)"/>
-    <wire from="(520,1020)" to="(520,1060)"/>
-    <wire from="(780,910)" to="(800,910)"/>
-    <wire from="(770,1060)" to="(790,1060)"/>
     <wire from="(370,490)" to="(370,910)"/>
-    <wire from="(1230,410)" to="(1240,410)"/>
-    <wire from="(380,980)" to="(410,980)"/>
-    <wire from="(240,1000)" to="(270,1000)"/>
+    <wire from="(1220,960)" to="(1230,960)"/>
+    <wire from="(550,450)" to="(550,750)"/>
     <wire from="(390,800)" to="(600,800)"/>
-    <wire from="(240,1010)" to="(260,1010)"/>
-    <wire from="(270,1200)" to="(290,1200)"/>
     <wire from="(170,690)" to="(960,690)"/>
     <wire from="(210,300)" to="(210,660)"/>
-    <wire from="(200,240)" to="(200,670)"/>
-    <wire from="(770,1050)" to="(800,1050)"/>
+    <wire from="(1220,940)" to="(1250,940)"/>
     <wire from="(540,190)" to="(610,190)"/>
     <wire from="(290,190)" to="(300,190)"/>
     <wire from="(240,940)" to="(250,940)"/>
-    <wire from="(240,1020)" to="(250,1020)"/>
-    <wire from="(360,980)" to="(370,980)"/>
     <wire from="(1360,610)" to="(1380,610)"/>
-    <wire from="(770,1070)" to="(780,1070)"/>
     <wire from="(670,890)" to="(680,890)"/>
     <wire from="(700,440)" to="(710,440)"/>
-    <wire from="(1150,640)" to="(1170,640)"/>
-    <wire from="(530,1150)" to="(540,1150)"/>
-    <wire from="(930,400)" to="(930,670)"/>
-    <wire from="(800,630)" to="(850,630)"/>
+    <wire from="(1220,950)" to="(1240,950)"/>
+    <wire from="(630,720)" to="(940,720)"/>
     <wire from="(630,940)" to="(680,940)"/>
-    <wire from="(350,490)" to="(350,810)"/>
     <wire from="(510,980)" to="(560,980)"/>
-    <wire from="(790,940)" to="(790,950)"/>
-    <wire from="(1260,290)" to="(1260,310)"/>
     <wire from="(1200,400)" to="(1240,400)"/>
-    <wire from="(90,1280)" to="(140,1280)"/>
+    <wire from="(650,300)" to="(650,430)"/>
     <wire from="(280,990)" to="(280,1000)"/>
     <wire from="(270,1140)" to="(270,1150)"/>
     <wire from="(90,880)" to="(140,880)"/>
     <wire from="(90,1200)" to="(140,1200)"/>
     <wire from="(510,990)" to="(550,990)"/>
+    <wire from="(990,1060)" to="(990,1090)"/>
     <wire from="(660,180)" to="(700,180)"/>
     <wire from="(430,490)" to="(430,830)"/>
     <wire from="(640,960)" to="(680,960)"/>
-    <wire from="(770,1080)" to="(770,1110)"/>
     <wire from="(130,420)" to="(300,420)"/>
     <wire from="(640,1030)" to="(640,1060)"/>
     <wire from="(660,180)" to="(660,400)"/>
     <wire from="(530,920)" to="(530,950)"/>
-    <wire from="(110,1220)" to="(110,1240)"/>
-    <wire from="(630,940)" to="(630,970)"/>
-    <wire from="(630,810)" to="(630,890)"/>
     <wire from="(100,900)" to="(140,900)"/>
-    <wire from="(90,970)" to="(130,970)"/>
     <wire from="(100,1060)" to="(140,1060)"/>
     <wire from="(540,350)" to="(710,350)"/>
     <wire from="(1340,290)" to="(1340,300)"/>
@@ -270,358 +200,502 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(210,820)" to="(210,980)"/>
     <wire from="(510,1010)" to="(530,1010)"/>
     <wire from="(540,1200)" to="(560,1200)"/>
-    <wire from="(630,890)" to="(650,890)"/>
     <wire from="(360,1010)" to="(390,1010)"/>
     <wire from="(650,980)" to="(680,980)"/>
+    <wire from="(520,490)" to="(520,650)"/>
     <wire from="(360,1020)" to="(380,1020)"/>
-    <wire from="(960,340)" to="(960,440)"/>
     <wire from="(510,1000)" to="(540,1000)"/>
-    <wire from="(100,170)" to="(250,170)"/>
     <wire from="(910,430)" to="(910,660)"/>
     <wire from="(1150,610)" to="(1220,610)"/>
     <wire from="(450,790)" to="(470,790)"/>
     <wire from="(540,140)" to="(630,140)"/>
     <wire from="(120,940)" to="(140,940)"/>
-    <wire from="(120,1020)" to="(140,1020)"/>
-    <wire from="(1270,400)" to="(1300,400)"/>
     <wire from="(360,1030)" to="(370,1030)"/>
-    <wire from="(90,880)" to="(90,930)"/>
     <wire from="(130,960)" to="(140,960)"/>
-    <wire from="(240,1030)" to="(240,1080)"/>
-    <wire from="(770,1040)" to="(780,1040)"/>
+    <wire from="(1220,970)" to="(1220,1010)"/>
     <wire from="(630,980)" to="(640,980)"/>
     <wire from="(750,940)" to="(760,940)"/>
-    <wire from="(60,760)" to="(320,760)"/>
-    <wire from="(510,940)" to="(520,940)"/>
     <wire from="(510,1020)" to="(520,1020)"/>
+    <wire from="(1220,920)" to="(1240,920)"/>
     <wire from="(580,450)" to="(590,450)"/>
-    <wire from="(1330,650)" to="(1330,670)"/>
-    <wire from="(550,990)" to="(550,1000)"/>
-    <wire from="(540,1140)" to="(540,1150)"/>
+    <wire from="(1250,950)" to="(1270,950)"/>
     <wire from="(210,660)" to="(910,660)"/>
-    <wire from="(240,1080)" to="(290,1080)"/>
-    <wire from="(600,300)" to="(600,430)"/>
-    <wire from="(380,980)" to="(380,990)"/>
     <wire from="(280,960)" to="(280,970)"/>
-    <wire from="(1300,330)" to="(1300,400)"/>
+    <wire from="(990,870)" to="(990,900)"/>
     <wire from="(970,330)" to="(970,610)"/>
-    <wire from="(130,90)" to="(130,120)"/>
-    <wire from="(370,1060)" to="(410,1060)"/>
     <wire from="(200,240)" to="(300,240)"/>
+    <wire from="(490,490)" to="(490,770)"/>
     <wire from="(780,1090)" to="(800,1090)"/>
     <wire from="(780,930)" to="(800,930)"/>
-    <wire from="(750,770)" to="(750,940)"/>
-    <wire from="(770,760)" to="(770,870)"/>
-    <wire from="(200,670)" to="(930,670)"/>
+    <wire from="(520,650)" to="(990,650)"/>
+    <wire from="(990,1140)" to="(1010,1140)"/>
     <wire from="(690,360)" to="(710,360)"/>
-    <wire from="(630,1020)" to="(650,1020)"/>
     <wire from="(260,1040)" to="(290,1040)"/>
-    <wire from="(260,1120)" to="(290,1120)"/>
-    <wire from="(280,350)" to="(300,350)"/>
-    <wire from="(630,1010)" to="(660,1010)"/>
-    <wire from="(240,950)" to="(260,950)"/>
-    <wire from="(270,1140)" to="(290,1140)"/>
     <wire from="(360,990)" to="(380,990)"/>
     <wire from="(390,1020)" to="(410,1020)"/>
-    <wire from="(100,1020)" to="(100,1060)"/>
     <wire from="(360,1040)" to="(360,1080)"/>
+    <wire from="(990,1130)" to="(1020,1130)"/>
+    <wire from="(540,430)" to="(630,430)"/>
     <wire from="(200,780)" to="(470,780)"/>
-    <wire from="(280,1000)" to="(290,1000)"/>
     <wire from="(160,130)" to="(300,130)"/>
     <wire from="(840,430)" to="(910,430)"/>
-    <wire from="(540,280)" to="(620,280)"/>
+    <wire from="(540,440)" to="(620,440)"/>
+    <wire from="(990,1150)" to="(1000,1150)"/>
     <wire from="(510,1030)" to="(510,1080)"/>
     <wire from="(790,950)" to="(800,950)"/>
     <wire from="(780,940)" to="(790,940)"/>
-    <wire from="(840,440)" to="(850,440)"/>
-    <wire from="(630,1030)" to="(640,1030)"/>
+    <wire from="(500,760)" to="(770,760)"/>
     <wire from="(740,1060)" to="(750,1060)"/>
     <wire from="(650,980)" to="(650,990)"/>
-    <wire from="(550,960)" to="(550,970)"/>
-    <wire from="(740,790)" to="(740,1060)"/>
+    <wire from="(1160,1160)" to="(1270,1160)"/>
     <wire from="(510,1080)" to="(560,1080)"/>
-    <wire from="(520,490)" to="(520,760)"/>
-    <wire from="(780,1030)" to="(780,1040)"/>
+    <wire from="(1220,1070)" to="(1220,1090)"/>
     <wire from="(190,680)" to="(950,680)"/>
-    <wire from="(540,300)" to="(600,300)"/>
     <wire from="(220,710)" to="(980,710)"/>
-    <wire from="(410,490)" to="(410,820)"/>
-    <wire from="(280,1170)" to="(280,1180)"/>
     <wire from="(90,980)" to="(140,980)"/>
     <wire from="(90,1140)" to="(140,1140)"/>
-    <wire from="(270,1000)" to="(270,1020)"/>
-    <wire from="(190,270)" to="(300,270)"/>
     <wire from="(640,1060)" to="(680,1060)"/>
-    <wire from="(970,610)" to="(970,700)"/>
-    <wire from="(130,120)" to="(300,120)"/>
-    <wire from="(130,440)" to="(300,440)"/>
-    <wire from="(610,380)" to="(710,380)"/>
+    <wire from="(940,720)" to="(940,940)"/>
     <wire from="(980,240)" to="(980,710)"/>
     <wire from="(780,950)" to="(780,970)"/>
-    <wire from="(500,790)" to="(740,790)"/>
     <wire from="(90,990)" to="(130,990)"/>
+    <wire from="(1250,940)" to="(1250,950)"/>
     <wire from="(100,1160)" to="(140,1160)"/>
     <wire from="(110,920)" to="(110,950)"/>
     <wire from="(100,1230)" to="(100,1260)"/>
-    <wire from="(1260,310)" to="(1310,310)"/>
     <wire from="(330,910)" to="(370,910)"/>
     <wire from="(840,360)" to="(950,360)"/>
-    <wire from="(1330,300)" to="(1330,310)"/>
-    <wire from="(90,1140)" to="(90,1170)"/>
     <wire from="(110,1180)" to="(140,1180)"/>
     <wire from="(250,600)" to="(660,600)"/>
-    <wire from="(630,1040)" to="(630,1080)"/>
     <wire from="(90,1000)" to="(120,1000)"/>
+    <wire from="(990,950)" to="(1010,950)"/>
+    <wire from="(990,1110)" to="(1010,1110)"/>
     <wire from="(510,950)" to="(530,950)"/>
     <wire from="(540,1140)" to="(560,1140)"/>
-    <wire from="(1260,670)" to="(1270,670)"/>
-    <wire from="(630,990)" to="(650,990)"/>
-    <wire from="(660,1020)" to="(680,1020)"/>
-    <wire from="(530,1040)" to="(560,1040)"/>
+    <wire from="(990,1160)" to="(990,1200)"/>
     <wire from="(530,1120)" to="(560,1120)"/>
     <wire from="(250,900)" to="(250,940)"/>
     <wire from="(1010,640)" to="(1040,640)"/>
-    <wire from="(350,810)" to="(630,810)"/>
     <wire from="(90,1010)" to="(110,1010)"/>
-    <wire from="(290,180)" to="(300,180)"/>
-    <wire from="(850,240)" to="(980,240)"/>
+    <wire from="(990,940)" to="(1020,940)"/>
+    <wire from="(800,590)" to="(830,590)"/>
+    <wire from="(1000,760)" to="(1160,760)"/>
     <wire from="(40,750)" to="(310,750)"/>
-    <wire from="(850,440)" to="(850,630)"/>
-    <wire from="(970,610)" to="(1040,610)"/>
     <wire from="(210,980)" to="(220,980)"/>
-    <wire from="(630,140)" to="(630,330)"/>
-    <wire from="(90,940)" to="(100,940)"/>
     <wire from="(90,1020)" to="(100,1020)"/>
     <wire from="(90,1180)" to="(100,1180)"/>
+    <wire from="(990,960)" to="(1000,960)"/>
+    <wire from="(850,440)" to="(850,620)"/>
     <wire from="(470,790)" to="(470,1170)"/>
     <wire from="(1170,690)" to="(1380,690)"/>
-    <wire from="(550,520)" to="(560,520)"/>
+    <wire from="(1020,1140)" to="(1040,1140)"/>
     <wire from="(550,1000)" to="(560,1000)"/>
     <wire from="(1300,300)" to="(1320,300)"/>
     <wire from="(1310,650)" to="(1310,670)"/>
-    <wire from="(310,490)" to="(310,750)"/>
+    <wire from="(590,390)" to="(710,390)"/>
     <wire from="(550,1170)" to="(550,1180)"/>
     <wire from="(660,400)" to="(710,400)"/>
-    <wire from="(130,990)" to="(130,1000)"/>
+    <wire from="(540,280)" to="(590,280)"/>
+    <wire from="(1230,890)" to="(1230,910)"/>
     <wire from="(390,1010)" to="(390,1020)"/>
-    <wire from="(950,360)" to="(950,680)"/>
-    <wire from="(260,1120)" to="(260,1140)"/>
-    <wire from="(590,450)" to="(590,730)"/>
     <wire from="(160,700)" to="(970,700)"/>
     <wire from="(330,490)" to="(330,890)"/>
-    <wire from="(510,770)" to="(750,770)"/>
-    <wire from="(190,270)" to="(190,680)"/>
-    <wire from="(540,270)" to="(650,270)"/>
     <wire from="(540,1000)" to="(540,1020)"/>
-    <wire from="(520,900)" to="(520,940)"/>
     <wire from="(780,1030)" to="(800,1030)"/>
-    <wire from="(90,1210)" to="(120,1210)"/>
+    <wire from="(990,920)" to="(1010,920)"/>
+    <wire from="(1020,950)" to="(1040,950)"/>
     <wire from="(540,470)" to="(560,470)"/>
-    <wire from="(1200,420)" to="(1210,420)"/>
-    <wire from="(470,490)" to="(470,780)"/>
+    <wire from="(510,780)" to="(1170,780)"/>
     <wire from="(240,960)" to="(270,960)"/>
-    <wire from="(260,1220)" to="(290,1220)"/>
-    <wire from="(250,170)" to="(250,600)"/>
-    <wire from="(90,1220)" to="(110,1220)"/>
+    <wire from="(990,970)" to="(990,1010)"/>
+    <wire from="(590,280)" to="(590,390)"/>
+    <wire from="(1190,750)" to="(1190,940)"/>
     <wire from="(770,1010)" to="(800,1010)"/>
     <wire from="(390,490)" to="(390,800)"/>
-    <wire from="(480,980)" to="(490,980)"/>
     <wire from="(280,1180)" to="(290,1180)"/>
     <wire from="(90,1030)" to="(90,1080)"/>
-    <wire from="(90,1230)" to="(100,1230)"/>
-    <wire from="(690,630)" to="(700,630)"/>
-    <wire from="(660,1010)" to="(660,1020)"/>
-    <wire from="(1380,290)" to="(1380,310)"/>
+    <wire from="(1020,1130)" to="(1020,1140)"/>
     <wire from="(790,1060)" to="(790,1070)"/>
-    <wire from="(130,960)" to="(130,970)"/>
     <wire from="(110,1180)" to="(110,1190)"/>
+    <wire from="(930,740)" to="(930,1130)"/>
     <wire from="(540,240)" to="(600,240)"/>
     <wire from="(90,1080)" to="(140,1080)"/>
-    <wire from="(270,940)" to="(270,960)"/>
     <wire from="(270,1180)" to="(270,1200)"/>
     <wire from="(370,960)" to="(370,980)"/>
     <wire from="(130,460)" to="(300,460)"/>
+    <wire from="(930,1130)" to="(970,1130)"/>
     <wire from="(1300,290)" to="(1300,300)"/>
     <wire from="(260,1010)" to="(260,1040)"/>
     <wire from="(100,1260)" to="(140,1260)"/>
     <wire from="(600,800)" to="(600,1010)"/>
     <wire from="(530,1120)" to="(530,1140)"/>
+    <wire from="(1220,930)" to="(1270,930)"/>
     <wire from="(1170,640)" to="(1170,690)"/>
-    <wire from="(110,1040)" to="(140,1040)"/>
     <wire from="(40,1210)" to="(70,1210)"/>
-    <wire from="(620,280)" to="(620,390)"/>
-    <wire from="(670,160)" to="(700,160)"/>
+    <wire from="(1190,940)" to="(1200,940)"/>
     <wire from="(670,240)" to="(700,240)"/>
+    <wire from="(530,1220)" to="(560,1220)"/>
+    <wire from="(90,950)" to="(110,950)"/>
+    <wire from="(1240,970)" to="(1270,970)"/>
+    <wire from="(280,190)" to="(290,190)"/>
+    <wire from="(130,1000)" to="(140,1000)"/>
+    <wire from="(990,650)" to="(990,770)"/>
+    <wire from="(540,450)" to="(550,450)"/>
+    <wire from="(220,320)" to="(220,710)"/>
+    <wire from="(200,780)" to="(200,1170)"/>
+    <wire from="(1020,940)" to="(1020,950)"/>
+    <wire from="(650,170)" to="(700,170)"/>
+    <wire from="(240,880)" to="(290,880)"/>
+    <wire from="(360,1000)" to="(410,1000)"/>
+    <wire from="(1150,770)" to="(1150,1180)"/>
+    <wire from="(960,440)" to="(1250,440)"/>
+    <wire from="(1010,640)" to="(1010,730)"/>
+    <wire from="(120,1000)" to="(120,1020)"/>
+    <wire from="(770,1010)" to="(770,1030)"/>
+    <wire from="(200,1170)" to="(240,1170)"/>
+    <wire from="(1000,1080)" to="(1000,1100)"/>
+    <wire from="(540,940)" to="(540,960)"/>
+    <wire from="(250,900)" to="(290,900)"/>
+    <wire from="(250,1060)" to="(290,1060)"/>
+    <wire from="(560,480)" to="(560,500)"/>
+    <wire from="(780,970)" to="(800,970)"/>
+    <wire from="(380,1040)" to="(410,1040)"/>
+    <wire from="(210,300)" to="(300,300)"/>
+    <wire from="(1220,1100)" to="(1230,1100)"/>
+    <wire from="(260,920)" to="(290,920)"/>
+    <wire from="(270,940)" to="(290,940)"/>
+    <wire from="(450,490)" to="(450,790)"/>
+    <wire from="(770,1110)" to="(800,1110)"/>
+    <wire from="(280,960)" to="(290,960)"/>
+    <wire from="(220,320)" to="(300,320)"/>
+    <wire from="(330,1010)" to="(340,1010)"/>
+    <wire from="(480,790)" to="(740,790)"/>
+    <wire from="(670,870)" to="(680,870)"/>
+    <wire from="(670,880)" to="(670,890)"/>
+    <wire from="(990,1120)" to="(1040,1120)"/>
+    <wire from="(630,1080)" to="(680,1080)"/>
+    <wire from="(320,490)" to="(320,760)"/>
+    <wire from="(1230,890)" to="(1270,890)"/>
+    <wire from="(1230,960)" to="(1230,990)"/>
+    <wire from="(290,180)" to="(290,190)"/>
+    <wire from="(510,970)" to="(550,970)"/>
+    <wire from="(130,400)" to="(300,400)"/>
+    <wire from="(1150,1180)" to="(1270,1180)"/>
+    <wire from="(1000,890)" to="(1000,910)"/>
+    <wire from="(1220,870)" to="(1270,870)"/>
+    <wire from="(650,1020)" to="(650,1040)"/>
+    <wire from="(1300,670)" to="(1310,670)"/>
+    <wire from="(100,90)" to="(130,90)"/>
+    <wire from="(170,140)" to="(170,690)"/>
+    <wire from="(540,1020)" to="(560,1020)"/>
+    <wire from="(530,1170)" to="(550,1170)"/>
+    <wire from="(1220,910)" to="(1230,910)"/>
+    <wire from="(530,1160)" to="(560,1160)"/>
+    <wire from="(480,490)" to="(480,790)"/>
+    <wire from="(1010,1160)" to="(1040,1160)"/>
+    <wire from="(400,890)" to="(410,890)"/>
+    <wire from="(1240,910)" to="(1270,910)"/>
+    <wire from="(700,530)" to="(830,530)"/>
+    <wire from="(160,130)" to="(160,700)"/>
+    <wire from="(1310,670)" to="(1330,670)"/>
+    <wire from="(510,880)" to="(510,930)"/>
+    <wire from="(490,770)" to="(750,770)"/>
+    <wire from="(930,400)" to="(1200,400)"/>
+    <wire from="(530,1180)" to="(540,1180)"/>
+    <wire from="(990,930)" to="(1040,930)"/>
+    <wire from="(1270,650)" to="(1270,670)"/>
+    <wire from="(550,750)" to="(1190,750)"/>
+    <wire from="(240,980)" to="(290,980)"/>
+    <wire from="(360,940)" to="(410,940)"/>
+    <wire from="(40,750)" to="(40,1210)"/>
+    <wire from="(130,370)" to="(300,370)"/>
+    <wire from="(530,1190)" to="(530,1220)"/>
+    <wire from="(120,940)" to="(120,960)"/>
+    <wire from="(370,1030)" to="(370,1060)"/>
+    <wire from="(1230,1090)" to="(1230,1100)"/>
+    <wire from="(670,240)" to="(670,320)"/>
+    <wire from="(260,920)" to="(260,950)"/>
+    <wire from="(240,990)" to="(280,990)"/>
+    <wire from="(370,960)" to="(410,960)"/>
+    <wire from="(520,1020)" to="(520,1060)"/>
+    <wire from="(780,910)" to="(800,910)"/>
+    <wire from="(770,1060)" to="(790,1060)"/>
+    <wire from="(530,640)" to="(1000,640)"/>
+    <wire from="(1230,410)" to="(1240,410)"/>
+    <wire from="(380,980)" to="(410,980)"/>
+    <wire from="(620,440)" to="(620,740)"/>
+    <wire from="(510,490)" to="(510,780)"/>
+    <wire from="(240,1000)" to="(270,1000)"/>
+    <wire from="(240,1010)" to="(260,1010)"/>
+    <wire from="(270,1200)" to="(290,1200)"/>
+    <wire from="(200,240)" to="(200,670)"/>
+    <wire from="(1010,970)" to="(1040,970)"/>
+    <wire from="(770,1050)" to="(800,1050)"/>
+    <wire from="(830,530)" to="(830,590)"/>
+    <wire from="(240,1020)" to="(250,1020)"/>
+    <wire from="(360,980)" to="(370,980)"/>
+    <wire from="(770,1070)" to="(780,1070)"/>
+    <wire from="(1150,640)" to="(1170,640)"/>
+    <wire from="(530,1150)" to="(540,1150)"/>
+    <wire from="(930,400)" to="(930,670)"/>
+    <wire from="(990,1060)" to="(1040,1060)"/>
+    <wire from="(350,490)" to="(350,810)"/>
+    <wire from="(790,940)" to="(790,950)"/>
+    <wire from="(1260,290)" to="(1260,310)"/>
+    <wire from="(1230,990)" to="(1270,990)"/>
+    <wire from="(90,1280)" to="(140,1280)"/>
+    <wire from="(1000,1150)" to="(1000,1180)"/>
+    <wire from="(770,1080)" to="(770,1110)"/>
+    <wire from="(110,1220)" to="(110,1240)"/>
+    <wire from="(630,940)" to="(630,970)"/>
+    <wire from="(1000,1080)" to="(1040,1080)"/>
+    <wire from="(630,810)" to="(630,890)"/>
+    <wire from="(90,970)" to="(130,970)"/>
+    <wire from="(1240,910)" to="(1240,920)"/>
+    <wire from="(1220,1130)" to="(1270,1130)"/>
+    <wire from="(630,890)" to="(650,890)"/>
+    <wire from="(960,340)" to="(960,440)"/>
+    <wire from="(100,170)" to="(250,170)"/>
+    <wire from="(1010,1100)" to="(1040,1100)"/>
+    <wire from="(120,1020)" to="(140,1020)"/>
+    <wire from="(1270,400)" to="(1300,400)"/>
+    <wire from="(90,880)" to="(90,930)"/>
+    <wire from="(240,1030)" to="(240,1080)"/>
+    <wire from="(990,1100)" to="(1000,1100)"/>
+    <wire from="(770,1040)" to="(780,1040)"/>
+    <wire from="(60,760)" to="(320,760)"/>
+    <wire from="(510,940)" to="(520,940)"/>
+    <wire from="(1330,650)" to="(1330,670)"/>
+    <wire from="(990,870)" to="(1040,870)"/>
+    <wire from="(550,990)" to="(550,1000)"/>
+    <wire from="(540,1140)" to="(540,1150)"/>
+    <wire from="(240,1080)" to="(290,1080)"/>
+    <wire from="(380,980)" to="(380,990)"/>
+    <wire from="(1000,960)" to="(1000,990)"/>
+    <wire from="(1300,330)" to="(1300,400)"/>
+    <wire from="(1000,890)" to="(1040,890)"/>
+    <wire from="(130,90)" to="(130,120)"/>
+    <wire from="(370,1060)" to="(410,1060)"/>
+    <wire from="(750,770)" to="(750,940)"/>
+    <wire from="(770,760)" to="(770,870)"/>
+    <wire from="(200,670)" to="(930,670)"/>
+    <wire from="(630,1020)" to="(650,1020)"/>
+    <wire from="(260,1120)" to="(290,1120)"/>
+    <wire from="(280,350)" to="(300,350)"/>
+    <wire from="(630,1010)" to="(660,1010)"/>
+    <wire from="(240,950)" to="(260,950)"/>
+    <wire from="(270,1140)" to="(290,1140)"/>
+    <wire from="(100,1020)" to="(100,1060)"/>
+    <wire from="(1010,910)" to="(1040,910)"/>
+    <wire from="(280,1000)" to="(290,1000)"/>
+    <wire from="(990,910)" to="(1000,910)"/>
+    <wire from="(840,440)" to="(850,440)"/>
+    <wire from="(630,1030)" to="(640,1030)"/>
+    <wire from="(550,960)" to="(550,970)"/>
+    <wire from="(740,790)" to="(740,1060)"/>
+    <wire from="(1010,1100)" to="(1010,1110)"/>
+    <wire from="(780,1030)" to="(780,1040)"/>
+    <wire from="(1230,1090)" to="(1270,1090)"/>
+    <wire from="(410,490)" to="(410,820)"/>
+    <wire from="(280,1170)" to="(280,1180)"/>
+    <wire from="(270,1000)" to="(270,1020)"/>
+    <wire from="(190,270)" to="(300,270)"/>
+    <wire from="(970,610)" to="(970,700)"/>
+    <wire from="(130,120)" to="(300,120)"/>
+    <wire from="(130,440)" to="(300,440)"/>
+    <wire from="(610,380)" to="(710,380)"/>
+    <wire from="(1000,1180)" to="(1040,1180)"/>
+    <wire from="(540,300)" to="(650,300)"/>
+    <wire from="(1260,310)" to="(1310,310)"/>
+    <wire from="(1220,1070)" to="(1270,1070)"/>
+    <wire from="(1330,300)" to="(1330,310)"/>
+    <wire from="(90,1140)" to="(90,1170)"/>
+    <wire from="(630,1040)" to="(630,1080)"/>
+    <wire from="(1260,670)" to="(1270,670)"/>
+    <wire from="(630,990)" to="(650,990)"/>
+    <wire from="(660,1020)" to="(680,1020)"/>
+    <wire from="(530,1040)" to="(560,1040)"/>
+    <wire from="(350,810)" to="(630,810)"/>
+    <wire from="(290,180)" to="(300,180)"/>
+    <wire from="(850,240)" to="(980,240)"/>
+    <wire from="(970,610)" to="(1040,610)"/>
+    <wire from="(630,140)" to="(630,330)"/>
+    <wire from="(90,940)" to="(100,940)"/>
+    <wire from="(1000,640)" to="(1000,760)"/>
+    <wire from="(310,490)" to="(310,750)"/>
+    <wire from="(1160,760)" to="(1160,1160)"/>
+    <wire from="(800,620)" to="(850,620)"/>
+    <wire from="(1010,910)" to="(1010,920)"/>
+    <wire from="(130,990)" to="(130,1000)"/>
+    <wire from="(950,360)" to="(950,680)"/>
+    <wire from="(260,1120)" to="(260,1140)"/>
+    <wire from="(590,450)" to="(590,730)"/>
+    <wire from="(1000,990)" to="(1040,990)"/>
+    <wire from="(190,270)" to="(190,680)"/>
+    <wire from="(1220,1120)" to="(1220,1130)"/>
+    <wire from="(540,270)" to="(650,270)"/>
+    <wire from="(530,490)" to="(530,640)"/>
+    <wire from="(520,900)" to="(520,940)"/>
+    <wire from="(90,1210)" to="(120,1210)"/>
+    <wire from="(1200,420)" to="(1210,420)"/>
+    <wire from="(470,490)" to="(470,780)"/>
+    <wire from="(260,1220)" to="(290,1220)"/>
+    <wire from="(940,940)" to="(970,940)"/>
+    <wire from="(250,170)" to="(250,600)"/>
+    <wire from="(90,1220)" to="(110,1220)"/>
+    <wire from="(480,980)" to="(490,980)"/>
+    <wire from="(90,1230)" to="(100,1230)"/>
+    <wire from="(660,1010)" to="(660,1020)"/>
+    <wire from="(1380,290)" to="(1380,310)"/>
+    <wire from="(1240,950)" to="(1240,970)"/>
+    <wire from="(130,960)" to="(130,970)"/>
+    <wire from="(500,490)" to="(500,760)"/>
+    <wire from="(650,430)" to="(710,430)"/>
+    <wire from="(270,940)" to="(270,960)"/>
+    <wire from="(700,440)" to="(700,530)"/>
+    <wire from="(1220,1010)" to="(1270,1010)"/>
+    <wire from="(110,1040)" to="(140,1040)"/>
+    <wire from="(670,160)" to="(700,160)"/>
     <wire from="(90,1240)" to="(90,1280)"/>
     <wire from="(840,400)" to="(930,400)"/>
     <wire from="(510,960)" to="(540,960)"/>
-    <wire from="(530,1220)" to="(560,1220)"/>
-    <wire from="(500,490)" to="(500,790)"/>
-    <wire from="(90,950)" to="(110,950)"/>
     <wire from="(90,1190)" to="(110,1190)"/>
     <wire from="(120,1220)" to="(140,1220)"/>
+    <wire from="(990,770)" to="(1150,770)"/>
     <wire from="(400,870)" to="(410,870)"/>
     <wire from="(840,330)" to="(970,330)"/>
-    <wire from="(280,190)" to="(290,190)"/>
     <wire from="(960,440)" to="(960,690)"/>
-    <wire from="(130,1000)" to="(140,1000)"/>
     <wire from="(170,140)" to="(300,140)"/>
     <wire from="(550,1180)" to="(560,1180)"/>
-    <comp lib="5" loc="(140,1180)" name="LED"/>
-    <comp lib="6" loc="(568,860)" name="Text">
-      <a name="text" val="SQB_F"/>
+    <comp lib="6" loc="(148,861)" name="Text">
+      <a name="text" val="TRI_F"/>
     </comp>
-    <comp lib="5" loc="(410,1020)" name="LED"/>
-    <comp lib="5" loc="(410,1000)" name="LED"/>
-    <comp lib="5" loc="(410,890)" name="LED"/>
-    <comp lib="0" loc="(1260,670)" name="Constant"/>
     <comp lib="5" loc="(290,960)" name="LED"/>
-    <comp lib="5" loc="(140,1260)" name="LED"/>
-    <comp lib="5" loc="(410,1080)" name="LED"/>
-    <comp lib="0" loc="(690,360)" name="Constant"/>
-    <comp lib="5" loc="(140,940)" name="LED"/>
+    <comp lib="5" loc="(140,1060)" name="LED"/>
+    <comp lib="5" loc="(680,1040)" name="LED"/>
+    <comp lib="4" loc="(1270,400)" name="Register">
+      <a name="width" val="16"/>
+      <a name="trigger" val="high"/>
+      <a name="label" val="transp_latch"/>
+    </comp>
+    <comp lib="6" loc="(152,1126)" name="Text">
+      <a name="text" val="TRI_LIN"/>
+    </comp>
     <comp lib="5" loc="(800,1090)" name="LED">
       <a name="label" val="ENVDIS"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="5" loc="(680,1060)" name="LED"/>
-    <comp lib="5" loc="(680,960)" name="LED"/>
-    <comp lib="5" loc="(290,1180)" name="LED"/>
     <comp lib="5" loc="(290,940)" name="LED"/>
-    <comp lib="0" loc="(650,890)" name="Splitter"/>
+    <comp lib="5" loc="(1040,970)" name="LED"/>
+    <comp lib="5" loc="(410,1020)" name="LED"/>
+    <comp lib="6" loc="(422,926)" name="Text">
+      <a name="text" val="SW_A"/>
+    </comp>
+    <comp lib="5" loc="(680,980)" name="LED"/>
+    <comp lib="5" loc="(140,920)" name="LED"/>
+    <comp lib="5" loc="(680,890)" name="LED"/>
     <comp lib="0" loc="(220,980)" name="Splitter">
       <a name="fanout" val="11"/>
       <a name="incoming" val="11"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="5" loc="(560,1160)" name="LED"/>
-    <comp lib="5" loc="(800,870)" name="LED">
-      <a name="label" val="RMODE"/>
+    <comp lib="5" loc="(140,940)" name="LED"/>
+    <comp lib="5" loc="(290,1060)" name="LED"/>
+    <comp lib="5" loc="(1040,1060)" name="LED">
+      <a name="label" val="SAMPLE_LEN"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="5" loc="(290,1060)" name="LED"/>
-    <comp lib="5" loc="(130,400)" name="LED">
-      <a name="facing" val="east"/>
-      <a name="label" val="TRI"/>
-      <a name="labelloc" val="west"/>
-    </comp>
-    <comp lib="6" loc="(688,921)" name="Text">
-      <a name="text" val="SW_B"/>
-    </comp>
-    <comp lib="5" loc="(800,950)" name="LED"/>
-    <comp lib="5" loc="(290,1080)" name="LED"/>
     <comp lib="5" loc="(290,1220)" name="LED">
       <a name="label" val="HALT SQA"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="6" loc="(560,405)" name="Text">
-      <a name="text" val="N.C."/>
+    <comp lib="5" loc="(290,1020)" name="LED"/>
+    <comp lib="5" loc="(290,900)" name="LED"/>
+    <comp lib="5" loc="(140,1040)" name="LED"/>
+    <comp lib="5" loc="(290,1080)" name="LED"/>
+    <comp lib="5" loc="(680,870)" name="LED">
+      <a name="label" val="SQB_DUTY"/>
+      <a name="labelloc" val="north"/>
     </comp>
-    <comp loc="(700,160)" name="WRAM">
-      <a name="label" val="wram"/>
-      <a name="labelloc" val="south"/>
-      <a name="labelfont" val="SansSerif plain 10"/>
+    <comp lib="5" loc="(1270,1130)" name="LED"/>
+    <comp lib="0" loc="(1300,670)" name="Constant">
+      <a name="value" val="0x0"/>
     </comp>
-    <comp lib="0" loc="(70,1210)" name="Splitter">
-      <a name="fanout" val="8"/>
-      <a name="incoming" val="8"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="5" loc="(140,1140)" name="LED"/>
-    <comp lib="5" loc="(680,980)" name="LED"/>
-    <comp lib="6" loc="(1356,561)" name="Text">
-      <a name="text" val="Taram-param-pam. Pam! Peep, peep, peep. Pipipipip, pip, pibibip"/>
-      <a name="font" val="SansSerif bolditalic 12"/>
-    </comp>
-    <comp lib="5" loc="(680,1020)" name="LED"/>
-    <comp lib="0" loc="(340,1010)" name="Splitter">
-      <a name="fanout" val="8"/>
-      <a name="incoming" val="8"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="5" loc="(680,1080)" name="LED"/>
-    <comp lib="5" loc="(1300,290)" name="Hex Digit Display"/>
-    <comp lib="5" loc="(140,1000)" name="LED"/>
-    <comp lib="0" loc="(280,190)" name="Constant"/>
-    <comp lib="5" loc="(680,1000)" name="LED"/>
+    <comp lib="5" loc="(1270,930)" name="LED"/>
+    <comp lib="5" loc="(560,1080)" name="LED"/>
     <comp lib="5" loc="(130,420)" name="LED">
       <a name="facing" val="east"/>
       <a name="label" val="SQB"/>
       <a name="labelloc" val="west"/>
     </comp>
-    <comp lib="5" loc="(1340,290)" name="Hex Digit Display"/>
-    <comp lib="0" loc="(1300,330)" name="Splitter">
-      <a name="facing" val="north"/>
-      <a name="fanout" val="4"/>
-      <a name="incoming" val="16"/>
-      <a name="appear" val="right"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="1"/>
-      <a name="bit5" val="1"/>
-      <a name="bit6" val="1"/>
-      <a name="bit7" val="1"/>
-      <a name="bit8" val="2"/>
-      <a name="bit9" val="2"/>
-      <a name="bit10" val="2"/>
-      <a name="bit11" val="2"/>
-      <a name="bit12" val="3"/>
-      <a name="bit13" val="3"/>
-      <a name="bit14" val="3"/>
-      <a name="bit15" val="3"/>
-    </comp>
-    <comp lib="5" loc="(560,1000)" name="LED"/>
-    <comp lib="5" loc="(680,870)" name="LED">
-      <a name="label" val="SQB_DUTY"/>
-      <a name="labelloc" val="north"/>
-    </comp>
     <comp lib="5" loc="(140,1240)" name="LED"/>
-    <comp lib="5" loc="(290,1160)" name="LED"/>
+    <comp lib="5" loc="(1270,870)" name="LED">
+      <a name="label" val="SAMPLE_BUF"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="5" loc="(410,1080)" name="LED"/>
+    <comp lib="5" loc="(130,370)" name="LED">
+      <a name="facing" val="east"/>
+      <a name="label" val="DMC"/>
+      <a name="labelloc" val="west"/>
+    </comp>
+    <comp lib="5" loc="(290,1120)" name="LED">
+      <a name="label" val="SQA_ENV"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(510,1170)" name="Splitter">
+      <a name="fanout" val="6"/>
+      <a name="incoming" val="6"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="0" loc="(280,350)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
     <comp lib="0" loc="(610,1010)" name="Splitter">
       <a name="fanout" val="8"/>
       <a name="incoming" val="8"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="0" loc="(800,630)" name="Probe">
-      <a name="radix" val="16"/>
-      <a name="labelfont" val="SansSerif plain 40"/>
+    <comp lib="5" loc="(1040,930)" name="LED"/>
+    <comp lib="6" loc="(568,860)" name="Text">
+      <a name="text" val="SQB_F"/>
     </comp>
-    <comp loc="(710,330)" name="Fake6502">
-      <a name="label" val="core"/>
+    <comp lib="5" loc="(1270,1110)" name="LED"/>
+    <comp loc="(1040,610)" name="AUXDumper">
+      <a name="label" val="dumper"/>
       <a name="labelloc" val="south"/>
       <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
-    <comp lib="5" loc="(410,940)" name="LED"/>
-    <comp lib="5" loc="(140,980)" name="LED"/>
-    <comp lib="5" loc="(290,1040)" name="LED"/>
-    <comp lib="6" loc="(298,861)" name="Text">
-      <a name="text" val="SQA_F"/>
+    <comp lib="5" loc="(1040,1080)" name="LED"/>
+    <comp lib="5" loc="(1040,910)" name="LED"/>
+    <comp lib="5" loc="(140,880)" name="LED"/>
+    <comp lib="0" loc="(280,190)" name="Constant"/>
+    <comp lib="5" loc="(1270,1010)" name="LED"/>
+    <comp lib="5" loc="(680,1080)" name="LED"/>
+    <comp lib="5" loc="(130,460)" name="LED">
+      <a name="facing" val="east"/>
+      <a name="label" val="RND"/>
+      <a name="labelloc" val="west"/>
     </comp>
-    <comp lib="5" loc="(140,1160)" name="LED"/>
-    <comp lib="5" loc="(290,900)" name="LED"/>
-    <comp lib="5" loc="(560,1180)" name="LED"/>
-    <comp lib="5" loc="(140,1280)" name="LED">
-      <a name="label" val="TRI_RELOAD"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="5" loc="(560,900)" name="LED"/>
-    <comp lib="5" loc="(560,1220)" name="LED">
-      <a name="label" val="HALT SQB"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="5" loc="(800,1070)" name="LED"/>
-    <comp lib="5" loc="(140,1080)" name="LED"/>
-    <comp lib="5" loc="(560,980)" name="LED"/>
-    <comp lib="5" loc="(1380,290)" name="Hex Digit Display"/>
+    <comp lib="5" loc="(560,960)" name="LED"/>
     <comp lib="5" loc="(1260,290)" name="Hex Digit Display"/>
-    <comp lib="5" loc="(560,920)" name="LED"/>
-    <comp lib="7" loc="(300,120)" name="2A03_APU">
-      <a name="label" val="apu"/>
-      <a name="labelloc" val="south"/>
-      <a name="labelfont" val="SansSerif plain 10"/>
+    <comp lib="5" loc="(800,1010)" name="LED">
+      <a name="label" val="N_ENV"/>
+      <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(380,890)" name="Splitter"/>
+    <comp lib="5" loc="(800,910)" name="LED">
+      <a name="label" val="NFREQ"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(100,170)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="/RES"/>
+    </comp>
+    <comp lib="6" loc="(1356,561)" name="Text">
+      <a name="text" val="Taram-param-pam. Pam! Peep, peep, peep. Pipipipip, pip, pibibip"/>
+      <a name="font" val="SansSerif bolditalic 12"/>
+    </comp>
+    <comp lib="5" loc="(560,880)" name="LED"/>
     <comp lib="0" loc="(580,450)" name="Splitter">
       <a name="facing" val="west"/>
       <a name="fanout" val="3"/>
@@ -650,71 +724,51 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="bit22" val="1"/>
       <a name="bit23" val="2"/>
     </comp>
-    <comp lib="0" loc="(510,1170)" name="Splitter">
-      <a name="fanout" val="6"/>
-      <a name="incoming" val="6"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="5" loc="(140,900)" name="LED"/>
-    <comp lib="0" loc="(240,1170)" name="Splitter">
-      <a name="fanout" val="6"/>
-      <a name="incoming" val="6"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="5" loc="(560,880)" name="LED"/>
-    <comp lib="0" loc="(750,1060)" name="Splitter">
-      <a name="fanout" val="6"/>
-      <a name="incoming" val="6"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="5" loc="(680,940)" name="LED"/>
-    <comp lib="5" loc="(410,1060)" name="LED"/>
-    <comp lib="0" loc="(70,980)" name="Splitter">
+    <comp lib="5" loc="(1040,950)" name="LED"/>
+    <comp lib="0" loc="(490,980)" name="Splitter">
       <a name="fanout" val="11"/>
       <a name="incoming" val="11"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="0" loc="(100,90)" name="Clock">
-      <a name="label" val="XTAL"/>
-    </comp>
-    <comp lib="5" loc="(560,960)" name="LED"/>
-    <comp lib="5" loc="(560,1020)" name="LED"/>
-    <comp lib="5" loc="(560,1060)" name="LED"/>
-    <comp lib="0" loc="(1300,670)" name="Constant">
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="5" loc="(140,880)" name="LED"/>
-    <comp lib="5" loc="(290,1120)" name="LED">
-      <a name="label" val="SQA_ENV"/>
+    <comp lib="5" loc="(290,1160)" name="LED"/>
+    <comp lib="5" loc="(1270,910)" name="LED"/>
+    <comp lib="5" loc="(800,930)" name="LED"/>
+    <comp lib="5" loc="(560,920)" name="LED"/>
+    <comp lib="5" loc="(1040,1010)" name="LED"/>
+    <comp lib="5" loc="(800,1110)" name="LED">
+      <a name="label" val="HALT NOISE"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="5" loc="(410,870)" name="LED">
-      <a name="label" val="SQA_DUTY"/>
-      <a name="labelloc" val="north"/>
-    </comp>
-    <comp lib="5" loc="(140,960)" name="LED"/>
-    <comp lib="5" loc="(800,1050)" name="LED"/>
-    <comp lib="5" loc="(410,960)" name="LED"/>
-    <comp lib="6" loc="(148,861)" name="Text">
-      <a name="text" val="TRI_F"/>
-    </comp>
-    <comp lib="5" loc="(140,1040)" name="LED"/>
-    <comp lib="5" loc="(560,1040)" name="LED"/>
-    <comp lib="5" loc="(290,880)" name="LED"/>
-    <comp lib="5" loc="(410,1040)" name="LED"/>
-    <comp lib="5" loc="(800,1010)" name="LED">
-      <a name="label" val="N_ENV"/>
+    <comp lib="5" loc="(560,980)" name="LED"/>
+    <comp lib="5" loc="(1040,990)" name="LED"/>
+    <comp lib="5" loc="(1270,1070)" name="LED">
+      <a name="label" val="DMC_FREQ"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="5" loc="(800,1030)" name="LED"/>
-    <comp lib="5" loc="(140,920)" name="LED"/>
-    <comp lib="0" loc="(760,940)" name="Splitter">
+    <comp lib="5" loc="(290,1140)" name="LED"/>
+    <comp lib="6" loc="(775,501)" name="Text">
+      <a name="text" val="Load regdump here"/>
+      <a name="font" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="0" loc="(380,890)" name="Splitter"/>
+    <comp lib="0" loc="(1200,1110)" name="Splitter">
       <a name="fanout" val="4"/>
       <a name="incoming" val="4"/>
       <a name="appear" val="center"/>
     </comp>
-    <comp lib="5" loc="(140,1220)" name="LED"/>
-    <comp lib="5" loc="(410,980)" name="LED"/>
+    <comp lib="0" loc="(560,500)" name="Constant">
+      <a name="facing" val="north"/>
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="5" loc="(680,1020)" name="LED"/>
+    <comp lib="5" loc="(800,870)" name="LED">
+      <a name="label" val="RMODE"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(650,890)" name="Splitter"/>
+    <comp lib="5" loc="(1040,1180)" name="LED"/>
+    <comp lib="5" loc="(560,1060)" name="LED"/>
+    <comp lib="5" loc="(140,960)" name="LED"/>
     <comp lib="0" loc="(1210,420)" name="Splitter">
       <a name="fanout" val="1"/>
       <a name="incoming" val="16"/>
@@ -735,103 +789,218 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="bit14" val="0"/>
       <a name="bit15" val="none"/>
     </comp>
-    <comp lib="5" loc="(690,630)" name="Button">
-      <a name="label" val="Next RegOp"/>
+    <comp lib="6" loc="(560,405)" name="Text">
+      <a name="text" val="N.C."/>
+    </comp>
+    <comp lib="0" loc="(1200,940)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="5" loc="(140,1200)" name="LED"/>
+    <comp lib="0" loc="(240,1170)" name="Splitter">
+      <a name="fanout" val="6"/>
+      <a name="incoming" val="6"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp loc="(700,160)" name="WRAM">
+      <a name="label" val="wram"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp lib="5" loc="(1270,890)" name="LED"/>
+    <comp lib="5" loc="(1040,1100)" name="LED"/>
+    <comp lib="5" loc="(410,870)" name="LED">
+      <a name="label" val="SQA_DUTY"/>
+      <a name="labelloc" val="north"/>
+    </comp>
+    <comp lib="5" loc="(560,940)" name="LED"/>
+    <comp lib="0" loc="(340,1010)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="5" loc="(1270,1090)" name="LED"/>
+    <comp lib="5" loc="(410,1040)" name="LED"/>
+    <comp lib="5" loc="(410,1060)" name="LED"/>
+    <comp lib="5" loc="(140,1220)" name="LED"/>
+    <comp lib="5" loc="(800,950)" name="LED"/>
+    <comp lib="5" loc="(1040,890)" name="LED"/>
+    <comp lib="5" loc="(560,1120)" name="LED">
+      <a name="label" val="SQB_ENV"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="5" loc="(1040,1140)" name="LED"/>
+    <comp lib="0" loc="(1260,670)" name="Constant"/>
+    <comp lib="5" loc="(290,980)" name="LED"/>
+    <comp lib="5" loc="(410,980)" name="LED"/>
+    <comp lib="5" loc="(1340,290)" name="Hex Digit Display"/>
+    <comp lib="5" loc="(140,1000)" name="LED"/>
+    <comp lib="5" loc="(140,980)" name="LED"/>
+    <comp lib="5" loc="(140,1180)" name="LED"/>
+    <comp lib="5" loc="(1270,990)" name="LED"/>
+    <comp lib="5" loc="(1040,870)" name="LED">
+      <a name="label" val="SAMPLE_ADR"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="5" loc="(680,1060)" name="LED"/>
+    <comp lib="5" loc="(800,1070)" name="LED"/>
+    <comp lib="5" loc="(560,1020)" name="LED"/>
+    <comp lib="0" loc="(800,620)" name="Probe">
+      <a name="radix" val="16"/>
+      <a name="labelfont" val="SansSerif plain 40"/>
+    </comp>
+    <comp lib="5" loc="(410,1000)" name="LED"/>
+    <comp lib="5" loc="(560,900)" name="LED"/>
+    <comp lib="5" loc="(130,400)" name="LED">
+      <a name="facing" val="east"/>
+      <a name="label" val="TRI"/>
       <a name="labelloc" val="west"/>
     </comp>
-    <comp lib="5" loc="(560,1140)" name="LED"/>
-    <comp lib="6" loc="(775,501)" name="Text">
-      <a name="text" val="Load regdump here"/>
-      <a name="font" val="SansSerif bold 12"/>
+    <comp lib="5" loc="(560,1180)" name="LED"/>
+    <comp lib="5" loc="(140,1260)" name="LED"/>
+    <comp lib="5" loc="(290,920)" name="LED"/>
+    <comp lib="5" loc="(560,1000)" name="LED"/>
+    <comp lib="5" loc="(140,900)" name="LED"/>
+    <comp lib="6" loc="(298,861)" name="Text">
+      <a name="text" val="SQA_F"/>
     </comp>
-    <comp lib="0" loc="(280,350)" name="Constant">
-      <a name="value" val="0x0"/>
+    <comp lib="5" loc="(560,1160)" name="LED"/>
+    <comp lib="5" loc="(140,1020)" name="LED"/>
+    <comp lib="5" loc="(1040,1160)" name="LED"/>
+    <comp lib="5" loc="(410,940)" name="LED"/>
+    <comp lib="5" loc="(680,1000)" name="LED"/>
+    <comp lib="7" loc="(300,120)" name="2A03_APU">
+      <a name="label" val="apu"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp lib="5" loc="(140,1160)" name="LED"/>
+    <comp lib="5" loc="(140,1080)" name="LED"/>
+    <comp lib="5" loc="(1380,290)" name="Hex Digit Display"/>
+    <comp lib="0" loc="(970,1130)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="5" loc="(1270,1180)" name="LED">
+      <a name="label" val="ENIRQ"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="5" loc="(800,1030)" name="LED"/>
+    <comp lib="5" loc="(410,960)" name="LED"/>
+    <comp lib="5" loc="(290,1040)" name="LED"/>
+    <comp lib="0" loc="(970,940)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="5" loc="(1300,290)" name="Hex Digit Display"/>
+    <comp lib="5" loc="(1040,1120)" name="LED"/>
+    <comp lib="5" loc="(560,1220)" name="LED">
+      <a name="label" val="HALT SQB"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="5" loc="(680,960)" name="LED"/>
+    <comp loc="(710,330)" name="Fake6502">
+      <a name="label" val="core"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp lib="5" loc="(290,880)" name="LED"/>
+    <comp lib="5" loc="(290,1000)" name="LED"/>
+    <comp lib="5" loc="(1040,1200)" name="LED"/>
+    <comp lib="5" loc="(1270,950)" name="LED"/>
+    <comp lib="5" loc="(290,1180)" name="LED"/>
+    <comp lib="0" loc="(70,980)" name="Splitter">
+      <a name="fanout" val="11"/>
+      <a name="incoming" val="11"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="6" loc="(688,921)" name="Text">
+      <a name="text" val="SW_B"/>
+    </comp>
+    <comp lib="0" loc="(1300,330)" name="Splitter">
+      <a name="facing" val="north"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="16"/>
+      <a name="appear" val="right"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="1"/>
+      <a name="bit5" val="1"/>
+      <a name="bit6" val="1"/>
+      <a name="bit7" val="1"/>
+      <a name="bit8" val="2"/>
+      <a name="bit9" val="2"/>
+      <a name="bit10" val="2"/>
+      <a name="bit11" val="2"/>
+      <a name="bit12" val="3"/>
+      <a name="bit13" val="3"/>
+      <a name="bit14" val="3"/>
+      <a name="bit15" val="3"/>
+    </comp>
+    <comp lib="0" loc="(70,1210)" name="Splitter">
+      <a name="fanout" val="8"/>
+      <a name="incoming" val="8"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="6" loc="(1295,220)" name="Text">
+      <a name="text" val="Last APU Register"/>
+    </comp>
+    <comp lib="5" loc="(290,1200)" name="LED">
+      <a name="label" val="ENVDIS"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="5" loc="(560,1140)" name="LED"/>
+    <comp lib="5" loc="(800,970)" name="LED"/>
+    <comp lib="0" loc="(760,940)" name="Splitter">
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+      <a name="appear" val="center"/>
+    </comp>
+    <comp lib="5" loc="(800,590)" name="Button">
+      <a name="label" val="Next RegOp"/>
+      <a name="labelloc" val="west"/>
     </comp>
     <comp lib="5" loc="(130,440)" name="LED">
       <a name="facing" val="east"/>
       <a name="label" val="SQA"/>
       <a name="labelloc" val="west"/>
     </comp>
-    <comp lib="5" loc="(140,1200)" name="LED"/>
-    <comp lib="5" loc="(130,460)" name="LED">
-      <a name="facing" val="east"/>
-      <a name="label" val="RND"/>
-      <a name="labelloc" val="west"/>
+    <comp lib="0" loc="(100,90)" name="Clock">
+      <a name="label" val="XTAL"/>
     </comp>
-    <comp lib="5" loc="(800,1110)" name="LED">
-      <a name="label" val="HALT NOISE"/>
+    <comp lib="5" loc="(1270,1160)" name="LED">
+      <a name="label" val="LOOP"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="6" loc="(1295,220)" name="Text">
-      <a name="text" val="Last APU Register"/>
+    <comp lib="5" loc="(410,890)" name="LED"/>
+    <comp lib="5" loc="(140,1140)" name="LED"/>
+    <comp lib="0" loc="(690,360)" name="Constant"/>
+    <comp lib="0" loc="(750,1060)" name="Splitter">
+      <a name="fanout" val="6"/>
+      <a name="incoming" val="6"/>
+      <a name="appear" val="center"/>
     </comp>
-    <comp lib="6" loc="(152,1126)" name="Text">
-      <a name="text" val="TRI_LIN"/>
-    </comp>
-    <comp lib="4" loc="(1270,400)" name="Register">
-      <a name="width" val="16"/>
-      <a name="trigger" val="high"/>
-      <a name="label" val="transp_latch"/>
-    </comp>
+    <comp lib="5" loc="(680,940)" name="LED"/>
+    <comp lib="5" loc="(560,1040)" name="LED"/>
     <comp lib="4" loc="(1360,610)" name="RAM">
       <a name="addrWidth" val="24"/>
       <a name="dataWidth" val="32"/>
       <a name="bus" val="asynch"/>
     </comp>
-    <comp lib="5" loc="(290,1020)" name="LED"/>
-    <comp lib="5" loc="(290,1000)" name="LED"/>
-    <comp lib="5" loc="(560,1080)" name="LED"/>
+    <comp lib="5" loc="(800,1050)" name="LED"/>
+    <comp lib="5" loc="(140,1280)" name="LED">
+      <a name="label" val="TRI_RELOAD"/>
+      <a name="labelloc" val="east"/>
+    </comp>
     <comp lib="5" loc="(560,1200)" name="LED">
       <a name="label" val="ENVDIS"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(490,980)" name="Splitter">
-      <a name="fanout" val="11"/>
-      <a name="incoming" val="11"/>
-      <a name="appear" val="center"/>
-    </comp>
-    <comp lib="5" loc="(680,1040)" name="LED"/>
-    <comp lib="6" loc="(422,926)" name="Text">
-      <a name="text" val="SW_A"/>
-    </comp>
-    <comp lib="5" loc="(800,930)" name="LED"/>
-    <comp lib="5" loc="(130,370)" name="LED">
-      <a name="facing" val="east"/>
-      <a name="label" val="DMC"/>
-      <a name="labelloc" val="west"/>
-    </comp>
-    <comp lib="5" loc="(800,970)" name="LED"/>
-    <comp lib="5" loc="(290,920)" name="LED"/>
-    <comp lib="0" loc="(550,520)" name="Constant">
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="5" loc="(800,910)" name="LED">
-      <a name="label" val="NFREQ"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(100,170)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="/RES"/>
-    </comp>
-    <comp lib="5" loc="(140,1060)" name="LED"/>
-    <comp loc="(1040,610)" name="AUXDumper">
-      <a name="label" val="dumper"/>
-      <a name="labelloc" val="south"/>
-      <a name="labelfont" val="SansSerif plain 10"/>
-    </comp>
-    <comp lib="5" loc="(290,1200)" name="LED">
-      <a name="label" val="ENVDIS"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="5" loc="(140,1020)" name="LED"/>
-    <comp lib="5" loc="(560,1120)" name="LED">
-      <a name="label" val="SQB_ENV"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="5" loc="(680,890)" name="LED"/>
-    <comp lib="5" loc="(560,940)" name="LED"/>
-    <comp lib="5" loc="(290,1140)" name="LED"/>
-    <comp lib="5" loc="(290,980)" name="LED"/>
+    <comp lib="5" loc="(1270,970)" name="LED"/>
   </circuit>
   <circuit name="AUXDumper">
     <a name="circuit" val="AUXDumper"/>
@@ -893,25 +1062,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(350,140)" to="(480,140)"/>
     <wire from="(500,130)" to="(570,130)"/>
     <wire from="(260,210)" to="(330,210)"/>
-    <comp lib="6" loc="(455,401)" name="Text">
-      <a name="text" val=" : 2"/>
-      <a name="font" val="SansSerif bold 12"/>
-    </comp>
-    <comp lib="6" loc="(690,285)" name="Text">
-      <a name="text" val="normalized samples in range [0.0f; 1.0f]"/>
-      <a name="font" val="SansSerif bold 12"/>
-    </comp>
-    <comp lib="6" loc="(379,403)" name="Text">
-      <a name="text" val="a + b"/>
-      <a name="font" val="SansSerif bold 12"/>
-    </comp>
-    <comp lib="4" loc="(390,190)" name="Counter">
-      <a name="width" val="1"/>
-      <a name="max" val="0x1"/>
-    </comp>
-    <comp lib="6" loc="(464,53)" name="Text">
-      <a name="text" val="The invention of the org to make the ADDR tick EVERY half cycle."/>
-    </comp>
+    <comp lib="8" loc="(390,430)" name="Adder"/>
     <comp lib="0" loc="(720,220)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -919,48 +1070,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="Data"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp loc="(240,480)" name="AUX_B"/>
-    <comp loc="(240,380)" name="AUX_A"/>
-    <comp lib="0" loc="(140,150)" name="Splitter">
-      <a name="incoming" val="24"/>
-      <a name="bit1" val="0"/>
-      <a name="bit2" val="0"/>
-      <a name="bit3" val="0"/>
-      <a name="bit4" val="0"/>
-      <a name="bit5" val="0"/>
-      <a name="bit6" val="0"/>
-      <a name="bit7" val="0"/>
-      <a name="bit8" val="1"/>
-      <a name="bit9" val="1"/>
-      <a name="bit10" val="1"/>
-      <a name="bit11" val="1"/>
-      <a name="bit12" val="1"/>
-      <a name="bit13" val="1"/>
-      <a name="bit14" val="1"/>
-      <a name="bit15" val="1"/>
-      <a name="bit16" val="1"/>
-      <a name="bit17" val="1"/>
-      <a name="bit18" val="1"/>
-      <a name="bit19" val="1"/>
-      <a name="bit20" val="1"/>
-      <a name="bit21" val="1"/>
-      <a name="bit22" val="1"/>
-      <a name="bit23" val="1"/>
+    <comp lib="1" loc="(480,230)" name="XNOR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
-    <comp lib="0" loc="(130,150)" name="Pin">
-      <a name="width" val="24"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="AUX"/>
-    </comp>
-    <comp lib="0" loc="(430,510)" name="Constant">
-      <a name="width" val="32"/>
-      <a name="value" val="0x40000000"/>
-    </comp>
-    <comp lib="4" loc="(350,140)" name="Counter">
-      <a name="width" val="23"/>
-      <a name="max" val="0x7fffff"/>
-    </comp>
-    <comp lib="8" loc="(470,430)" name="Divider"/>
     <comp lib="0" loc="(500,130)" name="Splitter">
       <a name="facing" val="west"/>
       <a name="incoming" val="24"/>
@@ -989,10 +1102,15 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="bit22" val="0"/>
       <a name="bit23" val="0"/>
     </comp>
-    <comp lib="0" loc="(90,60)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="PHI1"/>
+    <comp lib="4" loc="(350,140)" name="Counter">
+      <a name="width" val="23"/>
+      <a name="max" val="0x7fffff"/>
     </comp>
+    <comp lib="6" loc="(379,403)" name="Text">
+      <a name="text" val="a + b"/>
+      <a name="font" val="SansSerif bold 12"/>
+    </comp>
+    <comp loc="(240,380)" name="AUX_A"/>
     <comp lib="0" loc="(720,70)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -1005,11 +1123,62 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="max" val="0x1"/>
       <a name="trigger" val="falling"/>
     </comp>
-    <comp lib="1" loc="(480,230)" name="XNOR Gate">
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
+    <comp lib="0" loc="(90,60)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="PHI1"/>
     </comp>
-    <comp lib="8" loc="(390,430)" name="Adder"/>
+    <comp lib="4" loc="(390,190)" name="Counter">
+      <a name="width" val="1"/>
+      <a name="max" val="0x1"/>
+    </comp>
+    <comp lib="0" loc="(430,510)" name="Constant">
+      <a name="width" val="32"/>
+      <a name="value" val="0x40000000"/>
+    </comp>
+    <comp lib="0" loc="(130,150)" name="Pin">
+      <a name="width" val="24"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="AUX"/>
+    </comp>
+    <comp loc="(240,480)" name="AUX_B"/>
+    <comp lib="0" loc="(140,150)" name="Splitter">
+      <a name="incoming" val="24"/>
+      <a name="bit1" val="0"/>
+      <a name="bit2" val="0"/>
+      <a name="bit3" val="0"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="0"/>
+      <a name="bit8" val="1"/>
+      <a name="bit9" val="1"/>
+      <a name="bit10" val="1"/>
+      <a name="bit11" val="1"/>
+      <a name="bit12" val="1"/>
+      <a name="bit13" val="1"/>
+      <a name="bit14" val="1"/>
+      <a name="bit15" val="1"/>
+      <a name="bit16" val="1"/>
+      <a name="bit17" val="1"/>
+      <a name="bit18" val="1"/>
+      <a name="bit19" val="1"/>
+      <a name="bit20" val="1"/>
+      <a name="bit21" val="1"/>
+      <a name="bit22" val="1"/>
+      <a name="bit23" val="1"/>
+    </comp>
+    <comp lib="6" loc="(455,401)" name="Text">
+      <a name="text" val=" : 2"/>
+      <a name="font" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="6" loc="(690,285)" name="Text">
+      <a name="text" val="normalized samples in range [0.0f; 1.0f]"/>
+      <a name="font" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="8" loc="(470,430)" name="Divider"/>
+    <comp lib="6" loc="(464,53)" name="Text">
+      <a name="text" val="The invention of the org to make the ADDR tick EVERY half cycle."/>
+    </comp>
   </circuit>
   <circuit name="AUX_A">
     <a name="circuit" val="AUX_A"/>
@@ -1029,15 +1198,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(240,190)" to="(250,190)"/>
     <wire from="(250,170)" to="(250,190)"/>
     <wire from="(340,130)" to="(380,130)"/>
-    <comp lib="0" loc="(240,190)" name="Constant"/>
-    <comp lib="0" loc="(380,130)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="a"/>
-      <a name="labelloc" val="east"/>
-    </comp>
     <comp lib="0" loc="(170,130)" name="Pin">
       <a name="width" val="8"/>
       <a name="tristate" val="false"/>
@@ -1079,6 +1239,15 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
 3f04bda1 3f0d3dcb 3f15b343 3f1e1e1e 3f267e6f 3f2ed44b 3f371fc4 3f3f60ef
 3f4797dd 3f4fc4a3 3f57e753 3f600000 3f680ebc 3f701399 3f780eaa 3f800000
 </a>
+    </comp>
+    <comp lib="0" loc="(240,190)" name="Constant"/>
+    <comp lib="0" loc="(380,130)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="a"/>
+      <a name="labelloc" val="east"/>
     </comp>
     <comp lib="6" loc="(124,159)" name="Text">
       <a name="text" val="0...255"/>
@@ -5213,14 +5382,6 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="a"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(130,140)" name="Pin">
-      <a name="width" val="16"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="d"/>
-    </comp>
-    <comp lib="6" loc="(89,177)" name="Text">
-      <a name="text" val="0...32767"/>
-    </comp>
     <comp lib="0" loc="(240,190)" name="Constant"/>
     <comp lib="0" loc="(150,140)" name="Splitter">
       <a name="fanout" val="1"/>
@@ -5240,6 +5401,14 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="bit13" val="0"/>
       <a name="bit14" val="0"/>
       <a name="bit15" val="none"/>
+    </comp>
+    <comp lib="0" loc="(130,140)" name="Pin">
+      <a name="width" val="16"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="d"/>
+    </comp>
+    <comp lib="6" loc="(89,177)" name="Text">
+      <a name="text" val="0...32767"/>
     </comp>
   </circuit>
   <circuit name="Fake6502">
@@ -5314,56 +5483,1176 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(470,220)" to="(470,470)"/>
     <wire from="(700,120)" to="(840,120)"/>
     <wire from="(470,90)" to="(470,210)"/>
-    <comp lib="0" loc="(140,370)" name="Pin">
-      <a name="width" val="8"/>
-      <a name="label" val="DB_in"/>
-    </comp>
-    <comp lib="0" loc="(830,460)" name="Pin">
+    <comp lib="0" loc="(830,380)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="width" val="32"/>
+      <a name="width" val="8"/>
+      <a name="label" val="DB_out"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="0" loc="(140,290)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="/RES"/>
+    <comp lib="0" loc="(830,180)" name="Constant">
+      <a name="value" val="0x0"/>
     </comp>
-    <comp lib="0" loc="(140,230)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="/NMI"/>
-    </comp>
-    <comp lib="6" loc="(164,260)" name="Text">
-      <a name="text" val="N.C."/>
-    </comp>
-    <comp lib="0" loc="(140,260)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="/IRQ"/>
-    </comp>
-    <comp lib="6" loc="(162,138)" name="Text">
-      <a name="text" val="N.C."/>
-    </comp>
-    <comp lib="0" loc="(140,90)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="PHI0"/>
-    </comp>
-    <comp loc="(490,210)" name="RegDumpProcessor">
-      <a name="label" val="redump"/>
-      <a name="labelloc" val="south"/>
-      <a name="labelfont" val="SansSerif plain 10"/>
-    </comp>
-    <comp lib="0" loc="(140,150)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="SO"/>
-    </comp>
-    <comp lib="0" loc="(840,120)" name="Pin">
+    <comp lib="0" loc="(840,90)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="PHI2"/>
+      <a name="label" val="PHI1"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(840,150)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="R/W"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="6" loc="(163,375)" name="Text">
       <a name="text" val="N.C."/>
+    </comp>
+    <comp lib="4" loc="(420,230)" name="ROM">
+      <a name="addrWidth" val="24"/>
+      <a name="dataWidth" val="32"/>
+      <a name="contents">addr/data: 24 32
+18 10 4 15 6 4017 11022 0
+c 1 c 2 c 3 c 4
+c 5 c 6 c 7 c 8
+c 9 c a c b c c
+c d c e c f c 10
+c 11 c 12 c 13 c 14
+20c 95 1 15 c f15 6 4017
+c1 0 c 1 c 2 c 3
+c 4 c 5 c 6 c 7
+c 8 c 9 c a c b
+c c c d c e c f
+c 10 c 11 c 12 c 13
+c 14 20c 95 1 15 c f15
+6 4017 7505 f803 4 f807 18 b000
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b004 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b104 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b204 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b304 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b404 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b504 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b604 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b704 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b804 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 b904 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 ba04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 bb04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 bc04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 bd04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 be04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b000
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b100
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b200
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b300
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b400
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b500
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b600
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b700
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b800
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 b900
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 ba00
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bb00
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bc00
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bd00
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 be00
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 746c f803 4 f807 18 bf00
+4 bf04 6 2 4 6 6 fd02
+4 fd06 6 f803 4 f807 7466 b000
+4 b004 7525 0 c 1 c 2
+c 3 c 4 c 5 c 6
+c 7 c 8 c 9 c a
+c b c c c d c e
+c f c 10 c 11 c 12
+c 13 c 14 20d 95 1 15
+c f15 6 4017 7505 f803 4 f807
+18 b000 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b100 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b200 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b300 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b400 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b500 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b600 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b700 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b800 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b900 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 ba00 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bb00 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bc00 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bd00 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 be00 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bf00 4 b004 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b000 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b100 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b200 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b300 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b400 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b500 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b600 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b700 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b800 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b900 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 ba00 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bb00 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bc00 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bd00 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 be00 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bf00 4 b104 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b000 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b100 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b200 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b300 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b400 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b500 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b600 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b700 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b800 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b900 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 ba00 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bb00 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bc00 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bd00 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 be00 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bf00 4 b204 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b000 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b100 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b200 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b300 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b400 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b500 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b600 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b700 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b800 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b900 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 ba00 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bb00 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bc00 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bd00 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 be00 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bf00 4 b304 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b000 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b100 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b200 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b300 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b400 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b500 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b600 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b700 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b800 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b900 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 ba00 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bb00 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bc00 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bd00 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 be00 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bf00 4 b404 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b000 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b100 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b200 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b300 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b400 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b500 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b600 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b700 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b800 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b900 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 ba00 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bb00 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bc00 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bd00 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 be00 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bf00 4 b504 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b000 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b100 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b200 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b300 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b400 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b500 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b600 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b700 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b800 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b900 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 ba00 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bb00 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bc00 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bd00 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 be00 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 bf00 4 b604 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b000 4 b704 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b100 4 b704 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b200 4 b704 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b300 4 b704 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+7466 b000 4 b004 746c f803 4 f807
+18 b400 4 b704 6 2 4 6
+6 fd02 4 fd06 6 f803 4 f807
+</a>
     </comp>
     <comp lib="0" loc="(840,240)" name="Pin">
       <a name="facing" val="west"/>
@@ -5373,34 +6662,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="Addr"/>
       <a name="labelloc" val="east"/>
     </comp>
-    <comp lib="1" loc="(790,90)" name="NOT Gate"/>
-    <comp lib="0" loc="(830,380)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="8"/>
-      <a name="label" val="DB_out"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(140,470)" name="Pin">
+    <comp lib="0" loc="(140,260)" name="Pin">
       <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="0" loc="(840,150)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="R/W"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(840,90)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="PHI1"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="6" loc="(349,172)" name="Text">
-      <a name="text" val="Load regdump here"/>
-      <a name="font" val="SansSerif bold 12"/>
+      <a name="label" val="/IRQ"/>
     </comp>
     <comp lib="0" loc="(840,180)" name="Pin">
       <a name="facing" val="west"/>
@@ -5409,722 +6673,63 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="SYNC"/>
       <a name="labelloc" val="east"/>
     </comp>
+    <comp loc="(490,210)" name="RegDumpProcessor">
+      <a name="label" val="redump"/>
+      <a name="labelloc" val="south"/>
+      <a name="labelfont" val="SansSerif plain 10"/>
+    </comp>
+    <comp lib="0" loc="(140,290)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="/RES"/>
+    </comp>
     <comp lib="0" loc="(140,120)" name="Pin">
       <a name="tristate" val="false"/>
       <a name="label" val="RDY"/>
     </comp>
-    <comp lib="0" loc="(830,180)" name="Constant">
-      <a name="value" val="0x0"/>
+    <comp lib="0" loc="(140,370)" name="Pin">
+      <a name="width" val="8"/>
+      <a name="label" val="DB_in"/>
     </comp>
-    <comp lib="4" loc="(420,230)" name="ROM">
-      <a name="addrWidth" val="24"/>
-      <a name="dataWidth" val="32"/>
-      <a name="contents">addr/data: 24 32
-8 ff17 c 15 5e 15 fff 13
-a 12 a 11 a 10 a f
-a e a d a c a b
-a a a 9 a 8 a 7
-a 6 a 5 a 4 a 3
-a 2 a 1 a 0 79 f15
-74dd c017 42b 1000 4 1004 4 100c
-6 8 4 11 2cd f302 9 d03
-9 7f01 14d 5e06 9 807 9 7f05
-15f ff08 11 fc0a 9 90b 9 9
-f8 c 8 10e 8 380f a5 b400
-b6 fa04 68f b500 b6 f904 60b0 c017
-dbc b600 b6 f804 65e1 c017 dbc b700
-b6 f704 65e4 c017 dbc b800 b6 f604
-65e1 c017 dbc b700 b6 f504 65e1 c017
-dbc b600 b6 f404 65e4 c017 dbc b500
-b6 f304 65e1 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f704 65f0 c017
-dae b600 b6 f704 65f0 c017 dae b600
-b6 f604 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f504 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f504 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 d32 f302 9 d03
-9 7f01 161 ff08 11 fc0a 9 90b
-9 9 a1 1000 aa 1004 6440 c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 db6 8
-11 fc0a 9 90b 9 9 a1 1000
-aa 1004 6530 c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d6e f302 9 d03 9 7f01
-e2 3a06 9 807 9 7f05 158 ff08
-11 fc0a 9 90b 9 9 f1 c
-8 10e 8 380f a5 b400 b6 fa04
-6209 c017 dbc b500 b6 f904 65e1 c017
-dbc b600 b6 f804 65e4 c017 dbc b700
-b6 f704 65e1 c017 dbc b800 b6 f604
-65e1 c017 dbc b700 b6 f504 65e4 c017
-dbc b600 b6 f404 65e1 c017 dbc b500
-b6 f304 65e1 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f704 65f0 c017
-dae b600 b6 f704 65f0 c017 dae b600
-b6 f604 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f504 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f504 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 d32 f302 9 d03
-9 7f01 161 ff08 11 fc0a 9 90b
-9 9 a1 1000 aa 1004 6443 c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 db6 8
-11 fc0a 9 90b 9 9 a1 1000
-aa 1004 6530 c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d6e f302 9 d03 9 7f01
-e2 4f06 9 807 9 7f05 158 ff08
-11 fc0a 9 90b 9 9 f1 c
-8 10e 8 380f a5 b400 b6 fa04
-6209 c017 dbc b500 b6 f904 65e4 c017
-dbc b600 b6 f804 65e1 c017 dbc b700
-b6 f704 65e1 c017 dbc b800 b6 f604
-65e4 c017 dbc b700 b6 f504 65e1 c017
-dbc b600 b6 f404 65e1 c017 dbc b500
-b6 f304 65e4 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f704 65f0 c017
-dae b600 b6 f704 65f0 c017 dae b600
-b6 f604 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f504 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f504 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 d32 f302 9 d03
-9 7f01 161 ff08 11 fc0a 9 90b
-9 9 a1 1000 aa 1004 6440 c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 db6 8
-11 fc0a 9 90b 9 9 a1 1000
-aa 1004 6530 c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d6e f302 9 d03 9 7f01
-de 4f06 9 807 9 7f05 158 ff08
-11 fc0a 9 90b 9 9 f1 c
-8 10e 8 380f a5 b400 4d 1004
-6275 c017 dbc b500 4d 1004 664a c017
-dbc b600 4d 1004 664d c017 dbc b700
-4d 1004 664a c017 dbc b800 4d 1004
-664a c017 dbc b700 4d 1004 664d c017
-dbc b600 4d 1004 664a c017 dbc b500
-4d 1004 664a c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 d32 f302 9 d03
-9 7f01 161 ff08 11 fc0a 9 90b
-9 9 a1 1000 4d 1004 64a0 c017
-d7d 1000 4d 1004 6689 c017 d7d 1000
-4d 1004 6689 c017 d7d 1000 4d 1004
-668c c017 d7d 1000 4d 1004 6689 c017
-d7d 1000 4d 1004 6689 c017 d7d 1000
-4d 1004 668c c017 d7d 1000 4d 1004
-6689 c017 d7d 1000 4d 1004 6689 c017
-d7d 1000 4d 1004 668c c017 d7d 1000
-4d 1004 6689 c017 d7d 1000 4d 1004
-6689 c017 d7d 1000 4d 1004 668c c017
-d7d 1000 4d 1004 6689 c017 db6 8
-11 fc0a 9 90b 9 9 a1 1000
-4d 1004 658d c017 d7d 1000 4d 1004
-6689 c017 d7d 1000 4d 1004 668c c017
-d7d 1000 4d 1004 6689 c017 d7d 1000
-4d 1004 6689 c017 d7d 1000 4d 1004
-668c c017 d7d 1000 4d 1004 6689 c017
-d7d 1000 4d 1004 6689 c017 d7d 1000
-4d 1004 668c c017 d7d 1000 4d 1004
-6689 c017 d7d 1000 4d 1004 6689 c017
-d7d 1000 4d 1004 668c c017 d7d 1000
-4d 1004 6689 c017 d7d 1000 4d 1004
-6689 c017 d6e f302 9 d03 9 7f01
-e2 5e06 9 807 9 7f05 158 ff08
-11 fc0a 9 90b 9 9 f1 c
-8 10e 8 380f a5 b400 b6 fa04
-6209 c017 dbc b500 b6 f904 65e4 c017
-dbc b600 b6 f804 65e1 c017 dbc b700
-b6 f704 65e1 c017 dbc b800 b6 f604
-65e4 c017 dbc b700 b6 f504 65e1 c017
-dbc b600 b6 f404 65e1 c017 dbc b500
-b6 f304 65e4 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f704 65f0 c017
-dae b600 b6 f704 65f0 c017 dae b600
-b6 f604 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f504 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f504 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 d32 f302 9 d03
-9 7f01 161 ff08 11 fc0a 9 90b
-9 9 a1 1000 aa 1004 6440 c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 db6 8
-11 fc0a 9 90b 9 9 a1 1000
-aa 1004 6530 c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d6e f302 9 d03 9 7f01
-e2 3406 9 807 9 7f05 158 ff08
-11 fc0a 9 90b 9 9 f1 c
-8 10e 8 380f a5 b400 b6 fa04
-6209 c017 dbc b500 b6 f904 65e1 c017
-dbc b600 b6 f804 65e1 c017 dbc b700
-b6 f704 65e4 c017 dbc b800 b6 f604
-65e1 c017 dbc b700 b6 f504 65e1 c017
-dbc b600 b6 f404 65e4 c017 dbc b500
-b6 f304 65e1 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f704 65f0 c017
-dae b600 b6 f704 65f0 c017 dae b600
-b6 f604 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f504 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f504 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 d32 f302 9 d03
-9 7f01 161 ff08 11 fc0a 9 90b
-9 9 a1 1000 aa 1004 6440 c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 db6 8
-11 fc0a 9 90b 9 9 a1 1000
-aa 1004 6530 c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d6e f302 9 d03 9 7f01
-e2 3a06 9 807 9 7f05 158 ff08
-11 fc0a 9 90b 9 9 f1 c
-8 10e 8 380f a5 b400 b6 fa04
-6209 c017 dbc b500 b6 f904 65e1 c017
-dbc b600 b6 f804 65e4 c017 dbc b700
-b6 f704 65e1 c017 dbc b800 b6 f604
-65e1 c017 dbc b700 b6 f504 65e4 c017
-dbc b600 b6 f404 65e1 c017 dbc b500
-b6 f304 65e1 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f704 65f0 c017
-dae b600 b6 f704 65f0 c017 dae b600
-b6 f604 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f504 65f0 c017 dae b600 b6 f504
-65f0 c017 dae b600 b6 f504 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f404 65f0 c017
-dae b600 b6 f404 65f0 c017 dae b600
-b6 f304 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f204 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f104
-65f0 c017 dae b600 b6 f104 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f204 65f0 c017 dae b600 b6 f204
-65f0 c017 dae b600 b6 f204 65f0 c017
-dae b600 b6 f104 65f0 c017 dae b600
-b6 f104 65f0 c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 dae b600 aa 1004
-65fc c017 dae b600 aa 1004 65fc c017
-dae b600 aa 1004 65fc c017 dae b600
-aa 1004 65fc c017 d32 f302 9 d03
-9 7f01 161 ff08 11 fc0a 9 90b
-9 9 a1 1000 aa 1004 6443 c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 db6 8
-11 fc0a 9 90b 9 9 a1 1000
-aa 1004 6530 c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662f c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662f c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662c c017 d7d 1000
-aa 1004 662f c017 d7d 1000 aa 1004
-662c c017 d7d 1000 aa 1004 662c c017
-d7d 1000 aa 1004 662f c017 d7d 1000
-aa 1004 662c c017 d7d 1000 aa 1004
-662c c017 d6e f302 9 d03 9 7f01
-de 3a06 9 807 9 7f05 158 ff08
-11 fc0a 9 90b 9 9 f1 c
-8 10e 8 380f a5 b400 4d 1004
-6278 c017 dbc b500 4d 1004 664a c017
-dbc b600 4d 1004 664a c017 dbc b700
-4d 1004 664d c017 dbc b800 4d 1004
-664a c017 dbc b700 4d 1004 664a c017
-dbc b600 4d 1004 664d c017 dbc b500
-4d 1004 664a c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004 6659 c017
-dae b600 4d 1004 6659 c017 dae b600
-4d 1004 6659 c017 dae b600 4d 1004
-6659 c017 dae b600 4d 1004
-</a>
+    <comp lib="6" loc="(164,260)" name="Text">
+      <a name="text" val="N.C."/>
     </comp>
     <comp lib="0" loc="(320,280)" name="Constant"/>
+    <comp lib="0" loc="(840,120)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="PHI2"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="6" loc="(349,172)" name="Text">
+      <a name="text" val="Load regdump here"/>
+      <a name="font" val="SansSerif bold 12"/>
+    </comp>
+    <comp lib="1" loc="(790,90)" name="NOT Gate"/>
+    <comp lib="0" loc="(140,150)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="SO"/>
+    </comp>
+    <comp lib="6" loc="(162,138)" name="Text">
+      <a name="text" val="N.C."/>
+    </comp>
+    <comp lib="0" loc="(140,470)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(140,230)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="/NMI"/>
+    </comp>
+    <comp lib="0" loc="(830,460)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(140,90)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="PHI0"/>
+    </comp>
   </circuit>
   <circuit name="WRAM">
     <a name="circuit" val="WRAM"/>
@@ -6184,30 +6789,12 @@ dae b600 4d 1004 6659 c017 dae b600
     <wire from="(240,220)" to="(250,220)"/>
     <wire from="(600,320)" to="(600,380)"/>
     <wire from="(550,400)" to="(560,400)"/>
-    <comp lib="1" loc="(210,450)" name="NOT Gate"/>
-    <comp lib="1" loc="(550,400)" name="NOT Gate"/>
-    <comp lib="0" loc="(160,190)" name="Pin">
-      <a name="width" val="16"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Addr"/>
-    </comp>
-    <comp lib="1" loc="(370,190)" name="NOR Gate">
-      <a name="size" val="70"/>
-    </comp>
-    <comp lib="0" loc="(160,400)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="R/W"/>
-    </comp>
     <comp lib="0" loc="(730,280)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="width" val="8"/>
       <a name="label" val="DB_out"/>
       <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(160,240)" name="Pin">
-      <a name="width" val="8"/>
-      <a name="label" val="DB_in"/>
     </comp>
     <comp lib="0" loc="(250,220)" name="Splitter">
       <a name="fanout" val="5"/>
@@ -6233,13 +6820,10 @@ dae b600 4d 1004 6659 c017 dae b600
       <a name="tristate" val="false"/>
       <a name="label" val="M2"/>
     </comp>
-    <comp lib="0" loc="(160,450)" name="Pin">
+    <comp lib="0" loc="(160,190)" name="Pin">
+      <a name="width" val="16"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="/RES"/>
-    </comp>
-    <comp lib="4" loc="(670,280)" name="RAM">
-      <a name="addrWidth" val="11"/>
-      <a name="bus" val="separate"/>
+      <a name="label" val="Addr"/>
     </comp>
     <comp lib="0" loc="(490,290)" name="Splitter">
       <a name="fanout" val="1"/>
@@ -6259,6 +6843,27 @@ dae b600 4d 1004 6659 c017 dae b600
       <a name="bit13" val="none"/>
       <a name="bit14" val="none"/>
       <a name="bit15" val="none"/>
+    </comp>
+    <comp lib="0" loc="(160,240)" name="Pin">
+      <a name="width" val="8"/>
+      <a name="label" val="DB_in"/>
+    </comp>
+    <comp lib="1" loc="(210,450)" name="NOT Gate"/>
+    <comp lib="1" loc="(370,190)" name="NOR Gate">
+      <a name="size" val="70"/>
+    </comp>
+    <comp lib="1" loc="(550,400)" name="NOT Gate"/>
+    <comp lib="0" loc="(160,400)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="R/W"/>
+    </comp>
+    <comp lib="0" loc="(160,450)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="/RES"/>
+    </comp>
+    <comp lib="4" loc="(670,280)" name="RAM">
+      <a name="addrWidth" val="11"/>
+      <a name="bus" val="separate"/>
     </comp>
   </circuit>
   <circuit name="RegDumpProcessor">
@@ -6413,119 +7018,34 @@ dae b600 4d 1004 6659 c017 dae b600
     <wire from="(650,210)" to="(650,460)"/>
     <wire from="(720,190)" to="(730,190)"/>
     <wire from="(520,270)" to="(530,270)"/>
-    <comp lib="0" loc="(130,80)" name="Pin">
-      <a name="tristate" val="false"/>
-      <a name="label" val="PHI0"/>
+    <comp lib="1" loc="(720,190)" name="AND Gate">
+      <a name="inputs" val="4"/>
+      <a name="negate3" val="true"/>
+    </comp>
+    <comp lib="3" loc="(610,200)" name="Comparator">
+      <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(340,230)" name="Constant">
       <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="4" loc="(320,390)" name="Register">
+      <a name="width" val="32"/>
+      <a name="label" val="delta_phi_word"/>
     </comp>
     <comp lib="4" loc="(510,390)" name="Register">
       <a name="width" val="32"/>
       <a name="label" val="regop_word"/>
     </comp>
-    <comp lib="4" loc="(710,500)" name="Register">
-      <a name="width" val="1"/>
-      <a name="label" val="cnt_ovf_reg"/>
+    <comp lib="6" loc="(1042,351)" name="Text">
+      <a name="text" val="Value (if write)"/>
     </comp>
-    <comp lib="1" loc="(1340,270)" name="NOT Gate"/>
-    <comp lib="6" loc="(816,183)" name="Text">
-      <a name="text" val="RegOp Setup"/>
-    </comp>
-    <comp lib="1" loc="(940,490)" name="OR Gate">
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="2" loc="(1360,50)" name="Multiplexer">
-      <a name="enable" val="false"/>
+    <comp lib="0" loc="(130,80)" name="Pin">
+      <a name="tristate" val="false"/>
+      <a name="label" val="PHI0"/>
     </comp>
     <comp lib="2" loc="(1420,190)" name="Multiplexer">
       <a name="width" val="8"/>
       <a name="enable" val="false"/>
-    </comp>
-    <comp lib="6" loc="(819,242)" name="Text">
-      <a name="text" val="Reg Index (0-0x1f)"/>
-    </comp>
-    <comp lib="2" loc="(380,220)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="enable" val="false"/>
-    </comp>
-    <comp lib="3" loc="(610,290)" name="Comparator">
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(880,330)" name="Constant">
-      <a name="width" val="11"/>
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="6" loc="(421,112)" name="Text">
-      <a name="text" val="Load/Decrement Setup (1: Load; 0: Decrement)"/>
-    </comp>
-    <comp lib="0" loc="(340,150)" name="Constant"/>
-    <comp lib="2" loc="(380,160)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="enable" val="false"/>
-    </comp>
-    <comp lib="6" loc="(1447,239)" name="Text">
-      <a name="text" val="1: RegOp + Write"/>
-    </comp>
-    <comp lib="0" loc="(1450,450)" name="Constant"/>
-    <comp lib="1" loc="(720,190)" name="AND Gate">
-      <a name="inputs" val="4"/>
-      <a name="negate3" val="true"/>
-    </comp>
-    <comp lib="0" loc="(370,330)" name="Constant">
-      <a name="width" val="32"/>
-      <a name="value" val="0x20"/>
-    </comp>
-    <comp lib="6" loc="(758,92)" name="Text">
-      <a name="text" val="Do RegOp"/>
-    </comp>
-    <comp lib="3" loc="(610,200)" name="Comparator">
-      <a name="width" val="32"/>
-    </comp>
-    <comp lib="0" loc="(1520,190)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="8"/>
-      <a name="label" val="Core DB"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(520,270)" name="Constant">
-      <a name="width" val="32"/>
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="0" loc="(1520,140)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="16"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="Core AB"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(340,170)" name="Constant"/>
-    <comp lib="6" loc="(1073,210)" name="Text">
-      <a name="text" val="Reg Address"/>
-    </comp>
-    <comp lib="6" loc="(769,517)" name="Text">
-      <a name="text" val="Load PHI Counter"/>
-    </comp>
-    <comp lib="0" loc="(1310,40)" name="Constant"/>
-    <comp lib="0" loc="(600,670)" name="Pin">
-      <a name="facing" val="west"/>
-      <a name="output" val="true"/>
-      <a name="width" val="32"/>
-      <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="1" loc="(270,120)" name="OR Gate">
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="1" loc="(1390,260)" name="AND Gate">
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="6" loc="(1504,96)" name="Text">
-      <a name="text" val="Default: Read address 0x0000"/>
     </comp>
     <comp lib="0" loc="(750,280)" name="Splitter">
       <a name="fanout" val="3"/>
@@ -6562,6 +7082,30 @@ dae b600 4d 1004 6659 c017 dae b600
       <a name="bit30" val="none"/>
       <a name="bit31" val="none"/>
     </comp>
+    <comp lib="1" loc="(1390,260)" name="AND Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="6" loc="(1447,239)" name="Text">
+      <a name="text" val="1: RegOp + Write"/>
+    </comp>
+    <comp lib="2" loc="(1420,140)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="16"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="6" loc="(358,38)" name="Text">
+      <a name="text" val="https://github.com/emu-russia/breaknes/blob/main/BreaksAPU/NSFPlayerInterop/RegDumpProcessor.cpp"/>
+    </comp>
+    <comp lib="6" loc="(758,92)" name="Text">
+      <a name="text" val="Do RegOp"/>
+    </comp>
+    <comp lib="4" loc="(480,190)" name="Counter">
+      <a name="width" val="32"/>
+      <a name="max" val="0xffffffff"/>
+      <a name="ongoal" val="stay"/>
+      <a name="label" val="phi_dec_cnt"/>
+    </comp>
     <comp lib="0" loc="(1520,440)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
@@ -6569,6 +7113,111 @@ dae b600 4d 1004 6659 c017 dae b600
       <a name="tristate" val="false"/>
       <a name="label" val="redump_addr"/>
       <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(1340,270)" name="NOT Gate"/>
+    <comp lib="0" loc="(980,210)" name="Constant">
+      <a name="width" val="16"/>
+      <a name="value" val="0x4000"/>
+    </comp>
+    <comp lib="6" loc="(816,183)" name="Text">
+      <a name="text" val="RegOp Setup"/>
+    </comp>
+    <comp lib="1" loc="(1030,220)" name="OR Gate">
+      <a name="width" val="16"/>
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="3" loc="(610,290)" name="Comparator">
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="2" loc="(380,160)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="0" loc="(1450,430)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="6" loc="(421,112)" name="Text">
+      <a name="text" val="Load/Decrement Setup (1: Load; 0: Decrement)"/>
+    </comp>
+    <comp lib="0" loc="(130,280)" name="Pin">
+      <a name="tristate" val="false"/>
+    </comp>
+    <comp lib="0" loc="(340,150)" name="Constant"/>
+    <comp lib="4" loc="(710,500)" name="Register">
+      <a name="width" val="1"/>
+      <a name="label" val="cnt_ovf_reg"/>
+    </comp>
+    <comp lib="2" loc="(1360,50)" name="Multiplexer">
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="6" loc="(1090,396)" name="Text">
+      <a name="text" val="1: Read register"/>
+    </comp>
+    <comp lib="6" loc="(819,242)" name="Text">
+      <a name="text" val="Reg Index (0-0x1f)"/>
+    </comp>
+    <comp lib="2" loc="(410,320)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="width" val="32"/>
+      <a name="enable" val="false"/>
+    </comp>
+    <comp lib="6" loc="(769,517)" name="Text">
+      <a name="text" val="Load PHI Counter"/>
+    </comp>
+    <comp lib="0" loc="(340,170)" name="Constant"/>
+    <comp lib="4" loc="(1490,440)" name="Counter">
+      <a name="width" val="24"/>
+      <a name="max" val="0xffffff"/>
+      <a name="ongoal" val="stay"/>
+      <a name="trigger" val="falling"/>
+      <a name="label" val="addr_cnt"/>
+    </comp>
+    <comp lib="0" loc="(1310,40)" name="Constant"/>
+    <comp lib="6" loc="(1073,210)" name="Text">
+      <a name="text" val="Reg Address"/>
+    </comp>
+    <comp lib="0" loc="(600,670)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(270,120)" name="OR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
+    </comp>
+    <comp lib="0" loc="(1520,50)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="Core R/W"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="0" loc="(370,330)" name="Constant">
+      <a name="width" val="32"/>
+      <a name="value" val="0x20"/>
+    </comp>
+    <comp lib="0" loc="(1450,450)" name="Constant"/>
+    <comp lib="0" loc="(340,210)" name="Constant"/>
+    <comp lib="6" loc="(1504,96)" name="Text">
+      <a name="text" val="Default: Read address 0x0000"/>
+    </comp>
+    <comp lib="0" loc="(880,330)" name="Constant">
+      <a name="width" val="11"/>
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="0" loc="(180,460)" name="Pin">
+      <a name="width" val="32"/>
+      <a name="tristate" val="false"/>
+      <a name="label" val="regdump_data"/>
+    </comp>
+    <comp lib="6" loc="(1467,396)" name="Text">
+      <a name="text" val="Falling edge"/>
+    </comp>
+    <comp lib="2" loc="(380,220)" name="Multiplexer">
+      <a name="selloc" val="tr"/>
+      <a name="enable" val="false"/>
     </comp>
     <comp lib="0" loc="(920,310)" name="Splitter">
       <a name="facing" val="west"/>
@@ -6589,80 +7238,36 @@ dae b600 4d 1004 6659 c017 dae b600
       <a name="bit14" val="1"/>
       <a name="bit15" val="1"/>
     </comp>
-    <comp lib="0" loc="(1520,50)" name="Pin">
+    <comp lib="0" loc="(1520,140)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
+      <a name="width" val="16"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="Core R/W"/>
+      <a name="label" val="Core AB"/>
       <a name="labelloc" val="east"/>
-    </comp>
-    <comp lib="0" loc="(1450,430)" name="Constant">
-      <a name="value" val="0x0"/>
-    </comp>
-    <comp lib="0" loc="(180,460)" name="Pin">
-      <a name="width" val="32"/>
-      <a name="tristate" val="false"/>
-      <a name="label" val="regdump_data"/>
-    </comp>
-    <comp lib="4" loc="(480,190)" name="Counter">
-      <a name="width" val="32"/>
-      <a name="max" val="0xffffffff"/>
-      <a name="ongoal" val="stay"/>
-      <a name="label" val="phi_dec_cnt"/>
-    </comp>
-    <comp lib="6" loc="(1467,396)" name="Text">
-      <a name="text" val="Falling edge"/>
-    </comp>
-    <comp lib="4" loc="(1490,440)" name="Counter">
-      <a name="width" val="24"/>
-      <a name="max" val="0xffffff"/>
-      <a name="ongoal" val="stay"/>
-      <a name="trigger" val="falling"/>
-      <a name="label" val="addr_cnt"/>
-    </comp>
-    <comp lib="2" loc="(1420,140)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="width" val="16"/>
-      <a name="enable" val="false"/>
-    </comp>
-    <comp lib="1" loc="(1030,220)" name="OR Gate">
-      <a name="width" val="16"/>
-      <a name="size" val="30"/>
-      <a name="inputs" val="2"/>
-    </comp>
-    <comp lib="6" loc="(358,38)" name="Text">
-      <a name="text" val="https://github.com/emu-russia/breaknes/blob/main/BreaksAPU/NSFPlayerInterop/RegDumpProcessor.cpp"/>
-    </comp>
-    <comp lib="0" loc="(340,210)" name="Constant"/>
-    <comp lib="6" loc="(1090,396)" name="Text">
-      <a name="text" val="1: Read register"/>
-    </comp>
-    <comp lib="6" loc="(1042,351)" name="Text">
-      <a name="text" val="Value (if write)"/>
-    </comp>
-    <comp lib="0" loc="(130,280)" name="Pin">
-      <a name="tristate" val="false"/>
-    </comp>
-    <comp lib="2" loc="(410,320)" name="Multiplexer">
-      <a name="selloc" val="tr"/>
-      <a name="width" val="32"/>
-      <a name="enable" val="false"/>
     </comp>
     <comp lib="0" loc="(1380,130)" name="Constant">
       <a name="width" val="16"/>
       <a name="value" val="0x0"/>
     </comp>
-    <comp lib="0" loc="(980,210)" name="Constant">
-      <a name="width" val="16"/>
-      <a name="value" val="0x4000"/>
+    <comp lib="0" loc="(1520,190)" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+      <a name="width" val="8"/>
+      <a name="label" val="Core DB"/>
+      <a name="labelloc" val="east"/>
+    </comp>
+    <comp lib="1" loc="(940,490)" name="OR Gate">
+      <a name="size" val="30"/>
+      <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(520,300)" name="Constant">
       <a name="width" val="32"/>
       <a name="value" val="0x0"/>
     </comp>
-    <comp lib="4" loc="(320,390)" name="Register">
+    <comp lib="0" loc="(520,270)" name="Constant">
       <a name="width" val="32"/>
-      <a name="label" val="delta_phi_word"/>
+      <a name="value" val="0x0"/>
     </comp>
   </circuit>
 </project>
