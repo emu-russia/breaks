@@ -1,6 +1,6 @@
-# Common
+# Logisim
 
-All sorts of general documentation and schematics of the general outline.
+All sorts of general documentation and schematics of the general outline for Logisim.
 
 ## NMOS Cheat Sheet
 
