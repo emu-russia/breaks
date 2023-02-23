@@ -22,7 +22,7 @@
   <lib desc="#BFH-Praktika" name="9"/>
   <lib desc="#Input/Output-Extra" name="10"/>
   <lib desc="#Soc" name="11"/>
-  <lib desc="file#..\..\6502\6502_logisim\6502_Evo.circ" name="12"/>
+  <lib desc="file#6502_Evo.circ" name="12"/>
   <main name="APU"/>
   <options>
     <a name="gateUndefined" val="ignore"/>
