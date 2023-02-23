@@ -1,4 +1,4 @@
-# Scrolling Registers
+# Scroll Registers
 
 ![ppu_locator_scroll_regs](/BreakingNESWiki/imgstore/ppu/ppu_locator_scroll_regs.jpg)
 
