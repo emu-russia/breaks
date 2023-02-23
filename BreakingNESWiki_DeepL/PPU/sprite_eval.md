@@ -1,4 +1,4 @@
-# Sprite Comparison
+# Sprite Comparison (OAM Evaluation)
 
 ![ppu_locator_sprite_eval](/BreakingNESWiki/imgstore/ppu/ppu_locator_sprite_eval.jpg)
 

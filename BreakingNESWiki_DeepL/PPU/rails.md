@@ -2,8 +2,6 @@
 
 This section contains a summary table of all signals.
 
-TBD: The inversion of some signals can be corrected after clarification.
-
 If a signal is repeated somewhere, it is usually not specified again, except in cases where it is important.
 
 The signals for the PAL version of the PPU are marked in the pictures only where there are differences from NTSC.
