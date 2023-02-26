@@ -1,0 +1,54 @@
+Credits: HardWareMan
+
+All levels measured directly from PPU pin 21, loaded to high resistance input of the THS7314 amplifier.
+Use LUMA[2|3] H without TINT as 110 IRE (approximately 1,1v) and scale down all other levels proportionally
+to get real CVBS loaded to 75 OHm. TINT don't affect to SYNC and BURST.
+
+Notice that PPU has no BLACK level, only BLANK. Also it have LUMA0 L level as lower than BLANK which may
+affect to the TV/monitor sync. 
+
+Hued colors (indexed as x1-xC in the palette) oscillated between H and L on color subcarrier frequency
+so luminance will be averaged and color saturation will be depend on difference between H and L.
+
+[LEVELS MAP]
+LEVEL  :  SYNC : BURST : LUMA0 : LUMA1 : LUMA2 : LUMA3 :
+ L09   :       :       :       :       :   H   :   H   :
+ L08   :       :       :       :       :   |   :   L   :
+ L07   :       :       :       :   H   :   |   :       :
+ L06   :       :       :   H   :   |   :   |   :       :
+ L05   :       :       :   |   :   |   :   L   :       :
+ L04   :       :   H   :   |   :   |   :       :       :
+ L03   : - H - : - | - : - | - : - L - : - - - : - - - : < BLACK LEVEL
+ L02   :   |   :   |   :   L   :       :       :       :
+ L01   :   |   :   L   :       :       :       :       :
+ GND   :   L   :       :       :       :       :       :
+
+[2C02E]
+LEVEL  :  SYNC : BURST :     LUMA0     :     LUMA1     :     LUMA2     :     LUMA3     :
+  H    : 0.558 : 0.900 : 1.141 / 0.916 : 1.550 / 1.250 : 1.991 / 1.616 : 1.991 / 1.616 :
+  L    : 0.000 : 0.300 : 0.383 / 0.300 : 0.558 / 0.441 : 1.016 / 0.816 : 1.608 / 1.291 :
+
+[2C02G]
+LEVEL  :  SYNC : BURST :     LUMA0     :     LUMA1     :     LUMA2     :     LUMA3     :
+  H    : 0.525 : 0.841 : 1.091 / 0.825 : 1.500 / 1.133 : 1.941 / 1.466 : 1.941 / 1.466 :
+  L    : 0.000 : 0.300 : 0.366 / 0.266 : 0.525 / 0.391 : 0.966 / 0.733 : 1.558 / 1.166 :
+
+[2C07]
+LEVEL  :  SYNC : BURST :     LUMA0     :     LUMA1     :     LUMA2     :     LUMA3     :
+  H    : 0.566 : 0.900 : 1.175 / 0.900 : 1.566 / 1.208 : 2.033 / 1.566 : 2.033 / 1.566 :
+  L    : 0.000 : 0.300 : 0.391 / 0.300 : 0.566 / 0.433 : 1.041 / 0.791 : 1.633 / 1.266 :
+
+[UA6528]
+LEVEL  :  SYNC : BURST :     LUMA0     :     LUMA1     :     LUMA2     :     LUMA3     :
+  H    : 0.408 : 0.625 : 0.833 / 0.641 : 1.308 / 1.025 : 1.825 / 1.433 : 1.825 / 1.433 :
+  L    : 0.000 : 0.258 : 0.291 / 0.225 : 0.408 / 0.325 : 0.766 / 0.600 : 1.350 / 1.050 :
+
+[UA6538]
+LEVEL  :  SYNC : BURST :     LUMA0     :     LUMA1     :     LUMA2     :     LUMA3     :
+  H    : 0.458 : 0.700 : 0.916 / 0.700 : 1.400 / 1.066 : 1.916 / 1.475 : 1.916 / 1.475 :
+  L    : 0.000 : 0.300 : 0.341 / 0.258 : 0.466 / 0.350 : 0.816 / 0.625 : 1.441 / 1.100 :
+
+[P02]
+LEVEL  :  SYNC : BURST :     LUMA0     :     LUMA1     :     LUMA2     :     LUMA3     :
+  H    : 0.391 : 0.633 : 0.891 / 0.541 : 1.300 / 1.791 : 1.758 / 1.083 : 1.758 / 1.083 :
+  L    : 0.000 : 0.250 : 0.266 / 0.166 : 0.400 / 0.241 : 0.833 / 0.508 : 1.333 / 0.816 :
