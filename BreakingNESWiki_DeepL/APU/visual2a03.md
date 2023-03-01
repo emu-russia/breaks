@@ -91,8 +91,8 @@ Visual 2A03: http://www.qmtpro.com/~nes/chipimages/visual2a03/
 |RND0-3|noi_out0-3|
 |DMC0-6|pcm_out0-6|
 |Internal buses||
-|DB|_db0-7|
-|DMC_Addr|pcm_+a0-15|
-|SPR_Addr|spr_a0-15|
-|CPU_Addr|__ab0-15|
+|D0-7|_db0-7|
+|DMC_A0-15|pcm_+a0-15|
+|SPR_A0-15|spr_a0-15|
+|CPU_A0-15|__ab0-15|
 |A0-15|_ab0-15|
