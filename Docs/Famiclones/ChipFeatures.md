@@ -60,23 +60,34 @@ Credits: @eugene-nes
 
 By "features" you mean some unique solution for the famiclone chip, often in fact a bug. Where the APU and PPU are combined in NoAC, respectively, we can say that the specified features are features of the NoAC chip as a whole
 
-List of known features of APU famiclone chips:
+List of known features of APU chips:
 - Main quartz frequency
 - CLK divider coefficient
 - Incorrect DPCM decoder
 - Wrong square channel duty cycle
 - Clicking triangle channel generator
-- Noise generator not working properly
+- Noise generator malfunction, most likely related to the corresponding decoder
 - BCD correction circuit of the 6502 core ALU is still enabled
+- Debug registers (2A03), pin30
+- Core halt support 6502 (2C07), pin30
 
-List of known features of PPU famiclone chips:
+List of known features of PPU chips:
+- Frequency of the main quartz (if a separate quartz is used for the PPU)
+- PCLK divider similar to 2C02 (NTSC PPU)
+- PCLK divider similar to 2C07 (PAL PPU)
 - H/V decoder similar to 2C02 (NTSC PPU)
 - H/V decoder similar to 2C07 (PAL PPU)
 - Unusual H/V decoder with delayed VBlank (UMC)
-- Mixed Emphasis
+- Unusual H/V decoder, still unexplored (TA)
+- Extended Chroma decoder to support phase alteration (2C07)
+- Delayed #PICTURE signal (2C07)
+- Delayed BLACK signal (Rendering Disabled) (2C07)
+- Special BLNK signal processing in OAM Eval (2C07)
+- Write delay in $2003 (2C07)
+- Emphasis bits mixed up (2C07)
 - DAC similar to Ricoh PPU
 - DAC of its own topology (TA)
-- DAC with excessive brightness (most likely due to incorrect calculations in the chip area) (UMC)
+- DAC with excessive saturation (most likely due to incorrect calculations in the chip area) (UMC)
 
 See the APU/PPU sections on the Wiki for a more detailed comparison of the schematics of the respective chips.
 
