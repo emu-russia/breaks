@@ -69,7 +69,7 @@ List of known features of APU chips:
 - Noise generator malfunction, most likely related to the corresponding decoder
 - BCD correction circuit of the 6502 core ALU is still enabled
 - Debug registers (2A03), pin30
-- Core halt support 6502 (2C07), pin30
+- 6502 Core halt support (2C07), pin30
 
 List of known features of PPU chips:
 - Frequency of the main quartz (if a separate quartz is used for the PPU)
