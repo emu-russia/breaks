@@ -12787,7 +12787,7 @@
     <comp lib="6" loc="(630,515)" name="Text">
       <a name="text" val="#S/SB"/>
     </comp>
-    <comp lib="6" loc="(633,631)" name="Text">
+    <comp lib="6" loc="(630,630)" name="Text">
       <a name="text" val="#SBXY"/>
     </comp>
     <comp loc="(320,900)" name="D_Latch">
@@ -15793,7 +15793,7 @@
     <comp lib="0" loc="(1230,820)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
-      <a name="label" val="L_0_IR_a36d8f98"/>
+      <a name="label" val="Z_IR"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(1230,860)" name="Pin">
@@ -17765,7 +17765,7 @@
     <comp lib="6" loc="(115,655)" name="Text">
       <a name="text" val="STA"/>
     </comp>
-    <comp lib="6" loc="(124,596)" name="Text">
+    <comp lib="6" loc="(120,595)" name="Text">
       <a name="text" val="BR0"/>
     </comp>
     <comp lib="6" loc="(125,1385)" name="Text">
@@ -17792,7 +17792,7 @@
     <comp lib="6" loc="(330,615)" name="Text">
       <a name="text" val="PGX"/>
     </comp>
-    <comp lib="6" loc="(351,193)" name="Text">
+    <comp lib="6" loc="(350,190)" name="Text">
       <a name="text" val="#SBXY"/>
     </comp>
     <comp lib="6" loc="(360,850)" name="Text">
@@ -22300,12 +22300,15 @@
     </comp>
     <comp lib="0" loc="(80,700)" name="Pin">
       <a name="appearance" val="classic"/>
+      <a name="label" val="D1"/>
     </comp>
     <comp lib="0" loc="(80,730)" name="Pin">
       <a name="appearance" val="classic"/>
+      <a name="label" val="D2"/>
     </comp>
     <comp lib="0" loc="(80,760)" name="Pin">
       <a name="appearance" val="classic"/>
+      <a name="label" val="D3"/>
     </comp>
     <comp lib="0" loc="(80,790)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -22317,9 +22320,11 @@
     </comp>
     <comp lib="0" loc="(80,820)" name="Pin">
       <a name="appearance" val="classic"/>
+      <a name="label" val="D5"/>
     </comp>
     <comp lib="0" loc="(80,850)" name="Pin">
       <a name="appearance" val="classic"/>
+      <a name="label" val="D6"/>
     </comp>
     <comp lib="0" loc="(80,880)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -22434,32 +22439,35 @@
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(470,130)" name="DL_BIT">
+      <a name="label" val="dl0"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp loc="(470,310)" name="DL_BIT">
-      <a name="label" val="d1"/>
+      <a name="label" val="dl1"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp loc="(470,490)" name="DL_BIT">
-      <a name="label" val="d2"/>
+      <a name="label" val="dl2"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp loc="(470,670)" name="DL_BIT">
-      <a name="label" val="d3"/>
+      <a name="label" val="dl3"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp loc="(920,130)" name="DL_BIT">
+      <a name="label" val="dl4"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp loc="(920,310)" name="DL_BIT">
-      <a name="label" val="d5"/>
+      <a name="label" val="dl5"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp loc="(920,490)" name="DL_BIT">
-      <a name="label" val="d6"/>
+      <a name="label" val="dl6"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp loc="(920,670)" name="DL_BIT">
+      <a name="label" val="dl7"/>
       <a name="labelloc" val="east"/>
     </comp>
     <wire from="(1010,140)" to="(1100,140)"/>
@@ -27908,35 +27916,35 @@
       <a name="size" val="30"/>
     </comp>
     <comp loc="(1010,1030)" name="ALU_ODD_BIT">
-      <a name="label" val="7"/>
+      <a name="label" val="alu7"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(1010,360)" name="ALU_ODD_BIT">
-      <a name="label" val="5"/>
+      <a name="label" val="alu5"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(1010,70)" name="ALU_EVEN_BIT">
-      <a name="label" val="4"/>
+      <a name="label" val="alu4"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(1010,740)" name="ALU_EVEN_BIT">
-      <a name="label" val="6"/>
+      <a name="label" val="alu6"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(390,1030)" name="ALU_ODD_BIT">
-      <a name="label" val="3"/>
+      <a name="label" val="alu3"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(390,360)" name="ALU_ODD_BIT">
-      <a name="label" val="1"/>
+      <a name="label" val="alu1"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(390,70)" name="ALU_EVEN_BIT">
-      <a name="label" val="0"/>
+      <a name="label" val="alu0"/>
       <a name="labelloc" val="south"/>
     </comp>
     <comp loc="(390,740)" name="ALU_EVEN_BIT">
-      <a name="label" val="2"/>
+      <a name="label" val="alu2"/>
       <a name="labelloc" val="south"/>
     </comp>
     <wire from="(1000,100)" to="(1010,100)"/>
