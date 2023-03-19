@@ -59,6 +59,8 @@
 
 ![PAR_TVCounter](/BreakingNESWiki/imgstore/ppu/PAR_TVCounter.png)
 
+Обратите внимание на хитрый сигнал `0/TV`. Этот сигнал очищает не только содержимое входного FF счётчика на Keep фазе, но и делает pulldown на его выходного значения, но НЕ комплементарного выхода.
+
 ### Счётчик TH
 
 ![ppu_dataread_par_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_th.jpg)
