@@ -59,6 +59,8 @@ A reset variation is used for the TV counter:
 
 ![PAR_TVCounter](/BreakingNESWiki/imgstore/ppu/PAR_TVCounter.png)
 
+Note the tricky `0/TV` signal. This signal clears not only the contents of the counter's input FF on the Keep phase, but also makes a pulldown on its output value, but NOT the complementary output.
+
 ### TH Counter
 
 ![ppu_dataread_par_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_th.jpg)
