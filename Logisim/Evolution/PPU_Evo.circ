@@ -24497,9 +24497,6 @@
     <comp lib="1" loc="(1010,130)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="1" loc="(1110,90)" name="NOT Gate">
-      <a name="size" val="20"/>
-    </comp>
     <comp lib="1" loc="(1160,100)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
@@ -24557,7 +24554,7 @@
     <wire from="(1070,210)" to="(1070,500)"/>
     <wire from="(1070,210)" to="(1080,210)"/>
     <wire from="(1070,500)" to="(1070,690)"/>
-    <wire from="(1080,90)" to="(1090,90)"/>
+    <wire from="(1080,90)" to="(1120,90)"/>
     <wire from="(1090,510)" to="(1150,510)"/>
     <wire from="(1090,520)" to="(1150,520)"/>
     <wire from="(1090,530)" to="(1150,530)"/>
@@ -24588,7 +24585,6 @@
     <wire from="(1110,350)" to="(1110,620)"/>
     <wire from="(1110,350)" to="(1140,350)"/>
     <wire from="(1110,620)" to="(1150,620)"/>
-    <wire from="(1110,90)" to="(1120,90)"/>
     <wire from="(1120,300)" to="(1130,300)"/>
     <wire from="(1120,360)" to="(1120,630)"/>
     <wire from="(1120,360)" to="(1140,360)"/>
