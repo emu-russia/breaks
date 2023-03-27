@@ -14,8 +14,13 @@
 |NES-CPU-09|2A03G/2C02G-0 or 2A07/2C07-0; 1987 copyright on PCB; VRAM and WRAM are NDIP or DIP; Has one resistor between CIC pin (data?) and cart connector to thwart some CIC STUN attacks|
 |NES-CPU-10|2A03G/2C02G; 1987 copyright on PCB; VRAM and WRAM are NDIP or DIP; Has two resistors between CIC pins (clock and data?) and cart connector to thwart more CIC STUN attacks, some later pcbs have a hand-added-at-factory diode or diodes to nearby GND vias as well to prevent the -5V attack|
 |NES-CPU-11|2A03G/2C02G or 2A07A/2C07A; 1987 Copyright on PCB; VRAM and WRAM are NDIP or DIP; Has two resistors and two diodes between CIC pins, cart connector and GND to prevent CIC STUN and -5V attacks|
+|NESN-CPU-01 (1993)|U1: RAM: LH5216AD-10L; U2: HD74LS373P; U3: HD74LS139P; U5: PPU: RP2C02G-0; U6: CPU: RP2A03G; U7, U8: SN74HC368N; U9: +5V Regulator: 7805|
+|NESN-CPU-JI0-01 (1993)|U1: WRAM: LH5216AD-10L; U2: SN74LS373N; U3: BU3266S; U4: VRAM: LH5216AD-10L; U5: PPU: RP2C02H-0; U6: CPU: RP2A03H; U7: +5V Regulator: 7805|
+|NESN-CPU-AV-01 (1994)|U1: RAM: BR6216B-10LL; U2: MB74LS373; U3: BU3270S; U4: RAM: BR6216B-10LL; U5: PPU: RP2C02H-0; U6: CPU: RP2A03H; U7: +5V Regulator: 7805|
 
 Source: https://forums.nesdev.org/viewtopic.php?p=196688#p196688
+
+Source: https://wiki.console5.com/tw/index.php?title=Nintendo_NES-101
 
 ## Generic NES
 
