@@ -2,6 +2,6 @@
 
 MOS 6502 implementation on Verilog.
 
-Status: TOP only.
+Status: WIP
 
-![mos6502_schematic](/HDL/Design/mos6502_schematic.png)
+![mos6502](/HDL/Design/mos6502.png)
