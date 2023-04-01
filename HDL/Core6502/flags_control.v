@@ -40,7 +40,7 @@ module Flags_Control (
 	dlatch zv_latch (.d(~X[127]), .en(PHI2), .nq(Z_V));
 	dlatch acrc_latch (.d(nARITH), .en(PHI2), .nq(ACR_C));
 	dlatch dbz_latch (.d(~(ACR_C|ZTST|X[109])), .en(PHI2), .q(dbz_latch_q), .nq(DBZ_Z));
-	dlatch dbn_latch (.d(), .en(PHI2), .q(dbn_latch_q));
+	dlatch dbn_latch (.d(X[109]), .en(PHI2), .q(dbn_latch_q));
 	dlatch dbc_latch (.d(~(SR|DB_P)), .en(PHI2), .nq(DB_C));
 	dlatch pin_latch (.d(~(X[114]|X[115])), .en(PHI2), .q(pin_latch_q));
 	dlatch bit_latch (.d(~X[113]), .en(PHI2), .q(bit_latch_q));
