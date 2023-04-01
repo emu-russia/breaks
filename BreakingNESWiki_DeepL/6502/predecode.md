@@ -8,7 +8,7 @@ The circuit is designed to define the "class" of an instruction:
 
 ![predecode_tran](/BreakingNESWiki/imgstore/6502/predecode_tran.jpg)
 
-The operation code received from the external data bus (D0...D7) is stored on the PREDECODE latch (PD) during PHI2 (in inverted form), after which the precoding logic immediately determines the instruction class (the circuit is combinatorial).
+The operation code received from the external data bus (D0...D7) is first stored on the transparent DLatch and then during PHI2 on the PREDECODE (PD) latch (in inverted form), after which the precoding logic immediately determines the instruction class (the circuit is combinatorial).
 
 The output `/TWOCYCLE` is used by a short cycle counter. The output `/IMPLIED` is used by the PC increment logic.
 
@@ -19,10 +19,6 @@ Also the control line `0/IR` is fed to the Predecode logic input which "injects"
 The pre-decode circuit works closely with the [dispatcher](dispatch.md), all control signals go there.
 
 ## Logic
-
-The corresponding gates are marked on the transistor schematic:
-
-![predecode_tran_gates](/BreakingNESWiki/imgstore/6502/predecode_tran_gates.jpg)
 
 ![predecode_logic](/BreakingNESWiki/imgstore/6502/predecode_logic.jpg)
 
