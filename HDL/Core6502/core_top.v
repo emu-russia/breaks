@@ -69,7 +69,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	wire B_OUT;	
 
 	wire STXY;
-	wire SBXY;
+	wire n_SBXY;
 	wire STKOP;
 	wire STOR;
 	wire BR2;
@@ -258,7 +258,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_ready(n_ready), 
 		.X(Decoder_out),
 		.STXY(STXY),
-		.SBXY(SBXY),
+		.n_SBXY(n_SBXY),
 		.STKOP(STKOP), 
 		.Y_SB(Y_SB),
 		.X_SB(X_SB),
@@ -307,7 +307,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	Bus_Control busctl(
 		.PHI1(phi1),
 		.PHI2(phi2),
-		.SBXY(SBXY),
+		.n_SBXY(n_SBXY),
 		.AND(AND),
 		.STOR(STOR),
 		.Z_ADL0(Z_ADLX[0]),
@@ -363,7 +363,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	Flags_Control fctl(
 		.PHI2(phi2),
 		.X(Decoder_out),
-		.T6(T6),
+		.T7(T7),
 		.ZTST(ZTST),
 		.n_ready(n_ready),
 		.SR(SR),
