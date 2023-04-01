@@ -1,5 +1,6 @@
 
-module Flags_Control ( PHI2, X,
+module Flags_Control (
+	PHI2, X,
 	T7, ZTST, n_ready, SR,
 	P_DB, IR5_I, IR5_C, IR5_D, Z_V, ACR_C, DBZ_Z, DB_N, DB_P, DB_C, DB_V);
 
