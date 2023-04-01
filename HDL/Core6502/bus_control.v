@@ -1,7 +1,7 @@
 
 module Bus_Control(
 	PHI1, PHI2,
-	SBXY, AND, STOR, Z_ADL0, BR2, ACRL2, DL_PCH, n_ready, T2, INC_SB, BRK6E, STXY, n_PCH_PCH,
+	n_SBXY, AND, STOR, Z_ADL0, BR2, ACRL2, DL_PCH, n_ready, T2, INC_SB, BRK6E, STXY, n_PCH_PCH,
 	T0, T1, T6, T7,
 	X,
 	ZTST, PGX, 
@@ -10,7 +10,7 @@ module Bus_Control(
 	input PHI1;
 	input PHI2;
 
-	input SBXY;
+	input n_SBXY;
 	input AND;
 	input STOR;
 	input Z_ADL0;
