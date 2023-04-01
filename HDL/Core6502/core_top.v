@@ -1,5 +1,53 @@
 // Top module for MOS 6502 Core
 
+// Top->Bottom Operations
+
+`define Y_SB bop[0]			// Y => SB
+`define SB_Y bop[1]			// SB => Y
+`define X_SB bop[2]			// X => SB
+`define SB_X bop[3]			// SB => X
+`define S_ADL bop[4]		// S => ADL
+`define S_SB bop[5]			// S => SB
+`define SB_S bop[6]			// SB => S
+`define S_S bop[7]			// The S/S command is active if the SB/S command is inactive. This command simply "refreshes" the current state of the S register.
+`define NDB_ADD bop[8]		// ~DB => BI
+`define DB_ADD bop[9]		// DB => BI
+`define Z_ADD bop[10]		// 0 => AI
+`define SB_ADD bop[11]		// SB => AI
+`define ADL_ADD bop[12]		// ADL => BI
+`define ANDS bop[13]		// AI & BI
+`define EORS bop[14]		// AI ^ BI
+`define ORS bop[15]			// AI | BI
+`define SRS bop[16]			// >>= 1
+`define SUMS bop[17]		// AI + BI
+`define ADD_SB7 bop[18]		// ADD[7] => SB[7]
+`define ADD_SB06 bop[19]	// ADD[0-6] => SB[0-6]
+`define ADD_ADL bop[20]		// ADD => ADL
+`define SB_AC bop[21]		// SB => AC
+`define AC_SB bop[22]		// AC => SB
+`define AC_DB bop[23]		// AC => DB
+`define ADH_PCH bop[24]		// ADH => PCH
+`define PCH_PCH bop[25]		// If ADH/PCH is not performed, this command is performed (refresh PCH)
+`define PCH_ADH bop[26]		// PCH => ADH
+`define PCH_DB bop[27]		// PCH => DB
+`define ADL_PCL bop[28]		// ADL => PCL
+`define PCL_PCL bop[29]		// If ADL/PCL is not performed, this command is performed (refresh PCL)
+`define PCL_ADL bop[30]		// PCL => ADL
+`define PCL_DB bop[31]		// PCL => DB
+`define ADH_ABH bop[32]		// ADH => ABH
+`define ADL_ABL bop[33]		// ADL => ABL
+`define Z_ADL0 bop[34]		// Reset some of the ADL bus bits (0). Used to set the interrupt vector.
+`define Z_ADL1 bop[35]		// Reset some of the ADL bus bits (1). Used to set the interrupt vector.
+`define Z_ADL2 bop[36]		// Reset some of the ADL bus bits (2). Used to set the interrupt vector.
+`define Z_ADH0 bop[37]		// Reset some of the ADH bus bits (0)
+`define Z_ADH17 bop[38]		// Reset some of the ADH bus bits (1-7)
+`define SB_DB bop[39]		// SB <=> DB, connect the two buses
+`define SB_ADH bop[40]		// SB <=> ADH
+`define DL_ADL bop[41]		// DL => ADL
+`define DL_ADH bop[42]		// DL => ADH
+`define DL_DB bop[43]		// DL <=> DB
+
+
 module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D);
 
 	input n_NMI;		// Non-maskable interrupt signal, active low
@@ -24,9 +72,121 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	wire n_PRDY;
 	wire SO_frompad;
 	wire WR_topad;
+	wire T1_topad;
 
-	wire phi1;
-	wire phi2;
+	wire PHI1_tocore;
+	wire PHI2_tocore;
+
+	wire ACR;
+	wire AVR;
+	wire [7:0] DB;
+
+	wire [43:0] bop;	// Control "Commands"
+	wire n_ACIN;		// ALU input carry. The ALU also returns the result of carry (ACR) and overflow (AVR)
+	wire n_DAA;			// 0: Perform BCD correction after addition
+	wire n_DSA;			// 0: Perform BCD correction after subtraction
+	wire n_IPC;			// 0: Increment the program counter	
+
+	// Module instantiation
+
+	ClkGen clk (
+		.PHI0(PHI0), 
+		.PHI1(PHI1_tocore), 
+		.PHI2(PHI2_tocore), 
+		.PHI1_topad(PHI1), 
+		.PHI2_topad(PHI2) );
+
+	PadsLogic pads (
+		.n_NMI(n_NMI), 
+		.n_IRQ(n_IRQ), 
+		.n_RES(n_RES), 
+		.n_NMIP(n_NMIP), 
+		.n_IRQP(n_IRQP), 
+		.RESP(RESP), 
+		.RDY(RDY), 
+		.RDY_frompad(RDY_frompad), 
+		.n_PRDY(n_PRDY), 
+		.T1_topad(T1_topad), 
+		.SYNC(SYNC), 
+		.SO(SO), 
+		.SO_frompad(SO_frompad),
+		.WR_topad(WR_topad), 
+		.RnW(RnW) );
+
+	Core6502_Top top (
+		.PHI1(PHI1_tocore),
+		.PHI2(PHI2_tocore), 
+		.n_NMIP(n_NMIP),
+		.n_IRQP(n_IRQP),
+		.RESP(RESP),
+		.RDY_frompad(RDY_frompad),
+		.n_PRDY(n_PRDY),
+		.SO_frompad(SO_frompad),
+		.bop(bop),
+		.n_ACIN(n_ACIN),
+		.n_DAA(n_DAA),
+		.n_DSA(n_DSA),
+		.n_IPC(n_IPC),
+		.WR(WR_topad),
+		.T1(T1_topad),
+		.ACR(ACR),
+		.AVR(AVR),
+		.DB(DB),
+		.D(D) );
+
+	Core6502_Bot bot (
+		.PHI1(PHI1_tocore),
+		.PHI2(PHI2_tocore),
+		.bop(bop),
+		.n_ACIN(n_ACIN),
+		.n_DAA(n_DAA),
+		.n_DSA(n_DSA),
+		.n_IPC(n_IPC),
+		.WR(WR_topad),
+		.ACR(ACR),
+		.AVR(AVR),
+		.DB(DB),
+		.A(A),
+		.D(D) );
+
+endmodule // Core6502
+
+module Core6502_Top (
+	PHI1, PHI2, 
+	n_NMIP, n_IRQP, RESP, RDY_frompad, n_PRDY, SO_frompad,
+	bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, T1, ACR, AVR, DB, D);
+
+	input PHI1;
+	input PHI2;
+	input n_NMIP;
+	input n_IRQP;
+	input RESP;
+	input RDY_frompad;
+	input n_PRDY;
+	input SO_frompad;
+	output [43:0] bop;
+	output n_ACIN;
+	output n_DAA;
+	output n_DSA;
+	output n_IPC;
+	output WR;
+	output T1;
+	input ACR;
+	input AVR;
+	inout [7:0] DB; 	// Internal databus to Flags
+	inout [7:0] D; 		// External databus to Predecode
+
+	wire IR5_C;		// Change the value of the flag according to the IR5 bit
+	wire ACR_C;		// Change the value of the flag according to the ACR value
+	wire DB_C;		// Change the value of the flag according to DB0 bit
+	wire DBZ_Z;		// Change the value of the flag according to the /DBZ value
+	wire IR5_I;		// Change the value of the flag according to the IR5 bit
+	wire IR5_D;		// Change the value of the flag according to the IR5 bit
+	wire DB_V;		// Change the value of the flag according to DB6 bit
+	wire Z_V;		// Clear flag V
+	wire DB_N;		// Change the value of the flag according to DB7 bit
+	wire P_DB;		// Place the value of the flags register P on the DB bus
+	wire DB_P;		// Place the DB bus value on the flag register P
 
 	wire Z_IR;
 	wire [7:0] n_PD;
@@ -55,11 +215,6 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 
 	wire [129:0] Decoder_out;
 
-	wire [7:0] SB;
-	wire [7:0] DB;
-	wire [7:0] ADL;
-	wire [7:0] ADH;
-
 	wire BRK5;
 	wire BRK5_RDY;
 	wire BRK6E;
@@ -84,8 +239,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	wire ZTST;
 	wire PGX;
 
-	wire ACR;
-	wire AVR;
+	// Flags output
 
 	wire n_ZOUT;
 	wire n_NOUT;
@@ -94,115 +248,26 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	wire n_IOUT;
 	wire n_VOUT;
 
-	wire RD_to_db;
-
-	// Control "Commands"
-
-	wire Y_SB;		// Y => SB
-	wire SB_Y;		// SB => Y
-	wire X_SB;		// X => SB
-	wire SB_X;		// SB => X
-	wire S_ADL;		// S => ADL
-	wire S_SB;		// S => SB
-	wire SB_S;		// SB => S
-	wire S_S;		// The S/S command is active if the SB/S command is inactive. This command simply "refreshes" the current state of the S register.
-	wire NDB_ADD;		// ~DB => BI
-	wire DB_ADD;		// DB => BI
-	wire Z_ADD;		// 0 => AI
-	wire SB_ADD;		// SB => AI
-	wire ADL_ADD;		// ADL => BI
-	wire n_ACIN;		// ALU input carry. The ALU also returns the result of carry (ACR) and overflow (AVR)
-	wire ANDS;		// AI & BI
-	wire EORS;		// AI ^ BI
-	wire ORS;		// AI | BI
-	wire SRS;		// >>= 1
-	wire SUMS;		// AI + BI
-	wire n_DAA;		// 0: Perform BCD correction after addition
-	wire n_DSA;		// 0: Perform BCD correction after subtraction
-	wire ADD_SB7;		// ADD[7] => SB[7]
-	wire ADD_SB06;		// ADD[0-6] => SB[0-6]
-	wire ADD_ADL;		// ADD => ADL
-	wire SB_AC;		// SB => AC
-	wire AC_SB;		// AC => SB
-	wire AC_DB;		// AC => DB
-	wire n_IPC;		// 0: Increment the program counter
-	wire ADH_PCH;		// ADH => PCH
-	wire PCH_PCH;		// If ADH/PCH is not performed, this command is performed (refresh PCH)
-	wire PCH_ADH;		// PCH => ADH
-	wire PCH_DB;		// PCH => DB
-	wire ADL_PCL;		// ADL => PCL
-	wire PCL_PCL;		// If ADL/PCL is not performed, this command is performed (refresh PCL)
-	wire PCL_ADL;		// PCL => ADL
-	wire PCL_DB;		// PCL => DB
-	wire ADH_ABH;		// ADH => ABH
-	wire ADL_ABL;		// ADL => ABL
-	wire [2:0] Z_ADLX;		// Reset some of the ADL bus bits. Used to set the interrupt vector.
-	wire Z_ADH0;		// 
-	wire Z_ADH17;		// Reset some of the ADH bus bits
-	wire SB_DB;		// SB <=> DB, connect the two buses
-	wire SB_ADH;		// SB <=> ADH
-	wire DL_ADL;		// DL => ADL
-	wire DL_ADH;		// DL => ADH
-	wire DL_DB;		// DL <=> DB
-
-	wire IR5_C;		// Change the value of the flag according to the IR5 bit
-	wire ACR_C;		// Change the value of the flag according to the ACR value
-	wire DB_C;		// Change the value of the flag according to DB0 bit
-	wire DBZ_Z;		// Change the value of the flag according to the /DBZ value
-	wire IR5_I;		// Change the value of the flag according to the IR5 bit
-	wire IR5_D;		// Change the value of the flag according to the IR5 bit
-	wire DB_V;		// Change the value of the flag according to DB6 bit
-	wire Z_V;		// Clear flag V
-	wire DB_N;		// Change the value of the flag according to DB7 bit
-	wire P_DB;		// Place the value of the flags register P on the DB bus
-	wire DB_P;		// Place the DB bus value on the flag register P
-
-	// Module instantiation
-
-	ClkGen clk(
-		.PHI0(PHI0), 
-		.PHI1(phi1), 
-		.PHI2(phi2), 
-		.PHI1_topad(PHI1), 
-		.PHI2_topad(PHI2) );
-
-	PadsLogic pads(
-		.n_NMI(n_NMI), 
-		.n_IRQ(n_IRQ), 
-		.n_RES(n_RES), 
-		.n_NMIP(n_NMIP), 
-		.n_IRQP(n_IRQP), 
-		.RESP(RESP), 
-		.RDY(RDY), 
-		.RDY_frompad(RDY_frompad), 
-		.n_PRDY(n_PRDY), 
-		.T1_topad(T1), 
-		.SYNC(SYNC), 
-		.SO(SO), 
-		.SO_frompad(SO_frompad),
-		.WR_topad(WR_topad), 
-		.RnW(RnW) );
-
-	PreDecode pd(
-		.PHI2(phi2),
+	PreDecode pd (
+		.PHI2(PHI2),
 		.Z_IR(Z_IR),
 		.Data_bus(D),
 		.n_PD(n_PD),
 		.n_IMPLIED(n_IMPLIED),
 		.n_TWOCYCLE(n_TWOCYCLE) );
 
-	IR ir(
-		.PHI1(phi1),
-		.PHI2(phi2),
+	IR ir (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
 		.n_PD(n_PD),
 		.FETCH(FETCH),
 		.IR01(IR01),
 		.IR_out(IR),
 		.n_IR_out(n_IR) );
 
-	ExtraCounter extcnt(
-		.PHI1(phi1),
-		.PHI2(phi2),
+	ExtraCounter extcnt (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
 		.TRES2(TRES2),
 		.n_ready(n_ready),
 		.T1(T1),
@@ -211,7 +276,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_T4(n_T4),
 		.n_T5(n_T5) );
 
-	Decoder dec(
+	Decoder dec (
 		.n_T0(n_T0),
 		.n_T1X(n_T1X),
 		.n_T2(n_T2),
@@ -223,10 +288,10 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_IR(n_IR),
 		.X(Decoder_out) );
 
-	BRKProcessing brk(
-		.PHI1(phi1),
-		.PHI2(phi2),
-		.BRK5(BRK5),
+	BRKProcessing brk (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
+		.BRK5(Decoder_out[22]),
 		.n_ready(n_ready),
 		.RESP(RESP),
 		.n_NMIP(n_NMIP),
@@ -241,37 +306,37 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_DONMI(n_DONMI),
 		.B_OUT(B_OUT) );
 
-	IntVector int(
-		.PHI2(phi2),
+	IntVector int (
+		.PHI2(PHI2),
 		.BRK5_RDY(BRK5_RDY),
 		.BRK7(BRK7),
 		.DORES(DORES),
 		.n_DONMI(n_DONMI),
-		.Z_ADL0(Z_ADLX[0]),
-		.Z_ADL1(Z_ADLX[1]),
-		.Z_ADL2(Z_ADLX[2]) );
+		.Z_ADL0(`Z_ADL0),
+		.Z_ADL1(`Z_ADL1),
+		.Z_ADL2(`Z_ADL2) );
 
-	Regs_Control regctl(
-		.PHI1(phi1),
-		.PHI2(phi2), 
+	Regs_Control regctl (
+		.PHI1(PHI1),
+		.PHI2(PHI2), 
 		.STOR(STOR),
 		.n_ready(n_ready), 
 		.X(Decoder_out),
 		.STXY(STXY),
 		.n_SBXY(n_SBXY),
 		.STKOP(STKOP), 
-		.Y_SB(Y_SB),
-		.X_SB(X_SB),
-		.S_SB(S_SB),
-		.SB_X(SB_X),
-		.SB_Y(SB_Y),
-		.SB_S(SB_S),
-		.S_S(S_S),
-		.S_ADL(S_ADL) );
+		.Y_SB(`Y_SB),
+		.X_SB(`X_SB),
+		.S_SB(`S_SB),
+		.SB_X(`SB_X),
+		.SB_Y(`SB_Y),
+		.SB_S(`SB_S),
+		.S_S(`S_S),
+		.S_ADL(`S_ADL) );
 
-	ALU_Control aluctl(
-		.PHI1(phi1),
-		.PHI2(phi2),
+	ALU_Control aluctl (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
 		.BRFW(BRFW),
 		.n_ready(n_ready),
 		.BRK6E(BRK6E),
@@ -287,35 +352,34 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.INC_SB(INC_SB),
 		.SR(SR),
 		.AND(AND),
-		.NDB_ADD(NDB_ADD),
-		.DB_ADD(DB_ADD),
-		.Z_ADD(Z_ADD),
-		.SB_ADD(SB_ADD),
-		.ADL_ADD(ADL_ADD),
-		.ADD_SB06(ADD_SB06),
-		.ADD_SB7(ADD_SB7),
-		.ADD_ADL(ADD_ADL),
-		.ANDS(ANDS),
-		.EORS(EORS),
-		.ORS(ORS),
-		.SRS(SRS),
-		.SUMS(SUMS),
+		.NDB_ADD(`NDB_ADD),
+		.DB_ADD(`DB_ADD),
+		.Z_ADD(`Z_ADD),
+		.SB_ADD(`SB_ADD),
+		.ADL_ADD(`ADL_ADD),
+		.ADD_SB06(`ADD_SB06),
+		.ADD_SB7(`ADD_SB7),
+		.ADD_ADL(`ADD_ADL),
+		.ANDS(`ANDS),
+		.EORS(`EORS),
+		.ORS(`ORS),
+		.SRS(`SRS),
+		.SUMS(`SUMS),
 		.n_ACIN(n_ACIN),
 		.n_DAA(n_DAA),
 		.n_DSA(n_DSA) );
 
-	Bus_Control busctl(
-		.PHI1(phi1),
-		.PHI2(phi2),
+	Bus_Control busctl (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
 		.n_SBXY(n_SBXY),
 		.AND(AND),
 		.STOR(STOR),
-		.Z_ADL0(Z_ADLX[0]),
+		.Z_ADL0(`Z_ADL0),
 		.BR2(BR2),
 		.ACRL2(ACRL2),
 		.DL_PCH(DL_PCH),
 		.n_ready(n_ready),
-		.T2(T2),
 		.INC_SB(INC_SB),
 		.BRK6E(BRK6E),
 		.STXY(STXY),
@@ -327,41 +391,41 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.X(Decoder_out),
 		.ZTST(ZTST),
 		.PGX(PGX), 
-		.Z_ADH0(Z_ADH0),
-		.Z_ADH17(Z_ADH17),
-		.SB_AC(SB_AC),
-		.ADL_ABL(ADL_ABL),
-		.AC_SB(AC_SB),
-		.SB_DB(SB_DB),
-		.AC_DB(AC_DB),
-		.SB_ADH(SB_ADH),
-		.DL_ADH(DL_ADH),
-		.DL_ADL(DL_ADL),
-		.ADH_ABH(ADH_ABH),
-		.DL_DB(DL_DB) );
+		.Z_ADH0(`Z_ADH0),
+		.Z_ADH17(`Z_ADH17),
+		.SB_AC(`SB_AC),
+		.ADL_ABL(`ADL_ABL),
+		.AC_SB(`AC_SB),
+		.SB_DB(`SB_DB),
+		.AC_DB(`AC_DB),
+		.SB_ADH(`SB_ADH),
+		.DL_ADH(`DL_ADH),
+		.DL_ADL(`DL_ADL),
+		.ADH_ABH(`ADH_ABH),
+		.DL_DB(`DL_DB) );
 
-	PC_Control pcctl(
-		.PHI1(phi1),
-		.PHI2(phi2),
+	PC_Control pcctl (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
 		.n_ready(n_ready),
 		.T0(T0),
 		.T1(T1), 
 		.X(Decoder_out),
-		.PCL_DB(PCL_DB),
-		.PCH_DB(PCH_DB),
+		.PCL_DB(`PCL_DB),
+		.PCH_DB(`PCH_DB),
 		.PC_DB(PC_DB),
-		.PCL_ADL(PCL_ADL),
-		.PCH_ADH(PCH_ADH),
-		.PCL_PCL(PCL_PCL),
-		.ADL_PCL(ADL_PCL),
+		.PCL_ADL(`PCL_ADL),
+		.PCH_ADH(`PCH_ADH),
+		.PCL_PCL(`PCL_PCL),
+		.ADL_PCL(`ADL_PCL),
 		.n_ADL_PCL(n_ADL_PCL),
 		.DL_PCH(DL_PCH),
-		.ADH_PCH(ADH_PCH),
-		.PCH_PCH(PCH_PCH),
+		.ADH_PCH(`ADH_PCH),
+		.PCH_PCH(`PCH_PCH),
 		.n_PCH_PCH(n_PCH_PCH) );
 
-	Flags_Control fctl(
-		.PHI2(phi2),
+	Flags_Control fctl (
+		.PHI2(PHI2),
 		.X(Decoder_out),
 		.T7(T7),
 		.ZTST(ZTST),
@@ -379,9 +443,9 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.DB_C(DB_C),
 		.DB_V(DB_V) );
 
-	Dispatch disp(
-		.PHI1(phi1),
-		.PHI2(phi2),
+	Dispatch disp (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
 		.BRK6E(BRK6E),
 		.BR2(BR2),
 		.RESP(RESP),
@@ -404,16 +468,16 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.Z_IR(Z_IR),
 		.FETCH(FETCH),
 		.n_ready(n_ready),
-		.WR(WR_topad),
+		.WR(WR),
 		.T1(T1),
 		.n_T0(n_T0),
 		.T0(T0),
 		.n_T1X(n_T1X),
 		.n_IPC(n_IPC) );
 
-	BranchLogic branch(
-		.PHI1(phi1),
-		.PHI2(phi2),
+	BranchLogic branch (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
 		.n_IR5(n_IR[5]),
 		.X(Decoder_out),
 		.n_COUT(n_COUT),
@@ -425,9 +489,9 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_BRTAKEN(n_BRTAKEN),
 		.BRFW(BRFW) );
 
-	Flags flags(
-		.PHI1(phi1),
-		.PHI2(phi2),
+	Flags flags (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
 		.P_DB(P_DB),
 		.DB_P(DB_P),
 		.DBZ_Z(DBZ_Z),
@@ -453,41 +517,65 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.n_IOUT(n_IOUT),
 		.n_VOUT(n_VOUT) );
 
-	Regs regs(
-		.PHI2(phi2),
-		.Y_SB(Y_SB),
-		.SB_Y(SB_Y),
-		.X_SB(X_SB),
-		.SB_X(SB_X),
-		.S_SB(S_SB),
-		.S_ADL(S_ADL),
-		.S_S(S_S),
-		.SB_S(SB_S), 
+endmodule // Core6502_Top
+
+module Core6502_Bot (PHI1, PHI2, bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, ACR, AVR, DB, A, D);
+
+	input PHI1;
+	input PHI2;
+	input [43:0] bop;
+	input n_ACIN;
+	input n_DAA;
+	input n_DSA;
+	input n_IPC;
+	input WR;
+	output ACR;
+	output AVR;
+	output [15:0] A;
+	inout [7:0] DB;
+	inout [7:0] D;
+
+	wire [7:0] SB;
+	wire [7:0] ADL;
+	wire [7:0] ADH;
+
+	wire RD_to_db;
+
+	Regs regs (
+		.PHI2(PHI2),
+		.Y_SB(`Y_SB),
+		.SB_Y(`SB_Y),
+		.X_SB(`X_SB),
+		.SB_X(`SB_X),
+		.S_SB(`S_SB),
+		.S_ADL(`S_ADL),
+		.S_S(`S_S),
+		.SB_S(`SB_S), 
 		.SB(SB),
 		.ADL(ADL) );
 
-	ALU alu(
-		.PHI2(phi2),
-		.NDB_ADD(NDB_ADD),
-		.DB_ADD(DB_ADD),
-		.Z_ADD(Z_ADD),
-		.SB_ADD(SB_ADD),
-		.ADL_ADD(ADL_ADD),
-		.ADD_SB06(ADD_SB06),
-		.ADD_SB7(ADD_SB7),
-		.ADD_ADL(ADD_ADL),
-		.ANDS(ANDS),
-		.EORS(EORS),
-		.ORS(ORS),
-		.SRS(SRS),
-		.SUMS(SUMS), 
-		.SB_AC(SB_AC),
-		.AC_SB(AC_SB),
-		.AC_DB(AC_DB),
-		.SB_DB(SB_DB),
-		.SB_ADH(SB_ADH),
-		.Z_ADH0(Z_ADH0),
-		.Z_ADH17(Z_ADH17),
+	ALU alu (
+		.PHI2(PHI2),
+		.NDB_ADD(`NDB_ADD),
+		.DB_ADD(`DB_ADD),
+		.Z_ADD(`Z_ADD),
+		.SB_ADD(`SB_ADD),
+		.ADL_ADD(`ADL_ADD),
+		.ADD_SB06(`ADD_SB06),
+		.ADD_SB7(`ADD_SB7),
+		.ADD_ADL(`ADD_ADL),
+		.ANDS(`ANDS),
+		.EORS(`EORS),
+		.ORS(`ORS),
+		.SRS(`SRS),
+		.SUMS(`SUMS), 
+		.SB_AC(`SB_AC),
+		.AC_SB(`AC_SB),
+		.AC_DB(`AC_DB),
+		.SB_DB(`SB_DB),
+		.SB_ADH(`SB_ADH),
+		.Z_ADH0(`Z_ADH0),
+		.Z_ADH17(`Z_ADH17),
 		.n_ACIN(n_ACIN),
 		.n_DAA(n_DAA),
 		.n_DSA(n_DSA),
@@ -498,64 +586,64 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.ACR(ACR),
 		.AVR(AVR) );
 
-	PC pc(
-		.PHI2(phi2),
+	PC pc (
+		.PHI2(PHI2),
 		.n_IPC(n_IPC),
-		.ADL_PCL(ADL_PCL),
-		.PCL_PCL(PCL_PCL),
-		.PCL_ADL(PCL_ADL),
-		.PCL_DB(PCL_DB),
-		.ADH_PCH(ADH_PCH),
-		.PCH_PCH(PCH_PCH),
-		.PCH_ADH(PCH_ADH),
-		.PCH_DB(PCH_DB),
+		.ADL_PCL(`ADL_PCL),
+		.PCL_PCL(`PCL_PCL),
+		.PCL_ADL(`PCL_ADL),
+		.PCL_DB(`PCL_DB),
+		.ADH_PCH(`ADH_PCH),
+		.PCH_PCH(`PCH_PCH),
+		.PCH_ADH(`PCH_ADH),
+		.PCH_DB(`PCH_DB),
 		.ADL(ADL),
 		.ADH(ADH),
 		.DB(DB) );
 
 	// TBD
 
-	//AddrBusBitLow abl03 [2:0](
-	//	.PHI1(phi1),
-	//	.PHI2(phi2),
+	//AddrBusBitLow abl03 [2:0] (
+	//	.PHI1(PHI1),
+	//	.PHI2(PHI2),
 	//	.ADX(ADL[2:0]),
 	//	.Z_ADX(Z_ADLX),
 	//	.ADX_ABX(ADL_ABL),
 	//	.ABus_out(A[2:0]) );
 
-	//AddrBusBit abl [7:3](
-	//	.PHI1(phi1),
-	//	.PHI2(phi2),
+	//AddrBusBit abl [7:3] (
+	//	.PHI1(PHI1),
+	//	.PHI2(PHI2),
 	//	.ADX(ADL[7:3]),
-	//	.ADX_ABX(ADL_ABL),
+	//	.ADX_ABX(`ADL_ABL),
 	//	.ABus_out(A[7:3]) );
 
-	//AddrBusBit abh [7:0](
-	//	.PHI1(phi1),
-	//	.PHI2(phi2),
+	//AddrBusBit abh [7:0] (
+	//	.PHI1(PHI1),
+	//	.PHI2(PHI2),
 	//	.ADX(ADH),
-	//	.ADX_ABX(ADH_ABH),
+	//	.ADX_ABX(`ADH_ABH),
 	//	.ABus_out(A[7:0]) );
 
 	// TBD
 	assign A = 16'b0;
 
-	WRLatch wrl(
-		.PHI1(phi1),
-		.PHI2(phi2),
-		.WR(WR_topad),
+	WRLatch wrl (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
+		.WR(WR),
 		.RD(RD_to_db) );
 
-	DataBusBit db [7:0](
-		.PHI1(phi1),
-		.PHI2(phi2),
+	DataBusBit db [7:0] (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
 		.ADL(ADL),
 		.ADH(ADH),
 		.DB(DB),
 		.DB_Ext(D),
-		.DL_ADL(DL_ADL),
-		.DL_ADH(DL_ADH),
-		.DL_DB(DL_DB),
+		.DL_ADL(`DL_ADL),
+		.DL_ADH(`DL_ADH),
+		.DL_DB(`DL_DB),
 		.RD(RD_to_db) );
 
-endmodule // Core6502
+endmodule // Core6502_Bot
