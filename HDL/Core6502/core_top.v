@@ -9,7 +9,7 @@
 `define S_ADL bop[4]		// S => ADL
 `define S_SB bop[5]			// S => SB
 `define SB_S bop[6]			// SB => S
-`define S_S bop[7]			// The S/S command is active if the SB/S command is inactive. This command simply "refreshes" the current state of the S register.
+`define S_S bop[7]			// The S/S command is active if the SB/S command is inactive (refresh S)
 `define NDB_ADD bop[8]		// ~DB => BI
 `define DB_ADD bop[9]		// DB => BI
 `define Z_ADD bop[10]		// 0 => AI
