@@ -363,7 +363,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 	Flags_Control fctl(
 		.PHI2(phi2),
 		.X(Decoder_out),
-		.T6(T6),
+		.T7(T7),
 		.ZTST(ZTST),
 		.n_ready(n_ready),
 		.SR(SR),
