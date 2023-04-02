@@ -31,10 +31,10 @@ module PreDecode(
 
 	assign n_PD = ~PD;
 
-	assign implied = ~(PD[0]|PD[2]|n_PD[3]);
-	assign tmp1 = ~(PD[1]|PD[4]|PD[7]);
-	assign tmp2 = ~(n_PD[0]|PD[2]|n_PD[3]|PD[4]);
-	assign tmp3 = ~(PD[0]|PD[2]|PD[3]|PD[4]|n_PD[7]);
+	nor (implied, PD[0], PD[2], n_PD[3]);
+	nor (tmp1, PD[1], PD[4], PD[7]);
+	nor (tmp2, n_PD[0], PD[2], n_PD[3], PD[4]);
+	nor (tmp3, PD[0], PD[2], PD[3], PD[4], n_PD[7]);
 
 	assign n_IMPLIED = ~implied;
 	assign n_TWOCYCLE = ~((implied&~tmp1)|tmp2|tmp3);
