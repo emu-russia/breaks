@@ -8268,31 +8268,31 @@
     <comp lib="1" loc="(990,170)" name="NOR Gate">
       <a name="inputs" val="5"/>
     </comp>
-    <comp lib="6" loc="(238,183)" name="Text">
+    <comp lib="6" loc="(235,180)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="transparent D-latches"/>
     </comp>
-    <comp lib="6" loc="(370,202)" name="Text">
+    <comp lib="6" loc="(370,200)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="Keep D-latches"/>
     </comp>
-    <comp lib="6" loc="(619,46)" name="Text">
+    <comp lib="6" loc="(615,45)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="0,2,~3"/>
     </comp>
-    <comp lib="6" loc="(653,147)" name="Text">
+    <comp lib="6" loc="(650,145)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="1,4,7"/>
     </comp>
-    <comp lib="6" loc="(787,210)" name="Text">
+    <comp lib="6" loc="(785,210)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="~0,2,~3,4"/>
     </comp>
-    <comp lib="6" loc="(80,237)" name="Text">
+    <comp lib="6" loc="(80,235)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="External databus"/>
     </comp>
-    <comp lib="6" loc="(959,208)" name="Text">
+    <comp lib="6" loc="(955,205)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="0,2,3,4,~7"/>
     </comp>
@@ -14106,6 +14106,10 @@
     </comp>
     <comp lib="6" loc="(185,790)" name="Text">
       <a name="text" val="JSR2"/>
+    </comp>
+    <comp lib="6" loc="(244,1506)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="D93"/>
     </comp>
     <comp lib="6" loc="(280,1530)" name="Text">
       <a name="text" val="D_OUT"/>
