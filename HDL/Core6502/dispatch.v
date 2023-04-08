@@ -380,11 +380,31 @@ module IncrementPC (PHI1, PHI2, B_OUT, NotReadyPhi1, BRFW, ACR, n_ready, n_BRTAK
 	output BRA;
 	output n_IPC;
 
-	//dlatch (d, en, q, nq);
-	//dlatch (d, en, q, nq);
-	//dlatch (d, en, q, nq);
-	//dlatch (d, en, q, nq);
-	//dlatch (d, en, q, nq);
+	wire br_latch2_d;
+	wire br_latch2_nq;
+	wire br_latch1_q;
+	wire br_latch1_d;
+	wire ipc_latch1_q;
+	wire ipc_latch2_q;
+	wire ipc_latch3_q;
+	wire ipc_latch3_d;
+	wire t1;
+	wire t2;
+
+	nor (br_latch2_d, ~BR3, NotReadyPhi1);
+	xor (t1, BRFW, ~ACR);
+	and (BRA, t1, ~br_latch2_nq);
+	nor (t2, n_ADL_PCL, BR2 | BR3);
+	nor (br_latch1_d, t2, n_BRTAKEN & BR2);
+	nor (ipc_latch3_d, n_ready, br_latch1_q, ~n_IMPLIED);
+
+	dlatch br_latch2 (.d(br_latch2_d), .en(PHI2), .nq(br_latch2_nq));
+	dlatch br_latch1 (.d(br_latch1_d), .en(PHI2), .q(br_latch1_q));
+	dlatch ipc_latch1 (.d(B_OUT), .en(PHI1), .q(ipc_latch1_q));
+	dlatch ipc_latch2 (.d(BRA), .en(PHI1), .q(ipc_latch2_q));
+	dlatch ipc_latch3 (.d(ipc_latch3_d), .en(PHI1), .q(ipc_latch3_q));
+
+	nand (n_IPC, ipc_latch1_q, ipc_latch2_q | ipc_latch3_q);
 
 endmodule // IncrementPC
 
@@ -396,5 +416,12 @@ module FetchUnit (PHI2, B_OUT, T1, n_ready, Z_IR, FETCH);
 	input n_ready;
 	output Z_IR;
 	output FETCH;
+
+	wire fetch_latch_nq;
+
+	dlatch fetch_latch (.d(T1), .en(PHI2), .nq(fetch_latch_nq));
+
+	nor (FETCH, fetch_latch_nq, n_ready);
+	nand (Z_IR, FETCH, B_OUT);
 
 endmodule // FetchUnit
