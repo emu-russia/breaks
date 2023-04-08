@@ -92,7 +92,7 @@ module Dispatch (
 		.T6(T6), 
 		.T7(T7) );
 
-	ShortCycle short (
+	TwoCycle twocyc (
 		.PHI1(PHI1), 
 		.PHI2(PHI2), 
 		.n_ready(n_ready), 
@@ -195,7 +195,7 @@ module RMWCycle (PHI1, PHI2, n_ready, n_SHIFT, n_MemOP, T6, T7);
 
 endmodule // RMWCycle
 
-module ShortCycle (PHI1, PHI2, n_ready, RESP, BR3, NotReadyPhi1, BRFW, ACR, ENDS, n_TWOCYCLE, n_TRESX, T0, T1, n_T0, n_T1X);
+module TwoCycle (PHI1, PHI2, n_ready, RESP, BR3, NotReadyPhi1, BRFW, ACR, ENDS, n_TWOCYCLE, n_TRESX, T0, T1, n_T0, n_T1X);
 
 	input PHI1;
 	input PHI2;
@@ -213,7 +213,7 @@ module ShortCycle (PHI1, PHI2, n_ready, RESP, BR3, NotReadyPhi1, BRFW, ACR, ENDS
 	output n_T0;
 	output n_T1X;
 
-endmodule // ShortCycle
+endmodule // TwoCycle
 
 module CompletionUnit (PHI1, PHI2, n_ready, ACRL1, REST, BRK6E, RESP, n_SHIFT, n_MemOP, X, T0, T1, n_BRTAKEN, BR2, BR3, TRES2, n_TRESX, ENDS);
 
