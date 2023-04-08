@@ -227,7 +227,6 @@ module Core6502_Top (
 	wire n_SBXY;
 	wire STKOP;
 	wire STOR;
-	wire BR2;
 	wire ACRL2;
 	wire DL_PCH;
 	wire INC_SB;
@@ -295,7 +294,7 @@ module Core6502_Top (
 		.n_ready(n_ready),
 		.RESP(RESP),
 		.n_NMIP(n_NMIP),
-		.BR2(BR2),
+		.BR2(Decoder_out[80]),
 		.T0(T0),
 		.n_IRQP(n_IRQP),
 		.n_IOUT(n_IOUT),
@@ -376,7 +375,7 @@ module Core6502_Top (
 		.AND(AND),
 		.STOR(STOR),
 		.Z_ADL0(`Z_ADL0),
-		.BR2(BR2),
+		.BR2(Decoder_out[80]),
 		.ACRL2(ACRL2),
 		.DL_PCH(DL_PCH),
 		.n_ready(n_ready),
@@ -447,7 +446,6 @@ module Core6502_Top (
 		.PHI1(PHI1),
 		.PHI2(PHI2),
 		.BRK6E(BRK6E),
-		.BR2(BR2),
 		.RESP(RESP),
 		.ACR(ACR),
 		.DORES(DORES),
@@ -485,7 +483,7 @@ module Core6502_Top (
 		.n_NOUT(n_NOUT),
 		.n_ZOUT(n_ZOUT),
 		.DB(DB),
-		.BR2(BR2),
+		.BR2(Decoder_out[80]),
 		.n_BRTAKEN(n_BRTAKEN),
 		.BRFW(BRFW) );
 
