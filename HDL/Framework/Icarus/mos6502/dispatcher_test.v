@@ -56,7 +56,7 @@ module Dispatcher_Run ();
 
 	Dispatch dispatch (
 		.PHI1(PHI1), .PHI2(PHI2),
-		.BRK6E(1'b0), .RESP(1'b0), .ACR(1'b0), .DORES(1'b0), .PC_DB(1'b0), .RDY(1'b1), .B_OUT(1'b0), .BRFW(1'b0), .n_BRTAKEN(1'b0),
+		.BRK6E(1'b0), .RESP(1'b0), .ACR(1'b0), .DORES(1'b0), .PC_DB(1'b0), .RDY(1'b1), .B_OUT(1'b1), .BRFW(1'b0), .n_BRTAKEN(1'b0),
 		.n_TWOCYCLE(n_TWOCYCLE), .n_IMPLIED(n_IMPLIED), .n_ADL_PCL(1'b0), 
 		.X(X), 
 		.TRES2(TRES2), .Z_IR(Z_IR), .FETCH(FETCH), .n_ready(n_ready), .T1(T1), .n_T0(n_T0), .T0(T0), .n_T1X(n_T1X));
@@ -81,6 +81,6 @@ module MemoryDevice (DataBus);
 
 	inout [7:0] DataBus;
 
-	assign DataBus = 8'h00;
+	assign DataBus = 8'h8D; 	// STA abs
 
 endmodule // MemoryDevice
