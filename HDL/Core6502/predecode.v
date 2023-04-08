@@ -1,5 +1,5 @@
 
-module PreDecode(
+module PreDecode (
 	PHI2,
 	Z_IR,
 	Data_bus, n_PD,
