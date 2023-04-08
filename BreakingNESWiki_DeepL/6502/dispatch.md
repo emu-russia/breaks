@@ -4,7 +4,7 @@
 
 The execution logic (dispatcher or sequencer) is the key mechanism of the processor that "directs" the execution of instructions.
 
-![DispatchUnit](/BreakingNESWiki/imgstore/6502/DispatchUnit.jpg)
+![DispatchUnit](/BreakingNESWiki/imgstore/6502/DispatchUnit.png)
 
 The execution logic consists of the following circuits:
 - Intermediate signals

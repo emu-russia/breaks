@@ -4,7 +4,7 @@
 
 Логика исполнения (dispatcher или sequencer) - это ключевой механизм процессора, который "дирижирует" выполнением инструкций.
 
-![DispatchUnit](/BreakingNESWiki/imgstore/6502/DispatchUnit.jpg)
+![DispatchUnit](/BreakingNESWiki/imgstore/6502/DispatchUnit.png)
 
 В состав логики исполнения входят следующие схемы:
 - Промежуточные сигналы
