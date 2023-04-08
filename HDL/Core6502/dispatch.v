@@ -120,6 +120,7 @@ module Dispatch (
 		.X(X), 
 		.T0(T0), 
 		.T1(T1), 
+		.T7(T7), 
 		.n_BRTAKEN(n_BRTAKEN), 
 		.BR2(BR2), 
 		.BR3(BR3), 
@@ -173,17 +174,16 @@ module ReadyRW (PHI1, PHI2, RDY, STOR, PC_DB, D98, D100, T6, T7, DORES, n_ready,
 	wire wr_latch_q;
 	wire ready_latch1_d;
 	wire ready_latch1_nq;
-	wire ready_latch2_d;
 	wire ready_latch2_q;
 	wire rdydelay_latch1_nq;
 
 	nor (wr_latch_d, STOR, PC_DB, D98, D100, T6, T7);
 	nor (ready_latch1_d, RDY, ready_latch2_q);
-	nor (ready_latch2_d, n_ready, wr_latch_q, DORES);
+	nor (WR, n_ready, wr_latch_q, DORES);
 
 	dlatch wr_latch (.d(wr_latch_d), .en(PHI2), .q(wr_latch_q));
 	dlatch ready_latch1 (.d(ready_latch1_d), .en(PHI2), .nq(ready_latch1_nq));
-	dlatch ready_latch2 (.d(ready_latch2_d), .en(PHI1), .q(ready_latch2_q));
+	dlatch ready_latch2 (.d(WR), .en(PHI1), .q(ready_latch2_q));
 	dlatch rdydelay_latch1 (.d(n_ready), .en(PHI1), .nq(rdydelay_latch1_nq));
 	dlatch rdydelay_latch2 (.d(rdydelay_latch1_nq), .en(PHI2), .nq(NotReadyPhi1));
 
@@ -305,7 +305,7 @@ module RMWCycle (PHI1, PHI2, n_ready, n_SHIFT, n_MemOP, T6, T7);
 
 endmodule // RMWCycle
 
-module CompletionUnit (PHI1, PHI2, n_ready, ACRL1, REST, BRK6E, RESP, n_SHIFT, n_MemOP, X, T0, T1, n_BRTAKEN, BR2, BR3, TRES2, n_TRESX, ENDS);
+module CompletionUnit (PHI1, PHI2, n_ready, ACRL1, REST, BRK6E, RESP, n_SHIFT, n_MemOP, X, T0, T1, T7, n_BRTAKEN, BR2, BR3, TRES2, n_TRESX, ENDS);
 
 	input PHI1;
 	input PHI2;
@@ -319,6 +319,7 @@ module CompletionUnit (PHI1, PHI2, n_ready, ACRL1, REST, BRK6E, RESP, n_SHIFT, n
 	input [129:0] X;
 	input T0;
 	input T1;
+	input T7;
 	input n_BRTAKEN;
 	input BR2;
 	input BR3;
