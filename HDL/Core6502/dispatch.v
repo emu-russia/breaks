@@ -53,10 +53,10 @@ module Dispatch (
 	wire n_TRESX;
 
 	assign n_STORE = ~X[97];
-	assign n_SHIFT = ~(X[106]|X[107]);
-	assign n_MemOP = ~(X[111]|X[122]|X[123]|X[124]|X[125]);
-	assign STOR = ~(n_MemOP|n_STORE);
-	assign REST = ~(n_SHIFT&n_STORE);
+	nor (n_SHIFT, X[106], X[107]);
+	nor (n_MemOP, X[111], X[122], X[123], X[124], X[125]);
+	nor (STOR, n_MemOP, n_STORE);
+	nand (REST, n_SHIFT, n_STORE);
 	assign BR2 = X[80];
 	assign BR3 = X[93];
 
@@ -80,7 +80,7 @@ module Dispatch (
 		.PHI2(PHI2), 
 		.ACR(ACR), 
 		.NotReadyPhi1(NotReadyPhi1), 
-		.ACLR1(ACLR1), 
+		.ACRL1(ACRL1), 
 		.ACRL2(ACRL2) );
 
 	RMWCycle rmw (
@@ -172,13 +172,13 @@ module ReadyRW (PHI1, PHI2, RDY, STOR, PC_DB, D98, D100, T6, T7, DORES, n_ready,
 
 endmodule // ReadyRW
 
-module ACRLatch (PHI1, PHI2, ACR, NotReadyPhi1, ACLR1, ACRL2);
+module ACRLatch (PHI1, PHI2, ACR, NotReadyPhi1, ACRL1, ACRL2);
 
 	input PHI1;
 	input PHI2;
 	input ACR;
 	input NotReadyPhi1;
-	output ACLR1;
+	output ACRL1;
 	output ACRL2;
 
 endmodule // ACRLatch
