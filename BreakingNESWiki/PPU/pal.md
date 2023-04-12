@@ -88,6 +88,8 @@ PCLK:
 
 ![vidout_pclk](/BreakingNESWiki/imgstore/ppu/pal/vidout_pclk.png)
 
+![pclk_2C07](/BreakingNESWiki/imgstore/ppu/pclk_2C07.jpg)
+
 Декодер цвета в два раза больше (из-за особенностей альтерации фаз PAL). Бит V0 из VCounter поступает на декодер для определения четности текущей линии (для чередования фаз). Фазовый сдвигатель согласован с удвоенным декодером:
 
 ![vidout_phase_chroma](/BreakingNESWiki/imgstore/ppu/pal/vidout_phase_chroma.png)

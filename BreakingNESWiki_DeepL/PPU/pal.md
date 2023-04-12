@@ -88,6 +88,8 @@ PCLK:
 
 ![vidout_pclk](/BreakingNESWiki/imgstore/ppu/pal/vidout_pclk.png)
 
+![pclk_2C07](/BreakingNESWiki/imgstore/ppu/pclk_2C07.jpg)
+
 The color decoder is twice as big (due to the peculiarity of the PAL phase alteration). The V0 bit from the VCounter comes on the decoder to determine the parity of the current line (for phase alteration). The phase shifter is matched to a doubled decoder:
 
 ![vidout_phase_chroma](/BreakingNESWiki/imgstore/ppu/pal/vidout_phase_chroma.png)

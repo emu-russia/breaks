@@ -30,7 +30,7 @@ module HDecoder (H, VB, BLNK, dec_out);
 	wire [19:0] d;
 	assign d = {H[8],nH[8],H[7],nH[7],H[6],nH[6],H[5],nH[5],H[4],nH[4],H[3],nH[3],H[2],nH[2],H[1],nH[1],H[0],nH[0],VB,BLNK};
 
-`ifdef RPC02
+`ifdef RP2C02
 
 	assign dec_out[0] = ~|{d[2],d[4],d[6],d[9],d[10],d[13],d[15],d[17],d[18]};
 	assign dec_out[1] = ~|{d[3],d[5],d[7],d[9],d[11],d[13],d[15],d[17],d[18]};
