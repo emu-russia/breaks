@@ -62,7 +62,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire [8:0] HCnt; 			// H counter bits.
 	wire [8:0] VCnt;			// V counter bits.
 	wire [23:0] HDecoder_out; 	// H decoder outputs
-	wire [8:0] VDecoder_out; 	// V decoder outputs
+	wire [9:0] VDecoder_out; 	// V decoder outputs
 
 	wire H0_D;					// H0 signal delayed by one DLatch
 	wire nH1_D;					// H1 signal delayed by one DLatch (in inverse logic)

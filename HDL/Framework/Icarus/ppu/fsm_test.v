@@ -16,7 +16,7 @@ module FSM_Run ();
 	wire [8:0] HCnt;
 	wire [8:0] VCnt;
 	wire [23:0] HDecoder_out;
-	wire [8:0] VDecoder_out;
+	wire [9:0] VDecoder_out;
 
 	wire HC;
 	wire VC;
@@ -24,8 +24,14 @@ module FSM_Run ();
 	wire VB;
 	wire BLNK;
 
-	// Tune CLK/PCLK timing according to 2C02
+	// Tune CLK/PCLK timing according to 2C02/2C07
+`ifdef RP2C02
 	always #23.28 CLK = ~CLK;
+`elsif RP2C07
+	always #18.79 CLK = ~CLK;
+`else
+	always #1 CLK = ~CLK;
+`endif
 
 	PixelClock pclk (
 		.n_CLK(~CLK), .CLK(CLK), .RES(RES),
@@ -51,18 +57,27 @@ module FSM_Run ();
 
 	initial begin
 
-		$dumpfile("fsm_test.vcd");
-		$dumpvars(0, pclk);
-		$dumpvars(1, hv);
-		$dumpvars(2, dec);
-		$dumpvars(3, fsm);
+`ifdef RP2C02
+		$dumpfile("fsm_test_ntsc.vcd");
+`elsif RP2C07
+		$dumpfile("fsm_test_pal.vcd");
+`else
+		$display("wtf?");
+		$finish;
+`endif
+		$dumpvars(0, FSM_Run);
 
 		CLK <= 1'b0;
 		RES <= 1'b0;
 
 		// Run the number of cycles sufficient to capture the full field.
 
+`ifdef RP2C02
 		repeat (2048 * 262) @ (posedge CLK);
+`elsif RP2C07
+		repeat (2048 * 312) @ (posedge CLK);
+`else
+`endif
 		$finish;
 	end
 
