@@ -14,7 +14,7 @@ module PPU_FSM (
 	input [8:0] H_out; 			// HCounter bits 0-5, for outputting to the outside with a delay
 	input [8:0] V_out; 			// VCounter bits
 	input [23:0] HPLA_out;		// Outputs from H decoder
-	input [8:0] VPLA_out;		// Outputs from V decoder
+	input [9:0] VPLA_out;		// Outputs from V decoder
 	input RES; 					// Global reset signal. Used in EVEN/ODD logic.
 	input VBL_EN; 				// Control Regs ($2000[7]); Used in the VBlank interrupt handling circuit.
 	input n_R2; 				// 0: Register $2002 read operation. Used in the VBlank interrupt handling circuit.
@@ -429,7 +429,7 @@ module VPosLogic (PCLK, n_PCLK, n_HB, BPORCH, BLACK, VPLA_out,
 	input n_HB;
 	input BPORCH;
 	input BLACK;
-	input [8:0] VPLA_out;
+	input [9:0] VPLA_out;
 	
 	output n_PICTURE;
 	output RESCL;
