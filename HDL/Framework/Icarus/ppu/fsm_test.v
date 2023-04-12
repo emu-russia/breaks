@@ -57,7 +57,14 @@ module FSM_Run ();
 
 	initial begin
 
-		$dumpfile("fsm_test.vcd");
+`ifdef RP2C02
+		$dumpfile("fsm_test_ntsc.vcd");
+`elsif RP2C07
+		$dumpfile("fsm_test_pal.vcd");
+`else
+		$display("wtf?");
+		$finish;
+`endif
 		$dumpvars(0, FSM_Run);
 
 		CLK <= 1'b0;
@@ -65,7 +72,12 @@ module FSM_Run ();
 
 		// Run the number of cycles sufficient to capture the full field.
 
+`ifdef RP2C02
 		repeat (2048 * 262) @ (posedge CLK);
+`elsif RP2C07
+		repeat (2048 * 312) @ (posedge CLK);
+`else
+`endif
 		$finish;
 	end
 

@@ -66,7 +66,7 @@ module PPU_FSM (
 
 	wire BPORCH; 				// "Back Porch"
 	wire nVSET; 				// 0: "VBlank Set". VBlank period start event.
-	wire EvenOddOut; 			// Intermediate signal for the HCounter control circuit.
+	wire EvenOddOut; 			// Intermediate signal for the HCounter control circuit / 2C07: EvenOddOut signal goes into sprite logic instead of controlling the H/V counters
 	wire n_HB; 					// 0: "HBlank"
 	wire VSYNC; 				// Vertical sync pulse
 
@@ -86,12 +86,28 @@ module PPU_FSM (
 		.H4_DD(H4_DD),
 		.H5_DD(H5_DD) );
 
+`ifdef RP2C02
+
 	EvenOdd even_odd (
 		.V8(V_out[8]),
 		.RES(RES),
 		.nHPLA_5(~HPLA_out[5]),
 		.RESCL(RESCL),
 		.EvenOddOut(EvenOddOut) );
+
+`elsif RP2C07
+
+	EvenOdd_2C07 even_odd_pal (
+		.n_PCLK(n_PCLK), 
+		.PCLK(PCLK), 
+		.BLNK(BLNK), 
+		.H0_D(H0_D), 
+		.VPLA_8(VPLA_out[8]), 
+		.VPLA_9(VPLA_out[9]), 
+		.EvenOddOut(EvenOddOut) );
+
+`else
+`endif
 
 	VBlankInt vbl (
 		.PCLK(PCLK),
@@ -104,6 +120,8 @@ module PPU_FSM (
 		.INT(Int),
 		.DB7Out(DB7) );
 
+`ifdef RP2C02
+
 	HVCounterControl hv_ctrl (
 		.n_PCLK(n_PCLK),
 		.HPLA_23(HPLA_out[23]),
@@ -112,6 +130,19 @@ module PPU_FSM (
 		.V_IN(V_IN),
 		.HC(HC),
 		.VC(VC) );
+
+`elsif RP2C07
+
+	HVCounterControl_2C07 hv_ctrl_pal (
+		.n_PCLK(n_PCLK), 
+		.HPLA_23(HPLA_out[23]), 
+		.VPLA_8(VPLA_out[8]), 
+		.V_IN(V_IN), 
+		.HC(HC), 
+		.VC(VC) );
+
+`else
+`endif
 
 	HPosLogic hpos (
 		.PCLK(PCLK),
@@ -207,11 +238,43 @@ module EvenOdd (V8, RES, nHPLA_5, RESCL, EvenOddOut);
 	input RESCL;
 	output EvenOddOut;
 
-	// TBD.
+	wire q1;
+	wire q2;
+	wire nq2;
 
-	assign EvenOddOut = 1'b0;
+	sdff FF_1 (.d(nq2), .phi_keep(V8), .q(q1));
+	sdffr FF_2 (.d(q1), .res(), .phi_keep(~V8), .q(q2), .nq(nq2));
+
+	nor (EvenOddOut, q2, nHPLA_5, ~RESCL);
 
 endmodule // EvenOdd
+
+// In place of the Even/Odd circuit in 2C07 there is a circuit for the workaround associated with the OAM corrupt. But traditionally we still call this circuit "Even/Odd".
+module EvenOdd_2C07 (n_PCLK, PCLK, BLNK, H0_D, VPLA_8, VPLA_9, EvenOddOut);
+
+	input n_PCLK;
+	input PCLK;
+	input BLNK;
+	input H0_D;
+	input VPLA_8;
+	input VPLA_9;
+	output EvenOddOut; 		// Don't mind the name, it's just historically that way. In fact, it's more like `Sprite_Workaround`.
+
+	wire latch1_q;
+	wire latch2_q;
+	wire latch3_in;
+	wire latch3_nq;
+	wire tmp;
+
+	dlatch latch1 (.d(VPLA_9), .en(n_PCLK), .q(latch1_q));
+	dlatch latch2 (.d(VPLA_8), .en(n_PCLK), .q(latch2_q));
+	dlatch latch3 (.d(latch3_in), .en(PCLK), .nq(latch3_nq));
+	rsff FF_1 (.r(latch2_q), .s(latch1_q), .nq());
+
+	nand (tmp, BLNK, latch3_nq);
+	nor (EvenOddOut, ~H0_D, tmp, n_PCLK);
+
+endmodule // EvenOdd_2C07
 
 // PPU interrupt handling (VBlank)
 module VBlankInt (PCLK, n_PCLK, nVSET, VCLR, VBL_EN, n_R2, n_DBE, INT, DB7Out);
@@ -263,6 +326,26 @@ module HVCounterControl (n_PCLK, HPLA_23, EvenOddOut, VPLA_2, V_IN, HC, VC);
 	nor (VC, ~HC, ctrl_latch2_nq);
 
 endmodule // HVCounterControl
+
+// 2C07 Version (minor difference: no Even/Odd, VPLA8 instead VPLA2)
+module HVCounterControl_2C07 (n_PCLK, HPLA_23, VPLA_8, V_IN, HC, VC);
+
+	input n_PCLK;
+	input HPLA_23;
+	input VPLA_8;
+	output V_IN;
+	output HC;
+	output VC;
+
+	wire ctrl_latch2_nq;
+
+	dlatch ctrl_latch1 (.d(~HPLA_23), .en(n_PCLK), .nq(HC));
+	dlatch ctrl_latch2 (.d(VPLA_8), .en(n_PCLK), .nq(ctrl_latch2_nq));
+
+	assign V_IN = HPLA_23;
+	nor (VC, ~HC, ctrl_latch2_nq);
+
+endmodule // HVCounterControl_2C07
 
 // Horizontal logic associated with an H decoder
 module HPosLogic (PCLK, n_PCLK, HPLA_out, n_OBCLIP, n_BGCLIP, VSYNC, BLACK, 
