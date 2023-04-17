@@ -77,6 +77,6 @@ https://drive.google.com/drive/u/0/folders/1U5OmcoPNSyg7ktS1RvQhBF6N_6K6oCgV
 ![imgstore/141685576-7c9c2e0d-a924-4f8a-b741-e83aa813607b.png](imgstore/141685576-7c9c2e0d-a924-4f8a-b741-e83aa813607b.png)
 
 Чипсет:
-- CPU+PPU: UMC A35212A (UMC 6561, предположительно C-1)
+- CPU+PPU: UMC A35212A (UMC 6561, предположительно CF-1)
 
 https://drive.google.com/drive/u/0/folders/1r0mNSYbnbs2wCgJb9s10NbC5BvO9k7-z
