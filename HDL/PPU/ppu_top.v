@@ -1,5 +1,5 @@
 
-module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VOut_Where);
+module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VOut);
 
 	input RnW;					// Read-notWrite. Used to read/write PPU registers. If R/W = 1 it reads, otherwise it writes. It is easy to remember: "Read(1), do not write".
 	inout [7:0] D;				// The data bus for transferring register values. When /DBE = 1 the bus is disconnected (Z)
@@ -15,7 +15,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	output n_RD;				// /RD=0: the PPU data bus (AD0-AD7) is used for reading (VRAM -> PPU)
 	output n_WR;				// /WR=0: the PPU data bus (AD0-AD7) is used for writing (PPU -> VRAM)
 	input n_RES;				// /RES=0: reset the PPU
-	output VOut_Where;			// Composite video signal (wha?)
+	output [31:0] VOut;			// Composite video signal from DAC [float as uint32]
 
 	// Wires
 
@@ -59,8 +59,8 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire n_TG;					// 0: "Tint Green". Modifying value for Emphasis
 	wire n_TB;					// 0: "Tint Blue". Modifying value for Emphasis
 
-	wire [8:0] HCnt; 			// H counter bits.
-	wire [8:0] VCnt;			// V counter bits.
+	wire [8:0] HCnt; 			// H counter bits
+	wire [8:0] VCnt;			// V counter bits
 	wire [23:0] HDecoder_out; 	// H decoder outputs
 	wire [9:0] VDecoder_out; 	// V decoder outputs
 
@@ -153,6 +153,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire [4:0] CRAM_Addr;
 	wire [3:0] n_CC;			// 4 bits of the chrominance of the current "pixel" (inverted value)
 	wire [1:0] n_LL;			// 2 bits of the luminance of the current "pixel" (inverted value)
+	wire [10:0] RawVOut; 		// Unprocessed RAW Video
 
 	// Module instantiation
 
@@ -532,6 +533,11 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.n_TR(n_TR),
 		.n_TG(n_TG),
 		.n_TB(n_TB), 
-		.VOut(VOut_Where) );
+`ifdef RP2C07
+		.V0(VCnt[0]),
+`endif
+		.RawVOut(RawVOut) );
+
+	PPU_CompositeDAC dac (.RawIn(RawVOut), .CompositeOut(VOut) );
 
 endmodule // PPU
