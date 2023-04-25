@@ -43,3 +43,7 @@
 ![phase_shifter](/BreakingNESWiki/imgstore/ppu/waves/phase_shifter.png)
 
 ![phase_shifter2](/BreakingNESWiki/imgstore/ppu/waves/phase_shifter2.png)
+
+Демонстрация выбора 1 из 12 фазы цвета (сигнал `/PZ`):
+
+![phase_color](/BreakingNESWiki/imgstore/ppu/waves/phase_color.png)

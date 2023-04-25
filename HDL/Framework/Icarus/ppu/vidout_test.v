@@ -50,7 +50,7 @@ module VidOut_Run ();
 	VideoGen vidgen (
 		.n_CLK(~CLK), .CLK(CLK), .n_PCLK(n_PCLK), .PCLK(PCLK), 
 		.RES(RES),
-		.n_CC(4'b0100), .n_LL(2'b10),
+		.n_CC(4'b0100), .n_LL(2'b00),
 		.BURST(1'b0), .SYNC(1'b0), .n_PICTURE(1'b0), 
 		.n_TR(1'b0), .n_TG(1'b0), .n_TB(1'b0), 
 `ifdef RP2C07
