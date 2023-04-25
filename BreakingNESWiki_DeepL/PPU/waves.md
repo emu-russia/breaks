@@ -43,3 +43,7 @@ Demonstration of the phase shifter output, with phases arranged according to the
 ![phase_shifter](/BreakingNESWiki/imgstore/ppu/waves/phase_shifter.png)
 
 ![phase_shifter2](/BreakingNESWiki/imgstore/ppu/waves/phase_shifter2.png)
+
+Demonstration of the selection of 1 of the 12 color phases (signal `/PZ`):
+
+![phase_color](/BreakingNESWiki/imgstore/ppu/waves/phase_color.png)
