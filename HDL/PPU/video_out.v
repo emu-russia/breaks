@@ -198,15 +198,15 @@ module PhaseShifter (CLK, n_CLK, RES, dec_out, n_PR, n_PG, n_PB, n_PZ);
 	wire [12:0] PZ;
 	wire bit_5_sout;
 	wire bit_5_nsin;
-	wire bit_4_nsin;
 	wire tmp;
 
 	nor (tmp, bit_5_nsin, PZ[3]);
-	nor (bit_4_nsin, bit_5_sout, tmp);
+	nor (PZ[1], bit_5_sout, tmp);
 	assign bit_5_nsin = ~PZ[6];
+	assign PZ[4] = 1'b0; 			// ignored
 
 	PhaseShifterSR bit_5 (.CLK(CLK), .n_CLK(n_CLK), .RES(RES), .nsin(bit_5_nsin), .sout(bit_5_sout), .vout(PZ[0]));
-	PhaseShifterSR bit_4 (.CLK(CLK), .n_CLK(n_CLK), .RES(RES), .nsin(bit_4_nsin), .nsout(PZ[3]), .vout(PZ[2]));
+	PhaseShifterSR bit_4 (.CLK(CLK), .n_CLK(n_CLK), .RES(RES), .nsin(PZ[1]), .nsout(PZ[3]), .vout(PZ[2]));
 	PhaseShifterSR bit_3 (.CLK(CLK), .n_CLK(n_CLK), .RES(RES), .nsin(PZ[3]), .nsout(PZ[6]), .vout(PZ[5]));
 	PhaseShifterSR bit_2 (.CLK(CLK), .n_CLK(n_CLK), .RES(RES), .nsin(PZ[6]), .nsout(PZ[8]), .vout(PZ[7]));
 	PhaseShifterSR bit_1 (.CLK(CLK), .n_CLK(n_CLK), .RES(RES), .nsin(PZ[8]), .nsout(PZ[10]), .vout(PZ[9]));

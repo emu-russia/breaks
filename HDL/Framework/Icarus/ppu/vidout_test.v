@@ -43,14 +43,20 @@ module VidOut_Run ();
 		.H_in(HCnt), .V_in(VCnt), .VB(VB), .BLNK(BLNK),
 		.HPLA_out(HDecoder_out), .VPLA_out(VDecoder_out) );
 
-	// There is no need to connect all FSM output signals, they will be perfectly visible in the .vcd dump
+	// VideoGen
 
-	PPU_FSM fsm (
-		.n_PCLK(n_PCLK), .PCLK(PCLK),
-		.H_out(HCnt), .V_out(VCnt), .HPLA_out(HDecoder_out), .VPLA_out(VDecoder_out),
-		.RES(RES), .VBL_EN(1'b0), .n_R2(1'b1), .n_DBE(1'b1), .n_OBCLIP(1'b0), .n_BGCLIP(1'b0), .BLACK(1'b0),
-		.VB(VB), .BLNK(BLNK),
-		.V_IN(V_IN), .HC(HC), .VC(VC) );
+	wire [10:0] RawVOut;
+
+	VideoGen vidgen (
+		.n_CLK(~CLK), .CLK(CLK), .n_PCLK(n_PCLK), .PCLK(PCLK), 
+		.RES(RES),
+		.n_CC(4'b0100), .n_LL(2'b10),
+		.BURST(1'b0), .SYNC(1'b0), .n_PICTURE(1'b0), 
+		.n_TR(1'b0), .n_TG(1'b0), .n_TB(1'b0), 
+`ifdef RP2C07
+		.V0(VCnt[0]),
+`endif
+		.RawVOut(RawVOut) );
 
 	initial begin
 
