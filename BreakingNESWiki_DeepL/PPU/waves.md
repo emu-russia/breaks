@@ -35,3 +35,11 @@ Note that the figure with the scalines is scaled up (as seen by the change in th
 ## OAM FIFO Lane
 
 ## VRAM Controller
+
+## Video Output
+
+Demonstration of the phase shifter output, with phases arranged according to the colors of the PPU palette (1 "pixel" is highlighted by a frame):
+
+![phase_shifter](/BreakingNESWiki/imgstore/ppu/waves/phase_shifter.png)
+
+![phase_shifter2](/BreakingNESWiki/imgstore/ppu/waves/phase_shifter2.png)

@@ -35,3 +35,11 @@
 ## OAM FIFO Lane
 
 ## VRAM Controller
+
+## Video Output
+
+Демонстрация выхода фазовращателя, с фазами, расставленными в соответствии с цветами палитры PPU (рамкой выделен 1 "пиксель"):
+
+![phase_shifter](/BreakingNESWiki/imgstore/ppu/waves/phase_shifter.png)
+
+![phase_shifter2](/BreakingNESWiki/imgstore/ppu/waves/phase_shifter2.png)
