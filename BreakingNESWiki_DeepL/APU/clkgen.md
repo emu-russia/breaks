@@ -47,6 +47,8 @@ graph LR;
   aclk[ACLK Generator PHI/2]-->|/ACLK|sound[Sound Generators]
   aclk[ACLK Generator PHI/2]-->|ACLK|lfo[LFO Generator, hundreds of Hz]
   aclk[ACLK Generator PHI/2]-->|/ACLK|lfo[LFO Generator, hundreds of Hz]
+  lfo[LFO Generator, hundreds of Hz]-->|/LFO1|sound[Sound Generators]
+  lfo[LFO Generator, hundreds of Hz]-->|/LFO2|sound[Sound Generators]
 ```
 
 ## ACLK Generator
