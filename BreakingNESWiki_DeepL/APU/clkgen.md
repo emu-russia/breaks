@@ -34,6 +34,21 @@ Simplified chart:
 
 ![apu_clocks](/BreakingNESWiki/imgstore/apu/apu_clocks.png)
 
+```mermaid
+graph LR;
+  clkpad[CLK Pad]-->|/CLK|div[Divider CLK/12]
+  div[Divider CLK/12]-->m2[M2 Pad]
+  div[Divider CLK/12]-->|PHI0|core[6502 Core]
+  core[6502 Core]-->|PHI2|aclk[ACLK Generator PHI/2]
+  core[6502 Core]-->|PHI2 for M2 duty cycle|div[Divider CLK/12]
+  core[6502 Core]-->|PHI1|aclk[ACLK Generator PHI/2]
+  core[6502 Core]-->|PHI1 to Triangle|sound[Sound Generators]
+  aclk[ACLK Generator PHI/2]-->|ACLK|sound[Sound Generators]
+  aclk[ACLK Generator PHI/2]-->|/ACLK|sound[Sound Generators]
+  aclk[ACLK Generator PHI/2]-->|ACLK|lfo[LFO Generator, hundreds of Hz]
+  aclk[ACLK Generator PHI/2]-->|/ACLK|lfo[LFO Generator, hundreds of Hz]
+```
+
 ## ACLK Generator
 
 The ACLK generator is used to generate an internal ACLK clock signal (APU CLK), based on the 6502 CPU clock frequency.
