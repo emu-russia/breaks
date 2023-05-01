@@ -30,7 +30,7 @@ The :warning: sign mark the places where the constant address of the PPU $2004 r
 
 ![sprdma_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_control_tran.jpg)
 
-The :warning: sign indicate "Other /ACLKs".
+The :warning: sign indicate "Other ACLK2".
 
 Logic:
 

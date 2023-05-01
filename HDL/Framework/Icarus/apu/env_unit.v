@@ -9,8 +9,8 @@ module EnvUnit_Run();
 	reg CLK;
 	reg RES;
 	wire RnW;
-	wire ACLK;
-	wire n_ACLK;
+	wire ACLK1;
+	wire nACLK2;
 
 	wire [7:0] DataBus;
 	wire n_LFO1;
@@ -24,11 +24,11 @@ module EnvUnit_Run();
 
 	assign DataBus = 8'hf;
 
-	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .ACLK(ACLK), .n_ACLK(n_ACLK) );
+	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .nACLK2(nACLK2), .ACLK1(ACLK1) );
 
-	BogusLFO lfo (.CLK(CLK), .RES(RES), .ACLK(ACLK), .LFO(n_LFO1) );
+	BogusLFO lfo (.CLK(CLK), .RES(RES), .nACLK2(nACLK2), .LFO(n_LFO1) );
 
-	Envelope_Unit env_unit (.n_ACLK(n_ACLK), .RES(RES), .WR_Reg(WR_Reg), .WR_LC(WR_LC), .n_LFO1(n_LFO1), .DB(DataBus), .V(VolOut) );
+	Envelope_Unit env_unit (.ACLK1(ACLK1), .RES(RES), .WR_Reg(WR_Reg), .WR_LC(WR_LC), .n_LFO1(n_LFO1), .DB(DataBus), .V(VolOut) );
 
 	initial begin
 

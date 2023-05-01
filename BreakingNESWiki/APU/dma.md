@@ -30,7 +30,7 @@
 
 ![sprdma_control_tran](/BreakingNESWiki/imgstore/apu/sprdma_control_tran.jpg)
 
-Знаком :warning: отмечены "Другие /ACLK".
+Знаком :warning: отмечены "Другие ACLK2".
 
 Логическая схема:
 

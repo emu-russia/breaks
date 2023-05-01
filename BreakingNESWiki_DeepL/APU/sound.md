@@ -17,7 +17,7 @@ All circuits for generating sound are, for the most part, various counters contr
 
 The sound generators are clocked by the following signals:
 - PHI1/2: CPU Core clock frequency
-- ACLK: Audio CLK. Two times slower PHI, but with a special overlapping phase pattern
+- ACLK: Audio CLK. Two times slower PHI, with a special non-overlapping phase pattern
 - LFO1/2: Low frequency oscillation signals (on the order of hundreds of Hertz)
 
 The developers decided to use PHI1 for the triangle channel instead of ACLK to smooth out the "stepped" signal.

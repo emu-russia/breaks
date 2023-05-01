@@ -3,13 +3,13 @@
 // This component acts as a small DMA controller, which besides sprite DMA also handles address bus arbitration and processor readiness control (RDY).
 
 module Sprite_DMA(
-	n_ACLK, ACLK, PHI1,
+	ACLK1, nACLK2, PHI1,
 	RES, RnW, W4014, DB, 
 	RUNDMC, n_DMCAB, DMCRDY, DMC_Addr, CPU_Addr,
 	Addr, RDY_tocore, SPR_PPU);
 
-	input n_ACLK;
-	input ACLK;
+	input ACLK1;
+	input nACLK2;
 	input PHI1;					// Sprite DMA can only start if the processor goes into a read cycle (PHI1 = 0 and R/W = 1)
 								// This is done to delay the start of the DMA because the RDY clearing is ignored on the 6502 write cycles.
 
@@ -34,7 +34,7 @@ module Sprite_DMA(
 	wire SPR_CPU;				// Memory address to read during sprite DMA
 
 	SPRDMA_AddrLowCounter dma_addr_low (
-		.n_ACLK(n_ACLK),
+		.ACLK1(ACLK1),
 		.Clear(RES),
 		.Step(SPRDmaStep),
 		.Load(W4014),
@@ -42,7 +42,7 @@ module Sprite_DMA(
 		.AddrLow(SPR_Addr[7:0]) );
 
 	SPRDMA_AddrHigh dma_addr_high (
-		.n_ACLK(n_ACLK),
+		.ACLK1(ACLK1),
 		.SetAddr(W4014),
 		.DB(DB),
 		.AddrHigh(SPR_Addr[15:8]) );
@@ -50,8 +50,8 @@ module Sprite_DMA(
 	SPRDMA_Control sprdma_ctl (
 		.PHI1(PHI1),
 		.RnW(RnW),
-		.n_ACLK(n_ACLK), 
-		.ACLK(ACLK),
+		.ACLK1(ACLK1), 
+		.nACLK2(nACLK2),
 		.RES(RES),
 		.W4014(W4014),
 		.RUNDMC(RUNDMC),
@@ -73,9 +73,9 @@ module Sprite_DMA(
 
 endmodule // Sprite_DMA
 
-module SPRDMA_AddrLowCounter(n_ACLK, Clear, Step, Load, EndCount, AddrLow);
+module SPRDMA_AddrLowCounter(ACLK1, Clear, Step, Load, EndCount, AddrLow);
 
-	input n_ACLK;
+	input ACLK1;
 	input Clear;
 	input Step;
 	input Load;
@@ -85,7 +85,7 @@ module SPRDMA_AddrLowCounter(n_ACLK, Clear, Step, Load, EndCount, AddrLow);
 	wire [7:0] cc; 		// Carry chain
 
 	CounterBit cnt [7:0] (
-		.n_ACLK(n_ACLK),
+		.ACLK1(ACLK1),
 		.clear(Clear),
 		.step(Step),
 		.load(Load),
@@ -98,9 +98,9 @@ module SPRDMA_AddrLowCounter(n_ACLK, Clear, Step, Load, EndCount, AddrLow);
 
 endmodule // SPRDMA_AddrLowCounter
 
-module SPRDMA_AddrHigh(n_ACLK, SetAddr, DB, AddrHigh);
+module SPRDMA_AddrHigh(ACLK1, SetAddr, DB, AddrHigh);
 
-	input n_ACLK;
+	input ACLK1;
 	input SetAddr;
 	inout [7:0] DB;
 	output [7:0] AddrHigh;
@@ -108,17 +108,17 @@ module SPRDMA_AddrHigh(n_ACLK, SetAddr, DB, AddrHigh);
 	RegisterBit val_hi [7:0] (
 		.d(DB),
 		.ena(SetAddr),
-		.n_ACLK(n_ACLK),
+		.ACLK1(ACLK1),
 		.q(AddrHigh) );
 
 endmodule // SPRDMA_AddrHigh
 
-module SPRDMA_Control(PHI1, RnW, n_ACLK, ACLK, RES, W4014, RUNDMC, DMCReady, SPRE, SPRS, RDY, SPR_PPU, SPR_CPU);
+module SPRDMA_Control(PHI1, RnW, ACLK1, nACLK2, RES, W4014, RUNDMC, DMCReady, SPRE, SPRS, RDY, SPR_PPU, SPR_CPU);
 
 	input PHI1;
 	input RnW;
-	input n_ACLK;
-	input ACLK;
+	input ACLK1;
+	input nACLK2;
 	input RES;
 	input W4014;
 	
@@ -132,7 +132,7 @@ module SPRDMA_Control(PHI1, RnW, n_ACLK, ACLK, RES, W4014, RUNDMC, DMCReady, SPR
 	output SPR_PPU;			// DMA Buffer -> PPU
 	output SPR_CPU;			// RAM -> DMA Buffer
 
-	wire n_ACLK2 = ~ACLK;
+	wire ACLK2 = ~ACLK2;
 	wire NOSPR;
 	wire DOSPR;
 	wire spre_out;
@@ -142,15 +142,15 @@ module SPRDMA_Control(PHI1, RnW, n_ACLK, ACLK, RES, W4014, RUNDMC, DMCReady, SPR
 	wire n_StartDma;
 	wire toggle;
 
-	nor (SPRS, NOSPR, RUNDMC, ~n_ACLK2);
+	nor (SPRS, NOSPR, RUNDMC, ~ACLK2);
 
-	dlatch spre_latch (.d(SPRE), .en(n_ACLK), .q(spre_out) );
-	dlatch nospr_latch (.d(StopDma), .en(n_ACLK), .nq(NOSPR) );
-	dlatch dospr_latch (.d(n_StartDma), .en(n_ACLK2), .q(dospr_out) );
+	dlatch spre_latch (.d(SPRE), .en(ACLK1), .q(spre_out) );
+	dlatch nospr_latch (.d(StopDma), .en(ACLK1), .nq(NOSPR) );
+	dlatch dospr_latch (.d(n_StartDma), .en(ACLK2), .q(dospr_out) );
 
 	rsff_2_3 StopDMA (.res1(SPRS & spre_out), .res2(RES), .s(DOSPR), .q(StopDma) );
 	rsff_2_3 StartDMA (.res1(~NOSPR), .res2(RES), .s(W4014), .q(StartDma), .nq(n_StartDma) );
-	rsff DMADirToggle (.r(n_ACLK), .s(n_ACLK2), .q(toggle) );
+	rsff DMADirToggle (.r(ACLK1), .s(ACLK2), .q(toggle) );
 
 	nor(SPR_PPU, NOSPR, RUNDMC, ~toggle);
 	nor(SPR_CPU, NOSPR, RUNDMC, toggle);

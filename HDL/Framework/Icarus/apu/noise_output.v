@@ -14,8 +14,8 @@ module Noise_Run ();
 	reg CLK;
 	reg RES;
 	wire PHI1;
-	wire ACLK;
-	wire n_ACLK;
+	wire ACLK1;
+	wire nACLK2;
 	wire nLFO1;
 	wire nLFO2;
 
@@ -39,10 +39,10 @@ module Noise_Run ();
 	
 	BogusCPU core (.PHI0(PHI0), .PHI1(PHI1), .PHI2(PHI2) );
 
-	ACLKGen aclk (.PHI1(PHI1), .PHI2(PHI2), .ACLK(ACLK), .n_ACLK(n_ACLK), .RES(RES) );
+	ACLKGen aclk (.PHI1(PHI1), .PHI2(PHI2), .nACLK2(nACLK2), .ACLK1(ACLK1), .RES(RES) );
 
 	SoftTimer softclk (
-		.PHI1(PHI1), .n_ACLK(n_ACLK), .ACLK(ACLK),
+		.PHI1(PHI1), .ACLK1(ACLK1), .nACLK2(nACLK2),
 		.RES(RES), .n_R4015(n_R4015), .W4017(W4017), .DB(DataBus), .DMCINT(1'b0), .nLFO1(nLFO1), .nLFO2(nLFO2) );
 
 	// Modules for the noise generator
@@ -57,12 +57,12 @@ module Noise_Run ();
 		.LC_Out(LC) );
 
 	LengthCounter length (
-		.ACLK(ACLK), .n_ACLK(n_ACLK),
+		.nACLK2(nACLK2), .ACLK1(ACLK1),
 		.RES(RES), .W400x_load(W400F), .n_R4015(n_R4015), .W4015(W4015), .LC(LC), .dbit_ena(DataBus[3]), .nLFO2(nLFO2),
 		.Carry_in(RND_LC), .NotCount(NORND) );
 
 	NoiseChan noise (
-		.n_ACLK(n_ACLK), .ACLK(ACLK), 
+		.ACLK1(ACLK1), .nACLK2(nACLK2), 
 		.RES(RES), .DB(DataBus), 
 		.W400C(W400C), .W400E(W400E), .W400F(W400F), 
 		.nLFO1(nLFO1), .RND_LC(RND_LC), .NORND(NORND), .LOCK(1'b0), 

@@ -13,8 +13,8 @@ module DPCMChan_Run();
 	reg RES;
 	wire PHI1;
 	wire RnW;
-	wire ACLK;
-	wire n_ACLK;
+	wire nACLK2;
+	wire ACLK1;
 
 	reg W4010;
 	reg W4011;
@@ -38,7 +38,7 @@ module DPCMChan_Run();
 	// Tune CLK/ACLK timing according to 2A03
 	always #23.28 CLK = ~CLK;
 
-	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .ACLK(ACLK), .n_ACLK(n_ACLK) );
+	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .nACLK2(nACLK2), .ACLK1(ACLK1) );
 
 	assign RnW = 1'b1;
 
@@ -47,7 +47,7 @@ module DPCMChan_Run();
 	DPCMSampleMem mem (.addr(DMC_Addr), .data(DataBus), .ReadMode(~n_DMCAB));
 
 	DPCMChan dpcm (
-		.PHI1(PHI1), .n_ACLK(n_ACLK), .ACLK(ACLK), 
+		.PHI1(PHI1), .ACLK1(ACLK1), .nACLK2(nACLK2), 
 		.RES(RES), .DB(DataBus), .RnW(RnW), .LOCK(1'b0),
 		.W4010(W4010), .W4011(W4011), .W4012(W4012), .W4013(W4013), .W4015(W4015), .n_R4015(n_R4015), 
 		.n_DMCAB(n_DMCAB), .RUNDMC(RUNDMC), .DMCRDY(DMCRDY), .DMCINT(DMCINT),

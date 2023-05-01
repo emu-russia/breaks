@@ -122,65 +122,65 @@ module APU_ClkGen_Run();
 			$finish(1);
 		end
 
-		// n_ACLK Low->High 1st
+		// ACLK1 Low->High 1st
 
-		if (clk_cnt == 6 && apu.n_ACLK != 0) begin
-			$display("n_ACLK failed!");
+		if (clk_cnt == 6 && apu.ACLK1 != 0) begin
+			$display("ACLK1 failed!");
 			$finish(1);
 		end
-		if (clk_cnt == 7 && apu.n_ACLK != 1) begin
-			$display("n_ACLK failed!");
-			$finish(1);
-		end
-
-		// n_ACLK High->Low
-
-		if (clk_cnt == 12 && apu.n_ACLK != 1) begin
-			$display("n_ACLK failed!");
-			$finish(1);
-		end
-		if (clk_cnt == 13 && apu.n_ACLK != 0) begin
-			$display("n_ACLK failed!");
+		if (clk_cnt == 7 && apu.ACLK1 != 1) begin
+			$display("ACLK1 failed!");
 			$finish(1);
 		end
 
-		// n_ACLK Low->High 2nd
+		// ACLK1 High->Low
 
-		if (clk_cnt == 30 && apu.n_ACLK != 0) begin
-			$display("n_ACLK failed!");
+		if (clk_cnt == 12 && apu.ACLK1 != 1) begin
+			$display("ACLK1 failed!");
 			$finish(1);
 		end
-		if (clk_cnt == 31 && apu.n_ACLK != 1) begin
-			$display("n_ACLK failed!");
-			$finish(1);
-		end
-
-		// ACLK High->Low
-
-		if (clk_cnt == 18 && apu.ACLK != 1) begin
-			$display("n_ACLK failed!");
-			$finish(1);
-		end
-		if (clk_cnt == 19 && apu.ACLK != 0) begin
-			$display("n_ACLK failed!");
+		if (clk_cnt == 13 && apu.ACLK1 != 0) begin
+			$display("ACLK1 failed!");
 			$finish(1);
 		end
 
-		// ACLK Low->High
+		// ACLK1 Low->High 2nd
 
-		if (clk_cnt == 24 && apu.ACLK != 0) begin
-			$display("ACLK failed!");
+		if (clk_cnt == 30 && apu.ACLK1 != 0) begin
+			$display("ACLK1 failed!");
 			$finish(1);
 		end
-		if (clk_cnt == 25 && apu.ACLK != 1) begin
-			$display("ACLK failed!");
+		if (clk_cnt == 31 && apu.ACLK1 != 1) begin
+			$display("ACLK1 failed!");
+			$finish(1);
+		end
+
+		// #ACLK2 High->Low
+
+		if (clk_cnt == 18 && apu.nACLK2 != 1) begin
+			$display("#ACLK2 failed!");
+			$finish(1);
+		end
+		if (clk_cnt == 19 && apu.nACLK2 != 0) begin
+			$display("#ACLK2 failed!");
+			$finish(1);
+		end
+
+		// #ACLK2 Low->High
+
+		if (clk_cnt == 24 && apu.nACLK2 != 0) begin
+			$display("#ACLK2 failed!");
+			$finish(1);
+		end
+		if (clk_cnt == 25 && apu.nACLK2 != 1) begin
+			$display("#ACLK2 failed!");
 			$finish(1);
 		end
 
 	end	
 
 	//always @(CLK)
-	//	$display("CLK=%b, clkcnt=%d, PHI0=%b, PHI1=%b, PHI2=%b, /ACLK=%b, ACLK=%b",
-	//		CLK, clk_cnt, apu.PHI0, apu.PHI0, apu.PHI1, apu.n_ACLK, apu.ACLK);	
+	//	$display("CLK=%b, clkcnt=%d, PHI0=%b, PHI1=%b, PHI2=%b, ACLK1=%b, nACLK2=%b",
+	//		CLK, clk_cnt, apu.PHI0, apu.PHI0, apu.PHI1, apu.ACLK1, apu.nACLK2);	
 
 endmodule // APU_ClkGen_Run

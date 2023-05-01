@@ -1,13 +1,13 @@
 
 module LengthCounters(
-	ACLK, n_ACLK,
+	nACLK2, ACLK1,
 	RES, DB, n_R4015, W4015, nLFO2, 
 	W4003, W4007, W400B, W400F,
 	SQA_LC, SQB_LC, TRI_LC, RND_LC,
 	NOSQA, NOSQB, NOTRI, NORND);
 
-	input ACLK;
-	input n_ACLK;
+	input nACLK2;
+	input ACLK1;
 
 	input RES;
 	inout [7:0] DB;
@@ -37,8 +37,8 @@ module LengthCounters(
 		.LC_Out(LC) );
 
 	LengthCounter length_cnt [3:0] (
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
 		.RES(RES),
 		.W400x_load({W400F, W400B, W4007, W4003}),
 		.n_R4015(n_R4015),
@@ -52,12 +52,12 @@ module LengthCounters(
 endmodule // LengthCounters
 
 module LengthCounter(
-	ACLK, n_ACLK,
+	nACLK2, ACLK1,
 	RES, W400x_load, n_R4015, W4015, LC, dbit_ena, nLFO2,
 	Carry_in, NotCount);
 
-	input ACLK;
-	input n_ACLK;
+	input nACLK2;
+	input ACLK1;
 
 	input RES;
 	input W400x_load;
@@ -74,7 +74,7 @@ module LengthCounter(
 	wire Carry_out;
 
 	LC_DownCounter cnt (
-		.Clk(n_ACLK),
+		.Clk(ACLK1),
 		.Clear(RES),
 		.Step(STEP),
 		.Load(W400x_load),
@@ -83,8 +83,8 @@ module LengthCounter(
 		.Carry_out(Carry_out) );
 
 	LC_Control ctl (
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
 		.RES(RES),
 		.W400x_load(W400x_load),
 		.n_R4015(n_R4015),
@@ -98,12 +98,12 @@ module LengthCounter(
 endmodule // LengthCounter
 
 module LC_Control(
-	ACLK, n_ACLK,
+	nACLK2, ACLK1,
 	RES, W400x_load, n_R4015, W4015, dbit_ena, nLFO2, cout,
 	NotCount, Step);
 
-	input ACLK;
-	input n_ACLK;
+	input nACLK2;
+	input ACLK1;
 
 	input RES;
 	input W400x_load;
@@ -122,20 +122,20 @@ module LC_Control(
 	wire StatOut;
 	wire n_StatOut;
 	wire step_latch_out;
-	wire n_ACLK4;		// Other /ACLK
+	wire ACLK4;		// Other ACLK
 
-	assign n_ACLK4 = ~ACLK;
-	sdffre ena_ff (.d(dbit_ena), .en(W4015), .res(RES), .phi_keep(n_ACLK), .nq(LCDIS));
-	dlatch ena_latch (.d(LCDIS), .en(n_ACLK), .q(ena_latch_out));
-	dlatch cout_latch (.d(cout), .en(n_ACLK), .q(cout_latch_out));
+	assign ACLK4 = ~nACLK2;
+	sdffre ena_ff (.d(dbit_ena), .en(W4015), .res(RES), .phi_keep(ACLK1), .nq(LCDIS));
+	dlatch ena_latch (.d(LCDIS), .en(ACLK1), .q(ena_latch_out));
+	dlatch cout_latch (.d(cout), .en(ACLK1), .q(cout_latch_out));
 	rsff_2_4 stat_ff (
-		.res1(ena_latch_out & n_ACLK4),
+		.res1(ena_latch_out & ACLK4),
 		.res2(cout_latch_out & Step),
 		.res3(RES),
 		.s(W400x_load),
 		.q(StatOut),
 		.nq(n_StatOut) );
-	dlatch step_latch (.d(n_StatOut), .en(n_ACLK), .q(step_latch_out));
+	dlatch step_latch (.d(n_StatOut), .en(ACLK1), .q(step_latch_out));
 
 	assign NotCount = ~StatOut;
 	bustris stat_tris (.a(n_StatOut), .n_x(dbit_ena), .n_en(n_R4015));
@@ -158,7 +158,7 @@ module LC_DownCounter(Clk, Clear, Step, Load, Val_in, Carry_in, Carry_out);
 	wire [7:0] cnt_value; 	// debug
 
 	DownCounterBit lc_cnt [7:0] (
-		.n_ACLK(Clk),
+		.ACLK1(Clk),
 		.load(Load),
 		.clear(Clear),
 		.step(Step),

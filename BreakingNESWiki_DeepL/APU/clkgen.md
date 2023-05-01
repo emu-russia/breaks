@@ -23,10 +23,10 @@ The following are the distinctive features of the APU clocks distribution.
 |6|PHI2 signal for modulation of M2 signal duty cycle|
 |7|M2 signal for external devices|
 |8|PHI1 signal for register operations (register operations are inactive during PHI1)|
-|9|Output of ACLK and /ACLK signals from the ACLK generator (PHI ÷ 2)|
+|9|Output of ACLK1 and /ACLK2 signals from the ACLK generator (PHI ÷ 2)|
 |10|Output of low frequency oscillation signals /LFO1 and /LFO2 for audio generators|
 |11|PHI1 signal is additionally used by the triangle channel to smooth out the "steps" of the signal|
-|12|"Others /ACLKs"|
+|12|"Others ACLK2"|
 
 Full size image: https://github.com/emu-russia/breaks/blob/master/Docs/APU/2A03_ACLK_Distrib.png
 
@@ -43,10 +43,10 @@ graph LR;
   core[6502 Core]-->|PHI2 for M2 duty cycle|div[Divider CLK/12]
   core[6502 Core]-->|PHI1|aclk[ACLK Generator PHI/2]
   core[6502 Core]-->|PHI1 to Triangle|sound[Sound Generators]
-  aclk[ACLK Generator PHI/2]-->|ACLK|sound[Sound Generators]
-  aclk[ACLK Generator PHI/2]-->|/ACLK|sound[Sound Generators]
-  aclk[ACLK Generator PHI/2]-->|ACLK|lfo[LFO Generator, hundreds of Hz]
-  aclk[ACLK Generator PHI/2]-->|/ACLK|lfo[LFO Generator, hundreds of Hz]
+  aclk[ACLK Generator PHI/2]-->|ACLK1|sound[Sound Generators]
+  aclk[ACLK Generator PHI/2]-->|/ACLK2|sound[Sound Generators]
+  aclk[ACLK Generator PHI/2]-->|ACLK1|lfo[LFO Generator, hundreds of Hz]
+  aclk[ACLK Generator PHI/2]-->|/ACLK2|lfo[LFO Generator, hundreds of Hz]
   lfo[LFO Generator, hundreds of Hz]-->|/LFO1|sound[Sound Generators]
   lfo[LFO Generator, hundreds of Hz]-->|/LFO2|sound[Sound Generators]
 ```
@@ -59,7 +59,7 @@ The ACLK generator is used to generate an internal ACLK clock signal (APU CLK), 
 
 ![ACLK_Gen](/BreakingNESWiki/imgstore/apu/ACLK_Gen.jpg)
 
-The `ACLK` and `/ACLK` signals are not complementary and have an overlap:
+The `ACLK1` and `/ACLK2` signals are not complementary and do not overlap:
 
 ![aclk](/BreakingNESWiki/imgstore/apu/waves/aclk.png)
 
@@ -186,41 +186,41 @@ Table of activation sequence of PLA outputs and duration between activations (nu
 
 (the table does not take into account the slightly floating number of cycles for the last output)
 
-## Other /ACLKs
+## Other ACLK2
 
-There are "other" /ACLKs in different parts of the APU.
+There are "other" ACLK2 in different parts of the APU. This is essentially an inversion of the /ACLK2 signal used "in place". But to separate them, they are numbered in ascending order: 2, 3, etc.
 
-At first a "other" /ACLK was found in the DPCM/DMA circuit, but then it turned out that they are also found in other parts of the APU. Therefore, these signals are called in order of 2, 3, 4, etc.
+At first a "other" ACLK2 was found in the DPCM/DMA circuit, but then it turned out that they are also found in other parts of the APU. Therefore, these signals are called in order of 2, 3, 4, etc.
 
-In the diagrams :warning: sign marks the places where other `/ACLK` is used.
+In the diagrams :warning: sign marks the places where other `ACLK2` is used.
 
-## /ACLK2
+## ACLK2
 
-In the very center of the DPCM circuitry is a circuit to produce the "other" /ACLK that is used in [DPCM](dpcm.md) as well as in [sprite DMA](dma.md).
-This signal can be found in our circuits as `/ACLK2`.
+In the very center of the DPCM circuitry is a circuit to produce the "other" ACLK2 that is used in [DPCM](dpcm.md) as well as in [sprite DMA](dma.md).
+This signal can be found in our circuits as `ACLK2`.
 
-![nACLK2](/BreakingNESWiki/imgstore/apu/nACLK2.jpg)
+![ACLK2](/BreakingNESWiki/imgstore/apu/ACLK2.jpg)
 
-### /ACLK3
+### ACLK3
 
 Used for [square wave sound generators](square.md), and more specifically for the $4002/$4003/$4006/$4007 registers.
 
-![nACLK3](/BreakingNESWiki/imgstore/apu/nACLK3.jpg)
+![ACLK3](/BreakingNESWiki/imgstore/apu/ACLK3.jpg)
 
-For the first square channel (Square 0 = A), the signal is called `/ACLK3A`.
+For the first square channel (Square 0 = A), the signal is called `ACLK3A`.
 
-For the second square channel (Square 1 = B) the signal is called `/ACLK3B`.
+For the second square channel (Square 1 = B) the signal is called `ACLK3B`.
 
-But in the general schematic for the two channels, the signal is simply marked as `/ACLK3`.
+But in the general schematic for the two channels, the signal is simply marked as `ACLK3`.
 
-### /ACLK4
+### ACLK4
 
 Used in the [noise generator](noise.md) and [length counter](length.md) control circuitry.
 
-![nACLK4](/BreakingNESWiki/imgstore/apu/nACLK4.jpg)
+![ACLK4](/BreakingNESWiki/imgstore/apu/ACLK4.jpg)
 
-### /ACLK5
+### ACLK5
 
 Used in I/O latches that generate OUTx signals for the corresponding output terminals.
 
-![nACLK5](/BreakingNESWiki/imgstore/apu/nACLK5.jpg)
+![ACLK5](/BreakingNESWiki/imgstore/apu/ACLK5.jpg)

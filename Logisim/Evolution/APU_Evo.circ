@@ -1297,7 +1297,7 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(100,100)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(100,130)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -1341,7 +1341,7 @@
     </comp>
     <comp lib="0" loc="(100,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(1000,350)" name="Splitter">
       <a name="facing" val="west"/>
@@ -1804,7 +1804,7 @@
     </comp>
     <comp lib="0" loc="(130,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(130,400)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -1820,7 +1820,7 @@
     </comp>
     <comp lib="0" loc="(130,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(190,340)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -2049,7 +2049,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -2209,7 +2209,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -2379,7 +2379,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -2542,7 +2542,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -2605,7 +2605,7 @@
     </comp>
     <comp lib="0" loc="(220,90)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(400,100)" name="Constant"/>
     <comp lib="0" loc="(670,100)" name="Pin">
@@ -2689,11 +2689,11 @@
     </comp>
     <comp lib="0" loc="(120,30)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(120,60)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(780,120)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -2784,9 +2784,9 @@
     <comp lib="1" loc="(690,360)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="8" loc="(190,675)" name="Text">
+    <comp lib="8" loc="(191,675)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
-      <a name="text" val="/ACLK"/>
+      <a name="text" val="ACLK1"/>
     </comp>
     <comp lib="8" loc="(215,125)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
@@ -2802,7 +2802,7 @@
     </comp>
     <comp lib="8" loc="(225,605)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
-      <a name="text" val="Delayed /ACLK"/>
+      <a name="text" val="ACLK2"/>
     </comp>
     <comp lib="8" loc="(230,275)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
@@ -2842,7 +2842,7 @@
     </comp>
     <comp lib="8" loc="(405,425)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
-      <a name="text" val="Delayed /ACLK"/>
+      <a name="text" val="ACLK2"/>
     </comp>
     <comp lib="8" loc="(450,545)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
@@ -3354,7 +3354,7 @@
     </comp>
     <comp lib="0" loc="(100,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(160,240)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3582,7 +3582,7 @@
     </comp>
     <comp lib="0" loc="(100,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(340,340)" name="Constant"/>
     <comp lib="0" loc="(590,130)" name="Pin">
@@ -3750,7 +3750,7 @@
     </comp>
     <comp lib="0" loc="(170,30)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(170,320)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3770,7 +3770,7 @@
     </comp>
     <comp lib="0" loc="(170,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(740,110)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3834,8 +3834,8 @@
       <a name="text" val="CTRL1"/>
     </comp>
     <comp lib="8" loc="(305,20)" name="Text">
-      <a name="font" val="SansSerif bold 9"/>
-      <a name="text" val="Delayed /ACLK"/>
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="ACLK2"/>
     </comp>
     <comp lib="8" loc="(400,295)" name="Text">
       <a name="font" val="SansSerif bold 13"/>
@@ -3979,11 +3979,11 @@
     </comp>
     <comp lib="0" loc="(130,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(130,80)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(730,130)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4178,7 +4178,7 @@
     </comp>
     <comp lib="0" loc="(100,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(100,420)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4190,19 +4190,19 @@
     </comp>
     <comp lib="0" loc="(100,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(110,230)" name="Tunnel">
       <a name="label" val="RES"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(220,40)" name="Tunnel">
-      <a name="label" val="nACLK2"/>
+      <a name="label" val="ACLK2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(280,590)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="nACLK2"/>
+      <a name="label" val="ACLK2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(340,320)" name="Tunnel">
@@ -4317,10 +4317,6 @@
     </comp>
     <comp lib="4" loc="(680,370)" name="D Flip-Flop">
       <a name="appearance" val="logisim_evolution"/>
-    </comp>
-    <comp lib="8" loc="(175,30)" name="Text">
-      <a name="font" val="SansSerif bold 9"/>
-      <a name="text" val="Delayed /ACLK"/>
     </comp>
     <comp lib="8" loc="(230,480)" name="Text">
       <a name="font" val="SansSerif bold 9"/>
@@ -4551,7 +4547,7 @@
     </comp>
     <comp lib="0" loc="(100,30)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(100,310)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4583,7 +4579,7 @@
     </comp>
     <comp lib="0" loc="(100,60)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(1200,100)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4875,7 +4871,7 @@
     </comp>
     <comp lib="0" loc="(100,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(160,160)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -4941,7 +4937,7 @@
     </comp>
     <comp lib="0" loc="(90,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(90,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -5015,7 +5011,7 @@
     </comp>
     <comp lib="0" loc="(90,50)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(90,90)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -5086,7 +5082,7 @@
     </comp>
     <comp lib="0" loc="(90,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp loc="(470,210)" name="CounterBit"/>
     <comp loc="(470,380)" name="CounterBit"/>
@@ -5184,11 +5180,11 @@
     </comp>
     <comp lib="0" loc="(100,30)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(100,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(130,300)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -5249,8 +5245,8 @@
       <a name="size" val="70"/>
     </comp>
     <comp lib="8" loc="(180,20)" name="Text">
-      <a name="font" val="SansSerif bold 9"/>
-      <a name="text" val="Delayed /ACLK"/>
+      <a name="font" val="SansSerif bold 12"/>
+      <a name="text" val="ACLK2"/>
     </comp>
     <comp loc="(620,160)" name="LFSR9">
       <a name="label" val="lfsr_9"/>
@@ -5372,7 +5368,7 @@
     </comp>
     <comp lib="0" loc="(100,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(140,170)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -5419,7 +5415,7 @@
     </comp>
     <comp lib="0" loc="(100,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(150,420)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -5586,7 +5582,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -5723,7 +5719,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -6032,7 +6028,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -6289,7 +6285,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -6577,7 +6573,7 @@
     </comp>
     <comp lib="0" loc="(90,70)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="1" loc="(190,140)" name="Controlled Buffer">
       <a name="control" val="left"/>
@@ -6635,7 +6631,7 @@
     </comp>
     <comp lib="0" loc="(130,80)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(150,260)" name="Splitter">
       <a name="fanout" val="8"/>
@@ -6811,7 +6807,7 @@
     </comp>
     <comp lib="0" loc="(90,100)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(90,140)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -6900,7 +6896,7 @@
     </comp>
     <comp lib="0" loc="(130,80)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(260,100)" name="Constant">
       <a name="value" val="0x0"/>
@@ -6992,7 +6988,7 @@
     </comp>
     <comp lib="0" loc="(150,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(150,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -7801,7 +7797,7 @@
     </comp>
     <comp lib="0" loc="(90,30)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(90,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -7907,7 +7903,7 @@
     </comp>
     <comp lib="0" loc="(90,30)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(90,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -8122,7 +8118,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="classic"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,80)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -8596,11 +8592,11 @@
     </comp>
     <comp lib="0" loc="(130,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(130,210)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(130,280)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -9757,7 +9753,7 @@
     <comp lib="0" loc="(850,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(850,160)" name="Pin">
@@ -9788,7 +9784,7 @@
     <comp lib="0" loc="(850,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="1" loc="(400,390)" name="AND Gate">
@@ -9944,13 +9940,13 @@
     <comp lib="0" loc="(480,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(480,190)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(90,120)" name="Pin">
@@ -10113,7 +10109,7 @@
     </comp>
     <comp lib="0" loc="(140,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(430,290)" name="Splitter">
       <a name="facing" val="west"/>
@@ -10456,7 +10452,7 @@
     </comp>
     <comp lib="0" loc="(140,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(210,110)" name="Constant"/>
     <comp lib="0" loc="(210,90)" name="NoConnect"/>
@@ -10906,10 +10902,10 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(130,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(130,100)" name="Tunnel">
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(130,130)" name="Pin">
@@ -10959,20 +10955,20 @@
     </comp>
     <comp lib="0" loc="(130,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(130,70)" name="Tunnel">
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(140,520)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(140,640)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(140,660)" name="Tunnel">
@@ -11018,12 +11014,12 @@
     </comp>
     <comp lib="0" loc="(410,320)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(410,410)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(430,140)" name="Tunnel">
@@ -11037,7 +11033,7 @@
     </comp>
     <comp lib="0" loc="(500,500)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(500,680)" name="Tunnel">
@@ -11052,18 +11048,18 @@
     </comp>
     <comp lib="0" loc="(530,210)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(560,350)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(570,520)" name="NoConnect"/>
     <comp lib="0" loc="(580,130)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(580,740)" name="Tunnel">
@@ -11088,12 +11084,12 @@
     </comp>
     <comp lib="0" loc="(630,250)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(720,590)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(750,710)" name="Tunnel">
@@ -11103,7 +11099,7 @@
     </comp>
     <comp lib="0" loc="(770,370)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(780,560)" name="Tunnel">
@@ -12871,7 +12867,7 @@
     </comp>
     <comp lib="0" loc="(130,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(150,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -12952,18 +12948,18 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(110,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(110,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(110,60)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="W4016"/>
     </comp>
     <comp lib="0" loc="(160,110)" name="Tunnel">
-      <a name="label" val="nACLK5"/>
+      <a name="label" val="ACLK5"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(180,300)" name="Pin">
@@ -12996,17 +12992,17 @@
     <comp lib="1" loc="(140,110)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp loc="(410,170)" name="IORegBit">
+    <comp loc="(400,170)" name="IORegBit">
       <a name="label" val="out1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(410,270)" name="IORegBit">
+    <comp loc="(400,270)" name="IORegBit">
       <a name="label" val="out2"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(410,70)" name="IORegBit">
+    <comp loc="(400,70)" name="IORegBit">
       <a name="label" val="out0"/>
       <a name="labelfont" val="SansSerif bold 10"/>
       <a name="labelloc" val="south"/>
@@ -13047,9 +13043,9 @@
     <wire from="(270,60)" to="(270,70)"/>
     <wire from="(270,70)" to="(270,170)"/>
     <wire from="(270,70)" to="(280,70)"/>
-    <wire from="(410,170)" to="(430,170)"/>
-    <wire from="(410,270)" to="(460,270)"/>
-    <wire from="(410,70)" to="(490,70)"/>
+    <wire from="(400,170)" to="(430,170)"/>
+    <wire from="(400,270)" to="(460,270)"/>
+    <wire from="(400,70)" to="(490,70)"/>
     <wire from="(430,110)" to="(430,170)"/>
     <wire from="(430,110)" to="(490,110)"/>
     <wire from="(460,150)" to="(460,270)"/>
@@ -13062,11 +13058,11 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(150,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="Other_nACLK"/>
+      <a name="label" val="Other_ACLK"/>
     </comp>
     <comp lib="0" loc="(150,130)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(150,190)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -15336,11 +15332,11 @@
     </comp>
     <comp lib="0" loc="(170,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(170,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(180,100)" name="Tunnel">
       <a name="label" val="RES"/>
@@ -15363,12 +15359,12 @@
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(180,70)" name="Tunnel">
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(300,110)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(300,150)" name="Tunnel">
@@ -15382,7 +15378,7 @@
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(310,40)" name="Tunnel">
-      <a name="label" val="n_ACLK4"/>
+      <a name="label" val="ACLK4"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(330,210)" name="Constant">
@@ -15390,19 +15386,19 @@
     </comp>
     <comp lib="0" loc="(580,160)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(580,250)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(650,180)" name="NoConnect"/>
     <comp lib="0" loc="(650,270)" name="NoConnect"/>
     <comp lib="0" loc="(750,370)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
       <a name="labelfont" val="SansSerif bold 10"/>
     </comp>
     <comp lib="0" loc="(780,230)" name="Tunnel">
@@ -15600,7 +15596,7 @@
     </comp>
     <comp lib="0" loc="(120,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -15858,7 +15854,7 @@
     </comp>
     <comp lib="0" loc="(160,30)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(160,460)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -15882,7 +15878,7 @@
     </comp>
     <comp lib="0" loc="(160,60)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(160,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16225,7 +16221,7 @@
     </comp>
     <comp lib="0" loc="(160,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(160,160)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16275,7 +16271,7 @@
     </comp>
     <comp lib="0" loc="(160,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(170,160)" name="Tunnel">
       <a name="label" val="RES"/>
@@ -16658,7 +16654,7 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(180,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(180,180)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16878,7 +16874,7 @@
     </comp>
     <comp lib="0" loc="(180,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(180,510)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16888,7 +16884,7 @@
     </comp>
     <comp lib="0" loc="(180,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(190,130)" name="Tunnel">
       <a name="label" val="RES"/>
@@ -17251,11 +17247,11 @@
     </comp>
     <comp lib="0" loc="(160,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(160,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(180,460)" name="Splitter">
       <a name="appear" val="right"/>
@@ -17613,7 +17609,7 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(160,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(160,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -17634,7 +17630,7 @@
     </comp>
     <comp lib="0" loc="(160,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(720,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -17671,7 +17667,7 @@
     </comp>
     <comp lib="8" loc="(235,70)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="/ACLK3"/>
+      <a name="text" val="ACLK3"/>
     </comp>
     <comp lib="8" loc="(485,300)" name="Text">
       <a name="text" val="Freq_FF"/>
@@ -17753,7 +17749,7 @@
     </comp>
     <comp lib="0" loc="(160,60)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(190,340)" name="Splitter">
       <a name="bit3" val="none"/>
@@ -18794,11 +18790,11 @@
     </comp>
     <comp lib="0" loc="(150,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(150,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(160,310)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -19095,7 +19091,7 @@
     </comp>
     <comp lib="0" loc="(150,30)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(150,60)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -19724,7 +19720,7 @@
     </comp>
     <comp lib="0" loc="(180,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(180,530)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -20144,7 +20140,7 @@
     </comp>
     <comp lib="0" loc="(170,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(220,730)" name="Splitter">
       <a name="bit0" val="none"/>
@@ -20353,7 +20349,7 @@
     </comp>
     <comp lib="0" loc="(140,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(560,200)" name="Bit Extender">
       <a name="in_width" val="1"/>
@@ -20444,7 +20440,7 @@
     </comp>
     <comp lib="0" loc="(140,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(170,380)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -21049,7 +21045,7 @@
     </comp>
     <comp lib="0" loc="(150,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(180,480)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -21438,7 +21434,7 @@
     </comp>
     <comp lib="0" loc="(140,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(170,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -22229,11 +22225,11 @@
     </comp>
     <comp lib="0" loc="(110,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ACLK"/>
+      <a name="label" val="nACLK2"/>
     </comp>
     <comp lib="0" loc="(110,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(160,360)" name="Splitter">
       <a name="bit0" val="10"/>
@@ -22342,7 +22338,7 @@
     </comp>
     <comp lib="8" loc="(165,30)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
-      <a name="text" val="/ACLK4"/>
+      <a name="text" val="ACLK4"/>
     </comp>
     <comp lib="8" loc="(370,750)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
@@ -22695,7 +22691,7 @@
     </comp>
     <comp lib="0" loc="(140,20)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(140,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -23083,7 +23079,7 @@
     </comp>
     <comp lib="0" loc="(170,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(490,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -23131,7 +23127,7 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(120,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_ACLK"/>
+      <a name="label" val="ACLK1"/>
     </comp>
     <comp lib="0" loc="(120,130)" name="Pin">
       <a name="appearance" val="NewPins"/>

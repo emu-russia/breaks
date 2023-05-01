@@ -145,11 +145,11 @@ def ApuShredder (FusedTopo):
 	# DACs
 	CropImage (FusedTopo, imgstore + "dac_other_tran", [116, 5237, 903, 2106] )
 	CropImage (FusedTopo, imgstore + "dac_square_tran", [6050, 1019, 726, 203] )
-	# Other /ACLKs
-	CropImage (FusedTopo, imgstore + "nACLK2", [4451, 7154, 233, 184] )
-	CropImage (FusedTopo, imgstore + "nACLK3", [4799, 3233, 200, 181] )
-	CropImage (FusedTopo, imgstore + "nACLK4", [3050, 7710, 261, 187] )
-	CropImage (FusedTopo, imgstore + "nACLK5", [7845, 2000, 234, 616] )
+	# Other ACLK2
+	CropImage (FusedTopo, imgstore + "ACLK2", [4451, 7154, 233, 184] )
+	CropImage (FusedTopo, imgstore + "ACLK3", [4799, 3233, 200, 181] )
+	CropImage (FusedTopo, imgstore + "ACLK4", [3050, 7710, 261, 187] )
+	CropImage (FusedTopo, imgstore + "ACLK5", [7845, 2000, 234, 616] )
 	# Common
 	CropImage (FusedTopo, imgstore + "RegisterBit_tran", [5396, 3710, 184, 169] )
 	CropImage (FusedTopo, imgstore + "CounterBit_tran", [5211, 9555, 565, 163] )

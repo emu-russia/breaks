@@ -1,5 +1,7 @@
 # APU Overview
 
+:warning: At this moment our Wiki is massively renaming /ACLK=ACLK1 and ACLK=/ACLK2 signals to comply with Visual2A03, so there is no misunderstanding. Please be understanding if you find the old signal designations somewhere (/ACLK and ACLK). This will all be renamed in time.
+
 **APU** is the unofficial name for the specialized NES CPU.
 
 The official name is just CPU, but we will stick to the unofficial term.

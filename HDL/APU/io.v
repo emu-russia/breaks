@@ -3,11 +3,11 @@
 // It is moved to a separate module so as not to be confused with the other pads.
 
 module IOPorts(
-	ACLK, n_ACLK, W4016, n_R4016, n_R4017, DB, RES, 
+	nACLK2, ACLK1, W4016, n_R4016, n_R4017, DB, RES, 
 	OUT0_Pad, OUT1_Pad, OUT2_Pad, nIN0_Pad, nIN1_Pad);
 
-	input ACLK;
-	input n_ACLK;
+	input nACLK2;
+	input ACLK1;
 	input W4016;
 	input n_R4016;
 	input n_R4017;
@@ -31,8 +31,8 @@ module IOPorts(
 	OutPort out_ports [2:0] (
 		.DB_bit(DB[2:0]),
 		.W4016(W4016),
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
 		.OUT_val(OUT_topad) );
 
 	IOPad out_pads [2:0] (
@@ -47,30 +47,30 @@ module IOPorts(
 
 endmodule // IOPorts
 
-module OutPort(DB_bit, W4016, ACLK, n_ACLK, OUT_val);
+module OutPort(DB_bit, W4016, nACLK2, ACLK1, OUT_val);
 
 	inout DB_bit;
 	input W4016;
-	input ACLK;
-	input n_ACLK;
+	input nACLK2;
+	input ACLK1;
 	output OUT_val;
 
 	wire ff_out;
-	wire n_ACLK5;
+	wire ACLK5;
 
-	assign n_ACLK5 = ~ACLK;		// Other /ACLK
+	assign ACLK5 = ~nACLK2;		// Other ACLK
 
 	RegisterBit out_ff (
 		.d(DB_bit),
 		.ena(W4016),
-		.n_ACLK(n_ACLK),
+		.ACLK1(ACLK1),
 		.q(ff_out) );
 
 	wire n_latch_out;
 
 	dlatch out_latch (
 		.d(ff_out),
-		.en(n_ACLK5),
+		.en(ACLK5),
 		.nq(n_latch_out) );
 
 	assign OUT_val = ~n_latch_out;
