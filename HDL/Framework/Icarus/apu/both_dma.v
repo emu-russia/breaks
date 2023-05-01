@@ -2,7 +2,7 @@
 
 //⚠️ To avoid confusion please keep in mind that this test does NOT use a real processor. Therefore all register write signals ("RegOps") and R/W of the processor are manually adjusted.
 
-// 17.01.2023: added a second OAM DMA, which starts on an unaligned PHI relative to #ACLK, so it has one Waste cycle 
+// 17.01.2023: added a second OAM DMA, which starts on an unaligned PHI relative to ACLK1, so it has one Waste cycle 
 
 `timescale 1ns/1ns
 
@@ -15,8 +15,8 @@ module OAM_DMA_With_DPCM_Run ();
 	reg RES;
 	wire PHI1;
 	reg RnW; 		// From "core". When a write to the APU registers is simulated the R/W of the processor is also set to Write Mode (R/W = 0)
-	wire ACLK;
-	wire n_ACLK;
+	wire nACLK2;
+	wire ACLK1;
 
 	reg W4010;
 	reg W4011;
@@ -47,10 +47,10 @@ module OAM_DMA_With_DPCM_Run ();
 	// Tune CLK/ACLK timing according to 2A03
 	always #23.28 CLK = ~CLK;
 
-	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .ACLK(ACLK), .n_ACLK(n_ACLK) );
+	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .nACLK2(nACLK2), .ACLK1(ACLK1) );
 
 	Sprite_DMA dma (
-		.n_ACLK(n_ACLK), .ACLK(ACLK), .PHI1(PHI1),
+		.ACLK1(ACLK1), .nACLK2(nACLK2), .PHI1(PHI1),
 		.RES(RES), .RnW(RnW), .W4014(W4014), .DB(DataBus), 
 		.RUNDMC(RUNDMC), .n_DMCAB(n_DMCAB), .DMCRDY(DMCRDY), .DMC_Addr(DMC_Addr), .CPU_Addr(CPU_Addr),
 		.Addr(Addr), .RDY_tocore(RDY), .SPR_PPU(SPR_PPU) );
@@ -62,7 +62,7 @@ module OAM_DMA_With_DPCM_Run ();
 	RegDriver dma_enabler (.PHI1(PHI1), .W4010(W4010), .W4012(W4012), .W4013(W4013), .W4014(W4014), .W4015(W4015), .DataBus(DataBus), .CPU_Addr(CPU_Addr) );
 
 	DPCMChan dpcm (
-		.PHI1(PHI1), .n_ACLK(n_ACLK), .ACLK(ACLK), 
+		.PHI1(PHI1), .ACLK1(ACLK1), .nACLK2(nACLK2), 
 		.RES(RES), .DB(DataBus), .RnW(RnW), .LOCK(1'b0),
 		.W4010(W4010), .W4011(W4011), .W4012(W4012), .W4013(W4013), .W4015(W4015), .n_R4015(n_R4015), 
 		.n_DMCAB(n_DMCAB), .RUNDMC(RUNDMC), .DMCRDY(DMCRDY), .DMCINT(DMCINT),
@@ -139,7 +139,7 @@ module OAM_DMA_With_DPCM_Run ();
 
 		// ** OAM DMA YES Delay **
 
-		// Add delay here so that the start of the OAM DMA is not aligned to #ACLK and you get 1 Waste Cycle
+		// Add delay here so that the start of the OAM DMA is not aligned to ACLK1 and you get 1 Waste Cycle
 		repeat (`CoreCyclesPerCLK) @ (CLK);
 		repeat (`CoreCyclesPerCLK) @ (CLK);
 

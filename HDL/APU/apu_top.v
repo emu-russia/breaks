@@ -24,8 +24,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 	wire PHI0;
 	wire PHI1;
 	wire PHI2;
-	wire n_ACLK;
-	wire ACLK;
+	wire nACLK2;
+	wire ACLK1;
 	wire n_M2;
 
 	wire RES;
@@ -147,14 +147,14 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 	ACLKGen aclk(
 		.PHI1(PHI1),
 		.PHI2(PHI2),
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
 		.RES(RES) );
 
 	SoftTimer softclk (
 		.PHI1(PHI1),
-		.n_ACLK(n_ACLK),
-		.ACLK(ACLK),
+		.ACLK1(ACLK1),
+		.nACLK2(nACLK2),
 		.RES(RES),
 		.n_R4015(n_R4015),
 		.W4017(W4017),
@@ -213,8 +213,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.n_DBGRD(n_DBGRD) );
 
 	IOPorts io(
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
 		.W4016(W4016),
 		.n_R4016(n_R4016),
 		.n_R4017(n_R4017),
@@ -227,8 +227,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.nIN1_Pad(n_IN1) );
 
 	Sprite_DMA sprdma(
-		.n_ACLK(n_ACLK),
-		.ACLK(ACLK),
+		.ACLK1(ACLK1),
+		.nACLK2(nACLK2),
 		.PHI1(PHI1),
 		.RES(RES),
 		.RnW(RW_fromcore),
@@ -244,8 +244,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.SPR_PPU(SPR_PPU) );
 
 	LengthCounters length(
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
 		.RES(RES),
 		.DB(DB),
 		.n_R4015(n_R4015),
@@ -265,8 +265,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.NORND(NORND) );
 
 	SquareChan sqa(
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK), 
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1), 
 		.RES(RES),
 		.DB(DB),
 		.WR0(W4000),
@@ -282,8 +282,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.SQ_Out(SQA) );
 
 	SquareChan sqb(
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
 		.RES(RES),
 		.DB(DB),
 		.WR0(W4004),
@@ -299,8 +299,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.SQ_Out(SQB) );
 	
 	NoiseChan noise(
-		.n_ACLK(n_ACLK),
-		.ACLK(ACLK), 
+		.ACLK1(ACLK1),
+		.nACLK2(nACLK2), 
 		.RES(RES),
 		.DB(DB),
 		.W400C(W400C),
@@ -314,7 +314,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 
 	TriangleChan triangle (
 		.PHI1(PHI1),
-		.n_ACLK(n_ACLK),
+		.ACLK1(ACLK1),
 		.RES(RES),
 		.DB(DB),
 		.W4008(W4008),
@@ -329,8 +329,8 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 
 	DPCMChan dpcm(
 		.PHI1(PHI1),
-		.n_ACLK(n_ACLK),
-		.ACLK(ACLK), 
+		.ACLK1(ACLK1),
+		.nACLK2(nACLK2), 
 		.RES(RES),
 		.DB(DB),		
 		.RnW(RW_fromcore),
@@ -360,7 +360,7 @@ module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_
 		.AUX_B(AUX_B) );
 
 	Test dbg(
-		.n_ACLK(n_ACLK),
+		.ACLK1(ACLK1),
 		.RES(RES),
 		.DB(DB),
 		.W401A(W401A),

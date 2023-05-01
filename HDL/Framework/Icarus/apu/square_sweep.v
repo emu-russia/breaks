@@ -32,8 +32,8 @@ module Square_Sweep_Run ();
 	reg CLK;
 	reg RES;
 	wire PHI1;
-	wire ACLK;
-	wire n_ACLK;
+	wire ACLK1;
+	wire nACLK2;
 
 	// Tune CLK/ACLK timing according to 2A03
 	always #23.28 CLK = ~CLK;
@@ -45,14 +45,14 @@ module Square_Sweep_Run ();
 
 	wire DO_SWEEP; 			// The signal for which it is all about
 
-	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .ACLK(ACLK), .n_ACLK(n_ACLK) );
+	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .nACLK2(nACLK2), .ACLK1(ACLK1) );
 
-	BogusLFO lfo (.CLK(CLK), .RES(RES), .ACLK(ACLK), .LFO(n_LFO2) );
+	BogusLFO lfo (.CLK(CLK), .RES(RES), .nACLK2(nACLK2), .LFO(n_LFO2) );
 
 	RegDriver reg_driver (.PHI1(PHI1), .WR_Reg1(WR_Reg1), .DataBus(DataBus) );
 
 	SQUARE_Sweep sweep_unit (
-		.n_ACLK(n_ACLK), 
+		.ACLK1(ACLK1), 
 		.RES(RES), 
 		.WR1(WR_Reg1), 
 		.SR(3'b111),  		// Make a convenient value of the frequency shift magnitude so that the SRZ signal does not occur

@@ -11,8 +11,8 @@ module Square_Duty_Run ();
 	reg CLK;
 	reg RES;
 	wire PHI1;
-	wire ACLK;
-	wire n_ACLK;
+	wire ACLK1;
+	wire nACLK2;
 
 	// Tune CLK/ACLK timing according to 2A03
 	always #23.28 CLK = ~CLK;
@@ -23,14 +23,14 @@ module Square_Duty_Run ();
 
 	wire DUTY; 		// The signal for which the test is performed
 
-	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .ACLK(ACLK), .n_ACLK(n_ACLK) );
+	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .PHI1(PHI1), .nACLK2(nACLK2), .ACLK1(ACLK1) );
 
 	RegDriver reg_driver (.PHI1(PHI1), .WR0(WR0), .duty_mode(duty_mode), .DataBus(DataBus) );
 
 	SQUARE_Duty duty_unit (
-		.n_ACLK(n_ACLK), 
+		.ACLK1(ACLK1), 
 		.RES(RES), 
-		.FLOAD(~n_ACLK & ~WR0), 	// Make the counter always step complementary to the Keep state (/ACLK)
+		.FLOAD(~ACLK1 & ~WR0), 	// Make the counter always step complementary to the Keep state (ACLK1)
 		.FCO(1'b1), 			// Make the input carry always active for continuous counting. In reality the carry is activated only when the frequency counter counts are completed.
 		.WR0(WR0), 
 		.WR3(1'b0), 			// This test does not check the clearing of the Duty counter when writing to the length counter

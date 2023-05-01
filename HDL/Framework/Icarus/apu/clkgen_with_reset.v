@@ -56,7 +56,7 @@ module APU_ClkGen_WithReset_Run();
 	end
 
 	//always @(CLK)
-	//	$display("CLK=%b, PHI0=%b, PHI1=%b, PHI2=%b, /ACLK=%b, ACLK=%b",
-	//		CLK, apu.PHI0, apu.PHI0, apu.PHI1, apu.n_ACLK, apu.ACLK);	
+	//	$display("CLK=%b, PHI0=%b, PHI1=%b, PHI2=%b, ACLK1=%b, nACLK2=%b",
+	//		CLK, apu.PHI0, apu.PHI0, apu.PHI1, apu.ACLK1, apu.nACLK2);	
 
 endmodule // APU_ClkGen_WithReset_Run

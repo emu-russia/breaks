@@ -10,8 +10,8 @@ module LengthCounter_Run();
 
 	reg CLK;
 	wire RES;
-	wire ACLK;
-	wire n_ACLK;
+	wire ACLK1;
+	wire nACLK2;
 	reg WriteEnable;			// Used to load the initial value ($400x)
 	reg W4015; 				// Used to enable the LC
 	wire [7:0] DataBus;
@@ -24,7 +24,7 @@ module LengthCounter_Run();
 	assign RES = 1'b0;
 	assign DataBus = 8'b01001_001;		// Used both for the enable bit value and for selecting the initial LC value (val=9 -> decoded as 0x07)
 
-	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .ACLK(ACLK), .n_ACLK(n_ACLK) );
+	AclkGenStandalone aclk (.CLK(CLK), .RES(RES), .nACLK2(nACLK2), .ACLK1(ACLK1) );
 
 	wire [7:0] LC;
 
@@ -33,8 +33,8 @@ module LengthCounter_Run();
 		.LC_Out(LC) );
 
 	LengthCounter lc (
-		.ACLK(ACLK),
-		.n_ACLK(n_ACLK),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
 		.RES(RES),
 		.W400x_load(WriteEnable),
 		.n_R4015(1'b1),
@@ -76,7 +76,7 @@ module LengthCounter_Run();
 		$finish;
 	end
 
-	always @ (negedge ACLK)
+	always @ (negedge nACLK2)
 		nLFO2 <= LC_Carry ? 1'b0 : 1'b1;
 	always @ (posedge CLK)
 		nLFO2 <= 1'b1;

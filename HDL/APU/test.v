@@ -2,12 +2,12 @@
 // Debugging mechanisms of the 2A03G APU revision (so called "Test Mode").
 
 module Test(
-	n_ACLK,
+	ACLK1,
 	RES, DB, W401A, n_R4018, n_R4019, n_R401A,
 	SQA_in, SQB_in, TRI_in, RND_in, DMC_in,
 	LOCK);
 
-	input n_ACLK;
+	input ACLK1;
 
 	input RES;
 	inout [7:0] DB;
@@ -28,7 +28,7 @@ module Test(
 		.d(DB[7]),
 		.en(W401A),
 		.res(RES),
-		.phi_keep(n_ACLK),
+		.phi_keep(ACLK1),
 		.q(LOCK) );
 
 	bustris sqa_tris [3:0] (

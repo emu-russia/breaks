@@ -40,7 +40,7 @@ module UpCounterTest(CLK);
 	wire [7:0] q;
 
 	CounterBit cnt [7:0] (
-		.n_ACLK(~CLK),
+		.ACLK1(~CLK),
 		.clear(1'b0),
 		.step(CLK),
 		.load(1'b0),
@@ -57,7 +57,7 @@ module DownCounterTest(CLK);
 	wire [7:0] q;
 
 	DownCounterBit cnt [7:0] (
-		.n_ACLK(~CLK),
+		.ACLK1(~CLK),
 		.clear(1'b0),
 		.step(CLK),
 		.load(1'b0),
@@ -75,7 +75,7 @@ module RevCounterTest(CLK, DownCount);
 	wire [7:0] q;
 
 	RevCounterBit cnt [7:0] (
-		.n_ACLK(~CLK),
+		.ACLK1(~CLK),
 		.clear(1'b0),
 		.step(CLK),
 		.load(1'b0),

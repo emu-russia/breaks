@@ -3,12 +3,12 @@
 // But we cheat a little bit here for convenience by making the connection using multiplexer.
 
 module SquareChan (
-	ACLK, n_ACLK, 
+	nACLK2, ACLK1, 
 	RES, DB, WR0, WR1, WR2, WR3, nLFO1, nLFO2, SQ_LC, NOSQ, LOCK, AdderCarryMode,
 	SQ_Out);
 
-	input ACLK;
-	input n_ACLK;
+	input nACLK2;
+	input ACLK1;
 
 	input RES;
 	inout [7:0] DB;
@@ -46,36 +46,36 @@ module SquareChan (
 
 	// Instantiate
 
-	RegisterBit dir_reg (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[3]), .q(DEC) );
+	RegisterBit dir_reg (.ACLK1(ACLK1), .ena(WR1), .d(DB[3]), .q(DEC) );
 
 	assign INC = ~DEC;
 	assign BS = {DEC, DEC ? nFx : Fx};
 
-	SQUARE_FreqReg freq_reg (.ACLK(ACLK), .n_ACLK(n_ACLK), .WR2(WR2), .WR3(WR3), .DB(DB), .DO_SWEEP(DO_SWEEP), .n_sum(n_sum), .nFx(nFx), .Fx(Fx) );
+	SQUARE_FreqReg freq_reg (.nACLK2(nACLK2), .ACLK1(ACLK1), .WR2(WR2), .WR3(WR3), .DB(DB), .DO_SWEEP(DO_SWEEP), .n_sum(n_sum), .nFx(nFx), .Fx(Fx) );
 
-	SQUARE_ShiftReg shift_reg (.n_ACLK(n_ACLK), .WR1(WR1), .DB(DB), .SR(SR) );
+	SQUARE_ShiftReg shift_reg (.ACLK1(ACLK1), .WR1(WR1), .DB(DB), .SR(SR) );
 
 	SQUARE_BarrelShifter barrel (.BS(BS), .SR(SR), .S(S) );
 
 	SQUARE_Adder adder (.CarryMode(AdderCarryMode), .INC(INC), .nFx(nFx), .Fx(Fx), .S(S), .n_sum(n_sum), .n_COUT(n_COUT), .SW_UVF(SW_UVF) );
 
-	SQUARE_FreqCounter freq_cnt (.ACLK(ACLK), .n_ACLK(n_ACLK), .RES(RES), .Fx(Fx), .FCO(FCO), .FLOAD(FLOAD) );
+	SQUARE_FreqCounter freq_cnt (.nACLK2(nACLK2), .ACLK1(ACLK1), .RES(RES), .Fx(Fx), .FCO(FCO), .FLOAD(FLOAD) );
 
-	Envelope_Unit env_unit (.n_ACLK(n_ACLK), .RES(RES), .WR_Reg(WR0), .WR_LC(WR3), .n_LFO1(nLFO1), .DB(DB), .V(Vol), .LC(SQ_LC) );
+	Envelope_Unit env_unit (.ACLK1(ACLK1), .RES(RES), .WR_Reg(WR0), .WR_LC(WR3), .n_LFO1(nLFO1), .DB(DB), .V(Vol), .LC(SQ_LC) );
 
-	SQUARE_Sweep sweep_unit (.n_ACLK(n_ACLK), .RES(RES), .WR1(WR1), .SR(SR), .DEC(DEC), .n_COUT(n_COUT), .SW_UVF(SW_UVF), .NOSQ(NOSQ), .n_LFO2(nLFO2), 
+	SQUARE_Sweep sweep_unit (.ACLK1(ACLK1), .RES(RES), .WR1(WR1), .SR(SR), .DEC(DEC), .n_COUT(n_COUT), .SW_UVF(SW_UVF), .NOSQ(NOSQ), .n_LFO2(nLFO2), 
 		.DB(DB), .DO_SWEEP(DO_SWEEP), .SW_OVF(SW_OVF) );
 
-	SQUARE_Duty duty_unit (.n_ACLK(n_ACLK), .RES(RES), .FLOAD(FLOAD), .FCO(FCO), .WR0(WR0), .WR3(WR3), .DB(DB), .DUTY(DUTY) );
+	SQUARE_Duty duty_unit (.ACLK1(ACLK1), .RES(RES), .FLOAD(FLOAD), .FCO(FCO), .WR0(WR0), .WR3(WR3), .DB(DB), .DUTY(DUTY) );
 
-	SQUARE_Output sqo (.n_ACLK(n_ACLK), .DUTY(DUTY), .LOCK(LOCK), .SW_UVF(SW_UVF), .NOSQ(NOSQ), .SW_OVF(SW_OVF), .V(Vol), .SQ_Out(SQ_Out) );
+	SQUARE_Output sqo (.ACLK1(ACLK1), .DUTY(DUTY), .LOCK(LOCK), .SW_UVF(SW_UVF), .NOSQ(NOSQ), .SW_OVF(SW_OVF), .V(Vol), .SQ_Out(SQ_Out) );
 
 endmodule // SquareChan
 
-module SQUARE_FreqReg (ACLK, n_ACLK, WR2, WR3, DB, DO_SWEEP, n_sum, nFx, Fx);
+module SQUARE_FreqReg (nACLK2, ACLK1, WR2, WR3, DB, DO_SWEEP, n_sum, nFx, Fx);
 
-	input ACLK;
-	input n_ACLK; 
+	input nACLK2;
+	input ACLK1; 
 	input WR2; 
 	input WR3; 
 	inout [7:0] DB;
@@ -84,18 +84,18 @@ module SQUARE_FreqReg (ACLK, n_ACLK, WR2, WR3, DB, DO_SWEEP, n_sum, nFx, Fx);
 	output [10:0] nFx; 
 	output [10:0] Fx;
 
-	wire n_ACLK3;
-	assign n_ACLK3 = ~ACLK;
+	wire ACLK3;
+	assign ACLK3 = ~nACLK2;
 
-	SQUARE_FreqRegBit freq_reg [10:0] (.n_ACLK3(n_ACLK3), .n_ACLK(n_ACLK), 
+	SQUARE_FreqRegBit freq_reg [10:0] (.ACLK3(ACLK3), .ACLK1(ACLK1), 
 		.WR({ {3{WR3}}, {8{WR2}} }), .DB_in({ DB[2:0], DB[7:0] }), .DO_SWEEP(DO_SWEEP), .n_sum(n_sum), .nFx(nFx), .Fx(Fx) );
 
 endmodule // SQUARE_FreqReg
 
-module SQUARE_FreqRegBit (n_ACLK3, n_ACLK, WR, DB_in, DO_SWEEP, n_sum, nFx, Fx);
+module SQUARE_FreqRegBit (ACLK3, ACLK1, WR, DB_in, DO_SWEEP, n_sum, nFx, Fx);
 
-	input n_ACLK3;
-	input n_ACLK;
+	input ACLK3;
+	input ACLK1;
 	input WR;
 	inout DB_in;
 	input DO_SWEEP;
@@ -108,22 +108,22 @@ module SQUARE_FreqRegBit (n_ACLK3, n_ACLK, WR, DB_in, DO_SWEEP, n_sum, nFx, Fx);
 	wire sum_latch_q;
 	wire sum_latch_nq;
 
-	assign d = WR ? DB_in : (n_ACLK3 ? Fx : 1'bz);
+	assign d = WR ? DB_in : (ACLK3 ? Fx : 1'bz);
 	dlatch transp_latch (.d(d), .en(1'b1), .q(transp_latch_q) );
-	dlatch sum_latch (.d(n_sum), .en(n_ACLK), .q(sum_latch_q), .nq(sum_latch_nq) );
+	dlatch sum_latch (.d(n_sum), .en(ACLK1), .q(sum_latch_q), .nq(sum_latch_nq) );
 	nor (nFx, (sum_latch_nq & DO_SWEEP), transp_latch_q);
 	nor (Fx, nFx, (sum_latch_q & DO_SWEEP));
 
 endmodule // SQUARE_FreqRegBit
 
-module SQUARE_ShiftReg (n_ACLK, WR1, DB, SR);
+module SQUARE_ShiftReg (ACLK1, WR1, DB, SR);
 
-	input n_ACLK;
+	input ACLK1;
 	input WR1;
 	input [7:0] DB;
 	output [2:0] SR;
 
-	RegisterBit sr_reg [2:0] (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[2:0]), .q(SR) );
+	RegisterBit sr_reg [2:0] (.ACLK1(ACLK1), .ena(WR1), .d(DB[2:0]), .q(SR) );
 
 endmodule // SQUARE_ShiftReg
 
@@ -215,10 +215,10 @@ module SQUARE_AdderBit (F, nF, S, nS, C, nC, n_cout, cout, n_sum);
 
 endmodule // SQUARE_AdderBit
 
-module SQUARE_FreqCounter (ACLK, n_ACLK, RES, Fx, FCO, FLOAD);
+module SQUARE_FreqCounter (nACLK2, ACLK1, RES, Fx, FCO, FLOAD);
 
-	input ACLK;
-	input n_ACLK;
+	input nACLK2;
+	input ACLK1;
 	input RES;
 	input [10:0] Fx;
 	output FCO;
@@ -228,18 +228,18 @@ module SQUARE_FreqCounter (ACLK, n_ACLK, RES, Fx, FCO, FLOAD);
 	wire fco_latch_nq;
 	wire [10:0] cout;
 
-	dlatch fco_latch (.d(FCO), .en(n_ACLK), .nq(fco_latch_nq) );
-	DownCounterBit freq_cnt [10:0] (.n_ACLK(n_ACLK), .d(Fx), .load(FLOAD), .clear(RES), .step(FSTEP), .cin({cout[9:0],1'b1}), .cout(cout) );
+	dlatch fco_latch (.d(FCO), .en(ACLK1), .nq(fco_latch_nq) );
+	DownCounterBit freq_cnt [10:0] (.ACLK1(ACLK1), .d(Fx), .load(FLOAD), .clear(RES), .step(FSTEP), .cin({cout[9:0],1'b1}), .cout(cout) );
 	assign FCO = cout[10];
 
-	nor (FLOAD, ACLK, fco_latch_nq);
-	nor (FSTEP, ACLK, ~fco_latch_nq);
+	nor (FLOAD, nACLK2, fco_latch_nq);
+	nor (FSTEP, nACLK2, ~fco_latch_nq);
 
 endmodule // SQUARE_FreqCounter
 
-module SQUARE_Sweep (n_ACLK, RES, WR1, SR, DEC, n_COUT, SW_UVF, NOSQ, n_LFO2, DB, DO_SWEEP, SW_OVF);
+module SQUARE_Sweep (ACLK1, RES, WR1, SR, DEC, n_COUT, SW_UVF, NOSQ, n_LFO2, DB, DO_SWEEP, SW_OVF);
 
-	input n_ACLK;
+	input ACLK1;
 	input RES;
 	input WR1;
 	input [2:0] SR;
@@ -267,15 +267,15 @@ module SQUARE_Sweep (n_ACLK, RES, WR1, SR, DEC, n_COUT, SW_UVF, NOSQ, n_LFO2, DB
 	wire [2:0] cout;
 	wire temp_reload;
 
-	dlatch reload_latch (.d(reload_ff_q), .en(n_ACLK), .q(reload_latch_q), .nq(SWRELOAD) );
-	dlatch sco_latch (.d(SCO), .en(n_ACLK), .q(sco_latch_q), .nq(n_SCO) );
+	dlatch reload_latch (.d(reload_ff_q), .en(ACLK1), .q(reload_latch_q), .nq(SWRELOAD) );
+	dlatch sco_latch (.d(SCO), .en(ACLK1), .q(sco_latch_q), .nq(n_SCO) );
 
 	rsff reload_ff (.r(WR1), .s(~(n_LFO2 | reload_latch_q)), .q(reload_ff_q) );
 
-	RegisterBit swdis_reg (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[7]), .nq(SWDIS) );
+	RegisterBit swdis_reg (.ACLK1(ACLK1), .ena(WR1), .d(DB[7]), .nq(SWDIS) );
 
-	RegisterBit sweep_reg [2:0] (.n_ACLK(n_ACLK), .ena(WR1), .d(DB[6:4]), .q(sweep_reg_q) );
-	DownCounterBit sweep_cnt [2:0] (.n_ACLK(n_ACLK), .d(sweep_reg_q), .load(SLOAD), .clear(RES), .step(SSTEP), .cin({cout[1:0],1'b1}), .cout(cout), .q(cnt_q) );
+	RegisterBit sweep_reg [2:0] (.ACLK1(ACLK1), .ena(WR1), .d(DB[6:4]), .q(sweep_reg_q) );
+	DownCounterBit sweep_cnt [2:0] (.ACLK1(ACLK1), .d(sweep_reg_q), .load(SLOAD), .clear(RES), .step(SSTEP), .cin({cout[1:0],1'b1}), .cout(cout), .q(cnt_q) );
 	assign SCO = cout[2];
 
 	nor (temp_reload, SWRELOAD, sco_latch_q);
@@ -287,9 +287,9 @@ module SQUARE_Sweep (n_ACLK, RES, WR1, SR, DEC, n_COUT, SW_UVF, NOSQ, n_LFO2, DB
 
 endmodule // SQUARE_Sweep
 
-module SQUARE_Duty (n_ACLK, RES, FLOAD, FCO, WR0, WR3, DB, DUTY);
+module SQUARE_Duty (ACLK1, RES, FLOAD, FCO, WR0, WR3, DB, DUTY);
 
-	input n_ACLK;
+	input ACLK1;
 	input RES;
 	input FLOAD;
 	input FCO;
@@ -303,8 +303,8 @@ module SQUARE_Duty (n_ACLK, RES, FLOAD, FCO, WR0, WR3, DB, DUTY);
 	wire [1:0] DT;
 	wire [3:0] in;
 
-	RegisterBit duty_reg [1:0] (.n_ACLK(n_ACLK), .ena(WR0), .d(DB[7:6]), .q(DT) );
-	DownCounterBit duty_cnt [2:0] (.n_ACLK(n_ACLK), .d(3'b000), .load(WR3), .clear(RES), .step(FLOAD), .cin({cout[1:0],1'b1}), .q(DC), .cout(cout) );
+	RegisterBit duty_reg [1:0] (.ACLK1(ACLK1), .ena(WR0), .d(DB[7:6]), .q(DT) );
+	DownCounterBit duty_cnt [2:0] (.ACLK1(ACLK1), .d(3'b000), .load(WR3), .clear(RES), .step(FLOAD), .cin({cout[1:0],1'b1}), .q(DC), .cout(cout) );
 
 	nand (in[3], DC[1], DC[2]);
 	nor (in[0], ~DC[0], in[3]);
@@ -315,9 +315,9 @@ module SQUARE_Duty (n_ACLK, RES, FLOAD, FCO, WR0, WR3, DB, DUTY);
 
 endmodule // SQUARE_Duty
 
-module SQUARE_Output (n_ACLK, DUTY, LOCK, SW_UVF, NOSQ, SW_OVF, V, SQ_Out);
+module SQUARE_Output (ACLK1, DUTY, LOCK, SW_UVF, NOSQ, SW_OVF, V, SQ_Out);
 
-	input n_ACLK;
+	input ACLK1;
 	input DUTY;
 	input LOCK;
 	input SW_UVF;
@@ -331,7 +331,7 @@ module SQUARE_Output (n_ACLK, DUTY, LOCK, SW_UVF, NOSQ, SW_OVF, V, SQ_Out);
 	wire sqv;
 
 	nor (d, ~DUTY, SW_UVF, NOSQ, SW_OVF);
-	dlatch sqo_latch (.d(d), .en(n_ACLK), .q(sqo_latch_q) );
+	dlatch sqo_latch (.d(d), .en(ACLK1), .q(sqo_latch_q) );
 	nor (sqv, sqo_latch_q, LOCK);
 
 	pnor vout [3:0] (.a0({4{sqv}}), .a1(~V), .x(SQ_Out) );

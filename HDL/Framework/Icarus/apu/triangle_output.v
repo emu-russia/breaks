@@ -14,8 +14,8 @@ module Triangle_Run ();
 	reg CLK;
 	reg RES;
 	wire PHI1;
-	wire ACLK;
-	wire n_ACLK;
+	wire ACLK1;
+	wire nACLK2;
 	wire nLFO1;
 	wire nLFO2;
 
@@ -40,10 +40,10 @@ module Triangle_Run ();
 	
 	BogusCPU core (.PHI0(PHI0), .PHI1(PHI1), .PHI2(PHI2) );
 
-	ACLKGen aclk (.PHI1(PHI1), .PHI2(PHI2), .ACLK(ACLK), .n_ACLK(n_ACLK), .RES(RES) );
+	ACLKGen aclk (.PHI1(PHI1), .PHI2(PHI2), .nACLK2(nACLK2), .ACLK1(ACLK1), .RES(RES) );
 
 	SoftTimer softclk (
-		.PHI1(PHI1), .n_ACLK(n_ACLK), .ACLK(ACLK),
+		.PHI1(PHI1), .ACLK1(ACLK1), .nACLK2(nACLK2),
 		.RES(RES), .n_R4015(n_R4015), .W4017(W4017), .DB(DataBus), .DMCINT(1'b0), .nLFO1(nLFO1), .nLFO2(nLFO2) );
 
 	// Modules for the triangle sound generator
@@ -58,12 +58,12 @@ module Triangle_Run ();
 		.LC_Out(LC) );
 
 	LengthCounter length (
-		.ACLK(ACLK), .n_ACLK(n_ACLK),
+		.nACLK2(nACLK2), .ACLK1(ACLK1),
 		.RES(RES), .W400x_load(W400B), .n_R4015(n_R4015), .W4015(W4015), .LC(LC), .dbit_ena(DataBus[2]), .nLFO2(nLFO2),
 		.Carry_in(TRI_LC), .NotCount(NOTRI) );
 
 	TriangleChan triangle (
-		.PHI1(PHI1), .n_ACLK(n_ACLK),
+		.PHI1(PHI1), .ACLK1(ACLK1),
 		.RES(RES), .DB(DataBus), 
 		.W4008(W4008), .W400A(W400A), .W400B(W400B), .W401A(W401A), 
 		.nLFO1(nLFO1), .TRI_LC(TRI_LC), .NOTRI(NOTRI), .LOCK(1'b0),

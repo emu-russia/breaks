@@ -14,8 +14,8 @@ module Square_Run ();
 	reg CLK;
 	reg RES;
 	wire PHI1;
-	wire ACLK;
-	wire n_ACLK;
+	wire ACLK1;
+	wire nACLK2;
 	wire nLFO1;
 	wire nLFO2;
 
@@ -40,10 +40,10 @@ module Square_Run ();
 	
 	BogusCPU core (.PHI0(PHI0), .PHI1(PHI1), .PHI2(PHI2) );
 
-	ACLKGen aclk (.PHI1(PHI1), .PHI2(PHI2), .ACLK(ACLK), .n_ACLK(n_ACLK), .RES(RES) );
+	ACLKGen aclk (.PHI1(PHI1), .PHI2(PHI2), .nACLK2(nACLK2), .ACLK1(ACLK1), .RES(RES) );
 
 	SoftTimer softclk (
-		.PHI1(PHI1), .n_ACLK(n_ACLK), .ACLK(ACLK),
+		.PHI1(PHI1), .ACLK1(ACLK1), .nACLK2(nACLK2),
 		.RES(RES), .n_R4015(n_R4015), .W4017(W4017), .DB(DataBus), .DMCINT(1'b0), .nLFO1(nLFO1), .nLFO2(nLFO2) );
 
 	// Modules for the square sound generator (simulate Square0 channel for Adder carry mode)
@@ -58,12 +58,12 @@ module Square_Run ();
 		.LC_Out(LC) );
 
 	LengthCounter length (
-		.ACLK(ACLK), .n_ACLK(n_ACLK),
+		.nACLK2(nACLK2), .ACLK1(ACLK1),
 		.RES(RES), .W400x_load(W4003), .n_R4015(n_R4015), .W4015(W4015), .LC(LC), .dbit_ena(DataBus[0]), .nLFO2(nLFO2),
 		.Carry_in(SQ_LC), .NotCount(NOSQ) );
 
 	SquareChan square (
-		.ACLK(ACLK), .n_ACLK(n_ACLK), 
+		.nACLK2(nACLK2), .ACLK1(ACLK1), 
 		.RES(RES), .DB(DataBus), .WR0(W4000), .WR1(W4001), .WR2(W4002), .WR3(W4003),
 		.nLFO1(nLFO1), .nLFO2(nLFO2), .SQ_LC(SQ_LC), .NOSQ(NOSQ), .LOCK(1'b0),
 		.AdderCarryMode(1'b0),			// Adder n_carry = INC

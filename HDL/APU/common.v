@@ -1,7 +1,7 @@
 // Common elements of APU circuitry
 
-module RegisterBit (n_ACLK, ena, d, q, nq);
-	input n_ACLK;
+module RegisterBit (ACLK1, ena, d, q, nq);
+	input ACLK1;
 	input ena;
 	input d;
 	output q;
@@ -11,7 +11,7 @@ module RegisterBit (n_ACLK, ena, d, q, nq);
 	wire ntq;
 	wire latch_in;
 
-	assign latch_in = ena ? d : (n_ACLK ? q : 1'bz);
+	assign latch_in = ena ? d : (ACLK1 ? q : 1'bz);
 	dlatch transp (.d(latch_in), .en(1'b1), .nq(ntq));
 	assign tq = ~ntq;
 	assign q = tq;
@@ -19,9 +19,9 @@ module RegisterBit (n_ACLK, ena, d, q, nq);
 
 endmodule // RegisterBit
 
-module RegisterBitRes (n_ACLK, ena, d, res, q, nq);
+module RegisterBitRes (ACLK1, ena, d, res, q, nq);
 
-	input n_ACLK;
+	input ACLK1;
 	input ena;
 	input d;
 	input res;
@@ -32,7 +32,7 @@ module RegisterBitRes (n_ACLK, ena, d, res, q, nq);
 	wire ntq;
 	wire latch_in;
 
-	assign latch_in = ena ? d : (n_ACLK ? q : 1'bz);
+	assign latch_in = ena ? d : (ACLK1 ? q : 1'bz);
 	dlatch transp (.d(latch_in & ~res), .en(1'b1), .nq(ntq));
 	assign tq = ~ntq;
 	assign q = tq;
@@ -40,9 +40,9 @@ module RegisterBitRes (n_ACLK, ena, d, res, q, nq);
 
 endmodule // RegisterBitRes2
 
-module RegisterBitRes2 (n_ACLK, ena, d, res1, res2, q, nq);
+module RegisterBitRes2 (ACLK1, ena, d, res1, res2, q, nq);
 
-	input n_ACLK;
+	input ACLK1;
 	input ena;
 	input d;
 	input res1;
@@ -54,7 +54,7 @@ module RegisterBitRes2 (n_ACLK, ena, d, res1, res2, q, nq);
 	wire ntq;
 	wire latch_in;
 
-	assign latch_in = ena ? d : (n_ACLK ? q : 1'bz);
+	assign latch_in = ena ? d : (ACLK1 ? q : 1'bz);
 	dlatch transp (.d(latch_in & ~(res1 | res2)), .en(1'b1), .nq(ntq));
 	assign tq = ~ntq;
 	assign q = tq;
@@ -62,8 +62,8 @@ module RegisterBitRes2 (n_ACLK, ena, d, res1, res2, q, nq);
 
 endmodule // RegisterBitRes2
 
-module CounterBit (n_ACLK, d, load, clear, step, cin, q, nq, cout);
-	input n_ACLK;
+module CounterBit (ACLK1, d, load, clear, step, cin, q, nq, cout);
+	input ACLK1;
 	input d;
 	input load;
 	input clear;
@@ -78,11 +78,11 @@ module CounterBit (n_ACLK, d, load, clear, step, cin, q, nq, cout);
 	wire latch_in;
 	wire cgnq;
 
-	assign latch_in = load ? d : (clear ? 1'b0 : (step ? cgnq : (n_ACLK ? tq : 1'bz) ) );
+	assign latch_in = load ? d : (clear ? 1'b0 : (step ? cgnq : (ACLK1 ? tq : 1'bz) ) );
 	dlatch transp (.d(latch_in), .en(1'b1), .nq(ntq));
 	assign tq = ~ntq;
 
-	dlatch cg (.d(cin ? tq : ntq), .en(n_ACLK), .nq(cgnq));
+	dlatch cg (.d(cin ? tq : ntq), .en(ACLK1), .nq(cgnq));
 
 	assign cout = ~(~cin | ntq);
 	assign q = tq;
@@ -90,8 +90,8 @@ module CounterBit (n_ACLK, d, load, clear, step, cin, q, nq, cout);
 
 endmodule // CounterBit
 
-module DownCounterBit (n_ACLK, d, load, clear, step, cin, q, nq, cout);
-	input n_ACLK;
+module DownCounterBit (ACLK1, d, load, clear, step, cin, q, nq, cout);
+	input ACLK1;
 	input d;
 	input load;
 	input clear;
@@ -106,11 +106,11 @@ module DownCounterBit (n_ACLK, d, load, clear, step, cin, q, nq, cout);
 	wire latch_in;
 	wire cgnq;
 
-	assign latch_in = load ? d : (clear ? 1'b0 : (step ? cgnq : (n_ACLK ? tq : 1'bz) ) );
+	assign latch_in = load ? d : (clear ? 1'b0 : (step ? cgnq : (ACLK1 ? tq : 1'bz) ) );
 	dlatch transp (.d(latch_in), .en(1'b1), .nq(ntq));
 	assign tq = ~ntq;
 
-	dlatch cg (.d(cin ? tq : ntq), .en(n_ACLK), .nq(cgnq));
+	dlatch cg (.d(cin ? tq : ntq), .en(ACLK1), .nq(cgnq));
 
 	assign cout = ~(~cin | tq);
 	assign q = tq;
@@ -118,8 +118,8 @@ module DownCounterBit (n_ACLK, d, load, clear, step, cin, q, nq, cout);
 
 endmodule // DownCounterBit
 
-module RevCounterBit (n_ACLK, d, load, clear, step, cin, dec, q, nq, cout);
-	input n_ACLK;
+module RevCounterBit (ACLK1, d, load, clear, step, cin, dec, q, nq, cout);
+	input ACLK1;
 	input d;
 	input load;
 	input clear;
@@ -135,11 +135,11 @@ module RevCounterBit (n_ACLK, d, load, clear, step, cin, dec, q, nq, cout);
 	wire latch_in;
 	wire cgnq;
 
-	assign latch_in = load ? d : (clear ? 1'b0 : (step ? cgnq : (n_ACLK ? tq : 1'bz) ) );
+	assign latch_in = load ? d : (clear ? 1'b0 : (step ? cgnq : (ACLK1 ? tq : 1'bz) ) );
 	dlatch transp (.d(latch_in), .en(1'b1), .nq(ntq));
 	assign tq = ~ntq;
 
-	dlatch cg (.d(cin ? tq : ntq), .en(n_ACLK), .nq(cgnq));
+	dlatch cg (.d(cin ? tq : ntq), .en(ACLK1), .nq(cgnq));
 
 	assign cout = ~(~cin | (dec ? tq : ntq));
 	assign q = tq;

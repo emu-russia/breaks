@@ -1,11 +1,11 @@
 
 module NoiseChan(
-	n_ACLK, ACLK, 
+	ACLK1, nACLK2, 
 	RES, DB, W400C, W400E, W400F, nLFO1, RND_LC, NORND, LOCK, 
 	RND_out);
 
-	input n_ACLK;
-	input ACLK;
+	input ACLK1;
+	input nACLK2;
 
 	input RES;
 	inout [7:0] DB;
@@ -29,29 +29,29 @@ module NoiseChan(
 
 	// Instantiate
 
-	NOISE_FreqReg freq_reg (.n_ACLK(n_ACLK), .RES(RES), .W400E(W400E), .DB(DB), .NF(NF) );
+	NOISE_FreqReg freq_reg (.ACLK1(ACLK1), .RES(RES), .W400E(W400E), .DB(DB), .NF(NF) );
 
 	NOISE_Decoder dec (.NF(NF), .NNF(NNF) );
 
-	NOISE_FreqLFSR freq_lfsr (.ACLK(ACLK), .n_ACLK(n_ACLK), .RES(RES), .NNF(NNF), .RSTEP(RSTEP) );
+	NOISE_FreqLFSR freq_lfsr (.nACLK2(nACLK2), .ACLK1(ACLK1), .RES(RES), .NNF(NNF), .RSTEP(RSTEP) );
 
-	NOISE_RandomLFSR rnd_lfsr (.n_ACLK(n_ACLK), .RSTEP(RSTEP), .NORND(NORND), .LOCK(LOCK), .W400E(W400E), .DB(DB), .RNDOUT(RNDOUT) );
+	NOISE_RandomLFSR rnd_lfsr (.ACLK1(ACLK1), .RSTEP(RSTEP), .NORND(NORND), .LOCK(LOCK), .W400E(W400E), .DB(DB), .RNDOUT(RNDOUT) );
 
-	Envelope_Unit env_unit (.n_ACLK(n_ACLK), .RES(RES), .WR_Reg(W400C), .WR_LC(W400F), .n_LFO1(nLFO1), .DB(DB), .V(Vol), .LC(RND_LC) );
+	Envelope_Unit env_unit (.ACLK1(ACLK1), .RES(RES), .WR_Reg(W400C), .WR_LC(W400F), .n_LFO1(nLFO1), .DB(DB), .V(Vol), .LC(RND_LC) );
 
 	assign RND_out = ~(~Vol | {4{RNDOUT}});
 
 endmodule // NoiseChan
 
-module NOISE_FreqReg (n_ACLK, RES, W400E, DB, NF);
+module NOISE_FreqReg (ACLK1, RES, W400E, DB, NF);
 
-	input n_ACLK;
+	input ACLK1;
 	input RES;
 	input W400E;
 	inout [7:0] DB;
 	output [3:0] NF;
 
-	RegisterBitRes freq_reg [3:0] (.n_ACLK(n_ACLK), .ena(W400E), .d(DB[3:0]), .res(RES), .q(NF) );
+	RegisterBitRes freq_reg [3:0] (.ACLK1(ACLK1), .ena(W400E), .d(DB[3:0]), .res(RES), .q(NF) );
 
 endmodule // NOISE_FreqReg
 
@@ -120,15 +120,15 @@ module NOISE_Decoder2 (Dec2_in, Dec2_out);
 
 endmodule // NOISE_Decoder2
 
-module NOISE_FreqLFSR (ACLK, n_ACLK, RES, NNF, RSTEP);
+module NOISE_FreqLFSR (nACLK2, ACLK1, RES, NNF, RSTEP);
 
-	input ACLK;
-	input n_ACLK;
+	input nACLK2;
+	input ACLK1;
 	input RES;
 	input [10:0] NNF;
 	output RSTEP;
 
-	wire n_ACLK4;
+	wire ACLK4;
 	wire [10:0] sout;
 	wire step_load;
 	wire NFLOAD;
@@ -137,23 +137,23 @@ module NOISE_FreqLFSR (ACLK, n_ACLK, RES, NNF, RSTEP);
 	wire NFZ;
 	wire NFOUT;
 
-	assign n_ACLK4 = ~ACLK;
+	assign ACLK4 = ~nACLK2;
 
-	NOISE_FreqLFSRBit freq_lfsr [10:0] (.n_ACLK(n_ACLK), .load(NFLOAD), .step(NFSTEP), .val(NNF), .sin({NSIN,sout[10:1]}), .sout(sout) );
+	NOISE_FreqLFSRBit freq_lfsr [10:0] (.ACLK1(ACLK1), .load(NFLOAD), .step(NFSTEP), .val(NNF), .sin({NSIN,sout[10:1]}), .sout(sout) );
 
 	nor (NFZ, sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8], sout[9], sout[10]);
 	nor (NFOUT, ~sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8], sout[9], sout[10]);
 	nor (step_load, ~NFOUT, RES);
-	nor (NFLOAD, ~n_ACLK4, step_load);
-	nor (NFSTEP, ~n_ACLK4, ~step_load);
+	nor (NFLOAD, ~ACLK4, step_load);
+	nor (NFSTEP, ~ACLK4, ~step_load);
 	nor (NSIN, (sout[0] & sout[2]), ~(sout[0] | sout[2] | NFZ), RES);
 	assign RSTEP = NFLOAD;
 
 endmodule // NOISE_FreqLFSR
 
-module NOISE_FreqLFSRBit (n_ACLK, load, step, val, sin, sout);
+module NOISE_FreqLFSRBit (ACLK1, load, step, val, sin, sout);
 
-	input n_ACLK;
+	input ACLK1;
 	input load;
 	input step;
 	input val;
@@ -166,13 +166,13 @@ module NOISE_FreqLFSRBit (n_ACLK, load, step, val, sin, sout);
 	assign d = load ? val : (step ? sin : 1'bz);
 
 	dlatch in_latch (.d(d), .en(1'b1), .nq(in_latch_nq) );
-	dlatch out_latch (.d(in_latch_nq), .en(n_ACLK), .nq(sout) );
+	dlatch out_latch (.d(in_latch_nq), .en(ACLK1), .nq(sout) );
 
 endmodule // NOISE_FreqLFSRBit
 
-module NOISE_RandomLFSR (n_ACLK, RSTEP, NORND, LOCK, W400E, DB, RNDOUT);
+module NOISE_RandomLFSR (ACLK1, RSTEP, NORND, LOCK, W400E, DB, RNDOUT);
 
-	input n_ACLK;
+	input ACLK1;
 	input RSTEP;
 	input NORND;
 	input LOCK;
@@ -186,9 +186,9 @@ module NOISE_RandomLFSR (n_ACLK, RSTEP, NORND, LOCK, W400E, DB, RNDOUT);
 	wire RSOZ;
 	wire mux_out;
 
-	RegisterBit rmod_reg (.n_ACLK(n_ACLK), .ena(W400E), .d(DB[7]), .q(rmod_q) );
+	RegisterBit rmod_reg (.ACLK1(ACLK1), .ena(W400E), .d(DB[7]), .q(rmod_q) );
 
-	NOISE_RandomLFSRBit rnd_lfsr [14:0] (.n_ACLK(n_ACLK), .load(RSTEP), .sin({RIN,sout[14:1]}), .sout(sout) );
+	NOISE_RandomLFSRBit rnd_lfsr [14:0] (.ACLK1(ACLK1), .load(RSTEP), .sin({RIN,sout[14:1]}), .sout(sout) );
 
 	nor (RSOZ, sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8], sout[9], sout[10], sout[11], sout[12], sout[13], sout[14]);
 	assign mux_out = rmod_q ? sout[6] : sout[1];
@@ -197,16 +197,16 @@ module NOISE_RandomLFSR (n_ACLK, RSTEP, NORND, LOCK, W400E, DB, RNDOUT);
 
 endmodule // NOISE_RandomLFSR
 
-module NOISE_RandomLFSRBit (n_ACLK, load, sin, sout);
+module NOISE_RandomLFSRBit (ACLK1, load, sin, sout);
 
-	input n_ACLK;
+	input ACLK1;
 	input load;
 	input sin;
 	output sout;
 
 	wire in_reg_nq;
 
-	RegisterBit in_reg (.n_ACLK(n_ACLK), .ena(load), .d(sin), .nq(in_reg_nq) );
-	dlatch out_latch (.d(in_reg_nq), .en(n_ACLK), .nq(sout) );
+	RegisterBit in_reg (.ACLK1(ACLK1), .ena(load), .d(sin), .nq(in_reg_nq) );
+	dlatch out_latch (.d(in_reg_nq), .en(ACLK1), .nq(sout) );
 
 endmodule // NOISE_RandomLFSRBit
