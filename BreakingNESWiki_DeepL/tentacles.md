@@ -103,3 +103,9 @@ Correction history:
 |SWCTRL|SW_OVF (Sweep Unit)|
 |SWEEP|SW_UVF (Sweep Unit)|
 |ADDOUT|DO_SWEEP (Sweep Unit)|
+|ACLK|/ACLK2|
+|/ACLK|ACLK1|
+|/ACLK2|ACLK2|
+|/ACLK3|ACLK3|
+|/ACLK4|ACLK4|
+|/ACLK5|ACLK5|
