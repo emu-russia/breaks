@@ -4,4 +4,4 @@ MOS 6502 implementation on Verilog.
 
 Status: WIP
 
-![mos6502](/HDL/Design/mos6502.png)
+![mos6502](/HDL/Design/mos6502/mos6502.png)
