@@ -165,11 +165,11 @@ W400F <= 11111 xxx (Length: 11111)
 
 ![oam_dma_tb](/BreakingNESWiki/imgstore/apu/waves/oam_dma_tb.png)
 
-Начало OAM DMA (выровненное на #ACLK):
+Начало OAM DMA (выровненное на ACLK1):
 
 ![oam_dma_start1](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start1.png)
 
-Начало OAM DMA (невыровненное на #ACLK, требуется 1 дополнительный цикл CPU):
+Начало OAM DMA (невыровненное на ACLK1, требуется 1 дополнительный цикл CPU):
 
 ![oam_dma_start2](/BreakingNESWiki/imgstore/apu/waves/oam_dma_start2.png)
 

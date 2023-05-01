@@ -26,8 +26,8 @@ Visual 2A03: http://www.qmtpro.com/~nes/chipimages/visual2a03/
 |PHI2|node: 10843 clk2out|
 |RDY|node: 10758 rdy|
 |RDY2| |
-|ACLK|node: 10533 apu_/clk2|
-|/ACLK|node: 11434 apu_clk1|
+|ACLK1|node: 11434 apu_clk1|
+|/ACLK2|node: 10533 apu_/clk2|
 |RES|node: 10057 _res|
 |/M2|node: 11200|
 |/NMI|node: 10458 _nmi|
