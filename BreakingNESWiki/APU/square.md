@@ -26,7 +26,7 @@ APU содержит два тональных генератора прямоу
 
 ![square_shift_in_tran](/BreakingNESWiki/imgstore/apu/square_shift_in_tran.jpg)
 
-![SQAURE_ShiftReg](/BreakingNESWiki/imgstore/apu/SQAURE_ShiftReg.jpg)
+![SQUARE_ShiftReg](/BreakingNESWiki/imgstore/apu/SQUARE_ShiftReg.jpg)
 
 ## Barrel Shifter
 
