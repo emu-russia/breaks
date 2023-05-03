@@ -89,7 +89,7 @@ Visual 2C02: http://www.qmtpro.com/~nes/chipimages/visual2c02/
 |RESCL|node: 604 vbl_clear_flags|
 |VSYNC|node: 1079 +/in_range_1|
 |/VSET|node: 1015 +/vpos_eq_241_2|
-|VB|node: 915 in_range_2|
+|VB|node: 1100 in_vblank|
 |BLNK|node: 1030 not_rendering|
 |BLNK (Outside)|node: 203 not_rendering_2|
 |INT|node: 988 _int|
