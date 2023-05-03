@@ -155,8 +155,8 @@ Visual 2C02: http://www.qmtpro.com/~nes/chipimages/visual2c02/
 |CLPO|node: 1283 ++++/do_sprite_render_ops|
 |/CLPB|node: 1281 +++do_bg_render_ops|
 |BGC 0-3|pixel_color0-3|
-|FH 0-3|finex0-3|
-|FV 0-3|node: 2341 vramaddr_t12; node: 2340 vramaddr_t13; node: 2339 vramaddr_t14|
+|FH 0-2|finex0-2|
+|FV 0-2|node: 2341 vramaddr_t12; node: 2340 vramaddr_t13; node: 2339 vramaddr_t14|
 |NTV|node: 2342 vramaddr_t11|
 |NTH|node: 2343 vramaddr_t10|
 |TV 0-4|vramaddr_t5-9|
