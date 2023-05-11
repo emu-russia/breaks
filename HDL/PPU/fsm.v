@@ -290,13 +290,13 @@ module VBlankInt (PCLK, n_PCLK, nVSET, VCLR, VBL_EN, n_R2, n_DBE, INT, DB7Out);
 	inout DB7Out;
 
 	wire R2_EN;
-	wire vset_latch1_q;
+	wire vset_latch1_nq;
 	wire vset_latch2_q;
 	wire db_latch_nq;
 	wire int_ff_q;
 
-	dlatch vset_latch1 (.d(nVSET), .en(PCLK), .q(vset_latch1_q));
-	dlatch vset_latch2 (.d(vset_latch1_q), .en(n_PCLK), .q(vset_latch2));
+	dlatch vset_latch1 (.d(nVSET), .en(PCLK), .nq(vset_latch1_nq));
+	dlatch vset_latch2 (.d(vset_latch1_nq), .en(n_PCLK), .q(vset_latch2));
 	dlatch db_latch (.d(~int_ff_q), .en(~R2_EN), .nq(db_latch_nq));
 	rsff_2_3 int_ff (.res1(VCLR), .res2(R2_EN), .s(~(n_PCLK | nVSET | vset_latch2_q)), .q(int_ff_q));
 
