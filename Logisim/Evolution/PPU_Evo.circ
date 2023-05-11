@@ -4262,13 +4262,13 @@
       <a name="font" val="SansSerif plain 14"/>
       <a name="text" val="Read Enabler"/>
     </comp>
-    <comp lib="8" loc="(370,60)" name="Text">
-      <a name="font" val="SansSerif plain 14"/>
-      <a name="text" val="Edge Detect"/>
-    </comp>
     <comp lib="8" loc="(375,360)" name="Text">
       <a name="font" val="SansSerif plain 14"/>
       <a name="text" val="R2_EN"/>
+    </comp>
+    <comp lib="8" loc="(384,61)" name="Text">
+      <a name="font" val="SansSerif plain 14"/>
+      <a name="text" val="NegEdge Detect"/>
     </comp>
     <comp lib="8" loc="(495,295)" name="Text">
       <a name="font" val="SansSerif plain 14"/>
@@ -4314,9 +4314,7 @@
     <wire from="(250,160)" to="(270,160)"/>
     <wire from="(250,50)" to="(250,140)"/>
     <wire from="(280,340)" to="(350,340)"/>
-    <wire from="(310,140)" to="(320,140)"/>
-    <wire from="(320,140)" to="(320,160)"/>
-    <wire from="(320,160)" to="(350,160)"/>
+    <wire from="(310,160)" to="(350,160)"/>
     <wire from="(330,140)" to="(350,140)"/>
     <wire from="(330,90)" to="(330,140)"/>
     <wire from="(330,90)" to="(460,90)"/>
@@ -4995,7 +4993,7 @@
     <comp lib="1" loc="(980,320)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="8" loc="(851,242)" name="Text">
+    <comp lib="8" loc="(850,240)" name="Text">
       <a name="text" val="PCLK"/>
     </comp>
     <comp lib="8" loc="(955,355)" name="Text">
