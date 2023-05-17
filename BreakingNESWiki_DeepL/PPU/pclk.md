@@ -2,11 +2,9 @@
 
 Pixel clock (abbreviated as PCLK) is used by all PPU parts (except the video phase generator).
 
-Both low level (`/PCLK`) and high level (`PCLK`) are used symmetrically. This approach of internal cycle implementation was widespread in the era of NMOS chips. Therefore, when analyzing PPU circuits, one should not think of PCLK as the clock signal, but rather the two "states" - PCLK=0 and PCLK=1.
+Both low level (`/PCLK`) and high level (`PCLK`) are used symmetrically. This approach of internal cycle implementation was widespread in the era of NMOS chips. Therefore, when analyzing PPU circuits, one should not think of PCLK as the clock signal, but rather the two "states" - PCLK=1 and PCLK=0.
 
-Conventionally, `/PCLK` may be called "preparation" and `PCLK` may be called "pixel output".
-
-Sometimes intuitively, /PCLK is also called the "left half of the pixel" and PCLK the "right half of the pixel".
+Sometimes intuitively, PCLK is also called the "left half of the pixel" and /PCLK the "right half of the pixel". [^1]
 
 The `PCLK` is obtained by slowing down (dividing) the input clock signal `CLK` (21.48 MHz) by a factor of 4.
 
@@ -67,3 +65,5 @@ The following are the distinguishing features of PCLK distribution.
 |12|/PCLK output for EXT terminals|
 
 Full-size image: https://github.com/emu-russia/breaks/blob/master/Docs/PPU/2C02G_PCLK_Distrib.jpg
+
+[^1]: For those who have been using Visual2C02 for a long time, the mapping of signals is as follows: PCLK=pclk0, /PCLK=pclk1.
