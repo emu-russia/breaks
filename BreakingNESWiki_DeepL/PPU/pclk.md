@@ -8,7 +8,7 @@ Sometimes intuitively, PCLK is also called the "left half of the pixel" and /PCL
 
 The `PCLK` is obtained by slowing down (dividing) the input clock signal `CLK` (21.48 MHz) by a factor of 4.
 
-For this purpose, a divider on static latches is used:
+For this purpose, a divider on dynamic latches is used:
 
 <img src="/BreakingNESWiki/imgstore/ppu/pclk.jpg" width="400px">
 
