@@ -269,19 +269,17 @@ module DPCM_SampleCounterControl(nACLK2, ACLK1, ACLK2, PCMDone, DMCFinish, DMCEn
 	output CTRL2;
 
 	wire DMC3;
-	wire fin_latch_q;
 	wire en_latch1_nq;
 	wire en_latch2_nq;
 	wire en_latch3_q;
 
-	dlatch fin_latch (.d(DMCFinish), .en(ACLK1), .q(fin_latch_q) );
 	dlatch en_latch1 (.d(DMCEnable), .en(ACLK1), .nq(en_latch1_nq) );
 	dlatch en_latch2 (.d(en_latch1_nq), .en(ACLK2), .nq(en_latch2_nq) );
 	dlatch en_latch3 (.d(en_latch2_nq), .en(ACLK1), .q(en_latch3_q), .nq(CTRL2) );
 	nor (DMC3, nACLK2, en_latch1_nq, en_latch3_q);
 
 	assign NSTEP = ~(~DFLOAD);
-	assign DSLOAD = ~(~((fin_latch_q & PCMDone) | DMC3));
+	assign DSLOAD = ~(~((DMCFinish & PCMDone) | DMC3));
 	assign DSSTEP = ~(~PCMDone | DMC3 | DMCFinish);
 
 endmodule // DPCM_SampleCounterControl

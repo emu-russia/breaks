@@ -2784,7 +2784,7 @@
     <comp lib="1" loc="(690,360)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="8" loc="(191,675)" name="Text">
+    <comp lib="8" loc="(190,675)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
       <a name="text" val="ACLK1"/>
     </comp>
@@ -4067,11 +4067,6 @@
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(250,190)" name="DLatch">
-      <a name="label" val="fin_latch"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-      <a name="labelloc" val="south"/>
-    </comp>
     <comp loc="(350,290)" name="DLatch">
       <a name="label" val="en_latch2"/>
       <a name="labelfont" val="SansSerif bold 9"/>
@@ -4094,18 +4089,14 @@
     <wire from="(170,140)" to="(170,220)"/>
     <wire from="(170,140)" to="(510,140)"/>
     <wire from="(190,380)" to="(550,380)"/>
-    <wire from="(200,210)" to="(200,260)"/>
-    <wire from="(200,210)" to="(250,210)"/>
+    <wire from="(200,190)" to="(200,260)"/>
+    <wire from="(200,190)" to="(370,190)"/>
     <wire from="(200,260)" to="(200,370)"/>
     <wire from="(200,370)" to="(630,370)"/>
     <wire from="(210,290)" to="(220,290)"/>
     <wire from="(210,80)" to="(210,290)"/>
-    <wire from="(210,80)" to="(240,80)"/>
-    <wire from="(240,190)" to="(250,190)"/>
-    <wire from="(240,80)" to="(240,190)"/>
-    <wire from="(240,80)" to="(430,80)"/>
+    <wire from="(210,80)" to="(430,80)"/>
     <wire from="(260,310)" to="(290,310)"/>
-    <wire from="(290,190)" to="(370,190)"/>
     <wire from="(290,240)" to="(290,310)"/>
     <wire from="(290,240)" to="(390,240)"/>
     <wire from="(290,310)" to="(350,310)"/>
