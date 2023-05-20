@@ -599,32 +599,27 @@ module Core6502_Bot (PHI1, PHI2, bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, ACR, AVR,
 		.ADH(ADH),
 		.DB(DB) );
 
-	// TBD
+	AddrBusBitLow abl03 [2:0] (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
+		.ADX(ADL[2:0]),
+		.Z_ADX({Z_ADL2,Z_ADL1,Z_ADL0}),
+		.ADX_ABX(`ADL_ABL),
+		.ABus_out(A[2:0]) );
 
-	//AddrBusBitLow abl03 [2:0] (
-	//	.PHI1(PHI1),
-	//	.PHI2(PHI2),
-	//	.ADX(ADL[2:0]),
-	//	.Z_ADX(Z_ADLX),
-	//	.ADX_ABX(ADL_ABL),
-	//	.ABus_out(A[2:0]) );
+	AddrBusBit abl [7:3] (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
+		.ADX(ADL[7:3]),
+		.ADX_ABX(`ADL_ABL),
+		.ABus_out(A[7:3]) );
 
-	//AddrBusBit abl [7:3] (
-	//	.PHI1(PHI1),
-	//	.PHI2(PHI2),
-	//	.ADX(ADL[7:3]),
-	//	.ADX_ABX(`ADL_ABL),
-	//	.ABus_out(A[7:3]) );
-
-	//AddrBusBit abh [7:0] (
-	//	.PHI1(PHI1),
-	//	.PHI2(PHI2),
-	//	.ADX(ADH),
-	//	.ADX_ABX(`ADH_ABH),
-	//	.ABus_out(A[7:0]) );
-
-	// TBD
-	assign A = 16'b0;
+	AddrBusBit abh [7:0] (
+		.PHI1(PHI1),
+		.PHI2(PHI2),
+		.ADX(ADH),
+		.ADX_ABX(`ADH_ABH),
+		.ABus_out(A[7:0]) );
 
 	WRLatch wrl (
 		.PHI1(PHI1),
