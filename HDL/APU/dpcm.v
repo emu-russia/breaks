@@ -171,9 +171,9 @@ module DPCM_Control( nACLK2, ACLK1, ACLK2, PHI1, RES, RnW, LOCK, W4015, n_R4015,
 	wire CTRL1;
 	wire CTRL2;
 
-	DPCM_IntControl int_ctrl (.RES(RES), .W4015(W4015), .n_R4015(n_R4015), .LOOPMode(LOOPMode), .AssertInt(ED1), .DB(DB), .DMCINT(DMCINT) );
+	DPCM_IntControl int_ctrl (.RES(RES), .W4015(W4015), .n_R4015(n_R4015), .n_IRQEN(n_IRQEN), .AssertInt(ED1), .DB(DB), .DMCINT(DMCINT) );
 
-	DPCM_EnableControl enable_ctrl (.ACLK1(ACLK1), .RES(RES), .W4015(W4015), .n_R4015(n_R4015), .n_IRQEN(n_IRQEN), .PCMDone(DMC1), .SOUT(SOUT), .DB(DB), .ED1(ED1), .DMC2(DMC2), .ED2(ED2) );
+	DPCM_EnableControl enable_ctrl (.ACLK1(ACLK1), .RES(RES), .W4015(W4015), .n_R4015(n_R4015), .LOOPMode(LOOPMode), .PCMDone(DMC1), .SOUT(SOUT), .DB(DB), .ED1(ED1), .DMC2(DMC2), .ED2(ED2) );
 
 	DPCM_DMAControl dma_ctrl (.nACLK2(nACLK2), .ACLK1(ACLK1), .ACLK2(ACLK2), .PHI1(PHI1), .RnW(RnW), .RES(RES), .nDMAStop(CTRL1), .nDMCEnableDelay(CTRL2), .DMCRDY(DMCRDY), .RUNDMC(RUNDMC), .n_DMCAB(n_DMCAB) );
 
@@ -183,31 +183,31 @@ module DPCM_Control( nACLK2, ACLK1, ACLK2, PHI1, RES, RnW, LOCK, W4015, n_R4015,
 
 endmodule // DPCMControl
 
-module DPCM_IntControl(RES, W4015, n_R4015, LOOPMode, AssertInt, DB, DMCINT);
+module DPCM_IntControl(RES, W4015, n_R4015, n_IRQEN, AssertInt, DB, DMCINT);
 
 	input RES;
 	input W4015;
 	input n_R4015;
-	input LOOPMode;
+	input n_IRQEN;
 	input AssertInt;
 	inout [7:0] DB;
 	output DMCINT;
 
 	wire int_ff_nq;
 
-	rsff_2_4 int_ff (.res1(W4015), .res2(LOOPMode), .res3(RES), .s(AssertInt), .nq(int_ff_nq) );
+	rsff_2_4 int_ff (.res1(W4015), .res2(n_IRQEN), .res3(RES), .s(AssertInt), .nq(int_ff_nq) );
 	bustris int_stat (.a(int_ff_nq), .n_x(DB[7]), .n_en(n_R4015) );
-	nor (DMCINT, int_ff_nq, LOOPMode);
+	nor (DMCINT, int_ff_nq, n_IRQEN);
 
 endmodule // DPCMIntControl
 
-module DPCM_EnableControl(ACLK1, RES, W4015, n_R4015, n_IRQEN, PCMDone, SOUT, DB, ED1, DMC2, ED2);
+module DPCM_EnableControl(ACLK1, RES, W4015, n_R4015, LOOPMode, PCMDone, SOUT, DB, ED1, DMC2, ED2);
 
 	input ACLK1;
 	input RES;
 	input W4015;
 	input n_R4015;
-	input n_IRQEN;
+	input LOOPMode;
 	input PCMDone;
 	input SOUT;
 	inout [7:0] DB;
@@ -220,7 +220,7 @@ module DPCM_EnableControl(ACLK1, RES, W4015, n_R4015, n_IRQEN, PCMDone, SOUT, DB
 
 	dlatch sout_latch (.d(SOUT), .en(ACLK1), .q(DMC2), .nq(sout_latch_nq) );
 	RegisterBitRes2 ena_ff (.ACLK1(ACLK1), .ena(W4015), .d(DB[4]), .res1(ED1), .res2(RES), .q(ED2), .nq(ena_ff_nq) );
-	nor (ED1, n_IRQEN, sout_latch_nq, ~PCMDone);
+	nor (ED1, LOOPMode, sout_latch_nq, ~PCMDone);
 	bustris ena_stat (.a(ena_ff_nq), .n_x(DB[4]), .n_en(n_R4015) );
 
 endmodule // DPCMEnableControl
