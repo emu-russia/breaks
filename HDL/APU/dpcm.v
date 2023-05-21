@@ -243,14 +243,14 @@ module DPCM_DMAControl(nACLK2, ACLK1, ACLK2, PHI1, RnW, RES, nDMAStop, nDMCEnabl
 	wire run_latch1_q;
 	wire run_latch1_nq;
 	wire start_set;
-	wire rdy_ff_q;
+	wire rdy_ff_nq;
 
 	dlatch run_latch1 (.d(DMAStart), .en(ACLK2), .q(run_latch1_q), .nq(run_latch1_nq) );
 	dlatch run_latch2 (.d(run_latch1_nq), .en(ACLK1), .nq(RUNDMC) );
 	assign start_set = ~( ~(~PHI1 & RnW) | nDMCEnableDelay | ~nDMAStop );
 	rsff_2_4 start_ff (.res1(nDMCEnableDelay), .res2(RES), .res3(~nDMAStop), .s(start_set), .q(DMAStart) );
-	rsff rdy_ff (.r(ACLK2), .s(run_latch1_q & ACLK1), .q(rdy_ff_q), .nq(n_DMCAB) );
-	nor (DMCRDY, DMAStart, rdy_ff_q);
+	rsff rdy_ff (.r(run_latch1_q & ACLK1), .s(ACLK2), .q(n_DMCAB), .nq(rdy_ff_nq) );
+	nor (DMCRDY, DMAStart, rdy_ff_nq);
 
 endmodule // DPCM_DMAControl
 
