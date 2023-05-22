@@ -22421,7 +22421,7 @@
     <comp lib="1" loc="(380,890)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="1" loc="(380,970)" name="NOT Gate">
+    <comp lib="1" loc="(380,920)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
     <comp lib="1" loc="(460,900)" name="NOR Gate">
@@ -22589,8 +22589,8 @@
     <wire from="(350,380)" to="(370,380)"/>
     <wire from="(350,540)" to="(370,540)"/>
     <wire from="(350,920)" to="(350,970)"/>
-    <wire from="(350,920)" to="(400,920)"/>
-    <wire from="(350,970)" to="(360,970)"/>
+    <wire from="(350,920)" to="(360,920)"/>
+    <wire from="(350,970)" to="(420,970)"/>
     <wire from="(360,140)" to="(360,180)"/>
     <wire from="(360,140)" to="(420,140)"/>
     <wire from="(360,300)" to="(360,410)"/>
@@ -22611,7 +22611,7 @@
     <wire from="(370,580)" to="(420,580)"/>
     <wire from="(370,620)" to="(940,620)"/>
     <wire from="(380,890)" to="(390,890)"/>
-    <wire from="(380,970)" to="(420,970)"/>
+    <wire from="(380,920)" to="(400,920)"/>
     <wire from="(390,690)" to="(390,760)"/>
     <wire from="(390,690)" to="(660,690)"/>
     <wire from="(390,890)" to="(390,950)"/>

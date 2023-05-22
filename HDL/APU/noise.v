@@ -144,8 +144,8 @@ module NOISE_FreqLFSR (nACLK2, ACLK1, RES, NNF, RSTEP);
 	nor (NFZ, sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8], sout[9], sout[10]);
 	nor (NFOUT, ~sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8], sout[9], sout[10]);
 	nor (step_load, ~NFOUT, RES);
-	nor (NFLOAD, ~ACLK4, step_load);
-	nor (NFSTEP, ~ACLK4, ~step_load);
+	nor (NFLOAD, ~ACLK4, ~step_load);
+	nor (NFSTEP, ~ACLK4, step_load);
 	nor (NSIN, (sout[0] & sout[2]), ~(sout[0] | sout[2] | NFZ), RES);
 	assign RSTEP = NFLOAD;
 
