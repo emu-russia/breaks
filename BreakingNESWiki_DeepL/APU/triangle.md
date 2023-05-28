@@ -12,6 +12,8 @@ The developers decided to use PHI1 for the triangle channel instead of ACLK to s
 
 ![tri_linear_counter_control_tran2](/BreakingNESWiki/imgstore/apu/tri_linear_counter_control_tran2.jpg)
 
+![tri_freq_counter_control_tran](/BreakingNESWiki/imgstore/apu/tri_freq_counter_control_tran.jpg)
+
 ![TRIANGLE_Control](/BreakingNESWiki/imgstore/apu/TRIANGLE_Control.jpg)
 
 ## Linear Counter
@@ -23,8 +25,6 @@ The developers decided to use PHI1 for the triangle channel instead of ACLK to s
 ## Frequency Counter
 
 ![tri_freq_counter_tran](/BreakingNESWiki/imgstore/apu/tri_freq_counter_tran.jpg)
-
-![tri_freq_counter_control_tran](/BreakingNESWiki/imgstore/apu/tri_freq_counter_control_tran.jpg)
 
 ![TRIANGLE_FreqCounter](/BreakingNESWiki/imgstore/apu/TRIANGLE_FreqCounter.jpg)
 
