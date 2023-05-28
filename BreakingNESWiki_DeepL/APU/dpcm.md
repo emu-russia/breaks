@@ -1,4 +1,4 @@
-# Differential Pulse-code Modulation (DPCM)
+# Differential Pulse-code Modulation (DPCM) Channel
 
 ![apu_locator_dpcm](/BreakingNESWiki/imgstore/apu/apu_locator_dpcm.jpg)
 
