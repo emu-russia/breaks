@@ -1,7 +1,5 @@
 # Breaks - Nintendo Entertainment System (NES) / Famicom / Famiclones chip reversing
 
-<img src="https://github.com/emu-russia/breaks/raw/master/Docs/NES/Books/bnb_6502.jpg" width="200px"> <img src="https://github.com/emu-russia/breaks/raw/master/Docs/NES/Books/bnb_apu.jpg" width="200px"> <img src="https://github.com/emu-russia/breaks/raw/master/Docs/NES/Books/bnb_ppu.jpg" width="200px">
-
 This project is aimed to reverse engineer following integrated circuits:
 - MOS 6502
 - Ricoh 2A03 (known as NES APU)
@@ -13,6 +11,25 @@ Project goals:
 - Simulate circuits and write logic gate-level emulator (Moved to another repo - [Breaknes](https://github.com/emu-russia/breaknes)) ✅
 
 The project has fully completed all its tasks, the repository will be used for some time to refine the schematics and rearrange them as HDL, but in general we can say that the research is complete.
+
+## Books
+
+The contents of the Wiki are recompiled into books in pdf format, you can print them at your local publisher.
+
+<img src="https://github.com/emu-russia/breaks/raw/master/Docs/NES/Books/bnb_6502.jpg" width="200px"> <img src="https://github.com/emu-russia/breaks/raw/master/Docs/NES/Books/bnb_apu.jpg" width="200px"> <img src="https://github.com/emu-russia/breaks/raw/master/Docs/NES/Books/bnb_ppu.jpg" width="200px">
+
+The latest book revisions:
+- 6502 Core Book: https://github.com/emu-russia/breaks/releases/tag/6502-book-revB5
+- APU Book: https://github.com/emu-russia/breaks/releases/tag/apu-book-revA6
+- PPU Book: https://github.com/emu-russia/breaks/releases/tag/ppu-book-revB8
+
+The contents may differ from the Wiki, so be careful. From time to time updated revisions of the books are released with updates.
+
+## HDL
+
+All schematics from the Wiki are formalized as much as possible in the form of an HDL. We do not aim to make a synthesizable HDL, instead we use a "Die-Perfect" approach - the HDL repeats the netlist of the original chips as closely as possible.
+
+![chip-perfect-approach.png](/HDL/Design/chip-perfect-approach.png)
 
 ## Chip Images
 
