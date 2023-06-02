@@ -6,6 +6,10 @@ Comparing the topology of 2A03 and 2A07 you can see that 2A03 has some elements 
 - Regular RDY terminal connection, instead of the 2A07 test mode
 - Traces of the topology of the PAL version of the divider in 2A03
 
+## Divider
+
+![div](/BreakingNESWiki/imgstore/apu/pal/div.jpg)
+
 ## SoftCLK PLA
 
 ![softclk_decoder_2a07](/BreakingNESWiki/imgstore/apu/pal/softclk_decoder_2a07.jpg)

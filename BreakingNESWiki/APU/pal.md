@@ -6,6 +6,10 @@
 - Обычный вариант подключения терминала RDY, вместо тестового режима 2A07
 - Следы топологии PAL-версии делителя в 2A03
 
+## Divider
+
+![div](/BreakingNESWiki/imgstore/apu/pal/div.jpg)
+
 ## SoftCLK PLA
 
 ![softclk_decoder_2a07](/BreakingNESWiki/imgstore/apu/pal/softclk_decoder_2a07.jpg)
