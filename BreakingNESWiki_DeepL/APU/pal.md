@@ -49,6 +49,10 @@ Comparing the topology of 2A03 and 2A07 you can see that 2A03 has some elements 
 
 The placement is topological. 1 means there is a transistor, 0 means there is no transistor.
 
+The SoftCLK control circuits themselves do not differ. Analysis fragment:
+
+![softclk](/BreakingNESWiki/imgstore/apu/pal/softclk.jpg)
+
 ## DPCM Decoder
 
 ![dpcm_decoder_2a07](/BreakingNESWiki/imgstore/apu/pal/dpcm_decoder_2a07.jpg)
