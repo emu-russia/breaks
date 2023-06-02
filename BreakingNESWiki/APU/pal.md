@@ -49,6 +49,10 @@
 
 Размещение топологическое. 1 - означает есть транзистор, 0 - означает нет транзистора.
 
+Непосредственно сами схемы управления SoftCLK не отличаются. Фрагмент анализа:
+
+![softclk](/BreakingNESWiki/imgstore/apu/pal/softclk.jpg)
+
 ## DPCM Decoder
 
 ![dpcm_decoder_2a07](/BreakingNESWiki/imgstore/apu/pal/dpcm_decoder_2a07.jpg)
