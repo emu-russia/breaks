@@ -8,4 +8,8 @@ CPU Base Board Circuit Diagram
 Note: X'tal (water crystal) in the circuitproof part is different or is selected with a back tube.
 In addition, the color X'tal will be added as shown below.
 
-NOTE below is cut off and cannot be recognized by ML.
+NOTE below is cut off and recognized by Sour:
+
+指定なき雑防コンデンサは０．０１μF使用
+
+the capacitors that aren't specified are 0.01μF
