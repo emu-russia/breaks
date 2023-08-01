@@ -1,4 +1,4 @@
-module div_umc2 (  port_x, port_y, port_nCLK, port_b, port_a, port_c, port_tmp2);
+module div_umc (  port_x, port_y, port_nCLK, port_b, port_a, port_c, port_tmp2);
 
 	inout wire port_x;
 	output wire port_y;
@@ -121,7 +121,7 @@ module div_umc2 (  port_x, port_y, port_nCLK, port_b, port_a, port_c, port_tmp2)
 	div_umc_not g46 (.a(w_tmp2), .x(w27) );
 	div_umc_dlatch g47 (.d(w32), .en(w33), .nq(w31) );
 	div_umc_dlatch g48 (.d(w47), .en(w39), .nq(w32) );
-endmodule // div_umc2
+endmodule // div_umc
 
 // Module Definitions [It is possible to wrap here on your primitives]
 
