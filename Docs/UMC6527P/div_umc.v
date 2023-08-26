@@ -151,16 +151,16 @@ module div_umc_dlatch (  d, en, nq, q);
 	output wire nq;
 	output wire q;
 
-    reg dout; 
-    always @(d or en) begin
-        if (en == 1'b1 && (d == 1'b0 || d == 1'b1))
-            dout <= d;   // Use non-blocking
-    end
+	reg dout; 
+	always @(d or en) begin
+		if (en == 1'b1 && (d == 1'b0 || d == 1'b1))
+			dout <= d;   // Use non-blocking
+	end
 
-    assign q = dout;
-    assign nq = ~dout;
+	assign q = dout;
+	assign nq = ~dout;
 
-    initial dout <= 1'b0;
+	initial dout <= 1'b0;
 
 endmodule // div_umc_dlatch
 
