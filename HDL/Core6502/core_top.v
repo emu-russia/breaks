@@ -97,6 +97,8 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 		.PHI2_topad(PHI2) );
 
 	PadsLogic pads (
+		.PHI1(PHI1), 
+		.PHI2(PHI2),
 		.n_NMI(n_NMI), 
 		.n_IRQ(n_IRQ), 
 		.n_RES(n_RES), 

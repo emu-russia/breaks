@@ -14,8 +14,8 @@ The study of any integrated circuit begins with the pinout.
 |/IRQ| => 6502  |Maskable interrupt signal, active low|
 |/RES| => 6502  |Reset signal, active low|
 |PHI0| => 6502 |Reference clock signal|
-|PHI1| 6502 =>  |First half-cycle, processor in writing mode|
-|PHI2| 6502 => |Second half-cycle, processor in read mode|
+|PHI1| 6502 =>  |First half-cycle, processor in `Set address+RW` mode|
+|PHI2| 6502 => |Second half-cycle, processor in `Read/Write Data` mode|
 |RDY| => 6502 |Processor Ready (1: ready)|
 |SO| => 6502 |Forced setting of the overflow flag (V)|
 |R/W| 6502 => |Data bus direction (R/W=1: processor reads data, R/W=0: processor writes)|
@@ -36,9 +36,13 @@ The clock signals are described in a separate section (see [clock generator](clo
 
 ![intpads_trans](/BreakingNESWiki/imgstore/6502/intpads_trans.jpg)
 
-Each contact contains a FF where the interrupt arrival event is stored. The FF value corresponds to the control signals `/NMIP`, `/IRQP` and `RESP` (the value from FF for contact /RES is output as direct value).
+Each terminal circuitry contains a FF where the interrupt arrival event is stored. The FF value corresponds to the control signals `/NMIP`, `/IRQP` and `RESP` (the value from FF for the /RES terminal is output as active-high value).
 
-The "P" in the name of the control signals stands for "Pad" (contact).
+The "P" in the name of the control signals stands for "Pad" (bonding pad).
+
+:warning: Note that the `Q` output is used for NMI and IRQ FF, and the `#Q` output is used for RES FF. The FF circuitry features cyclically closed AOI-21 elements.
+
+![inf_ff](/BreakingNESWiki/imgstore/6502/inf_ff.png)
 
 ## RDY
 
