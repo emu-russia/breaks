@@ -42,7 +42,7 @@
 
 :warning: Обратите внимание что для NMI и IRQ FF используется выход `Q`, а для RES FF используется выход `#Q`. Схема FF представляет собой циклически замкнутые элементы AOI-21.
 
-![inf_ff](/BreakingNESWiki/imgstore/6502/inf_ff.png)
+![int_ff](/BreakingNESWiki/imgstore/6502/int_ff.png)
 
 ## RDY
 
