@@ -42,7 +42,7 @@ The "P" in the name of the control signals stands for "Pad" (bonding pad).
 
 :warning: Note that the `Q` output is used for NMI and IRQ FF, and the `#Q` output is used for RES FF. The FF circuitry features cyclically closed AOI-21 elements.
 
-![inf_ff](/BreakingNESWiki/imgstore/6502/inf_ff.png)
+![int_ff](/BreakingNESWiki/imgstore/6502/int_ff.png)
 
 ## RDY
 
