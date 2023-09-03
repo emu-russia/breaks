@@ -601,7 +601,7 @@ module Core6502_Bot (PHI1, PHI2, bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, ACR, AVR,
 		.ADH(ADH),
 		.DB(DB) );
 
-	AddrBusBitLow abl03 [2:0] (
+	AddrBusBitLow abl02 [2:0] (
 		.PHI1(PHI1),
 		.PHI2(PHI2),
 		.ADX(ADL[2:0]),
