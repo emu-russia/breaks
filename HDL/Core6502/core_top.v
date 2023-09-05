@@ -532,12 +532,12 @@ module Core6502_Bot (PHI1, PHI2, bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, ACR, AVR,
 	output ACR;
 	output AVR;
 	output [15:0] A;
-	inout [7:0] DB;
+	inout [7:0] DB; 	// Internal data bus
 	inout [7:0] D;
 
-	wire [7:0] SB;
-	wire [7:0] ADL;
-	wire [7:0] ADH;
+	wire [7:0] SB; 		// Side bus
+	wire [7:0] ADL;		// Address bus low
+	wire [7:0] ADH;		// Address bus high
 
 	wire RD_to_db;
 
@@ -641,4 +641,26 @@ module Core6502_Bot (PHI1, PHI2, bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, ACR, AVR,
 		.DL_DB(`DL_DB),
 		.RD(RD_to_db) );
 
+	BusPrecharge precharge (
+		.PHI2(PHI2),
+		.SB(SB),
+		.DB(DB),
+		.ADL(ADL),
+		.ADH(ADH) );
+
 endmodule // Core6502_Bot
+
+module BusPrecharge ( PHI2, SB, DB, ADL, ADH );
+
+	input PHI2;
+	inout [7:0] SB;
+	inout [7:0] DB;
+	inout [7:0] ADL;
+	inout [7:0] ADH;
+
+	assign SB = PHI2 ? 8'b11111111 : 8'bzzzzzzzz;
+	assign DB = PHI2 ? 8'b11111111 : 8'bzzzzzzzz;
+	assign ADL = PHI2 ? 8'b11111111 : 8'bzzzzzzzz;
+	assign ADH = PHI2 ? 8'b11111111 : 8'bzzzzzzzz;
+
+endmodule // BusPrecharge
