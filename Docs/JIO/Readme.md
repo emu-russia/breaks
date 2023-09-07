@@ -12,7 +12,7 @@ Chip Text:
     |   Nintendo        |
     |>  JIO A  BU3270S  |
     |   925  H39        |
-     ___________________
+     ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
 ```
 
 Pinout:
@@ -35,7 +35,7 @@ Pinout:
     P1-D4 -|14    19|- D3
       GND -|15    18|- D4
    INV-1I -|16    17|- INV-1O
-            ________
+            ‾‾‾‾‾‾‾‾
 ```
 
 - INV-1I/O (16-17) = Audio Inverter
