@@ -7,34 +7,35 @@ There is a document I made for giving information about the custom Nintendo PIO 
 Chip Text:
 
 ```
-	U3 JIO
-	 ___________________
-	|   Nintendo        |
-	|>  JIO A  BU3270S  |
-	|   925  H39        |
-	 ___________________
+    U3 JIO
+     ___________________
+    |   Nintendo        |
+    |>  JIO A  BU3270S  |
+    |   925  H39        |
+     ___________________
 ```
 
 Pinout:
 
-```	        ________
-	  GND -|01 \/ 32|- +5v
-	   NC -|02    31|- NC
-	   M2 -|03    30|- NC
-	  A15 -|04    29|- /ROMSEL
-	  A14 -|05    28|- /DBE
-	  A13 -|06    27|- CS (U1)
-	P1-D0 -|07    26|- INV-2I
-	P0-D0 -|08    25|- INV-2O
-	P1-D1 -|09    24|- D0
-	P0-D1 -|10    23|- D1
-	P1-D2 -|11    22|- /INP0
-	  +5v -|12    21|- /INP1
-	P1-D3 -|13    20|- D2
-	P1-D4 -|14    19|- D3
-	  GND -|15    18|- D4
+```
+            ________
+      GND -|01 \/ 32|- +5v
+       NC -|02    31|- NC
+       M2 -|03    30|- NC
+      A15 -|04    29|- /ROMSEL
+      A14 -|05    28|- /DBE
+      A13 -|06    27|- CS (U1)
+    P1-D0 -|07    26|- INV-2I
+    P0-D0 -|08    25|- INV-2O
+    P1-D1 -|09    24|- D0
+    P0-D1 -|10    23|- D1
+    P1-D2 -|11    22|- /INP0
+      +5v -|12    21|- /INP1
+    P1-D3 -|13    20|- D2
+    P1-D4 -|14    19|- D3
+      GND -|15    18|- D4
    INV-1I -|16    17|- INV-1O
-	        ________
+            ________
 ```
 
 - INV-1I/O (16-17) = Audio Inverter
