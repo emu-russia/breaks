@@ -38,7 +38,7 @@ TBD.
 
 ## Expansion Port
 
-The expansion port is located on the back of the console under the cover and is also routed to the cartridge pins (unlike the Famicom's expansion port, which only connects to the CPU I/O terminals).
+The expansion port is located on the bottom of the console under the cover and is also routed to the cartridge pins (unlike the Famicom's expansion port, which only connects to the CPU I/O terminals).
 
 TBD.
 
