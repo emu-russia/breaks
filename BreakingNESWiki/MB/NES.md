@@ -18,6 +18,8 @@
 |NESN-CPU-JI0-01 (1993)|U1: WRAM: LH5216AD-10L; U2: SN74LS373N; U3: BU3266S; U4: VRAM: LH5216AD-10L; U5: PPU: RP2C02H-0; U6: CPU: RP2A03H; U7: +5V Regulator: 7805|
 |NESN-CPU-AV-01 (1994)|U1: RAM: BR6216B-10LL; U2: MB74LS373; U3: BU3270S; U4: RAM: BR6216B-10LL; U5: PPU: RP2C02H-0; U6: CPU: RP2A03H; U7: +5V Regulator: 7805|
 
+TODO: PAL versions, ребрендинги типа индийского SAMURAI.
+
 Source: https://forums.nesdev.org/viewtopic.php?p=196688#p196688
 
 Source: https://wiki.console5.com/tw/index.php?title=Nintendo_NES-101
@@ -28,15 +30,21 @@ Source: https://wiki.console5.com/tw/index.php?title=Nintendo_NES-101
 
 ## CIC
 
+CIC - это специальная микросхема для реализации Copy Protection. Микросхема на материнской плате "общается" с аналогичной микросхемой на картридже и если проверка не пройдена - система уходит в бесконечный RESET.
+
+В новых ревизиях NES (TopLoader) данная защита отсутствует, т.к. она обходится с минимальными усилиями.
+
 TBD.
 
 ## Expansion Port
+
+Порт расширения находится на задней части приставки под крышкой и также пробрасывается на контакты картриджа (в отличии от порта расширения Famicom, который соединяется только с I/O терминалами CPU).
 
 TBD.
 
 ## 40H368
 
-Данная IC представляет собой массив TriState:
+Данная IC представляет собой массив TriState (терминами Verilog - массив элементов notif0):
 
 ![40H368](/BreakingNESWiki/MB/imgstore/40H368.jpg)
 
