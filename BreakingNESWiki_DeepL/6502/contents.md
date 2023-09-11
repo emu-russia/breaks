@@ -3,6 +3,7 @@
 - [Overview](Readme.md)
 - [Pinout](pads.md)
 - [Clock](clock.md)
+- [Synchronous analysis](whatwhen.md)
 
 ## Top Part
 

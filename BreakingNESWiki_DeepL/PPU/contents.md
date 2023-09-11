@@ -23,3 +23,4 @@
 - [PAL PPU Differences](pal.md)
 - [RGB PPU Differences](rgb.md)
 - [UMC 6538 Differences](umc6538.md)
+- [Synchronous analysis](whatwhen.md)
