@@ -43,7 +43,7 @@
 
 Сигнал `/I_OUT` дополнительно модифицируется сигналом `BRK6E` в схеме флага B:
 
-![intr_b_flag_tran](/BreakingNESWiki/imgstore/intr_b_flag_tran.jpg)
+![intr_b_flag_tran](/BreakingNESWiki/imgstore/6502/intr_b_flag_tran.jpg)
 
 ## Флаг N
 
