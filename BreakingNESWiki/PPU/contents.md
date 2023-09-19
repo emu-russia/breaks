@@ -23,3 +23,4 @@
 - [Отличия PAL PPU](pal.md)
 - [Отличия RGB PPU](rgb.md)
 - [Отличия UMC 6538](umc6538.md)
+- [Синхронный анализ](whatwhen.md)

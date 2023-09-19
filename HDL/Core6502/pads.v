@@ -41,7 +41,7 @@ module PadsLogic(
 
 	wire irqp_ff_q;
 	int_ff irqp_ff (.PHI2(PHI2), .d(~n_IRQ), .q(irqp_ff_q));
-	dlatch irqp_lath (.d(irqp_ff_q), .en(PHI1), .nq(n_IRQP));
+	dlatch irqp_latch (.d(irqp_ff_q), .en(PHI1), .nq(n_IRQP));
 
 	wire resp_ff_nq;	// !!!
 	int_ff resp_ff (.PHI2(PHI2), .d(~n_RES), .nq(resp_ff_nq));

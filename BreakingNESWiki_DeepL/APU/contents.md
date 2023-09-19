@@ -20,3 +20,4 @@ Appendix:
 
 - [Waves](waves.md)
 - [Cycles](cycles.md)
+- [Synchronous analysis](whatwhen.md)

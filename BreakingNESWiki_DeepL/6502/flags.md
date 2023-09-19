@@ -43,7 +43,7 @@ Flag B is treated separately in the section on [interrupt handling](interrupts.m
 
 The `/I_OUT` signal is further modified by the `BRK6E` signal in flag B circuitry:
 
-![intr_b_flag_tran](/BreakingNESWiki/imgstore/intr_b_flag_tran.jpg)
+![intr_b_flag_tran](/BreakingNESWiki/imgstore/6502/intr_b_flag_tran.jpg)
 
 ## N Flag
 
