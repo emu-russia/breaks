@@ -834,7 +834,7 @@
     <comp lib="6" loc="(125,115)" name="Text">
       <a name="text" val="PHI2"/>
     </comp>
-    <comp lib="6" loc="(1295,88)" name="Text">
+    <comp lib="6" loc="(1295,85)" name="Text">
       <a name="font" val="SansSerif bold 12"/>
       <a name="text" val="nQ !!!"/>
     </comp>
@@ -871,7 +871,7 @@
     <comp lib="6" loc="(2055,1085)" name="Text">
       <a name="text" val="PHI2"/>
     </comp>
-    <comp lib="6" loc="(384,201)" name="Text">
+    <comp lib="6" loc="(380,200)" name="Text">
       <a name="text" val="/NMIP"/>
     </comp>
     <comp lib="6" loc="(500,1105)" name="Text">
@@ -886,7 +886,7 @@
     <comp lib="6" loc="(590,1225)" name="Text">
       <a name="text" val="SB in/out"/>
     </comp>
-    <comp lib="6" loc="(629,222)" name="Text">
+    <comp lib="6" loc="(625,220)" name="Text">
       <a name="text" val="/IRQP"/>
     </comp>
     <comp loc="(1060,1320)" name="ALU"/>
@@ -19391,7 +19391,7 @@
     <comp lib="6" loc="(455,620)" name="Text">
       <a name="text" val="/ACR"/>
     </comp>
-    <comp lib="6" loc="(670,1584)" name="Text">
+    <comp lib="6" loc="(670,1580)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="SO_frompad"/>
     </comp>
@@ -23547,19 +23547,16 @@
     <comp lib="1" loc="(1010,600)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="1" loc="(760,720)" name="NAND Gate">
+    <comp lib="1" loc="(770,760)" name="AND Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="1" loc="(760,770)" name="NOR Gate">
+    <comp lib="1" loc="(780,720)" name="NOR Gate">
       <a name="size" val="30"/>
-    </comp>
-    <comp lib="1" loc="(790,770)" name="NOT Gate">
-      <a name="size" val="20"/>
     </comp>
     <comp lib="1" loc="(840,660)" name="NOT Gate">
       <a name="size" val="20"/>
     </comp>
-    <comp lib="1" loc="(840,740)" name="AND Gate">
+    <comp lib="1" loc="(840,740)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
     <comp lib="1" loc="(970,600)" name="NOR Gate">
@@ -23953,6 +23950,8 @@
     <wire from="(560,610)" to="(580,610)"/>
     <wire from="(580,410)" to="(580,420)"/>
     <wire from="(580,420)" to="(610,420)"/>
+    <wire from="(580,510)" to="(580,520)"/>
+    <wire from="(580,520)" to="(650,520)"/>
     <wire from="(590,140)" to="(1110,140)"/>
     <wire from="(590,140)" to="(590,200)"/>
     <wire from="(600,240)" to="(630,240)"/>
@@ -23975,33 +23974,32 @@
     <wire from="(650,220)" to="(680,220)"/>
     <wire from="(650,240)" to="(650,330)"/>
     <wire from="(650,240)" to="(680,240)"/>
+    <wire from="(650,520)" to="(650,730)"/>
+    <wire from="(650,730)" to="(740,730)"/>
     <wire from="(660,260)" to="(660,430)"/>
     <wire from="(660,260)" to="(680,260)"/>
     <wire from="(670,110)" to="(670,200)"/>
     <wire from="(670,200)" to="(680,200)"/>
     <wire from="(670,280)" to="(670,530)"/>
     <wire from="(670,280)" to="(680,280)"/>
-    <wire from="(670,610)" to="(670,730)"/>
-    <wire from="(670,730)" to="(720,730)"/>
+    <wire from="(670,610)" to="(670,770)"/>
+    <wire from="(670,770)" to="(740,770)"/>
     <wire from="(690,590)" to="(690,710)"/>
-    <wire from="(690,710)" to="(690,760)"/>
-    <wire from="(690,710)" to="(720,710)"/>
-    <wire from="(690,760)" to="(720,760)"/>
+    <wire from="(690,710)" to="(690,750)"/>
+    <wire from="(690,710)" to="(740,710)"/>
+    <wire from="(690,750)" to="(740,750)"/>
     <wire from="(710,560)" to="(710,660)"/>
-    <wire from="(710,660)" to="(710,780)"/>
     <wire from="(710,660)" to="(820,660)"/>
-    <wire from="(710,780)" to="(720,780)"/>
-    <wire from="(760,720)" to="(770,720)"/>
-    <wire from="(760,770)" to="(770,770)"/>
     <wire from="(770,210)" to="(800,210)"/>
     <wire from="(770,230)" to="(780,230)"/>
-    <wire from="(770,720)" to="(770,730)"/>
-    <wire from="(770,730)" to="(810,730)"/>
+    <wire from="(770,760)" to="(790,760)"/>
     <wire from="(780,230)" to="(780,580)"/>
     <wire from="(780,580)" to="(860,580)"/>
-    <wire from="(790,770)" to="(800,770)"/>
-    <wire from="(800,750)" to="(800,770)"/>
-    <wire from="(800,750)" to="(810,750)"/>
+    <wire from="(780,720)" to="(790,720)"/>
+    <wire from="(790,720)" to="(790,730)"/>
+    <wire from="(790,730)" to="(800,730)"/>
+    <wire from="(790,750)" to="(790,760)"/>
+    <wire from="(790,750)" to="(800,750)"/>
     <wire from="(800,80)" to="(800,210)"/>
     <wire from="(810,250)" to="(820,250)"/>
     <wire from="(810,70)" to="(810,250)"/>
@@ -35231,11 +35229,11 @@
     <comp lib="1" loc="(290,80)" name="NOR Gate">
       <a name="size" val="30"/>
     </comp>
-    <comp lib="6" loc="(137,32)" name="Text">
+    <comp lib="6" loc="(135,30)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="phi2=1: enable"/>
     </comp>
-    <comp lib="6" loc="(273,47)" name="Text">
+    <comp lib="6" loc="(270,45)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="aoi21 flip-flop"/>
     </comp>
