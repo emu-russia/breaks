@@ -1,0 +1,56 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Apr 07 15:34:53 2024
+[*]
+[dumpfile] "C:\Work\breaks\HDL\Framework\Icarus\mos6502\core.vcd"
+[dumpfile_mtime] "Sun Apr 07 15:30:56 2024"
+[dumpfile_size] 4076839
+[savefile] "C:\Work\breaks\HDL\Framework\Icarus\mos6502\core_signals.gtkw"
+[timestart] 0
+[size] 1783 802
+[pos] -27 -180
+*-3.000000 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Core_Run.
+[treeopen] Core_Run.core.
+[treeopen] Core_Run.core.bot.
+[treeopen] Core_Run.core.top.
+[sst_width] 211
+[signals_width] 186
+[sst_expanded] 1
+[sst_vpaned_height] 226
+@28
+Core_Run.core.PHI0
+Core_Run.core.PHI1
+Core_Run.core.PHI2
+Core_Run.core.RDY
+@29
+Core_Run.core.n_RES
+@200
+-
+@22
+Core_Run.core.D[7:0]
+@200
+-Top Internals
+@22
+Core_Run.core.bot.bop[43:0]
+@200
+-
+-Bottom Buses
+@22
+Core_Run.core.bot.SB[7:0]
+Core_Run.core.bot.DB[7:0]
+Core_Run.core.bot.ADL[7:0]
+Core_Run.core.bot.ADH[7:0]
+@200
+-
+-Registers
+@22
+Core_Run.core.top.ir.IR_out[7:0]
+@200
+-
+-External Buses
+@22
+Core_Run.core.bot.A[15:0]
+Core_Run.core.D[7:0]
+[pattern_trace] 1
+[pattern_trace] 0
