@@ -21,7 +21,7 @@ module Core_Run ();
 	wire SYNC;
 	wire RnW;
 
-	always #1 CLK = ~CLK;
+	always #25 CLK = ~CLK;
 
 	Core6502 core (
 		.n_NMI(n_NMI),
@@ -46,20 +46,24 @@ module Core_Run ();
 
 	initial begin
 
-		$display("Check that Core is moving.");
+		$display("Check that MOS6502 Core is moving.");
 
-		RDY <= 1'b1;
-		SO <= 1'b1;
+		RDY <= 1'b1; 		// Always ready
+		SO <= 1'b1; 			// SO is enough to set to 1 to prevent the falling edge detector from triggering
 
 		CLK <= 1'b0;
-		n_RES <= 1'b1;
 		n_IRQ <= 1'b1;
 		n_NMI <= 1'b1;
 
 		$dumpfile("core.vcd");
 		$dumpvars(0, Core_Run);
 
-		repeat (1000) @ (posedge CLK);
+		// Perform reset
+		n_RES <= 1'b0;
+		repeat (8) @ (posedge CLK);
+		n_RES <= 1'b1;
+
+		repeat (256) @ (posedge CLK);
 		$finish;
 	end	
 
@@ -76,9 +80,13 @@ module ExtMem (M2, WE, OE, Addr, Data);
 	reg [7:0] mem [0:65535];
 	reg [7:0] temp;
 
-	initial begin
-		$readmemh("core.mem", mem);
-	end
+	// You need to pre-fill the memory with some value so you don't run into `xx`
+	integer j;
+	initial 
+	for(j = 0; j < 65536; j = j+1) 
+		mem[j] = 0;
+
+	initial $readmemh("core.mem", mem);
 
 	always @(M2) begin
 		if (OE)

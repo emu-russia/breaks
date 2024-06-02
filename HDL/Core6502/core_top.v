@@ -249,6 +249,9 @@ module Core6502_Top (
 	wire n_IOUT;
 	wire n_VOUT;
 
+	wire BR0;
+	assign BR0 = Decoder_out[73] & ~n_PRDY;
+
 	PreDecode pd (
 		.PHI2(PHI2),
 		.Z_IR(Z_IR),
@@ -377,7 +380,6 @@ module Core6502_Top (
 		.AND(AND),
 		.STOR(STOR),
 		.Z_ADL0(`Z_ADL0),
-		.BR2(Decoder_out[80]),
 		.ACRL2(ACRL2),
 		.DL_PCH(DL_PCH),
 		.n_ready(n_ready),
@@ -389,6 +391,7 @@ module Core6502_Top (
 		.T1(T1),
 		.T6(T6),
 		.T7(T7),
+		.BR0(BR0),
 		.X(Decoder_out),
 		.ZTST(ZTST),
 		.PGX(PGX), 
@@ -411,6 +414,7 @@ module Core6502_Top (
 		.n_ready(n_ready),
 		.T0(T0),
 		.T1(T1), 
+		.BR0(BR0),
 		.X(Decoder_out),
 		.PCL_DB(`PCL_DB),
 		.PCH_DB(`PCH_DB),

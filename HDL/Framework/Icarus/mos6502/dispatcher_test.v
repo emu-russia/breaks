@@ -8,7 +8,7 @@ module Dispatcher_Run ();
 	wire PHI1;
 	wire PHI2;
 
-	always #1 CLK = ~CLK;
+	always #25 CLK = ~CLK;
 
 	wire [7:0] DataBus;
 

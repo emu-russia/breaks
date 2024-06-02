@@ -1,6 +1,8 @@
 // Asynchronous dynamic (d=dynamic) latch used in old NMOS chips. Totally unprotected against jitter and other timing circuit problems.
 // Use carefully and wisely.
 
+// This element can be moved to DFF using CLK as Enable input.
+
 module dlatch (d, en, q, nq);
 
 	input d;		// Input value
