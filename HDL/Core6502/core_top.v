@@ -504,6 +504,7 @@ module Core6502_Top (
 		.DB_C(DB_C),
 		.ACR_C(ACR_C),
 		.IR5_D(IR5_D),
+		.IR5_I(IR5_I),
 		.DB_V(DB_V),
 		.Z_V(Z_V),
 		.ACR(ACR),
