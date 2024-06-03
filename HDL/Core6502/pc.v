@@ -22,4 +22,43 @@ module PC(
 	inout [7:0] ADH;
 	inout [7:0] DB;
 
+	wire [7:0] pcl_nout;
+	wire [3:0] pch_nout;
+	wire [7:1] pclc;
+	wire [7:1] pchc;
+
+	wire PCLC;
+	nor (PCLC, n_IPC, pcl_nout[0], pcl_nout[1], pcl_nout[2], pcl_nout[3], pcl_nout[4], pcl_nout[5], pcl_nout[6], pcl_nout[7] );
+	wire PCHC;
+	nor (PCHC, ~PCLC, pch_nout[0], pch_nout[1], pch_nout[2], pch_nout[3] );
+
+	// PCL
+
+	pc_notcarry pcl0 (.PHI2(PHI2), .n_carry(n_IPC), .AD(ADL[0]), .DB(DB[0]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[0]), .cout(pclc[1]) );
+	pc_carry pcl1 (.PHI2(PHI2), .carry(pclc[1]), .AD(ADL[1]), .DB(DB[1]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[1]), .n_cout(pclc[2]) );
+	pc_notcarry pcl2 (.PHI2(PHI2), .n_carry(pclc[2]), .AD(ADL[2]), .DB(DB[2]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[2]), .cout(pclc[3]) );
+	pc_carry pcl3 (.PHI2(PHI2), .carry(pclc[3]), .AD(ADL[3]), .DB(DB[3]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[3]), .n_cout(pclc[4]) );
+	pc_notcarry pcl4 (.PHI2(PHI2), .n_carry(pclc[4]), .AD(ADL[4]), .DB(DB[4]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[4]), .cout(pclc[5]) );
+	pc_carry pcl5 (.PHI2(PHI2), .carry(pclc[5]), .AD(ADL[5]), .DB(DB[5]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[5]), .n_cout(pclc[6]) );
+	pc_notcarry pcl6 (.PHI2(PHI2), .n_carry(pclc[6]), .AD(ADL[6]), .DB(DB[6]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[6]), .cout(pclc[7]) );
+	pc_carry pcl6 (.PHI2(PHI2), .carry(pclc[7]), .AD(ADL[7]), .DB(DB[7]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[7])  );
+
+	// PCH
+
+	pc_carry pch0 (.PHI2(PHI2), .carry(PCLC), .AD(ADH[0]), .DB(DB[0]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[0]), .n_cout(pchc[1]) );
+	pc_notcarry pch1 (.PHI2(PHI2), .n_carry(pchc[1]), .AD(ADH[1]), .DB(DB[1]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[1]), .cout(pchc[2]) );
+	pc_carry pch2 (.PHI2(PHI2), .carry(pchc[2]), .AD(ADH[2]), .DB(DB[2]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[2]), .n_cout(pchc[3]) );
+	pc_notcarry pch3 (.PHI2(PHI2), .n_carry(pchc[3]), .AD(ADH[3]), .DB(DB[3]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[3])  );
+
+	pc_carry pch4 (.PHI2(PHI2), .carry(PCHC), .AD(ADH[4]), .DB(DB[4]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_cout(pchc[5]) );
+	pc_notcarry pch5 (.PHI2(PHI2), .n_carry(pchc[5]), .AD(ADH[5]), .DB(DB[5]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .cout(pchc[6]) );
+	pc_carry pch6 (.PHI2(PHI2), .carry(pchc[6]), .AD(ADH[6]), .DB(DB[6]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_cout(pchc[7]) );
+	pc_notcarry pch7 (.PHI2(PHI2), .n_carry(pchc[7]), .AD(ADH[7]), .DB(DB[7]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH) );
+
 endmodule // PC
+
+module pc_notcarry (PHI2, n_carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, cout);
+endmodule // pc_notcarry
+
+module pc_carry (PHI2, carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, n_cout);
+endmodule // pc_carry
