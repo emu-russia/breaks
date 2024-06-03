@@ -48,7 +48,7 @@ module PC(
 	pc_carry pch0 (.PHI2(PHI2), .carry(PCLC), .AD(ADH[0]), .DB(DB[0]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[0]), .n_cout(pchc[1]) );
 	pc_notcarry pch1 (.PHI2(PHI2), .n_carry(pchc[1]), .AD(ADH[1]), .DB(DB[1]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[1]), .cout(pchc[2]) );
 	pc_carry pch2 (.PHI2(PHI2), .carry(pchc[2]), .AD(ADH[2]), .DB(DB[2]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[2]), .n_cout(pchc[3]) );
-	pc_notcarry pch3 (.PHI2(PHI2), .n_carry(pchc[3]), .AD(ADH[3]), .DB(DB[3]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[3])  ); 	// discard output carry, PCHC used insted
+	pc_notcarry pch3 (.PHI2(PHI2), .n_carry(pchc[3]), .AD(ADH[3]), .DB(DB[3]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[3])  ); 	// discard output carry, PCHC used instead
 
 	pc_carry pch4 (.PHI2(PHI2), .carry(PCHC), .AD(ADH[4]), .DB(DB[4]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_cout(pchc[5]) );
 	pc_notcarry pch5 (.PHI2(PHI2), .n_carry(pchc[5]), .AD(ADH[5]), .DB(DB[5]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .cout(pchc[6]) );
