@@ -41,24 +41,84 @@ module PC(
 	pc_notcarry pcl4 (.PHI2(PHI2), .n_carry(pclc[4]), .AD(ADL[4]), .DB(DB[4]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[4]), .cout(pclc[5]) );
 	pc_carry pcl5 (.PHI2(PHI2), .carry(pclc[5]), .AD(ADL[5]), .DB(DB[5]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[5]), .n_cout(pclc[6]) );
 	pc_notcarry pcl6 (.PHI2(PHI2), .n_carry(pclc[6]), .AD(ADL[6]), .DB(DB[6]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[6]), .cout(pclc[7]) );
-	pc_carry pcl6 (.PHI2(PHI2), .carry(pclc[7]), .AD(ADL[7]), .DB(DB[7]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[7])  );
+	pc_carry pcl6 (.PHI2(PHI2), .carry(pclc[7]), .AD(ADL[7]), .DB(DB[7]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[7])  ); 	// discard output carry, PCLC used instead
 
 	// PCH
 
 	pc_carry pch0 (.PHI2(PHI2), .carry(PCLC), .AD(ADH[0]), .DB(DB[0]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[0]), .n_cout(pchc[1]) );
 	pc_notcarry pch1 (.PHI2(PHI2), .n_carry(pchc[1]), .AD(ADH[1]), .DB(DB[1]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[1]), .cout(pchc[2]) );
 	pc_carry pch2 (.PHI2(PHI2), .carry(pchc[2]), .AD(ADH[2]), .DB(DB[2]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[2]), .n_cout(pchc[3]) );
-	pc_notcarry pch3 (.PHI2(PHI2), .n_carry(pchc[3]), .AD(ADH[3]), .DB(DB[3]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[3])  );
+	pc_notcarry pch3 (.PHI2(PHI2), .n_carry(pchc[3]), .AD(ADH[3]), .DB(DB[3]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_val(pch_nout[3])  ); 	// discard output carry, PCHC used insted
 
 	pc_carry pch4 (.PHI2(PHI2), .carry(PCHC), .AD(ADH[4]), .DB(DB[4]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_cout(pchc[5]) );
 	pc_notcarry pch5 (.PHI2(PHI2), .n_carry(pchc[5]), .AD(ADH[5]), .DB(DB[5]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .cout(pchc[6]) );
 	pc_carry pch6 (.PHI2(PHI2), .carry(pchc[6]), .AD(ADH[6]), .DB(DB[6]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_cout(pchc[7]) );
-	pc_notcarry pch7 (.PHI2(PHI2), .n_carry(pchc[7]), .AD(ADH[7]), .DB(DB[7]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH) );
+	pc_notcarry pch7 (.PHI2(PHI2), .n_carry(pchc[7]), .AD(ADH[7]), .DB(DB[7]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH) ); 		// discard output carry, no need
 
 endmodule // PC
 
+// PC bit, input carry in inverted polarity and output carry in regular polarity
 module pc_notcarry (PHI2, n_carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, cout);
+
+	input PHI2;
+	input n_carry;
+	inout AD;
+	inout DB;
+	input PC_AD;
+	input PC_DB;
+	input AD_PC;
+	input PC_PC;
+	output n_val;
+	output cout;
+
+	wire in_latch_d;
+	assign in_latch_d = AD_PC ? AD : (PC_PC ? q : 1'bz);
+
+	wire out_latch_d;
+	aoi g1 (.a0(n_val), .a1(n_carry), .b(cout), .x(out_latch_d) );
+
+	dlatch in_latch (.d(in_latch_d), .en(1), .nq(n_val) ); 				// PCLS/PCHS bits
+	dlatch out_latch (.d(out_latch_d), .en(PHI2), .nq(out_latch_nq) ); 		// PCL/PCH bits
+	wire out_latch_nq;
+	wire q;
+	not (q, out_latch_nq);
+
+	nor (cout, n_val, n_carry);
+
+	assign DB = PC_DB ? q : 1'bz;
+	assign AD = PC_AD ? q : 1'bz;
+
 endmodule // pc_notcarry
 
+// PC bit, input carry in regular polarity and output carry in inverted polarity
 module pc_carry (PHI2, carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, n_cout);
+
+	input PHI2;
+	input carry;
+	inout AD;
+	inout DB;
+	input PC_AD;
+	input PC_DB;
+	input AD_PC;
+	input PC_PC;
+	output n_val;
+	output n_cout;
+
+	wire in_latch_d;
+	assign in_latch_d = AD_PC ? AD : (PC_PC ? q : 1'bz);
+
+	wire out_latch_d;
+	oai g1 (.a0(val), .a1(carry), .b(n_cout), .x(out_latch_d) );
+
+	dlatch in_latch (.d(in_latch_d), .en(1), .nq(n_val) ); 			// PCLS/PCHS bits
+	wire val;
+	not (val, n_val);
+	dlatch out_latch (.d(out_latch_d), .en(PHI2), .nq(q) ); 		// PCL/PCH bits
+	wire q;
+
+	nand (n_cout, val, carry);
+
+	assign DB = PC_DB ? q : 1'bz;
+	assign AD = PC_AD ? q : 1'bz;
+
 endmodule // pc_carry
