@@ -72,8 +72,8 @@ module ALU(
 
 	// ALU Ops
 
-	nand (nands, ai, bi);
-	nor (nors, ai, bi);
+	nand na [7:0] (nands, ai, bi);
+	nor no [7:0] (nors, ai, bi);
 
 	not (ands[1], nands[1]);
 	not (ands[3], nands[3]);
@@ -104,7 +104,7 @@ module ALU(
 	assign nsums[6] = ~((xnors[6]&~carry[6]) | ~(xnors[6]|~carry[6]));
 	assign nsums[7] = ~(( xors[7]&~carry[7]) | ~( xors[7]|~carry[7]));
 
-	assign nres = SRS ? (8{1,nands[7:1]}) : (
+	assign nres = SRS ? ({1'b1,nands[7:1]}) : (
 		ANDS ? nands : (
 		ORS ? nors : (
 		EORS ? xnors : (

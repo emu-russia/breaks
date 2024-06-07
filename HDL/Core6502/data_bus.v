@@ -18,7 +18,7 @@ module DataBusBit(
 	input DL_DB;
 	input RD;
 
-	dlatch transp_latch (.d(DB_Ext), .en(1), .nq(transp_latch_nq) );
+	dlatch transp_latch (.d(DB_Ext), .en(1'b1), .nq(transp_latch_nq) );
 	wire transp_latch_nq;
 	dlatch dir_latch (.d(transp_latch_nq), .en(PHI2), .nq(dir_latch_nq) );
 	wire dir_latch_nq;
@@ -29,7 +29,7 @@ module DataBusBit(
 	assign ADH = DL_ADH ? dir_val : 1'bz;
 	assign DB = DL_DB ? dir_val : 1'bz;
 
-	dlatch int_db_latch (.d(DB), .en(1), .nq(int_db_latch_nq) );
+	dlatch int_db_latch (.d(DB), .en(1'b1), .nq(int_db_latch_nq) );
 	wire int_db_latch_nq;
 	dlatch dor_latch (.d(int_db_latch_nq), .en(PHI1), .nq(dor_latch_nq) );
 	wire dor_latch_nq;

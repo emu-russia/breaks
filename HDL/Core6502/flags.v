@@ -45,7 +45,7 @@ module Flags(
 
 	wire z_latch1_d;
 	assign z_latch1_d = ~( (~DB[1] & DB_P) | (~DBZ & DBZ_Z) | (~(DB_P|DBZ_Z) & z_latch2_q) );  	// 222-aoi
-	dlatch z_latch1 (d, .en(PHI1), .nq(n_ZOUT) );
+	dlatch z_latch1 (.d(z_latch1_d), .en(PHI1), .nq(n_ZOUT) );
 	dlatch z_latch2 (.d(n_ZOUT), .en(PHI2), .q(z_latch2_q) );
 	wire z_latch2_q;
 
@@ -53,7 +53,7 @@ module Flags(
 
 	wire n_latch1_d;
 	assign n_latch1_d = ~( (~DB[7] & DB_N) | (~DB_N & n_latch2_q) ); 		// 22-aoi
-	dlatch n_latch1 (d, .en(PHI1), .nq(n_NOUT) );
+	dlatch n_latch1 (.d(n_latch1_d), .en(PHI1), .nq(n_NOUT) );
 	dlatch n_latch2 (.d(n_NOUT), .en(PHI2), .q(n_latch2_q) );
 	wire n_latch2_q;
 
