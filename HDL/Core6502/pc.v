@@ -41,7 +41,7 @@ module PC(
 	pc_notcarry pcl4 (.PHI2(PHI2), .n_carry(pclc[4]), .AD(ADL[4]), .DB(DB[4]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[4]), .cout(pclc[5]) );
 	pc_carry pcl5 (.PHI2(PHI2), .carry(pclc[5]), .AD(ADL[5]), .DB(DB[5]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[5]), .n_cout(pclc[6]) );
 	pc_notcarry pcl6 (.PHI2(PHI2), .n_carry(pclc[6]), .AD(ADL[6]), .DB(DB[6]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[6]), .cout(pclc[7]) );
-	pc_carry pcl6 (.PHI2(PHI2), .carry(pclc[7]), .AD(ADL[7]), .DB(DB[7]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[7])  ); 	// discard output carry, PCLC used instead
+	pc_carry pcl7 (.PHI2(PHI2), .carry(pclc[7]), .AD(ADL[7]), .DB(DB[7]), .PC_AD(PCL_ADL), .PC_DB(PCL_DB), .AD_PC(ADL_PCL), .PC_PC(PCL_PCL), .n_val(pcl_nout[7])  ); 	// discard output carry, PCLC used instead
 
 	// PCH
 
@@ -77,7 +77,7 @@ module pc_notcarry (PHI2, n_carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, co
 	wire out_latch_d;
 	aoi g1 (.a0(n_val), .a1(n_carry), .b(cout), .x(out_latch_d) );
 
-	dlatch in_latch (.d(in_latch_d), .en(1), .nq(n_val) ); 				// PCLS/PCHS bits
+	dlatch in_latch (.d(in_latch_d), .en(1'b1), .nq(n_val) ); 				// PCLS/PCHS bits
 	dlatch out_latch (.d(out_latch_d), .en(PHI2), .nq(out_latch_nq) ); 		// PCL/PCH bits
 	wire out_latch_nq;
 	wire q;
@@ -110,7 +110,7 @@ module pc_carry (PHI2, carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, n_cout)
 	wire out_latch_d;
 	oai g1 (.a0(val), .a1(carry), .b(n_cout), .x(out_latch_d) );
 
-	dlatch in_latch (.d(in_latch_d), .en(1), .nq(n_val) ); 			// PCLS/PCHS bits
+	dlatch in_latch (.d(in_latch_d), .en(1'b1), .nq(n_val) ); 			// PCLS/PCHS bits
 	wire val;
 	not (val, n_val);
 	dlatch out_latch (.d(out_latch_d), .en(PHI2), .nq(q) ); 		// PCL/PCH bits
