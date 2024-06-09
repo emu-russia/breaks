@@ -71,8 +71,8 @@ module PC_Control (
 
 	dlatch nready_latch (.d(n_ready), .en(PHI1), .q(nready_latch_q) );
 	
-	dlatch pcl_db_latch1 (.d(pcl_db_latch1_d), .en(PHI1), .q(pch_db_latch1_q) );
-	dlatch pch_db_latch1 (.d(n_PCH_DB), .en(PHI2), .nq(pcl_db_latch1_nq) );
+	dlatch pcl_db_latch1 (.d(pcl_db_latch1_d), .en(PHI1), .nq(n_PCL_DB) );
+	dlatch pch_db_latch1 (.d(n_PCH_DB), .en(PHI2), .q(pch_db_latch1_q) );
 	dlatch pcl_db_latch2 (.d(n_PCL_DB), .en(PHI2), .nq(PCL_DB) );
 	dlatch pch_db_latch2 (.d(n_PCH_DB), .en(PHI2), .nq(PCH_DB) );
 
