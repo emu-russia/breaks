@@ -2,7 +2,7 @@
 
 `timescale 1ns/1ns
 
-module ExtraCounter_Run();
+module extra_counter_test ();
 
 	reg CLK;
 	wire PHI1;
@@ -21,8 +21,8 @@ module ExtraCounter_Run();
 
 	initial begin
 
-		$dumpfile("excnt_test.vcd");
-		$dumpvars(0, ExtraCounter_Run);
+		$dumpfile("extra_counter_test.vcd");
+		$dumpvars(0, extra_counter_test);
 
 		CLK <= 1'b0;
 		TRES2 <= 1'b0;
@@ -65,4 +65,4 @@ module ExtraCounter_Run();
 		$finish;
 	end
 
-endmodule // ExtraCounter_Run
+endmodule // extra_counter_test

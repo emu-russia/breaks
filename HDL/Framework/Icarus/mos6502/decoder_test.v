@@ -2,7 +2,7 @@
 
 `timescale 1ns/1ns
 
-module Decoder_Run ();
+module decoder_test ();
 
 	reg CLK;
 	integer f;
@@ -49,7 +49,7 @@ module Decoder_Run ();
 	initial begin
 
 		$dumpfile("decoder_test.vcd");
-		$dumpvars(0, Decoder_Run);
+		$dumpvars(0, decoder_test);
 
 		f = $fopen("decoder_6502.csv","w");
 		$fwrite(f, "inputs,outputs\n");
@@ -62,4 +62,4 @@ module Decoder_Run ();
 		$finish;
 	end
 
-endmodule // Decoder_Run
+endmodule // decoder_test

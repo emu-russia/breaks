@@ -2,7 +2,7 @@
 
 `timescale 1ns/1ns
 
-module IR_Run ();
+module ir_test ();
 
 	reg CLK;
 	reg FETCH;
@@ -20,7 +20,7 @@ module IR_Run ();
 	initial begin
 
 		$dumpfile("ir_test.vcd");
-		$dumpvars(0, IR_Run);
+		$dumpvars(0, ir_test);
 
 		CLK <= 1'b0;
 		FETCH <= 1'b0;
@@ -36,4 +36,4 @@ module IR_Run ();
 		$finish;
 	end
 
-endmodule // IR_Run
+endmodule // ir_test
