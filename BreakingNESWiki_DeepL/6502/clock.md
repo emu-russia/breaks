@@ -37,7 +37,7 @@ The layout of the clock signals should be about the following:
 - PHI1/PHI2 are slightly lagging relative to PHI0
 - The lower level of PHI1/PHI2 is slightly longer than the upper level, so that both signals are guaranteed not to have a high level
 
-![4672299](/BreakingNESWiki/imgstore/6502/4672299.png)
+![4672299](/BreakingNESWiki/imgstore/6502/waves/4672299.png)
 
 The simulation in Altera Quartus shows "lag", but does not show the elongated lower level (it is hand-drawn in the picture above).
 
