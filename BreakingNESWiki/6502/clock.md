@@ -37,15 +37,15 @@
 - PHI1/PHI2 немного лагают относительно PHI0
 - Нижний уровень PHI1/PHI2 немного длиннее верхнего, для того чтобы оба сигнала гарантированно не имели высокого уровня
 
-![4672299](/BreakingNESWiki/imgstore/6502/4672299.png)
+![4672299](/BreakingNESWiki/imgstore/6502/waves/4672299.png)
 
 Симуляция в Altera Quartus показывает "лаг", но не показывает удлиненный нижний уровень (он дорисован руками на картинке выше).
 
 BigEd с форума 6502.org подсказал, что он проводил симуляцию на базе FPGA-нетлиста 6502 и получил следующие развертки:
 
-![cclk-rising](/BreakingNESWiki/imgstore/6502/cclk-rising.png)
+![cclk-rising](/BreakingNESWiki/imgstore/6502/waves/cclk-rising.png)
 
-![cclk-falling](/BreakingNESWiki/imgstore/6502/cclk-falling.png)
+![cclk-falling](/BreakingNESWiki/imgstore/6502/waves/cclk-falling.png)
 
 Обозначение сигналов следующие: clk0 = PHI0, cp1 = PHI1, cclk = PHI2 (согласно нетлисту с Visual6502)
 

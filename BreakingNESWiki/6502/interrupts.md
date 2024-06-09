@@ -37,7 +37,7 @@
 
 Схема обработки прерываний:
 
-![int_control_logisim](/BreakingNESWiki/imgstore/logisim/int_control_logisim.jpg)
+![int_control_logisim](/BreakingNESWiki/imgstore/6502/int_control_logisim.jpg)
 
 Для обработки прерываний дополнительно требуется схема генерации 6 и 7 циклов (так как они не поступают с декодера) (контрольные сигналы `BRK6E` и `BRK7`). Причём контрольный сигнал BRK6E ("Break Cycle 6 End") начинается во время PHI2 6-го цикла и заканчивается во время PHI1 7-го цикла. Сделано это для того, чтобы определить фронт (edge) сигнала /NMI.
 
@@ -51,7 +51,7 @@
 
 Схема для установки адреса обработчика прерывания:
 
-![int_address_logisim](/BreakingNESWiki/imgstore/logisim/int_address_logisim.jpg)
+![int_address_logisim](/BreakingNESWiki/imgstore/6502/int_address_logisim.jpg)
 
 ## Оптимизированная логическая схема
 

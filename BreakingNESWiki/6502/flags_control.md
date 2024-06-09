@@ -84,7 +84,7 @@
 
 ## Логическая схема
 
-![flags_control_logisim](/BreakingNESWiki/imgstore/logisim/flags_control_logisim.jpg)
+![flags_control_logisim](/BreakingNESWiki/imgstore/6502/flags_control_logisim.jpg)
 
 ## Оптимизированная логическая схема
 

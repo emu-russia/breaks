@@ -43,11 +43,11 @@ Consider the behavior of the circuit when ADL = 0:
 
 On the logic circuits PHI2 is not used, and FF organized on two inverters is replaced by a regular trigger.
 
-![abl02_logisim](/BreakingNESWiki/imgstore/logisim/abl02_logisim.jpg)
+![abl02_logisim](/BreakingNESWiki/imgstore/6502/abl02_logisim.jpg)
 
-![abl_logisim](/BreakingNESWiki/imgstore/logisim/abl_logisim.jpg)
+![abl_logisim](/BreakingNESWiki/imgstore/6502/abl_logisim.jpg)
 
-![abh_logisim](/BreakingNESWiki/imgstore/logisim/abh_logisim.jpg)
+![abh_logisim](/BreakingNESWiki/imgstore/6502/abh_logisim.jpg)
 
 ## Optimized Schematics
 

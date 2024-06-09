@@ -37,7 +37,7 @@ Transistor circuit:
 
 Interrupt handling schematic:
 
-![int_control_logisim](/BreakingNESWiki/imgstore/logisim/int_control_logisim.jpg)
+![int_control_logisim](/BreakingNESWiki/imgstore/6502/int_control_logisim.jpg)
 
 To handle interrupts an additional circuit is required to generate cycles 6 and 7 (because they do not come from the decoder) (control signals `BRK6E` and `BRK7`). And the control signal BRK6E ("Break Cycle 6 End") starts during PHI2 of cycle 6 and ends during PHI1 of cycle 7. This is done to determine the edge of the /NMI signal.
 
@@ -51,7 +51,7 @@ The last small circuit forms the address (or vector) of the interrupts (control 
 
 Schematic for setting the address of the interrupt handler:
 
-![int_address_logisim](/BreakingNESWiki/imgstore/logisim/int_address_logisim.jpg)
+![int_address_logisim](/BreakingNESWiki/imgstore/6502/int_address_logisim.jpg)
 
 ## Optimized Schematics
 

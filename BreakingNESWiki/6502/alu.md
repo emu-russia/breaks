@@ -89,11 +89,11 @@
 
 Логическая схема для четных разрядов:
 
-![alu_even_bit_logisim](/BreakingNESWiki/imgstore/logisim/alu_even_bit_logisim.jpg)
+![alu_even_bit_logisim](/BreakingNESWiki/imgstore/6502/alu_even_bit_logisim.jpg)
 
 Логическая схема для нечетных разрядов:
 
-![alu_odd_bit_logisim](/BreakingNESWiki/imgstore/logisim/alu_odd_bit_logisim.jpg)
+![alu_odd_bit_logisim](/BreakingNESWiki/imgstore/6502/alu_odd_bit_logisim.jpg)
 
 Вычисление переполнения (контрольный сигнал `AVR`):
 
@@ -121,7 +121,7 @@
 
 Логическая схема:
 
-![alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_carry_logisim.jpg)
+![alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/6502/alu_bcd_carry_logisim.jpg)
 
 Оптимизированная логическая схема:
 
@@ -174,7 +174,7 @@
 
 Логическая схема:
 
-![alu_bcd_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_logisim.jpg)
+![alu_bcd_logisim](/BreakingNESWiki/imgstore/6502/alu_bcd_logisim.jpg)
 
 Оптимизированная логическая схема:
 

@@ -31,7 +31,7 @@ Note: The Branch Taken logic operates continuously and the value of the /BRTAKEN
 
 ## Logic
 
-![branch_logic_logisim](/BreakingNESWiki/imgstore/logisim/branch_logic_logisim.jpg)
+![branch_logic_logisim](/BreakingNESWiki/imgstore/6502/branch_logic_logisim.jpg)
 
 ## Optimized Schematics
 

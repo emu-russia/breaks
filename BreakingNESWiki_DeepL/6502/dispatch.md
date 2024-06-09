@@ -108,7 +108,7 @@ There is also a circuit nearby to generate the following signals:
 
 ## Logic (old all-in-one version)
 
-![dispatcher_logisim](/BreakingNESWiki/imgstore/logisim/dispatcher_logisim.jpg)
+![dispatcher_logisim](/BreakingNESWiki/imgstore/6502/dispatcher_logisim.jpg)
 
 ## Optimized Schematics
 

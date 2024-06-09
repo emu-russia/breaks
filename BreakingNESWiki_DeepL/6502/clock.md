@@ -37,15 +37,15 @@ The layout of the clock signals should be about the following:
 - PHI1/PHI2 are slightly lagging relative to PHI0
 - The lower level of PHI1/PHI2 is slightly longer than the upper level, so that both signals are guaranteed not to have a high level
 
-![4672299](/BreakingNESWiki/imgstore/6502/4672299.png)
+![4672299](/BreakingNESWiki/imgstore/6502/waves/4672299.png)
 
 The simulation in Altera Quartus shows "lag", but does not show the elongated lower level (it is hand-drawn in the picture above).
 
 BigEd from the 6502.org forum suggested that he ran a simulation on the 6502 FPGA netlist and got the following sweeps:
 
-![cclk-rising](/BreakingNESWiki/imgstore/6502/cclk-rising.png)
+![cclk-rising](/BreakingNESWiki/imgstore/6502/waves/cclk-rising.png)
 
-![cclk-falling](/BreakingNESWiki/imgstore/6502/cclk-falling.png)
+![cclk-falling](/BreakingNESWiki/imgstore/6502/waves/cclk-falling.png)
 
 The signal designations are as follows: clk0 = PHI0, cp1 = PHI1, cclk = PHI2 (according to the netlist with Visual6502)
 

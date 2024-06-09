@@ -284,7 +284,7 @@ def CoreShredder (FusedTopo):
 	CropMaskImage (FusedTopo, imgstore + "wr_latch_tran", [3792, 2573, 333, 339], [(3781,2534,290,159)] )
 	CropMaskImage (FusedTopo, imgstore + "abl02_tran", [312, 2868, 594, 240], [(361,2851,453,55),(877,3023,60,70)] )
 	CropMaskImage (FusedTopo, imgstore + "abl37_tran", [319, 3498, 553, 203] )
-	CropMaskImage (FusedTopo, imgstore + "data_bit_tran", [3357, 2844, 1224, 287], [(3340,2875,61,63),(3919,2843,196,76),(3361,3101,147,72),(3564,3111,351,73),(4405,3081,149,75),(3361,2822,369,93)] )
+	CropMaskImage (FusedTopo, imgstore + "data_bit_tran", [3357, 2844, 1224, 284], [(3340,2875,61,63),(3919,2843,196,76),(3361,3101,147,72),(3564,3111,351,73),(4405,3081,149,75),(3361,2822,369,93)] )
 	CropMaskImage (FusedTopo, imgstore + "abh_tran", [604, 4508, 302, 462] )
 	# TBD.
 	return

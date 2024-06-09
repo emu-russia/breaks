@@ -110,7 +110,7 @@
 
 ## Логическая схема (старый вариант)
 
-![dispatcher_logisim](/BreakingNESWiki/imgstore/logisim/dispatcher_logisim.jpg)
+![dispatcher_logisim](/BreakingNESWiki/imgstore/6502/dispatcher_logisim.jpg)
 
 ## Оптимизированная логическая схема
 

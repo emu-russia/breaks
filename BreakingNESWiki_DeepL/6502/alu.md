@@ -89,11 +89,11 @@ To make it clearer how the intermediate results are obtained, all the main motif
 
 Logic for even bits:
 
-![alu_even_bit_logisim](/BreakingNESWiki/imgstore/logisim/alu_even_bit_logisim.jpg)
+![alu_even_bit_logisim](/BreakingNESWiki/imgstore/6502/alu_even_bit_logisim.jpg)
 
 Logic for odd bits:
 
-![alu_odd_bit_logisim](/BreakingNESWiki/imgstore/logisim/alu_odd_bit_logisim.jpg)
+![alu_odd_bit_logisim](/BreakingNESWiki/imgstore/6502/alu_odd_bit_logisim.jpg)
 
 Overflow calculation (control signal `AVR`):
 
@@ -121,7 +121,7 @@ Besides calculating the carry for BCD the circuit also generates the `ACR` (ALU 
 
 Logic:
 
-![alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_carry_logisim.jpg)
+![alu_bcd_carry_logisim](/BreakingNESWiki/imgstore/6502/alu_bcd_carry_logisim.jpg)
 
 Optimized schematics:
 
@@ -174,7 +174,7 @@ The auxiliary signals /ADDx on the BCD correction circuits are derived from the 
 
 Logic:
 
-![alu_bcd_logisim](/BreakingNESWiki/imgstore/logisim/alu_bcd_logisim.jpg)
+![alu_bcd_logisim](/BreakingNESWiki/imgstore/6502/alu_bcd_logisim.jpg)
 
 Optimized schematics:
 
