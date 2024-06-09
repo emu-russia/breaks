@@ -25,6 +25,22 @@ module pc_test ();
 		.ADH(ADH), 
 		.DB(DB) );
 
+	// Single bit
+
+/*
+	wire AD_bit, DB_bit;
+
+	pc_carry pc_bit (
+		.PHI2(PHI2), 
+		.carry(1'b1), 
+		.AD(AD_bit), 
+		.DB(DB_bit), 
+		.PC_AD(1'b0), 
+		.PC_DB(1'b0), 
+		.AD_PC(1'b0), 
+		.PC_PC(1'b1) );
+*/
+
 	initial begin
 
 		$dumpfile("pc_test.vcd");

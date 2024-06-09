@@ -81,7 +81,7 @@ module pc_notcarry (PHI2, n_carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, co
 	output pcs;		// Not on a real chip
 
 	wire in_latch_d;
-	assign in_latch_d = AD_PC ? AD : (PC_PC ? q : 1'bz);
+	assign #2 in_latch_d = AD_PC ? AD : (PC_PC ? q : 1'bz);
 
 	wire out_latch_d;
 	aoi g1 (.a0(n_val), .a1(n_carry), .b(cout), .x(out_latch_d) );
@@ -118,7 +118,7 @@ module pc_carry (PHI2, carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, n_cout,
 	output pcs;		// Not on a real chip	
 
 	wire in_latch_d;
-	assign in_latch_d = AD_PC ? AD : (PC_PC ? q : 1'bz);
+	assign #2 in_latch_d = AD_PC ? AD : (PC_PC ? q : 1'bz);
 
 	wire out_latch_d;
 	oai g1 (.a0(val), .a1(carry), .b(n_cout), .x(out_latch_d) );
