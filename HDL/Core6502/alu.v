@@ -48,11 +48,11 @@ module ALU(
 	// ALU Ops intermediate results
 
 	wire [7:0] nands;
-	wire [7:0] ands; 		// odd bits
+	wire [7:0] ands; 		// odd bits only
 	wire [7:0] nors;
-	wire [7:0] ors; 		// even bits
-	wire [7:0] xors; 		// odd bits
-	wire [7:0] xnors; 		// even bits
+	wire [7:0] ors; 		// even bits only
+	wire [7:0] xors; 		// odd bits only
+	wire [7:0] xnors; 		// even bits only
 	wire [7:0] nsums;
 	wire [7:0] nres;
 
@@ -123,6 +123,20 @@ module ALU(
 	// Fast BCD Carry
 
 	// ACR, AVR
+
+	dlatch DCLatch (.d(DC7), .en(PHI2), .q(DCLatch_q) );
+	wire DCLatch_q;
+	wire AC7;
+	not (AC7, cout[7]);
+	dlatch ACLatch (.d(AC7), .en(PHI2), .q(ACLatch_q) );
+	wire ACLatch_q;
+	wire AVRLatch_d;
+	assign AVRLatch_d = ~(~(cout[6]|nands[7]) | (cout[6]&nors[7]));
+	dlatch AVRLatch (.d(AVRLatch_d), .en(PHI2), .nq(AVR) );
+
+	wire nACR;
+	nor (nACR, DCLatch_q, ACLatch_q);
+	not (ACR, nACR);
 
 	// Adder Hold
 
