@@ -114,13 +114,13 @@ module ALU(
 	aoi c0 (.a0(n_ACIN),  .a1(nands[0]), .b(nors[0]), .x(cout[0]) );
 	aoi c1 (.a0(cout[0]), .a1(ors[1]),   .b(ands[1]), .x(cout[1]) );
 	aoi c2 (.a0(cout[1]), .a1(nands[2]), .b(nors[2]), .x(cout[2]) );
-	aoi c3 (.a0(cout[2]), .a1(ors[3]),   .b(ands[3]), .x(cout[3]) );
+	aoi211 c3 (.a0(cout[2]), .a1(ors[3]), .b(ands[3]), .c(DC3), .x(cout[3]) );
 	aoi c4 (.a0(cout[3]), .a1(nands[4]), .b(nors[4]), .x(cout[4]) );
 	aoi c5 (.a0(cout[4]), .a1(ors[5]),   .b(ands[5]), .x(cout[5]) );
 	aoi c6 (.a0(cout[5]), .a1(nands[6]), .b(nors[6]), .x(cout[6]) );
 	aoi c7 (.a0(cout[6]), .a1(ors[7]),   .b(ands[7]), .x(cout[7]) );
 
-	// Fast BCD Carry
+	// Fast BCD Carry  (https://patents.google.com/patent/US3991307A)
 
 	// ACR, AVR
 
@@ -155,6 +155,63 @@ module ALU(
 
 	// BCD Correction
 
+	wire DAAL, DAAH, DSAL, DSAH;
+
+	wire daal_latch_d;
+	nand (daal_latch_d, ~n_DAA, ~cout[3]);
+	dlatch daal_latch (.d(daal_latch_d), .en(PHI2), .nq(DAAL) );
+	dlatch daah_latch (.d(~n_DAA), .en(PHI2), .nq(daah_latch_nq) );
+	wire daah_latch_nq;
+	nor (DAAH, nACR, daah_latch_nq);
+	wire dsal_latch_d;
+	nor (dsal_latch_d, ~cout[3], n_DSA);
+	dlatch dsal_latch (.d(dsal_latch_d), .en(PHI2), .q(DSAL) );
+	dlatch dsah_latch (.d(~n_DSA), .en(PHI2), .nq(dsah_latch_nq) );
+	wire dsah_latch_nq;
+	nor (DSAH, ACR, dsah_latch_nq);
+
+	bcd_nibble bcd_lo (.daa(DAAL), .dsa(DSAL), .sb(SB[3:0]), .bcd(acin[3:0]), .b1(nADD1), .b2(nADD2) );
+	bcd_nibble bcd_hi (.daa(DAAH), .dsa(DSAH), .sb(SB[7:4]), .bcd(acin[7:4]), .b1(nADD5), .b2(nADD6) );
+
 	// Accumulator + Bus Mpx
 
+	wire [7:0] acin;
+
+	wire [7:0] ac_d;
+	assign ac_d = PHI2 ? AC_q : (SB_AC ? acin : 8'bzzzzzzzz);
+	dlatch AC [7:0] (.d(ac_d), .en(8'b11111111), .nq(AC_nq) );
+	wire [7:0] AC_nq;
+	wire [7:0] AC_q;
+	assign AC_q = ~AC_nq;
+
+	assign SB = AC_SB ? AC_q : 8'bzzzzzzzz;
+	assign DB = AC_DB ? AC_q : 8'bzzzzzzzz;
+
+	tranif1 sb_db [7:0] (SB, DB, {8{SB_DB}});
+	tranif1 sb_adh [7:0] (SB, ADH, {8{SB_ADH}});
+
+	// ADH const gen
+	assign ADH[0] = Z_ADH0 ? 1'b0 : 1'bz;
+	assign ADH[7:1] = Z_ADH17 ? 7'b0000000 : 7'bzzzzzzz;
+
 endmodule // ALU
+
+// The BCD correction circuitry is symmetrical for each 4-bit nibble
+module bcd_nibble (daa, dsa, sb, bcd, b1, b2);
+
+	input daa;
+	input dsa;
+	input [3:0] sb;
+	output [3:0] bcd;
+	input b1;
+	input b2;
+
+	assign bcd[0] = sb[0];
+	xor (bcd[1], ~(daa|dsa), ~sb[1]);
+	xor (bcd[2], ((~(b1&daa)) & (~(~b1&dsa))), ~sb[2]);
+	wire t1, t2;
+	nand (t1, b1, b2);
+	nor (t2, b1, b2);
+	xor (bcd[3], ((~(t1&daa)) & (~(~t2&dsa))), ~sb[3]);
+
+endmodule // bcd_nibble
