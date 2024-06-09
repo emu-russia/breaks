@@ -45,6 +45,8 @@ module ALU(
 	output ACR;
 	output AVR;
 
+	// To debug: ai(AI), bi(BI), add_out(ADD), ACIN(CarryIn), ACR(CarryOut), AVR(OverflowOut), AC_q(A)
+
 	// ALU Ops intermediate results
 
 	wire [7:0] nands;
@@ -94,7 +96,9 @@ module ALU(
 	nor (xors[5], nors[5], ands[5]);
 	nor (xors[7], nors[7], ands[7]);
 
-	assign nsums[0] = ~((xnors[0]&~n_ACIN) | ~(xnors[0]|~n_ACIN));
+	wire ACIN;
+	not (ACIN, n_ACIN);
+	assign nsums[0] = ~((xnors[0]&ACIN) | ~(xnors[0]|ACIN));
 	assign nsums[1] = ~(( xors[1]&~cout[0]) | ~( xors[1]|~cout[0]));
 	assign nsums[2] = ~((xnors[2]&~cout[1]) | ~(xnors[2]|~cout[1]));
 	assign nsums[3] = ~(( xors[3]&~cout[2]) | ~( xors[3]|~cout[2]));
@@ -111,14 +115,14 @@ module ALU(
 
 	// Carry Chain
 
-	aoi c0 (.a0(n_ACIN),  .a1(nands[0]), .b(nors[0]), .x(cout[0]) );
-	aoi c1 (.a0(cout[0]), .a1(ors[1]),   .b(ands[1]), .x(cout[1]) );
-	aoi c2 (.a0(cout[1]), .a1(nands[2]), .b(nors[2]), .x(cout[2]) );
-	aoi211 c3 (.a0(cout[2]), .a1(ors[3]), .b(ands[3]), .c(DC3), .x(cout[3]) );
-	aoi c4 (.a0(cout[3]), .a1(nands[4]), .b(nors[4]), .x(cout[4]) );
-	aoi c5 (.a0(cout[4]), .a1(ors[5]),   .b(ands[5]), .x(cout[5]) );
-	aoi c6 (.a0(cout[5]), .a1(nands[6]), .b(nors[6]), .x(cout[6]) );
-	aoi c7 (.a0(cout[6]), .a1(ors[7]),   .b(ands[7]), .x(cout[7]) );
+	aoi cc0 (.a0(n_ACIN),  .a1(nands[0]), .b(nors[0]), .x(cout[0]) );
+	aoi cc1 (.a0(cout[0]), .a1(ors[1]),   .b(ands[1]), .x(cout[1]) );
+	aoi cc2 (.a0(cout[1]), .a1(nands[2]), .b(nors[2]), .x(cout[2]) );
+	aoi211 cc3 (.a0(cout[2]), .a1(ors[3]), .b(ands[3]), .c(DC3), .x(cout[3]) );
+	aoi cc4 (.a0(cout[3]), .a1(nands[4]), .b(nors[4]), .x(cout[4]) );
+	aoi cc5 (.a0(cout[4]), .a1(ors[5]),   .b(ands[5]), .x(cout[5]) );
+	aoi cc6 (.a0(cout[5]), .a1(nands[6]), .b(nors[6]), .x(cout[6]) );
+	aoi cc7 (.a0(cout[6]), .a1(ors[7]),   .b(ands[7]), .x(cout[7]) );
 
 	// Fast BCD Carry  (https://patents.google.com/patent/US3991307A)
 
