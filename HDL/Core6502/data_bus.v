@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module DataBusBit(
+module DataBusBit (
 	PHI1, PHI2,
 	ADL, ADH, DB, DB_Ext,
 	DL_ADL, DL_ADH, DL_DB,
@@ -38,7 +38,7 @@ module DataBusBit(
 
 endmodule // DataBusBit
 
-module WRLatch(PHI1, PHI2, WR, RD);
+module WRLatch (PHI1, PHI2, WR, RD);
 
 	input PHI1;
 	input PHI2;

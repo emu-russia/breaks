@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module ALU(
+module ALU (
 	PHI2,
 	NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD, ADD_SB06, ADD_SB7, ADD_ADL,
 	ANDS, EORS, ORS, SRS, SUMS, 

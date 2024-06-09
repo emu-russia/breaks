@@ -1,10 +1,13 @@
-
 `timescale 1ns/1ns
 
 module clock_test ();
 
 	reg CLK;
-	always #1 CLK = ~CLK;
+	always #25 CLK = ~CLK;
+
+	wire PHI1, PHI2, PHI1_topad, PHI2_topad;
+
+	ClkGen clkgen (.PHI0(CLK), .PHI1(PHI1), .PHI2(PHI2), .PHI1_topad(PHI1_topad), .PHI2_topad(PHI2_topad) );
 
 	initial begin
 

@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module ALU_Control(
+module ALU_Control (
 	PHI1, PHI2,
 	BRFW, n_ready, BRK6E, STKOP, PGX,
 	X,

@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module Flags(
+module Flags (
 	PHI1, PHI2,
 	P_DB, DB_P, DBZ_Z, DB_N, IR5_C, DB_C, ACR_C, IR5_D, IR5_I, DB_V, Z_V,
 	ACR, AVR, B_OUT, n_IR5, BRK6E, Dec112, SO_frompad, 

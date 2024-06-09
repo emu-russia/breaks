@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module BranchLogic(
+module BranchLogic (
 	PHI1, PHI2,
 	n_IR5, X, n_COUT, n_VOUT, n_NOUT, n_ZOUT, DB, BR2,
 	n_BRTAKEN, BRFW);

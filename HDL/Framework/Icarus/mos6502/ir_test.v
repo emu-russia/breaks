@@ -1,6 +1,6 @@
-// Testing IR
-
 `timescale 1ns/1ns
+
+// Testing IR
 
 module ir_test ();
 

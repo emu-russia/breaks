@@ -2,7 +2,7 @@
 
 // The handling of all exceptions and BRK instruction is unified and is referred to as the “BRK sequence”. 
 
-module BRKProcessing(
+module BRKProcessing (
 	PHI1, PHI2,
 	BRK5, n_ready, RESP, n_NMIP, BR2, T0, n_IRQP, n_IOUT,
 	BRK6E, BRK7, BRK5_RDY, DORES, n_DONMI, B_OUT);
@@ -100,7 +100,7 @@ module BRKProcessing(
 
 endmodule // BRKProcessing
 
-module IntVector(
+module IntVector (
 	PHI2, BRK5_RDY, BRK7, DORES, n_DONMI,
 	Z_ADL0, Z_ADL1, Z_ADL2);
 

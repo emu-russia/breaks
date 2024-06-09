@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module Regs_Control(
+module Regs_Control (
 	PHI1, PHI2, 
 	STOR, n_ready, 
 	X,

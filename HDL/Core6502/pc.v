@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module PC(
+module PC (
 	PHI2,
 	n_IPC,
 	ADL_PCL, PCL_PCL, PCL_ADL, PCL_DB, ADH_PCH, PCH_PCH, PCH_ADH, PCH_DB,

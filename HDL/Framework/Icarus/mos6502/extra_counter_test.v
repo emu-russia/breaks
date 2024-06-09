@@ -1,6 +1,6 @@
-// Testing the extra counter (T2-T5), which is actually a shift register (weird one)
-
 `timescale 1ns/1ns
+
+// Testing the extra counter (T2-T5), which is actually a shift register (weird one)
 
 module extra_counter_test ();
 
@@ -12,7 +12,7 @@ module extra_counter_test ();
 	reg n_ready;
 	reg T1;
 
-	always #1 CLK = ~CLK;
+	always #25 CLK = ~CLK;
 
 	ClkGen clk (.PHI0(CLK), .PHI1(PHI1), .PHI2(PHI2));
 

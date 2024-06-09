@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module Bus_Control(
+module Bus_Control (
 	PHI1, PHI2,
 	n_SBXY, AND, STOR, Z_ADL0, ACRL2, DL_PCH, n_ready, INC_SB, BRK6E, STXY, n_PCH_PCH,
 	T0, T1, T6, T7, BR0, 

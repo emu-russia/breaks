@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module Regs(
+module Regs (
 	PHI2,
 	Y_SB, SB_Y, X_SB, SB_X, S_SB, S_ADL, S_S, SB_S, 
 	SB, ADL);

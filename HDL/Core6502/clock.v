@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module ClkGen(PHI0, PHI1, PHI2, PHI1_topad, PHI2_topad);
+module ClkGen (PHI0, PHI1, PHI2, PHI1_topad, PHI2_topad);
 
 	input PHI0;
 	output PHI1;
@@ -16,7 +16,7 @@ module ClkGen(PHI0, PHI1, PHI2, PHI1_topad, PHI2_topad);
 
 endmodule 	// ClkGen
 
-module Phi1Gen(PHI0, PHI1);
+module Phi1Gen (PHI0, PHI1);
 
 	input PHI0;
 	output PHI1;
@@ -25,7 +25,7 @@ module Phi1Gen(PHI0, PHI1);
 
 endmodule // Phi1Gen
 
-module Phi2Gen(PHI0, PHI1, PHI2);
+module Phi2Gen (PHI0, PHI1, PHI2);
 
 	input PHI0;
 	input PHI1;

@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-module PC_Control(
+module PC_Control (
 	PHI1, PHI2,
 	n_ready, T0, T1, BR0,
 	X,
