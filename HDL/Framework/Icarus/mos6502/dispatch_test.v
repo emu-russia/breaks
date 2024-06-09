@@ -2,7 +2,7 @@
 
 `timescale 1ns/1ns
 
-module Dispatcher_Run ();
+module dispatch_test ();
 
 	reg CLK;
 	wire PHI1;
@@ -65,8 +65,8 @@ module Dispatcher_Run ();
 
 	initial begin
 
-		$dumpfile("dispatcher_test.vcd");
-		$dumpvars(0, Dispatcher_Run);
+		$dumpfile("dispatch_test.vcd");
+		$dumpvars(0, dispatch_test);
 
 		CLK <= 1'b0;
 
@@ -75,7 +75,7 @@ module Dispatcher_Run ();
 		$finish;
 	end
 
-endmodule // Dispatcher_Run
+endmodule // dispatch_test
 
 module MemoryDevice (DataBus);
 
