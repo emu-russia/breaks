@@ -1,0 +1,101 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Sun Jun 09 19:59:02 2024
+[*]
+[dumpfile] "C:\Work\breaks\HDL\Framework\Icarus\mos6502\core.vcd"
+[dumpfile_mtime] "Sun Jun 09 19:47:04 2024"
+[dumpfile_size] 1874995
+[savefile] "C:\Work\breaks\HDL\Framework\Icarus\mos6502\core.gtkw"
+[timestart] 0
+[size] 2560 1009
+[pos] -1 -1
+*-4.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] Core_Run.
+[treeopen] Core_Run.core.
+[treeopen] Core_Run.core.top.
+[sst_width] 211
+[signals_width] 142
+[sst_expanded] 1
+[sst_vpaned_height] 298
+@200
+-Clocks
+@28
+Core_Run.core.PHI0
+Core_Run.core.PHI1
+Core_Run.core.PHI2
+@200
+-Pads
+@28
+Core_Run.core.RDY
+Core_Run.core.n_RES
+Core_Run.core.n_NMI
+Core_Run.core.n_IRQ
+Core_Run.core.RnW
+Core_Run.core.SYNC
+Core_Run.core.SO
+@22
+Core_Run.core.A[15:0]
+Core_Run.core.D[7:0]
+@200
+-Regs
+@22
+Core_Run.core.bot.pc.pc[15:0]
+Core_Run.core.bot.pc.pcs[15:0]
+Core_Run.core.bot.regs.x[7:0]
+Core_Run.core.bot.regs.y[7:0]
+Core_Run.core.bot.regs.s[7:0]
+Core_Run.core.bot.regs.ss[7:0]
+Core_Run.core.top.pd.PD[7:0]
+Core_Run.core.top.ir.IR_out[7:0]
+Core_Run.core.bot.alu.ai[7:0]
+Core_Run.core.bot.alu.bi[7:0]
+Core_Run.core.bot.alu.add_out[7:0]
+Core_Run.core.bot.alu.AC_q[7:0]
+@200
+-Flags
+@28
+Core_Run.core.top.flags.COUT
+Core_Run.core.top.flags.ZOUT
+Core_Run.core.top.flags.IOUT
+Core_Run.core.top.flags.DOUT
+Core_Run.core.top.flags.B_OUT
+Core_Run.core.top.flags.VOUT
+Core_Run.core.top.flags.NOUT
+Core_Run.core.bot.alu.ACR
+Core_Run.core.bot.alu.AVR
+@200
+-Internal Buses
+@22
+Core_Run.core.bot.SB[7:0]
+Core_Run.core.bot.DB[7:0]
+Core_Run.core.bot.ADL[7:0]
+Core_Run.core.bot.ADH[7:0]
+@200
+-Timings
+@28
+Core_Run.core.top.disp.T0
+Core_Run.core.top.disp.T1
+Core_Run.core.top.extcnt.n_T2
+Core_Run.core.top.extcnt.n_T3
+Core_Run.core.top.extcnt.n_T4
+Core_Run.core.top.extcnt.n_T5
+Core_Run.core.top.disp.T6
+Core_Run.core.top.disp.T7
+@200
+-Interrupts
+-Completion
+@28
+Core_Run.core.top.disp.ENDS
+Core_Run.core.top.disp.comp_unit.ENDX
+Core_Run.core.top.disp.twocyc.TRES1
+Core_Run.core.top.disp.comp_unit.TRES2
+Core_Run.core.top.disp.comp_unit.n_TRESX
+Core_Run.core.top.disp.fetch_unit.FETCH
+@200
+-Modes
+@28
+Core_Run.core.top.n_ready
+@29
+Core_Run.core.top.WR
+[pattern_trace] 1
+[pattern_trace] 0
