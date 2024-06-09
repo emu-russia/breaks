@@ -43,9 +43,9 @@ The simulation in Altera Quartus shows "lag", but does not show the elongated lo
 
 BigEd from the 6502.org forum suggested that he ran a simulation on the 6502 FPGA netlist and got the following sweeps:
 
-![cclk-rising](/BreakingNESWiki/imgstore/6502/cclk-rising.png)
+![cclk-rising](/BreakingNESWiki/imgstore/6502/waves/cclk-rising.png)
 
-![cclk-falling](/BreakingNESWiki/imgstore/6502/cclk-falling.png)
+![cclk-falling](/BreakingNESWiki/imgstore/6502/waves/cclk-falling.png)
 
 The signal designations are as follows: clk0 = PHI0, cp1 = PHI1, cclk = PHI2 (according to the netlist with Visual6502)
 

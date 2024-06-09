@@ -43,9 +43,9 @@
 
 BigEd с форума 6502.org подсказал, что он проводил симуляцию на базе FPGA-нетлиста 6502 и получил следующие развертки:
 
-![cclk-rising](/BreakingNESWiki/imgstore/6502/cclk-rising.png)
+![cclk-rising](/BreakingNESWiki/imgstore/6502/waves/cclk-rising.png)
 
-![cclk-falling](/BreakingNESWiki/imgstore/6502/cclk-falling.png)
+![cclk-falling](/BreakingNESWiki/imgstore/6502/waves/cclk-falling.png)
 
 Обозначение сигналов следующие: clk0 = PHI0, cp1 = PHI1, cclk = PHI2 (согласно нетлисту с Visual6502)
 
