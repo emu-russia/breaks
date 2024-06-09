@@ -56,8 +56,7 @@ module ALU(
 	wire [7:0] nsums;
 	wire [7:0] nres;
 
-	wire [7:0] carry; 		// inverted carry chain (even: inverted polarity, odd: regular polarity)
-	assign carry[0] = n_ACIN;
+	wire [7:0] cout; 		// inverted carry chain (even bits out: regular polarity, odd bits out: inverted polarity)
 
 	// AI/BI Latches
 
@@ -95,14 +94,14 @@ module ALU(
 	nor (xors[5], nors[5], ands[5]);
 	nor (xors[7], nors[7], ands[7]);
 
-	assign nsums[0] = ~((xnors[0]&~carry[0]) | ~(xnors[0]|~carry[0]));
-	assign nsums[1] = ~(( xors[1]&~carry[1]) | ~( xors[1]|~carry[1]));
-	assign nsums[2] = ~((xnors[2]&~carry[2]) | ~(xnors[2]|~carry[2]));
-	assign nsums[3] = ~(( xors[3]&~carry[3]) | ~( xors[3]|~carry[3]));
-	assign nsums[4] = ~((xnors[4]&~carry[4]) | ~(xnors[4]|~carry[4]));
-	assign nsums[5] = ~(( xors[5]&~carry[5]) | ~( xors[5]|~carry[5]));
-	assign nsums[6] = ~((xnors[6]&~carry[6]) | ~(xnors[6]|~carry[6]));
-	assign nsums[7] = ~(( xors[7]&~carry[7]) | ~( xors[7]|~carry[7]));
+	assign nsums[0] = ~((xnors[0]&~n_ACIN) | ~(xnors[0]|~n_ACIN));
+	assign nsums[1] = ~(( xors[1]&~cout[0]) | ~( xors[1]|~cout[0]));
+	assign nsums[2] = ~((xnors[2]&~cout[1]) | ~(xnors[2]|~cout[1]));
+	assign nsums[3] = ~(( xors[3]&~cout[2]) | ~( xors[3]|~cout[2]));
+	assign nsums[4] = ~((xnors[4]&~cout[3]) | ~(xnors[4]|~cout[3]));
+	assign nsums[5] = ~(( xors[5]&~cout[4]) | ~( xors[5]|~cout[4]));
+	assign nsums[6] = ~((xnors[6]&~cout[5]) | ~(xnors[6]|~cout[5]));
+	assign nsums[7] = ~(( xors[7]&~cout[6]) | ~( xors[7]|~cout[6]));
 
 	assign nres = SRS ? ({1'b1,nands[7:1]}) : (
 		ANDS ? nands : (
@@ -112,18 +111,18 @@ module ALU(
 
 	// Carry Chain
 
-	wire cout;
-
-	aoi c0 (.a0(carry[0]), .a1(nands[0]), .b(nors[0]), .x(carry[1]) );
-	aoi c1 (.a0(carry[1]), .a1(ors[1]),   .b(ands[1]), .x(carry[2]) );
-	aoi c2 (.a0(carry[2]), .a1(nands[2]), .b(nors[2]), .x(carry[3]) );
-	aoi c3 (.a0(carry[3]), .a1(ors[3]),   .b(ands[3]), .x(carry[4]) );
-	aoi c4 (.a0(carry[4]), .a1(nands[4]), .b(nors[4]), .x(carry[5]) );
-	aoi c5 (.a0(carry[5]), .a1(ors[5]),   .b(ands[5]), .x(carry[6]) );
-	aoi c6 (.a0(carry[6]), .a1(nands[6]), .b(nors[6]), .x(carry[7]) );
-	aoi c7 (.a0(carry[7]), .a1(ors[7]),   .b(ands[7]), .x(cout) );
+	aoi c0 (.a0(n_ACIN),  .a1(nands[0]), .b(nors[0]), .x(cout[0]) );
+	aoi c1 (.a0(cout[0]), .a1(ors[1]),   .b(ands[1]), .x(cout[1]) );
+	aoi c2 (.a0(cout[1]), .a1(nands[2]), .b(nors[2]), .x(cout[2]) );
+	aoi c3 (.a0(cout[2]), .a1(ors[3]),   .b(ands[3]), .x(cout[3]) );
+	aoi c4 (.a0(cout[3]), .a1(nands[4]), .b(nors[4]), .x(cout[4]) );
+	aoi c5 (.a0(cout[4]), .a1(ors[5]),   .b(ands[5]), .x(cout[5]) );
+	aoi c6 (.a0(cout[5]), .a1(nands[6]), .b(nors[6]), .x(cout[6]) );
+	aoi c7 (.a0(cout[6]), .a1(ors[7]),   .b(ands[7]), .x(cout[7]) );
 
 	// Fast BCD Carry
+
+	// ACR, AVR
 
 	// Adder Hold
 
