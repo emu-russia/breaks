@@ -61,7 +61,7 @@ BCD коррекция производится в следующих случа
 
 Логическая схема:
 
-![alu_control_addsb7](/BreakingNESWiki/imgstore/logisim/alu_control_addsb7.jpg)
+![alu_control_addsb7](/BreakingNESWiki/imgstore/6502/alu_control_addsb7.jpg)
 
 Оптимизированная логическая схема:
 
@@ -96,7 +96,7 @@ BCD коррекция производится в следующих случа
 
 ## Логическая схема
 
-![alu_control_logisim](/BreakingNESWiki/imgstore/logisim/alu_control_logisim.jpg)
+![alu_control_logisim](/BreakingNESWiki/imgstore/6502/alu_control_logisim.jpg)
 
 ## Оптимизированная логическая схема
 

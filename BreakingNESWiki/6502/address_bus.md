@@ -43,11 +43,11 @@
 
 На логических схемах PHI2 не используется, а FF организованный на двух инверторах заменен обычным триггером.
 
-![abl02_logisim](/BreakingNESWiki/imgstore/logisim/abl02_logisim.jpg)
+![abl02_logisim](/BreakingNESWiki/imgstore/6502/abl02_logisim.jpg)
 
-![abl_logisim](/BreakingNESWiki/imgstore/logisim/abl_logisim.jpg)
+![abl_logisim](/BreakingNESWiki/imgstore/6502/abl_logisim.jpg)
 
-![abh_logisim](/BreakingNESWiki/imgstore/logisim/abh_logisim.jpg)
+![abh_logisim](/BreakingNESWiki/imgstore/6502/abh_logisim.jpg)
 
 ## Оптимизированная логическая схема
 

@@ -105,7 +105,7 @@ Flag 5 is not used. The DB5 bit is not changed (not connected) when saving the r
 
 ## Logic
 
-![flags_logisim](/BreakingNESWiki/imgstore/logisim/flags_logisim.jpg)
+![flags_logisim](/BreakingNESWiki/imgstore/6502/flags_logisim.jpg)
 
 ## Optimized Schematics
 

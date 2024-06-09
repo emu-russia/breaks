@@ -61,7 +61,7 @@ The attentive reader will notice that the processor has support for bit rotation
 
 Logic:
 
-![alu_control_addsb7](/BreakingNESWiki/imgstore/logisim/alu_control_addsb7.jpg)
+![alu_control_addsb7](/BreakingNESWiki/imgstore/6502/alu_control_addsb7.jpg)
 
 Optimized schematics:
 
@@ -96,7 +96,7 @@ Optimized schematics:
 
 ## Logic
 
-![alu_control_logisim](/BreakingNESWiki/imgstore/logisim/alu_control_logisim.jpg)
+![alu_control_logisim](/BreakingNESWiki/imgstore/6502/alu_control_logisim.jpg)
 
 ## Optimized Schematics
 

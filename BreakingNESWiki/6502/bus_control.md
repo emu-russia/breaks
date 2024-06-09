@@ -134,7 +134,7 @@
 
 ## Логическая схема
 
-![bus_control_logisim](/BreakingNESWiki/imgstore/logisim/bus_control_logisim.jpg)
+![bus_control_logisim](/BreakingNESWiki/imgstore/6502/bus_control_logisim.jpg)
 
 ## Оптимизированная логическая схема
 
