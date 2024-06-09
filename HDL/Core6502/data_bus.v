@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 module DataBusBit(
 	PHI1, PHI2,

@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 module Dispatch (
 	PHI1, PHI2,

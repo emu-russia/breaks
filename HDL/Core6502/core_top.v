@@ -1,3 +1,5 @@
+`timescale 1ns/1ns
+
 // Top module for MOS 6502 Core
 
 // Top->Bottom Operations

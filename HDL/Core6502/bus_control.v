@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 module Bus_Control(
 	PHI1, PHI2,

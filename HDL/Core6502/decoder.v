@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 module Decoder(
 	n_T0, n_T1X,

@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 module ExtraCounter (
 	PHI1, PHI2, TRES2, n_ready, T1,

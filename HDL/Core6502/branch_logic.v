@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 module BranchLogic(
 	PHI1, PHI2,

@@ -1,3 +1,5 @@
+`timescale 1ns/1ns
+
 // The logic next to the terminal pads.
 
 module PadsLogic(

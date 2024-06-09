@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 module ClkGen(PHI0, PHI1, PHI2, PHI1_topad, PHI2_topad);
 

@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 module Flags(
 	PHI1, PHI2,

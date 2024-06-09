@@ -1,3 +1,4 @@
+`timescale 1ns/1ns
 
 // TBD: The IR register here is implemented a bit unfairly. 
 // The real IR uses dual-rails for the clock, and the Enable (FETCH) input is made as a tristate.
