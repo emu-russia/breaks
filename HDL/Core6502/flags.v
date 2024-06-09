@@ -110,15 +110,25 @@ module Flags (
 	nor (vset_latch_d, so_latch3_q, so_latch1_nq);
 	dlatch vset_latch (.d(vset_latch_d), .en(PHI2), .q(One_V) );
 
+	// decomplements and debug at the same time
+
+	wire COUT, ZOUT, IOUT, DOUT, VOUT, NOUT;
+	not (COUT, n_COUT);
+	not (ZOUT, n_ZOUT);
+	not (IOUT, n_IOUT);
+	not (DOUT, n_DOUT);
+	not (VOUT, n_VOUT);
+	not (NOUT, n_NOUT);
+
 	// Flags Out
 
-	assign DB[0] = P_DB ? ~n_COUT : 1'bz;
-	assign DB[1] = P_DB ? ~n_ZOUT : 1'bz;
-	assign DB[2] = P_DB ? ~n_IOUT : 1'bz;
-	assign DB[3] = P_DB ? ~n_DOUT : 1'bz;
+	assign DB[0] = P_DB ? COUT : 1'bz;
+	assign DB[1] = P_DB ? ZOUT : 1'bz;
+	assign DB[2] = P_DB ? IOUT : 1'bz;
+	assign DB[3] = P_DB ? DOUT : 1'bz;
 	assign DB[4] = P_DB ? B_OUT : 1'bz; 		// From the BRK sequencer
 	assign DB[5] = 1'bz;
-	assign DB[6] = P_DB ? ~n_VOUT : 1'bz;
-	assign DB[7] = P_DB ? ~n_NOUT : 1'bz;
+	assign DB[6] = P_DB ? VOUT : 1'bz;
+	assign DB[7] = P_DB ? NOUT : 1'bz;
 
 endmodule // Flags
