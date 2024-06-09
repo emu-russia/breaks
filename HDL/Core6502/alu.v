@@ -122,6 +122,24 @@ module ALU(
 
 	// Fast BCD Carry  (https://patents.google.com/patent/US3991307A)
 
+	wire nncarry4 = ~(~cout[4]);
+
+	wire a0, b0, c0;
+	wire temp1;
+	assign temp1 = ~((n_ACIN&nands[0]) | nors[0]);
+	assign a0 = ~(nors[2] | ~(ands[1] & temp1));
+	wire nnands2;
+	assign nnands2 = ~nands[2];
+	assign b0 = ~(nnands2 | xors[3]);
+	assign c0 = ~(temp1 | ~(nnands2|nors[2]) | ands[1] | xors[1]);
+	assign DC3 = (a0 | ~(b0|c0)) & ~n_DAA;
+
+	wire a1, b1, c1;
+	assign a1 = ~(xnors[6] | ~(ands[5]&nncarry4));
+	assign b1 = ~(xors[7] | ~nands[6]);
+	assign c1 = ~(nncarry4 | ands[5] | xors[5] | ~xnors[6]);
+	assign DC7 = (a1 | ~(b1|c1)) & ~n_DAA;
+
 	// ACR, AVR
 
 	dlatch DCLatch (.d(DC7), .en(PHI2), .q(DCLatch_q) );
