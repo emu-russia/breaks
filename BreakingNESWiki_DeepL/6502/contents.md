@@ -30,3 +30,4 @@
 - [Registers](regs.md)
 - [ALU](alu.md)
 - [Program Counter](pc.md)
+- [Bus Multiplexer](busmux.md)
