@@ -27,7 +27,7 @@ All control signals for the bottom are combined on a common bus and are called `
 |ADL_ADD|12|ADL => BI|
 |ANDS|13|AI & BI|
 |EORS|14|AI ^ BI|
-|ORS|15|AI | BI|
+|ORS|15|AI \| BI|
 |SRS|16|>>= 1|
 |SUMS|17|AI + BI|
 |ADD_SB7|18|ADD\[7\] => SB\[7\]|
