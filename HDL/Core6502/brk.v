@@ -1,6 +1,6 @@
 `timescale 1ns/1ns
 
-// The handling of all exceptions and BRK instruction is unified and is referred to as the “BRK sequence”. 
+// The handling of all exceptions and BRK instruction is unified and is referred to as the "BRK sequence".
 
 module BRKProcessing (
 	PHI1, PHI2,

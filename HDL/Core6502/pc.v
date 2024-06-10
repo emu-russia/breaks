@@ -60,7 +60,7 @@ module PC (
 	wire IPC; 				// 1: Incerement PC
 	not (IPC, n_IPC);
 	wire [15:0] pc; 		// PC
-	wire [15:0] pcs; 		// PC Shadow
+	wire [15:0] pcs; 		// PC Shadow aka Select
 
 endmodule // PC
 
