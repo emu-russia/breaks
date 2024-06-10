@@ -970,11 +970,9 @@
     <wire from="(1750,280)" to="(1840,280)"/>
     <wire from="(1760,690)" to="(1760,740)"/>
     <wire from="(1760,740)" to="(1870,740)"/>
-    <wire from="(1780,1490)" to="(1790,1490)"/>
-    <wire from="(1780,680)" to="(1780,1490)"/>
+    <wire from="(1780,680)" to="(1780,1750)"/>
     <wire from="(1780,680)" to="(1840,680)"/>
-    <wire from="(1790,1490)" to="(1790,1750)"/>
-    <wire from="(180,1730)" to="(380,1730)"/>
+    <wire from="(180,1730)" to="(370,1730)"/>
     <wire from="(1800,240)" to="(1840,240)"/>
     <wire from="(1800,360)" to="(1950,360)"/>
     <wire from="(1800,370)" to="(1940,370)"/>
@@ -1086,11 +1084,11 @@
     <wire from="(330,440)" to="(360,440)"/>
     <wire from="(330,640)" to="(360,640)"/>
     <wire from="(330,90)" to="(340,90)"/>
+    <wire from="(370,1730)" to="(370,2130)"/>
+    <wire from="(370,2130)" to="(670,2130)"/>
     <wire from="(370,2140)" to="(370,2280)"/>
     <wire from="(370,2140)" to="(670,2140)"/>
     <wire from="(370,530)" to="(370,580)"/>
-    <wire from="(380,1730)" to="(380,2130)"/>
-    <wire from="(380,2130)" to="(670,2130)"/>
     <wire from="(380,2300)" to="(380,2380)"/>
     <wire from="(380,530)" to="(380,580)"/>
     <wire from="(390,1380)" to="(730,1380)"/>
@@ -1292,7 +1290,7 @@
     <wire from="(860,770)" to="(860,1160)"/>
     <wire from="(870,1150)" to="(960,1150)"/>
     <wire from="(870,1240)" to="(870,1410)"/>
-    <wire from="(870,1750)" to="(1790,1750)"/>
+    <wire from="(870,1750)" to="(1780,1750)"/>
     <wire from="(870,1750)" to="(870,1840)"/>
     <wire from="(870,1840)" to="(920,1840)"/>
     <wire from="(870,530)" to="(870,580)"/>
@@ -33830,15 +33828,15 @@
       <a name="label" val="S_SB"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="6" loc="(2120,264)" name="Text">
+    <comp lib="6" loc="(2120,260)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="external databus"/>
     </comp>
-    <comp lib="6" loc="(2162,208)" name="Text">
+    <comp lib="6" loc="(2160,205)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="to flags"/>
     </comp>
-    <comp lib="6" loc="(63,397)" name="Text">
+    <comp lib="6" loc="(60,395)" name="Text">
       <a name="font" val="SansSerif plain 12"/>
       <a name="text" val="external databus"/>
     </comp>
