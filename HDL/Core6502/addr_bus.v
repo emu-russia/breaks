@@ -3,33 +3,6 @@
 // Contains the implementation of the address bus output terminals and the ABH/ABL registers where the actual address value is stored.
 // Memo: The 6502 processor sets the address for the next operation during the PHI1 phase (together with R/W mode).
 
-// This variation is used for ADL[2:0], to allow them to be additionally zeroed with the 0/ADLn signal
-module AddrBusBitLow (
-	PHI1, PHI2,
-	ADX, Z_ADX, ADX_ABX,
-	ABus_out);
-
-	input PHI1;
-	input PHI2;
-	input ADX; 				// Address bus bit
-	input Z_ADX; 			// Bit zeroing command
-	input ADX_ABX;
-	output ABus_out;		// Output value of the address bus terminal
-
-	wire n_adx = ~(ADX & ~Z_ADX);
-	wire abff_out;
-
-	AddrBusFF abff (
-		.phi_load(PHI1),
-		.phi_keep(PHI2),
-		.en(ADX_ABX),
-		.val(n_adx),
-		.q(abff_out));
-
-	assign ABus_out = ~abff_out;
-
-endmodule // AddrBusBitLow
-
 module AddrBusBit (
 	PHI1, PHI2,
 	ADX, ADX_ABX,

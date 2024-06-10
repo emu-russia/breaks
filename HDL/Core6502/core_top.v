@@ -579,10 +579,6 @@ module Core6502_Bot (PHI1, PHI2, bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, ACR, AVR,
 		.SB_AC(`SB_AC),
 		.AC_SB(`AC_SB),
 		.AC_DB(`AC_DB),
-		.SB_DB(`SB_DB),
-		.SB_ADH(`SB_ADH),
-		.Z_ADH0(`Z_ADH0),
-		.Z_ADH17(`Z_ADH17),
 		.n_ACIN(n_ACIN),
 		.n_DAA(n_DAA),
 		.n_DSA(n_DSA),
@@ -608,27 +604,19 @@ module Core6502_Bot (PHI1, PHI2, bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, ACR, AVR,
 		.ADH(ADH),
 		.DB(DB) );
 
-	AddrBusBitLow abl02 [2:0] (
+	AddrBusBit abl [7:0] (
 		.PHI1(PHI1),
 		.PHI2(PHI2),
-		.ADX(ADL[2:0]),
-		.Z_ADX({Z_ADL2,Z_ADL1,Z_ADL0}),
+		.ADX(ADL),
 		.ADX_ABX(`ADL_ABL),
-		.ABus_out(A[2:0]) );
-
-	AddrBusBit abl [7:3] (
-		.PHI1(PHI1),
-		.PHI2(PHI2),
-		.ADX(ADL[7:3]),
-		.ADX_ABX(`ADL_ABL),
-		.ABus_out(A[7:3]) );
+		.ABus_out(A[7:0]) );
 
 	AddrBusBit abh [7:0] (
 		.PHI1(PHI1),
 		.PHI2(PHI2),
 		.ADX(ADH),
 		.ADX_ABX(`ADH_ABH),
-		.ABus_out(A[7:0]) );
+		.ABus_out(A[15:8]) );
 
 	WRLatch wrl (
 		.PHI1(PHI1),
@@ -648,26 +636,18 @@ module Core6502_Bot (PHI1, PHI2, bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, ACR, AVR,
 		.DL_DB(`DL_DB),
 		.RD(RD_to_db) );
 
-	BusPrecharge precharge (
+	BusMux busmux (
 		.PHI2(PHI2),
 		.SB(SB),
 		.DB(DB),
 		.ADL(ADL),
-		.ADH(ADH) );
+		.ADH(ADH),
+		.Z_ADL0(`Z_ADL0),
+		.Z_ADL1(`Z_ADL1),
+		.Z_ADL2(`Z_ADL2),
+		.Z_ADH0(`Z_ADH0),
+		.Z_ADH17(`Z_ADH17),
+		.SB_DB(`SB_DB),
+		.SB_ADH(`SB_ADH) );
 
 endmodule // Core6502_Bot
-
-module BusPrecharge ( PHI2, SB, DB, ADL, ADH );
-
-	input PHI2;
-	inout [7:0] SB;
-	inout [7:0] DB;
-	inout [7:0] ADL;
-	inout [7:0] ADH;
-
-	assign SB = PHI2 ? 8'b11111111 : 8'bzzzzzzzz;
-	assign DB = PHI2 ? 8'b11111111 : 8'bzzzzzzzz;
-	assign ADL = PHI2 ? 8'b11111111 : 8'bzzzzzzzz;
-	assign ADH = PHI2 ? 8'b11111111 : 8'bzzzzzzzz;
-
-endmodule // BusPrecharge

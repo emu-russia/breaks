@@ -4,7 +4,7 @@ module ALU (
 	PHI2,
 	NDB_ADD, DB_ADD, Z_ADD, SB_ADD, ADL_ADD, ADD_SB06, ADD_SB7, ADD_ADL,
 	ANDS, EORS, ORS, SRS, SUMS, 
-	SB_AC, AC_SB, AC_DB, SB_DB, SB_ADH, Z_ADH0, Z_ADH17,
+	SB_AC, AC_SB, AC_DB, 
 	n_ACIN, n_DAA, n_DSA,
 	SB, DB, ADL, ADH,
 	ACR, AVR);
@@ -29,10 +29,6 @@ module ALU (
 	input SB_AC;
 	input AC_SB;
 	input AC_DB;
-	input SB_DB;
-	input SB_ADH;
-	input Z_ADH0;
-	input Z_ADH17;
 
 	input n_ACIN;
 	input n_DAA;
@@ -209,13 +205,6 @@ module ALU (
 
 	assign SB = AC_SB ? AC_q : 8'bzzzzzzzz;
 	assign DB = AC_DB ? AC_q : 8'bzzzzzzzz;
-
-	tranif1 sb_db [7:0] (SB, DB, {8{SB_DB}});
-	tranif1 sb_adh [7:0] (SB, ADH, {8{SB_ADH}});
-
-	// ADH const gen
-	assign ADH[0] = Z_ADH0 ? 1'b0 : 1'bz;
-	assign ADH[7:1] = Z_ADH17 ? 7'b0000000 : 7'bzzzzzzz;
 
 endmodule // ALU
 
