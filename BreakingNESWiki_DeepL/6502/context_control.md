@@ -68,8 +68,8 @@ All commands are discussed in more detail in their respective sections. The summ
 |ADL/ABL|√|√|ADL => ABL|
 |0/ADL0, 0/ADL1, 0/ADL2|√|√|Reset some of the ADL bus bits. Used to set the interrupt vector.|
 |0/ADH0, 0/ADH17|√|√|Reset some of the ADH bus bits|
-|SB/DB|√|√|SB <=> DB, connect the two buses|
-|SB/ADH|√|√|SB <=> ADH|
+|SB/DB|√|√|SB <=> DB, connect the buses|
+|SB/ADH|√|√|SB <=> ADH, connect the buses|
 |DL latch control commands||||
 |DL/ADL|√|√|DL => ADL|
 |DL/ADH|√|√|DL => ADH|

@@ -28,6 +28,8 @@ Control commands:
 - ADL/ABL: Place the value of the internal ADL bus on the ABL register
 - ADH/ABH: Place the ADH internal bus value on the ABH register
 
+:warning: As time passed, it turned out that FET where 0/ADL0, 0/ADL1, 0/ADL2 commands are used is more convenient to make a part of [Bus Multiplexer](busmux.md) circuit.
+
 ## Circuit Flow
 
 Consider the behavior of the circuit when ADL = 0:

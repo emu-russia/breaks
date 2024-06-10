@@ -198,3 +198,5 @@ In addition to directly outputting the accumulator to the SB and DB buses, other
 - SB/DB: Connect the SB bus to DB bus
 - SB/ADH: Connect the SB bus to ADH bus
 - 0/ADH17: Forced write 0 to ADH bits 1-7. The control signal `0/ADH0` is used for bit 0 instead of 0/ADH17.
+
+:warning: As time passed, it turned out that FET where SB/DB, SB/ADH, 0/ADH0, 0/ADH17 commands are used is more convenient to make a part of [Bus Multiplexer](busmux.md) circuit.
