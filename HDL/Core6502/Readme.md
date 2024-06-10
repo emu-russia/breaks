@@ -51,8 +51,8 @@ All control signals for the bottom are combined on a common bus and are called `
 |Z_ADL2|36|Reset some of the ADL bus bits (2). Used to set the interrupt vector.|
 |Z_ADH0|37|Reset some of the ADH bus bits (0)|
 |Z_ADH17|38|Reset some of the ADH bus bits (1-7)|
-|SB_DB|39|SB <=> DB, connect the two buses|
-|SB_ADH|40|SB <=> ADH|
+|SB_DB|39|SB <=> DB, connect the buses|
+|SB_ADH|40|SB <=> ADH, connect the buses|
 |DL_ADL|41|DL => ADL|
 |DL_ADH|42|DL => ADH|
 |DL_DB|43|DL <=> DB|

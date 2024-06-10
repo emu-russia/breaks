@@ -10,7 +10,7 @@ The circuits for working with the external data bus consist of 8 identical piece
 
 - DOR: The DOR latch stores the output value to be placed on the D0-D7 bus pins. If RD=1 the complementary output lines with DOR are cut off, so the whole output part becomes floating.
 - DL: The DL latch stores the input value
-- Next to the control signal `DL/DB` you can see the precharge transistor for the internal bus DB
+- Next to the control signal `DL/DB` you can see the precharge transistor for the internal bus DB (see also [Bus Multiplexer](busmux.md))
 
 Control signals:
 - DL/ADL: Place the DL latch value on the internal ADL bus

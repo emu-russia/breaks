@@ -9339,6 +9339,7 @@
       <a name="facing" val="north"/>
       <a name="label" val="DB_out7"/>
       <a name="output" val="true"/>
+      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(4190,100)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -9361,6 +9362,7 @@
       <a name="facing" val="north"/>
       <a name="label" val="DB_out6"/>
       <a name="output" val="true"/>
+      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(4240,1130)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -9383,6 +9385,7 @@
       <a name="facing" val="north"/>
       <a name="label" val="DB_out5"/>
       <a name="output" val="true"/>
+      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(4280,100)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -9411,6 +9414,7 @@
       <a name="facing" val="north"/>
       <a name="label" val="DB_out4"/>
       <a name="output" val="true"/>
+      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(4310,100)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -9437,6 +9441,7 @@
       <a name="facing" val="north"/>
       <a name="label" val="DB_out3"/>
       <a name="output" val="true"/>
+      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(4340,870)" name="Tunnel">
       <a name="label" val="ACR_C"/>
@@ -9474,6 +9479,7 @@
       <a name="facing" val="north"/>
       <a name="label" val="DB_out2"/>
       <a name="output" val="true"/>
+      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(4400,100)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -9491,12 +9497,14 @@
       <a name="facing" val="north"/>
       <a name="label" val="DB_out1"/>
       <a name="output" val="true"/>
+      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(4460,1330)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="north"/>
       <a name="label" val="DB_out0"/>
       <a name="output" val="true"/>
+      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(4460,340)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -34110,6 +34118,7 @@
       <a name="label" val="SB_out"/>
       <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1370,140)" name="Pin">
@@ -34118,6 +34127,7 @@
       <a name="label" val="DB_out"/>
       <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1370,170)" name="Pin">
@@ -34126,6 +34136,7 @@
       <a name="label" val="ADL_out"/>
       <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1370,200)" name="Pin">
@@ -34134,6 +34145,7 @@
       <a name="label" val="ADH_out"/>
       <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(140,520)" name="Tunnel">
@@ -34238,24 +34250,28 @@
       <a name="appearance" val="NewPins"/>
       <a name="label" val="SB_in"/>
       <a name="radix" val="16"/>
+      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(170,370)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="DB_in"/>
       <a name="radix" val="16"/>
+      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(170,400)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="ADL_in"/>
       <a name="radix" val="16"/>
+      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(170,430)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="ADH_in"/>
       <a name="radix" val="16"/>
+      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(440,1000)" name="Tunnel">

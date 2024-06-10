@@ -48,6 +48,8 @@ In between the PC bits you can find transistors for precharge of the ADL and ADH
 
 (The image shows the precharge transistors for ADH4 and ADL5. The others are similar)
 
+:warning: As time passed, it turned out that it is more convenient to make the FET where the buses are precharged as part of the [Bus Multiplexer](busmux.md) circuit.
+
 ## Logic
 
 It makes sense to show only the bit schematics (the circuitry alternates between even and odd PCL/PCH bits).
