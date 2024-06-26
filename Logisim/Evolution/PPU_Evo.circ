@@ -4266,7 +4266,7 @@
       <a name="font" val="SansSerif plain 14"/>
       <a name="text" val="R2_EN"/>
     </comp>
-    <comp lib="8" loc="(384,61)" name="Text">
+    <comp lib="8" loc="(380,60)" name="Text">
       <a name="font" val="SansSerif plain 14"/>
       <a name="text" val="NegEdge Detect"/>
     </comp>
@@ -20342,6 +20342,8 @@
     <wire from="(590,60)" to="(610,60)"/>
     <wire from="(590,860)" to="(590,1080)"/>
     <wire from="(590,860)" to="(620,860)"/>
+    <wire from="(610,110)" to="(610,210)"/>
+    <wire from="(610,110)" to="(640,110)"/>
     <wire from="(610,210)" to="(610,310)"/>
     <wire from="(610,210)" to="(640,210)"/>
     <wire from="(610,310)" to="(610,410)"/>
@@ -20350,12 +20352,10 @@
     <wire from="(610,410)" to="(640,410)"/>
     <wire from="(610,510)" to="(610,610)"/>
     <wire from="(610,510)" to="(640,510)"/>
-    <wire from="(610,60)" to="(610,210)"/>
+    <wire from="(610,60)" to="(610,110)"/>
     <wire from="(610,610)" to="(610,710)"/>
     <wire from="(610,610)" to="(640,610)"/>
     <wire from="(610,710)" to="(640,710)"/>
-    <wire from="(620,110)" to="(620,180)"/>
-    <wire from="(620,110)" to="(640,110)"/>
     <wire from="(620,180)" to="(620,280)"/>
     <wire from="(620,180)" to="(640,180)"/>
     <wire from="(620,280)" to="(620,380)"/>
@@ -20367,7 +20367,7 @@
     <wire from="(620,580)" to="(620,680)"/>
     <wire from="(620,580)" to="(640,580)"/>
     <wire from="(620,680)" to="(640,680)"/>
-    <wire from="(620,80)" to="(620,110)"/>
+    <wire from="(620,80)" to="(620,180)"/>
     <wire from="(620,80)" to="(640,80)"/>
     <wire from="(620,830)" to="(630,830)"/>
     <wire from="(630,170)" to="(630,270)"/>
