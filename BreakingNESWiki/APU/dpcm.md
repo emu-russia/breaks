@@ -42,8 +42,8 @@
 |---|---|---|---|
 |DSLOAD|DPCM Control|Sample Counter, DPCM Address Counter|Загрузить значение в Sample Counter и одновременно в DPCM Address Counter|
 |DSSTEP|DPCM Control|Sample Counter, DPCM Address Counter|Выполнить декремент Sample Counter и одновременно инкремент DPCM Address Counter|
-|BLOAD|DPCM Control|Sample Buffer|Загрузить значение в Sample Buffer|
-|BSTEP|DPCM Control|Sample Buffer|Выполнить сдвиг разряда Sample Buffer|
+|BLOAD|DPCM Control|Sample Buffer|Загрузить значение в Sample Shift Register|
+|BSTEP|DPCM Control|Sample Buffer|Выполнить сдвиг разряда Sample Shift Register|
 |NSTEP|DPCM Control|Sample Bit Counter|Выполнить инкремент Sample Bit Counter|
 |DSTEP|DPCM Control|DPCM Output|Выполнить инкремент/декремент счётчика DPCM Output|
 |PCM|DPCM Control|Sample Buffer|Загрузить новое значение сэмпла в Sample Buffer. Сигнал активен когда PHI1 = 0 и адресная шина захвачена (имитация чтения CPU)|
