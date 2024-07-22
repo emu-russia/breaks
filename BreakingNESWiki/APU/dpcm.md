@@ -47,8 +47,8 @@
 |NSTEP|DPCM Control|Sample Bit Counter|Выполнить инкремент Sample Bit Counter|
 |DSTEP|DPCM Control|DPCM Output|Выполнить инкремент/декремент счётчика DPCM Output|
 |PCM|DPCM Control|Sample Buffer|Загрузить новое значение сэмпла в Sample Buffer. Сигнал активен когда PHI1 = 0 и адресная шина захвачена (имитация чтения CPU)|
-|LOOP|$4010\[7\]|DPCM Control|1: Зацикленное воспроизведение DPCM|
-|/IRQEN|$4010\[6\]|DPCM Control|0: Разрешить прерывание от DPCM|
+|LOOP|$4010\[6\]|DPCM Control|1: Зацикленное воспроизведение DPCM|
+|/IRQEN|$4010\[7\]|DPCM Control|0: Разрешить прерывание от DPCM|
 |DOUT|DPCM Output|DPCM Control|Счётчик DPCM Out закончил пересчёт|
 |/NOUT|Sample Bit Counter|DPCM Control|0: Sample Bit Counter закончил пересчёт|
 |SOUT|Sample Counter|DPCM Control|Sample Counter закончил пересчёт|
