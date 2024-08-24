@@ -47,8 +47,8 @@ DMC internal state control signals:
 |NSTEP|DPCM Control|Sample Bit Counter|Perform Sample Bit Counter increment|
 |DSTEP|DPCM Control|DPCM Output|Increment/decrement the DPCM Output counter|
 |PCM|DPCM Control|Sample Buffer|Load new sample value into Sample Buffer. The signal is active when PHI1 = 0 and the address bus is captured (imitating CPU reading)|
-|LOOP|$4010\[7\]|DPCM Control|1: DPCM looped playback|
-|/IRQEN|$4010\[6\]|DPCM Control|0: Enable interrupt from DPCM|
+|LOOP|$4010\[6\]|DPCM Control|1: DPCM looped playback|
+|/IRQEN|$4010\[7\]|DPCM Control|0: Enable interrupt from DPCM|
 |DOUT|DPCM Output|DPCM Control|DPCM Out counter has finished counting|
 |/NOUT|Sample Bit Counter|DPCM Control|0: Sample Bit Counter has finished counting|
 |SOUT|Sample Counter|DPCM Control|Sample Counter has finished counting|
