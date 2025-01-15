@@ -13858,61 +13858,61 @@
     <comp lib="0" loc="(520,180)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ROW0"/>
+      <a name="label" val="COL0"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(520,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ROW1"/>
+      <a name="label" val="COL1"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(520,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ROW2"/>
+      <a name="label" val="COL2"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(520,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ROW3"/>
+      <a name="label" val="COL3"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(520,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ROW4"/>
+      <a name="label" val="COL4"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(520,480)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ROW5"/>
+      <a name="label" val="COL5"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(520,540)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ROW6"/>
+      <a name="label" val="COL6"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(520,600)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ROW7"/>
+      <a name="label" val="COL7"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(520,660)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="ROWZ"/>
+      <a name="label" val="COLZ"/>
       <a name="output" val="true"/>
     </comp>
     <comp lib="0" loc="(520,730)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="COL_0_31"/>
+      <a name="label" val="ROW_0_31"/>
       <a name="output" val="true"/>
       <a name="radix" val="16"/>
       <a name="width" val="32"/>
@@ -13920,7 +13920,7 @@
     <comp lib="0" loc="(520,770)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="label" val="COL"/>
+      <a name="label" val="ROW"/>
       <a name="output" val="true"/>
       <a name="width" val="5"/>
     </comp>
@@ -13973,7 +13973,7 @@
     </comp>
     <comp lib="8" loc="(545,815)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
-      <a name="text" val="During precharge all COL outputs are 0."/>
+      <a name="text" val="During precharge all ROW outputs are 0."/>
     </comp>
     <comp lib="8" loc="(670,305)" name="Text">
       <a name="font" val="SansSerif bold 11"/>
@@ -14154,39 +14154,39 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(150,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ROW0"/>
+      <a name="label" val="COL0"/>
     </comp>
     <comp lib="0" loc="(150,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ROW1"/>
+      <a name="label" val="COL1"/>
     </comp>
     <comp lib="0" loc="(150,260)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ROW2"/>
+      <a name="label" val="COL2"/>
     </comp>
     <comp lib="0" loc="(150,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ROW3"/>
+      <a name="label" val="COL3"/>
     </comp>
     <comp lib="0" loc="(150,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ROW4"/>
+      <a name="label" val="COL4"/>
     </comp>
     <comp lib="0" loc="(150,350)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ROW5"/>
+      <a name="label" val="COL5"/>
     </comp>
     <comp lib="0" loc="(150,380)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ROW6"/>
+      <a name="label" val="COL6"/>
     </comp>
     <comp lib="0" loc="(150,410)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ROW7"/>
+      <a name="label" val="COL7"/>
     </comp>
     <comp lib="0" loc="(150,920)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="ROWZ"/>
+      <a name="label" val="COLZ"/>
     </comp>
     <comp lib="0" loc="(160,130)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -14195,7 +14195,7 @@
     </comp>
     <comp lib="0" loc="(160,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="COL"/>
+      <a name="label" val="ROW"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(540,290)" name="Splitter">
@@ -14336,12 +14336,12 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(130,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="COL"/>
+      <a name="label" val="ROW"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(170,120)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="RowEnable"/>
+      <a name="label" val="ColEnable"/>
     </comp>
     <comp lib="0" loc="(190,150)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -14369,17 +14369,17 @@
       <a name="labelvisible" val="true"/>
       <a name="trigger" val="high"/>
     </comp>
-    <comp lib="8" loc="(275,345)" name="Text">
+    <comp lib="8" loc="(284,346)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="One lane corresponds to one ROW."/>
+      <a name="text" val="One lane corresponds to one COL."/>
     </comp>
     <comp lib="8" loc="(330,330)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="One lane is 32 cells (columns) x 8 bits for the OAM Buffer."/>
+      <a name="text" val="One lane is 32 cells (rows) x 8 bits for the OAM Buffer."/>
     </comp>
     <comp lib="8" loc="(90,60)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
-      <a name="text" val="Select column (0-31)"/>
+      <a name="text" val="Select row (0-31)"/>
     </comp>
     <wire from="(130,80)" to="(230,80)"/>
     <wire from="(170,120)" to="(200,120)"/>
