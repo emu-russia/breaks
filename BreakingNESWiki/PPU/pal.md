@@ -198,15 +198,15 @@ PCLK:
 
 ## OAM
 
-Поскольку адрес OAM0-7 выдаётся в прямой логике, для битов 2-4 OAM Buffer переставлены выходы рядов, 2 и 6.
+Поскольку адрес OAM0-7 выдаётся в прямой логике, для битов 2-4 OAM Buffer переставлены выходы COLx, 2 и 6.
 
-![pal_oam_row_decoder_tran](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_decoder_tran.png)
+![pal_oam_col_decoder_tran](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_col_decoder_tran.png)
 
-![pal_oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs1.png)
+![pal_oam_col_outputs1](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_col_outputs1.png)
 
 (NTSC PPU слева, PAL PPU справа)
 
-![pal_oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs2.png)
+![pal_oam_col_outputs2](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_col_outputs2.png)
 
 (NTSC PPU слева, PAL PPU справа)
 

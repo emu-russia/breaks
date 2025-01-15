@@ -85,6 +85,7 @@ Correction history:
 |CLPB|/CLPB (inverse polarity)|
 |EVAL|/EVAL (inverse polarity)|
 |P123|PBLACK (Phase Shifter)|
+|ROW,COL (OAM)|ROW -> COL, COL -> ROW (were mixed up)  (#1343)|
 
 ## APU
 

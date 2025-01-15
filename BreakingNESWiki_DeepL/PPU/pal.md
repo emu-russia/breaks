@@ -198,15 +198,15 @@ And the main difference: instead of the usual W3 Enabler, which is used in the N
 
 ## OAM
 
-Since the OAM address (`OAM0-7`) is issued in direct logic, the outputs of rows 2 and 6 are rearranged for bits 2-4 of the OAM Buffer.
+Since the OAM address (`OAM0-7`) is issued in direct logic, the outputs of columns 2 and 6 are rearranged for bits 2-4 of the OAM Buffer.
 
-![pal_oam_row_decoder_tran](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_decoder_tran.png)
+![pal_oam_col_decoder_tran](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_col_decoder_tran.png)
 
-![pal_oam_row_outputs1](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs1.png)
+![pal_oam_col_outputs1](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_col_outputs1.png)
 
 (NTSC PPU to the left)
 
-![pal_oam_row_outputs2](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_row_outputs2.png)
+![pal_oam_col_outputs2](/BreakingNESWiki/imgstore/ppu/pal/pal_oam_col_outputs2.png)
 
 (NTSC PPU to the left)
 
