@@ -160,3 +160,7 @@ In this case, this signal means that places where `/PCLK2` applies are triggered
 This signal is needed when PAR/O is active. At other times it does not have any effect. The meaning of this signal is to prohibit loading sprite comparison artifact into FIFO, provided that the sprites are less than 8, or sprites for the current line were not found. This artifact appears because of the simplified circuit of copying sprites from OAM to OAM2, because the write signal is active even if the copying has not begun. This cell gets the last value from memory when comparing sprites. 
 
 In other words, if PD/FIFO = 1, then loading the pattern from PD (H. INV) is allowed, 0 is not allowed.
+
+## Big Capacitor ("BigCap")
+
+The `DO_COPY` signal is connected to a large capacitor, one lining of which is made of a piece of polysilicon and the other is the chip substrate (ground). This capacitor is needed to slightly delay the edge of the `DO_COPY` signal.

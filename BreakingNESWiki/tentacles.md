@@ -85,6 +85,7 @@
 |CLPB|/CLPB (инверсная полярность)|
 |EVAL|/EVAL (инверсная полярность)|
 |P123|PBLACK (Phase Shifter)|
+|ROW,COL (OAM)|ROW -> COL, COL -> ROW (были перепутаны)  (#1343)|
 
 ## APU
 
