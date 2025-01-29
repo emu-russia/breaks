@@ -4,20 +4,24 @@ The 6502 includes two clock reference circuits: an external and an internal one.
 
 The processor inputs one clock signal, `PHI0`, and outputs two clock signals, `PHI1` and `PHI2`.
 
-This principle is based on the fact that each clock cycle of the processor consists of two "modes" (or "states"): write mode and read mode.
+This principle is based on the fact that each clock cycle of the processor consists of two "modes" (or "states"):
+- PHI1=1: Set address and R/W mode
+- PHI2=1: Read/write data
 
 During write mode the `PHI1` signal is high. During this time, external devices can use the address set on the external address bus of the processor.
 
 During read mode the signal `PHI2` is high. During this time external devices can write data to the processor's data bus so that the processor can use it for its own purposes.
 
 The signals `PHI1` and `PHI2` are called half-cycles and are derived from the original clock signal `PHI0` as follows:
-- When `PHI0` is low - the processor is in write mode and the `PHI1` signal is high
-- When `PHI0` is high - the processor is in read mode and the `PHI2` signal is also high
+- When `PHI0` is low - the `PHI1` signal is high
+- When `PHI0` is high - the `PHI2` signal is also high
 
 |PHI0|PHI1|PHI2|
 |---|---|---|
 |0|1|0|
 |1|0|1|
+
+This approach to organizing cycle time scheduling is not uncommon among older processors and is commonly referred to as "Dual-rail CLK".
 
 ## Internal Clock
 
