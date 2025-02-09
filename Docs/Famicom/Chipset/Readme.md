@@ -12,6 +12,8 @@ Revision: HVC-CPU-GPM-01
 
 Following are photos of the chip package, a photo of the chip with DSLR in natural colours, and a microphotograph of the crystal.
 
+Source: https://drive.google.com/drive/u/0/folders/10nfoY1_T1TSNlMpPhqSWJWvblXX3BM6U
+
 ## 40H368
 
 A pair of these chips serves the Famicom's IO subsystem. Each chip is an array of inverting tristate buffers (`notif1` in Verilog terminology).
