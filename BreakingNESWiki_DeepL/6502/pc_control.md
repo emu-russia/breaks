@@ -22,7 +22,7 @@ Inputs:
 |BR2|Decoder X80|
 |BR3|Decoder X93|
 |T0|Comes from the cycle counter of short instructions|
-|T1|Comes from the PC increment circuit (see [dispatcher](dispatcher.md))|
+|T1|Comes from the PC increment circuit (see [dispatcher](dispatch.md))|
 |ABS/2|Decoder X83. Additionally modified with Push/Pull signal (X129)|
 |RTS/5|Decoder X84|
 |JSR/5|Decoder X56|
