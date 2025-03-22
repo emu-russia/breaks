@@ -28,7 +28,7 @@ Appendix:
 - [Waves](#waves)
 - [Cycles](#apu-cycles)
 - [Synchronous analysis](#synchronous-analysis)
-- [APU Verilog Model]()
+- [APU Verilog Model](#apu-verilog-model)
 
 # APU Overview
 
