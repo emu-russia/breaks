@@ -6,28 +6,29 @@ TODO: Duplicate all image in ASCII art so that they are understood by LLMs which
 
 ## APU Contents
 
-- [Overview](Readme.md)
-- [Pinout](pads.md)
-- [Common elements of APU circuitry](common.md)
-- [6502 Core Binding](core.md)
-- [Timing Generator](clkgen.md)
-- [Register Operations](regs.md)
-- [Sound Generators](sound.md)
-	- [Length Counters](length.md)
-	- [Square Channels](square.md)
-	- [Triangle Channel](triangle.md)
-	- [Noise Channel](noise.md)
-	- [Delta Modulation Channel (DPCM)](dpcm.md)
-	- [DAC](dac.md)
-- [Sprite DMA](dma.md)
-- [Test Pattern](test_pattern.md)
+- [Overview](#apu-overview)
+- [Pinout](#apu-pinout)
+- [Common elements of APU circuitry](#common-elements-of-apu-circuitry)
+- [6502 Core Binding](#6502-core-binding)
+- [Timing Generator](#timing-generator)
+- [Register Operations](#register-operations)
+- [Sound Generators](#sound-generators)
+	- [Length Counters](#length-counters)
+	- [Square Channels](#square-channels)
+	- [Triangle Channel](#triangle-channel)
+	- [Noise Channel](#noise-channel)
+	- [Delta Modulation Channel (DPCM)](#differential-pulse-code-modulation-dpcm-channel)
+	- [DAC](#dac)
+- [Sprite DMA](#sprite-dma-oam-dma)
+- [Test Pattern](#test-pattern)
 
 Appendix:
 
-- [Visual 2A03 Signal Mapping]()
-- [Waves](waves.md)
-- [Cycles](cycles.md)
-- [Synchronous analysis](whatwhen.md)
+- [Visual 2A03 Signal Mapping](#visual-2a03-signal-mapping)
+- [Waves](#waves)
+- [Cycles](#apu-cycles)
+- [Synchronous analysis](#synchronous-analysis)
+- [APU Verilog Model]()
 
 # APU Overview
 
@@ -37,7 +38,7 @@ Appendix:
 
 The official name is just CPU, but we will stick to the unofficial term.
 
-The chip was developed by [Ricoh](../Ricoh.md), chip names are RP2A03 for NTSC and RP2A07 for PAL.
+The chip was developed by Ricoh, chip names are RP2A03 for NTSC and RP2A07 for PAL.
 
 ![APU](/BreakingNESWiki/imgstore/apu/APU.jpg)
 
@@ -109,7 +110,7 @@ The study of any IC begins with the pinout.
 
 ## AUX A/B
 
-Considered in the [DAC](dac.md) section.
+Considered in the [DAC](#dac) section.
 
 ## /RES
 
@@ -466,7 +467,7 @@ The key parts of the analysis (decoder, random logic, flags and ALU) are shown i
 
 ![2a03_6502_diff_sm](/BreakingNESWiki/imgstore/apu/2a03_6502_diff_sm.jpg)
 
-To understand more about the differences in the operation of the BCD circuit, it is recommended to study the design of the [6502 ALU](/BreakingNESWiki_DeepL/6502/alu.md).
+To understand more about the differences in the operation of the BCD circuit, it is recommended to study the design of the 6502 ALU.
 
 # Timing Generator
 
@@ -666,14 +667,14 @@ In the diagrams :warning: sign marks the places where other `ACLK2` is used.
 
 ## ACLK2
 
-In the very center of the DPCM circuitry is a circuit to produce the "other" ACLK2 that is used in [DPCM](dpcm.md) as well as in [sprite DMA](dma.md).
+In the very center of the DPCM circuitry is a circuit to produce the "other" ACLK2 that is used in [DPCM](#differential-pulse-code-modulation-dpcm-channel) as well as in [sprite DMA](#sprite-dma-oam-dma).
 This signal can be found in our circuits as `ACLK2`.
 
 ![ACLK2](/BreakingNESWiki/imgstore/apu/ACLK2.jpg)
 
 ### ACLK3
 
-Used for [square wave sound generators](square.md), and more specifically for the $4002/$4003/$4006/$4007 registers.
+Used for [square wave sound generators](#square-channels), and more specifically for the $4002/$4003/$4006/$4007 registers.
 
 ![ACLK3](/BreakingNESWiki/imgstore/apu/ACLK3.jpg)
 
@@ -685,7 +686,7 @@ But in the general schematic for the two channels, the signal is simply marked a
 
 ### ACLK4
 
-Used in the [noise generator](noise.md) and [length counter](length.md) control circuitry.
+Used in the [noise generator](#noise-channel) and [length counter](#length-counters) control circuitry.
 
 ![ACLK4](/BreakingNESWiki/imgstore/apu/ACLK4.jpg)
 
@@ -1407,7 +1408,7 @@ This device is used to generate PCM audio:
 - The $4011 output register is a reverse counter that counts down if the next bitstream bit is 0 or up if the next bitstream bit is 1
 - It is also possible to load a value directly into the $4011 register for Direct Playback
 - Everything else is a set of counters and control logic to organize the DMA process
-- DPCM DMA does not use [sprite DMA](dma.md) facilities, but instead arranges its own buffer to store the selected PCM sample. The `RUNDMC` control signal is used to intercept control over sprite DMA.
+- DPCM DMA does not use [sprite DMA](#sprite-dma-oam-dma) facilities, but instead arranges its own buffer to store the selected PCM sample. The `RUNDMC` control signal is used to intercept control over sprite DMA.
 
 The difference between DMC DMA and Sprite DMA is that DMC DMA interrupts the processor (RDY = 0) only while the next sample is fetched.
 
@@ -1696,7 +1697,7 @@ This component acts as a small DMA controller, which besides sprite DMA also han
 
 ![SPRDMA](/BreakingNESWiki/imgstore/apu/SPRDMA.jpg)
 
-The sprite DMA is very closely tied in with the [DMC DMA](dpcm.md) and is "slave" to it (as long as the RUNDMC signal is `1` the sprite DMA is in standby mode).
+The sprite DMA is very closely tied in with the [DMC DMA](#differential-pulse-code-modulation-dpcm-channel) and is "slave" to it (as long as the RUNDMC signal is `1` the sprite DMA is in standby mode).
 
 Unfortunately, the sprite DMA destination address cannot be configured and is hardwired to PPU register $2004.
 
@@ -2165,3 +2166,3433 @@ This section is recommended for thoughtful study after you have done all the bas
 # Synchronous analysis
 
 TBD.
+
+# APU Verilog Model
+
+```verilog
+
+module APU(AUX_A, AUX_B, n_RES, A, D, CLK, DBG, M2, n_IRQ, n_NMI, RnW, n_IN0, n_IN1, OUT0, OUT1, OUT2);
+
+	output [7:0] AUX_A;
+	output [14:0] AUX_B;
+	input n_RES;
+	output [15:0] A;
+	inout [7:0] D;
+	input CLK;
+	input DBG;
+	output M2;
+	input n_IRQ;
+	input n_NMI;
+	output RnW;
+	output n_IN0;	
+	output n_IN1;
+	output OUT0;
+	output OUT1;
+	output OUT2;	
+
+	// Wires
+
+	wire n_CLK;
+	wire PHI0;
+	wire PHI1;
+	wire PHI2;
+	wire nACLK2;
+	wire ACLK1;
+	wire n_M2;
+
+	wire RES;
+	wire DBG_frompad;
+	wire n_IRQINT;
+
+	wire RW_fromcore;
+	wire RW;
+	wire RD;
+	wire WR;
+
+	wire n_R4018;
+	wire n_R401A;
+	wire n_R4015;
+	wire W4002;
+	wire W4001;
+	wire W4005;
+	wire W4006;
+	wire W4008;
+	wire W400A;
+	wire W400B;
+	wire W400E;
+	wire W4013;
+	wire W4012;
+	wire W4010;
+	wire W4014;
+	wire n_R4019;
+	wire W401A;
+	wire W4003;
+	wire W4007;
+	wire W4004;
+	wire W400C;
+	wire W4000;
+	wire W4015;
+	wire W4011;
+	wire W400F;
+	wire n_R4017;
+	wire n_R4016;
+	wire W4016;
+	wire W4017;
+
+	wire Timer_Int;
+	wire nLFO1;
+	wire nLFO2;
+
+	wire SQA_LC;
+	wire SQB_LC;
+	wire TRI_LC;
+	wire RND_LC;
+	wire NOSQA;
+	wire NOSQB;
+	wire NOTRI;
+	wire NORND;
+
+	wire n_DMCAB;
+	wire RUNDMC;
+	wire DMCRDY;
+	wire DMCINT;
+	wire [15:0] DMC_Addr;
+
+	wire SPR_PPU;
+	wire RDY_tocore;
+
+	wire [7:0] DB;
+	wire [15:0] Addr_fromcore;
+	wire [15:0] Addr_topad;
+
+	wire n_DBGRD;
+	wire DebugLock;
+
+	wire [3:0] SQA;
+	wire [3:0] SQB;
+	wire [3:0] RND;
+	wire [3:0] TRI;
+	wire [6:0] DMC;
+
+	// Module instantiation
+
+	ApuPadsLogic pads(
+		.CLKPad(CLK),
+		.n_CLK_frompad(n_CLK),
+		.n_RESPad(n_RES),
+		.RES_frompad(RES),
+		.n_IRQPad(n_IRQ),
+		.Timer_Int(Timer_Int),
+		.n_IRQ_tocore(n_IRQINT),
+		.n_M2_topad(n_M2),
+		.M2Pad(M2),
+		.DBGPad(DBG),
+		.DBG_frompad(DBG_frompad),
+		.RD(RD),
+		.WR(WR),
+		.DB(DB),
+		.DPads(D),
+		.RW_topad(RW),
+		.RWPad(RnW),
+		.Addr_topad(Addr_topad),
+		.APads(A) );
+
+	Core core(
+		.core_PHI0(PHI0),
+		.core_PHI1(PHI1),
+		.core_PHI2(PHI2),
+		.core_nNMI(n_NMI),
+		.core_nIRQ(n_IRQINT),
+		.core_nRES(~RES),
+		.core_RDY(RDY_tocore), 
+		.core_SO(1'b1),
+		.core_RnW(RW_fromcore),
+		.core_DPads(DB),
+		.core_APads(Addr_fromcore) );
+
+	CLK_Divider div(
+		.n_CLK_frompad(n_CLK),
+		.PHI0_tocore(PHI0),
+		.PHI2_fromcore(PHI2),
+		.n_M2_topad(n_M2) );
+
+	ACLKGen aclk(
+		.PHI1(PHI1),
+		.PHI2(PHI2),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
+		.RES(RES) );
+
+	SoftTimer softclk (
+		.PHI1(PHI1),
+		.ACLK1(ACLK1),
+		.nACLK2(nACLK2),
+		.RES(RES),
+		.n_R4015(n_R4015),
+		.W4017(W4017),
+		.DB(DB),
+		.DMCINT(DMCINT),
+		.INT_out(Timer_Int),
+		.nLFO1(nLFO1),
+		.nLFO2(nLFO2) );
+
+	DMABuffer sprdma_buf(
+		.PHI2(PHI2),
+		.SPR_PPU(SPR_PPU),
+		.DB(DB),
+		.RnW_fromcore(RW_fromcore),
+		.RW_topad(RW),
+		.n_R4015(n_R4015),
+		.n_DBGRD(n_DBGRD),
+		.WR_topad(WR),
+		.RD_topad(RD) );
+
+	ApuRegsDecoder regs(
+		.PHI1(PHI1), 
+		.Addr_fromcore(Addr_fromcore),
+		.Addr_frommux(Addr_topad),
+		.RnW_fromcore(RW_fromcore),
+		.DBG_frompad(DBG_frompad), 
+		.n_R4018(n_R4018),
+		.n_R401A(n_R401A),
+		.n_R4015(n_R4015),
+		.W4002(W4002),
+		.W4001(W4001),
+		.W4005(W4005),
+		.W4006(W4006),
+		.W4008(W4008),
+		.W400A(W400A),
+		.W400B(W400B),
+		.W400E(W400E),
+		.W4013(W4013),
+		.W4012(W4012),
+		.W4010(W4010),
+		.W4014(W4014),
+		.n_R4019(n_R4019),
+		.W401A(W401A),
+		.W4003(W4003),
+		.W4007(W4007),
+		.W4004(W4004),
+		.W400C(W400C),
+		.W4000(W4000),
+		.W4015(W4015),
+		.W4011(W4011),
+		.W400F(W400F),
+		.n_R4017(n_R4017),
+		.n_R4016(n_R4016),
+		.W4016(W4016),
+		.W4017(W4017),
+		.n_DBGRD(n_DBGRD) );
+
+	IOPorts io(
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
+		.W4016(W4016),
+		.n_R4016(n_R4016),
+		.n_R4017(n_R4017),
+		.DB(DB),
+		.RES(RES),
+		.OUT0_Pad(OUT0),
+		.OUT1_Pad(OUT1),
+		.OUT2_Pad(OUT2),
+		.nIN0_Pad(n_IN0),
+		.nIN1_Pad(n_IN1) );
+
+	Sprite_DMA sprdma(
+		.ACLK1(ACLK1),
+		.nACLK2(nACLK2),
+		.PHI1(PHI1),
+		.RES(RES),
+		.RnW(RW_fromcore),
+		.W4014(W4014),
+		.DB(DB), 
+		.RUNDMC(RUNDMC),
+		.n_DMCAB(n_DMCAB),
+		.DMCRDY(DMCRDY),
+		.DMC_Addr(DMC_Addr),
+		.CPU_Addr(Addr_fromcore),
+		.Addr(Addr_topad),
+		.RDY_tocore(RDY_tocore),
+		.SPR_PPU(SPR_PPU) );
+
+	LengthCounters length(
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
+		.RES(RES),
+		.DB(DB),
+		.n_R4015(n_R4015),
+		.W4015(W4015),
+		.nLFO2(nLFO2), 
+		.W4003(W4003),
+		.W4007(W4007),
+		.W400B(W400B),
+		.W400F(W400F),
+		.SQA_LC(SQA_LC),
+		.SQB_LC(SQB_LC),
+		.TRI_LC(TRI_LC),
+		.RND_LC(RND_LC),
+		.NOSQA(NOSQA),
+		.NOSQB(NOSQB),
+		.NOTRI(NOTRI),
+		.NORND(NORND) );
+
+	SquareChan sqa(
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1), 
+		.RES(RES),
+		.DB(DB),
+		.WR0(W4000),
+		.WR1(W4001),
+		.WR2(W4002),
+		.WR3(W4003),
+		.nLFO1(nLFO1),
+		.nLFO2(nLFO2),
+		.SQ_LC(SQA_LC),
+		.NOSQ(NOSQA),
+		.LOCK(DebugLock), 
+		.AdderCarryMode(1'b1),
+		.SQ_Out(SQA) );
+
+	SquareChan sqb(
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
+		.RES(RES),
+		.DB(DB),
+		.WR0(W4004),
+		.WR1(W4005),
+		.WR2(W4006),
+		.WR3(W4007),
+		.nLFO1(nLFO1),
+		.nLFO2(nLFO2),
+		.SQ_LC(SQB_LC),
+		.NOSQ(NOSQB),
+		.LOCK(DebugLock), 
+		.AdderCarryMode(1'b0),
+		.SQ_Out(SQB) );
+	
+	NoiseChan noise(
+		.ACLK1(ACLK1),
+		.nACLK2(nACLK2), 
+		.RES(RES),
+		.DB(DB),
+		.W400C(W400C),
+		.W400E(W400E),
+		.W400F(W400F),
+		.nLFO1(nLFO1),
+		.RND_LC(RND_LC),
+		.NORND(NORND),
+		.LOCK(DebugLock),
+		.RND_out(RND) );
+
+	TriangleChan triangle (
+		.PHI1(PHI1),
+		.ACLK1(ACLK1),
+		.RES(RES),
+		.DB(DB),
+		.W4008(W4008),
+		.W400A(W400A),
+		.W400B(W400B),
+		.W401A(W401A),
+		.nLFO1(nLFO1),
+		.TRI_LC(TRI_LC),
+		.NOTRI(NOTRI),
+		.LOCK(DebugLock),
+		.TRI_Out(TRI) );
+
+	DPCMChan dpcm(
+		.PHI1(PHI1),
+		.ACLK1(ACLK1),
+		.nACLK2(nACLK2), 
+		.RES(RES),
+		.DB(DB),		
+		.RnW(RW_fromcore),
+		.LOCK(DebugLock),
+		.W4010(W4010),
+		.W4011(W4011),
+		.W4012(W4012),
+		.W4013(W4013),
+		.W4015(W4015),
+		.n_R4015(n_R4015), 
+		.n_DMCAB(n_DMCAB),
+		.RUNDMC(RUNDMC),
+		.DMCRDY(DMCRDY),
+		.DMCINT(DMCINT),
+		.DMC_Addr(DMC_Addr),
+		.DMC_Out(DMC) );
+
+	DAC_Square auxa(
+		.SQA(SQA),
+		.SQB(SQB),
+		.AUX_A(AUX_A) );
+
+	DAC_Others auxb(
+		.TRI(TRI),
+		.RND(RND),
+		.DMC(DMC),
+		.AUX_B(AUX_B) );
+
+	Test dbg(
+		.ACLK1(ACLK1),
+		.RES(RES),
+		.DB(DB),
+		.W401A(W401A),
+		.n_R4018(n_R4018),
+		.n_R4019(n_R4019),
+		.n_R401A(n_R401A),
+		.SQA_in(SQA),
+		.SQB_in(SQB),
+		.TRI_in(TRI),
+		.RND_in(RND),
+		.DMC_in(DMC),
+		.LOCK(DebugLock) );
+
+endmodule // APU
+
+// It looks a little sloppy, but if you'd seen the silicon, you'd understand why.
+
+module ApuPadsLogic(
+	CLKPad, n_CLK_frompad,
+	n_RESPad, RES_frompad,
+	n_IRQPad, Timer_Int, n_IRQ_tocore,
+	n_M2_topad, M2Pad,
+	DBGPad, DBG_frompad,
+	RD, WR, DB, DPads,
+	RW_topad, RWPad,
+	Addr_topad, APads);
+
+	input CLKPad;				// CLK Input Pad
+	output n_CLK_frompad; 		// Output intermediate signal /CLK for divider
+	input n_RESPad;				// Input Pad /RES
+	output RES_frompad;			// Value from /RES pad (inverted for convenience)
+	input n_IRQPad; 			// Input Pad /RES
+	input Timer_Int; 			// Timer interrupt (combined with DMC interrupt)
+	output n_IRQ_tocore; 		// Signal /IRQ for 6502 core
+	input n_M2_topad;			// Output signal #M2 from the divider for pad M2
+	output M2Pad;				// Input Pad /RES
+	input DBGPad; 				// DBG Input Pad (2A03 Test Mode)
+	output DBG_frompad; 		// Value from the DBG pad to the APU internals
+	input RD; 					// Internal signal for data bus mode (read/write)
+	input WR; 					// Internal signal for data bus mode (read/write)
+	inout [7:0] DB;				// Internal data bus
+	inout [7:0] DPads; 			// External data bus pads
+	input RW_topad; 			// The value for the R/W pad (obtained in the ...mm...sprite DMA buffer)
+	output RWPad; 				// Output Pad R/W
+	input [15:0] Addr_topad; 	// Value for address bus pads
+	output [15:0] APads;		// External address bus pads
+
+	// Connect all
+
+	not (RES_frompad, n_RESPad);
+
+	wire [15:0] ax;
+	pnor addr_out [15:0] (
+		.a0(Addr_topad),
+		.a1({16{RES_frompad}}),
+		.x(ax) );
+	bustris addr_tris [15:0] (
+		.a(ax),
+		.n_x(APads),
+		.n_en(RES_frompad) );
+
+	bustris data_tris_in [7:0] (
+		.a(~DPads),
+		.n_x(DB),
+		.n_en(WR) );
+	wire [7:0] dx;
+	pnor data_out [7:0] (
+		.a0(DB),
+		.a1({8{RD}}),
+		.x(dx) );    
+	bustris data_tris_out [7:0] (
+		.a(dx),
+		.n_x(DPads),
+		.n_en(RD) );
+
+	wire rw;
+	nor (rw, RW_topad, RES_frompad);
+	bustris rw_tris (
+		.a(rw),
+		.n_x(RWPad),
+		.n_en(RES_frompad) );
+
+	not (n_CLK_frompad, CLKPad);
+
+	assign DBG_frompad = DBGPad;
+
+	wire nDBG;
+	not (nDBG, DBG_frompad);
+
+	wire NotDBG_RES;
+	nor (NotDBG_RES, ~nDBG, ~RES_frompad);
+	wire m2;
+	nor (m2, n_M2_topad, NotDBG_RES);
+	bufif0 (M2Pad, m2, NotDBG_RES);		// data_out, data_in, ctrl
+
+	nor (n_IRQ_tocore, ~n_IRQPad, Timer_Int);
+
+endmodule // PadsLogic
+
+
+module Core(
+	core_PHI0, core_PHI1, core_PHI2,
+	core_nNMI, core_nIRQ, core_nRES, core_RDY, 
+	core_SO, core_RnW, core_SYNC, core_DPads, core_APads);
+
+	input core_PHI0;
+	output core_PHI1;
+	output core_PHI2;
+
+	input core_nNMI;
+	input core_nIRQ;
+	input core_nRES;
+	input core_RDY;
+
+	input core_SO;
+	output core_RnW;
+	output core_SYNC;
+	inout [7:0] core_DPads;
+	output [15:0] core_APads;
+
+	Core6502 embedded_6502 (
+		.n_NMI(core_nNMI),
+		.n_IRQ(core_nIRQ),
+		.n_RES(core_nRES),
+		.PHI0(core_PHI0),
+		.PHI1(core_PHI1),
+		.PHI2(core_PHI2),
+		.RDY(core_RDY),
+		.SO(core_SO),
+		.RnW(core_RnW),
+		.SYNC(core_SYNC),
+		.A(core_APads),
+		.D(core_DPads) );
+
+endmodule // Core
+
+module CLK_Divider(n_CLK_frompad, PHI0_tocore, PHI2_fromcore, n_M2_topad);
+
+	input n_CLK_frompad;
+	output PHI0_tocore;
+	input PHI2_fromcore;
+	output n_M2_topad;
+
+	wire [5:0] sout;
+	wire rst;
+	wire q;
+	wire nq;
+	wire nval_4;
+
+	DivPhaseSplitter phase_split (
+		.n_clk(n_CLK_frompad),
+		.q(q),
+		.nq(nq) );
+
+	assign PHI0_tocore = ~sout[5];
+	nor (rst, PHI0_tocore, sout[4]);
+
+	DivSRBit sr0 (.q(q), .nq(nq), .rst(rst), .sin(PHI0_tocore), .sout(sout[0]));
+	DivSRBit sr1 (.q(q), .nq(nq), .rst(rst), .sin(sout[0]), .sout(sout[1]));
+	DivSRBit sr2 (.q(q), .nq(nq), .rst(rst), .sin(sout[1]), .sout(sout[2]));
+	DivSRBit sr3 (.q(q), .nq(nq), .rst(rst), .sin(sout[2]), .sout(sout[3]));
+	DivSRBit sr4 (.q(q), .nq(nq), .rst(1'b0), .sin(sout[3]), .sout(sout[4]), .n_val(nval_4));
+	DivSRBit sr5 (.q(q), .nq(nq), .rst(1'b0), .sin(sout[4]), .sout(sout[5]));
+
+	nor (n_M2_topad, nval_4, PHI2_fromcore);
+
+endmodule // CLK_Divider
+
+module DivSRBit(q, nq, rst, sin, n_val, sout);
+
+	input q;
+	input nq;
+	input rst;
+	input sin;
+	output n_val;
+	output sout;
+
+	wire out_val;
+
+	dlatch in_latch (
+		.d(sin),
+		.en(q),
+		.nq(n_val) );
+
+	dlatch out_latch (
+		.d(n_val),
+		.en(nq),
+		.q(out_val) );
+
+	nor (sout, out_val, rst);
+
+endmodule // DivSRBit
+
+module DivPhaseSplitter(n_clk, q, nq);
+
+	input n_clk;
+	output q;
+	output nq;
+
+	(* keep = "true" *) wire not1_out;
+	(* keep = "true" *) wire not2_out;
+
+	assign not1_out = ~n_clk;
+	assign not2_out = ~not1_out;
+
+	nor (nq, not1_out, q);
+	nor (q, nq, not2_out);
+
+endmodule // DivPhaseSplitter
+
+
+module ACLKGen(PHI1, PHI2, ACLK1, nACLK2, RES);
+
+	input PHI1;
+	input PHI2;
+	output ACLK1;
+	output nACLK2;
+	input RES;
+
+	wire n_latch1_out;
+	wire n_latch2_out;
+	wire latch1_in;
+
+	dlatch phi1_latch (
+		.d(latch1_in),
+		.en(PHI1),
+		.nq(n_latch1_out) );
+
+	dlatch phi2_latch (
+		.d(n_latch1_out),
+		.en(PHI2),
+		.nq(n_latch2_out) );
+
+	nor (latch1_in, RES, n_latch2_out);
+
+	wire n1;
+	nor (n1, ~PHI1, latch1_in);
+	nor (ACLK1, ~PHI1, n_latch2_out);
+	not (nACLK2, n1);
+
+endmodule // ACLKGen
+
+module SoftTimer(
+	PHI1, ACLK1, nACLK2,
+	RES, n_R4015, W4017, DB, DMCINT, INT_out, nLFO1, nLFO2);
+
+	input PHI1;
+	input ACLK1;
+	input nACLK2;
+
+	input RES;
+	input n_R4015;
+	input W4017;
+	inout [7:0] DB;
+	input DMCINT;
+	output INT_out;
+	output nLFO1;
+	output nLFO2;
+
+	wire n_mode;
+	wire mode;
+	wire [5:0] PLA_out;
+	wire Z2;
+	wire F1;				// 1: Reset LFSR
+	wire F2;				// 1: Perform the LFSR step
+	wire sin;
+	wire [14:0] sout;
+	wire [14:0] n_sout;
+
+	// SoftCLK control circuits have a very conventional division, because they are "scattered" in an even layer on the chip and it is difficult to determine their boundaries
+
+	SoftCLK_Control ctrl (
+		.PHI1(PHI1),
+		.ACLK1(ACLK1),
+		.RES(RES),
+		.DB(DB),
+		.DMCINT(DMCINT),
+		.n_R4015(n_R4015),
+		.W4017(W4017),
+		.PLA_in(PLA_out),
+		.n_mdout(n_mode),
+		.mdout(mode),
+		.Timer_Int(INT_out) );
+
+	SoftCLK_LFSR_Control lfsr_ctrl (
+		.ACLK1(ACLK1),
+		.nACLK2(nACLK2),
+		.RES(RES),
+		.W4017(W4017),
+		.n_mode(n_mode),
+		.mode(mode),
+		.PLA_in(PLA_out),
+		.C13(sout[13]),
+		.C14(sout[14]),
+		.Z2(Z2),
+		.F1(F1),
+		.F2(F2),
+		.sin_toLFSR(sin) );
+
+	SoftCLK_LFSR lfsr (
+		.ACLK1(ACLK1),
+		.F1_Reset(F1),
+		.F2_Step(F2),
+		.sin(sin),
+		.sout(sout),
+		.n_sout(n_sout) );
+
+	SoftCLK_PLA pla (
+		.s(sout),
+		.ns(n_sout),
+		.md(mode),
+		.PLA_out(PLA_out) );
+
+	// LFO Output
+
+	wire tmp1;
+	nor (tmp1, PLA_out[0], PLA_out[1], PLA_out[2], PLA_out[3], PLA_out[4], Z2);
+	wire tmp2;
+	nor (tmp2, tmp1, nACLK2);
+	assign nLFO1 = ~tmp2;
+
+	wire tmp3;
+	nor (tmp3, PLA_out[1], PLA_out[3], PLA_out[4], Z2);
+	wire tmp4;
+	nor (tmp4, tmp3, nACLK2);
+	assign nLFO2 = ~tmp4;
+
+endmodule // SoftTimer
+
+module SoftCLK_Control(
+	PHI1, ACLK1,
+	RES, DB, DMCINT, n_R4015, W4017, PLA_in,
+	n_mdout, mdout, Timer_Int);
+
+	input PHI1;
+	input ACLK1;
+
+	input RES;
+	inout [7:0] DB;
+	input DMCINT;
+	input n_R4015;
+	input W4017;
+	input [5:0] PLA_in;
+
+	inout n_mdout;
+	output mdout;
+	output Timer_Int;
+
+	wire R4015_clear;
+	wire mask_clear;
+	wire intff_out;
+	wire n_intff_out;
+	wire int_sum;
+	wire int_latch_out;
+
+	nor (R4015_clear, n_R4015, PHI1);
+
+	RegisterBit mode (.d(DB[7]), .ena(W4017), .ACLK1(ACLK1), .nq(n_mdout) );
+	RegisterBit mask (.d(DB[6]), .ena(W4017), .ACLK1(ACLK1), .q(mask_clear) );
+	rsff_2_4 int_ff (.res1(RES), .res2(R4015_clear), .res3(mask_clear), .s(n_mdout & PLA_in[3]), .q(intff_out), .nq(n_intff_out) );
+	dlatch md_latch (.d(n_mdout), .en(ACLK1), .nq(mdout) );
+	dlatch int_latch (.d(n_intff_out), .en(ACLK1), .q(int_latch_out) );
+	bustris int_status (.a(int_latch_out), .n_x(DB[6]), .n_en(n_R4015) );
+
+	nor (int_sum, intff_out, DMCINT);
+	assign Timer_Int = ~int_sum;
+
+endmodule // SoftCLK_Control
+
+module SoftCLK_LFSR_Control(
+	ACLK1, nACLK2,
+	RES, W4017, n_mode, mode, PLA_in, C13, C14,
+	Z2, F1, F2, sin_toLFSR);
+
+	input ACLK1;
+	input nACLK2;
+
+	input RES;
+	input W4017;
+	inout n_mode;
+	input mode;
+	input [5:0] PLA_in;
+	input C13;
+	input C14;
+
+	output Z2;
+	output F1;
+	output F2;
+	output sin_toLFSR;
+
+	wire Z1;
+
+	// LFSR control
+
+	wire t1;
+	nor (t1, PLA_in[3], PLA_in[4], Z1);
+	nor (F1, t1, nACLK2);
+	nor (F2, ~t1, nACLK2);
+
+	// LFO control
+
+	wire z1_out;
+	wire z2_out;
+	wire zff_out;
+	wire zff_set;
+	nor (zff_set, z1_out, nACLK2);
+	dlatch z1 (.d(zff_out), .en(ACLK1), .q(z1_out), .nq(Z1) );
+	dlatch z2 (.d(n_mode), .en(ACLK1), .q(z2_out) );
+	rsff_2_3 z_ff (.res1(RES), .res2(W4017), .s(zff_set), .q(zff_out) );
+	nor (Z2, z1_out, z2_out);
+
+	// LFSR shift in
+
+	wire tmp1;
+	nor (tmp1, C13, C14, PLA_in[5]);
+	nor (sin_toLFSR, C13 & C14, tmp1);
+
+endmodule // SoftCLK_LFSR_Control
+
+module SoftCLK_LFSR_Bit(
+	ACLK1,
+	sin, F1, F2,
+	sout, n_sout);
+
+	input ACLK1;
+
+	input sin;
+	input F1;
+	input F2;
+
+	output sout;
+	output n_sout;
+
+	wire inlatch_out;
+	dlatch in_latch (
+		.d(F2 ? sin : (F1 ? 1'b1 : 1'bz)),
+		.en(1'b1), .nq(inlatch_out));
+	dlatch out_latch (.d(inlatch_out), .en(ACLK1), .q(n_sout), .nq(sout));
+
+endmodule // SoftCLK_LFSR_Bit
+
+module SoftCLK_LFSR(
+	ACLK1, F1_Reset, F2_Step, sin,
+	sout, n_sout);
+
+	input ACLK1;
+	input F1_Reset;
+	input F2_Step;
+	input sin;
+
+	output [14:0] sout;
+	output [14:0] n_sout;
+
+	SoftCLK_LFSR_Bit bits [14:0] (
+		.ACLK1(ACLK1),
+		.sin({sout[13:0],sin}),
+		.F1(F1_Reset),
+		.F2(F2_Step),
+		.sout(sout),
+		.n_sout(n_sout) );
+
+endmodule // SoftCLK_LFSR
+
+module SoftCLK_PLA(s, ns, md, PLA_out);
+
+	input [14:0] s;
+	input [14:0] ns;
+	input md; 			// For PLA[3]
+	output [5:0] PLA_out;
+
+	nor (PLA_out[0], ns[0], s[1], s[2], s[3], s[4], ns[5], ns[6], s[7], s[8], s[9], s[10], s[11], ns[12], s[13], s[14]);
+	nor (PLA_out[1], ns[0], ns[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], ns[9], ns[10], s[11], ns[12], ns[13], s[14]);
+	nor (PLA_out[2], ns[0], ns[1], s[2], s[3], ns[4], s[5], ns[6], ns[7], s[8], s[9], ns[10], ns[11], s[12], ns[13], s[14]);
+	nor (PLA_out[3], ns[0], ns[1], ns[2], ns[3], ns[4], s[5], s[6], s[7], s[8], ns[9], s[10], ns[11], s[12], s[13], s[14], md);	// ⚠️
+	nor (PLA_out[4], ns[0], s[1], ns[2], s[3], s[4], s[5], s[6], ns[7], ns[8], s[9], s[10], s[11], ns[12], ns[13], ns[14]);
+	nor (PLA_out[5], s[0], s[1], s[2], s[3], s[4], s[5], s[6], s[7], s[8], s[9], s[10], s[11], s[12], s[13], s[14]);
+
+endmodule // SoftCLK_PLA
+
+
+module DMABuffer(PHI2, SPR_PPU, DB, RnW_fromcore, RW_topad, n_R4015, n_DBGRD, WR_topad, RD_topad);
+
+	input PHI2;
+	input SPR_PPU;
+	inout [7:0] DB;
+	input RnW_fromcore;
+	output RW_topad;
+	input n_R4015;
+	input n_DBGRD;
+	output WR_topad;
+	output RD_topad;
+
+	wire PPU_SPR;
+	assign PPU_SPR = ~SPR_PPU;
+
+	nor (RW_topad, ~RnW_fromcore, SPR_PPU);
+	assign RD_topad = RW_topad;
+	nand (WR_topad, n_R4015, n_DBGRD, RW_topad);
+
+	wire [7:0] spr_buf_out;
+
+	dlatch spr_buf [7:0] (
+		.d(DB),
+		.en(PHI2),
+		.nq(spr_buf_out) );
+
+	bustris spr_tris [7:0] (
+		.a(spr_buf_out),
+		.n_x(DB),
+		.n_en(PPU_SPR) );
+
+endmodule // DMABuffer
+
+
+module ApuRegsDecoder (
+	PHI1, 
+	Addr_fromcore, Addr_frommux, RnW_fromcore, DBG_frompad, 
+	n_R4018, n_R401A, n_R4015, W4002, W4001, W4005, W4006, W4008, W400A, W400B, W400E, W4013, W4012, W4010, W4014,
+	n_R4019, W401A, W4003, W4007, W4004, W400C, W4000, W4015, W4011, W400F, n_R4017, n_R4016, W4016, W4017,
+	n_DBGRD);
+
+	input PHI1;
+
+	// ⚠️ The APU registers address space is selected by the value of the CPU address bus (CPU_Ax). But the choice of register is made by the value of the address, which is formed at the address multiplexer of DMA-controller (signals A0-A4).
+
+	input [15:0] Addr_fromcore;
+	input [15:0] Addr_frommux;
+	input RnW_fromcore;
+	input DBG_frompad;
+
+	output n_R4018;
+	output n_R401A;
+	output n_R4015;
+	output W4002;
+	output W4001;
+	output W4005;
+	output W4006;
+	output W4008;
+	output W400A;
+	output W400B;
+	output W400E;
+	output W4013;
+	output W4012;
+	output W4010;
+	output W4014;
+
+	output n_R4019;
+	output W401A;
+	output W4003;
+	output W4007;
+	output W4004;
+	output W400C;
+	output W4000;
+	output W4015;
+	output W4011;
+	output W400F;
+	output n_R4017;
+	output n_R4016;
+	output W4016;
+	output W4017;
+
+	output n_DBGRD;
+
+	// Check that the CPU address falls in the APU registers mapped to the address space.
+
+	wire [15:0] CpuA;
+	assign CpuA = Addr_fromcore;
+
+	wire REGWR;
+	wire nREGWR;
+	nor (REGWR, CpuA[5], CpuA[6], CpuA[7], CpuA[8], CpuA[9], CpuA[10], CpuA[11], CpuA[12], CpuA[13], ~CpuA[14], CpuA[15], RnW_fromcore);
+	assign nREGWR = ~REGWR;
+
+	wire REGRD;
+	wire nREGRD;
+	nor (REGRD, CpuA[5], CpuA[6], CpuA[7], CpuA[8], CpuA[9], CpuA[10], CpuA[11], CpuA[12], CpuA[13], ~CpuA[14], CpuA[15], ~RnW_fromcore);
+	assign nREGRD = ~REGRD;
+
+	nand (n_DBGRD, DBG_frompad, ~nREGRD);
+
+	// PLA
+
+	wire [28:0] pla;
+
+	ApuRegs_PLA regs_pla (
+		.nREGRD(nREGRD),
+		.nREGWR(nREGWR),
+		.A(Addr_frommux[4:0]),
+		.nA(~Addr_frommux[4:0]),
+		.pla(pla) );
+
+	// Select a register index.
+	// Note that during PHI1 all write operations are disabled.
+
+	nand(n_R4018, DBG_frompad, pla[0]);
+	nand(n_R401A, DBG_frompad, pla[2]);
+	not(n_R4015, pla[4]);
+	nor(W4002, PHI1, ~pla[6]);
+	nor(W4001, PHI1, ~pla[8]);
+	nor(W4005, PHI1, ~pla[10]);
+	nor(W4006, PHI1, ~pla[12]);
+	nor(W4008, PHI1, ~pla[14]);
+	nor(W400A, PHI1, ~pla[16]);
+	nor(W400B, PHI1, ~pla[18]);
+	nor(W400E, PHI1, ~pla[20]);
+	nor(W4013, PHI1, ~pla[22]);
+	nor(W4012, PHI1, ~pla[24]);
+	nor(W4010, PHI1, ~pla[26]);
+	nor(W4014, PHI1, ~pla[28]);
+
+	nand(n_R4019, DBG_frompad, pla[1]);
+	wire w401a_temp;
+	nand (w401a_temp, DBG_frompad, pla[3]);
+	nor(W401A, PHI1, w401a_temp);
+	nor(W4003, PHI1, ~pla[5]);
+	nor(W4007, PHI1, ~pla[7]);
+	nor(W4004, PHI1, ~pla[9]);
+	nor(W400C, PHI1, ~pla[11]);
+	nor(W4000, PHI1, ~pla[13]);
+	nor(W4015, PHI1, ~pla[15]);
+	nor(W4011, PHI1, ~pla[17]);
+	nor(W400F, PHI1, ~pla[19]);
+	not(n_R4017, pla[21]);
+	not(n_R4016, pla[23]);
+	nor(W4016, PHI1, ~pla[25]);
+	nor(W4017, PHI1, ~pla[27]);
+
+endmodule // ApuRegsDecoder
+
+module ApuRegs_PLA(nREGRD, nREGWR, A, nA, pla);
+
+	input nREGRD;
+	input nREGWR;
+	input [4:0] A;
+	input [4:0] nA;
+	output [28:0] pla;
+
+	nor (pla[0], nREGRD, A[0], A[1], A[2], nA[3], nA[4]);
+	nor (pla[1], nREGRD, nA[0], A[1], A[2], nA[3], nA[4]);
+	nor (pla[2], nREGRD, A[0], nA[1], A[2], nA[3], nA[4]);
+	nor (pla[3], nREGWR, A[0], nA[1], A[2], nA[3], nA[4]);
+
+	nor (pla[4], nREGRD, nA[0], A[1], nA[2], A[3], nA[4]);
+	nor (pla[5], nREGWR, nA[0], nA[1], A[2], A[3], A[4]);
+	nor (pla[6], nREGWR, A[0], nA[1], A[2], A[3], A[4]);
+	nor (pla[7], nREGWR, nA[0], nA[1], nA[2], A[3], A[4]);
+	nor (pla[8], nREGWR, nA[0], A[1], A[2], A[3], A[4]);
+
+	nor (pla[9],  nREGWR, A[0], A[1], nA[2], A[3], A[4]);
+	nor (pla[10], nREGWR, nA[0], A[1], nA[2], A[3], A[4]);
+	nor (pla[11], nREGWR, A[0], A[1], nA[2], nA[3], A[4]);
+	nor (pla[12], nREGWR, A[0], nA[1], nA[2], A[3], A[4]);
+	nor (pla[13], nREGWR, A[0], A[1], A[2], A[3], A[4]);
+
+	nor (pla[14], nREGWR, A[0], A[1], A[2], nA[3], A[4]);
+	nor (pla[15], nREGWR, nA[0], A[1], nA[2], A[3], nA[4]);
+	nor (pla[16], nREGWR, A[0], nA[1], A[2], nA[3], A[4]);
+	nor (pla[17], nREGWR, nA[0], A[1], A[2], A[3], nA[4]);
+	nor (pla[18], nREGWR, nA[0], nA[1], A[2], nA[3], A[4]);
+
+	nor (pla[19], nREGWR, nA[0], nA[1], nA[2], nA[3], A[4]);
+	nor (pla[20], nREGWR, A[0], nA[1], nA[2], nA[3], A[4]);
+	nor (pla[21], nREGRD, nA[0], nA[1], nA[2], A[3], nA[4]);
+	nor (pla[22], nREGWR, nA[0], nA[1], A[2], A[3], nA[4]);
+	nor (pla[23], nREGRD, A[0], nA[1], nA[2], A[3], nA[4]);
+
+	nor (pla[24], nREGWR, A[0], nA[1], A[2], A[3], nA[4]);
+	nor (pla[25], nREGWR, A[0], nA[1], nA[2], A[3], nA[4]);
+	nor (pla[26], nREGWR, A[0], A[1], A[2], A[3], nA[4]);
+	nor (pla[27], nREGWR, nA[0], nA[1], nA[2], A[3], nA[4]);
+	nor (pla[28], nREGWR, A[0], A[1], nA[2], A[3], nA[4]);
+
+endmodule // ApuRegs_PLA
+
+// APU I/O interface.
+
+// It is moved to a separate module so as not to be confused with the other pads.
+
+module IOPorts(
+	nACLK2, ACLK1, W4016, n_R4016, n_R4017, DB, RES, 
+	OUT0_Pad, OUT1_Pad, OUT2_Pad, nIN0_Pad, nIN1_Pad);
+
+	input nACLK2;
+	input ACLK1;
+	input W4016;
+	input n_R4016;
+	input n_R4017;
+	inout [7:0] DB;
+	input RES;
+
+	output OUT0_Pad;
+	output OUT1_Pad;
+	output OUT2_Pad;
+	output nIN0_Pad;
+	output nIN1_Pad;
+
+	wire [2:0] OUT_topad;
+	wire [1:0] IN_topad;
+
+	// The output value for pins /IN0-1 is the internal signals /R4016 and /R4017 from the register selector.
+
+	assign IN_topad[0] = n_R4016;
+	assign IN_topad[1] = n_R4017;
+
+	OutPort out_ports [2:0] (
+		.DB_bit(DB[2:0]),
+		.W4016(W4016),
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
+		.OUT_val(OUT_topad) );
+
+	IOPad out_pads [2:0] (
+		.bit_val(OUT_topad[2:0]),
+		.res(RES),
+		.pad({OUT2_Pad, OUT1_Pad, OUT0_Pad}) );
+
+	IOPad in_pads [1:0] (
+		.bit_val(IN_topad[1:0]),
+		.res(RES),
+		.pad({nIN1_Pad, nIN0_Pad}) );
+
+endmodule // IOPorts
+
+module OutPort(DB_bit, W4016, nACLK2, ACLK1, OUT_val);
+
+	inout DB_bit;
+	input W4016;
+	input nACLK2;
+	input ACLK1;
+	output OUT_val;
+
+	wire ff_out;
+	wire ACLK5;
+
+	assign ACLK5 = ~nACLK2;		// Other ACLK
+
+	RegisterBit out_ff (
+		.d(DB_bit),
+		.ena(W4016),
+		.ACLK1(ACLK1),
+		.q(ff_out) );
+
+	wire n_latch_out;
+
+	dlatch out_latch (
+		.d(ff_out),
+		.en(ACLK5),
+		.nq(n_latch_out) );
+
+	assign OUT_val = ~n_latch_out;
+
+endmodule // OutPort
+
+module IOPad(bit_val, res, pad);
+
+	input bit_val;
+	input res;
+	output pad;
+
+	wire n1;
+	nor (n1, bit_val, res);
+
+	bustris io_tris(
+		.a(n1),
+		.n_x(pad),
+		.n_en(res) );
+
+endmodule // IOPad
+
+// Sprite DMA
+
+// This component acts as a small DMA controller, which besides sprite DMA also handles address bus arbitration and processor readiness control (RDY).
+
+module Sprite_DMA(
+	ACLK1, nACLK2, PHI1,
+	RES, RnW, W4014, DB, 
+	RUNDMC, n_DMCAB, DMCRDY, DMC_Addr, CPU_Addr,
+	Addr, RDY_tocore, SPR_PPU);
+
+	input ACLK1;
+	input nACLK2;
+	input PHI1;					// Sprite DMA can only start if the processor goes into a read cycle (PHI1 = 0 and R/W = 1)
+								// This is done to delay the start of the DMA because the RDY clearing is ignored on the 6502 write cycles.
+
+	input RES;
+	input RnW;
+	input W4014;				// Writing to register $4014 clears the lower part of the address and puts the value to be written into the higher part. The DMA process then starts.
+	inout [7:0] DB;
+
+	input RUNDMC;				// As long as the RUNDMC signal is 1 the sprite DMA is in standby mode
+	input n_DMCAB;				// The address bus is controlled by the DMC circuitry to perform DMC DMA
+	input DMCRDY;				// DMC Ready. If the DMC is not ready - the RDY signal is also forced to 0.
+	input [15:0] DMC_Addr;
+	input [15:0] CPU_Addr;
+
+	output [15:0] Addr;
+	output RDY_tocore;
+	output SPR_PPU;				// A constant address value is set for writing to the PPU register $2004
+
+	wire SPRDmaEnd;				// End DMA execution ("End")
+	wire SPRDmaStep;			// Increment the low-order part of the address ("Step")
+	wire [15:0] SPR_Addr;
+	wire SPR_CPU;				// Memory address to read during sprite DMA
+
+	SPRDMA_AddrLowCounter dma_addr_low (
+		.ACLK1(ACLK1),
+		.Clear(RES),
+		.Step(SPRDmaStep),
+		.Load(W4014),
+		.EndCount(SPRDmaEnd),
+		.AddrLow(SPR_Addr[7:0]) );
+
+	SPRDMA_AddrHigh dma_addr_high (
+		.ACLK1(ACLK1),
+		.SetAddr(W4014),
+		.DB(DB),
+		.AddrHigh(SPR_Addr[15:8]) );
+
+	SPRDMA_Control sprdma_ctl (
+		.PHI1(PHI1),
+		.RnW(RnW),
+		.ACLK1(ACLK1), 
+		.nACLK2(nACLK2),
+		.RES(RES),
+		.W4014(W4014),
+		.RUNDMC(RUNDMC),
+		.DMCReady(DMCRDY),
+		.SPRE(SPRDmaEnd),
+		.SPRS(SPRDmaStep),
+		.RDY(RDY_tocore),
+		.SPR_PPU(SPR_PPU),
+		.SPR_CPU(SPR_CPU) );
+
+	Address_MUX addr_mux (
+		.SPR_CPU(SPR_CPU),
+		.SPR_PPU(SPR_PPU),
+		.n_DMCAB(n_DMCAB),
+		.DMC_Addr(DMC_Addr),
+		.SPR_Addr(SPR_Addr),
+		.CPU_Addr(CPU_Addr),
+		.AddrOut(Addr) );
+
+endmodule // Sprite_DMA
+
+module SPRDMA_AddrLowCounter(ACLK1, Clear, Step, Load, EndCount, AddrLow);
+
+	input ACLK1;
+	input Clear;
+	input Step;
+	input Load;
+	output EndCount;
+	output [7:0] AddrLow;
+
+	wire [7:0] cc; 		// Carry chain
+
+	CounterBit cnt [7:0] (
+		.ACLK1(ACLK1),
+		.clear(Clear),
+		.step(Step),
+		.load(Load),
+		.cin({cc[6:0], 1'b1}),
+		.d(8'h00),
+		.q(AddrLow),
+		.cout(cc) );
+
+	assign EndCount = cc[7];
+
+endmodule // SPRDMA_AddrLowCounter
+
+module SPRDMA_AddrHigh(ACLK1, SetAddr, DB, AddrHigh);
+
+	input ACLK1;
+	input SetAddr;
+	inout [7:0] DB;
+	output [7:0] AddrHigh;
+
+	RegisterBit val_hi [7:0] (
+		.d(DB),
+		.ena(SetAddr),
+		.ACLK1(ACLK1),
+		.q(AddrHigh) );
+
+endmodule // SPRDMA_AddrHigh
+
+module SPRDMA_Control(PHI1, RnW, ACLK1, nACLK2, RES, W4014, RUNDMC, DMCReady, SPRE, SPRS, RDY, SPR_PPU, SPR_CPU);
+
+	input PHI1;
+	input RnW;
+	input ACLK1;
+	input nACLK2;
+	input RES;
+	input W4014;
+	
+	input RUNDMC;
+	input DMCReady;
+
+	input SPRE;
+	output SPRS;
+
+	output RDY;
+	output SPR_PPU;			// DMA Buffer -> PPU
+	output SPR_CPU;			// RAM -> DMA Buffer
+
+	wire ACLK2 = ~ACLK2;
+	wire NOSPR;
+	wire DOSPR;
+	wire spre_out;
+	wire dospr_out;
+	wire StopDma;
+	wire StartDma;
+	wire n_StartDma;
+	wire toggle;
+
+	nor (SPRS, NOSPR, RUNDMC, ~ACLK2);
+
+	dlatch spre_latch (.d(SPRE), .en(ACLK1), .q(spre_out) );
+	dlatch nospr_latch (.d(StopDma), .en(ACLK1), .nq(NOSPR) );
+	dlatch dospr_latch (.d(n_StartDma), .en(ACLK2), .q(dospr_out) );
+
+	rsff_2_3 StopDMA (.res1(SPRS & spre_out), .res2(RES), .s(DOSPR), .q(StopDma) );
+	rsff_2_3 StartDMA (.res1(~NOSPR), .res2(RES), .s(W4014), .q(StartDma), .nq(n_StartDma) );
+	rsff DMADirToggle (.r(ACLK1), .s(ACLK2), .q(toggle) );
+
+	nor(SPR_PPU, NOSPR, RUNDMC, ~toggle);
+	nor(SPR_CPU, NOSPR, RUNDMC, toggle);
+
+	// Ready control
+
+	wire sprdma_rdy;
+	nor (sprdma_rdy, ~NOSPR, StartDma);
+	assign RDY = sprdma_rdy & DMCReady; 		// -> to core
+
+	// 6502 read cycle detect
+
+	wire read_cyc;
+	nand (read_cyc, ~PHI1, RnW);
+	nor (DOSPR, dospr_out, read_cyc);
+
+endmodule // SPRDMA_Control
+
+module Address_MUX(SPR_CPU, SPR_PPU, n_DMCAB, DMC_Addr, SPR_Addr, CPU_Addr, AddrOut);
+
+	input SPR_CPU;
+	input SPR_PPU;
+	input n_DMCAB;
+	input [15:0] DMC_Addr;
+	input [15:0] SPR_Addr;
+	input [15:0] CPU_Addr;
+	output [15:0] AddrOut;
+
+	wire DMC_AB = ~n_DMCAB;
+
+	wire CPU_AB;
+	nor (CPU_AB, SPR_CPU, SPR_PPU, DMC_AB);
+
+	assign AddrOut = SPR_PPU ? 16'h2004 : 
+		(SPR_CPU ? SPR_Addr :
+			(DMC_AB ? DMC_Addr :
+				(CPU_AB ? CPU_Addr : 16'hzzzz) ) );
+
+endmodule // Address_MUX
+
+
+module LengthCounters(
+	nACLK2, ACLK1,
+	RES, DB, n_R4015, W4015, nLFO2, 
+	W4003, W4007, W400B, W400F,
+	SQA_LC, SQB_LC, TRI_LC, RND_LC,
+	NOSQA, NOSQB, NOTRI, NORND);
+
+	input nACLK2;
+	input ACLK1;
+
+	input RES;
+	inout [7:0] DB;
+	input n_R4015;
+	input W4015;
+	input nLFO2;
+
+	input W4003;
+	input W4007;
+	input W400B;
+	input W400F;
+
+	input SQA_LC;
+	input SQB_LC;
+	input TRI_LC;
+	input RND_LC;
+
+	output NOSQA;
+	output NOSQB;
+	output NOTRI;
+	output NORND;
+
+	wire [7:0] LC;
+
+	LengthCounter_PLA pla (
+		.DB(DB),
+		.LC_Out(LC) );
+
+	LengthCounter length_cnt [3:0] (
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
+		.RES(RES),
+		.W400x_load({W400F, W400B, W4007, W4003}),
+		.n_R4015(n_R4015),
+		.W4015(W4015),
+		.LC(LC),
+		.dbit_ena({DB[3], DB[2], DB[1], DB[0]}),
+		.nLFO2(nLFO2),
+		.Carry_in({RND_LC, TRI_LC, SQB_LC, SQA_LC}),
+		.NotCount({NORND, NOTRI, NOSQB, NOSQA}) );
+
+endmodule // LengthCounters
+
+module LengthCounter(
+	nACLK2, ACLK1,
+	RES, W400x_load, n_R4015, W4015, LC, dbit_ena, nLFO2,
+	Carry_in, NotCount);
+
+	input nACLK2;
+	input ACLK1;
+
+	input RES;
+	input W400x_load;
+	input n_R4015;
+	input W4015;
+	input [7:0] LC;
+	inout dbit_ena;
+	input nLFO2;
+
+	input Carry_in;
+	output NotCount;
+
+	wire STEP;
+	wire Carry_out;
+
+	LC_DownCounter cnt (
+		.Clk(ACLK1),
+		.Clear(RES),
+		.Step(STEP),
+		.Load(W400x_load),
+		.Val_in(LC),
+		.Carry_in(Carry_in),
+		.Carry_out(Carry_out) );
+
+	LC_Control ctl (
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
+		.RES(RES),
+		.W400x_load(W400x_load),
+		.n_R4015(n_R4015),
+		.W4015(W4015),
+		.dbit_ena(dbit_ena),
+		.nLFO2(nLFO2),
+		.cout(Carry_out),
+		.NotCount(NotCount),
+		.Step(STEP) );
+
+endmodule // LengthCounter
+
+module LC_Control(
+	nACLK2, ACLK1,
+	RES, W400x_load, n_R4015, W4015, dbit_ena, nLFO2, cout,
+	NotCount, Step);
+
+	input nACLK2;
+	input ACLK1;
+
+	input RES;
+	input W400x_load;
+	input n_R4015;
+	input W4015;
+	inout dbit_ena;
+	input nLFO2;
+	input cout;
+
+	output NotCount;
+	output Step;
+
+	wire LCDIS;
+	wire ena_latch_out;
+	wire cout_latch_out;
+	wire StatOut;
+	wire n_StatOut;
+	wire step_latch_out;
+	wire ACLK4;		// Other ACLK
+
+	assign ACLK4 = ~nACLK2;
+	sdffre ena_ff (.d(dbit_ena), .en(W4015), .res(RES), .phi_keep(ACLK1), .nq(LCDIS));
+	dlatch ena_latch (.d(LCDIS), .en(ACLK1), .q(ena_latch_out));
+	dlatch cout_latch (.d(cout), .en(ACLK1), .q(cout_latch_out));
+	rsff_2_4 stat_ff (
+		.res1(ena_latch_out & ACLK4),
+		.res2(cout_latch_out & Step),
+		.res3(RES),
+		.s(W400x_load),
+		.q(StatOut),
+		.nq(n_StatOut) );
+	dlatch step_latch (.d(n_StatOut), .en(ACLK1), .q(step_latch_out));
+
+	assign NotCount = ~StatOut;
+	bustris stat_tris (.a(n_StatOut), .n_x(dbit_ena), .n_en(n_R4015));
+
+	nor (Step, step_latch_out, nLFO2);
+
+endmodule // LC_Control
+
+module LC_DownCounter(Clk, Clear, Step, Load, Val_in, Carry_in, Carry_out);
+
+	input Clk;
+	input Clear;
+	input Step;
+	input Load;
+	input [7:0] Val_in;
+	input Carry_in;
+	output Carry_out;
+
+	wire [7:0] carry_chain;
+	wire [7:0] cnt_value; 	// debug
+
+	DownCounterBit lc_cnt [7:0] (
+		.ACLK1(Clk),
+		.load(Load),
+		.clear(Clear),
+		.step(Step),
+		.d(Val_in),
+		.q(cnt_value),
+		.cin({carry_chain[6:0], Carry_in}),
+		.cout(carry_chain) );
+
+	assign Carry_out = carry_chain[7];
+
+endmodule // LC_DownCounter
+
+module LengthCounter_PLA(DB, LC_Out);
+
+	inout [7:0] DB;
+	output [7:0] LC_Out;
+
+	wire [4:0] Dec1_in;
+	wire [31:0] Dec1_out;
+
+	dlatch din [4:0] (.d(DB[7:3]), .en(1'b1), .q(Dec1_in));
+	LengthDecoder1 dec1 (.Dec1_in(Dec1_in), .Dec1_out(Dec1_out));
+	LengthDecoder2 dec2 (.Dec2_in(Dec1_out), .Dec2_out(LC_Out));
+
+endmodule // LengthCounter_PLA
+
+module LengthDecoder1 (Dec1_in, Dec1_out);
+
+	input [4:0] Dec1_in;
+	output [31:0] Dec1_out;
+
+	wire [4:0] d;
+	wire [4:0] nd;
+
+	assign d = Dec1_in;
+	assign nd = ~Dec1_in;
+
+	nor (Dec1_out[0], d[0], d[1], d[2], d[3], d[4]);
+	nor (Dec1_out[1], d[0], nd[1], d[2], d[3], d[4]);
+	nor (Dec1_out[2], d[0], d[1], nd[2], d[3], d[4]);
+	nor (Dec1_out[3], d[0], nd[1], nd[2], d[3], d[4]);
+	nor (Dec1_out[4], d[0], d[1], d[2], nd[3], d[4]);
+	nor (Dec1_out[5], d[0], nd[1], d[2], nd[3], d[4]);
+	nor (Dec1_out[6], d[0], d[1], nd[2], nd[3], d[4]);
+	nor (Dec1_out[7], d[0], nd[1], nd[2], nd[3], d[4]);
+
+	nor (Dec1_out[8], d[0], d[1], d[2], d[3], nd[4]);
+	nor (Dec1_out[9], d[0], nd[1], d[2], d[3], nd[4]);
+	nor (Dec1_out[10], d[0], d[1], nd[2], d[3], nd[4]);
+	nor (Dec1_out[11], d[0], nd[1], nd[2], d[3], nd[4]);
+	nor (Dec1_out[12], d[0], d[1], d[2], nd[3], nd[4]);
+	nor (Dec1_out[13], d[0], nd[1], d[2], nd[3], nd[4]);
+	nor (Dec1_out[14], d[0], d[1], nd[2], nd[3], nd[4]);
+	nor (Dec1_out[15], d[0], nd[1], nd[2], nd[3], nd[4]);
+
+	nor (Dec1_out[16], nd[0], d[1], d[2], d[3], d[4]);
+	nor (Dec1_out[17], nd[0], nd[1], d[2], d[3], d[4]);
+	nor (Dec1_out[18], nd[0], d[1], nd[2], d[3], d[4]);
+	nor (Dec1_out[19], nd[0], nd[1], nd[2], d[3], d[4]);
+	nor (Dec1_out[20], nd[0], d[1], d[2], nd[3], d[4]);
+	nor (Dec1_out[21], nd[0], nd[1], d[2], nd[3], d[4]);
+	nor (Dec1_out[22], nd[0], d[1], nd[2], nd[3], d[4]);
+	nor (Dec1_out[23], nd[0], nd[1], nd[2], nd[3], d[4]);
+
+	nor (Dec1_out[24], nd[0], d[1], d[2], d[3], nd[4]);
+	nor (Dec1_out[25], nd[0], nd[1], d[2], d[3], nd[4]);
+	nor (Dec1_out[26], nd[0], d[1], nd[2], d[3], nd[4]);
+	nor (Dec1_out[27], nd[0], nd[1], nd[2], d[3], nd[4]);
+	nor (Dec1_out[28], nd[0], d[1], d[2], nd[3], nd[4]);
+	nor (Dec1_out[29], nd[0], nd[1], d[2], nd[3], nd[4]);
+	nor (Dec1_out[30], nd[0], d[1], nd[2], nd[3], nd[4]);
+	nor (Dec1_out[31], nd[0], nd[1], nd[2], nd[3], nd[4]);
+
+endmodule // LengthDecoder1
+
+module LengthDecoder2 (Dec2_in, Dec2_out);
+
+	input [31:0] Dec2_in;
+	output [7:0] Dec2_out;
+
+	wire [31:0] d;
+	assign d = Dec2_in;
+
+	nor (Dec2_out[7], 
+		d[0], d[1], d[2], d[3], d[5], d[6], d[7],
+		d[8], d[9], d[10], d[11], d[13], d[14], d[15],
+		d[17], d[18], d[19], d[20], d[21], d[22], d[23],
+		d[24], d[25], d[26], d[27], d[28], d[29], d[30], d[31] );
+	nor (Dec2_out[6], 
+		d[0], d[1], d[2], d[4], d[5], d[6], d[7], 
+		d[8], d[9], d[10], d[12], d[14], d[15], 
+		d[17], d[18], d[19], d[20], d[21], d[22], d[23], 
+		d[24], d[25], d[26], d[27], d[28], d[29], d[30], d[31] );
+	nor (Dec2_out[5], 
+		d[0], d[1], d[3], d[4], d[6], d[7], 
+		d[8], d[9], d[11], d[13], d[14], d[15], 
+		d[17], d[18], d[19], d[20], d[21], d[22], d[23], 
+		d[24], d[25], d[26], d[27], d[28], d[29], d[30], d[31] );
+	nor (Dec2_out[4], 
+		d[0], d[2], d[3], d[6], 
+		d[8], d[10], d[13], d[14], 
+		d[17], d[18], d[19], d[20], d[21], d[22], d[23],
+		d[24] );
+	nor (Dec2_out[3], 
+		d[1], d[2], 
+		d[9], d[13], 
+		d[17], d[18], d[19], d[20], 
+		d[25], d[26], d[27], d[28] );
+	nor (Dec2_out[2], 
+		d[0], d[1], d[5], d[7], 
+		d[8], 
+		d[17], d[18], d[21], d[22], 
+		d[25], d[26], d[29], d[30] );
+	nor (Dec2_out[1], 
+		d[0], d[6], d[7], 
+		//...
+		d[16], d[17], d[19], d[21], d[23], 
+		d[25], d[27], d[29], d[31] );
+	assign Dec2_out[0] = 1'b1;
+
+endmodule //  LengthDecoder2
+
+
+// In the real circuit there is no `AdderCarryMode` signal. For Square0 the input n_carry is connected directly to VDD and for Square1 it is connected to INC.
+// But we cheat a little bit here for convenience by making the connection using multiplexer.
+
+module SquareChan (
+	nACLK2, ACLK1, 
+	RES, DB, WR0, WR1, WR2, WR3, nLFO1, nLFO2, SQ_LC, NOSQ, LOCK, AdderCarryMode,
+	SQ_Out);
+
+	input nACLK2;
+	input ACLK1;
+
+	input RES;
+	inout [7:0] DB;
+	input WR0;
+	input WR1;
+	input WR2;
+	input WR3;
+	input nLFO1;
+	input nLFO2;
+	output SQ_LC;
+	input NOSQ;
+	input LOCK;
+	input AdderCarryMode;			// 0: input n_carry connected to INC, 1: input n_carry connected to Vdd
+
+	output [3:0] SQ_Out;
+
+	// Internal wires
+
+	wire [10:0] Fx;
+	wire [10:0] nFx;
+	wire [10:0] n_sum;
+	wire [10:0] S;
+	wire [2:0] SR;
+	wire [11:0] BS;
+	wire DEC;
+	wire INC;
+	wire n_COUT;
+	wire SW_UVF;
+	wire FCO;
+	wire FLOAD;
+	wire DO_SWEEP;
+	wire SW_OVF;
+	wire DUTY;
+	wire [3:0] Vol;
+
+	// Instantiate
+
+	RegisterBit dir_reg (.ACLK1(ACLK1), .ena(WR1), .d(DB[3]), .q(DEC) );
+
+	assign INC = ~DEC;
+	assign BS = {DEC, DEC ? nFx : Fx};
+
+	SQUARE_FreqReg freq_reg (.nACLK2(nACLK2), .ACLK1(ACLK1), .WR2(WR2), .WR3(WR3), .DB(DB), .DO_SWEEP(DO_SWEEP), .n_sum(n_sum), .nFx(nFx), .Fx(Fx) );
+
+	SQUARE_ShiftReg shift_reg (.ACLK1(ACLK1), .WR1(WR1), .DB(DB), .SR(SR) );
+
+	SQUARE_BarrelShifter barrel (.BS(BS), .SR(SR), .S(S) );
+
+	SQUARE_Adder adder (.CarryMode(AdderCarryMode), .INC(INC), .nFx(nFx), .Fx(Fx), .S(S), .n_sum(n_sum), .n_COUT(n_COUT), .SW_UVF(SW_UVF) );
+
+	SQUARE_FreqCounter freq_cnt (.nACLK2(nACLK2), .ACLK1(ACLK1), .RES(RES), .Fx(Fx), .FCO(FCO), .FLOAD(FLOAD) );
+
+	Envelope_Unit env_unit (.ACLK1(ACLK1), .RES(RES), .WR_Reg(WR0), .WR_LC(WR3), .n_LFO1(nLFO1), .DB(DB), .V(Vol), .LC(SQ_LC) );
+
+	SQUARE_Sweep sweep_unit (.ACLK1(ACLK1), .RES(RES), .WR1(WR1), .SR(SR), .DEC(DEC), .n_COUT(n_COUT), .SW_UVF(SW_UVF), .NOSQ(NOSQ), .n_LFO2(nLFO2), 
+		.DB(DB), .DO_SWEEP(DO_SWEEP), .SW_OVF(SW_OVF) );
+
+	SQUARE_Duty duty_unit (.ACLK1(ACLK1), .RES(RES), .FLOAD(FLOAD), .FCO(FCO), .WR0(WR0), .WR3(WR3), .DB(DB), .DUTY(DUTY) );
+
+	SQUARE_Output sqo (.ACLK1(ACLK1), .DUTY(DUTY), .LOCK(LOCK), .SW_UVF(SW_UVF), .NOSQ(NOSQ), .SW_OVF(SW_OVF), .V(Vol), .SQ_Out(SQ_Out) );
+
+endmodule // SquareChan
+
+module SQUARE_FreqReg (nACLK2, ACLK1, WR2, WR3, DB, DO_SWEEP, n_sum, nFx, Fx);
+
+	input nACLK2;
+	input ACLK1; 
+	input WR2; 
+	input WR3; 
+	inout [7:0] DB;
+	input DO_SWEEP; 
+	input [10:0] n_sum; 
+	output [10:0] nFx; 
+	output [10:0] Fx;
+
+	wire ACLK3;
+	assign ACLK3 = ~nACLK2;
+
+	SQUARE_FreqRegBit freq_reg [10:0] (.ACLK3(ACLK3), .ACLK1(ACLK1), 
+		.WR({ {3{WR3}}, {8{WR2}} }), .DB_in({ DB[2:0], DB[7:0] }), .DO_SWEEP(DO_SWEEP), .n_sum(n_sum), .nFx(nFx), .Fx(Fx) );
+
+endmodule // SQUARE_FreqReg
+
+module SQUARE_FreqRegBit (ACLK3, ACLK1, WR, DB_in, DO_SWEEP, n_sum, nFx, Fx);
+
+	input ACLK3;
+	input ACLK1;
+	input WR;
+	inout DB_in;
+	input DO_SWEEP;
+	input n_sum;
+	output nFx;
+	output Fx;
+
+	wire d;
+	wire transp_latch_q;
+	wire sum_latch_q;
+	wire sum_latch_nq;
+
+	assign d = WR ? DB_in : (ACLK3 ? Fx : 1'bz);
+	dlatch transp_latch (.d(d), .en(1'b1), .q(transp_latch_q) );
+	dlatch sum_latch (.d(n_sum), .en(ACLK1), .q(sum_latch_q), .nq(sum_latch_nq) );
+	nor (nFx, (sum_latch_nq & DO_SWEEP), transp_latch_q);
+	nor (Fx, nFx, (sum_latch_q & DO_SWEEP));
+
+endmodule // SQUARE_FreqRegBit
+
+module SQUARE_ShiftReg (ACLK1, WR1, DB, SR);
+
+	input ACLK1;
+	input WR1;
+	input [7:0] DB;
+	output [2:0] SR;
+
+	RegisterBit sr_reg [2:0] (.ACLK1(ACLK1), .ena(WR1), .d(DB[2:0]), .q(SR) );
+
+endmodule // SQUARE_ShiftReg
+
+module SQUARE_BarrelShifter (BS, SR, S);
+
+	input [11:0] BS;
+	input [2:0] SR;
+	output [10:0] S;
+
+	wire [10:0] q1;
+	wire [10:0] q2;
+
+	assign q1[0] = SR[0] ? BS[1] : BS[0];
+	assign q1[1] = SR[0] ? BS[2] : BS[1];
+	assign q1[2] = SR[0] ? BS[3] : BS[2];
+	assign q1[3] = SR[0] ? BS[4] : BS[3];
+	assign q1[4] = SR[0] ? BS[5] : BS[4];
+	assign q1[5] = SR[0] ? BS[6] : BS[5];
+	assign q1[6] = SR[0] ? BS[7] : BS[6];
+	assign q1[7] = SR[0] ? BS[8] : BS[7];
+	assign q1[8] = SR[0] ? BS[9] : BS[8];
+	assign q1[9] = SR[0] ? BS[10] : BS[9];
+	assign q1[10] = SR[0] ? BS[11] : BS[10];
+
+	assign q2[0] = SR[1] ? q1[2] : q1[0];
+	assign q2[1] = SR[1] ? q1[3] : q1[1];
+	assign q2[2] = SR[1] ? q1[4] : q1[2];
+	assign q2[3] = SR[1] ? q1[5] : q1[3];
+	assign q2[4] = SR[1] ? q1[6] : q1[4];
+	assign q2[5] = SR[1] ? q1[7] : q1[5];
+	assign q2[6] = SR[1] ? q1[8] : q1[6];
+	assign q2[7] = SR[1] ? q1[9] : q1[7];
+	assign q2[8] = SR[1] ? q1[10] : q1[8];
+	assign q2[9] = SR[1] ? BS[11] : q1[9];
+	assign q2[10] = SR[1] ? BS[11] : q1[10];
+
+	assign S[0] = SR[2] ? q2[4] : q2[0];
+	assign S[1] = SR[2] ? q2[5] : q2[1];
+	assign S[2] = SR[2] ? q2[6] : q2[2];
+	assign S[3] = SR[2] ? q2[7] : q2[3];
+	assign S[4] = SR[2] ? q2[8] : q2[4];
+	assign S[5] = SR[2] ? q2[9] : q2[5];
+	assign S[6] = SR[2] ? q2[10] : q2[6];
+	assign S[7] = SR[2] ? BS[11] : q2[7];
+	assign S[8] = SR[2] ? BS[11] : q2[8];
+	assign S[9] = SR[2] ? BS[11] : q2[9];
+	assign S[10] = SR[2] ? BS[11] : q2[10];
+
+endmodule // SQUARE_BarrelShifter
+
+module SQUARE_Adder (CarryMode, INC, nFx, Fx, S, n_sum, n_COUT, SW_UVF);
+
+	input CarryMode;
+	input INC;
+	input [10:0] nFx;
+	input [10:0] Fx;
+	input [10:0] S;
+	output [10:0] n_sum;
+	output n_COUT;
+	output SW_UVF;
+
+	wire n_cin;
+	assign n_cin = CarryMode ? 1'b1 : INC;
+	wire [10:0] n_cout;
+	wire [10:0] cout;
+
+	SQUARE_AdderBit adder [10:0] (.F(Fx), .nF(nFx), .S(S), .nS(~S), 
+		.C({cout[9:0],~n_cin}), .nC({n_cout[9:0],n_cin}), .n_cout(n_cout), .cout(cout), .n_sum(n_sum) );
+	assign n_COUT = n_cout[10];
+	nor (SW_UVF, Fx[2], Fx[3], Fx[4], Fx[5], Fx[6], Fx[7], Fx[8], Fx[9], Fx[10]);
+
+endmodule // SQUARE_Adder
+
+module SQUARE_AdderBit (F, nF, S, nS, C, nC, n_cout, cout, n_sum);
+
+	input F;
+	input nF;
+	input S;
+	input nS;
+	input C;
+	input nC;
+	output n_cout;
+	output cout;
+	output n_sum;
+
+	nor (n_cout, (F & S), (F & nS & C), (nF & S & C));
+	nor (n_sum, (F & nS & nC), (nF & S & nC), (nF & nS & C), (F & S & C) );
+	assign cout = ~n_cout;
+
+endmodule // SQUARE_AdderBit
+
+module SQUARE_FreqCounter (nACLK2, ACLK1, RES, Fx, FCO, FLOAD);
+
+	input nACLK2;
+	input ACLK1;
+	input RES;
+	input [10:0] Fx;
+	output FCO;
+	output FLOAD;
+
+	wire FSTEP;
+	wire fco_latch_nq;
+	wire [10:0] cout;
+
+	dlatch fco_latch (.d(FCO), .en(ACLK1), .nq(fco_latch_nq) );
+	DownCounterBit freq_cnt [10:0] (.ACLK1(ACLK1), .d(Fx), .load(FLOAD), .clear(RES), .step(FSTEP), .cin({cout[9:0],1'b1}), .cout(cout) );
+	assign FCO = cout[10];
+
+	nor (FLOAD, nACLK2, fco_latch_nq);
+	nor (FSTEP, nACLK2, ~fco_latch_nq);
+
+endmodule // SQUARE_FreqCounter
+
+module SQUARE_Sweep (ACLK1, RES, WR1, SR, DEC, n_COUT, SW_UVF, NOSQ, n_LFO2, DB, DO_SWEEP, SW_OVF);
+
+	input ACLK1;
+	input RES;
+	input WR1;
+	input [2:0] SR;
+	input DEC;
+	input n_COUT;
+	input SW_UVF;
+	input NOSQ;
+	input n_LFO2;
+	inout [7:0] DB;
+	output DO_SWEEP;
+	output SW_OVF;
+
+	wire SRZ;
+	wire SWDIS;
+	wire SWRELOAD;
+	wire SSTEP;
+	wire SLOAD;
+	wire SCO;
+	wire n_SCO;
+	wire reload_latch_q;
+	wire sco_latch_q;
+	wire reload_ff_q;
+	wire [2:0] sweep_reg_q;
+	wire [2:0] cnt_q; 	// debug
+	wire [2:0] cout;
+	wire temp_reload;
+
+	dlatch reload_latch (.d(reload_ff_q), .en(ACLK1), .q(reload_latch_q), .nq(SWRELOAD) );
+	dlatch sco_latch (.d(SCO), .en(ACLK1), .q(sco_latch_q), .nq(n_SCO) );
+
+	rsff reload_ff (.r(WR1), .s(~(n_LFO2 | reload_latch_q)), .q(reload_ff_q) );
+
+	RegisterBit swdis_reg (.ACLK1(ACLK1), .ena(WR1), .d(DB[7]), .nq(SWDIS) );
+
+	RegisterBit sweep_reg [2:0] (.ACLK1(ACLK1), .ena(WR1), .d(DB[6:4]), .q(sweep_reg_q) );
+	DownCounterBit sweep_cnt [2:0] (.ACLK1(ACLK1), .d(sweep_reg_q), .load(SLOAD), .clear(RES), .step(SSTEP), .cin({cout[1:0],1'b1}), .cout(cout), .q(cnt_q) );
+	assign SCO = cout[2];
+
+	nor (temp_reload, SWRELOAD, sco_latch_q);
+	nor (SSTEP, n_LFO2, ~temp_reload);
+	nor (SLOAD, n_LFO2, temp_reload);
+	nor (SW_OVF, DEC, n_COUT);
+	nor (SRZ, SR[0], SR[1], SR[2]);
+	nor (DO_SWEEP, SRZ, SWDIS, NOSQ, SW_OVF, n_SCO, n_LFO2, SW_UVF);
+
+endmodule // SQUARE_Sweep
+
+module SQUARE_Duty (ACLK1, RES, FLOAD, FCO, WR0, WR3, DB, DUTY);
+
+	input ACLK1;
+	input RES;
+	input FLOAD;
+	input FCO;
+	input WR0;
+	input WR3;
+	inout [7:0] DB;
+	output DUTY;
+
+	wire [2:0] cout;
+	wire [2:0] DC;
+	wire [1:0] DT;
+	wire [3:0] in;
+
+	RegisterBit duty_reg [1:0] (.ACLK1(ACLK1), .ena(WR0), .d(DB[7:6]), .q(DT) );
+	DownCounterBit duty_cnt [2:0] (.ACLK1(ACLK1), .d(3'b000), .load(WR3), .clear(RES), .step(FLOAD), .cin({cout[1:0],1'b1}), .q(DC), .cout(cout) );
+
+	nand (in[3], DC[1], DC[2]);
+	nor (in[0], ~DC[0], in[3]);
+	assign in[1] = ~in[3];
+	assign in[2] = DC[2];
+
+	assign DUTY = DT[1] ? (DT[0] ? in[3] : in[2]) : (DT[0] ? in[1] : in[0]); 	// mux 4-to-1
+
+endmodule // SQUARE_Duty
+
+module SQUARE_Output (ACLK1, DUTY, LOCK, SW_UVF, NOSQ, SW_OVF, V, SQ_Out);
+
+	input ACLK1;
+	input DUTY;
+	input LOCK;
+	input SW_UVF;
+	input NOSQ;
+	input SW_OVF;
+	input [3:0] V;
+	output [3:0] SQ_Out;
+
+	wire d;
+	wire sqo_latch_q;
+	wire sqv;
+
+	nor (d, ~DUTY, SW_UVF, NOSQ, SW_OVF);
+	dlatch sqo_latch (.d(d), .en(ACLK1), .q(sqo_latch_q) );
+	nor (sqv, sqo_latch_q, LOCK);
+
+	pnor vout [3:0] (.a0({4{sqv}}), .a1(~V), .x(SQ_Out) );
+
+endmodule // SQUARE_Output
+
+
+module NoiseChan(
+	ACLK1, nACLK2, 
+	RES, DB, W400C, W400E, W400F, nLFO1, RND_LC, NORND, LOCK, 
+	RND_out);
+
+	input ACLK1;
+	input nACLK2;
+
+	input RES;
+	inout [7:0] DB;
+	input W400C;
+	input W400E;
+	input W400F;
+	input nLFO1;
+	output RND_LC;
+	input NORND;
+	input LOCK;	
+
+	output [3:0] RND_out;
+
+	// Internal wires
+
+	wire [3:0] NF;
+	wire [10:0] NNF;
+	wire RSTEP;
+	wire RNDOUT;
+	wire [3:0] Vol;
+
+	// Instantiate
+
+	NOISE_FreqReg freq_reg (.ACLK1(ACLK1), .RES(RES), .W400E(W400E), .DB(DB), .NF(NF) );
+
+	NOISE_Decoder dec (.NF(NF), .NNF(NNF) );
+
+	NOISE_FreqLFSR freq_lfsr (.nACLK2(nACLK2), .ACLK1(ACLK1), .RES(RES), .NNF(NNF), .RSTEP(RSTEP) );
+
+	NOISE_RandomLFSR rnd_lfsr (.ACLK1(ACLK1), .RSTEP(RSTEP), .NORND(NORND), .LOCK(LOCK), .W400E(W400E), .DB(DB), .RNDOUT(RNDOUT) );
+
+	Envelope_Unit env_unit (.ACLK1(ACLK1), .RES(RES), .WR_Reg(W400C), .WR_LC(W400F), .n_LFO1(nLFO1), .DB(DB), .V(Vol), .LC(RND_LC) );
+
+	assign RND_out = ~(~Vol | {4{RNDOUT}});
+
+endmodule // NoiseChan
+
+module NOISE_FreqReg (ACLK1, RES, W400E, DB, NF);
+
+	input ACLK1;
+	input RES;
+	input W400E;
+	inout [7:0] DB;
+	output [3:0] NF;
+
+	RegisterBitRes freq_reg [3:0] (.ACLK1(ACLK1), .ena(W400E), .d(DB[3:0]), .res(RES), .q(NF) );
+
+endmodule // NOISE_FreqReg
+
+module NOISE_Decoder (NF, NNF);
+
+	input [3:0] NF;
+	output [10:0] NNF;
+
+	wire [15:0] Dec1_out;
+
+	NOISE_Decoder1 dec1 (.Dec1_in(NF), .Dec1_out(Dec1_out) );
+	NOISE_Decoder2 dec2 (.Dec2_in(Dec1_out), .Dec2_out(NNF) );
+
+endmodule // NOISE_Decoder
+
+module NOISE_Decoder1 (Dec1_in, Dec1_out);
+
+	input [3:0] Dec1_in;
+	output [15:0] Dec1_out;
+
+	wire [3:0] F;
+	wire [3:0] nF;
+
+	assign F = Dec1_in;
+	assign nF = ~Dec1_in;
+
+	nor (Dec1_out[0], F[0], F[1], F[2], F[3]);
+	nor (Dec1_out[1], nF[0], F[1], F[2], F[3]);
+	nor (Dec1_out[2], F[0], nF[1], F[2], F[3]);
+	nor (Dec1_out[3], nF[0], nF[1], F[2], F[3]);
+	nor (Dec1_out[4], F[0], F[1], nF[2], F[3]);
+	nor (Dec1_out[5], nF[0], F[1], nF[2], F[3]);
+	nor (Dec1_out[6], F[0], nF[1], nF[2], F[3]);
+	nor (Dec1_out[7], nF[0], nF[1], nF[2], F[3]);
+
+	nor (Dec1_out[8], F[0], F[1], F[2], nF[3]);
+	nor (Dec1_out[9], nF[0], F[1], F[2], nF[3]);
+	nor (Dec1_out[10], F[0], nF[1], F[2], nF[3]);
+	nor (Dec1_out[11], nF[0], nF[1], F[2], nF[3]);
+	nor (Dec1_out[12], F[0], F[1], nF[2], nF[3]);
+	nor (Dec1_out[13], nF[0], F[1], nF[2], nF[3]);
+	nor (Dec1_out[14], F[0], nF[1], nF[2], nF[3]);
+	nor (Dec1_out[15], nF[0], nF[1], nF[2], nF[3]);
+
+endmodule // NOISE_Decoder1
+
+module NOISE_Decoder2 (Dec2_in, Dec2_out);
+
+	input [15:0] Dec2_in;
+	output [10:0] Dec2_out;
+
+	wire [15:0] d;
+	assign d = Dec2_in;
+
+	nor (Dec2_out[0], d[0], d[1], d[2], d[9], d[11], d[12], d[14], d[15]); 	// nor-8
+	nor (Dec2_out[1], d[4], d[8], d[14], d[15]);  // nor-4
+	nor (Dec2_out[2], d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[8], d[11], d[12], d[14], d[15]);  // nor-12
+	nor (Dec2_out[3], d[0], d[5], d[6], d[7], d[9], d[10], d[11], d[12], d[14], d[15]);  // nor-10
+	nor (Dec2_out[4], d[0], d[1], d[2], d[6], d[7], d[8], d[9], d[10], d[11], d[12], d[13], d[14], d[15]);  // nor-13
+	nor (Dec2_out[5], d[0], d[1], d[9], d[12], d[13], d[14], d[15]);  // nor-7
+	nor (Dec2_out[6], d[0], d[1], d[2], d[3], d[4], d[8], d[9], d[10], d[13], d[14]);  // nor-10
+	nor (Dec2_out[7], d[0], d[1], d[4], d[5], d[6], d[7], d[9], d[10], d[11], d[12], d[13], d[14], d[15]);  // nor-13
+	nor (Dec2_out[8], d[0], d[1], d[2], d[3], d[6], d[7], d[10], d[11], d[12], d[13]);  // nor-10
+	nor (Dec2_out[9], d[0], d[1], d[2], d[4], d[5], d[6], d[7], d[8], d[9], d[11], d[15]);  // nor-11
+	nor (Dec2_out[10], d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[7], d[8], d[9], d[10], d[11], d[13], d[14], d[15]);  // nor-15
+
+endmodule // NOISE_Decoder2
+
+module NOISE_FreqLFSR (nACLK2, ACLK1, RES, NNF, RSTEP);
+
+	input nACLK2;
+	input ACLK1;
+	input RES;
+	input [10:0] NNF;
+	output RSTEP;
+
+	wire ACLK4;
+	wire [10:0] sout;
+	wire step_load;
+	wire NFLOAD;
+	wire NFSTEP;
+	wire NSIN;
+	wire NFZ;
+	wire NFOUT;
+
+	assign ACLK4 = ~nACLK2;
+
+	NOISE_FreqLFSRBit freq_lfsr [10:0] (.ACLK1(ACLK1), .load(NFLOAD), .step(NFSTEP), .val(NNF), .sin({NSIN,sout[10:1]}), .sout(sout) );
+
+	nor (NFZ, sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8], sout[9], sout[10]);
+	nor (NFOUT, ~sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8], sout[9], sout[10]);
+	nor (step_load, ~NFOUT, RES);
+	nor (NFLOAD, ~ACLK4, ~step_load);
+	nor (NFSTEP, ~ACLK4, step_load);
+	nor (NSIN, (sout[0] & sout[2]), ~(sout[0] | sout[2] | NFZ), RES);
+	assign RSTEP = NFLOAD;
+
+endmodule // NOISE_FreqLFSR
+
+module NOISE_FreqLFSRBit (ACLK1, load, step, val, sin, sout);
+
+	input ACLK1;
+	input load;
+	input step;
+	input val;
+	input sin;
+	output sout;
+
+	wire d;
+	wire in_latch_nq;
+
+	assign d = load ? val : (step ? sin : 1'bz);
+
+	dlatch in_latch (.d(d), .en(1'b1), .nq(in_latch_nq) );
+	dlatch out_latch (.d(in_latch_nq), .en(ACLK1), .nq(sout) );
+
+endmodule // NOISE_FreqLFSRBit
+
+module NOISE_RandomLFSR (ACLK1, RSTEP, NORND, LOCK, W400E, DB, RNDOUT);
+
+	input ACLK1;
+	input RSTEP;
+	input NORND;
+	input LOCK;
+	input W400E;
+	inout [7:0] DB;
+	output RNDOUT;
+
+	wire rmod_q;
+	wire [14:0] sout;
+	wire RIN;
+	wire RSOZ;
+	wire mux_out;
+
+	RegisterBit rmod_reg (.ACLK1(ACLK1), .ena(W400E), .d(DB[7]), .q(rmod_q) );
+
+	NOISE_RandomLFSRBit rnd_lfsr [14:0] (.ACLK1(ACLK1), .load(RSTEP), .sin({RIN,sout[14:1]}), .sout(sout) );
+
+	nor (RSOZ, sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8], sout[9], sout[10], sout[11], sout[12], sout[13], sout[14]);
+	assign mux_out = rmod_q ? sout[6] : sout[1];
+	nor (RIN, LOCK, ~(RSOZ | sout[0] | mux_out), (sout[0] & mux_out));
+	nor (RNDOUT, ~(sout[0] | NORND), LOCK);
+
+endmodule // NOISE_RandomLFSR
+
+module NOISE_RandomLFSRBit (ACLK1, load, sin, sout);
+
+	input ACLK1;
+	input load;
+	input sin;
+	output sout;
+
+	wire in_reg_nq;
+
+	RegisterBit in_reg (.ACLK1(ACLK1), .ena(load), .d(sin), .nq(in_reg_nq) );
+	dlatch out_latch (.d(in_reg_nq), .en(ACLK1), .nq(sout) );
+
+endmodule // NOISE_RandomLFSRBit
+
+
+module TriangleChan(
+	PHI1, ACLK1,
+	RES, DB, W4008, W400A, W400B, W401A, nLFO1, TRI_LC, NOTRI, LOCK,
+	TRI_Out);
+
+	input PHI1;
+	input ACLK1;
+
+	input RES;
+	inout [7:0] DB;
+	input W4008;
+	input W400A;
+	input W400B;
+	input W401A;
+	input nLFO1;
+	output TRI_LC;
+	input NOTRI;
+	input LOCK;
+
+	output [3:0] TRI_Out;
+
+	// Internal wires
+
+	wire TCO;
+	wire FOUT;
+	wire LOAD;
+	wire STEP;
+	wire FLOAD;
+	wire FSTEP;
+	wire TSTEP;
+
+	// Instantiate
+
+	TRIANGLE_Control ctrl (.PHI1(PHI1), .ACLK1(ACLK1), .W4008(W4008), .W400B(W400B), .n_LFO1(nLFO1), .NOTRI(NOTRI), .LOCK(LOCK), .TCO(TCO), .FOUT(FOUT),
+		.DB(DB), .TRI_LC(TRI_LC), .LOAD(LOAD), .STEP(STEP), .FLOAD(FLOAD), .FSTEP(FSTEP), .TSTEP(TSTEP) );
+
+	TRIANGLE_LinearCounter lin_cnt (.ACLK1(ACLK1), .RES(RES), .W4008(W4008), .LOAD(LOAD), .STEP(STEP), .DB(DB), .TCO(TCO) );
+
+	TRIANGLE_FreqCounter freq_cnt (.PHI1(PHI1), .RES(RES), .W400A(W400A), .W400B(W400B), .DB(DB), .FLOAD(FLOAD), .FSTEP(FSTEP), .FOUT(FOUT) );
+
+	TRIANGLE_Output tri_out (.PHI1(PHI1), .RES(RES), .W401A(W401A), .TSTEP(TSTEP), .DB(DB), .TRI_Out(TRI_Out) );
+
+endmodule // TriangleChan
+
+module TRIANGLE_Control (PHI1, ACLK1, W4008, W400B, n_LFO1, NOTRI, LOCK, TCO, FOUT, DB, TRI_LC, LOAD, STEP, FLOAD, FSTEP, TSTEP);
+
+	input PHI1;
+	input ACLK1;
+	input W4008;
+	input W400B;
+	input n_LFO1;
+	input NOTRI;
+	input LOCK;
+	input TCO;
+	input FOUT;
+	inout [7:0] DB;
+	output TRI_LC;
+	output LOAD;
+	output STEP;
+	output FLOAD;
+	output FSTEP;
+	output TSTEP;
+
+	wire n_FOUT;
+	wire TRELOAD;
+	wire lc_reg_q;
+	wire Reload_FF_q;
+	wire reload_latch1_q;
+	wire reload_latch2_q;
+	wire reload_latch2_nq;
+	wire tco_latch_q;
+
+	dlatch fout_latch (.d(FOUT), .en(PHI1), .nq(n_FOUT) );
+
+	nor (FLOAD, PHI1, n_FOUT);
+	nor (FSTEP, PHI1, ~n_FOUT);
+
+	RegisterBit lc_reg (.ACLK1(ACLK1), .ena(W4008), .d(DB[7]), .q(lc_reg_q), .nq(TRI_LC) );
+
+	rsff Reload_FF (.r(~(reload_latch1_q | lc_reg_q | n_LFO1)), .s(W400B), .q(TRELOAD), .nq(Reload_FF_q) );
+
+	dlatch reload_latch1 (.d(Reload_FF_q), .en(ACLK1), .q(reload_latch1_q) );
+	dlatch reload_latch2 (.d(TRELOAD), .en(ACLK1), .q(reload_latch2_q), .nq(reload_latch2_nq) );
+	dlatch tco_latch (.d(TCO), .en(ACLK1), .q(tco_latch_q) );
+
+	nor (LOAD, n_LFO1, reload_latch2_nq);
+	nor (STEP, n_LFO1, reload_latch2_q, tco_latch_q);
+	nor (TSTEP, TCO, LOCK, PHI1, NOTRI, n_FOUT);
+
+endmodule // TRIANGLE_Control
+
+module TRIANGLE_LinearCounter (ACLK1, RES, W4008, LOAD, STEP, DB, TCO);
+
+	input ACLK1;
+	input RES;
+	input W4008;
+	input LOAD;
+	input STEP;
+	inout [7:0] DB;
+	output TCO;
+
+	wire [6:0] lq;
+	wire [6:0] cout;
+
+	RegisterBit lin_reg [6:0] (.ACLK1(ACLK1), .ena(W4008), .d(DB[6:0]), .q(lq) );
+	DownCounterBit lin_cnt [6:0] (.ACLK1(ACLK1), .d(lq), .load(LOAD), .clear(RES), .step(STEP), .cin({cout[5:0],1'b1}), .cout(cout) );
+	assign TCO = cout[6];
+
+endmodule // TRIANGLE_LinearCounter
+
+module TRIANGLE_FreqCounter (PHI1, RES, W400A, W400B, DB, FLOAD, FSTEP, FOUT);
+
+	input PHI1;
+	input RES;
+	input W400A;
+	input W400B;
+	inout [7:0] DB;
+	input FLOAD;
+	input FSTEP;
+	output FOUT;
+
+	wire [10:0] fq;
+	wire [10:0] cout;
+
+	RegisterBit freq_reg [10:0] (.ACLK1(PHI1), .ena({ {3{W400B}}, {8{W400A}} }), .d({DB[2:0],DB[7:0]}), .q(fq) );
+	DownCounterBit freq_cnt [10:0] (.ACLK1(PHI1), .d(fq), .load(FLOAD), .clear(RES), .step(FSTEP), .cin({cout[9:0],1'b1}), .cout(cout) );
+	assign FOUT = cout[10];
+
+endmodule // TRIANGLE_FreqCounter
+
+module TRIANGLE_Output (PHI1, RES, W401A, TSTEP, DB, TRI_Out);
+
+	input PHI1;
+	input RES;
+	input W401A;
+	input TSTEP;
+	inout [7:0] DB;
+	output [3:0] TRI_Out;
+
+	wire [4:0] cout;
+	wire [4:0] T;
+	wire [4:0] nT;
+
+	// The developers decided to use PHI1 for the triangle channel instead of ACLK to smooth out the "stepped" signal.
+	CounterBit out_cnt [4:0] (.ACLK1(PHI1), .d(DB[4:0]), .load(W401A), .clear(RES), .step(TSTEP), .cin({cout[3:0],1'b1}), .q(T), .nq(nT), .cout(cout) );
+	assign TRI_Out = ~(T[4] ? nT[3:0] : T[3:0]);
+
+endmodule // TRIANGLE_Output
+
+
+// At first glance you might get lost here, but in fact there is nothing complicated: there is a control circuit (which includes a number of subcircuits), counters for sampling, a counter for addressing, and an output circuit.
+
+module DPCMChan (
+	PHI1, ACLK1, nACLK2, 
+	RES, DB, RnW, LOCK,
+	W4010, W4011, W4012, W4013, W4015, n_R4015, 
+	n_DMCAB, RUNDMC, DMCRDY, DMCINT,
+	DMC_Addr, DMC_Out);
+
+	input PHI1; 			// PHI1 is used together with the R/W core signal to determine the 6502 read cycle, because the RDY setting is ignored by the 6502 core during the write cycle (see datasheet)
+	input ACLK1;
+	input nACLK2;
+
+	input RES;
+	inout [7:0] DB;	
+	input RnW;			// CPU data bus mode (1: Read, 0: Write)
+	input LOCK;			// The LOCK signal is used to temporarily suspend the sound generators so that their values can be fixed in the debug registers  (2A03 only)
+
+	input W4010;
+	input W4011;
+	input W4012;
+	input W4013;
+	input W4015;
+	input n_R4015;
+
+	output n_DMCAB;			// 0: Gain control of the address bus to read the DPCM sample
+	output RUNDMC;			// 1: DMC is minding its own business and hijacks DMA control
+	output DMCRDY;			// 1: DMC Ready. Used to control processor readiness (RDY)
+	output DMCINT;			// 1: DMC interrupt is active
+
+	output [15:0] DMC_Addr;		// Address for reading the DPCM sample
+	output [6:0] DMC_Out;		// Output value for DAC
+
+	// Internal wires
+
+	wire ACLK2;				// Other ACLK
+	wire LOOPMode;			// 1: DPCM looped playback
+	wire n_IRQEN;			// 0: Enable interrupt from DPCM
+	wire DSLOAD;			// Load value into Sample Counter
+	wire DSSTEP;			// Perform Sample Counter decrement
+	wire BLOAD;				// Load value into Sample Buffer
+	wire BSTEP;				// Perform a Sample Buffer bit shift
+	wire NSTEP;				// Perform Sample Bit Counter increment
+	wire DSTEP;				// Increment/decrement the DPCM Output counter
+	wire PCM;				// Load new sample value into Sample Buffer
+	wire DOUT;				// DPCM Out counter has finished counting
+	wire n_NOUT;			// 0: Sample Bit Counter has finished counting
+	wire SOUT;				// Sample Counter has finished counting
+	wire DFLOAD;			// Frequency LFSR finished counting and reloaded itself
+	wire n_BOUT; 			// The next bit value pushed out of the Sample Buffer shift register (inverted value)
+	wire [7:0] DPA; 		// Register $4012 value
+	wire [7:0] DSC; 		// Register $4013 value
+	wire [3:0] Fx;			// Decoder in
+	wire [8:0] FR;			// Decoder out
+
+	// Instantiate
+
+	// Control
+
+	assign ACLK2 = ~nACLK2;
+
+	DPCM_ControlReg ctrl_reg (.ACLK1(ACLK1), .W4010(W4010), .DB(DB), .Fx(Fx), .n_IRQEN(n_IRQEN), .LOOPMode(LOOPMode) );
+
+	DPCM_Control dpcm_ctrl (
+		.nACLK2(nACLK2),
+		.ACLK1(ACLK1),
+		.ACLK2(ACLK2),
+		.PHI1(PHI1),
+		.RES(RES),
+		.RnW(RnW),
+		.LOCK(LOCK),
+		.W4015(W4015),
+		.n_R4015(n_R4015),
+		.LOOPMode(LOOPMode),
+		.n_IRQEN(n_IRQEN),
+		.DOUT(DOUT),
+		.n_NOUT(n_NOUT),
+		.SOUT(SOUT),
+		.DFLOAD(DFLOAD),
+		.DB(DB),
+		.n_DMCAB(n_DMCAB),
+		.RUNDMC(RUNDMC),
+		.DMCRDY(DMCRDY),
+		.DMCINT(DMCINT),
+		.DSLOAD(DSLOAD),
+		.DSSTEP(DSSTEP),
+		.BLOAD(BLOAD),
+		.BSTEP(BSTEP),
+		.NSTEP(NSTEP),
+		.DSTEP(DSTEP),
+		.PCM(PCM) );
+
+	// Sampling
+
+	DPCM_Decoder decoder (.Fx(Fx), .FR(FR) );
+
+	DPCM_FreqLFSR lfsr (.nACLK2(nACLK2), .ACLK1(ACLK1), .ACLK2(ACLK2), .RES(RES), .FR(FR), .DFLOAD(DFLOAD) );
+
+	DPCM_SampleCounterReg scnt_reg (.ACLK1(ACLK1), .W4013(W4013), .DB(DB), .DSC(DSC) );
+
+	DPCM_SampleCounter scnt (.ACLK1(ACLK1), .RES(RES), .DSLOAD(DSLOAD), .DSSTEP(DSSTEP), .DSC(DSC), .SOUT(SOUT) );
+
+	DPCM_SampleBitCounter sbcnt (.ACLK1(ACLK1), .RES(RES), .NSTEP(NSTEP), .n_NOUT(n_NOUT) );
+
+	DPCM_SampleBuffer sbuf (.ACLK1(ACLK1), .RES(RES), .BLOAD(BLOAD), .BSTEP(BSTEP), .PCM(PCM), .DB(DB), .n_BOUT(n_BOUT) );
+
+	// Addressing & Output
+
+	DPCM_AddressReg addr_reg (.ACLK1(ACLK1), .W4012(W4012), .DB(DB), .DPA(DPA) );
+
+	DPCM_AddressCounter addr_cnt (.ACLK1(ACLK1), .RES(RES), .DSLOAD(DSLOAD), .DSSTEP(DSSTEP), .DPA(DPA), .DMC_Addr(DMC_Addr) );
+
+	DPCM_Output dpcm_out (.ACLK1(ACLK1), .RES(RES), .W4011(W4011), .CountDown(n_BOUT), .DSTEP(DSTEP), .DB(DB), .DMC_Out(DMC_Out), .DOUT(DOUT) );
+
+endmodule // DPCMChan
+
+module DPCM_ControlReg (ACLK1, W4010, DB, Fx, n_IRQEN, LOOPMode);
+
+	input ACLK1;
+	input W4010;
+	inout [7:0] DB;
+	output [3:0] Fx;
+	output n_IRQEN;
+	output LOOPMode;
+
+	RegisterBit f_reg [3:0] (.ACLK1(ACLK1), .ena(W4010), .d(DB[3:0]), .q(Fx) );
+	RegisterBit loop_reg (.ACLK1(ACLK1), .ena(W4010), .d(DB[6]), .q(LOOPMode) );
+	RegisterBit irq_reg (.ACLK1(ACLK1), .ena(W4010), .d(DB[7]), .nq(n_IRQEN) );
+
+endmodule // DPCM_ControlReg
+
+module DPCM_Control( nACLK2, ACLK1, ACLK2, PHI1, RES, RnW, LOCK, W4015, n_R4015, LOOPMode, n_IRQEN, DOUT, n_NOUT, SOUT, DFLOAD, DB,
+	n_DMCAB, RUNDMC, DMCRDY, DMCINT, DSLOAD, DSSTEP, BLOAD, BSTEP, NSTEP, DSTEP, PCM );
+
+	input nACLK2;
+	input ACLK1;
+	input ACLK2;
+	input PHI1;
+	input RES;
+	input RnW;
+	input LOCK;
+	input W4015;
+	input n_R4015;
+	input LOOPMode;
+	input n_IRQEN;
+	input DOUT;
+	input n_NOUT;
+	input SOUT;
+	input DFLOAD;
+	inout [7:0] DB;
+
+	output n_DMCAB;
+	output RUNDMC;
+	output DMCRDY;
+	output DMCINT;
+	output DSLOAD;
+	output DSSTEP;
+	output BLOAD;
+	output BSTEP;
+	output NSTEP;
+	output DSTEP;
+	output PCM;
+
+	// Internal temp wires
+
+	wire ED1;
+	wire ED2;
+	wire DMC1;
+	wire DMC2;
+	wire CTRL1;
+	wire CTRL2;
+
+	DPCM_IntControl int_ctrl (.RES(RES), .W4015(W4015), .n_R4015(n_R4015), .n_IRQEN(n_IRQEN), .AssertInt(ED1), .DB(DB), .DMCINT(DMCINT) );
+
+	DPCM_EnableControl enable_ctrl (.ACLK1(ACLK1), .RES(RES), .W4015(W4015), .n_R4015(n_R4015), .LOOPMode(LOOPMode), .PCMDone(DMC1), .SOUT(SOUT), .DB(DB), .ED1(ED1), .DMC2(DMC2), .ED2(ED2) );
+
+	DPCM_DMAControl dma_ctrl (.nACLK2(nACLK2), .ACLK1(ACLK1), .ACLK2(ACLK2), .PHI1(PHI1), .RnW(RnW), .RES(RES), .nDMAStop(CTRL1), .nDMCEnableDelay(CTRL2), .DMCRDY(DMCRDY), .RUNDMC(RUNDMC), .n_DMCAB(n_DMCAB) );
+
+	DPCM_SampleCounterControl scnt_ctrl (.nACLK2(nACLK2), .ACLK1(ACLK1), .ACLK2(ACLK2), .PCMDone(DMC1), .DMCFinish(DMC2), .DMCEnable(ED2), .DFLOAD(DFLOAD), .DSLOAD(DSLOAD), .DSSTEP(DSSTEP), .NSTEP(NSTEP), .CTRL2(CTRL2) );
+
+	DPCM_SampleBufferControl sbuf_ctrl (.nACLK2(nACLK2), .ACLK1(ACLK1), .ACLK2(ACLK2), .PHI1(PHI1), .RES(RES), .LOCK(LOCK), .DFLOAD(DFLOAD), .DOUT(DOUT), .n_NOUT(n_NOUT), .n_DMCAB(n_DMCAB), .BLOAD(BLOAD), .BSTEP(BSTEP), .PCM(PCM), .DSTEP(DSTEP), .DMC1(DMC1), .CTRL1(CTRL1) );
+
+endmodule // DPCMControl
+
+module DPCM_IntControl(RES, W4015, n_R4015, n_IRQEN, AssertInt, DB, DMCINT);
+
+	input RES;
+	input W4015;
+	input n_R4015;
+	input n_IRQEN;
+	input AssertInt;
+	inout [7:0] DB;
+	output DMCINT;
+
+	wire int_ff_nq;
+
+	rsff_2_4 int_ff (.res1(W4015), .res2(n_IRQEN), .res3(RES), .s(AssertInt), .nq(int_ff_nq) );
+	bustris int_stat (.a(int_ff_nq), .n_x(DB[7]), .n_en(n_R4015) );
+	nor (DMCINT, int_ff_nq, n_IRQEN);
+
+endmodule // DPCMIntControl
+
+module DPCM_EnableControl(ACLK1, RES, W4015, n_R4015, LOOPMode, PCMDone, SOUT, DB, ED1, DMC2, ED2);
+
+	input ACLK1;
+	input RES;
+	input W4015;
+	input n_R4015;
+	input LOOPMode;
+	input PCMDone;
+	input SOUT;
+	inout [7:0] DB;
+	output ED1;
+	output DMC2;
+	output ED2;
+
+	wire sout_latch_nq;
+	wire ena_ff_nq;
+
+	dlatch sout_latch (.d(SOUT), .en(ACLK1), .q(DMC2), .nq(sout_latch_nq) );
+	RegisterBitRes2 ena_ff (.ACLK1(ACLK1), .ena(W4015), .d(DB[4]), .res1(ED1), .res2(RES), .q(ED2), .nq(ena_ff_nq) );
+	nor (ED1, LOOPMode, sout_latch_nq, ~PCMDone);
+	bustris ena_stat (.a(ena_ff_nq), .n_x(DB[4]), .n_en(n_R4015) );
+
+endmodule // DPCMEnableControl
+
+module DPCM_DMAControl(nACLK2, ACLK1, ACLK2, PHI1, RnW, RES, nDMAStop, nDMCEnableDelay, DMCRDY, RUNDMC, n_DMCAB);
+
+	input nACLK2;
+	input ACLK1;
+	input ACLK2;
+	input PHI1;
+	input RnW;
+	input RES;
+	input nDMAStop;
+	input nDMCEnableDelay;
+	output DMCRDY;
+	output RUNDMC;
+	output n_DMCAB;
+
+	wire DMAStart;
+	wire run_latch1_q;
+	wire run_latch1_nq;
+	wire start_set;
+	wire rdy_ff_nq;
+
+	dlatch run_latch1 (.d(DMAStart), .en(ACLK2), .q(run_latch1_q), .nq(run_latch1_nq) );
+	dlatch run_latch2 (.d(run_latch1_nq), .en(ACLK1), .nq(RUNDMC) );
+	assign start_set = ~( ~(~PHI1 & RnW) | nDMCEnableDelay | ~nDMAStop );
+	rsff_2_4 start_ff (.res1(nDMCEnableDelay), .res2(RES), .res3(~nDMAStop), .s(start_set), .q(DMAStart) );
+	rsff rdy_ff (.r(run_latch1_q & ACLK1), .s(ACLK2), .q(n_DMCAB), .nq(rdy_ff_nq) );
+	nor (DMCRDY, DMAStart, rdy_ff_nq);
+
+endmodule // DPCM_DMAControl
+
+module DPCM_SampleCounterControl(nACLK2, ACLK1, ACLK2, PCMDone, DMCFinish, DMCEnable, DFLOAD, DSLOAD, DSSTEP, NSTEP, CTRL2);
+
+	input nACLK2;
+	input ACLK1;
+	input ACLK2;
+	input PCMDone;
+	input DMCFinish;
+	input DMCEnable;
+	input DFLOAD;
+	output DSLOAD;
+	output DSSTEP;
+	output NSTEP;
+	output CTRL2;
+
+	wire DMC3;
+	wire en_latch1_nq;
+	wire en_latch2_nq;
+	wire en_latch3_q;
+
+	dlatch en_latch1 (.d(DMCEnable), .en(ACLK1), .nq(en_latch1_nq) );
+	dlatch en_latch2 (.d(en_latch1_nq), .en(ACLK2), .nq(en_latch2_nq) );
+	dlatch en_latch3 (.d(en_latch2_nq), .en(ACLK1), .q(en_latch3_q), .nq(CTRL2) );
+	nor (DMC3, nACLK2, en_latch1_nq, en_latch3_q);
+
+	assign NSTEP = ~(~DFLOAD);
+	assign DSLOAD = ~(~((DMCFinish & PCMDone) | DMC3));
+	assign DSSTEP = ~(~PCMDone | DMC3 | DMCFinish);
+
+endmodule // DPCM_SampleCounterControl
+
+module DPCM_SampleBufferControl(nACLK2, ACLK1, ACLK2, PHI1, RES, LOCK, DFLOAD, DOUT, n_NOUT, n_DMCAB, BLOAD, BSTEP, PCM, DSTEP, DMC1, CTRL1);
+
+	input nACLK2;
+	input ACLK1;
+	input ACLK2;
+	input PHI1;
+	input RES;
+	input LOCK;
+	input DFLOAD;
+	input DOUT;
+	input n_NOUT;
+	input n_DMCAB;
+	output BLOAD;
+	output BSTEP;
+	output PCM;
+	output DSTEP;
+	output DMC1;
+	output CTRL1;
+
+	wire n_DFLOAD;
+	wire step_ff_nq;
+	wire stop_ff_q;
+	wire pcm_ff_nq;
+	wire dout_latch_q;
+	wire dstep_latch_q;
+	wire stop_latch_nq;
+	wire pcm_latch_q;
+
+	assign n_DFLOAD = ~DFLOAD;
+
+	rsff_2_3 step_ff (.res1(~(~stop_latch_nq | n_DFLOAD | n_NOUT)), .res2(RES), .s(BLOAD), .nq(step_ff_nq) );
+	rsff_2_3 stop_ff (.res1(BLOAD), .res2(RES), .s(PCM), .q(stop_ff_q), .nq(CTRL1) );
+	rsff_2_3 pcm_ff (.res1(DMC1), .res2(RES), .s(PCM), .nq(pcm_ff_nq) );
+
+	dlatch dout_latch (.d(DOUT), .en(ACLK1), .q(dout_latch_q) );
+	dlatch dstep_latch (.d(step_ff_nq), .en(ACLK1), .q(dstep_latch_q) );
+	dlatch stop_latch (.d(stop_ff_q), .en(ACLK1), .nq(stop_latch_nq) );
+	dlatch pcm_latch (.d(pcm_ff_nq), .en(ACLK1), .q(pcm_latch_q) );
+
+	nor (PCM, PHI1, n_DMCAB);
+	nor (DMC1, pcm_latch_q, ~ACLK2);
+	nor (DSTEP, dout_latch_q, dstep_latch_q, n_DFLOAD, LOCK);
+	nor (BLOAD, stop_latch_nq, n_DFLOAD, n_NOUT);
+	nor (BSTEP, n_DFLOAD, ~n_NOUT);
+
+endmodule // DPCM_SampleBufferControl
+
+module DPCM_Decoder (Fx, FR);
+
+	input [3:0] Fx;
+	output [8:0] FR;
+
+	wire [15:0] Dec1_out;
+
+	DPCM_Decoder1 dec1 (.Dec1_in(Fx), .Dec1_out(Dec1_out) );
+	DPCM_Decoder2 dec2 (.Dec2_in(Dec1_out), .Dec2_out(FR) );
+
+endmodule // DPCM_Decoder
+
+module DPCM_Decoder1 (Dec1_in, Dec1_out);
+
+	input [3:0] Dec1_in;
+	output [15:0] Dec1_out;
+
+	wire [3:0] F;
+	wire [3:0] nF;
+
+	assign F = Dec1_in;
+	assign nF = ~Dec1_in;
+
+	nor (Dec1_out[0], F[0], F[1], F[2], F[3]);
+	nor (Dec1_out[1], nF[0], F[1], F[2], F[3]);
+	nor (Dec1_out[2], F[0], nF[1], F[2], F[3]);
+	nor (Dec1_out[3], nF[0], nF[1], F[2], F[3]);
+	nor (Dec1_out[4], F[0], F[1], nF[2], F[3]);
+	nor (Dec1_out[5], nF[0], F[1], nF[2], F[3]);
+	nor (Dec1_out[6], F[0], nF[1], nF[2], F[3]);
+	nor (Dec1_out[7], nF[0], nF[1], nF[2], F[3]);
+
+	nor (Dec1_out[8], F[0], F[1], F[2], nF[3]);
+	nor (Dec1_out[9], nF[0], F[1], F[2], nF[3]);
+	nor (Dec1_out[10], F[0], nF[1], F[2], nF[3]);
+	nor (Dec1_out[11], nF[0], nF[1], F[2], nF[3]);
+	nor (Dec1_out[12], F[0], F[1], nF[2], nF[3]);
+	nor (Dec1_out[13], nF[0], F[1], nF[2], nF[3]);
+	nor (Dec1_out[14], F[0], nF[1], nF[2], nF[3]);
+	nor (Dec1_out[15], nF[0], nF[1], nF[2], nF[3]);
+
+endmodule // DPCM_Decoder1
+
+module DPCM_Decoder2 (Dec2_in, Dec2_out);
+
+	input [15:0] Dec2_in;
+	output [8:0] Dec2_out;
+
+	wire [15:0] d;
+	assign d = Dec2_in;
+
+	nor (Dec2_out[0], d[1], d[4], d[9], d[14], d[15]);
+	nor (Dec2_out[1], d[6], d[7], d[8], d[9], d[10], d[11], d[12], d[13]);
+	nor (Dec2_out[2], d[0], d[1], d[2], d[3], d[7], d[8], d[10], d[11], d[13]);
+	nor (Dec2_out[3], d[0], d[2], d[7], d[10], d[15]);
+	nor (Dec2_out[4], d[1], d[2], d[4], d[8], d[12], d[13], d[14]);
+	nor (Dec2_out[5], d[1], d[2], d[3], d[7], d[8], d[9], d[12], d[13], d[14], d[15]);
+	nor (Dec2_out[6], d[1], d[5], d[8], d[12], d[13], d[14]);
+	nor (Dec2_out[7], d[0], d[2], d[5], d[6], d[8], d[15]);
+	nor (Dec2_out[8], d[1], d[3], d[5], d[6], d[8], d[9], d[10], d[11], d[12]);
+
+endmodule // DPCM_Decoder2
+
+module DPCM_FreqLFSR (nACLK2, ACLK1, ACLK2, RES, FR, DFLOAD);
+
+	input nACLK2;
+	input ACLK1;
+	input ACLK2;
+	input RES;
+	input [8:0] FR;
+	output DFLOAD;
+
+	wire feedback;
+	wire DFSTEP;
+	wire [8:0] sout;
+	wire nor1_out;
+	wire nor2_out;
+	wire nor3_out;
+
+	assign feedback = ~((sout[0] & sout[4]) | RES | ~(sout[0] | sout[4] | nor1_out));
+	assign nor3_out = ~(RES | ~nor2_out);
+	assign DFLOAD = ~(~ACLK2 | ~nor3_out);
+	assign DFSTEP = ~(~ACLK2 | nor3_out);
+
+	nor (nor1_out, sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8]);
+	nor (nor2_out, ~sout[0], sout[1], sout[2], sout[3], sout[4], sout[5], sout[6], sout[7], sout[8]);
+
+	DPCM_LFSRBit lfsr [8:0] (.ACLK1(ACLK1), .load(DFLOAD), .step(DFSTEP), .val(FR), .sin({feedback,sout[8:1]}), .sout(sout) );
+
+endmodule // DPCM_FreqLFSR
+
+module DPCM_LFSRBit (ACLK1, load, step, val, sin, sout);
+
+	input ACLK1;
+	input load;
+	input step;
+	input val;
+	input sin;
+	output sout;
+
+	wire d;
+	wire in_latch_nq;
+
+	assign d = load ? val : (step ? sin : 1'bz);
+
+	dlatch in_latch (.d(d), .en(1'b1), .nq(in_latch_nq) );
+	dlatch out_latch (.d(in_latch_nq), .en(ACLK1), .nq(sout) );
+
+endmodule // DPCM_LFSRBit
+
+module DPCM_SampleCounterReg (ACLK1, W4013, DB, DSC);
+
+	input ACLK1;
+	input W4013;
+	inout [7:0] DB;
+	output [7:0] DSC;
+
+	RegisterBit scnt_reg [7:0] (.ACLK1(ACLK1), .ena(W4013), .d(DB[7:0]), .q(DSC[7:0]) );
+
+endmodule // DPCM_SampleCounterReg
+
+module DPCM_SampleCounter (ACLK1, RES, DSLOAD, DSSTEP, DSC, SOUT);
+
+	input ACLK1;
+	input RES;
+	input DSLOAD;
+	input DSSTEP;
+	input [7:0] DSC;
+	output SOUT;
+
+	wire [11:0] cout;
+
+	DownCounterBit cnt [11:0] (.ACLK1(ACLK1), .d({DSC[7:0],4'b0000}), .load(DSLOAD), .clear(RES), .step(DSSTEP), .cin({cout[10:0],1'b1}), .cout(cout) );
+
+	assign SOUT = cout[11];
+
+endmodule // DPCM_SampleCounter
+
+module DPCM_SampleBitCounter (ACLK1, RES, NSTEP, n_NOUT);
+
+	input ACLK1;
+	input RES;
+	input NSTEP;
+	output n_NOUT;
+
+	wire [2:0] cout;
+
+	CounterBit cnt [2:0] (.ACLK1(ACLK1), .d(3'b000), .load(RES), .clear(RES), .step(NSTEP), .cin({cout[1:0],1'b1}), .cout(cout) );
+	dlatch nout_latch (.d(cout[2]), .en(ACLK1), .nq(n_NOUT));
+
+endmodule // DPCM_SampleBitCounter
+
+module DPCM_SampleBuffer (ACLK1, RES, BLOAD, BSTEP, PCM, DB, n_BOUT);
+
+	input ACLK1;
+	input RES;
+	input BLOAD;
+	input BSTEP;
+	input PCM;
+	inout [7:0] DB;
+	output n_BOUT;
+
+	wire [7:0] buf_nq;
+	wire [7:0] sout;
+
+	RegisterBit buf_reg [7:0] (.ACLK1(ACLK1), .ena(PCM), .d(DB), .nq(buf_nq) );
+	DPCM_SRBit shift_reg [7:0] (.ACLK1(ACLK1), .clear(RES), .load(BLOAD), .step(BSTEP), .n_val(buf_nq), .sin({1'b0,sout[7:1]}), .sout(sout) );
+
+	assign n_BOUT = ~sout[0];
+
+endmodule // DPCM_SampleBuffer
+
+module DPCM_SRBit (ACLK1, clear, load, step, n_val, sin, sout);
+
+	input ACLK1;
+	input clear;
+	input load;
+	input step;
+	input n_val;
+	input sin;
+	output sout;
+
+	wire d;
+	wire in_latch_nq;
+
+	assign d = clear ? 1'b0 : (load ? n_val : (step ? in_latch_nq : (ACLK1 ? ~sout : 1'bz)));
+
+	dlatch in_latch (.d(sin), .en(ACLK1), .nq(in_latch_nq) );
+	dlatch out_latch (.d(d), .en(1'b1), .nq(sout) );
+
+endmodule // DPCM_SRBit
+
+module DPCM_AddressReg (ACLK1, W4012, DB, DPA);
+
+	input ACLK1;
+	input W4012;
+	inout [7:0] DB;
+	output [7:0] DPA;
+
+	RegisterBit addr_reg [7:0] (.ACLK1(ACLK1), .ena(W4012), .d(DB[7:0]), .q(DPA[7:0]) );
+
+endmodule // DPCM_AddressReg
+
+module DPCM_AddressCounter (ACLK1, RES, DSLOAD, DSSTEP, DPA, DMC_Addr);
+
+	input ACLK1;
+	input RES;
+	input DSLOAD;
+	input DSSTEP;
+	input [7:0] DPA;
+	output [15:0] DMC_Addr;
+
+	wire [7:0] addr_lo_cout;
+	wire [6:0] addr_hi_cout;
+	wire [7:0] addr_lo_q;
+	wire [6:0] addr_hi_q;
+
+	CounterBit addr_lo [7:0] (.ACLK1(ACLK1), .d({DPA[1:0], 6'b000000}), .load(DSLOAD), .clear(RES), .step(DSSTEP), .cin({addr_lo_cout[6:0],1'b1}), .q(addr_lo_q), .cout(addr_lo_cout));
+	CounterBit addr_hi [6:0] (.ACLK1(ACLK1), .d({1'b1, DPA[7:2]}), .load(DSLOAD), .clear(RES), .step(DSSTEP), .cin({addr_hi_cout[5:0],addr_lo_cout[7]}), .q(addr_hi_q), .cout(addr_hi_cout) );
+
+	assign DMC_Addr = {1'b1,addr_hi_q,addr_lo_q};
+
+endmodule // DPCM_AddressCounter
+
+module DPCM_Output (ACLK1, RES, W4011, CountDown, DSTEP, DB, DMC_Out, DOUT);
+
+	input ACLK1;
+	input RES;
+	input W4011;
+	input CountDown;
+	input DSTEP;
+	inout [7:0] DB;
+	output [6:0] DMC_Out;
+	output DOUT;
+
+	wire out_reg_q;
+	wire [5:0] out_cnt_q;
+	wire [5:0] cout;
+
+	RevCounterBit out_cnt [5:0] (.ACLK1(ACLK1), .d(DB[6:1]), .load(W4011), .clear(RES), .step(DSTEP), .cin({cout[4:0],1'b1}), .dec(CountDown), .q(out_cnt_q), .cout(cout) );
+	RegisterBit out_reg (.ACLK1(ACLK1), .ena(W4011), .d(DB[0]), .q(out_reg_q) );
+
+	assign DMC_Out = {out_cnt_q,out_reg_q};
+	assign DOUT = cout[5];
+
+endmodule // DPCM_Output
+
+
+// This module simply outputs the digital values of the corresponding channels. You have to decide what to do with them next.
+
+module DAC_Square(SQA, SQB, AUX_A);
+
+	input [3:0] SQA;
+	input [3:0] SQB;
+	output [7:0] AUX_A;
+
+	assign AUX_A = {SQB,SQA};
+
+endmodule // DAC_Square
+
+module DAC_Others(TRI, RND, DMC, AUX_B);
+
+	input [3:0] TRI;
+	input [3:0] RND;
+	input [6:0] DMC;
+	output [14:0] AUX_B;
+
+	assign AUX_B = {DMC,RND,TRI};
+
+endmodule // DAC_Others
+
+
+// Debugging mechanisms of the 2A03G APU revision (so called "Test Mode").
+
+module Test(
+	ACLK1,
+	RES, DB, W401A, n_R4018, n_R4019, n_R401A,
+	SQA_in, SQB_in, TRI_in, RND_in, DMC_in,
+	LOCK);
+
+	input ACLK1;
+
+	input RES;
+	inout [7:0] DB;
+	input W401A;
+	input n_R4018;
+	input n_R4019;
+	input n_R401A;
+
+	input [3:0] SQA_in;
+	input [3:0] SQB_in;
+	input [3:0] TRI_in;
+	input [3:0] RND_in;
+	input [6:0] DMC_in;
+
+	output LOCK;
+
+	sdffre LOCK_FF(
+		.d(DB[7]),
+		.en(W401A),
+		.res(RES),
+		.phi_keep(ACLK1),
+		.q(LOCK) );
+
+	bustris sqa_tris [3:0] (
+		.a(~SQA_in),
+		.n_x(DB[3:0]),
+		.n_en(n_R4018) );
+
+	bustris sqb_tris [3:0] (
+		.a(~SQB_in),
+		.n_x(DB[7:4]),
+		.n_en(n_R4018) );
+
+	bustris tria_tris [3:0] (
+		.a(~TRI_in),
+		.n_x(DB[3:0]),
+		.n_en(n_R4019) );
+
+	bustris rnd_tris [3:0] (
+		.a(~RND_in),
+		.n_x(DB[7:4]),
+		.n_en(n_R4019) );
+
+	bustris dmc_tris [6:0] (
+		.a(~DMC_in),
+		.n_x(DB[6:0]),
+		.n_en(n_R401A) );
+
+endmodule // Test
+
+// Common elements of APU circuitry
+
+module RegisterBit (ACLK1, ena, d, q, nq);
+	input ACLK1;
+	input ena;
+	input d;
+	output q;
+	output nq;
+
+	wire tq;
+	wire ntq;
+	wire latch_in;
+
+	assign latch_in = ena ? d : (ACLK1 ? q : 1'bz);
+	dlatch transp (.d(latch_in), .en(1'b1), .nq(ntq));
+	assign tq = ~ntq;
+	assign q = tq;
+	assign nq = ntq;
+
+endmodule // RegisterBit
+
+module RegisterBitRes (ACLK1, ena, d, res, q, nq);
+
+	input ACLK1;
+	input ena;
+	input d;
+	input res;
+	output q;
+	output nq;
+
+	wire tq;
+	wire ntq;
+	wire latch_in;
+
+	assign latch_in = ena ? d : (ACLK1 ? q : 1'bz);
+	dlatch transp (.d(latch_in & ~res), .en(1'b1), .nq(ntq));
+	assign tq = ~ntq;
+	assign q = tq;
+	assign nq = ntq;
+
+endmodule // RegisterBitRes2
+
+module RegisterBitRes2 (ACLK1, ena, d, res1, res2, q, nq);
+
+	input ACLK1;
+	input ena;
+	input d;
+	input res1;
+	input res2;
+	output q;
+	output nq;
+
+	wire tq;
+	wire ntq;
+	wire latch_in;
+
+	assign latch_in = ena ? d : (ACLK1 ? q : 1'bz);
+	dlatch transp (.d(latch_in & ~(res1 | res2)), .en(1'b1), .nq(ntq));
+	assign tq = ~ntq;
+	assign q = tq;
+	assign nq = ntq;
+
+endmodule // RegisterBitRes2
+
+module CounterBit (ACLK1, d, load, clear, step, cin, q, nq, cout);
+	input ACLK1;
+	input d;
+	input load;
+	input clear;
+	input step;
+	input cin;
+	output q;
+	output nq;
+	output cout;
+
+	wire tq;
+	wire ntq;
+	wire latch_in;
+	wire cgnq;
+
+	assign latch_in = load ? d : (clear ? 1'b0 : (step ? cgnq : (ACLK1 ? tq : 1'bz) ) );
+	dlatch transp (.d(latch_in), .en(1'b1), .nq(ntq));
+	assign tq = ~ntq;
+
+	dlatch cg (.d(cin ? tq : ntq), .en(ACLK1), .nq(cgnq));
+
+	assign cout = ~(~cin | ntq);
+	assign q = tq;
+	assign nq = ntq;
+
+endmodule // CounterBit
+
+module DownCounterBit (ACLK1, d, load, clear, step, cin, q, nq, cout);
+	input ACLK1;
+	input d;
+	input load;
+	input clear;
+	input step;
+	input cin;
+	output q;
+	output nq;
+	output cout;
+
+	wire tq;
+	wire ntq;
+	wire latch_in;
+	wire cgnq;
+
+	assign latch_in = load ? d : (clear ? 1'b0 : (step ? cgnq : (ACLK1 ? tq : 1'bz) ) );
+	dlatch transp (.d(latch_in), .en(1'b1), .nq(ntq));
+	assign tq = ~ntq;
+
+	dlatch cg (.d(cin ? tq : ntq), .en(ACLK1), .nq(cgnq));
+
+	assign cout = ~(~cin | tq);
+	assign q = tq;
+	assign nq = ntq;
+
+endmodule // DownCounterBit
+
+module RevCounterBit (ACLK1, d, load, clear, step, cin, dec, q, nq, cout);
+	input ACLK1;
+	input d;
+	input load;
+	input clear;
+	input step;
+	input cin;
+	input dec;
+	output q;
+	output nq;
+	output cout;
+
+	wire tq;
+	wire ntq;
+	wire latch_in;
+	wire cgnq;
+
+	assign latch_in = load ? d : (clear ? 1'b0 : (step ? cgnq : (ACLK1 ? tq : 1'bz) ) );
+	dlatch transp (.d(latch_in), .en(1'b1), .nq(ntq));
+	assign tq = ~ntq;
+
+	dlatch cg (.d(cin ? tq : ntq), .en(ACLK1), .nq(cgnq));
+
+	assign cout = ~(~cin | (dec ? tq : ntq));
+	assign q = tq;
+	assign nq = ntq;
+
+endmodule // RevCounterBit
+
+// Envelope Unit
+// Shared between the square channels and the noise generator.
+
+module Envelope_Unit (ACLK1, RES, WR_Reg, WR_LC, n_LFO1, DB, V, LC);
+
+	input ACLK1;
+	input RES;
+	input WR_Reg;
+	input WR_LC;
+	input n_LFO1;
+	inout [7:0] DB;
+	output [3:0] V;
+	output LC;
+
+	// Internal wires
+
+	wire RELOAD;
+	wire RLOAD;
+	wire RSTEP;
+	wire RCO;
+	wire ESTEP;
+	wire ERES;
+	wire EIN;
+	wire ECO;
+	wire [3:0] VOL;
+	wire [3:0] ENV;
+	wire ENVDIS;
+	wire [3:0] decay_cnt_cout;
+	wire [3:0] env_cnt_cout;
+	wire EnvReload_q;
+	wire erld_latch_q;
+	wire reload_latch_q;
+	wire rco_latch_q;
+	wire rco_latch_nq;
+	wire eco_latch_q;
+	wire eco_reload;
+
+	// Logic
+
+	RegisterBit envdis_reg (.ACLK1(ACLK1), .ena(WR_Reg), .d(DB[4]), .q(ENVDIS) );
+	RegisterBit lc_reg (.ACLK1(ACLK1), .ena(WR_Reg), .d(DB[5]), .nq(LC) );
+	RegisterBit vol_reg [3:0] (.ACLK1(ACLK1), .ena(WR_Reg), .d(DB[3:0]), .q(VOL) );
+
+	DownCounterBit decay_cnt [3:0] (.ACLK1(ACLK1), .d(VOL), .load(RLOAD), .clear(RES), .step(RSTEP), .cin({decay_cnt_cout[2:0],1'b1}), .cout(decay_cnt_cout) );
+	DownCounterBit env_cnt [3:0] (.ACLK1(ACLK1), .d({4{EIN}}), .load(ERES), .clear(RES), .step(ESTEP), .q(ENV), .cin({env_cnt_cout[2:0],1'b1}), .cout(env_cnt_cout) );
+	assign RCO = decay_cnt_cout[3];
+	assign ECO = env_cnt_cout[3];
+
+	rsff EnvReload (.r(WR_LC), .s(~(n_LFO1 | erld_latch_q)), .q(EnvReload_q), .nq(RELOAD) );
+
+	dlatch erld_latch (.d(EnvReload_q), .en(ACLK1), .q(erld_latch_q) );
+	dlatch reload_latch (.d(RELOAD), .en(ACLK1), .q(reload_latch_q) );
+	dlatch rco_latch (.d(~(RCO | RELOAD)), .en(ACLK1), .q(rco_latch_q), .nq(rco_latch_nq) );
+	dlatch eco_latch (.d(ECO & ~RELOAD), .en(ACLK1), .q(eco_latch_q) );
+
+	nor (RLOAD, n_LFO1, rco_latch_q);
+	nor (RSTEP, n_LFO1, rco_latch_nq);
+	nand (EIN, eco_latch_q, LC);
+	nor (eco_reload, eco_latch_q, reload_latch_q);
+	nor (ESTEP, ~RLOAD, ~eco_reload);
+	nor (ERES, ~RLOAD, eco_reload);
+
+	assign V = ENVDIS ? VOL : ENV;
+
+endmodule // Envelope_Unit
+
+// Asynchronous dynamic (d=dynamic) latch used in old NMOS chips. Totally unprotected against jitter and other timing circuit problems.
+// Use carefully and wisely.
+
+// This element can be moved to DFF using CLK as Enable input.
+
+module dlatch (d, en, q, nq);
+
+	input d;		// Input value
+	input en;		// 1: Allow write
+	output q;		// Current value
+	output nq; 		// Current value (complement)
+
+`ifdef ICARUS
+
+	reg dout; 
+	always @(d or en) begin
+		if (en == 1'b1 && (d == 1'b0 || d == 1'b1))
+			dout <= d;   // Use non-blocking
+	end
+
+	assign q = dout;
+	assign nq = ~dout;
+
+	initial dout <= 1'b0;
+
+`elsif QUARTUS
+
+	LATCH MyLatch (.d(d), .ena(en), .q(q), .nq(nq));
+
+`else
+
+	(* keep = "true" *) wire floater;
+	bufif1(floater, d, en);
+
+	buf (q, floater);
+	not (nq, floater);
+
+`endif
+
+endmodule // dlatch
+
+// Inverting tristate with inverted permission.
+
+module bustris (a, n_x, n_en);
+
+	input a;
+	output n_x;
+	input n_en;
+
+	notif0 (n_x, a, n_en);
+
+endmodule // bustris
+
+// Parallel nor.
+
+module pnor (a0, a1, x);
+	input a0;
+	input a1;
+	output x;
+
+	nor (x, a0, a1);
+endmodule // pnor
+
+// Typical asynchronous Reset-Set FF based on two looped nor elements.
+
+module rsff (r, s, q, nq);
+
+	input r; 		// 1: Reset value (0)
+	input s;		// 1: Set value (1)
+	output q; 		// Current value
+	output nq;		// Current value (complement)
+
+`ifdef ICARUS
+
+	reg val;
+
+	always @(r or s) begin
+		if (r)
+			val <= 1'b0;
+		else if (s)
+			val <= 1'b1;
+	end
+
+	assign q = val;
+	assign nq = ~val;
+
+	initial val <= 1'b0;
+
+`else
+
+	wire nor1_out;
+	wire nor2_out;
+	
+	nor (nor1_out, r, nor2_out);
+	nor (nor2_out, s, nor1_out);  
+
+	assign q = nor1_out;
+	assign nq = nor2_out;
+
+`endif
+
+endmodule // rsff
+
+// Typical asynchronous Reset-Set FF based on two looped nor elements.	(nor-3 to reset)
+
+module rsff_2_3 (res1, res2, s, q, nq);
+
+	input res1; 	// 1: Reset1 value (0)
+	input res2; 	// 1: Reset2 value (0)
+	input s;		// 1: Set value (1)
+	output q; 		// Current value
+	output nq;		// Current value (complement)
+
+`ifdef ICARUS
+
+	reg val;
+
+	always @(*) begin
+		if (res1 | res2)
+			val <= 1'b0;
+		else if (s)
+			val <= 1'b1;
+	end
+
+	assign q = val;
+	assign nq = ~val;
+
+	initial val <= 1'b0;
+
+`else
+
+	wire nor1_out;
+	wire nor2_out;
+	
+	nor (nor1_out, res1, res2, nor2_out);
+	nor (nor2_out, s, nor1_out);  
+
+	assign q = nor1_out;
+	assign nq = nor2_out;
+
+`endif
+
+endmodule // rsff_2_3
+
+// Typical asynchronous Reset-Set FF based on two looped nor elements.	(nor-4 to reset)
+
+module rsff_2_4 (res1, res2, res3, s, q, nq);
+
+	input res1; 	// 1: Reset1 value (0)
+	input res2; 	// 1: Reset2 value (0)
+	input res3; 	// 1: Reset3 value (0)
+	input s;		// 1: Set value (1)
+	output q; 		// Current value
+	output nq;		// Current value (complement)
+
+`ifdef ICARUS
+
+	reg val;
+
+	always @(*) begin
+		if (res1 | res2 | res3)
+			val <= 1'b0;
+		else if (s)
+			val <= 1'b1;
+	end
+
+	assign q = val;
+	assign nq = ~val;
+
+	initial val <= 1'b0;
+
+`else
+
+	wire nor1_out;
+	wire nor2_out;
+	
+	nor (nor1_out, res1, res2, res3, nor2_out);
+	nor (nor2_out, s, nor1_out);  
+
+	assign q = nor1_out;
+	assign nq = nor2_out;
+
+`endif
+
+endmodule // rsff_2_4
+
+// Flop with a single CLK phase used to keep and load at the same time.  (+RESET)
+
+module sdffre(d, en, res, phi_keep, q, nq);
+
+	input d;				// Input value for write
+	input en;				// 1: Enables Write
+	input res;				// 1: Reset
+	input phi_keep; 		// 1: Keep the current value, 0: You can write, the old value is "cut off"
+	output q;				// Current value
+	output nq;				// Current value (complement)
+
+`ifdef ICARUS
+
+	reg val;
+
+	always @(*) begin
+		if (en & !phi_keep)
+			val <= d;
+		if (res)
+			val <= 1'b0;
+	end
+
+	assign q = val;
+	assign nq = ~val;
+
+	initial val <= 1'b0;
+
+`else
+
+	(* keep = "true" *) wire dval;
+	bufif1 (dval, d, en);
+
+	(* keep = "true" *) wire muxout;
+	assign muxout = phi_keep ? oldval : dval;
+
+	(* keep = "true" *) wire n_oldval;
+	assign n_oldval = ~muxout;
+
+	(* keep = "true" *) wire oldval;
+	nor (oldval, n_oldval, res);
+
+	assign q = oldval;
+	assign nq = n_oldval;
+
+`endif
+
+endmodule // sdffre
+
+
+```
