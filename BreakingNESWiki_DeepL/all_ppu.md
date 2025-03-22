@@ -6,32 +6,32 @@ TODO: Duplicate all image in ASCII art so that they are understood by LLMs which
 
 # PPU Contents
 
-- [Overview](Readme.md)
-- [Pinout](pads.md)
-- [Pixel Clock](pclk.md)
-- [Control Registers](regs.md)
-- [H/V Counters](hv.md)
-- [H/V Decoder](hv_decoder.md)
-- [PPU FSM](fsm.md)
-- [Color RAM](cram.md)
-- [NTSC Video Signal](tv.md)
-- [Video Signal Generator](video_out.md)
-- [OAM Evaluation](sprite_eval.md)
-- [Multiplexer](mux.md)
-- [Object Attribute Memory (OAM)](oam.md)
-- [OAM FIFO](fifo.md)
-- [Data Fetcher](dataread.md)
-  - [Scroll Registers](scroll_regs.md)
-  - [Picture Address Register](par.md)
-  - [Background Color](bgcol.md)
-- [VRAM Controller](vram_ctrl.md)
-- [Interconnections](rails.md)
-- [PAL PPU Differences](pal.md)
-- [RGB PPU Differences](rgb.md)
-- [UMC 6538 Differences](umc6538.md)
-- [Synchronous analysis](whatwhen.md)
-- [Waves](waves.md)
-- [PPU on YouTube](youtube.md)
+- [Overview](#ppu-overview)
+- [Pinout](#ppu-pinout)
+- [Pixel Clock](#pixel-clock-pclk)
+- [Control Registers](#ppu-registers)
+- [H/V Counters](#hv-counters)
+- [H/V Decoder](#hv-decoder)
+- [PPU FSM](#ppu-fsm)
+- [Color RAM](#color-ram)
+- [NTSC Video Signal](#ntsc-video)
+- [Video Signal Generator](#video-signal-generator)
+- [OAM Evaluation](#sprite-comparison-oam-evaluation)
+- [Multiplexer](#multiplexer)
+- [Object Attribute Memory (OAM)](#oam)
+- [OAM FIFO](#oam-fifo)
+- [Data Fetcher](#data-reader)
+  - [Scroll Registers](#scroll-registers)
+  - [Picture Address Register](#picture-address-register)
+  - [Background Color](#background-color-bg-col)
+- [VRAM Controller](#vram-controller)
+- [Interconnections](#wiring)
+- [PAL PPU Differences](#pal-ppu)
+- [RGB PPU Differences](#rgb-ppu)
+- [UMC 6538 Differences](#umc-6538)
+- [Waves](#waves)
+- [Synchronous analysis](#synchronous-analysis)
+- [PPU on YouTube](#ppu-on-youtube)
 
 # PPU Overview
 
@@ -174,7 +174,7 @@ The D0-D7 data bus is used to exchange data between the CPU and the PPU register
 
 The register index is selected by pins RS0-RS2.
 
-The internal signals `/RD` and `/WR`, which are used in pins D0-D7, are obtained by the [RW Decoder](regs.md) circuit.
+The internal signals `/RD` and `/WR`, which are used in pins D0-D7, are obtained by the [RW Decoder](#ppu-registers) circuit.
 
 ### RS0-RS2
 
@@ -236,7 +236,7 @@ The /RD signal is complementary to the /WR signal (they cannot both be 0, but th
 
 When /RD=0 the AD0-AD7 data bus is used to read VRAM data (input).
 
-The value of the /RD pin comes from the internal `RD` signal that comes out of [VRAM controller](vram_ctrl.md).
+The value of the /RD pin comes from the internal `RD` signal that comes out of [VRAM controller](#vram-controller).
 
 ### /WR
 
@@ -246,7 +246,7 @@ The /WR signal is complementary to the /RD signal (they cannot both be 0, but th
 
 When /WR=0 the AD0-AD7 data bus is used to write VRAM data (output).
 
-The value of the /WR pin comes from the internal `WR` signal that comes out of [VRAM controller](vram_ctrl.md).
+The value of the /WR pin comes from the internal `WR` signal that comes out of [VRAM controller](#vram-controller).
 
 ## Interface with other PPUs
 
@@ -255,7 +255,7 @@ This interface is implemented by the EXT0-EXT3 inout pins.
 <img src="/BreakingNESWiki/imgstore/ppu/pad_ext.jpg" width="600px">
 
 Developers have made provisions for the interaction of several PPUs. The scheme of interaction is simple and looks as follows:
-- Inside the PPU is a [multiplexer](mux.md) that can optionally send a "picture" to both the screen or the external EXT pins
+- Inside the PPU is a [multiplexer](#multiplexer) that can optionally send a "picture" to both the screen or the external EXT pins
 - The multiplexer can also receive a "picture" from the external EXT pins
 
 The term "picture" refers to a set of abstract video data to explain the interaction between the PPUs.
@@ -286,7 +286,7 @@ The input CLK is split into two internal complementary signals: CLK and /CLK.
 
 CLK is used exclusively in the phase generator of the PPU video path.
 
-All other circuits are clocked by [Pixel Clock](pclk.md)
+All other circuits are clocked by [Pixel Clock](#pixel-clock-pclk)
 
 ### /RES
 
@@ -311,7 +311,7 @@ In Famicom/NES the /INT signal is wired to the /NMI signal of the 6502 processor
 
 ## VOUT
 
-Output analog [video signal](tv.md).
+Output analog [video signal](#ntsc-video).
 
 ## Logic
 
@@ -339,7 +339,7 @@ At the output of the divider there are many push/pull amplifier stages, because 
 
 ![pclk_amp](/BreakingNESWiki/imgstore/ppu/pclk_amp.jpg)
 
-The `CLK` input clock signal is used exclusively in the [phase generator](video_out.md) of the PPU video path.
+The `CLK` input clock signal is used exclusively in the [phase generator](#video-signal-generator) of the PPU video path.
 
 Timings:
 
@@ -442,7 +442,7 @@ The output of the circuit produces many control lines which activate a read or w
 
 ## $2005/$2006 Special Processing
 
-As you know, 2 consecutive writes to registers $2005 or $2006 actually write a value to the [dual registers $2005/$2006](scroll_regs.md) (FV/FH/TV/TH).
+As you know, 2 consecutive writes to registers $2005 or $2006 actually write a value to the [dual registers $2005/$2006](#scroll-registers) (FV/FH/TV/TH).
 
 A latch circuit is used to keep track of the write history in $2005/$2006.
 
@@ -683,12 +683,12 @@ Outputs:
 |S/EV|Sprite Logic|"Start Sprite Evaluation"|
 |CLIP_O|Control Regs|"Clip Objects". 1: Do not show the left 8 screen pixels for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
 |CLIP_B|Control Regs|"Clip Background". 1: Do not show the left 8 pixels of the screen for the background. Used to get the `/CLPB` signal that goes into the Data Reader.|
-|0/HPOS|OAM FIFO|"Clear HPos". Clear the H counters in the [sprite FIFO](fifo.md) and start the FIFO|
+|0/HPOS|OAM FIFO|"Clear HPos". Clear the H counters in the [sprite FIFO](#oam-fifo) and start the FIFO|
 |/EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
-|I/OAM2|Sprite Logic|"Init OAM2". Initialize an extra [OAM](oam.md)|
+|I/OAM2|Sprite Logic|"Init OAM2". Initialize an extra [OAM](#oam)|
 |PAR/O|All|"PAR for Object". Selecting a tile for an object (sprite)|
-|/VIS|Sprite Logic|"Not Visible". The invisible part of the signal (used by [sprite logic](sprite_eval.md))|
+|/VIS|Sprite Logic|"Not Visible". The invisible part of the signal (used by [sprite logic](#sprite-comparison-oam-evaluation))|
 |#F/NT|Data Reader, OAM Eval|"Fetch Name Table"|
 |F/TB|Data Reader|"Fetch Tile B"|
 |F/TA|Data Reader|"Fetch Tile A"|
@@ -850,7 +850,7 @@ For CB bits 4-5 (luminance, LL0# and LL1# signals):
 
 ![cbout_ll](/BreakingNESWiki/imgstore/ppu/cbout_ll.jpg)
 
-For CB bits 0-3 (chrominance, CC0-3# signals), only part of the chain is next to the CB. The rest of the latches are scattered like breadcrumbs along the way to [phase generator](video_out.md).
+For CB bits 0-3 (chrominance, CC0-3# signals), only part of the chain is next to the CB. The rest of the latches are scattered like breadcrumbs along the way to [phase generator](#video-signal-generator).
 
 ![cbout_cc](/BreakingNESWiki/imgstore/ppu/cbout_cc.jpg)
 
@@ -1139,7 +1139,7 @@ If the `TINT` signal value is 1, the voltage is multiplied by approx. 0.746f.
 
 The sprite comparison circuit compares all 64 sprites and selects the first 8 sprites that occur first on the current line (V). The fact that the PPU can only draw the first 8 sprites of a line is a well-known fact that has to be taken into account when programming NES. Usually programmers use sprite shuffling, but even this has the effect of "flickering" sprites.
 
-The selected sprites are placed in additional memory OAM2, from where they then go to [OAM FIFO](fifo.md) for further processing.
+The selected sprites are placed in additional memory OAM2, from where they then go to [OAM FIFO](#oam-fifo) for further processing.
 
 The circuit includes:
 - OAM index counter, to sample the next sprite for comparison
@@ -1211,7 +1211,7 @@ Intermediate signals:
 
 ## H0'' Auxiliary Circuit
 
-The `H0''` signal which is used in the counter control circuits does not come from the H-Outputs which are in the [PPU FSM](fsm.md) circuit, but is derived by the circuit which is in between the connections to the left of the sprite logic.
+The `H0''` signal which is used in the counter control circuits does not come from the H-Outputs which are in the [PPU FSM](#ppu-fsm) circuit, but is derived by the circuit which is in between the connections to the left of the sprite logic.
 
 This special `H0''` signal (but essentially a variation of the regular H0'' signal) is marked with an arrow on the transistor circuits.
 
@@ -1304,7 +1304,7 @@ The `DO_COPY` signal is connected to a large capacitor, one lining of which is m
 
 ![ppu_locator_mux](/BreakingNESWiki/imgstore/ppu/ppu_locator_mux.jpg)
 
-The PPU multiplexer is the little wicked circuit that deals with the selection of the pixel color, which is then fed to the palette memory input as an index, to select the final color for the [phase generator](video_out.md).
+The PPU multiplexer is the little wicked circuit that deals with the selection of the pixel color, which is then fed to the palette memory input as an index, to select the final color for the [phase generator](#video-signal-generator).
 
 As usual, "color" and "pixel" are understood as abstract concepts: color is the color/brightness combination for the phase generator, and pixel is part of the visible video signal.
 
@@ -1356,7 +1356,7 @@ As you can see the circuit is a cascade of multiplexers, between which are D-Lat
 - In the second state a choice is made between the previous result and the external color from the EXT pins;
 - In the third state a choice is made between the result of the second state and the direct color from the TH (Tile Horizontal) counter. The priority of the direct color is set by the control signal `TH/MUX`.
 
-"Direct color" is a special processing to access the palette memory from the CPU interface side. Since the palette memory is mapped to the PPU address space - when the palette is accessed, its index is temporarily stored on the PAR TH counter (5 bits). When this happens, the [VRAM controller](vram_ctrl.md) sets the TH/MUX signal, which indicates that the TH counter contains the selected palette index (color). The outputs from the TH counter (THO0-4) go to the multiplexer, which selects the desired palette index.
+"Direct color" is a special processing to access the palette memory from the CPU interface side. Since the palette memory is mapped to the PPU address space - when the palette is accessed, its index is temporarily stored on the PAR TH counter (5 bits). When this happens, the [VRAM controller](#vram-controller) sets the TH/MUX signal, which indicates that the TH counter contains the selected palette index (color). The outputs from the TH counter (THO0-4) go to the multiplexer, which selects the desired palette index.
 
 ## Sprite 0 Hit
 
@@ -1379,7 +1379,7 @@ Sprite 0 Hit circuit:
 
 The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
-The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [OAM FIFO](fifo.md)) and the control signal `/SPR0_EV` from [sprite comparison circuit](sprite_eval.md).
+The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [OAM FIFO](#oam-fifo)) and the control signal `/SPR0_EV` from [sprite comparison circuit](#sprite-comparison-oam-evaluation).
 
 ## Multiplexer Tricks
 
@@ -1708,7 +1708,7 @@ The circuit is a priority encoder.
 
 ![fifo_prio4](/BreakingNESWiki/imgstore/ppu/fifo_prio4.jpg)
 
-The result of the circuit operation (output) is the `/SPR0HIT` signal, which goes to the corresponding Sprite 0 Hit circuit (see [multiplexer](mux.md))
+The result of the circuit operation (output) is the `/SPR0HIT` signal, which goes to the corresponding Sprite 0 Hit circuit (see [multiplexer](#multiplexer))
 
 ![FIFO_Priority](/BreakingNESWiki/imgstore/ppu/FIFO_Priority.png)
 
@@ -1741,7 +1741,7 @@ The circuitry takes up almost a quarter of the PPU area and is located in the lo
 This circuit deals with sampling a row of 8 pixels, based on the scroll registers which set the position of the tile in the name table and the fine offset of the starting point within the tile.
 The results (the current pixel of the tile) are sent to the multiplexer, to mix with the current pixel of the sprite.
 
-The circuit also deals with getting sprite patterns and their V inversion (the H inversion circuit is in [OAM FIFO](fifo.md)).
+The circuit also deals with getting sprite patterns and their V inversion (the H inversion circuit is in [OAM FIFO](#oam-fifo)).
 
 Due to the large size, it will be difficult to show the entire diagram, so naturally we will saw it into its component parts.
 
@@ -1790,9 +1790,9 @@ Table of bits usage in addressing:
 
 The other parts of the schematic can be found in the corresponding sections:
 
-- [Scrolling Registers](scroll_regs.md)
-- [Picture Address Register](par.md)
-- [Background Color](bgcol.md)
+- [Scrolling Registers](#scroll-registers)
+- [Picture Address Register](#picture-address-register)
+- [Background Color](#background-color-bg-col)
 
 # Scroll Registers
 
@@ -2055,7 +2055,7 @@ The circuit outputs a number of control lines to the outside:
 
 ## Read Buffer (RB)
 
-Located to the right of [OAM FIFO](fifo.md). Read Buffer is associated with register $2007.
+Located to the right of [OAM FIFO](#oam-fifo). Read Buffer is associated with register $2007.
 
 |Transistor circuit|Logic circuit|
 |---|---|
@@ -2069,7 +2069,7 @@ If a signal is repeated somewhere, it is usually not specified again, except in 
 
 The signals for the PAL version of the PPU are marked in the pictures only where there are differences from NTSC.
 
-The most important control signals of the [PPU FSM](fsm.md) are marked with a special icon (:zap:).
+The most important control signals of the [PPU FSM](#ppu-fsm) are marked with a special icon (:zap:).
 
 ## Left Side
 
@@ -2245,7 +2245,7 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 |TVO1|PAR TV Counter|BG Color|Bit 1 of TV Counter|
 |FH0-2|Scroll Regs|BG Color|Fine H value|
 
-`/PA0-7` are not shown in the picture, they are on the right side of the [PPU address register](par.md).
+`/PA0-7` are not shown in the picture, they are on the right side of the [PPU address register](#picture-address-register).
 
 |NTSC|PAL|
 |---|---|
@@ -2497,7 +2497,7 @@ Thus the inverse propagation of these signals from the register block does not i
 
 ## Interconnects
 
-See [Interconnections](rails.md)
+See [Interconnections](#wiring)
 
 ## Impact for emulation/simulation
 
