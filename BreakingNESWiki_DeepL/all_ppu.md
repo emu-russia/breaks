@@ -29,6 +29,9 @@ TODO: Duplicate all image in ASCII art so that they are understood by LLMs which
 - [PAL PPU Differences](#pal-ppu)
 - [RGB PPU Differences](#rgb-ppu)
 - [UMC 6538 Differences](#umc-6538)
+
+Appendix:
+
 - [Visual 2C02 Signal Mapping](#visual-2c02-signal-mapping)
 - [Waves](#waves)
 - [Synchronous analysis](#synchronous-analysis)
