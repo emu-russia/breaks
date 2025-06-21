@@ -14,7 +14,7 @@ Letterless 2A03 - это какая-то старая ревизия APU, дек
 
 ## NOISE
 
-В ранней ревизии отсутствует режим тонального шума. Защелка w400e (d7) и управляемый ею мутьтиплексор отсуствуют. Обратная связь не переключается 
+В ранней ревизии отсутствует режим тонального шума. Защелка w400e (d7) и управляемый ею мультиплексор отсуствуют. Обратная связь не переключается 
 между выходами LFSR R8 и R13, а поcтупает напрямую с R13.
 
 ![noise_dif](https://github.com/user-attachments/assets/3fc891e7-af98-438c-bed6-12186c935860)
@@ -45,6 +45,7 @@ Letterless 2A03 - это какая-то старая ревизия APU, дек
 
 ![div_letterless](https://github.com/user-attachments/assets/a60ee82e-b434-4ef7-9ae6-aeb1b0de0343)
 ![wawe_divs](https://github.com/user-attachments/assets/6a49a09d-85b6-4ae3-b257-1cc82278e72d)
+![2a03 letter div](https://github.com/user-attachments/assets/2aefecfd-ad24-488f-84de-69c27f7f5487)
 
 ## DEBUG
 
