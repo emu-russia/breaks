@@ -12,6 +12,12 @@ Letterless 2A03 - это какая-то старая ревизия APU, дек
 
 ![0001](/BreakingNESWiki/imgstore/apu/old_2a03/0001.png)
 
+## DPCM
+
+еще одно отличие раннего 2А03, в DPCM FREQ LFSR  сигнал RES не влияет на управление перезагрузкой сдвигового регистра.
+
+![FREQ_DPCM_DIFF](https://github.com/user-attachments/assets/bf5e8b10-4419-4629-bdb6-3106e1f7ae9f)
+
 ## DMA 
 
 Вот еще отличие в ДМА контрол. Триггер START DMA не обнуляется сигналом RES (дополнительный вход отсуствует).
