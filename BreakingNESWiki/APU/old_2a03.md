@@ -12,6 +12,14 @@ Letterless 2A03 - это какая-то старая ревизия APU, дек
 
 ![0001](/BreakingNESWiki/imgstore/apu/old_2a03/0001.png)
 
+## NOISE
+
+В ранней ревизии отсутствует режим тонального шума. Защелка w400e (d7) и управляемый ею мутьтиплексор отсуствуют. Обратная связь не переключается 
+между выходами LFSR R8 и R13, а поcтупает напрямую с R13.
+
+![noise_dif](https://github.com/user-attachments/assets/3fc891e7-af98-438c-bed6-12186c935860)
+![noise_dif2](https://github.com/user-attachments/assets/a5d38196-2fc3-412a-9585-8644f590b28a)
+
 ## DPCM
 
 еще одно отличие раннего 2А03, в DPCM FREQ LFSR  сигнал RES не влияет на управление перезагрузкой сдвигового регистра LFSR.
