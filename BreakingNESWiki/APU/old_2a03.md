@@ -22,7 +22,7 @@ Letterless 2A03 - это какая-то старая ревизия APU, дек
 
 ## DPCM
 
-еще одно отличие раннего 2А03, в DPCM FREQ LFSR  сигнал RES не влияет на управление перезагрузкой сдвигового регистра LFSR.
+В ранней ревизии в схеме DPCM FREQ LFSR  сигнал RES не влияет на управление перезагрузкой сдвигового регистра LFSR.
 
 ![FREQ_DPCM_DIFF](https://github.com/user-attachments/assets/bf5e8b10-4419-4629-bdb6-3106e1f7ae9f)
 
