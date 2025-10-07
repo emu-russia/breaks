@@ -19,16 +19,16 @@ Another topological feature of the H/V decoder is the lower left corner, the out
 
 ![ntsc_h](/BreakingNESWiki/imgstore/ppu/ntsc_h.png)
 
-|HPLA output|Pixel numbers of the line|Bitmask|VB Tran|BLNK Tran|Involved|
+|HPLA output|Pixel numbers of the line|Bitmask|VB Tran|BLNK Tran|Involved in|
 |---|---|---|---|---|---|
 |0|279|01101010011001010100| | |FPorch FF|
 |1|256|01101010101010101000| | |FPorch FF|
 |2|65|10100110101010100101| |yes|S/EV|
 |3|0-7, 256-263|00101010101000000000| | |CLIP_O / CLIP_B|
 |4|0-255|10000000000000000010|yes| |CLIP_O / CLIP_B|
-|5|339|01100110011010010101| |yes|0/HPOS|
+|5|339|01100110011010010101| |yes|0/HPOS (also /EVAL)|
 |6|63|10101001010101010101| |yes|/EVAL|
-|7|255|00010101010101010101| |yes|E/EV|
+|7|255|00010101010101010101| |yes|E/EV (also /EVAL)|
 |8|0-63|10101000000000000001| |yes|I/OAM2|
 |9|256-319|01101000000000000001| |yes|PAR/O|
 |10|0-255|10000000000000000011|yes|yes|/VIS|
