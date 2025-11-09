@@ -1469,11 +1469,14 @@ Additionally, you can see the OAM cell allocation map here: https://github.com/o
 |![oam_cell_topo](/BreakingNESWiki/imgstore/ppu/oam_cell_topo.png)|![oam_cell_tran2](/BreakingNESWiki/imgstore/ppu/oam_cell_tran2.png)|![oam_cell](/BreakingNESWiki/imgstore/ppu/oam_cell.jpg)|
 |---|---|---|
 
-It is a typical 4T-DRAM cell, the gates of the looped transistors act as capacitors, so the value on the cell is constantly degrading.
+An OAM cell is a typical 4T-DRAM cell; its value is stored as parasitic capacitance on the gates of two ring-connected transistors, so the value on the cell is constantly degrading. This value enters and exits as the complement (BL + BLBar) when the corresponding word line is selected.
 
 The OAM memory degradation effect is called "OAM Decay" and it is widely known. To combat this effect, programs for the NES contain an OAM cache in regular CPU memory (usually at $200 address) and every VBlank copies this cache to OAM using the APU's sprite DMA.
 
-During PCLK bit line "precharge" is made.
+OAM refresh occurs in two steps, during the precharge process:
+- PCLK=1: charge is pumped into the OAM, with all cells "closed"
+- PCLK=0: pumped charge is applied to the selected word line cells, updating their value.
+If no word line is selected for a long time, the precharge process will not correctly update the word cells, and the cells will begin to degrade (the "OAM Decay" effect).
 
 TBD: Calculate or measure cell degradation timings.
 
