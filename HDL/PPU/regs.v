@@ -144,6 +144,8 @@ module RegCTRL1(RC, n_W1, n_DBE, D_in, BnW, n_BGCLIP, n_OBCLIP, BGE, BLACK, OBE,
 	output n_TG;
 	output n_TB;
 
+	assign BLACK = 1'b0; 		// HACK atm
+
 endmodule // RegCTRL1
 
 module Clipper(n_PCLK, n_VIS, CLIP_B, CLIP_O, BGE, OBE, n_CLPB, CLPO);
