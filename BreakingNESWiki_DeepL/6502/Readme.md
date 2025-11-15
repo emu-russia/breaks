@@ -30,12 +30,12 @@ During the second half-cycle (PHI2) the processor is in "Read/Write Data" mode, 
 - PD: current operation code for precoding
 - IR: instruction register (stores the current operation code)
 - X, Y: index registers
-- S: Stack pointer
+- S: Stack pointer. The S register has a unique design: it has an input latch and an output latch. Loading a value into the input latch and outputting a value from the output latch can occur simultaneously.
 - AI, BI: input values for ALU
 - ADD: Intermediate result of an ALU operation
 - AC: accumulator
 - PCH/PCL: program counter in two halves
-- PCHS/PCLS: program counter auxiliary registers (S stands for "Select")
+- PCHS/PCLS: program counter auxiliary registers (S most likely stands for "Shadow")
 - ABH/ABL: registers for output to the external address bus
 - DL: data latch, stores the last read value of the external data bus
 - DOR: data output register, holds the value which will be written to the data bus
@@ -57,7 +57,7 @@ During the second half-step (PHI2) all internal buses are precharged and have a 
 
 ## Register-Bus Connections
 
-![6502_context](/BreakingNESWiki/imgstore/6502/6502_context.jpg)
+![6502_datapath](/BreakingNESWiki/imgstore/6502/6502_datapath.png)
 
 By connecting buses and registers in series, the processor executes a variety of instructions. The variety of connections provides a variety of processor instructions, and the division of instructions into clock cycles allows complex actions to be performed. In addition, the ALU is controlled (addition, logical operations, etc.).
 
