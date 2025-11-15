@@ -1,0 +1,88 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Nov 10 19:14:48 2025
+[*]
+[dumpfile] "C:\Work\breaks\HDL\Framework\Icarus\ppu\ppu_ntsc.vcd"
+[dumpfile_mtime] "Mon Nov 10 19:06:32 2025"
+[dumpfile_size] 1407209
+[savefile] "C:\Work\breaks\HDL\Framework\Icarus\ppu\ppu_ntsc.gtkw"
+[timestart] 0
+[size] 2560 1009
+[pos] -1 -1
+*-14.000000 37110 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] PPU_Run.
+[treeopen] PPU_Run.ppu.
+[treeopen] PPU_Run.ppu.fsm.
+[treeopen] PPU_Run.ppu.regs.
+[sst_width] 315
+[signals_width] 182
+[sst_expanded] 1
+[sst_vpaned_height] 298
+@200
+-Timing
+@28
+PPU_Run.ppu.CLK
+PPU_Run.ppu.pclk.PCLK
+@c00024
+PPU_Run.ppu.hv.H_out[8:0]
+@28
+(0)PPU_Run.ppu.hv.H_out[8:0]
+(1)PPU_Run.ppu.hv.H_out[8:0]
+(2)PPU_Run.ppu.hv.H_out[8:0]
+(3)PPU_Run.ppu.hv.H_out[8:0]
+(4)PPU_Run.ppu.hv.H_out[8:0]
+(5)PPU_Run.ppu.hv.H_out[8:0]
+(6)PPU_Run.ppu.hv.H_out[8:0]
+(7)PPU_Run.ppu.hv.H_out[8:0]
+(8)PPU_Run.ppu.hv.H_out[8:0]
+@1401200
+-group_end
+@c00022
+PPU_Run.ppu.hv.V_out[8:0]
+@28
+(0)PPU_Run.ppu.hv.V_out[8:0]
+(1)PPU_Run.ppu.hv.V_out[8:0]
+(2)PPU_Run.ppu.hv.V_out[8:0]
+(3)PPU_Run.ppu.hv.V_out[8:0]
+(4)PPU_Run.ppu.hv.V_out[8:0]
+(5)PPU_Run.ppu.hv.V_out[8:0]
+(6)PPU_Run.ppu.hv.V_out[8:0]
+(7)PPU_Run.ppu.hv.V_out[8:0]
+(8)PPU_Run.ppu.hv.V_out[8:0]
+@1401200
+-group_end
+@200
+-Regs
+@28
+PPU_Run.ppu.regs.BLACK
+@200
+-Horizontal States
+@28
+PPU_Run.ppu.fsm.S_EV
+PPU_Run.ppu.fsm.Z_HPOS
+PPU_Run.ppu.fsm.n_EVAL
+PPU_Run.ppu.fsm.E_EV
+PPU_Run.ppu.fsm.I_OAM2
+PPU_Run.ppu.fsm.PAR_O
+PPU_Run.ppu.fsm.n_VIS
+PPU_Run.ppu.fsm.n_FNT
+PPU_Run.ppu.fsm.F_AT
+PPU_Run.ppu.fsm.F_TA
+PPU_Run.ppu.fsm.F_TB
+@29
+PPU_Run.ppu.fsm.n_FO
+@28
+PPU_Run.ppu.fsm.BPORCH
+PPU_Run.ppu.fsm.hpos.fporch_ff_nq
+PPU_Run.ppu.fsm.SC_CNT
+PPU_Run.ppu.fsm.n_HB
+PPU_Run.ppu.fsm.SYNC
+PPU_Run.ppu.fsm.BURST
+@200
+-HV Counters Control
+@28
+PPU_Run.ppu.fsm.hv_ctrl.HC
+PPU_Run.ppu.fsm.hv_ctrl.VC
+PPU_Run.ppu.fsm.hv_ctrl.V_IN
+[pattern_trace] 1
+[pattern_trace] 0
