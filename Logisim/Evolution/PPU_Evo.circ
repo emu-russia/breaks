@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project source="3.8.0" version="1.0">
-  This file is intended to be loaded by Logisim-evolution v3.8.0(https://github.com/logisim-evolution/).
+<project source="4.0.0" version="1.0">
+  This file is intended to be loaded by Logisim-evolution v4.0.0(https://github.com/logisim-evolution/).
 
   <lib desc="#Wiring" name="0">
     <tool name="Pin">
@@ -38,7 +38,7 @@
     <tool lib="0" name="Pin"/>
     <tool lib="0" name="Pin">
       <a name="facing" val="west"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </tool>
     <sep/>
     <tool lib="1" name="NOT Gate"/>
@@ -56,7 +56,9 @@
     <a name="circuit" val="PPU_Test"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
-    <comp lib="0" loc="(130,110)" name="Clock"/>
+    <comp lib="0" loc="(130,110)" name="Clock">
+      <a name="appearance" val="classic"/>
+    </comp>
     <comp lib="0" loc="(140,130)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="n_RES"/>
@@ -78,8 +80,8 @@
     <comp lib="0" loc="(500,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="11"/>
     </comp>
     <comp lib="5" loc="(450,110)" name="LED"/>
@@ -138,8 +140,8 @@
     </comp>
     <comp lib="0" loc="(150,370)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="EXT_in"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(150,60)" name="Pin">
@@ -210,14 +212,14 @@
     </comp>
     <comp lib="0" loc="(190,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="D_in"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(190,430)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="AD_in"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(2330,1090)" name="Splitter">
@@ -424,64 +426,60 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_INT"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4510,150)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="D_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(4510,180)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="EXT_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(4510,210)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_RD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4510,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_WR"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4510,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ALE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(4510,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="AD_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(4510,330)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="A8_13"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="6"/>
     </comp>
     <comp lib="0" loc="(4510,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VOUT"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="11"/>
     </comp>
     <comp lib="0" loc="(490,880)" name="Tunnel">
@@ -1512,213 +1510,212 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="H5_DD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,130)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="H4_DD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,150)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="H3_DD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="H2_DD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,190)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_H2_D"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,210)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="H1_DD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_H1_D"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,250)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="H0_DD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="H0_D"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="S_EV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="CLIP_O"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="SC_CNT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="CLIP_B"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,380)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Z_HPOS"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,400)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_EVAL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="E_EV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,440)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BURST"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,460)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="I_OAM2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,480)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="SYNC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,500)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PAR_O"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,520)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_VIS"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,540)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_FNT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,560)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FTB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,580)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FTA"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,600)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_FO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,620)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FAT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,670)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,690)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RESCL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,710)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PICTURE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,730)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BLNK"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,860)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="INT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,880)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1090,910)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="V_IN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,930)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="HC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1090,950)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(120,60)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -2100,13 +2097,13 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="ValOut"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(370,210)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_ValOut"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="4" loc="(230,140)" name="D Flip-Flop">
       <a name="appearance" val="logisim_evolution"/>
@@ -2188,55 +2185,55 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="H5_DashDash"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(560,210)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="H4_DashDash"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(560,290)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="H3_DashDash"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(560,350)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="H2_DashDash"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(560,380)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_H2_Dash"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(560,430)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="H1_DashDash"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(560,460)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_H1_Dash"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(560,510)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="H0_DashDash"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(560,540)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="H0_Dash"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(550,380)" name="Buffer"/>
     <comp lib="1" loc="(550,510)" name="Buffer"/>
@@ -2425,7 +2422,7 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="EvenOddOut"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(290,230)" name="NOT Gate">
       <a name="facing" val="west"/>
@@ -2544,7 +2541,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="EvenOddOut"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(380,230)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -2703,85 +2700,85 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_FO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,120)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="S_EV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,1230)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="F_AT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,360)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="Z_HPOS"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,440)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_EVAL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,520)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="E_EV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,600)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="I_OAM2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,680)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="PAR_O"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,760)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_VIS"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,840)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_F_NT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,910)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="F_TB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1140,990)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="F_TA"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1150,190)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="CLIP_O"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1150,270)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="CLIP_B"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1160,150)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -2831,31 +2828,31 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="BURST"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1600,670)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="SYNC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1620,160)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="BPORCH"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1620,350)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_HB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1640,260)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="SC_CNT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(170,40)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3653,19 +3650,19 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="VB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1130,610)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="RESCL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1170,430)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="BLNK"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(170,160)" name="Pin">
       <a name="appearance" val="classic"/>
@@ -3700,19 +3697,19 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_VSET"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(700,130)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="VSYNC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(700,410)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PICTURE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(1020,140)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -4100,19 +4097,19 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="HC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(510,200)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="VC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(510,80)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="V_IN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(240,150)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -4220,14 +4217,13 @@
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="INT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(790,260)" name="Pin">
       <a name="appearance" val="classic"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB7_Out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(280,340)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -4376,8 +4372,8 @@
     </comp>
     <comp lib="0" loc="(140,160)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DPad_In"/>
-      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(140,210)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -4427,57 +4423,55 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DBx_Out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(320,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DPad_Out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(320,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RSx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(320,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_DBE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(320,390)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ALE_Pad"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(320,470)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PDx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(320,530)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ADPad_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(320,590)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Ax_Pad"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(320,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RnW"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(580,540)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -4490,8 +4484,8 @@
     <comp lib="0" loc="(580,60)" name="Constant"/>
     <comp lib="0" loc="(580,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="EXT_Pad_In"/>
-      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(590,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -4521,44 +4515,43 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_RD_Pad"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(760,580)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_WR_Pad"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(770,250)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RES"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(770,310)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(770,460)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_INT_Pad"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(800,160)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="EXT_Pad_Out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(800,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="EXT_IN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(190,340)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -4836,13 +4829,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PCLK"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(760,250)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PCLK"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(200,180)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -4946,13 +4939,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PCLK"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1080,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PCLK"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(120,120)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -5106,6 +5099,7 @@
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(160,160)" name="Clock">
+      <a name="appearance" val="classic"/>
       <a name="label" val="CLK"/>
     </comp>
     <comp lib="0" loc="(180,230)" name="Pin">
@@ -5289,7 +5283,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_ALE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(380,240)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -5309,7 +5303,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TH_MUX"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(450,470)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -5402,37 +5396,37 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="XRB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(770,330)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB_PAR"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(770,380)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TSTEP"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(770,440)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="WR"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(770,690)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PD_RB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(860,870)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(200,810)" name="NOR Gate">
       <a name="inputs" val="3"/>
@@ -5816,6 +5810,7 @@
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(200,130)" name="Clock">
+      <a name="appearance" val="classic"/>
       <a name="label" val="PCLK"/>
     </comp>
     <comp lib="0" loc="(210,210)" name="Pin">
@@ -5888,13 +5883,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_WR"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(290,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_RD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(170,80)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -5943,7 +5938,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RegOp_Enable"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(220,90)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -5981,13 +5976,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="SecondWrite"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(800,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FirstWrite"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(570,180)" name="NOR Gate">
       <a name="inputs" val="3"/>
@@ -6098,79 +6093,79 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W6_1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(390,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W6_2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(390,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W5_1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(390,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W5_2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(400,440)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W56"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,180)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_R7"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W7"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W4"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W3"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_R2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,480)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,540)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_W0"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,600)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_R4"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(90,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -6495,7 +6490,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(240,150)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -6553,37 +6548,37 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="I_1_32"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OBSEL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,330)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BGSEL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,430)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="O_8_16"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,490)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SLAVE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,590)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VBL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(180,100)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -6743,55 +6738,55 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_BGCLIP"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,330)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_OBCLIP"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,410)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BGE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,460)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BLACK"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,510)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OBE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,630)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_TR"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,730)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_TG"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,790)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_TB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BnW"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(180,100)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -6988,7 +6983,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BLACK"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(310,180)" name="NOT Gate">
       <a name="facing" val="west"/>
@@ -7103,13 +7098,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_CLPB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(510,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="CLPO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(350,130)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -7215,7 +7210,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="CarryH"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(290,120)" name="NOR Gate">
       <a name="inputs" val="5"/>
@@ -7269,7 +7264,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="CarryV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(180,220)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -7331,67 +7326,67 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(380,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL3"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(380,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL0"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(380,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(470,210)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ROW0_4"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(470,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ROW1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(470,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ROW2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(470,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ROW3"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(470,330)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ROW5"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(470,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ROW6"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(470,390)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ROW7"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(400,200)" name="OR Gate">
       <a name="size" val="30"/>
@@ -7554,19 +7549,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_BW"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(370,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_CB_DB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(410,250)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_DB_CB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(240,100)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -7641,8 +7636,8 @@
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(130,130)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB_In"/>
-      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(130,180)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -7654,13 +7649,13 @@
     </comp>
     <comp lib="0" loc="(130,310)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="val_in"/>
-      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(130,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="n_val_in"/>
-      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(130,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -7685,25 +7680,25 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="CB_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(210,170)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -7858,19 +7853,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_shift_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(450,150)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(450,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="shift_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(320,110)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -7914,7 +7909,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PZ"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(120,30)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -7932,19 +7927,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PG"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(680,130)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PB"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(680,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PR"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(770,670)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -8340,7 +8335,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PBLACK"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(550,110)" name="Splitter">
       <a name="facing" val="west"/>
@@ -8360,8 +8355,8 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="P"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="13"/>
     </comp>
     <comp lib="1" loc="(470,350)" name="NOR Gate">
@@ -8571,7 +8566,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_LU"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="1" loc="(150,30)" name="NOT Gate">
@@ -8704,7 +8699,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TINT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(270,110)" name="NOR Gate">
       <a name="inputs" val="3"/>
@@ -8813,14 +8808,14 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_POUT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(700,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VidOut"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="11"/>
     </comp>
     <comp lib="1" loc="(230,240)" name="NOR Gate">
@@ -9063,8 +9058,8 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VOUT"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="11"/>
     </comp>
     <comp lib="0" loc="(130,110)" name="Pin">
@@ -9257,7 +9252,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PICTURE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(200,110)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -9323,14 +9318,14 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(400,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp loc="(240,130)" name="DLatch"/>
@@ -9401,14 +9396,14 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PAL_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(1330,660)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_EXT_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(140,240)" name="Pin">
@@ -9639,19 +9634,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PAL4"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1070,330)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OCOL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1070,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="EXT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(140,280)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -9849,7 +9844,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB6"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(220,300)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -9971,19 +9966,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="carry_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(760,120)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(760,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(250,340)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -10113,6 +10108,7 @@
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(130,60)" name="Clock">
+      <a name="appearance" val="classic"/>
       <a name="label" val="CLK"/>
     </comp>
     <comp lib="0" loc="(140,110)" name="Pin">
@@ -10143,7 +10139,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="2"/>
     </comp>
     <comp loc="(390,240)" name="OAM_CounterBit">
@@ -10208,7 +10204,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OAM_x"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1090,160)" name="Splitter">
@@ -10694,7 +10690,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OMV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(990,170)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -11244,13 +11240,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TMV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(550,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OAMTemp"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(550,80)" name="Splitter">
@@ -11751,49 +11747,49 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OSTEP"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(870,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ORES"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(870,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OAMCTR2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(870,200)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="SPR_OV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(870,230)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="SPR_OV_Reg"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(870,260)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="W3_Enable"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(870,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OMSTEP"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(870,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OMOUT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(150,480)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -12206,19 +12202,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OV_Odd"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(760,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="carry_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(760,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OV_Even"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(310,120)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -12466,14 +12462,14 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(690,770)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OVZ"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(160,730)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -12721,25 +12717,25 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COPY_OVF"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(880,130)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OMFG"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(880,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PD_FIFO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(880,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SPR0_EV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(130,270)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -13015,13 +13011,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OAM8"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(510,40)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_OAM_x"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="1" loc="(200,100)" name="NOT Gate">
@@ -13127,8 +13123,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB5"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(250,80)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -13170,52 +13165,51 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_OAMx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1110,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OAM8"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1110,370)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OAMCTR2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1110,390)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="SPR_OV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1110,430)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1110,480)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PD_FIFO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1110,500)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SPR0_EV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1110,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB5"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(130,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -13279,8 +13273,8 @@
     </comp>
     <comp lib="0" loc="(380,560)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB_In"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(380,600)" name="Pin">
@@ -13479,13 +13473,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_Q"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(370,60)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Q"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(210,70)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -13527,13 +13521,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_Q"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(440,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Q"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(210,60)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -13645,30 +13639,29 @@
     </comp>
     <comp lib="0" loc="(190,720)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB_In"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(810,450)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OB_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(810,470)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB_Out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(820,640)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OFETCH"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(380,670)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -13859,69 +13852,69 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL0"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(520,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(520,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(520,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL3"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(520,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL4"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(520,480)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL5"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(520,540)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL6"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(520,600)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COL7"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(520,660)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="COLZ"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(520,730)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ROW_0_31"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="32"/>
     </comp>
     <comp lib="0" loc="(520,770)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ROW"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="1" loc="(280,100)" name="NOT Gate">
@@ -14210,8 +14203,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(600,200)" name="Splitter">
@@ -14355,8 +14347,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="2" loc="(550,140)" name="Multiplexer">
@@ -14523,19 +14514,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OFETCH"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(870,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OB_OAM"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(870,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_WE"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(230,310)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -14748,14 +14739,13 @@
     </comp>
     <comp lib="0" loc="(170,400)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB_In"/>
-      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(170,440)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="pulldown"/>
       <a name="label" val="FromOAM"/>
-      <a name="pull" val="down"/>
-      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(170,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -14832,21 +14822,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OB_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(790,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB_Out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(790,400)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ToOAM"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(310,110)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -15067,8 +15055,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ToOAM"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1330,720)" name="Splitter">
@@ -15080,8 +15067,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB_Out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1420,530)" name="Splitter">
@@ -15093,7 +15079,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="OB_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1450,370)" name="Splitter">
@@ -15123,14 +15109,14 @@
     </comp>
     <comp lib="0" loc="(210,310)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB_In"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(210,350)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="FromOAM"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(210,50)" name="Pin">
@@ -15681,19 +15667,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="UPD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(610,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="STEP"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(610,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_xEN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(330,220)" name="NOR Gate">
       <a name="inputs" val="3"/>
@@ -15809,19 +15795,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(680,280)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="carry_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(680,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(600,290)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -15900,7 +15886,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="CarryOut"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(110,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16123,43 +16109,43 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Z_COL2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(630,260)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Z_COL3"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(630,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="nZ_PRIO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(630,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="SR_EN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(630,550)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="LOAD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(630,600)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="T_SR0"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(630,650)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="T_SR1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(620,420)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -16329,7 +16315,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="shift_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="2" loc="(250,180)" name="Multiplexer">
       <a name="selloc" val="tr"/>
@@ -16414,13 +16400,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="nZ_COL0"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1730,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="nZ_COL1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(190,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -16864,7 +16850,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ZOut"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(180,170)" name="Pin">
@@ -17247,7 +17233,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SPR0HIT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(830,300)" name="Constant"/>
     <comp lib="0" loc="(830,320)" name="Constant"/>
@@ -17759,37 +17745,37 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Z_COL2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,280)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Z_COL3"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="nZ_PRIO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,50)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="nZ_COL0"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,520)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_xEN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(690,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="nZ_COL1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="8" loc="(290,730)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
@@ -17933,7 +17919,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_Tx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="1" loc="(250,80)" name="NOR Gate">
@@ -18056,25 +18042,25 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SH2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(420,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SH3"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(420,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SH5"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(420,310)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SH7"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(400,100)" name="Buffer"/>
     <comp lib="1" loc="(400,170)" name="Buffer"/>
@@ -18200,43 +18186,43 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SPR0HIT"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1340,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_ZCOL0"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1340,330)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_ZCOL1"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1340,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ZCOL2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1340,390)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="ZCOL3"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1340,420)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_ZPRIO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(1340,740)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_SH2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(170,680)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -18774,14 +18760,14 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(570,340)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp loc="(300,140)" name="DLatch"/>
@@ -18916,28 +18902,6 @@
       <a name="appearance" val="NewPins"/>
       <a name="label" val="O8_16"/>
     </comp>
-    <comp lib="0" loc="(1120,130)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="n_PAx"/>
-      <a name="output" val="true"/>
-      <a name="radix" val="16"/>
-      <a name="width" val="14"/>
-    </comp>
-    <comp lib="0" loc="(1130,570)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="BGC"/>
-      <a name="output" val="true"/>
-      <a name="width" val="4"/>
-    </comp>
-    <comp lib="0" loc="(1130,640)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="THO"/>
-      <a name="output" val="true"/>
-      <a name="width" val="5"/>
-    </comp>
     <comp lib="0" loc="(120,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="n_W5_2"/>
@@ -19063,6 +19027,20 @@
       <a name="appearance" val="NewPins"/>
       <a name="label" val="n_W5_1"/>
     </comp>
+    <comp lib="0" loc="(1200,570)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="BGC"/>
+      <a name="type" val="output"/>
+      <a name="width" val="4"/>
+    </comp>
+    <comp lib="0" loc="(1200,640)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="THO"/>
+      <a name="type" val="output"/>
+      <a name="width" val="5"/>
+    </comp>
     <comp lib="0" loc="(130,200)" name="Tunnel">
       <a name="label" val="H0_DD"/>
       <a name="labelfont" val="SansSerif bold 9"/>
@@ -19123,6 +19101,38 @@
       <a name="label" val="BLNK"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
+    <comp lib="0" loc="(1350,450)" name="Splitter">
+      <a name="fanout" val="13"/>
+      <a name="incoming" val="13"/>
+    </comp>
+    <comp lib="0" loc="(1380,450)" name="Constant">
+      <a name="value" val="0x0"/>
+    </comp>
+    <comp lib="0" loc="(1390,140)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="n_H2_D"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(1390,160)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="BLNK"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(1390,180)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="F_AT"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(1390,200)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="DB_PAR"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(1400,310)" name="Splitter">
+      <a name="facing" val="west"/>
+      <a name="fanout" val="14"/>
+      <a name="incoming" val="14"/>
+    </comp>
     <comp lib="0" loc="(160,650)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="label" val="OB"/>
@@ -19130,15 +19140,23 @@
     </comp>
     <comp lib="0" loc="(160,670)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="PD"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(160,690)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(1660,120)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_PAx"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="14"/>
     </comp>
     <comp lib="0" loc="(170,80)" name="Splitter">
       <a name="facing" val="west"/>
@@ -19185,113 +19203,90 @@
       <a name="label" val="n_H1_D"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(470,430)" name="Splitter">
+    <comp lib="0" loc="(490,430)" name="Splitter">
       <a name="fanout" val="6"/>
       <a name="incoming" val="6"/>
     </comp>
-    <comp lib="0" loc="(540,490)" name="Tunnel">
+    <comp lib="0" loc="(560,490)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="RC"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(750,130)" name="Tunnel">
+    <comp lib="0" loc="(850,130)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="SC_CNT"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(750,150)" name="Tunnel">
+    <comp lib="0" loc="(850,150)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="RESCL"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(750,170)" name="Tunnel">
+    <comp lib="0" loc="(850,170)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="E_EV"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(750,190)" name="Tunnel">
+    <comp lib="0" loc="(850,190)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="TSTEP"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(750,210)" name="Tunnel">
+    <comp lib="0" loc="(850,210)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="F_TB"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(750,230)" name="Tunnel">
+    <comp lib="0" loc="(850,230)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="H0_DD"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(750,250)" name="Tunnel">
+    <comp lib="0" loc="(850,250)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="BLNK"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(750,270)" name="Tunnel">
+    <comp lib="0" loc="(850,270)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="I1_32"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp lib="0" loc="(750,290)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="n_H2_D"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(750,310)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="F_AT"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(750,330)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="DB_PAR"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(840,610)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="H0_DD"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(840,630)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="F_TA"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(840,650)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="F_TB"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(840,670)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="n_FO"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(840,690)" name="Tunnel">
-      <a name="facing" val="east"/>
-      <a name="label" val="F_AT"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(840,790)" name="Tunnel">
+    <comp lib="0" loc="(860,790)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="n_CLPB"/>
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
-    <comp loc="(1060,570)" name="BGC_All"/>
-    <comp loc="(1060,70)" name="TileCounters_All"/>
+    <comp lib="0" loc="(910,610)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="H0_DD"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(910,630)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="F_TA"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(910,650)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="F_TB"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(910,670)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="n_FO"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(910,690)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="F_AT"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp loc="(1130,570)" name="BGC_All"/>
+    <comp loc="(1130,70)" name="TileCounters_All"/>
+    <comp loc="(1650,120)" name="PAMUX_All"/>
     <comp loc="(450,350)" name="PAR"/>
-    <comp loc="(760,370)" name="ScrollRegs"/>
-    <wire from="(1060,110)" to="(1070,110)"/>
-    <wire from="(1060,130)" to="(1120,130)"/>
-    <wire from="(1060,570)" to="(1130,570)"/>
-    <wire from="(1060,70)" to="(1100,70)"/>
-    <wire from="(1060,90)" to="(1080,90)"/>
-    <wire from="(1070,110)" to="(1070,830)"/>
-    <wire from="(1080,640)" to="(1080,840)"/>
-    <wire from="(1080,640)" to="(1130,640)"/>
-    <wire from="(1080,90)" to="(1080,640)"/>
+    <comp loc="(780,370)" name="ScrollRegs"/>
     <wire from="(110,730)" to="(120,730)"/>
     <wire from="(110,770)" to="(120,770)"/>
     <wire from="(110,800)" to="(120,800)"/>
@@ -19299,12 +19294,22 @@
     <wire from="(110,840)" to="(120,840)"/>
     <wire from="(110,860)" to="(120,860)"/>
     <wire from="(110,880)" to="(120,880)"/>
-    <wire from="(1100,70)" to="(1100,870)"/>
+    <wire from="(1130,110)" to="(1140,110)"/>
+    <wire from="(1130,130)" to="(1240,130)"/>
+    <wire from="(1130,150)" to="(1220,150)"/>
+    <wire from="(1130,570)" to="(1200,570)"/>
+    <wire from="(1130,70)" to="(1170,70)"/>
+    <wire from="(1130,90)" to="(1150,90)"/>
+    <wire from="(1140,110)" to="(1140,830)"/>
+    <wire from="(1150,640)" to="(1150,840)"/>
+    <wire from="(1150,640)" to="(1200,640)"/>
+    <wire from="(1150,90)" to="(1150,640)"/>
+    <wire from="(1170,70)" to="(1170,870)"/>
     <wire from="(120,110)" to="(150,110)"/>
     <wire from="(120,130)" to="(130,130)"/>
     <wire from="(120,150)" to="(140,150)"/>
     <wire from="(120,170)" to="(150,170)"/>
-    <wire from="(120,20)" to="(820,20)"/>
+    <wire from="(120,20)" to="(890,20)"/>
     <wire from="(120,200)" to="(130,200)"/>
     <wire from="(120,220)" to="(130,220)"/>
     <wire from="(120,240)" to="(130,240)"/>
@@ -19324,93 +19329,130 @@
     <wire from="(120,570)" to="(230,570)"/>
     <wire from="(120,70)" to="(150,70)"/>
     <wire from="(120,90)" to="(140,90)"/>
+    <wire from="(1220,150)" to="(1220,240)"/>
+    <wire from="(1220,240)" to="(1430,240)"/>
+    <wire from="(1240,130)" to="(1240,220)"/>
+    <wire from="(1240,220)" to="(1430,220)"/>
     <wire from="(130,120)" to="(130,130)"/>
     <wire from="(130,120)" to="(150,120)"/>
+    <wire from="(1340,450)" to="(1340,910)"/>
+    <wire from="(1340,450)" to="(1350,450)"/>
+    <wire from="(1370,320)" to="(1380,320)"/>
+    <wire from="(1370,330)" to="(1380,330)"/>
+    <wire from="(1370,340)" to="(1380,340)"/>
+    <wire from="(1370,350)" to="(1380,350)"/>
+    <wire from="(1370,360)" to="(1380,360)"/>
+    <wire from="(1370,370)" to="(1380,370)"/>
+    <wire from="(1370,380)" to="(1380,380)"/>
+    <wire from="(1370,390)" to="(1380,390)"/>
+    <wire from="(1370,400)" to="(1380,400)"/>
+    <wire from="(1370,410)" to="(1380,410)"/>
+    <wire from="(1370,420)" to="(1380,420)"/>
+    <wire from="(1370,430)" to="(1380,430)"/>
+    <wire from="(1370,440)" to="(1380,440)"/>
+    <wire from="(1390,140)" to="(1430,140)"/>
+    <wire from="(1390,160)" to="(1430,160)"/>
+    <wire from="(1390,180)" to="(1430,180)"/>
+    <wire from="(1390,200)" to="(1430,200)"/>
     <wire from="(140,100)" to="(150,100)"/>
     <wire from="(140,130)" to="(140,150)"/>
     <wire from="(140,130)" to="(150,130)"/>
     <wire from="(140,90)" to="(140,100)"/>
+    <wire from="(1400,120)" to="(1430,120)"/>
+    <wire from="(1400,20)" to="(1400,120)"/>
+    <wire from="(1400,260)" to="(1400,310)"/>
+    <wire from="(1400,260)" to="(1430,260)"/>
+    <wire from="(1420,280)" to="(1420,930)"/>
+    <wire from="(1420,280)" to="(1430,280)"/>
     <wire from="(150,140)" to="(150,170)"/>
     <wire from="(150,70)" to="(150,90)"/>
     <wire from="(160,650)" to="(170,650)"/>
     <wire from="(160,670)" to="(180,670)"/>
-    <wire from="(160,690)" to="(500,690)"/>
+    <wire from="(160,690)" to="(520,690)"/>
+    <wire from="(1650,120)" to="(1660,120)"/>
     <wire from="(170,530)" to="(170,650)"/>
     <wire from="(170,530)" to="(230,530)"/>
-    <wire from="(170,80)" to="(460,80)"/>
+    <wire from="(170,80)" to="(480,80)"/>
     <wire from="(180,550)" to="(180,670)"/>
     <wire from="(180,550)" to="(230,550)"/>
-    <wire from="(180,670)" to="(530,670)"/>
+    <wire from="(180,670)" to="(550,670)"/>
     <wire from="(220,350)" to="(230,350)"/>
     <wire from="(220,40)" to="(220,350)"/>
-    <wire from="(220,40)" to="(830,40)"/>
+    <wire from="(220,40)" to="(900,40)"/>
     <wire from="(220,590)" to="(220,870)"/>
     <wire from="(220,590)" to="(230,590)"/>
-    <wire from="(220,870)" to="(1100,870)"/>
-    <wire from="(450,350)" to="(840,350)"/>
-    <wire from="(460,430)" to="(470,430)"/>
-    <wire from="(460,80)" to="(460,430)"/>
-    <wire from="(490,370)" to="(540,370)"/>
-    <wire from="(490,380)" to="(530,380)"/>
-    <wire from="(490,390)" to="(520,390)"/>
-    <wire from="(490,400)" to="(510,400)"/>
-    <wire from="(490,410)" to="(500,410)"/>
-    <wire from="(490,420)" to="(490,470)"/>
-    <wire from="(490,470)" to="(540,470)"/>
-    <wire from="(500,410)" to="(500,450)"/>
-    <wire from="(500,450)" to="(540,450)"/>
-    <wire from="(500,510)" to="(500,560)"/>
-    <wire from="(500,510)" to="(540,510)"/>
-    <wire from="(500,560)" to="(500,690)"/>
-    <wire from="(500,560)" to="(800,560)"/>
-    <wire from="(510,400)" to="(510,430)"/>
-    <wire from="(510,430)" to="(540,430)"/>
-    <wire from="(520,390)" to="(520,410)"/>
-    <wire from="(520,410)" to="(540,410)"/>
-    <wire from="(530,380)" to="(530,390)"/>
-    <wire from="(530,390)" to="(540,390)"/>
-    <wire from="(530,670)" to="(530,770)"/>
-    <wire from="(530,770)" to="(840,770)"/>
-    <wire from="(750,130)" to="(840,130)"/>
-    <wire from="(750,150)" to="(840,150)"/>
-    <wire from="(750,170)" to="(840,170)"/>
-    <wire from="(750,190)" to="(840,190)"/>
-    <wire from="(750,210)" to="(840,210)"/>
-    <wire from="(750,230)" to="(840,230)"/>
-    <wire from="(750,250)" to="(840,250)"/>
-    <wire from="(750,270)" to="(840,270)"/>
-    <wire from="(750,290)" to="(840,290)"/>
-    <wire from="(750,310)" to="(840,310)"/>
-    <wire from="(750,330)" to="(840,330)"/>
-    <wire from="(750,710)" to="(750,840)"/>
-    <wire from="(750,710)" to="(840,710)"/>
-    <wire from="(750,840)" to="(1080,840)"/>
-    <wire from="(760,370)" to="(780,370)"/>
-    <wire from="(760,390)" to="(840,390)"/>
-    <wire from="(760,410)" to="(840,410)"/>
-    <wire from="(760,430)" to="(840,430)"/>
-    <wire from="(760,450)" to="(840,450)"/>
-    <wire from="(760,470)" to="(840,470)"/>
-    <wire from="(760,490)" to="(770,490)"/>
-    <wire from="(760,730)" to="(760,830)"/>
-    <wire from="(760,730)" to="(840,730)"/>
-    <wire from="(760,830)" to="(1070,830)"/>
-    <wire from="(770,110)" to="(770,490)"/>
-    <wire from="(770,110)" to="(840,110)"/>
-    <wire from="(780,370)" to="(780,750)"/>
-    <wire from="(780,750)" to="(840,750)"/>
-    <wire from="(800,370)" to="(800,560)"/>
-    <wire from="(800,370)" to="(840,370)"/>
-    <wire from="(820,20)" to="(820,90)"/>
-    <wire from="(820,20)" to="(880,20)"/>
-    <wire from="(820,570)" to="(840,570)"/>
-    <wire from="(820,90)" to="(820,570)"/>
-    <wire from="(820,90)" to="(840,90)"/>
-    <wire from="(830,40)" to="(830,70)"/>
-    <wire from="(830,40)" to="(880,40)"/>
-    <wire from="(830,590)" to="(840,590)"/>
-    <wire from="(830,70)" to="(830,590)"/>
-    <wire from="(830,70)" to="(840,70)"/>
+    <wire from="(220,870)" to="(1170,870)"/>
+    <wire from="(450,350)" to="(460,350)"/>
+    <wire from="(460,350)" to="(460,910)"/>
+    <wire from="(460,910)" to="(1340,910)"/>
+    <wire from="(480,430)" to="(490,430)"/>
+    <wire from="(480,80)" to="(480,430)"/>
+    <wire from="(510,370)" to="(560,370)"/>
+    <wire from="(510,380)" to="(550,380)"/>
+    <wire from="(510,390)" to="(540,390)"/>
+    <wire from="(510,400)" to="(530,400)"/>
+    <wire from="(510,410)" to="(520,410)"/>
+    <wire from="(510,420)" to="(510,470)"/>
+    <wire from="(510,470)" to="(560,470)"/>
+    <wire from="(520,410)" to="(520,450)"/>
+    <wire from="(520,450)" to="(560,450)"/>
+    <wire from="(520,510)" to="(520,690)"/>
+    <wire from="(520,510)" to="(560,510)"/>
+    <wire from="(520,690)" to="(520,930)"/>
+    <wire from="(520,930)" to="(1420,930)"/>
+    <wire from="(530,400)" to="(530,430)"/>
+    <wire from="(530,430)" to="(560,430)"/>
+    <wire from="(540,390)" to="(540,410)"/>
+    <wire from="(540,410)" to="(560,410)"/>
+    <wire from="(550,380)" to="(550,390)"/>
+    <wire from="(550,390)" to="(560,390)"/>
+    <wire from="(550,670)" to="(550,770)"/>
+    <wire from="(550,770)" to="(910,770)"/>
+    <wire from="(770,710)" to="(770,840)"/>
+    <wire from="(770,710)" to="(910,710)"/>
+    <wire from="(770,840)" to="(1150,840)"/>
+    <wire from="(780,370)" to="(800,370)"/>
+    <wire from="(780,390)" to="(810,390)"/>
+    <wire from="(780,410)" to="(820,410)"/>
+    <wire from="(780,430)" to="(830,430)"/>
+    <wire from="(780,450)" to="(840,450)"/>
+    <wire from="(780,470)" to="(850,470)"/>
+    <wire from="(780,490)" to="(790,490)"/>
+    <wire from="(780,730)" to="(780,830)"/>
+    <wire from="(780,730)" to="(910,730)"/>
+    <wire from="(780,830)" to="(1140,830)"/>
+    <wire from="(790,110)" to="(790,490)"/>
+    <wire from="(790,110)" to="(910,110)"/>
+    <wire from="(800,370)" to="(800,750)"/>
+    <wire from="(800,750)" to="(910,750)"/>
+    <wire from="(810,290)" to="(810,390)"/>
+    <wire from="(810,290)" to="(910,290)"/>
+    <wire from="(820,310)" to="(820,410)"/>
+    <wire from="(820,310)" to="(910,310)"/>
+    <wire from="(830,330)" to="(830,430)"/>
+    <wire from="(830,330)" to="(910,330)"/>
+    <wire from="(840,350)" to="(840,450)"/>
+    <wire from="(840,350)" to="(910,350)"/>
+    <wire from="(850,130)" to="(910,130)"/>
+    <wire from="(850,150)" to="(910,150)"/>
+    <wire from="(850,170)" to="(910,170)"/>
+    <wire from="(850,190)" to="(910,190)"/>
+    <wire from="(850,210)" to="(910,210)"/>
+    <wire from="(850,230)" to="(910,230)"/>
+    <wire from="(850,250)" to="(910,250)"/>
+    <wire from="(850,270)" to="(910,270)"/>
+    <wire from="(850,370)" to="(850,470)"/>
+    <wire from="(850,370)" to="(910,370)"/>
+    <wire from="(860,790)" to="(910,790)"/>
+    <wire from="(890,20)" to="(1400,20)"/>
+    <wire from="(890,20)" to="(890,90)"/>
+    <wire from="(890,570)" to="(910,570)"/>
+    <wire from="(890,90)" to="(890,570)"/>
+    <wire from="(890,90)" to="(910,90)"/>
+    <wire from="(900,40)" to="(900,70)"/>
+    <wire from="(900,590)" to="(910,590)"/>
+    <wire from="(900,70)" to="(900,590)"/>
+    <wire from="(900,70)" to="(910,70)"/>
   </circuit>
   <circuit name="ParControl">
     <a name="appearance" val="evolution"/>
@@ -19465,13 +19507,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PAD12"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(560,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="O"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(200,80)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -19588,13 +19630,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VDIR"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(480,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VINV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(250,80)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -19672,7 +19714,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(430,130)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -19746,7 +19788,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PADx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(190,220)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -19835,7 +19877,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PADx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(190,220)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -19924,8 +19966,8 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PAD"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="13"/>
     </comp>
     <comp lib="0" loc="(150,100)" name="Pin">
@@ -20461,7 +20503,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(290,140)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -20520,8 +20562,8 @@
     </comp>
     <comp lib="0" loc="(160,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(170,270)" name="Splitter">
@@ -20567,7 +20609,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FHx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="3"/>
     </comp>
     <comp lib="1" loc="(330,100)" name="Controlled Buffer">
@@ -20658,8 +20700,8 @@
     </comp>
     <comp lib="0" loc="(160,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(170,270)" name="Splitter">
@@ -20708,7 +20750,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FVx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="3"/>
     </comp>
     <comp lib="1" loc="(350,160)" name="Controlled Buffer">
@@ -20829,8 +20871,8 @@
     </comp>
     <comp lib="0" loc="(160,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(170,270)" name="Splitter">
@@ -20861,13 +20903,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTH"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(590,180)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(350,160)" name="Controlled Buffer">
       <a name="control" val="left"/>
@@ -20962,8 +21004,8 @@
     </comp>
     <comp lib="0" loc="(160,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(170,320)" name="Splitter">
@@ -21029,7 +21071,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TVx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="1" loc="(360,120)" name="Controlled Buffer">
@@ -21219,8 +21261,8 @@
     </comp>
     <comp lib="0" loc="(160,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(170,270)" name="Splitter">
@@ -21286,7 +21328,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="THx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="1" loc="(350,160)" name="Controlled Buffer">
@@ -21441,21 +21483,21 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TVx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(1000,680)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="THx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(1000,720)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="W6_2_Enable"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(140,110)" name="Pin">
       <a name="appearance" val="NewPins"/>
@@ -21487,8 +21529,8 @@
     </comp>
     <comp lib="0" loc="(170,240)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(180,190)" name="Tunnel">
@@ -21603,27 +21645,27 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FHx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="3"/>
     </comp>
     <comp lib="0" loc="(500,400)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FVx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="3"/>
     </comp>
     <comp lib="0" loc="(500,550)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTH"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(500,570)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(700,270)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -21870,25 +21912,25 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TVLOAD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(720,500)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="THLOAD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(720,620)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="THSTEP"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(720,710)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TVSTEP"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(220,620)" name="AND Gate">
       <a name="size" val="30"/>
@@ -22253,37 +22295,37 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTHIN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(590,390)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTVIN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(590,450)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FVIN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(590,550)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TVIN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(590,620)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="THIN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(590,730)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="Z_TV"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(660,100)" name="Tunnel">
       <a name="label" val="TVZB"/>
@@ -22565,19 +22607,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(600,260)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(600,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="carry_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(220,70)" name="Controlled Buffer">
       <a name="control" val="left"/>
@@ -22704,19 +22746,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(600,260)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_val_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(600,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="carry_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(220,70)" name="Controlled Buffer">
       <a name="control" val="left"/>
@@ -22881,14 +22923,14 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="FVO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="3"/>
     </comp>
     <comp lib="0" loc="(450,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_FVO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="3"/>
     </comp>
     <comp loc="(350,200)" name="TileCounterBit"/>
@@ -23010,25 +23052,25 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTHOut"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(390,140)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTHO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(390,300)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTVOut"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(390,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NTVO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp loc="(320,120)" name="TileCounterBit"/>
     <comp loc="(320,300)" name="TileCounterBit"/>
@@ -23140,14 +23182,14 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_TVO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(520,250)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TVO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp loc="(350,200)" name="TileCounterBitReset"/>
@@ -23351,14 +23393,14 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_THO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(520,250)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="THO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp loc="(350,200)" name="TileCounterBit"/>
@@ -23506,19 +23548,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PAH"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(400,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PAL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(400,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PARR"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(220,80)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -23592,7 +23634,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PAx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(520,220)" name="Buffer"/>
     <comp lib="2" loc="(190,160)" name="Multiplexer">
@@ -23686,7 +23728,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PAx"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(590,300)" name="Buffer"/>
     <comp lib="2" loc="(200,200)" name="Multiplexer">
@@ -23808,8 +23850,8 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_PAx"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="14"/>
     </comp>
     <comp lib="0" loc="(130,270)" name="Pin">
@@ -23832,9 +23874,9 @@
     </comp>
     <comp lib="0" loc="(130,360)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB_in"/>
       <a name="radix" val="16"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(140,580)" name="Splitter">
@@ -24437,6 +24479,118 @@
     <wire from="(990,580)" to="(990,860)"/>
     <wire from="(990,860)" to="(1080,860)"/>
   </circuit>
+  <circuit name="PAMUX_All">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="PAMUX_All"/>
+    <a name="circuitnamedboxfixedsize" val="true"/>
+    <a name="simulationFrequency" val="256.0"/>
+    <comp lib="0" loc="(130,200)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="n_H2_D"/>
+    </comp>
+    <comp lib="0" loc="(130,220)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="BLNK"/>
+    </comp>
+    <comp lib="0" loc="(130,240)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="F_AT"/>
+    </comp>
+    <comp lib="0" loc="(130,260)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="DB_PAR"/>
+    </comp>
+    <comp lib="0" loc="(130,60)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="PCLK"/>
+    </comp>
+    <comp lib="0" loc="(150,370)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="FAT_in"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="14"/>
+    </comp>
+    <comp lib="0" loc="(150,400)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="PAR_in"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="14"/>
+    </comp>
+    <comp lib="0" loc="(150,430)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="PAD_in"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="14"/>
+    </comp>
+    <comp lib="0" loc="(150,460)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
+      <a name="label" val="DB_in"/>
+      <a name="radix" val="16"/>
+      <a name="width" val="8"/>
+    </comp>
+    <comp lib="0" loc="(990,180)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="n_PAx"/>
+      <a name="radix" val="16"/>
+      <a name="type" val="output"/>
+      <a name="width" val="14"/>
+    </comp>
+    <comp loc="(500,230)" name="PamuxControl">
+      <a name="label" val="pamux_ctrl"/>
+    </comp>
+    <comp loc="(960,180)" name="PAMUX">
+      <a name="label" val="pamux_out"/>
+    </comp>
+    <wire from="(130,200)" to="(250,200)"/>
+    <wire from="(130,220)" to="(230,220)"/>
+    <wire from="(130,240)" to="(210,240)"/>
+    <wire from="(130,260)" to="(180,260)"/>
+    <wire from="(130,60)" to="(640,60)"/>
+    <wire from="(150,370)" to="(640,370)"/>
+    <wire from="(150,400)" to="(660,400)"/>
+    <wire from="(150,430)" to="(680,430)"/>
+    <wire from="(150,460)" to="(700,460)"/>
+    <wire from="(180,140)" to="(180,260)"/>
+    <wire from="(180,140)" to="(610,140)"/>
+    <wire from="(180,260)" to="(190,260)"/>
+    <wire from="(190,260)" to="(190,290)"/>
+    <wire from="(190,290)" to="(280,290)"/>
+    <wire from="(210,240)" to="(210,270)"/>
+    <wire from="(210,270)" to="(240,270)"/>
+    <wire from="(230,220)" to="(230,250)"/>
+    <wire from="(230,250)" to="(280,250)"/>
+    <wire from="(240,270)" to="(240,340)"/>
+    <wire from="(240,270)" to="(280,270)"/>
+    <wire from="(240,340)" to="(620,340)"/>
+    <wire from="(250,200)" to="(250,230)"/>
+    <wire from="(250,230)" to="(280,230)"/>
+    <wire from="(500,230)" to="(570,230)"/>
+    <wire from="(500,250)" to="(590,250)"/>
+    <wire from="(500,270)" to="(610,270)"/>
+    <wire from="(570,200)" to="(570,230)"/>
+    <wire from="(570,200)" to="(740,200)"/>
+    <wire from="(590,240)" to="(590,250)"/>
+    <wire from="(590,240)" to="(740,240)"/>
+    <wire from="(610,140)" to="(610,220)"/>
+    <wire from="(610,220)" to="(740,220)"/>
+    <wire from="(610,260)" to="(610,270)"/>
+    <wire from="(610,260)" to="(740,260)"/>
+    <wire from="(620,280)" to="(620,340)"/>
+    <wire from="(620,280)" to="(740,280)"/>
+    <wire from="(640,180)" to="(740,180)"/>
+    <wire from="(640,300)" to="(640,370)"/>
+    <wire from="(640,300)" to="(740,300)"/>
+    <wire from="(640,60)" to="(640,180)"/>
+    <wire from="(660,320)" to="(660,400)"/>
+    <wire from="(660,320)" to="(740,320)"/>
+    <wire from="(680,340)" to="(680,430)"/>
+    <wire from="(680,340)" to="(740,340)"/>
+    <wire from="(700,360)" to="(700,460)"/>
+    <wire from="(700,360)" to="(740,360)"/>
+    <wire from="(960,180)" to="(990,180)"/>
+  </circuit>
   <circuit name="TileCounters_All">
     <a name="appearance" val="logisim_evolution"/>
     <a name="circuit" val="TileCounters_All"/>
@@ -24500,18 +24654,6 @@
       <a name="appearance" val="NewPins"/>
       <a name="label" val="PCLK"/>
     </comp>
-    <comp lib="0" loc="(110,670)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="n_H2_D"/>
-    </comp>
-    <comp lib="0" loc="(110,710)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="F_AT"/>
-    </comp>
-    <comp lib="0" loc="(110,730)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="DB_PAR"/>
-    </comp>
     <comp lib="0" loc="(1120,300)" name="Constant"/>
     <comp lib="0" loc="(1160,230)" name="Splitter">
       <a name="facing" val="west"/>
@@ -24523,114 +24665,88 @@
       <a name="fanout" val="14"/>
       <a name="incoming" val="14"/>
     </comp>
-    <comp lib="0" loc="(1190,430)" name="Splitter">
-      <a name="fanout" val="5"/>
-      <a name="incoming" val="5"/>
+    <comp lib="0" loc="(120,700)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="FVx"/>
+      <a name="width" val="3"/>
     </comp>
-    <comp lib="0" loc="(1190,850)" name="Splitter">
-      <a name="fanout" val="13"/>
-      <a name="incoming" val="13"/>
+    <comp lib="0" loc="(120,700)" name="Tunnel">
+      <a name="label" val="FVx"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="width" val="3"/>
     </comp>
-    <comp lib="0" loc="(1220,850)" name="Constant">
-      <a name="value" val="0x0"/>
+    <comp lib="0" loc="(120,720)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="NTH"/>
     </comp>
-    <comp lib="0" loc="(1240,710)" name="Splitter">
+    <comp lib="0" loc="(120,720)" name="Tunnel">
+      <a name="label" val="NTH"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(120,740)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="NTV"/>
+    </comp>
+    <comp lib="0" loc="(120,740)" name="Tunnel">
+      <a name="label" val="NTV"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+    </comp>
+    <comp lib="0" loc="(120,760)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="TVx"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="0" loc="(120,760)" name="Tunnel">
+      <a name="label" val="TVx"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="0" loc="(120,780)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="THx"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="0" loc="(120,780)" name="Tunnel">
+      <a name="label" val="THx"/>
+      <a name="labelfont" val="SansSerif bold 9"/>
+      <a name="width" val="5"/>
+    </comp>
+    <comp lib="0" loc="(1330,230)" name="Pin">
+      <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
-      <a name="fanout" val="14"/>
-      <a name="incoming" val="14"/>
-    </comp>
-    <comp lib="0" loc="(130,770)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="PAD_in"/>
+      <a name="label" val="FAT"/>
       <a name="radix" val="16"/>
-      <a name="width" val="13"/>
+      <a name="type" val="output"/>
+      <a name="width" val="14"/>
     </comp>
-    <comp lib="0" loc="(130,790)" name="Pin">
+    <comp lib="0" loc="(1330,500)" name="Pin">
       <a name="appearance" val="NewPins"/>
-      <a name="label" val="DB_in"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="PAR"/>
       <a name="radix" val="16"/>
-      <a name="tristate" val="true"/>
-      <a name="width" val="8"/>
-    </comp>
-    <comp lib="0" loc="(130,830)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="FVx"/>
-      <a name="width" val="3"/>
-    </comp>
-    <comp lib="0" loc="(130,830)" name="Tunnel">
-      <a name="label" val="FVx"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-      <a name="width" val="3"/>
-    </comp>
-    <comp lib="0" loc="(130,850)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="NTH"/>
-    </comp>
-    <comp lib="0" loc="(130,850)" name="Tunnel">
-      <a name="label" val="NTH"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(130,870)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="NTV"/>
-    </comp>
-    <comp lib="0" loc="(130,870)" name="Tunnel">
-      <a name="label" val="NTV"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-    </comp>
-    <comp lib="0" loc="(130,890)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="TVx"/>
-      <a name="width" val="5"/>
-    </comp>
-    <comp lib="0" loc="(130,890)" name="Tunnel">
-      <a name="label" val="TVx"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-      <a name="width" val="5"/>
-    </comp>
-    <comp lib="0" loc="(130,910)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="label" val="THx"/>
-      <a name="width" val="5"/>
-    </comp>
-    <comp lib="0" loc="(130,910)" name="Tunnel">
-      <a name="label" val="THx"/>
-      <a name="labelfont" val="SansSerif bold 9"/>
-      <a name="width" val="5"/>
+      <a name="type" val="output"/>
+      <a name="width" val="14"/>
     </comp>
     <comp lib="0" loc="(1480,100)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="THO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
     </comp>
     <comp lib="0" loc="(1480,130)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="TVO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="5"/>
-    </comp>
-    <comp lib="0" loc="(1480,360)" name="Pin">
-      <a name="appearance" val="NewPins"/>
-      <a name="facing" val="west"/>
-      <a name="label" val="n_PAx"/>
-      <a name="output" val="true"/>
-      <a name="radix" val="16"/>
-      <a name="width" val="14"/>
     </comp>
     <comp lib="0" loc="(1480,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_FVO"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="3"/>
-    </comp>
-    <comp lib="0" loc="(490,790)" name="Splitter">
-      <a name="facing" val="west"/>
-      <a name="fanout" val="5"/>
-      <a name="incoming" val="5"/>
     </comp>
     <comp lib="0" loc="(600,180)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -24696,10 +24812,8 @@
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="bit10"/>
     </comp>
-    <comp loc="(1470,360)" name="PAMUX"/>
     <comp loc="(440,100)" name="TileCountersControl"/>
     <comp loc="(440,360)" name="TileCountersControl2"/>
-    <comp loc="(440,670)" name="PamuxControl"/>
     <comp loc="(840,100)" name="Tile_FV_Counter"/>
     <comp loc="(840,260)" name="Tile_NT_Counters"/>
     <comp loc="(840,500)" name="Tile_TV_Counter"/>
@@ -24742,12 +24856,9 @@
     <wire from="(110,240)" to="(220,240)"/>
     <wire from="(110,260)" to="(220,260)"/>
     <wire from="(110,40)" to="(210,40)"/>
-    <wire from="(110,400)" to="(120,400)"/>
+    <wire from="(110,400)" to="(150,400)"/>
     <wire from="(110,520)" to="(220,520)"/>
     <wire from="(110,60)" to="(200,60)"/>
-    <wire from="(110,670)" to="(220,670)"/>
-    <wire from="(110,710)" to="(210,710)"/>
-    <wire from="(110,730)" to="(200,730)"/>
     <wire from="(1100,110)" to="(1100,150)"/>
     <wire from="(1100,110)" to="(1120,110)"/>
     <wire from="(1100,240)" to="(1140,240)"/>
@@ -24774,53 +24885,13 @@
     <wire from="(1130,370)" to="(1140,370)"/>
     <wire from="(1130,640)" to="(1150,640)"/>
     <wire from="(1160,100)" to="(1190,100)"/>
-    <wire from="(1160,230)" to="(1170,230)"/>
-    <wire from="(1170,230)" to="(1170,480)"/>
-    <wire from="(1170,480)" to="(1250,480)"/>
-    <wire from="(1170,500)" to="(1250,500)"/>
+    <wire from="(1160,230)" to="(1330,230)"/>
+    <wire from="(1170,500)" to="(1330,500)"/>
     <wire from="(1190,100)" to="(1190,160)"/>
-    <wire from="(1190,430)" to="(1190,790)"/>
-    <wire from="(1190,850)" to="(1190,860)"/>
-    <wire from="(120,400)" to="(120,690)"/>
-    <wire from="(120,400)" to="(150,400)"/>
-    <wire from="(120,690)" to="(220,690)"/>
-    <wire from="(1210,380)" to="(1250,380)"/>
-    <wire from="(1210,390)" to="(1240,390)"/>
-    <wire from="(1210,400)" to="(1230,400)"/>
-    <wire from="(1210,410)" to="(1220,410)"/>
-    <wire from="(1210,420)" to="(1210,460)"/>
-    <wire from="(1210,460)" to="(1250,460)"/>
-    <wire from="(1210,720)" to="(1220,720)"/>
-    <wire from="(1210,730)" to="(1220,730)"/>
-    <wire from="(1210,740)" to="(1220,740)"/>
-    <wire from="(1210,750)" to="(1220,750)"/>
-    <wire from="(1210,760)" to="(1220,760)"/>
-    <wire from="(1210,770)" to="(1220,770)"/>
-    <wire from="(1210,780)" to="(1220,780)"/>
-    <wire from="(1210,790)" to="(1220,790)"/>
-    <wire from="(1210,800)" to="(1220,800)"/>
-    <wire from="(1210,810)" to="(1220,810)"/>
-    <wire from="(1210,820)" to="(1220,820)"/>
-    <wire from="(1210,830)" to="(1220,830)"/>
-    <wire from="(1210,840)" to="(1220,840)"/>
-    <wire from="(1220,410)" to="(1220,440)"/>
-    <wire from="(1220,440)" to="(1250,440)"/>
-    <wire from="(1230,360)" to="(1250,360)"/>
-    <wire from="(1230,400)" to="(1230,420)"/>
-    <wire from="(1230,420)" to="(1250,420)"/>
-    <wire from="(1230,60)" to="(1230,360)"/>
-    <wire from="(1240,390)" to="(1240,400)"/>
-    <wire from="(1240,400)" to="(1250,400)"/>
-    <wire from="(1240,520)" to="(1240,710)"/>
-    <wire from="(1240,520)" to="(1250,520)"/>
-    <wire from="(1250,540)" to="(1250,870)"/>
-    <wire from="(130,770)" to="(180,770)"/>
-    <wire from="(130,790)" to="(170,790)"/>
     <wire from="(1320,100)" to="(1320,180)"/>
     <wire from="(1320,100)" to="(1480,100)"/>
     <wire from="(1350,130)" to="(1350,190)"/>
     <wire from="(1350,130)" to="(1480,130)"/>
-    <wire from="(1470,360)" to="(1480,360)"/>
     <wire from="(150,20)" to="(150,400)"/>
     <wire from="(150,20)" to="(890,20)"/>
     <wire from="(150,400)" to="(220,400)"/>
@@ -24833,13 +24904,9 @@
     <wire from="(170,500)" to="(220,500)"/>
     <wire from="(170,70)" to="(170,500)"/>
     <wire from="(170,70)" to="(850,70)"/>
-    <wire from="(170,790)" to="(170,870)"/>
-    <wire from="(170,870)" to="(1250,870)"/>
     <wire from="(180,310)" to="(180,480)"/>
     <wire from="(180,310)" to="(440,310)"/>
     <wire from="(180,480)" to="(220,480)"/>
-    <wire from="(180,770)" to="(180,860)"/>
-    <wire from="(180,860)" to="(1190,860)"/>
     <wire from="(190,320)" to="(190,460)"/>
     <wire from="(190,320)" to="(450,320)"/>
     <wire from="(190,460)" to="(220,460)"/>
@@ -24848,9 +24915,6 @@
     <wire from="(200,380)" to="(220,380)"/>
     <wire from="(200,60)" to="(200,120)"/>
     <wire from="(200,60)" to="(610,60)"/>
-    <wire from="(200,730)" to="(200,810)"/>
-    <wire from="(200,730)" to="(220,730)"/>
-    <wire from="(200,810)" to="(470,810)"/>
     <wire from="(210,100)" to="(210,360)"/>
     <wire from="(210,100)" to="(220,100)"/>
     <wire from="(210,360)" to="(220,360)"/>
@@ -24858,9 +24922,6 @@
     <wire from="(210,540)" to="(210,590)"/>
     <wire from="(210,540)" to="(220,540)"/>
     <wire from="(210,590)" to="(450,590)"/>
-    <wire from="(210,710)" to="(210,840)"/>
-    <wire from="(210,710)" to="(220,710)"/>
-    <wire from="(210,840)" to="(470,840)"/>
     <wire from="(440,100)" to="(540,100)"/>
     <wire from="(440,120)" to="(510,120)"/>
     <wire from="(440,140)" to="(500,140)"/>
@@ -24873,26 +24934,18 @@
     <wire from="(440,420)" to="(490,420)"/>
     <wire from="(440,440)" to="(480,440)"/>
     <wire from="(440,460)" to="(460,460)"/>
-    <wire from="(440,670)" to="(470,670)"/>
-    <wire from="(440,690)" to="(450,690)"/>
-    <wire from="(440,710)" to="(440,830)"/>
-    <wire from="(440,830)" to="(470,830)"/>
     <wire from="(450,230)" to="(450,320)"/>
     <wire from="(450,230)" to="(860,230)"/>
     <wire from="(450,540)" to="(450,590)"/>
     <wire from="(450,540)" to="(520,540)"/>
-    <wire from="(450,690)" to="(450,820)"/>
-    <wire from="(450,820)" to="(470,820)"/>
     <wire from="(460,320)" to="(460,360)"/>
     <wire from="(460,320)" to="(620,320)"/>
     <wire from="(460,460)" to="(460,600)"/>
     <wire from="(460,600)" to="(620,600)"/>
-    <wire from="(470,670)" to="(470,800)"/>
     <wire from="(480,440)" to="(480,730)"/>
     <wire from="(480,730)" to="(620,730)"/>
     <wire from="(490,420)" to="(490,560)"/>
     <wire from="(490,560)" to="(620,560)"/>
-    <wire from="(490,790)" to="(1190,790)"/>
     <wire from="(500,140)" to="(500,300)"/>
     <wire from="(500,300)" to="(500,710)"/>
     <wire from="(500,300)" to="(620,300)"/>
@@ -24930,7 +24983,6 @@
     <wire from="(610,260)" to="(620,260)"/>
     <wire from="(610,500)" to="(610,670)"/>
     <wire from="(610,500)" to="(620,500)"/>
-    <wire from="(610,60)" to="(1230,60)"/>
     <wire from="(610,60)" to="(610,100)"/>
     <wire from="(610,670)" to="(620,670)"/>
     <wire from="(840,100)" to="(850,100)"/>
@@ -25026,43 +25078,43 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PD_SR"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(350,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="SRLOAD"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(350,220)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="STEP"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(350,270)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="STEP2"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(350,320)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="PD_SEL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(350,390)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="NEXTS"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(350,450)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="H01"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(160,120)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -25232,7 +25284,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="shift_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(150,80)" name="Controlled Buffer"/>
     <comp lib="1" loc="(170,50)" name="Controlled Buffer"/>
@@ -25359,7 +25411,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="sout"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp loc="(340,280)" name="BGC_SRBit">
@@ -25528,8 +25580,8 @@
     </comp>
     <comp lib="0" loc="(140,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="PD"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(280,170)" name="Splitter">
@@ -25575,7 +25627,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_BGC0_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="2" loc="(740,140)" name="Multiplexer">
       <a name="select" val="3"/>
@@ -25659,8 +25711,8 @@
     </comp>
     <comp lib="0" loc="(140,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="PD"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(280,170)" name="Splitter">
@@ -25706,7 +25758,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BGC1_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="2" loc="(740,140)" name="Multiplexer">
       <a name="select" val="3"/>
@@ -25799,8 +25851,8 @@
     </comp>
     <comp lib="0" loc="(140,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="PD"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(140,290)" name="Splitter">
@@ -25828,7 +25880,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_BGC2_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="2" loc="(330,140)" name="Multiplexer">
       <a name="select" val="2"/>
@@ -25970,8 +26022,8 @@
     </comp>
     <comp lib="0" loc="(140,290)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="PD"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(140,290)" name="Splitter">
@@ -25999,7 +26051,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_BGC3_Out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="2" loc="(330,140)" name="Multiplexer">
       <a name="select" val="2"/>
@@ -26140,7 +26192,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BGC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="1" loc="(180,180)" name="NOT Gate">
@@ -26275,7 +26327,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="BGC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(120,140)" name="Pin">
@@ -26469,8 +26521,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
   </circuit>
@@ -26538,22 +26589,21 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="DB_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(1590,690)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_CC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(1590,730)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_LL"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="2"/>
     </comp>
     <comp lib="0" loc="(160,490)" name="Pin">
@@ -26563,8 +26613,8 @@
     </comp>
     <comp lib="0" loc="(190,590)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="DB_in"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="8"/>
     </comp>
     <comp lib="0" loc="(370,1080)" name="Splitter">
@@ -26941,27 +26991,25 @@
     </comp>
     <comp lib="0" loc="(190,570)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="val_in"/>
-      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(190,600)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="n_val_in"/>
-      <a name="tristate" val="true"/>
     </comp>
     <comp lib="0" loc="(680,570)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(680,600)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_val_out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
     </comp>
   </circuit>
   <circuit name="ResetPad">
@@ -26981,13 +27029,13 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RC"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(340,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="RES"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(220,90)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -27056,8 +27104,8 @@
     </comp>
     <comp lib="0" loc="(230,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
+      <a name="behavior" val="tristate"/>
       <a name="label" val="EXT_Pad_In"/>
-      <a name="tristate" val="true"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(300,60)" name="Constant"/>
@@ -27075,15 +27123,14 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="EXT_Pad_Out"/>
-      <a name="output" val="true"/>
-      <a name="tristate" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="0" loc="(730,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="EXT_IN"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="4"/>
     </comp>
     <comp lib="1" loc="(480,70)" name="NOT Gate">
@@ -27194,16 +27241,16 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="V"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="9"/>
     </comp>
     <comp lib="0" loc="(1280,90)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="H"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="9"/>
     </comp>
     <comp lib="0" loc="(150,120)" name="Pin">
@@ -27642,19 +27689,19 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="n_val"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(780,170)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="cout"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="0" loc="(780,70)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="val"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
     </comp>
     <comp lib="1" loc="(380,140)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -27757,16 +27804,16 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VPLA_out"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="9"/>
     </comp>
     <comp lib="0" loc="(570,80)" name="Pin">
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="HPLA_out"/>
-      <a name="output" val="true"/>
       <a name="radix" val="16"/>
+      <a name="type" val="output"/>
       <a name="width" val="24"/>
     </comp>
     <comp loc="(470,230)" name="V_Decoder">
@@ -27808,7 +27855,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="HPLA_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="24"/>
     </comp>
     <comp lib="0" loc="(150,260)" name="Pin">
@@ -28388,7 +28435,7 @@
       <a name="appearance" val="NewPins"/>
       <a name="facing" val="west"/>
       <a name="label" val="VPLA_out"/>
-      <a name="output" val="true"/>
+      <a name="type" val="output"/>
       <a name="width" val="9"/>
     </comp>
     <comp lib="0" loc="(150,80)" name="Pin">

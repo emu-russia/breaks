@@ -2,7 +2,7 @@
 
 ![ppu_locator_pamux](/BreakingNESWiki/imgstore/ppu/ppu_locator_pamux.jpg)
 
-![PAMUX](/BreakingNESWiki/imgstore/ppu/PAMUX.png)
+![PAMUX_All](/BreakingNESWiki/imgstore/ppu/PAMUX_All.png)
 
 В патенте данная схема никак не упоминается, предполагается что она содержится в "колбаске", которая показана на данной картинке схемы из патента:
 
@@ -25,9 +25,11 @@
 
 ## Разряды адресного мультиплексора
 
-![ppu_dataread_pamux_low](/BreakingNESWiki/imgstore/ppu/ppu_pamux_low.jpg)
+![PAMUX](/BreakingNESWiki/imgstore/ppu/PAMUX.png)
 
-![ppu_dataread_pamux_high](/BreakingNESWiki/imgstore/ppu/ppu_pamux_high.jpg)
+![ppu_pamux_low](/BreakingNESWiki/imgstore/ppu/ppu_pamux_low.jpg)
+
+![ppu_pamux_high](/BreakingNESWiki/imgstore/ppu/ppu_pamux_high.jpg)
 
 ![PamuxLowBit](/BreakingNESWiki/imgstore/ppu/PamuxLowBit.png)
 

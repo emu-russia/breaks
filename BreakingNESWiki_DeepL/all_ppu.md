@@ -1950,7 +1950,7 @@ Note the tricky `0/TV` signal. This signal clears not only the contents of the c
 
 ![ppu_locator_pamux](/BreakingNESWiki/imgstore/ppu/ppu_locator_pamux.jpg)
 
-![PAMUX](/BreakingNESWiki/imgstore/ppu/PAMUX.png)
+![PAMUX_All](/BreakingNESWiki/imgstore/ppu/PAMUX_All.png)
 
 The patent doesn't mention this circuit in any way; it's assumed to be contained in the "sausage" shown in this diagram from the patent:
 
@@ -1972,6 +1972,8 @@ The control circuit is designed to select one of the sources for writing into th
 ![PamuxControl](/BreakingNESWiki/imgstore/ppu/PamuxControl.png)
 
 ## PAMUX Outputs
+
+![PAMUX](/BreakingNESWiki/imgstore/ppu/PAMUX.png)
 
 ![ppu_pamux_low](/BreakingNESWiki/imgstore/ppu/ppu_pamux_low.jpg)
 
