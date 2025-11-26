@@ -19,15 +19,15 @@ Sources for writing to PAMUX output latches:
 
 The control circuit is designed to select one of the sources for writing into the output latches of the multiplexer.
 
-![ppu_dataread_pamux_control](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pamux_control.jpg)
+![ppu_pamux_control](/BreakingNESWiki/imgstore/ppu/ppu_pamux_control.jpg)
 
 ![PamuxControl](/BreakingNESWiki/imgstore/ppu/PamuxControl.png)
 
 ## PAMUX Outputs
 
-![ppu_dataread_pamux_low](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pamux_low.jpg)
+![ppu_pamux_low](/BreakingNESWiki/imgstore/ppu/ppu_pamux_low.jpg)
 
-![ppu_dataread_pamux_high](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pamux_high.jpg)
+![ppu_pamux_high](/BreakingNESWiki/imgstore/ppu/ppu_pamux_high.jpg)
 
 ![PamuxLowBit](/BreakingNESWiki/imgstore/ppu/PamuxLowBit.png)
 
