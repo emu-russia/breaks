@@ -13,7 +13,7 @@ The address multiplexer stores the final value for the external address bus (`/P
 Sources for writing to PAMUX output latches:
 - A pattern address (`PAD0-12`) (13 bit)
 - The value from the data bus (`DB0-7`) (8 bit)
-- The value from the PAR counters which are also part of this circuit. The PAR counters are loaded from the scrolling registers.
+- Value from tile counters. Tile counters, in turn, are loaded from scroll registers.
 
 ## PAMUX Control
 

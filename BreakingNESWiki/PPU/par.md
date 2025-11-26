@@ -1,4 +1,4 @@
-## Picture Address Register (PAR)
+# Picture Address Register (PAR)
 
 ![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
 

@@ -21,10 +21,10 @@ TODO: Duplicate all image in ASCII art so that they are understood by LLMs which
 - [Object Attribute Memory (OAM)](#oam)
 - [OAM FIFO](#oam-fifo)
 - [Data Reader](#data-reader)
-  - [Picture Address Register (PAR) + V.INV](par.md)
+  - [Picture Address Register (PAR) + V.INV](#picture-address-register-par)
   - [Scroll Registers](#scroll-registers)
-  - [Tile Counters](tilecnt.md)
-  - [PPU Address Mux](pamux.md)
+  - [Tile Counters](#tile-counters)
+  - [PPU Address Mux](#ppu-address-multiplexer-pamux)
   - [Background Color](#background-color-bg-col)
 - [VRAM Controller](#vram-controller)
 - [Interconnections](#wiring)
@@ -1769,7 +1769,7 @@ There was something in this section historically, but then it was split up into 
 
 ![DataReader_All](/BreakingNESWiki/imgstore/ppu/DataReader_All.png)
 
-## Picture Address Register (PAR)
+# Picture Address Register (PAR)
 
 ![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
 
@@ -1902,9 +1902,9 @@ Counter operating modes:
 
 ## Tile Counters Control
 
-![ppu_dataread_tile_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_control_top.jpg)
+![ppu_tile_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_control_top.jpg)
 
-![ppu_dataread_tile_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_control_bot.jpg)
+![ppu_tile_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_control_bot.jpg)
 
 ![TileCountersControl](/BreakingNESWiki/imgstore/ppu/TileCountersControl.png)
 
@@ -1920,19 +1920,19 @@ A reset variation is used for the TV counter:
 
 ## FV Counter
 
-![ppu_dataread_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_fv.jpg)
+![ppu_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_fv.jpg)
 
 ![Tile_FVCounter](/BreakingNESWiki/imgstore/ppu/Tile_FVCounter.png)
 
 ## NT Counters
 
-![ppu_dataread_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_nt.jpg)
+![ppu_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_nt.jpg)
 
 ![Tile_NTCounters](/BreakingNESWiki/imgstore/ppu/Tile_NTCounters.png)
 
 ## TV Counter
 
-![ppu_dataread_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_tv.jpg)
+![ppu_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_tv.jpg)
 
 ![Tile_TVCounter](/BreakingNESWiki/imgstore/ppu/Tile_TVCounter.png)
 
@@ -1940,7 +1940,7 @@ Note the tricky `0/TV` signal. This signal clears not only the contents of the c
 
 ## TH Counter
 
-![ppu_dataread_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_th.jpg)
+![ppu_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_th.jpg)
 
 ![Tile_THCounter](/BreakingNESWiki/imgstore/ppu/Tile_THCounter.png)
 
@@ -1959,7 +1959,7 @@ The address multiplexer stores the final value for the external address bus (`/P
 Sources for writing to PAMUX output latches:
 - A pattern address (`PAD0-12`) (13 bit)
 - The value from the data bus (`DB0-7`) (8 bit)
-- The value from the PAR counters which are also part of this circuit. The PAR counters are loaded from the scrolling registers.
+- Value from tile counters. Tile counters, in turn, are loaded from scroll registers.
 
 ## PAMUX Control
 
@@ -2761,8 +2761,8 @@ Visual 2C02: http://www.qmtpro.com/~nes/chipimages/visual2c02/
 |/WR|node: 2087 wr|
 |/RES|node: 1934 res|
 |Internal Buses||
-|DB 0-7|_io_db0-7|
-|PD 0-7|_db0-7|
+|DB 0-7|\_io_db0-7|
+|PD 0-7|\_db0-7|
 |OB 0-7|spr_d0-7|
 |/PA 0-13|/_ab0-13|
 |Clocks||
@@ -2771,13 +2771,13 @@ Visual 2C02: http://www.qmtpro.com/~nes/chipimages/visual2c02/
 |/PCLK|node: 58 pclk1|
 |PCLK|node: 106 pclk0|
 |Registers||
-|RES|node: 170 _res|
-|RC|node: 128 _res2|
-|R/W|node: 79 _io_rw|
-|RS 0-2|_io_ab0-2|
-|/DBE|node: 77 _io_ce|
-|/RD|node: 31 _io_rw_buf|
-|/WR|node: 13 _io_dbe|
+|RES|node: 170 \_res|
+|RC|node: 128 \_res2|
+|R/W|node: 79 \_io_rw|
+|RS 0-2|\_io_ab0-2|
+|/DBE|node: 77 \_io_ce|
+|/RD|node: 31 \_io_rw_buf|
+|/WR|node: 13 \_io_dbe|
 |/W6/1|node: 255 /w2006a|
 |/W6/2|node: 244 /w2006b|
 |/W5/1|node: 297 /w2005a|

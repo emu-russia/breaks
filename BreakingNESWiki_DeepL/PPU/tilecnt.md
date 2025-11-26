@@ -12,9 +12,9 @@ Counter operating modes:
 
 ## Tile Counters Control
 
-![ppu_dataread_tile_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_control_top.jpg)
+![ppu_tile_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_control_top.jpg)
 
-![ppu_dataread_tile_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_control_bot.jpg)
+![ppu_tile_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_control_bot.jpg)
 
 ![TileCountersControl](/BreakingNESWiki/imgstore/ppu/TileCountersControl.png)
 
@@ -30,19 +30,19 @@ A reset variation is used for the TV counter:
 
 ## FV Counter
 
-![ppu_dataread_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_fv.jpg)
+![ppu_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_fv.jpg)
 
 ![Tile_FVCounter](/BreakingNESWiki/imgstore/ppu/Tile_FVCounter.png)
 
 ## NT Counters
 
-![ppu_dataread_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_nt.jpg)
+![ppu_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_nt.jpg)
 
 ![Tile_NTCounters](/BreakingNESWiki/imgstore/ppu/Tile_NTCounters.png)
 
 ## TV Counter
 
-![ppu_dataread_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_tv.jpg)
+![ppu_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_tv.jpg)
 
 ![Tile_TVCounter](/BreakingNESWiki/imgstore/ppu/Tile_TVCounter.png)
 
@@ -50,6 +50,6 @@ Note the tricky `0/TV` signal. This signal clears not only the contents of the c
 
 ## TH Counter
 
-![ppu_dataread_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_th.jpg)
+![ppu_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_th.jpg)
 
 ![Tile_THCounter](/BreakingNESWiki/imgstore/ppu/Tile_THCounter.png)

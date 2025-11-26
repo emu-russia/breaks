@@ -16,9 +16,9 @@
 
 ## Схема управления счётчиками тайлов
 
-![ppu_dataread_tile_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_control_top.jpg)
+![ppu_tile_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_control_top.jpg)
 
-![ppu_dataread_tile_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_control_bot.jpg)
+![ppu_tile_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_control_bot.jpg)
 
 ![TileCountersControl](/BreakingNESWiki/imgstore/ppu/TileCountersControl.png)
 
@@ -34,19 +34,19 @@
 
 ## Счётчик FV
 
-![ppu_dataread_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_fv.jpg)
+![ppu_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_fv.jpg)
 
 ![Tile_FVCounter](/BreakingNESWiki/imgstore/ppu/Tile_FVCounter.png)
 
 ## Счётчики NT
 
-![ppu_dataread_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_nt.jpg)
+![ppu_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_nt.jpg)
 
 ![Tile_NTCounters](/BreakingNESWiki/imgstore/ppu/Tile_NTCounters.png)
 
 ## Счётчик TV
 
-![ppu_dataread_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_tv.jpg)
+![ppu_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_tv.jpg)
 
 ![Tile_TVCounter](/BreakingNESWiki/imgstore/ppu/Tile_TVCounter.png)
 
@@ -54,6 +54,6 @@
 
 ## Счётчик TH
 
-![ppu_dataread_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_th.jpg)
+![ppu_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_th.jpg)
 
 ![Tile_THCounter](/BreakingNESWiki/imgstore/ppu/Tile_THCounter.png)
