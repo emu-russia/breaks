@@ -2,6 +2,8 @@
 
 ![ppu_locator_tilecnt](/BreakingNESWiki/imgstore/ppu/ppu_locator_tilecnt.jpg)
 
+![TileCounters_All](/BreakingNESWiki/imgstore/ppu/TileCounters_All.png)
+
 Режимы работы счётчиков:
 
 |Счётчик|Разрядность|Предел счёта|Предел счёта (Blank)|Источник входного переноса|Источник входного переноса (Blank)|Источник сброса счётчика|Выход переноса|Выход переноса (Blank)|
@@ -34,19 +36,19 @@
 
 ![ppu_dataread_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_fv.jpg)
 
-![TileFVCounter](/BreakingNESWiki/imgstore/ppu/TileFVCounter.png)
+![Tile_FVCounter](/BreakingNESWiki/imgstore/ppu/Tile_FVCounter.png)
 
 ### Счётчики NT
 
 ![ppu_dataread_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_nt.jpg)
 
-![TileNTCounters](/BreakingNESWiki/imgstore/ppu/TileNTCounters.png)
+![Tile_NTCounters](/BreakingNESWiki/imgstore/ppu/Tile_NTCounters.png)
 
 ### Счётчик TV
 
 ![ppu_dataread_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_tv.jpg)
 
-![TileTVCounter](/BreakingNESWiki/imgstore/ppu/TileTVCounter.png)
+![Tile_TVCounter](/BreakingNESWiki/imgstore/ppu/Tile_TVCounter.png)
 
 Обратите внимание на хитрый сигнал `0/TV`. Этот сигнал очищает не только содержимое входного FF счётчика на Keep фазе, но и делает pulldown на его выходного значения, но НЕ комплементарного выхода.
 
@@ -54,4 +56,4 @@
 
 ![ppu_dataread_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_th.jpg)
 
-![TileTHCounter](/BreakingNESWiki/imgstore/ppu/TileTHCounter.png)
+![Tile_THCounter](/BreakingNESWiki/imgstore/ppu/Tile_THCounter.png)

@@ -8,7 +8,7 @@
 
 ![par_vinv](/BreakingNESWiki/imgstore/ppu/par_vinv.jpg)
 
-![Par](/BreakingNESWiki/imgstore/ppu/Par.png)
+![PAR](/BreakingNESWiki/imgstore/ppu/PAR.png)
 
 Небольшие схемы для контроля загрузки значений в выходные защёлки. Основной акцент делается на выбор режима работы для спрайтов/бэкграунда (сигнал `PAR/O` - "PAR for Objects").
 
