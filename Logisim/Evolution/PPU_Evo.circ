@@ -14369,7 +14369,7 @@
       <a name="labelvisible" val="true"/>
       <a name="trigger" val="high"/>
     </comp>
-    <comp lib="8" loc="(284,346)" name="Text">
+    <comp lib="8" loc="(280,345)" name="Text">
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="One lane corresponds to one COL."/>
     </comp>
@@ -19280,8 +19280,8 @@
       <a name="labelfont" val="SansSerif bold 9"/>
     </comp>
     <comp loc="(1060,570)" name="BGC_All"/>
-    <comp loc="(1060,70)" name="Par_All"/>
-    <comp loc="(450,350)" name="PatternAddressGen"/>
+    <comp loc="(1060,70)" name="TileCounters_All"/>
+    <comp loc="(450,350)" name="PAR"/>
     <comp loc="(760,370)" name="ScrollRegs"/>
     <wire from="(1060,110)" to="(1070,110)"/>
     <wire from="(1060,130)" to="(1120,130)"/>
@@ -19412,9 +19412,9 @@
     <wire from="(830,70)" to="(830,590)"/>
     <wire from="(830,70)" to="(840,70)"/>
   </circuit>
-  <circuit name="PatternControl">
+  <circuit name="ParControl">
     <a name="appearance" val="evolution"/>
-    <a name="circuit" val="PatternControl"/>
+    <a name="circuit" val="ParControl"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(150,120)" name="Pin">
@@ -19647,9 +19647,9 @@
     <wire from="(440,140)" to="(440,190)"/>
     <wire from="(440,140)" to="(480,140)"/>
   </circuit>
-  <circuit name="PatBitInv">
+  <circuit name="ParBitInv">
     <a name="appearance" val="evolution"/>
-    <a name="circuit" val="PatBitInv"/>
+    <a name="circuit" val="ParBitInv"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(160,120)" name="Pin">
@@ -19717,9 +19717,9 @@
     <wire from="(470,120)" to="(490,120)"/>
     <wire from="(510,120)" to="(530,120)"/>
   </circuit>
-  <circuit name="PatBit">
+  <circuit name="ParBit">
     <a name="appearance" val="evolution"/>
-    <a name="circuit" val="PatBit"/>
+    <a name="circuit" val="ParBit"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(160,150)" name="Pin">
@@ -19798,9 +19798,9 @@
     <wire from="(530,60)" to="(530,160)"/>
     <wire from="(580,180)" to="(610,180)"/>
   </circuit>
-  <circuit name="PatBit4">
+  <circuit name="ParBit4">
     <a name="appearance" val="evolution"/>
-    <a name="circuit" val="PatBit4"/>
+    <a name="circuit" val="ParBit4"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(150,320)" name="Pin">
@@ -19898,9 +19898,9 @@
     <wire from="(530,60)" to="(530,160)"/>
     <wire from="(580,180)" to="(610,180)"/>
   </circuit>
-  <circuit name="PatternAddressGen">
+  <circuit name="PAR">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="PatternAddressGen"/>
+    <a name="circuit" val="PAR"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(1010,520)" name="Splitter">
@@ -20133,13 +20133,13 @@
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="The address to load the sprite/background tile."/>
     </comp>
-    <comp loc="(400,160)" name="PatternControl"/>
+    <comp loc="(400,160)" name="ParControl"/>
     <comp loc="(400,330)" name="V_Inversion"/>
-    <comp loc="(430,1020)" name="PatBitInv"/>
-    <comp loc="(430,750)" name="PatBitInv"/>
-    <comp loc="(430,840)" name="PatBitInv"/>
-    <comp loc="(430,930)" name="PatBitInv"/>
-    <comp loc="(440,620)" name="PatBit4"/>
+    <comp loc="(430,1020)" name="ParBitInv"/>
+    <comp loc="(430,750)" name="ParBitInv"/>
+    <comp loc="(430,840)" name="ParBitInv"/>
+    <comp loc="(430,930)" name="ParBitInv"/>
+    <comp loc="(440,620)" name="ParBit4"/>
     <comp loc="(730,820)" name="DLatch">
       <a name="label" val="pad2_latch"/>
       <a name="labelfont" val="SansSerif bold 9"/>
@@ -20155,13 +20155,13 @@
       <a name="labelfont" val="SansSerif bold 9"/>
       <a name="labelloc" val="south"/>
     </comp>
-    <comp loc="(740,170)" name="PatBit"/>
-    <comp loc="(740,270)" name="PatBit"/>
-    <comp loc="(740,370)" name="PatBit"/>
-    <comp loc="(740,470)" name="PatBit"/>
-    <comp loc="(740,570)" name="PatBit"/>
-    <comp loc="(740,670)" name="PatBit"/>
-    <comp loc="(740,70)" name="PatBit"/>
+    <comp loc="(740,170)" name="ParBit"/>
+    <comp loc="(740,270)" name="ParBit"/>
+    <comp loc="(740,370)" name="ParBit"/>
+    <comp loc="(740,470)" name="ParBit"/>
+    <comp loc="(740,570)" name="ParBit"/>
+    <comp loc="(740,670)" name="ParBit"/>
+    <comp loc="(740,70)" name="ParBit"/>
     <wire from="(1010,520)" to="(1020,520)"/>
     <wire from="(150,100)" to="(280,100)"/>
     <wire from="(150,130)" to="(270,130)"/>
@@ -21767,9 +21767,9 @@
     <wire from="(990,630)" to="(1000,630)"/>
     <wire from="(990,720)" to="(1000,720)"/>
   </circuit>
-  <circuit name="ParCountersControl">
+  <circuit name="TileCountersControl">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="ParCountersControl"/>
+    <a name="circuit" val="TileCountersControl"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(110,20)" name="Pin">
@@ -22081,9 +22081,9 @@
     <wire from="(700,110)" to="(700,250)"/>
     <wire from="(700,110)" to="(730,110)"/>
   </circuit>
-  <circuit name="ParCountersControl2">
+  <circuit name="TileCountersControl2">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="ParCountersControl2"/>
+    <a name="circuit" val="TileCountersControl2"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(110,100)" name="Pin">
@@ -22535,9 +22535,9 @@
     <wire from="(640,100)" to="(660,100)"/>
     <wire from="(640,210)" to="(660,210)"/>
   </circuit>
-  <circuit name="ParCounterBit">
+  <circuit name="TileCounterBit">
     <a name="appearance" val="evolution"/>
-    <a name="circuit" val="ParCounterBit"/>
+    <a name="circuit" val="TileCounterBit"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(120,130)" name="Pin">
@@ -22670,9 +22670,9 @@
     <wire from="(570,300)" to="(600,300)"/>
     <wire from="(590,130)" to="(590,210)"/>
   </circuit>
-  <circuit name="ParCounterBitReset">
+  <circuit name="TileCounterBitReset">
     <a name="appearance" val="evolution"/>
-    <a name="circuit" val="ParCounterBitReset"/>
+    <a name="circuit" val="TileCounterBitReset"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(120,130)" name="Pin">
@@ -22819,9 +22819,9 @@
     <wire from="(570,300)" to="(600,300)"/>
     <wire from="(590,130)" to="(590,210)"/>
   </circuit>
-  <circuit name="Par_FV_Counter">
+  <circuit name="Tile_FV_Counter">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="Par_FV_Counter"/>
+    <a name="circuit" val="Tile_FV_Counter"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(120,110)" name="Pin">
@@ -22891,9 +22891,9 @@
       <a name="output" val="true"/>
       <a name="width" val="3"/>
     </comp>
-    <comp loc="(350,200)" name="ParCounterBit"/>
-    <comp loc="(350,310)" name="ParCounterBit"/>
-    <comp loc="(350,90)" name="ParCounterBit"/>
+    <comp loc="(350,200)" name="TileCounterBit"/>
+    <comp loc="(350,310)" name="TileCounterBit"/>
+    <comp loc="(350,90)" name="TileCounterBit"/>
     <wire from="(120,110)" to="(130,110)"/>
     <wire from="(120,140)" to="(200,140)"/>
     <wire from="(120,270)" to="(130,270)"/>
@@ -22965,9 +22965,9 @@
     <wire from="(440,190)" to="(450,190)"/>
     <wire from="(440,90)" to="(450,90)"/>
   </circuit>
-  <circuit name="Par_NT_Counters">
+  <circuit name="Tile_NT_Counters">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="Par_NT_Counters"/>
+    <a name="circuit" val="Tile_NT_Counters"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(120,110)" name="Pin">
@@ -23030,8 +23030,8 @@
       <a name="label" val="NTVO"/>
       <a name="output" val="true"/>
     </comp>
-    <comp loc="(320,120)" name="ParCounterBit"/>
-    <comp loc="(320,300)" name="ParCounterBit"/>
+    <comp loc="(320,120)" name="TileCounterBit"/>
+    <comp loc="(320,300)" name="TileCounterBit"/>
     <wire from="(120,110)" to="(170,110)"/>
     <wire from="(120,140)" to="(140,140)"/>
     <wire from="(120,190)" to="(160,190)"/>
@@ -23066,9 +23066,9 @@
     <wire from="(320,300)" to="(390,300)"/>
     <wire from="(320,320)" to="(390,320)"/>
   </circuit>
-  <circuit name="Par_TV_Counter">
+  <circuit name="Tile_TV_Counter">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="Par_TV_Counter"/>
+    <a name="circuit" val="Tile_TV_Counter"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(120,110)" name="Pin">
@@ -23150,11 +23150,11 @@
       <a name="output" val="true"/>
       <a name="width" val="5"/>
     </comp>
-    <comp loc="(350,200)" name="ParCounterBitReset"/>
-    <comp loc="(350,310)" name="ParCounterBitReset"/>
-    <comp loc="(350,420)" name="ParCounterBitReset"/>
-    <comp loc="(350,530)" name="ParCounterBitReset"/>
-    <comp loc="(350,90)" name="ParCounterBitReset"/>
+    <comp loc="(350,200)" name="TileCounterBitReset"/>
+    <comp loc="(350,310)" name="TileCounterBitReset"/>
+    <comp loc="(350,420)" name="TileCounterBitReset"/>
+    <comp loc="(350,530)" name="TileCounterBitReset"/>
+    <comp loc="(350,90)" name="TileCounterBitReset"/>
     <wire from="(120,110)" to="(130,110)"/>
     <wire from="(120,140)" to="(130,140)"/>
     <wire from="(120,400)" to="(180,400)"/>
@@ -23281,9 +23281,9 @@
     <wire from="(510,110)" to="(520,110)"/>
     <wire from="(510,250)" to="(520,250)"/>
   </circuit>
-  <circuit name="Par_TH_Counter">
+  <circuit name="Tile_TH_Counter">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="Par_TH_Counter"/>
+    <a name="circuit" val="Tile_TH_Counter"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(120,110)" name="Pin">
@@ -23361,11 +23361,11 @@
       <a name="output" val="true"/>
       <a name="width" val="5"/>
     </comp>
-    <comp loc="(350,200)" name="ParCounterBit"/>
-    <comp loc="(350,310)" name="ParCounterBit"/>
-    <comp loc="(350,420)" name="ParCounterBit"/>
-    <comp loc="(350,530)" name="ParCounterBit"/>
-    <comp loc="(350,90)" name="ParCounterBit"/>
+    <comp loc="(350,200)" name="TileCounterBit"/>
+    <comp loc="(350,310)" name="TileCounterBit"/>
+    <comp loc="(350,420)" name="TileCounterBit"/>
+    <comp loc="(350,530)" name="TileCounterBit"/>
+    <comp loc="(350,90)" name="TileCounterBit"/>
     <wire from="(120,110)" to="(130,110)"/>
     <wire from="(120,140)" to="(200,140)"/>
     <wire from="(120,50)" to="(150,50)"/>
@@ -23481,9 +23481,9 @@
     <wire from="(510,110)" to="(520,110)"/>
     <wire from="(510,250)" to="(520,250)"/>
   </circuit>
-  <circuit name="ParControl">
+  <circuit name="PamuxControl">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="ParControl"/>
+    <a name="circuit" val="PamuxControl"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(120,100)" name="Pin">
@@ -23553,9 +23553,9 @@
     <wire from="(340,160)" to="(350,160)"/>
     <wire from="(390,170)" to="(400,170)"/>
   </circuit>
-  <circuit name="ParHighBit">
+  <circuit name="PamuxHighBit">
     <a name="appearance" val="evolution"/>
-    <a name="circuit" val="ParHighBit"/>
+    <a name="circuit" val="PamuxHighBit"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(100,100)" name="Pin">
@@ -23639,9 +23639,9 @@
     <wire from="(480,220)" to="(500,220)"/>
     <wire from="(520,220)" to="(530,220)"/>
   </circuit>
-  <circuit name="ParLowBit">
+  <circuit name="PamuxLowBit">
     <a name="appearance" val="evolution"/>
-    <a name="circuit" val="ParLowBit"/>
+    <a name="circuit" val="PamuxLowBit"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(110,100)" name="Pin">
@@ -23742,9 +23742,9 @@
     <wire from="(550,300)" to="(570,300)"/>
     <wire from="(590,300)" to="(600,300)"/>
   </circuit>
-  <circuit name="PAR">
+  <circuit name="PAMUX">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="PAR"/>
+    <a name="circuit" val="PAMUX"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(100,1070)" name="Tunnel">
@@ -24006,20 +24006,20 @@
       <a name="fanout" val="6"/>
       <a name="incoming" val="6"/>
     </comp>
-    <comp loc="(480,100)" name="ParLowBit"/>
-    <comp loc="(480,1080)" name="ParLowBit"/>
-    <comp loc="(480,240)" name="ParLowBit"/>
-    <comp loc="(480,380)" name="ParLowBit"/>
-    <comp loc="(480,520)" name="ParLowBit"/>
-    <comp loc="(480,660)" name="ParLowBit"/>
-    <comp loc="(480,800)" name="ParLowBit"/>
-    <comp loc="(480,940)" name="ParLowBit"/>
-    <comp loc="(940,850)" name="ParHighBit"/>
-    <comp loc="(960,100)" name="ParHighBit"/>
-    <comp loc="(960,220)" name="ParHighBit"/>
-    <comp loc="(960,340)" name="ParHighBit"/>
-    <comp loc="(960,460)" name="ParHighBit"/>
-    <comp loc="(960,580)" name="ParHighBit"/>
+    <comp loc="(480,100)" name="PamuxLowBit"/>
+    <comp loc="(480,1080)" name="PamuxLowBit"/>
+    <comp loc="(480,240)" name="PamuxLowBit"/>
+    <comp loc="(480,380)" name="PamuxLowBit"/>
+    <comp loc="(480,520)" name="PamuxLowBit"/>
+    <comp loc="(480,660)" name="PamuxLowBit"/>
+    <comp loc="(480,800)" name="PamuxLowBit"/>
+    <comp loc="(480,940)" name="PamuxLowBit"/>
+    <comp loc="(940,850)" name="PamuxHighBit"/>
+    <comp loc="(960,100)" name="PamuxHighBit"/>
+    <comp loc="(960,220)" name="PamuxHighBit"/>
+    <comp loc="(960,340)" name="PamuxHighBit"/>
+    <comp loc="(960,460)" name="PamuxHighBit"/>
+    <comp loc="(960,580)" name="PamuxHighBit"/>
     <wire from="(1000,460)" to="(1000,850)"/>
     <wire from="(1000,850)" to="(1080,850)"/>
     <wire from="(1010,340)" to="(1010,840)"/>
@@ -24437,9 +24437,9 @@
     <wire from="(990,580)" to="(990,860)"/>
     <wire from="(990,860)" to="(1080,860)"/>
   </circuit>
-  <circuit name="Par_All">
+  <circuit name="TileCounters_All">
     <a name="appearance" val="logisim_evolution"/>
-    <a name="circuit" val="Par_All"/>
+    <a name="circuit" val="TileCounters_All"/>
     <a name="circuitnamedboxfixedsize" val="true"/>
     <a name="simulationFrequency" val="256.0"/>
     <comp lib="0" loc="(1060,120)" name="Splitter">
@@ -24696,14 +24696,14 @@
       <a name="font" val="SansSerif bold 10"/>
       <a name="text" val="bit10"/>
     </comp>
-    <comp loc="(1470,360)" name="PAR"/>
-    <comp loc="(440,100)" name="ParCountersControl"/>
-    <comp loc="(440,360)" name="ParCountersControl2"/>
-    <comp loc="(440,670)" name="ParControl"/>
-    <comp loc="(840,100)" name="Par_FV_Counter"/>
-    <comp loc="(840,260)" name="Par_NT_Counters"/>
-    <comp loc="(840,500)" name="Par_TV_Counter"/>
-    <comp loc="(840,670)" name="Par_TH_Counter"/>
+    <comp loc="(1470,360)" name="PAMUX"/>
+    <comp loc="(440,100)" name="TileCountersControl"/>
+    <comp loc="(440,360)" name="TileCountersControl2"/>
+    <comp loc="(440,670)" name="PamuxControl"/>
+    <comp loc="(840,100)" name="Tile_FV_Counter"/>
+    <comp loc="(840,260)" name="Tile_NT_Counters"/>
+    <comp loc="(840,500)" name="Tile_TV_Counter"/>
+    <comp loc="(840,670)" name="Tile_TH_Counter"/>
     <wire from="(1000,270)" to="(1000,480)"/>
     <wire from="(1000,270)" to="(1140,270)"/>
     <wire from="(1000,480)" to="(1000,580)"/>

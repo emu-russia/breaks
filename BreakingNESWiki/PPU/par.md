@@ -1,92 +1,34 @@
-# Регистр адреса PAR
+## Picture Address Register (PAR)
 
 ![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
 
-![PAR_All](/BreakingNESWiki/imgstore/ppu/PAR_All.png)
+Схема занимает всю верхнюю часть и занимается формированием адреса тайла (Pattern), который задаётся `/PAD0-12` (13 бит).
 
-Регистр адреса PAR хранит значение для внешней шины адреса (`/PA0-13`) (14 бит).
+![par_high](/BreakingNESWiki/imgstore/ppu/par_high.jpg)
 
-Источники для записи в PAR:
-- Адрес паттерна (`PAD0-12`) (13 бит)
-- Значение с шины данных (`DB0-7`) (8 бит)
-- Значение со счётчиков PAR, которые также являются частью данной схемы. Счётчики PAR загружаются с регистров скроллинга.
-
-## Счётчики PAR
-
-Режимы работы счётчиков:
-
-|Счётчик|Разрядность|Предел счёта|Предел счёта (Blank)|Источник входного переноса|Источник входного переноса (Blank)|Источник сброса счётчика|Выход переноса|Выход переноса (Blank)|
-|---|---|---|---|---|---|---|---|---|
-|Tile Horizontal|5	|32	|32	|!(BLNK & I1/32)		|!(BLNK & I1/32)		|нет					|разрешен	|разрешен|
-|Tile Vertical	|5	|30	|32	|Fine Vertical CNT		|Tile Horizontal CNT	|carry TVZ + 1 TVSTEP	|разрешен	|разрешен|
-|Name Table H	|1	|2	|2	|Tile Horizontal CNT	|Tile Vertical CNT		|нет					|запрещен	|разрешен|
-|Name Table V	|1	|2	|2	|Tile Vertical CNT		|Name Table H  CNT		|нет					|запрещен	|разрешен|
-|Fine Vertical	|3	|8	|8	|Tile Horizontal CNT	|Name Table V  CNT		|нет					|разрешен	|запрещен|
-
-### Схема управления счётчиками PAR
-
-![ppu_dataread_par_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_control_top.jpg)
-
-![ppu_dataread_par_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_control_bot.jpg)
-
-![PAR_CountersControl](/BreakingNESWiki/imgstore/ppu/PAR_CountersControl.png)
-
-![PAR_CountersControl2](/BreakingNESWiki/imgstore/ppu/PAR_CountersControl2.png)
-
-### Разряд счётчиков
-
-![PAR_CounterBit](/BreakingNESWiki/imgstore/ppu/PAR_CounterBit.png)
-
-Для счётчика TV используется вариация со сбросом:
-
-![PAR_CounterBitReset](/BreakingNESWiki/imgstore/ppu/PAR_CounterBitReset.png)
-
-### Счётчик FV
-
-![ppu_dataread_par_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_fv.jpg)
-
-![PAR_FVCounter](/BreakingNESWiki/imgstore/ppu/PAR_FVCounter.png)
-
-### Счётчики NT
-
-![ppu_dataread_par_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_nt.jpg)
-
-![PAR_NTCounters](/BreakingNESWiki/imgstore/ppu/PAR_NTCounters.png)
-
-### Счётчик TV
-
-![ppu_dataread_par_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_tv.jpg)
-
-![PAR_TVCounter](/BreakingNESWiki/imgstore/ppu/PAR_TVCounter.png)
-
-Обратите внимание на хитрый сигнал `0/TV`. Этот сигнал очищает не только содержимое входного FF счётчика на Keep фазе, но и делает pulldown на его выходного значения, но НЕ комплементарного выхода.
-
-### Счётчик TH
-
-![ppu_dataread_par_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_th.jpg)
-
-![PAR_THCounter](/BreakingNESWiki/imgstore/ppu/PAR_THCounter.png)
-
-## PAR
+![par_vinv](/BreakingNESWiki/imgstore/ppu/par_vinv.jpg)
 
 ![PAR](/BreakingNESWiki/imgstore/ppu/PAR.png)
 
-Схема выглядит страшновато, это из-за большого количества входных источников для загрузки в разряды регистра PAR.
+Небольшие схемы для контроля загрузки значений в выходные защёлки. Основной акцент делается на выбор режима работы для спрайтов/бэкграунда (сигнал `PAR/O` - "PAR for Objects").
 
-### Схема контроля PAR
+|![ParControl](/BreakingNESWiki/imgstore/ppu/ParControl.png)|![ParV_Inversion](/BreakingNESWiki/imgstore/ppu/ParV_Inversion.png)|
+|---|---|
 
-Схема контроля предназначена для выбора одного из источников для записи в PAR.
+Схемы разрядов для формирования выходного значения `/PAD0-12` в незначительных вариациях:
 
-![ppu_dataread_par_control](/BreakingNESWiki/imgstore/ppu/ppu_par_control.jpg)
+![ParBit](/BreakingNESWiki/imgstore/ppu/ParBit.png)
 
-![PAR_Control](/BreakingNESWiki/imgstore/ppu/PAR_Control.png)
+![ParBit4](/BreakingNESWiki/imgstore/ppu/ParBit4.png)
 
-### Разряды PAR
+![ParBitInv](/BreakingNESWiki/imgstore/ppu/ParBitInv.png)
 
-![ppu_dataread_par_low](/BreakingNESWiki/imgstore/ppu/ppu_par_low.jpg)
+Таблица использования разрядов в адресации:
 
-![ppu_dataread_par_high](/BreakingNESWiki/imgstore/ppu/ppu_par_high.jpg)
-
-![PAR_LowBit](/BreakingNESWiki/imgstore/ppu/PAR_LowBit.png)
-
-![PAR_HighBit](/BreakingNESWiki/imgstore/ppu/PAR_HighBit.png)
+|Номер разряда|Источник для BG|Источник для OB (спрайты 8x8)|Источник для OB (спрайты 8x16)|Роль в адресации|
+|---|---|---|---|---|
+|0-2|Счётчик FV0-2|Схема сравнения спрайтов OV0-2|Схема сравнения спрайтов OV0-2|Номер строки паттерна|
+|3|Сигнал /H1'|Сигнал /H1'|Сигнал /H1'|A/B байт строки паттерна|
+|4|Name Table, бит 0|OAM2, Tile Index Byte, бит 0|Схема сравнения спрайтов OV3|Индекс в Pattern Table|
+|5-11|Name Table, биты 1-7|OAM2, Tile Index Byte, биты 1-7|OAM2, Tile Index Byte, биты 1-7|Индекс в Pattern Table|
+|12|BGSEL ($2000)|OBSEL ($2000)|OAM2, Tile Index Byte, бит 0|Выбор Pattern Table|
