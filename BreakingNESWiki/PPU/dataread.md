@@ -22,7 +22,7 @@
 
 Ниже показано из каких схем состоит Data Reader, чтобы понимать где искать напиленные куски схем:
 
-![ppu_dataread_sections](/BreakingNESWiki/imgstore/ppu/ppu_dataread_sections.jpg)
+![ppu_datareader_sections](/BreakingNESWiki/imgstore/ppu/ppu_datareader_sections.png)
 
 ![DataReader_All](/BreakingNESWiki/imgstore/ppu/DataReader_All.png)
 
