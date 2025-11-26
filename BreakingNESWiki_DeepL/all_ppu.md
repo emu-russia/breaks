@@ -1765,8 +1765,6 @@ Below is shown what circuits the Data Reader consists of, in order to understand
 
 ![ppu_datareader_sections](/BreakingNESWiki/imgstore/ppu/ppu_datareader_sections.png)
 
-There was something in this section historically, but then it was split up into sections. The only thing left is the circuit for the generation of the tile address.
-
 ![DataReader_All](/BreakingNESWiki/imgstore/ppu/DataReader_All.png)
 
 # Picture Address Register (PAR)
