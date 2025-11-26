@@ -1,4 +1,4 @@
-## Счётчики Тайлов
+# Счётчики Тайлов
 
 ![ppu_locator_tilecnt](/BreakingNESWiki/imgstore/ppu/ppu_locator_tilecnt.jpg)
 
@@ -14,7 +14,7 @@
 |Name Table V	|1	|2	|2	|Tile Vertical CNT		|Name Table H  CNT		|нет					|запрещен	|разрешен|
 |Fine Vertical	|3	|8	|8	|Tile Horizontal CNT	|Name Table V  CNT		|нет					|разрешен	|запрещен|
 
-### Схема управления счётчиками тайлов
+## Схема управления счётчиками тайлов
 
 ![ppu_dataread_tile_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_control_top.jpg)
 
@@ -24,7 +24,7 @@
 
 ![TileCountersControl2](/BreakingNESWiki/imgstore/ppu/TileCountersControl2.png)
 
-### Разряд счётчиков
+## Разряд счётчиков
 
 ![TileCounterBit](/BreakingNESWiki/imgstore/ppu/TileCounterBit.png)
 
@@ -32,19 +32,19 @@
 
 ![TileCounterBitReset](/BreakingNESWiki/imgstore/ppu/TileCounterBitReset.png)
 
-### Счётчик FV
+## Счётчик FV
 
 ![ppu_dataread_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_fv.jpg)
 
 ![Tile_FVCounter](/BreakingNESWiki/imgstore/ppu/Tile_FVCounter.png)
 
-### Счётчики NT
+## Счётчики NT
 
 ![ppu_dataread_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_nt.jpg)
 
 ![Tile_NTCounters](/BreakingNESWiki/imgstore/ppu/Tile_NTCounters.png)
 
-### Счётчик TV
+## Счётчик TV
 
 ![ppu_dataread_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_tv.jpg)
 
@@ -52,7 +52,7 @@
 
 Обратите внимание на хитрый сигнал `0/TV`. Этот сигнал очищает не только содержимое входного FF счётчика на Keep фазе, но и делает pulldown на его выходного значения, но НЕ комплементарного выхода.
 
-### Счётчик TH
+## Счётчик TH
 
 ![ppu_dataread_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_tile_counters_th.jpg)
 

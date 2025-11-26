@@ -16,7 +16,7 @@
 - [OAM FIFO](fifo.md)
 - [Data Reader](dataread.md)
   - [Picture Address Register (PAR) + V.INV](par.md)
-  - [Scrolling Registers](scroll_regs.md)
+  - [Scroll Registers](scroll_regs.md)
   - [Tile Counters](tilecnt.md)
   - [PPU Address Mux](pamux.md)
   - [Background Color](bgcol.md)

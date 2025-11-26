@@ -15,7 +15,7 @@ Sources for writing to PAMUX output latches:
 - The value from the data bus (`DB0-7`) (8 bit)
 - The value from the PAR counters which are also part of this circuit. The PAR counters are loaded from the scrolling registers.
 
-### PAMUX Control
+## PAMUX Control
 
 The control circuit is designed to select one of the sources for writing into the output latches of the multiplexer.
 
@@ -23,7 +23,7 @@ The control circuit is designed to select one of the sources for writing into th
 
 ![PamuxControl](/BreakingNESWiki/imgstore/ppu/PamuxControl.png)
 
-### PAMUX Outputs
+## PAMUX Outputs
 
 ![ppu_dataread_pamux_low](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pamux_low.jpg)
 

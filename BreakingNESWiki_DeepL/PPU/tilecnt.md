@@ -1,4 +1,4 @@
-## Tile Counters
+# Tile Counters
 
 Counter operating modes:
 
@@ -10,7 +10,7 @@ Counter operating modes:
 |Name Table V	|1	|2	|2	|Tile Vertical CNT		|Name Table H  CNT		|none					|no		|yes|
 |Fine Vertical	|3	|8	|8	|Tile Horizontal CNT	|Name Table V  CNT		|none					|yes	|no|
 
-### Tile Counters Control
+## Tile Counters Control
 
 ![ppu_dataread_tile_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_control_top.jpg)
 
@@ -20,7 +20,7 @@ Counter operating modes:
 
 ![TileCountersControl2](/BreakingNESWiki/imgstore/ppu/TileCountersControl2.png)
 
-### Counter Bit
+## Counter Bit
 
 ![TileCounterBit](/BreakingNESWiki/imgstore/ppu/TileCounterBit.png)
 
@@ -28,19 +28,19 @@ A reset variation is used for the TV counter:
 
 ![TileCounterBitReset](/BreakingNESWiki/imgstore/ppu/TileCounterBitReset.png)
 
-### FV Counter
+## FV Counter
 
 ![ppu_dataread_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_fv.jpg)
 
 ![Tile_FVCounter](/BreakingNESWiki/imgstore/ppu/Tile_FVCounter.png)
 
-### NT Counters
+## NT Counters
 
 ![ppu_dataread_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_nt.jpg)
 
 ![Tile_NTCounters](/BreakingNESWiki/imgstore/ppu/Tile_NTCounters.png)
 
-### TV Counter
+## TV Counter
 
 ![ppu_dataread_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_tv.jpg)
 
@@ -48,7 +48,7 @@ A reset variation is used for the TV counter:
 
 Note the tricky `0/TV` signal. This signal clears not only the contents of the counter's input FF on the Keep phase, but also makes a pulldown on its output value, but NOT the complementary output.
 
-### TH Counter
+## TH Counter
 
 ![ppu_dataread_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_th.jpg)
 

@@ -20,9 +20,11 @@ TODO: Duplicate all image in ASCII art so that they are understood by LLMs which
 - [Multiplexer](#multiplexer)
 - [Object Attribute Memory (OAM)](#oam)
 - [OAM FIFO](#oam-fifo)
-- [Data Fetcher](#data-reader)
+- [Data Reader](#data-reader)
+  - [Picture Address Register (PAR) + V.INV](par.md)
   - [Scroll Registers](#scroll-registers)
-  - [Picture Address Register](#picture-address-register)
+  - [Tile Counters](tilecnt.md)
+  - [PPU Address Mux](pamux.md)
   - [Background Color](#background-color-bg-col)
 - [VRAM Controller](#vram-controller)
 - [Interconnections](#wiring)
@@ -1739,6 +1741,13 @@ It was also decided to include a small circuit for getting `/SHx` values (Sprite
 
 # Data Reader
 
+> [!WARNING]  
+> This section of the wiki is currently undergoing refactoring due to an incorrect interpretation of the PAR (Picture Address Register) circuit layout. What was previously called "PatGen" is actually PAR, 
+> and what was previously called PAR is actually an address multiplexer not shown in the patent (which we decided to simply call PPU Address Mux, or PAMUX).
+> Furthermore, "PAR Counters" are now called "Tile Counters" because they have nothing in common with PAR.
+> We also plan to provide more understandable and appropriate names for some signals (but only after the wiki refactoring).
+> Eventually, once all the edits have been proofread and we've verified there are no renaming errors, this label will also be removed.
+
 The PPU patent refers to this circuit as the `Still Picture Generator`.
 
 The circuitry takes up almost a quarter of the PPU area and is located in the lower right corner of the chip:
@@ -1748,40 +1757,42 @@ The circuitry takes up almost a quarter of the PPU area and is located in the lo
 This circuit deals with sampling a row of 8 pixels, based on the scroll registers which set the position of the tile in the name table and the fine offset of the starting point within the tile.
 The results (the current pixel of the tile) are sent to the multiplexer, to mix with the current pixel of the sprite.
 
-The circuit also deals with getting sprite patterns and their V inversion (the H inversion circuit is in [OAM FIFO](#oam-fifo)).
+The circuit also deals with getting sprite patterns and their V inversion (the H inversion circuit is in [OAM FIFO](fifo.md)).
 
 Due to the large size, it will be difficult to show the entire diagram, so naturally we will saw it into its component parts.
 
 Below is shown what circuits the Data Reader consists of, in order to understand where to look for the sawn pieces of circuits:
 
-![ppu_dataread_sections](/BreakingNESWiki/imgstore/ppu/ppu_dataread_sections.jpg)
+![ppu_datareader_sections](/BreakingNESWiki/imgstore/ppu/ppu_datareader_sections.png)
 
 There was something in this section historically, but then it was split up into sections. The only thing left is the circuit for the generation of the tile address.
 
 ![DataReader_All](/BreakingNESWiki/imgstore/ppu/DataReader_All.png)
 
-## Pattern Address Generator
+## Picture Address Register (PAR)
+
+![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
 
 The circuit takes up the whole upper part and forms the tile (`Pattern`) address, which is set by `/PAD0-12` (13 bits).
 
-![patgen_high](/BreakingNESWiki/imgstore/ppu/patgen_high.jpg)
+![par_high](/BreakingNESWiki/imgstore/ppu/par_high.jpg)
 
-![patgen_vinv](/BreakingNESWiki/imgstore/ppu/patgen_vinv.jpg)
+![par_vinv](/BreakingNESWiki/imgstore/ppu/par_vinv.jpg)
 
-![PatGen](/BreakingNESWiki/imgstore/ppu/PatGen.png)
+![PAR](/BreakingNESWiki/imgstore/ppu/PAR.png)
 
 Small circuits to control the loading of values into the output latches. The main emphasis is on selecting the mode of operation for sprites/backgrounds (signal `PAR/O` - "PAR for Objects").
 
-|![PatControl](/BreakingNESWiki/imgstore/ppu/PatControl.png)|![PatV_Inversion](/BreakingNESWiki/imgstore/ppu/PatV_Inversion.png)|
+|![ParControl](/BreakingNESWiki/imgstore/ppu/ParControl.png)|![ParV_Inversion](/BreakingNESWiki/imgstore/ppu/ParV_Inversion.png)|
 |---|---|
 
 Bit circuits to form the output value `/PAD0-12` in slight variations:
 
-![PatBit](/BreakingNESWiki/imgstore/ppu/PatBit.png)
+![ParBit](/BreakingNESWiki/imgstore/ppu/ParBit.png)
 
-![PatBit4](/BreakingNESWiki/imgstore/ppu/PatBit4.png)
+![ParBit4](/BreakingNESWiki/imgstore/ppu/ParBit4.png)
 
-![PatBitInv](/BreakingNESWiki/imgstore/ppu/PatBitInv.png)
+![ParBitInv](/BreakingNESWiki/imgstore/ppu/ParBitInv.png)
 
 Table of bits usage in addressing:
 
@@ -1792,14 +1803,6 @@ Table of bits usage in addressing:
 |4|Name Table, bit 0|OAM2, Tile Index Byte, bit 0|Sprite comparison OV3|Index in Pattern Table|
 |5-11|Name Table, bits 1-7|OAM2, Tile Index Byte, bits 1-7|OAM2, Tile Index Byte, bits 1-7|Index in Pattern Table|
 |12|BGSEL ($2000)|OBSEL ($2000)|OAM2, Tile Index Byte, bit 0|Selecting Pattern Table|
-
-## The Rest
-
-The other parts of the schematic can be found in the corresponding sections:
-
-- [Scrolling Registers](#scroll-registers)
-- [Picture Address Register](#picture-address-register)
-- [Background Color](#background-color-bg-col)
 
 # Scroll Registers
 
@@ -1885,98 +1888,96 @@ Writing `0` to FV2 instead of $2006\[6\] is because the value for the FV counter
 |DB6|DB3|3|
 |DB7|DB4|4|
 
-# Picture Address Register
-
-![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
-
-![PAR_All](/BreakingNESWiki/imgstore/ppu/PAR_All.png)
-
-The PAR address register stores the value for the external address bus (`/PA0-13`) (14 bit).
-
-Sources for writing to the PAR:
-- A pattern address (`PAD0-12`) (13 bit)
-- The value from the data bus (`DB0-7`) (8 bit)
-- The value from the PAR counters which are also part of this circuit. The PAR counters are loaded from the scrolling registers.
-
-## PAR Counters
+# Tile Counters
 
 Counter operating modes:
 
 |Counter|Bits|Max value|Max value (Blank)|Input carry source|Input carry source (Blank)|Counter reset source|Carry output|Carry output (Blank)|
 |---|---|---|---|---|---|---|---|---|
-|Tile Horizontal|5	|32	|32	|!(BLNK & I1/32)		|!(BLNK & I1/32)		|none					|yes	|yes|
-|Tile Vertical	|5	|30	|32	|Fine Vertical CNT		|Tile Horizontal CNT	|carry TVZ + 1 TVSTEP	|yes	|yes|
-|Name Table H	|1	|2	|2	|Tile Horizontal CNT	|Tile Vertical CNT		|none					|no		|yes|
-|Name Table V	|1	|2	|2	|Tile Vertical CNT		|Name Table H  CNT		|none					|no		|yes|
-|Fine Vertical	|3	|8	|8	|Tile Horizontal CNT	|Name Table V  CNT		|none					|yes	|no|
+|Tile Horizontal|5  |32 |32 |!(BLNK & I1/32)    |!(BLNK & I1/32)    |none         |yes  |yes|
+|Tile Vertical  |5  |30 |32 |Fine Vertical CNT    |Tile Horizontal CNT  |carry TVZ + 1 TVSTEP |yes  |yes|
+|Name Table H |1  |2  |2  |Tile Horizontal CNT  |Tile Vertical CNT    |none         |no   |yes|
+|Name Table V |1  |2  |2  |Tile Vertical CNT    |Name Table H  CNT    |none         |no   |yes|
+|Fine Vertical  |3  |8  |8  |Tile Horizontal CNT  |Name Table V  CNT    |none         |yes  |no|
 
-### PAR Counters Control
+## Tile Counters Control
 
-![ppu_dataread_par_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_control_top.jpg)
+![ppu_dataread_tile_counters_control_top](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_control_top.jpg)
 
-![ppu_dataread_par_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_control_bot.jpg)
+![ppu_dataread_tile_counters_control_bot](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_control_bot.jpg)
 
-![PAR_CountersControl](/BreakingNESWiki/imgstore/ppu/PAR_CountersControl.png)
+![TileCountersControl](/BreakingNESWiki/imgstore/ppu/TileCountersControl.png)
 
-![PAR_CountersControl2](/BreakingNESWiki/imgstore/ppu/PAR_CountersControl2.png)
+![TileCountersControl2](/BreakingNESWiki/imgstore/ppu/TileCountersControl2.png)
 
-### Counter Bit
+## Counter Bit
 
-![PAR_CounterBit](/BreakingNESWiki/imgstore/ppu/PAR_CounterBit.png)
+![TileCounterBit](/BreakingNESWiki/imgstore/ppu/TileCounterBit.png)
 
 A reset variation is used for the TV counter:
 
-![PAR_CounterBitReset](/BreakingNESWiki/imgstore/ppu/PAR_CounterBitReset.png)
+![TileCounterBitReset](/BreakingNESWiki/imgstore/ppu/TileCounterBitReset.png)
 
-### FV Counter
+## FV Counter
 
-![ppu_dataread_par_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_fv.jpg)
+![ppu_dataread_tile_counters_fv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_fv.jpg)
 
-![PAR_FVCounter](/BreakingNESWiki/imgstore/ppu/PAR_FVCounter.png)
+![Tile_FVCounter](/BreakingNESWiki/imgstore/ppu/Tile_FVCounter.png)
 
-### NT Counters
+## NT Counters
 
-![ppu_dataread_par_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_nt.jpg)
+![ppu_dataread_tile_counters_nt](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_nt.jpg)
 
-![PAR_NTCounters](/BreakingNESWiki/imgstore/ppu/PAR_NTCounters.png)
+![Tile_NTCounters](/BreakingNESWiki/imgstore/ppu/Tile_NTCounters.png)
 
-### TV Counter
+## TV Counter
 
-![ppu_dataread_par_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_tv.jpg)
+![ppu_dataread_tile_counters_tv](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_tv.jpg)
 
-![PAR_TVCounter](/BreakingNESWiki/imgstore/ppu/PAR_TVCounter.png)
+![Tile_TVCounter](/BreakingNESWiki/imgstore/ppu/Tile_TVCounter.png)
 
 Note the tricky `0/TV` signal. This signal clears not only the contents of the counter's input FF on the Keep phase, but also makes a pulldown on its output value, but NOT the complementary output.
 
-### TH Counter
+## TH Counter
 
-![ppu_dataread_par_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_par_counters_th.jpg)
+![ppu_dataread_tile_counters_th](/BreakingNESWiki/imgstore/ppu/ppu_dataread_tile_counters_th.jpg)
 
-![PAR_THCounter](/BreakingNESWiki/imgstore/ppu/PAR_THCounter.png)
+![Tile_THCounter](/BreakingNESWiki/imgstore/ppu/Tile_THCounter.png)
 
-## PAR
+# PPU Address Multiplexer (PAMUX)
 
-![PAR](/BreakingNESWiki/imgstore/ppu/PAR.png)
+![ppu_locator_pamux](/BreakingNESWiki/imgstore/ppu/ppu_locator_pamux.jpg)
 
-The circuit looks a bit scary, this is because of the large number of input sources to load into the PAR register bits.
+![PAMUX](/BreakingNESWiki/imgstore/ppu/PAMUX.png)
 
-### PAR Control
+The patent doesn't mention this circuit in any way; it's assumed to be contained in the "sausage" shown in this diagram from the patent:
 
-The control circuit is designed to select one of the sources for writing to PAR.
+![pamux_patent](/BreakingNESWiki/imgstore/ppu/pamux_patent.png)
 
-![ppu_dataread_par_control](/BreakingNESWiki/imgstore/ppu/ppu_par_control.jpg)
+The address multiplexer stores the final value for the external address bus (`/PA0-13`) (14 bits).
 
-![PAR_Control](/BreakingNESWiki/imgstore/ppu/PAR_Control.png)
+Sources for writing to PAMUX output latches:
+- A pattern address (`PAD0-12`) (13 bit)
+- The value from the data bus (`DB0-7`) (8 bit)
+- The value from the PAR counters which are also part of this circuit. The PAR counters are loaded from the scrolling registers.
 
-### PAR Outputs
+## PAMUX Control
 
-![ppu_dataread_par_low](/BreakingNESWiki/imgstore/ppu/ppu_par_low.jpg)
+The control circuit is designed to select one of the sources for writing into the output latches of the multiplexer.
 
-![ppu_dataread_par_high](/BreakingNESWiki/imgstore/ppu/ppu_par_high.jpg)
+![ppu_dataread_pamux_control](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pamux_control.jpg)
 
-![PAR_LowBit](/BreakingNESWiki/imgstore/ppu/PAR_LowBit.png)
+![PamuxControl](/BreakingNESWiki/imgstore/ppu/PamuxControl.png)
 
-![PAR_HighBit](/BreakingNESWiki/imgstore/ppu/PAR_HighBit.png)
+## PAMUX Outputs
+
+![ppu_dataread_pamux_low](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pamux_low.jpg)
+
+![ppu_dataread_pamux_high](/BreakingNESWiki/imgstore/ppu/ppu_dataread_pamux_high.jpg)
+
+![PamuxLowBit](/BreakingNESWiki/imgstore/ppu/PamuxLowBit.png)
+
+![PamuxHighBit](/BreakingNESWiki/imgstore/ppu/PamuxHighBit.png)
 
 # Background Color (BG COL)
 
