@@ -1,5 +1,9 @@
 # Tile Counters
 
+![ppu_locator_tilecnt](/BreakingNESWiki/imgstore/ppu/ppu_locator_tilecnt.jpg)
+
+![TileCounters_All](/BreakingNESWiki/imgstore/ppu/TileCounters_All.png)
+
 Counter operating modes:
 
 |Counter|Bits|Max value|Max value (Blank)|Input carry source|Input carry source (Blank)|Counter reset source|Carry output|Carry output (Blank)|
