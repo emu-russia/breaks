@@ -1,37 +1,23 @@
-
 module PAR(
-	n_PCLK, PCLK,
-	BLNK, DB_PAR, F_AT, SC_CNT, RESCL, E_EV, TSTEP, F_TB, H0_DD, n_H2_D, I_1_32, W6_2_Ena, 
-	PAD_in, CPU_DB, TH, TV, NTH, NTV, FV, 
-	n_FVO, THO, TVO, n_PA );
+	n_PCLK,
+	H0_DD, n_FNT, BGSEL, OBSEL, O8_16, PAR_O, n_SH2, n_H1D, OB, PD, OV, n_FVO,
+	PAddr_out);
 
 	input n_PCLK;
-	input PCLK;
 
-	input BLNK;
-	input DB_PAR;
-	input F_AT;
-	input SC_CNT;
-	input RESCL;
-	input E_EV;
-	input TSTEP;
-	input F_TB;
 	input H0_DD;
-	input n_H2_D;
-	input I_1_32;
-	input W6_2_Ena;
+	input n_FNT;
+	input BGSEL;
+	input OBSEL;
+	input O8_16;
+	input PAR_O;
+	input n_SH2;
+	input n_H1D;
+	input [7:0] OB;
+	input [7:0] PD;
+	input [3:0] OV;
+	input [2:0] n_FVO;
 
-	input [13:0] PAD_in;
-	inout [7:0] CPU_DB;
-	input [4:0] TH;
-	input [4:0] TV;
-	input NTH;
-	input NTV;
-	input [2:0] FV;
-
-	output [2:0] n_FVO;
-	output [4:0] THO;
-	output [4:0] TVO;
-	output [13:0] n_PA;
+	output [13:0] PAddr_out;
 
 endmodule // PAR

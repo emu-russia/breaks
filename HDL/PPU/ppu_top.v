@@ -132,7 +132,9 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire [4:0] TVO;
 	wire W6_2_Ena;
 	wire [3:0] BGC;				// Background color
-	wire [13:0] PAD;
+	wire [13:0] PAD_adr;
+	wire [13:0] FAT_adr;
+	wire [13:0] PAR_adr;
 
 	wire [7:0] CPU_DB;			// Internal CPU data bus DB
 	wire [7:0] PD;				// Read-only PPU Data bus
@@ -379,7 +381,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.n_ZPRIO(n_ZPRIO),
 		.n_SH2(n_SH2) );
 
-	PataddrGen patgen(
+	PAR par (
 		.n_PCLK(n_PCLK),
 		.H0_DD(H0_DD),
 		.n_FNT(n_FNT),
@@ -393,25 +395,20 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.PD(PD),
 		.OV(OV[3:0]),
 		.n_FVO(n_FVO),
-		.PAddr_out(PAD) );
+		.PAddr_out(PAD_adr) );
 
-	PAR par(
+	TileCnt tilecnt (
 		.n_PCLK(n_PCLK),
 		.PCLK(PCLK),
-		.BLNK(BLNK),
-		.DB_PAR(DB_PAR),
-		.F_AT(F_AT),
+		.W6_2_Ena(W6_2_Ena),
 		.SC_CNT(SC_CNT),
 		.RESCL(RESCL),
 		.E_EV(E_EV),
 		.TSTEP(TSTEP),
 		.F_TB(F_TB),
 		.H0_DD(H0_DD),
-		.n_H2_D(nH2_D),
-		.I_1_32(I_1_32),
-		.W6_2_Ena(W6_2_Ena), 
-		.PAD_in(PAD),
-		.CPU_DB(CPU_DB),
+		.BLNK(BLNK),
+		.I_1_32(I_1_32), 
 		.TH(TH),
 		.TV(TV),
 		.NTH(NTH),
@@ -420,6 +417,19 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.n_FVO(n_FVO),
 		.THO(THO),
 		.TVO(TVO),
+		.FAT(FAT_adr),
+		.PAR(PAR_adr) );
+
+	PAMUX pamux (
+		.PCLK(PCLK),
+		.n_H2_D(nH2_D),
+		.BLNK(BLNK),
+		.F_AT(F_AT),
+		.DB_PAR(DB_PAR), 
+		.FAT_in(FAT_adr),
+		.PAR_in(PAR_adr),
+		.PAD_in(PAD_adr),
+		.CPU_DB(CPU_DB),
 		.n_PA(n_PA_out) );
 
 	ScrollRegs sccx(
