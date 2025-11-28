@@ -19,7 +19,7 @@ TODO: Duplicate all image in ASCII art so that they are understood by LLMs which
 - [OAM Evaluation](#sprite-comparison-oam-evaluation)
 - [Multiplexer](#multiplexer)
 - [Object Attribute Memory (OAM)](#oam)
-- [Object FIFO](#oam-fifo)
+- [Object FIFO](#object-fifo)
 - [Data Reader](#data-reader)
   - [Picture Address Register (PAR) + V.INV](#picture-address-register-par)
   - [Scroll Registers](#scroll-registers)
@@ -689,7 +689,7 @@ Outputs:
 |S/EV|Sprite Logic|"Start Sprite Evaluation"|
 |CLIP_O|Control Regs|"Clip Objects". 1: Do not show the left 8 screen pixels for sprites. Used to get the `CLPO` signal that goes into the Obj FIFO.|
 |CLIP_B|Control Regs|"Clip Background". 1: Do not show the left 8 pixels of the screen for the background. Used to get the `/CLPB` signal that goes into the Data Reader.|
-|0/HPOS|Obj FIFO|"Clear HPos". Clear the H counters in the [sprite FIFO](#oam-fifo) and start the FIFO|
+|0/HPOS|Obj FIFO|"Clear HPos". Clear the H counters in the [sprite FIFO](#object-fifo) and start the FIFO|
 |/EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
 |I/OAM2|Sprite Logic|"Init OAM2". Initialize an extra [OAM](#oam)|
@@ -1145,7 +1145,7 @@ If the `TINT` signal value is 1, the voltage is multiplied by approx. 0.746f.
 
 The sprite comparison circuit compares all 64 sprites and selects the first 8 sprites that occur first on the current line (V). The fact that the PPU can only draw the first 8 sprites of a line is a well-known fact that has to be taken into account when programming NES. Usually programmers use sprite shuffling, but even this has the effect of "flickering" sprites.
 
-The selected sprites are placed in additional memory OAM2, from where they then go to [Obj FIFO](#oam-fifo) for further processing.
+The selected sprites are placed in additional memory OAM2, from where they then go to [Obj FIFO](#object-fifo) for further processing.
 
 The circuit includes:
 - OAM index counter, to sample the next sprite for comparison
@@ -1385,7 +1385,7 @@ Sprite 0 Hit circuit:
 
 The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
-The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [Obj FIFO](#oam-fifo)) and the control signal `/SPR0_EV` from [sprite comparison circuit](#sprite-comparison-oam-evaluation).
+The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [Obj FIFO](#object-fifo)) and the control signal `/SPR0_EV` from [sprite comparison circuit](#sprite-comparison-oam-evaluation).
 
 ## Multiplexer Tricks
 
@@ -1757,7 +1757,7 @@ The circuitry takes up almost a quarter of the PPU area and is located in the lo
 This circuit deals with sampling a row of 8 pixels, based on the scroll registers which set the position of the tile in the name table and the fine offset of the starting point within the tile.
 The results (the current pixel of the tile) are sent to the multiplexer, to mix with the current pixel of the sprite.
 
-The circuit also deals with getting sprite patterns and their V inversion (the H inversion circuit is in [Obj FIFO](fifo.md)).
+The circuit also deals with getting sprite patterns and their V inversion (the H inversion circuit is in [Obj FIFO](#object-fifo)).
 
 Due to the large size, it will be difficult to show the entire diagram, so naturally we will saw it into its component parts.
 
@@ -2067,7 +2067,7 @@ The circuit outputs a number of control lines to the outside:
 
 ## Read Buffer (RB)
 
-Located to the right of [Obj FIFO](#oam-fifo). Read Buffer is associated with register $2007.
+Located to the right of [Obj FIFO](#object-fifo). Read Buffer is associated with register $2007.
 
 |Transistor circuit|Logic circuit|
 |---|---|
