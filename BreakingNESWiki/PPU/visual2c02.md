@@ -145,7 +145,7 @@ Visual 2C02: http://www.qmtpro.com/~nes/chipimages/visual2c02/
 |PD/FIFO|node: 1098 +sprite_in_range_reg|
 |OV 0-7|+vpos_minus_spr_d0-7|
 |/WE|node: 334 oam_write_disable|
-|OAM FIFO||
+|Object FIFO||
 |/SH2|node: 1322 /spr_loadFlag|
 |/SH3|node: 1311 /spr_loadX|
 |/SH5|node: 1337 /spr_loadL|

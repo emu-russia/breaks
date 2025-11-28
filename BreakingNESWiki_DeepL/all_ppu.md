@@ -19,7 +19,7 @@ TODO: Duplicate all image in ASCII art so that they are understood by LLMs which
 - [OAM Evaluation](#sprite-comparison-oam-evaluation)
 - [Multiplexer](#multiplexer)
 - [Object Attribute Memory (OAM)](#oam)
-- [OAM FIFO](#oam-fifo)
+- [Object FIFO](#oam-fifo)
 - [Data Reader](#data-reader)
   - [Picture Address Register (PAR) + V.INV](#picture-address-register-par)
   - [Scroll Registers](#scroll-registers)
@@ -84,7 +84,7 @@ Main components of PPU:
 - Registers. The total address space of the PPU allows to address 8 internal registers. The developers are very clever how registers are organized and writing to the same address can do two different things.
 - Sprite memory (OAM). Contains 64 sprite data as well as extra space to store the 8 current sprites selected.
 - Sprite Logic. Based on the V-counter, it selects 8 sprites of the current row, which are placed in additional OAM memory during the comparison process.
-- Sprite FIFO (OAM FIFO). Contains a circuit that activates the output of the 8 selected sprites at the right time, as well as a circuit to control their priority.
+- Sprite (Object) FIFO. Contains a circuit that activates the output of the 8 selected sprites at the right time, as well as a circuit to control their priority.
 - Address bus control circuitry. Controls the VRAM addressing.
 - Data fetcher circuit (DATA READER). Circuit for fetching source data from VRAM: tiles and attributes. Includes a PAR address generator and a circuit for producing a background color.
 
@@ -502,7 +502,7 @@ This is the place to talk about the zoo of signals associated with Clipping.
 |CLIP_B|FSM|Regs|1: Enabled if left 8 background pixels clipping is on and it is time (H counter is set to the right value)|
 |CLIP_O|FSM|Regs|1: Enabled if left 8 sprite pixels clipping is on and it is time (H counter is set to the right value)|
 |/CLPB|Regs|BGCOL|0: Clip background. Final signal for BGCOL circuit|
-|CLPO|Regs|FIFO|1: Clip sprites. Final signal for OAM FIFO circuit|
+|CLPO|Regs|FIFO|1: Clip sprites. Final signal for Obj FIFO circuit|
 
 # H/V Counters
 
@@ -687,9 +687,9 @@ Outputs:
 |H0''-H5''|All|H0-H5 signals delayed by two DLatch|
 |**Horizontal control signals**|||
 |S/EV|Sprite Logic|"Start Sprite Evaluation"|
-|CLIP_O|Control Regs|"Clip Objects". 1: Do not show the left 8 screen pixels for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
+|CLIP_O|Control Regs|"Clip Objects". 1: Do not show the left 8 screen pixels for sprites. Used to get the `CLPO` signal that goes into the Obj FIFO.|
 |CLIP_B|Control Regs|"Clip Background". 1: Do not show the left 8 pixels of the screen for the background. Used to get the `/CLPB` signal that goes into the Data Reader.|
-|0/HPOS|OAM FIFO|"Clear HPos". Clear the H counters in the [sprite FIFO](#oam-fifo) and start the FIFO|
+|0/HPOS|Obj FIFO|"Clear HPos". Clear the H counters in the [sprite FIFO](#oam-fifo) and start the FIFO|
 |/EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
 |I/OAM2|Sprite Logic|"Init OAM2". Initialize an extra [OAM](#oam)|
@@ -1145,7 +1145,7 @@ If the `TINT` signal value is 1, the voltage is multiplied by approx. 0.746f.
 
 The sprite comparison circuit compares all 64 sprites and selects the first 8 sprites that occur first on the current line (V). The fact that the PPU can only draw the first 8 sprites of a line is a well-known fact that has to be taken into account when programming NES. Usually programmers use sprite shuffling, but even this has the effect of "flickering" sprites.
 
-The selected sprites are placed in additional memory OAM2, from where they then go to [OAM FIFO](#oam-fifo) for further processing.
+The selected sprites are placed in additional memory OAM2, from where they then go to [Obj FIFO](#oam-fifo) for further processing.
 
 The circuit includes:
 - OAM index counter, to sample the next sprite for comparison
@@ -1385,7 +1385,7 @@ Sprite 0 Hit circuit:
 
 The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
-The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [OAM FIFO](#oam-fifo)) and the control signal `/SPR0_EV` from [sprite comparison circuit](#sprite-comparison-oam-evaluation).
+The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [Obj FIFO](#oam-fifo)) and the control signal `/SPR0_EV` from [sprite comparison circuit](#sprite-comparison-oam-evaluation).
 
 ## Multiplexer Tricks
 
@@ -1594,7 +1594,7 @@ Here are the distinctive features of the OB:
 - The output latch (`out_latch`) is used to write a new value to the OAM Cell. The new value can come from OB_FF (`OB/OAM` = 1) or from the data bus (`BLNK` = 1). The `OB/OAM` and `BLNK` signals never take the value `1` at the same time, but can take the value `0` at the same time (that is, when the output latch is closed).
 - The value from the output latch is stored in the selected OAM Cell only when allowed by the `/WE` = 0 signal.
 
-# OAM FIFO
+# Object FIFO
 
 ![ppu_locator_fifo](/BreakingNESWiki/imgstore/ppu/ppu_locator_fifo.jpg)
 
@@ -1733,7 +1733,7 @@ HINV and HDIR are two complementary signals (they can never take the same value)
 
 ## Sprite H
 
-It was also decided to include a small circuit for getting `/SHx` values (Sprite H) as part of the FIFO. The circuit is above the multiplexer, but most of the `/SHx` outputs are used only in the OAM FIFO (`/SH2` is also used in the Data Reader).
+It was also decided to include a small circuit for getting `/SHx` values (Sprite H) as part of the FIFO. The circuit is above the multiplexer, but most of the `/SHx` outputs are used only in the Object FIFO (`/SH2` is also used in the Data Reader).
 
 ![sprite_h](/BreakingNESWiki/imgstore/ppu/sprite_h.jpg)
 
@@ -1757,7 +1757,7 @@ The circuitry takes up almost a quarter of the PPU area and is located in the lo
 This circuit deals with sampling a row of 8 pixels, based on the scroll registers which set the position of the tile in the name table and the fine offset of the starting point within the tile.
 The results (the current pixel of the tile) are sent to the multiplexer, to mix with the current pixel of the sprite.
 
-The circuit also deals with getting sprite patterns and their V inversion (the H inversion circuit is in [OAM FIFO](fifo.md)).
+The circuit also deals with getting sprite patterns and their V inversion (the H inversion circuit is in [Obj FIFO](fifo.md)).
 
 Due to the large size, it will be difficult to show the entire diagram, so naturally we will saw it into its component parts.
 
@@ -2067,7 +2067,7 @@ The circuit outputs a number of control lines to the outside:
 
 ## Read Buffer (RB)
 
-Located to the right of [OAM FIFO](#oam-fifo). Read Buffer is associated with register $2007.
+Located to the right of [Obj FIFO](#oam-fifo). Read Buffer is associated with register $2007.
 
 |Transistor circuit|Logic circuit|
 |---|---|
@@ -2143,14 +2143,14 @@ The most important control signals of the [PPU FSM](#ppu-fsm) are marked with a 
 |:zap:#F/NT|FSM|Data Reader, OAM Eval|0: "Fetch Name Table"|
 |:zap:F/TA|FSM|Data Reader|"Fetch Tile A"|
 |:zap:F/TB|FSM|Data Reader|"Fetch Tile B"|
-|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". 1: Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
+|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". 1: Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the Obj FIFO.|
 |:zap:CLIP_B|FSM|Control Regs|"Clip Background". 1: Do not show the left 8 points of the screen for the background. Used to get the `/CLPB` signal that goes into the Data Reader.|
 |VBL|Regs $2000\[7\]|FSM|Used in the VBlank interrupt handling circuitry|
 |/TB|Regs $2001\[7\]|VideoOut|"Tint Blue". Modifying value for Emphasis|
 |/TG|Regs $2001\[6\]|VideoOut|"Tint Green". Modifying value for Emphasis|
 |/TR|Regs $2001\[5\]|VideoOut|"Tint Red". Modifying value for Emphasis|
 |:zap:SC/CNT|FSM|Data Reader|"Scroll Counters Control". Update the scrolling registers.|
-|:zap:0/HPOS|FSM|OAM FIFO|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
+|:zap:0/HPOS|FSM|Obj FIFO|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
 |/SPR0_EV|Sprite Eval|Spr0 Strike|0: Sprite "0" is found on the current line. To define a `Sprite 0 Hit` event|
 |/OBCLIP|Regs $2001\[2\]|FSM|To generate the `CLIP_O` control signal|
 |/BGCLIP|Regs $2001\[1\]|FSM|To generate the `CLIP_B` control signal|
@@ -2216,13 +2216,13 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|/SH2|Near MUX|OAM FIFO, V. Inversion|Sprite H value bits. /SH2 also goes into V. Inversion.|
-|/SH3|Near MUX|OAM FIFO|Sprite H value bits|
-|/SH5|Near MUX|OAM FIFO|Sprite H value bits|
-|/SH7|Near MUX|OAM FIFO|Sprite H value bits|
+|/SH2|Near MUX|Obj FIFO, V. Inversion|Sprite H value bits. /SH2 also goes into V. Inversion.|
+|/SH3|Near MUX|Obj FIFO|Sprite H value bits|
+|/SH5|Near MUX|Obj FIFO|Sprite H value bits|
+|/SH7|Near MUX|Obj FIFO|Sprite H value bits|
 |/SPR0HIT|OAM Priority|Spr0 Strike|To detect a `Sprite 0 Hit` event|
 |BGC0-3|BG Color|MUX|Background color|
-|/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|OAM FIFO|MUX|Sprite color. :warning: The lower 2 bits are in inverse logic, the higher 2 bits are in direct logic.|
+|/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|Obj FIFO|MUX|Sprite color. :warning: The lower 2 bits are in inverse logic, the higher 2 bits are in direct logic.|
 |/ZPRIO|OAM Priority|MUX|0: Priority of sprite over background|
 |THO0-4'|PAR TH Counter|MUX|THO0-4 value passed through the PCLK tristate. Direct Color value from TH Counter.|
 
@@ -2237,8 +2237,8 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|OB0-7|OAM Buffer|OAM FIFO, Pattern Readout|OAM Buffer output value|
-|CLPO|Regs|OAM FIFO|To enable sprite clipping|
+|OB0-7|OAM Buffer|Obj FIFO, Pattern Readout|OAM Buffer output value|
+|CLPO|Regs|Obj FIFO|To enable sprite clipping|
 |/CLPB|Regs|BG Color|To enable background clipping|
 |PD/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
 |BGSEL|Regs|Pattern Readout|Selecting Pattern Table for background|
@@ -2891,7 +2891,7 @@ Visual 2C02: http://www.qmtpro.com/~nes/chipimages/visual2c02/
 |PD/FIFO|node: 1098 +sprite_in_range_reg|
 |OV 0-7|+vpos_minus_spr_d0-7|
 |/WE|node: 334 oam_write_disable|
-|OAM FIFO||
+|Object FIFO||
 |/SH2|node: 1322 /spr_loadFlag|
 |/SH3|node: 1311 /spr_loadX|
 |/SH5|node: 1337 /spr_loadL|
@@ -2976,7 +2976,7 @@ Note that the figure with the scalines is scaled up (as seen by the change in th
 
 ## PAR Control
 
-## OAM FIFO Lane
+## Object FIFO Lane
 
 ## VRAM Controller
 

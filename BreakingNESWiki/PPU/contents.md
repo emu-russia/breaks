@@ -13,7 +13,7 @@
 - [Сравнение спрайтов](sprite_eval.md)
 - [Мультиплексор](mux.md)
 - [Спрайтовая память (OAM)](oam.md)
-- [OAM FIFO](fifo.md)
+- [Object FIFO](fifo.md)
 - [Схема выборки данных](dataread.md)
   - [Picture Address Register (PAR) и V.INV](par.md)
   - [Регистры скроллинга](scroll_regs.md)

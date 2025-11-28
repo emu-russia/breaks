@@ -1,4 +1,4 @@
-# OAM FIFO
+# Object FIFO
 
 ![ppu_locator_fifo](/BreakingNESWiki/imgstore/ppu/ppu_locator_fifo.jpg)
 
@@ -137,7 +137,7 @@ HINV и HDIR - это два комплементарных сигнала (он
 
 ## Схема Sprite H
 
-Также в состав FIFO было решено включить небольшую схему для получения значений `/SHx` (Sprite H). Схема находится выше мультиплексора, но большинство выходов `/SHx` используются только в OAM FIFO (`/SH2` также используется в Data Reader).
+Также в состав FIFO было решено включить небольшую схему для получения значений `/SHx` (Sprite H). Схема находится выше мультиплексора, но большинство выходов `/SHx` используются только в Object FIFO (`/SH2` также используется в Data Reader).
 
 ![sprite_h](/BreakingNESWiki/imgstore/ppu/sprite_h.jpg)
 

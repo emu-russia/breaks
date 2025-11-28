@@ -68,14 +68,14 @@
 |:zap:#F/NT|FSM|Data Reader, OAM Eval|0: "Fetch Name Table"|
 |:zap:F/TA|FSM|Data Reader|"Fetch Tile A"|
 |:zap:F/TB|FSM|Data Reader|"Fetch Tile B"|
-|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". 1: Не показывать левые 8 точек экрана для спрайтов. Используется для получения сигнала `CLPO`, который уходит в OAM FIFO.|
+|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". 1: Не показывать левые 8 точек экрана для спрайтов. Используется для получения сигнала `CLPO`, который уходит в Obj FIFO.|
 |:zap:CLIP_B|FSM|Control Regs|"Clip Background". 1: Не показывать левые 8 точек экрана для бэкграунда. Используется для получения сигнала `/CLPB`, который уходит в Data Reader.|
 |VBL|Regs $2000\[7\]|FSM|Используется в схеме обработки прерывания VBlank|
 |/TB|Regs $2001\[7\]|VideoOut|"Tint Blue". Модифицирующее значение для Emphasis|
 |/TG|Regs $2001\[6\]|VideoOut|"Tint Green". Модифицирующее значение для Emphasis|
 |/TR|Regs $2001\[5\]|VideoOut|"Tint Red". Модифицирующее значение для Emphasis|
 |:zap:SC/CNT|FSM|Data Reader|"Scroll Counters Control". Обновить регистры скроллинга.|
-|:zap:0/HPOS|FSM|OAM FIFO|"Clear HPos". Очистить счётчики H в спрайтовой FIFO и начать работу FIFO|
+|:zap:0/HPOS|FSM|Obj FIFO|"Clear HPos". Очистить счётчики H в спрайтовой FIFO и начать работу FIFO|
 |/SPR0_EV|Sprite Eval|Spr0 Strike|0: Cпрайт "0" найден на текущей строке. Для определения события `Sprite 0 Hit`|
 |/OBCLIP|Regs $2001\[2\]|FSM|Для формирования контрольного сигнала `CLIP_O`|
 |/BGCLIP|Regs $2001\[1\]|FSM|Для формирования контрольного сигнала `CLIP_B`|
@@ -141,13 +141,13 @@
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
-|/SH2|Near MUX|OAM FIFO, V. Inversion|Разряды значения Sprite H. /SH2 также уходит в схему V. Inversion.|
-|/SH3|Near MUX|OAM FIFO|Разряды значения Sprite H|
-|/SH5|Near MUX|OAM FIFO|Разряды значения Sprite H|
-|/SH7|Near MUX|OAM FIFO|Разряды значения Sprite H|
+|/SH2|Near MUX|Obj FIFO, V. Inversion|Разряды значения Sprite H. /SH2 также уходит в схему V. Inversion.|
+|/SH3|Near MUX|Obj FIFO|Разряды значения Sprite H|
+|/SH5|Near MUX|Obj FIFO|Разряды значения Sprite H|
+|/SH7|Near MUX|Obj FIFO|Разряды значения Sprite H|
 |/SPR0HIT|OAM Priority|Spr0 Strike|Для определения события `Sprite 0 Hit`|
 |BGC0-3|BG Color|MUX|Цвет бэкграунда|
-|/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|OAM FIFO|MUX|Цвет спрайта. :warning: Младшие 2 разряда в инверсной логике, старшие 2 разряда - в прямой логике.|
+|/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|Obj FIFO|MUX|Цвет спрайта. :warning: Младшие 2 разряда в инверсной логике, старшие 2 разряда - в прямой логике.|
 |/ZPRIO|OAM Priority|MUX|0: Приоритет спрайта над бэкграундом|
 |THO0-4'|PAR TH Counter|MUX|Значение THO0-4, пройденные через PCLK-тристейт. Значение Direct Color с TH Counter.|
 
@@ -162,8 +162,8 @@
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
-|OB0-7|OAM Buffer|OAM FIFO, Pattern Readout|Выходное значение OAM Buffer|
-|CLPO|Regs|OAM FIFO|Для включения обрезки спрайтов|
+|OB0-7|OAM Buffer|Obj FIFO, Pattern Readout|Выходное значение OAM Buffer|
+|CLPO|Regs|Obj FIFO|Для включения обрезки спрайтов|
 |/CLPB|Regs|BG Color|Для включения обрезки бэкграунда|
 |PD/FIFO|OAM Eval|H Inversion|Для зануления выхода схемы H. Inv|
 |BGSEL|Regs|Pattern Readout|Выбор Pattern Table для бэкграунда|

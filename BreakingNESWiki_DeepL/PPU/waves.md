@@ -32,7 +32,7 @@ Note that the figure with the scalines is scaled up (as seen by the change in th
 
 ## PAR Control
 
-## OAM FIFO Lane
+## Object FIFO Lane
 
 ## VRAM Controller
 

@@ -13,7 +13,7 @@
 - [OAM Evaluation](sprite_eval.md)
 - [Multiplexer](mux.md)
 - [Object Attribute Memory (OAM)](oam.md)
-- [OAM FIFO](fifo.md)
+- [Object FIFO](fifo.md)
 - [Data Reader](dataread.md)
   - [Picture Address Register (PAR) + V.INV](par.md)
   - [Scroll Registers](scroll_regs.md)

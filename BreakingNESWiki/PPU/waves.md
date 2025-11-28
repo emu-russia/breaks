@@ -32,7 +32,7 @@
 
 ## PAR Control
 
-## OAM FIFO Lane
+## Object FIFO Lane
 
 ## VRAM Controller
 

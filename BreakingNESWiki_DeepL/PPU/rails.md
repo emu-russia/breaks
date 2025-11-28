@@ -68,14 +68,14 @@ The most important control signals of the [PPU FSM](fsm.md) are marked with a sp
 |:zap:#F/NT|FSM|Data Reader, OAM Eval|0: "Fetch Name Table"|
 |:zap:F/TA|FSM|Data Reader|"Fetch Tile A"|
 |:zap:F/TB|FSM|Data Reader|"Fetch Tile B"|
-|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". 1: Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
+|:zap:CLIP_O|FSM|Control Regs|"Clip Objects". 1: Do not show the left 8 screen points for sprites. Used to get the `CLPO` signal that goes into the Obj FIFO.|
 |:zap:CLIP_B|FSM|Control Regs|"Clip Background". 1: Do not show the left 8 points of the screen for the background. Used to get the `/CLPB` signal that goes into the Data Reader.|
 |VBL|Regs $2000\[7\]|FSM|Used in the VBlank interrupt handling circuitry|
 |/TB|Regs $2001\[7\]|VideoOut|"Tint Blue". Modifying value for Emphasis|
 |/TG|Regs $2001\[6\]|VideoOut|"Tint Green". Modifying value for Emphasis|
 |/TR|Regs $2001\[5\]|VideoOut|"Tint Red". Modifying value for Emphasis|
 |:zap:SC/CNT|FSM|Data Reader|"Scroll Counters Control". Update the scrolling registers.|
-|:zap:0/HPOS|FSM|OAM FIFO|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
+|:zap:0/HPOS|FSM|Obj FIFO|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
 |/SPR0_EV|Sprite Eval|Spr0 Strike|0: Sprite "0" is found on the current line. To define a `Sprite 0 Hit` event|
 |/OBCLIP|Regs $2001\[2\]|FSM|To generate the `CLIP_O` control signal|
 |/BGCLIP|Regs $2001\[1\]|FSM|To generate the `CLIP_B` control signal|
@@ -141,13 +141,13 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|/SH2|Near MUX|OAM FIFO, V. Inversion|Sprite H value bits. /SH2 also goes into V. Inversion.|
-|/SH3|Near MUX|OAM FIFO|Sprite H value bits|
-|/SH5|Near MUX|OAM FIFO|Sprite H value bits|
-|/SH7|Near MUX|OAM FIFO|Sprite H value bits|
+|/SH2|Near MUX|Obj FIFO, V. Inversion|Sprite H value bits. /SH2 also goes into V. Inversion.|
+|/SH3|Near MUX|Obj FIFO|Sprite H value bits|
+|/SH5|Near MUX|Obj FIFO|Sprite H value bits|
+|/SH7|Near MUX|Obj FIFO|Sprite H value bits|
 |/SPR0HIT|OAM Priority|Spr0 Strike|To detect a `Sprite 0 Hit` event|
 |BGC0-3|BG Color|MUX|Background color|
-|/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|OAM FIFO|MUX|Sprite color. :warning: The lower 2 bits are in inverse logic, the higher 2 bits are in direct logic.|
+|/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|Obj FIFO|MUX|Sprite color. :warning: The lower 2 bits are in inverse logic, the higher 2 bits are in direct logic.|
 |/ZPRIO|OAM Priority|MUX|0: Priority of sprite over background|
 |THO0-4'|PAR TH Counter|MUX|THO0-4 value passed through the PCLK tristate. Direct Color value from TH Counter.|
 
@@ -162,8 +162,8 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|OB0-7|OAM Buffer|OAM FIFO, Pattern Readout|OAM Buffer output value|
-|CLPO|Regs|OAM FIFO|To enable sprite clipping|
+|OB0-7|OAM Buffer|Obj FIFO, Pattern Readout|OAM Buffer output value|
+|CLPO|Regs|Obj FIFO|To enable sprite clipping|
 |/CLPB|Regs|BG Color|To enable background clipping|
 |PD/FIFO|OAM Eval|H Inversion|To zero the output of the H. Inv circuit|
 |BGSEL|Regs|Pattern Readout|Selecting Pattern Table for background|
