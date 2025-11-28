@@ -43,7 +43,7 @@ Main components of PPU:
 - Registers. The total address space of the PPU allows to address 8 internal registers. The developers are very clever how registers are organized and writing to the same address can do two different things.
 - Sprite memory (OAM). Contains 64 sprite data as well as extra space to store the 8 current sprites selected.
 - Sprite Logic. Based on the V-counter, it selects 8 sprites of the current row, which are placed in additional OAM memory during the comparison process.
-- Sprite FIFO (OAM FIFO). Contains a circuit that activates the output of the 8 selected sprites at the right time, as well as a circuit to control their priority.
+- Sprite (Object) FIFO. Contains a circuit that activates the output of the 8 selected sprites at the right time, as well as a circuit to control their priority.
 - Address bus control circuitry. Controls the VRAM addressing.
 - Data fetcher circuit (DATA READER). Circuit for fetching source data from VRAM: tiles and attributes. Includes a PAR address generator and a circuit for producing a background color.
 

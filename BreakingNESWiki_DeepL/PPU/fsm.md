@@ -45,9 +45,9 @@ Outputs:
 |H0''-H5''|All|H0-H5 signals delayed by two DLatch|
 |**Horizontal control signals**|||
 |S/EV|Sprite Logic|"Start Sprite Evaluation"|
-|CLIP_O|Control Regs|"Clip Objects". 1: Do not show the left 8 screen pixels for sprites. Used to get the `CLPO` signal that goes into the OAM FIFO.|
+|CLIP_O|Control Regs|"Clip Objects". 1: Do not show the left 8 screen pixels for sprites. Used to get the `CLPO` signal that goes into the Obj FIFO.|
 |CLIP_B|Control Regs|"Clip Background". 1: Do not show the left 8 pixels of the screen for the background. Used to get the `/CLPB` signal that goes into the Data Reader.|
-|0/HPOS|OAM FIFO|"Clear HPos". Clear the H counters in the [sprite FIFO](fifo.md) and start the FIFO|
+|0/HPOS|Obj FIFO|"Clear HPos". Clear the H counters in the [sprite FIFO](fifo.md) and start the FIFO|
 |/EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
 |I/OAM2|Sprite Logic|"Init OAM2". Initialize an extra [OAM](oam.md)|

@@ -1,7 +1,5 @@
 # Signal Manifest
 
-:warning: Corrections to signal names are no longer accepted.
-
 The connections inside the chips are made with metal wires and sometimes with polysilicon tracks. Between each other we call the connections "signals", "wires", "cords", "hoses" or "tentacles".
 
 This section contains a variety of information on this subject area.
@@ -73,10 +71,10 @@ Correction history:
 |/OE|/WE (OAM Buffer Control)|
 |F/NT|#F/NT (inverse polarity)|
 |PICTURE|/PICTURE (inverse polarity)|
-|x/EN|#x/EN (inverse polarity), OAM FIFO|
-|x/COL0, x/COL1|#x/COL0, #x/COL1 (inverse polarity), OAM FIFO|
-|Tx|/Tx (inverse polarity), OAM FIFO|
-|0/H|#0/H (inverse polarity), OAM FIFO|
+|x/EN|#x/EN (inverse polarity), Obj FIFO|
+|x/COL0, x/COL1|#x/COL0, #x/COL1 (inverse polarity), Obj FIFO|
+|Tx|/Tx (inverse polarity), Obj FIFO|
+|0/H|#0/H (inverse polarity), Obj FIFO|
 |0/FIFO|PD/FIFO|
 |M4_OVZ|COPY_OVF|
 |DDD|COPY_STEP|

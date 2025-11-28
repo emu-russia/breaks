@@ -105,4 +105,4 @@ This is the place to talk about the zoo of signals associated with Clipping.
 |CLIP_B|FSM|Regs|1: Enabled if left 8 background pixels clipping is on and it is time (H counter is set to the right value)|
 |CLIP_O|FSM|Regs|1: Enabled if left 8 sprite pixels clipping is on and it is time (H counter is set to the right value)|
 |/CLPB|Regs|BGCOL|0: Clip background. Final signal for BGCOL circuit|
-|CLPO|Regs|FIFO|1: Clip sprites. Final signal for OAM FIFO circuit|
+|CLPO|Regs|FIFO|1: Clip sprites. Final signal for Obj FIFO circuit|
