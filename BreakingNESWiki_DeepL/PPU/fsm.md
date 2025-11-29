@@ -4,6 +4,8 @@
 
 The H/V logic is a finite state machine (FSM) that controls all other PPU parts. Schematically it is just a set of latches, like "this latch is active from 64th to 128th pixel", so the corresponding control line coming from this latch is also active.
 
+The patent refers to this circuit as an "H/V Counter", which is in the lower right corner of the patent diagram, and which is where the many outputs described in this section originate. However, the official PPU datasheet (the "faded scans") designates this block as "T.G.", which can be interpreted as "Timing Generator." This definition generally matches what can be seen in other video IC architectures of the era. The name "PPU FSM" was chosen by the authors. Generally speaking, any circuit with latches (internal states) can be considered an FSM, for example, counter control circuits. But this circuit is a true "FSM FSM", so the name "PPU FSM" stuck.
+
 The H/V FSM includes the following components:
 - Delayed counter H value output circuits
 - Horizontal logic associated with an H decoder
