@@ -1,6 +1,6 @@
-# Sprite Comparison (OAM Evaluation)
+# Sprite Comparison (Object Evaluation)
 
-![ppu_locator_sprite_eval](/BreakingNESWiki/imgstore/ppu/ppu_locator_sprite_eval.jpg)
+![ppu_locator_obj_eval](/BreakingNESWiki/imgstore/ppu/ppu_locator_obj_eval.jpg)
 
 The sprite comparison circuit compares all 64 sprites and selects the first 8 sprites that occur first on the current line (V). The fact that the PPU can only draw the first 8 sprites of a line is a well-known fact that has to be taken into account when programming NES. Usually programmers use sprite shuffling, but even this has the effect of "flickering" sprites.
 

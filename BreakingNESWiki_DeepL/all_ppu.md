@@ -16,7 +16,7 @@ TODO: Duplicate all image in ASCII art so that they are understood by LLMs which
 - [Color RAM](#color-ram)
 - [NTSC Video Signal](#ntsc-video)
 - [Video Signal Generator](#video-signal-generator)
-- [OAM Evaluation](#sprite-comparison-oam-evaluation)
+- [Object Evaluation (Sprite Comparison)](#sprite-comparison-object-evaluation)
 - [Multiplexer](#multiplexer)
 - [Object Attribute Memory (OAM)](#oam)
 - [Object FIFO](#object-fifo)
@@ -696,7 +696,7 @@ Outputs:
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
 |I/OAM2|Sprite Logic|"Init OAM2". Initialize an extra [OAM](#oam)|
 |PAR/O|All|"PAR for Object". Selecting a tile for an object (sprite)|
-|/VIS|Sprite Logic|"Not Visible". The invisible part of the signal (used by [sprite logic](#sprite-comparison-oam-evaluation))|
+|/VIS|Sprite Logic|"Not Visible". The invisible part of the signal (used by [sprite comparison](#sprite-comparison-object-evaluation))|
 |#F/NT|Data Reader, OAM Eval|"Fetch Name Table"|
 |F/TB|Data Reader|"Fetch Tile B"|
 |F/TA|Data Reader|"Fetch Tile A"|
@@ -1141,9 +1141,9 @@ Level values of the unloaded video signal:
 
 If the `TINT` signal value is 1, the voltage is multiplied by approx. 0.746f.
 
-# Sprite Comparison (OAM Evaluation)
+# Sprite Comparison (Object Evaluation)
 
-![ppu_locator_sprite_eval](/BreakingNESWiki/imgstore/ppu/ppu_locator_sprite_eval.jpg)
+![ppu_locator_obj_eval](/BreakingNESWiki/imgstore/ppu/ppu_locator_obj_eval.jpg)
 
 The sprite comparison circuit compares all 64 sprites and selects the first 8 sprites that occur first on the current line (V). The fact that the PPU can only draw the first 8 sprites of a line is a well-known fact that has to be taken into account when programming NES. Usually programmers use sprite shuffling, but even this has the effect of "flickering" sprites.
 
@@ -1387,7 +1387,7 @@ Sprite 0 Hit circuit:
 
 The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
-The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [Obj FIFO](#object-fifo)) and the control signal `/SPR0_EV` from [sprite comparison circuit](#sprite-comparison-oam-evaluation).
+The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [Obj FIFO](#object-fifo)) and the control signal `/SPR0_EV` from [sprite comparison circuit](#sprite-comparison-object-evaluation).
 
 ## Multiplexer Tricks
 

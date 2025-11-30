@@ -10,7 +10,7 @@
 - [Color RAM](cram.md)
 - [NTSC Video Signal](tv.md)
 - [Video Signal Generator](video_out.md)
-- [OAM Evaluation](sprite_eval.md)
+- [Object Evaluation (Sprite Comparison)](obj_eval.md)
 - [Multiplexer](mux.md)
 - [Object Attribute Memory (OAM)](oam.md)
 - [Object FIFO](fifo.md)
