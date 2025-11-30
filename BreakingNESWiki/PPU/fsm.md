@@ -54,7 +54,7 @@
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
 |I/OAM2|Sprite Logic|"Init OAM2". Инициализировать дополнительную [OAM](oam.md)|
 |PAR/O|All|"PAR for Object". Выборка тайла для объекта (спрайта).|
-|/VIS|Sprite Logic|"Not Visible". Невидимая часть сигнала (использует [спрайтовая логика](sprite_eval.md))|
+|/VIS|Sprite Logic|"Not Visible". Невидимая часть сигнала (использует [схема сравнения спрайтов](obj_eval.md))|
 |#F/NT|Data Reader, OAM Eval|0: "Fetch Name Table"|
 |F/TB|Data Reader|"Fetch Tile B"|
 |F/TA|Data Reader|"Fetch Tile A"|

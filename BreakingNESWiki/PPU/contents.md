@@ -10,7 +10,7 @@
 - [Палитра](cram.md)
 - [Видеосигнал NTSC](tv.md)
 - [Генератор видеосигнала](video_out.md)
-- [Сравнение спрайтов](sprite_eval.md)
+- [Сравнение спрайтов](obj_eval.md)
 - [Мультиплексор](mux.md)
 - [Спрайтовая память (OAM)](oam.md)
 - [Object FIFO](fifo.md)
