@@ -7,7 +7,7 @@
 - [H/V Счётчики](hv.md)
 - [H/V Декодер](hv_decoder.md)
 - [PPU FSM](fsm.md)
-- [Палитра](cram.md)
+- [Генератор Цвета](cram.md)
 - [Видеосигнал NTSC](tv.md)
 - [Генератор видеосигнала](video_out.md)
 - [Сравнение спрайтов](obj_eval.md)

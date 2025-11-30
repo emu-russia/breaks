@@ -25,7 +25,7 @@ Inputs:
 |BLNK|Active when PPU rendering is disabled (by `BLACK` signal) or during VBlank|
 |I/OAM2|"Init OAM2". Initialize an additional (temp) OAM|
 |/VIS|"Not Visible". The invisible part of the signal (used in sprite logic)|
-|PAR/O|"PAR for Object". Selecting a tile for an object (sprite)|
+|OBJ_READ|Common sprite fetch event, shared by many modules.|
 |/EVAL|"Sprite Evaluation in Progress"|
 |RESCL|"Reset FF Clear" / "VBlank Clear". VBlank period end event.|
 |#F/NT|0: "Fetch Name Table"|
@@ -157,7 +157,7 @@ In this case, this signal means that places where `/PCLK2` applies are triggered
 
 ## PD/FIFO
 
-This signal is needed when PAR/O is active. At other times it does not have any effect. The meaning of this signal is to prohibit loading sprite comparison artifact into FIFO, provided that the sprites are less than 8, or sprites for the current line were not found. This artifact appears because of the simplified circuit of copying sprites from OAM to OAM2, because the write signal is active even if the copying has not begun. This cell gets the last value from memory when comparing sprites. 
+This signal is needed when OBJ_READ is active. At other times it does not have any effect. The meaning of this signal is to prohibit loading sprite comparison artifact into FIFO, provided that the sprites are less than 8, or sprites for the current line were not found. This artifact appears because of the simplified circuit of copying sprites from OAM to OAM2, because the write signal is active even if the copying has not begun. This cell gets the last value from memory when comparing sprites. 
 
 In other words, if PD/FIFO = 1, then loading the pattern from PD (H. INV) is allowed, 0 is not allowed.
 

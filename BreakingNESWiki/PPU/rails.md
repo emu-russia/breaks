@@ -43,7 +43,7 @@
 |:zap:RESCL (VCLR)|FSM|All|"Reset FF Clear" / "VBlank Clear". Событие окончания периода VBlank. Вначале была установлена связь с контактом /RES, но потом выяснилось более глобальное назначение сигнала. Поэтому у сигнала два названия.|
 |OMFG|Sprite Eval|OAM Counters Ctrl|TBD: Контрольный сигнал|
 |:zap:BLNK|FSM|HDecoder, All|Активен когда рендеринг PPU отключен (сигналом `BLACK`) или во время VBlank|
-|:zap:PAR/O|FSM|All|"PAR for Object". Выборка тайла для объекта (спрайта)|
+|:zap:OBJ_READ|FSM|All|Сигнал для события выборки данных спрайтов из памяти.|
 |ASAP|OAM Counters Ctrl|OAM Counters Ctrl|TBD: Контрольный сигнал|
 |:zap:/VIS|FSM|Sprite Logic|"Not Visible". Невидимая часть сигнала (использует спрайтовая логика)|
 |:zap:I/OAM2|FSM|Sprite Logic|"Init OAM2". Инициализировать дополнительную OAM|
@@ -141,10 +141,10 @@
 
 |Сигнал|Откуда|Куда|Назначение|
 |---|---|---|---|
-|/SH2|Near MUX|Obj FIFO, V. Inversion|Разряды значения Sprite H. /SH2 также уходит в схему V. Inversion.|
-|/SH3|Near MUX|Obj FIFO|Разряды значения Sprite H|
-|/SH5|Near MUX|Obj FIFO|Разряды значения Sprite H|
-|/SH7|Near MUX|Obj FIFO|Разряды значения Sprite H|
+|/OBJ_RD_ATTR|Near MUX|Obj FIFO, V. Inversion|Разряды значения Sprite H. /OBJ_RD_ATTR также уходит в схему V. Inversion.|
+|/OBJ_RD_X|Near MUX|Obj FIFO|Разряды значения Sprite H|
+|/OBJ_RD_A|Near MUX|Obj FIFO|Разряды значения Sprite H|
+|/OBJ_RD_B|Near MUX|Obj FIFO|Разряды значения Sprite H|
 |/SPR0HIT|OAM Priority|Spr0 Strike|Для определения события `Sprite 0 Hit`|
 |BGC0-3|BG Color|MUX|Цвет бэкграунда|
 |/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|Obj FIFO|MUX|Цвет спрайта. :warning: Младшие 2 разряда в инверсной логике, старшие 2 разряда - в прямой логике.|

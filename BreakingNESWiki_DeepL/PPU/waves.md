@@ -24,13 +24,11 @@ States inside VBlank:
 
 Note that the figure with the scalines is scaled up (as seen by the change in the pixel counter H), compared to the scale in the VBlank figure (as seen by the change in the line counter V).
 
-## OAM Evaluate
+## Object Evaluate
 
 ## OAM Comparator
 
 ## SpriteH Signals
-
-## PAR Control
 
 ## Object FIFO Lane
 

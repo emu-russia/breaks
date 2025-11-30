@@ -7,13 +7,13 @@
 Выбранные спрайты помещаются в дополнительную память OAM2, откуда потом попадают для дальнейшей обработки в [Obj FIFO](fifo.md).
 
 Схема включает в себя:
-- Счётчик индекса OAM, для выборки следующего спрайта для сравнения
-- Счётчик индекса OAM2, для сохранения результатов сравнения
+- Счётчик адреса OAM, для выборки следующего спрайта для сравнения
+- Счётчик адреса OAM2, для сохранения результатов сравнения
 - Схемы контроля счётчиками
 - Компаратор, который выполняет операцию знакового вычитания (A - B)
 - Схему управления сравнением, которая и реализует всю логику работы сравнения спрайтов
 
-![OAM_Eval](/BreakingNESWiki/imgstore/ppu/OAM_Eval.png)
+![Obj_Eval](/BreakingNESWiki/imgstore/ppu/Obj_Eval.png)
 
 Таблица входных сигналов:
 
@@ -25,7 +25,7 @@
 |BLNK|Активен когда рендеринг PPU отключен (сигналом `BLACK`) или во время VBlank|
 |I/OAM2|"Init OAM2". Инициализировать дополнительную OAM|
 |/VIS|"Not Visible". Невидимая часть сигнала (использует спрайтовая логика)|
-|PAR/O|"PAR for Object". Выборка тайла для объекта (спрайта).|
+|OBJ_READ|Сигнал для события выборки данных спрайтов из памяти.|
 |/EVAL|0: "Sprite Evaluation in Progress"|
 |RESCL|Событие окончания периода VBlank|
 |#F/NT|0: "Fetch Name Table"|
@@ -84,33 +84,33 @@
 
 ## Разряд счётчиков
 
-![OAM_CounterBit](/BreakingNESWiki/imgstore/ppu/OAM_CounterBit.png)
+![Eval_CounterBit](/BreakingNESWiki/imgstore/ppu/Eval_CounterBit.png)
 
 Используется типовая схема разряда счётчиков, с одним исключением: существует возможность "заблокировать" пересчёт разряда (`BlockCount`). 
 
 Данная возможность используется только для разрядов 0 и 1 основного счётчика, чтобы реализовать режим пересчёта по модулю +4. Но блокирование пересчёта для младших разрядов приводит к тому, что для них перестаёт работать внутренняя цепочка переносов и поэтому в схему добавлена внешняя цепочка переносов для разрядов 2-7, которая используется в режиме Mode4.
 
-## Счётчик индекса основной OAM
+## Счётчик адреса основной OAM
 
-![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
+![eval_main_counter](/BreakingNESWiki/imgstore/ppu/eval_main_counter.jpg)
 
-![OAM_MainCounter](/BreakingNESWiki/imgstore/ppu/OAM_MainCounter.png)
+![Eval_MainCounter](/BreakingNESWiki/imgstore/ppu/Eval_MainCounter.png)
 
-## Счётчик индекса Temp OAM (OAM2)
+## Счётчик адреса Temp OAM (OAM2)
 
-![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
+![eval_temp_counter](/BreakingNESWiki/imgstore/ppu/eval_temp_counter.jpg)
 
-![OAM_TempCounter](/BreakingNESWiki/imgstore/ppu/OAM_TempCounter.png)
+![Eval_TempCounter](/BreakingNESWiki/imgstore/ppu/Eval_TempCounter.png)
 
 ## Управление счётчиками
 
 |Управление основным счётчиком|Управление счётчиком Temp OAM и схема переполнения спрайтов|
 |---|---|
-|![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)|![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)|
+|![oam_main_counter_control](/BreakingNESWiki/imgstore/ppu/oam_main_counter_control.jpg)|![eval_counters_control](/BreakingNESWiki/imgstore/ppu/eval_counters_control.jpg)|
 
-![OAM_CountersControl](/BreakingNESWiki/imgstore/ppu/OAM_CountersControl.png)
+![Eval_CountersControl](/BreakingNESWiki/imgstore/ppu/Eval_CountersControl.png)
 
-![OAM_SprOV_Flag](/BreakingNESWiki/imgstore/ppu/OAM_SprOV_Flag.png)
+![Eval_SprOV_Flag](/BreakingNESWiki/imgstore/ppu/Eval_SprOV_Flag.png)
 
 Режимы работы счётчиков OAM:
 
@@ -121,21 +121,21 @@
 
 ## Адрес OAM
 
-![oam_address_tran](/BreakingNESWiki/imgstore/ppu/oam_address_tran.jpg)
+![eval_oam_address_tran](/BreakingNESWiki/imgstore/ppu/eval_oam_address_tran.jpg)
 
-![OAM_Address](/BreakingNESWiki/imgstore/ppu/OAM_Address.png)
+![Eval_OAM_Address](/BreakingNESWiki/imgstore/ppu/Eval_OAM_Address.png)
 
 ## Компаратор
 
-![oam_cmpr](/BreakingNESWiki/imgstore/ppu/oam_cmpr.jpg)
+![eval_cmpr](/BreakingNESWiki/imgstore/ppu/eval_cmpr.jpg)
 
-![OAM_CmpBitPair](/BreakingNESWiki/imgstore/ppu/OAM_CmpBitPair.png)
+![Eval_CmpBitPair](/BreakingNESWiki/imgstore/ppu/Eval_CmpBitPair.png)
 
 Чётные и нечётные разряды компаратора объединены в одну схему, для компактизации инвертированной цепочки переноса. Между "дуплетами" цепочка переноса сохраняется в прямой логике.
 
 Так как схема является по сути вычитателем, то вместо "переноса" уместнее говорить "заём", но выражение "цепочка заёма" не принято и поэтому используется "цепочка переноса".
 
-![OAM_Cmp](/BreakingNESWiki/imgstore/ppu/OAM_Cmp.png)
+![Eval_Cmp](/BreakingNESWiki/imgstore/ppu/Eval_Cmp.png)
 
 Открывающие транзисторы для входных защёлок находятся рядом с OAM Buffer:
 
@@ -143,9 +143,9 @@
 
 ## Схема управления сравнением
 
-![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
+![eval_fsm](/BreakingNESWiki/imgstore/ppu/eval_fsm.jpg)
 
-![OAM_EvalFSM](/BreakingNESWiki/imgstore/ppu/OAM_EvalFSM.png)
+![Eval_FSM](/BreakingNESWiki/imgstore/ppu/Eval_FSM.png)
 
 Конструкция из nor+mux+FF представляет собой Posedge DFFE. Причем вход `#EN` (enable) - в инверсной логике.
 
@@ -157,7 +157,7 @@
 
 ## PD/FIFO
 
-Сигнал этот нужен когда активен PAR/O. В остальные моменты его срабатывание эффекта не даёт. Смысл его в запрете загрузки в FIFO артефакта сравнения спрайтов, при условии если спрайтов меньше 8, либо спрайты для текущей строки не были найдены. Появляется этот артефакт из-за упрощенной схемы копирования спрайтов из OAM в OAM2, ведь сигнал записи активен даже если копирование не начато. Получается в этой ячейке последнее значение из памяти при сравнении спрайтов. 
+Сигнал этот нужен когда активен OBJ_READ. В остальные моменты его срабатывание эффекта не даёт. Смысл его в запрете загрузки в FIFO артефакта сравнения спрайтов, при условии если спрайтов меньше 8, либо спрайты для текущей строки не были найдены. Появляется этот артефакт из-за упрощенной схемы копирования спрайтов из OAM в OAM2, ведь сигнал записи активен даже если копирование не начато. Получается в этой ячейке последнее значение из памяти при сравнении спрайтов. 
 
 Иными словами, если PD/FIFO = 1, то загрузка паттерна из PD (H. INV) разрешена, 0 - запрещена.
 

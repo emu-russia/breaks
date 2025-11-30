@@ -20,22 +20,22 @@ Signal table:
 |H0'' - H2''|Used to obtain /SHx signals|
 |H3'' - H5''|Used to select the lane|
 |**FSM**||
-|PAR/O|"PAR for Object". Selecting a tile for an object (sprite)|
+|OBJ_READ|Common sprite fetch event, shared by many modules.|
 |0/HPOS|"Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO|
 |/VIS|"Not Visible". The invisible part of the signal (used in sprite logic)|
 |CLPO|1: Clip sprites|
 |**From the sprite comparison**||
 |PD/FIFO|To zero the output of the H. Inv circuit|
 |**Internal signals**||
-|/SH2|0: Load sprite attribute|
-|/SH3|0: Load sprite X position into the reverse counter|
-|/SH5|0: Load `A` byte of the sprite into the paired shift register|
-|/SH7|0: Load `B` byte of the sprite into the paired shift register|
+|/OBJ_RD_ATTR|0: Load sprite attribute|
+|/OBJ_RD_X|0: Load sprite X position into the reverse counter|
+|/OBJ_RD_A|0: Load `A` byte of the sprite into the paired shift register|
+|/OBJ_RD_B|0: Load `B` byte of the sprite into the paired shift register|
 |/Tx|The result of the H.INV circuit, the input value to load into the paired shift register (in inverse logic)|
 |#0/H|Derived signal from 0/HPOS|
 |#x/EN|0: The lane is active. Each lane can be activated individually with its own #EN signal.|
 |**Output signals**||
-|/SH2|Also used in Data Reader|
+|/OBJ_RD_ATTR|Also used in Data Reader|
 |/SPR0HIT|To detect a `Sprite 0 Hit` event|
 |#ZCOL0, #ZCOL1, ZCOL2, ZCOL3, #ZPRIO|FIFO results for the multiplexer (MUX)|
 
@@ -137,7 +137,7 @@ HINV and HDIR are two complementary signals (they can never take the same value)
 
 ## Sprite H
 
-It was also decided to include a small circuit for getting `/SHx` values (Sprite H) as part of the FIFO. The circuit is above the multiplexer, but most of the `/SHx` outputs are used only in the Object FIFO (`/SH2` is also used in the Data Reader).
+It was also decided to include a small circuit for getting `/OBJ_RD_x` values (Object Read) as part of the FIFO. The circuit is above the multiplexer, but most of the `/OBJ_RD_x` outputs are used only in the Object FIFO (`/OBJ_RD_ATTR` is also used in the Data Reader).
 
 ![sprite_h](/BreakingNESWiki/imgstore/ppu/sprite_h.jpg)
 

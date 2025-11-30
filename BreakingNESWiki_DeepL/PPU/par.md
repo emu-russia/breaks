@@ -10,7 +10,7 @@ The circuit takes up the whole upper part and forms the tile (`Pattern`) address
 
 ![PAR](/BreakingNESWiki/imgstore/ppu/PAR.png)
 
-Small circuits to control the loading of values into the output latches. The main emphasis is on selecting the mode of operation for sprites/backgrounds (signal `PAR/O` - "PAR for Objects").
+Small circuits to control the loading of values into the output latches. The main emphasis is on selecting the mode of operation for sprites/backgrounds (signal `OBJ_READ`).
 
 |![ParControl](/BreakingNESWiki/imgstore/ppu/ParControl.png)|![ParV_Inversion](/BreakingNESWiki/imgstore/ppu/ParV_Inversion.png)|
 |---|---|

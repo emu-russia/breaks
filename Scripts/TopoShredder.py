@@ -197,7 +197,6 @@ def PpuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "reg_select", [3748, 1824, 718, 1012] )
 	CropImage (FusedTopo, imgstore + "rw_decoder", [5894, 1439, 538, 279] )
 	# OAM
-	CropImage (FusedTopo, imgstore + "oam_address_tran", [6042, 2588, 1038, 366] )
 	CropImage (FusedTopo, imgstore + "oam_buffer_bit", [7739, 6326, 617, 392] )
 	CropImage (FusedTopo, imgstore + "oam_buffer_control", [7713, 1572, 606, 726] )
 	CropImage (FusedTopo, imgstore + "oam_buffer_readback", [7424, 3536, 187, 350] )
@@ -205,13 +204,14 @@ def PpuShredder (FusedTopo):
 	CropImage (FusedTopo, imgstore + "oam_col_decoder", [7171, 872, 1125, 528] )
 	CropImage (FusedTopo, imgstore + "oam_col_outputs1", [8355, 2020, 349, 614] )
 	CropImage (FusedTopo, imgstore + "oam_col_outputs2", [8356, 3852, 349, 477] )
-	# OAM Eval
-	CropImage (FusedTopo, imgstore + "oam_cmpr", [5236, 3637, 1858, 917] )
-	CropImage (FusedTopo, imgstore + "oam_counters_control", [5304, 2567, 829, 928] )
-	CropImage (FusedTopo, imgstore + "oam_eval_control", [5126, 4489, 1851, 414] )
-	CropImage (FusedTopo, imgstore + "oam_index_counter", [5389, 1779, 1687, 789] )
-	CropImage (FusedTopo, imgstore + "oam_index_counter_control", [5199, 1831, 505, 1295] )
-	CropImage (FusedTopo, imgstore + "oam2_index_counter", [6100, 2941, 1028, 580] )
+	# Object Eval
+	CropImage (FusedTopo, imgstore + "eval_cmpr", [5236, 3637, 1858, 917] )
+	CropImage (FusedTopo, imgstore + "eval_counters_control", [5304, 2567, 829, 928] )
+	CropImage (FusedTopo, imgstore + "eval_fsm", [5126, 4489, 1851, 414] )	
+	CropImage (FusedTopo, imgstore + "eval_main_counter", [5389, 1779, 1687, 789] )
+	CropImage (FusedTopo, imgstore + "eval_main_counter_control", [5199, 1831, 505, 1295] )
+	CropImage (FusedTopo, imgstore + "eval_temp_counter", [6100, 2941, 1028, 580] )
+	CropImage (FusedTopo, imgstore + "eval_oam_address_tran", [6042, 2588, 1038, 366] )	
 	# FIFO
 	CropImage (FusedTopo, imgstore + "fifo_attr", [5490, 8394, 563, 470] )
 	CropImage (FusedTopo, imgstore + "fifo_counter", [5499, 9212, 557, 1263] )

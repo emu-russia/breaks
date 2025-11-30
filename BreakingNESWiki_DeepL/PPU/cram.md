@@ -1,12 +1,12 @@
-# Color RAM
+# Color Generator RAM (CRAM)
 
 ![ppu_locator_cram](/BreakingNESWiki/imgstore/ppu/ppu_locator_cram.jpg)
 
-The logic for working with the palette includes the following circuits:
+The logic for working with the color generator (aka "palette") includes the following circuits:
 - Color Buffer (CB)
 - Color Buffer control circuitry
-- Palette memory (Color RAM)
-- Decoder of the palette index, coming from the output of the multiplexer
+- Color memory array (Color RAM)
+- Decoder of the CRAM address, coming from the output of the multiplexer
 
 ![CRAM_All](/BreakingNESWiki/imgstore/ppu/CRAM_All.jpg)
 
@@ -69,11 +69,9 @@ A similar transistor for the 2 luminance bits is simply always open:
 By convention, groups of cells that are addressed by the lowest bits of the address will be considered "rows", and groups of cells that are addressed by the highest bits will be considered "columns".
 
 Color RAM:
-- PAL3, PAL2: Defines column (PAL3 - msb)
-- PAL4, PAL1, PAL0: Defines a row (PAL4 - msb)
+- CGA3, CGA2: Defines column (CGA3 - msb)
+- CGA4, CGA1, CGA0: Defines a row (CGA4 - msb)
 - Rows 0 and 4 combined
-
-It looks a bit chaotic, but it is what it is. Reverse engineering of memory for some reason always goes with this kind of agony of understanding, but don't forget the fact that the order in which the address lines are connected for memory indexing is generally irrelevant.
 
 COL outputs:
 
@@ -98,7 +96,7 @@ The value is written or read with two complementary inOut: /val and val. The pri
 
 ### CRAM Index Decoder
 
-:warning: Note that the PAL4 signal does not follow the usual order. This bit selects the type of palette: palette for the background or for the sprites.
+:warning: Note that the CGA4 signal does not follow the usual order. This bit selects the type of palette: palette for the background or for the sprites.
 
 |![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
 |---|---|
