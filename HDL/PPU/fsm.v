@@ -4,7 +4,7 @@ module PPU_FSM (
 	n_PCLK, PCLK,
 	H_out, V_out, HPLA_out, VPLA_out, RES, VBL_EN, n_R2, n_DBE, n_OBCLIP, n_BGCLIP, BLACK,
 	H0_DD, H0_D, H1_DD, nH1_D, H2_DD, nH2_D, H3_DD, H4_DD, H5_DD,
-	S_EV, CLIP_O, CLIP_B, Z_HPOS, n_EVAL, E_EV, I_OAM2, PAR_O, n_VIS, n_FNT, F_TB, F_TA, n_FO, F_AT, SC_CNT, BURST, SYNC,
+	S_EV, CLIP_O, CLIP_B, Z_HPOS, n_EVAL, E_EV, I_OAM2, OBJ_READ, n_VIS, n_FNT, F_TB, F_TA, n_FO, F_AT, SC_CNT, BURST, SYNC,
 	n_PICTURE, RESCL, VB, BLNK,
 	Int, DB7, V_IN, HC, VC);
 
@@ -40,7 +40,7 @@ module PPU_FSM (
 	output n_EVAL; 				// 0: "Sprite Evaluation in Progress"
 	output E_EV; 				// "End Sprite Evaluation"
 	output I_OAM2; 				// "Init OAM2". Initialize an extra OAM
-	output PAR_O; 				// "PAR for Object". Selecting a tile for an object (sprite)
+	output OBJ_READ; 			// Common sprite fetch event, shared by many modules. Selecting a tile for an object (sprite)
 	output n_VIS; 				// 0: "Not Visible". The invisible part of the signal (used by sprite logic)
 	output n_FNT; 				// 0: "Fetch Name Table"
 	output F_TB; 				// "Fetch Tile B"
@@ -159,7 +159,7 @@ module PPU_FSM (
 		.n_EVAL(n_EVAL),
 		.E_EV(E_EV),
 		.I_OAM2(I_OAM2),
-		.PAR_O(PAR_O),
+		.OBJ_READ(OBJ_READ),
 		.n_VIS(n_VIS),
 		.n_FNT(n_FNT),
 		.F_TB(F_TB),
@@ -349,7 +349,7 @@ endmodule // HVCounterControl_2C07
 
 // Horizontal logic associated with an H decoder
 module HPosLogic (PCLK, n_PCLK, HPLA_out, n_OBCLIP, n_BGCLIP, VSYNC, BLACK, 
-	S_EV, CLIP_O, CLIP_B, Z_HPOS, n_EVAL, E_EV, I_OAM2, PAR_O, n_VIS, n_FNT, F_TB, F_TA, n_FO, F_AT, BPORCH, SC_CNT, n_HB, BURST, SYNC);
+	S_EV, CLIP_O, CLIP_B, Z_HPOS, n_EVAL, E_EV, I_OAM2, OBJ_READ, n_VIS, n_FNT, F_TB, F_TA, n_FO, F_AT, BPORCH, SC_CNT, n_HB, BURST, SYNC);
 
 	input PCLK;
 	input n_PCLK;
@@ -366,7 +366,7 @@ module HPosLogic (PCLK, n_PCLK, HPLA_out, n_OBCLIP, n_BGCLIP, VSYNC, BLACK,
 	output n_EVAL;
 	output E_EV;
 	output I_OAM2;
-	output PAR_O;
+	output OBJ_READ;
 	output n_VIS;
 	output n_FNT;
 	output F_TB;
@@ -399,8 +399,8 @@ module HPosLogic (PCLK, n_PCLK, HPLA_out, n_OBCLIP, n_BGCLIP, VSYNC, BLACK,
 	wire eev_latch2_nq;
 	wire ioam_latch1_nq;
 	wire ioam_latch2_nq;
-	wire paro_latch1_nq;
-	wire paro_latch2_nq;
+	wire objrd_latch1_nq;
+	wire objrd_latch2_nq;
 	wire nvis_latch1_nq;
 	wire nvis_latch2_nq;
 	wire fnt_latch1_nq;
@@ -449,8 +449,8 @@ module HPosLogic (PCLK, n_PCLK, HPLA_out, n_OBCLIP, n_BGCLIP, VSYNC, BLACK,
 	dlatch eev_latch2 (.d(eev_latch1_nq), .en(PCLK), .nq(eev_latch2_nq));
 	dlatch ioam_latch1 (.d(HPLA_out[8]), .en(n_PCLK), .nq(ioam_latch1_nq));
 	dlatch ioam_latch2 (.d(ioam_latch1_nq), .en(PCLK), .nq(ioam_latch2_nq));
-	dlatch paro_latch1 (.d(HPLA_out[9]), .en(n_PCLK), .nq(paro_latch1_nq));
-	dlatch paro_latch2 (.d(paro_latch1_nq), .en(PCLK), .nq(paro_latch2_nq));
+	dlatch objrd_latch1 (.d(HPLA_out[9]), .en(n_PCLK), .nq(objrd_latch1_nq));
+	dlatch objrd_latch2 (.d(objrd_latch1_nq), .en(PCLK), .nq(objrd_latch2_nq));
 	dlatch nvis_latch1 (.d(HPLA_out[10]), .en(n_PCLK), .nq(nvis_latch1_nq));
 	dlatch nvis_latch2 (.d(nvis_latch1_nq), .en(PCLK), .nq(nvis_latch2_nq));
 	dlatch fnt_latch1 (.d(HPLA_out[11]), .en(n_PCLK), .nq(fnt_latch1_nq));
@@ -488,7 +488,7 @@ module HPosLogic (PCLK, n_PCLK, HPLA_out, n_OBCLIP, n_BGCLIP, VSYNC, BLACK,
 	assign n_EVAL = ~eval_latch2_nq;
 	assign E_EV = eev_latch2_nq;
 	assign I_OAM2 = ioam_latch2_nq;
-	assign PAR_O = paro_latch2_nq;
+	assign OBJ_READ = objrd_latch2_nq;
 	assign n_VIS = ~nvis_latch2_nq;
 	assign n_FNT = ~fnt_latch2_nq;
 	assign F_TB = ~(ftb_latch2_q | fo_latch3_q);

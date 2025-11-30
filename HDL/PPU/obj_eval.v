@@ -1,7 +1,7 @@
 
-module OAMEval(
+module ObjEval(
 	n_PCLK, PCLK,
-	BLNK, I_OAM2, n_VIS, PAR_O, n_EVAL, RESCL, H0_DD, H0_D, n_H2_D, OFETCH, n_FNT, S_EV,
+	BLNK, I_OAM2, n_VIS, OBJ_READ, n_EVAL, RESCL, H0_DD, H0_D, n_H2_D, OFETCH, n_FNT, S_EV,
 	n_W3, n_DBE,
 	DB5, 
 	n_OAM, OAM8, OAMCTR2, SPR_OV, OV, PD_FIFO, n_SPR0_EV);
@@ -12,7 +12,7 @@ module OAMEval(
 	input BLNK;
 	input I_OAM2;
 	input n_VIS;
-	input PAR_O;
+	input OBJ_READ;
 	input n_EVAL;
 	input RESCL;
 	input H0_DD;
@@ -34,4 +34,4 @@ module OAMEval(
 	output PD_FIFO;
 	output n_SPR0_EV;
 
-endmodule // OAMEval
+endmodule // ObjEval

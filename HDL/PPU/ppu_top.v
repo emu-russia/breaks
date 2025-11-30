@@ -82,7 +82,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire n_EVAL;				// 0: "Sprite Evaluation in Progress"
 	wire E_EV;					// "End Sprite Evaluation"
 	wire I_OAM2;				// "Init OAM2". Initialize an additional (temp) OAM
-	wire PAR_O;					// "PAR for Object". Selecting a tile for an object (sprite)
+	wire OBJ_READ;				// Common sprite fetch event, shared by many modules. Selecting a tile for an object (sprite)
 	wire n_VIS;					// "Not Visible". The invisible part of the signal (used in sprite logic)
 	wire n_FNT;					// 0: "Fetch Name Table"
 	wire F_TB;					// "Fetch Tile B"
@@ -119,7 +119,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire ZCOL2;
 	wire ZCOL3;
 	wire n_ZPRIO;				// 0: Priority of sprite over background
-	wire n_SH2;
+	wire n_OBJ_RD_ATTR;
 
 	wire [4:0] TH;
 	wire [4:0] TV;
@@ -132,9 +132,9 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire [4:0] TVO;
 	wire W6_2_Ena;
 	wire [3:0] BGC;				// Background color
-	wire [13:0] PAD_adr;
-	wire [13:0] FAT_adr;
-	wire [13:0] PAR_adr;
+	wire [13:0] PAT_adr;
+	wire [13:0] AT_adr;
+	wire [13:0] NT_adr;
 
 	wire [7:0] CPU_DB;			// Internal CPU data bus DB
 	wire [7:0] PD;				// Read-only PPU Data bus
@@ -284,7 +284,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.n_EVAL(n_EVAL),
 		.E_EV(E_EV),
 		.I_OAM2(I_OAM2),
-		.PAR_O(PAR_O),
+		.OBJ_READ(OBJ_READ),
 		.n_VIS(n_VIS),
 		.n_FNT(n_FNT),
 		.F_TB(F_TB),
@@ -314,13 +314,13 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.n_CLPB(n_CLPB),
 		.CLPO(CLPO) );
 
-	OAMEval eval(
+	ObjEval eval(
 		.n_PCLK(n_PCLK),
 		.PCLK(PCLK),
 		.BLNK(BLNK),
 		.I_OAM2(I_OAM2),
 		.n_VIS(n_VIS),
-		.PAR_O(PAR_O),
+		.OBJ_READ(OBJ_READ),
 		.n_EVAL(n_EVAL),
 		.RESCL(RESCL),
 		.H0_DD(H0_DD),
@@ -361,7 +361,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	ObjectFIFO fifo(
 		.n_PCLK(n_PCLK),
 		.PCLK(PCLK),
-		.PAR_O(PAR_O),
+		.OBJ_READ(OBJ_READ),
 		.H0_DD(H0_DD),
 		.H1_DD(H1_DD),
 		.H2_DD(H2_DD),
@@ -379,7 +379,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.ZCOL2(ZCOL2),
 		.ZCOL3(ZCOL3),
 		.n_ZPRIO(n_ZPRIO),
-		.n_SH2(n_SH2) );
+		.n_OBJ_RD_ATTR(n_OBJ_RD_ATTR) );
 
 	PAR par (
 		.n_PCLK(n_PCLK),
@@ -388,14 +388,14 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.BGSEL(BGSEL),
 		.OBSEL(OBSEL),
 		.O8_16(O_8_16),
-		.PAR_O(PAR_O),
-		.n_SH2(n_SH2),
+		.OBJ_READ(OBJ_READ),
+		.n_OBJ_RD_ATTR(n_OBJ_RD_ATTR),
 		.n_H1D(nH1_D),
 		.OB(OB),
 		.PD(PD),
 		.OV(OV[3:0]),
 		.n_FVO(n_FVO),
-		.PAddr_out(PAD_adr) );
+		.PAddr_out(PAT_adr) );
 
 	TileCnt tilecnt (
 		.n_PCLK(n_PCLK),
@@ -417,8 +417,8 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.n_FVO(n_FVO),
 		.THO(THO),
 		.TVO(TVO),
-		.FAT(FAT_adr),
-		.PAR(PAR_adr) );
+		.AT_adr(AT_adr),
+		.NT_adr(NT_adr) );
 
 	PAMUX pamux (
 		.PCLK(PCLK),
@@ -426,9 +426,9 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.BLNK(BLNK),
 		.F_AT(F_AT),
 		.DB_PAR(DB_PAR), 
-		.FAT_in(FAT_adr),
-		.PAR_in(PAR_adr),
-		.PAD_in(PAD_adr),
+		.AT_ADR_in(AT_adr),
+		.NT_ADR_in(NT_adr),
+		.PAT_ADR_in(PAT_adr),
 		.CPU_DB(CPU_DB),
 		.n_PA(n_PA_out) );
 
@@ -501,7 +501,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.EXT_in(EXT_in),
 		.THO(THO),
 		.TH_MUX(TH_MUX),
-		.PAL_out(CRAM_Addr),
+		.CGA_out(CRAM_Addr),
 		.n_EXT_out(n_EXT_out) );
 
 	Spr0Hit spr0hit(
@@ -524,7 +524,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 		.DB_PAR(DB_PAR),
 		.n_PICTURE(n_PICTURE),
 		.BnW(BnW),
-		.PAL(CRAM_Addr),
+		.CGA(CRAM_Addr),
 		.CPU_DB(CPU_DB), 
 		.n_CC(n_CC),
 		.n_LL(n_LL) );
