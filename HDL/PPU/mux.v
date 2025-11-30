@@ -2,7 +2,7 @@
 module PictureMUX(
 	n_PCLK, PCLK, 
 	BGC, n_ZPRIO, n_ZCOL0, n_ZCOL1, ZCOL2, ZCOL3, EXT_in, THO, TH_MUX,
-	PAL_out, n_EXT_out);
+	CGA_out, n_EXT_out);
 
 	input n_PCLK;
 	input PCLK;
@@ -17,7 +17,7 @@ module PictureMUX(
 	input [4:0] THO;
 	input TH_MUX;
 
-	output [4:0] PAL_out;
+	output [4:0] CGA_out;
 	output [3:0] n_EXT_out;
 
 endmodule // PictureMUX

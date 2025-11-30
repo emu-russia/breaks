@@ -2,7 +2,7 @@
 module CRAM_Block (
 	n_PCLK, PCLK,
 	n_R7, n_DBE, TH_MUX, DB_PAR, n_PICTURE, BnW,
-	PAL,
+	CGA,
 	CPU_DB, 
 	n_CC, n_LL);
 
@@ -16,7 +16,7 @@ module CRAM_Block (
 	input n_PICTURE;
 	input BnW;
 
-	input [4:0] PAL;
+	input [4:0] CGA;
 
 	inout [7:0] CPU_DB;
 
@@ -27,10 +27,10 @@ module CRAM_Block (
 	wire color_mode;
 	wire n_DB_CB;
 
-	wire [5:0] cram_val;
+	wire [5:0] cram_val; 	// bitline
 	wire [5:0] CB_Out;
-	wire [3:0] COL;
-	wire [6:0] ROW;
+	wire [3:0] COL; 		// Column enable for bit lines
+	wire [6:0] ROW; 		// Row enable for word lines
 
 	CB_Control cbctl(
 		.PCLK(PCLK),
@@ -56,7 +56,7 @@ module CRAM_Block (
 
 	CRAM_Decoder cramdec(
 		.PCLK(PCLK),
-		.PAL(PAL),
+		.CGA(CGA),
 		.COL(COL),
 		.ROW(ROW) );
 
@@ -108,12 +108,12 @@ module ColorBuf(
 
 endmodule // ColorBuf
 
-module CRAM_Decoder(PCLK, PAL, COL, ROW);
+module CRAM_Decoder(PCLK, CGA, COL, ROW);
 
 	input PCLK;
-	input [4:0] PAL;
-	output [3:0] COL;
-	output [6:0] ROW;
+	input [4:0] CGA;
+	output [3:0] COL;		// Column enable for bit lines
+	output [6:0] ROW; 		// Row enable for word lines
 
 endmodule // CRAM_Decoder
 
@@ -122,6 +122,6 @@ module CRAM(PCLK, COL, ROW, cram_val);
 	input PCLK;
 	input [3:0] COL;
 	input [6:0] ROW;
-	inout [5:0] cram_val;
+	inout [5:0] cram_val;		// bitline
 
 endmodule // CRAM
