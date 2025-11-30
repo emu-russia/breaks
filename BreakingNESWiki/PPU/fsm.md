@@ -125,7 +125,7 @@
 
 Логическая схема:
 
-![hv_fsm_vert_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert_logic.jpg)
+![VPosLogic](/BreakingNESWiki/imgstore/ppu/VPosLogic.png)
 
 ## Обработка прерывания VBlank
 
