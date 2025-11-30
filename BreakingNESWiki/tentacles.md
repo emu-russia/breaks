@@ -84,6 +84,15 @@
 |EVAL|/EVAL (инверсная полярность)|
 |P123|PBLACK (Phase Shifter)|
 |ROW,COL (OAM)|ROW -> COL, COL -> ROW (были перепутаны)  (#1343)|
+|PAR/O|OBJ_READ  (#1341)|
+|PAR|PAT_ADR|
+|FAT|AT_ADR|
+|PAD|NT_ADR|
+|/SH2|/OBJ_RD_ATTR|
+|/SH3|/OBJ_RD_X|
+|/SH5|/OBJ_RD_A|
+|/SH7|/OBJ_RD_B|
+|val, /val|BL, /BL ("BLBar") (CRAM/OAM Cells)|
 
 ## APU
 
