@@ -16,7 +16,7 @@ TODO: Duplicate all image in ASCII art so that they are understood by LLMs which
 - [Color RAM](#color-ram)
 - [NTSC Video Signal](#ntsc-video)
 - [Video Signal Generator](#video-signal-generator)
-- [Object Evaluation (Sprite Comparison)](#sprite-comparison-oam-evaluation)
+- [Object Evaluation (Sprite Comparison)](#sprite-comparison-object-evaluation)
 - [Multiplexer](#multiplexer)
 - [Object Attribute Memory (OAM)](#oam)
 - [Object FIFO](#object-fifo)
@@ -696,7 +696,7 @@ Outputs:
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
 |I/OAM2|Sprite Logic|"Init OAM2". Initialize an extra [OAM](#oam)|
 |PAR/O|All|"PAR for Object". Selecting a tile for an object (sprite)|
-|/VIS|Sprite Logic|"Not Visible". The invisible part of the signal (used by [sprite comparison](#sprite-comparison-oam-evaluation))|
+|/VIS|Sprite Logic|"Not Visible". The invisible part of the signal (used by [sprite comparison](#sprite-comparison-object-evaluation))|
 |#F/NT|Data Reader, OAM Eval|"Fetch Name Table"|
 |F/TB|Data Reader|"Fetch Tile B"|
 |F/TA|Data Reader|"Fetch Tile A"|
@@ -1387,7 +1387,7 @@ Sprite 0 Hit circuit:
 
 The control output `STRIKE` is 1 only when BGC0=1 or BGC1=1 with all other inputs set to 0.
 
-The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [Obj FIFO](#object-fifo)) and the control signal `/SPR0_EV` from [sprite comparison circuit](#sprite-comparison-oam-evaluation).
+The control signal `/SPR0HIT` comes from the sprite priority control circuit (see [Obj FIFO](#object-fifo)) and the control signal `/SPR0_EV` from [sprite comparison circuit](#sprite-comparison-object-evaluation).
 
 ## Multiplexer Tricks
 
