@@ -43,7 +43,7 @@ The most important control signals of the [PPU FSM](fsm.md) are marked with a sp
 |:zap:RESCL (VCLR)|FSM|All|"Reset FF Clear" / "VBlank Clear". VBlank period end event. Initially the connection was established with contact /RES, but then it turned out a more global purpose of the signal. Therefore, the signal has two names.|
 |OMFG|Sprite Eval|OAM Counters Ctrl|TBD: Control signal|
 |:zap:BLNK|FSM|HDecoder, All|Active when PPU rendering is disabled (by `BLACK` signal) or during VBlank|
-|:zap:PAR/O|FSM|All|"PAR for Object". Selecting a tile for an object (sprite)|
+|:zap:OBJ_READ|FSM|All|Common sprite fetch event, shared by many modules.|
 |ASAP|OAM Counters Ctrl|OAM Counters Ctrl|TBD: Control signal|
 |:zap:/VIS|FSM|Sprite Logic|"Not Visible". The invisible part of the signal (used in sprite logic)|
 |:zap:I/OAM2|FSM|Sprite Logic|"Init OAM2". Initialize an additional (temp) OAM|
@@ -141,10 +141,10 @@ Note: The different inversion of OAM address values of PAL and NTSC PPUs causes 
 
 |Signal|From|Where|Purpose|
 |---|---|---|---|
-|/SH2|Near MUX|Obj FIFO, V. Inversion|Sprite H value bits. /SH2 also goes into V. Inversion.|
-|/SH3|Near MUX|Obj FIFO|Sprite H value bits|
-|/SH5|Near MUX|Obj FIFO|Sprite H value bits|
-|/SH7|Near MUX|Obj FIFO|Sprite H value bits|
+|/OBJ_RD_ATTR|Near MUX|Obj FIFO, V. Inversion|Sprite H value bits. /OBJ_RD_ATTR also goes into V. Inversion.|
+|/OBJ_RD_X|Near MUX|Obj FIFO|Sprite H value bits|
+|/OBJ_RD_A|Near MUX|Obj FIFO|Sprite H value bits|
+|/OBJ_RD_B|Near MUX|Obj FIFO|Sprite H value bits|
 |/SPR0HIT|OAM Priority|Spr0 Strike|To detect a `Sprite 0 Hit` event|
 |BGC0-3|BG Color|MUX|Background color|
 |/ZCOL0, /ZCOL1, ZCOL2, ZCOL3|Obj FIFO|MUX|Sprite color. :warning: The lower 2 bits are in inverse logic, the higher 2 bits are in direct logic.|

@@ -73,7 +73,7 @@ Visual 2C02: http://www.qmtpro.com/~nes/chipimages/visual2c02/
 |/EVAL|node: 708 ++/hpos_eq_63_255_or_339_and_rendering|
 |E/EV|node: 1009 ++hpos_eq_255_and_rendering|
 |I/OAM2|node: 357 ++hpos_lt_64_and_rendering|
-|PAR/O|node: 328 ++hpos_eq_256_to_319_and_rendering|
+|OBJ_READ|node: 328 ++hpos_eq_256_to_319_and_rendering|
 |/VIS|node: 283 ++/in_visible_frame_and_rendering|
 |#F/NT|node: 1051 ++/hpos_mod_8_eq_0_or_1_and_rendering|
 |F/TB|node: 1091 ++hpos_eq_0-255_or_320-335_and_hpos_mod_8_eq_6_or_7_and_rendering|
@@ -146,10 +146,10 @@ Visual 2C02: http://www.qmtpro.com/~nes/chipimages/visual2c02/
 |OV 0-7|+vpos_minus_spr_d0-7|
 |/WE|node: 334 oam_write_disable|
 |Object FIFO||
-|/SH2|node: 1322 /spr_loadFlag|
-|/SH3|node: 1311 /spr_loadX|
-|/SH5|node: 1337 /spr_loadL|
-|/SH7|node: 1329 /spr_loadH|
+|/OBJ_RD_ATTR|node: 1322 /spr_loadFlag|
+|/OBJ_RD_X|node: 1311 /spr_loadX|
+|/OBJ_RD_A|node: 1337 /spr_loadL|
+|/OBJ_RD_B|node: 1329 /spr_loadH|
 |#0/H|node: 1681 +++++/hpos_eq_339_and_rendering|
 |DataReader||
 |CLPO|node: 1283 ++++/do_sprite_render_ops|

@@ -30,7 +30,7 @@
 
 ## Логическая схема
 
-![mux_logic](/BreakingNESWiki/imgstore/ppu/mux_logic.jpg)
+![MUX_All](/BreakingNESWiki/imgstore/ppu/MUX_All.png)
 
 Схема управления:
 

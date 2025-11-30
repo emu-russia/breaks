@@ -2,6 +2,8 @@
 
 ![ppu_locator_scroll_regs](/BreakingNESWiki/imgstore/ppu/ppu_locator_scroll_regs.jpg)
 
+Scroll registers are an entity that is usually referred to as `t` in the nesdev community.
+
 The scrolling registers are tricky:
 - Two consecutive writes to $2005 or $2006 put values into the same FF
 - The best way to see when and where they are written is in the tables below

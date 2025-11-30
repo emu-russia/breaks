@@ -14,7 +14,7 @@
 - Схема EVEN/ODD
 - Схема управления H/V счётчиками
 
-![hv_fsm_all](/BreakingNESWiki/imgstore/ppu/hv_fsm_all.jpg)
+![HV_FSM_All](/BreakingNESWiki/imgstore/ppu/HV_FSM_All.png)
 
 Управляющая логика насыщена разного рода сигналами, которые приходят и уходят практически во все возможные узлы PPU.
 
@@ -53,7 +53,7 @@
 |/EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
 |I/OAM2|Sprite Logic|"Init OAM2". Инициализировать дополнительную [OAM](oam.md)|
-|PAR/O|All|"PAR for Object". Выборка тайла для объекта (спрайта).|
+|OBJ_READ|All|Сигнал для события выборки данных спрайтов из памяти.|
 |/VIS|Sprite Logic|"Not Visible". Невидимая часть сигнала (использует [схема сравнения спрайтов](obj_eval.md))|
 |#F/NT|Data Reader, OAM Eval|0: "Fetch Name Table"|
 |F/TB|Data Reader|"Fetch Tile B"|
@@ -105,7 +105,7 @@
 
 ![hv_fporch](/BreakingNESWiki/imgstore/ppu/hv_fporch.jpg)
 
-![hv_fsm_horz](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz.jpg)
+![HPosLogic](/BreakingNESWiki/imgstore/ppu/HPosLogic.png)
 
 Логическая схема:
 
@@ -125,7 +125,7 @@
 
 Логическая схема:
 
-![hv_fsm_vert_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert_logic.jpg)
+![VPosLogic](/BreakingNESWiki/imgstore/ppu/VPosLogic.png)
 
 ## Обработка прерывания VBlank
 

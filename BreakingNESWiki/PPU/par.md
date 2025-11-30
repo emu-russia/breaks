@@ -10,9 +10,9 @@
 
 ![PAR](/BreakingNESWiki/imgstore/ppu/PAR.png)
 
-Небольшие схемы для контроля загрузки значений в выходные защёлки. Основной акцент делается на выбор режима работы для спрайтов/бэкграунда (сигнал `PAR/O` - "PAR for Objects").
+Небольшие схемы для контроля загрузки значений в выходные защёлки. Основной акцент делается на выбор режима работы для спрайтов/бэкграунда (сигнал `OBJ_READ`).
 
-|![ParControl](/BreakingNESWiki/imgstore/ppu/ParControl.png)|![ParV_Inversion](/BreakingNESWiki/imgstore/ppu/ParV_Inversion.png)|
+|![ParControl](/BreakingNESWiki/imgstore/ppu/ParControl.png)|![V_Inversion](/BreakingNESWiki/imgstore/ppu/V_Inversion.png)|
 |---|---|
 
 Схемы разрядов для формирования выходного значения `/PAD0-12` в незначительных вариациях:

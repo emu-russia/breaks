@@ -47,7 +47,7 @@ Main components of PPU:
 - Address bus control circuitry. Controls the VRAM addressing.
 - Data fetcher circuit (DATA READER). Circuit for fetching source data from VRAM: tiles and attributes. Includes a PAR address generator and a circuit for producing a background color.
 
-![PPU](/BreakingNESWiki/imgstore/ppu/PPU.jpg)
+![PPU](/BreakingNESWiki/imgstore/ppu/PPU.png)
 
 ## PPU Buses
 

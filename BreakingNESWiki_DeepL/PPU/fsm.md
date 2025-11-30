@@ -14,7 +14,7 @@ The H/V FSM includes the following components:
 - EVEN/ODD circuitry
 - H/V counter control circuitry
 
-![hv_fsm_all](/BreakingNESWiki/imgstore/ppu/hv_fsm_all.jpg)
+![HV_FSM_All](/BreakingNESWiki/imgstore/ppu/HV_FSM_All.png)
 
 The control logic is loaded with all kinds of signals that come and go to almost every possible PPU component.
 
@@ -49,11 +49,11 @@ Outputs:
 |S/EV|Sprite Logic|"Start Sprite Evaluation"|
 |CLIP_O|Control Regs|"Clip Objects". 1: Do not show the left 8 screen pixels for sprites. Used to get the `CLPO` signal that goes into the Obj FIFO.|
 |CLIP_B|Control Regs|"Clip Background". 1: Do not show the left 8 pixels of the screen for the background. Used to get the `/CLPB` signal that goes into the Data Reader.|
-|0/HPOS|Obj FIFO|"Clear HPos". Clear the H counters in the [sprite FIFO](fifo.md) and start the FIFO|
+|0/HPOS|Obj FIFO|"Clear HPos". Clear the H counters in the [object FIFO](fifo.md) and start the FIFO|
 |/EVAL|Sprite Logic|"Sprite Evaluation in Progress"|
 |E/EV|Sprite Logic|"End Sprite Evaluation"|
 |I/OAM2|Sprite Logic|"Init OAM2". Initialize an extra [OAM](oam.md)|
-|PAR/O|All|"PAR for Object". Selecting a tile for an object (sprite)|
+|OBJ_READ|All|Common sprite fetch event, shared by many modules.|
 |/VIS|Sprite Logic|"Not Visible". The invisible part of the signal (used by [sprite comparison](obj_eval.md))|
 |#F/NT|Data Reader, OAM Eval|"Fetch Name Table"|
 |F/TB|Data Reader|"Fetch Tile B"|
@@ -109,7 +109,7 @@ Transistor Circuit:
 
 Logic:
 
-![hv_fsm_horz_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz_logic.jpg)
+![HPosLogic](/BreakingNESWiki/imgstore/ppu/HPosLogic.png)
 
 As a result, the circuit generates the following signal diagram:
 
@@ -127,7 +127,7 @@ Transistor Circuit:
 
 Logic:
 
-![hv_fsm_vert_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert_logic.jpg)
+![VPosLogic](/BreakingNESWiki/imgstore/ppu/VPosLogic.png)
 
 ## VBlank Interrupt Handling
 
