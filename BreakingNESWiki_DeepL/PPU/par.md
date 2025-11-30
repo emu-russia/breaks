@@ -12,7 +12,7 @@ The circuit takes up the whole upper part and forms the tile (`Pattern`) address
 
 Small circuits to control the loading of values into the output latches. The main emphasis is on selecting the mode of operation for sprites/backgrounds (signal `OBJ_READ`).
 
-|![ParControl](/BreakingNESWiki/imgstore/ppu/ParControl.png)|![ParV_Inversion](/BreakingNESWiki/imgstore/ppu/ParV_Inversion.png)|
+|![ParControl](/BreakingNESWiki/imgstore/ppu/ParControl.png)|![V_Inversion](/BreakingNESWiki/imgstore/ppu/V_Inversion.png)|
 |---|---|
 
 Bit circuits to form the output value `/PAD0-12` in slight variations:

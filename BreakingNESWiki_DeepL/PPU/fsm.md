@@ -14,7 +14,7 @@ The H/V FSM includes the following components:
 - EVEN/ODD circuitry
 - H/V counter control circuitry
 
-![hv_fsm_all](/BreakingNESWiki/imgstore/ppu/hv_fsm_all.jpg)
+![HV_FSM_All](/BreakingNESWiki/imgstore/ppu/HV_FSM_All.png)
 
 The control logic is loaded with all kinds of signals that come and go to almost every possible PPU component.
 
@@ -109,7 +109,7 @@ Transistor Circuit:
 
 Logic:
 
-![hv_fsm_horz_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz_logic.jpg)
+![HPosLogic](/BreakingNESWiki/imgstore/ppu/HPosLogic.png)
 
 As a result, the circuit generates the following signal diagram:
 
@@ -127,7 +127,7 @@ Transistor Circuit:
 
 Logic:
 
-![hv_fsm_vert_logic](/BreakingNESWiki/imgstore/ppu/hv_fsm_vert_logic.jpg)
+![VPosLogic](/BreakingNESWiki/imgstore/ppu/VPosLogic.png)
 
 ## VBlank Interrupt Handling
 

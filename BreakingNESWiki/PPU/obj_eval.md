@@ -106,7 +106,7 @@
 
 |Управление основным счётчиком|Управление счётчиком Temp OAM и схема переполнения спрайтов|
 |---|---|
-|![oam_main_counter_control](/BreakingNESWiki/imgstore/ppu/oam_main_counter_control.jpg)|![eval_counters_control](/BreakingNESWiki/imgstore/ppu/eval_counters_control.jpg)|
+|![eval_main_counter_control](/BreakingNESWiki/imgstore/ppu/eval_main_counter_control.jpg)|![eval_counters_control](/BreakingNESWiki/imgstore/ppu/eval_counters_control.jpg)|
 
 ![Eval_CountersControl](/BreakingNESWiki/imgstore/ppu/Eval_CountersControl.png)
 

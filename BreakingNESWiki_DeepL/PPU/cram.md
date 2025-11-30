@@ -8,7 +8,7 @@ The logic for working with the color generator (aka "palette") includes the foll
 - Color memory array (Color RAM)
 - Decoder of the CRAM address, coming from the output of the multiplexer
 
-![CRAM_All](/BreakingNESWiki/imgstore/ppu/CRAM_All.jpg)
+![CRAM_All](/BreakingNESWiki/imgstore/ppu/CRAM_All.png)
 
 Signals:
 
@@ -35,7 +35,7 @@ The Color Buffer (CB) is used to store the current "pixel" for the phase generat
 
 ### CB Bit
 
-|![color_buffer_bit](/BreakingNESWiki/imgstore/ppu/color_buffer_bit.jpg)|![cb_bit_logisim](/BreakingNESWiki/imgstore/ppu/cb_bit_logisim.jpg)|
+|![color_buffer_bit](/BreakingNESWiki/imgstore/ppu/color_buffer_bit.jpg)|![CB_Bit](/BreakingNESWiki/imgstore/ppu/CB_Bit.png)|
 |---|---|
 
 The Logisim schematic is a very approximation of the original one, because Logisim does not support inOut entities.
@@ -98,7 +98,7 @@ The value is written or read with two complementary inOut: /val and val. The pri
 
 :warning: Note that the CGA4 signal does not follow the usual order. This bit selects the type of palette: palette for the background or for the sprites.
 
-|![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
+|![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![CRAM_Decoder](/BreakingNESWiki/imgstore/ppu/CRAM_Decoder.png)|
 |---|---|
 
 |COL0 \| COL1 \| COL2 \| COL3|

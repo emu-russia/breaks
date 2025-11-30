@@ -14,7 +14,7 @@
 - Схема EVEN/ODD
 - Схема управления H/V счётчиками
 
-![hv_fsm_all](/BreakingNESWiki/imgstore/ppu/hv_fsm_all.jpg)
+![HV_FSM_All](/BreakingNESWiki/imgstore/ppu/HV_FSM_All.png)
 
 Управляющая логика насыщена разного рода сигналами, которые приходят и уходят практически во все возможные узлы PPU.
 
@@ -105,7 +105,7 @@
 
 ![hv_fporch](/BreakingNESWiki/imgstore/ppu/hv_fporch.jpg)
 
-![hv_fsm_horz](/BreakingNESWiki/imgstore/ppu/hv_fsm_horz.jpg)
+![HPosLogic](/BreakingNESWiki/imgstore/ppu/HPosLogic.png)
 
 Логическая схема:
 

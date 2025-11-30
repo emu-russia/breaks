@@ -13,7 +13,7 @@ The circuit includes:
 - A comparator, which performs a signed subtraction operation (A - B)
 - The comparison control circuit which implements the whole logic of sprite comparison operation
 
-![OAM_Eval](/BreakingNESWiki/imgstore/ppu/OAM_Eval.png)
+![Obj_Eval](/BreakingNESWiki/imgstore/ppu/Obj_Eval.png)
 
 Inputs:
 
@@ -84,33 +84,33 @@ This special `H0''` signal (but essentially a variation of the regular H0'' sign
 
 ## Counters Bit
 
-![OAM_CounterBit](/BreakingNESWiki/imgstore/ppu/OAM_CounterBit.png)
+![Eval_CounterBit](/BreakingNESWiki/imgstore/ppu/Eval_CounterBit.png)
 
 A typical counter bit circuit is used, with one exception: it is possible to "block" the counting (`BlockCount`). 
 
 This feature is used only for bits 0 and 1 of the main counter in order to implement the modulo +4 counting mode. But blocking the count for the lower bits causes the internal carry chain to stop working for them, so an external carry chain for bits 2-7 is added to the circuit and used in Mode4.
 
-## Main OAM Index Counter
+## Main OAM Address Counter
 
-![oam_index_counter](/BreakingNESWiki/imgstore/ppu/oam_index_counter.jpg)
+![eval_main_counter](/BreakingNESWiki/imgstore/ppu/eval_main_counter.jpg)
 
-![OAM_MainCounter](/BreakingNESWiki/imgstore/ppu/OAM_MainCounter.png)
+![Eval_MainCounter](/BreakingNESWiki/imgstore/ppu/Eval_MainCounter.png)
 
-## Temp OAM Index Counter
+## Temp OAM Address Counter
 
-![oam2_index_counter](/BreakingNESWiki/imgstore/ppu/oam2_index_counter.jpg)
+![eval_temp_counter](/BreakingNESWiki/imgstore/ppu/eval_temp_counter.jpg)
 
-![OAM_TempCounter](/BreakingNESWiki/imgstore/ppu/OAM_TempCounter.png)
+![Eval_TempCounter](/BreakingNESWiki/imgstore/ppu/Eval_TempCounter.png)
 
 ## Counters Control
 
 |Main counter control|Temp OAM counter control and sprite overflow|
 |---|---|
-|![oam_index_counter_control](/BreakingNESWiki/imgstore/ppu/oam_index_counter_control.jpg)|![oam_counters_control](/BreakingNESWiki/imgstore/ppu/oam_counters_control.jpg)|
+|![eval_main_counter_control](/BreakingNESWiki/imgstore/ppu/eval_main_counter_control.jpg)|![eval_counters_control](/BreakingNESWiki/imgstore/ppu/eval_counters_control.jpg)|
 
-![OAM_CountersControl](/BreakingNESWiki/imgstore/ppu/OAM_CountersControl.png)
+![Eval_CountersControl](/BreakingNESWiki/imgstore/ppu/Eval_CountersControl.png)
 
-![OAM_SprOV_Flag](/BreakingNESWiki/imgstore/ppu/OAM_SprOV_Flag.png)
+![Eval_SprOV_Flag](/BreakingNESWiki/imgstore/ppu/Eval_SprOV_Flag.png)
 
 Operating modes of OAM counters:
 
@@ -121,21 +121,21 @@ Operating modes of OAM counters:
 
 ## OAM Address
 
-![oam_address_tran](/BreakingNESWiki/imgstore/ppu/oam_address_tran.jpg)
+![eval_oam_address_tran](/BreakingNESWiki/imgstore/ppu/eval_oam_address_tran.jpg)
 
-![OAM_Address](/BreakingNESWiki/imgstore/ppu/OAM_Address.png)
+![Eval_OAM_Address](/BreakingNESWiki/imgstore/ppu/Eval_OAM_Address.png)
 
 ## Comparator
 
-![oam_cmpr](/BreakingNESWiki/imgstore/ppu/oam_cmpr.jpg)
+![eval_cmpr](/BreakingNESWiki/imgstore/ppu/eval_cmpr.jpg)
 
-![OAM_CmpBitPair](/BreakingNESWiki/imgstore/ppu/OAM_CmpBitPair.png)
+![Eval_CmpBitPair](/BreakingNESWiki/imgstore/ppu/Eval_CmpBitPair.png)
 
 The even and odd bits of the comparator are combined into a single circuit, to compact the inverted carry chain. Between "duplets" the carry chain is kept in direct logic.
 
 Since the circuit is essentially a subtractor, it is more appropriate to say "borrow" instead of "carry", but the phrase "borrow chain" is not commonly used, so "carry chain" is used.
 
-![OAM_Cmp](/BreakingNESWiki/imgstore/ppu/OAM_Cmp.png)
+![Eval_Cmp](/BreakingNESWiki/imgstore/ppu/Eval_Cmp.png)
 
 The opening transistors for the input latches are next to the OAM Buffer:
 
@@ -143,9 +143,9 @@ The opening transistors for the input latches are next to the OAM Buffer:
 
 ## Comparison Control
 
-![oam_eval_control](/BreakingNESWiki/imgstore/ppu/oam_eval_control.jpg)
+![eval_fsm](/BreakingNESWiki/imgstore/ppu/eval_fsm.jpg)
 
-![OAM_EvalFSM](/BreakingNESWiki/imgstore/ppu/OAM_EvalFSM.png)
+![Eval_FSM](/BreakingNESWiki/imgstore/ppu/Eval_FSM.png)
 
 The nor+mux+FF arrangement is actually a Posedge DFFE. And the `#EN` (enable) input is in inverse logic.
 

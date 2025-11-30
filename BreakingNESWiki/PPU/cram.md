@@ -8,7 +8,7 @@
 - Массив ячеек памяти (Color RAM)
 - Декодер адреса CRAM, поступающего с выхода мультиплексора
 
-![CRAM_All](/BreakingNESWiki/imgstore/ppu/CRAM_All.jpg)
+![CRAM_All](/BreakingNESWiki/imgstore/ppu/CRAM_All.png)
 
 Сигналы:
 
@@ -35,7 +35,7 @@ Color Buffer (CB) используется для хранения текуще�
 
 ### Схема хранения одного разряда CB
 
-|![color_buffer_bit](/BreakingNESWiki/imgstore/ppu/color_buffer_bit.jpg)|![cb_bit_logisim](/BreakingNESWiki/imgstore/ppu/cb_bit_logisim.jpg)|
+|![color_buffer_bit](/BreakingNESWiki/imgstore/ppu/color_buffer_bit.jpg)|![CB_Bit](/BreakingNESWiki/imgstore/ppu/CB_Bit.png)|
 |---|---|
 
 Схема Logisim весьма приближенно передает исходную схему, т.к. в Logisim отсутствует поддержка inOut сущностей.
@@ -98,7 +98,7 @@ Precharge PCLK:
 
 :warning: Обратите внимание, что сигнал CGA4 следует не в обычном порядке. Данный бит выбирает тип палитры: палитра для бэкграунда или для спрайтов.
 
-|![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![cram_decoder_logic](/BreakingNESWiki/imgstore/ppu/cram_decoder_logic.jpg)|
+|![cram_decoder](/BreakingNESWiki/imgstore/ppu/cram_decoder.jpg)|![CRAM_Decoder](/BreakingNESWiki/imgstore/ppu/CRAM_Decoder.png)|
 |---|---|
 
 |COL0 \| COL1 \| COL2 \| COL3|

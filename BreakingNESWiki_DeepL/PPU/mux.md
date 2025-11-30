@@ -30,7 +30,7 @@ The signals `THOx'` are obtained from the THO latches as follows:
 
 ## Logic
 
-![mux_logic](/BreakingNESWiki/imgstore/ppu/mux_logic.jpg)
+![MUX_All](/BreakingNESWiki/imgstore/ppu/MUX_All.png)
 
 Control circuit:
 
