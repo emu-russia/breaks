@@ -85,9 +85,9 @@
 |P123|PBLACK (Phase Shifter)|
 |ROW,COL (OAM)|ROW -> COL, COL -> ROW (были перепутаны)  (#1343)|
 |PAR/O|OBJ_READ  (#1341)|
-|PAR|PAT_ADR|
+|PAR|NT_ADR|
 |FAT|AT_ADR|
-|PAD|NT_ADR|
+|PAD|PAT_ADR|
 |/SH2|/OBJ_RD_ATTR|
 |/SH3|/OBJ_RD_X|
 |/SH5|/OBJ_RD_A|
