@@ -4,6 +4,10 @@
 
 ![TileCounters_All](/BreakingNESWiki/imgstore/ppu/TileCounters_All.png)
 
+Tile counters are an entity commonly referred to as `v` in the nesdev community.
+
+The output of tile counters are `AT_ADR` and `NT_ADR`, which are the address sources for the resulting [PPU Address Mux](pamux.md).
+
 Counter operating modes:
 
 |Counter|Bits|Max value|Max value (Blank)|Input carry source|Input carry source (Blank)|Counter reset source|Carry output|Carry output (Blank)|
