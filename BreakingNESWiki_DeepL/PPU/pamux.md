@@ -11,9 +11,9 @@ The patent doesn't mention this circuit in any way; it's assumed to be contained
 The address multiplexer stores the final value for the external address bus (`/PA0-13`) (14 bits).
 
 Sources for writing to PAMUX output latches:
-- A pattern address (`PAD0-12`) from PAR (13 bit)
+- A pattern address (`PAT_ADR 0-13`) from PAR (14 bit)
+- Value from tile counters: Attribute Table address (`AT_ADR`), Name Table address (`NT_ADR`) (both are 14 bit). Tile counters, in turn, are loaded from scroll registers.
 - The value from the data bus (`DB0-7`) (8 bit)
-- Value from tile counters. Tile counters, in turn, are loaded from scroll registers.
 
 ## PAMUX Control
 
