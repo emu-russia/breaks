@@ -20,6 +20,15 @@ Letterless 2A03 - это какая-то старая ревизия APU, дек
 ![noise_dif](https://github.com/user-attachments/assets/3fc891e7-af98-438c-bed6-12186c935860)
 ![noise_dif2](https://github.com/user-attachments/assets/a5d38196-2fc3-412a-9585-8644f590b28a)
 
+FREQUENCY LFSR немного отличается, сдвиговый регистр LFSR короче на одну стадию, обратная связь LFSR также подверглась изменениям, режим работы 
+не зависит от сигнала Reset и точки подключения обратной свяки к выводам сдвигового регистра другие.
+Также из-за укорачивания сдвигового регистра изменилась и таблица частот шумового канала, она стала короче на один бит и данные таблицы совершенно иные.
+
+<img width="1115" height="1375" alt="NOISE EARLY" src="https://github.com/user-attachments/assets/42152463-ee02-453e-aa85-553438db7a6b" />
+
+<img width="339" height="440" alt="NOISE TABLE EARLY" src="https://github.com/user-attachments/assets/61c236ea-bd05-435f-830e-792d003a94f0" />
+
+
 ## DPCM
 
 В ранней ревизии в схеме DPCM FREQ LFSR  сигнал RES не влияет на управление перезагрузкой сдвигового регистра LFSR.
