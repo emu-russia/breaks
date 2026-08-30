@@ -294,7 +294,7 @@ Sources:
 | Mattel NES (UK/AUS/NZ/ITA) | NESE-001 | PAL | 3197A (PAL-A) | Sold by Mattel before Nintendo took over distribution |
 | Post-Mattel UK / AUS / ITA | NESE-001 | PAL | 3197A (PAL-A) | Nintendo took over distribution |
 | Hong Kong / Asian / Indian NES | NESA-001 | PAL | 3196A | Grey plastic around controller ports; Indian version branded "Samurai Electronic TV Game" |
-| Korean NES ("Comboy") | NES-001 (KOR) | NTSC | 3194A | Distributed by Hyundai; NTSC console with a PAL-B lockout chip |
+| Korean NES ("Comboy") | NES-001 (KOR) | NTSC | 3195A | Distributed by Hyundai; NTSC console with a PAL-B lockout chip |
 | Brazilian NES | NES-001 (BRA) | PAL-M | 6113B1 | Released late by Playtronic; color-conversion circuitry because the 2C02 PPU outputs NTSC color |
 
 Source:
@@ -397,10 +397,9 @@ the cartridge key; which exact NTSC board revisions shipped a 6113-family
 | 3193 (non-A) | NES-CPU-02/-04 (early NTSC) | Earliest NTSC CIC |
 | 3193A | NES-CPU-04/-05… (NTSC) | Common NTSC CIC |
 | 6113, 6113A, 6113B1 | Cartridge keys on most carts; listed as NTSC NES-001 lock options; Brazilian NES uses 6113B1 | 6113B ties fewer pins to GND than 6113 |
-| 3195A | NESE-001 (PAL-B: Europe, Spain, France) | PAL-B; 768-byte ROM |
+| 3195A | NESE-001 (PAL-B: Europe, Spain, France); NES-001 (KOR) "Comboy" | PAL-B; 768-byte ROM |
 | 3197A | NESE-001 (PAL-A: Mattel UK/AUS/NZ/ITA) | PAL-A |
 | 3196A | NESA-001 (HK/Asian/Indian) | — |
-| 3194A | NES-001 (KOR) "Comboy" | NTSC console with a PAL-B lockout chip |
 | 3198 / 3199 | FamicomBox | FamicomBox cartridges use a unique 3198 key; 3199 is the coin-timer variant |
 
 The anti-lockout-defeat circuitry of NES-CPU-09/-10/-11 (series resistors and
