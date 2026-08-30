@@ -307,14 +307,16 @@ Source:
 CPU chips in official consoles are marked e.g. `RP2A03`, `RP2A03E`, `RP2A03G`,
 `RP2A03H` (NTSC) and `RP2A07`, `RP2A07A` (PAL). The letter is the chip
 revision. Production-date ranges below are from the NESdev wiki "CPU variants"
-page (date codes printed on chip packages).
+page (date codes printed on chip packages). The 2A03 is a 6502 with the
+decimal mode removed — on the 2A03G die the decimal-mode logic is surgically
+removed.
 
 | Marking | First seen | Last seen | Notes |
 |---|---|---|---|
 | RP2A03 (letterless) | 1983-06 | 1984-09 | M2 duty cycle 17/24 instead of 15/24; **lacks tonal (looped) noise mode**; lowest noise period 2046 instead of 4068; APU frame counter not restarted on reset; broken/disabled programmable interval timer on-die; pin 30 not connected. A ceramic version exists (1983-06). Used in launch Famicoms (HVC-CPU-01…-06) and Vs. System boards (which additionally do not support looped noise) |
 | RP2A03E | 1984-10 | 1986-06 | Pin 30 is /RDY (combined with internal signals before feeding the internal 6502); the "fixed" CPU that debuted with round-button Famicoms |
 | RP2A03G | 1987-04 | 1993-11 | Reference model; pin 30 enables CPU test mode; later production runs introduced a DMC DMA bug |
-| RP2A03H | 1993-12 | 1999-05 | No known differences from late RP2A03G |
+| RP2A03H | 1993-12 | 1999-05 | No known differences from late RP2A03G (a technical report — RustyNES ADR-0033 — describes an extra-read difference vs G during DMC+OAM overlap; unverified) |
 | RP2A03H (laser-marked) | 2001-03 | 2002-11 | Last production |
 | RP2A04 | 1986-03 | — | Not a CPU at all: a jumper in a 40-pin PDIP, used in place of CPUs in Vs. System boards |
 | RP2A07 (PAL) | 1987-03 | 1990-04 | ÷16 clock divider, different DMC/noise/frame-timer tables; M2 duty 19/32; fixed DPCM RDY address-bus glitches; pin 30 = 6502 /RDY |
