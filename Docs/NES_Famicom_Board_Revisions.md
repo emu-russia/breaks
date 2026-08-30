@@ -28,7 +28,7 @@ Famicom in 1993. The console was externally reworked several times:
 
 | Era | Controllers / case | Board revisions | Notes |
 |---|---|---|---|
-| Launch | Square-button controllers, smooth glossy red bottom shell | HVC-CPU-01 … -05 | Recall over a buggy CPU (1984); boards below -05 were swapped for -05 by Nintendo free of charge when serviced |
+| Launch | Square-button controllers, smooth glossy red bottom shell | HVC-CPU-01 … -05 | Recall over stability issues (1984); boards below -05 were swapped for -05 by Nintendo free of charge when serviced |
 | Mid | Round-button controllers, smooth then rough (matte) bottom shell | HVC-CPU-06 … -08 | Round buttons introduced ~1984 together with the "fixed" 2A03E CPU |
 | Late | Round-button controllers, "VCI"/"GMP" logos on the bottom | HVC-CPU-GPM-01, GPM-02a…k | VCCI-compliant redesign with integrated RF and extra shielding |
 
@@ -72,8 +72,12 @@ Sources:
 
 ### 1.3 What changed between revisions
 
-- **HVC-CPU-01…-05 → -06/-07**: the launch boards used the original (letterless)
-  RP2A03 CPU, which was recalled due to stability issues. It also lacks the
+- **HVC-CPU-01…-05 → -06/-07**: the launch-era boards were recalled due to
+  stability problems. Per lidnariq, this was a combination of issues rather
+  than the letterless RP2A03 CPU being defective in isolation: the PCB design
+  itself had stability issues, the early-revision PPUs had stability issues,
+  and the letterless CPU's longer M2 duty cycle made those problems worse for
+  other parts (the CPU in isolation is fine). The letterless CPU does lack the
   APU's "looped noise" mode (some games, e.g. Mega Man 2, sound slightly
   different) and has timing differences that make it incompatible with some
   flash carts (e.g. the original EverDrive N8). The "fixed" RP2A03E CPU
@@ -87,13 +91,17 @@ Sources:
   VCCI (Voluntary Control Council for Interference) standards, the RF/power
   board was soldered directly onto the motherboard (previously connected by a
   thin ribbon cable), and more extensive shielding was added: a metal shroud
-  over the cartridge connector and an additional grounded copper plane on the
-  bottom of the board (the GPM designation is said to stand for "Ground Plane
-  Method"). The "FF" Famicom Family logo was added to the front nameplate from
-  this revision onward. Note: sources disagree on whether the GPM-01 already
-  had the cartridge-connector shielding (ConsoleMods says yes; a FamicomWorld
-  post describes GPM-01 as "unshielded" and GPM-02 as "shielded", and some
-  HV-serial GPM-02 boards lack the shielding on the 60-pin cart port).
+  over the cartridge connector and an additional ground-pour layer on the
+  bottom of the board — the GPM boards are three-layer PCBs, with a whole
+  extra ground-pour layer added on top of the existing two-layer design. The
+  GPM designation is often said to stand for "Ground Plane Method" (per
+  ConsoleMods); lidnariq reports having heard "Ground Pour Mask" instead —
+  neither is confirmed. The "FF" Famicom Family logo was added to the front
+  nameplate from this revision onward. Note: sources disagree on whether the
+  GPM-01 already had the cartridge-connector shielding (ConsoleMods says yes;
+  a FamicomWorld post describes GPM-01 as "unshielded" and GPM-02 as
+  "shielded", and some HV-serial GPM-02 boards lack the shielding on the
+  60-pin cart port).
 - **GPM-01 (1988)**: compared with the -07 board it has more components, a
   fuse, and louder expansion (cartridge) audio, and the AV-mod is easier. Some
   units have metal shielding around the cart slot, some do not. Serial numbers
@@ -491,6 +499,10 @@ https://forums.nesdev.org/viewtopic.php?t=17502.
 
 ## 7. Sources
 
+- Community notes on this document (issue #1380: lidnariq's correction on the
+  launch-board recall and the GPM naming; photos of the HVC-CPU-06 board
+  (credit: mothrastewardess) and of the HVC-CPU-GPM-02 board (annotated,
+  credit: Great Hierophant)): https://github.com/emu-russia/breaks/issues/1380
 - NESdev wiki, "CPU variants": https://www.nesdev.org/w/index.php?title=CPU_variants
 - NESdev wiki, "PPU variants": https://www.nesdev.org/w/index.php?title=PPU_variants
 - NESdev forums, NES motherboard revisions summary (Lord Nightmare): https://forums.nesdev.org/viewtopic.php?p=196688#p196688 (mirror: https://nesdev.nes.science/f9/t15985.xhtml)
