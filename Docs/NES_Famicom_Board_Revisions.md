@@ -117,9 +117,10 @@ Sources:
 
 - **CPU**: Ricoh RP2A03 (revision letter depends on era, see Section 3).
 - **PPU**: Ricoh RP2C02 (revision letter depends on era, see Section 4).
-- **Work RAM**: one 2K×8 SRAM. Documented parts: Toshiba TMM2115AP-15, NEC
-  D4016CX-20 (HVC-CPU-05), Fujitsu MB8416A-15-SK (GPM-02), LH5116D-12,
-  HM6116 (see Section 5).
+- **RAM (SRAM)**: two 2K×8 SRAMs — U1 CPU work RAM (WRAM) and U4 PPU nametable
+  VRAM (selected by VRAMCS#). Documented parts: Toshiba TMM2115AP-15, NEC
+  D4016CX-20 (HVC-CPU-05), Fujitsu MB8416A-15-SK and 6116ASP-12 (HVC-CPU-07),
+  LH5116D-12 (GPM-01 donor), HM6116 (see Section 5).
 - **Glue logic**:
   - 2× **40H368 / 74HC368** (inverting tristate buffers) serve the I/O
     subsystem; one tristate is used as an inverting amplifier for the main
@@ -437,12 +438,17 @@ https://forums.nesdev.org/viewtopic.php?t=17502.
 
 - 2K×8 static RAM (16 Kbit). NES-001 boards: LH5216AD-10L, MN4216-20,
   CXK5816SPS-15L. NES-101 boards: LH5216AD-10L, BR6216B-10LL. Famicom boards:
-  TMM2115AP-15, D4016CX-20, MB8416A-15-SK, HM6116 (Hitachi; datasheet in this
-  repo), LH5116D-12 (Sharp, in the GPM-01 donor board), KM6116 (Samsung
-  drop-in)… (HM6116/KM6116 are documented on Famicom/famiclone boards, not on
-  official NES-001 boards). Any 2 KB×8, 8-bit, ≤200 ns part is a drop-in.
-- The NES uses two of them (WRAM + VRAM); the Famicom uses one (WRAM — the PPU
-  nametable VRAM lives on the cartridge in the Famicom's original design).
+  TMM2115AP-15, D4016CX-20, MB8416A-15-SK, 6116ASP-12, HM6116 (Hitachi;
+  datasheet in this repo), LH5116D-12 (Sharp, in the GPM-01 donor board),
+  KM6116 (Samsung drop-in)… (HM6116/KM6116 are documented on Famicom/
+  famiclone boards, not on official NES-001 boards). Any 2 KB×8, 8-bit,
+  ≤200 ns part is a drop-in.
+- The NES and the Famicom both carry **two** 2K×8 SRAMs on the motherboard:
+  a CPU work RAM (WRAM, $0000–$07FF) and a PPU nametable VRAM
+  ($2000–$2FFF). On the Famicom (schematic HVC-CPU-05/06) they are **U1
+  (WRAM)** and **U4 (VRAM**, selected by the PPU's VRAMCS# signal) — the
+  cartridge provides the pattern tables (CHR-ROM/CHR-RAM), not the nametable
+  VRAM. The NES front-loader has the same arrangement (U1 WRAM, U4 VRAM).
 - Early Famicom boards use through-hole RAM; HVC-CPU-06 and -08 use
   surface-mount RAM.
 
@@ -495,6 +501,7 @@ https://forums.nesdev.org/viewtopic.php?t=17502.
 - NESdev forums, "Reverse Engineering the CIC": https://forums.nesdev.org/viewtopic.php?t=1219
 - NESdev forums, "CIC Lockout chip pinout?" (6113 vs 6113B): https://forums.nesdev.org/viewtopic.php?t=319
 - NESdev forums, "NES and Famicom Substitute ICs": https://forums.nesdev.org/viewtopic.php?t=17502
+- NESdev forums archive, "About PPU and SRAM replacement on Famicom" (two 2K×8 SRAMs on HVC-CPU-07): https://nesdev.nes.science/f9/t16040.xhtml
 - Wikipedia, "CIC (Nintendo)": https://en.wikipedia.org/wiki/CIC_(Nintendo)
 - Segher, "The weird and wonderful CIC" (HackMii): https://hackmii.com/2010/01/the-weird-and-wonderful-cic/
 - ConsoleMods wiki, "NES Model Differences": https://consolemods.org/wiki/index.php?title=NES:NES_Model_Differences
