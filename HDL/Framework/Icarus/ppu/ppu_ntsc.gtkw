@@ -1,32 +1,28 @@
 [*]
-[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] PPU waveform monitors (generated)
+[*] GTKWave Analyzer v3.3.128 (w)1999-2026 BSI
+[*] Sun Sep 06 23:41:05 2026
 [*]
 [dumpfile] "C:\Work\breaks\HDL\Framework\Icarus\ppu\ppu_ntsc.vcd"
-[dumpfile_mtime] "Sun Sep 06 23:12:47 2026"
+[dumpfile_mtime] "Sun Sep 06 23:41:05 2026"
 [dumpfile_size] 1938157
 [savefile] "C:\Work\breaks\HDL\Framework\Icarus\ppu\ppu_ntsc.gtkw"
 [timestart] 0
-[size] 1920 1080
+[size] 1600 1000
 [pos] -1 -1
-*-14.000000 37110 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-[treeopen] PPU_Run.
-[treeopen] PPU_Run.ppu.
+*0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [sst_width] 315
 [signals_width] 250
 [sst_expanded] 1
 [sst_vpaned_height] 298
-@200
+@201
 -PPU top / clocks
 @28
 PPU_Run.CLK
-@c00024
+@22
 PPU_Run.cpu_db[7:0]
-@c00024
+@22
 PPU_Run.ext[3:0]
-@1401200
--group_end
-@200
+@201
 -Pads
 @28
 PPU_Run.ppu.pads.ALE
@@ -68,31 +64,29 @@ PPU_Run.ppu.pads.n_RESPad
 PPU_Run.ppu.pads.n_SLAVE
 @28
 PPU_Run.ppu.pads.n_WRPad
-@c00024
+@22
 PPU_Run.ppu.pads.ADPads[7:0]
-@c00024
+@22
 PPU_Run.ppu.pads.CPU_DB[7:0]
-@c00024
+@22
 PPU_Run.ppu.pads.DB_temp[7:0]
-@c00024
+@22
 PPU_Run.ppu.pads.DPads[7:0]
-@c00024
+@22
 PPU_Run.ppu.pads.EXTPads[3:0]
-@c00024
+@22
 PPU_Run.ppu.pads.EXT_in[3:0]
-@c00024
+@22
 PPU_Run.ppu.pads.PAPads[5:0]
-@c00024
+@22
 PPU_Run.ppu.pads.PD_out[7:0]
-@c00024
+@22
 PPU_Run.ppu.pads.ext_latch_out[3:0]
-@c00024
+@22
 PPU_Run.ppu.pads.n_EXT_out[3:0]
-@c00024
+@22
 PPU_Run.ppu.pads.n_PA[13:0]
-@1401200
--group_end
-@200
+@201
 -Pixel Clock
 @28
 PPU_Run.ppu.pclk.CLK
@@ -120,9 +114,7 @@ PPU_Run.ppu.pclk.npclk_out
 PPU_Run.ppu.pclk.pclk
 @28
 PPU_Run.ppu.pclk.pclk_out
-@1401200
--group_end
-@200
+@201
 -R/W Decoder
 @28
 PPU_Run.ppu.rwdec.RD
@@ -136,9 +128,7 @@ PPU_Run.ppu.rwdec.n_DBE
 PPU_Run.ppu.rwdec.n_RD
 @28
 PPU_Run.ppu.rwdec.n_WR
-@1401200
--group_end
-@200
+@201
 -Registers ($2000/$2001)
 @28
 PPU_Run.ppu.regs.BGE
@@ -206,13 +196,11 @@ PPU_Run.ppu.regs.n_W6_1
 PPU_Run.ppu.regs.n_W6_2
 @28
 PPU_Run.ppu.regs.n_W7
-@c00024
+@22
 PPU_Run.ppu.regs.CPU_DB[7:0]
-@c00024
+@22
 PPU_Run.ppu.regs.RS[2:0]
-@1401200
--group_end
-@200
+@201
 -H/V Counters
 @28
 PPU_Run.ppu.hv.HC
@@ -230,37 +218,33 @@ PPU_Run.ppu.hv.half_hc
 PPU_Run.ppu.hv.half_vc
 @28
 PPU_Run.ppu.hv.n_PCLK
-@c00024
+@22
 PPU_Run.ppu.hv.H_out[8:0]
-@c00024
+@22
 PPU_Run.ppu.hv.V_out[8:0]
-@c00024
+@22
 PPU_Run.ppu.hv.hc[8:0]
-@c00024
+@22
 PPU_Run.ppu.hv.n_h[8:0]
-@c00024
+@22
 PPU_Run.ppu.hv.n_v[8:0]
-@c00024
+@22
 PPU_Run.ppu.hv.vc[8:0]
-@1401200
--group_end
-@200
+@201
 -H/V Decoders
 @28
 PPU_Run.ppu.hvdec.BLNK
 @28
 PPU_Run.ppu.hvdec.VB
-@c00024
+@22
 PPU_Run.ppu.hvdec.HPLA_out[23:0]
-@c00024
+@22
 PPU_Run.ppu.hvdec.H_in[8:0]
-@c00024
+@22
 PPU_Run.ppu.hvdec.VPLA_out[9:0]
-@c00024
+@22
 PPU_Run.ppu.hvdec.V_in[8:0]
-@1401200
--group_end
-@200
+@201
 -FSM
 @28
 PPU_Run.ppu.fsm.BLACK
@@ -360,17 +344,15 @@ PPU_Run.ppu.fsm.n_PICTURE
 PPU_Run.ppu.fsm.n_R2
 @28
 PPU_Run.ppu.fsm.n_VIS
-@c00024
+@22
 PPU_Run.ppu.fsm.HPLA_out[23:0]
-@c00024
+@22
 PPU_Run.ppu.fsm.H_out[8:0]
-@c00024
+@22
 PPU_Run.ppu.fsm.VPLA_out[9:0]
-@c00024
+@22
 PPU_Run.ppu.fsm.V_out[8:0]
-@1401200
--group_end
-@200
+@201
 -Clipping
 @28
 PPU_Run.ppu.clip.BGE
@@ -388,9 +370,7 @@ PPU_Run.ppu.clip.n_CLPB
 PPU_Run.ppu.clip.n_PCLK
 @28
 PPU_Run.ppu.clip.n_VIS
-@1401200
--group_end
-@200
+@201
 -Sprite Evaluation
 @28
 PPU_Run.ppu.eval.BLNK
@@ -440,19 +420,17 @@ PPU_Run.ppu.eval.n_SPR0_EV
 PPU_Run.ppu.eval.n_VIS
 @28
 PPU_Run.ppu.eval.n_W3
-@c00024
+@22
 PPU_Run.ppu.eval.CPU_DB[7:0]
-@c00024
+@22
 PPU_Run.ppu.eval.OB[7:0]
-@c00024
+@22
 PPU_Run.ppu.eval.OV[7:0]
-@c00024
+@22
 PPU_Run.ppu.eval.V[7:0]
-@c00024
+@22
 PPU_Run.ppu.eval.n_OAM[7:0]
-@1401200
--group_end
-@200
+@201
 -OAM (sprite RAM)
 @28
 PPU_Run.ppu.oam.BLNK
@@ -484,19 +462,17 @@ PPU_Run.ppu.oam.n_VIS
 PPU_Run.ppu.oam.n_W4
 @28
 PPU_Run.ppu.oam.n_WE
-@c00024
+@22
 PPU_Run.ppu.oam.CPU_DB[7:0]
-@c00024
+@22
 PPU_Run.ppu.oam.OB_Out[7:0]
-@c00024
+@22
 PPU_Run.ppu.oam.i[31:0]
-@c00024
+@22
 PPU_Run.ppu.oam.n_OAM[7:0]
-@c00024
+@22
 PPU_Run.ppu.oam.oam_addr[7:0]
-@1401200
--group_end
-@200
+@201
 -Object FIFO
 @28
 PPU_Run.ppu.fifo.CLPO
@@ -538,13 +514,11 @@ PPU_Run.ppu.fifo.n_ZCOL0
 PPU_Run.ppu.fifo.n_ZCOL1
 @28
 PPU_Run.ppu.fifo.n_ZPRIO
-@c00024
+@22
 PPU_Run.ppu.fifo.OB[7:0]
-@c00024
+@22
 PPU_Run.ppu.fifo.PD[7:0]
-@1401200
--group_end
-@200
+@201
 -PAR
 @28
 PPU_Run.ppu.par.BGSEL
@@ -564,19 +538,17 @@ PPU_Run.ppu.par.n_H1D
 PPU_Run.ppu.par.n_OBJ_RD_ATTR
 @28
 PPU_Run.ppu.par.n_PCLK
-@c00024
+@22
 PPU_Run.ppu.par.OB[7:0]
-@c00024
+@22
 PPU_Run.ppu.par.OV[3:0]
-@c00024
+@22
 PPU_Run.ppu.par.PAddr_out[13:0]
-@c00024
+@22
 PPU_Run.ppu.par.PD[7:0]
-@c00024
+@22
 PPU_Run.ppu.par.n_FVO[2:0]
-@1401200
--group_end
-@200
+@201
 -Tile Counters
 @28
 PPU_Run.ppu.tilecnt.BLNK
@@ -604,25 +576,23 @@ PPU_Run.ppu.tilecnt.TSTEP
 PPU_Run.ppu.tilecnt.W6_2_Ena
 @28
 PPU_Run.ppu.tilecnt.n_PCLK
-@c00024
+@22
 PPU_Run.ppu.tilecnt.AT_adr[13:0]
-@c00024
+@22
 PPU_Run.ppu.tilecnt.FV[2:0]
-@c00024
+@22
 PPU_Run.ppu.tilecnt.NT_adr[13:0]
-@c00024
+@22
 PPU_Run.ppu.tilecnt.THO[4:0]
-@c00024
+@22
 PPU_Run.ppu.tilecnt.TH[4:0]
-@c00024
+@22
 PPU_Run.ppu.tilecnt.TVO[4:0]
-@c00024
+@22
 PPU_Run.ppu.tilecnt.TV[4:0]
-@c00024
+@22
 PPU_Run.ppu.tilecnt.n_FVO[2:0]
-@1401200
--group_end
-@200
+@201
 -PAMUX (address mux)
 @28
 PPU_Run.ppu.pamux.BLNK
@@ -634,19 +604,17 @@ PPU_Run.ppu.pamux.F_AT
 PPU_Run.ppu.pamux.PCLK
 @28
 PPU_Run.ppu.pamux.n_H2_D
-@c00024
+@22
 PPU_Run.ppu.pamux.AT_ADR_in[13:0]
-@c00024
+@22
 PPU_Run.ppu.pamux.CPU_DB[7:0]
-@c00024
+@22
 PPU_Run.ppu.pamux.NT_ADR_in[13:0]
-@c00024
+@22
 PPU_Run.ppu.pamux.PAT_ADR_in[13:0]
-@c00024
+@22
 PPU_Run.ppu.pamux.n_PA[13:0]
-@1401200
--group_end
-@200
+@201
 -Scroll Registers
 @28
 PPU_Run.ppu.sccx.NTH
@@ -668,19 +636,17 @@ PPU_Run.ppu.sccx.n_W5_2
 PPU_Run.ppu.sccx.n_W6_1
 @28
 PPU_Run.ppu.sccx.n_W6_2
-@c00024
+@22
 PPU_Run.ppu.sccx.CPU_DB[7:0]
-@c00024
+@22
 PPU_Run.ppu.sccx.FH[2:0]
-@c00024
+@22
 PPU_Run.ppu.sccx.FV[2:0]
-@c00024
+@22
 PPU_Run.ppu.sccx.TH[4:0]
-@c00024
+@22
 PPU_Run.ppu.sccx.TV[4:0]
-@1401200
--group_end
-@200
+@201
 -BG Colour
 @28
 PPU_Run.ppu.bg.F_AT
@@ -698,19 +664,17 @@ PPU_Run.ppu.bg.n_CLPB
 PPU_Run.ppu.bg.n_FO
 @28
 PPU_Run.ppu.bg.n_PCLK
-@c00024
+@22
 PPU_Run.ppu.bg.BGC[3:0]
-@c00024
+@22
 PPU_Run.ppu.bg.FH[2:0]
-@c00024
+@22
 PPU_Run.ppu.bg.PD[7:0]
-@c00024
+@22
 PPU_Run.ppu.bg.THO[4:0]
-@c00024
+@22
 PPU_Run.ppu.bg.TVO[4:0]
-@1401200
--group_end
-@200
+@201
 -VRAM Control
 @28
 PPU_Run.ppu.vrctl.BLNK
@@ -742,11 +706,9 @@ PPU_Run.ppu.vrctl.n_PCLK
 PPU_Run.ppu.vrctl.n_R7
 @28
 PPU_Run.ppu.vrctl.n_W7
-@c00024
+@22
 PPU_Run.ppu.vrctl.nPA[5:0]
-@1401200
--group_end
-@200
+@201
 -Read Buffer
 @28
 PPU_Run.ppu.rb.PD_RB
@@ -754,15 +716,13 @@ PPU_Run.ppu.rb.PD_RB
 PPU_Run.ppu.rb.RC
 @28
 PPU_Run.ppu.rb.XRB
-@c00024
+@22
 PPU_Run.ppu.rb.CPU_DB[7:0]
-@c00024
+@22
 PPU_Run.ppu.rb.PD_in[7:0]
-@c00024
+@22
 PPU_Run.ppu.rb.rb_q[7:0]
-@1401200
--group_end
-@200
+@201
 -Picture MUX
 @28
 PPU_Run.ppu.pmux.PCLK
@@ -780,19 +740,17 @@ PPU_Run.ppu.pmux.n_ZCOL0
 PPU_Run.ppu.pmux.n_ZCOL1
 @28
 PPU_Run.ppu.pmux.n_ZPRIO
-@c00024
+@22
 PPU_Run.ppu.pmux.BGC[3:0]
-@c00024
+@22
 PPU_Run.ppu.pmux.CGA_out[4:0]
-@c00024
+@22
 PPU_Run.ppu.pmux.EXT_in[3:0]
-@c00024
+@22
 PPU_Run.ppu.pmux.THO[4:0]
-@c00024
+@22
 PPU_Run.ppu.pmux.n_EXT_out[3:0]
-@1401200
--group_end
-@200
+@201
 -Sprite-0 Hit
 @28
 PPU_Run.ppu.spr0hit.DB6
@@ -818,11 +776,9 @@ PPU_Run.ppu.spr0hit.n_SPR0HIT
 PPU_Run.ppu.spr0hit.n_SPR0_EV
 @28
 PPU_Run.ppu.spr0hit.n_VIS
-@c00024
+@22
 PPU_Run.ppu.spr0hit.BGC[3:0]
-@1401200
--group_end
-@200
+@201
 -CRAM (palette)
 @28
 PPU_Run.ppu.cram.BnW
@@ -846,19 +802,17 @@ PPU_Run.ppu.cram.n_PCLK
 PPU_Run.ppu.cram.n_PICTURE
 @28
 PPU_Run.ppu.cram.n_R7
-@c00024
+@22
 PPU_Run.ppu.cram.CGA[4:0]
-@c00024
+@22
 PPU_Run.ppu.cram.CPU_DB[7:0]
-@c00024
+@22
 PPU_Run.ppu.cram.i[31:0]
-@c00024
+@22
 PPU_Run.ppu.cram.n_CC[3:0]
-@c00024
+@22
 PPU_Run.ppu.cram.n_LL[1:0]
-@1401200
--group_end
-@200
+@201
 -Video Out
 @28
 PPU_Run.ppu.vidout.BURST
@@ -896,27 +850,25 @@ PPU_Run.ppu.vidout.n_TB
 PPU_Run.ppu.vidout.n_TG
 @28
 PPU_Run.ppu.vidout.n_TR
-@c00024
+@22
 PPU_Run.ppu.vidout.RawVOut[10:0]
-@c00024
+@22
 PPU_Run.ppu.vidout.dec_out[12:0]
-@c00024
+@22
 PPU_Run.ppu.vidout.n_CC[3:0]
-@c00024
+@22
 PPU_Run.ppu.vidout.n_LL[1:0]
-@c00024
+@22
 PPU_Run.ppu.vidout.n_LU[3:0]
-@1401200
--group_end
-@200
+@201
 -DAC
 @28
 PPU_Run.ppu.dac.v
-@c00024
+@22
 PPU_Run.ppu.dac.CompositeOut[31:0]
-@c00024
+@22
 PPU_Run.ppu.dac.L[3:0]
-@c00024
+@22
 PPU_Run.ppu.dac.RawIn[10:0]
-@1401200
--group_end
+[pattern_trace] 1
+[pattern_trace] 0
