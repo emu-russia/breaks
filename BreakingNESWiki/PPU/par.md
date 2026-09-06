@@ -2,7 +2,7 @@
 
 ![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
 
-Схема занимает всю верхнюю часть и занимается формированием адреса тайла (Pattern), который задаётся `/PAD0-12` (13 бит).
+Схема занимает всю верхнюю часть и занимается формированием адреса тайла (Pattern), который задаётся `PAT_ADR0-13` (14 бит).
 
 ![par_high](/BreakingNESWiki/imgstore/ppu/par_high.jpg)
 
@@ -15,7 +15,7 @@
 |![ParControl](/BreakingNESWiki/imgstore/ppu/ParControl.png)|![V_Inversion](/BreakingNESWiki/imgstore/ppu/V_Inversion.png)|
 |---|---|
 
-Схемы разрядов для формирования выходного значения `/PAD0-12` в незначительных вариациях:
+Схемы разрядов для формирования выходного значения `PAT_ADR0-13` в незначительных вариациях:
 
 ![ParBit](/BreakingNESWiki/imgstore/ppu/ParBit.png)
 

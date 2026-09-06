@@ -2675,7 +2675,7 @@
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="162" y="99">/EVAL</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="163" y="109">E/EV</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="119">I/OAM2</text>
-      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="129">PAR/O</text>
+      <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="160" y="129">OBJ_READ</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="164" y="139">/VIS</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="164" y="150">#F/NT</text>
       <text dominant-baseline="central" font-family="SansSerif" font-size="8" text-anchor="middle" x="164" y="160">F/TB</text>

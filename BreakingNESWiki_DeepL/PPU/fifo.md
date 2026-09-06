@@ -17,7 +17,7 @@ Signal table:
 |Signal/group of signals|Description|
 |---|---|
 |**Delayed values of H**||
-|H0'' - H2''|Used to obtain /SHx signals|
+|H0'' - H2''|Used to obtain /OBJ_RD_x signals|
 |H3'' - H5''|Used to select the lane|
 |**FSM**||
 |OBJ_READ|Common sprite fetch event, shared by many modules.|
@@ -37,7 +37,7 @@ Signal table:
 |**Output signals**||
 |/OBJ_RD_ATTR|Also used in Data Reader|
 |/SPR0HIT|To detect a `Sprite 0 Hit` event|
-|#ZCOL0, #ZCOL1, ZCOL2, ZCOL3, #ZPRIO|FIFO results for the multiplexer (MUX)|
+|/ZCOL0, /ZCOL1, ZCOL2, ZCOL3, /ZPRIO|FIFO results for the multiplexer (MUX)|
 
 ## Principle of Operation
 

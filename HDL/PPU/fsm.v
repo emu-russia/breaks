@@ -34,7 +34,7 @@ module PPU_FSM (
 	output H5_DD; 				// H0-H5 signals delayed by two DLatch
 
 	output S_EV; 				// "Start Sprite Evaluation"
-	output CLIP_O; 				// "Clip Objects". 1: Do not show the left 8 screen pixels for sprites. Used to get the CLPO signal that goes into the OAM FIFO.
+	output CLIP_O; 				// "Clip Objects". 1: Do not show the left 8 screen pixels for sprites. Used to get the CLPO signal that goes into the Obj FIFO.
 	output CLIP_B; 				// "Clip Background". 1: Do not show the left 8 pixels of the screen for the background. Used to get the /CLPB signal that goes into the Data Reader.
 	output Z_HPOS; 				// "Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO
 	output n_EVAL; 				// 0: "Sprite Evaluation in Progress"

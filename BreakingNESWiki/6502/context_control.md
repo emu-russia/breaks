@@ -103,7 +103,7 @@ PHI1 "Установка адреса и режима R/W":
 - Сохранение ADD на SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
 - Сохранение AC: AC_SB, AC_DB
 - Сохранение старого значения указателя стека на шину ADL: S_ADL
-- Инкремент PC: n_1PC
+- Инкремент PC: n_IPC
 - Сохранение PC на шины: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 - Мультиплексирование шин: SB_DB, SB_ADH
 - Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
@@ -123,7 +123,7 @@ PHI2 "Чтение/запись данных":
 - Операция на АЛУ: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA
 - Сохранение ADD на SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
 - Сохранение старого значения указателя стека на шину ADL: S_ADL
-- Инкремент PC: n_1PC (в этом полуцикле происходит увеличение PC)
+- Инкремент PC: n_IPC (в этом полуцикле происходит увеличение PC)
 - Сохранение PC на шины: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 - Мультиплексирование шин: SB_DB, SB_ADH
 - Генератор констант: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17

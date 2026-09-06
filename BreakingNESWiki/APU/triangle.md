@@ -14,12 +14,12 @@
 |TCO|Выходной перенос со счётчика Linear Counter|
 |FOUT|Выходной перенос со счётчика Frequency Counter|
 |TLOAD|Загрузить счётчик Linear Counter|
-|TSTEP|Выполнить шаг счётчика Frequency Counter|
-|FLOAD|Загрузить счётчик Frequency Counter|
-|FSTEP|Выполнить шаг счётчика Frequency Counter|
+|TSTEP|Выполнить шаг счётчика Linear Counter|
+|TFLOAD|Загрузить счётчик Frequency Counter|
+|TFSTEP|Выполнить шаг счётчика Frequency Counter|
 |TTSTEP|Выполнить шаг выходного счётчика Output|
 
-Разработчики решили использовать для треугольного канала PHI1 в некоторых местах вместо ACLK, чтобы сгладить "ступенчатость" сигнала.
+Разработчики решили использовать для треугольного канала PHI1 в некоторых местах вместо ACLK1, чтобы сгладить "ступенчатость" сигнала.
 
 ## Triangle Control
 

@@ -2336,7 +2336,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(2250,2130)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
       <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(3110,1060)" name="Tunnel">
@@ -2353,7 +2353,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(2160,960)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
       <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(2870,110)" name="Pin">
@@ -2373,7 +2373,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(1430,3160)" name="H_INVERSION"/>
     <comp lib="0" loc="(2250,1210)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
       <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(2280,4660)" name="Pin">
@@ -2761,7 +2761,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(3000,3150)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
       <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp loc="(650,590)" name="PIXEL_CLOCK_PAL"/>
@@ -2803,7 +2803,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="incoming" val="4"/>
       <a name="appear" val="right"/>
     </comp>
-    <comp loc="(1110,3200)" name="OAM_FIFO"/>
+    <comp loc="(1110,3200)" name="OBJ_FIFO"/>
     <comp lib="0" loc="(590,2430)" name="Constant">
       <a name="facing" val="north"/>
     </comp>
@@ -3122,7 +3122,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="appear" val="center"/>
     </comp>
     <comp lib="0" loc="(1300,1200)" name="Tunnel">
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
       <a name="labelfont" val="SansSerif plain 10"/>
     </comp>
     <comp lib="0" loc="(200,2710)" name="Tunnel">
@@ -6661,7 +6661,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="392" y="543">H5''</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="457" y="374">F/TB</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="100" y="559">/VSET</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="449" y="415">PAR/O</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="449" y="415">OBJ_READ</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="70" y="558">VB</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="455" y="274">S/EV</text>
       <text font-family="SansSerif" font-size="22" text-anchor="middle" x="259" y="324">CONTROL UNIT</text>
@@ -7215,7 +7215,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp loc="(300,1130)" name="D-latch"/>
@@ -11549,7 +11549,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="118" y="255">OBJ COLOR</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="65" y="324">0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="65" y="484">0</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="88" y="224">SPR0_EV</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="88" y="224">/SPR0_EV</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="65" y="513">3</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="363" y="214">DB6</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="61" y="184">4</text>
@@ -12095,7 +12095,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(130,1270)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="SPR0_EV"/>
+      <a name="label" val="/SPR0_EV"/>
     </comp>
     <comp lib="1" loc="(690,680)" name="NOR Gate">
       <a name="size" val="30"/>
@@ -12250,7 +12250,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <appear>
       <path d="M61,56 Q65,66 69,56" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="#69ff1b" height="400" stroke="#000000" stroke-width="2" width="210" x="50" y="40"/>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="223" y="404">SPR0_EV</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="223" y="404">/SPR0_EV</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="227" y="385">PD/FIFO</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="238" y="184">OV0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="240" y="274">0V3</text>
@@ -12262,7 +12262,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="61" y="354">0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="61" y="423">7</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="234">/VIS</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="77" y="174">PAR/O</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="77" y="174">OBJ_READ</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="78" y="194">I/OAM2</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="75" y="65">PCLK</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="72" y="154">S/EV</text>
@@ -12672,7 +12672,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(980,540)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="label" val="SPR0_EV"/>
+      <a name="label" val="/SPR0_EV"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="6" loc="(777,44)" name="Text">
@@ -12707,7 +12707,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(90,670)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
     </comp>
     <comp lib="0" loc="(980,110)" name="Pin">
       <a name="facing" val="west"/>
@@ -13630,7 +13630,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="80" y="254">RESCL</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="76" y="294">H0''</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="392" y="384">OAMCTR2</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="78" y="434">PAR/O</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="78" y="434">OBJ_READ</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="77" y="374">BLNK</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="77" y="104">/DBE</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="81" y="334">I/OAM2</text>
@@ -14107,7 +14107,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="DB4"/>
     </comp>
     <comp lib="0" loc="(210,720)" name="Tunnel">
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
     </comp>
     <comp lib="0" loc="(110,1660)" name="Pin">
       <a name="tristate" val="false"/>
@@ -14415,7 +14415,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(190,1300)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
     </comp>
     <comp lib="6" loc="(175,634)" name="Text">
       <a name="text" val="1"/>
@@ -14519,7 +14519,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(110,690)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
     </comp>
     <comp lib="6" loc="(229,1792)" name="Text">
       <a name="text" val="10"/>
@@ -16837,16 +16837,16 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="DB--&gt;OAM"/>
     </comp>
   </circuit>
-  <circuit name="OAM_FIFO">
-    <a name="circuit" val="OAM_FIFO"/>
-    <a name="clabel" val="OAM FIFO"/>
+  <circuit name="OBJ_FIFO">
+    <a name="circuit" val="OBJ_FIFO"/>
+    <a name="clabel" val="Object FIFO"/>
     <a name="clabelup" val="north"/>
     <a name="clabelfont" val="SansSerif plain 22"/>
     <appear>
       <path d="M59,51 Q63,61 67,51" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="#ffbabe" height="602" stroke="#000000" stroke-width="2" width="290" x="50" y="40"/>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="61" y="294">0</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="73" y="183">/SH5</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="73" y="183">/OBJ_RD_A</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="310" y="264">ZCOL2</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="75" y="244">CLPO</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="310" y="234">/ZCOL1</text>
@@ -16859,16 +16859,16 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="74" y="84">H3''</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="74" y="104">H4''</text>
       <polyline fill="none" points="56,56 56,64" stroke="#000000" stroke-width="2"/>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="72" y="163">/SH3</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="72" y="163">/OBJ_RD_X</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="310" y="204">/ZCOL0</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="73" y="204">/SH7</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="73" y="204">/OBJ_RD_B</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="90" y="364">OBJ BUS</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="63" y="474">/0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="311" y="324">/ZPRIO</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="63" y="614">/7</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="74" y="124">H5''</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="82" y="264">0/HPOS</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="72" y="144">/SH2</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="72" y="144">/OBJ_RD_ATTR</text>
       <polyline fill="none" points="56,55 50,55" stroke="#000000" stroke-width="2"/>
       <polyline fill="none" points="56,65 50,65" stroke="#000000" stroke-width="2"/>
       <circ-port height="8" pin="100,60" width="8" x="46" y="56"/>
@@ -17573,7 +17573,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,1210)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="0" loc="(1440,340)" name="Tunnel">
       <a name="label" val="ZCOL3"/>
@@ -17590,14 +17590,14 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,2610)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(100,1120)" name="Pin">
       <a name="label" val="OB6"/>
     </comp>
     <comp lib="0" loc="(580,340)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(680,90)" name="Splitter">
       <a name="facing" val="south"/>
@@ -17618,14 +17618,14 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,570)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="0" loc="(1440,1130)" name="Tunnel">
       <a name="label" val="/ZCOL0"/>
     </comp>
-    <comp loc="(1020,160)" name="OAM_FIFO_PIPELINE"/>
+    <comp loc="(1020,160)" name="OBJ_FIFO_PIPELINE"/>
     <comp lib="1" loc="(1420,900)" name="Controlled Buffer"/>
-    <comp loc="(1020,1730)" name="OAM_FIFO_PIPELINE"/>
+    <comp loc="(1020,1730)" name="OBJ_FIFO_PIPELINE"/>
     <comp lib="1" loc="(1420,2610)" name="Controlled Buffer"/>
     <comp lib="1" loc="(1420,1790)" name="Controlled Buffer"/>
     <comp lib="0" loc="(100,1400)" name="Pin">
@@ -17684,11 +17684,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="PCLK"/>
     </comp>
     <comp lib="0" loc="(130,660)" name="Tunnel">
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(580,1870)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="1" loc="(1390,1070)" name="NOR Gate">
       <a name="size" val="70"/>
@@ -17745,7 +17745,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,2200)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="1" loc="(1390,2070)" name="NOR Gate">
       <a name="size" val="70"/>
@@ -17815,11 +17815,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,1850)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="0" loc="(580,940)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(1440,1870)" name="Tunnel">
       <a name="label" val="ZCOL2"/>
@@ -17878,9 +17878,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="1" loc="(1420,1870)" name="Controlled Buffer"/>
     <comp lib="0" loc="(130,540)" name="Tunnel">
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
-    <comp loc="(1020,2080)" name="OAM_FIFO_PIPELINE"/>
+    <comp loc="(1020,2080)" name="OBJ_FIFO_PIPELINE"/>
     <comp lib="1" loc="(1420,980)" name="Controlled Buffer"/>
     <comp lib="1" loc="(1270,2510)" name="AND Gate">
       <a name="size" val="30"/>
@@ -17888,7 +17888,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,590)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="1" loc="(1420,2140)" name="Controlled Buffer"/>
     <comp lib="0" loc="(1440,2180)" name="Tunnel">
@@ -17901,7 +17901,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(1420,1170)" name="Controlled Buffer"/>
     <comp lib="0" loc="(580,1580)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(240,280)" name="Tunnel">
       <a name="label" val="SEL0"/>
@@ -17915,7 +17915,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,1560)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="0" loc="(100,820)" name="Pin">
       <a name="label" val="OB0"/>
@@ -17923,26 +17923,26 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="1" loc="(1420,940)" name="Controlled Buffer"/>
     <comp lib="0" loc="(580,2570)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="0" loc="(1580,260)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="/ZCOL1"/>
     </comp>
     <comp lib="0" loc="(100,580)" name="Pin">
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="0" loc="(580,320)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="0" loc="(100,540)" name="Pin">
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="1" loc="(1420,1210)" name="Controlled Buffer"/>
     <comp lib="0" loc="(580,2220)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="0" loc="(1440,590)" name="Tunnel">
       <a name="label" val="ZCOL2"/>
@@ -17952,14 +17952,14 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,1890)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="0" loc="(1440,380)" name="Tunnel">
       <a name="label" val="/ZPRIO"/>
     </comp>
     <comp lib="0" loc="(580,630)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(1440,2300)" name="Tunnel">
       <a name="label" val="/ZPRIO"/>
@@ -17978,7 +17978,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="SEL4"/>
     </comp>
     <comp lib="0" loc="(130,620)" name="Tunnel">
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="1" loc="(1390,180)" name="NOR Gate">
       <a name="inputs" val="3"/>
@@ -18014,7 +18014,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,2240)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="0" loc="(1440,1250)" name="Tunnel">
       <a name="label" val="ZCOL3"/>
@@ -18028,7 +18028,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,1540)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="0" loc="(240,370)" name="Tunnel">
       <a name="label" val="SEL3"/>
@@ -18037,7 +18037,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(370,150)" name="D-latch"/>
     <comp lib="0" loc="(580,300)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="1" loc="(1420,630)" name="Controlled Buffer"/>
     <comp lib="0" loc="(100,1170)" name="Pin">
@@ -18074,7 +18074,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,900)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="1" loc="(1420,820)" name="Controlled Buffer"/>
     <comp lib="0" loc="(100,700)" name="Pin">
@@ -18084,13 +18084,13 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="facing" val="east"/>
       <a name="label" val="/ZPRIO"/>
     </comp>
-    <comp loc="(1020,2430)" name="OAM_FIFO_PIPELINE"/>
+    <comp loc="(1020,2430)" name="OBJ_FIFO_PIPELINE"/>
     <comp lib="1" loc="(1270,1480)" name="AND Gate">
       <a name="size" val="30"/>
       <a name="inputs" val="2"/>
     </comp>
     <comp lib="0" loc="(130,580)" name="Tunnel">
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="0" loc="(1440,2260)" name="Tunnel">
       <a name="label" val="ZCOL3"/>
@@ -18098,7 +18098,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(470,160)" name="Tunnel">
       <a name="label" val="#0/H"/>
     </comp>
-    <comp loc="(1020,760)" name="OAM_FIFO_PIPELINE"/>
+    <comp loc="(1020,760)" name="OBJ_FIFO_PIPELINE"/>
     <comp lib="0" loc="(860,90)" name="Splitter">
       <a name="facing" val="south"/>
       <a name="fanout" val="8"/>
@@ -18127,7 +18127,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,280)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="1" loc="(1420,1620)" name="Controlled Buffer"/>
     <comp lib="6" loc="(291,45)" name="Text">
@@ -18157,14 +18157,14 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,1520)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="0" loc="(100,1600)" name="Pin">
       <a name="label" val="/T7"/>
     </comp>
     <comp lib="0" loc="(580,2590)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="1" loc="(1420,2570)" name="Controlled Buffer"/>
     <comp lib="1" loc="(1420,510)" name="Controlled Buffer"/>
@@ -18172,7 +18172,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="width" val="2"/>
       <a name="label" val="PCLK"/>
     </comp>
-    <comp loc="(1020,1400)" name="OAM_FIFO_PIPELINE"/>
+    <comp loc="(1020,1400)" name="OBJ_FIFO_PIPELINE"/>
     <comp lib="0" loc="(1440,2140)" name="Tunnel">
       <a name="label" val="/ZCOL0"/>
     </comp>
@@ -18221,7 +18221,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="/ZCOL1"/>
     </comp>
     <comp lib="0" loc="(100,620)" name="Pin">
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="0" loc="(580,2300)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -18240,7 +18240,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,1190)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="0" loc="(580,1430)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -18253,7 +18253,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,1230)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="0" loc="(580,2630)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -18270,7 +18270,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,610)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="0" loc="(1440,1790)" name="Tunnel">
       <a name="label" val="/ZCOL0"/>
@@ -18278,7 +18278,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(290,150)" name="D-latch"/>
     <comp lib="0" loc="(580,1250)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(1580,340)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -18302,7 +18302,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,920)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="0" loc="(160,310)" name="Splitter">
       <a name="facing" val="west"/>
@@ -18321,10 +18321,10 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,1910)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(100,660)" name="Pin">
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(230,1360)" name="Tunnel">
       <a name="width" val="8"/>
@@ -18333,16 +18333,16 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(1440,300)" name="Tunnel">
       <a name="label" val="ZCOL2"/>
     </comp>
-    <comp loc="(1020,1070)" name="OAM_FIFO_PIPELINE"/>
+    <comp loc="(1020,1070)" name="OBJ_FIFO_PIPELINE"/>
     <comp lib="0" loc="(580,2550)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="0" loc="(580,2260)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
-    <comp loc="(1020,450)" name="OAM_FIFO_PIPELINE"/>
+    <comp loc="(1020,450)" name="OBJ_FIFO_PIPELINE"/>
     <comp lib="0" loc="(580,790)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="width" val="2"/>
@@ -18357,21 +18357,21 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(580,880)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
   </circuit>
-  <circuit name="OAM_FIFO_PIPELINE">
-    <a name="circuit" val="OAM_FIFO_PIPELINE"/>
+  <circuit name="OBJ_FIFO_PIPELINE">
+    <a name="circuit" val="OBJ_FIFO_PIPELINE"/>
     <a name="clabel" val="FIFO PIPELINE"/>
     <a name="clabelup" val="north"/>
     <a name="clabelfont" val="SansSerif plain 20"/>
     <appear>
       <path d="M321,51 Q325,61 329,51" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="#79ffd0" height="240" stroke="#000000" stroke-width="2" width="430" x="50" y="50"/>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="174">/SH2</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="174">/OBJ_RD_ATTR</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="69" y="134">SEL</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="74" y="84">PCLK</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="234">/SH7</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="234">/OBJ_RD_B</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="110" y="67">0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="455" y="74">#X/EN</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="449" y="194">X/COL2</text>
@@ -18383,9 +18383,9 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="446" y="154">#X/COL1</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="361" y="86">T  BUS</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="289" y="67">/0</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="194">/SH3</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="194">/OBJ_RD_X</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="446" y="114">#X/COL0</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="214">/SH5</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="214">/OBJ_RD_A</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="250" y="67">7</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="451" y="274">X/PRIO</text>
       <polyline fill="none" points="51,76 56,76" stroke="#000000" stroke-width="2"/>
@@ -18629,7 +18629,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(80,710)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
     </comp>
     <comp lib="0" loc="(80,630)" name="Pin">
       <a name="tristate" val="false"/>
@@ -18678,7 +18678,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="tristate" val="false"/>
       <a name="label" val="SEL"/>
     </comp>
-    <comp loc="(680,650)" name="OAM_FIFO_DOWN_COUNTER"/>
+    <comp loc="(680,650)" name="OBJ_FIFO_DOWN_COUNTER"/>
     <comp loc="(680,350)" name="SHIFT_REG_LOAD"/>
     <comp lib="6" loc="(301,363)" name="Text">
       <a name="text" val="T/SR1"/>
@@ -18712,7 +18712,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(80,380)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
     </comp>
     <comp lib="0" loc="(140,510)" name="Splitter">
       <a name="facing" val="west"/>
@@ -18796,7 +18796,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp loc="(170,850)" name="D-latch"/>
     <comp lib="0" loc="(80,900)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="0" loc="(80,600)" name="Pin">
       <a name="tristate" val="false"/>
@@ -18840,7 +18840,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(80,90)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
     </comp>
     <comp lib="0" loc="(80,660)" name="Pin">
       <a name="tristate" val="false"/>
@@ -18854,8 +18854,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="labelfont" val="SansSerif bold 12"/>
     </comp>
   </circuit>
-  <circuit name="OAM_FIFO_DOWN_COUNTER">
-    <a name="circuit" val="OAM_FIFO_DOWN_COUNTER"/>
+  <circuit name="OBJ_FIFO_DOWN_COUNTER">
+    <a name="circuit" val="OBJ_FIFO_DOWN_COUNTER"/>
     <a name="clabel" val="FIFO DOWN COUNTER"/>
     <a name="clabelup" val="east"/>
     <a name="clabelfont" val="SansSerif plain 20"/>
@@ -19472,11 +19472,11 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="69" y="84">H0''</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="69" y="105">H1''</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="69" y="124">H2''</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="78" y="144">PAR/O</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="287" y="73">/SH2</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="287" y="94">/SH3</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="287" y="113">/SH5</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="287" y="134">/SH7</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="78" y="144">OBJ_READ</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="287" y="73">/OBJ_RD_ATTR</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="287" y="94">/OBJ_RD_X</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="287" y="113">/OBJ_RD_A</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="287" y="134">/OBJ_RD_B</text>
       <polyline fill="none" points="50,55 57,55" stroke="#000000" stroke-width="2"/>
       <polyline fill="none" points="50,65 57,65" stroke="#000000" stroke-width="2"/>
       <polyline fill="none" points="57,56 57,64" stroke="#000000" stroke-width="2"/>
@@ -19528,7 +19528,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(300,330)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="label" val="/SH5"/>
+      <a name="label" val="/OBJ_RD_A"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="6" loc="(362,360)" name="Text">
@@ -19557,7 +19557,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(300,150)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="0" loc="(140,30)" name="Splitter">
@@ -19569,7 +19569,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(300,240)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="label" val="/SH3"/>
+      <a name="label" val="/OBJ_RD_X"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="0" loc="(110,130)" name="Splitter">
@@ -19586,7 +19586,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(300,420)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="label" val="/SH7"/>
+      <a name="label" val="/OBJ_RD_B"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="6" loc="(365,452)" name="Text">
@@ -19646,7 +19646,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="143" y="214">/T3</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="143" y="274">/T5</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="143" y="334">/T7</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="114">/SH2</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="71" y="114">/OBJ_RD_ATTR</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="74" y="75">PCLK</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="143" y="184">/T2</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="68" y="214">PD1</text>
@@ -19935,7 +19935,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(90,120)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="0" loc="(90,630)" name="Pin">
       <a name="tristate" val="false"/>
@@ -20785,7 +20785,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="330" y="69">7</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="178" y="627">CPU DATA BUS IN</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="61" y="334">/H1'</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="62" y="515">/SH2</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="62" y="515">/OBJ_RD_ATTR</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="65" y="254">/W5.1</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="65" y="135">O8/16</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="420" y="94">/PA0</text>
@@ -20816,7 +20816,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="420" y="134">/PA2</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="62" y="454">F/AT</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="420" y="174">/PA4</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="67" y="414">PAR/O</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="67" y="414">OBJ_READ</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="424" y="334">/PA12</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="424" y="354">/PA13</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="438" y="394">0</text>
@@ -22675,7 +22675,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(2050,80)" name="Pin">
       <a name="facing" val="south"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
       <a name="labelloc" val="north"/>
     </comp>
     <comp lib="6" loc="(787,2857)" name="Text">
@@ -22909,7 +22909,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(2000,80)" name="Pin">
       <a name="facing" val="south"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
       <a name="labelloc" val="north"/>
     </comp>
     <comp lib="4" loc="(820,730)" name="D Flip-Flop">
@@ -23405,7 +23405,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="83" y="226">O8/16</text>
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="209" y="3329">6</text>
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="80" y="3206">/FVO0</text>
-      <text font-family="SansSerif" font-size="16" text-anchor="middle" x="76" y="255">/SH2</text>
+      <text font-family="SansSerif" font-size="16" text-anchor="middle" x="76" y="255">/OBJ_RD_ATTR</text>
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="88" y="196">OBSEL</text>
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="85" y="2735">PAD10</text>
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="79" y="1736">PAD5</text>
@@ -23417,7 +23417,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="83" y="735">PAD1</text>
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="489" y="3330">0</text>
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="82" y="1335">PAD4</text>
-      <text font-family="SansSerif" font-size="16" text-anchor="middle" x="84" y="285">PAR/O</text>
+      <text font-family="SansSerif" font-size="16" text-anchor="middle" x="84" y="285">OBJ_READ</text>
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="369" y="3330">4</text>
       <polyline fill="none" points="57,73 57,66" stroke="#000000" stroke-width="2"/>
       <text font-family="SansSerif" font-size="16" text-anchor="middle" x="349" y="3330">3</text>
@@ -23822,7 +23822,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(130,320)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
     </comp>
     <comp lib="0" loc="(130,550)" name="Pin">
       <a name="tristate" val="false"/>
@@ -23993,7 +23993,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp loc="(810,990)" name="D-latch"/>
     <comp lib="6" loc="(663,145)" name="Text">
-      <a name="text" val="PAR/O"/>
+      <a name="text" val="OBJ_READ"/>
       <a name="font" val="SansSerif bold 12"/>
     </comp>
     <comp lib="6" loc="(864,791)" name="Text">
@@ -24228,7 +24228,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(130,150)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
     </comp>
     <comp lib="0" loc="(830,1450)" name="Pin">
       <a name="facing" val="west"/>
@@ -26973,7 +26973,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="388" y="234">PPU ADDRESS</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="208" y="627">CPU DATA BUS IN</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="95" y="215">/W6.1</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="92" y="515">/SH2</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="92" y="515">/OBJ_RD_ATTR</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="468" y="394">0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="92" y="454">F/AT</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="95" y="374">BLNK</text>
@@ -26988,7 +26988,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="450" y="114">/PA1</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="454" y="294">/PA10</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="454" y="354">/PA13</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="97" y="414">PAR/O</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="97" y="414">OBJ_READ</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="220" y="69">0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="379" y="626">OBJ DATA BUS IN</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="93" y="94">/DBE</text>
@@ -29137,7 +29137,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="/PCLK"/>
     </comp>
     <comp lib="0" loc="(130,2350)" name="Tunnel">
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
     </comp>
     <comp lib="1" loc="(200,1860)" name="NOT Gate">
       <a name="size" val="20"/>
@@ -29149,7 +29149,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(2140,70)" name="Pin">
       <a name="facing" val="south"/>
       <a name="tristate" val="false"/>
-      <a name="label" val="/SH2"/>
+      <a name="label" val="/OBJ_RD_ATTR"/>
       <a name="labelloc" val="north"/>
     </comp>
     <comp lib="0" loc="(2710,1890)" name="Tunnel">
@@ -29321,7 +29321,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(2580,3170)" name="Tunnel">
       <a name="facing" val="east"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
     </comp>
     <comp lib="0" loc="(680,630)" name="Tunnel">
       <a name="facing" val="east"/>
@@ -29810,7 +29810,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(100,2350)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="PAR/O"/>
+      <a name="label" val="OBJ_READ"/>
     </comp>
     <comp lib="0" loc="(3100,2390)" name="Pin">
       <a name="facing" val="west"/>

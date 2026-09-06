@@ -14,12 +14,12 @@
 |TCO|Output carry from a Linear Counter|
 |FOUT|Output carry from Frequency Counter|
 |TLOAD|Load Linear Counter|
-|TSTEP|Step Frequency Counter|
-|FLOAD|Load Frequency Counter|
-|FSTEP|Step Frequency Counter|
+|TSTEP|Step Linear Counter|
+|TFLOAD|Load Frequency Counter|
+|TFSTEP|Step Frequency Counter|
 |TTSTEP|Step Output Counter|
 
-The developers decided to use PHI1 for the triangular channel in some places instead of ACLK to smooth out the "stepped" signal.
+The developers decided to use PHI1 for the triangular channel in some places instead of ACLK1 to smooth out the "stepped" signal.
 
 ## Triangle Control
 

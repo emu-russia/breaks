@@ -9826,7 +9826,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="inputs" val="2"/>
     </comp>
     <comp lib="6" loc="(829,1355)" name="Text">
-      <a name="text" val="SWEEPRELOAD"/>
+      <a name="text" val="SWRELOAD"/>
       <a name="font" val="SansSerif bold 12"/>
     </comp>
     <comp loc="(840,1090)" name="D-latch"/>
@@ -10176,7 +10176,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="69" y="364">RES</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="67" y="174">PL0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="70" y="274">PL10</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="181" y="364">FQOUT</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="181" y="364">FCO</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="181" y="384">FLOAD</text>
       <circ-port height="8" pin="90,50" width="8" x="46" y="66"/>
       <circ-port height="8" pin="90,1820" width="8" x="46" y="86"/>
@@ -10748,7 +10748,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(590,1870)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="label" val="FQOUT"/>
+      <a name="label" val="FCO"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="1" loc="(450,1730)" name="NOR Gate">
@@ -10967,7 +10967,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="64" y="214">D6</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="64" y="234">D7</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="77" y="134">FLOAD</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="78" y="114">FQOUT</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="78" y="114">FCO</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="69" y="194">RES</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="84" y="154">W4003(7)</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="84" y="174">W4000(4)</text>
@@ -11210,7 +11210,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(100,80)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="FQOUT"/>
+      <a name="label" val="FCO"/>
     </comp>
     <comp lib="6" loc="(570,424)" name="Text">
       <a name="text" val="INV4"/>
@@ -16950,7 +16950,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <a name="label" val="R/W"/>
     </comp>
     <comp lib="6" loc="(323,94)" name="Text">
-      <a name="text" val="/ACLK2 = NOT ACLK"/>
+      <a name="text" val="ACLK2 = NOT /ACLK2"/>
     </comp>
     <comp loc="(500,1240)" name="DPCM_ADDRESS_COUNTER"/>
     <comp lib="0" loc="(140,210)" name="Pin">

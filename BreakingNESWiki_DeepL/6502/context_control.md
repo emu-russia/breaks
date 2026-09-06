@@ -103,7 +103,7 @@ PHI1 "Set Address and R/W Mode":
 - ADD saving on SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
 - Saving AC: AC_SB, AC_DB
 - Saving of old stack pointer value to ADL bus: S_ADL
-- Increment PC: n_1PC
+- Increment PC: n_IPC
 - Saving PC to bus: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 - Bus multiplexing: SB_DB, SB_ADH
 - Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
@@ -123,7 +123,7 @@ PHI2 "Read/Write Data":
 - ALU operation: ANDS, EORS, ORS, SRS, SUMS, n_ACIN, n_DAA, n_DSA
 - ADD saving on SB/ADL: ADD_SB7, ADD_SB06, ADD_ADL
 - Saving old stack pointer value to ADL bus: S_ADL
-- Increment PC: n_1PC (PC is incremented in this half-cycle)
+- Increment PC: n_IPC (PC is incremented in this half-cycle)
 - Saving PC to bus: PCL_ADL, PCH_ADH, PCL_DB, PCH_DB
 - Bus multiplexing: SB_DB, SB_ADH
 - Constant generator: Z_ADL0, Z_ADL1, Z_ADL2, Z_ADH0, Z_ADH17
