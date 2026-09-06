@@ -90,9 +90,9 @@ The memory cell is a typical 4T SRAM Cell:
 |![cram_cell_topo](/BreakingNESWiki/imgstore/ppu/cram_cell_topo.jpg)|![cram_cell](/BreakingNESWiki/imgstore/ppu/cram_cell.jpg)|
 |---|---|
 
-The value is written or read with two complementary inOut: /val and val. The principle of cell operation:
-- In cell read mode: /val = val = `z`. Therefore, the current value is output to the outside.
-- In cell write mode: /val and val take the complementary value of the bit to be written
+The value is written or read with two complementary inOut: BL and /BL (BLBar). The principle of cell operation:
+- In cell read mode: BL = /BL = `z`. Therefore, the current value is output to the outside.
+- In cell write mode: BL and /BL take the complementary value of the bit to be written
 
 ### CRAM Index Decoder
 

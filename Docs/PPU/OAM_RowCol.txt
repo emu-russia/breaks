@@ -5,7 +5,7 @@ Rows are aranged in groups, 9 groups total.
 Number of rows in each group : 8, 8, 5, 8, 8, 8, 5, 8, 8
 This gives 1792 + 320 = 2112 bits (264 bytes)
 
-OAM Rows (~OAM0-2 + OAM8):
+OAM Columns (~OAM0-2 + OAM8):
 
  8 2 1 0   76543210Z
 --------------------
@@ -19,7 +19,7 @@ OAM Rows (~OAM0-2 + OAM8):
  0 1 1 1 | 100000000
  1 x x x | 000000001
 
-OAM Columns (~OAM3-7):
+OAM Rows (~OAM3-7):
 
 76543
 -----

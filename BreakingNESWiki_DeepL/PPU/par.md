@@ -2,7 +2,7 @@
 
 ![ppu_locator_par](/BreakingNESWiki/imgstore/ppu/ppu_locator_par.jpg)
 
-The circuit takes up the whole upper part and forms the tile (`Pattern`) address, which is set by `/PAD0-12` (13 bits).
+The circuit takes up the whole upper part and forms the tile (`Pattern`) address, which is set by `PAT_ADR0-13` (14 bits).
 
 ![par_high](/BreakingNESWiki/imgstore/ppu/par_high.jpg)
 
@@ -15,7 +15,7 @@ Small circuits to control the loading of values into the output latches. The mai
 |![ParControl](/BreakingNESWiki/imgstore/ppu/ParControl.png)|![V_Inversion](/BreakingNESWiki/imgstore/ppu/V_Inversion.png)|
 |---|---|
 
-Bit circuits to form the output value `/PAD0-12` in slight variations:
+Bit circuits to form the output value `PAT_ADR0-13` in slight variations:
 
 ![ParBit](/BreakingNESWiki/imgstore/ppu/ParBit.png)
 

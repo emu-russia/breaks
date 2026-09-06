@@ -76,7 +76,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 	wire H5_DD;
 
 	wire S_EV;					// "Start Sprite Evaluation"
-	wire CLIP_O;				// "Clip Objects". 1: Do not show the left 8 screen points for sprites. Used to get the CLPO signal that goes into the OAM FIFO.
+	wire CLIP_O;				// "Clip Objects". 1: Do not show the left 8 screen points for sprites. Used to get the CLPO signal that goes into the Obj FIFO.
 	wire CLIP_B;				// "Clip Background". 1: Do not show the left 8 points of the screen for the background. Used to get the /CLPB signal that goes into the Data Reader.
 	wire Z_HPOS;				// "Clear HPos". Clear the H counters in the sprite FIFO and start the FIFO
 	wire n_EVAL;				// 0: "Sprite Evaluation in Progress"
