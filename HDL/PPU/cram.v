@@ -123,9 +123,9 @@ module CRAM_Block (
 		.n_BW(n_BW),
 		.n_DB_CB(n_DB_CB) );
 
-	// CPU write path: DB -> CB -> CRAM (n_DB_CB = 0)
+	// CPU write path: DB -> CB -> CRAM (n_DB_CB = 0, CPU drives DB: n_DBE = 0)
 	always @(posedge PCLK) begin
-		if (n_DB_CB == 1'b0)
+		if (n_DB_CB == 1'b0 && n_DBE == 1'b0)
 			cram[CGA] <= CPU_DB[5:0];
 	end
 

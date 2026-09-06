@@ -205,6 +205,7 @@ module Tile_FV_Counter (
   TileCounterBit u0 (.Clock(w0), .Load(w1), .Step(w2), .val_in(w3), .carry_in(w4), .val_out(FVO[1]), .n_val_out(w5), .carry_out(w6));
   TileCounterBit u1 (.Clock(w7), .Load(w8), .Step(w9), .val_in(w10), .carry_in(w11), .val_out(FVO[2]), .n_val_out(w12), .carry_out(w13));
   TileCounterBit u2 (.Clock(TVLOAD), .Load(TVSTEP), .Step(w14), .val_in(w15), .carry_in(w16), .val_out(FVO[0]), .n_val_out(w17), .carry_out(w18));
+  assign n_FVO = {w12, w5, w17};
 endmodule
 
 module Tile_NT_Counters (
@@ -330,6 +331,7 @@ module Tile_TV_Counter (
   TileCounterBitReset u2 (.Clock(w16), .Load(w17), .Step(w18), .val_in(w19), .carry_in(w20), .Reset(w21), .val_out(TVO[3]), .n_val_out(w22), .carry_out(w23));
   TileCounterBitReset u3 (.Clock(w24), .Load(w25), .Step(w26), .val_in(w27), .carry_in(w28), .Reset(w29), .val_out(TVO[4]), .n_val_out(w30), .carry_out(w31));
   TileCounterBitReset u4 (.Clock(TVLOAD), .Load(TVSTEP), .Step(TVIN), .val_in(w32), .carry_in(w33), .Reset(w34), .val_out(TVO[0]), .n_val_out(w35), .carry_out(w36));
+  assign n_TVO = {w30, w22, w14, w6, w35};
 endmodule
 
 module Tile_TH_Counter (
@@ -380,6 +382,7 @@ module Tile_TH_Counter (
   TileCounterBit u2 (.Clock(w14), .Load(w15), .Step(w16), .val_in(w17), .carry_in(w18), .val_out(THO[3]), .n_val_out(w19), .carry_out(w20));
   TileCounterBit u3 (.Clock(w21), .Load(w22), .Step(w23), .val_in(w24), .carry_in(w25), .val_out(THO[4]), .n_val_out(w26), .carry_out(w27));
   TileCounterBit u4 (.Clock(THLOAD), .Load(THSTEP), .Step(w28), .val_in(w29), .carry_in(w30), .val_out(THO[0]), .n_val_out(w31), .carry_out(w32));
+  assign n_THO = {w26, w19, w12, w5, w31};
 endmodule
 
 module TileCnt (

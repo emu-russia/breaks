@@ -216,6 +216,7 @@ module PAR (
   wire w9;
 
   assign PAddr_out[13] = 1'd0;
+  assign PAddr_out[12] = w11;
   assign PAddr_out[3] = ~n_H1D;
   assign bus770_900 = OBJ_READ ? bus690_910 : n_FVO;
   V_Inversion u0 (.n_PCLK(w0), .n_OBJ_RD_ATTR(PD[0]), .OB(bus260_490), .VDIR(w1), .VINV(w2));
