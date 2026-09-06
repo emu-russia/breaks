@@ -1,3 +1,84 @@
+module CB_Control (
+  input n_DBE,
+  input TH_MUX,
+  input DB_PAR,
+  input n_PICTURE,
+  input BnW,
+  input PCLK,
+  input n_R7,
+  output n_BW,
+  output n_CB_DB,
+  output n_DB_CB );
+  wire w0;
+  wire w1;
+  wire w2;
+  wire w3;
+  wire w4;
+  wire w5;
+
+  assign w0 = ~TH_MUX;
+  assign w1 = n_CB_DB & n_PICTURE;
+  assign w2 = ~(n_R7 | n_DBE | w0);
+  assign n_CB_DB = ~w2;
+  assign n_BW = ~(w1 | BnW);
+  assign w4 = ~(w3 & TH_MUX);
+  assign n_DB_CB = w4;
+  dlatch u0 (.en(PCLK), .d(DB_PAR), .q(w3), .nq(w5));
+endmodule
+
+module CRAM_Decoder (
+  input PCLK,
+  input [4:0] CGA,
+  output COL2,
+  output COL3,
+  output COL0,
+  output COL1,
+  output ROW0_4,
+  output ROW1,
+  output ROW2,
+  output ROW3,
+  output ROW5,
+  output ROW6,
+  output ROW7 );
+  wire [2:0] bus310_210;
+  wire [1:0] bus310_110;
+  wire w0;
+  wire w1;
+  wire w10;
+  wire w2;
+  wire w3;
+  wire w4;
+  wire w5;
+  wire w6;
+  wire w7;
+  wire w8;
+  wire w9;
+
+  assign w0 = 1'd0;
+  assign w1 = 1'd0;
+  assign w4 = w2 | w3;
+  assign ROW0_4 = w4 & (~PCLK);
+  assign ROW1 = w5 & (~PCLK);
+  assign ROW2 = w6 & (~PCLK);
+  assign ROW3 = w7 & (~PCLK);
+  assign ROW5 = w8 & (~PCLK);
+  assign ROW6 = w9 & (~PCLK);
+  assign ROW7 = w10 & (~PCLK);
+  // demux sel=2
+  assign COL0 = ({CGA[2], CGA[3]} == 2'd0) ? w0 : 1'b0;
+  assign COL1 = ({CGA[2], CGA[3]} == 2'd1) ? w0 : 1'b0;
+  assign COL2 = ({CGA[2], CGA[3]} == 2'd2) ? w0 : 1'b0;
+  assign COL3 = ({CGA[2], CGA[3]} == 2'd3) ? w0 : 1'b0;
+  // demux sel=3
+  assign w2 = ({CGA[0], CGA[1], CGA[4]} == 3'd0) ? w1 : 1'b0;
+  assign w5 = ({CGA[0], CGA[1], CGA[4]} == 3'd1) ? w1 : 1'b0;
+  assign w6 = ({CGA[0], CGA[1], CGA[4]} == 3'd2) ? w1 : 1'b0;
+  assign w7 = ({CGA[0], CGA[1], CGA[4]} == 3'd3) ? w1 : 1'b0;
+  assign w3 = ({CGA[0], CGA[1], CGA[4]} == 3'd4) ? w1 : 1'b0;
+  assign w8 = ({CGA[0], CGA[1], CGA[4]} == 3'd5) ? w1 : 1'b0;
+  assign w9 = ({CGA[0], CGA[1], CGA[4]} == 3'd6) ? w1 : 1'b0;
+  assign w10 = ({CGA[0], CGA[1], CGA[4]} == 3'd7) ? w1 : 1'b0;
+endmodule
 
 module CRAM_Block (
 	n_PCLK, PCLK,
@@ -8,29 +89,27 @@ module CRAM_Block (
 
 	input n_PCLK;
 	input PCLK;
-
 	input n_R7;
 	input n_DBE;
 	input TH_MUX;
 	input DB_PAR;
 	input n_PICTURE;
 	input BnW;
-
 	input [4:0] CGA;
-
 	inout [7:0] CPU_DB;
-
 	output [3:0] n_CC;
 	output [1:0] n_LL;
 
-	wire n_CB_DB;
-	wire color_mode;
-	wire n_DB_CB;
+	// palette storage
+	reg [5:0] cram [0:31];
+	integer i;
+	initial begin
+		for (i = 0; i < 32; i = i + 1) cram[i] = 6'b0;
+	end
 
-	wire [5:0] cram_val; 	// bitline
-	wire [5:0] CB_Out;
-	wire [3:0] COL; 		// Column enable for bit lines
-	wire [6:0] ROW; 		// Row enable for word lines
+	wire n_BW;
+	wire n_CB_DB;
+	wire n_DB_CB;
 
 	CB_Control cbctl(
 		.PCLK(PCLK),
@@ -41,87 +120,20 @@ module CRAM_Block (
 		.n_PICTURE(n_PICTURE),
 		.BnW(BnW),
 		.n_CB_DB(n_CB_DB),
-		.n_BW(color_mode),
+		.n_BW(n_BW),
 		.n_DB_CB(n_DB_CB) );
 
-	ColorBuf cb(
-		.n_PCLK(n_PCLK),
-		.PCLK(PCLK),
-		.CPU_DB(CPU_DB),
-		.n_DB_CB(n_DB_CB),
-		.n_CB_DB(n_CB_DB),
-		.n_OE(color_mode),
-		.cram_val(cram_val),
-		.CB_Out(CB_Out) );
+	// CPU write path: DB -> CB -> CRAM (n_DB_CB = 0)
+	always @(*) begin
+		if (n_DB_CB == 1'b0)
+			cram[CGA] = CPU_DB[5:0];
+	end
 
-	CRAM_Decoder cramdec(
-		.PCLK(PCLK),
-		.CGA(CGA),
-		.COL(COL),
-		.ROW(ROW) );
+	// CPU read path: CRAM -> CB -> DB (n_CB_DB = 0)
+	assign CPU_DB = (n_CB_DB == 1'b0) ? {2'b00, cram[CGA]} : 8'bz;
 
-	CRAM cram(
-		.PCLK(PCLK),
-		.COL(COL),
-		.ROW(ROW),
-		.cram_val(cram_val) );
+	// Pixel output (inverted). Chroma is suppressed in monochrome (B/W) mode.
+	assign n_CC = (n_BW == 1'b0) ? ~cram[CGA][3:0] : 4'b1111;
+	assign n_LL = ~cram[CGA][5:4];
 
 endmodule // CRAM_Block
-
-module CB_Control(
-	PCLK,
-	n_R7, n_DBE, TH_MUX, DB_PAR, n_PICTURE, BnW,
-	n_CB_DB, n_BW, n_DB_CB);
-
-	input PCLK;
-
-	input n_R7;
-	input n_DBE;
-	input TH_MUX;
-	input DB_PAR;
-	input n_PICTURE;
-	input BnW;
-
-	output n_CB_DB;
-	output n_BW;
-	output n_DB_CB;
-
-endmodule // CB_Control
-
-module ColorBuf(
-	n_PCLK, PCLK,
-	CPU_DB,
-	n_DB_CB, n_CB_DB, n_OE, cram_val,
-	CB_Out );
-
-	input n_PCLK;
-	input PCLK;
-
-	inout [7:0] CPU_DB;
-
-	input n_DB_CB;
-	input n_CB_DB;
-	input n_OE;
-	inout [5:0] cram_val;
-
-	output [5:0] CB_Out;
-
-endmodule // ColorBuf
-
-module CRAM_Decoder(PCLK, CGA, COL, ROW);
-
-	input PCLK;
-	input [4:0] CGA;
-	output [3:0] COL;		// Column enable for bit lines
-	output [6:0] ROW; 		// Row enable for word lines
-
-endmodule // CRAM_Decoder
-
-module CRAM(PCLK, COL, ROW, cram_val);
-
-	input PCLK;
-	input [3:0] COL;
-	input [6:0] ROW;
-	inout [5:0] cram_val;		// bitline
-
-endmodule // CRAM
