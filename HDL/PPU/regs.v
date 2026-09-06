@@ -71,12 +71,10 @@ module RegFF (
   input Val_in,
   input Res,
   output Val_out );
-  wire w0;
-  wire w1;
 
-  assign w1 = ~w0;
-  assign Val_out = ~(Res | w1);
-  assign w0 = Enable ? Val_in : Val_out;
+  // register bit: level latch with write-enable and async reset
+  sdffr ff (.d(Val_in), .res(Res), .phi_keep(~Enable), .q(Val_out), .nq());
+
 endmodule
 
 module RegCTRL0 (

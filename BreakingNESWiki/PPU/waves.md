@@ -6,11 +6,27 @@
 
 ## PCLK
 
+Делитель CLK на 4 (PCLK) и фазовый расщепитель:
+
+![pclk](/BreakingNESWiki/imgstore/ppu/waves/pclk.png)
+
 ## H/V Counters
+
+Счётчики H/V в пределах одной строки:
+
+![hv_counters](/BreakingNESWiki/imgstore/ppu/waves/hv_counters.png)
 
 ## H/V Decoders
 
+Выходы PLA H/V декодеров:
+
+![hv_decoders](/BreakingNESWiki/imgstore/ppu/waves/hv_decoders.png)
+
 ## FSM Delayed H Outputs
+
+Задержанные выходы счётчика H (H0_D, H0_DD, H1_DD...):
+
+![fsm_delayed_h](/BreakingNESWiki/imgstore/ppu/waves/fsm_delayed_h.png)
 
 ## FSM State Signals
 
@@ -33,6 +49,10 @@
 ## Object FIFO Lane
 
 ## VRAM Controller
+
+Циклы записи/чтения $2007:
+
+![vram_control](/BreakingNESWiki/imgstore/ppu/waves/vram_control.png)
 
 ## Video Output
 

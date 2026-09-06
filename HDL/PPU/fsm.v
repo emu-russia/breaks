@@ -216,6 +216,8 @@ module DelayedH (PCLK, n_PCLK, H_out, H0_DD, H0_D, H1_DD, nH1_D, H2_DD, nH2_D, H
 
 	dlatch h0_latch1 (.d(H_out[0]), .en(n_PCLK), .nq(h0_latch1_nq));
 	dlatch h0_latch2 (.d(h0_latch1_nq), .en(PCLK), .nq(H0_DD));
+
+	assign H0_D = ~h0_latch1_nq;	// H0 delayed by one DLatch (non-inverted)
 	dlatch h1_latch1 (.d(H_out[1]), .en(n_PCLK), .nq(nH1_D));
 	dlatch h1_latch2 (.d(nH1_D), .en(PCLK), .nq(H1_DD));
 	dlatch h2_latch1 (.d(H_out[2]), .en(n_PCLK), .nq(nH2_D));
