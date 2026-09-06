@@ -35,9 +35,9 @@ module OAMBlock(
 
 	wire [7:0] oam_addr = ~n_OAM;
 
-	always @(*) begin
+	always @(posedge PCLK) begin
 		if (n_W4 == 1'b0 && n_DBE == 1'b0)
-			oam_ram[oam_addr] = CPU_DB;
+			oam_ram[oam_addr] <= CPU_DB;
 	end
 
 	assign CPU_DB = (n_R4 == 1'b0 && n_DBE == 1'b0) ? oam_ram[oam_addr] : 8'bz;
