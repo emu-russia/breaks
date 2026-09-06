@@ -42,9 +42,9 @@ Top Part:
 |0/IR=1|Since FETCH = 0 and B_OUT = 0.|
 |ENDS = 1|The values of the output latches of the ENDS circuit are undefined.|
 |TRES1 = 1|Since ENDS = 1|
-|TRESX=0|The TRESX circuit includes a latch whose value is not yet defined (PHI2). And through the inverter and NOR - TRESX as a result takes the value 0.|
+|#TRESX=0|The circuit that forms #TRESX includes a latch whose value is not yet defined (PHI2). And through the inverter and NOR - #TRESX as a result takes the value 0.|
 |/TWOCYCLE=1|PD=0x00|
-|TRES2=1|Since TRESX = 0|
+|TRES2=1|Since #TRESX = 0|
 |/T0 = 1|According to the circuit|
 |/T1X = 0|According to the circuit|
 |Extended cycle counter||
@@ -92,7 +92,7 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 0, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 1, ENDS: 0, ENDX: 0, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 0, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 1, ENDS: 0, ENDX: 0, TRES1: 0, #TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 1, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|44: INC NOP (TX), 60: ADC SBC (T1), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX), 112: ADC SBC (T1)|
@@ -130,7 +130,7 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
@@ -168,7 +168,7 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
@@ -206,7 +206,7 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|
@@ -244,7 +244,7 @@ Phenomenon: All parts of the processor "go crazy", but miraculously all the oper
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 1, BRK6E: 0, BRK7: 1, DORES: 1, /DONMI: 0|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 87: BRK RTI (T0), 94: BRK RTI (TX), 121: /IR6, 126: /IR7|

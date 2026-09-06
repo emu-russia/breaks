@@ -19,7 +19,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 0, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 0, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 1|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 0, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|28: T2, 31: ALU absolute (T2), 44: INC NOP (TX), 83: ABS/2, 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -57,7 +57,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 1|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 0, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|28: T2, 31: ALU absolute (T2), 44: INC NOP (TX), 83: ABS/2, 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -95,7 +95,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 1|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 1, /T3: 0, /T4: 1, /T5: 1|
 |Decoder|44: INC NOP (TX), 86: T3 ANY, 90: RIGHT_ALL (T3), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX), 122: Memory absolute (T3)|
@@ -133,7 +133,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 1|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 1, /T3: 0, /T4: 1, /T5: 1|
 |Decoder|44: INC NOP (TX), 86: T3 ANY, 90: RIGHT_ALL (T3), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX), 122: Memory absolute (T3)|
@@ -171,7 +171,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 1, T6: 1, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 1, T6: 1, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 1|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 1, /T3: 1, /T4: 0, /T5: 1|
 |Decoder|44: INC NOP (TX), 85: T4 ANY, 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -209,7 +209,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 1, ACRL1: 1, ACRL2: 0, T6: 1, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 1, ACRL1: 1, ACRL2: 0, T6: 1, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 1|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 1, /T3: 1, /T4: 0, /T5: 1|
 |Decoder|44: INC NOP (TX), 85: T4 ANY, 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -247,7 +247,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 1, ACRL1: 1, ACRL2: 0, T6: 0, T7: 1, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 1, ACRL1: 1, ACRL2: 0, T6: 0, T7: 1, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 1|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 1, /T3: 1, /T4: 1, /T5: 0|
 |Decoder|44: INC NOP (TX), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -285,7 +285,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 1, ACRL1: 0, ACRL2: 1, T6: 0, T7: 1, ENDS: 0, ENDX: 0, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 1, ACRL1: 0, ACRL2: 1, T6: 0, T7: 1, ENDS: 0, ENDX: 0, TRES1: 0, #TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 1, /T3: 1, /T4: 1, /T5: 0|
 |Decoder|44: INC NOP (TX), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -323,7 +323,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 1, ACRL1: 0, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 0, TRES1: 0, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 1, ACRL1: 0, ACRL2: 1, T6: 0, T7: 0, ENDS: 0, ENDX: 0, TRES1: 0, #TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 44: INC NOP (TX), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -361,7 +361,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 1, ENDX: 1, TRES1: 1, TRESX: 0|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 1, ENDX: 1, TRES1: 1, #TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|34: T0 ANY, 44: INC NOP (TX), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -399,7 +399,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 1, ENDX: 1, TRES1: 1, TRESX: 0|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 0, 0/IR: 1, FETCH: 0, /ready: 0, WR: 0, ACRL1: 0, ACRL2: 0, T6: 0, T7: 0, ENDS: 1, ENDX: 1, TRES1: 1, #TRESX: 0|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 1, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|44: INC NOP (TX), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -437,7 +437,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 0, /T0: 1, /T1X: 0, 0/IR: 0, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Dispatcher|T0: 0, /T0: 1, /T1X: 0, 0/IR: 0, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 1|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 1, TRES2: 1, /T2: 1, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|44: INC NOP (TX), 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX)|
@@ -475,7 +475,7 @@
 
 |Component/Signal|State|
 |---|---|
-|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 0, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, TRESX: 1|
+|Dispatcher|T0: 1, /T0: 0, /T1X: 1, 0/IR: 0, FETCH: 1, /ready: 0, WR: 0, ACRL1: 1, ACRL2: 0, T6: 0, T7: 0, ENDS: 0, ENDX: 1, TRES1: 0, #TRESX: 1|
 |Interrupts|/NMIP: 1, /IRQP: 1, RESP: 0, BRK6E: 0, BRK7: 1, DORES: 0, /DONMI: 1|
 |Extra Cycle Counter|T1: 0, TRES2: 0, /T2: 0, /T3: 1, /T4: 1, /T5: 1|
 |Decoder|28: T2, 34: T0 ANY, 44: INC NOP (TX), 83: ABS/2, 106: LSR ROR DEC INC DEX NOP (4x4 bottom right) (TX), 128: IMPL|
