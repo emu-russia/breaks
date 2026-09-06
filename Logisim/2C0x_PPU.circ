@@ -25798,7 +25798,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="118" y="255">OBJ COLOR</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="65" y="324">0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="65" y="484">0</text>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="88" y="224">SPR0_EV</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="88" y="224">/SPR0_EV</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="65" y="513">3</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="363" y="214">DB6</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="61" y="184">4</text>
@@ -26361,7 +26361,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     </comp>
     <comp lib="0" loc="(150,1270)" name="Pin">
       <a name="tristate" val="false"/>
-      <a name="label" val="SPR0_EV"/>
+      <a name="label" val="/SPR0_EV"/>
     </comp>
     <comp lib="1" loc="(740,1320)" name="Controlled Buffer"/>
     <comp loc="(810,550)" name="D-latch"/>
@@ -26532,7 +26532,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <appear>
       <path d="M61,56 Q65,66 69,56" fill="none" stroke="#808080" stroke-width="2"/>
       <rect fill="#69ff1b" height="400" stroke="#000000" stroke-width="2" width="210" x="50" y="40"/>
-      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="223" y="404">SPR0_EV</text>
+      <text font-family="SansSerif" font-size="12" text-anchor="middle" x="223" y="404">/SPR0_EV</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="227" y="385">PD/FIFO</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="238" y="184">OV0</text>
       <text font-family="SansSerif" font-size="12" text-anchor="middle" x="240" y="274">0V3</text>
@@ -26940,7 +26940,7 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <comp lib="0" loc="(980,540)" name="Pin">
       <a name="facing" val="west"/>
       <a name="output" val="true"/>
-      <a name="label" val="SPR0_EV"/>
+      <a name="label" val="/SPR0_EV"/>
       <a name="labelloc" val="east"/>
     </comp>
     <comp lib="1" loc="(310,670)" name="NOT Gate">
