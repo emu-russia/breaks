@@ -20,7 +20,7 @@ The sound generators are clocked by the following signals:
 - ACLK: Audio CLK. Two times slower PHI, with a special non-overlapping phase pattern
 - LFO1/2: Low frequency oscillation signals (on the order of hundreds of Hertz)
 
-The developers decided to use PHI1 for the triangle channel instead of ACLK to smooth out the "stepped" signal.
+The developers decided to use PHI1 for the triangle channel instead of ACLK1 to smooth out the "stepped" signal.
 
 ## Sweep
 

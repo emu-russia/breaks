@@ -19,7 +19,7 @@
 |TFSTEP|Step Frequency Counter|
 |TTSTEP|Step Output Counter|
 
-The developers decided to use PHI1 for the triangular channel in some places instead of ACLK to smooth out the "stepped" signal.
+The developers decided to use PHI1 for the triangular channel in some places instead of ACLK1 to smooth out the "stepped" signal.
 
 ## Triangle Control
 
