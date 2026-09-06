@@ -132,7 +132,7 @@ module SPRDMA_Control(PHI1, RnW, ACLK1, nACLK2, RES, W4014, RUNDMC, DMCReady, SP
 	output SPR_PPU;			// DMA Buffer -> PPU
 	output SPR_CPU;			// RAM -> DMA Buffer
 
-	wire ACLK2 = ~ACLK2;
+	wire ACLK2 = ~nACLK2;
 	wire NOSPR;
 	wire DOSPR;
 	wire spre_out;
