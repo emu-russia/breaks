@@ -427,6 +427,8 @@ module TileCnt (
   assign AT_adr[12] = ~(n_FVO[0] | w1);
   assign w1 = ~BLNK;
   assign w0 = ~(bus860_120[1] | w1);
+  assign THO = {NT_adr[0], NT_adr[1], AT_adr[0], AT_adr[1], AT_adr[2]};
+  assign TVO = {NT_adr[5], NT_adr[6], AT_adr[3], AT_adr[4], AT_adr[5]};
   TileCountersControl u0 (.n_PCLK(n_PCLK), .PCLK(PCLK), .W6_2_Enable(W6_2_Ena), .SC_CNT(SC_CNT), .RESCL(RESCL), .E_EV(E_EV), .TSTEP(TSTEP), .F_TB(F_TB), .H0_DD(H0_DD), .TVLOAD(w2), .THLOAD(w3), .THSTEP(w4), .TVSTEP(w5));
   TileCountersControl2 u1 (.n_PCLK(n_PCLK), .PCLK(PCLK), .BLNK(BLNK), .n_THO(bus850_670), .n_TVO(bus850_640), .NTHO(w6), .NTVO(w7), .n_FVO(n_FVO), .I1_32(I_1_32), .TVSTEP(w5), .NTHIN(w8), .NTVIN(w9), .FVIN(w10), .TVIN(w11), .THIN(w12), .Z_TV(w13));
   Tile_FV_Counter u2 (.PCLK(PCLK), .TVLOAD(w2), .TVSTEP(w5), .FVIN(w10), .FVx(FV), .n_FVO(n_FVO), .FVO(bus860_120));
