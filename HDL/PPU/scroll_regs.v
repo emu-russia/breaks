@@ -3,12 +3,10 @@ module SCC_FF (
   input val_in,
   input n_DBE,
   output val_out );
-  wire w0;
-  wire w1;
 
-  assign val_out = ~(w0 | RC);
-  assign w0 = ~w1;
-  assign w1 = n_DBE ? val_out : val_in;
+  // scroll-register bit: level latch (DBE write) with async reset
+  sdffr ff (.d(val_in), .res(RC), .phi_keep(n_DBE), .q(val_out), .nq());
+
 endmodule
 
 module Fine_H (
