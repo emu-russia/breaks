@@ -24,7 +24,7 @@ python3 ../../../../../Scripts/vcd2png.py <test>.vcd waves/<test>.png --label "<
 | ir_test | waveform | ![waves/ir_test.png](waves/ir_test.png) |
 | predecode_test | waveform | ![waves/predecode_test.png](waves/predecode_test.png) |
 | decoder_test | waveform (CSV dump) | ![waves/decoder_test.png](waves/decoder_test.png) |
-| extra_counter_test | waveform | ![waves/extra_counter_test.png](waves/extra_counter_test.png) |
+| extra_counter_test | TEST PASS (26 checks) | ![waves/extra_counter_test.png](waves/extra_counter_test.png) |
 | branch_logic_test | waveform | ![waves/branch_logic_test.png](waves/branch_logic_test.png) |
 | brk_test | waveform | ![waves/brk_test.png](waves/brk_test.png) |
 | dispatch_test | waveform | ![waves/dispatch_test.png](waves/dispatch_test.png) |
