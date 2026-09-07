@@ -25,7 +25,9 @@ module alu_test ();
 
 	ClkGen clkgen (.PHI0(CLK), .PHI1(PHI1), .PHI2(PHI2) );
 
-	wire [7:0] SB, DB, ADL, ADH;
+	// Internal buses are dynamic NMOS on the 6502 (precharge-hold):
+	// model undriven bits as 1 (tri1) like busmux_test.v does.
+	tri1 [7:0] SB, DB, ADL, ADH;
 	wire ACR, AVR;
 
 	reg [7:0] sb_val, db_val;

@@ -15,7 +15,12 @@ module data_bus_test ();
 
 	ClkGen clkgen (.PHI0(CLK), .PHI1(PHI1), .PHI2(PHI2) );
 
-	wire ADL, ADH, DB, DB_Ext;
+	// Internal buses (ADL/ADH/DB) of the 6502 are dynamic NMOS: precharged to
+	// 0xFF during PHI2 and held during PHI1 (see busmux.md), so undriven bits
+	// read as 1, not z. tri1 models the precharge-hold for undriven bits.
+	// DB_Ext is the external data pad, which is a real tristate pin (z ok).
+	tri1 ADL, ADH, DB;
+	wire DB_Ext;
 	wire RD;
 
 	reg rd_fixed;			// direct RD for the read test

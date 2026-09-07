@@ -81,7 +81,7 @@ module Core6502 (n_NMI, n_IRQ, n_RES, PHI0, PHI1, PHI2, RDY, SO, RnW, SYNC, A, D
 
 	wire ACR;
 	wire AVR;
-	wire [7:0] DB;
+	tri1 [7:0] DB;		// Internal data bus (dynamic NMOS: precharge-hold to 1)
 
 	wire [43:0] bop;	// Control "Commands"
 	wire n_ACIN;		// ALU input carry. The ALU also returns the result of carry (ACR) and overflow (AVR)

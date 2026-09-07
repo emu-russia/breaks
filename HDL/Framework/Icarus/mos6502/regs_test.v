@@ -17,7 +17,9 @@ module regs_test ();
 
 	ClkGen clkgen (.PHI0(CLK), .PHI1(PHI1), .PHI2(PHI2) );
 
-	wire [7:0] SB, ADL;
+	// Internal buses are dynamic NMOS (precharge-hold): tri1 keeps
+	// undriven bits at 1 instead of z (see busmux_test.v).
+	tri1 [7:0] SB, ADL;
 	reg [7:0] sb_val;
 	reg sb_drv;
 	assign SB = sb_drv ? sb_val : 8'bz;

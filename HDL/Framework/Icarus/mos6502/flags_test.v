@@ -15,7 +15,9 @@ module flags_test ();
 
 	ClkGen clkgen (.PHI0(CLK), .PHI1(PHI1), .PHI2(PHI2) );
 
-	wire [7:0] DB;
+	// Internal data bus is dynamic NMOS (precharge-hold): tri1 keeps
+	// undriven bits at 1 instead of z (see busmux_test.v).
+	tri1 [7:0] DB;
 
 	reg p_db, db_p, db_n, db_c, db_v;
 	reg [7:0] db_val;
