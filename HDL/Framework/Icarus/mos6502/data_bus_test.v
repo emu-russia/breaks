@@ -9,6 +9,7 @@ module data_bus_test ();
 	ClkGen clkgen (.PHI0(CLK), .PHI1(PHI1), .PHI2(PHI2) );
 
 	wire ADL, ADH, DB, DB_Ext;
+	wire RD;
 
 	DataBusBit databus_bit (
 		.PHI1(PHI1),
@@ -27,8 +28,6 @@ module data_bus_test ();
 		.PHI2(PHI2), 
 		.WR(1'b0),  		// From dispatch
 		.RD(RD) );
-
-	wire RD;
 
 	initial begin
 
