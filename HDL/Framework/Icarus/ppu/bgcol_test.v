@@ -59,11 +59,14 @@ module bgcol_test ();
 	reg  PCLK = 0, n_PCLK = 1;
 	always #25 begin PCLK = ~PCLK; n_PCLK = ~PCLK; end
 
-	reg  H0_DD, F_TA, F_TB, n_FO, F_AT;
-	reg [4:0] THO, TVO;
-	reg [2:0] FH;
-	reg n_CLPB;
-	reg [7:0] PD;
+	// default-driven from t=0 so the top-level inputs never float (x) in the
+	// waveform before the BGCol scenarios start
+	reg  H0_DD = 0, F_TA = 0, F_TB = 0, n_FO = 1, F_AT = 0;
+	reg [4:0] THO = 0;
+	reg [4:0] TVO = 0;
+	reg [2:0] FH = 0;
+	reg n_CLPB = 1;
+	reg [7:0] PD = 8'h00;
 	wire [3:0] BGC;
 
 	BGCol bg (
