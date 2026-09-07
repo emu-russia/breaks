@@ -26,6 +26,8 @@ bgcol_test.F_TA
 bgcol_test.F_TB
 @28
 bgcol_test.H0_DD
+@22
+bgcol_test.NFW[31:0]
 @28
 bgcol_test.PCLK
 @22
@@ -38,6 +40,8 @@ bgcol_test.TVO[4:0]
 bgcol_test.checks[31:0]
 @22
 bgcol_test.errors[31:0]
+@22
+bgcol_test.expBGC[3:0]
 @28
 bgcol_test.n_CLPB
 @28
@@ -70,3 +74,5 @@ bgcol_test.s_out
 bgcol_test.s_shift_in
 @28
 bgcol_test.s_val_in
+@22
+bgcol_test.tqsel[31:0]
