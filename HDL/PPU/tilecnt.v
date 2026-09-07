@@ -426,16 +426,30 @@ module TileCnt (
   wire w9;
 
   assign AT_adr[6] = 1'd0;
+  assign AT_adr[7] = 1'd0;
+  assign AT_adr[8] = 1'd0;
+  assign AT_adr[9] = 1'd0;
   assign AT_adr[13] = ~w0;
   assign AT_adr[12] = ~(n_FVO[0] | w1);
   assign w1 = ~BLNK;
   assign w0 = ~(bus860_120[1] | w1);
-  assign THO = {NT_adr[0], NT_adr[1], AT_adr[0], AT_adr[1], AT_adr[2]};
-  assign TVO = {NT_adr[5], NT_adr[6], AT_adr[3], AT_adr[4], AT_adr[5]};
+  // NT_adr shares the counter bits with AT_adr (from TileCounters_All wiring)
+  assign NT_adr[2]  = AT_adr[0];  // THO[2]
+  assign NT_adr[3]  = AT_adr[1];  // THO[3]
+  assign NT_adr[4]  = AT_adr[2];  // THO[4]
+  assign NT_adr[7]  = AT_adr[3];  // TVO[2]
+  assign NT_adr[8]  = AT_adr[4];  // TVO[3]
+  assign NT_adr[9]  = AT_adr[5];  // TVO[4]
+  assign NT_adr[10] = AT_adr[10]; // NTHOut
+  assign NT_adr[11] = AT_adr[11]; // NTVOut
+  assign NT_adr[12] = AT_adr[12]; // ~(n_FVO[0]|~BLNK)
+  assign NT_adr[13] = AT_adr[13]; // FVO[1]|~BLNK
+  assign THO = {AT_adr[2], AT_adr[1], AT_adr[0], NT_adr[1], NT_adr[0]};
+  assign TVO = {AT_adr[5], AT_adr[4], AT_adr[3], NT_adr[6], NT_adr[5]};
   TileCountersControl u0 (.n_PCLK(n_PCLK), .PCLK(PCLK), .W6_2_Enable(W6_2_Ena), .SC_CNT(SC_CNT), .RESCL(RESCL), .E_EV(E_EV), .TSTEP(TSTEP), .F_TB(F_TB), .H0_DD(H0_DD), .TVLOAD(w2), .THLOAD(w3), .THSTEP(w4), .TVSTEP(w5));
   TileCountersControl2 u1 (.n_PCLK(n_PCLK), .PCLK(PCLK), .BLNK(BLNK), .n_THO(bus850_670), .n_TVO(bus850_640), .NTHO(w6), .NTVO(w7), .n_FVO(n_FVO), .I1_32(I_1_32), .TVSTEP(w5), .NTHIN(w8), .NTVIN(w9), .FVIN(w10), .TVIN(w11), .THIN(w12), .Z_TV(w13));
   Tile_FV_Counter u2 (.PCLK(PCLK), .TVLOAD(w2), .TVSTEP(w5), .FVIN(w10), .FVx(FV), .n_FVO(n_FVO), .FVO(bus860_120));
   Tile_NT_Counters u3 (.PCLK(PCLK), .THLOAD(w3), .THSTEP(w4), .NTHIN(w8), .NTH(NTH), .TVLOAD(w2), .TVSTEP(w5), .NTVIN(w9), .NTV(NTV), .NTHOut(AT_adr[10]), .NTHO(w6), .NTVOut(AT_adr[11]), .NTVO(w7));
-  Tile_TV_Counter u4 (.PCLK(PCLK), .TVLOAD(w2), .TVSTEP(w5), .TVIN(w11), .TVx(TV), .Z_TV(w13), .n_TVO(bus850_640), .TVO({NT_adr[5], NT_adr[6], AT_adr[3], AT_adr[4], AT_adr[5]}));
-  Tile_TH_Counter u5 (.PCLK(PCLK), .THLOAD(w3), .THSTEP(w4), .THIN(w12), .THx(TH), .n_THO(bus850_670), .THO({NT_adr[0], NT_adr[1], AT_adr[0], AT_adr[1], AT_adr[2]}));
+  Tile_TV_Counter u4 (.PCLK(PCLK), .TVLOAD(w2), .TVSTEP(w5), .TVIN(w11), .TVx(TV), .Z_TV(w13), .n_TVO(bus850_640), .TVO({AT_adr[5], AT_adr[4], AT_adr[3], NT_adr[6], NT_adr[5]}));
+  Tile_TH_Counter u5 (.PCLK(PCLK), .THLOAD(w3), .THSTEP(w4), .THIN(w12), .THx(TH), .n_THO(bus850_670), .THO({AT_adr[2], AT_adr[1], AT_adr[0], NT_adr[1], NT_adr[0]}));
 endmodule
