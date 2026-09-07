@@ -60,13 +60,13 @@ module ALU (
 	// AI/BI Latches
 
 	wire [7:0] ai_d;
-	assign ai_d = Z_ADD ? 8'b00000000 : (SB_ADD ? SB : 8'bzzzzzzzz);
 	wire [7:0] bi_d;
+	wire [7:0] ai;
+	wire [7:0] bi;
+	assign ai_d = Z_ADD ? 8'b00000000 : (SB_ADD ? SB : 8'bzzzzzzzz);
 	assign bi_d = ADL_ADD ? ADL : (DB_ADD ? DB : ( NDB_ADD ? ~DB : 8'bzzzzzzzz) );
 	dlatch ai_latch [7:0] (.d(ai_d), .en(8'b11111111), .q(ai) );
-	wire [7:0] ai;
 	dlatch bi_latch [7:0] (.d(bi_d), .en(8'b11111111), .q(bi) );
-	wire [7:0] bi;
 
 	// ALU Ops
 
@@ -143,13 +143,13 @@ module ALU (
 
 	// ACR, AVR
 
-	dlatch DCLatch (.d(DC7), .en(PHI2), .q(DCLatch_q) );
 	wire DCLatch_q;
+	wire ACLatch_q;
 	wire AC7;
+	wire AVRLatch_d;
+	dlatch DCLatch (.d(DC7), .en(PHI2), .q(DCLatch_q) );
 	not (AC7, cout[7]);
 	dlatch ACLatch (.d(AC7), .en(PHI2), .q(ACLatch_q) );
-	wire ACLatch_q;
-	wire AVRLatch_d;
 	assign AVRLatch_d = ~(~(cout[6]|nands[7]) | (cout[6]&nors[7]));
 	dlatch AVRLatch (.d(AVRLatch_d), .en(PHI2), .nq(AVR) );
 
@@ -177,30 +177,29 @@ module ALU (
 	wire DAAL, DAAH, DSAL, DSAH;
 
 	wire daal_latch_d;
+	wire daah_latch_nq;
+	wire dsal_latch_d;
+	wire dsah_latch_nq;
 	nand (daal_latch_d, ~n_DAA, ~cout[3]);
 	dlatch daal_latch (.d(daal_latch_d), .en(PHI2), .nq(DAAL) );
 	dlatch daah_latch (.d(~n_DAA), .en(PHI2), .nq(daah_latch_nq) );
-	wire daah_latch_nq;
 	nor (DAAH, nACR, daah_latch_nq);
-	wire dsal_latch_d;
 	nor (dsal_latch_d, ~cout[3], n_DSA);
 	dlatch dsal_latch (.d(dsal_latch_d), .en(PHI2), .q(DSAL) );
 	dlatch dsah_latch (.d(~n_DSA), .en(PHI2), .nq(dsah_latch_nq) );
-	wire dsah_latch_nq;
 	nor (DSAH, ACR, dsah_latch_nq);
 
+	wire [7:0] acin;
 	bcd_nibble bcd_lo (.daa(DAAL), .dsa(DSAL), .sb(SB[3:0]), .bcd(acin[3:0]), .b1(nADD1), .b2(nADD2) );
 	bcd_nibble bcd_hi (.daa(DAAH), .dsa(DSAH), .sb(SB[7:4]), .bcd(acin[7:4]), .b1(nADD5), .b2(nADD6) );
 
 	// Accumulator + Bus Mpx
 
-	wire [7:0] acin;
-
 	wire [7:0] ac_d;
-	assign ac_d = PHI2 ? AC_q : (SB_AC ? acin : 8'bzzzzzzzz);
-	dlatch AC [7:0] (.d(ac_d), .en(8'b11111111), .nq(AC_nq) );
 	wire [7:0] AC_nq;
 	wire [7:0] AC_q;
+	assign ac_d = PHI2 ? AC_q : (SB_AC ? acin : 8'bzzzzzzzz);
+	dlatch AC [7:0] (.d(ac_d), .en(8'b11111111), .nq(AC_nq) );
 	assign AC_q = ~AC_nq;
 
 	assign SB = AC_SB ? AC_q : 8'bzzzzzzzz;

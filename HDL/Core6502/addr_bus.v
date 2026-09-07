@@ -39,22 +39,43 @@ module AddrBusFF (phi_load, phi_keep, en, val, q, nq);
 	output q;			// Current value
 	output nq;			// Current value (complement)
 
+`ifdef ICARUS
+	// Behavioral equivalent of the dynamic NMOS FF: while (en & phi_load)
+	// the FF is transparent (q follows ~val), otherwise it holds its value
+	// (the phi_keep feedback refresh of the real chip is implied by the
+	// reg holding its value). Icarus cannot simulate the bufif1 feedback
+	// loop below: an enabled bufif1 whose data input is z resolves to x,
+	// which poisons the feedback node and wipes the stored bit in PHI2.
+	reg state;
+	always @(en or phi_load or val)
+		if (en == 1'b1 && phi_load == 1'b1)
+			state <= val;		// q follows val while transparent
+
+	initial state <= 1'b0;
+	assign q = state;
+	assign nq = ~state;
+
+`else
+
 	(* keep = "true" *) wire inp;
+	(* keep = "true" *) wire floater;
+	(* keep = "true" *) wire mid;
+	(* keep = "true" *) wire not1out;
+	(* keep = "true" *) wire not2out;
+
 	not (inp, val);
 
-	(* keep = "true" *) wire not1out;
 	not(not1out, floater);
 
-	(* keep = "true" *) wire not2out;
 	not(not2out, not1out);
 
-	(* keep = "true" *) wire floater;
 	bufif1(floater, not2out, phi_keep);
-	(* keep = "true" *) wire mid;
 	bufif1(mid, inp, phi_load);
 	bufif1(floater, mid, en);
 
 	assign q = ~not2out;
 	assign nq = not2out;
+
+`endif
 
 endmodule // AddrBusFF

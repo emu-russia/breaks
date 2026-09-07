@@ -28,6 +28,12 @@ module PC (
 	wire [7:1] pclc;
 	wire [7:1] pchc;
 
+	// Debug
+	wire IPC; 				// 1: Incerement PC
+	not (IPC, n_IPC);
+	wire [15:0] pc; 		// PC
+	wire [15:0] pcs; 		// PC Shadow aka Select
+
 	wire PCLC;
 	nor (PCLC, n_IPC, pcl_nout[0], pcl_nout[1], pcl_nout[2], pcl_nout[3], pcl_nout[4], pcl_nout[5], pcl_nout[6], pcl_nout[7] );
 	wire PCHC;
@@ -56,12 +62,6 @@ module PC (
 	pc_carry    pch6 (.pc(pc[14]), .pcs(pcs[14]), .PHI2(PHI2), .carry(pchc[6]), .AD(ADH[6]), .DB(DB[6]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH), .n_cout(pchc[7]) );
 	pc_notcarry pch7 (.pc(pc[15]), .pcs(pcs[15]), .PHI2(PHI2), .n_carry(pchc[7]), .AD(ADH[7]), .DB(DB[7]), .PC_AD(PCH_ADH), .PC_DB(PCH_DB), .AD_PC(ADH_PCH), .PC_PC(PCH_PCH) ); 		// discard output carry, no need
 
-	// Debug
-	wire IPC; 				// 1: Incerement PC
-	not (IPC, n_IPC);
-	wire [15:0] pc; 		// PC
-	wire [15:0] pcs; 		// PC Shadow aka Select
-
 endmodule // PC
 
 // PC bit, input carry in inverted polarity and output carry in regular polarity
@@ -81,15 +81,15 @@ module pc_notcarry (PHI2, n_carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, co
 	output pcs;		// Not on a real chip
 
 	wire in_latch_d;
+	wire out_latch_d;
+	wire out_latch_nq;
+	wire q;
 	assign #2 in_latch_d = AD_PC ? AD : (PC_PC ? q : 1'bz);
 
-	wire out_latch_d;
 	aoi g1 (.a0(n_val), .a1(n_carry), .b(cout), .x(out_latch_d) );
 
 	dlatch in_latch (.d(in_latch_d), .en(1'b1), .nq(n_val) ); 				// PCLS/PCHS bits
 	dlatch out_latch (.d(out_latch_d), .en(PHI2), .nq(out_latch_nq) ); 		// PCL/PCH bits
-	wire out_latch_nq;
-	wire q;
 	not (q, out_latch_nq);
 
 	nor (cout, n_val, n_carry);
@@ -118,16 +118,16 @@ module pc_carry (PHI2, carry, AD, DB, PC_AD, PC_DB, AD_PC, PC_PC, n_val, n_cout,
 	output pcs;		// Not on a real chip	
 
 	wire in_latch_d;
+	wire out_latch_d;
+	wire val;
+	wire q;
 	assign #2 in_latch_d = AD_PC ? AD : (PC_PC ? q : 1'bz);
 
-	wire out_latch_d;
 	oai g1 (.a0(val), .a1(carry), .b(n_cout), .x(out_latch_d) );
 
 	dlatch in_latch (.d(in_latch_d), .en(1'b1), .nq(n_val) ); 			// PCLS/PCHS bits
-	wire val;
 	not (val, n_val);
 	dlatch out_latch (.d(out_latch_d), .en(PHI2), .nq(q) ); 		// PCL/PCH bits
-	wire q;
 
 	nand (n_cout, val, carry);
 

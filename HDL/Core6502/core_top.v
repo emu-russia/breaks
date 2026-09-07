@@ -312,7 +312,7 @@ module Core6502_Top (
 		.n_DONMI(n_DONMI),
 		.B_OUT(B_OUT) );
 
-	IntVector int (
+	IntVector intvec (
 		.PHI2(PHI2),
 		.BRK5_RDY(BRK5_RDY),
 		.BRK7(BRK7),
@@ -391,9 +391,12 @@ module Core6502_Top (
 		.n_PCH_PCH(n_PCH_PCH),
 		.T0(T0),
 		.T1(T1),
+		.T2(~n_T2),		// Active-high 2nd cycle, derived from the extra counter
 		.T6(T6),
 		.T7(T7),
 		.BR0(BR0),
+		.BR2(Decoder_out[80]),
+		.BR3(Decoder_out[93]),
 		.X(Decoder_out),
 		.ZTST(ZTST),
 		.PGX(PGX), 
@@ -542,9 +545,9 @@ module Core6502_Bot (PHI1, PHI2, bop, n_ACIN, n_DAA, n_DSA, n_IPC, WR, ACR, AVR,
 	inout [7:0] DB; 	// Internal data bus
 	inout [7:0] D;
 
-	wire [7:0] SB; 		// Side bus
-	wire [7:0] ADL;		// Address bus low
-	wire [7:0] ADH;		// Address bus high
+	tri1 [7:0] SB; 		// Side bus (dynamic: precharged to 1)
+	tri1 [7:0] ADL;		// Address bus low (dynamic: precharged to 1)
+	tri1 [7:0] ADH;		// Address bus high (dynamic: precharged to 1)
 
 	wire RD_to_db;
 
