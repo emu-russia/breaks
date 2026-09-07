@@ -11,14 +11,16 @@ Status: Verify
 Work in progress. Current state:
 
 - All Core6502 modules elaborate and simulate under Icarus 14 (devel) (`-D ICARUS`).
-- Module testbenches in `HDL/Framework/Icarus/mos6502/*_test.v` compile and run.
-  Self-checking (assert on expected behaviour, print TEST PASS/FAIL):
-  `clock_test.v`, `addr_bus_test.v`, `data_bus_test.v`, `alu_test.v`,
-  `busmux_test.v`, `flags_test.v`, `pads_test.v`.
+- Module testbenches in `HDL/Framework/Icarus/mos6502/*_test.v` compile and
+  run. 18 of 21 are self-checking (assert on expected behaviour, print
+  TEST PASS/FAIL) - full list and check counts in
+  `HDL/Framework/Icarus/mos6502/VERIFICATION.md`. Run everything with
+  `HDL/Framework/Icarus/mos6502/run_module_tests.sh`; waveform screenshots
+  and `.gtkw` save files for every test are in
+  `HDL/Framework/Icarus/mos6502/waves/` (see `Waves.md`).
 - Full-core harnesses: `klaus_test.v` (Klaus Dormann functional suite) and
   `instr_test.v` + `Scripts/make_instr_test.py` (small instruction-level checks).
-  Run them with e.g. `iverilog -D ICARUS -o klaus_test.run ../../../Common/*.v
-  ../../../Core6502/*.v klaus_test.v && vvp klaus_test.run`.
+  They need a fully booting core and are not run in the module-level loop.
 
 Known defects (block full-core verification):
 
