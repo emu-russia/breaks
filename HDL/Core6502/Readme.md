@@ -14,7 +14,7 @@ Work in progress. Current state:
 - Module testbenches in `HDL/Framework/Icarus/mos6502/*_test.v` compile and run.
   Self-checking (assert on expected behaviour, print TEST PASS/FAIL):
   `clock_test.v`, `addr_bus_test.v`, `data_bus_test.v`, `alu_test.v`,
-  `busmux_test.v`.
+  `busmux_test.v`, `flags_test.v`, `pads_test.v`.
 - Full-core harnesses: `klaus_test.v` (Klaus Dormann functional suite) and
   `instr_test.v` + `Scripts/make_instr_test.py` (small instruction-level checks).
   Run them with e.g. `iverilog -D ICARUS -o klaus_test.run ../../../Common/*.v
