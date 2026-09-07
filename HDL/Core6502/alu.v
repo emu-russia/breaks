@@ -73,15 +73,26 @@ module ALU (
 	nand na [7:0] (nands, ai, bi);
 	nor no [7:0] (nors, ai, bi);
 
+	// AND/NOR of every bit (the die computes them for the whole byte; only the
+	// parities each XOR stage needs were driven here, leaving the opposite
+	// parity undriven for the carry-chain cells cc1/cc3/cc5/cc7 below -> x).
+	not (ands[0], nands[0]);
 	not (ands[1], nands[1]);
+	not (ands[2], nands[2]);
 	not (ands[3], nands[3]);
+	not (ands[4], nands[4]);
 	not (ands[5], nands[5]);
+	not (ands[6], nands[6]);
 	not (ands[7], nands[7]);
 
 	nor (ors[0], nors[0]);
+	nor (ors[1], nors[1]);
 	nor (ors[2], nors[2]);
+	nor (ors[3], nors[3]);
 	nor (ors[4], nors[4]);
+	nor (ors[5], nors[5]);
 	nor (ors[6], nors[6]);
+	nor (ors[7], nors[7]);
 
 	nand (xnors[0], ors[0], nands[0]);
 	nand (xnors[2], ors[2], nands[2]);
@@ -92,6 +103,14 @@ module ALU (
 	nor (xors[3], nors[3], ands[3]);
 	nor (xors[5], nors[5], ands[5]);
 	nor (xors[7], nors[7], ands[7]);
+
+	// EOR odd bits: make xnors[odd] = ~xors[odd] so that the EORS 'res'
+	// selection (xnors) is XNOR on every bit and reads out as XOR through
+	// the inverting ADD latch, like the even bits.
+	not (xnors[1], xors[1]);
+	not (xnors[3], xors[3]);
+	not (xnors[5], xors[5]);
+	not (xnors[7], xors[7]);
 
 	wire ACIN;
 	not (ACIN, n_ACIN);

@@ -4,21 +4,18 @@
 // The direct result appears on ADL (ADD_ADL) during PHI2 of the same cycle;
 // ACR = carry out, AVR = signed overflow of SUMS.
 //
-// KNOWN ISSUES (found by a full 256x256 truth-table sweep, op bit parity):
-//   - EORS: odd output bits are undriven in the model (nres odd bits select a
-//     net with no driver), so the XOR result is only valid on even bits.
-//   - SUMS: the carry chain breaks at odd->even bit boundaries (carries that
-//     should reach bits 2,4,6.. are lost), so A+B is wrong whenever a carry
-//     must ripple past bit 1.
-// The asserts for those cases are gated by `RUN_KNOWN_BROKEN (default off);
-// flip it to 1 to make the test fail on them while the bug is open.
+// Fixed in alu.v (commit '6502 verify: ...'):
+//   - ands/ors were only driven on one parity each, leaving the carry-chain
+//     cells cc1/cc3/cc5/cc7 (and the EOR odd bits) undriven -> x. All eight
+//     bits are driven now.
+//   - xnors[1,3,5,7] = ~xors[1,3,5,7] so EORS selects XNOR on every bit and
+//     reads out as AI^BI through the inverting ADD latch.
+// Full 256x256 truth tables are verified for all five operations.
 // Prints TEST PASS/FAIL.
 
 `timescale 1ns/1ns
 
-// Uncomment (or pass -DRUN_KNOWN_BROKEN on the iverilog command line) to also
-// assert the known-broken EOR/SUM cases below while the ALU bugs are open.
-// `define RUN_KNOWN_BROKEN
+
 
 module alu_test ();
 
@@ -153,8 +150,6 @@ module alu_test ();
 		do_op(8'h01, 8'h01, 5, 1'bx, 1'bx);	// -> 0x00
 		do_op(8'hFF, 8'h55, 5, 1'bx, 1'bx);	// -> 0x2A
 		// SUM cases without carry ripple past bit 1, plus carry/overflow flags.
-		// NOTE: A+B with a carry rippling past bit 1 is not asserted here because
-		// the model's carry chain is known-broken there (see gated section below).
 		do_op(8'h00, 8'h00, 4, 1'b0, 1'b0);
 		do_op(8'h01, 8'h02, 4, 1'b0, 1'b0);	// 03
 		do_op(8'h0E, 8'h01, 4, 1'b0, 1'b0);	// 0F
@@ -164,16 +159,17 @@ module alu_test ();
 		do_op(8'h80, 8'h80, 4, 1'b1, 1'b1);	// 00 carry+overflow
 		do_op(8'hAA, 8'h55, 4, 1'b0, 1'b0);	// FF
 
-`ifdef RUN_KNOWN_BROKEN
-		// EOR must be AI^BI on all bits; currently odd bits are wrong
-		do_op(8'hAA, 8'hFF, 3, 1'bx, 1'bx);	// -> 55 expected
-		do_op(8'h00, 8'h00, 3, 1'bx, 1'bx);	// -> 00 expected
-		do_op(8'h55, 8'hAA, 3, 1'bx, 1'bx);	// -> FF expected
+		// EOR must be AI^BI on all bits (incl. odd bits)
+		do_op(8'hAA, 8'hFF, 3, 1'bx, 1'bx);	// -> 55
+		do_op(8'h00, 8'h00, 3, 1'bx, 1'bx);	// -> 00
+		do_op(8'h55, 8'hAA, 3, 1'bx, 1'bx);	// -> FF
+		do_op(8'h7F, 8'h01, 3, 1'bx, 1'bx);	// -> 7E
 		// SUM with carry rippling past bit 1
-		do_op(8'h0F, 8'h01, 4, 1'b0, 1'b0);	// -> 10 expected
+		do_op(8'h0F, 8'h01, 4, 1'b0, 1'b0);	// -> 10
 		do_op(8'h7F, 8'h01, 4, 1'b0, 1'b1);	// -> 80, overflow
 		do_op(8'hFE, 8'h02, 4, 1'b1, 1'b0);	// -> 00 carry
-`endif
+		do_op(8'hFF, 8'h01, 4, 1'b1, 1'b0);	// -> 00 carry
+		do_op(8'h33, 8'h01, 4, 1'b0, 1'b0);	// -> 34
 
 		if (errors == 0)
 			$display("alu_test: TEST PASS (%0d checks)", tests);

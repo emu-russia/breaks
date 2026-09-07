@@ -31,19 +31,18 @@ Known defects (block full-core verification):
   `pc_control.v` ADL_PCL/DL_PCH terms and the decoder X81/X82 outputs) against
   the Logisim schematic.
 
-- ALU (`alu.v`), found by a full 256x256 truth-table sweep driven from
-  `alu_test.v`:
-  - EORS output is only correct on even bits: for odd bits the model selects a
-    net with no driver (`xnors[1,3,5,7]`), so the result there is stale/1.
-    Expected AI^BI on all bits.
-  - SUMS carry chain breaks at odd->even bit boundaries: carries that should
-    reach bits 2/4/6 are lost (e.g. 0x0F+0x01 gives 0x0C instead of 0x10), so
-    A+B is wrong whenever a carry must ripple past bit 1. Single-bit additions,
-    0x40+0x40 (carry into bit 7) and 0x80+0x80 (carry out, ACR/AVR) work.
-  - ANDS/ORS/SRS are correct over the full operand range.
-  The failing assertions are kept in `alu_test.v` behind the
-  `RUN_KNOWN_BROKEN` define and must pass once the ALU matches the Logisim
-  `ALU_EVEN_BIT`/`ALU_ODD_BIT`/`ALU_ADD` circuits.
+- ALU (`alu.v`) is now verified: a full 256x256 truth-table sweep of all five
+  operations matches the spec — ANDS = AI&BI, ORS = AI|BI, EORS = AI^BI,
+  SUMS = AI+BI (ACR/AVR included), SRS = (AI&BI)>>1. Two translation defects
+  were fixed:
+  - `ands`/`ors` were driven on one parity each only, so the carry-chain cells
+    cc1/cc3/cc5/cc7 (which use the opposite parity) saw undriven inputs -> x,
+    and any carry rippling past bit 1 was lost. All eight bits are driven now.
+  - `xnors[1,3,5,7]` had no driver, so EORS left the odd output bits stale.
+    Added xnors[odd] = ~xors[odd] so EORS selects XNOR on every bit and reads
+    out as AI^BI through the inverting ADD latch.
+  `alu_test.v` asserts all of it unconditionally (24 checks, TEST PASS).
+  BCD correction (n_DAA/n_DSA) still needs its own verification.
 
 ## Bops
 
