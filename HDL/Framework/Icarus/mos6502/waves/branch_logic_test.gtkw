@@ -1,7 +1,7 @@
 GTKWave Analyzer v3.3.128
 (C)1999-2026 BSI
 
-[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/branch_logic_test.vcd"
+[dumpfile] "HDL/Framework/Icarus/mos6502/branch_logic_test.vcd"
 [timestart] 0
 [size] 1800 1000
 [pos] -1 -1
@@ -21,8 +21,38 @@ branch_logic_test.PHI1
 @28
 branch_logic_test.PHI2
 @28
-branch_logic_test.BRFW
+branch_logic_test.brfw
 @22
-branch_logic_test.DB[7:0]
+branch_logic_test.db[7:0]
+@22
+branch_logic_test.errors[31:0]
 @28
-branch_logic_test.n_BRTAKEN
+branch_logic_test.expected
+@22
+branch_logic_test.flags[31:0]
+@28
+branch_logic_test.flagval
+@22
+branch_logic_test.idx[31:0]
+@22
+branch_logic_test.ir[7:0]
+@28
+branch_logic_test.n_brtaken
+@28
+branch_logic_test.n_c
+@28
+branch_logic_test.n_n
+@28
+branch_logic_test.n_v
+@28
+branch_logic_test.n_z
+@28
+branch_logic_test.selc
+@28
+branch_logic_test.seln
+@28
+branch_logic_test.selv
+@28
+branch_logic_test.selz
+@22
+branch_logic_test.tests[31:0]

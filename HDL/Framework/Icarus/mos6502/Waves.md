@@ -27,7 +27,7 @@ Scripts/gtkw_capture_all.sh
 | predecode_test | TEST PASS (257 checks) | ![waves/predecode_test.png](waves/predecode_test.png) |
 | decoder_test | waveform (CSV dump) | ![waves/decoder_test.png](waves/decoder_test.png) |
 | extra_counter_test | TEST PASS (26 checks) | ![waves/extra_counter_test.png](waves/extra_counter_test.png) |
-| branch_logic_test | waveform | ![waves/branch_logic_test.png](waves/branch_logic_test.png) |
+| branch_logic_test | TEST PASS (128 checks) | ![waves/branch_logic_test.png](waves/branch_logic_test.png) |
 | brk_test | waveform | ![waves/brk_test.png](waves/brk_test.png) |
 | dispatch_test | waveform | ![waves/dispatch_test.png](waves/dispatch_test.png) |
 | alu_control_test | waveform | ![waves/alu_control_test.png](waves/alu_control_test.png) |
