@@ -63,8 +63,12 @@ module ALU (
 	wire [7:0] bi_d;
 	wire [7:0] ai;
 	wire [7:0] bi;
-	assign ai_d = Z_ADD ? 8'b00000000 : (SB_ADD ? SB : 8'bzzzzzzzz);
-	assign bi_d = ADL_ADD ? ADL : (DB_ADD ? DB : ( NDB_ADD ? ~DB : 8'bzzzzzzzz) );
+	// The AI/BI registers sample the ALU input buses while their load
+	// command is active (PHI1).  The #2 delay on the mux output keeps the
+	// dynamic latch from re-capturing the PHI2 bus precharge value (all-ones)
+	// in the zero-delay race at the PHI1/PHI2 boundary (same idiom as pc.v).
+	assign #2 ai_d = Z_ADD ? 8'b00000000 : (SB_ADD ? SB : 8'bzzzzzzzz);
+	assign #2 bi_d = ADL_ADD ? ADL : (DB_ADD ? DB : ( NDB_ADD ? ~DB : 8'bzzzzzzzz) );
 	dlatch ai_latch [7:0] (.d(ai_d), .en(8'b11111111), .q(ai) );
 	dlatch bi_latch [7:0] (.d(bi_d), .en(8'b11111111), .q(bi) );
 
