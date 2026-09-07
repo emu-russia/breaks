@@ -90,6 +90,11 @@ module regs_test ();
 		@(negedge CLK) #5;
 		check_y("initial Y", 8'h00);
 		check_x("initial X", 8'h00);
+		tests = tests + 1;
+		if (regs.s !== 8'hFF) begin
+			$display("FAIL initial S: %02x, expected FF", regs.s);
+			errors = errors + 1;
+		end
 
 		// load Y from SB
 		@(negedge CLK);
@@ -138,6 +143,35 @@ module regs_test ();
 		SB_Y = 0; sb_drv = 0;
 		@(negedge CLK) #5;
 		check_y("Y overwritten", 8'hB4);
+
+		// S: load from SB, store to SB and ADL (direct polarity)
+		tests = tests + 1;
+		if (regs.s !== 8'hFF) begin
+			$display("FAIL S unchanged: %02x, expected FF", regs.s);
+			errors = errors + 1;
+		end
+		@(negedge CLK);
+		sb_drv = 1; sb_val = 8'hFD;
+		SB_S = 1; S_S = 0;
+		repeat (2) @(posedge CLK);
+		SB_S = 0; S_S = 1;
+		sb_drv = 0;
+		@(negedge CLK) #5;
+		tests = tests + 1;
+		if (regs.s !== 8'hFD) begin
+			$display("FAIL S loaded: %02x, expected FD", regs.s);
+			errors = errors + 1;
+		end
+		// store S on SB and ADL
+		S_SB = 1; S_ADL = 1;
+		#5;
+		check_sb("S -> SB", 8'hFD);
+		tests = tests + 1;
+		if (ADL !== 8'hFD) begin
+			$display("FAIL S -> ADL: %02x, expected FD", ADL);
+			errors = errors + 1;
+		end
+		S_SB = 0; S_ADL = 0;
 
 		if (errors == 0)
 			$display("regs_test: TEST PASS (%0d checks)", tests);

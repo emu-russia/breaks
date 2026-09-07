@@ -36,4 +36,4 @@ Scripts/gtkw_capture_all.sh
 | pc_control_test | TEST PASS (200 checks) | ![waves/pc_control_test.png](waves/pc_control_test.png) |
 | regs_control_test | TEST PASS (880 checks) | ![waves/regs_control_test.png](waves/regs_control_test.png) |
 | pc_test | waveform | ![waves/pc_test.png](waves/pc_test.png) |
-| regs_test | TEST PASS (9 checks) | ![waves/regs_test.png](waves/regs_test.png) |
+| regs_test | TEST PASS (14 checks) | ![waves/regs_test.png](waves/regs_test.png) |
