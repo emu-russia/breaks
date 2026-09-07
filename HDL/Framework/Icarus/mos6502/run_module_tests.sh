@@ -7,7 +7,7 @@ IV=/mnt/c/iverilog/bin
 cd "$(dirname "$0")"
 fail=0
 for t in *_test.v; do
-  case "$t" in klaus_test.v|instr_test.v) continue ;; esac
+  case "$t" in klaus_test.v|instr_test.v|core_boot_test.v) continue ;; esac
   base=${t%.v}
   if $IV/iverilog.exe -D ICARUS -o "$base.run" ../../../Common/*.v ../../../Core6502/*.v "$t" >/dev/null 2>&1; then
     out=$($IV/vvp.exe "$base.run" 2>/dev/null | grep -E "TEST PASS|TEST FAIL")

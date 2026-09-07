@@ -51,6 +51,12 @@ produced by the dispatcher), so they are kept as waveform checks for now.
   ports BR2/BR3/T2, brk6_latch2 net clash, dynamic AddrBusFF simulation) -
   see the commit history and HDL/Core6502/Readme.md.
 
+## Full-core diagnostics
+
+`core_boot_test.v` is a bounded full-core run (3000 cycles) that logs every
+opcode fetch. It is the fast reproduction of the remaining issue below and
+should be used to validate any fix.
+
 ## Remaining known issue (blocks full-core runs)
 
 The core reads the reset/BRK vector correctly but the vector low byte never
