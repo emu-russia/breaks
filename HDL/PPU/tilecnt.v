@@ -205,6 +205,7 @@ module Tile_FV_Counter (
   TileCounterBit u0 (.Clock(w0), .Load(w1), .Step(w2), .val_in(w3), .carry_in(w4), .val_out(FVO[1]), .n_val_out(w5), .carry_out(w6));
   TileCounterBit u1 (.Clock(w7), .Load(w8), .Step(w9), .val_in(w10), .carry_in(w11), .val_out(FVO[2]), .n_val_out(w12), .carry_out(w13));
   TileCounterBit u2 (.Clock(TVLOAD), .Load(TVSTEP), .Step(w14), .val_in(w15), .carry_in(w16), .val_out(FVO[0]), .n_val_out(w17), .carry_out(w18));
+  assign n_FVO = {w12, w5, w17};
 endmodule
 
 module Tile_NT_Counters (
@@ -330,6 +331,7 @@ module Tile_TV_Counter (
   TileCounterBitReset u2 (.Clock(w16), .Load(w17), .Step(w18), .val_in(w19), .carry_in(w20), .Reset(w21), .val_out(TVO[3]), .n_val_out(w22), .carry_out(w23));
   TileCounterBitReset u3 (.Clock(w24), .Load(w25), .Step(w26), .val_in(w27), .carry_in(w28), .Reset(w29), .val_out(TVO[4]), .n_val_out(w30), .carry_out(w31));
   TileCounterBitReset u4 (.Clock(TVLOAD), .Load(TVSTEP), .Step(TVIN), .val_in(w32), .carry_in(w33), .Reset(w34), .val_out(TVO[0]), .n_val_out(w35), .carry_out(w36));
+  assign n_TVO = {w30, w22, w14, w6, w35};
 endmodule
 
 module Tile_TH_Counter (
@@ -380,6 +382,7 @@ module Tile_TH_Counter (
   TileCounterBit u2 (.Clock(w14), .Load(w15), .Step(w16), .val_in(w17), .carry_in(w18), .val_out(THO[3]), .n_val_out(w19), .carry_out(w20));
   TileCounterBit u3 (.Clock(w21), .Load(w22), .Step(w23), .val_in(w24), .carry_in(w25), .val_out(THO[4]), .n_val_out(w26), .carry_out(w27));
   TileCounterBit u4 (.Clock(THLOAD), .Load(THSTEP), .Step(w28), .val_in(w29), .carry_in(w30), .val_out(THO[0]), .n_val_out(w31), .carry_out(w32));
+  assign n_THO = {w26, w19, w12, w5, w31};
 endmodule
 
 module TileCnt (
@@ -423,14 +426,30 @@ module TileCnt (
   wire w9;
 
   assign AT_adr[6] = 1'd0;
+  assign AT_adr[7] = 1'd0;
+  assign AT_adr[8] = 1'd0;
+  assign AT_adr[9] = 1'd0;
   assign AT_adr[13] = ~w0;
   assign AT_adr[12] = ~(n_FVO[0] | w1);
   assign w1 = ~BLNK;
   assign w0 = ~(bus860_120[1] | w1);
+  // NT_adr shares the counter bits with AT_adr (from TileCounters_All wiring)
+  assign NT_adr[2]  = AT_adr[0];  // THO[2]
+  assign NT_adr[3]  = AT_adr[1];  // THO[3]
+  assign NT_adr[4]  = AT_adr[2];  // THO[4]
+  assign NT_adr[7]  = AT_adr[3];  // TVO[2]
+  assign NT_adr[8]  = AT_adr[4];  // TVO[3]
+  assign NT_adr[9]  = AT_adr[5];  // TVO[4]
+  assign NT_adr[10] = AT_adr[10]; // NTHOut
+  assign NT_adr[11] = AT_adr[11]; // NTVOut
+  assign NT_adr[12] = AT_adr[12]; // ~(n_FVO[0]|~BLNK)
+  assign NT_adr[13] = AT_adr[13]; // FVO[1]|~BLNK
+  assign THO = {AT_adr[2], AT_adr[1], AT_adr[0], NT_adr[1], NT_adr[0]};
+  assign TVO = {AT_adr[5], AT_adr[4], AT_adr[3], NT_adr[6], NT_adr[5]};
   TileCountersControl u0 (.n_PCLK(n_PCLK), .PCLK(PCLK), .W6_2_Enable(W6_2_Ena), .SC_CNT(SC_CNT), .RESCL(RESCL), .E_EV(E_EV), .TSTEP(TSTEP), .F_TB(F_TB), .H0_DD(H0_DD), .TVLOAD(w2), .THLOAD(w3), .THSTEP(w4), .TVSTEP(w5));
   TileCountersControl2 u1 (.n_PCLK(n_PCLK), .PCLK(PCLK), .BLNK(BLNK), .n_THO(bus850_670), .n_TVO(bus850_640), .NTHO(w6), .NTVO(w7), .n_FVO(n_FVO), .I1_32(I_1_32), .TVSTEP(w5), .NTHIN(w8), .NTVIN(w9), .FVIN(w10), .TVIN(w11), .THIN(w12), .Z_TV(w13));
   Tile_FV_Counter u2 (.PCLK(PCLK), .TVLOAD(w2), .TVSTEP(w5), .FVIN(w10), .FVx(FV), .n_FVO(n_FVO), .FVO(bus860_120));
   Tile_NT_Counters u3 (.PCLK(PCLK), .THLOAD(w3), .THSTEP(w4), .NTHIN(w8), .NTH(NTH), .TVLOAD(w2), .TVSTEP(w5), .NTVIN(w9), .NTV(NTV), .NTHOut(AT_adr[10]), .NTHO(w6), .NTVOut(AT_adr[11]), .NTVO(w7));
-  Tile_TV_Counter u4 (.PCLK(PCLK), .TVLOAD(w2), .TVSTEP(w5), .TVIN(w11), .TVx(TV), .Z_TV(w13), .n_TVO(bus850_640), .TVO({NT_adr[5], NT_adr[6], AT_adr[3], AT_adr[4], AT_adr[5]}));
-  Tile_TH_Counter u5 (.PCLK(PCLK), .THLOAD(w3), .THSTEP(w4), .THIN(w12), .THx(TH), .n_THO(bus850_670), .THO({NT_adr[0], NT_adr[1], AT_adr[0], AT_adr[1], AT_adr[2]}));
+  Tile_TV_Counter u4 (.PCLK(PCLK), .TVLOAD(w2), .TVSTEP(w5), .TVIN(w11), .TVx(TV), .Z_TV(w13), .n_TVO(bus850_640), .TVO({AT_adr[5], AT_adr[4], AT_adr[3], NT_adr[6], NT_adr[5]}));
+  Tile_TH_Counter u5 (.PCLK(PCLK), .THLOAD(w3), .THSTEP(w4), .THIN(w12), .THx(TH), .n_THO(bus850_670), .THO({AT_adr[2], AT_adr[1], AT_adr[0], NT_adr[1], NT_adr[0]}));
 endmodule
