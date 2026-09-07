@@ -1,0 +1,38 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/decoder_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] decoder_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+decoder_test.CLK
+@22
+decoder_test.Decoder_cnt[13:0]
+@28
+decoder_test.IR01
+@22
+decoder_test.IR[7:0]
+@22
+decoder_test.f[31:0]
+@28
+decoder_test.n_T0
+@28
+decoder_test.n_T1X
+@28
+decoder_test.n_T2
+@28
+decoder_test.n_T3
+@28
+decoder_test.n_T4
+@28
+decoder_test.n_T5

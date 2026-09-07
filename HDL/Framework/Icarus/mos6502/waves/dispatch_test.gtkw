@@ -1,0 +1,60 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/dispatch_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] dispatch_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+dispatch_test.CLK
+@28
+dispatch_test.PHI1
+@28
+dispatch_test.PHI2
+@22
+dispatch_test.DataBus[7:0]
+@28
+dispatch_test.FETCH
+@28
+dispatch_test.IR01
+@22
+dispatch_test.IR[7:0]
+@28
+dispatch_test.T0
+@28
+dispatch_test.T1
+@28
+dispatch_test.TRES2
+@28
+dispatch_test.Z_IR
+@28
+dispatch_test.n_IMPLIED
+@22
+dispatch_test.n_IR[7:0]
+@22
+dispatch_test.n_PD[7:0]
+@28
+dispatch_test.n_T0
+@28
+dispatch_test.n_T1X
+@28
+dispatch_test.n_T2
+@28
+dispatch_test.n_T3
+@28
+dispatch_test.n_T4
+@28
+dispatch_test.n_T5
+@28
+dispatch_test.n_TWOCYCLE
+@28
+dispatch_test.n_ready

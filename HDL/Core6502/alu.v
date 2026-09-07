@@ -60,28 +60,43 @@ module ALU (
 	// AI/BI Latches
 
 	wire [7:0] ai_d;
-	assign ai_d = Z_ADD ? 8'b00000000 : (SB_ADD ? SB : 8'bzzzzzzzz);
 	wire [7:0] bi_d;
-	assign bi_d = ADL_ADD ? ADL : (DB_ADD ? DB : ( NDB_ADD ? ~DB : 8'bzzzzzzzz) );
-	dlatch ai_latch [7:0] (.d(ai_d), .en(8'b11111111), .q(ai) );
 	wire [7:0] ai;
-	dlatch bi_latch [7:0] (.d(bi_d), .en(8'b11111111), .q(bi) );
 	wire [7:0] bi;
+	// The AI/BI registers sample the ALU input buses while their load
+	// command is active (PHI1).  The #2 delay on the mux output keeps the
+	// dynamic latch from re-capturing the PHI2 bus precharge value (all-ones)
+	// in the zero-delay race at the PHI1/PHI2 boundary (same idiom as pc.v).
+	assign #2 ai_d = Z_ADD ? 8'b00000000 : (SB_ADD ? SB : 8'bzzzzzzzz);
+	assign #2 bi_d = ADL_ADD ? ADL : (DB_ADD ? DB : ( NDB_ADD ? ~DB : 8'bzzzzzzzz) );
+	dlatch ai_latch [7:0] (.d(ai_d), .en(8'b11111111), .q(ai) );
+	dlatch bi_latch [7:0] (.d(bi_d), .en(8'b11111111), .q(bi) );
 
 	// ALU Ops
 
 	nand na [7:0] (nands, ai, bi);
 	nor no [7:0] (nors, ai, bi);
 
+	// AND/NOR of every bit (the die computes them for the whole byte; only the
+	// parities each XOR stage needs were driven here, leaving the opposite
+	// parity undriven for the carry-chain cells cc1/cc3/cc5/cc7 below -> x).
+	not (ands[0], nands[0]);
 	not (ands[1], nands[1]);
+	not (ands[2], nands[2]);
 	not (ands[3], nands[3]);
+	not (ands[4], nands[4]);
 	not (ands[5], nands[5]);
+	not (ands[6], nands[6]);
 	not (ands[7], nands[7]);
 
 	nor (ors[0], nors[0]);
+	nor (ors[1], nors[1]);
 	nor (ors[2], nors[2]);
+	nor (ors[3], nors[3]);
 	nor (ors[4], nors[4]);
+	nor (ors[5], nors[5]);
 	nor (ors[6], nors[6]);
+	nor (ors[7], nors[7]);
 
 	nand (xnors[0], ors[0], nands[0]);
 	nand (xnors[2], ors[2], nands[2]);
@@ -92,6 +107,14 @@ module ALU (
 	nor (xors[3], nors[3], ands[3]);
 	nor (xors[5], nors[5], ands[5]);
 	nor (xors[7], nors[7], ands[7]);
+
+	// EOR odd bits: make xnors[odd] = ~xors[odd] so that the EORS 'res'
+	// selection (xnors) is XNOR on every bit and reads out as XOR through
+	// the inverting ADD latch, like the even bits.
+	not (xnors[1], xors[1]);
+	not (xnors[3], xors[3]);
+	not (xnors[5], xors[5]);
+	not (xnors[7], xors[7]);
 
 	wire ACIN;
 	not (ACIN, n_ACIN);
@@ -143,13 +166,13 @@ module ALU (
 
 	// ACR, AVR
 
-	dlatch DCLatch (.d(DC7), .en(PHI2), .q(DCLatch_q) );
 	wire DCLatch_q;
+	wire ACLatch_q;
 	wire AC7;
+	wire AVRLatch_d;
+	dlatch DCLatch (.d(DC7), .en(PHI2), .q(DCLatch_q) );
 	not (AC7, cout[7]);
 	dlatch ACLatch (.d(AC7), .en(PHI2), .q(ACLatch_q) );
-	wire ACLatch_q;
-	wire AVRLatch_d;
 	assign AVRLatch_d = ~(~(cout[6]|nands[7]) | (cout[6]&nors[7]));
 	dlatch AVRLatch (.d(AVRLatch_d), .en(PHI2), .nq(AVR) );
 
@@ -177,30 +200,29 @@ module ALU (
 	wire DAAL, DAAH, DSAL, DSAH;
 
 	wire daal_latch_d;
+	wire daah_latch_nq;
+	wire dsal_latch_d;
+	wire dsah_latch_nq;
 	nand (daal_latch_d, ~n_DAA, ~cout[3]);
 	dlatch daal_latch (.d(daal_latch_d), .en(PHI2), .nq(DAAL) );
 	dlatch daah_latch (.d(~n_DAA), .en(PHI2), .nq(daah_latch_nq) );
-	wire daah_latch_nq;
 	nor (DAAH, nACR, daah_latch_nq);
-	wire dsal_latch_d;
 	nor (dsal_latch_d, ~cout[3], n_DSA);
 	dlatch dsal_latch (.d(dsal_latch_d), .en(PHI2), .q(DSAL) );
 	dlatch dsah_latch (.d(~n_DSA), .en(PHI2), .nq(dsah_latch_nq) );
-	wire dsah_latch_nq;
 	nor (DSAH, ACR, dsah_latch_nq);
 
+	wire [7:0] acin;
 	bcd_nibble bcd_lo (.daa(DAAL), .dsa(DSAL), .sb(SB[3:0]), .bcd(acin[3:0]), .b1(nADD1), .b2(nADD2) );
 	bcd_nibble bcd_hi (.daa(DAAH), .dsa(DSAH), .sb(SB[7:4]), .bcd(acin[7:4]), .b1(nADD5), .b2(nADD6) );
 
 	// Accumulator + Bus Mpx
 
-	wire [7:0] acin;
-
 	wire [7:0] ac_d;
-	assign ac_d = PHI2 ? AC_q : (SB_AC ? acin : 8'bzzzzzzzz);
-	dlatch AC [7:0] (.d(ac_d), .en(8'b11111111), .nq(AC_nq) );
 	wire [7:0] AC_nq;
 	wire [7:0] AC_q;
+	assign ac_d = PHI2 ? AC_q : (SB_AC ? acin : 8'bzzzzzzzz);
+	dlatch AC [7:0] (.d(ac_d), .en(8'b11111111), .nq(AC_nq) );
 	assign AC_q = ~AC_nq;
 
 	assign SB = AC_SB ? AC_q : 8'bzzzzzzzz;

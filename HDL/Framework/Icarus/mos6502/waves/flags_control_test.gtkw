@@ -1,0 +1,74 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/flags_control_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] flags_control_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+flags_control_test.CLK
+@28
+flags_control_test.PHI1
+@28
+flags_control_test.PHI2
+@28
+flags_control_test.ACR_C
+@28
+flags_control_test.DBZ_Z
+@28
+flags_control_test.DB_C
+@28
+flags_control_test.DB_N
+@28
+flags_control_test.DB_P
+@28
+flags_control_test.DB_V
+@28
+flags_control_test.IR5_C
+@28
+flags_control_test.IR5_D
+@28
+flags_control_test.IR5_I
+@28
+flags_control_test.P_DB
+@28
+flags_control_test.SR
+@28
+flags_control_test.T7
+@28
+flags_control_test.ZTST
+@28
+flags_control_test.Z_V
+@22
+flags_control_test.errors[31:0]
+@28
+flags_control_test.exp_acrc
+@28
+flags_control_test.exp_dbc
+@28
+flags_control_test.exp_dbn
+@28
+flags_control_test.exp_dbp
+@28
+flags_control_test.exp_dbv
+@28
+flags_control_test.exp_dbz
+@28
+flags_control_test.exp_narith
+@22
+flags_control_test.i[31:0]
+@28
+flags_control_test.n_ready
+@22
+flags_control_test.pat[31:0]
+@22
+flags_control_test.tests[31:0]

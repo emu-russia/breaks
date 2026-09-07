@@ -1,0 +1,40 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/brk_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] brk_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+brk_test.CLK
+@28
+brk_test.PHI1
+@28
+brk_test.PHI2
+@28
+brk_test.BRK5_RDY
+@28
+brk_test.BRK6E
+@28
+brk_test.BRK7
+@28
+brk_test.B_OUT
+@28
+brk_test.DORES
+@28
+brk_test.Z_ADL0
+@28
+brk_test.Z_ADL1
+@28
+brk_test.Z_ADL2
+@28
+brk_test.n_DONMI

@@ -1,0 +1,110 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/bus_control_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] bus_control_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+bus_control_test.CLK
+@28
+bus_control_test.PHI1
+@28
+bus_control_test.PHI2
+@28
+bus_control_test.ACRL2
+@28
+bus_control_test.AC_DB
+@28
+bus_control_test.AC_SB
+@28
+bus_control_test.ADH_ABH
+@28
+bus_control_test.ADL_ABL
+@28
+bus_control_test.AND
+@28
+bus_control_test.BR0
+@28
+bus_control_test.BR2
+@28
+bus_control_test.BR3
+@28
+bus_control_test.BRK6E
+@28
+bus_control_test.DL_ADH
+@28
+bus_control_test.DL_ADL
+@28
+bus_control_test.DL_DB
+@28
+bus_control_test.DL_PCH
+@28
+bus_control_test.INC_SB
+@28
+bus_control_test.PGX
+@28
+bus_control_test.SB_AC
+@28
+bus_control_test.SB_ADH
+@28
+bus_control_test.SB_DB
+@28
+bus_control_test.STOR
+@28
+bus_control_test.STXY
+@28
+bus_control_test.T0
+@28
+bus_control_test.T1
+@28
+bus_control_test.T2
+@28
+bus_control_test.T6
+@28
+bus_control_test.T7
+@28
+bus_control_test.ZTST
+@28
+bus_control_test.Z_ADH0
+@28
+bus_control_test.Z_ADH17
+@28
+bus_control_test.Z_ADL0
+@28
+bus_control_test.bad_x
+@22
+bus_control_test.errors[31:0]
+@28
+bus_control_test.exp_pgx
+@28
+bus_control_test.exp_ztst
+@22
+bus_control_test.i[31:0]
+@28
+bus_control_test.n_pch_pch
+@28
+bus_control_test.n_ready
+@28
+bus_control_test.n_sbac
+@28
+bus_control_test.n_sbxy
+@22
+bus_control_test.pat[31:0]
+@22
+bus_control_test.tests[31:0]
+@22
+bus_control_test.tstate[2:0]
+@28
+bus_control_test.x71x72
+@22
+bus_control_test.xmode[5:0]

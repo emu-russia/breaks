@@ -8,7 +8,9 @@ module pc_test ();
 
 	ClkGen clkgen (.PHI0(CLK), .PHI1(PHI1), .PHI2(PHI2) );
 
-	wire [7:0] ADL, ADH, DB;
+	// Internal buses are dynamic NMOS (precharge-hold): tri1 keeps
+	// undriven bits at 1 instead of z (see busmux_test.v).
+	tri1 [7:0] ADL, ADH, DB;
 
 	PC pc (
 		.PHI2(PHI2),

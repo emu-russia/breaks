@@ -1,0 +1,62 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/regs_control_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] regs_control_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+regs_control_test.CLK
+@28
+regs_control_test.PHI1
+@28
+regs_control_test.PHI2
+@28
+regs_control_test.SB_S
+@28
+regs_control_test.SB_X
+@28
+regs_control_test.SB_Y
+@28
+regs_control_test.STKOP
+@28
+regs_control_test.STOR
+@28
+regs_control_test.STXY
+@28
+regs_control_test.S_ADL
+@28
+regs_control_test.S_S
+@28
+regs_control_test.S_SB
+@28
+regs_control_test.X_SB
+@28
+regs_control_test.Y_SB
+@22
+regs_control_test.errors[31:0]
+@28
+regs_control_test.exp_nsbs
+@28
+regs_control_test.exp_stkop
+@28
+regs_control_test.exp_tmp1
+@22
+regs_control_test.i[31:0]
+@28
+regs_control_test.n_SBXY
+@28
+regs_control_test.n_ready
+@22
+regs_control_test.pat[31:0]
+@22
+regs_control_test.tests[31:0]

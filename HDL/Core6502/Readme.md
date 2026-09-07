@@ -6,6 +6,46 @@ Status: Verify
 
 ![mos6502](/HDL/Design/mos6502/mos6502.png)
 
+## Verification status (issue #1337)
+
+Work in progress. Current state:
+
+- All Core6502 modules elaborate and simulate under Icarus 14 (devel) (`-D ICARUS`).
+- Module testbenches in `HDL/Framework/Icarus/mos6502/*_test.v` compile and
+  run. 18 of 21 are self-checking (assert on expected behaviour, print
+  TEST PASS/FAIL) - full list and check counts in
+  `HDL/Framework/Icarus/mos6502/VERIFICATION.md`. Run everything with
+  `HDL/Framework/Icarus/mos6502/run_module_tests.sh`; waveform screenshots
+  and `.gtkw` save files for every test are in
+  `HDL/Framework/Icarus/mos6502/waves/` (see `Waves.md`).
+- Full-core harnesses: `klaus_test.v` (Klaus Dormann functional suite) and
+  `instr_test.v` + `Scripts/make_instr_test.py` (small instruction-level checks).
+  They need a fully booting core and are not run in the module-level loop.
+
+Known defects (block full-core verification):
+
+- The core never loads the low byte of a memory-sourced program counter into
+  PCL. Consequence: after reset the PC becomes `04FF` instead of the reset
+  vector (`00 04` at $FFFC/$FFFD are read correctly, but PCL is loaded with the
+  precharged bus value FF), and `JMP abs`/BRK/IRQ/RTS vector loads misbehave the
+  same way (the core loops on a `JMP $0400` trampoline). Root cause is being
+  chased in the DL->ADL->PCL transfer timing (`bus_control.v` DL_ADL decode,
+  `pc_control.v` ADL_PCL/DL_PCH terms and the decoder X81/X82 outputs) against
+  the Logisim schematic.
+
+- ALU (`alu.v`) is now verified: a full 256x256 truth-table sweep of all five
+  operations matches the spec — ANDS = AI&BI, ORS = AI|BI, EORS = AI^BI,
+  SUMS = AI+BI (ACR/AVR included), SRS = (AI&BI)>>1. Two translation defects
+  were fixed:
+  - `ands`/`ors` were driven on one parity each only, so the carry-chain cells
+    cc1/cc3/cc5/cc7 (which use the opposite parity) saw undriven inputs -> x,
+    and any carry rippling past bit 1 was lost. All eight bits are driven now.
+  - `xnors[1,3,5,7]` had no driver, so EORS left the odd output bits stale.
+    Added xnors[odd] = ~xors[odd] so EORS selects XNOR on every bit and reads
+    out as AI^BI through the inverting ADD latch.
+  `alu_test.v` asserts all of it unconditionally (24 checks, TEST PASS).
+  BCD correction (n_DAA/n_DSA) still needs its own verification.
+
 ## Bops
 
 All control signals for the bottom are combined on a common bus and are called `bops` (Bottom Ops). List:
