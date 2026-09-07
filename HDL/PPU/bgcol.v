@@ -204,6 +204,30 @@ module BGC_SR8 (
   BGC_SRBit u0 (.shift_in(sout[1]),  .val_in(val[0]), .LOAD(Load), .STEP(Step), .NEXTS(Nexts), .shift_out(sout[0]));
 endmodule
 
+// BGC_0: background pixel colour bit 0 (pattern plane A, the byte fetched on
+// F_TA).  Port list identical to the schematic page.
+//
+// Datapath model (behavioural; the translator left every internal net of the
+// four BGC_* cells undriven, freezing BGC at a constant - see the module
+// header).  One 8-bit "display byte" is produced per 8-pixel tile period:
+//
+//   * PD_SR (BGC_Control: F_TA & H0_DD & ~PCLK) opens the staging latch while
+//     the plane-A byte of the current fetch is on PD (the DLatch_x8 on the
+//     page).  Data is only latched when defined (0/1), so a floating VRAM bus
+//     cannot poison the pipeline.
+//   * SRLOAD (F_TB & H0_DD & ~PCLK, at the tile boundary, two dots after the
+//     plane-A latch) loads the display shift register from staging.  The byte
+//     is loaded bit-reversed: NES pattern bit 7 is the leftmost pixel, and
+//     the register rotates once per pixel, so the colour taps come out in
+//     pixel order (the page Text: "PD is loaded into the SR in reverse order
+//     according to the pixel output order").
+//   * STEP + NEXTS (one pair per pixel dot) rotate the register; the colour
+//     tap is the stage selected by FH.  Over the 8 dots of a tile period the
+//     output walks the pattern byte starting at bit (7-FH) and wrapping, i.e.
+//     the fine-H scroll offset selects which pixel of the tile the visible
+//     run begins with.
+//
+// Pixel polarity: BGC_Out re-inverts this net, so n_BGC0_Out = ~pixel bit.
 module BGC_0 (
   input PD_SR,
   input SRLOAD,
@@ -213,34 +237,51 @@ module BGC_0 (
   input [2:0] FH,
   input [7:0] PD,
   output n_BGC0_Out );
-  wire [7:0] bus270_160;
-  wire [7:0] bus270_180;
-  wire [7:0] bus270_210;
-  wire [7:0] bus280_170;
-  wire [7:0] bus420_210;
-  wire [7:0] bus500_130;
-  wire [7:0] bus50_180;
-  wire [7:0] bus670_180;
-  wire [7:0] bus390_170;
-  wire w0;
-  wire w1;
-  wire w2;
-  wire w3;
-  wire w4;
-  wire w5;
-  wire w6;
-  wire w7;
-  wire w8;
-  wire w9;
+  reg [7:0] staging = 8'h00;   // DLatch_x8 role: pattern-A byte captured at PD_SR
+  reg [7:0] master  = 8'h00;   // shift-register master stage (capture phase)
+  reg [7:0] disp    = 8'h00;   // committed stage (output/rotation source)
+  integer k;
 
-  assign w0 = 1'd0;
-  assign w1 = 1'd0;
-  assign n_BGC0_Out = (FH==3'd7) ? bus670_180[7] : ((FH==3'd6) ? bus670_180[6] : ((FH==3'd5) ? bus670_180[5] : ((FH==3'd4) ? bus670_180[4] : ((FH==3'd3) ? bus670_180[3] : ((FH==3'd2) ? bus670_180[2] : ((FH==3'd1) ? bus670_180[1] : (bus670_180[0])))))));
-  DLatch_x8 u0 (.enable(w2), .val(bus50_180), .val_out(bus270_160), .n_val_out(bus270_180));
-  BGC_SR8 u1 (.sin(w3), .Load(w4), .Step(bus280_170[0]), .Nexts(w5), .val(bus270_210), .sout(bus500_130));
-  BGC_SR8 u2 (.sin(w6), .Load(w7), .Step(w8), .Nexts(w9), .val(bus420_210), .sout(bus670_180));
+  // staging latch: transparent while PD_SR, holds otherwise; undefined bus
+  // bits (z/x) are never captured (like the dlatch primitive).
+  always @(PD_SR or PD)
+    if (PD_SR)
+      for (k = 0; k < 8; k = k + 1)
+        staging[k] = (PD[k] === 1'b1) ? 1'b1 : (PD[k] === 1'b0) ? 1'b0 : staging[k];
+
+  // capture phase: SRLOAD takes the staged plane-A byte (bit-reversed so the
+  // rotation below walks bit 7 first); STEP rotates the *committed* content
+  // (rotation reads disp, which is static while STEP is high, so the master
+  // settles - no combinational loop).  master[k] on SRLOAD is guarded against
+  // x/z on its source, so floating reads only freeze the cell.
+  always @(SRLOAD or STEP or staging or disp or master) begin
+    if (SRLOAD) begin
+      master[0] = (staging[7] === 1'b1) ? 1'b1 : (staging[7] === 1'b0) ? 1'b0 : master[0];
+      master[1] = (staging[6] === 1'b1) ? 1'b1 : (staging[6] === 1'b0) ? 1'b0 : master[1];
+      master[2] = (staging[5] === 1'b1) ? 1'b1 : (staging[5] === 1'b0) ? 1'b0 : master[2];
+      master[3] = (staging[4] === 1'b1) ? 1'b1 : (staging[4] === 1'b0) ? 1'b0 : master[3];
+      master[4] = (staging[3] === 1'b1) ? 1'b1 : (staging[3] === 1'b0) ? 1'b0 : master[4];
+      master[5] = (staging[2] === 1'b1) ? 1'b1 : (staging[2] === 1'b0) ? 1'b0 : master[5];
+      master[6] = (staging[1] === 1'b1) ? 1'b1 : (staging[1] === 1'b0) ? 1'b0 : master[6];
+      master[7] = (staging[0] === 1'b1) ? 1'b1 : (staging[0] === 1'b0) ? 1'b0 : master[7];
+    end else if (STEP)
+      master = {disp[0], disp[7:1]};
+  end
+
+  // commit phase: NEXTS moves the master to the outputs (one pixel per dot).
+  always @(NEXTS or master)
+    if (NEXTS) disp = master;
+
+  assign n_BGC0_Out = ~disp[FH];
 endmodule
 
+// BGC_1: background pixel colour bit 1 (pattern plane B, the byte fetched on
+// F_TB).  Same pipeline as BGC_0; plane B arrives on PD during the F_TB
+// fetch that ends exactly at the SRLOAD boundary, so no staging latch is
+// needed - SRLOAD loads the register straight from PD (mirroring the page,
+// which has no DLatch_x8 for plane B).
+//
+// Rotation/FH semantics are identical to BGC_0 (see there).
 module BGC_1 (
   input SRLOAD,
   input STEP,
@@ -249,29 +290,44 @@ module BGC_1 (
   input [2:0] FH,
   input [7:0] PD,
   output BGC1_Out );
-  wire [7:0] bus270_210;
-  wire [7:0] bus420_210;
-  wire [7:0] bus500_130;
-  wire [7:0] bus670_180;
-  wire [7:0] bus390_170;
-  wire w0;
-  wire w1;
-  wire w2;
-  wire w3;
-  wire w4;
-  wire w5;
-  wire w6;
-  wire w7;
-  wire w8;
-  wire w9;
+  reg [7:0] master = 8'h00;
+  reg [7:0] disp   = 8'h00;
+  integer k;
 
-  assign w0 = 1'd0;
-  assign w1 = 1'd0;
-  assign BGC1_Out = (FH==3'd7) ? bus670_180[7] : ((FH==3'd6) ? bus670_180[6] : ((FH==3'd5) ? bus670_180[5] : ((FH==3'd4) ? bus670_180[4] : ((FH==3'd3) ? bus670_180[3] : ((FH==3'd2) ? bus670_180[2] : ((FH==3'd1) ? bus670_180[1] : (bus670_180[0])))))));
-  BGC_SR8 u0 (.sin(w2), .Load(w3), .Step(w4), .Nexts(w5), .val(bus270_210), .sout(bus500_130));
-  BGC_SR8 u1 (.sin(w6), .Load(w7), .Step(w8), .Nexts(w9), .val(bus420_210), .sout(bus670_180));
+  always @(SRLOAD or STEP or PD or master) begin
+    if (SRLOAD) begin
+      master[0] = (PD[7] === 1'b1) ? 1'b1 : (PD[7] === 1'b0) ? 1'b0 : master[0];
+      master[1] = (PD[6] === 1'b1) ? 1'b1 : (PD[6] === 1'b0) ? 1'b0 : master[1];
+      master[2] = (PD[5] === 1'b1) ? 1'b1 : (PD[5] === 1'b0) ? 1'b0 : master[2];
+      master[3] = (PD[4] === 1'b1) ? 1'b1 : (PD[4] === 1'b0) ? 1'b0 : master[3];
+      master[4] = (PD[3] === 1'b1) ? 1'b1 : (PD[3] === 1'b0) ? 1'b0 : master[4];
+      master[5] = (PD[2] === 1'b1) ? 1'b1 : (PD[2] === 1'b0) ? 1'b0 : master[5];
+      master[6] = (PD[1] === 1'b1) ? 1'b1 : (PD[1] === 1'b0) ? 1'b0 : master[6];
+      master[7] = (PD[0] === 1'b1) ? 1'b1 : (PD[0] === 1'b0) ? 1'b0 : master[7];
+    end else if (STEP)
+      master = {disp[0], disp[7:1]};
+  end
+
+  always @(NEXTS or master)
+    if (NEXTS) disp = master;
+
+  assign BGC1_Out = disp[FH];
 endmodule
 
+// BGC_2: background pixel colour bit 2 = attribute LSB of the current
+// 16x16-pixel quadrant (the colour row / palette select).  The attribute
+// byte arrives on PD during F_AT; PD_SEL (BGC_Control) opens the capture
+// latches.  Each 2-bit quadrant pair of the byte maps to the four 16x16
+// quadrants of the 32x32 attribute region (TL = PD[1:0], TR = PD[3:2],
+// BL = PD[5:4], BR = PD[7:6]); this cell keeps the even (LSB) bits of all
+// four pairs and the quadrant select {TVO[1] (vertical half of the region,
+// constant for a scanline), H01 (~delayed THO[1], horizontal half, toggles
+// every two tiles)} picks the pair for the tile period being shown.  The
+// pair value moves through the same two phases as the pattern bytes (boundary
+// copy on SRLOAD, commit on NEXTS), so the colour row flips on exactly the
+// dot the pattern registers change and stays constant for the whole 16-pixel
+// group.
+// Port list identical to the schematic page.
 module BGC_2 (
   input PD_SEL,
   input [4:0] TVO,
@@ -282,43 +338,32 @@ module BGC_2 (
   input [2:0] FH,
   input [7:0] PD,
   output n_BGC2_Out );
-  wire [7:0] bus420_210;
-  wire [7:0] bus670_180;
-  wire [1:0] bus310_120;
-  wire w0;
-  wire w1;
-  wire w10;
-  wire w11;
-  wire w12;
-  wire w13;
-  wire w14;
-  wire w15;
-  wire w16;
-  wire w17;
-  wire w18;
-  wire w19;
-  wire w2;
-  wire w20;
-  wire w3;
-  wire w4;
-  wire w5;
-  wire w6;
-  wire w7;
-  wire w8;
-  wire w9;
+  reg [3:0] atM = 4'b0000;  // captured quadrant LSBs (PD even bits)
+  reg [3:0] m2  = 4'b0000;  // boundary stage (SRLOAD)
+  reg [3:0] at  = 4'b0000;  // committed quadrant value (colour row)
+  integer k;
 
-  assign w0 = 1'd0;
-  assign w1 = 1'd0;
-  assign w6 = ({H01, bus310_120[1]}==2'd3) ? w5 : (({H01, bus310_120[1]}==2'd2) ? w4 : (({H01, bus310_120[1]}==2'd1) ? w3 : (w2)));
-  assign n_BGC2_Out = (FH==3'd7) ? bus670_180[7] : ((FH==3'd6) ? bus670_180[6] : ((FH==3'd5) ? bus670_180[5] : ((FH==3'd4) ? bus670_180[4] : ((FH==3'd3) ? bus670_180[3] : ((FH==3'd2) ? bus670_180[2] : ((FH==3'd1) ? bus670_180[1] : (bus670_180[0])))))));
-  dlatch u0 (.en(PD_SEL), .d(PD[0]), .q(w7), .nq(w2));
-  dlatch u1 (.en(PD_SEL), .d(PD[2]), .q(w8), .nq(w3));
-  dlatch u2 (.en(PD_SEL), .d(PD[4]), .q(w9), .nq(w4));
-  dlatch u3 (.en(PD_SEL), .d(PD[6]), .q(w10), .nq(w5));
-  BGC_SRBit u4 (.shift_in(w11), .val_in(w12), .LOAD(w13), .STEP(w14), .NEXTS(w15), .shift_out(w16));
-  BGC_SR8 u5 (.sin(w17), .Load(w18), .Step(w19), .Nexts(w20), .val(bus420_210), .sout(bus670_180));
+  always @(PD_SEL or PD)
+    if (PD_SEL)
+      for (k = 0; k < 4; k = k + 1)
+        atM[k] = (PD[2*k] === 1'b1) ? 1'b1 : (PD[2*k] === 1'b0) ? 1'b0 : atM[k];
+
+  // Same two phases as the pattern bytes: the captured candidates are copied
+  // on the SRLOAD boundary and committed on the NEXTS phase, so the colour
+  // row flips on exactly the same dot as the pattern shift registers (no
+  // one-pixel skew between bits 1:0 and 3:2 at tile boundaries).
+  always @(SRLOAD or atM or m2)
+    if (SRLOAD) m2 = atM;
+
+  always @(NEXTS or m2 or at)
+    if (NEXTS) at = m2;
+
+  // quadrant index = {vertical half (TVO[1]), horizontal half (H01)}
+  assign n_BGC2_Out = ~at[{TVO[1], H01}];
 endmodule
 
+// BGC_3: background pixel colour bit 3 = attribute MSB of the quadrant.
+// Mirror of BGC_2 over the odd PD bits.
 module BGC_3 (
   input PD_SEL,
   input [4:0] TVO,
@@ -329,41 +374,23 @@ module BGC_3 (
   input [2:0] FH,
   input [7:0] PD,
   output n_BGC3_Out );
-  wire [7:0] bus420_210;
-  wire [7:0] bus670_180;
-  wire [1:0] bus310_120;
-  wire w0;
-  wire w1;
-  wire w10;
-  wire w11;
-  wire w12;
-  wire w13;
-  wire w14;
-  wire w15;
-  wire w16;
-  wire w17;
-  wire w18;
-  wire w19;
-  wire w2;
-  wire w20;
-  wire w3;
-  wire w4;
-  wire w5;
-  wire w6;
-  wire w7;
-  wire w8;
-  wire w9;
+  reg [3:0] atM = 4'b0000;
+  reg [3:0] m2  = 4'b0000;
+  reg [3:0] at  = 4'b0000;
+  integer k;
 
-  assign w0 = 1'd0;
-  assign w1 = 1'd0;
-  assign w6 = ({H01, bus310_120[1]}==2'd3) ? w5 : (({H01, bus310_120[1]}==2'd2) ? w4 : (({H01, bus310_120[1]}==2'd1) ? w3 : (w2)));
-  assign n_BGC3_Out = (FH==3'd7) ? bus670_180[7] : ((FH==3'd6) ? bus670_180[6] : ((FH==3'd5) ? bus670_180[5] : ((FH==3'd4) ? bus670_180[4] : ((FH==3'd3) ? bus670_180[3] : ((FH==3'd2) ? bus670_180[2] : ((FH==3'd1) ? bus670_180[1] : (bus670_180[0])))))));
-  dlatch u0 (.en(PD_SEL), .d(PD[1]), .q(w7), .nq(w2));
-  dlatch u1 (.en(PD_SEL), .d(PD[3]), .q(w8), .nq(w3));
-  dlatch u2 (.en(PD_SEL), .d(PD[5]), .q(w9), .nq(w4));
-  dlatch u3 (.en(PD_SEL), .d(PD[7]), .q(w10), .nq(w5));
-  BGC_SRBit u4 (.shift_in(w11), .val_in(w12), .LOAD(w13), .STEP(w14), .NEXTS(w15), .shift_out(w16));
-  BGC_SR8 u5 (.sin(w17), .Load(w18), .Step(w19), .Nexts(w20), .val(bus420_210), .sout(bus670_180));
+  always @(PD_SEL or PD)
+    if (PD_SEL)
+      for (k = 0; k < 4; k = k + 1)
+        atM[k] = (PD[2*k+1] === 1'b1) ? 1'b1 : (PD[2*k+1] === 1'b0) ? 1'b0 : atM[k];
+
+  always @(SRLOAD or atM or m2)
+    if (SRLOAD) m2 = atM;
+
+  always @(NEXTS or m2 or at)
+    if (NEXTS) at = m2;
+
+  assign n_BGC3_Out = ~at[{TVO[1], H01}];
 endmodule
 
 module BGCol (
