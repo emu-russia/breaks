@@ -199,6 +199,10 @@ module PhaseShifter (CLK, n_CLK, RES, dec_out, n_PR, n_PG, n_PB, n_PZ);
 	wire bit_5_sout;
 	wire bit_5_nsin;
 	wire tmp;
+	wire n_PZ1;
+`ifdef RP2C07
+	wire n_PZ2;
+`endif
 
 	nor (tmp, bit_5_nsin, PZ[3]);
 	nor (PZ[1], bit_5_sout, tmp);
@@ -216,12 +220,16 @@ module PhaseShifter (CLK, n_CLK, RES, dec_out, n_PR, n_PG, n_PB, n_PZ);
 	assign n_PG = PZ[9];
 	assign n_PB = PZ[5];
 
-	nor (n_PZ, 
+	nor (n_PZ1, 
 		(dec_out[0]&~PZ[0]), 
 		(dec_out[1]&~PZ[1]), 
 		(dec_out[2]&~PZ[2]), 
 		(dec_out[3]&~PZ[3]), 
+`ifdef RP2C02
 		dec_out[4],
+`elsif RP2C07
+		dec_out[10],				// PAL: gray halftones fire decoder row 10 (mask has no V0 term)
+`endif
 		(dec_out[5]&~PZ[5]), 
 		(dec_out[6]&~PZ[6]), 
 		(dec_out[7]&~PZ[7]), 
@@ -230,6 +238,33 @@ module PhaseShifter (CLK, n_CLK, RES, dec_out, n_PR, n_PG, n_PB, n_PZ);
 		(dec_out[10]&~PZ[10]), 
 		(dec_out[11]&~PZ[11]), 
 		(dec_out[12]&~PZ[12]) );
+
+`ifdef RP2C02
+
+	assign n_PZ = n_PZ1;
+
+`elsif RP2C07
+
+	// PAL: the chroma decoder is doubled for the per-line phase alteration
+	// (V0 selects one of the two decoder banks). Bank 2 (dec_out[13..24])
+	// must also pull n_PZ, otherwise alternate lines get no chroma and no
+	// color burst. Both banks are active-low NOR trees combined with an AND.
+	nor (n_PZ2,
+		(dec_out[13]&~PZ[0]),
+		(dec_out[14]&~PZ[1]),
+		(dec_out[15]&~PZ[2]),
+		(dec_out[16]&~PZ[3]),
+		(dec_out[17]&~PZ[5]),
+		(dec_out[18]&~PZ[6]),
+		(dec_out[19]&~PZ[7]),
+		(dec_out[20]&~PZ[8]),
+		(dec_out[21]&~PZ[9]),
+		(dec_out[22]&~PZ[10]),
+		(dec_out[23]&~PZ[11]),
+		(dec_out[24]&~PZ[12]) );
+	and (n_PZ, n_PZ1, n_PZ2);
+
+`endif
 
 endmodule // PhaseShifter
 

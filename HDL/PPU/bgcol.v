@@ -107,6 +107,14 @@ module DLatch_x8 (
   dlatch u7 (.en(enable), .d(val[0]), .q(val_out[0]), .nq(n_val_out[0]));
 endmodule
 
+// One bit of the background data shift/latch cell (PPU_Evo.circ BGC_SRBit
+// page): the master latch ("in_latch" DFF, clock tied to the default-high
+// constant Vcc -> always-transparent dynamic latch, exactly like the tile
+// counter cells) takes val_in when LOAD is high or shift_in when STEP is
+// high, and holds otherwise (tri-state keep). The complementary content is
+// transferred to the output stage on NEXTS; shift_out follows the cell
+// content after that transfer. The original translation tied the master
+// enable to 1'd0 which froze every cell.
 module BGC_SRBit (
   input LOAD,
   input STEP,
@@ -122,13 +130,20 @@ module BGC_SRBit (
   wire w5;
   wire w6;
 
-  assign w0 = 1'd0;
+  assign w0 = 1'd1;
   assign w1 = LOAD ? val_in : 'bz;
   assign w1 = STEP ? shift_in : 'bz;
   dlatch u (.d(w1), .en(w0), .q(w2), .nq(w3));
   dlatch u0 (.en(NEXTS), .d(w3), .q(w6), .nq(shift_out));
 endmodule
 
+// 8-bit background shift register (PPU_Evo.circ BGC_SR8 page).  The eight
+// BGC_SRBit cells share the Nexts/Load/Step controls; stage k loads val[k]
+// in parallel on Load and on Step takes the content of stage k+1 (with the
+// serial input sin entering the top stage), i.e. a right shift - bit 7 of
+// the loaded value is the first pixel out (bit 7 = leftmost tile pixel in
+// the NES pattern layout).  sout[k] = content of stage k.  Each stage
+// commits to its output on Nexts (two-phase transfer).
 module BGC_SR8 (
   input Nexts,
   input [7:0] val,
@@ -136,7 +151,6 @@ module BGC_SR8 (
   input Load,
   input Step,
   output [7:0] sout );
-  wire [2:0] bus820_40;
   wire w0;
   wire w1;
   wire w10;
@@ -178,14 +192,16 @@ module BGC_SR8 (
   wire w8;
   wire w9;
 
-  BGC_SRBit u0 (.shift_in(w0), .val_in(w1), .LOAD(w2), .STEP(w3), .NEXTS(w4), .shift_out(sout[3]));
-  BGC_SRBit u1 (.shift_in(w5), .val_in(w6), .LOAD(w7), .STEP(w8), .NEXTS(w9), .shift_out(sout[7]));
-  BGC_SRBit u2 (.shift_in(w10), .val_in(w11), .LOAD(w12), .STEP(w13), .NEXTS(w14), .shift_out(sout[2]));
-  BGC_SRBit u3 (.shift_in(w15), .val_in(w16), .LOAD(w17), .STEP(w18), .NEXTS(w19), .shift_out(sout[6]));
-  BGC_SRBit u4 (.shift_in(w20), .val_in(w21), .LOAD(w22), .STEP(w23), .NEXTS(w24), .shift_out(sout[1]));
-  BGC_SRBit u5 (.shift_in(w25), .val_in(w26), .LOAD(w27), .STEP(w28), .NEXTS(w29), .shift_out(sout[5]));
-  BGC_SRBit u6 (.shift_in(w30), .val_in(w31), .LOAD(w32), .STEP(w33), .NEXTS(w34), .shift_out(sout[0]));
-  BGC_SRBit u7 (.shift_in(w35), .val_in(w36), .LOAD(w37), .STEP(w38), .NEXTS(w39), .shift_out(sout[4]));
+  // stage shift_out -> sout[stage] mapping is kept from the schematic nets;
+  // the serial chain goes from stage 7 down to stage 0 (sin at stage 7).
+  BGC_SRBit u7 (.shift_in(sin),      .val_in(val[7]), .LOAD(Load), .STEP(Step), .NEXTS(Nexts), .shift_out(sout[7]));
+  BGC_SRBit u6 (.shift_in(sout[7]),  .val_in(val[6]), .LOAD(Load), .STEP(Step), .NEXTS(Nexts), .shift_out(sout[6]));
+  BGC_SRBit u5 (.shift_in(sout[6]),  .val_in(val[5]), .LOAD(Load), .STEP(Step), .NEXTS(Nexts), .shift_out(sout[5]));
+  BGC_SRBit u4 (.shift_in(sout[5]),  .val_in(val[4]), .LOAD(Load), .STEP(Step), .NEXTS(Nexts), .shift_out(sout[4]));
+  BGC_SRBit u3 (.shift_in(sout[4]),  .val_in(val[3]), .LOAD(Load), .STEP(Step), .NEXTS(Nexts), .shift_out(sout[3]));
+  BGC_SRBit u2 (.shift_in(sout[3]),  .val_in(val[2]), .LOAD(Load), .STEP(Step), .NEXTS(Nexts), .shift_out(sout[2]));
+  BGC_SRBit u1 (.shift_in(sout[2]),  .val_in(val[1]), .LOAD(Load), .STEP(Step), .NEXTS(Nexts), .shift_out(sout[1]));
+  BGC_SRBit u0 (.shift_in(sout[1]),  .val_in(val[0]), .LOAD(Load), .STEP(Step), .NEXTS(Nexts), .shift_out(sout[0]));
 endmodule
 
 module BGC_0 (

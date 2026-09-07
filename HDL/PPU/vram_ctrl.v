@@ -125,6 +125,12 @@ module ReadBuffer(XRB, RC, PD_RB, PD_in, CPU_DB);
 
 	sdffr rb [7:0] (.d(PD_in), .res(RC), .phi_keep(~PD_RB), .q(rb_q), .nq());
 
-	assign CPU_DB = XRB ? rb_q : 8'bz;
+	// The read buffer sits on the internal DB bus only while the CPU is
+	// actually reading $2007 (VRAM data port). VRAM_Control asserts XRB for
+	// every *other* bus state (register writes, idle, fetch cycles), so the
+	// buffer must isolate itself (Z) then and open onto DB only when XRB=0.
+	// (Previously the polarity was inverted: the buffer fought the CPU write
+	// path on DB and corrupted every register/OAM write and $2002 read.)
+	assign CPU_DB = XRB ? 8'bz : rb_q;
 
 endmodule // ReadBuffer

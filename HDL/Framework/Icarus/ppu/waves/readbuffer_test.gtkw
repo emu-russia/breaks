@@ -1,0 +1,34 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/readbuffer_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] readbuffer_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@22
+readbuffer_test.CPU_DB[7:0]
+@28
+readbuffer_test.PD_RB
+@22
+readbuffer_test.PD_in[7:0]
+@28
+readbuffer_test.RC
+@28
+readbuffer_test.XRB
+@22
+readbuffer_test.checks[31:0]
+@28
+readbuffer_test.db_drv
+@22
+readbuffer_test.db_val[7:0]
+@22
+readbuffer_test.errors[31:0]

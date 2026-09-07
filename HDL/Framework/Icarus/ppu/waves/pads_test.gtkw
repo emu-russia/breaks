@@ -1,0 +1,94 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/pads_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] pads_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+pads_test.CLKPad
+@28
+pads_test.CLK_frompad
+@22
+pads_test.ADPads[7:0]
+@28
+pads_test.ALE
+@22
+pads_test.CPU_DB[7:0]
+@22
+pads_test.DPads[7:0]
+@22
+pads_test.EXTPads[3:0]
+@22
+pads_test.EXT_in[3:0]
+@28
+pads_test.Int_topad
+@22
+pads_test.PAPads[5:0]
+@22
+pads_test.PD_out[7:0]
+@28
+pads_test.RC
+@28
+pads_test.RD_topad
+@28
+pads_test.RES
+@28
+pads_test.RESCL
+@28
+pads_test.WR_topad
+@28
+pads_test.adpads_drv
+@22
+pads_test.adpads_val[7:0]
+@22
+pads_test.checks[31:0]
+@28
+pads_test.cpu_db_drv
+@22
+pads_test.cpu_db_val[7:0]
+@28
+pads_test.dpads_drv
+@22
+pads_test.dpads_val[7:0]
+@22
+pads_test.errors[31:0]
+@28
+pads_test.extpads_drv
+@22
+pads_test.extpads_val[3:0]
+@28
+pads_test.n_ALE_topad
+@28
+pads_test.n_CLK_frompad
+@28
+pads_test.n_CpuRD
+@28
+pads_test.n_CpuWR
+@22
+pads_test.n_EXT_out[3:0]
+@28
+pads_test.n_INTPad
+@22
+pads_test.n_PA[13:0]
+@28
+pads_test.n_PCLK
+@28
+pads_test.n_RDPad
+@28
+pads_test.n_RESPad
+@28
+pads_test.n_SLAVE
+@28
+pads_test.n_WRPad
+@22
+pads_test.v[31:0]

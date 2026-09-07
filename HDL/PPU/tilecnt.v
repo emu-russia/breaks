@@ -137,6 +137,21 @@ module TileCountersControl2 (
   dlatch u2 (.en(n_PCLK), .d(w4), .q(w15), .nq(w24));
 endmodule
 
+// Tile counter bit (from the PPU_Evo.circ TileCounterBit page):
+//   - master latch ("DFF" with its clock tied high -> transparent dynamic
+//     latch) holds val_out; three tri-state drivers on its input select
+//     keep/load/step:
+//        Clock=1 : val_out stays (dynamic keep through the Clock buffer)
+//        Load=1  : val_out = val_in
+//        Step=1  : val_out = ~step_latch.q
+//   - step_latch (enabled by Clock) captures carry_in ? val_out : n_val_out
+//     during the Clock phase, so a step during the following phase toggles
+//     the bit only when carry_in is set (ripple carry-in), else holds it.
+//   - carry_out = val_out & carry_in.
+// The original translation tied the master-latch enable to 1'd0 (frozen) and
+// left the three buffer controls undriven; per the schematic the master
+// enable is the (default high) constant Vcc and the controls are Clock,
+// Load, Step.
 module TileCounterBit (
   input Step,
   input val_in,
@@ -160,12 +175,10 @@ module TileCounterBit (
   wire w8;
   wire w9;
 
-  assign w0 = 1'd0;
-  assign w1 = w2 ? val_out : 'bz;
-  assign w1 = w3 ? val_in : 'bz;
-  assign w1 = w5 ? w4 : 'bz;
-  assign w6 = ~w6;
-  assign w7 = ~w6;
+  assign w0 = 1'd1;
+  assign w1 = Clock ? val_out : 'bz;
+  assign w1 = Load   ? val_in  : 'bz;
+  assign w1 = Step   ? w4      : 'bz;
   assign w8 = ~carry_in;
   assign carry_out = ~(n_val_out | w8);
   assign w9 = carry_in ? val_out : n_val_out;
@@ -181,7 +194,6 @@ module Tile_FV_Counter (
   input TVLOAD,
   output [2:0] FVO,
   output [2:0] n_FVO );
-  wire [2:0] bus200_340;
   wire w0;
   wire w1;
   wire w10;
@@ -202,10 +214,12 @@ module Tile_FV_Counter (
   wire w8;
   wire w9;
 
-  TileCounterBit u0 (.Clock(w0), .Load(w1), .Step(w2), .val_in(w3), .carry_in(w4), .val_out(FVO[1]), .n_val_out(w5), .carry_out(w6));
-  TileCounterBit u1 (.Clock(w7), .Load(w8), .Step(w9), .val_in(w10), .carry_in(w11), .val_out(FVO[2]), .n_val_out(w12), .carry_out(w13));
-  TileCounterBit u2 (.Clock(TVLOAD), .Load(TVSTEP), .Step(w14), .val_in(w15), .carry_in(w16), .val_out(FVO[0]), .n_val_out(w17), .carry_out(w18));
-  assign n_FVO = {w12, w5, w17};
+  // bit i: Clock=PCLK, Load=TVLOAD, Step=TVSTEP, val_in=FVx[i]
+  // (instance i at (350,90+110*i) in the Tile_FV_Counter page); carry chain
+  // from bit 0 up; bit 0 carry_in = FVIN.
+  TileCounterBit u0 (.Clock(PCLK), .Load(TVLOAD), .Step(TVSTEP), .val_in(FVx[0]), .carry_in(FVIN), .val_out(FVO[0]), .n_val_out(n_FVO[0]), .carry_out(w0));
+  TileCounterBit u1 (.Clock(PCLK), .Load(TVLOAD), .Step(TVSTEP), .val_in(FVx[1]), .carry_in(w0), .val_out(FVO[1]), .n_val_out(n_FVO[1]), .carry_out(w1));
+  TileCounterBit u2 (.Clock(PCLK), .Load(TVLOAD), .Step(TVSTEP), .val_in(FVx[2]), .carry_in(w1), .val_out(FVO[2]), .n_val_out(n_FVO[2]), .carry_out(w2));
 endmodule
 
 module Tile_NT_Counters (
@@ -235,10 +249,21 @@ module Tile_NT_Counters (
   wire w8;
   wire w9;
 
-  TileCounterBit u0 (.Clock(w0), .Load(w1), .Step(w2), .val_in(w3), .carry_in(w4), .val_out(NTHOut), .n_val_out(NTHO), .carry_out(w5));
-  TileCounterBit u1 (.Clock(w6), .Load(w7), .Step(w8), .val_in(w9), .carry_in(w10), .val_out(NTVOut), .n_val_out(NTVO), .carry_out(w11));
+  // Tile_NT_Counters page: nametable-select flip-flops.
+  // NTH bit (instance at (320,120)): val_out -> NTHOut, carry_out -> NTHO,
+  // val_in = NTH (scroll), carry_in = NTHIN, Load = THLOAD, Step = THSTEP.
+  // NTV bit (instance at (320,300)): same with the TVSTEP/TVLOAD group.
+  TileCounterBit u0 (.Clock(PCLK), .Load(THLOAD), .Step(THSTEP), .val_in(NTH), .carry_in(NTHIN), .val_out(NTHOut), .n_val_out(w0), .carry_out(NTHO));
+  TileCounterBit u1 (.Clock(PCLK), .Load(TVLOAD), .Step(TVSTEP), .val_in(NTV), .carry_in(NTVIN), .val_out(NTVOut), .n_val_out(w1), .carry_out(NTVO));
 endmodule
 
+// Tile counter bit with reset (PPU_Evo.circ TileCounterBitReset page):
+// same keep/load/step scheme as TileCounterBit plus an AND with negated
+// Reset between the master-latch value and the output:
+//   val_out = Q & ~Reset
+// so Reset=1 clears the output value (and, through the Clock keep-buffer,
+// the master on the next keep phase) while the complementary output
+// n_val_out is left untouched (wiki note about the 0/TV signal).
 module TileCounterBitReset (
   input Step,
   input val_in,
@@ -264,13 +289,11 @@ module TileCounterBitReset (
   wire w8;
   wire w9;
 
-  assign w0 = 1'd0;
-  assign w1 = w2 ? val_out : 'bz;
-  assign w1 = w3 ? val_in : 'bz;
-  assign w1 = w5 ? w4 : 'bz;
+  assign w0 = 1'd1;
+  assign w1 = Clock ? val_out : 'bz;
+  assign w1 = Load   ? val_in  : 'bz;
+  assign w1 = Step   ? w4      : 'bz;
   assign val_out = w6 & (~Reset);
-  assign w7 = ~w7;
-  assign w8 = ~w7;
   assign w9 = ~carry_in;
   assign carry_out = ~(n_val_out | w9);
   assign w10 = carry_in ? w6 : n_val_out;
@@ -287,7 +310,6 @@ module Tile_TV_Counter (
   input TVLOAD,
   output [4:0] n_TVO,
   output [4:0] TVO );
-  wire [2:0] bus200_560;
   wire w0;
   wire w1;
   wire w10;
@@ -326,12 +348,17 @@ module Tile_TV_Counter (
   wire w8;
   wire w9;
 
-  TileCounterBitReset u0 (.Clock(w0), .Load(w1), .Step(w2), .val_in(w3), .carry_in(w4), .Reset(w5), .val_out(TVO[1]), .n_val_out(w6), .carry_out(w7));
-  TileCounterBitReset u1 (.Clock(w8), .Load(w9), .Step(w10), .val_in(w11), .carry_in(w12), .Reset(w13), .val_out(TVO[2]), .n_val_out(w14), .carry_out(w15));
-  TileCounterBitReset u2 (.Clock(w16), .Load(w17), .Step(w18), .val_in(w19), .carry_in(w20), .Reset(w21), .val_out(TVO[3]), .n_val_out(w22), .carry_out(w23));
-  TileCounterBitReset u3 (.Clock(w24), .Load(w25), .Step(w26), .val_in(w27), .carry_in(w28), .Reset(w29), .val_out(TVO[4]), .n_val_out(w30), .carry_out(w31));
-  TileCounterBitReset u4 (.Clock(TVLOAD), .Load(TVSTEP), .Step(TVIN), .val_in(w32), .carry_in(w33), .Reset(w34), .val_out(TVO[0]), .n_val_out(w35), .carry_out(w36));
-  assign n_TVO = {w30, w22, w14, w6, w35};
+  // 5-bit vertical (coarse-Y) counter, bit i = TileCounterBitReset instance
+  // at (350,90+110*i) in the Tile_TV_Counter page:
+  // Clock=PCLK, Load=TVLOAD, Step=TVSTEP, val_in=TVx[i], Reset=Z_TV;
+  // bit 0 carry_in = TVIN, carry chain from bit 0 up; the top carry is left
+  // open in the schematic (NoConnect).
+  TileCounterBitReset u0 (.Clock(PCLK), .Load(TVLOAD), .Step(TVSTEP), .val_in(TVx[0]), .carry_in(TVIN), .Reset(Z_TV), .val_out(TVO[0]), .n_val_out(w0), .carry_out(w1));
+  TileCounterBitReset u1 (.Clock(PCLK), .Load(TVLOAD), .Step(TVSTEP), .val_in(TVx[1]), .carry_in(w1), .Reset(Z_TV), .val_out(TVO[1]), .n_val_out(w2), .carry_out(w3));
+  TileCounterBitReset u2 (.Clock(PCLK), .Load(TVLOAD), .Step(TVSTEP), .val_in(TVx[2]), .carry_in(w3), .Reset(Z_TV), .val_out(TVO[2]), .n_val_out(w4), .carry_out(w5));
+  TileCounterBitReset u3 (.Clock(PCLK), .Load(TVLOAD), .Step(TVSTEP), .val_in(TVx[3]), .carry_in(w5), .Reset(Z_TV), .val_out(TVO[3]), .n_val_out(w6), .carry_out(w7));
+  TileCounterBitReset u4 (.Clock(PCLK), .Load(TVLOAD), .Step(TVSTEP), .val_in(TVx[4]), .carry_in(w7), .Reset(Z_TV), .val_out(TVO[4]), .n_val_out(w8), .carry_out(w9));
+  assign n_TVO = {w8, w6, w4, w2, w0};
 endmodule
 
 module Tile_TH_Counter (
@@ -342,7 +369,6 @@ module Tile_TH_Counter (
   input THLOAD,
   output [4:0] n_THO,
   output [4:0] THO );
-  wire [2:0] bus200_560;
   wire w0;
   wire w1;
   wire w10;
@@ -377,12 +403,17 @@ module Tile_TH_Counter (
   wire w8;
   wire w9;
 
-  TileCounterBit u0 (.Clock(w0), .Load(w1), .Step(w2), .val_in(w3), .carry_in(w4), .val_out(THO[1]), .n_val_out(w5), .carry_out(w6));
-  TileCounterBit u1 (.Clock(w7), .Load(w8), .Step(w9), .val_in(w10), .carry_in(w11), .val_out(THO[2]), .n_val_out(w12), .carry_out(w13));
-  TileCounterBit u2 (.Clock(w14), .Load(w15), .Step(w16), .val_in(w17), .carry_in(w18), .val_out(THO[3]), .n_val_out(w19), .carry_out(w20));
-  TileCounterBit u3 (.Clock(w21), .Load(w22), .Step(w23), .val_in(w24), .carry_in(w25), .val_out(THO[4]), .n_val_out(w26), .carry_out(w27));
-  TileCounterBit u4 (.Clock(THLOAD), .Load(THSTEP), .Step(w28), .val_in(w29), .carry_in(w30), .val_out(THO[0]), .n_val_out(w31), .carry_out(w32));
-  assign n_THO = {w26, w19, w12, w5, w31};
+  // 5-bit horizontal (coarse-X) counter, bit i = TileCounterBit instance at
+  // (350,90+110*i) in the Tile_TH_Counter page:
+  // Clock=PCLK, Load=THLOAD, Step=THSTEP, val_in=THx[i];
+  // bit 0 carry_in = THIN, carry chain from bit 0 up; the top carry is left
+  // open in the schematic (NoConnect).
+  TileCounterBit u0 (.Clock(PCLK), .Load(THLOAD), .Step(THSTEP), .val_in(THx[0]), .carry_in(THIN), .val_out(THO[0]), .n_val_out(w0), .carry_out(w1));
+  TileCounterBit u1 (.Clock(PCLK), .Load(THLOAD), .Step(THSTEP), .val_in(THx[1]), .carry_in(w1), .val_out(THO[1]), .n_val_out(w2), .carry_out(w3));
+  TileCounterBit u2 (.Clock(PCLK), .Load(THLOAD), .Step(THSTEP), .val_in(THx[2]), .carry_in(w3), .val_out(THO[2]), .n_val_out(w4), .carry_out(w5));
+  TileCounterBit u3 (.Clock(PCLK), .Load(THLOAD), .Step(THSTEP), .val_in(THx[3]), .carry_in(w5), .val_out(THO[3]), .n_val_out(w6), .carry_out(w7));
+  TileCounterBit u4 (.Clock(PCLK), .Load(THLOAD), .Step(THSTEP), .val_in(THx[4]), .carry_in(w7), .val_out(THO[4]), .n_val_out(w8), .carry_out(w9));
+  assign n_THO = {w8, w6, w4, w2, w0};
 endmodule
 
 module TileCnt (

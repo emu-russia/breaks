@@ -1,0 +1,60 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/ppu_top_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] ppu_top_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+ppu_top_test.CLK
+@22
+ppu_top_test.AD[7:0]
+@28
+ppu_top_test.ALE
+@22
+ppu_top_test.A[5:0]
+@22
+ppu_top_test.D[7:0]
+@22
+ppu_top_test.D_wr[7:0]
+@22
+ppu_top_test.RS[2:0]
+@28
+ppu_top_test.RnW
+@22
+ppu_top_test.VOut[31:0]
+@22
+ppu_top_test.attempts[31:0]
+@22
+ppu_top_test.checks[31:0]
+@22
+ppu_top_test.errors[31:0]
+@22
+ppu_top_test.ext[3:0]
+@22
+ppu_top_test.maxH[31:0]
+@22
+ppu_top_test.maxV[31:0]
+@28
+ppu_top_test.n_DBE
+@28
+ppu_top_test.n_INT
+@28
+ppu_top_test.n_RD
+@28
+ppu_top_test.n_RES
+@28
+ppu_top_test.n_WR
+@22
+ppu_top_test.rb[7:0]
+@22
+ppu_top_test.xz[31:0]

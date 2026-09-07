@@ -1,0 +1,134 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/fsm_test_pal.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] FSM_Run.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+FSM_Run.CLK
+@28
+FSM_Run.BLNK
+@28
+FSM_Run.DB7
+@28
+FSM_Run.H0_D
+@28
+FSM_Run.H0_DD
+@28
+FSM_Run.H1_DD
+@28
+FSM_Run.H2_DD
+@28
+FSM_Run.H3_DD
+@28
+FSM_Run.H4_DD
+@28
+FSM_Run.H5_DD
+@28
+FSM_Run.HC
+@22
+FSM_Run.HCnt[8:0]
+@22
+FSM_Run.HDecoder_out[23:0]
+@28
+FSM_Run.Int
+@22
+FSM_Run.LINES[31:0]
+@28
+FSM_Run.PCLK
+@28
+FSM_Run.RES
+@28
+FSM_Run.RESCL
+@28
+FSM_Run.SYNC
+@28
+FSM_Run.VB
+@28
+FSM_Run.VC
+@22
+FSM_Run.VCnt[8:0]
+@22
+FSM_Run.VDecoder_out[9:0]
+@22
+FSM_Run.VMAX[31:0]
+@28
+FSM_Run.V_IN
+@22
+FSM_Run.blnk_on_visible[31:0]
+@22
+FSM_Run.blnk_vblank_samples[31:0]
+@22
+FSM_Run.checked[31:0]
+@22
+FSM_Run.checks[31:0]
+@22
+FSM_Run.db7_bad[31:0]
+@22
+FSM_Run.db7_good[31:0]
+@22
+FSM_Run.errors[31:0]
+@22
+FSM_Run.frame[31:0]
+@22
+FSM_Run.frame_syncs[31:0]
+@22
+FSM_Run.frame_vwrap[31:0]
+@22
+FSM_Run.h_max_seen[31:0]
+@22
+FSM_Run.hprev[8:0]
+@22
+FSM_Run.in_line[31:0]
+@28
+FSM_Run.int_high_seen
+@28
+FSM_Run.int_prev2
+@22
+FSM_Run.int_rises[31:0]
+@22
+FSM_Run.line_h0_seen[31:0]
+@22
+FSM_Run.line_len[31:0]
+@22
+FSM_Run.line_syncs[31:0]
+@28
+FSM_Run.nH1_D
+@28
+FSM_Run.nH2_D
+@28
+FSM_Run.n_DBE
+@28
+FSM_Run.n_PCLK
+@28
+FSM_Run.n_PICTURE
+@28
+FSM_Run.n_R2
+@22
+FSM_Run.px[31:0]
+@22
+FSM_Run.reads_done[31:0]
+@28
+FSM_Run.saw_hwrap
+@28
+FSM_Run.sync_prev
+@22
+FSM_Run.v_changes_in_line[31:0]
+@22
+FSM_Run.v_max_seen[31:0]
+@22
+FSM_Run.vb_on_visible[31:0]
+@22
+FSM_Run.vb_vblank_samples[31:0]
+@22
+FSM_Run.vprev[8:0]

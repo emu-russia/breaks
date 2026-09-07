@@ -15,11 +15,20 @@ module PPU_Render();
 	PPU ppu (.RnW(RnW), .D(D), .RS(RS), .n_DBE(n_DBE), .EXT(ext), .CLK(CLK), .n_RES(n_RES));
 
 	task cpu_write(input [2:0] addr, input [7:0] data);
+		integer k;
 		begin
+			// Real-CPU cycle: set up RS/RnW/data while /DBE is high, then
+			// strobe /DBE low (>= one PCLK period) so the register latches
+			// sample valid data (issue #1388 bus-timing fix).
 			@(negedge CLK);
-			RS = addr; RnW = 1'b0; n_DBE = 1'b0; D_reg = data;
-			@(negedge CLK); @(negedge CLK);
+			RS = addr; RnW = 1'b0; D_reg = data;
+			@(negedge CLK);
+			n_DBE = 1'b0;
+			for (k = 0; k < 4; k = k + 1) @(negedge CLK);
 			n_DBE = 1'b1;
+			@(negedge CLK); @(negedge CLK);
+			RnW = 1'b1;
+			@(negedge CLK);
 		end
 	endtask
 

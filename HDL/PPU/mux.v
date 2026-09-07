@@ -34,19 +34,26 @@ module MUX_Control (
   wire w8;
   wire w9;
 
-  assign w0 = ~(BGC[0] | BGC[1]);
-  assign w1 = ~(OBJC[0] | OBJC[1]);
-  assign w2 = ~n_ZPRIO;
-  assign w3 = ~w0;
-  assign w5 = ~(w3 & w4);
-  assign w6 = ~w1;
-  assign OCOL = w5 & w6;
-  assign w7 = ~w1;
-  assign EXT = ~(w8 | w9);
+  // Pixel presence tests (first mux stage of MUX_All, see mux.md):
+  //   - the background pixel is present when its pattern bits BGC[1:0] are
+  //     not both zero (BGC is in direct logic)
+  //   - the object (sprite) pixel is present when its pattern is not 00.
+  //     The sprite low bits arrive here inverted (OBJC holds n_ZCOL0/1, see
+  //     rails.md), so "not both zero" becomes NAND of the two inputs.
+  //     (The previous generated code used an OR here, which made sprite
+  //     patterns 00/01/10 opaque and pattern 11 transparent - the opposite
+  //     of the PPU behavior, so bright (pattern-11) sprites disappeared.)
+  assign w0 = ~(BGC[0] | BGC[1]);        // bg pixel absent (transparent)
+  assign w3 = ~w0;                       // bg pixel present
+  assign w6 = ~(OBJC[0] & OBJC[1]);      // sprite pixel present
+  assign w2 = ~n_ZPRIO;                  // sprite has priority
+  assign w5 = ~(w3 & w4);                // ~(bg present & sprite behind)
+  assign OCOL = w5 & w6;                 // sprite color wins
+  assign EXT = ~(w8 | w9);               // no pixel of either kind
   dlatch u0 (.en(n_PCLK), .d(OCOL), .q(w10), .nq(n_PAL4));
   dlatch u1 (.en(PCLK), .d(w2), .q(w11), .nq(w4));
   dlatch u2 (.en(n_PCLK), .d(w3), .q(w8), .nq(w12));
-  dlatch u3 (.en(n_PCLK), .d(w7), .q(w9), .nq(w13));
+  dlatch u3 (.en(n_PCLK), .d(w6), .q(w9), .nq(w13));
 endmodule
 
 module PictureMUX (

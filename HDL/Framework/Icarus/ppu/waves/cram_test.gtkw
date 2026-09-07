@@ -1,0 +1,86 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/cram_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] cram_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+cram_test.clk_en
+@28
+cram_test.BnW
+@22
+cram_test.CGA[4:0]
+@28
+cram_test.COL0
+@28
+cram_test.COL1
+@28
+cram_test.COL2
+@28
+cram_test.COL3
+@22
+cram_test.CPU_DB[7:0]
+@28
+cram_test.DB_PAR
+@28
+cram_test.PCLK
+@28
+cram_test.ROW0_4
+@28
+cram_test.ROW1
+@28
+cram_test.ROW2
+@28
+cram_test.ROW3
+@28
+cram_test.ROW5
+@28
+cram_test.ROW6
+@28
+cram_test.ROW7
+@28
+cram_test.TH_MUX
+@22
+cram_test.addr[31:0]
+@22
+cram_test.checks[31:0]
+@28
+cram_test.db_drv
+@22
+cram_test.db_val[7:0]
+@22
+cram_test.errors[31:0]
+@22
+cram_test.expcc[3:0]
+@22
+cram_test.expll[1:0]
+@28
+cram_test.n_BW
+@28
+cram_test.n_CB_DB
+@22
+cram_test.n_CC[3:0]
+@28
+cram_test.n_DBE
+@28
+cram_test.n_DB_CB
+@22
+cram_test.n_LL[1:0]
+@28
+cram_test.n_PCLK
+@28
+cram_test.n_PICTURE
+@28
+cram_test.n_R7
+@22
+cram_test.stored[5:0]

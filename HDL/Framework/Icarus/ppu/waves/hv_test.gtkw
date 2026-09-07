@@ -1,0 +1,42 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/hv_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] hv_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+hv_test.HC
+@22
+hv_test.H_out[8:0]
+@28
+hv_test.PCLK
+@28
+hv_test.RES
+@28
+hv_test.VC
+@28
+hv_test.V_IN
+@22
+hv_test.V_out[8:0]
+@22
+hv_test.checks[31:0]
+@22
+hv_test.errors[31:0]
+@22
+hv_test.ev[31:0]
+@22
+hv_test.line[31:0]
+@28
+hv_test.n_PCLK
+@22
+hv_test.px[31:0]

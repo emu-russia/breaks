@@ -1,0 +1,72 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/bgcol_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] bgcol_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@22
+bgcol_test.BGC[3:0]
+@22
+bgcol_test.FH[2:0]
+@28
+bgcol_test.F_AT
+@28
+bgcol_test.F_TA
+@28
+bgcol_test.F_TB
+@28
+bgcol_test.H0_DD
+@28
+bgcol_test.PCLK
+@22
+bgcol_test.PD[7:0]
+@22
+bgcol_test.THO[4:0]
+@22
+bgcol_test.TVO[4:0]
+@22
+bgcol_test.checks[31:0]
+@22
+bgcol_test.errors[31:0]
+@28
+bgcol_test.n_CLPB
+@28
+bgcol_test.n_FO
+@28
+bgcol_test.n_PCLK
+@22
+bgcol_test.p[31:0]
+@28
+bgcol_test.r_Load
+@28
+bgcol_test.r_Nexts
+@28
+bgcol_test.r_Step
+@28
+bgcol_test.r_sin
+@22
+bgcol_test.r_sout[7:0]
+@22
+bgcol_test.r_val[7:0]
+@28
+bgcol_test.s_LOAD
+@28
+bgcol_test.s_NEXTS
+@28
+bgcol_test.s_STEP
+@28
+bgcol_test.s_out
+@28
+bgcol_test.s_shift_in
+@28
+bgcol_test.s_val_in

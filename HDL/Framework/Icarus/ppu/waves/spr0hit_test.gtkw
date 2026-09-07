@@ -1,0 +1,38 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/spr0hit_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] spr0hit_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@22
+spr0hit_test.BGC[3:0]
+@28
+spr0hit_test.DB6
+@28
+spr0hit_test.PCLK
+@28
+spr0hit_test.RESCL
+@22
+spr0hit_test.checks[31:0]
+@22
+spr0hit_test.errors[31:0]
+@28
+spr0hit_test.n_DBE
+@28
+spr0hit_test.n_R2
+@28
+spr0hit_test.n_SPR0HIT
+@28
+spr0hit_test.n_SPR0_EV
+@28
+spr0hit_test.n_VIS

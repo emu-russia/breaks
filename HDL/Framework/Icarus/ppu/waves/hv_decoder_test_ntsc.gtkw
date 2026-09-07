@@ -1,0 +1,44 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/hv_decoder_test_ntsc.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] hv_decoder_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+hv_decoder_test.BLNK
+@22
+hv_decoder_test.HPLA_out[23:0]
+@22
+hv_decoder_test.H[8:0]
+@28
+hv_decoder_test.VB
+@22
+hv_decoder_test.VPLA_out[9:0]
+@22
+hv_decoder_test.V[8:0]
+@22
+hv_decoder_test.checks[31:0]
+@22
+hv_decoder_test.errors[31:0]
+@22
+hv_decoder_test.g[31:0]
+@22
+hv_decoder_test.h[31:0]
+@22
+hv_decoder_test.hmax[31:0]
+@22
+hv_decoder_test.i[31:0]
+@22
+hv_decoder_test.v[31:0]
+@22
+hv_decoder_test.vmax[31:0]

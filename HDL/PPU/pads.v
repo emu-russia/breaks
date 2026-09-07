@@ -68,9 +68,15 @@ module PpuPadsLogic(
 	assign CLK_frompad = CLKPad;
 
 	assign RES = ~n_RESPad;
-	wire Reset_FF_out;
-	rsff Reset_FF (.r(RESCL), .s(RES), .q(Reset_FF_out) );
-	assign RC = ~Reset_FF_out;
+
+	// Register Clear (RC): the register file is cleared while the /RES pad is
+	// asserted and becomes writable again as soon as /RES is released.
+	// (Previously RC was the inverted Reset_FF latch that is cleared by RESCL
+	// — the VBlank-end event — which left RC=1 (permanent register wipe)
+	// after the first frame, and 0 during reset. Per the NES behaviour the
+	// registers must hold their values across frames; clearing happens only
+	// during the reset pulse itself.)
+	assign RC = RES;
 
 	notif1 (n_INTPad, Int_topad, Int_topad);
 
