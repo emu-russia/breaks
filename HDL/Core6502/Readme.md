@@ -12,12 +12,15 @@ Work in progress. Current state:
 
 - All Core6502 modules elaborate and simulate under Icarus 14 (devel) (`-D ICARUS`).
 - Module testbenches in `HDL/Framework/Icarus/mos6502/*_test.v` compile and run.
+  Self-checking (assert on expected behaviour, print TEST PASS/FAIL):
+  `clock_test.v`, `addr_bus_test.v`, `data_bus_test.v`, `alu_test.v`,
+  `busmux_test.v`.
 - Full-core harnesses: `klaus_test.v` (Klaus Dormann functional suite) and
   `instr_test.v` + `Scripts/make_instr_test.py` (small instruction-level checks).
   Run them with e.g. `iverilog -D ICARUS -o klaus_test.run ../../../Common/*.v
   ../../../Core6502/*.v klaus_test.v && vvp klaus_test.run`.
 
-Known defect (blocks full-core verification):
+Known defects (block full-core verification):
 
 - The core never loads the low byte of a memory-sourced program counter into
   PCL. Consequence: after reset the PC becomes `04FF` instead of the reset
@@ -27,6 +30,20 @@ Known defect (blocks full-core verification):
   chased in the DL->ADL->PCL transfer timing (`bus_control.v` DL_ADL decode,
   `pc_control.v` ADL_PCL/DL_PCH terms and the decoder X81/X82 outputs) against
   the Logisim schematic.
+
+- ALU (`alu.v`), found by a full 256x256 truth-table sweep driven from
+  `alu_test.v`:
+  - EORS output is only correct on even bits: for odd bits the model selects a
+    net with no driver (`xnors[1,3,5,7]`), so the result there is stale/1.
+    Expected AI^BI on all bits.
+  - SUMS carry chain breaks at odd->even bit boundaries: carries that should
+    reach bits 2/4/6 are lost (e.g. 0x0F+0x01 gives 0x0C instead of 0x10), so
+    A+B is wrong whenever a carry must ripple past bit 1. Single-bit additions,
+    0x40+0x40 (carry into bit 7) and 0x80+0x80 (carry out, ACR/AVR) work.
+  - ANDS/ORS/SRS are correct over the full operand range.
+  The failing assertions are kept in `alu_test.v` behind the
+  `RUN_KNOWN_BROKEN` define and must pass once the ALU matches the Logisim
+  `ALU_EVEN_BIT`/`ALU_ODD_BIT`/`ALU_ADD` circuits.
 
 ## Bops
 

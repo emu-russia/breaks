@@ -23,6 +23,8 @@ def _rec(mnem, oper):
             size = 2
         elif oper[0] == 'a':
             size = 3
+        elif oper[0] == 'lbl':
+            size = 3                      # JSR to a label (absolute)
         else:
             raise SystemExit(oper)
     _sz.append(size)
@@ -52,17 +54,30 @@ emit2('LDA', ('#', 0xFF)); emit2('ADC', ('#', 0x01)); emit2('STA', ('z', 0x1C)) 
 emit2('LDA', ('#', 0x02)); emit2('CMP', ('#', 0x02)); emit2('BNE', 'fail')
 emit2('LDA', ('#', 0x03)); emit2('CMP', ('#', 0x02)); emit2('BEQ', 'fail')
 emit2('LDA', ('#', 0x7F)); emit2('CMP', ('#', 0x80)); emit2('BCS', 'fail')
-emit2('BCC', 'ok')
-labels = {'fail': 0x0400 + sum(_sz)}
+emit2('BCC', 'cont')
+# --- JSR / RTS ---
+# cont: (0x0451+) JSR $0500-ish? use label 'sub'
+# (0x0451): JSR sub
+# return address pushed = address after JSR operand
+labels = {'cont': 0x0400 + sum(_sz)}
+# save a JSR return marker before jumping
+emit2('LDA', ('#', 0xEE)); emit2('STA', ('z', 0x23))    # marker: if RTS returns, becomes 0x33
+emit2('JSR', ('lbl', 'sub'))
+emit2('LDA', ('z', 0x23)); emit2('CMP', ('#', 0x33)); emit2('BNE', 'fail')
+# returned to 0x04xx: continue to pass
+emit2('JMP', ('lbl', 'ok'))
+labels['sub'] = 0x0400 + sum(_sz)
+emit2('LDA', ('#', 0x33)); emit2('STA', ('z', 0x23)); emit2('RTS')
+labels['fail'] = 0x0400 + sum(_sz)
 emit2('LDA', ('#', 0xEE)); emit2('STA', ('a', 0x0200)); emit2('JMP', ('a', 0x3800))
 labels['ok'] = 0x0400 + sum(_sz)
 emit2('LDA', ('#', 0x77)); emit2('STA', ('a', 0x0200)); emit2('JMP', ('a', 0x3800))
 
-IMPL = {'ASL':0x0A,'LSR':0x4A,'ROL':0x2A,'ROR':0x6A,'INX':0xE8,'DEX':0xCA,'INY':0xC8,'DEY':0x88,'CLC':0x18}
+IMPL = {'ASL':0x0A,'LSR':0x4A,'ROL':0x2A,'ROR':0x6A,'INX':0xE8,'DEX':0xCA,'INY':0xC8,'DEY':0x88,'CLC':0x18,'RTS':0x60}
 IMM  = {'LDA':0xA9,'LDX':0xA2,'LDY':0xA0,'ORA':0x09,'AND':0x29,'EOR':0x49,'ADC':0x69,'SBC':0xE9,'CMP':0xC9}
 ZP   = {'LDA':0xA5,'STA':0x85,'STX':0x86,'STY':0x84,'ORA':0x05,'AND':0x25,'EOR':0x45,
         'ADC':0x65,'SBC':0xE5,'CMP':0xC5,'INC':0xE6,'DEC':0xC6,'LDX':0xA6,'LDY':0xA4}
-ABS  = {'STA':0x8D,'JMP':0x4C}
+ABS  = {'STA':0x8D,'JMP':0x4C,'JSR':0x20}
 BRA  = {'BNE':0xD0,'BEQ':0xF0,'BCS':0xB0,'BCC':0x90}
 
 def put(addr, b):
@@ -84,6 +99,10 @@ for addr, mnem, oper, size in insns:
     if isinstance(oper, str):
         rel = (labels[oper] - (addr + 2)) & 0xFF
         put(addr, BRA[mnem]); put(addr+1, rel)
+    elif isinstance(oper, tuple) and oper[0] == 'lbl':
+        put(addr, ABS[mnem])
+        tgt = labels[oper[1]]
+        put(addr+1, tgt & 0xFF); put(addr+2, (tgt >> 8) & 0xFF)
 
 # trampoline: reset currently lands at $04FF (vector-low load bug) -> JMP $0400
 RAM[0x04FF] = 0x4C; RAM[0x0500] = 0x00; RAM[0x0501] = 0x04
