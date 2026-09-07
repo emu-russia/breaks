@@ -1,0 +1,30 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/predecode_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] predecode_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+predecode_test.CLK
+@28
+predecode_test.PHI1
+@28
+predecode_test.PHI2
+@22
+predecode_test.Data_bus[7:0]
+@28
+predecode_test.n_IMPLIED
+@22
+predecode_test.n_PD[7:0]
+@28
+predecode_test.n_TWOCYCLE

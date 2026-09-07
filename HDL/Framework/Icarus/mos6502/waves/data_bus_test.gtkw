@@ -1,0 +1,54 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/data_bus_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] data_bus_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+data_bus_test.CLK
+@28
+data_bus_test.PHI1
+@28
+data_bus_test.PHI2
+@28
+data_bus_test.ADH
+@28
+data_bus_test.ADL
+@28
+data_bus_test.DB
+@28
+data_bus_test.DB_Ext
+@22
+data_bus_test.cyc[31:0]
+@28
+data_bus_test.db_drv
+@28
+data_bus_test.db_val
+@28
+data_bus_test.dl_adh
+@28
+data_bus_test.dl_adl
+@28
+data_bus_test.dl_db
+@22
+data_bus_test.errors[31:0]
+@28
+data_bus_test.ext_drv
+@28
+data_bus_test.ext_val
+@28
+data_bus_test.rd_fixed
+@28
+data_bus_test.rd_from_wr
+@28
+data_bus_test.wr_in

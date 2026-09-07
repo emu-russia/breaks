@@ -1,0 +1,54 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/flags_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] flags_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+flags_test.CLK
+@28
+flags_test.PHI1
+@28
+flags_test.PHI2
+@22
+flags_test.DB[7:0]
+@28
+flags_test.db_c
+@28
+flags_test.db_drv
+@28
+flags_test.db_n
+@28
+flags_test.db_p
+@28
+flags_test.db_v
+@22
+flags_test.db_val[7:0]
+@22
+flags_test.errors[31:0]
+@28
+flags_test.n_c
+@28
+flags_test.n_d
+@28
+flags_test.n_i
+@28
+flags_test.n_n
+@28
+flags_test.n_v
+@28
+flags_test.n_z
+@28
+flags_test.p_db
+@22
+flags_test.tests[31:0]

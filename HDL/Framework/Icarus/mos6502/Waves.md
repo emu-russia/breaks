@@ -1,15 +1,17 @@
 # Module test waveforms (MOS6502 Core, issue #1337)
 
-Waveform images of the module testbenches in this directory. Generated from the
-`<test>.vcd` dumps by `Scripts/vcd2png.py` (Pillow, GTKWave-style digital traces: blue = 1,
-white = 0, grey = x/z).
+Screenshots of GTKWave itself (v3.3.128, window capture) for every module
+testbench: the matching `waves/<test>.gtkw` save file is opened in GTKWave
+with a zoomed time window so the waveforms are readable, and the window is
+captured to `<test>.png`. Each `waves/<test>.gtkw` can also be opened in
+GTKWave directly against the `<test>.vcd` dump.
 
-Regenerate after a change:
+Regenerate after a change (needs Windows GTKWave + PowerShell):
 
 ```
 iverilog -D ICARUS -o <test>.run ../../../Common/*.v ../../../Core6502/*.v <test>.v
 vvp <test>.run
-python3 ../../../../../Scripts/vcd2png.py <test>.vcd waves/<test>.png --label "<test>"
+Scripts/gtkw_capture_all.sh
 ```
 
 | Test | Result | Waveform |
@@ -21,7 +23,7 @@ python3 ../../../../../Scripts/vcd2png.py <test>.vcd waves/<test>.png --label "<
 | alu_test | TEST PASS (24 checks) | ![waves/alu_test.png](waves/alu_test.png) |
 | flags_test | TEST PASS (6 checks) | ![waves/flags_test.png](waves/flags_test.png) |
 | pads_test | TEST PASS (12 checks) | ![waves/pads_test.png](waves/pads_test.png) |
-| ir_test | waveform | ![waves/ir_test.png](waves/ir_test.png) |
+| ir_test | TEST PASS (7 checks) | ![waves/ir_test.png](waves/ir_test.png) |
 | predecode_test | waveform | ![waves/predecode_test.png](waves/predecode_test.png) |
 | decoder_test | waveform (CSV dump) | ![waves/decoder_test.png](waves/decoder_test.png) |
 | extra_counter_test | TEST PASS (26 checks) | ![waves/extra_counter_test.png](waves/extra_counter_test.png) |

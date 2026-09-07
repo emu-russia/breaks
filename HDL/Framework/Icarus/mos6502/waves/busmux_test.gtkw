@@ -1,0 +1,52 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/mos6502/busmux_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] busmux_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+busmux_test.CLK
+@28
+busmux_test.PHI1
+@28
+busmux_test.PHI2
+@22
+busmux_test.ADH[7:0]
+@22
+busmux_test.ADL[7:0]
+@22
+busmux_test.DB[7:0]
+@22
+busmux_test.SB[7:0]
+@22
+busmux_test.errors[31:0]
+@28
+busmux_test.sb_adh
+@28
+busmux_test.sb_db
+@28
+busmux_test.sb_drv
+@22
+busmux_test.sb_val[7:0]
+@22
+busmux_test.tests[31:0]
+@28
+busmux_test.z_adh0
+@28
+busmux_test.z_adh17
+@28
+busmux_test.z_adl0
+@28
+busmux_test.z_adl1
+@28
+busmux_test.z_adl2
