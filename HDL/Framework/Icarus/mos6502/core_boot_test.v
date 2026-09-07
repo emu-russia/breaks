@@ -40,6 +40,7 @@ module core_boot_test ();
 		.Addr(addr_bus), .Data(data_bus) );
 
 	integer cycles = 0;
+	integer started = 0;
 	integer fetches = 0;
 	reg [15:0] fetch_pc [0:63];
 	integer last_cycle = 0;
@@ -52,14 +53,22 @@ module core_boot_test ();
 			fetches = fetches + 1;
 			last_cycle = cycles;
 		end
+		if (SYNC && RnW && fetches == 1) begin
+			$display("CORE_BOOT: first fetch PC=%04x (PCL=%02x PCH=%02x)", addr_bus, core.bot.pc.pc[7:0], core.bot.pc.pc[15:8]);
+		end
 		if (cycles >= maxcyc) begin
 			$display("CORE_BOOT: done after %0d cycles, %0d fetches observed", cycles, fetches);
-			for (integer ii = 0; ii < 32 && ii < fetches; ii = ii + 1)
+			for (integer ii = 0; ii < 16 && ii < fetches; ii = ii + 1)
 				$display("  fetch %0d: PC=%04x", ii, fetch_pc[ii]);
-			if (fetches > 0 && fetch_pc[0] === 16'h0400)
-				$display("CORE_BOOT: PASS - first fetch at the reset vector $0400");
+			// PASS = the program at $0400 is reached (boot through the vector);
+			// with the vector-low bug the core never gets past $04FF.
+			started = 0;
+			for (integer ii = 0; ii < 64 && ii < fetches; ii = ii + 1)
+				if (fetch_pc[ii] === 16'h0400) started = 1;
+			if (started)
+				$display("core_boot_test: TEST PASS - execution reached $0400");
 			else
-				$display("CORE_BOOT: NOTE - first fetch was at $%04x, expected $0400 (vector low byte was not loaded into PCL)", fetch_pc[0]);
+				$display("core_boot_test: TEST FAIL - execution never reached $0400 (vector low byte was not loaded into PCL; stuck at $04FF)");
 			$finish;
 		end
 	end
