@@ -6,6 +6,28 @@ Status: Verify
 
 ![mos6502](/HDL/Design/mos6502/mos6502.png)
 
+## Verification status (issue #1337)
+
+Work in progress. Current state:
+
+- All Core6502 modules elaborate and simulate under Icarus 14 (devel) (`-D ICARUS`).
+- Module testbenches in `HDL/Framework/Icarus/mos6502/*_test.v` compile and run.
+- Full-core harnesses: `klaus_test.v` (Klaus Dormann functional suite) and
+  `instr_test.v` + `Scripts/make_instr_test.py` (small instruction-level checks).
+  Run them with e.g. `iverilog -D ICARUS -o klaus_test.run ../../../Common/*.v
+  ../../../Core6502/*.v klaus_test.v && vvp klaus_test.run`.
+
+Known defect (blocks full-core verification):
+
+- The core never loads the low byte of a memory-sourced program counter into
+  PCL. Consequence: after reset the PC becomes `04FF` instead of the reset
+  vector (`00 04` at $FFFC/$FFFD are read correctly, but PCL is loaded with the
+  precharged bus value FF), and `JMP abs`/BRK/IRQ/RTS vector loads misbehave the
+  same way (the core loops on a `JMP $0400` trampoline). Root cause is being
+  chased in the DL->ADL->PCL transfer timing (`bus_control.v` DL_ADL decode,
+  `pc_control.v` ADL_PCL/DL_PCH terms and the decoder X81/X82 outputs) against
+  the Logisim schematic.
+
 ## Bops
 
 All control signals for the bottom are combined on a common bus and are called `bops` (Bottom Ops). List:

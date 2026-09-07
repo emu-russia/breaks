@@ -29,7 +29,8 @@ module Klaus_Run ();
 	wire RnW;
 
 	integer maxcyc = 500000000;		// safety valve, way past the 96M-cycle suite
-	integer report  = 5000000;		// progress report interval
+	integer report  = 1000000;		// progress report interval
+	integer hangcyc = 3000000;		// address-bus freeze threshold for the hang detector
 
 	always #25 CLK = ~CLK;
 
@@ -90,7 +91,7 @@ module Klaus_Run ();
 		// Detect a CPU hang (any address bus frozen for a long time, except the pass loop).
 		if (addr_bus == last_pc) begin
 			hang_cnt = hang_cnt + 1;
-			if (hang_cnt > 3000000 && addr_bus != 16'h3469) begin
+			if (hang_cnt > hangcyc && addr_bus != 16'h3469) begin
 				write_progress("HANG");
 				$display("KLAUS_TEST: HANG  PC=$%04x frozen for %0d cycles (cycles=%0d, mem[0200]=%02x)",
 					addr_bus, hang_cnt, cycles, mem.mem[16'h0200]);
@@ -123,7 +124,8 @@ module Klaus_Run ();
 		n_NMI <= 1'b1;
 
 		if (!$value$plusargs("maxcyc=%d", maxcyc)) maxcyc = 500000000;
-		if (!$value$plusargs("report=%d", report)) report = 5000000;
+		if (!$value$plusargs("report=%d", report)) report = 1000000;
+		if (!$value$plusargs("hangcyc=%d", hangcyc)) hangcyc = 3000000;
 
 		// Perform reset
 		n_RES <= 1'b0;
