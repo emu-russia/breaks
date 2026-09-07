@@ -1,0 +1,84 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/obj_eval_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] obj_eval_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+obj_eval_test.BLNK
+@28
+obj_eval_test.DB5
+@28
+obj_eval_test.H0_D
+@28
+obj_eval_test.H0_DD
+@28
+obj_eval_test.I_OAM2
+@28
+obj_eval_test.O8_16
+@28
+obj_eval_test.OAM8
+@28
+obj_eval_test.OAMCTR2
+@28
+obj_eval_test.OBJ_READ
+@22
+obj_eval_test.OB[7:0]
+@28
+obj_eval_test.OFETCH
+@22
+obj_eval_test.OV[7:0]
+@28
+obj_eval_test.PCLK
+@28
+obj_eval_test.PD_FIFO
+@28
+obj_eval_test.RESCL
+@28
+obj_eval_test.SPR_OV
+@28
+obj_eval_test.S_EV
+@22
+obj_eval_test.V[7:0]
+@22
+obj_eval_test.addr[7:0]
+@22
+obj_eval_test.checks[31:0]
+@22
+obj_eval_test.errors[31:0]
+@22
+obj_eval_test.guards[31:0]
+@22
+obj_eval_test.i[31:0]
+@28
+obj_eval_test.n_DBE
+@28
+obj_eval_test.n_EVAL
+@28
+obj_eval_test.n_FNT
+@28
+obj_eval_test.n_H2_D
+@22
+obj_eval_test.n_OAM[7:0]
+@28
+obj_eval_test.n_PCLK
+@28
+obj_eval_test.n_R2
+@28
+obj_eval_test.n_SPR0_EV
+@28
+obj_eval_test.n_VIS
+@28
+obj_eval_test.n_W3
+@22
+obj_eval_test.ob_latch[7:0]

@@ -1,0 +1,48 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/pclk_test_pal.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] pclk_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+pclk_test.CLK
+@22
+pclk_test.DIV[31:0]
+@28
+pclk_test.PCLK
+@28
+pclk_test.RES
+@22
+pclk_test.checks[31:0]
+@22
+pclk_test.cyc[31:0]
+@22
+pclk_test.edge_count[31:0]
+@22
+pclk_test.errors[31:0]
+@28
+pclk_test.half_ns
+@28
+pclk_test.n_PCLK
+@28
+pclk_test.ok
+@28
+pclk_test.period_ns
+@28
+pclk_test.t0
+@28
+pclk_test.t1
+@28
+pclk_test.tf
+@28
+pclk_test.tr

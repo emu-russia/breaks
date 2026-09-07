@@ -1,0 +1,66 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/fifo_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] fifo_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+fifo_test.CLPO
+@28
+fifo_test.H0_DD
+@28
+fifo_test.H1_DD
+@28
+fifo_test.H2_DD
+@28
+fifo_test.H3_DD
+@28
+fifo_test.H4_DD
+@28
+fifo_test.H5_DD
+@28
+fifo_test.OBJ_READ
+@22
+fifo_test.OB[7:0]
+@28
+fifo_test.PCLK
+@22
+fifo_test.PD[7:0]
+@28
+fifo_test.PD_FIFO
+@28
+fifo_test.ZCOL2
+@28
+fifo_test.ZCOL3
+@28
+fifo_test.Z_HPOS
+@22
+fifo_test.checks[31:0]
+@22
+fifo_test.dot_i[31:0]
+@22
+fifo_test.errors[31:0]
+@28
+fifo_test.n_OBJ_RD_ATTR
+@28
+fifo_test.n_PCLK
+@28
+fifo_test.n_SPR0HIT
+@28
+fifo_test.n_VIS
+@28
+fifo_test.n_ZCOL0
+@28
+fifo_test.n_ZCOL1
+@28
+fifo_test.n_ZPRIO

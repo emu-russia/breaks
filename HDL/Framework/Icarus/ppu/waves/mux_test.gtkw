@@ -1,0 +1,48 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/mux_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] mux_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@22
+mux_test.BGC[3:0]
+@22
+mux_test.CGA_out[4:0]
+@22
+mux_test.EXT_in[3:0]
+@28
+mux_test.PCLK
+@22
+mux_test.THO[4:0]
+@28
+mux_test.TH_MUX
+@28
+mux_test.ZCOL2
+@28
+mux_test.ZCOL3
+@22
+mux_test.checks[31:0]
+@22
+mux_test.errors[31:0]
+@22
+mux_test.i[31:0]
+@22
+mux_test.n_EXT_out[3:0]
+@28
+mux_test.n_PCLK
+@28
+mux_test.n_ZCOL0
+@28
+mux_test.n_ZCOL1
+@28
+mux_test.n_ZPRIO

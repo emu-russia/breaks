@@ -1,0 +1,102 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/regs_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] regs_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+regs_test.BGE
+@28
+regs_test.BGSEL
+@28
+regs_test.BLACK
+@28
+regs_test.BnW
+@28
+regs_test.CLIP_B
+@28
+regs_test.CLIP_O
+@28
+regs_test.CLPO
+@22
+regs_test.CPU_DB[7:0]
+@22
+regs_test.Dval[7:0]
+@28
+regs_test.I_1_32
+@28
+regs_test.OBE
+@28
+regs_test.OBSEL
+@28
+regs_test.O_8_16
+@28
+regs_test.RC
+@22
+regs_test.RS[2:0]
+@28
+regs_test.RnW
+@28
+regs_test.VBL
+@22
+regs_test.checks[31:0]
+@22
+regs_test.errors[31:0]
+@28
+regs_test.n_BGCLIP
+@28
+regs_test.n_CLPB
+@28
+regs_test.n_DBE
+@28
+regs_test.n_OBCLIP
+@28
+regs_test.n_PCLK
+@28
+regs_test.n_R2
+@28
+regs_test.n_R4
+@28
+regs_test.n_R7
+@28
+regs_test.n_RD
+@28
+regs_test.n_SLAVE
+@28
+regs_test.n_TB
+@28
+regs_test.n_TG
+@28
+regs_test.n_TR
+@28
+regs_test.n_VIS
+@28
+regs_test.n_W0
+@28
+regs_test.n_W1
+@28
+regs_test.n_W3
+@28
+regs_test.n_W4
+@28
+regs_test.n_W5_1
+@28
+regs_test.n_W5_2
+@28
+regs_test.n_W6_1
+@28
+regs_test.n_W6_2
+@28
+regs_test.n_W7
+@28
+regs_test.n_WR

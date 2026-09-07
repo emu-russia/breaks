@@ -1,0 +1,114 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/vidout_test_ntsc.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] VidOut_Run.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@28
+VidOut_Run.CLK
+@28
+VidOut_Run.BLNK
+@28
+VidOut_Run.BURST
+@22
+VidOut_Run.CompositeOut[31:0]
+@28
+VidOut_Run.HC
+@22
+VidOut_Run.HCnt[8:0]
+@22
+VidOut_Run.HDecoder_out[23:0]
+@28
+VidOut_Run.PCLK
+@28
+VidOut_Run.RES
+@22
+VidOut_Run.RawVOut[10:0]
+@28
+VidOut_Run.SYNC
+@28
+VidOut_Run.VB
+@28
+VidOut_Run.VC
+@22
+VidOut_Run.VCnt[8:0]
+@22
+VidOut_Run.VDecoder_out[9:0]
+@28
+VidOut_Run.V_IN
+@22
+VidOut_Run.burst_clk[31:0]
+@22
+VidOut_Run.burst_e1[31:0]
+@22
+VidOut_Run.burst_e4[31:0]
+@22
+VidOut_Run.burst_windows[31:0]
+@22
+VidOut_Run.burst_windows_ok[31:0]
+@22
+VidOut_Run.checks[31:0]
+@28
+VidOut_Run.ctrl_changed
+@22
+VidOut_Run.em_off_tint_bad[31:0]
+@22
+VidOut_Run.em_on_n[31:0]
+@22
+VidOut_Run.em_on_tint[31:0]
+@22
+VidOut_Run.errors[31:0]
+@22
+VidOut_Run.i[31:0]
+@28
+VidOut_Run.inH
+@28
+VidOut_Run.last_was_burst
+@22
+VidOut_Run.n_CC[3:0]
+@22
+VidOut_Run.n_LL[1:0]
+@28
+VidOut_Run.n_PCLK
+@28
+VidOut_Run.n_PICTURE
+@28
+VidOut_Run.n_TB
+@28
+VidOut_Run.n_TG
+@28
+VidOut_Run.n_TR
+@22
+VidOut_Run.pic_cc[3:0]
+@22
+VidOut_Run.pic_ll[1:0]
+@28
+VidOut_Run.pic_tb
+@28
+VidOut_Run.pic_tg
+@28
+VidOut_Run.pic_tr
+@28
+VidOut_Run.prev_bu
+@28
+VidOut_Run.prev_np
+@28
+VidOut_Run.prev_rv1
+@28
+VidOut_Run.prev_rv4
+@28
+VidOut_Run.prev_sy
+@22
+VidOut_Run.rows_seen[31:0]
+@22
+VidOut_Run.stable_cnt[3:0]

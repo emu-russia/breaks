@@ -1,0 +1,92 @@
+GTKWave Analyzer v3.3.128
+(C)1999-2026 BSI
+
+[dumpfile] "C:/Work/breaks/HDL/Framework/Icarus/ppu/scroll_regs_test.vcd"
+[timestart] 0
+[size] 1800 1000
+[pos] -1 -1
+*-0.000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] scroll_regs_test.
+[sst_width] 120
+[signals_width] 90
+[signals_height] 24
+[pattern_trace] 1
+[pattern_trace] 0
+@201 -Name
+signals
+@22
+scroll_regs_test.CPU_DB[7:0]
+@22
+scroll_regs_test.Dval[7:0]
+@22
+scroll_regs_test.FH[2:0]
+@22
+scroll_regs_test.FV[2:0]
+@28
+scroll_regs_test.NTH
+@28
+scroll_regs_test.NTV
+@28
+scroll_regs_test.RC
+@22
+scroll_regs_test.RS[2:0]
+@28
+scroll_regs_test.RnW
+@22
+scroll_regs_test.TH[4:0]
+@22
+scroll_regs_test.TV[4:0]
+@28
+scroll_regs_test.W6_2_Ena
+@22
+scroll_regs_test.checks[31:0]
+@28
+scroll_regs_test.direct
+@22
+scroll_regs_test.errors[31:0]
+@28
+scroll_regs_test.nW0_d
+@28
+scroll_regs_test.nW51_d
+@28
+scroll_regs_test.nW52_d
+@28
+scroll_regs_test.nW61_d
+@28
+scroll_regs_test.nW62_d
+@28
+scroll_regs_test.n_DBE
+@28
+scroll_regs_test.n_R2
+@28
+scroll_regs_test.n_R4
+@28
+scroll_regs_test.n_R7
+@28
+scroll_regs_test.n_W0
+@28
+scroll_regs_test.n_W1
+@28
+scroll_regs_test.n_W3
+@28
+scroll_regs_test.n_W4
+@28
+scroll_regs_test.n_W5_1
+@28
+scroll_regs_test.n_W5_2
+@28
+scroll_regs_test.n_W6_1
+@28
+scroll_regs_test.n_W6_2
+@28
+scroll_regs_test.n_W7
+@28
+scroll_regs_test.p_W0
+@28
+scroll_regs_test.p_W5_1
+@28
+scroll_regs_test.p_W5_2
+@28
+scroll_regs_test.p_W6_1
+@28
+scroll_regs_test.p_W6_2
