@@ -204,7 +204,7 @@ module PPU(RnW, D, RS, n_DBE, EXT, CLK, n_INT, ALE, AD, A, n_RD, n_WR, n_RES, VO
 
 	PpuRegs regs(
 		.RC(RegClear),
-		.n_DBE(),
+		.n_DBE(n_DBE),
 		.RS(RS),
 		.RnW(RnW),
 		.CPU_DB(CPU_DB), 

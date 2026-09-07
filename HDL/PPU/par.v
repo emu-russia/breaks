@@ -4,17 +4,20 @@ module V_Inversion (
   input [7:0] OB,
   output VDIR,
   output VINV );
-  wire w0;
-  wire w1;
-  wire w2;
-  wire w3;
-  wire w4;
-
-  assign w0 = ~(n_PCLK | n_OBJ_RD_ATTR);
-  assign w1 = w2 ? OB[7] : 'bz;
-  assign VINV = ~w3;
-  assign VDIR = ~w4;
-  assign w4 = n_PCLK ? VINV : w1;
+  // Vertical-flip register of the object pipeline.  While the sprite
+  // attribute byte is being read (n_PCLK=0, n_OBJ_RD_ATTR=0, i.e. the
+  // "attribute read" window) OB[7] - the vertical flip attribute bit - is
+  // captured; the value then holds until the next attribute read.  The die
+  // exposes it twice (VINV = flip flag, VDIR = its complement) for the
+  // invert-control inputs of the PAR row-bit cells.
+  // (The .circ Constant-driven "in_latch" here is a permanently transparent
+  // buffer: see the note in pamux.v - the previous generated code left the
+  // storage nets undriven, so VDIR/VINV never changed.)
+  wire attr_rd;
+  wire bus;
+  assign attr_rd = ~(n_PCLK | n_OBJ_RD_ATTR);
+  assign bus = attr_rd ? OB[7] : 1'bz;
+  dlatch u0 (.en(attr_rd), .d(OB[7]), .q(VINV), .nq(VDIR));
 endmodule
 
 module ParControl (
@@ -139,101 +142,88 @@ module PAR (
   input [2:0] n_FVO,
   input [7:0] OB,
   input [7:0] PD );
-  wire [7:0] bus260_490;
-  wire [7:0] bus270_330;
-  wire [2:0] bus690_910;
-  wire [2:0] bus770_900;
-  wire w0;
-  wire w1;
-  wire w10;
-  wire w11;
-  wire w12;
-  wire w13;
-  wire w14;
-  wire w15;
-  wire w16;
-  wire w17;
-  wire w18;
-  wire w19;
-  wire w2;
-  wire w20;
-  wire w21;
-  wire w22;
-  wire w23;
-  wire w24;
-  wire w25;
-  wire w26;
-  wire w27;
-  wire w28;
-  wire w29;
-  wire w3;
-  wire w30;
-  wire w31;
-  wire w32;
-  wire w33;
-  wire w34;
-  wire w35;
-  wire w36;
-  wire w37;
-  wire w38;
-  wire w39;
-  wire w4;
-  wire w40;
-  wire w41;
-  wire w42;
-  wire w43;
-  wire w44;
-  wire w45;
-  wire w46;
-  wire w47;
-  wire w48;
-  wire w49;
-  wire w5;
-  wire w50;
-  wire w51;
-  wire w52;
-  wire w53;
-  wire w54;
-  wire w55;
-  wire w56;
-  wire w57;
-  wire w58;
-  wire w59;
-  wire w6;
-  wire w60;
-  wire w61;
-  wire w62;
-  wire w63;
-  wire w64;
-  wire w65;
-  wire w66;
-  wire w67;
-  wire w68;
-  wire w69;
-  wire w7;
-  wire w70;
-  wire w8;
-  wire w9;
+  // Picture Address Register: assembles the pattern-table byte address
+  // (PAddr_out[13:0]) that the PAMUX puts on the VRAM bus during the
+  // pattern fetches (BG-LO/BG-HI and sprite fetches).  Bit layout follows
+  // the role table in BreakingNESWiki/PPU/par.md:
+  //   [13]   = 0 (pattern data lives in $0000-$1FFF)
+  //   [12]   = pattern-table select (BG: BGSEL; 8x8 sprite: OBSEL;
+  //            8x16 sprite: OAM tile-index bit 0)        -- ParControl PAD12
+  //   [11:5] = tile index bits 7..1 (BG: name-table byte from PD;
+  //            sprite: OAM tile-index byte from OB)
+  //   [4]    = tile index bit 0 (BG: PD bit0; 8x8 sprite: OB bit0;
+  //            8x16 sprite: OV[3] selects the lower/upper 8-row half)
+  //   [3]    = /H1' - selects the A/B (low/high) pattern byte
+  //   [2:0]  = row within the 8-row tile (BG: fine vertical scroll n_FVO;
+  //            sprite: OV[2:0], inverted when the sprite is flipped
+  //            vertically)                                -- ParBitInv path
+  // The V_Inversion block latches OB[7] (vertical-flip attribute) during
+  // the sprite attribute read and the ParBitInv cells apply the inversion
+  // to the sprite row bits; the background row bits bypass them.
+  //
+  // NOTE: the previous generated body left every inter-cell wire undriven
+  // (all controls, clocks and data feeds floated, so PAddr_out was frozen).
+  // The whole wiring below is therefore explicit.  The leaf cells
+  // (ParControl, ParBit4, ParBit, ParBitInv, V_Inversion) are unchanged.
+  wire [3:0] bus690_910;   // sprite row bits (V-flip adjusted)
+  wire O_ctl;              // PAR load-window output of ParControl
+  wire VDIR;
+  wire VINV;
+  wire [2:0] row_src;
+  wire n_PCLK_s = n_PCLK;
 
   assign PAddr_out[13] = 1'd0;
-  assign PAddr_out[12] = w11;
-  assign PAddr_out[3] = ~n_H1D;
-  assign bus770_900 = OBJ_READ ? bus690_910 : n_FVO;
-  V_Inversion u0 (.n_PCLK(w0), .n_OBJ_RD_ATTR(PD[0]), .OB(bus260_490), .VDIR(w1), .VINV(w2));
-  ParControl u1 (.n_PCLK(w3), .H0_DD(w4), .nF_NT(w5), .BGSEL(w6), .OBSEL(w7), .O8_16(w8), .OBJ_READ(w9), .OB(bus270_330), .O(w10), .PAD12(w11));
-  ParBitInv u2 (.n_PCLK(w12), .O(w13), .INV(w14), .val_in(w15), .val_out(bus690_910[0]));
-  ParBitInv u3 (.n_PCLK(w16), .O(w17), .INV(w18), .val_in(w19), .val_out(w20));
-  ParBitInv u4 (.n_PCLK(w21), .O(w22), .INV(w23), .val_in(w24), .val_out(bus690_910[2]));
-  ParBitInv u5 (.n_PCLK(w25), .O(w26), .INV(w27), .val_in(w28), .val_out(bus690_910[1]));
-  ParBit4 u6 (.n_PCLK(w29), .O(OB[0]), .val_OB(w30), .val_PD(w31), .OBJ_READ(w32), .O8_16(w33), .val_OBPrev(w34), .PADx(PAddr_out[4]));
-  dlatch u7 (.en(n_PCLK), .d(bus770_900[2]), .q(w35), .nq(PAddr_out[2]));
-  dlatch u8 (.en(n_PCLK), .d(bus770_900[1]), .q(w36), .nq(PAddr_out[1]));
-  dlatch u9 (.en(n_PCLK), .d(bus770_900[0]), .q(w37), .nq(PAddr_out[0]));
-  ParBit u10 (.n_PCLK(w38), .O(w39), .val_OB(w40), .val_PD(w41), .OBJ_READ(w42), .PADx(PAddr_out[11]));
-  ParBit u11 (.n_PCLK(w43), .O(w44), .val_OB(w45), .val_PD(w46), .OBJ_READ(w47), .PADx(PAddr_out[10]));
-  ParBit u12 (.n_PCLK(OB[4]), .O(w48), .val_OB(w49), .val_PD(w50), .OBJ_READ(w51), .PADx(PAddr_out[9]));
-  ParBit u13 (.n_PCLK(w52), .O(OB[4]), .val_OB(w53), .val_PD(w54), .OBJ_READ(w55), .PADx(PAddr_out[8]));
-  ParBit u14 (.n_PCLK(w56), .O(w57), .val_OB(w58), .val_PD(w59), .OBJ_READ(w60), .PADx(PAddr_out[7]));
-  ParBit u15 (.n_PCLK(w61), .O(w62), .val_OB(w63), .val_PD(w64), .OBJ_READ(w65), .PADx(PAddr_out[6]));
-  ParBit u16 (.n_PCLK(w66), .O(w67), .val_OB(w68), .val_PD(w69), .OBJ_READ(w70), .PADx(PAddr_out[5]));
+  assign PAddr_out[3]  = ~n_H1D;
+  // bits 2..0: background uses the fine-vertical counter directly; sprites
+  // use the (possibly inverted) OV bits
+  assign row_src[0] = bus690_910[0];
+  assign row_src[1] = bus690_910[1];
+  assign row_src[2] = bus690_910[2];
+  dlatch u7 (.en(n_PCLK), .d(OBJ_READ ? row_src[2] : n_FVO[2]), .q(), .nq(PAddr_out[2]));
+  dlatch u8 (.en(n_PCLK), .d(OBJ_READ ? row_src[1] : n_FVO[1]), .q(), .nq(PAddr_out[1]));
+  dlatch u9 (.en(n_PCLK), .d(OBJ_READ ? row_src[0] : n_FVO[0]), .q(), .nq(PAddr_out[0]));
+
+  V_Inversion u0 (
+    .n_PCLK(n_PCLK),
+    .n_OBJ_RD_ATTR(n_OBJ_RD_ATTR),
+    .OB(OB),
+    .VDIR(VDIR),
+    .VINV(VINV) );
+
+  ParControl u1 (
+    .n_PCLK(n_PCLK),
+    .H0_DD(H0_DD),
+    .nF_NT(n_FNT),
+    .BGSEL(BGSEL),
+    .OBSEL(OBSEL),
+    .O8_16(O8_16),
+    .OBJ_READ(OBJ_READ),
+    .OB(OB),
+    .O(O_ctl),
+    .PAD12(PAddr_out[12]) );
+
+  // row-bit inverters (sprite mode only, INV = vertical flip)
+  ParBitInv u2 (.n_PCLK(n_PCLK), .O(O_ctl), .INV(VINV), .val_in(OV[0]), .val_out(bus690_910[0]));
+  ParBitInv u5 (.n_PCLK(n_PCLK), .O(O_ctl), .INV(VINV), .val_in(OV[1]), .val_out(bus690_910[1]));
+  ParBitInv u4 (.n_PCLK(n_PCLK), .O(O_ctl), .INV(VINV), .val_in(OV[2]), .val_out(bus690_910[2]));
+
+  // PA4: tile-index bit0 (special: 8x16 sprites replace it with OV[3])
+  ParBit4 u6 (
+    .n_PCLK(n_PCLK),
+    .O(O_ctl),
+    .val_OB(OB[0]),
+    .val_PD(PD[0]),
+    .OBJ_READ(OBJ_READ),
+    .O8_16(O8_16),
+    .val_OBPrev(OV[3]),
+    .PADx(PAddr_out[4]) );
+
+  // PA11..PA5: tile index bits 7..1
+  ParBit u10 (.n_PCLK(n_PCLK), .O(O_ctl), .val_OB(OB[7]), .val_PD(PD[7]), .OBJ_READ(OBJ_READ), .PADx(PAddr_out[11]));
+  ParBit u11 (.n_PCLK(n_PCLK), .O(O_ctl), .val_OB(OB[6]), .val_PD(PD[6]), .OBJ_READ(OBJ_READ), .PADx(PAddr_out[10]));
+  ParBit u12 (.n_PCLK(n_PCLK), .O(O_ctl), .val_OB(OB[5]), .val_PD(PD[5]), .OBJ_READ(OBJ_READ), .PADx(PAddr_out[9]));
+  ParBit u13 (.n_PCLK(n_PCLK), .O(O_ctl), .val_OB(OB[4]), .val_PD(PD[4]), .OBJ_READ(OBJ_READ), .PADx(PAddr_out[8]));
+  ParBit u14 (.n_PCLK(n_PCLK), .O(O_ctl), .val_OB(OB[3]), .val_PD(PD[3]), .OBJ_READ(OBJ_READ), .PADx(PAddr_out[7]));
+  ParBit u15 (.n_PCLK(n_PCLK), .O(O_ctl), .val_OB(OB[2]), .val_PD(PD[2]), .OBJ_READ(OBJ_READ), .PADx(PAddr_out[6]));
+  ParBit u16 (.n_PCLK(n_PCLK), .O(O_ctl), .val_OB(OB[1]), .val_PD(PD[1]), .OBJ_READ(OBJ_READ), .PADx(PAddr_out[5]));
 endmodule

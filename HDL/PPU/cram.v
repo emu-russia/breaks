@@ -54,8 +54,13 @@ module CRAM_Decoder (
   wire w8;
   wire w9;
 
-  assign w0 = 1'd0;
-  assign w1 = 1'd0;
+  // The two demux data inputs are bare Logisim Constants in PPU_Evo.circ
+  // (no value attribute => Logisim default = 1): with the data input high the
+  // decoder asserts the addressed COL/ROW line (1-of-N), per the CRAM array
+  // organisation in BreakingNESWiki/PPU/cram.md.  (Tied to 0, every decoder
+  // output stayed permanently deasserted.)
+  assign w0 = 1'd1;
+  assign w1 = 1'd1;
   assign w4 = w2 | w3;
   assign ROW0_4 = w4 & (~PCLK);
   assign ROW1 = w5 & (~PCLK);
@@ -64,20 +69,24 @@ module CRAM_Decoder (
   assign ROW5 = w8 & (~PCLK);
   assign ROW6 = w9 & (~PCLK);
   assign ROW7 = w10 & (~PCLK);
+  // The address decode follows the CRAM array organisation of cram.md:
+  // columns = {CGA3(msb), CGA2}, rows = {CGA4(msb), CGA1, CGA0} (CGA4 is the
+  // background/sprite palette select); physical rows 0 and 4 share the word
+  // line ROW0_4. The select concatenations are kept msb-first to match.
   // demux sel=2
-  assign COL0 = ({CGA[2], CGA[3]} == 2'd0) ? w0 : 1'b0;
-  assign COL1 = ({CGA[2], CGA[3]} == 2'd1) ? w0 : 1'b0;
-  assign COL2 = ({CGA[2], CGA[3]} == 2'd2) ? w0 : 1'b0;
-  assign COL3 = ({CGA[2], CGA[3]} == 2'd3) ? w0 : 1'b0;
+  assign COL0 = ({CGA[3], CGA[2]} == 2'd0) ? w0 : 1'b0;
+  assign COL1 = ({CGA[3], CGA[2]} == 2'd1) ? w0 : 1'b0;
+  assign COL2 = ({CGA[3], CGA[2]} == 2'd2) ? w0 : 1'b0;
+  assign COL3 = ({CGA[3], CGA[2]} == 2'd3) ? w0 : 1'b0;
   // demux sel=3
-  assign w2 = ({CGA[0], CGA[1], CGA[4]} == 3'd0) ? w1 : 1'b0;
-  assign w5 = ({CGA[0], CGA[1], CGA[4]} == 3'd1) ? w1 : 1'b0;
-  assign w6 = ({CGA[0], CGA[1], CGA[4]} == 3'd2) ? w1 : 1'b0;
-  assign w7 = ({CGA[0], CGA[1], CGA[4]} == 3'd3) ? w1 : 1'b0;
-  assign w3 = ({CGA[0], CGA[1], CGA[4]} == 3'd4) ? w1 : 1'b0;
-  assign w8 = ({CGA[0], CGA[1], CGA[4]} == 3'd5) ? w1 : 1'b0;
-  assign w9 = ({CGA[0], CGA[1], CGA[4]} == 3'd6) ? w1 : 1'b0;
-  assign w10 = ({CGA[0], CGA[1], CGA[4]} == 3'd7) ? w1 : 1'b0;
+  assign w2 = ({CGA[4], CGA[1], CGA[0]} == 3'd0) ? w1 : 1'b0;
+  assign w5 = ({CGA[4], CGA[1], CGA[0]} == 3'd1) ? w1 : 1'b0;
+  assign w6 = ({CGA[4], CGA[1], CGA[0]} == 3'd2) ? w1 : 1'b0;
+  assign w7 = ({CGA[4], CGA[1], CGA[0]} == 3'd3) ? w1 : 1'b0;
+  assign w3 = ({CGA[4], CGA[1], CGA[0]} == 3'd4) ? w1 : 1'b0;
+  assign w8 = ({CGA[4], CGA[1], CGA[0]} == 3'd5) ? w1 : 1'b0;
+  assign w9 = ({CGA[4], CGA[1], CGA[0]} == 3'd6) ? w1 : 1'b0;
+  assign w10 = ({CGA[4], CGA[1], CGA[0]} == 3'd7) ? w1 : 1'b0;
 endmodule
 
 module CRAM_Block (
@@ -132,8 +141,14 @@ module CRAM_Block (
 	// CPU read path: CRAM -> CB -> DB (n_CB_DB = 0)
 	assign CPU_DB = (n_CB_DB == 1'b0) ? {2'b00, cram[CGA]} : 8'bz;
 
-	// Pixel output (inverted). Chroma is suppressed in monochrome (B/W) mode.
-	assign n_CC = (n_BW == 1'b0) ? ~cram[CGA][3:0] : 4'b1111;
+	// Pixel output (inverted). n_BW (the chip's "/BW", node 1350 in
+	// visual2c02.md: (in_draw_range | read_2007_output_palette) & ~mono) is
+	// high exactly while a picture pixel is drawn (or a $2007 palette read is
+	// output) with $2001[0]=0 (BnW=0, color mode); only then the chroma of the
+	// addressed palette entry is let through: n_CC = ~cram[CGA][3:0]. In
+	// monochrome mode or outside the picture n_CC is forced to 1111 (chroma
+	// 0000), rendered as a gray shade by luma only.
+	assign n_CC = (n_BW == 1'b1) ? ~cram[CGA][3:0] : 4'b1111;
 	assign n_LL = ~cram[CGA][5:4];
 
 endmodule // CRAM_Block

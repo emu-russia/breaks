@@ -1,6 +1,13 @@
 
 // Composite video DAC. Maps the 11-bit raw video word to a floating-point
-// composite voltage (returned as IEEE-754 bits).
+// composite voltage.
+//
+// The voltage is returned as an IEEE-754 single-precision (32-bit) value:
+// the CompositeOut port is 32 bits wide and the levels only need the
+// precision of a float.  A plain `$realtobits(v)` would produce the 64-bit
+// double bit pattern, which does not fit the port (Icarus truncates it to
+// the low 32 bits - an encoding that matches neither float32 nor float64),
+// so the value is converted explicitly (round to nearest even).
 
 module PPU_CompositeDAC (RawIn, CompositeOut);
 
@@ -32,6 +39,51 @@ module PPU_CompositeDAC (RawIn, CompositeOut);
 		if (RawIn[0])  v = 0.781;     // sync pulse overrides
 	end
 
-	assign CompositeOut = $realtobits(v);
+	// ---- real (double) -> IEEE-754 single conversion ---------------------
+
+	reg [63:0] d;
+	reg [10:0] d_exp;
+	reg [51:0] d_man;
+	reg [22:0] f23;
+	reg [7:0]  e8;
+	reg round_up;
+	reg [31:0] out;
+
+	always @(*) begin
+		d = $realtobits(v);
+		d_exp = d[62:52];
+		d_man = d[51:0];
+		f23   = d_man[51:29];
+
+		if (d_exp == 11'h7FF) begin
+			// inf/NaN: pass through (kept for completeness, not reachable here)
+			e8 = 8'hFF;
+		end else if (d_exp > 11'h47E) begin
+			// |v| >= 2^128: overflow to +/-inf (not reachable here)
+			e8 = 8'hFF;
+			f23 = 23'b0;
+		end else if (d_exp < 11'h381) begin
+			// |v| < 2^-126: would need a single denormal - clamp to zero
+			// (not reachable for video levels)
+			e8 = 8'h00;
+			f23 = 23'b0;
+		end else begin
+			// normal range:  single exponent = double exponent - 1023 + 127
+			e8 = d_exp - 11'h380;
+			// round to nearest even on the 29 dropped low mantissa bits
+			round_up = d_man[28] && (|d_man[27:0] || f23[0]);
+			if (round_up) begin
+				if (f23 == 23'h7FFFFF) begin
+					f23 = 23'b0;
+					e8  = e8 + 1'b1;
+				end else
+					f23 = f23 + 1'b1;
+			end
+		end
+
+		out = {d[63], e8, f23};
+	end
+
+	assign CompositeOut = out;
 
 endmodule // PPU_CompositeDAC

@@ -39,10 +39,21 @@ module RegSelect (
   assign w1 = ~RS1;
   assign w2 = ~RS2;
   assign w3 = ~RnW;
-  assign w4 = ~(RS0 | w2 | w1 | RnW | Scnd);
-  assign w5 = ~(RS0 | w2 | w1 | RnW | First);
-  assign w6 = ~(w2 | RS1 | w0 | RnW | Scnd);
-  assign w7 = ~(w2 | RS1 | w0 | RnW | First);
+  // $2005/$2006 first/second write decode.
+  //
+  // SCCXFirstSecond clears BOTH toggle FFs on RC and on the $2002 read
+  // (R2), i.e. after any such reset First=0 / Scnd=1.  NES hardware (and
+  // BreakingNESWiki/PPU/regs.md) requires that the next $2005/$2006 write
+  // after a reset is the FIRST write of the pair (the X scroll / the $2006
+  // high byte): so the "1st" pulses n_W5_1/n_W6_1 must fire while First=0,
+  // and the "2nd" pulses n_W5_2/n_W6_2 after the toggle has flipped once
+  // (Scnd=0, i.e. First=1).  The alternate order put the $2005 X scroll and
+  // the $2006 high byte on the SECOND write of every pair, which breaks the
+  // documented scroll/vram-address write order of every NES game.
+  assign w4 = ~(RS0 | w2 | w1 | RnW | First);  // => n_W6_1: $2006 first write
+  assign w5 = ~(RS0 | w2 | w1 | RnW | Scnd);   // => n_W6_2: $2006 second write
+  assign w6 = ~(w2 | RS1 | w0 | RnW | First);  // => n_W5_1: $2005 first write
+  assign w7 = ~(w2 | RS1 | w0 | RnW | Scnd);   // => n_W5_2: $2005 second write
   assign n_W6_1 = ~w4;
   assign n_W6_2 = ~w5;
   assign n_W5_1 = ~w6;
