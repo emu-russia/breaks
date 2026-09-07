@@ -30,7 +30,7 @@ Scripts/gtkw_capture_all.sh
 | branch_logic_test | TEST PASS (128 checks) | ![waves/branch_logic_test.png](waves/branch_logic_test.png) |
 | brk_test | waveform | ![waves/brk_test.png](waves/brk_test.png) |
 | dispatch_test | waveform | ![waves/dispatch_test.png](waves/dispatch_test.png) |
-| alu_control_test | waveform | ![waves/alu_control_test.png](waves/alu_control_test.png) |
+| alu_control_test | TEST PASS (384 checks) | ![waves/alu_control_test.png](waves/alu_control_test.png) |
 | bus_control_test | TEST PASS (195 checks) | ![waves/bus_control_test.png](waves/bus_control_test.png) |
 | flags_control_test | waveform | ![waves/flags_control_test.png](waves/flags_control_test.png) |
 | pc_control_test | waveform | ![waves/pc_control_test.png](waves/pc_control_test.png) |
