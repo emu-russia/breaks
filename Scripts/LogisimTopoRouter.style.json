@@ -1,0 +1,84 @@
+{
+  "format": 1,
+  "name": "plan-ahead",
+  "description": "Xilinx PlanAhead flavoured schematic style: white sheet, dark red frame, pale yellow logic cells, blue memory, black wires, blue inputs, dark red outputs.",
+
+  "sheet": {
+    "frame": true,
+    "inner_frame": true,
+    "frame_color": "#7a0000",
+    "frame_thin_color": "#b0b0b0",
+    "frame_width": 2,
+    "frame_margin": 40,
+    "title_block": true,
+    "circ_titles": true
+  },
+
+  "layout": {
+    "column_pitch": 30,
+    "row_pitch": 20,
+    "lane_pitch": 10,
+    "track_pitch": 10,
+    "channel": 10,
+    "io_columns": true,
+    "label_offset": 10
+  },
+
+  "text": {
+    "font": "SansSerif plain 12",
+    "color": "#000000",
+    "sheet_title_font": "SansSerif bold 20",
+    "sheet_title_color": "#7a0000",
+    "block_font": "SansSerif bold 11",
+    "block_color": "#00007a",
+    "signal_font": "SansSerif plain 11",
+    "signal_color": "#004000",
+    "input_color": "#00007a",
+    "output_color": "#7a0000",
+    "clock_color": "#006000",
+    "warning_color": "#a00000"
+  },
+
+  "cells": {
+    "show_gate_labels": true,
+    "show_pin_labels": true,
+    "show_net_labels": true,
+    "show_level_headers": true
+  },
+
+  "appearance": {
+    "gate_style": "classic",
+    "pin_style": "classic",
+    "circuit_style": "classic"
+  },
+
+  "verilog": {
+    "primitives": true,
+    "indent": "  ",
+    "module_prefix": ""
+  },
+
+  "png": {
+    "enabled": true,
+    "scale": 2,
+    "max_dimension": 12000,
+    "max_pixels": 24000000,
+    "background": "#ffffff",
+    "grid": false,
+    "grid_color": "#eeeeee",
+    "frame_color": "#7a0000",
+    "frame_thin_color": "#b0b0b0",
+    "title_color": "#7a0000",
+    "wire_color": "#202020",
+    "bus_color": "#004080",
+    "cell_fill": "#fffbe6",
+    "memory_fill": "#e8f0ff",
+    "block_fill": "#f0e8ff",
+    "cell_edge": "#404040",
+    "inner_frame": true,
+    "title_block": true,
+    "level_headers": true,
+    "net_labels": true,
+    "max_net_labels": 4000
+  }
+}
