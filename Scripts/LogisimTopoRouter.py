@@ -321,9 +321,11 @@ class Net:
     external_in: list = field(default_factory=list)
     external_out: list = field(default_factory=list)
     warnings: list = field(default_factory=list)
+    reason: list = field(default_factory=list)
     # routing results
     lane_x: dict = field(default_factory=dict)    # gap index -> x
     track_y: int = None
+    wires: list = field(default_factory=list)     # segments generated for this net
 
     def comps(self):
         seen = []
@@ -2375,11 +2377,13 @@ def _ordered_columns(circ: Circuit, style: dict):
     comps = [c for c in circ.comps]
     for comp in comps:
         if comp.is_pin():
+            # primary inputs get their own column on the far left, primary outputs their
+            # own column on the far right (so they never mix with the logic columns)
             comp.col = 0 if not comp.pin_is_output() else -1
         else:
-            comp.col = comp.level
+            comp.col = comp.level + 1
 
-    max_level = max((c.col for c in comps), default=0)
+    max_level = max((c.col for c in comps if c.col >= 0), default=0)
     out_col = max_level + 1 if style["layout"].get("io_columns", True) else max_level
     for comp in comps:
         if comp.col < 0:
@@ -2436,8 +2440,12 @@ def _ordered_columns(circ: Circuit, style: dict):
         new_index = 0
         for col in range(ncols):
             items = cols[col]
-            for start in range(0, len(items), max_rows):
-                folded[new_index] = items[start:start + max_rows]
+            # the primary-input / primary-output columns are never folded: the ports
+            # stay grouped on the left and on the right edge of the sheet
+            io_column = bool(items) and all(c.is_pin() for c in items)
+            step = len(items) if io_column else max_rows
+            for start in range(0, max(len(items), 1), max(1, step)):
+                folded[new_index] = items[start:start + step]
                 new_index += 1
         cols = folded
         ncols = new_index
@@ -2622,6 +2630,7 @@ def layout_circuit(circ: Circuit, style: dict, track_pitch=None, lane_pitch=None
         if ty is None:
             continue
         net.track_y = ty
+        before = len(wires)
         used_lanes = set()
         for comp, i, gap, dirn in items:
             port = comp.ports[i]
@@ -2639,6 +2648,7 @@ def layout_circuit(circ: Circuit, style: dict, track_pitch=None, lane_pitch=None
         xs = sorted(used_lanes)
         for a, b in zip(xs, xs[1:]):
             wires.append(((a, ty), (b, ty)))
+        net.wires = [((a, b) if a <= b else (b, a)) for a, b in wires[before:]]
     sheet.wires = _dedup_wires(wires)
 
     sheet.opens, sheet.shorts = verify_routing(circ, sheet.wires)
@@ -3715,21 +3725,30 @@ class SheetRenderer:
     def _wires(self, img, sheet, scale):
         wire = _hex_to_rgb(self.png.get("wire_color", "#202020"), (32, 32, 32))
         bus = _hex_to_rgb(self.png.get("bus_color", "#004080"), (0, 64, 128))
-        widths = {}
+        junc = _hex_to_rgb(self.png.get("junction_color", "#000000"), (0, 0, 0))
+        jsize = max(2, int(self.png.get("junction_size", 3)) * max(1, scale // 2))
+        bus_width = max(2, int(self.png.get("bus_width", 3)))
+        bus_segments = set()
         for net in sheet.circ.nets:
-            for comp, i in net.members:
-                widths[(comp.idx, i)] = max(1, comp.ports[i].width)
-        bus_nets = {net.idx for net in sheet.circ.nets if net.width > 1}
+            if net.width > 1:
+                for a, b in net.wires:
+                    bus_segments.add((a, b) if a <= b else (b, a))
+        ends = Counter()
         for a, b in sheet.wires:
-            img.line(self._px(a, scale), self._px(b, scale), wire,
-                     max(1, scale))
-        for net in sheet.circ.nets:
-            if net.idx not in bus_nets or net.track_y is None:
+            ends[a] += 1
+            ends[b] += 1
+            key = (a, b) if a <= b else (b, a)
+            if key in bus_segments:
+                img.line(self._px(a, scale), self._px(b, scale), bus, bus_width)
+            else:
+                img.line(self._px(a, scale), self._px(b, scale), wire, max(1, scale))
+        # a wire *joins* another where three or more segment ends meet: mark it with a
+        # square dot so that connections are distinguishable from plain crossings
+        for point, count in ends.items():
+            if count < 3:
                 continue
-            xs = sorted(net.lane_x.values())
-            if xs:
-                img.hline(xs[0] * scale, xs[-1] * scale, net.track_y * scale, bus,
-                          max(1, scale))
+            x, y = self._px(point, scale)
+            img.fill((x - jsize, y - jsize, 2 * jsize + 1, 2 * jsize + 1), junc)
 
     def _cells(self, img, sheet, scale):
         fill = _hex_to_rgb(self.png.get("cell_fill", "#fffbe6"), (255, 251, 230))
@@ -3739,6 +3758,8 @@ class SheetRenderer:
         in_col = _hex_to_rgb(self.style["text"].get("input_color", "#00007a"), (0, 0, 122))
         out_col = _hex_to_rgb(self.style["text"].get("output_color", "#7a0000"), (122, 0, 0))
         label_col = _hex_to_rgb(self.style["text"].get("block_color", "#00007a"), (0, 0, 122))
+        port_col = _hex_to_rgb(self.style["text"].get("signal_color", "#004000"), (0, 64, 0))
+        show_ports = bool(self.png.get("port_labels", True))
         for comp in sheet.circ.comps:
             base = comp.new_loc or comp.loc
             bx, by, bw, bh = comp.bbox
@@ -3765,14 +3786,40 @@ class SheetRenderer:
                 fill2 if comp.name in MEMORY_CELLS else fill)
             img.fill(box, body)
             img.rect(box, edge, 1)
-            short = CELL_SHORT.get(comp.name, comp.name[:6].upper())
-            cx = box[0] + 3
-            cy = box[1] + max(2, (box[3] - 7) // 2)
-            img.text(cx, cy, short, (20, 20, 20), scale=1)
-            if comp.subcircuit:
-                img.text(box[0] + 3, box[1] + 3, comp.subcircuit[:16], (60, 0, 90), scale=1)
+            # the cell name goes *above* the block; a plain gate keeps its symbol inside
+            if comp.subcircuit or comp.name in MEMORY_CELLS:
+                img.text(box[0] + 2, box[1] - 9 * max(1, scale // 2),
+                         comp.subcircuit or comp.name, (60, 0, 90), scale=1)
+            else:
+                short = CELL_SHORT.get(comp.name, comp.name[:6].upper())
+                cx = box[0] + 3
+                cy = box[1] + max(2, (box[3] - 7) // 2)
+                img.text(cx, cy, short, (20, 20, 20), scale=1)
             if comp.label:
                 img.text(box[0] + 2, box[1] + box[3] + 2, comp.label, label_col, scale=1)
+            # connection points, with their names, drawn inside the cell box
+            if not show_ports:
+                continue
+            for port in comp.ports:
+                if not port.name or port.name == "?":
+                    continue
+                px = (base[0] + port.dx) * scale
+                py = (base[1] + port.dy) * scale
+                side = pin_side(comp, port)
+                img.fill((px - max(1, scale // 2), py - max(1, scale // 2),
+                          max(2, scale), max(2, scale)), edge)
+                if side == "west":
+                    img.text(box[0] + 3, py - 4, port.name, port_col, scale=1)
+                elif side == "east":
+                    w = img.text_width(port.name, scale=1)
+                    img.text(box[0] + box[2] - w - 3, py - 4, port.name, port_col,
+                             scale=1)
+                elif side == "north":
+                    img.text(px - img.text_width(port.name, scale=1) // 2, box[1] + 2,
+                             port.name, port_col, scale=1)
+                else:
+                    img.text(px - img.text_width(port.name, scale=1) // 2,
+                             box[1] + box[3] - 9, port.name, port_col, scale=1)
 
     def _headers(self, img, sheet, scale):
         color = _hex_to_rgb(self.style["text"].get("sheet_title_color", "#7a0000"), (122, 0, 0))
